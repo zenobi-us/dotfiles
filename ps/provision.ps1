@@ -23,12 +23,14 @@ npm install -g npm
 npm install -g microsoft-build-tools
 npm config set msvs_version 2015
 
+choco install -y openssh -params '"/SSHAgentFeature"'
+choco install git --force
+
 scoop bucket add extras
 scoop install sublime-text
 scoop install pshazz
 scoop install concfg
-scoop install openssh
 scoop install tar
-scoop install git
 
 install-windowsupdate -accepteula
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm
