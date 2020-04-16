@@ -1,5 +1,5 @@
 function global:reload-profile () {
-  . "${HOME}\.dotfiles\ps\profile\index.ps1";
+  . "${profile}";
 }
 
 function global:List-Open-Ports () {
