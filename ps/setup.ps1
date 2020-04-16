@@ -2,11 +2,11 @@ $profileDir = Split-Path -parent $profile
 
 New-Item $profileDir -ItemType Directory -Force -ErrorAction SilentlyContinue
 
-copy-item `
-    -Path $PSScriptRoot/profile/Microsoft.PowerShell_profile.ps1 `
-    -Destination $profileDir
+Set-Content `
+    "$profileDir/Microsoft.PowerShell_profile.ps1" `
+    ". ${PSScriptRoot}\profile\index.ps1"
 
-# Copy-Item -Path ./home/** -Destination $home -Include **
+Get-Content $profile
 
 Remove-Variable profileDir
 
