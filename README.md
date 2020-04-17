@@ -1,19 +1,12 @@
 # DotFiles
 
 - zsh
-- bash
 - powershell
 
 # Install
 
 ```bash
 $ git clone https://github.com/airtonix/dotfiles ~/.dotfiles
-```
-
-### bash
-
-```bash
-$ ~/.dotfiles/bash/setup
 ```
 
 ### zsh
@@ -27,3 +20,9 @@ $ ~/.dotfiles/bash/setup
 $ ~/.dotfiles/zsh/setup
 ```
 
+### powershell
+
+```bash
+PS> . ~/.dotfiles/ps/provision.ps1
+PS> . ~/.dotfiles/ps/setup.ps1
+```
