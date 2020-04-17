@@ -43,6 +43,15 @@ function global:aws {
     aws $args
 }
 
+function global:aws-shell {
+  docker run --rm -it `
+    -w /root `
+    -v ${HOME}/.aws/:/root/.aws/ `
+    -v ${PWD}:/root/ `
+    nexus.morgoth.studylink.com:5000/awscli `
+    /bin/sh
+}
+
 function global:Docker-Dive {
   docker run --rm -it `
       -v /var/run/docker.sock:/var/run/docker.sock `
