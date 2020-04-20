@@ -16,6 +16,12 @@ function Write-Warn([string]$message) {
     [Console]::ResetColor()
 }
 
+function Write-Info([string]$message) {
+    [Console]::ForegroundColor = 'white'
+    [Console]::Error.WriteLine($message)
+    [Console]::ResetColor()
+}
+
 
 function StowFile([String]$link, [String]$target) {
 	$file = Get-Item $link -ErrorAction SilentlyContinue
@@ -105,10 +111,10 @@ function load-parts ($source) {
     return
   }
 
-  $parts=get-childitem ($source + "*.ps1");
+  $parts=get-childitem (join-path $source "*.ps1");
   $prefix=$(split-path $($source) -leaf)
 
-  write-host "${prefix}.loading " -nonewline
+  write-host "${prefix}.loading [${parts.count}] " -nonewline
 
   $Fails = New-Object System.Collections.ArrayList
 
