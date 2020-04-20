@@ -5,8 +5,16 @@
 
 # Install
 
+**unix**
+
 ```bash
 $ git clone https://github.com/airtonix/dotfiles ~/.dotfiles
+```
+
+**windows**
+
+```bash
+iex ((new-object net.webclient).DownloadString('https://raw.github.com/airtonix/dotfiles/master/install.ps1'))
 ```
 
 ### zsh

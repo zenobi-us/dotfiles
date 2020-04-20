@@ -1,0 +1,1 @@
+install-windowsupdate -accepteula

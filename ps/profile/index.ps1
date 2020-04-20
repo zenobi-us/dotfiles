@@ -1,5 +1,5 @@
-. "${PSScriptRoot}\..\common.ps1";
+. "${PSScriptRoot}/../common.ps1"
 
-load-parts("${PSScriptRoot}\parts\");
-load-parts("${PSScriptRoot}\secrets\");
+load-parts(join-path $PSScriptRoot "parts")
+load-parts(join-path $PSScriptRoot "secrets")
 
