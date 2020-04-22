@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.2
+    ports:
+      - 80:80
+      - 8080:8080
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+    volumes:
+      - ./traefik.toml:/traefik.toml
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+networks:
+  proxy:
+    external:
+      name: LocalDevProxyNetwork

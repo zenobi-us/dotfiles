@@ -16,6 +16,47 @@ function global:Docker-Remove-DanglingVolumes {
     & docker volume rm $id }
 }
 
+function global:DockerTableToPowershell {
+    $input |
+    Select-Object -Skip 1 | # skip the header row
+    ForEach-Object {
+        # Split on space(s)
+        $Values = $_ -split '\s+'
+
+        # Put together object and store in $Objects array
+        Write-Output [PSCustomObject]@{
+            ContainerID = $Values[0]
+            Image       = $Values[1]
+            Command     = $Values[2]
+            Created     = $Values[3]
+            Status      = $Values[4]
+            Ports       = $Values[5]
+            Names       = $Values[6]
+        }
+    }
+}
+
+function global:EnsureDockerNetworkExist {
+  Param(
+    [string]$name = 'UntitledNetwork'
+  )
+
+  docker network ls |
+    DockerTableToPowershell $name
+}
+
+function global:NginxProxy {
+  Param(
+    [string]$port = 80,
+    [string]$name = 'LocalDevProxy',
+    [string]$network = 'LocalDevProxyNetwork'
+  )
+
+  cd $PsScriptRoot/../../apps/docker/traefik
+
+  docker-compose up
+}
+
 function global:Mirror-Website {
   Param(
     [string]$url

@@ -1,0 +1,12 @@
+
+[log]
+  level = "INFO"
+
+[api]
+  dashboard = true
+  insecure = true
+
+[providers.docker]
+  exposedbydefault = false
+  network = "LocalDevProxyNetwork"
+  defaultRule = "Host(`{{ .Name }}.dev.localhost`)"
