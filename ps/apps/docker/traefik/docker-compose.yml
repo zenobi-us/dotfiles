@@ -1,37 +1,54 @@
 version: '3'
 
-# Before Using this:
-#  docker network create LocalDevProxyNetwork
+# Before using this:
+# $ docker network create LocalDevProxyNetwork
 #
+networks:
+  proxy:
+    external:
+      name: LocalDevProxyNetwork
 
 services:
   traefik:
     image: traefik:v2.2
     command:
       - --global.checkNewVersion=true
+      # enables traefiks source of information for containers : docker daemon
+      # there are others: https://docs.traefik.io/providers/overview/
       - --providers.docker=true
+      # don't create entrypoints/routes/services automatically
+      # containers need to opt in by using the label:
+      # - "traefik.enable=true"
+      # see below.
       - --providers.docker.exposedbydefault=false
+      # Traefik can loadbalance/reverse-proxy stuff across many networks.
+      # but for our local dev, we'll just stick to one by default
       - --providers.docker.network=LocalDevProxyNetwork
       # this controls the automatic hostname rule creation
-      # when traefik sees existing containers or new containers come up
+      # when traefik sees existing containers or new containers come up.
+      # Unfortunately, Go Templating can only happen in this configuration property
+      # See Github Discussion: https://github.com/containous/traefik/issues/5134#issuecomment-618166813
       - --providers.docker.defaultRule=Host(`{{ .Name }}.dev.localhost`)
+      # Control log level. For this example, we're just showing it as stdout in the console.
+      # https://docs.traefik.io/observability/logs/
       - --log.level=INFO
+      # Enable the Traefik RESTful api and dashboard.
+      # Not essential but useful.
+      # The below labels makes traefik route it's own webservice
+      # to http://traefik.dev.localhost
       - --api
     ports:
       - "80:80"
     networks:
       - proxy
     labels:
+      # Makes Traefik do loadbalancer/reverse-proxy things for this container
       - "traefik.enable=true"
+      # Creates a hostname rule
       - "traefik.http.routers.api.rule=Host(`traefik.dev.localhost`)"
-
+      # Points it at a predefined service rather than just inferring a service
+      # from EXPOSEd ports
       - "traefik.http.routers.api.service=api@internal"
-
     volumes:
+      # This is required for Traefik to see docker events as they happen
       - /var/run/docker.sock:/var/run/docker.sock
-
-
-networks:
-  proxy:
-    external:
-      name: LocalDevProxyNetwork
