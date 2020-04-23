@@ -45,7 +45,7 @@ function global:EnsureDockerNetworkExist {
     DockerTableToPowershell $name
 }
 
-function global:NginxProxy {
+function global:Traefik {
   Param(
     [string]$port = 80,
     [string]$name = 'LocalDevProxy',
@@ -53,7 +53,6 @@ function global:NginxProxy {
   )
 
   cd $PsScriptRoot/../../apps/docker/traefik
-
   docker-compose up
 }
 
