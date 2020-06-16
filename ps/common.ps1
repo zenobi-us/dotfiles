@@ -3,43 +3,48 @@
 # Install-Module -Name PSDotFiles
 #
 
+. "${PSScriptRoot}/constants.ps1"
+
 function Write-Error([string]$message) {
-    [Console]::ForegroundColor = 'red'
-    [Console]::Error.WriteLine($message)
-    [Console]::ResetColor()
+	[Console]::ForegroundColor = 'red'
+	[Console]::Error.WriteLine($message)
+	[Console]::ResetColor()
 }
 
 
 function Write-Warn([string]$message) {
-    [Console]::ForegroundColor = 'yellow'
-    [Console]::Error.WriteLine($message)
-    [Console]::ResetColor()
+	[Console]::ForegroundColor = 'yellow'
+	[Console]::Error.WriteLine($message)
+	[Console]::ResetColor()
 }
 
 function Write-Info([string]$message) {
-    [Console]::ForegroundColor = 'white'
-    [Console]::Error.WriteLine($message)
-    [Console]::ResetColor()
+	[Console]::ForegroundColor = 'white'
+	[Console]::Error.WriteLine($message)
+	[Console]::ResetColor()
 }
 
 
 function StowFile([String]$link, [String]$target) {
 	$file = Get-Item $link -ErrorAction SilentlyContinue
 
-	if($file) {
+	if ($file) {
 		if ($file.LinkType -ne "SymbolicLink") {
 			Write-Error "$($file.FullName) already exists and is not a symbolic link"
 			return
-		} elseif ($file.Target -ne $target) {
+		}
+		elseif ($file.Target -ne $target) {
 			Write-Error "$($file.FullName) already exists and points to '$($file.Target)', it should point to '$target'"
 			return
-		} else {
+		}
+		else {
 			Write-Verbose "$($file.FullName) already linked"
 			return
 		}
-	} else {
-	$folder = Split-Path $link
-		if(-not (Test-Path $folder)) {
+	}
+ else {
+		$folder = Split-Path $link
+		if (-not (Test-Path $folder)) {
 			Write-Verbose "Creating folder $folder"
 			New-Item -Type Directory -Path $folder
 		}
@@ -51,12 +56,12 @@ function StowFile([String]$link, [String]$target) {
 
 
 function Stow([String]$package, [String]$target) {
-	if(-not $target) {
+	if (-not $target) {
 		Write-Error "Could not define the target link folder of $package"
 	}
 
-	ls $DotFilesPath\$package | % {
-		if(-not $_.PSIsContainer) {
+	ls $DotFilesPath\Home\$package | % {
+		if (-not $_.PSIsContainer) {
 			StowFile (Join-Path -Path $target -ChildPath $_.Name) $_.FullName
 		}
 	}
@@ -64,81 +69,95 @@ function Stow([String]$package, [String]$target) {
 
 
 function Install([String]$package) {
-	if(-not ((choco list $package --exact --local-only --limitoutput) -like "$package*")) {
+	if (-not ((choco list $package --exact --local-only --limitoutput) -like "$package*")) {
 		Write-Verbose "Installing package $package"
 		choco install $package -y
-	} else {
+	}
+ else {
 		Write-Verbose "Package $package already installed"
 	}
 }
 
 
 function DownloadFile([string]$url, [string]$target, [string]$hash) {
-		if(Test-Path $target) {
-			Write-Verbose "$target already downloaded"
-		} else {
-			Write-Verbose "Downloading $url to $target"
-			try {
-				(New-Object System.Net.WebClient).DownloadFile($url, $target)
-			} catch {
-				Write-Error $_
-			}
-			$targethash = Get-FileHash $target -Algorithm "SHA256"
-
-			$diff = 0
-			Compare-Object -Referenceobject $hash -Differenceobject $targethash.Hash | % { If ($_.Sideindicator -ne " ==") { $diff += 1 } }
-
-			if ($diff -ne 0) {
-				Write-Error "Downloaded file '$target' from url '$url' does not match expected hash!`nExpected: $hash`nActual  : $($targethash.Hash)"
-			}
+	if (Test-Path $target) {
+		Write-Verbose "$target already downloaded"
+	}
+ else {
+		Write-Verbose "Downloading $url to $target"
+		try {
+			(New-Object System.Net.WebClient).DownloadFile($url, $target)
 		}
+		catch {
+			Write-Error $_
+		}
+		$targethash = Get-FileHash $target -Algorithm "SHA256"
+
+		$diff = 0
+		Compare-Object -Referenceobject $hash -Differenceobject $targethash.Hash | % { If ($_.Sideindicator -ne " ==") { $diff += 1 } }
+
+		if ($diff -ne 0) {
+			Write-Error "Downloaded file '$target' from url '$url' does not match expected hash!`nExpected: $hash`nActual  : $($targethash.Hash)"
+		}
+	}
 }
 
 
 function SetEnvVariable([string]$target, [string]$name, [string]$value) {
-	$existing = [Environment]::GetEnvironmentVariable($name,$target)
-	if($existing) {
+	$existing = [Environment]::GetEnvironmentVariable($name, $target)
+	if ($existing) {
 		Write-Verbose "Environment variable $name already set to '$existing'"
-	} else {
+	}
+ else {
 		Write-Verbose "Adding the $name environment variable to '$value'"
 		[Environment]::SetEnvironmentVariable($name, $value, $target)
 	}
 }
 
+function load-parts ([string]$Source, [string]$Filter) {
 
-function load-parts ($source) {
-  if(-not (Test-Path $source)) {
-    return
-  }
+	$prefix = $(split-path $($Source) -leaf)
+	$exists = (Test-Path $Source)
 
-  $parts=get-childitem (join-path $source "*.ps1");
-  $prefix=$(split-path $($source) -leaf)
+	if (-not $exists) {
+		Write-Warning "${get-emoji 'THOUGHT BALLON'} ${prefix}.skipped "
+		return
+	}
 
-  write-host "${prefix}.loading [${parts.count}] " -nonewline
+	$parts = get-childitem (join-path $Source "*.ps1") |
+	sort-object
 
-  $Fails = New-Object System.Collections.ArrayList
+	if ($Filter) {
+		$parts = $parts |
+		where-object { $_.Name -like $Filter }
+	}
+	Write-Info "${prefix}.loading [${filter}] "
 
-  foreach ($file in $parts){
-    try {
-      $ErrorActionPreference = "Stop"; #Make all errors terminating
-      import-module ${file}
-      write-host "." -nonewline
-    } catch {
-      write-host "x" -nonewline
-      [void]$Fails.add($file)
-    }
-    finally{
-      $ErrorActionPreference = "Continue"; #Reset the error action pref to default
-    }
-  }
 
-  write-host ""
 
-  if ($Fails.count -gt 0) {
-    write-host "${prefix}.errors "
-    foreach($fail in $Fails) {
-      write-host " - $(split-path $($fail) -leaf)"
-    }
-  }
+	$Fails = New-Object System.Collections.ArrayList
+
+	foreach ($file in $parts) {
+		try {
+			$ErrorActionPreference = "Stop"; #Make all errors terminating
+			import-module ${file}
+			Write-Info " + $( split-path $file -leaf)"
+		}
+		catch {
+			Write-Error " x $( split-path $file -leaf)"
+			[void]$Fails.add($file)
+		}
+		finally {
+			$ErrorActionPreference = "Continue"; #Reset the error action pref to default
+		}
+	}
+	Write-Host ""
+
+	if ($Fails.count -gt 0) {
+		Write-Error "${prefix}.errors "
+		foreach ($fail in $Fails) {
+			Write-Error " - $(split-path $($fail) -leaf)"
+		}
+	}
 
 }

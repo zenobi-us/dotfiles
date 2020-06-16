@@ -16,44 +16,45 @@ function global:Docker-Remove-DanglingVolumes {
     & docker volume rm $id }
 }
 
-function global:DockerTableToPowershell {
-    $input |
-    Select-Object -Skip 1 | # skip the header row
-    ForEach-Object {
-        # Split on space(s)
-        $Values = $_ -split '\s+'
-
-        # Put together object and store in $Objects array
-        Write-Output [PSCustomObject]@{
-            ContainerID = $Values[0]
-            Image       = $Values[1]
-            Command     = $Values[2]
-            Created     = $Values[3]
-            Status      = $Values[4]
-            Ports       = $Values[5]
-            Names       = $Values[6]
-        }
-    }
-}
 
 function global:EnsureDockerNetworkExist {
   Param(
     [string]$name = 'UntitledNetwork'
   )
+  $existing = $(docker network ls --format "{{ .Name }}")
+  $exists = $existing.Contains($name)
 
-  docker network ls |
-    DockerTableToPowershell $name
+  if (!$exists) {
+    write-host "Creating Network $name"
+    docker network create "${name}"
+  }
+
 }
 
 function global:Traefik {
   Param(
-    [string]$port = 80,
-    [string]$name = 'LocalDevProxy',
     [string]$network = 'LocalDevProxyNetwork'
   )
 
-  cd $PsScriptRoot/../../apps/docker/traefik
-  docker-compose up
+  EnsureDockerNetworkExist $network
+
+  docker run `
+  --rm `
+  --publish="80:80" `
+  --name="traefik" `
+  --network="${network}" `
+  --label="traefik.enable=true" `
+  --label="traefik.http.routers.api.rule=Host(``traefik.localtest.me``)" `
+  --label="traefik.http.routers.api.service=api@internal" `
+  --volume="/var/run/docker.sock:/var/run/docker.sock" `
+  traefik:v2.2 `
+  --global.checkNewVersion="true" `
+  --providers.docker="true" `
+  --providers.docker.exposedbydefault="false" `
+  --providers.docker.network="LocalDevProxyNetwork" `
+  --providers.docker.defaultRule="Host(`{{ .Name }}.localtest.me`)" `
+  --log.level="INFO" `
+  --api
 }
 
 function global:Mirror-Website {
@@ -72,15 +73,6 @@ function global:Docker-Dry {
     -v /var/run/docker.sock:/var/run/docker.sock `
     -e DOCKER_HOST=$DOCKER_HOST `
     moncho/dry
-}
-
-function global:aws {
-  docker run --rm -it `
-    -w /root `
-    -v ${HOME}/.aws/:/root/.aws/ `
-    -v ${PWD}:/root/ `
-    nexus.morgoth.studylink.com:5000/awscli `
-    aws $args
 }
 
 function global:aws-shell {
