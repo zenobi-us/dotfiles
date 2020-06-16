@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
-HERE=$(dirname $0)
+absolute_path() {
+    cd "$(dirname "$1")"
+    case $(basename $1) in
+        ..) echo "$(dirname $(pwd))";;
+        .)  echo "$(pwd)";;
+        *)  echo "$(pwd)/$(basename $1)";;
+    esac
+}
+HERE=$(dirname $(absolute_path $0))
 
 echo "Setting up ZSH from ${HERE}"
 
@@ -15,7 +23,7 @@ case "$(uname -s)" in
 		ln -s ${HERE}/.zprofile ~/
 		ln -s ${HERE}/.zshenv ~/
 
-		./setup.osx.sh
+		sh ${HERE}/setup.osx.sh
 	  ;;
 
 	Linux)
@@ -24,7 +32,7 @@ case "$(uname -s)" in
 		ln -s ${HERE}/.zshenv ~/
 
 		echo "Linux"
-		# ./setup.linux.sh
+		sh ${HERE}/setup.linux.sh
 		;;
 
 	CYGWIN*|MINGW32*|MSYS*)

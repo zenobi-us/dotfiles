@@ -1,7 +1,0 @@
-#!/usr/bin/env zsh
-
-function include {
-    echo "loading: ${DOTFILE_ROOT}/${1}"
-    [ -e "${DOTFILE_ROOT}/${1}" ] && source "${DOTFILE_ROOT}/${1}"
-
-}

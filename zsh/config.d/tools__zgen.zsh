@@ -10,9 +10,7 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-completions src
     zgen load mafredri/zsh-async
 
-    # zgen load sindresorhus/pure
-    # zgen load ergenekonyigit/lambda-gitster lambda-gitster
-    # zgen load tobyjamesthomas/pi pi
+    zgen load lukechilds/zsh-nvm
     zgen load romkatv/powerlevel10k powerlevel10k
 
     zgen save
