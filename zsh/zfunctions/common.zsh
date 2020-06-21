@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
 function load-parts {
-    echo -ne "> ${1} "
-    for part in $(find $DOTFILE_ROOT -path "*/${1}"); do
-        echo -ne '.'
-        [ -e "${part}" ] && source "${part}"
+    [[ -n "${DEBUG}" ]] && echo "> ${1}" || echo -ne "> ${1} " 
+    for part in $(find $DOTFILE_ROOT -path "*/${1}.zsh"); do
+        [[ -n "${DEBUG}" ]] && echo "part > ${part}" || echo -ne '.'
+        [[ -e "${part}" ]] && source "${part}"
     done
     echo ""
 }
