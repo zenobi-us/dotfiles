@@ -1,3 +1,5 @@
+Install-Module -Name Emojis
+
 choco install 7zip -Y
 choco install fzf -Y
 

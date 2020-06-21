@@ -1,12 +1,15 @@
-$profileDir = Split-Path -parent $profile
+& "${PSScriptRoot}/common.ps1"
 
-New-Item $profileDir -ItemType Directory -Force -ErrorAction SilentlyContinue
+# Setup the Profile first
+New-Item $ProfileDir -ItemType Directory -Force -ErrorAction SilentlyContinue
+Set-Content ( `
+    (join-path $ProfileDir "Microsoft.PowerShell_profile.ps1" -resolve) `
+    ". " (join-path $PSScriptRoot "profile" "index.ps1") `
+)
 
-Set-Content `
-    "$profileDir/Microsoft.PowerShell_profile.ps1" `
-    ". ${PSScriptRoot}\profile\index.ps1"
+# Link all the Application Dotfiles
+Stow "vscode" "keybinding.json"
+Stow "vscode" "tasks.json"
+Stow "vscode" "settings.json"
 
-Get-Content $profile
-
-Remove-Variable profileDir
-
+Stow "git" ".gitconfig"
