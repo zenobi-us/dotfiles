@@ -12,7 +12,7 @@ you can just let the web install do its thing...
 **unix**
 
 ```bash
-$ curl https://raw.github.com/airtonix/dotfiles/master/install.sh | sh
+$ curl -L https://raw.github.com/airtonix/dotfiles/master/install.sh | sh
 ```
 
 **windows**
