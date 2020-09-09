@@ -5,10 +5,14 @@
 
 # Install
 
+## From Web
+
+you can just let the web install do its thing...
+
 **unix**
 
 ```bash
-$ git clone https://github.com/airtonix/dotfiles ~/.dotfiles
+$ curl https://raw.github.com/airtonix/dotfiles/master/install.sh | sh
 ```
 
 **windows**
@@ -17,20 +21,26 @@ $ git clone https://github.com/airtonix/dotfiles ~/.dotfiles
 iex ((new-object net.webclient).DownloadString('https://raw.github.com/airtonix/dotfiles/master/install.ps1'))
 ```
 
-### zsh
+## Manually
+
+1. git clone
+2. `chmod +x ./dotfiles/zsh/setup` or `. dotfiles/ps/provision.ps1`
+
+## zsh
+
 1. install zsh
 2. set it as your shell `chsh $(which zsh)`
 3. log out
 4. log in
 5. link the configuration files
 
-```bash
+```console
 $ ~/.dotfiles/zsh/setup
 ```
 
 ### powershell
 
-```bash
+```console
 PS> . ~/.dotfiles/ps/provision.ps1
 PS> . ~/.dotfiles/ps/setup.ps1
 ```
