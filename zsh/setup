@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 absolute_path() {
-    cd "$(dirname "$1")"
-    case $(basename $1) in
+    cd "$(dirname "")"
+    case $(basename ) in
         ..) echo "$(dirname $(pwd))";;
         .)  echo "$(pwd)";;
-        *)  echo "$(pwd)/$(basename $1)";;
+        *)  echo "$(pwd)/$(basename )";;
     esac
 }
 
@@ -12,7 +12,7 @@ log() {
 	echo "[SETUP] $@"
 }
 
-HERE=$(dirname $(absolute_path $0))
+HERE=$(dirname $(absolute_path ))
 PLATFORM="$(uname -s)"
 
 log "Here: ${HERE}"
@@ -38,3 +38,5 @@ case $PLATFORM in
 		;;
 
 esac
+
+. ${HERE}/setup.d/setup.user.zsh
