@@ -16,3 +16,5 @@ log "> linking zsh files"
 
 log "> set zsh as shell"
 chsh -s /bin/zsh $(whoami)
+
+log "Done"
