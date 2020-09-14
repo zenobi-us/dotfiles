@@ -14,7 +14,7 @@ log "> linking zsh files"
 [ -f ${HERE}/.zprofile ] && ln -s ${HERE}/.zprofile ~/
 [ -f ${HERE}/.zshenv ] && ln -s ${HERE}/.zshenv ~/
 
-log "> set zsh as shell"
-chsh -s /bin/zsh $(whoami)
+# log "> set zsh as shell"
+# chsh -s /bin/zsh $(whoami)
 
 log "Done"
