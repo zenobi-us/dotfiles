@@ -1,4 +1,8 @@
 #!/bin/sh
+log() {
+	echo "[SETUP/linux-alpine-x64] $@"
+}
+
 log "System> Setup"
 
 set -e
@@ -63,4 +67,4 @@ tusk --install-completion zsh
 log "System> install qfc"
 git clone https://github.com/pindexis/qfc $HOME/.qfc
 
-
+log "Done"
