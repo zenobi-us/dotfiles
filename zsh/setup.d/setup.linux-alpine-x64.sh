@@ -51,20 +51,4 @@ apk --update add \
 pip3 install \
     pipenv
 
-log "System> install shellspec"
-[ ! -d "$HOME/.local/lib/shellspec" ] \
-    && curl -fsSL https://git.io/shellspec | sh
-
-log "System> install nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh \
-    | sh
-    
-log "System> install tusk"
-curl -sL https://git.io/tusk \
-    | sh -s -- -b /usr/local/bin latest
-tusk --install-completion zsh
-
-log "System> install qfc"
-git clone https://github.com/pindexis/qfc $HOME/.qfc
-
 log "Done"
