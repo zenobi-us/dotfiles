@@ -2,7 +2,32 @@
 log "System> Setup"
 
 set -e
-
+log "System> install tools"
+apk --update add \
+    util-linux \
+    pciutils \
+    usbutils \
+    coreutils \
+    binutils \
+    findutils \
+    grep \
+    shadow
+    
+log "System> install buildtools"
+apk --update add \
+    build-base \
+    gcc \
+    abuild \
+    binutils \
+    binutils-doc \
+    gcc-doc \
+    cmake \
+    cmake-doc \
+    extra-cmake-modules \
+    extra-cmake-modules-doc \
+    ccache \
+    ccache-doc
+    
 log "System> install sudo"
 apk --update add \
     sudo
@@ -16,12 +41,9 @@ apk --update add \
     openssh \
     gnupg \
     git \
-    curl
-    cmake \
-    cmake-doc \
-    extra-cmake-modules \
-    extra-cmake-modules-doc \
+    curl \
     python3
+    
 pip3 install \
     pyenv \
     pipenv
