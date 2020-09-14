@@ -33,5 +33,8 @@ tusk --install-completion zsh
 log "> install qfc"
 git clone https://github.com/pindexis/qfc $HOME/.qfc
 
+log "> install mkdkr"
+curl https://raw.githubusercontent.com/rosineygp/mkdkr/master/.mkdkr > .mkdkr
+
 
 log "Done"
