@@ -1,5 +1,7 @@
 #!/bin/sh
-
+log() {
+	echo "[SETUP/linux] $@"
+}
 . $HERE/setup.d/setup.linux.user.sh
 
 if [ "$EUID" -eq 0 ]; then
