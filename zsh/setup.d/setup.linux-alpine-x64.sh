@@ -45,7 +45,6 @@ apk --update add \
     python3
     
 pip3 install \
-    pyenv \
     pipenv
 
 log "System> install shellspec"
