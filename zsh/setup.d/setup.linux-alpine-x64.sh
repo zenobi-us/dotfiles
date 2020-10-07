@@ -27,8 +27,6 @@ apk --update add \
     gcc-doc \
     cmake \
     cmake-doc \
-    extra-cmake-modules \
-    extra-cmake-modules-doc \
     ccache \
     ccache-doc
     
