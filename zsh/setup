@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 absolute_path() {
-    cd "$(dirname "")"
-    case $(basename ) in
+    cd "$(dirname "$1")"
+    case $(basename $1) in
         ..) echo "$(dirname $(pwd))";;
         .)  echo "$(pwd)";;
-        *)  echo "$(pwd)/$(basename )";;
+        *)  echo "$(pwd)/$(basename $1)";;
     esac
 }
 
