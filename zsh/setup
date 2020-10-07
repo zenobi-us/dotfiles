@@ -12,7 +12,7 @@ log() {
 	echo "[SETUP] $@"
 }
 
-HERE=$(dirname $(absolute_path $0.00))
+HERE=$(dirname $(absolute_path $0))
 PLATFORM="$(uname -s)"
 
 log "Here: ${HERE}"
