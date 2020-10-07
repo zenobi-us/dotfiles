@@ -15,7 +15,7 @@ log "> linking zsh files"
 [ -f ${HERE}/.zshenv ] && ln -s ${HERE}/.zshenv ~/
 
 # log "> set zsh as shell"
-# chsh -s /bin/zsh $(whoami)
+chsh -s /bin/zsh $(whoami)
 
 log "> install shellspec"
 [ ! -d "$HOME/.local/lib/shellspec" ] \
