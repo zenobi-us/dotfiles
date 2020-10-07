@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 absolute_path() {
-    cd "$(dirname "$1")"
-    case $(basename $1) in
+    cd "$(dirname "")"
+    case $(basename ) in
         ..) echo "$(dirname $(pwd))";;
         .)  echo "$(pwd)";;
         *)  echo "$(pwd)/$(basename )";;
@@ -12,7 +12,7 @@ log() {
 	echo "[SETUP] $@"
 }
 
-HERE=$(dirname $(absolute_path ))
+HERE=$(dirname $(absolute_path $0.00))
 PLATFORM="$(uname -s)"
 
 log "Here: ${HERE}"
