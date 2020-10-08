@@ -3,7 +3,6 @@
 . "${DOTFILE_ROOT}/lib/sh/absolutepath.sh";
 
 load-parts "secrets.d/*"
-
 load-parts "tools/zgen"
 load-parts "config.d/*__aliases"
 

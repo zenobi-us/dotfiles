@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+
 log () {
 	echo "[SETUP/osx] $@"
 }
@@ -14,3 +15,5 @@ cat $(which zsh) | tee /etc/shells
 settings
 
 task "${HEREPATH}/setup.d/setup.user.sh"
+
+log "Done"

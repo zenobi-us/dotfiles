@@ -1,5 +1,7 @@
 #!/bin/bash/env zsh
+# store path to this directory
 export DOTFILE_ROOT=$(dirname $(readlink "${(%):-%x}"))
+. "${DOTFILE_ROOT}/lib/zsh/loadparts.zsh";
 
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN ]]; then
   . "${DOTFILE_ROOT}/lib/zsh/loadparts.zsh";

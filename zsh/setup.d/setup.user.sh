@@ -3,6 +3,13 @@ log () {
 }
 
 log "Setup Git Identity"
+#!/usr/bin/env sh
+
+log () {
+	echo "[SETUP/user] $@"
+}
+
+log "Setup Git Information"
 
 echo "Your First and LastName:"
 read USER_GIT_NAME
@@ -11,3 +18,5 @@ git config --global user.name "${USER_GIT_NAME}"
 echo "Your email address"
 read USER_GIT_EMAIL
 git config --global user.email "${USER_GIT_EMAIL}"
+
+log "Done"
