@@ -24,7 +24,7 @@ log "> install shellspec"
 log "> install nvm"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh \
     | sh
-    
+
 log "> install tusk"
 curl -sL https://git.io/tusk \
     | sh -s -- -b /usr/local/bin latest

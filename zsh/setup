@@ -1,26 +1,37 @@
 #!/usr/bin/env bash
-absolute_path() {
-    cd "$(dirname "$1")"
-    case $(basename $1) in
-        ..) echo "$(dirname $(pwd))";;
-        .)  echo "$(pwd)";;
-        *)  echo "$(pwd)/$(basename $1)";;
-    esac
-}
-
-log() {
+function log () {
 	echo "[SETUP] $@"
 }
 
-HERE=$(dirname $(absolute_path $0))
+#
+# Environment Information
+#
 PLATFORM="$(uname -s)"
-
-log "Here: ${HERE}"
 log "Platform: ${PLATFORM}"
 
-chmod +x ${HERE}/setup*
+
+#
+# Establish Absolute Path to dotfile/zsh root
+#
+RELATIVETHIS=$0
+cd "$(dirname "$RELATIVETHIS")"
+case $(basename $RELATIVETHIS) in
+	..) ABSOLUTETHIS="$(dirname $(pwd))";;
+	.)  ABSOLUTETHIS="$(pwd)";;
+	*)  ABSOLUTETHIS="$(pwd)/$(basename $RELATIVETHIS)";;
+esac
+HEREPATH=$(dirname ${ABSOLUTETHIS})
+log "HEREPATH: ${HEREPATH}"
+
+. "${HEREPATH}/lib/sh/absolutepath.zsh";
+. "${HEREPATH}/lib/zsh/loadparts.zsh";
+. "${HEREPATH}/lib/zsh/task.zsh";
+
 chmod +x ${HERE}/setup.d/*
 
+#
+# OS Specific Setup
+#
 case $PLATFORM in
 
 	Darwin)
@@ -32,11 +43,10 @@ case $PLATFORM in
 		;;
 
 	CYGWIN*|MINGW32*|MSYS*)
+		log "NotSupported: ${PLATFORM}"
 		;;
 
 	*)
 		;;
 
 esac
-
-. ${HERE}/setup.d/setup.user.zsh

@@ -2,14 +2,16 @@
 log() {
 	echo "[SETUP/linux] $@"
 }
-. $HERE/setup.d/setup.linux.user.sh
+
+. "${HEREPATH}/lib/sh/linux-osinformation.zsh";
+
+log "OS: ${OSINFO_ID} ${OSINFO_VERSION} ${ARCH}"
 
 if [ "$EUID" -eq 0 ]; then
-    . $HERE/zfunctions/os.sh
-    setup_path="${HERE}/setup.d/setup.linux-${OS_ID}-${ARCH}.sh"
-    log "setting up ${OS_ID} ${VER} ${ARCH}"
-    log "setupfile: ${setup_path}"
-
-    [ -f "$setup_path" ] && . $setup_path
-    [ ! -f "$setup_path" ] && echo "doesnt exist: $setup_path"
+    task "${HEREPATH}/setup.d/setup.linux-${OS_ID}-${ARCH}.sh"
+    task "${HEREPATH}/setup.d/setup.linux.system.sh"
+else
+    task "${HEREPATH}/setup.d/setup.linux-${OS_ID}-${ARCH}.user.sh"
+    task "${HEREPATH}/setup.d/setup.linux.user.sh"
+    task "${HEREPATH}/setup.d/setup.user.sh"
 fi
