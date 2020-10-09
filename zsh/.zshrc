@@ -1,6 +1,8 @@
 #!/bin/bash/env zsh
-. "${DOTFILE_ROOT}/lib/zsh/loadparts.zsh";
+. "${DOTFILE_ROOT}/lib/sh/case.sh";
+. "${DOTFILE_ROOT}/lib/sh/osinformation.sh";
 . "${DOTFILE_ROOT}/lib/sh/absolutepath.sh";
+. "${DOTFILE_ROOT}/lib/zsh/loadparts.zsh";
 
 load-parts "secrets.d/*"
 load-parts "tools/zgen"
