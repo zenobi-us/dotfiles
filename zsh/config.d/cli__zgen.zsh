@@ -4,4 +4,4 @@ zgen load zsh-users/zsh-syntax-highlighting
 zgen load zsh-users/zsh-completions src
 
 zgen load mafredri/zsh-async
-zgen load romkatv/powerlevel10k powerlevel10k
+zgen load sindresorhus/pure
