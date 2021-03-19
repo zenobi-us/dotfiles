@@ -3,11 +3,11 @@
 export DOTFILE_ROOT=$(dirname $(readlink "${(%):-%x}"))
 . "${DOTFILE_ROOT}/lib/zsh/loadparts.zsh";
 
-if [[ "$SHLVL" -eq 1 && ! -o LOGIN ]]; then
+if [[ "$SSH_TTY" && "$SHLVL" -eq 1 && ! -o LOGIN ]]; then
   . "${DOTFILE_ROOT}/lib/zsh/loadparts.zsh";
   load-parts "config.d/*__env"
 fi
 
-if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+if [[ "$SSH_TTY" && "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
