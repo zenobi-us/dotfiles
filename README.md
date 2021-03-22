@@ -41,6 +41,5 @@ $ ~/.dotfiles/zsh/setup
 ### powershell
 
 ```console
-PS> . ~/.dotfiles/ps/provision.ps1
 PS> . ~/.dotfiles/ps/setup.ps1
 ```
