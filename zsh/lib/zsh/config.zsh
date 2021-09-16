@@ -1,3 +1,5 @@
+. "${DOTFILE_ROOT}/lib/sh/osinformation.sh"
+
 function config_enable () {
     local name=$1
 
@@ -14,6 +16,7 @@ alias enable-config="config_enable $@"
 function enable_config_part () {
     local name=$1
     [ -e "${DOTFILE_ROOT}/config.d/enabled/${name}.zsh" ] && {
+        echo "💫 ${name} already enabled."
         return 0;
     }
     [ ! -e "${DOTFILE_ROOT}/config.d/available/${name}.zsh" ] && {
@@ -23,6 +26,14 @@ function enable_config_part () {
     ln -s \
         "${DOTFILE_ROOT}/config.d/available/${name}.zsh" \
         "${DOTFILE_ROOT}/config.d/enabled/${name}.zsh"
+
+    [ -e "${DOTFILE_ROOT}/config.d/available/${name}-${OSINFO_PLATFORM}.zsh" ] \
+    && [ ! -e "${DOTFILE_ROOT}/config.d/enabled/${name}-${OSINFO_PLATFORM}.zsh" ] \
+    && {
+        ln -s \
+            "${DOTFILE_ROOT}/config.d/available/${name}-${OSINFO_PLATFORM}.zsh" \
+            "${DOTFILE_ROOT}/config.d/enabled/${name}-${OSINFO_PLATFORM}.zsh"
+    }
 
     echo "✅ ${name} enabled."
 }
@@ -44,6 +55,10 @@ function disable_config_part () {
     [ ! -e "${DOTFILE_ROOT}/config.d/enabled/${name}.zsh" ] && return 0;
 
     rm "${DOTFILE_ROOT}/config.d/enabled/${name}.zsh"
+
+    [ -e "${DOTFILE_ROOT}/config.d/enabled/${name}-${OSINFO_PLATFORM}.zsh" ] && {
+        rm "${DOTFILE_ROOT}/config.d/enabled/${name}-${OSINFO_PLATFORM}.zsh"
+    }
 
     echo "✅ ${name} disabled."
 }
