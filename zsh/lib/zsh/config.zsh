@@ -53,6 +53,7 @@ function list_configs () {
     cd $DOTFILE_ROOT/config.d/$type;
     regex="([a-zA-Z\-]*)__([a-zA-Z\-]*).zsh"
     configs=()
+    echo "🗒 Listing ${type} configs";
     for file in *.zsh; do
         if [[ $file =~ $regex ]];
         then
@@ -67,4 +68,28 @@ function list_configs () {
     echo $unique_configs
 
 }
-alias list-config="list_configs $@"
+
+function config () {
+    # echo "test ${@}"
+    case "${1}" in
+        enable)
+            config_enable "${2}"
+        ;;
+        disable)
+            config_disable "${2}"
+        ;;
+        list)
+            list_configs "${2}"
+        ;;
+        *)
+            echo """
+Commands are
+
+enable    <item>                enables a config item
+disable   <item>                disables an item
+list      <enabled|available>   shows all available items
+            """
+        ;;
+    esac
+
+}
