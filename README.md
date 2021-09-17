@@ -43,3 +43,33 @@ $ ~/.dotfiles/zsh/setup
 ```console
 PS> . ~/.dotfiles/ps/setup.ps1
 ```
+
+# Usage
+
+When you start up a terminal session, these dotfiles will load modules enabled in `zsh/config.d/enabled/`.
+
+Initially none of the config modules are enabled, so to enable modules, use the `config` command: 
+
+```
+> config list
+🗒 Listing enabled configs
+android android-dev asdf aws cli git gpg keybindings rbenv spaceship
+
+> config enable docker
+✅ docker__zgen enabled.
+✅ docker__config enabled.
+```
+
+### Help 
+
+```
+> config
+
+Commands are
+
+enable    <item>                enables a config item
+disable   <item>                disables an item
+list      <enabled|available>   shows all available items
+            
+
+```
