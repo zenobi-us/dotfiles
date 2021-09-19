@@ -9,9 +9,8 @@ function config_enable () {
     enable_config_part "${name}__env"
     enable_config_part "${name}__aliases"
 
+    list_configs
 }
-
-alias enable-config="config_enable $@"
 
 function enable_config_part () {
     local name=$1
@@ -46,9 +45,9 @@ function config_disable () {
     disable_config_part "${name}__config"
     disable_config_part "${name}__env"
     disable_config_part "${name}__aliases"
-}
 
-alias disable-config="config_disable $@"
+    list_configs
+}
 
 function disable_config_part () {
     local name=$1
@@ -63,24 +62,30 @@ function disable_config_part () {
     echo "✅ ${name} disabled."
 }
 
+function config_enabled_marker () {
+    if test -n "$(find $DOTFILE_ROOT/config.d/enabled/ -maxdepth 1 -name "${1}*" -print -quit)"
+    then
+        echo "🔅"
+    else
+        echo "  "
+    fi
+}
+
 function list_configs () {
-    local type=${1:-'enabled'}
-    cd $DOTFILE_ROOT/config.d/$type;
     regex="([a-zA-Z\-]*)__([a-zA-Z\-]*).zsh"
     configs=()
-    echo "🗒 Listing ${type} configs";
-    for file in *.zsh; do
+    echo "🗒 Listing config modules";
+
+    for file in $DOTFILE_ROOT/config.d/available/*.zsh; do
         if [[ $file =~ $regex ]];
         then
             configs+=("${match[1]}")
-        else
-            echo "${file} doesn match $regex" >&2
         fi
     done
 
-    unique_configs=($(echo "${configs[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-
-    echo $unique_configs
+    for config in $(echo "${configs[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '); do
+        echo "$(config_enabled_marker $config) ${config}"
+    done
 
 }
 
