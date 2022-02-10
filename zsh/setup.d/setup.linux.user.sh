@@ -16,9 +16,6 @@ function SetupLinuxUser () {
     [ -f ${HEREPATH}/.zprofile ] && ln -s ${HEREPATH}/.zprofile ~/
     [ -f ${HEREPATH}/.zshenv ] && ln -s ${HEREPATH}/.zshenv ~/
 
-    # log "> set zsh as shell"
-    chsh -s /bin/zsh $(whoami)
-
     log "Done"
 )
 }
