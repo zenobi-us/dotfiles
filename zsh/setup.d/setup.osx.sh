@@ -10,5 +10,6 @@ function SetupOsx () {
 
     log "Done"
 )
+}
 
 SetupOsx
