@@ -4,16 +4,23 @@ log () {
 	echo "[SETUP/osx] $@"
 }
 
-log "Installing HomeBrew"
-# install brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if ! command -v brew &> /dev/null
+then
+	log "Installing HomeBrew"
+	# install brew
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
 
 # install zsh
-log "Installing ZSH"
-sudo brew install zsh
+if ! command -v zsh &> /dev/null
+then
+	log "Installing ZSH"
+	sudo brew install zsh
+	# allow the brew installed shell
+	cat $(which zsh) | tee /etc/shells
+fi
 
-# allow the brew installed shell
-cat $(which zsh) | tee /etc/shells
 
 # settings
 log "Starting UserSetup"
