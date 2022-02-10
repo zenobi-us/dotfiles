@@ -83,7 +83,7 @@ function list_configs () {
     configs=()
     echo "🗒 Listing config modules";
 
-    for file in $DOTFILE_ROOT/config.d/available/*.zsh; do
+    for file in $AVAILABLE_DIR/*.zsh; do
         if [[ $file =~ $regex ]];
         then
             configs+=("${match[1]}")
