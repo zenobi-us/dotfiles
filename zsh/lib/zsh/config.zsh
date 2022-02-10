@@ -1,7 +1,7 @@
 . "${DOTFILE_ROOT}/lib/sh/osinformation.sh"
 
 ENABLED_DIR=${DOTFILE_ROOT}/config.d/enabled
-AVAILABLE_DIR=${DOTFILE_ROOT}/config.d/enabled
+AVAILABLE_DIR=${DOTFILE_ROOT}/config.d/available
 
 [ ! -d "${ENABLED_DIR}" ] && mkdir -p "${ENABLED_DIR}"
 [ ! -d "${AVAILABLE_DIR}" ] && mkdir -p "${AVAILABLE_DIR}"
