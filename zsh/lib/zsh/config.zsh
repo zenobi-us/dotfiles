@@ -2,6 +2,12 @@
 
 . "${DOTFILE_ROOT}/lib/sh/osinformation.sh"
 
+ENABLED_DIR=${DOTFILE_ROOT}/config.d/enabled
+AVAILABLE_DIR=${DOTFILE_ROOT}/config.d/available
+
+[ ! -d "${ENABLED_DIR}" ] && mkdir -p "${ENABLED_DIR}"
+[ ! -d "${AVAILABLE_DIR}" ] && mkdir -p "${AVAILABLE_DIR}"
+
 function config_enable () {
     local name=$1
 
@@ -43,24 +49,25 @@ function edit_config () {
 
 function enable_config_part () {
     local name=$1
-    [ -e "${DOTFILE_ROOT}/config.d/enabled/${name}.zsh" ] && {
+
+    [ -e "${ENABLED_DIR}/${name}.zsh" ] && {
         echo "💫 ${name} already enabled."
         return 0;
     }
-    [ ! -e "${DOTFILE_ROOT}/config.d/available/${name}.zsh" ] && {
+    [ ! -e "${AVAILABLE_DIR}/${name}.zsh" ] && {
         return 0;
     }
 
     ln -s \
-        "${DOTFILE_ROOT}/config.d/available/${name}.zsh" \
-        "${DOTFILE_ROOT}/config.d/enabled/${name}.zsh"
+        "${AVAILABLE_DIR}/${name}.zsh" \
+        "${ENABLED_DIR}/${name}.zsh"
 
-    [ -e "${DOTFILE_ROOT}/config.d/available/${name}-${OSINFO_PLATFORM}.zsh" ] \
-    && [ ! -e "${DOTFILE_ROOT}/config.d/enabled/${name}-${OSINFO_PLATFORM}.zsh" ] \
+    [ -e "${AVAILABLE_DIR}/${name}-${OSINFO_PLATFORM}.zsh" ] \
+    && [ ! -e "${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh" ] \
     && {
         ln -s \
-            "${DOTFILE_ROOT}/config.d/available/${name}-${OSINFO_PLATFORM}.zsh" \
-            "${DOTFILE_ROOT}/config.d/enabled/${name}-${OSINFO_PLATFORM}.zsh"
+            "${AVAILABLE_DIR}/${name}-${OSINFO_PLATFORM}.zsh" \
+            "${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh"
     }
 
     echo "✅ ${name} enabled."
@@ -80,19 +87,19 @@ function config_disable () {
 
 function disable_config_part () {
     local name=$1
-    [ ! -e "${DOTFILE_ROOT}/config.d/enabled/${name}.zsh" ] && return 0;
+    [ ! -e "${ENABLED_DIR}/${name}.zsh" ] && return 0;
 
-    rm "${DOTFILE_ROOT}/config.d/enabled/${name}.zsh"
+    rm "${ENABLED_DIR}/${name}.zsh"
 
-    [ -e "${DOTFILE_ROOT}/config.d/enabled/${name}-${OSINFO_PLATFORM}.zsh" ] && {
-        rm "${DOTFILE_ROOT}/config.d/enabled/${name}-${OSINFO_PLATFORM}.zsh"
+    [ -e "${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh" ] && {
+        rm "${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh"
     }
 
     echo "✅ ${name} disabled."
 }
 
 function config_enabled_marker () {
-    if test -n "$(find $DOTFILE_ROOT/config.d/enabled/ -maxdepth 1 -name "${1}*" -print -quit)"
+    if test -n "$(find "${ENABLED_DIR}" -maxdepth 1 -name "${1}*" -print -quit)"
     then
         echo "🔅"
     else
@@ -105,7 +112,7 @@ function list_configs () {
     configs=()
     echo "🗒 Listing config modules";
 
-    for file in $DOTFILE_ROOT/config.d/available/*.zsh; do
+    for file in $AVAILABLE_DIR/*.zsh; do
         if [[ $file =~ $regex ]];
         then
             configs+=("${match[1]}")

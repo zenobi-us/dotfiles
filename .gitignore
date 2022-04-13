@@ -1,8 +1,3 @@
 secret*
 .env
-zsh/config.d/enabled/android__env.zsh
-zsh/config.d/enabled/asdf__config.zsh
-zsh/config.d/enabled/docker__config.zsh
-zsh/config.d/enabled/docker__zgen.zsh
-zsh/config.d/enabled/README.md
-zsh/config.d/enabled/spaceship__config.zsh
+zsh/config.d/enabled

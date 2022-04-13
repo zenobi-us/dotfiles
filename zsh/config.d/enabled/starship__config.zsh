@@ -1,1 +1,0 @@
-/home/zenobius/Projects/Mine/Github/Dotfiles/zsh/config.d/available/starship__config.zsh
