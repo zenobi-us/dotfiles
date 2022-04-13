@@ -21,10 +21,3 @@ fi
 
 load-parts "config.d/enabled/*__config"
 load-parts "config.d/enabled/*__config-${OSINFO_PLATFORM}"
-
-export PNPM_HOME="/home/zenobius/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f /home/zenobius/.pnpm-store/v3/tmp/_npx/157790/5/node_modules/.pnpm/tabtab@2.2.2/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/zenobius/.pnpm-store/v3/tmp/_npx/157790/5/node_modules/.pnpm/tabtab@2.2.2/node_modules/tabtab/.completions/electron-forge.zsh

@@ -1,0 +1,1 @@
+/home/zenobius/Projects/Mine/Github/Dotfiles/zsh/config.d/available/global__env.zsh

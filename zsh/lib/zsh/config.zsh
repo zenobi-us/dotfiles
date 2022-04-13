@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 . "${DOTFILE_ROOT}/lib/sh/osinformation.sh"
 
 function config_enable () {
@@ -10,6 +12,33 @@ function config_enable () {
     enable_config_part "${name}__aliases"
 
     list_configs
+}
+
+function edit_config () {
+    local name=$1
+    local regex="(${name:-"[a-zA-Z\-]*"})__([a-zA-Z\-]*).zsh"
+    local configs=()
+
+    for file in $DOTFILE_ROOT/config.d/available/*.zsh; do
+        if [[ $file =~ $regex ]];
+        then
+            configs+=("${match[1]}__${match[2]}")
+        fi
+    done
+    local count=${#configs[@]}
+
+    if [ "${count}" -gt "0" ] && {
+        echo $count items found
+
+        for (( i = 1; i < ${count} + 1; i++ )) do
+            echo "$i) ${configs[$i]}"
+        done
+
+        echo "Choose item to edit >"
+        read choice
+
+        micro $DOTFILE_ROOT/config.d/available/${configs[$choice]}.zsh
+    }
 }
 
 function enable_config_part () {
@@ -89,6 +118,10 @@ function list_configs () {
 
 }
 
+function reload () {
+    source ~/.zshrc
+}
+
 function config () {
     # echo "test ${@}"
     case "${1}" in
@@ -101,6 +134,12 @@ function config () {
         list)
             list_configs "${2}"
         ;;
+        edit)
+            edit_config "${2}"
+        ;;
+        reload)
+            reload
+        ;;
         *)
             echo """
 Commands are
@@ -108,7 +147,9 @@ Commands are
 enable    <item>                enables a config item
 disable   <item>                disables an item
 list      <enabled|available>   shows all available items
-            """
+edit      partname              edits item
+reload                          reloads profile
+"""
         ;;
     esac
 
