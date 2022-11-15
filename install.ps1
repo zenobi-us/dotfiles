@@ -27,7 +27,8 @@ function Unzip-File {
 
     $filePath = Resolve-Path $File
     $destinationPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Destination)
-
+    if ([System.IO.Directory]::Exists($destinationPath)) {[System.IO.Directory]::Delete($destinationPath, $true)}
+    
     If (($PSVersionTable.PSVersion.Major -ge 3) -and
         (
             [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Full" -ErrorAction SilentlyContinue).Version -ge [version]"4.5" -or
