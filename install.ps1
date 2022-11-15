@@ -68,6 +68,10 @@ function Ensure-Directory {
 
     new-item -ItemType Directory -Path $folder
 
+
+
+    return $folder
+
 }
 
 
@@ -118,7 +122,7 @@ function Unzip-File {
 
     param (
 
-        [string]$filePath,
+        [string]$archive,
 
         [string]$destinationPath
 
@@ -130,21 +134,17 @@ function Unzip-File {
 
     Ensure-Directory $destinationPath
 
+    $hash = get-hash $archive
 
-
-    try {
-
-        [System.Reflection.Assembly]::LoadWithPartialName("System.IO.Compression.FileSystem") | out-null
-
-        [System.IO.Compression.ZipFile]::ExtractToDirectory("$filePath", "$destinationPath")
-
-    } catch {
-
-        write-warning -Message "Unexpected Error. Error details: $_.Exception.Message"
-
-    }
+    $tmp = Ensure-Directory join-path $env:TEMP (join-path $repo $hash)
 
     
+
+    expand-archive $archive $tmp
+
+    get-childitem (join-path $tmp "$repo-$branch") -Recurse | move-item $destinationPath
+
+    Get-ChildItem $tmp -Recurse | Remove-Item
 
     write-host "Extracted to $destinationPath"
 
@@ -159,8 +159,6 @@ $installDir = join-path $HOME (join-path ".$repo" "$repo-$branch")
 $archive = Download-File "https://github.com/$account/$repo/archive/$branch.zip"
 
 Unzip-File $archive $installDir
-
-
 
 
 
