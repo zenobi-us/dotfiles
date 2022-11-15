@@ -10,7 +10,7 @@ $hasSupportedPowershellVersion = (
   ($powerShellVersion -ge 3) -and 
   (
     $dotNetFullVersion -ge [version]"4.5" -or
-     -ge [version]"4.5"
+    $dotNetClientVersion -ge [version]"4.5"
   )
 )
 
