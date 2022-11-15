@@ -106,7 +106,7 @@ function Download-File {
 
   write-host "Dowloaded $downloaded"
 
-
+  
 
   return $downloaded
 
@@ -118,23 +118,15 @@ function Unzip-File {
 
     param (
 
-        [string]$File,
+        [string]$filePath,
 
-        [string]$Destination = (get-location).Path
+        [string]$destinationPath
 
     )
 
+    write-host "Extracting $filePath to $destinationPath"
 
 
-    $filePath = resolve-path $File
-
-    $fileHash = get-filehash $filePath
-
-  
-
-    $destinationPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Destination)
-
-     
 
     Ensure-Directory $destinationPath
 
@@ -154,7 +146,7 @@ function Unzip-File {
 
     
 
-    write-host "Moving to $destinationPath"
+    write-host "Extracted to $destinationPath"
 
 
 
