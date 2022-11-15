@@ -62,17 +62,21 @@ function Reset-Directory {
 
   )
 
+  $exists = [System.IO.Directory]::Exists($dir)
 
 
-    if ([System.IO.Directory]::Exists($dir)) {
+
+    if ($exists) {
 
         [System.IO.Directory]::Delete($dir, $true)
+
+    }
+
+    if (!$exists) {
 
         [System.IO.Directory]::CreateDirectory($dir)
 
     }
-
-    
 
 }
 
