@@ -54,7 +54,7 @@ Insuffcient versions of powershell or dotnet available.
 
 
 
-function Reset-Directory {
+function Remove-Directory {
 
   param (
 
@@ -72,6 +72,20 @@ function Reset-Directory {
 
     }
 
+}
+
+
+
+function Create-Directory {
+
+  param (
+
+    [string]$dir
+
+  )
+
+  $exists = [System.IO.Directory]::Exists($dir)
+
     if (!$exists) {
 
         [System.IO.Directory]::CreateDirectory($dir)
@@ -79,6 +93,24 @@ function Reset-Directory {
     }
 
 }
+
+
+
+function Reset-Directory {
+
+  param (
+
+    [string]$dir
+
+  )
+
+    Remove-Directory $dir
+
+    Create-Directory $dir
+
+}
+
+
 
 
 
@@ -100,7 +132,7 @@ function Download-File {
 
   
 
-  Reset-Directory $output
+  Remove-Directory $output
 
 
 
