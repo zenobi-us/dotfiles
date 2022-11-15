@@ -54,7 +54,7 @@ Insuffcient versions of powershell or dotnet available.
 
 
 
-function Clean-Directory {
+function Reset-Directory {
 
   param (
 
@@ -96,7 +96,7 @@ function Download-File {
 
   
 
-  Clean-Directory $output
+  Reset-Directory $output
 
 
 
@@ -138,7 +138,7 @@ function Unzip-File {
 
      
 
-    Clean-Directory $destinationPath
+    Reset-Directory $destinationPath
 
 
 
