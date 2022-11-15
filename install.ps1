@@ -54,6 +54,30 @@ Insuffcient versions of powershell or dotnet available.
 
 
 
+function Clean-Directory {
+
+  param (
+
+    [string]$dir,
+
+  )
+
+
+
+    if ([System.IO.Directory]::Exists($dir)) {
+
+        [System.IO.Directory]::Delete($dir, $true)
+
+        [System.IO.Directory]::CreateDirectory($dir)
+
+    }
+
+    
+
+}
+
+
+
 function Download-File {
 
   param (
@@ -68,7 +92,13 @@ function Download-File {
 
   $filename = split-path $url -leafbase
 
-  $output =  join-path $env:TEMP "$repo-$filename"
+  $output =  join-path $env:TEMP $repo
+
+  
+
+  Clean-Directory $output
+
+  
 
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
@@ -139,16 +169,6 @@ function Unzip-File {
     write-host "Moving to $destinationPath"
 
 
-
-    if ([System.IO.Directory]::Exists($destinationPath)) {
-
-      [System.IO.Directory]::Delete($destinationPath, $true)
-
-      [System.IO.Directory]::CreateDirectory($destinationPath)
-
-    }
-
-    
 
 }
 
