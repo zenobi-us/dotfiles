@@ -94,7 +94,7 @@ function Download-File {
 
   write-host "Downloading $url"
 
-  $filename = split-path $url -leafbase
+  $filename = split-path $url -Leaf
 
   $output =  join-path $env:TEMP $repo
 
@@ -110,11 +110,13 @@ function Download-File {
 
 
 
-  write-host "Dowloaded $output/$filename"
+  $downloaded = join-path $output $filename
+
+  write-host "Dowloaded $downloaded"
 
 
 
-  return "$output/$filename"
+  return $downloaded
 
 }
 
