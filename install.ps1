@@ -15,7 +15,7 @@ function Download-File {
   )
   Write-Host "Downloading $url to $file"
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-  Invoke-WebRequest -Uri $url -OutFile $file
+  Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile $file 
 
 }
 
@@ -57,7 +57,3 @@ Push-Location $dotfilesInstallDir
 & .\ps\provision\index.ps1
 Pop-Location
 
-$newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
-$newProcess.Arguments = "-nologo";
-[System.Diagnostics.Process]::Start($newProcess);
-exit
