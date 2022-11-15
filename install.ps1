@@ -54,7 +54,7 @@ Insuffcient versions of powershell or dotnet available.
 
 
 
-function Reset-Directory {
+function Ensure-Directory {
 
     param (
 
@@ -64,23 +64,17 @@ function Reset-Directory {
 
     
 
-    $exists = [System.IO.Directory]::Exists($dir)
 
 
+    if (test-path -PathType container $dir) {
 
-    if (!$exists) {
-
-        [System.IO.Directory]::CreateDirectory($dir)
+        remove-item $dir -Recurse
 
     }
 
 
 
-    if ($exists) {
-
-        [System.IO.Directory]::Delete($dir, $true)
-
-    }
+    new-item -ItemType Directory -Path $dir
 
 }
 
@@ -108,7 +102,7 @@ function Download-File {
 
   
 
-  Reset-Directory $output
+  Ensure-Directory $output
 
 
 
@@ -150,7 +144,7 @@ function Unzip-File {
 
      
 
-    Reset-Directory $destinationPath
+    Ensure-Directory $destinationPath
 
 
 
