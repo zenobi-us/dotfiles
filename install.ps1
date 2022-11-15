@@ -1,4 +1,3 @@
-
 $account = "airtonix"
 
 $repo    = "dotfiles"
@@ -137,19 +136,7 @@ function Unzip-File {
 
     $destinationPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Destination)
 
-    $tempDir = join-path $env:TEMP "$repo-$fileHash"
-
-    
-
-    if (![System.IO.Directory]::Exists($tempDir)) {[System.IO.Directory]::CreateDirectory($tempDir)}
-
-
-
-    write-host "Extracting $filePath to $tempDir"
-
-    
-
-    
+     
 
     Clean-Directory $destinationPath
 
@@ -182,6 +169,8 @@ $installDir = join-path $HOME (join-path ".$repo" "$repo-$branch")
 $archive = Download-File "https://github.com/$account/$repo/archive/$branch.zip"
 
 Unzip-File $archive $installDir
+
+
 
 
 
