@@ -54,15 +54,25 @@ Insuffcient versions of powershell or dotnet available.
 
 
 
-function Remove-Directory {
+function Reset-Directory {
 
-  param (
+    param (
 
-    [string]$dir
+        [string]$dir
 
-  )
+    )
 
-  $exists = [System.IO.Directory]::Exists($dir)
+    
+
+    $exists = [System.IO.Directory]::Exists($dir)
+
+
+
+    if (!$exists) {
+
+        [System.IO.Directory]::CreateDirectory($dir)
+
+    }
 
 
 
@@ -71,42 +81,6 @@ function Remove-Directory {
         [System.IO.Directory]::Delete($dir, $true)
 
     }
-
-}
-
-
-
-function Create-Directory {
-
-  param (
-
-    [string]$dir
-
-  )
-
-  $exists = [System.IO.Directory]::Exists($dir)
-
-    if (!$exists) {
-
-        [System.IO.Directory]::CreateDirectory($dir)
-
-    }
-
-}
-
-
-
-function Reset-Directory {
-
-  param (
-
-    [string]$dir
-
-  )
-
-    Remove-Directory $dir
-
-    Create-Directory $dir
 
 }
 
@@ -134,9 +108,7 @@ function Download-File {
 
   
 
-  Remove-Directory $output
-
-  Create-Directory $output
+  Reset-Directory $output
 
 
 
