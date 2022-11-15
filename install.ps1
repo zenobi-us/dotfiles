@@ -6,31 +6,33 @@ $powerShellVersion = $PSVersionTable.PSVersion.Major
 $dotNetFullVersion = [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Full" -ErrorAction SilentlyContinue).Version
 $dotNetClientVersion = [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Client" -ErrorAction SilentlyContinue).Version
 
+
+
 $hasSupportedPowershellVersion = (
+
   ($powerShellVersion -ge 3) -and 
+
   (
+
     $dotNetFullVersion -ge [version]"4.5" -or
+
     $dotNetClientVersion -ge [version]"4.5"
+
   )
+
 )
+
+
 
 if (!$hasSupportedPowershellVersion) {
   Write-Warning -Message @"
 Insuffcient versions of powershell or dotnet available.
-
    powershell: $powerShellVersion (requires v3+) 
    dot net: $dotNetFullVersion (requires 4.5+)
    dot net client: $dotNetClientVersion (requires 4.5+)
 "@
-  
   return;
 }
-
-
-$dotfilesTempDir = Join-Path $env:TEMP "dotfiles"
-if (![System.IO.Directory]::Exists($dotfilesTempDir)) {[System.IO.Directory]::CreateDirectory($dotfilesTempDir)}
-$sourceFile = Join-Path $dotfilesTempDir "dotfiles.zip"
-$dotfilesInstallDir = Join-Path $HOME (Join-Path ".dotfiles" "$repo-$branch")
 
 
 function Download-File {
@@ -38,11 +40,16 @@ function Download-File {
     [string]$url,
     [string]$file
   )
-  Write-Host "Downloading $url to $file"
+  
+  Write-Host "Downloading $url"
+  $filename = Split-Path $url -Leaf
+  $output =  Join-Path $env:TEMP "$repo-$filename"
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-  Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile $file 
-
+  Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile $output 
+  return "$output/$filename"
 }
+
+
 
 function Unzip-File {
     param (
@@ -51,25 +58,46 @@ function Unzip-File {
     )
 
     $filePath = Resolve-Path $File
+    $fileHash = Get-FileHash $filePath
     $destinationPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Destination)
-    
-    Write-Host "Extracting $filePath to $destinationPath"
-    
+    $tempDir = Join-Path $env:TEMP "$repo-$fileHash"
+
+    if (![System.IO.Directory]::Exists($tempDir)) {[System.IO.Directory]::CreateDirectory($tempDir)}
+    Write-Host "Extracting $filePath to $tempDir"
+
     if ([System.IO.Directory]::Exists($destinationPath)) {[System.IO.Directory]::Delete($destinationPath, $true)}
-    
+
     try {
         [System.Reflection.Assembly]::LoadWithPartialName("System.IO.Compression.FileSystem") | Out-Null
         [System.IO.Compression.ZipFile]::ExtractToDirectory("$filePath", "$destinationPath")
     } catch {
         Write-Warning -Message "Unexpected Error. Error details: $_.Exception.Message"
     }
+
+    Write-Host "Moving to $destinationPath"
+
+    if ([System.IO.Directory]::Exists($destinationPath)) {
+      [System.IO.Directory]::Delete($destinationPath, $true)
+      [System.IO.Directory]::CreateDirectory($destinationPath)
+    }
+
+    Push-Location $destinationPath
 }
 
-Download-File "https://github.com/$account/$repo/archive/$branch.zip" $sourceFile
-if ([System.IO.Directory]::Exists($dotfilesInstallDir)) {[System.IO.Directory]::Delete($dotfilesInstallDir, $true)}
-Unzip-File $sourceFile $dotfilesTempDir
 
-Push-Location $dotfilesInstallDir
+
+$installDir = Join-Path $HOME (Join-Path ".$repo" "$repo-$branch")
+
+
+
+$archive = Download-File "https://github.com/$account/$repo/archive/$branch.zip"
+
+Unzip-File $archive $installDir
+
+
+
+Push-Location $installDir
+
 & .\ps\provision\index.ps1
-Pop-Location
 
+Pop-Location
