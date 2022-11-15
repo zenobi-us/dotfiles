@@ -58,7 +58,7 @@ function Clean-Directory {
 
   param (
 
-    [string]$dir,
+    [string]$dir
 
   )
 
@@ -98,7 +98,7 @@ function Download-File {
 
   Clean-Directory $output
 
-  
+
 
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
