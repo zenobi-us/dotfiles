@@ -148,9 +148,11 @@ function Unzip-File {
 
     
 
-    if ([System.IO.Directory]::Exists($destinationPath)) {[System.IO.Directory]::Delete($destinationPath, $true)}
-
     
+
+    Clean-Directory $destinationPath
+
+
 
     try {
 
