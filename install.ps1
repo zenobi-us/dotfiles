@@ -2,16 +2,28 @@ $account = "airtonix"
 $repo    = "dotfiles"
 $branch  = "master"
 
+$powerShellVersion = $PSVersionTable.PSVersion.Major
+$dotNetFullVersion = [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Full" -ErrorAction SilentlyContinue).Version
+$dotNetClientVersion = [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Client" -ErrorAction SilentlyContinue).Version
+
 $hasSupportedPowershellVersion = (
-  ($PSVersionTable.PSVersion.Major -lt 3) -and 
+  ($powerShellVersion -ge 3) -and 
   (
-    [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Full" -ErrorAction SilentlyContinue).Version -ge [version]"4.5" -or
-    [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Client" -ErrorAction SilentlyContinue).Version -ge [version]"4.5"
+    $dotNetFullVersion -ge [version]"4.5" -or
+     -ge [version]"4.5"
   )
 )
 
 if (!$hasSupportedPowershellVersion) {
-  Write-Warning -Message "You need Powershell v3 or greater and DotNet 4.5 or greater"
+  Write-Warning -Message @"
+    Your need Powershell or DotNet needs upgrading.
+    
+    You have:
+     powershell: $powerShellVersion
+     dot net: $dotNetFullVersion
+     dot net client: $dotNetClientVersion
+  "@
+  
   return;
 }
 
