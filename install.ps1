@@ -2,6 +2,20 @@ $account = "airtonix"
 $repo    = "dotfiles"
 $branch  = "master"
 
+$hasSupportedPowershellVersion = (
+  ($PSVersionTable.PSVersion.Major -lt 3) -and 
+  (
+    [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Full" -ErrorAction SilentlyContinue).Version -ge [version]"4.5" -or
+    [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Client" -ErrorAction SilentlyContinue).Version -ge [version]"4.5"
+  )
+)
+
+if (!$hasSupportedPowershellVersion) {
+  Write-Warning -Message "You need Powershell v3 or greater and DotNet 4.5 or greater"
+  return;
+}
+
+
 $dotfilesTempDir = Join-Path $env:TEMP "dotfiles"
 if (![System.IO.Directory]::Exists($dotfilesTempDir)) {[System.IO.Directory]::CreateDirectory($dotfilesTempDir)}
 $sourceFile = Join-Path $dotfilesTempDir "dotfiles.zip"
@@ -32,24 +46,11 @@ function Unzip-File {
     
     if ([System.IO.Directory]::Exists($destinationPath)) {[System.IO.Directory]::Delete($destinationPath, $true)}
     
-    If (($PSVersionTable.PSVersion.Major -ge 3) -and
-        (
-            [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Full" -ErrorAction SilentlyContinue).Version -ge [version]"4.5" -or
-            [version](Get-ItemProperty -Path "HKLM:\Software\Microsoft\NET Framework Setup\NDP\v4\Client" -ErrorAction SilentlyContinue).Version -ge [version]"4.5"
-        )) {
-        try {
-            [System.Reflection.Assembly]::LoadWithPartialName("System.IO.Compression.FileSystem") | Out-Null
-            [System.IO.Compression.ZipFile]::ExtractToDirectory("$filePath", "$destinationPath")
-        } catch {
-            Write-Warning -Message "Unexpected Error. Error details: $_.Exception.Message"
-        }
-    } else {
-        try {
-            $shell = New-Object -ComObject Shell.Application
-            $shell.Namespace($destinationPath).copyhere(($shell.NameSpace($filePath)).items())
-        } catch {
-            Write-Warning -Message "Unexpected Error. Error details: $_.Exception.Message"
-        }
+    try {
+        [System.Reflection.Assembly]::LoadWithPartialName("System.IO.Compression.FileSystem") | Out-Null
+        [System.IO.Compression.ZipFile]::ExtractToDirectory("$filePath", "$destinationPath")
+    } catch {
+        Write-Warning -Message "Unexpected Error. Error details: $_.Exception.Message"
     }
 }
 
