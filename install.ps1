@@ -130,19 +130,21 @@ function Download-File {
 
   $output =  join-path $env:TEMP $repo
 
+  $downloaded = join-path $output $filename
+
   
 
   Remove-Directory $output
+
+  Create-Directory $output
 
 
 
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-  invoke-webrequest -UseBasicParsing -Uri $url -OutFile $output 
+  invoke-webrequest -UseBasicParsing -Uri $url -OutFile $downloaded 
 
 
-
-  $downloaded = join-path $output $filename
 
   write-host "Dowloaded $downloaded"
 
