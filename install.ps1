@@ -16,13 +16,13 @@ $hasSupportedPowershellVersion = (
 
 if (!$hasSupportedPowershellVersion) {
   Write-Warning -Message @"
-    Your need Powershell or DotNet needs upgrading.
-    
-    You have:
-     powershell: $powerShellVersion
-     dot net: $dotNetFullVersion
-     dot net client: $dotNetClientVersion
-  "@
+  Your need Powershell or DotNet needs upgrading.
+
+  You have:
+   powershell: $powerShellVersion
+   dot net: $dotNetFullVersion
+   dot net client: $dotNetClientVersion
+"@
   
   return;
 }
