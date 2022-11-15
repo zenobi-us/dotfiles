@@ -27,6 +27,9 @@ function Unzip-File {
 
     $filePath = Resolve-Path $File
     $destinationPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Destination)
+    
+    Write-Host "Extracting $filePath to $destinationPath"
+    
     if ([System.IO.Directory]::Exists($destinationPath)) {[System.IO.Directory]::Delete($destinationPath, $true)}
     
     If (($PSVersionTable.PSVersion.Major -ge 3) -and
