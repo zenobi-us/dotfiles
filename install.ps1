@@ -58,23 +58,15 @@ function Ensure-Directory {
 
     param (
 
-        [string]$dir
+        [string]$folder
 
     )
 
-    
 
 
+    Get-ChildItem $folder -Recurse | Remove-Item
 
-    if (test-path -PathType container $dir) {
-
-        remove-item $dir -Recurse
-
-    }
-
-
-
-    new-item -ItemType Directory -Path $dir
+    new-item -ItemType Directory -Path $folder
 
 }
 
