@@ -1,0 +1,9 @@
+---
+where: os.name == "windows"
+
+actions:
+
+  - action: command.run
+    command: scoop
+    args:
+      - install fzf psfzf

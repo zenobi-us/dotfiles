@@ -1,0 +1,9 @@
+---
+where: os.name == "linux" || os.name == 'macosx'
+
+actions:
+
+  - action: file.copy
+    from: ../../../profile/xresources/main.xresource
+    to: ~/.Xresource
+    template: true

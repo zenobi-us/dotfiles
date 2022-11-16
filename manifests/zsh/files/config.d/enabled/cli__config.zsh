@@ -1,0 +1,1 @@
+/home/zenobius/Projects/Mine/Github/Dotfiles/profile/zsh/config.d/available/cli__config.zsh

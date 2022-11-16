@@ -1,0 +1,12 @@
+[alias]
+	up = push origin HEAD
+	sync = "!f() { DEFAULT_BRANCH=$(git config --get core.defaultBranch || echo master); [ \"$(git branch --show-current)\" != \"${DEFAULT_BRANCH}\" ] && git fetch origin "${DEFAULT_BRANCH}:${DEFAULT_BRANCH}" || git pull; }; f"
+	fix = "!git stash save && git sync && echo fix | git start"
+	feature = "!git stash save && git sync && echo feature | git start"
+	feat = "!git stash save && git sync && echo feat | git start"
+	docs = "!git stash save && git sync && echo docs | git start"
+	ci = "!git stash save && git sync && echo ci | git start"
+	chore = "!git stash save && git sync && echo chore | git start"
+	start = "!read BRANCH && git checkout -b $BRANCH/$1 $(git config --get core.defaultBranch || echo master); git stash pop"
+	alias = "! git config --get-regexp ^alias\\. | sed -e 's/^alias\\.\\([^ ]*\\)/\\x1B[33m\\1\\x1B[0m =/'"
+	pivot = "!f() { WORKTREE_ROOT=$(git config --get core.worktreeRoot || {exit 1}); mkdir -p $WORKTREE_ROOT; git worktree add $WORKTREE_ROOT/$1 $2; code $WORKTREE_ROOT/$1;}; f"

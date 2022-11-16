@@ -1,0 +1,20 @@
+---
+actions:
+
+  - action: command.run
+    where: os.name == "windows"
+    command: irm
+    args:
+      - "get.scoop.sh | iex"
+
+  - action: command.run
+    where: os.name == "windows"
+    command: scoop
+    args:
+      - install git
+
+  - action: command.run
+    where: os.name == "windows"
+    command: scoop
+    args:
+      - bucket add extras

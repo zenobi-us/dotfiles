@@ -1,0 +1,28 @@
+---
+where: os.name == "windows"
+
+actions:
+
+  # STEP 1: Enable Virtual Machine Platform feature
+  - action: command.run
+    command: dism
+    args:
+      - /online
+      - /enable-feature
+      - /featurename:VirtualMachinePlatform
+      - /all
+      - /norestart
+
+  - action: command.run
+    command: dism
+    args:
+      - /online
+      - /enable-feature
+      - /featurename:Microsoft-Windows-Subsystem-Linux
+      - /all
+      - /norestart
+
+  - action: command.run
+    command: wsl
+    args:
+      - --set-default-version 2

@@ -1,0 +1,6 @@
+
+!
+! Locale
+!
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true

@@ -1,0 +1,15 @@
+---
+where: os.name == "linux" || os.name == 'macosx'
+
+actions:
+ - action: file.link
+   source: profile/zsh/.zshrc
+   target: ~/.zshrc
+
+ - action: file.link
+   source: profile/zsh/.zprofile
+   target: ~/.zprofile
+
+ - action: file.link
+   source: profile/zsh/.zshenv
+   target: ~/.zshenv

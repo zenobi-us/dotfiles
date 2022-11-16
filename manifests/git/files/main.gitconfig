@@ -1,0 +1,11 @@
+[core]
+	editor = code --wait
+
+[pull]
+	rebase = false
+
+[init]
+	defaultBranch = master
+
+[rerere]
+	enabled = true

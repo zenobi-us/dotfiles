@@ -1,0 +1,12 @@
+---
+where: os.name == "windows"
+
+depends:
+  - manifest.packagemanagers
+
+actions:
+
+  - action: command.run
+    command: choco
+    args:
+      - install -y openssh -params '"/SSHAgentFeature"'

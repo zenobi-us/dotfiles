@@ -1,0 +1,12 @@
+---
+
+depends:
+  - manifest.packagemanagers
+
+actions:
+
+  - action: binary.github
+    where: os.name == "windows"
+    name: altsnap
+    directory: /tmp
+    repository: ramonunch/altsnap
