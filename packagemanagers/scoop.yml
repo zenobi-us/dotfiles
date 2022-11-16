@@ -1,0 +1,9 @@
+---
+where: os.name == "windows"
+
+actions:
+
+  - action: command.run
+    command: irm
+    args:
+      - "get.scoop.sh | iex"

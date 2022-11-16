@@ -1,0 +1,3 @@
+{{ read_file_contents(path="profile/xresource/theme.xresource") }}
+{{ read_file_contents(path="profile/xresource/xterm.xresource") }}
+{{ read_file_contents(path="profile/xresource/urxvt.xresource") }}

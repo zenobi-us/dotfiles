@@ -1,0 +1,16 @@
+---
+depends:
+  - packagemanagers.scoop
+
+actions:
+  - action: file.copy
+    from: ../../../profile/gitconfig
+    to: ~/.gitconfig
+    template: true
+
+  - action: command.run
+    when: os.name == "windows"
+    command: scoop
+    args:
+      - install git
+
