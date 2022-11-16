@@ -17,7 +17,7 @@ curl -fsSL https://get.comtrya.dev | sh
 comtrya https://github.com/airtonix/dotfiles
 ```
 
-**macosx**
+**macos**
 
 ```bash
 curl -fsSL https://get.comtrya.dev | sh

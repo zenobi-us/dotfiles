@@ -1,7 +1,0 @@
----
-actions:
-
-  - action: command.run
-    command: curl
-    args:
-      - -sS https://starship.rs/install.sh | sh

@@ -1,1 +1,0 @@
-/home/zenobius/Projects/Mine/Github/Dotfiles/profile/zsh/config.d/available/fzf__config.zsh

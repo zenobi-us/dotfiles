@@ -1,7 +1,0 @@
----
-actions:
-
-  - action: file.copy
-    from: ../../../profile/gitconfig
-    to: ~/.gitconfig
-    template: true

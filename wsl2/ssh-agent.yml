@@ -1,0 +1,17 @@
+---
+where: os.name == "windows"
+
+depends:
+  - packagemanagers.scoop
+
+actions:
+
+  - action: command.run
+    command: scoop
+    args:
+      - bucket add extras
+
+  - action: command.run
+    command: scoop
+    args:
+      - install ssh-agent-wsl

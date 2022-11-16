@@ -1,0 +1,18 @@
+---
+where: os.name == "windows"
+
+depends:
+  - packagemanagers.scoop
+  - wsl2.enable
+
+actions:
+
+  - action: command.run
+    command: scoop
+    args:
+      - bucket add mbl-35_scoop-srsrns https://github.com/mbl-35/scoop-srsrns
+
+  - action: command.run
+    command: scoop
+    args:
+      - install wsl-vpnkit
