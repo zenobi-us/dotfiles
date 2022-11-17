@@ -14,19 +14,19 @@ you can just let the web install do its thing...
 
 ```bash
 curl -fsSL https://get.comtrya.dev | sh
-comtrya https://github.com/airtonix/dotfiles
+comtrya -d https://github.com/airtonix/dotfiles apply
 ```
 
 **macos**
 
 ```bash
 curl -fsSL https://get.comtrya.dev | sh
-comtrya https://github.com/airtonix/dotfiles
+comtrya -d https://github.com/airtonix/dotfiles apply
 ```
 
 **windows**
 
 ```powershell
 iwr "https://get.comtrya.dev/ps" -UseBasicParsing | iex
-comtrya https://github.com/airtonix/dotfiles
+comtrya -d https://github.com/airtonix/dotfiles apply
 ```
