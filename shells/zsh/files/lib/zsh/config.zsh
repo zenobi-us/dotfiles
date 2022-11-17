@@ -75,7 +75,7 @@ function enable_config_part () {
 }
 
 function config_clear () {
-    for file in $AVAILABLE_DIR/*.zsh; do
+    for file in $ENABLED_DIR/*.zsh; do
         if [[ $file =~ $CONFIG_REGEX ]];
         then
             config_disable "${match[1]}"
@@ -92,19 +92,17 @@ function config_disable () {
     disable_config_part "${name}__config"
     disable_config_part "${name}__env"
     disable_config_part "${name}__aliases"
+
+    echo "✅ ${name} disabled."
 }
 
 function disable_config_part () {
     local name=$1
-    [ ! -e "${ENABLED_DIR}/${name}.zsh" ] && return 0;
+    local part="${ENABLED_DIR}/${name}.zsh"
+    local ospart="${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh"
 
-    rm "${ENABLED_DIR}/${name}.zsh"
-
-    [ -e "${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh" ] && {
-        rm "${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh"
-    }
-
-    echo "✅ ${name} disabled."
+    rm -f "${part}" || true
+    rm -f "${ospart}" || true
 }
 
 function config_enabled_marker () {
