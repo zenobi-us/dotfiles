@@ -1,3 +1,4 @@
 secret*
 .env
-zsh/config.d/enabled
+!/shells/zsh/files/config.d/enabled/README.md
+/shells/zsh/files/config.d/enabled/*
