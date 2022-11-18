@@ -1,0 +1,15 @@
+---
+where: os.name == "windows"
+
+depends:
+  - packagemanagers.scoop
+
+actions:
+
+  - action: command.run
+    command: mkdir
+    args: ["{{ user.home_dir }}\Documents\WindowsPowerShell"]
+
+  - action: file.link
+    from: profile/index.ps1
+    to: "{{ user.home_dir }}/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"

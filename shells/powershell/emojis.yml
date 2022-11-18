@@ -4,6 +4,6 @@ where: os.name == "windows"
 actions:
 
   - action: command.run
-    command: Install-Module
+    command: powershell
     args:
-      - -Name Emojis
+      - "Install-Module -Name Emojis"

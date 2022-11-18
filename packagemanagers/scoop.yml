@@ -4,6 +4,6 @@ where: os.name == "windows"
 actions:
 
   - action: command.run
-    command: irm
+    command: powershell
     args:
-      - "get.scoop.sh | iex"
+      - "irm get.scoop.sh | iex"
