@@ -7,11 +7,11 @@ depends:
 actions:
 
   - action: command.run
-    command: scoop
+    command: powershell
     args:
-      - bucket add extras
+      - scoop bucket add extras
 
   - action: command.run
-    command: scoop
+    command: powershell
     args:
-      - install altsnap
+      - scoop install altsnap

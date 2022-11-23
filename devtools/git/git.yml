@@ -4,13 +4,12 @@ depends:
 
 actions:
   - action: file.copy
-    from: ../../../profile/gitconfig
-    to: ~/.gitconfig
+    from: gitconfig
+    to: '{{user.home_dir}}/.gitconfig'
     template: true
 
   - action: command.run
     when: os.name == "windows"
-    command: scoop
+    command: powershell
     args:
-      - install git
-
+      - scoop install git

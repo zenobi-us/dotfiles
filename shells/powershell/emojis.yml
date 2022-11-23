@@ -6,4 +6,4 @@ actions:
   - action: command.run
     command: powershell
     args:
-      - "Install-Module -Name Emojis"
+      - "Install-Module -Name Emojis -Scope CurrentUser"

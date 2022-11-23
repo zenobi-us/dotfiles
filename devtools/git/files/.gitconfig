@@ -1,3 +1,0 @@
-{{ read_file_contents(path="profile/gitconfig/id.gitconfig") }}
-{{ read_file_contents(path="profile/gitconfig/main.gitconfig") }}
-{{ read_file_contents(path="profile/gitconfig/aliases.gitconfig") }}

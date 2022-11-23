@@ -3,15 +3,16 @@ where: os.name == "windows"
 
 depends:
   - packagemanagers.scoop
+  - devtools.wsl2.enable
 
 actions:
 
   - action: command.run
-    command: scoop
+    command: powershell
     args:
-      - bucket add extras
+      - scoop bucket add extras
 
   - action: command.run
-    command: scoop
+    command: powershell
     args:
-      - install ssh-agent-wsl
+      - scoop install ssh-agent-wsl

@@ -7,6 +7,6 @@ depends:
 actions:
 
   - action: command.run
-    command: scoop
+    command: powershell
     args:
-      - install 7zip tar
+      - scoop install 7zip tar

@@ -11,6 +11,6 @@ actions:
 
   - action: command.run
     where: os.name == "windows"
-    command: scoop
+    command: powershell
     args:
-      - install starship
+      - scoop install starship

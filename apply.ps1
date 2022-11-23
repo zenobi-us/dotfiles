@@ -1,1 +1,1 @@
-comtrya -vv apply 
+comtrya apply

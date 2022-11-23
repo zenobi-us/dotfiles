@@ -3,16 +3,16 @@ where: os.name == "windows"
 
 depends:
   - packagemanagers.scoop
-  - wsl2.enable
+  - devtools.wsl2.enable
 
 actions:
 
   - action: command.run
-    command: scoop
+    command: powershell
     args:
-      - bucket add mbl-35_scoop-srsrns https://github.com/mbl-35/scoop-srsrns
+      - scoop bucket add mbl-35_scoop-srsrns https://github.com/mbl-35/scoop-srsrns
 
   - action: command.run
-    command: scoop
+    command: powershell
     args:
-      - install wsl-vpnkit
+      - scoop install wsl-vpnkit

@@ -1,13 +1,12 @@
 ---
-where: |
-  os.name == "linux" || os.name == "macos"
+where: os.name == "linux" || os.name == "macos"
 
 actions:
- - action: file.copy
-   from: .tool-versions
-   to: "{{user.home_dir}}/.tool-versions"
+  - action: file.copy
+    from: .tool-versions
+    to: '{{user.home_dir}}/.tool-versions'
 
- - action: cmd.run
-   command: bash
-   args:
-    - asdf/files/tools/asdf/setup.bash
+  - action: cmd.run
+    command: bash
+    args:
+      - asdf/files/tools/asdf/setup.bash
