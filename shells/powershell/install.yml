@@ -1,9 +1,6 @@
 ---
 where: os.name == "windows"
 
-depends:
-  - packagemanagers.scoop
-
 actions:
 
   - action: command.run
@@ -11,6 +8,7 @@ actions:
     args:
       - '{{ user.home_dir }}\Documents\WindowsPowerShell'
 
-  - action: directory.copy
-    from: profile
-    to: '{{ user.home_dir }}\Documents\WindowsPowerShell'
+  - action: command.run
+    command: powershell
+    args:
+      - 'copy-item "shells/powershell/files/profile/*" -Destination "{{ user.home_dir }}/Documents/WindowsPowerShell" -Recurse -Force'
