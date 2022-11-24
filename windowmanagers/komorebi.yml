@@ -1,0 +1,27 @@
+---
+where: os.name == "windows"
+
+depends:
+  - packagemanagers.scoop
+
+actions:
+
+  - action: command.run
+    command: powershell
+    args:
+      - scoop install komorebi
+
+  - action: command.run
+    command: powershell
+    args:
+      - iwr https://raw.githubusercontent.com/LGUG2Z/komorebi/master/komorebi.sample.ahk -OutFile $Env:USERPROFILE\komorebi.ahk
+
+  - action: command.run
+    command: powershell
+    args:
+      - iwr https://raw.githubusercontent.com/LGUG2Z/komorebi/master/komorebic.lib.ahk -OutFile $Env:USERPROFILE\komorebic.lib.ahk
+
+  - action: command.run
+    command: powershell
+    args:
+      - iwr https://raw.githubusercontent.com/LGUG2Z/komorebi/master/komorebi.generated.ahk -OutFile $Env:USERPROFILE\komorebi.generated.ahk

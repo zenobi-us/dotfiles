@@ -1,0 +1,103 @@
+---
+where: os.name == "windows"
+
+actions:
+
+  - action: file.copy
+    from: settings.json
+    to: '{{ user.home_dir }}\scoop\apps\vscode\current\data\user-data\User\settings.json'
+
+  - action: command.run
+    command: powershell
+    args:
+      - 'scoop install vscode'
+
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension maattdd.gitless --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension mhutchie.git-graph --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension jakearl.handydandy-notebook --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension GitWorktrees.git-worktrees --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension cschleiden.vscode-github-actions --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension usernamehw.errorlens --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension dbaeumer.vscode-eslint --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension bierner.markdown-emoji --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension bierner.github-markdown-preview --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension bierner.emojisense --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension zhuangtongfa.material-theme --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension esbenp.prettier-vscode --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension richie5um2.vscode-sort-json --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension JannisX11.batch-rename-extension --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension wmaurer.change-case --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension YuTengjing.vscode-colorize-plus --force'
+
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension ms-azuretools.vscode-docker --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension EditorConfig.EditorConfig --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension ms-vscode-remote.remote-ssh --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension ms-vscode-remote.remote-containers --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension ms-vscode-remote.remote-ssh-edit --force'
+  - action: command.run
+    command: powershell
+    args:
+      - 'code --install-extension ms-vscode.sublime-keybindings --force'

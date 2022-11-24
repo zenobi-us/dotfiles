@@ -1,0 +1,8 @@
+---
+where: os.name == "windows"
+
+actions:
+
+  - action: file.copy
+    from: winget.json
+    to: '{{get_env(name="LOCALAPPDATA")}}\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json'

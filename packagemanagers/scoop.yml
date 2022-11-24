@@ -6,4 +6,4 @@ actions:
   - action: command.run
     command: powershell
     args:
-      - "irm get.scoop.sh | iex"
+      - 'irm get.scoop.sh | iex'

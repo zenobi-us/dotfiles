@@ -1,9 +1,18 @@
 ---
 where: os.name == "windows"
 
+depends:
+  - packagemanagers.scoop
+
 actions:
 
   - action: command.run
     command: powershell
     args:
-      - "Install-Module -Name Emojis -Scope CurrentUser"
+      - "Install-Module -Name Emojis -Scope CurrentUser -Force -AcceptLicense -Confirm"
+
+  # https://github.com/arp242/uni
+  - action: command.run
+    command: powershell
+    args:
+      - scoop install uni

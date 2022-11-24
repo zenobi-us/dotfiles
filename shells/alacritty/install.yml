@@ -1,0 +1,24 @@
+---
+depends:
+  - packagemanagers.scoop
+
+actions:
+  - action: package.install
+    where: os.name == "linux" || os.name == "macos"
+    name: alacritty
+
+  - action: command.run
+    where: os.name == "windows"
+    command: powershell
+    args:
+      - scoop install alacritty extras/vcredist2022
+
+  - action: command.run
+    where: os.name == "windows"
+    command: powershell
+    args:
+      - scoop uninstall vcredist2022
+
+  - action: file.copy
+    from: alacritty.yml
+    to: '{{user.home_dir}}/.alacritty.yml'

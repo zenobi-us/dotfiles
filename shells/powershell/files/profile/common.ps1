@@ -6,6 +6,7 @@
 . "${PSScriptRoot}/constants.ps1"
 
 function Write-Error([string]$message) {
+	# if (!$ShellIsInteractive) return
 	[Console]::ForegroundColor = 'red'
 	[Console]::Error.WriteLine($message)
 	[Console]::ResetColor()
@@ -13,6 +14,7 @@ function Write-Error([string]$message) {
 
 
 function Write-Warn([string]$message) {
+	# if (!$ShellIsInteractive) return
 	[Console]::ForegroundColor = 'yellow'
 	[Console]::Error.WriteLine($message)
 	[Console]::ResetColor()
@@ -20,6 +22,7 @@ function Write-Warn([string]$message) {
 
 
 function Write-Info([string]$message) {
+	# if (!$ShellIsInteractive) return
 	[Console]::ForegroundColor = 'white'
 	[Console]::Error.WriteLine($message)
 	[Console]::ResetColor()
@@ -94,7 +97,7 @@ function load-parts ([string]$Source, [string]$Filter) {
 
 
 
-	$Fails = New-Object System.Collections.ArrayList
+	$Fails = New-Object "System.Collections.Generic.Dictionary[String,String]"
 
 	foreach ($file in $parts) {
 		try {
@@ -102,10 +105,12 @@ function load-parts ([string]$Source, [string]$Filter) {
 			import-module ${file}
 			Write-Info " + $( split-path $file -leaf)"
 		}
+
 		catch {
+			[void]$Fails.add($file, $error)
 			Write-Error " x $( split-path $file -leaf)"
-			[void]$Fails.add($file)
 		}
+
 		finally {
 			$ErrorActionPreference = "Continue"; #Reset the error action pref to default
 		}
@@ -114,8 +119,9 @@ function load-parts ([string]$Source, [string]$Filter) {
 
 	if ($Fails.count -gt 0) {
 		Write-Error "${prefix}.errors "
-		foreach ($fail in $Fails) {
-			Write-Error " - $(split-path $($fail) -leaf)"
+		foreach ($key in $Fails.Keys) {
+			Write-Error " - $(split-path $($key) -leaf)"
+			Write-Error $Fails[$key]
 		}
 	}
 

@@ -5,8 +5,7 @@ depends:
   - packagemanagers.scoop
 
 actions:
-
   - action: command.run
     command: powershell
     args:
-      - scoop install altsnap
+      - 'scoop install starship'

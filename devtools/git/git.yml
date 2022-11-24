@@ -8,8 +8,8 @@ actions:
     to: '{{user.home_dir}}/.gitconfig'
     template: true
 
-  - action: command.run
-    when: os.name == "windows"
-    command: powershell
-    args:
-      - scoop install git
+  # - action: command.run
+  #   when: os.name == "windows"
+  #   command: powershell
+  #   args:
+  #     - scoop install git

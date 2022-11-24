@@ -1,14 +1,16 @@
 ---
 where: os.name == "windows"
 
+depends:
+  - packagemanagers.winget
+
 actions:
 
-  - action: command.run
-    command: mkdir
-    args:
-      - '{{ user.home_dir }}\Documents\WindowsPowerShell'
+  - action: package.install
+    provider: winget
+    name: Microsoft.Powershell
 
   - action: command.run
-    command: powershell
+    command: winget
     args:
-      - 'copy-item "shells/powershell/files/profile/*" -Destination "{{ user.home_dir }}/Documents/WindowsPowerShell" -Recurse -Force'
+      - "install --id Microsoft.Powershell --source winget --silent --accept-source-agreements --accept-package-agreements"
