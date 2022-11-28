@@ -9,3 +9,7 @@ actions:
     command: powershell
     args:
       - 'scoop install starship'
+
+  - action: file.copy
+    from: xresource
+    to: '{{user.config_dir}}/starship.toml'

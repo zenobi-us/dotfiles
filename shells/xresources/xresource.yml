@@ -5,5 +5,9 @@ actions:
 
   - action: file.copy
     from: xresource
-    to: ~/.Xresource
+    to: '{{user.home_dir}}/.Xresource'
     template: true
+
+  - action: directory.copy
+    from: themes
+    to: '{{user.home_dir}}/.XresourceThemes'

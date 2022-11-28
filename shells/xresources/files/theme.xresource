@@ -1,4 +1,4 @@
 !
 ! Theme
 !
-#include "Projects/Others/Xresources-themes/base16-dracula-256.Xresources"
+#include "~/.XresourceThemes/base16-dracula-256.Xresources"

@@ -6,3 +6,7 @@ actions:
     command: curl
     args:
       - -sS https://starship.rs/install.sh | sh
+
+  - action: file.copy
+    from: xresource
+    to: '{{user.config_dir}}/starship.toml'
