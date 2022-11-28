@@ -4,6 +4,6 @@ where: os.name == "linux" || os.name == "macos"
 actions:
 
   - action: file.copy
-    from: ../../../profile/xresources/main.xresource
+    from: xresource
     to: ~/.Xresource
     template: true
