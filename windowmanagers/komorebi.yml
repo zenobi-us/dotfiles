@@ -25,3 +25,7 @@ actions:
     command: powershell
     args:
       - iwr https://raw.githubusercontent.com/LGUG2Z/komorebi/master/komorebi.generated.ahk -OutFile $Env:USERPROFILE\komorebi.generated.ahk
+
+  - action: file.copy
+    from: komorebi.cmd
+    to: '{{ env.config_dir }}/Microsoft/Windows/Start Menu/Programs/Startup/komorebi.cmd'
