@@ -1,0 +1,18 @@
+ENTRYPOINT := "./src/index.ts"
+
+_default:
+    @just --list
+
+setup:
+    just ../../setup
+    luarocks init
+
+apply:
+    comtrya apply -m windowmanagers.awesome
+
+lua package:
+    @echo {{justfile()}}/packages 
+    @echo {{package}}
+    luarocks install \
+        --tree {{justfile()}}/packages \
+        {{package}}

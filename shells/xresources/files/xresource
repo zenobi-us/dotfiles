@@ -1,3 +1,62 @@
-{{ read_file_contents(path="theme.xresource") }}
-{{ read_file_contents(path="xterm.xresource") }}
-{{ read_file_contents(path="urxvt.xresource") }}
+! code: language=Xdefaults
+
+!!
+!! DPI
+!!
+
+Xft.dpi:144
+
+!
+! Theme
+!
+#include "~/.XresourceThemes/base16-dracula-256.Xresources"
+
+!
+! Locale
+!
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+
+!!
+!! URVXT
+!!
+
+!
+! Extensions
+!
+URxvt.perl-ext-common: tabbed,default,matcher
+
+!
+! Tabs
+!
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+
+!
+! Clickable Urls
+!
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.underlineURLs: true
+URxvt.urlButton: 1
+URxvt.pointerBlank:         true
+
+!
+! Appearance
+!
+URxvt.letterSpace: 1
+URxvt.lineSpace: 2
+URxvt.internalBorder: 2
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.allow_bold: false
+
+URxvt*font: xft:Cozette:style=Regular:size=12
+URxvt*boldFont: xft:Cozette:style=Regular:size=12

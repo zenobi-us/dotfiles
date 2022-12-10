@@ -1,0 +1,8 @@
+---
+where: os.name == "linux"
+
+actions:
+
+  - action: directory.copy
+    from: polybar
+    to: '{{user.home_dir}}/.config/polybar'
