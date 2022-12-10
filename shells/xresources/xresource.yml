@@ -3,11 +3,6 @@ where: os.name == "linux" || os.name == "macos"
 
 actions:
 
-  - action: file.copy
-    from: xresource
-    to: '{{user.home_dir}}/.Xresource'
-    template: true
-
   - action: directory.copy
-    from: themes
-    to: '{{user.home_dir}}/.XresourceThemes'
+    from: xresources
+    to: '{{user.home_dir}}'

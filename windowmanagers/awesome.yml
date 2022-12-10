@@ -13,6 +13,7 @@ actions:
     args:
       - '-rf'
       - '{{user.home_dir}}/.config/awesome'
+
   - action: directory.copy
     from: awesome
     to: '{{user.home_dir}}/.config/'

@@ -1,12 +1,13 @@
 local gears = require("gears")
 local awful = require("awful")
+local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local menubar = require("menubar")
 
 local core_windows = require('core.windows')
 local core_workspaces = require('core.workspaces')
-local my_constants = require('my.constants')
 
+local my_constants = require('my.constants')
+local my_settings = require('my.settings')
 
 root.keys(gears.table.join(
     awful.key(
@@ -40,12 +41,20 @@ root.keys(gears.table.join(
     --
     awful.key(
         { my_constants.modkey, }, "=",
-        function() core_workspaces.increaseGapOnAllTags() end,
+        function()
+            local gap = core_workspaces.increaseGapOnAllTags()
+            my_settings.store.current.gap = gap
+            my_settings:save()
+        end,
         { description = "increase gap", group = "layout" }
     ),
     awful.key(
         { my_constants.modkey, "Shift" }, "=",
-        function() core_workspaces.decreseGapOnAllTags() end,
+        function()
+            local gap = core_workspaces.decreseGapOnAllTags()
+            my_settings.store.current.gap = gap
+            my_settings:save()
+        end,
         { description = "decrease gap", group = "layout" }
     ),
 

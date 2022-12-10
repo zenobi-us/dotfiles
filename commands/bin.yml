@@ -1,9 +1,6 @@
 ---
 where: os.name == "linux"
 
-depends:
-  - windowmanagers.rofi
-
 actions:
 
   - action: directory.copy

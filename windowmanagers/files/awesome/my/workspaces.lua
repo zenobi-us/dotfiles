@@ -1,11 +1,16 @@
 local awful = require("awful")
 local gears = require("gears")
+local beautiful = require("beautiful")
 
 local my_wallpaper = require('my.wallpaper')
 local my_bar = require('my.bar')
 local my_menu = require('my.menu')
 local my_constants = require('my.constants')
 local my_layouts = require('my.layouts')
+local my_settings = require('my.settings')
+
+
+beautiful.useless_gap = my_settings.store.current.gap
 
 
 root.buttons(gears.table.join(

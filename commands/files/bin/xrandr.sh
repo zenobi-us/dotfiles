@@ -1,0 +1,3 @@
+#!/bin/bash
+
+autorandr --change

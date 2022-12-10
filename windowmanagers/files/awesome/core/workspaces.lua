@@ -1,4 +1,3 @@
-local naughty = require("naughty")
 local beautiful = require("beautiful")
 local awful = require("awful")
 
@@ -12,11 +11,6 @@ local function setGap(amount)
         awful.layout.arrange(screen)
     end)
 
-    naughty.notify({
-        preset = naughty.config.presets.info,
-        title = "Gap Set",
-        text = tostring(amount)
-    })
 end
 
 local function getNextGap()
@@ -40,11 +34,13 @@ end
 local function increaseGapOnAllTags()
     local amount = getNextGap()
     setGap(amount)
+    return amount
 end
 
 local function decreseGapOnAllTags()
     local amount = getPreviousGap()
     setGap(amount)
+    return amount
 end
 
 return {

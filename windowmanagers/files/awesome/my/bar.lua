@@ -144,7 +144,9 @@ local function create(screen)
 
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
+            wibox.widget.systray({
+                height = 48
+            }),
             wibox.widget.textclock(),
             layoutcontrol
         },

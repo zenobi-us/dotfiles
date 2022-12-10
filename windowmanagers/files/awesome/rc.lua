@@ -17,5 +17,4 @@ require('my.workspaces')
 require('my.windows')
 
 require('my.display')
-require('my.startup')
 

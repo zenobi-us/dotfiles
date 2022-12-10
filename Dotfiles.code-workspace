@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../.config/autostart"
+		},
+		{
+			"path": "../../../../.config/systemd"
+		}
+	],
+	"settings": {}
+}
