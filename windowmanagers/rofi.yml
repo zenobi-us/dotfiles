@@ -3,6 +3,7 @@ where: os.name == "linux"
 
 actions:
 
-  - action: directory.copy
-    from: rofi
-    to: '{{user.home_dir}}/.config/rofi'
+  - action: command.run
+    command: sh
+    args:
+      - ./windowmanagers/files/rofi/setup.sh

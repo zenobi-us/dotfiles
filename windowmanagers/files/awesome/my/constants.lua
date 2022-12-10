@@ -1,5 +1,7 @@
 local constants = {}
 
+constants.home = os.getenv( "HOME" )
+
 -- This is used later as the default terminal and editor to run.
 constants.terminal = "urxvt"
 constants.editor = os.getenv("EDITOR") or "micro"

@@ -15,7 +15,7 @@ root.keys(gears.table.join(
         hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }
     ),
-
+    
     awful.key(
         { my_constants.modkey, "Control" }, "r",
         awesome.restart,
@@ -72,7 +72,7 @@ root.keys(gears.table.join(
     --
     awful.key(
         { my_constants.modkey }, "r",
-        function() awful.util.spawn('rofi -show run') end,
+        function() awful.spawn('rofi -show run') end,
         { description = "run prompt", group = "launcher" }
     ),
 
@@ -80,8 +80,8 @@ root.keys(gears.table.join(
     -- Launcher
     --
     awful.key(
-        { my_constants.modkey }, "space",
-        function() awful.util.spawn('rofi -show drun') end,
+        { 'Control' }, "space",
+        function() awful.spawn(my_constants.home .. '/.config/rofi/launchers/launcher.sh type-3 style-2 onedark') end,
         { description = "show the menubar", group = "launcher" }
     ),
 
@@ -89,8 +89,8 @@ root.keys(gears.table.join(
     -- Window List
     --
     awful.key(
-        { my_constants.modkey , "Tab"}, "",
-        function() awful.util.spawn('rofi -show window') end,
+        { 'Control' }, "Tab",
+        function() awful.spawn('rofi -show window') end,
         { description = "show the menubar", group = "launcher" }
     ),
 
@@ -100,8 +100,8 @@ root.keys(gears.table.join(
     awful.key(
         { my_constants.modkey }, "l",
         function ()
-            awful.util.spawn("sync")
-            awful.util.spawn("xautolock -locknow -nowlocker i3lock")
+            awful.spawn("sync")
+            awful.spawn("xautolock -locknow -nowlocker i3lock")
         end
     )
 

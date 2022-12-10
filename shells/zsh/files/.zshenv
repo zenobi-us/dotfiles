@@ -1,4 +1,4 @@
-#!/bin/bash/env zsh
+#!/usr/bin/env zsh
 # store path to this directory
 export DOTFILE_ROOT=$(dirname $(readlink "${(%):-%x}"))
 . "${DOTFILE_ROOT}/lib/zsh/loadparts.zsh";

@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../../../../.config/systemd"
+		},
+		{
+			"path": "../../../../.config/rofi"
 		}
 	],
 	"settings": {}
