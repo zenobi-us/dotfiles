@@ -2,6 +2,13 @@
 where: os.name == "linux"
 
 actions:
+  - action: package.install
+    name: picom
+
+  - action: directory.copy
+    from: picom
+    to: "{{user.home_dir}}/.config"
+
   - action: command.run
     command: dnf
     args:
@@ -9,10 +16,3 @@ actions:
       - compton
       - --assumeyes
     suoo: true
-
-  - action: package.install
-    name: picom
-
-  - action: directory.copy
-    from: picom
-    to: "{{user.home_dir}}/.config"

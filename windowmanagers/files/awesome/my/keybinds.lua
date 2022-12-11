@@ -8,6 +8,7 @@ local core_workspaces = require('core.workspaces')
 
 local my_constants = require('my.constants')
 local my_settings = require('my.settings')
+local my_commands = require('my.commands')
 
 root.keys(gears.table.join(
     awful.key(
@@ -28,12 +29,12 @@ root.keys(gears.table.join(
     awful.key(
         { my_constants.modkey, "Control" }, "Left",
         core_windows.moveAllScreensToPreviousTag,
-        { description = "view previous", group = "tag" }
+        { description = "view previous workspace", group = "tag" }
     ),
     awful.key(
         { my_constants.modkey, "Control" }, "Right",
         core_windows.moveAllScreensToNextTag,
-        { description = "view next", group = "tag" }
+        { description = "view next workspace", group = "tag" }
     ),
 
     --
@@ -41,20 +42,12 @@ root.keys(gears.table.join(
     --
     awful.key(
         { my_constants.modkey, }, "=",
-        function()
-            local gap = core_workspaces.increaseGapOnAllTags()
-            my_settings.store.awesome.gap = gap
-            my_settings:save()
-        end,
+        my_commands.increase_window_gap,
         { description = "increase gap", group = "layout" }
     ),
     awful.key(
         { my_constants.modkey, "Shift" }, "=",
-        function()
-            local gap = core_workspaces.decreseGapOnAllTags()
-            my_settings.store.awesome.gap = gap
-            my_settings:save()
-        end,
+        my_commands.decrease_window_gap,
         { description = "decrease gap", group = "layout" }
     ),
 
@@ -63,8 +56,19 @@ root.keys(gears.table.join(
     --
     awful.key(
         { my_constants.modkey, }, "Return",
-        function() awful.spawn(my_constants.terminal) end,
+        my_commands.launch_terminal,
         { description = "open a terminal", group = "launcher" }
+    ),
+
+    --
+    -- Emojis
+    --
+    -- rofi -modi "emoji: rofimoji" -show emoji
+
+    awful.key(
+        { 'Control', 'Shift' }, "\\",
+        my_commands.rofi_emoji,
+        { description = "Emoji Picker", group = "launcher" }
     ),
 
     --
@@ -72,17 +76,7 @@ root.keys(gears.table.join(
     --
     awful.key(
         { my_constants.modkey }, "r",
-        function() awful.spawn(
-            my_constants.home .. 
-            '/.config/rofi/launchers/launcher.sh ' .. 
-            my_settings.store.rofi.runner.type ..  -- type-3
-            ' ' ..
-            my_settings.store.rofi.runner.style ..  -- style-2
-            ' ' ..
-            my_settings.store.rofi.runner.theme ..  -- onedark
-            ' ' ..
-            'run'
-        ) end,
+        my_commands.rofi_runner,
         { description = "run prompt", group = "launcher" }
     ),
 
@@ -91,18 +85,8 @@ root.keys(gears.table.join(
     --
     awful.key(
         { 'Control' }, "space",
-        function() awful.spawn(
-            my_constants.home .. 
-            '/.config/rofi/launchers/launcher.sh ' .. 
-            my_settings.store.rofi.launcher.type ..  -- type-3
-            ' ' ..
-            my_settings.store.rofi.launcher.style ..  -- style-2
-            ' ' ..
-            my_settings.store.rofi.launcher.theme ..  -- onedark
-            ' ' ..
-            'drun'
-        ) end,
-        { description = "show the menubar", group = "launcher" }
+        my_commands.rofi_launcher,
+        { description = "show the app launcher", group = "launcher" }
     ),
 
     --
@@ -110,18 +94,8 @@ root.keys(gears.table.join(
     --
     awful.key(
         {  }, "XF86Eject",
-        function() awful.spawn(
-            my_constants.home ..
-            '/.config/rofi/launchers/launcher.sh' ..
-            my_settings.store.rofi.powermenu.type ..  -- type-3
-            ' ' ..
-            my_settings.store.rofi.powermenu.style ..  -- style-2
-            ' ' ..
-            my_settings.store.rofi.powermenu.theme ..  -- onedark
-            ' ' ..
-            'window'
-        ) end,
-        { description = "show the menubar", group = "launcher" }
+        my_commands.rofi_powermenu,
+        { description = "show the power menu", group = "launcher" }
     ),
 
     --
@@ -129,18 +103,8 @@ root.keys(gears.table.join(
     --
     awful.key(
         { 'Control' }, "Tab",
-        function() awful.spawn(
-            my_constants.home ..
-            '/.config/rofi/launchers/launcher.sh' ..
-            my_settings.store.rofi.switcher .type ..  -- type-3
-            ' ' ..
-            my_settings.store.rofi.switcher .style ..  -- style-2
-            ' ' ..
-            my_settings.store.rofi.switcher .theme ..  -- onedark
-            ' ' ..
-            'window'
-        ) end,
-        { description = "show the menubar", group = "launcher" }
+        my_commands.rofi_switcher,
+        { description = "show the window switcher", group = "launcher" }
     ),
     
     --
@@ -148,10 +112,8 @@ root.keys(gears.table.join(
     --
     awful.key(
         { my_constants.modkey }, "l",
-        function ()
-            awful.spawn("sync")
-            awful.spawn("xautolock -locknow -nowlocker i3lock")
-        end
+        my_commands.lock_screen,
+        { description = "Lock the screen", group = "launcher" }
     )
 
 --

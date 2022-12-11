@@ -4,7 +4,9 @@ where: os.name == "linux"
 actions:
 
   - action: package.install
-    name: rofi
+    list:
+      - rofi
+      - rofimoji
 
   - action: command.run
     command: sh

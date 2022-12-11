@@ -3,8 +3,9 @@ local beautiful = require("beautiful")
 local wibox = require("wibox")
 local gears = require("gears")
 
-local my_menu = require('my.menu')
+local my_menus = require('my.menus')
 local my_constants = require('my.constants')
+
 
 --
 -- Tasklist
@@ -85,19 +86,11 @@ local function createTagList(screen)
 end
 
 --
--- Prompt
---
-local function createPrompBox()
-    local promptbox = awful.widget.prompt()
-    return promptbox
-end
-
---
 -- Launcher
 --
-local function createLauncher(menu)
+local function createLauncher(icon, menu)
     local launcher = awful.widget.launcher({
-        image = beautiful.awesome_icon,
+        image = icon,
         menu = menu
     })
     return launcher
@@ -124,20 +117,15 @@ end
 --
 local function create(screen)
     local bar = awful.wibar({ position = "top", screen = screen })
-    local promptbox = createPrompBox()
-    local taglist = createTagList(screen)
-    local launcher = createLauncher(my_menu.mainmenu)
-    local layoutcontrol = createLayoutControl()
-
-
+    
     bar:setup {
         layout = wibox.layout.align.horizontal,
 
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            launcher,
-            taglist,
-            promptbox,
+
+            createLauncher(beautiful.awesome_icon, my_menus.mainmenu),
+            createTagList(screen),
         },
 
         createTaskList(screen),
@@ -148,15 +136,11 @@ local function create(screen)
                 height = 48
             }),
             wibox.widget.textclock(),
-            layoutcontrol
+            createLauncher(beautiful.awesome_icon, my_menus.systemmenu),
+            createLayoutControl()
         },
 
     }
-
-    bar.promptbox = promptbox
-    bar.launcher = launcher
-    bar.taglist = taglist
-    bar.layoutcontrol = layoutcontrol
 
     return bar
 end
@@ -169,7 +153,6 @@ return {
     createTagListButtons = createTagListButtons,
     createTaskList = createTaskList,
     createTaskListButtons = createTaskListButtons,
-    createPrompBox = createPrompBox,
     createLauncher = createLauncher,
     createLayoutControl = createLayoutControl,
     create = create,
