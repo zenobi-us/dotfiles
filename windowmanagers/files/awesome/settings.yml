@@ -2,7 +2,7 @@
 awesome:
   gap: 0
   tag: 1
-  theme: steamburn
+  theme: sky
 
 rofi:
   launcher:
