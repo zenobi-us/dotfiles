@@ -4,6 +4,20 @@ local awful = require("awful")
 local gapTable = {4, 10, 20, 0}
 local gapIndex = 1
 
+local function moveAllScreensToPreviousTag()
+    for i = 1, screen.count() do
+        awful.tag.viewprev(i)
+    end
+end
+
+local function moveAllScreensToNextTag()
+        for i = 1, screen.count() do
+            awful.tag.viewnext(i)
+        end
+end
+
+
+
 local function setGap(amount)
     beautiful.useless_gap = amount
     
@@ -46,4 +60,7 @@ end
 return {
     increaseGapOnAllTags = increaseGapOnAllTags,
     decreseGapOnAllTags = decreseGapOnAllTags,
+
+    moveAllScreensToPreviousTag = moveAllScreensToPreviousTag,
+    moveAllScreensToNextTag = moveAllScreensToNextTag
 }

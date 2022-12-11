@@ -81,7 +81,21 @@ end
 
 local function launch_terminal () awful.spawn(my_constants.terminal) end
 
+
+local function next_desktop ()
+    local tag = core_workspaces.moveAllScreensToPreviousTag()
+    my_settings.store.awesome.tag = tag
+    my_settings:save({ quiet = true})
+end
+local function previous_desktop ()
+    local tag = core_workspaces.moveAllScreensToNextTag()
+    my_settings.store.awesome.tag = tag
+    my_settings:save({ quiet = true})
+end
+
 return {
+    next_desktop = next_desktop,
+    previous_desktop = previous_desktop,
     rofi_emoji = rofi_emoji,
     rofi_runner = rofi_runner,
     rofi_launcher = rofi_launcher,

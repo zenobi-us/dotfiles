@@ -4,6 +4,7 @@ where: os.name == "windows"
 actions:
 
   - action: directory.copy
+    where: os.name == "windows"
     from: vscode
     to: '{{ user.home_dir }}\scoop\apps\vscode\current\data\user-data\User'
 

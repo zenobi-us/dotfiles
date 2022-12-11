@@ -22,32 +22,42 @@ function YamlFileStore:new(filepath)
     return store
 end
 
-function YamlFileStore:load()
+function YamlFileStore:load(options)
+    options = options or {}
+    local quiet = options.quiet or false
+
     local handle = assert(io.open(self.filepath, 'r'), 'Problem opening' .. self.filepath .. 'for loading')
     local contents = handle:read("a")
     local store = assert(lyaml.load(contents), 'Problem parsing yaml from ' .. self.filepath)
     self.store = store
 
-    naughty.notify({
-        preset = naughty.config.presets.info,
-        title = "Config Loaded",
-        text = self.filepath
-    })
+    if quiet ~= true then
+        naughty.notify({
+            preset = naughty.config.presets.info,
+            title = "Config Loaded",
+            text = self.filepath
+        })
+    end
 
     handle:close()
 end
 
-function YamlFileStore:save()
+function YamlFileStore:save(options)
+    options = options or {}
+    local quiet = options.quiet or false
+
     local handle = assert(io.open(self.filepath, 'w'), 'Problem opening ' .. self.filepath .. 'for saving')
     local contents = assert(lyaml.dump({ self.store }), 'Problem stringifying config')
     assert(handle:write(contents), 'Problem saving config to ' .. self.filepath)
     handle:close()
 
-    naughty.notify({
-        preset = naughty.config.presets.info,
-        title = "Config Saved",
-        text = self.filepath,
-    })
+    if quiet ~= true then
+        naughty.notify({
+            preset = naughty.config.presets.info,
+            title = "Config Saved",
+            text = self.filepath,
+        })
+    end
 
 end
 

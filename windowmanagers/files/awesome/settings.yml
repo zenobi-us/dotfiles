@@ -1,23 +1,24 @@
 ---
 awesome:
-  gap: 0
-  tag: 1
+  gap: 10
   theme: zenburn
-
+  tag: 1
+  
 rofi:
-  launcher:
-    type: type-1
+  runner:
     style: style-1
+    type: type-1
     theme: onedark
-  powermenu:
-    type: type-1
-    style: style-1
+  launcher:
+    style: style-2
+    type: type-3
     theme: onedark
   switcher:
-    type: type-1
     style: style-1
-    theme: onedark
-  runner:
     type: type-1
-    style: style-1
     theme: onedark
+  powermenu:
+    style: style-1
+    type: type-1
+    theme: onedark
+...

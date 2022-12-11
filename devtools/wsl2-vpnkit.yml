@@ -3,7 +3,7 @@ where: os.name == "windows"
 
 depends:
   - packagemanagers.scoop
-  - devtools.wsl2.enable
+  - devtools.wsl2
 
 actions:
 

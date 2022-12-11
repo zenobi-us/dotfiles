@@ -3,6 +3,7 @@
         "client",
         "awesome",
         "screen",
-        "root"
+        "root",
+        "init"
     ]
 }

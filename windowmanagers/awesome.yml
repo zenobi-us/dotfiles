@@ -7,7 +7,8 @@ depends:
   - windowmanagers.rofi
   - windowmanagers.picom
   - windowmanagers.enact
-  - shells.xresources.xresource
+  - shells.xresources
+  - devtools.asdf
 
 actions:
   - action: command.run
@@ -34,10 +35,9 @@ actions:
       - lua
       - luarocks
       - lua-devel
-      - lua-lgi
+      - gobject-introspection-devel
 
   - action: command.run
     command: luarocks
     args:
-      - install
-      - path
+      - make

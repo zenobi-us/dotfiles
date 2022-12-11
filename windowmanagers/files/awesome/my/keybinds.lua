@@ -3,11 +3,7 @@ local awful = require("awful")
 local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
-local core_windows = require('core.windows')
-local core_workspaces = require('core.workspaces')
-
 local my_constants = require('my.constants')
-local my_settings = require('my.settings')
 local my_commands = require('my.commands')
 
 root.keys(gears.table.join(
@@ -28,12 +24,12 @@ root.keys(gears.table.join(
     --
     awful.key(
         { my_constants.modkey, "Control" }, "Left",
-        core_windows.moveAllScreensToPreviousTag,
+        my_commands.previous_desktop,
         { description = "view previous workspace", group = "tag" }
     ),
     awful.key(
         { my_constants.modkey, "Control" }, "Right",
-        core_windows.moveAllScreensToNextTag,
+        my_commands.next_desktop,
         { description = "view next workspace", group = "tag" }
     ),
 

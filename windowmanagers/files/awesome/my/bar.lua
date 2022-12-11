@@ -5,6 +5,7 @@ local gears = require("gears")
 
 local my_menus = require('my.menus')
 local my_constants = require('my.constants')
+local my_commands = require('my.commands')
 
 --
 -- Tasklist
@@ -85,7 +86,7 @@ local function createTagList(screen)
 end
 
 --
--- Launcher
+-- A Launcher
 --
 local function createLauncher(icon, menu)
     local launcher = awful.widget.launcher({
@@ -93,6 +94,20 @@ local function createLauncher(icon, menu)
         menu = menu
     })
     return launcher
+end
+
+--
+-- A Button
+--
+local function createButton(icon, fn)
+    local button = awful.widget.button({
+        image = icon
+    })
+    button:buttons(gears.table.join(
+        button:buttons(),
+        awful.button({}, 1, nil, fn)
+    ))
+    return button    
 end
 
 --
@@ -123,7 +138,7 @@ local function create(screen)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
 
-            createLauncher(beautiful.awesome_icon, my_menus.mainmenu),
+            createButton(beautiful.awesome_icon, my_commands.rofi_launcher),
             createTagList(screen),
         },
 

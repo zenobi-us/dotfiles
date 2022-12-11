@@ -1,6 +1,7 @@
 local gears = require('gears')
 local tables = require('core.tables')
 local project = require('core.project')
+local lfs = require('lfs')
 
 local function path_join(...)
     local pathseparator = package.config:sub(1,1);
