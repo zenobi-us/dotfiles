@@ -72,7 +72,17 @@ root.keys(gears.table.join(
     --
     awful.key(
         { my_constants.modkey }, "r",
-        function() awful.spawn('rofi -show run') end,
+        function() awful.spawn(
+            my_constants.home .. 
+            '/.config/rofi/launchers/launcher.sh ' .. 
+            my_settings.store.current.rofi.runner.type ..  -- type-3
+            ' ' ..
+            my_settings.store.current.rofi.runner.style ..  -- style-2
+            ' ' ..
+            my_settings.store.current.rofi.runner.theme ..  -- onedark
+            ' ' ..
+            'run'
+        ) end,
         { description = "run prompt", group = "launcher" }
     ),
 
@@ -81,7 +91,36 @@ root.keys(gears.table.join(
     --
     awful.key(
         { 'Control' }, "space",
-        function() awful.spawn(my_constants.home .. '/.config/rofi/launchers/launcher.sh type-3 style-2 onedark') end,
+        function() awful.spawn(
+            my_constants.home .. 
+            '/.config/rofi/launchers/launcher.sh ' .. 
+            my_settings.store.current.rofi.launcher.type ..  -- type-3
+            ' ' ..
+            my_settings.store.current.rofi.launcher.style ..  -- style-2
+            ' ' ..
+            my_settings.store.current.rofi.launcher.theme ..  -- onedark
+            ' ' ..
+            'drun'
+        ) end,
+        { description = "show the menubar", group = "launcher" }
+    ),
+
+    --
+    -- Power Menu
+    --
+    awful.key(
+        {  }, "XF86Eject",
+        function() awful.spawn(
+            my_constants.home ..
+            '/.config/rofi/launchers/launcher.sh' ..
+            my_settings.store.current.rofi.powermenu.type ..  -- type-3
+            ' ' ..
+            my_settings.store.current.rofi.powermenu.style ..  -- style-2
+            ' ' ..
+            my_settings.store.current.rofi.powermenu.theme ..  -- onedark
+            ' ' ..
+            'window'
+        ) end,
         { description = "show the menubar", group = "launcher" }
     ),
 
@@ -90,10 +129,20 @@ root.keys(gears.table.join(
     --
     awful.key(
         { 'Control' }, "Tab",
-        function() awful.spawn('rofi -show window') end,
+        function() awful.spawn(
+            my_constants.home ..
+            '/.config/rofi/launchers/launcher.sh' ..
+            my_settings.store.current.rofi.switcher .type ..  -- type-3
+            ' ' ..
+            my_settings.store.current.rofi.switcher .style ..  -- style-2
+            ' ' ..
+            my_settings.store.current.rofi.switcher .theme ..  -- onedark
+            ' ' ..
+            'window'
+        ) end,
         { description = "show the menubar", group = "launcher" }
     ),
-
+    
     --
     -- Screenlock
     --

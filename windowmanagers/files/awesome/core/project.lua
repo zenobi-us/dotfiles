@@ -11,5 +11,6 @@ end
 local root = dirname(dirname(debug.getinfo(1, "S").source:sub(2)))
 
 return {
+    dirname = dirname,
     root = root
 }

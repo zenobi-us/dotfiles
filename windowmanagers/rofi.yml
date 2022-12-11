@@ -3,6 +3,9 @@ where: os.name == "linux"
 
 actions:
 
+  - action: package.install
+    name: rofi
+
   - action: command.run
     command: sh
     args:

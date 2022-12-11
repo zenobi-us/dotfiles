@@ -1,4 +1,20 @@
 ---
-current:
-  gap: 0
-  tag: 1
+gap: 0
+tag: 1
+rofi:
+  launcher:
+    type: type-1
+    style: style-1
+    theme: onedark
+  powermenu:
+    type: type-1
+    style: style-1
+    theme: onedark
+  switcher:
+    type: type-1
+    style: style-1
+    theme: onedark
+  runner:
+    type: type-1
+    style: style-1
+    theme: onedark

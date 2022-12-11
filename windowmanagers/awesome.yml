@@ -9,6 +9,20 @@ depends:
 actions:
 
   - action: command.run
+    command: dnf
+    args:
+      - remove
+      - compton
+      - --assumeyes
+    suoo: true
+
+  - action: package.install
+    list:
+      - awsome
+      - picom
+      - autorandr
+
+  - action: command.run
     command: rm
     args:
       - '-rf'
