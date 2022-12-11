@@ -4,23 +4,22 @@ where: os.name == "linux"
 depends:
   - commands.bin
   - windowmanagers.rofi
+  - windowmanagers.picom
   - shells.xresources.xresource
 
 actions:
 
-  - action: command.run
-    command: dnf
-    args:
-      - remove
-      - compton
-      - --assumeyes
-    suoo: true
-
   - action: package.install
     list:
       - awsome
-      - picom
+      - arandr
       - autorandr
+      - nitrogen
+      - lxappearance
+      - scrot
+      - viewnior
+      - xsel
+      - xsettingsd
 
   - action: command.run
     command: rm
