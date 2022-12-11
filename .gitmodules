@@ -13,6 +13,9 @@
 [submodule "windowmanagers/files/awesome/awesome-buttons"]
 	path = windowmanagers/files/awesome/awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons.git
-[submodule "windowmanagers/files/awesome/pulseaudio"]
-	path = windowmanagers/files/awesome/pulseaudio
-	url = https://github.com/daskol/awesome-pulseaudio-widget
+[submodule "windowmanagers/files/awesome/freedesktop"]
+	path = windowmanagers/files/awesome/freedesktop
+	url = https://github.com/lcpz/awesome-freedesktop
+[submodule "windowmanagers/files/awesome/scratch"]
+	path = windowmanagers/files/awesome/scratch
+	url = https://github.com/proteansec/awesome-scratch

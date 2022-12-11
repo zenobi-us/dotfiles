@@ -8,6 +8,7 @@ require("awful.hotkeys_popup.keys")
 
 -- require('core.default')
 
+require('my.notify')
 require('my.layouts')
 require('my.keybinds')
 require('my.theme')

@@ -22,7 +22,7 @@ actions:
 
   - action: package.install
     list:
-      - awsome
+      - awesome
       - arandr
       - autorandr
       - nitrogen
@@ -37,25 +37,7 @@ actions:
       - lua-lgi
 
   - action: command.run
-    command: git
+    command: luarocks
     args:
-      - clone
-      - --recurse-submodules
-      - --remote-submodules
-      - --depth 1
-      - -j 2
-      - https://github.com/lcpz/awesome-copycats.git
-      - "{{user.home_dir}}/.config/awesome/awesome-copycats"
-
-  - action: command.run
-    command: mv
-    args:
-      - -bv
-      - "{{user.home_dir}}/.config/awesome/awesome-copycats/{*,.[^.]*}"
-      - "{{user.home_dir}}/.config/awesome"
-
-  - action: command.run
-    command: rm
-    args:
-      - -rf
-      - "{{user.home_dir}}/.config/awesome/awesome-copycats"
+      - install
+      - path

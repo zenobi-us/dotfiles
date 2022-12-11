@@ -1,5 +1,8 @@
 local hotkeys_popup = require("awful.hotkeys_popup")
 local awful = require("awful")
+local radical  = require("radical")
+local beautiful  = require("beautiful")
+local wibox = require("wibox")
 
 local my_constants = require('my.constants')
 
@@ -22,6 +25,23 @@ local systemitems = {
 }
 
 local themeitems = {}
+
+local menu = radical.context{}
+menu:add_item {text="Screen 1",button1=function(_menu,item,mods) print("Hello World! ") end}
+menu:add_item {text="Screen 9",icon= beautiful.awesome_icon}
+menu:add_item {text="Sub Menu",sub_menu = function()
+    local smenu = radical.context{}
+    smenu:add_item{text="item 1"}
+    smenu:add_item{text="item 2"}
+    return smenu
+end}
+
+-- To add the menu to a widget:
+local mytextbox = wibox.widget.textbox()
+mytextbox:set_menu(menu, "button::pressed", 3) -- 3 = right mouse button, 1 = left mouse button
+
+-- To add a key binding on a "box" menu (and every other types)
+menu:add_key_binding({"Mod4"},",")
 
 
 return {
