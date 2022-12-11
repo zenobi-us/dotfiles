@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../../../../.config/rofi"
+		},
+		{
+			"path": "../../../../.config/awesome"
 		}
 	],
 	"settings": {}

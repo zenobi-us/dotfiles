@@ -1,18 +1,18 @@
-[submodule "windowmanagers/files/awesome/packages/lain"]
-	path = windowmanagers/files/awesome/packages/lain
+[submodule "windowmanagers/files/awesome/lain"]
+	path = windowmanagers/files/awesome/lain
 	url = https://github.com/lcpz/lain.git
-[submodule "windowmanagers/files/awesome/packages/radical"]
-	path = windowmanagers/files/awesome/packages/radical
+[submodule "windowmanagers/files/awesome/radical"]
+	path = windowmanagers/files/awesome/radical
 	url = https://github.com/Elv13/radical.git
-[submodule "windowmanagers/files/awesome/packages/obvious"]
-	path = windowmanagers/files/awesome/packages/obvious
+[submodule "windowmanagers/files/awesome/obvious"]
+	path = windowmanagers/files/awesome/obvious
 	url = https://github.com/hoelzro/obvious.git
-[submodule "windowmanagers/files/awesome/packages/vicious"]
-	path = windowmanagers/files/awesome/packages/vicious
+[submodule "windowmanagers/files/awesome/vicious"]
+	path = windowmanagers/files/awesome/vicious
 	url = https://github.com/vicious-widgets/vicious.git
-[submodule "windowmanagers/files/awesome/packages/awesome-buttons"]
-	path = windowmanagers/files/awesome/packages/awesome-buttons
+[submodule "windowmanagers/files/awesome/awesome-buttons"]
+	path = windowmanagers/files/awesome/awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons.git
-[submodule "windowmanagers/files/awesome/packages/pulseaudio"]
-	path = windowmanagers/files/awesome/packages/pulseaudio
+[submodule "windowmanagers/files/awesome/pulseaudio"]
+	path = windowmanagers/files/awesome/pulseaudio
 	url = https://github.com/daskol/awesome-pulseaudio-widget
