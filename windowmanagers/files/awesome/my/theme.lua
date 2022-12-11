@@ -1,6 +1,6 @@
 local beautiful = require("beautiful")
 local gears = require("gears")
-local themes = require('packages.themes')
+local themes = require('themes')
 local my_settings = require('my.settings')
 
 beautiful.init(themes[my_settings.store.awesome.theme])
