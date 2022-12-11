@@ -30,7 +30,7 @@ function YamlFileStore:load()
 
     naughty.notify({
         preset = naughty.config.presets.info,
-        title = "Loaded",
+        title = "Config Loaded",
         text = self.filepath
     })
 
@@ -45,7 +45,8 @@ function YamlFileStore:save()
 
     naughty.notify({
         preset = naughty.config.presets.info,
-        title = "Saved: " .. self.filepath,
+        title = "Config Saved",
+        text = self.filepath,
     })
 
 end
