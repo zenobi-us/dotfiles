@@ -1,9 +1,11 @@
 ---
-where: os.name == "windows"
 
 actions:
 
   - action: command.run
-    command: powershell
-    args:
-      - 'irm get.scoop.sh | iex'
+    command: 'true'
+    variants:
+      - where: os.name == "windows"
+        command: powershell
+        args:
+          - 'irm get.scoop.sh | iex'

@@ -1,7 +1,6 @@
 local Class = require('core.class')
 local lyaml = require('lyaml')
 local naughty = require("naughty")
--- local lodash = require('core.lodash')
 
 local YamlFileStore = {}
 

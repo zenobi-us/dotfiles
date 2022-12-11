@@ -8,6 +8,7 @@ depends:
   - windowmanagers.picom
   - windowmanagers.enact
   - shells.xresources
+  - shells.zsh
   - devtools.asdf
 
 actions:

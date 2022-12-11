@@ -2,7 +2,9 @@ local gears = require('gears')
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
-local constants = require('my.constants')
+
+local my_constants = require('my.constants')
+local my_commands = require('my.commands')
 
 
 local function createWindowEvents()
@@ -10,11 +12,11 @@ local function createWindowEvents()
         awful.button({}, 1, function(c)
             c:emit_signal("request::activate", "mouse_click", { raise = true })
         end),
-        awful.button({ constants.modkey }, 1, function(c)
+        awful.button({ my_constants.modkey }, 1, function(c)
             c:emit_signal("request::activate", "mouse_click", { raise = true })
             awful.mouse.client.move(c)
         end),
-        awful.button({ constants.modkey }, 3, function(c)
+        awful.button({ my_constants.modkey }, 3, function(c)
             c:emit_signal("request::activate", "mouse_click", { raise = true })
             awful.mouse.client.resize(c)
         end)
@@ -65,8 +67,8 @@ local function createWindowTitleBar(window)
 
             awful.titlebar.widget.floatingbutton(window),
             awful.titlebar.widget.maximizedbutton(window),
-            awful.titlebar.widget.stickybutton(window),
-            awful.titlebar.widget.ontopbutton(window),
+            -- awful.titlebar.widget.stickybutton(window),
+            -- awful.titlebar.widget.ontopbutton(window),
             awful.titlebar.widget.closebutton(window),
         },
     }
@@ -76,13 +78,13 @@ local function createWindowKeybinds()
     local keybinds = gears.table.join(
 
         awful.key(
-            { constants.modkey, "Control" }, "space",
+            { my_constants.modkey, "Control" }, "space",
             awful.client.floating.toggle,
             { description = "toggle floating", group = "client" }
         ),
 
         awful.key(
-            { constants.modkey, }, "Up",
+            { my_constants.modkey, }, "Up",
             function(c)
                 c.maximized = not c.maximized
                 c:raise()
@@ -90,33 +92,13 @@ local function createWindowKeybinds()
             { description = "(un)maximize", group = "client" }
         ),
 
-        awful.key({ constants.modkey, "Control", "Shift" }, "Left",
-            function()
-                -- get current tag
-                local t = client.focus and client.focus.first_tag or nil
-                if t == nil then
-                    return
-                end
-                -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
-                local tag = client.focus.screen.tags[(t.name - 2) % constants.total_tags + 1]
-                awful.client.movetotag(tag)
-                awful.tag.viewprev()
-            end,
+        awful.key({ my_constants.modkey, "Control", "Shift" }, "Left",
+            my_commands.move_window_previous_desktop,
             { description = "move client to previous tag and switch to it", group = "layout" }
         ),
 
-        awful.key({ constants.modkey, "Control", "Shift" }, "Right",
-            function()
-                -- get current tag
-                local t = client.focus and client.focus.first_tag or nil
-                if t == nil then
-                    return
-                end
-                -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
-                local tag = client.focus.screen.tags[(t.name % constants.total_tags) + 1]
-                awful.client.movetotag(tag)
-                awful.tag.viewnext()
-            end,
+        awful.key({ my_constants.modkey, "Control", "Shift" }, "Right",
+            my_commands.move_window_next_desktop,
             { description = "move client to next tag and switch to it", group = "layout" }
         )
 

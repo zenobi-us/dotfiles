@@ -5,6 +5,7 @@ local my_wallpaper = require('my.wallpaper')
 local my_bar = require('my.bar')
 local my_menus = require('my.menus')
 local my_constants = require('my.constants')
+local my_settings = require('my.settings')
 local my_layouts = require('my.layouts')
 
 
@@ -21,3 +22,8 @@ awful.screen.connect_for_each_screen(function(screen)
     screen.bar = my_bar.create(screen)
 end)
 
+-- for key, tag in ipairs(awful.screen.tags) do
+--     if key == my_settings.store.awesome.tag then
+--         tag.viewonly()
+--     end
+-- end

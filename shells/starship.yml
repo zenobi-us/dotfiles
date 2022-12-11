@@ -1,0 +1,22 @@
+---
+
+depends:
+  - packagemanagers.scoop
+  - shells.zsh
+
+actions:
+  - action: command.run
+    command: 'true'
+    variants:
+      - where: os.name == "linux" || os.name == "macos"
+        command: curl
+        args:
+          - -sS https://starship.rs/install.sh | sh
+      - where: os.name == "windows"
+        command: powershell
+        args:
+          - 'scoop install starship'
+
+  - action: file.copy
+    from: starship/starship.toml
+    to: '{{ user.config_dir }}/starship.toml'

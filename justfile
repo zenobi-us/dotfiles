@@ -1,10 +1,11 @@
 ENTRYPOINT := "./src/index.ts"
 
-_default:
-    @just --list
+apply module:
+    comtrya apply -m {{module}}
 
 setup:
     ./setup.bash
+    luarocks make
 
 wm:
     comtrya apply -m windowmanagers.awesome

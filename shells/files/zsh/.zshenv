@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # store path to this directory
-export DOTFILE_ROOT=$(dirname $(readlink "${(%):-%x}"))
+export DOTFILE_ROOT="$HOME/.zsh"
 . "${DOTFILE_ROOT}/lib/zsh/loadparts.zsh";
 
 if [[ "$SSH_TTY" && "$SHLVL" -eq 1 && ! -o LOGIN ]]; then

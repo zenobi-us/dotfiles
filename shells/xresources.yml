@@ -4,5 +4,16 @@ where: os.name == "linux" || os.name == "macos"
 actions:
 
   - action: directory.copy
-    from: xresources
+    from: xresources/.XresourceThemes
     to: '{{user.home_dir}}'
+
+  - action: command.run
+    command: cp
+    args:
+      - shells/files/xresources/.Xresources
+      - "{{user.home_dir}}/.Xresources"
+
+  - action: command.run
+    command: xrdb
+    args:
+      - -merge ~/.Xresources

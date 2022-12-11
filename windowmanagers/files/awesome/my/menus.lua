@@ -1,8 +1,9 @@
 local hotkeys_popup = require("awful.hotkeys_popup")
 local awful = require("awful")
-local wibox = require("wibox")
+local themes = require('themes')
 
 local my_constants = require('my.constants')
+local my_settings = require('my.settings')
 
 local desktopitems = {
     { "Set Wallpaper", 'nitrogen' },
@@ -23,10 +24,18 @@ local systemitems = {
 }
 
 local themeitems = {}
+for key, _ in ipairs(themes) do
+    themeitems[key] = function ()
+        my_settings.store.awesome.theme = key
+    end
+end
 
 return {
     mainmenu = awful.menu({
         items = mainitems
+    }),
+    thememenu = awful.menu({
+        items = themeitems
     }),
     desktopmenu = awful.menu({
         items = desktopitems
