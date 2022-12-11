@@ -13,3 +13,6 @@
 [submodule "windowmanagers/files/awesome/packages/awesome-buttons"]
 	path = windowmanagers/files/awesome/packages/awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons.git
+[submodule "windowmanagers/files/awesome/packages/pulseaudio"]
+	path = windowmanagers/files/awesome/packages/pulseaudio
+	url = https://github.com/daskol/awesome-pulseaudio-widget

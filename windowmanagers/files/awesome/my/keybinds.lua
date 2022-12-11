@@ -93,7 +93,7 @@ root.keys(gears.table.join(
     -- Power Menu
     --
     awful.key(
-        {  }, "XF86Eject",
+        { 'any' }, "XF86Eject",
         my_commands.rofi_powermenu,
         { description = "show the power menu", group = "launcher" }
     ),

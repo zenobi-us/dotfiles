@@ -1,0 +1,5 @@
+[Unit]
+Description=Current graphical user session
+Documentation=man:systemd.special(7)
+RefuseManualStart=no
+StopWhenUnneeded=no

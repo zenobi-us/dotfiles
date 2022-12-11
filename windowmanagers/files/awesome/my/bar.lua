@@ -6,7 +6,6 @@ local gears = require("gears")
 local my_menus = require('my.menus')
 local my_constants = require('my.constants')
 
-
 --
 -- Tasklist
 --

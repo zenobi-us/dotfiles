@@ -16,7 +16,7 @@ local mainitems = {
 local systemitems = {
     { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     { "manual", my_constants.terminal .. " -e man awesome" },
-    { "edit config", my_constants.editor_cmd .. " " .. awesome.conffile },
+    { "edit config", 'code ' .. awesome.conffile },
     { "Reload", awesome.restart },
     { "Logout", function() awesome.quit() end },
 }

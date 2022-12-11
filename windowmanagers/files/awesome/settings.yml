@@ -3,7 +3,7 @@ awesome:
   gap: 0
   tag: 1
   theme: zenburn
-  
+
 rofi:
   launcher:
     type: type-1

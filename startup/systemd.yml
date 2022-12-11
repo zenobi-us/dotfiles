@@ -1,0 +1,7 @@
+---
+where: os.name == "linux"
+
+actions:
+  - action: directory.copy
+    from: systemd
+    to: "{{ user.home_dir }}/.config"

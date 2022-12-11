@@ -2,22 +2,23 @@
 where: os.name == "linux"
 
 depends:
+  - startup.systemd
   - commands.bin
   - windowmanagers.rofi
   - windowmanagers.picom
+  - windowmanagers.enact
   - shells.xresources.xresource
 
 actions:
-
   - action: command.run
     command: rm
     args:
-      - '-rf'
-      - '{{user.home_dir}}/.config/awesome'
+      - "-rf"
+      - "{{user.home_dir}}/.config/awesome"
 
   - action: directory.copy
     from: awesome
-    to: '{{user.home_dir}}/.config/'
+    to: "{{user.home_dir}}/.config/"
 
   - action: package.install
     list:
@@ -30,3 +31,7 @@ actions:
       - viewnior
       - xsel
       - xsettingsd
+      - lua
+      - luarocks
+      - lua-devel
+      - lua-lgi
