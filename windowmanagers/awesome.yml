@@ -9,6 +9,16 @@ depends:
 
 actions:
 
+  - action: command.run
+    command: rm
+    args:
+      - '-rf'
+      - '{{user.home_dir}}/.config/awesome'
+
+  - action: directory.copy
+    from: awesome
+    to: '{{user.home_dir}}/.config/'
+
   - action: package.install
     list:
       - awsome
@@ -20,13 +30,3 @@ actions:
       - viewnior
       - xsel
       - xsettingsd
-
-  - action: command.run
-    command: rm
-    args:
-      - '-rf'
-      - '{{user.home_dir}}/.config/awesome'
-
-  - action: directory.copy
-    from: awesome
-    to: '{{user.home_dir}}/.config/'

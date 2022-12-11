@@ -43,7 +43,7 @@ root.keys(gears.table.join(
         { my_constants.modkey, }, "=",
         function()
             local gap = core_workspaces.increaseGapOnAllTags()
-            my_settings.store.current.gap = gap
+            my_settings.store.awesome.gap = gap
             my_settings:save()
         end,
         { description = "increase gap", group = "layout" }
@@ -52,7 +52,7 @@ root.keys(gears.table.join(
         { my_constants.modkey, "Shift" }, "=",
         function()
             local gap = core_workspaces.decreseGapOnAllTags()
-            my_settings.store.current.gap = gap
+            my_settings.store.awesome.gap = gap
             my_settings:save()
         end,
         { description = "decrease gap", group = "layout" }
@@ -75,11 +75,11 @@ root.keys(gears.table.join(
         function() awful.spawn(
             my_constants.home .. 
             '/.config/rofi/launchers/launcher.sh ' .. 
-            my_settings.store.current.rofi.runner.type ..  -- type-3
+            my_settings.store.rofi.runner.type ..  -- type-3
             ' ' ..
-            my_settings.store.current.rofi.runner.style ..  -- style-2
+            my_settings.store.rofi.runner.style ..  -- style-2
             ' ' ..
-            my_settings.store.current.rofi.runner.theme ..  -- onedark
+            my_settings.store.rofi.runner.theme ..  -- onedark
             ' ' ..
             'run'
         ) end,
@@ -94,11 +94,11 @@ root.keys(gears.table.join(
         function() awful.spawn(
             my_constants.home .. 
             '/.config/rofi/launchers/launcher.sh ' .. 
-            my_settings.store.current.rofi.launcher.type ..  -- type-3
+            my_settings.store.rofi.launcher.type ..  -- type-3
             ' ' ..
-            my_settings.store.current.rofi.launcher.style ..  -- style-2
+            my_settings.store.rofi.launcher.style ..  -- style-2
             ' ' ..
-            my_settings.store.current.rofi.launcher.theme ..  -- onedark
+            my_settings.store.rofi.launcher.theme ..  -- onedark
             ' ' ..
             'drun'
         ) end,
@@ -113,11 +113,11 @@ root.keys(gears.table.join(
         function() awful.spawn(
             my_constants.home ..
             '/.config/rofi/launchers/launcher.sh' ..
-            my_settings.store.current.rofi.powermenu.type ..  -- type-3
+            my_settings.store.rofi.powermenu.type ..  -- type-3
             ' ' ..
-            my_settings.store.current.rofi.powermenu.style ..  -- style-2
+            my_settings.store.rofi.powermenu.style ..  -- style-2
             ' ' ..
-            my_settings.store.current.rofi.powermenu.theme ..  -- onedark
+            my_settings.store.rofi.powermenu.theme ..  -- onedark
             ' ' ..
             'window'
         ) end,
@@ -132,11 +132,11 @@ root.keys(gears.table.join(
         function() awful.spawn(
             my_constants.home ..
             '/.config/rofi/launchers/launcher.sh' ..
-            my_settings.store.current.rofi.switcher .type ..  -- type-3
+            my_settings.store.rofi.switcher .type ..  -- type-3
             ' ' ..
-            my_settings.store.current.rofi.switcher .style ..  -- style-2
+            my_settings.store.rofi.switcher .style ..  -- style-2
             ' ' ..
-            my_settings.store.current.rofi.switcher .theme ..  -- onedark
+            my_settings.store.rofi.switcher .theme ..  -- onedark
             ' ' ..
             'window'
         ) end,

@@ -13,6 +13,6 @@ actions:
   - action: package.install
     name: picom
 
-  - action: file.copy
-    from: picom.conf
-    to: "{{user.home_dir}}/.config/picom.conf"
+  - action: directory.copy
+    from: picom
+    to: "{{user.home_dir}}/.config"
