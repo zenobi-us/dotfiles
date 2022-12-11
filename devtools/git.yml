@@ -1,0 +1,9 @@
+---
+depends:
+  - packagemanagers.scoop
+
+actions:
+  - action: file.copy
+    from: git
+    to: '{{user.home_dir}}'
+    template: true

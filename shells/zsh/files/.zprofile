@@ -1,7 +1,4 @@
-#!/bin/bash/env zsh
+#!/usr/bin/env zsh
 load-parts "config.d/*__profile"
 load-parts "config.d/asdf_config"
 export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
-export LUA_PATH='/home/zenobius/.asdf/downloads/lua/5.3.6/lua-5.3.6/luarocks-3.9.2/src/?.lua;/usr/local/share/lua/5.3/?.lua;/usr/local/share/lua/5.3/?/init.lua;/usr/local/lib/lua/5.3/?.lua;/usr/local/lib/lua/5.3/?/init.lua;./?.lua;./?/init.lua;;/home/zenobius/.luarocks/share/lua/5.3/?.lua;/home/zenobius/.luarocks/share/lua/5.3/?/init.lua;/home/zenobius/.asdf/installs/lua/5.3.6/luarocks/share/lua/5.3/?.lua;/home/zenobius/.asdf/installs/lua/5.3.6/luarocks/share/lua/5.3/?/init.lua'
-export LUA_CPATH='/usr/local/lib/lua/5.3/?.so;/usr/local/lib/lua/5.3/loadall.so;./?.so;/home/zenobius/.luarocks/lib/lua/5.3/?.so;/home/zenobius/.asdf/installs/lua/5.3.6/luarocks/lib/lua/5.3/?.so'
-export PATH='/home/zenobius/.luarocks/bin:/home/zenobius/.asdf/installs/lua/5.3.6/bin:/home/zenobius/.asdf/installs/lua/5.3.6/luarocks/bin:/home/zenobius/.asdf/shims:/home/zenobius/.asdf/bin:/home/zenobius/.qfc/bin:/home/zenobius/Applications:/home/zenobius/.local/share/bin:/home/zenobius/.local/bin:/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/sbin:/usr/local/bin:/root/.android/android-sdk-linux/build-tools/23.0.2:/root/.android/android-sdk-linux/tools/:/root/.android/android-sdk-linux/build-tools/:/root/.android/android-sdk-linux/platform-tools/:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/var/lib/snapd/snap/bin:/home/zenobius/.local/share/JetBrains/Toolbox/scripts:/home/zenobius/.asdf/installs/fzf/0.34.0/bin'

@@ -3,9 +3,9 @@ where: os.name == "windows"
 
 actions:
 
-  - action: file.copy
-    from: settings.json
-    to: '{{ user.home_dir }}\scoop\apps\vscode\current\data\user-data\User\settings.json'
+  - action: directory.copy
+    from: vscode
+    to: '{{ user.home_dir }}\scoop\apps\vscode\current\data\user-data\User'
 
   - action: command.run
     command: powershell

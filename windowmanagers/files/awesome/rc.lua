@@ -6,8 +6,6 @@ require('core.packages')
 require("awful.autofocus")
 require("awful.hotkeys_popup.keys")
 
--- require('core.default')
-
 require('my.notify')
 require('my.layouts')
 require('my.keybinds')

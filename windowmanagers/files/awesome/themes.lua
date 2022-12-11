@@ -2,18 +2,28 @@ local gears = require('gears')
 local tables = require('core.tables')
 local project = require('core.project')
 
+local function path_join(...)
+    local pathseparator = package.config:sub(1,1);
+    local elements = {...}
+    return table.concat(elements, pathseparator)
+end
 
 local function collect(themeDir)
+	local items = {}
+    for entity in lfs.dir(themeDir) do
+        if entity=="." or entity==".." then
+			goto continue
+		end
+
+		items[entity] = path_join(themeDir, entity, 'theme.lua')
+
+		::continue::
+	end
 	
+	return items
 end
 
 return tables.merge(
-	-- default = gears.filesystem.get_themes_dir() .. "default/theme.lua",
-	-- gtk = gears.filesystem.get_themes_dir() .. "gtk/theme.lua",
-	-- sky = gears.filesystem.get_themes_dir() .. "sky/theme.lua",
-	-- xresources = gears.filesystem.get_themes_dir() .. "xresources/theme.lua",
-	-- zenburn = gears.filesystem.get_themes_dir() .. "zenburn/theme.lua",
 	collect(gears.filesystem.get_themes_dir()),
-	collect(project.root .. 'awesome-copycats/themes'),
-	collect(project.root .. 'awesome-pro/themes')
+	collect(project.root .. 'themes')
 )

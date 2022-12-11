@@ -1,3 +1,0 @@
-{{ read_file_contents(path="devtools/git/files/id.gitconfig") }}
-{{ read_file_contents(path="devtools/git/files/main.gitconfig") }}
-{{ read_file_contents(path="devtools/git/files/aliases.gitconfig") }}

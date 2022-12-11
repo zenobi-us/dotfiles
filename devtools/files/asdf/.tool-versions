@@ -13,3 +13,4 @@ golang 1.18.3
 slides 0.9.0
 goneovim 0.6.3
 actionlint 1.6.20
+lua 5.3.6
