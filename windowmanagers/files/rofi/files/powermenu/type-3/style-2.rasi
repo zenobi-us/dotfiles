@@ -32,7 +32,7 @@ configuration {
 /*****----- Main Window -----*****/
 window {
     /* properties for window widget */
-    transparency:                "real";
+     
     location:                    center;
     anchor:                      center;
     fullscreen:                  true;

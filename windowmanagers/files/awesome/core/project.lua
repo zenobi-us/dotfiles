@@ -17,25 +17,22 @@ local function path_join(...)
     return table.concat(elements, pathseparator)
 end
 
-local function collect(themeDir)
-	local items = {}
-    for entity in lfs.dir(themeDir) do
+local function walkdir(dir, fn)
+    for entity in lfs.dir(dir) do
         if entity=="." or entity==".." then
 			goto continue
 		end
 
-		items[entity] = path_join(themeDir, entity, 'theme.lua')
+        fn(entity)
 
 		::continue::
 	end
-	
-	return items
 end
 
 local root = dirname(dirname(debug.getinfo(1, "S").source:sub(2)))
 
 return {
-    collect = collect,
+    walkdir = walkdir,
     path_join = path_join,
     dirname = dirname,
     root = root

@@ -11,19 +11,19 @@ end
 
 local function set_package_path(luapath)
     package.cpath = package.cpath .. ';' ..
-        luapath .. '/lib/lua/5.3/?.so' ..
-        luapath .. '/luarocks/lib/lua/5.3/?.so'
+        luapath .. '/lib/lua/5.3/?.so;' ..
+        luapath .. '/luarocks/lib/lua/5.3/?.so;'
 
     package.path = package.path .. ';' ..
         luapath .. '/share/lua/5.3/?.lua;' ..
         luapath .. '/share/lua/5.3/?/init.lua;' ..
         luapath .. '/luarocks/share/lua/5.3/?.lua;' ..
-        luapath .. '/luarocks/share/lua/5.3/?/init.lua'
+        luapath .. '/luarocks/share/lua/5.3/?/init.lua;'
 end
 
 
 local function init()
-    set_package_path(execute('asdf where lua'))
+    -- set_package_path(execute('asdf where lua'))
     
     -- If LuaRocks is installed, make sure that packages installed through it are
     -- found (e.g. lgi). If LuaRocks is not installed, do nothing.

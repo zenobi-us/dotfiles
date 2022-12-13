@@ -23,7 +23,7 @@ USE_BUTTONS=YES
 /*****----- Main Window -----*****/
 window {
     /* properties for window widget */
-    transparency:                "real";
+     
     location:                    south;
     anchor:                      south;
     fullscreen:                  false;

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Inspect Window
+Comment=View x11 properties of a window
+Exec=sh -c "xwininfo | rofi -dmenu -p 'window'"
+Terminal=false
+Type=Application
+Categories=System;

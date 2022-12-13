@@ -97,13 +97,13 @@ end
 local function launch_terminal() awful.spawn(my_constants.terminal) end
 
 local function next_desktop()
-    local tag = core_workspaces.moveAllScreensToPreviousTag()
+    local tag = core_workspaces.moveAllScreensToNextTag()
     my_settings.store.awesome.tag = tag
     my_settings:save({ quiet = true })
 end
 
 local function previous_desktop()
-    local tag = core_workspaces.moveAllScreensToNextTag()
+    local tag = core_workspaces.moveAllScreensToPreviousTag()
     my_settings.store.awesome.tag = tag
     my_settings:save({ quiet = true })
 end
@@ -123,7 +123,9 @@ local function move_window_previous_desktop()
     -- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
     local tagId = client.focus.screen.tags[(tag.name - 2) % my_constants.total_tags + 1]
     awful.client.movetotag(tagId)
-    awful.tag.viewprev()
+
+    previous_desktop()
+
 end
 
 local function move_window_next_desktop()
@@ -134,7 +136,8 @@ local function move_window_next_desktop()
     -- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
     local tagId = client.focus.screen.tags[(tag.name % my_constants.total_tags) + 1]
     awful.client.movetotag(tagId)
-    awful.tag.viewnext()
+    
+    next_desktop()
 end
 
 return {

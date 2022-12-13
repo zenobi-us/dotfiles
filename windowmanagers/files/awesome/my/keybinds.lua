@@ -25,12 +25,12 @@ root.keys(gears.table.join(
     awful.key(
         { my_constants.modkey, "Control" }, "Left",
         my_commands.previous_desktop,
-        { description = "view previous workspace", group = "tag" }
+        { description = "view previous workspace", group = "Workspace" }
     ),
     awful.key(
         { my_constants.modkey, "Control" }, "Right",
         my_commands.next_desktop,
-        { description = "view next workspace", group = "tag" }
+        { description = "view next workspace", group = "Workspace" }
     ),
 
     --
@@ -39,12 +39,12 @@ root.keys(gears.table.join(
     awful.key(
         { my_constants.modkey, }, "=",
         my_commands.increase_window_gap,
-        { description = "increase gap", group = "layout" }
+        { description = "increase gap", group = "Windows" }
     ),
     awful.key(
         { my_constants.modkey, "Shift" }, "=",
         my_commands.decrease_window_gap,
-        { description = "decrease gap", group = "layout" }
+        { description = "decrease gap", group = "Windows" }
     ),
 
     --
@@ -53,7 +53,7 @@ root.keys(gears.table.join(
     awful.key(
         { my_constants.modkey, }, "Return",
         my_commands.launch_terminal,
-        { description = "open a terminal", group = "launcher" }
+        { description = "open a terminal", group = "Applications" }
     ),
 
     --
@@ -64,7 +64,7 @@ root.keys(gears.table.join(
     awful.key(
         { 'Control', 'Shift' }, "\\",
         my_commands.rofi_emoji,
-        { description = "Emoji Picker", group = "launcher" }
+        { description = "Emoji Picker", group = "Applications" }
     ),
 
     --
@@ -73,25 +73,25 @@ root.keys(gears.table.join(
     awful.key(
         { my_constants.modkey }, "r",
         my_commands.rofi_runner,
-        { description = "run prompt", group = "launcher" }
+        { description = "run prompt", group = "System" }
     ),
 
     --
     -- Launcher
     --
     awful.key(
-        { 'Control' }, "space",
+        { my_constants.modkey }, "`",
         my_commands.rofi_launcher,
-        { description = "show the app launcher", group = "launcher" }
+        { description = "show the app launcher", group = "System" }
     ),
 
     --
     -- Power Menu
     --
     awful.key(
-        { 'any' }, "XF86Eject",
+        {  }, "XF86Eject",
         my_commands.rofi_powermenu,
-        { description = "show the power menu", group = "launcher" }
+        { description = "show the power menu", group = "System" }
     ),
 
     --
@@ -100,7 +100,7 @@ root.keys(gears.table.join(
     awful.key(
         { 'Control' }, "Tab",
         my_commands.rofi_switcher,
-        { description = "show the window switcher", group = "launcher" }
+        { description = "show the window switcher", group = "Windows" }
     ),
     
     --
@@ -109,7 +109,16 @@ root.keys(gears.table.join(
     awful.key(
         { my_constants.modkey }, "l",
         my_commands.lock_screen,
-        { description = "Lock the screen", group = "launcher" }
+        { description = "Lock the screen", group = "System" }
+    ),
+    
+    --
+    -- Screenshot/cast
+    --
+    awful.key(
+        {  }, "XF86Launch6",
+        my_commands.lock_screen,
+        { description = "Take a screenshot", group = "Applications" }
     )
 
 --

@@ -21,9 +21,3 @@ awful.screen.connect_for_each_screen(function(screen)
     awful.tag(my_constants.tag_labels, screen, my_layouts.layouts.tile)
     screen.bar = my_bar.create(screen)
 end)
-
--- for key, tag in ipairs(awful.screen.tags) do
---     if key == my_settings.store.awesome.tag then
---         tag.viewonly()
---     end
--- end

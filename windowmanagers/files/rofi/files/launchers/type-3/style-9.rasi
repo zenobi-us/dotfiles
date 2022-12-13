@@ -21,7 +21,7 @@ configuration {
 
 /*****----- Main Window -----*****/
 window {
-    transparency:                "real";
+     
     location:                    east;
     anchor:                      east;
     fullscreen:                  false;

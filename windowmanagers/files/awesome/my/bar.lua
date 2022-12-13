@@ -107,7 +107,7 @@ local function createButton(icon, fn)
         button:buttons(),
         awful.button({}, 1, nil, fn)
     ))
-    return button    
+    return button
 end
 
 --
@@ -126,12 +126,13 @@ local function createLayoutControl(screen)
     return box
 end
 
+
 --
 -- Main
 --
 local function create(screen)
     local bar = awful.wibar({ position = "top", screen = screen })
-    
+
     bar:setup {
         layout = wibox.layout.align.horizontal,
 
@@ -149,6 +150,7 @@ local function create(screen)
             wibox.widget.systray({
                 height = 48
             }),
+            wibox.widget.imagebox(beautiful.widget_battery),
             wibox.widget.textclock(),
             createLauncher(beautiful.awesome_icon, my_menus.systemmenu),
             createLayoutControl()

@@ -9,7 +9,6 @@ depends:
   - windowmanagers.enact
   - shells.xresources
   - shells.zsh
-  - devtools.asdf
 
 actions:
   - action: command.run
@@ -40,5 +39,50 @@ actions:
 
   - action: command.run
     command: luarocks
+    sudo: true
     args:
-      - make
+      - install
+      - --local
+      - lain
+  - action: command.run
+    command: luarocks
+    sudo: true
+    args:
+      - install
+      - --local
+      - path
+  - action: command.run
+    command: luarocks
+    sudo: true
+    args:
+      - install
+      - --local
+      - luafilesystem
+  - action: command.run
+    command: luarocks
+    sudo: true
+    args:
+      - install
+      - --local
+      - power_widget
+  - action: command.run
+    command: luarocks
+    sudo: true
+    args:
+      - install
+      - --local
+      - lgi
+  - action: command.run
+    command: luarocks
+    sudo: true
+    args:
+      - install
+      - --local
+      - lcpz/awesome-freedesktop
+  - action: command.run
+    command: luarocks
+    sudo: true
+    args:
+      - install
+      - --local
+      - awesome-autostart
