@@ -1,0 +1,12 @@
+---
+
+actions:
+
+  - action: command.run
+    where: os.name == "linux"
+    command: sh
+    args:
+      - -c
+      - |
+        git submodule init
+        git submodule update
