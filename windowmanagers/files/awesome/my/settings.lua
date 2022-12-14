@@ -1,6 +1,6 @@
-local core_config = require('core.config')
-local core_project = require('core.project')
+local my_core_config = require('my.core.config')
+local my_core_project = require('my.core.project')
 
-local settings = core_config.YamlFileStore:new(core_project.root .. '/settings.yml')
+local settings = my_core_config.YamlFileStore:new(my_core_project.root .. '/settings.yml')
 
 return settings

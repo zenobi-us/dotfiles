@@ -1,6 +1,6 @@
 local awful = require('awful')
 
-local core_workspaces = require('core.workspaces')
+local my_core_workspaces = require('my.core.workspaces')
 local my_constants = require('my.constants')
 local my_settings = require('my.settings')
 
@@ -83,13 +83,13 @@ local function lock_screen()
 end
 
 local function increase_window_gap()
-    local gap = core_workspaces.increaseGapOnAllTags()
+    local gap = my_core_workspaces.increaseGapOnAllTags()
     my_settings.store.awesome.gap = gap
     my_settings:save()
 end
 
 local function decrease_window_gap()
-    local gap = core_workspaces.decreseGapOnAllTags()
+    local gap = my_core_workspaces.decreseGapOnAllTags()
     my_settings.store.awesome.gap = gap
     my_settings:save()
 end
@@ -97,13 +97,13 @@ end
 local function launch_terminal() awful.spawn(my_constants.terminal) end
 
 local function next_desktop()
-    local tag = core_workspaces.moveAllScreensToNextTag()
+    local tag = my_core_workspaces.moveAllScreensToNextTag()
     my_settings.store.awesome.tag = tag
     my_settings:save({ quiet = true })
 end
 
 local function previous_desktop()
-    local tag = core_workspaces.moveAllScreensToPreviousTag()
+    local tag = my_core_workspaces.moveAllScreensToPreviousTag()
     my_settings.store.awesome.tag = tag
     my_settings:save({ quiet = true })
 end

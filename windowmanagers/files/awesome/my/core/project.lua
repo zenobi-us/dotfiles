@@ -29,7 +29,7 @@ local function walkdir(dir, fn)
 	end
 end
 
-local root = dirname(dirname(debug.getinfo(1, "S").source:sub(2)))
+local root = dirname(dirname(dirname(debug.getinfo(1, "S").source:sub(2))))
 
 return {
     walkdir = walkdir,

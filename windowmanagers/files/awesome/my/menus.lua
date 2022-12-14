@@ -5,10 +5,6 @@ local themes = require('themes')
 local my_constants = require('my.constants')
 local my_settings = require('my.settings')
 
-local desktopitems = {
-    { "Set Wallpaper", 'nitrogen' },
-    { "Displays", 'arandr' }
-}
 
 local mainitems = {
     { "open terminal", my_constants.terminal }
@@ -16,19 +12,33 @@ local mainitems = {
 
 
 local systemitems = {
-    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual", my_constants.terminal .. " -e man awesome" },
-    { "edit config", 'code ' .. awesome.conffile },
+    { "Help", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    { "Docs", my_constants.terminal .. " -e man awesome" },
+    { "Config", 'code ' .. awesome.conffile },
     { "Reload", awesome.restart },
     { "Logout", function() awesome.quit() end },
 }
 
 local themeitems = {}
 for key, _ in ipairs(themes) do
-    themeitems[key] = function ()
-        my_settings.store.awesome.theme = key
-    end
+    table.insert(themeitems, {
+        key,
+        function ()
+            my_settings.store.awesome.theme = key
+            my_settings.save()
+            awesome.restart()
+        end
+    })
 end
+
+local desktopitems = {
+    { "Set Wallpaper", 'nitrogen' },
+    { "Displays", 'arandr' },
+    { "Themes: [ ".. #themeitems .. " ]", awful.menu({
+        items = themeitems
+    })}
+}
+
 
 return {
     mainmenu = awful.menu({

@@ -2,11 +2,11 @@
 where: os.name == "linux"
 
 depends:
-  - startup.systemd
-  - commands.bin
   - windowmanagers.rofi
   - windowmanagers.picom
-  - windowmanagers.enact
+  - windowmanagers.autorandr
+  - commands.bin
+  - startup.systemd
   - shells.xresources
   - shells.zsh
 

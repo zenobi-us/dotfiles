@@ -1,7 +1,7 @@
 -- https://awesomewm.org/doc/api/index.html
 
-require('core.packages').init()
-require('core.errors')
+require('my.core.packages').init()
+require('my.core.errors')
 
 require("awful.autofocus")
 require("awful.hotkeys_popup.keys")

@@ -53,8 +53,18 @@ local function table_clone_internal(t, copies)
   
     return result
   end
+
+  local function values(table)
+    local values = {}
+    for _, value in ipairs(table) do
+      table.insert(values, value)
+    end
+  
+    return values
+  end
   
   return {
+    values = values,
     clone = table_clone,
     merge = table_merge,
   }
