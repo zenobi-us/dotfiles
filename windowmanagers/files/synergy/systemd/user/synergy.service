@@ -1,6 +1,0 @@
-[Unit]
-Description=Synergy Mouse and Keyboard Sharing
-
-[Service]
-ExecStart=synergy
-Environment="DISPLAY=:1"

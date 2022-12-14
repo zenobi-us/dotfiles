@@ -1,0 +1,10 @@
+---
+where: os.name == "linux"
+
+depends:
+  - commands.bin
+
+actions:
+  - action: directory.copy
+    from: autorandr
+    to: "{{ user.home_dir }}/.config"

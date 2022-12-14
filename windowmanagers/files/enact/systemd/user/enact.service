@@ -1,5 +1,0 @@
-[Unit]
-Description=Enact Auto configures Xrandr
-
-[Service]
-ExecStart=$HOME/.local/share/bin/enact --pos top --watch
