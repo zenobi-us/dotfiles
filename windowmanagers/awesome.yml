@@ -2,6 +2,7 @@
 where: os.name == "linux"
 
 depends:
+  - dotfiles.submodules
   - windowmanagers.rofi
   - windowmanagers.picom
   - windowmanagers.autorandr
@@ -11,11 +12,14 @@ depends:
   - shells.zsh
 
 actions:
+
   - action: command.run
-    command: rm
+    command: sh
     args:
-      - "-rf"
-      - "{{user.home_dir}}/.config/awesome"
+      - -c
+      - |
+        rm -rf "{{user.home_dir}}/.config/awesome"
+
 
   - action: directory.copy
     from: awesome
