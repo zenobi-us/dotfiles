@@ -1,0 +1,5 @@
+[Unit]
+Description=Enact Auto configures Xrandr
+
+[Service]
+ExecStart=autorandr --watch

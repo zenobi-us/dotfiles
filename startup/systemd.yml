@@ -1,7 +1,26 @@
 ---
 where: os.name == "linux"
 
+depends:
+  - commands.bin
+
 actions:
+
   - action: directory.copy
     from: systemd
     to: "{{ user.home_dir }}/.config"
+
+  - action: command.run
+    command: sh
+    args:
+      - -c
+      - |
+        for service in ~/.config/systemd/user/*.service; do
+            chmod 700 "${service}"
+            systemctl --user stop $(basename "${service}")
+            systemctl --user add-wants autostart.target $(basename "${service}")
+        done
+        echo "Reloading Systemd"
+        systemctl --user daemon-reload
+        echo "Starting Autostart"
+        systemctl --user start autostart.target

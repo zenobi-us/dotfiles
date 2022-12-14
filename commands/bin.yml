@@ -12,4 +12,4 @@ actions:
     args:
       - 'u+x'
       - '-R'
-      - '{{user.home_dir}}/.local/*'
+      - '{{user.home_dir}}/.local'
