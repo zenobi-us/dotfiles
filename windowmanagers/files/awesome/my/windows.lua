@@ -222,7 +222,7 @@ awful.rules.rules = {
     {
         properties = { titlebars_enabled = false, border_width = 0 },
         rule_any = {
-            class = { "chrome-app" }
+            class = { "chrome-app", "Google-chrome" }
         }
     },
 

@@ -2,6 +2,7 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
 local gears = require("gears")
+local radical = require("radical")
 
 local core_workspaces = require('my.core.workspaces')
 local my_menus = require('my.menus')
@@ -100,20 +101,43 @@ end
 -- A Button
 --
 local function createButton(options)
+    options = options or {}
     local icon = options.icon
     local leftclick = options.leftclick
     local middleclick = options.middleclick
     local rightclick = options.rightclick
 
+
     local button = awful.widget.button({
         image = icon
     })
+
     button:buttons(gears.table.join(
         button:buttons(),
         awful.button({}, 1, nil, leftclick),
         awful.button({}, 2, nil, middleclick),
         awful.button({}, 3, nil, rightclick)
     ))
+    return button
+end
+
+--
+-- A Text Button
+--
+local function createMenuBar(options)
+    options = options or {}
+    local text = options.text
+    local menu = options.menu
+
+    -- local bar_menu, bar_widget = radical.bar({
+    --     item_style           = radical.item.style.rounded,
+    -- })
+    
+    local button = wibox.widget.textbox(text)
+    button:set_menu(menu, "button::pressed", 1)
+
+    -- bar_menu:add_item(button)
+    
     return button
 end
 
@@ -151,7 +175,7 @@ local function new(screen)
 
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            
+
             wibox.widget.imagebox(beautiful.spr5px),
             createTagList(screen),
             wibox.widget.imagebox(beautiful.spr5px),
@@ -164,12 +188,20 @@ local function new(screen)
             wibox.widget.systray({
                 height = 48
             }),
+
             wibox.widget.textclock(),
+
+            createMenuBar({
+                text = "System",
+                menu = my_menus.createSystemMenu({ screen = screen })
+            }),
 
             createButton({
                 icon = beautiful.awesome_icon,
                 leftclick = function() systemMenu:toggle() end
             }),
+
+
 
         },
 
