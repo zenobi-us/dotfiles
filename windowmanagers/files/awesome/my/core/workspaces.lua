@@ -16,6 +16,15 @@ local function moveAllScreensToNextTag()
         end
 end
 
+local function moveAllScreensToTag(tagName)
+    local tagIndex = awful.tag.getidx(tagName)
+    for screen = 1, screen.count() do
+        local tag = awful.tag.gettags(screen)[tagIndex]
+        if tag then
+            awful.tag.viewonly(tag)
+        end
+    end
+end
 
 
 local function setGap(amount)
@@ -61,6 +70,7 @@ return {
     increaseGapOnAllTags = increaseGapOnAllTags,
     decreseGapOnAllTags = decreseGapOnAllTags,
 
+    moveAllScreensToTag = moveAllScreensToTag,
     moveAllScreensToPreviousTag = moveAllScreensToPreviousTag,
     moveAllScreensToNextTag = moveAllScreensToNextTag
 }

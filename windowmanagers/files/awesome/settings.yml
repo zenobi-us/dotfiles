@@ -1,23 +1,22 @@
 ---
-awesome:
-  gap: 10
-  theme: zenburn
-  tag: 1
-
 rofi:
-  runner:
-    style: style-1
-    type: type-1
-    theme: onedark
-  launcher:
-    style: style-2
-    type: type-3
-    theme: onedark
   switcher:
-    style: style-1
+    theme: dracula
     type: type-1
-    theme: onedark
+    style: style-1
+  launcher:
+    theme: dracula
+    type: type-3
+    style: style-2
+  runner:
+    theme: dracula
+    type: type-1
+    style: style-1
   powermenu:
+    theme: dracula
+    type: type-2
     style: style-1
-    type: type-1
-    theme: onedark
+awesome:
+  theme: pro-dark
+  gap: 20
+...

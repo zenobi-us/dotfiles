@@ -7,7 +7,7 @@ local my_settings = require('my.settings')
 
 local function rofi_emoji_cmd()
     return my_constants.home ..
-        '/.config/rofi/launchers/launcher.sh ' ..
+        '/.config/rofi/launcher.sh ' ..
         my_settings.store.rofi.runner.type .. -- type-3
         ' ' ..
         my_settings.store.rofi.runner.style .. -- style-2
@@ -19,7 +19,7 @@ end
 
 local function rofi_runner_cmd()
     return my_constants.home ..
-        '/.config/rofi/launchers/launcher.sh ' ..
+        '/.config/rofi/launcher.sh ' ..
         my_settings.store.rofi.runner.type .. -- type-3
         ' ' ..
         my_settings.store.rofi.runner.style .. -- style-2
@@ -31,7 +31,7 @@ end
 
 local function rofi_launcher_cmd()
     return my_constants.home ..
-        '/.config/rofi/launchers/launcher.sh ' ..
+        '/.config/rofi/launcher.sh ' ..
         my_settings.store.rofi.launcher.type .. -- type-3
         ' ' ..
         my_settings.store.rofi.launcher.style .. -- style-2
@@ -44,7 +44,7 @@ end
 
 local function rofi_powermenu_cmd()
     return my_constants.home ..
-        '/.config/rofi/launchers/launcher.sh' ..
+        '/.config/rofi/powermenu.sh ' ..
         my_settings.store.rofi.powermenu.type .. -- type-3
         ' ' ..
         my_settings.store.rofi.powermenu.style .. -- style-2
@@ -57,7 +57,7 @@ end
 
 local function rofi_switcher_cmd()
     return my_constants.home ..
-        '/.config/rofi/launchers/launcher.sh' ..
+        '/.config/rofi/launcher.sh ' ..
         my_settings.store.rofi.switcher.type .. -- type-3
         ' ' ..
         my_settings.store.rofi.switcher.style .. -- style-2
@@ -139,6 +139,7 @@ local function move_window_next_desktop()
     
     next_desktop()
 end
+
 
 return {
     move_window_next_desktop = move_window_next_desktop,

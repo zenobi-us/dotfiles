@@ -1,10 +1,11 @@
 local gears = require("gears")
 local awful = require("awful")
-local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 local my_constants = require('my.constants')
 local my_commands = require('my.commands')
+
+
 
 root.keys(gears.table.join(
     awful.key(
@@ -89,7 +90,7 @@ root.keys(gears.table.join(
     -- Power Menu
     --
     awful.key(
-        {  }, "XF86Eject",
+        {  }, "XF86Launch7",
         my_commands.rofi_powermenu,
         { description = "show the power menu", group = "System" }
     ),

@@ -4,7 +4,7 @@ local function dirname(sourcepath)
     local real = io.popen("realpath '" .. sourcepath .. "'", 'r'):read('a')
     real = real:gsub('[\n\r]*$', '')
 
-    local dirname, _ = real:match('^(.*/)([^/]-)$')
+    local dirname, _ = real:match('^(.*)/([^/]-)$')
     dirname = dirname or ''
 
     return dirname
@@ -29,20 +29,11 @@ local function walkdir(dir, fn)
 	end
 end
 
-local function getCurrentFilePath()
-    return debug.getinfo(1, "S").source:sub(2)
-end
-local function getCurrentDirectory()
-    return dirname(debug.getinfo(1, "S").source:sub(2))
-end
-
-local root = dirname(dirname(dirname(getCurrentFilePath())))
+local root = dirname(dirname(dirname(debug.getinfo(1, "S").source:sub(2))))
 
 return {
     walkdir = walkdir,
     path_join = path_join,
     dirname = dirname,
-    getCurrentFilePath = getCurrentFilePath,
-    getCurrentDirectory = getCurrentDirectory,
     root = root
 }

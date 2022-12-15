@@ -1,4 +1,6 @@
 local gears = require("gears")
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
 
 local taglist_types = {
     "bubbles",        -- 1
@@ -8,14 +10,14 @@ local taglist_types = {
 local chosen_taglist_type = taglist_types[2]
 local theme           = {}
 theme.dir             = os.getenv("HOME") .. "/.config/awesome/themes/pro-dark"
---theme.dir             = os.getenv("HOME") .. "/code/awesome-pro/themes/pro-dark"
+
 
 theme.icons           = theme.dir .. "/icons"
-theme.wallpaper       = theme.dir .. "/wallpapers/pro-dark-shadow.png"
+-- theme.wallpaper       = theme.dir .. "/wallpapers/pro-dark-shadow.png"
 theme.panel           = "png:" .. theme.icons .. "/panel/panel.png"
-theme.font            = "Terminus 10"
-theme.calendar_font   = "Meslo LGS Regular 10"
-theme.fs_font         = "Meslo LGS Regular 10"
+theme.font            = "cozette 10"
+theme.calendar_font   = "cozette 10"
+theme.fs_font         = "cozette 10"
 
 theme.fg_normal         = "#888888"
 theme.fg_focus          = "#e4e4e4"
@@ -33,7 +35,7 @@ theme.clockgf           = "#d5d5c3"
 -- Borders
 
 
-theme.border_width                              = 2
+theme.border_width                              = 0
 theme.border_normal                             = "#3F3F3F"
 theme.border_focus                              = "#6F6F6F"
 theme.border_marked                             = "#CC9393"
@@ -44,7 +46,7 @@ theme.menu_height = 16
 theme.menu_width  = 160
 
 -- Notifications
-theme.notification_font                         = "Meslo LGS Regular 12"
+theme.notification_font                         = "cozette 12"
 theme.notification_bg                           = "#232323"
 theme.notification_fg                           = "#e4e4e4"
 theme.notification_border_width                 = 0
@@ -67,11 +69,11 @@ theme.taglist_bg_empty    = "png:" .. theme.icons .. "/panel/taglist/" .. chosen
 theme.taglist_bg_occupied = "png:" .. theme.icons .. "/panel/taglist/" .. chosen_taglist_type .. "/occupied.png"
 theme.taglist_bg_urgent   = "png:" .. theme.icons .. "/panel/taglist/" .. chosen_taglist_type .. "/urgent.png"
 theme.taglist_bg_focus    = "png:" .. theme.icons .. "/panel/taglist/" .. chosen_taglist_type .. "/focus.png"
-theme.taglist_font        = "Terminus 11"
+theme.taglist_font        = "cozette 10"
 
 -- Tasklist
 
-theme.tasklist_font                 = "Terminus 8"
+theme.tasklist_font                 = "cozette 10"
 theme.tasklist_disable_icon         = true
 theme.tasklist_bg_normal            = "png:" .. theme.icons .. "/panel/tasklist/normal.png"
 theme.tasklist_bg_focus             = "png:" .. theme.icons .. "/panel/tasklist/focus.png"

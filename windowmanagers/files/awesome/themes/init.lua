@@ -12,8 +12,15 @@ local function create_theme_table(themedir)
 end
 
 local themes = tables.merge(
+	{},
 	create_theme_table(gears.filesystem.get_themes_dir()),
-	create_theme_table(project.getCurrentDirectory())
+	create_theme_table(project.dirname(debug.getinfo(1, "S").source:sub(2)))
 )
+
+local text = {}
+for key, value in pairs(themes) do
+	table.insert(text, key .. " : " .. value)
+end
+
 
 return themes

@@ -3,9 +3,13 @@ local beautiful = require("beautiful")
 local wibox = require("wibox")
 local gears = require("gears")
 
+local core_workspaces = require('my.core.workspaces')
 local my_menus = require('my.menus')
 local my_constants = require('my.constants')
 local my_commands = require('my.commands')
+
+
+local module = {}
 
 --
 -- Tasklist
@@ -48,17 +52,11 @@ end
 --
 -- TagList
 --
-local function createTagListButtons()
+
+local function createTagList(screen)
+
     local buttons = gears.table.join(
-        awful.button({}, 1, function(tag)
-            local i = awful.tag.getidx(tag)
-            for screen = 1, screen.count() do
-                local tag = awful.tag.gettags(screen)[i]
-                if tag then
-                    awful.tag.viewonly(tag)
-                end
-            end
-        end),
+        awful.button({}, 1, core_workspaces.moveAllScreensToTag),
         awful.button({ my_constants.modkey }, 1, function(t)
             if client.focus then
                 client.focus:move_to_tag(t)
@@ -73,39 +71,48 @@ local function createTagListButtons()
         awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
         awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
     )
-    return buttons
-end
 
-local function createTagList(screen)
     local taglist = awful.widget.taglist({
         screen = screen,
         filter = awful.widget.taglist.filter.all,
-        buttons = createTagListButtons()
+        buttons = buttons,
     })
+
     return taglist
 end
 
 --
 -- A Launcher
 --
-local function createLauncher(icon, menu)
-    local launcher = awful.widget.launcher({
-        image = icon,
-        menu = menu
-    })
-    return launcher
-end
+-- local function createLauncher(options)
+--     local icon = options.icon
+--     local leftclick = options.leftclick
+
+--     local launcher = awful.widget.launcher({
+--         image = icon,
+--         menu = leftclick
+--     })
+
+--     return launcher
+-- end
 
 --
 -- A Button
 --
-local function createButton(icon, fn)
+local function createButton(options)
+    local icon = options.icon
+    local leftclick = options.leftclick
+    local middleclick = options.middleclick
+    local rightclick = options.rightclick
+
     local button = awful.widget.button({
         image = icon
     })
     button:buttons(gears.table.join(
         button:buttons(),
-        awful.button({}, 1, nil, fn)
+        awful.button({}, 1, nil, leftclick),
+        awful.button({}, 2, nil, middleclick),
+        awful.button({}, 3, nil, rightclick)
     ))
     return button
 end
@@ -115,32 +122,39 @@ end
 --
 -- Create an imagebox widget which will contain an icon indicating which layout we're using.
 -- We need one layoutbox per screen.
-local function createLayoutControl(screen)
-    local box = awful.widget.layoutbox(screen)
-    box:buttons(gears.table.join(
-        awful.button({}, 1, function() awful.layout.inc(1) end),
-        awful.button({}, 3, function() awful.layout.inc(-1) end),
-        awful.button({}, 4, function() awful.layout.inc(1) end),
-        awful.button({}, 5, function() awful.layout.inc(-1) end)
-    ))
-    return box
-end
+-- local function createLayoutControl(screen)
+--     local box = awful.widget.layoutbox(screen)
+--     box:buttons(gears.table.join(
+--         awful.button({}, 1, function() awful.layout.inc(1) end),
+--         awful.button({}, 3, function() awful.layout.inc(-1) end)
+--     ))
+--     return box
+-- end
 
 
 --
 -- Main
 --
-local function create(screen)
-    local bar = awful.wibar({ position = "top", screen = screen })
+local function new(screen)
+    local bar = awful.wibar({
+        position = "top",
+        screen = screen,
+        height = 22,
+        bg = beautiful.panel,
+        fg = beautiful.fg_normal
+    })
+
+    local systemMenu = my_menus.createSystemMenu({ screen = screen })
 
     bar:setup {
         layout = wibox.layout.align.horizontal,
 
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-
-            createButton(beautiful.awesome_icon, my_commands.rofi_launcher),
+            
+            wibox.widget.imagebox(beautiful.spr5px),
             createTagList(screen),
+            wibox.widget.imagebox(beautiful.spr5px),
         },
 
         createTaskList(screen),
@@ -150,10 +164,13 @@ local function create(screen)
             wibox.widget.systray({
                 height = 48
             }),
-            wibox.widget.imagebox(beautiful.widget_battery),
             wibox.widget.textclock(),
-            createLauncher(beautiful.awesome_icon, my_menus.systemmenu),
-            createLayoutControl()
+
+            createButton({
+                icon = beautiful.awesome_icon,
+                leftclick = function() systemMenu:toggle() end
+            }),
+
         },
 
     }
@@ -164,12 +181,5 @@ end
 --
 -- Exports
 --
-return {
-    createTagList = createTagList,
-    createTagListButtons = createTagListButtons,
-    createTaskList = createTaskList,
-    createTaskListButtons = createTaskListButtons,
-    createLauncher = createLauncher,
-    createLayoutControl = createLayoutControl,
-    create = create,
-}
+
+return setmetatable(module, { __call = function(_, ...) return new(...) end })

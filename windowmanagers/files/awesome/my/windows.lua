@@ -44,7 +44,7 @@ local function createWindowTitleBar(window)
 
     return {
         layout = wibox.layout.align.horizontal,
-
+        
         { -- Left
             layout = wibox.layout.fixed.horizontal,
 
@@ -57,7 +57,7 @@ local function createWindowTitleBar(window)
 
             { -- Title
                 align  = "center",
-                widget = awful.titlebar.widget.titlewidget(window)
+                widget = awful.titlebar.widget.titlewidget(window),
             },
             buttons = buttons,
         },
@@ -193,6 +193,26 @@ awful.rules.rules = {
         properties = { titlebars_enabled = true },
         rule_any = {
             type = { "normal", "dialog" }
+        }
+    },
+
+    --
+    -- No Titlebars For Term
+    --
+    {
+        properties = { titlebars_enabled = false, border_width = 0 },
+        rule_any = {
+            class = { "URxvt"}
+        }
+    },
+
+    --
+    -- No Titlebars For VSCode
+    --
+    {
+        properties = { titlebars_enabled = false, border_width = 0 },
+        rule_any = {
+            class = { "Code" , 'code'}
         }
     },
 
