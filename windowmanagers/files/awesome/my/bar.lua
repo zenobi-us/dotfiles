@@ -185,23 +185,23 @@ local function new(screen)
 
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            
             wibox.widget.systray({
                 height = 48
             }),
 
+            wibox.widget.imagebox(beautiful.spr5px),
+
             wibox.widget.textclock(),
+
+            wibox.widget.imagebox(beautiful.spr5px),
 
             createMenuBar({
                 text = "System",
                 menu = my_menus.createSystemMenu({ screen = screen })
             }),
 
-            createButton({
-                icon = beautiful.awesome_icon,
-                leftclick = function() systemMenu:toggle() end
-            }),
-
-
+            wibox.widget.imagebox(beautiful.spr5px),
 
         },
 
