@@ -1,6 +1,7 @@
 local hotkeys_popup = require("awful.hotkeys_popup")
 local awful = require("awful")
 local themes = require('themes')
+local naughty = require('naughty')
 
 local my_constants = require('my.constants')
 local my_settings = require('my.settings')
@@ -20,7 +21,7 @@ local systemitems = {
 }
 
 local themeitems = {}
-for key, _ in ipairs(themes) do
+for key, _ in pairs(themes) do
     table.insert(themeitems, {
         key,
         function ()
@@ -30,6 +31,18 @@ for key, _ in ipairs(themes) do
         end
     })
 end
+
+local text = {}
+for key, value in pairs(themes) do
+	table.insert(text, key .. ":"..value)
+end
+
+naughty.notify({
+	preset = naughty.config.presets.critical,
+	title = "Themes!",
+	text = tostring(table.concat(text, '\n'))
+})
+
 
 local desktopitems = {
     { "Set Wallpaper", 'nitrogen' },

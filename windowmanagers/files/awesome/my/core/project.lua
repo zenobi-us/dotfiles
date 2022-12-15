@@ -29,11 +29,20 @@ local function walkdir(dir, fn)
 	end
 end
 
-local root = dirname(dirname(dirname(debug.getinfo(1, "S").source:sub(2))))
+local function getCurrentFilePath()
+    return debug.getinfo(1, "S").source:sub(2)
+end
+local function getCurrentDirectory()
+    return dirname(debug.getinfo(1, "S").source:sub(2))
+end
+
+local root = dirname(dirname(dirname(getCurrentFilePath())))
 
 return {
     walkdir = walkdir,
     path_join = path_join,
     dirname = dirname,
+    getCurrentFilePath = getCurrentFilePath,
+    getCurrentDirectory = getCurrentDirectory,
     root = root
 }
