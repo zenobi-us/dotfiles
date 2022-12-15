@@ -1,6 +1,9 @@
 ---
 where: os.name == "linux" || os.name == "macos"
 
+depends:
+  - dotfiles.submodules
+
 actions:
 
   - action: directory.copy
