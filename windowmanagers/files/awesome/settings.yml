@@ -5,18 +5,18 @@ awesome:
 rofi:
   powermenu:
     style: style-1
-    theme: dracula
     type: type-2
+    theme: dracula
   launcher:
     style: style-2
-    theme: dracula
     type: type-3
+    theme: dracula
   runner:
     style: style-1
-    theme: dracula
     type: type-1
+    theme: dracula
   switcher:
     style: style-1
-    theme: dracula
     type: type-1
+    theme: dracula
 ...

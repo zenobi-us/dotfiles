@@ -58,6 +58,13 @@ local function createSystemMenu(options)
         sub_menu = createThemesMenu()
     })
 
+    for i_, item in pairs(systemitems) do
+        menu:add_item {
+            text = item[1],
+            button1 = item[2]
+        }
+    end
+
     return menu
 end
 
