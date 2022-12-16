@@ -220,7 +220,12 @@ awful.rules.rules = {
     -- No Titlebars For Chrome Apps
     --
     {
-        properties = { titlebars_enabled = false, border_width = 0 },
+        properties = {
+            titlebars_enabled = false,
+            border_width = 0,
+            placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+            floating = false
+        },
         rule_any = {
             class = { "chrome-app", "Google-chrome" }
         }

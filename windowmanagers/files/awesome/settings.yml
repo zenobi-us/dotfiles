@@ -1,22 +1,22 @@
 ---
-awesome:
-  theme: pro-dark
-  gap: 20
 rofi:
   powermenu:
-    style: style-1
     type: type-2
     theme: dracula
+    style: style-1
+  switcher:
+    type: type-1
+    theme: dracula
+    style: style-1
+  runner:
+    type: type-1
+    theme: dracula
+    style: style-1
   launcher:
-    style: style-2
     type: type-3
     theme: dracula
-  runner:
-    style: style-1
-    type: type-1
-    theme: dracula
-  switcher:
-    style: style-1
-    type: type-1
-    theme: dracula
+    style: style-2
+awesome:
+  gap: 20
+  theme: pro-dark
 ...

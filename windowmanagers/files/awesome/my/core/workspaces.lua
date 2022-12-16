@@ -26,6 +26,7 @@ local function moveAllScreensToTag(tagName)
     end
 end
 
+local function pinScreenToTag(screen, tag) end
 
 local function setGap(amount)
     beautiful.useless_gap = amount
@@ -69,7 +70,7 @@ end
 return {
     increaseGapOnAllTags = increaseGapOnAllTags,
     decreseGapOnAllTags = decreseGapOnAllTags,
-
+    pinScreenToTag = pinScreenToTag,
     moveAllScreensToTag = moveAllScreensToTag,
     moveAllScreensToPreviousTag = moveAllScreensToPreviousTag,
     moveAllScreensToNextTag = moveAllScreensToNextTag

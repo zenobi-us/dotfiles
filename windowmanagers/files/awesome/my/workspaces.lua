@@ -6,14 +6,6 @@ local my_menus = require('my.menus')
 local my_constants = require('my.constants')
 local my_layouts = require('my.layouts')
 
-
-root.buttons(gears.table.join(
-    awful.button({}, 1, function() end),
-    awful.button({}, 3, function() end),
-    awful.button({}, 4, awful.tag.viewnext),
-    awful.button({}, 5, awful.tag.viewprev)
-))
-
 awful.screen.connect_for_each_screen(function(screen)
     awful.tag(my_constants.tag_labels, screen, my_layouts.layouts.tile)
     screen.bar = my_bar(screen)
