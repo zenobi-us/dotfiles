@@ -8,6 +8,9 @@ local core_workspaces = require('my.core.workspaces')
 local my_menus = require('my.menus')
 local my_constants = require('my.constants')
 local my_commands = require('my.commands')
+local media_player = require("my.widgets.media-player")
+local volume = require('my.widgets.volume-widget')
+
 
 
 local module = {}
@@ -51,13 +54,22 @@ local function createTaskList(screen)
 end
 
 --
+-- Media Player
+--
+local function createMediaPlayer(sreen)
+    local player = media_player.Widget:new()
+
+    return player.widget
+end
+
+--
 -- TagList
 --
 local function createTagList(screen)
 
     local buttons = gears.table.join(
         awful.button({}, 1, core_workspaces.moveAllScreensToTag),
-        awful.button({ my_constants.modkey }, 1, function (tag) core_workspaces.pinScreenToTag(screen, tag) end)
+        awful.button({ my_constants.modkey }, 1, function(tag) core_workspaces.pinScreenToTag(screen, tag) end)
     )
 
     local taglist = awful.widget.taglist({
@@ -74,6 +86,7 @@ end
 --
 
 local function createTextClock(screen)
+
     local month_calendar = awful.widget.calendar_popup.month({
         position = "tr",
         screen = screen,
@@ -85,14 +98,28 @@ local function createTextClock(screen)
 
     local clock = wibox.widget.textclock()
 
-    clock:connect_signal("button::press", function (x,y,button, mods, widget)
+    clock:connect_signal("button::press", function(x, y, button, mods, widget)
         month_calendar.screen = screen
         month_calendar:toggle()
     end)
 
-    return clock
+    local widget = wibox.widget({
+        {
+            id = "system-clock",
+            clock,
+            spacing = 2,
+            layout = wibox.layout.align.horizontal
+        },
+        bg = "#333333",
+        widget = wibox.container.background
+    })
+
+    return widget
 end
-    
+
+local function createVolumeControl(screen)
+    return volume.widget({ widget_type = volume.types.icon })
+end
 
 local function createSystray(screen)
     local tray = wibox.widget.systray()
@@ -100,7 +127,6 @@ local function createSystray(screen)
 
     return tray
 end
-
 
 --
 -- A Text Button
@@ -119,7 +145,6 @@ local function createMenuBar(options)
 
     return bar_widget
 end
-
 
 --
 -- Main
@@ -148,8 +173,15 @@ local function new(screen)
 
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spacing = 2,
+
+            createMediaPlayer(screen),
+            wibox.widget.imagebox(beautiful.spr5px),
 
             createSystray(screen),
+            wibox.widget.imagebox(beautiful.spr5px),
+
+            createVolumeControl(),
 
             wibox.widget.imagebox(beautiful.spr5px),
 

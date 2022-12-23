@@ -14,7 +14,7 @@ end
 local themes = tables.merge(
 	{},
 	create_theme_table(gears.filesystem.get_themes_dir()),
-	create_theme_table(project.dirname(debug.getinfo(1, "S").source:sub(2)))
+	create_theme_table(project.path_join(gears.filesystem.get_configuration_dir(), "themes"))
 )
 
 local text = {}

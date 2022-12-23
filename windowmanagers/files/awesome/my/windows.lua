@@ -207,6 +207,16 @@ awful.rules.rules = {
     },
 
     --
+    -- No Titlebars For Term
+    --
+    {
+        properties = { titlebars_enabled = false, border_width = 0 },
+        rule_any = {
+            class = { "Alacritty"}
+        }
+    },
+
+    --
     -- No Titlebars For VSCode
     --
     {

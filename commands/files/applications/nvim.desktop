@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Neovim
+GenericName=Text Editor
+Comment=Edit text files
+Icon=nvim
+MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
+Categories=Development;TextEditor;Utility;
+Keywords=Text;editor;
+
+Terminal=true
+TryExec=nvim
+Exec=nvim %f
+
+X-Desktop-File-Install-Version=0.26:e;
