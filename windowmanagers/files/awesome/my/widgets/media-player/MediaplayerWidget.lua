@@ -13,28 +13,43 @@ local gears = require("gears")
 local naughty = require("naughty")
 
 local MediaplayerPopup = require('my.widgets.media-player.MediaplayerPopup')
+local Icons = require('my.widgets.media-player.icons')
 
 local MediaplayerWidget = {}
 local MediaplayerWidgetMt = Class(MediaplayerWidget)
+
+local DEFAULT_PLAYERCTLCMD_GETMETADATA = "playerctl -p %q -f '{{status}};{{xesam:artist}};{{xesam:album}};{{xesam:title}};{{mpris:arturl}}' metadata"
+local DEFAULT_PLAYERCTLCMD_PLAYPAUSESONG = "playerctl play-pause"
+local DEFAULT_PLAYERCTLCMD_NEXTSONG = "playerctl next"
+local DEFAULT_PLAYERCTLCMD_PREVIOUSSONG = "playerctl previous"
+local DEFAULT_PLAYERCTLCMD_LISTSOURCES = "playerctl -l"
+
 
 function MediaplayerWidget:new(options)
     local options = options or {}
 
     local mediaplayer = setmetatable({
-        get_song_command = options.get_song_command or
-            "playerctl -p %q -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata",
-        pause_song_command = options.pause_song_command or "playerctl play-pause",
-        next_song_command = options.next_song_command or "playerctl next",
-        previous_song_command = options.previous_song_command or "playerctl previous",
-        list_players_command = options.list_players_command or "playerctl -l",
-        pause_icon = options.pause_icon or "",
-        play_icon = options.play_icon or "",
-        stop_icon = options.stop_icon or "",
-        library_icon = options.library_icon or "",
+        get_song_command = options.get_song_command or DEFAULT_PLAYERCTLCMD_GETMETADATA,
+        pause_song_command = options.pause_song_command or DEFAULT_PLAYERCTLCMD_PLAYPAUSESONG,
+        next_song_command = options.next_song_command or DEFAULT_PLAYERCTLCMD_NEXTSONG,
+        previous_song_command = options.previous_song_command or DEFAULT_PLAYERCTLCMD_PREVIOUSSONG,
+        list_players_command = options.list_players_command or DEFAULT_PLAYERCTLCMD_LISTSOURCES,
+        icons = {
+            pause = options.pause_icon or Icons.PauseIcon,
+            play = options.play_icon or Icons.PlayIcon,
+            stop = options.stop_icon or Icons.StopIcon,
+            library = options.library_icon or Icons.LibraryIcon,
+        },
+        glyphs = {
+            pause = options.pause_glyph or '||',
+            play = options.play_glyph or '>',
+            stop = options.stop_glyph or '[]',
+            library = options.library_glyph or '::',
+        },
         player = options.player or "",
         players = {},
         size = options.size or 18,
-        interval = 1
+        metadata_interval = 1
     }, MediaplayerWidgetMt)
 
 
@@ -67,11 +82,9 @@ end
 function MediaplayerWidget:watch()
     local command = string.format(self.get_song_command, self.player)
 
-    watch(command, self.interval, function(_, stdout)
-
-        local player_status, current_artist, current_track = self:parse_song_data(stdout)
-
-        self:update(player_status, current_artist, current_track)
+    watch(command, self.metadata_interval, function(_, stdout)
+        local status, artist, album, track, arturl = self:parse_song_data(stdout)
+        self:update(status, artist, album, track, arturl)
     end)
 
 end
@@ -79,23 +92,25 @@ end
 --
 -- Update the displayed information
 --
-function MediaplayerWidget:update(player_status, current_artist, current_track)
+function MediaplayerWidget:update(status, artist, album, track, arturl)
 
     if player_status == "Playing" then
-        self.icon.image = self.play_icon
+        -- self:set_icon(self.play_icon)
+        self:set_text(self.glyphs.play, artist, album, track, arturl)
         self.widget.colors = { beautiful.widget_main_color }
-        self.widget:set_text(current_artist, current_track)
 
     elseif player_status == "Paused" then
-        self.icon.image = self.pause_icon
+        -- self:set_icon(self.pause_icon)
+        self:set_text(self.glyphs.pause, artist, album, track, arturl)
         self.widget.colors = { beautiful.widget_main_color }
-        self.widget:set_text(current_artist, current_track)
 
     elseif player_status == "Stopped" then
-        self.icon.image = self.stop_icon
+        -- self.set_icon(self.stop_icon)
+        self:set_text(self.glyphs.stop)
 
     else -- no player is running
-        self.icon.image = self.library_icon
+        -- self.set_icon(self.library_icon)
+        self:set_text(self.glyphs.library)
         self.widget.colors = { beautiful.widget_red }
     end
 end
@@ -112,6 +127,23 @@ function MediaplayerWidget:toggle_popup()
     end
 end
 
+function MediaplayerWidget:set_text(status, artist, album, track, arturl)
+    local text = self.widget.get_children_by_id('text')[1]
+
+    text:set_text(
+        string.format("[%s] %s - %s : %s",
+            status,
+            artist or 'None',
+            album or 'None',
+            track or 'None'
+        )
+    )
+end
+
+function MediaplayerWidget:set_icon(icon)
+    self.widget.get_children_by_id('icon')[1]:set_image(icon)
+end
+
 --
 -- Render initial widget display
 --
@@ -119,36 +151,20 @@ function MediaplayerWidget:render()
 
     self.popup = MediaplayerPopup:new()
 
-    self.icon = wibox.widget {
-        id = "icon",
-        widget = wibox.widget.imagebox,
-        image = self.play_icon
-    }
-
     self.widget = wibox.widget {
+        -- {
+        --     id = "icon",
+        --     image = '',
+        --     widget = wibox.widget.imagebox
+        -- },
 
         {
-            id = 'current_artist',
+            id = 'text',
             widget = wibox.widget.textbox,
-        },
-
-        {
-            margins = 4,
-            layout = wibox.container.margin
-        },
-
-        {
-            id = 'current_track',
-            widget = wibox.widget.textbox
         },
 
         spacing = 2,
         layout = wibox.layout.align.horizontal,
-
-        set_text = function(self, current_artist, current_track)
-            self:get_children_by_id('current_artist')[1]:set_text(current_artist)
-            self:get_children_by_id('current_track')[1]:set_text(current_track)
-        end
     }
 
     self.widget:buttons(
@@ -167,7 +183,9 @@ function MediaplayerWidget:parse_song_data(command_output)
 
     player_status = words[1]
     current_artist = words[2]
-    current_track = words[3]
+    current_albub = words[3]
+    current_track = words[4]
+    current_arturl = words[5]
 
     if current_song ~= nil then
         if string.len(current_song) > 18 then

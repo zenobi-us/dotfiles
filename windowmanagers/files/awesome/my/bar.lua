@@ -176,9 +176,11 @@ local function new(screen)
             spacing = 2,
 
             createMediaPlayer(screen),
+
             wibox.widget.imagebox(beautiful.spr5px),
 
             createSystray(screen),
+
             wibox.widget.imagebox(beautiful.spr5px),
 
             createVolumeControl(),

@@ -4,35 +4,36 @@ local dpi = xresources.apply_dpi
 local theme_assets = require("beautiful.theme_assets")
 
 
-local theme           = {}
-theme.dir             = os.getenv("HOME") .. "/.config/awesome/themes/pro-dark"
+local theme = {}
+theme.dir   = os.getenv("HOME") .. "/.config/awesome/themes/pro-dark"
 -- theme.icons           = theme.dir .. "/icons"
 -- theme.panel           = "png:" .. theme.icons .. "/panel/panel.png"
 
-theme.font            = "cozette 10"
-theme.calendar_font   = "cozette 10"
-theme.fs_font         = "cozette 10"
 
-theme.fg_normal         = "#888888"
-theme.fg_focus          = "#e4e4e4"
-theme.fg_urgent         = "#CC9393"
-theme.bat_fg_critical   = "#232323"
+theme.font          = "cozette 10"
+theme.calendar_font = "cozette 10"
+theme.fs_font       = "cozette 10"
 
-theme.bg_normal         = "#3F3F3F"
-theme.bg_focus          = "#5a5a5a"
-theme.bg_urgent         = "#3F3F3F"
-theme.bg_systray        = "#343434"
-theme.bat_bg_critical   = "#ff0000"
+theme.fg_normal       = "#888888"
+theme.fg_focus        = "#e4e4e4"
+theme.fg_urgent       = "#CC9393"
+theme.bat_fg_critical = "#232323"
 
-theme.clockgf           = "#d5d5c3"
+theme.bg_normal       = "#3F3F3F"
+theme.bg_focus        = "#5a5a5a"
+theme.bg_urgent       = "#3F3F3F"
+theme.bg_systray      = "#343434"
+theme.bat_bg_critical = "#ff0000"
+
+theme.clockgf = "#d5d5c3"
 
 -- Borders
 
 
-theme.border_width                              = 0
-theme.border_normal                             = "#3F3F3F"
-theme.border_focus                              = "#6F6F6F"
-theme.border_marked                             = "#CC9393"
+theme.border_width  = 0
+theme.border_normal = "#3F3F3F"
+theme.border_focus  = "#6F6F6F"
+theme.border_marked = "#CC9393"
 
 -- Menu
 
@@ -40,14 +41,14 @@ theme.menu_height = 16
 theme.menu_width  = 160
 
 -- Notifications
-theme.notification_font                         = "cozette 12"
-theme.notification_bg                           = "#232323"
-theme.notification_fg                           = "#e4e4e4"
-theme.notification_border_width                 = 0
-theme.notification_border_color                 = "#232323"
-theme.notification_shape                        = gears.shape.infobubble
-theme.notification_opacity                      = 1
-theme.notification_margin                       = 30
+theme.notification_font         = "cozette 12"
+theme.notification_bg           = "#232323"
+theme.notification_fg           = "#e4e4e4"
+theme.notification_border_width = 0
+theme.notification_border_color = "#232323"
+theme.notification_shape        = gears.shape.infobubble
+theme.notification_opacity      = 1
+theme.notification_margin       = 30
 
 -- Layout
 
@@ -67,7 +68,7 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
 -- theme.taglist_bg_occupied = "png:" .. theme.icons .. "/panel/taglist/" .. chosen_taglist_type .. "/occupied.png"
 -- theme.taglist_bg_urgent   = "png:" .. theme.icons .. "/panel/taglist/" .. chosen_taglist_type .. "/urgent.png"
 -- theme.taglist_bg_focus    = "png:" .. theme.icons .. "/panel/taglist/" .. chosen_taglist_type .. "/focus.png"
-theme.taglist_font        = "cozette 10"
+theme.taglist_font = "cozette 10"
 
 -- Tasklist
 
@@ -178,4 +179,3 @@ theme.tasklist_maximized_vertical   = ""
 -- theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 
 return theme
-
