@@ -1,12 +1,20 @@
 ---
 where: os.name == "linux" || os.name == "macos"
 
+depends:
+  - commands.bin
+
 actions:
   - action: directory.copy
     from: asdf
     to: '{{user.home_dir}}'
 
+  - action: package.install
+    list:
+      - readline
+
   - action: cmd.run
-    command: bash
+    command: sh
     args:
-      - files/asdf/setup-asdf.bash
+      - -s
+      - {{user.home_dir}}/.local/bin/setup-asdf.sh

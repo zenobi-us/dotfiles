@@ -2,14 +2,15 @@
 ASDF_VERSION=v0.8.1
 ASDF_HOME=$HOME/.asdf
 ASDF_BIN=$ASDF_HOME/asdf.sh
+export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
 
 if [[ ! -f "${ASDF_BIN}" ]]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_VERSION
+    sh $DOTFILE_ROOT/lib/setup.bash
 fi
 
 . $ASDF_BIN
-. $ASDF_HOME/plugins/java/set-java-home.zsh
+[ -d "$ASDF_HOME/plugins/java/set-java-home.zsh" ] && . $ASDF_HOME/plugins/java/set-java-home.zsh
 
-fpath=(${ASDF_HOME}/completions $fpath)
-autoload -Uz compinit
-compinit
+fpath=($ASDF_HOME/completions $fpath)
+
+autoload -Uz compinit && compinit

@@ -26,6 +26,13 @@ actions:
     to: "{{user.home_dir}}/.config/"
 
   - action: package.install
+    when: os.family == "fedora"
+    list:
+      - lua
+      - lua-devel
+      - gobject-introspection-devel
+
+  - action: package.install
     list:
       - awesome
       - arandr
@@ -36,57 +43,12 @@ actions:
       - viewnior
       - xsel
       - xsettingsd
-      - lua
       - luarocks
-      - lua-devel
-      - gobject-introspection-devel
 
   - action: command.run
-    command: luarocks
     sudo: true
+    command: sh
     args:
-      - install
-      - --local
-      - lain
-  - action: command.run
-    command: luarocks
-    sudo: true
-    args:
-      - install
-      - --local
-      - path
-  - action: command.run
-    command: luarocks
-    sudo: true
-    args:
-      - install
-      - --local
-      - luafilesystem
-  - action: command.run
-    command: luarocks
-    sudo: true
-    args:
-      - install
-      - --local
-      - power_widget
-  - action: command.run
-    command: luarocks
-    sudo: true
-    args:
-      - install
-      - --local
-      - lgi
-  - action: command.run
-    command: luarocks
-    sudo: true
-    args:
-      - install
-      - --local
-      - lcpz/awesome-freedesktop
-  - action: command.run
-    command: luarocks
-    sudo: true
-    args:
-      - install
-      - --local
-      - awesome-autostart
+      -  -s
+      - |
+        packages=(path luafilesystem power_widget lgi lcpz/awesome-freedesktop awesome-autostart lyaml); for package in $packages; do echo "installing ${package}"; luarocks install $package; done

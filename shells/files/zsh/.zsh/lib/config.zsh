@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-. "${DOTFILE_ROOT}/lib/sh/osinformation.sh"
+. "${DOTFILE_ROOT}/lib/osinformation.sh"
 
 ENABLED_DIR=${DOTFILE_ROOT}/config.d/enabled
 AVAILABLE_DIR=${DOTFILE_ROOT}/config.d/available
@@ -10,10 +10,9 @@ CONFIG_REGEX="([a-zA-Z\-]*)__([a-zA-Z\-]*).zsh"
 [ ! -d "${AVAILABLE_DIR}" ] && mkdir -p "${AVAILABLE_DIR}"
 
 function config_enable () {
-    for config in "${@}"; do 
+    for config in "${@}"; do
         local name=$config
 
-        enable_config_part "${name}__zgen"
         enable_config_part "${name}__profile"
         enable_config_part "${name}__config"
         enable_config_part "${name}__env"
@@ -87,7 +86,6 @@ function config_disable () {
     local name=$1
     echo "Disabling: ${name}"
 
-    disable_config_part "${name}__zgen"
     disable_config_part "${name}__profile"
     disable_config_part "${name}__config"
     disable_config_part "${name}__env"

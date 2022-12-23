@@ -5,13 +5,18 @@ depends:
   - shells.zsh
 
 actions:
+
   - action: command.run
     command: 'true'
     variants:
       - where: os.name == "linux" || os.name == "macos"
-        command: curl
+        command: sh
         args:
-          - -sS https://starship.rs/install.sh | sh
+          - -s
+          - |
+            mkdir -p ~/.local/bin;
+            curl -sS https://starship.rs/install.sh | sh -s -- --yes --bin-dir ~/.local/bin;
+
       - where: os.name == "windows"
         command: powershell
         args:

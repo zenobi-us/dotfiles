@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "${DOTFILE_ROOT}/lib/sh/case.sh"
+. "${DOTFILE_ROOT}/lib/case.sh"
 
 #
 # Environment Information

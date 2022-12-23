@@ -1,0 +1,11 @@
+---
+
+depends:
+  - devtools.asdf
+  - devtools.git
+  - devtools.git-credentials
+  - devtools.ssh
+  - devtools.vscode
+  - devtools.wsl2-ssh-agent
+  - devtools.wsl2-vpnkit
+  - devtools.wsl2

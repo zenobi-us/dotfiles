@@ -13,7 +13,7 @@
 
 [rerere]
 	enabled = true
-    
+
 [alias]
 	up = push origin HEAD
 	sync = "!f() { DEFAULT_BRANCH=$(git config --get core.defaultBranch || echo master); [ \"$(git branch --show-current)\" != \"${DEFAULT_BRANCH}\" ] && git fetch origin "${DEFAULT_BRANCH}:${DEFAULT_BRANCH}" || git pull; }; f"

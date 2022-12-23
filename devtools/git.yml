@@ -4,6 +4,6 @@ depends:
 
 actions:
   - action: file.copy
-    from: git
-    to: '{{user.home_dir}}'
+    from: git/.gitconfig
+    to: '{{user.home_dir}}/.gitconfig'
     template: true

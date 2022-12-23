@@ -1,1 +1,0 @@
-zgen oh-my-zsh
