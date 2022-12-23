@@ -3,3 +3,5 @@ Description=Enact Auto configures Xrandr
 
 [Service]
 ExecStart=autorandr --watch
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/msh/.Xauthority
