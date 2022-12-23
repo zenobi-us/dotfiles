@@ -27,20 +27,6 @@ ASDF_VERSION=${ASDF_VERSION:-v0.9.0}
 ASDF_HOME=$HOME/.asdf
 ASDF_BIN=$ASDF_HOME/asdf.sh
 
-##
-# Helper to idempotently add strings to target files
-#
-append_uniquely() {
-  # this is a more correct way to test for presence of strings in files
-  # and then act on the outcome.
-  cat "${1}" | grep -zqv "${2}" && {
-    echo "==> ✍ Writing \"$2\" into \"$1\" "
-    echo "${2}" >>$1
-  } || {
-    echo "==> ✅ '${2}' already exists in ${1}"
-  }
-}
-
 get_processor() {
   [[ $(sysctl -e -n machdep.cpu.brand_string) =~ "Apple" ]] && {
     echo 'M1'
@@ -50,27 +36,11 @@ get_platform() {
   uname -s
 }
 
-case "${SHELL}" in
-/bin/bash)
-  SHELL_PROFILE=~/.bashrc
-  SHELL_NAME="bash"
-  ;;
-/bin/zsh)
-  SHELL_PROFILE=~/.zshrc
-  SHELL_NAME="zsh"
-  ;;
-esac
-
 echo "==> 💁 [ASDF] install with plugins"
 
 if [ ! -f "$ASDF_BIN" ]; then
   echo "===> ⤵️ ASDF not detected ... installing"
   git clone https://github.com/asdf-vm/asdf.git "$ASDF_HOME" --branch $ASDF_VERSION
-  [ ! command -v asdf ] &>/dev/null && {
-    echo "====> ⚕️ adding to shell profile"
-    append_uniquely "$SHELL_PROFILE" ". $ASDF_HOME/asdf.sh"
-    append_uniquely "$SHELL_PROFILE" ". $ASDF_HOME/completions/asdf.bash"
-  }
 fi
 
 source "$ASDF_BIN"

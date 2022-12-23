@@ -4,29 +4,9 @@ where: |
 
 actions:
   - action: command.run
-    command: rm
+    command: sh
     args:
-      - -rf
-      - '{{user.home_dir}}/.{zshrc,zprofile,zshenv,zsh,zsh_history}'
-
-  - action: command.run
-    command: cp
-    args:
-      - -R
-      - zsh/.zsh
-      - "{{ user.home_dir }}"
-  - action: command.run
-    command: cp
-    args:
-      - zsh/.zshenv
-      - "{{ user.home_dir }}/.zshenv"
-  - action: command.run
-    command: cp
-    args:
-      - zsh/.zshrc
-      - "{{ user.home_dir }}/.zshrc"
-  - action: command.run
-    command: cp
-    args:
-      - zsh/.zprofile
-      - "{{ user.home_dir }}/.zprofile"
+      - -s
+      - |
+        rm -rf ~/.{zshrc,zprofile,zshenv,zsh,zsh_history}
+        ls -s $PWD/shells/files/zsh/.{zshrc,zprofile,zshenv,zsh,zsh_history} ~/

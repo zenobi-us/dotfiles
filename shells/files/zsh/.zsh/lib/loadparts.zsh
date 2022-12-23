@@ -8,7 +8,7 @@ function load-parts {
     fi
 
     [[ -n "${DEBUG}" ]] && echo "> ${1}" || echo -ne "> ${1} "
-    for part in $(find $DOTFILE_ROOT -path "*/${1}.zsh" | sort -z); do
+    for part in $(find -L $DOTFILE_ROOT -path "*/${1}.zsh" | sort -z); do
         [[ -n "${DEBUG}" ]] && echo "part > ${part}" || echo -ne '.'
         [[ -e "${part}" ]] && source "${part}"
     done

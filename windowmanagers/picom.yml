@@ -8,11 +8,3 @@ actions:
   - action: directory.copy
     from: picom
     to: "{{user.home_dir}}/.config"
-
-  - action: command.run
-    command: dnf
-    args:
-      - remove
-      - compton
-      - --assumeyes
-    suoo: true
