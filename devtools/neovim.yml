@@ -1,0 +1,15 @@
+---
+where: |
+  os.name == "linux" || os.name == "macos"
+
+actions:
+  - action: command.run
+    command: sh
+    args:
+      - -s
+      - |
+        rm -rf ~/.config/nvim
+        rm -rf ~/.local/share/nvim
+        rm -rf ~/.local/state/nvim
+
+        ln -s $PWD/devtools/files/nvim $HOME/.config/nvim

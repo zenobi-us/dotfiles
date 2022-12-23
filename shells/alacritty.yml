@@ -21,4 +21,4 @@ actions:
 
   - action: file.copy
     from: alacritty.yml
-    to: '{{user.home_dir}}/.alacritty.yml'
+    to: '{{user.config_dir}}/.alacritty.yml'

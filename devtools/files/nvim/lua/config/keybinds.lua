@@ -6,8 +6,14 @@ local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = " "
 
 --
--- Buffers/Panes/Windows
+-- Moving
 --
+
+keymap('i', '<PageUp>', '<C-O>50k', {})
+keymap('n', '<PageUp>', '50k', {})
+keymap('i', '<PageDown>', '<C-O>50j', {})
+keymap('n', '<PageDown>', '50j', {})
+
 
 --
 -- Closing
