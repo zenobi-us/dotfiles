@@ -16,15 +16,17 @@ application/x-wine-extension-style=wine-extension-style.desktop;
 application/x-wine-extension-vbs=wine-extension-vbs.desktop;
 application/xhtml+xml=chromium-browser.desktop;
 application/xml=wine-extension-xml.desktop;
+
 image/*=kitty-open.desktop;
 image/gif=wine-extension-gif.desktop;
 image/jpeg=wine-extension-jfif.desktop;wine-extension-jpe.desktop;
 image/png=wine-extension-png.desktop;
 inode/directory=kitty-open.desktop;
 text/*=kitty-open.desktop;
+
 text/english=nvim.desktop;
-text/html=chromium-browser.desktop;wine-extension-htm.desktop;
-text/plain=nvim.desktop;wine-extension-txt.desktop;
+text/html=chromium-browser.desktop;
+text/plain=nvim.desktop;
 text/x-c=nvim.desktop;
 text/x-c++=nvim.desktop;
 text/x-c++hdr=nvim.desktop;
@@ -38,6 +40,7 @@ text/x-pascal=nvim.desktop;
 text/x-tcl=nvim.desktop;
 text/x-tex=nvim.desktop;
 text/xml=chromium-browser.desktop;
+
 x-scheme-handler/cursr=cursr.desktop;
 x-scheme-handler/ftp=chromium-browser.desktop;
 x-scheme-handler/http=chromium-browser.desktop;
@@ -52,4 +55,4 @@ x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
 x-scheme-handler/steam=steam.desktop;
 x-scheme-handler/steamlink=steam.desktop;
 x-scheme-handler/tel=org.gnome.Shell.Extensions.GSConnect.desktop;
-x-scheme-handler/vsls=vsls-launcher.desktop;
+

@@ -31,7 +31,7 @@ end
 
 function VolumeWidget:render() end
 
-return VolumeWidget
+-- return VolumeWidget
 
 
 local LIST_DEVICES_CMD = [[sh -c "pactl list sinks; pactl list sources"]]

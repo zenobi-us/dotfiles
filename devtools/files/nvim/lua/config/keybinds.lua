@@ -25,3 +25,8 @@ keymap('i', '<S-Tab>', '<C-D>', {})
 
 keymap('v', '<Tab>', '>gv', {})
 keymap('v', '<S-Tab>', '<gv', {})
+
+-- Clone line
+keymap('i', '<C-d>', '<C-O>:copy .<CR>', {})
+keymap('n', '<C-d>', ':copy .<CR>', {})
+keymap('v', '<C-d>', '<C-C>:copy .<CR>', {})
