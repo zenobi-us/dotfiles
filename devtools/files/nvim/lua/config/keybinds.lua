@@ -1,4 +1,4 @@
-local keymap = vim.api.nvim_set_keymap
+local keymap = require('core.keys').keymap
 
 --
 -- LEADER KEY
@@ -24,8 +24,8 @@ keymap('n', "<C-w>", ":bd<CR>", {})
 --
 -- Tab indenting
 --
-keymap('n', '<Tab>', '>>_', {})
-keymap('n', '<S-Tab>', '<<_', {})
+keymap('n', '<Tab>', '>>_')
+keymap('n', '<S-Tab>', '<<_')
 
 keymap('i', '<S-Tab>', '<C-D>', {})
 

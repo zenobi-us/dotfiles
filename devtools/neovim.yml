@@ -1,15 +1,30 @@
 ---
-where: |
-  os.name == "linux" || os.name == "macos"
-
 actions:
-  - action: command.run
-    command: sh
-    args:
-      - -s
-      - |
-        rm -rf ~/.config/nvim
-        rm -rf ~/.local/share/nvim
-        rm -rf ~/.local/state/nvim
 
-        ln -s $PWD/devtools/files/nvim $HOME/.config/nvim
+  - action: command.run
+    command: "true"
+    variants:
+      - where: os.name == "linux" || os.name == "macos"
+        command: sh
+        args:
+          - -s
+          - |
+              rm -rf ~/.config/nvim
+              rm -rf ~/.local/share/nvim
+              rm -rf ~/.local/state/nvim
+
+              ln -s $PWD/devtools/files/nvim $HOME/.config/nvim
+      - where: os.name == "windows"
+        command: pwsh
+        args:
+          - -c
+          - |
+            remove-item -recurse -force -erroraction SilentlyContinue $env:LOCALAPPDATA/nvim
+            new-item -path "$env:LOCALAPPDATA/nvim" -itemtype symboliclink -value "$(pwd)/devtools/files/nvim"
+
+      - where: os.name == "windows"
+        command: pwsh
+        args:
+          - -c
+          - |
+            scoop install llvm
