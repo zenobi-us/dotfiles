@@ -1,24 +1,30 @@
 ---
-depends:
-  - packagemanagers.scoop
-
 actions:
   - action: package.install
-    where: os.name == "linux" || os.name == "macos"
     name: alacritty
 
   - action: command.run
-    where: os.name == "windows"
-    command: powershell
-    args:
-      - scoop install alacritty extras/vcredist2022
+    command: "true"
+    variants:
+      - where: os.name == "linux" || os.name == "macos"
+        command: sh
+        args:
+          - -s
+          - |
+              rm -rf '{{user.config_dir}}/alacritty/alacritty.yml'
+              ln -s $PWD/shells/files/alacritty '{{user.config_dir}}/alacritty'
 
-  - action: command.run
-    where: os.name == "windows"
-    command: powershell
-    args:
-      - scoop uninstall vcredist2022
+      - where: os.name == "windows"
+        command: pwsh
+        args:
+          - -c
+          - |
+            remove-item -recurse -force -erroraction SilentlyContinue '{{user.config_dir}}/alacritty'
+            new-item -path "{{user.config_dir}}/alacritty" -itemtype symboliclink -value "$(pwd)/shells/files/alacritty"
 
-  - action: file.copy
-    from: alacritty.yml
-    to: '{{user.config_dir}}/.alacritty.yml'
+      - where: os.name == "windows"
+        command: pwsh
+        args:
+          - -c
+          - |
+            scoop install llvm
