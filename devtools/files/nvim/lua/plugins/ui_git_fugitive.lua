@@ -7,6 +7,7 @@ local PluginSpec = {
     config = function()
         local keymap = require('core.keys').keymap
 
+        keymap('n', '<leader>gh', ':Gdiffsplit')
     end
 }
 

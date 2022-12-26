@@ -21,18 +21,23 @@ keymap('n', '<PageDown>', '50j', {})
 keymap('i', "<C-w>", "<C-O>:bd<CR>", {})
 keymap('n', "<C-w>", ":bd<CR>", {})
 
---
--- Tab indenting
---
-keymap('n', '<Tab>', '>>_')
-keymap('n', '<S-Tab>', '<<_')
-
-keymap('i', '<S-Tab>', '<C-D>', {})
-
-keymap('v', '<Tab>', '>gv', {})
-keymap('v', '<S-Tab>', '<gv', {})
-
 -- Clone line
 keymap('i', '<C-d>', '<C-O>:copy .<CR>', {})
 keymap('n', '<C-d>', ':copy .<CR>', {})
 keymap('v', '<C-d>', '<C-C>:copy .<CR>', {})
+
+
+
+
+--
+-- Tab indenting
+--
+
+-- Doesn't affect selections
+keymap('n', '<Tab>', '>>_')
+keymap('n', '<S-Tab>', '<<_')
+
+-- affects selections
+-- we're using gv here because with behave:mswin we need to avoid insertmode
+keymap('v', '<Tab>', '<C-C>gv>')
+keymap('v', '<S-Tab>', '<C-C>gv<')

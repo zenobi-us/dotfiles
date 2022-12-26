@@ -25,7 +25,7 @@ local PluginSpec = {
                         untracked = "u",
                         ignored   = "i",
                         unstaged  = "",
-                        staged    = "✅",
+                        staged    = "s",
                         conflict  = "",
                     }
                 },
