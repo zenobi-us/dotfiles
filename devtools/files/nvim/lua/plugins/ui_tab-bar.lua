@@ -7,6 +7,7 @@ local PluginSpec = {
     config = function()
         local get_hex = require('cokeline/utils').get_hex
         local cokeline = require('cokeline')
+        local colors = require('github-theme.palette').get_palette('dark_default')
 
         cokeline.setup({
 
@@ -18,7 +19,7 @@ local PluginSpec = {
 
             default_hl = {
                 fg = function(buffer)
-                    -- return buffer.is_focused and colors.purple or colors.gray
+                    return buffer.is_focused and colors.purple or colors.gray
                 end,
                 bg = "NONE",
                 style = function(buffer)
@@ -30,7 +31,7 @@ local PluginSpec = {
                 components = {
                     {
                         text = 'Files',
-                        -- fg = yellow,
+                        fg = colors.yellow,
                         bg = get_hex('NvimTreeNormal', 'bg'),
                         style = 'bold',
                     },
@@ -50,6 +51,9 @@ local PluginSpec = {
                     text = function(buffer)
                         return buffer.filename
                     end,
+                    fg = function(buffer)
+                        return buffer.is_focused and colors.white
+                    end,
                     style = function(buffer)
                         return buffer.is_focused and "bold" or nil
                     end,
@@ -61,13 +65,13 @@ local PluginSpec = {
                         return buffer.is_modified and "●" or " "
                     end,
                     fg = function(buffer)
-                        -- return buffer.is_focused and colors.red
+                        return buffer.is_focused and colors.red
                     end,
                 },
                 { text = " " },
 
                 {
-                    text = '',
+                    text = ' ',
                     delete_buffer_on_left_click = true,
                 },
                 { text = " " },

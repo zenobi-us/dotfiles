@@ -5,8 +5,9 @@ local PluginSpec = {
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
     },
-    
+
     config = function()
+        local events = require("neo-tree.events")
 
         require('neo-tree').setup({
             popup_border_style = "rounded",
@@ -31,12 +32,22 @@ local PluginSpec = {
             },
             filesystem = {
                 filtered_items = {
-                    hide_dotfiles = true,
-                    hide_gitignored = true,
+                    hide_dotfiles = false,
+                    hide_gitignored = false,
                 }
-            }
-        })
+            },
+            --
+            -- Forces Normal Mode
+            -- When entering a NeoTree buffear
+            --
+            event_handlers = {
+                {
+                    event = events.NEO_TREE_BUFFER_ENTER,
+                    handler = function() vim.cmd("stopinsert") end,
+                },
+            },
 
+        })
         vim.keymap.set('i', '<C-b>', '<C-O>:Neotree filesystem reveal left toggle<CR>')
         vim.keymap.set('n', '<C-b>', ':Neotree filesystem reveal left toggle<CR>')
 
