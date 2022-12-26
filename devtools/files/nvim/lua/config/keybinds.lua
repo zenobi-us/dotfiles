@@ -37,6 +37,8 @@ keymap('v', '<C-d>', '<C-C>:copy .<CR>', {})
 keymap('n', '<Tab>', '>>_')
 keymap('n', '<S-Tab>', '<<_')
 
+keymap('i', '<S-Tab>', '<<_')
+
 -- affects selections
 -- we're using gv here because with behave:mswin we need to avoid insertmode
 keymap('v', '<Tab>', '<C-C>gv>')
