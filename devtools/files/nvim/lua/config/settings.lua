@@ -88,7 +88,7 @@ local options = {
     --
 
     fillchars = {
-        diff = "╱", g
+        diff = "╱",
         fold = " ",
         eob = " ",
         foldopen = "",
