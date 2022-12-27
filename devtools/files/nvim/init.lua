@@ -28,6 +28,9 @@ require("lazy").setup("plugins", {
             task = "📌",
         },
     },
+    dev = {
+        path = "~/Projects/Others"
+    }
 })
 
 vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>")

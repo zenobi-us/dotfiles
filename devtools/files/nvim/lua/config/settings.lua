@@ -3,7 +3,7 @@ local options = {
     backup = false, -- creates a backup file
     writebackup = false,
 
-    clipboard = "unnamedplus", -- allows neovim to access the system clipboard
+    -- clipboard = "unnamedplus", -- allows neovim to access the system clipboard
     autoread = true, -- when file changed, autoread it
     completeopt = { "menuone", "noselect" }, -- mostly just for cmp
     fileencoding = "utf-8", -- the encoding written to a file
