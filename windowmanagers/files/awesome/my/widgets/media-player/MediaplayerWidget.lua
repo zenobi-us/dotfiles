@@ -152,11 +152,11 @@ function MediaplayerWidget:render()
     self.popup = MediaplayerPopup:new()
 
     self.widget = wibox.widget {
-        -- {
-        --     id = "icon",
-        --     image = '',
-        --     widget = wibox.widget.imagebox
-        -- },
+        {
+            id = "icon",
+            image = self.icons.library.pixbuf,
+            widget = wibox.widget.imagebox
+        },
 
         {
             id = 'text',

@@ -3,20 +3,20 @@ awesome:
   theme: airtonix
   gap: 4
 rofi:
-  powermenu:
-    style: style-1
-    type: type-2
-    theme: dracula
-  runner:
-    style: style-6
-    type: type-2
-    theme: dracula
   launcher:
+    theme: dracula
     style: style-2
     type: type-3
+  runner:
     theme: dracula
+    style: style-6
+    type: type-2
   switcher:
+    theme: dracula
     style: style-1
     type: type-2
+  powermenu:
     theme: dracula
+    style: style-1
+    type: type-2
 ...
