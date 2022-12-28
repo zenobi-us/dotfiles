@@ -8,5 +8,5 @@ actions:
     args:
       - -s
       - |
-        rm -rf ~/.{zshrc,zprofile,zshenv,zsh,zsh_history}
+        rm -rf $HOME/.{zshrc,zprofile,zshenv,zsh,zsh_history}
         ls -s $PWD/shells/files/zsh/.{zshrc,zprofile,zshenv,zsh,zsh_history} ~/
