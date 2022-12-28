@@ -15,7 +15,7 @@
 ## UI
 
 - [ ] when closing buffer, switch to other buffer that's not the treemanager
-- [ ] when entering treemanager, force normal mode
+- [x] when entering treemanager, force normal mode
 - [ ] A Project manager, something to display previously open projects
 - [ ] Better markdown LSP syntax highlighting
 - [x] A starter page: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-starter.md
