@@ -31,7 +31,6 @@ local PluginSpec = {
         -- load_extension, somewhere after setup function:
         telescope.load_extension('fzf')
 
-
         -- vim.keymap.set('n', '<C-f>', telescope_builtin.find_files, {})
         -- vim.keymap.set('n', '<A-f>', telescope_builtin.git_files, {})
         -- vim.keymap.set('n', '<leader>ps', function()
