@@ -1,11 +1,4 @@
 local PluginSpec = {
-
-    --            'rose-pine/neovim',
-    --            name = 'rose-pine',
-    --            config = function ()
-    --                vim.cmd.colorscheme("rose-pine")
-    --            end
-    --
     "projekt0n/github-nvim-theme",
     config = function()
         require("github-theme").setup({
