@@ -1,4 +1,4 @@
-return function(pluginName, fn)
+local function safe_require(pluginName, fn)
 	local present, plugin = pcall(require, pluginName)
 	if not present then
 		print(string.format("Could not load %q", pluginName))
@@ -8,3 +8,7 @@ return function(pluginName, fn)
 	fn(plugin)
 
 end
+
+return {
+	safe_require = safe_require
+}

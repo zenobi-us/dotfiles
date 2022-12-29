@@ -1,4 +1,4 @@
-local keymap = vim.api.nvim_set_keymap
+local keymap = require('core.keys').keymap
 
 --
 -- LEADER KEY
@@ -6,8 +6,14 @@ local keymap = vim.api.nvim_set_keymap
 vim.g.mapleader = " "
 
 --
--- Buffers/Panes/Windows
+-- Moving
 --
+
+keymap('i', '<PageUp>', '<C-O>50k', {})
+keymap('n', '<PageUp>', '50k', {})
+keymap('i', '<PageDown>', '<C-O>50j', {})
+keymap('n', '<PageDown>', '50j', {})
+
 
 --
 -- Closing
@@ -15,18 +21,25 @@ vim.g.mapleader = " "
 keymap('i', "<C-w>", "<C-O>:bd<CR>", {})
 keymap('n', "<C-w>", ":bd<CR>", {})
 
---
--- Tab indenting
---
-keymap('n', '<Tab>', '>>_', {})
-keymap('n', '<S-Tab>', '<<_', {})
-
-keymap('i', '<S-Tab>', '<C-D>', {})
-
-keymap('v', '<Tab>', '>gv', {})
-keymap('v', '<S-Tab>', '<gv', {})
-
 -- Clone line
 keymap('i', '<C-d>', '<C-O>:copy .<CR>', {})
 keymap('n', '<C-d>', ':copy .<CR>', {})
 keymap('v', '<C-d>', '<C-C>:copy .<CR>', {})
+
+
+
+
+--
+-- Tab indenting
+--
+
+-- Doesn't affect selections
+keymap('n', '<Tab>', '>>_')
+keymap('n', '<S-Tab>', '<<_')
+
+keymap('i', '<S-Tab>', '<<_')
+
+-- affects selections
+-- we're using gv here because with behave:mswin we need to avoid insertmode
+keymap('v', '<Tab>', '<C-C>gv>')
+keymap('v', '<S-Tab>', '<C-C>gv<')

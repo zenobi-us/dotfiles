@@ -1,15 +1,17 @@
 local PluginSpec = {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
     dependencies = {
         { 'nvim-treesitter/nvim-treesitter-context' },
         { 'nvim-treesitter/playground' },
         { 'JoosepAlviste/nvim-ts-context-commentstring' },
     },
+    build = ':TSUpdate',
     config = function()
+        require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
+
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
-            ensure_installed = { "help", "javascript", "typescript", "c", "lua", "rust" },
+            ensure_installed = { "help", "javascript", "typescript", "c", "lua", "rust", "yaml" },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
@@ -17,6 +19,7 @@ local PluginSpec = {
             -- Automatically install missing parsers when entering buffer
             -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
             auto_install = true,
+
 
             highlight = {
                 -- `false` will disable the whole extension
@@ -28,6 +31,7 @@ local PluginSpec = {
                 -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = false,
             },
+
             context_commentstring = {
                 enable = true
             }

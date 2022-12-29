@@ -13,6 +13,24 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require('config')
 require("lazy").setup("plugins", {
+    ui = {
+        icons = {
+            cmd = "⌘",
+            config = "🛠",
+            event = "📅",
+            ft = "📂",
+            init = "⚙",
+            keys = "🗝",
+            plugin = "🔌",
+            runtime = "💻",
+            source = "📄",
+            start = "🚀",
+            task = "📌",
+        },
+    },
+    dev = {
+        path = "~/Projects/Others"
+    }
 })
 
 vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>")

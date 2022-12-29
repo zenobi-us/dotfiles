@@ -1,6 +1,5 @@
 ---
-where: |
-  os.name == "linux" || os.name == "macos"
+where: os.name == "linux" || os.name == "macos"
 
 actions:
   - action: command.run

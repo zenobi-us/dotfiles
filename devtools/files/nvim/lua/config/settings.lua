@@ -1,40 +1,105 @@
--- vim.opt.guicursor = ""
+local options = {
+    swapfile = false, -- creates a swapfile
+    backup = false, -- creates a backup file
+    writebackup = false,
 
-vim.opt.mouse = 'a'
+    -- clipboard = "unnamedplus", -- allows neovim to access the system clipboard
+    autoread = true, -- when file changed, autoread it
+    completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+    fileencoding = "utf-8", -- the encoding written to a file
 
-vim.opt.nu = true
--- vim.opt.relativenumber = true
+    --
+    -- Search
+    --
+    hlsearch = true, -- highlight all matches on previous search pattern
+    incsearch = true, -- enable incsearch
+    ignorecase = true, -- ignore case in search patterns
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+    --
+    -- Mouse
+    --
+    mouse = "a", -- allow the mouse to be used in neovim
+    mousemodel = 'popup_setpos',
 
-vim.opt.smartindent = true
+    --
+    -- UI
+    --
+    pumheight = 10, -- pop up menu height
+    showmode = false, -- we don't need to see things like -- INSERT -- anymore
+    showtabline = 2, -- always show tabs
+    termguicolors = true, -- set term gui colors (most terminals support this)
+    conceallevel = 0, -- so that `` is visible in markdown files
 
-vim.opt.wrap = false
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+    --
+    -- Buffer Behaviour
+    --
+    splitbelow = true, -- force all horizontal splits to go below current window
+    splitright = true, -- force all vertical splits to go to the right of current window
+    colorcolumn = '80',
+    wrap = false,
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+    --
+    -- Commands
+    --
+    cmdheight = 2, -- more space in the neovim command line for displaying messages
+    timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
 
-vim.opt.termguicolors = true
+    --
+    -- History
+    --
+    undofile = true, -- enable persistent undo
+    updatetime = 300, -- faster completion (4000ms default)
+    -- if a file is being edited by another program
+    -- (or was written to file while editing with another program), it is not allowed to be edited
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
+    --
+    -- Indenting
+    --
+    smartcase = true, -- smart case
+    smartindent = true, -- make indenting smarter again
+    expandtab = true, -- convert tabs to spaces
+    shiftwidth = 4, -- the number of spaces inserted for each indentation
+    softtabstop = 4,
+    tabstop = 4, -- insert 2 spaces for a tab
+
+    cursorline = true, -- highlight the current line
+
+    --
+    -- Gutter
+    --
+    number = true, -- set numbered lines
+    relativenumber = false, -- set relative numbered lines
+    numberwidth = 4, -- set number column width to 2 {default 4}
+    signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
+
+
+    scrolloff = 8, -- is one of my fav
+    sidescrolloff = 8,
+    errorbells = false, -- no error bells
+
+    --
+    -- Window Title
+    --
+    title = true, -- show title in terminal header
+
+    --
+    -- Auxillary Characters
+    --
+
+    fillchars = {
+        diff = "╱",
+        fold = " ",
+        eob = " ",
+        foldopen = "",
+        foldsep = " ",
+        foldclose = ""
+    }
+}
+
 vim.opt.isfname:append("@-@")
+vim.opt.shortmess:append "c"
 
-vim.opt.updatetime = 50
-
-vim.opt.colorcolumn = "80"
-
-
---
--- NvimTree
---
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+for k, v in pairs(options) do
+    vim.opt[k] = v
+end

@@ -1,7 +1,5 @@
 ---
 actions:
-  - action: package.install
-    name: alacritty
 
   - action: command.run
     command: "true"
@@ -11,16 +9,18 @@ actions:
         args:
           - -s
           - |
-              rm -rf '{{user.config_dir}}/alacritty/alacritty.yml'
-              ln -s $PWD/shells/files/alacritty '{{user.config_dir}}/alacritty'
+              rm -rf ~/.config/nvim
+              rm -rf ~/.local/share/nvim
+              rm -rf ~/.local/state/nvim
 
+              ln -s $PWD/devtools/files/nvim $HOME/.config/nvim
       - where: os.name == "windows"
         command: pwsh
         args:
           - -c
           - |
-            remove-item -recurse -force -erroraction SilentlyContinue '{{user.config_dir}}/alacritty'
-            new-item -path "{{user.config_dir}}/alacritty" -itemtype symboliclink -value "$(pwd)/shells/files/alacritty"
+            remove-item -recurse -force -erroraction SilentlyContinue $env:LOCALAPPDATA/nvim
+            new-item -path "$env:LOCALAPPDATA/nvim" -itemtype symboliclink -value "$(pwd)/devtools/files/nvim"
 
       - where: os.name == "windows"
         command: pwsh
