@@ -8,7 +8,7 @@
   "codi.vim": { "branch": "master", "commit": "6537ba677a0c7c6c796b195f29077b57fad33716" },
   "follow-md-links.nvim": { "branch": "main", "commit": "ccc50e7ba191e62b4243ddd3db9b7dbddf2ee179" },
   "friendly-snippets": { "branch": "main", "commit": "1a6a02350568d6830bcfa167c72f9b6e75e454ae" },
-  "git-conflict.nvim": { "branch": "main", "commit": "77faa75c09a6af88e7b54d8d456327e06611f7ea" },
+  "git-conflict.nvim": { "branch": "main", "commit": "cbefa7075b67903ca27f6eefdc9c1bf0c4881017" },
   "github-nvim-theme": { "branch": "main", "commit": "54ff75c40cd2cb512dc9cf8030dda92d30e25205" },
   "gitsigns.nvim": { "branch": "main", "commit": "2ab3bdf0a40bab53033048c6be75bda86316b55d" },
   "glow.nvim": { "branch": "main", "commit": "20d1cd087f8728f21a048a3b6259f6177237b39e" },
@@ -56,3 +56,4 @@
   "vim-strip-trailing-whitespace": { "branch": "master", "commit": "59385775cbe416b2797ec5e2c7eb445a3398dd46" },
   "which-key.nvim": { "branch": "main", "commit": "8682d3003595017cd8ffb4c860a07576647cc6f8" },
   "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" }
+}
