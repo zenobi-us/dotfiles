@@ -1,6 +1,4 @@
 ---
-where: os.name == "linux"
-
 depends:
   - dotfiles.submodules
   - windowmanagers.rofi
@@ -14,6 +12,7 @@ depends:
 actions:
 
   - action: command.run
+    where: os.name == "linux"
     command: sh
     args:
       - -c
@@ -22,17 +21,19 @@ actions:
 
 
   - action: directory.copy
+    where: os.name == "linux" 
     from: awesome
     to: "{{user.home_dir}}/.config/"
 
   - action: package.install
-    when: os.family == "fedora"
+    where: os.name == "linux" && os.distribution == "Fedora"
     list:
       - lua
       - lua-devel
       - gobject-introspection-devel
 
   - action: package.install
+    where: os.name == "linux"
     list:
       - awesome
       - arandr
@@ -46,9 +47,51 @@ actions:
       - luarocks
 
   - action: command.run
+    where: os.name == "linux"
     sudo: true
-    command: sh
-    args:
-      -  -s
-      - |
-        packages=(path luafilesystem power_widget lgi lcpz/awesome-freedesktop awesome-autostart lyaml); for package in $packages; do echo "installing ${package}"; luarocks install $package; done
+    command: luarocks
+    args: 
+      - install
+      - path
+  - action: command.run
+    where: os.name == "linux"
+    sudo: true
+    command: luarocks
+    args: 
+      - install
+      - luafilesystem
+  - action: command.run
+    where: os.name == "linux"
+    sudo: true
+    command: luarocks
+    args: 
+      - install
+      - power_widget 
+  - action: command.run
+    where: os.name == "linux"
+    sudo: true
+    command: luarocks
+    args: 
+      - install
+      - lgi 
+  - action: command.run
+    where: os.name == "linux"
+    sudo: true
+    command: luarocks
+    args: 
+      - install
+      - lcpz/awesome-freedesktop
+  - action: command.run
+    where: os.name == "linux"
+    sudo: true
+    command: luarocks
+    args: 
+      - install
+      - awesome-autostart 
+  - action: command.run
+    where: os.name == "linux"
+    sudo: true
+    command: luarocks
+    args: 
+      - install
+      - lyamledg

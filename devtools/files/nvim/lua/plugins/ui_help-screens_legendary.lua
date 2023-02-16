@@ -5,14 +5,14 @@ local PluginSpec = {
     },
     config = function()
         local legendary = require('legendary')
-
         -- https://github.com/kkharji/sqlite.lua#windows
-        if vim.fn.has('win32') then
+        if jit.os == 'Windows' then
             vim.g.sqlite_clib_path = stdpath('config') .. 'binaries/sqlite3.dll'
         end
 
         legendary.setup({})
     end
 }
+
 
 return PluginSpec

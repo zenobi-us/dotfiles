@@ -1,6 +1,7 @@
 local PluginSpec = {
     -- Lists of things
-    'nvim-telescope/telescope.nvim', version = '0.1.0',
+    'nvim-telescope/telescope.nvim',
+    version = '0.1.0',
     dependencies = {
         { 'nvim-lua/plenary.nvim' },
         { 'airtonix/telescope-fzf-native.nvim',
@@ -42,9 +43,7 @@ local PluginSpec = {
         vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, {})
         vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {})
         vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, {})
-
     end
-
 }
 
 

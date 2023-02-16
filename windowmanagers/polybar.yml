@@ -1,8 +1,14 @@
 ---
-where: os.name == "linux"
-
 actions:
-
   - action: directory.copy
+    where: os.name == "linux"
     from: polybar
     to: '{{user.home_dir}}/.config/polybar'
+
+#  - action: command.run
+#    where: os.name == "linux"
+#    command: sh
+#    args:
+#      - cp 
+#      - $PWD/windowmanagers/files/polybar
+#      - '{{user.home_dir}}/.config/polybar'

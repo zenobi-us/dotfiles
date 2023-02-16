@@ -101,10 +101,10 @@ window:
   # the default theme variant.
   #decorations_theme_variant: None
 
-scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
-  history: 0
+# scrolling:
+#   # Maximum number of lines in the scrollback buffer.
+#   # Specifying '0' will disable scrolling.
+#   history: 0
 
   # Scrolling distance multiplier.
   #multiplier: 3

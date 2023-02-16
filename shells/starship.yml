@@ -1,26 +1,15 @@
 ---
-
 depends:
   - packagemanagers.scoop
   - shells.zsh
 
 actions:
 
-  - action: command.run
-    command: 'true'
-    variants:
-      - where: os.name == "linux" || os.name == "macos"
-        command: sh
-        args:
-          - -s
-          - |
-            mkdir -p ~/.local/bin;
-            curl -sS https://starship.rs/install.sh | sh -s -- --yes --bin-dir ~/.local/bin;
-
-      - where: os.name == "windows"
-        command: powershell
-        args:
-          - 'scoop install starship'
+  - action: binary.github
+    name: starship
+    directory: /usr/local/bin
+    repository: starship/starship
+    version: latest
 
   - action: file.copy
     from: starship/starship.toml

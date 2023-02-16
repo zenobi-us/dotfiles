@@ -4,27 +4,30 @@ actions:
     name: alacritty
 
   - action: command.run
-    command: "true"
-    variants:
-      - where: os.name == "linux" || os.name == "macos"
-        command: sh
-        args:
-          - -s
-          - |
-              rm -rf '{{user.config_dir}}/alacritty/alacritty.yml'
-              ln -s $PWD/shells/files/alacritty '{{user.config_dir}}/alacritty'
+    where: os.name == "linux" || os.name == "macos"
+    command: rm
+    args:
+      - -rf
+      - '{{user.config_dir}}/alacritty'
 
-      - where: os.name == "windows"
-        command: pwsh
-        args:
-          - -c
-          - |
-            remove-item -recurse -force -erroraction SilentlyContinue '{{user.config_dir}}/alacritty'
-            new-item -path "{{user.config_dir}}/alacritty" -itemtype symboliclink -value "$(pwd)/shells/files/alacritty"
+  - action: file.link
+    where: os.name == "linux" || os.name == "macos"
+    from: alacritty
+    to: '{{user.config_dir}}/alacritty'
 
-      - where: os.name == "windows"
-        command: pwsh
-        args:
-          - -c
-          - |
-            scoop install llvm
+  - action: command.run
+    where: os.name == "windows"
+    command: pwsh
+    args:
+      - -c
+      - |
+        remove-item -recurse -force -erroraction SilentlyContinue '{{user.config_dir}}/alacritty'
+        new-item -path "{{user.config_dir}}/alacritty" -itemtype symboliclink -value "$(pwd)/shells/files/alacritty"
+
+  - action: command.run
+    where: os.name == "windows"
+    command: pwsh
+    args:
+      - -c
+      - |
+        scoop install llvm

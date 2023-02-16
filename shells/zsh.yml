@@ -3,9 +3,32 @@ where: os.name == "linux" || os.name == "macos"
 
 actions:
   - action: command.run
-    command: sh
+    command: rm
     args:
-      - -s
-      - |
-        rm -rf $HOME/.{zshrc,zprofile,zshenv,zsh,zsh_history}
-        ls -s $PWD/shells/files/zsh/.{zshrc,zprofile,zshenv,zsh,zsh_history} ~/
+      - ~/.zshrc
+  - action: command.run
+    command: rm
+    args:
+      - ~/.zprofile
+  - action: command.run
+    command: rm
+    args:
+      - ~/.zshenv
+  - action: command.run
+    command: rm
+    args:
+      - ~/.zsh
+
+
+  - action: file.link
+    to: {{user.home_dir}}/.zshrc
+    from: zsh/.zshrc
+  - action: file.link
+    to: {{user.home_dir}}/.zprofile
+    from: zsh/.zprofile
+  - action: file.link
+    to: {{user.home_dir}}/.zshenv
+    from: zsh/.zshenv
+  - action: file.link
+    to: {{user.home_dir}}/.zsh
+    from: zsh/.zsh
