@@ -1,7 +1,15 @@
 local PluginSpec = {
-    'akinsho/git-conflict.nvim',
+    'sindrets/diffview.nvim',
+    dependencies = {
+        "nvim-lua/plenary.nvim"
+    },
     config = function()
-        require('git-conflict').setup()
+        -- set fillchars+=diff:╱
+        -- require('git-conflict').setup()
+        vim.keymap.set(
+            "n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
+            { silent = true, noremap = true }
+        )
     end
 }
 

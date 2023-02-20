@@ -6,15 +6,17 @@ local PluginSpec = {
         { 'nvim-lua/plenary.nvim' }
     },
     config = function()
-        local keymap = vim.api.nvim_set_keymap
-
-        keymap('i', '<F2>', '<cmd>lua require("renamer").rename()<cr>',
-            { noremap = true, silent = true })
-        keymap('n', '<leader>rn', '<cmd>lua require("renamer").rename()<cr>',
-            { noremap = true, silent = true })
-        keymap('v', '<leader>rn', '<cmd>lua require("renamer").rename()<cr>',
-            { noremap = true, silent = true })
-
+        require('renamer').setup({
+            title = "Refactor: rename symbol",
+            show_refs = true
+        })
+        require('legendary').keymaps({
+            {
+                '<F2>',
+                function() require("renamer").rename({ empty = false }) end,
+                description = "Refactor: Rename Symbol",
+            }
+        })
     end
 }
 

@@ -3,13 +3,16 @@ local PluginSpec = {
     -- Git
     --
     'tpope/vim-fugitive',
-
     config = function()
-        local keymap = require('core.keys').keymap
+        require('legendary').keymaps({
+            {
+                '<leader>gl',
+                { n = ':Gdiffsplit<CR>', i = "<C-O>:Gdiffsplit<CR>" },
+                description = "Git: View file change Log"
+            },
 
-        keymap('n', '<leader>gh', ':Gdiffsplit')
+        })
     end
 }
 
 return PluginSpec
-

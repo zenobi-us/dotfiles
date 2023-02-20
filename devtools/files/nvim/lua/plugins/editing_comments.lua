@@ -1,15 +1,21 @@
 local PluginSpec = {
     'tpope/vim-commentary',
     config = function()
-        local keymap = require('core.keys').keymap
-        local opts = { remap = true }
+        require('legendary').keymaps({
 
-        -- C-_ actually maps to Ctr + /
-        keymap('i', '<C-_>', '<C-O>:Commentary<CR>', opts)
-        keymap('n', '<C-_>', ':Commentary<CR>', opts)
-        keymap('v', '<C-_>', ':Commentary<CR>', opts)
-        keymap('s', '<C-_>', '<C-O>:Commentary<CR>', opts)
+            {
+                -- C-_ actually maps to Ctr + /
+                '<C-_>',
+                {
+                    i = '<C-O>:Commentary<CR>',
+                    n = ':Commentary<CR>',
+                    v = ':Commentary<CR>',
+                    s = '<C-O>:Commentary<CR>',
+                },
+                description = "Comment line/selection"
 
+            }
+        })
     end
 }
 

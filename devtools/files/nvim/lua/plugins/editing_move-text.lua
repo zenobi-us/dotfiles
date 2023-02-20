@@ -3,18 +3,27 @@
 local PluginSpec = {
     'fedepujol/move.nvim',
     config = function()
-        local keymap = require('core.keys').keymap
+        require('legendary').keymaps({
+            {
+                '<A-S-Down>',
+                {
+                    i = '<C-O>:MoveLine(1)<CR>',
+                    n = ':MoveLine(1)<CR>',
+                    v = ':MoveLine(1)<CR>'
+                },
+                description = "Move line down"
+            },
+            {
+                '<A-S-Up>',
+                {
+                    i = '<C-O>:MoveLine(-1)<CR>',
+                    n = ':MoveLine(-1)<CR>',
+                    v = ':MoveLine(-1)<CR>'
+                },
+                description = "Move line up"
 
-        keymap('i', '<A-S-Up>', '<C-O>:MoveLine(-1)<CR>')
-
-        keymap('n', '<A-S-Down>', '<C-O>:MoveLine(1)<CR>')
-        keymap('n', '<A-S-Up>', ':MoveLine(-1)<CR>')
-        keymap('n', '<A-S-Down>', ':MoveLine(1)<CR>')
-
-        keymap('v', '<A-S-Up>', ':MoveBlock(-1)<CR>')
-        keymap('v', '<A-S-Down>', ':MoveBlock(1)<CR>')
-
-
+            }
+        })
     end
 }
 

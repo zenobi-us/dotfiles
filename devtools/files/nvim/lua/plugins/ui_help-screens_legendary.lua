@@ -4,13 +4,20 @@ local PluginSpec = {
         'kkharji/sqlite.lua'
     },
     config = function()
-        local legendary = require('legendary')
-        -- https://github.com/kkharji/sqlite.lua#windows
-        if jit.os == 'Windows' then
-            vim.g.sqlite_clib_path = stdpath('config') .. 'binaries/sqlite3.dll'
-        end
+        -- -- https://github.com/kkharji/sqlite.lua#windows
+        -- if jit.os == 'Windows' then
+        --     vim.g.sqlite_clib_path = stdpath('config') .. 'binaries/sqlite3.dll'
+        -- end
 
-        legendary.setup({})
+        local legendary = require('legendary')
+        legendary.setup({
+            which_key = {
+                auto_register = true
+            },
+            keymaps = {
+                { "<C-p>", ":Legendary<CR>" }
+            }
+        })
     end
 }
 

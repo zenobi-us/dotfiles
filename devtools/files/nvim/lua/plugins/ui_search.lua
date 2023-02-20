@@ -9,7 +9,8 @@ local PluginSpec = {
             build = function()
                 require('telescope-fzf-native').download_library()
             end
-        }
+        },
+        { 'nvim-telescope/telescope-frecency.nvim' }
     },
     config = function()
         -- You dont need to set any of these options. These are the default ones. Only
@@ -32,17 +33,41 @@ local PluginSpec = {
         -- load_extension, somewhere after setup function:
         telescope.load_extension('fzf')
 
-        -- vim.keymap.set('n', '<C-f>', telescope_builtin.find_files, {})
-        -- vim.keymap.set('n', '<A-f>', telescope_builtin.git_files, {})
+        -- offers intelligent prioritization when selecting files from your editing history
+        telescope.load_extension('frecency')
+
         -- vim.keymap.set('n', '<leader>ps', function()
         --     telescope_builtin.grep_string({ search = vim.fn.input("Grep > ") });
         -- end)
-        vim.keymap.set('n', '<C-p>', telescope_builtin.commands, {})
+        require('legendary').keymaps({
+            {
+                '<leader>ff',
+                telescope_builtin.find_files,
+                description = 'Find files',
+            },
+            {
+                '<leader>fg',
+                telescope_builtin.live_grep,
+                description = 'Find text',
+            },
+            {
+                '<leader>fh',
+                telescope_builtin.help_tags,
+                description = 'Find help',
+            },
+            {
+                '<leader>fs',
+                function()
+                    telescope_builtin.grep_string({ search = vim.fn.input("Grep >") })
+                end,
+                description = 'Find string',
+            },
 
-        vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {})
-        vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, {})
-        vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {})
-        vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, {})
+        })
+        -- vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {})
+        -- vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, {})
+        -- vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {})
+        -- vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, {})
     end
 }
 

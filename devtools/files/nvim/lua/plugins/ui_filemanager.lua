@@ -5,11 +5,13 @@ local PluginSpec = {
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
     },
-
     config = function()
         local events = require("neo-tree.events")
 
         require('neo-tree').setup({
+            source_selector = {
+                winbar = true
+            },
             popup_border_style = "rounded",
             enable_git_status = true,
             enable_diagnostics = true,
@@ -46,11 +48,20 @@ local PluginSpec = {
                     handler = function() vim.cmd("stopinsert") end,
                 },
             },
+        })
+
+        local toggleCommand = ':Neotree source=filesystem reveal=true position=left toggle=true'
+        require('legendary').keymaps({
+            {
+                '<C-b>',
+                {
+                    i = string.format('<C-O>%s<CR>', toggleCommand),
+                    n = string.format('%s<CR>', toggleCommand),
+                },
+                description = "FileManager: Toggle sidebar"
+            }
 
         })
-        vim.keymap.set('i', '<C-b>', '<C-O>:Neotree filesystem reveal left toggle<CR>')
-        vim.keymap.set('n', '<C-b>', ':Neotree filesystem reveal left toggle<CR>')
-
     end
 }
 

@@ -2,14 +2,39 @@ local PluginSpec = {
     -- Cold Folding
     'kevinhwang91/nvim-ufo',
     dependencies = {
-        'kevinhwang91/promise-async'
+        'kevinhwang91/promise-async',
+        {
+            "luukvbaal/statuscol.nvim",
+            config = function()
+                require("statuscol").setup(
+                    {
+                        foldfunc = "builtin",
+                        setopt = true
+                    }
+                )
+            end
+        }
     },
-
     config = function()
-        vim.o.foldcolumn = '2' -- '0' is not bad
+        vim.o.foldcolumn = "1" -- '0' is not bad
         vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-        vim.o.foldenable = true
         vim.o.foldlevelstart = 99
+        vim.o.foldenable = true
+        vim.o.fillchars = [[eob:╷,fold:╷,foldopen:▼,foldsep:╷,foldclose:⯈]]
+
+        require('legendary').keymaps({
+            {
+                "<leader>fo",
+                require("ufo").openAllFolds,
+                description = "Folding: open all folds"
+            },
+            {
+                "<leader>fc",
+                require("ufo").closeAllFolds,
+                description = "Folding: close all folds"
+            },
+
+        })
 
         --
         -- Decorate folded blocks with " ↙  67 "
@@ -42,6 +67,9 @@ local PluginSpec = {
             return newVirtText
         end
 
+        -- Option 3: treesitter as a main provider instead
+        -- Only depend on `nvim-treesitter/queries/filetype/folds.scm`,
+        -- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
         require('ufo').setup({
             fold_virt_text_handler = fold_virt_text_handler,
             provider_selector = function(bufnr, filetype, buftype)
