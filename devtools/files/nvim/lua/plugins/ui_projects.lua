@@ -5,7 +5,16 @@ local PluginSpec = {
 
         -- Bind <leader>fp to Telescope projections
         require('telescope').load_extension('projections')
-        vim.keymap.set("n", "<leader>fp", function() vim.cmd("Telescope projections") end)
+
+        require('legendary').keymaps({
+
+            {
+                "<leader>fp",
+                function() vim.cmd("Telescope projections") end,
+                description = "Project Switcher"
+            }
+
+        })
 
         -- Autostore session on VimExit
         local Session = require("projections.session")

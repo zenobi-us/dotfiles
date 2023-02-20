@@ -4,12 +4,19 @@ local PluginSpec = {
         "nvim-lua/plenary.nvim"
     },
     config = function()
-        -- set fillchars+=diff:╱
-        -- require('git-conflict').setup()
-        vim.keymap.set(
-            "n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-            { silent = true, noremap = true }
-        )
+        local command = ":DiffviewOpen"
+
+        vim.cmd([[ set fillchars+=diff:╱]])
+
+        require('legendary').keymaps({
+            {
+                "<Leader>d",
+                {
+                    i = string.format("<C-O>%s<CR>", command),
+                    n = string.format("%s<CR>", command)
+                }
+            }
+        })
     end
 }
 
