@@ -9,6 +9,14 @@ local PluginSpec = {
             -- variable_style = "italic",
             dark_sidebar = "false"
         })
+
+        require('legendary').keymaps({
+            {
+                '<Leader>theme',
+                { n = ":Telescope  colorscheme<CR>" },
+                description = "Theme: switch theme"
+            }
+        })
     end
 }
 

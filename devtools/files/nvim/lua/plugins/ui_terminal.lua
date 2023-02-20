@@ -1,5 +1,4 @@
 local PluginSpec = {
-
     -- Terminal
     "akinsho/toggleterm.nvim",
     dependencies = {
@@ -29,15 +28,12 @@ local PluginSpec = {
                 },
             },
         })
-        local keymap = require('core.keys').keymap
-
-        keymap('n', '<leader>t', ":ToggleTerm<CR>", {})
-        -- keymap('i', '<leader>t', "<C-O>:ToggleTerm<CR>", {})
 
         --
         -- Create a Git Interface with LazyGit
         --
         local Terminal = require('toggleterm.terminal').Terminal
+
         local lazygit  = Terminal:new({
             cmd = "lazygit",
             hidden = true,
@@ -47,11 +43,26 @@ local PluginSpec = {
             }
         })
 
-        keymap('n', '<leader>g', function() lazygit:toggle() end)
-
-
+        require('legendary').keymaps({
+            {
+                '<leader>term',
+                {
+                    n = ":ToggleTerm<CR>",
+                    i = "<C-O>:ToggleTerm<CR>"
+                },
+                description = "Terminal: Toggle terminal window"
+            },
+            {
+                '<leader>git',
+                {
+                    n = function()
+                        lazygit:toggle()
+                    end
+                },
+                description = "Git: Toggle git ui"
+            }
+        })
     end
-
 }
 
 return PluginSpec
