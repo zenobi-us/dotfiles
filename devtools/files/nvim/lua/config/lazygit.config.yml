@@ -1,6 +1,0 @@
----
-os:
-  editCommand: '' # see 'Configuring File Editing' section
-  editCommandTemplate: ''
-  openCommand: ''
-

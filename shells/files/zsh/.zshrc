@@ -26,3 +26,12 @@ load-parts "config.d/enabled/*__config-${OSINFO_PLATFORM}"
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
 [[ -f /tmp/xfs-a592f79e/dlx-2288069/node_modules/tabtab/.completions/yarn.zsh ]] && . /tmp/xfs-a592f79e/dlx-2288069/node_modules/tabtab/.completions/yarn.zsh
+
+PID=`pgrep -n -u $USER gnome-session`
+if [ -n "$PID" ]; then
+    export DISPLAY=`awk 'BEGIN{FS="="; RS="\0"}  $1=="DISPLAY" {print $2; exit}' /proc/$PID/environ`
+    echo "DISPLAY set to $DISPLAY"
+else
+    echo "Could not set DISPLAY"
+fi
+unset PID1

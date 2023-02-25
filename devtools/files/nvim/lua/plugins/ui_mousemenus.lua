@@ -1,3 +1,0 @@
-local PluginSpec = {}
-
-return PluginSpec
