@@ -3,6 +3,8 @@ return {
     { import = "plugins.themes.awesome" },
     { import = "plugins.themes.github" },
     { import = "plugins.themes.rosepine" },
+    { import = "plugins.themes.onedarkpro" },
+    { import = "plugins.themes.nightfox" },
 
     -- keymaps
     { import = "plugins.keymaps.commandpalette" },
@@ -18,8 +20,9 @@ return {
     { import = "plugins.ui.codefolding" },
     { import = "plugins.ui.scrollbars" },
     { import = "plugins.ui.search" },
-    { import = "plugins.ui.tabs" },
     { import = "plugins.ui.terminal" },
+    { import = "plugins.ui.symbol_breadcrumbs"},
+    { import = "plugins.ui.tabs.barbar" },
 
     -- git
     { import = "plugins.git.fugitive" },
@@ -30,6 +33,7 @@ return {
 
     -- languages
     { import = "plugins.languages.lsp" },
+    { import = "plugins.languages.hover" },
 
     -- editing
     { import = "plugins.editing.treesitter" },
@@ -43,5 +47,6 @@ return {
     { import = "plugins.editing.rename_symbol" },
     { import = "plugins.editing.trailingspaces" },
     { import = "plugins.editing.findreplace" },
+    -- { import = "plugins.editing.multiple_cursors"},
     -- { import = "plugins.editing.undotree" }
 }

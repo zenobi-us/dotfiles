@@ -77,7 +77,7 @@ local PluginSpec = {
 			},
 		})
 
-		local toggleCommand = ":Neotree source=filesystem reveal=true position=left toggle=true"
+		local toggleCommand = ":Neotree source=filesystem reveal=true position=left toggle=true action=show"
 		require("legendary").keymaps({
 			{
 				"<C-b>",

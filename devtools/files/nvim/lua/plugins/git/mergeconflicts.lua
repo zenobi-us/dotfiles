@@ -12,7 +12,9 @@ local PluginSpec = {
             {
                 "<Leader>d",
                 {
-                    i = string.format("<C-O>%s<CR>", command),
+                    -- s = string.format("<C-O>%s<CR>", command),
+                    -- v = string.format("<C-O>%s<CR>", command),
+                    -- x = string.format("<C-O>%s<CR>", command),
                     n = string.format("%s<CR>", command)
                 }
             }

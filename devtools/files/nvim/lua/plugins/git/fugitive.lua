@@ -9,7 +9,7 @@ local PluginSpec = {
                 '<leader>gl',
                 {
                     n = ':Gdiffsplit<CR>',
-                    i = "<C-O>:Gdiffsplit<CR>"
+                    -- i = "<C-O>:Gdiffsplit<CR>"
                 },
                 description = "Git: Log: view file change Log"
             },

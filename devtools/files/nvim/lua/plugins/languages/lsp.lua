@@ -1,46 +1,36 @@
 return {
-    "VonHeikemen/lsp-zero.nvim",
+    'williamboman/mason.nvim',
     dependencies = {
-
-        { 'neovim/nvim-lspconfig' },
-        { 'williamboman/mason.nvim' },
-        { 'williamboman/mason-lspconfig.nvim' },
-        -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'hrsh7th/cmp-path' },
-        { 'saadparwaiz1/cmp_luasnip' },
-        { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-nvim-lua' },
-
-        -- Snippets
-        { 'L3MON4D3/LuaSnip' },
-        { 'rafamadriz/friendly-snippets' },
-
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-buffer' },
+        { 'hrsh7th/cmp-nvim-path' },
+        { 'williamboman/mason-lspconfig.nvim' },
+        { 'neovim/nvim-lspconfig' },
+        { 'ray-x/lsp_signature.nvim' },
+        { 'weilbith/nvim-code-action-menu' },
     },
     config = function()
-        local lsp = require('lsp-zero').preset({
-            name = 'minimal',
-            set_lsp_keymaps = true,
-            manage_nvim_cmp = true,
-            suggest_lsp_servers = true,
+        require('mason').setup()
+        require('mason-lspconfig').setup({
+            ensure_installed = require("plugins.languages.ensure_installed")
         })
 
-        lsp.ensure_installed({
-            'tsserver',
-            'rust_analyzer',
-        })
+--         local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+--         local lsp_attach = function(client, bufnr)
+--             -- Creiate your keybindings here...
+--         end
 
-        local languages_path = debug.getinfo(2, 'S').source:sub(2)
+--         local lspconfig = require('lspconfig')
 
-        print("languages_path: %s", languages_path)
-        vim.loop.fs_readdir(languages_path, function (file)
-             print('file')
-        end)
-
-        lsp.configure('tsserver', require('plugins.languages.typescript'))
-
-        lsp.nvim_workspace()
-        lsp.setup()
+--         require('mason-lspconfig').setup_handlers({
+--             function(server_name)
+--                 lspconfig[server_name].setup({
+--                     on_attach = lsp_attach,
+--                     capabilities = lsp_capabilities,
+--                 })
+--             end,
+--         })
     end
 }

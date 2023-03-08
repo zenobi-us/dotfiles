@@ -12,12 +12,15 @@
     },
     opts = {
       timeout = 3000,
+
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
       end,
+
       max_width = function()
         return math.floor(vim.o.columns * 0.75)
       end,
+
     },
     init = function()
       -- when noice is not enabled, install notify on VeryLazy
@@ -28,4 +31,14 @@
         end)
       end
     end,
+
+    config = function (opts)
+        require('notify').setup(opts);
+        require('legendary').commands({
+            {
+                ":Telescope notify",
+                description = "Notifications: History"
+            }
+        })
+    end
   }

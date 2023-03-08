@@ -6,7 +6,7 @@ return {
         require('legendary').keymaps({
             {
                 "<leader>sr",
-                { n = function() requirei("spectre").open() end },
+                { n = function() require("spectre").open() end },
                 description = "Replace in files (Spectre)"
             },
         })

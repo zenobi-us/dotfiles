@@ -56,6 +56,7 @@ local options = {
     softtabstop = 4,
     tabstop = 4, -- insert 2 spaces for a tab
     cursorline = true, -- highlight the current line
+
     --
     -- Gutter
     --

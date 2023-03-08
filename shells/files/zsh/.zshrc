@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 #!/bin/bash/env zsh
 . "${DOTFILE_ROOT}/lib/case.sh"
 . "${DOTFILE_ROOT}/lib/osinformation.sh"

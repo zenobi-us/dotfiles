@@ -1,3 +1,5 @@
+local buffers    = require "core.buffers"
+
 local PluginSpec = {
     "mrjones2014/legendary.nvim",
     dependencies = {
@@ -18,75 +20,20 @@ local PluginSpec = {
         legendary.setup({
             which_key = {
                 auto_register = true,
-            },
-            keymaps = {
-                -- Open legendary
-                { "<C-p>", ":Legendary<CR>" },
-
-
-                -- Moving
-                {
-                    "<PageUp>",
-                    { i = "<C-O>50k", n = "50k" },
-                    description = "Move up 50 lines",
+                scratchpad = {
+                    -- How to open the scratchpad buffer,
+                    -- 'current' for current window, 'float'
+                    -- for floating window
+                    view = 'float',
+                    -- How to show the results of evaluated Lua code.
+                    -- 'print' for `print(result)`, 'float' for a floating window.
+                    results_view = 'float',
+                    -- Border style for floating windows related to the scratchpad
+                    float_border = 'rounded',
+                    -- Whether to restore scratchpad contents from a cache file
+                    keep_contents = true,
                 },
-                {
-                    "<PageDown>",
-                    { i = "<C-O>50j", n = "50j" },
-                    description = "Move down 50 lines",
-                },
-
-                -- Closing
-                {
-                    "<C-w>",
-                    {
-                        i = "<C-O>:bd<CR>",
-                        n = ":bd<CR>",
-                    },
-                    description = "Close window",
-                },
-
-                -- Clone line
-                {
-                    "<C-d>",
-                    {
-                        i = "<C-O>:copy .<CR>",
-                        n = ":copy .<CR>",
-                        v = "<C-C>:copy .<CR>",
-                    },
-                    description = "Clone line",
-                },
-
-                -- New File
-                {
-                    "<C-n>",
-                    {
-                        i = "<C-O>:enew<CR>",
-                        n = ":enew<CR>",
-                        v = "<C-C>:enew<CR>"
-                    }
-                },
-
-                -- Tab indenting
-                {
-                    "<Tab>",
-                    {
-                        n = ">>_",
-                        v = "<C-C>gv",
-                    },
-                    description = "Indent line/block",
-                },
-
-                {
-                    "<S-Tab>",
-                    {
-                        n = "<<_",
-                        i = "<<_",
-                        v = "<C-C>gv<",
-                    },
-                    description = "Unindent line/block",
-                },
-            },
+            }
         })
     end,
 }
