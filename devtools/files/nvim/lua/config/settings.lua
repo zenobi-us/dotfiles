@@ -70,7 +70,7 @@ local options = {
     --
     -- Window Title
     --
-    title = true, -- show title in terminal header
+    title = false, -- show title in terminal header
     --
     -- Auxillary Characters
     --

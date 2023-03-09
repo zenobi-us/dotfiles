@@ -5,6 +5,7 @@ local PluginSpec = {
     dependencies = {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
+        "famiu/bufdelete.nvim",
 	},
 
 	deactivate = function()

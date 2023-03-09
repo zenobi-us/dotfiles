@@ -60,7 +60,7 @@ require("legendary").keymaps({
         "<C-w>",
         {
             i = "<C-O>:bd<CR>",
-            n = ":bd<CR>",
+            n = ":Bdelete<CR>",
         },
         description = "Close window",
     },
