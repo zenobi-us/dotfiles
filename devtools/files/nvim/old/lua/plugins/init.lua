@@ -31,6 +31,7 @@ return {
 	{ import = "plugins.git.graph" },
 	{ import = "plugins.git.mergeconflicts" },
 	{ import = "plugins.git.signs" },
+	{ import = "plugins.git.worktrees" },
 
 	-- languages
 	{ import = "plugins.languages.lsp" },

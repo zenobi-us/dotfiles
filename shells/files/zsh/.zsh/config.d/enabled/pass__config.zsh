@@ -1,0 +1,1 @@
+/home/zenobius/.zsh/config.d/available/pass__config.zsh

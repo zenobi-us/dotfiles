@@ -104,13 +104,6 @@ return {
 				ensure_installed = require("plugins.languages.ensure_installed"),
 			})
 
-			-- require('legendary').keymaps({
-
-			--     {
-
-			--     }
-			-- })
-
 			--
 			-- Autocomplete
 			--
@@ -151,21 +144,6 @@ return {
 			--
 			-- Individual Language Server Setup
 			--
-
-			-- local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-			-- local lsp_attach = function(client, bufnr)
-			-- 	-- Creiate your keybindings here...
-			-- 	-- require
-			-- end
-			-- local lspconfig = require("lspconfig")
-			-- require("mason-lspconfig").setup_handlers({
-			-- 	function(server_name)
-			-- 		lspconfig[server_name].setup({
-			-- 			on_attach = lsp_attach,
-			-- 			capabilities = lsp_capabilities,
-			-- 		})
-			-- 	end,
-			-- })
 
 			local servers = lspoptions.servers
 			local capabilities =
@@ -226,6 +204,7 @@ return {
 			local nls = require("null-ls")
 			return {
 				sources = {
+
 					nls.builtins.formatting.fish_indent,
 					nls.builtins.diagnostics.fish,
 					nls.builtins.formatting.stylua,

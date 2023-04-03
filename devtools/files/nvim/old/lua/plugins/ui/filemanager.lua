@@ -1,11 +1,11 @@
 local PluginSpec = {
 	-- File Tree
 	"nvim-neo-tree/neo-tree.nvim",
-	
-    dependencies = {
+
+	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
-        "famiu/bufdelete.nvim",
+		"famiu/bufdelete.nvim",
 	},
 
 	deactivate = function()
@@ -50,15 +50,16 @@ local PluginSpec = {
 				},
 			},
 
-            window = {
-                mappings = {
-                    ["<space>"] = "none",
-                },
-            },
+			window = {
+				mappings = {
+					["<space>"] = "none",
+				},
+			},
 
 			filesystem = {
-                bind_to_cwd = false,
-                follow_current_file = true,    
+				use_libuv_file_watcher = true,
+				bind_to_cwd = false,
+				follow_current_file = true,
 				filtered_items = {
 					hide_dotfiles = false,
 					hide_gitignored = false,
@@ -76,6 +77,8 @@ local PluginSpec = {
 					end,
 				},
 			},
+
+			open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
 		})
 
 		local toggleCommand = ":Neotree source=filesystem reveal=true position=left toggle=true action=show"
