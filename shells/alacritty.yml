@@ -1,7 +1,12 @@
 ---
 actions:
   - action: package.install
+    where: os.name == "linux"
     name: alacritty
+
+  - action: package.install
+    where: os.name == "windows"
+    name: Alacritty.Alacritty
 
   - action: command.run
     where: os.name == "linux" || os.name == "macos"

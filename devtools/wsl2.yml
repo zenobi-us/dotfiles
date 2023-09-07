@@ -1,8 +1,12 @@
 ---
 where: os.name == "windows"
 
+#
+# get user home dir in windows as linux path
+# https://superuser.com/questions/1271205/how-to-get-the-host-user-home-directory-in-wsl-bash
+#
+#    wslpath "$(wslvar USERPROFILE)"
+#
 depends:
-  - packagemanagers.scoop
-  - devtools.wsl2-enable
+  - devtools.wsl2-create
   - devtools.wsl2-ssh-agent
-  - devtools.wsl2-vpnkit

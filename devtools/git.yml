@@ -1,5 +1,12 @@
 ---
+
 depends:
+  - packagemanagers.winget
   - devtools.git-config
   - devtools.git-credentials
 
+actions:
+  - action: command.run
+    command: powershell
+    args:
+      - winget install -e --id Git.Git

@@ -1,7 +1,4 @@
 ---
-depends:
-  - packagemanagers.scoop
-  
 
 actions:
   - action: file.copy
