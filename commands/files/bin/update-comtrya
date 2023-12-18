@@ -1,0 +1,5 @@
+#!/bin/bash
+
+curl -fsSL https://get.comtrya.dev | sh
+sudo mv comtrya-x86_64-unknown-linux-gnu /usr/local/bin/comtrya
+

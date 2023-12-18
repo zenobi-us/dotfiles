@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ASDF_PLUGIN_URL_just=https://github.com/heliumbrain/asdf-just.git
+export ASDF_PLUGIN_URL_just=https://github.com/heliumbrain/asdf-just.git
 
 #
 # Setup ASDF and Plugins
