@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# nix search nixpkgs "${@}"
-nix-env -f '<nixpkgs>' -qaP "${@}"
