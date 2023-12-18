@@ -17,6 +17,11 @@ actions:
     command: powershell
     where: os.name == "windows"
     args:
+      - 'scoop bucket add extras'
+
+  - action: command.run
+    command: powershell
+    args:
       - 'scoop install vscode'
 
   - action: command.run

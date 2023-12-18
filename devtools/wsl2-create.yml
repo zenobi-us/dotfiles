@@ -1,0 +1,47 @@
+---
+where: os.name == "windows"
+
+depends:
+  - devtools.sudo
+
+actions:
+
+  - action: command.run
+    command: powershell
+    args:
+      - |
+        Invoke-WebRequest -Uri https://aka.ms/wslubuntu -OutFile Ubuntu.appx -UseBasicParsing `
+        Add-AppxPackage .\Ubuntu.appx `
+        Remove-Item .\Ubuntu.appx
+
+  - action: command.run
+    command: powershell
+    args:
+      - |
+        Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile wsl_update_x64.msi -UseBasicParsing `
+        sudo ./wsl_update_x64.msi `
+        rm ./wsl_update_x64.msi `
+
+  - action: command.run
+    command: wsl
+    args:
+      - --set-default-version 2
+
+  - action: command.run
+    command: powershell
+    args: 
+      - Restart-Service LxssManager
+
+  - action: command.run
+    command: wsl
+    args: 
+      - -d Ubuntu
+      - --user root
+      - -- apt update -y
+
+  - action: command.run
+    command: wsl
+    args: 
+      - -d Ubuntu
+      - --user root
+      - -- apt install -y wslu

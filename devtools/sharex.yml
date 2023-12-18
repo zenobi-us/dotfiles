@@ -1,0 +1,17 @@
+---
+where: os.name == "windows"
+
+depends:
+  - packagemanagers.winget
+  - devtools.sudo
+
+actions:
+  # remove xbox gamebar because it's complete crap
+  - action: command.run
+    command: powershell
+    args:
+      - Get-AppxPackage Microsoft.XboxGamingOverlay | Remove-AppxPackage
+  
+  # install superior screenshot tool
+  - action: package.install
+    name: ShareX.ShareX

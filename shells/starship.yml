@@ -1,8 +1,4 @@
 ---
-depends:
-  - packagemanagers.scoop
-  - shells.zsh
-
 actions:
 
   - action: binary.github
@@ -11,6 +7,10 @@ actions:
     directory: /usr/local/bin
     repository: starship/starship
     version: latest
+
+  - action: package.install
+    where: os.name == "windows"
+    name: Starship.Starship
 
   - action: file.copy
     from: starship/starship.toml

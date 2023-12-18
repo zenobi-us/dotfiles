@@ -2,7 +2,7 @@
 where: os.name == "windows"
 
 depends:
-  - packagemanagers.scoop
+  - packagemanagers.winget
   - devtools.wsl2
 
 actions:
@@ -10,9 +10,24 @@ actions:
   - action: command.run
     command: powershell
     args:
-      - scoop bucket add extras
+      - winget install --id=jstarks.npiperelay -e --accept-source-agreements
 
   - action: command.run
-    command: powershell
+    command: wsl
     args:
-      - scoop install ssh-agent-wsl
+      - -d Ubuntu
+      - --user root
+      - -- apt install -y socat
+
+  - action: file.copy
+    from: wsl2/ssh-agent-pipe.sh
+    to: '{{user.home_dir}}/.ssh/ssh-agent-pipe.sh'
+    template: true
+
+  - action: command.run
+    command: wsl
+    args:
+      - -d Ubuntu
+      - --user zenobius
+      - -- cp 
+

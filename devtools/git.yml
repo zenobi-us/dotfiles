@@ -1,9 +1,12 @@
 ---
+
 depends:
-  - packagemanagers.scoop
+  - packagemanagers.winget
+  - devtools.git-config
+  - devtools.git-credentials
 
 actions:
-  - action: file.copy
-    from: git/.gitconfig
-    to: '{{user.home_dir}}/.gitconfig'
-    template: true
+  - action: command.run
+    command: powershell
+    args:
+      - winget install -e --id Git.Git

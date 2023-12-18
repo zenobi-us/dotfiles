@@ -9,10 +9,6 @@ actions:
   #
   # Install
   #
-  - action: package.install
-    provider: winget
-    name: Microsoft.Powershell
-
   - action: command.run
     command: winget
     args:
@@ -38,8 +34,8 @@ actions:
     command: powershell
     args:
       - |
-        new-item -Path "{{ user.home_dir }}/Documents"
-        -Name "PowerShell"
+        new-item -Path "{{ user.home_dir }}/Documents" \
+        -Name "PowerShell" \
         -ItemType "directory"
 
   # https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.3
@@ -47,8 +43,8 @@ actions:
     command: powershell
     args:
       - |
-        copy-item "shells/files/powershell/*"
-        -Destination "{{ user.home_dir }}/Documents/PowerShell"
+        copy-item "shells/files/powershell/*" \
+        -Destination "{{ user.home_dir }}/Documents/PowerShell" \
         -Recurse -Force
 
   #
@@ -81,7 +77,9 @@ actions:
     args:
       - scoop install uni
 
-  - action: command.run
-    command: powershell
-    args:
-      - scoop install 7zip tar
+  - action: packge.install
+    name: 7zip.7zip
+
+  - action: packge.install
+    name: GnuWin32.Tar
+    

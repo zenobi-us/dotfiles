@@ -1,0 +1,24 @@
+---
+where: os.name == "windows"
+
+depends:
+  - packagemanagers.winget
+  - devtools.sudo
+
+actions:
+  # https://www.yubico.com/blog/github-now-supports-ssh-security-keys/
+  
+  # remove the old ssh client
+  - action: command.run
+    command: powershell
+    args:
+      - Remove-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+
+  - action: package.install
+    name: Microsoft.OpenSSH.Beta
+
+  - action: command.run
+    command: powershell
+    sudo: true
+    args:
+      - Get-Service ssh-agent | Set-Service -StartupType Automatic -PassThru | Start-Service

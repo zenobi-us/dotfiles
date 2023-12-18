@@ -1,0 +1,10 @@
+---
+where: os.name == "windows"
+
+depends:
+  - packagemanagers.winget
+
+actions:
+  # install fancywm
+  - action: package.install
+    name: 9P1741LKHQS9
