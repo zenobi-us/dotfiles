@@ -1,2 +1,6 @@
-export ANDROID_HOME=$HOME/.local/share/android/sdk
-export PATH=$PATH:$ANDROIDSDK_HOME:$ANDROIDSDK_HOME/tools:$ANDROIDSDK_HOME/platform-tools
+. ~/.asdf/plugins/java/set-java-home.zsh
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=$ANDROID_HOME/emulator:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH 

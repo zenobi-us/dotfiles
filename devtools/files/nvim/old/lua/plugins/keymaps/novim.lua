@@ -1,3 +1,0 @@
-return {
-    'tombh/novim-mode'
-}

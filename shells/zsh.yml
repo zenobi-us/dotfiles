@@ -21,14 +21,14 @@ actions:
 
 
   - action: file.link
-    to: {{user.home_dir}}/.zshrc
+    to: "{{user.home_dir}}/.zshrc"
     from: zsh/.zshrc
   - action: file.link
-    to: {{user.home_dir}}/.zprofile
+    to: "{{user.home_dir}}/.zprofile"
     from: zsh/.zprofile
   - action: file.link
-    to: {{user.home_dir}}/.zshenv
+    to: "{{user.home_dir}}/.zshenv"
     from: zsh/.zshenv
   - action: file.link
-    to: {{user.home_dir}}/.zsh
+    to: "{{user.home_dir}}/.zsh"
     from: zsh/.zsh

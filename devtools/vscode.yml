@@ -7,9 +7,15 @@ actions:
     where: os.name == "windows"
     from: vscode
     to: '{{ user.home_dir }}\scoop\apps\vscode\current\data\user-data\User'
+    
+  - action: directory.copy
+    where: os.name == "linux"
+    from: vscode
+    to: '{{ user.home_dir }}\.vscode'
 
   - action: command.run
     command: powershell
+    where: os.name == "windows"
     args:
       - 'scoop install vscode'
 
@@ -73,11 +79,6 @@ actions:
     command: powershell
     args:
       - 'code --install-extension wmaurer.change-case --force'
-  - action: command.run
-    command: powershell
-    args:
-      - 'code --install-extension YuTengjing.vscode-colorize-plus --force'
-
   - action: command.run
     command: powershell
     args:

@@ -1,7 +1,0 @@
-[Unit]
-Description=Synergy Mouse and Keyboard Sharing
-
-[Service]
-ExecStart=nm-applet
-Environment="DISPLAY=:0"
-Environment="XAUTHORITY=/home/msh/.Xauthority"

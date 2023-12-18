@@ -6,7 +6,8 @@ depends:
 actions:
 
   - action: binary.github
-    name: starship
+    name: starship-x86_64-unknown-linux-gnu.tar.gz
+    where: os.name == "linux"
     directory: /usr/local/bin
     repository: starship/starship
     version: latest
