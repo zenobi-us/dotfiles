@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+. "${DOTFILE_ROOT}/lib/osinformation.sh"
 
 ASDF_PLUGIN_URL_just=https://github.com/heliumbrain/asdf-just.git
 
@@ -27,14 +28,7 @@ ASDF_VERSION=${ASDF_VERSION:-v0.9.0}
 ASDF_HOME=$HOME/.asdf
 ASDF_BIN=$ASDF_HOME/asdf.sh
 
-get_processor() {
-  [[ $(sysctl -e -n machdep.cpu.brand_string) =~ "Apple" ]] && {
-    echo 'M1'
-  } || uname -m
-}
-get_platform() {
-  uname -s
-}
+
 
 echo "==> 💁 [ASDF] install with plugins"
 
@@ -63,10 +57,8 @@ for plugin in $(cut -d' ' -f1 ./.tool-versions); do
   fi
 done
 
-PROCESSOR=$(get_processor)
-
 echo "==> 💁 [ASDF] install tools"
-case $PROCESSOR in
+case $MACHINE_PROCESSOR in
 M1)
   echo "===> 💁 [ASDF] install for M1"
   RUBY_CFLAGS=-DUSE_FFI_CLOSURE_ALLOC \

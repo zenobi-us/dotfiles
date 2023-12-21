@@ -62,12 +62,12 @@ function enable_config_part () {
         "${AVAILABLE_DIR}/${name}.zsh" \
         "${ENABLED_DIR}/${name}.zsh"
 
-    [ -e "${AVAILABLE_DIR}/${name}-${OSINFO_PLATFORM}.zsh" ] \
-    && [ ! -e "${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh" ] \
+    [ -e "${AVAILABLE_DIR}/${name}-${MACHINE_OS}.zsh" ] \
+    && [ ! -e "${ENABLED_DIR}/${name}-${MACHINE_OS}.zsh" ] \
     && {
         ln -s \
-            "${AVAILABLE_DIR}/${name}-${OSINFO_PLATFORM}.zsh" \
-            "${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh"
+            "${AVAILABLE_DIR}/${name}-${MACHINE_OS}.zsh" \
+            "${ENABLED_DIR}/${name}-${MACHINE_OS}.zsh"
     }
 
     echo "✅ ${name} enabled."
@@ -97,7 +97,7 @@ function config_disable () {
 function disable_config_part () {
     local name=$1
     local part="${ENABLED_DIR}/${name}.zsh"
-    local ospart="${ENABLED_DIR}/${name}-${OSINFO_PLATFORM}.zsh"
+    local ospart="${ENABLED_DIR}/${name}-${MACHINE_OS}.zsh"
 
     rm -f "${part}" || true
     rm -f "${ospart}" || true
