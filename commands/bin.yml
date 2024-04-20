@@ -1,6 +1,9 @@
 ---
 where: os.name == "linux"
 
+depends:
+  - shells.zsh
+
 actions:
 
   - action: directory.copy

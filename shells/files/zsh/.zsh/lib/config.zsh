@@ -11,12 +11,10 @@ CONFIG_REGEX="([a-zA-Z\-]*)__([a-zA-Z\-]*).zsh"
 
 function config_enable () {
     for config in "${@}"; do
-        local name=$config
-
-        enable_config_part "${name}__profile"
-        enable_config_part "${name}__config"
-        enable_config_part "${name}__env"
-        enable_config_part "${name}__aliases"
+        enable_config_part "${config}__profile"
+        enable_config_part "${config}__config"
+        enable_config_part "${config}__env"
+        enable_config_part "${config}__aliases"
     done
 }
 
@@ -54,21 +52,35 @@ function enable_config_part () {
         echo "💫 ${name} already enabled."
         return 0;
     }
-    [ ! -e "${AVAILABLE_DIR}/${name}.zsh" ] && {
-        return 0;
+
+    local files=( "${AVAILABLE_DIR}/${name}.zsh" "${AVAILABLE_DIR}/${name}-${MACHINE_OS}.zsh" )
+
+    # loop through files and test if they exist
+    # for each file that doesn't exist, remve it from the list
+    for file in "${files[@]}"; do
+        [ ! -e "${file}" ] && {
+            files=("${files[@]/$file}")
+        }
+    done
+    
+    # test if there are any files left
+    [ ${#files[@]} -eq 0 ] && {
+        echo "❌ ${name} not found."
+        return 1;
     }
 
-    ln -s \
-        "${AVAILABLE_DIR}/${name}.zsh" \
-        "${ENABLED_DIR}/${name}.zsh"
+    # loop through the files and create a symlink for each
+    for file in "${files[@]}"; do
+        # skip it if it's already enabled
+        [ -e "${ENABLED_DIR}/${name}.zsh" ] && {
+            echo "💫 ${name} already enabled."
+            continue;
+        }
 
-    [ -e "${AVAILABLE_DIR}/${name}-${MACHINE_OS}.zsh" ] \
-    && [ ! -e "${ENABLED_DIR}/${name}-${MACHINE_OS}.zsh" ] \
-    && {
         ln -s \
-            "${AVAILABLE_DIR}/${name}-${MACHINE_OS}.zsh" \
-            "${ENABLED_DIR}/${name}-${MACHINE_OS}.zsh"
-    }
+            "${file}" \
+            "${ENABLED_DIR}/${name}.zsh"
+    done
 
     echo "✅ ${name} enabled."
 }
