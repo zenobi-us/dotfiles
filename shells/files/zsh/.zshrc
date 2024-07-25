@@ -1,4 +1,6 @@
-#!/bin/bash/env zsh
+#!/bin/bash zsh
+
+# shellcheck disable=SC1091
 . "${DOTFILE_ROOT}/lib/case.sh"
 . "${DOTFILE_ROOT}/lib/osinformation.sh"
 . "${DOTFILE_ROOT}/lib/absolutepath.sh"
@@ -11,11 +13,4 @@ load-parts "config.d/enabled/*__aliases"
 load-parts "config.d/enabled/*__aliases-${MACHINE_OS}"
 load-parts "config.d/enabled/*__config"
 load-parts "config.d/enabled/*__config-${MACHINE_OS}"
-
-load-parts "config.d/available/asdf__config"
-
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
-
-# proto
-export PROTO_HOME="$HOME/.proto"
-export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
+ 

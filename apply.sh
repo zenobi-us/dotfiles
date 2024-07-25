@@ -19,15 +19,35 @@ print_help() {
   exit 1
 }
 
-# if $1 is empty, print usage and exit
+apply_module() {
+  local module
+  local module_root
+
+  module="$1"
+  module_root=$(echo "$1" | cut -d'.' -f1)
+
+  # if root is not valid module, print usage and exit
+  [ -z "$module_root" ] && {
+    echo "Invalid module: $module"
+    exit 1
+  }
+  
+  # does top level modules contain the chosen root module?
+  [ -z "$(echo "$top_level_modules" | grep "$module_root")" ] && {
+    echo "Invalid module: $module"
+    exit 1
+  }
+
+  echo "==> 🚀 Applying $module"
+  comtrya apply -m "$module"
+}
+
+
+# if no arguments, print usage and exit
 [ -z "$1" ] && print_help
 
-chosen_root_module=$(echo "$1" | cut -d'.' -f1)
-# if root is not valid module, print usage and exit
-[ -z "$chosen_root_module" ] && print_help
-# does top level modules contain the chosen root module?
-[ -z "$(echo "$top_level_modules" | grep "$chosen_root_module")" ] && print_help
+for arg in "$@"; do
+    apply_module "$arg"
+done
 
-echo "==> 🚀 Applying $1"
 
-comtrya apply -m "$1"

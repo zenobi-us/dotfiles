@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./commands/files/bin/setup-asdf.bash
+./commands/files/bin/setup-mise.bash

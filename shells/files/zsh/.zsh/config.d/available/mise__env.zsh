@@ -1,0 +1,1 @@
+export MISE_ACTIVATED=true
