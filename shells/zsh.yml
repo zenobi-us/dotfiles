@@ -5,19 +5,20 @@ actions:
   - action: command.run
     command: rm
     args:
-      - ~/.zshrc
+      - "{{user.home_dir}}/.zshrc"
   - action: command.run
     command: rm
     args:
-      - ~/.zprofile
+      - "{{user.home_dir}}/.zprofile"
   - action: command.run
     command: rm
     args:
-      - ~/.zshenv
+      - "{{user.home_dir}}/.zshenv"
   - action: command.run
-    command: rm
+    command: rm 
     args:
-      - ~/.zsh
+      - "-rf"
+      - "{{user.home_dir}}/.zsh"
 
 
   - action: file.link
