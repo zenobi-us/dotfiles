@@ -6,7 +6,7 @@ depends:
 
 actions:
   - action: directory.copy
-    from: asdf
+    from: tooling
     to: '{{user.home_dir}}'
 
   - action: package.install
@@ -16,6 +16,5 @@ actions:
   - action: cmd.run
     command: sh
     args:
-      - -s
-      - "{{user.home_dir}}/.local/bin/setup-asdf.sh"
+      - "{{user.home_dir}}/.local/bin/setup-mise.bash"
 
