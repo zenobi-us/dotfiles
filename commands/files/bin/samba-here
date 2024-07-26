@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Runs Docker Samba container sharing the current or specified directory
+
+run_container() {
+    local target
+    
+    target="${1:-$(pwd)}"
+
+    docker run --rm -it \
+        dperson/samba \
+        -p 139:139 \
+        -p 445:445 \
+        -v "${target}:/mount" \
+        -e USERID="$(id -u)" \
+        -e GROUPID="$(id -g)"
+
+    return $?
+}
+
+run_container "$@"
