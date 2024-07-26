@@ -2,19 +2,21 @@
 where: os.name == "linux" || os.name == "macos"
 
 depends:
+  - shells.zsh
   - commands.bin
 
 actions:
+  - action: command.run
+    dir: '{{user.home_dir}}'
+    command: rm
+    args:
+      - .tool-versions
+
   - action: directory.copy
     from: tooling
     to: '{{user.home_dir}}'
 
-  - action: package.install
-    list:
-      - readline
-
-  - action: cmd.run
-    command: sh
-    args:
-      - "{{user.home_dir}}/.local/bin/setup-mise.bash"
-
+  - action: command.run
+    command: mise
+    args: 
+      - install
