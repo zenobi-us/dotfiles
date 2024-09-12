@@ -13,3 +13,4 @@ autoload -Uz _zinit
 
 zinit version
 zinit light Aloxaf/fzf-tab
+zinit light loiccoyle/zsh-github-copilot
