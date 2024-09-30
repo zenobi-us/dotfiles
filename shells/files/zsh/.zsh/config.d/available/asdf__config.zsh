@@ -7,5 +7,8 @@ if [[ ! -f "${ASDF_BIN}" ]]; then
 fi
 
 . "$ASDF_HOME/asdf.sh"
-. "$ASDF_HOME/completions/asdf.bash"
-. "$ASDF_HOME/plugins/java/set-java-home.zsh"
+
+
+[ -f "$ASDF_HOME/plugins/java/set-java-home.zsh" ] && {
+    . "$ASDF_HOME/plugins/java/set-java-home.zsh"
+}
