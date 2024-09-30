@@ -1,6 +1,9 @@
 ---
 where: os.name == "linux" || os.name == "macos"
 
+depends:
+  - shells.toolversions
+
 actions:
   - action: command.run
     command: rm
