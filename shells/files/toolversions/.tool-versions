@@ -14,3 +14,4 @@ httpie-go 0.7.0
 yq 4.44.3
 gopass 1.15.14
 github-cli 2.57.0
+just 1.36.0
