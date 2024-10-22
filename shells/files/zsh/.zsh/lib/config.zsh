@@ -29,19 +29,14 @@ function edit_config () {
             configs+=("${match[1]}__${match[2]}")
         fi
     done
+
     local count=${#configs[@]}
 
     if [ "${count}" -gt "0" ] && {
-        echo $count items found
-
-        for (( i = 1; i < ${count} + 1; i++ )) do
-            echo "$i) ${configs[$i]}"
-        done
-
-        echo "Choose item to edit >"
-        read choice
-
-        micro $DOTFILE_ROOT/config.d/available/${configs[$choice]}.zsh
+        
+        echo "${configs[@]}" | td '\s' '\n' | fzf
+        
+        $EDITOR $DOTFILE_ROOT/config.d/available/${configs[$choice]}.zsh
     }
 }
 
