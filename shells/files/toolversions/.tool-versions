@@ -1,0 +1,17 @@
+neovim stable
+jq 1.7.1
+nodejs 18.11.0
+fzf 0.42.0
+awscli 2.15.36
+shellcheck 0.10.0
+watchexec 2.1.1
+asdf-plugin-manager 1.4.0
+lazygit 0.43.1
+dive 0.12.0
+yarn 1.22.22
+python 3.12.3
+httpie-go 0.7.0
+yq 4.44.3
+gopass 1.15.14
+github-cli 2.57.0
+just 1.36.0

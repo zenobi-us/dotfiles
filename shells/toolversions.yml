@@ -1,0 +1,17 @@
+---
+where: os.name == "linux" || os.name == "macos"
+
+depends:
+  - shells.toolversions
+
+actions:
+  - action: file.link
+    to: "{{user.home_dir}}/.tool-versions"
+    from: toolversions/.tool-versions
+  
+  - action: command.run
+    command: sh
+    args:
+      - |
+        cd {{user.home_dir}}
+        asdf install

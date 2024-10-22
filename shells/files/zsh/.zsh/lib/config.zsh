@@ -9,16 +9,17 @@ CONFIG_REGEX="([a-zA-Z\-]*)__([a-zA-Z\-]*).zsh"
 [ ! -d "${ENABLED_DIR}" ] && mkdir -p "${ENABLED_DIR}"
 [ ! -d "${AVAILABLE_DIR}" ] && mkdir -p "${AVAILABLE_DIR}"
 
-function config_enable () {
+function dotfiles_config_enable () {
     for config in "${@}"; do
-        enable_config_part "${config}__profile"
-        enable_config_part "${config}__config"
-        enable_config_part "${config}__env"
-        enable_config_part "${config}__aliases"
+        dotfiles_enable_config_part "${config}__profile"
+        dotfiles_enable_config_part "${config}__config"
+        dotfiles_enable_config_part "${config}__env"
+        dotfiles_enable_config_part "${config}__aliases"
     done
 }
 
-function edit_config () {
+
+function dotfiles_edit_config () {
     local name=$1
     local regex="(${name:-"[a-zA-Z\-]*"})__([a-zA-Z\-]*).zsh"
     local configs=()
@@ -40,7 +41,7 @@ function edit_config () {
     }
 }
 
-function enable_config_part () {
+function dotfiles_enable_config_part () {
     local name=$1
 
     [ -e "${ENABLED_DIR}/${name}.zsh" ] && {
@@ -80,28 +81,28 @@ function enable_config_part () {
     echo "✅ ${name} enabled."
 }
 
-function config_clear () {
+function dotfiles_config_clear () {
     for file in $ENABLED_DIR/*.zsh; do
         if [[ $file =~ $CONFIG_REGEX ]];
         then
-            config_disable "${match[1]}"
+            dotfiles_config_disable "${match[1]}"
         fi
     done
 }
 
-function config_disable () {
+function dotfiles_config_disable () {
     local name=$1
     echo "Disabling: ${name}"
 
-    disable_config_part "${name}__profile"
-    disable_config_part "${name}__config"
-    disable_config_part "${name}__env"
-    disable_config_part "${name}__aliases"
+    dotfiles_disable_config_part "${name}__profile"
+    dotfiles_disable_config_part "${name}__config"
+    dotfiles_disable_config_part "${name}__env"
+    dotfiles_disable_config_part "${name}__aliases"
 
     echo "✅ ${name} disabled."
 }
 
-function disable_config_part () {
+function dotfiles_disable_config_part () {
     local name=$1
     local part="${ENABLED_DIR}/${name}.zsh"
     local ospart="${ENABLED_DIR}/${name}-${MACHINE_OS}.zsh"
@@ -110,7 +111,7 @@ function disable_config_part () {
     rm -f "${ospart}" || true
 }
 
-function config_enabled_marker () {
+function dotfiles_config_enabled_marker () {
     if test -n "$(find "${ENABLED_DIR}" -maxdepth 1 -name "${1}*" -print -quit)"
     then
         echo "🔅"
@@ -119,7 +120,7 @@ function config_enabled_marker () {
     fi
 }
 
-function list_configs () {
+function dotfiles_list_configs () {
     configs=()
     echo "🗒 Listing config modules";
 
@@ -131,36 +132,36 @@ function list_configs () {
     done
 
     for config in $(echo "${configs[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '); do
-        echo "$(config_enabled_marker $config) ${config}"
+        echo "$(dotfiles_config_enabled_marker $config) ${config}"
     done
 
 }
 
-function reload () {
+function dotfiles_reload () {
     source ~/.zshrc
 }
 
-function config () {
+function dotfiles () {
     case "${1}" in
         clear)
-            config_clear
+            dotfiles_config_clear
         ;;
         enable)
-            config_enable "${@:2}"
-            list_configs
+            dotfiles_config_enable "${@:2}"
+            dotfiles_list_configs
         ;;
         disable)
-            config_disable "${@:2}"
-            list_configs
+            dotfiles_config_disable "${@:2}"
+            dotfiles_list_configs
         ;;
         list)
-            list_configs "${2}"
+            dotfiles_list_configs "${2}"
         ;;
         edit)
-            edit_config "${2}"
+            dotfiles_edit_config "${2}"
         ;;
         reload)
-            reload
+            dotfiles_reload
         ;;
         *)
             echo """
