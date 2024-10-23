@@ -35,9 +35,9 @@ function dotfiles_edit_config () {
 
     if [ "${count}" -gt "0" ] && {
         
-        echo "${configs[@]}" | td '\s' '\n' | fzf
+        choice=$(printf "%s\n" "${configs[@]}" | fzf)
         
-        $EDITOR $DOTFILE_ROOT/config.d/available/${configs[$choice]}.zsh
+        $EDITOR $DOTFILE_ROOT/config.d/available/${choice}.zsh
     }
 }
 
