@@ -1,2 +1,2 @@
 export MISE_ACTIVATED=true
-eval "$(/home/zenobius/.local/bin/mise activate zsh)"
+eval "$(/home/zenobius/.local/bin/mise activate zsh --shims)"
