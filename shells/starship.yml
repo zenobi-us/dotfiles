@@ -1,8 +1,13 @@
 ---
+depends:
+  - devtools.tooling
+  - shells.mise
+  - shells.zsh
+
 actions:
 
   - action: binary.github
-    name: starship-x86_64-unknown-linux-gnu.tar.gz
+    name: starship
     where: os.name == "linux"
     directory: /usr/local/bin
     repository: starship/starship

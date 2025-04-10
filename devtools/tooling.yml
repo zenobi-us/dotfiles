@@ -6,17 +6,9 @@ depends:
   - commands.bin
 
 actions:
-  - action: command.run
-    dir: '{{user.home_dir}}'
-    command: rm
-    args:
-      - .tool-versions
+  - action: file.remove
+    target: "{{user.home_dir}}/.config/mise/config.toml"
 
-  - action: directory.copy
-    from: tooling
-    to: '{{user.home_dir}}'
-
-  - action: command.run
-    command: mise
-    args: 
-      - install
+  - action: file.copy
+    from: mise/config.toml
+    to: '{{user.home_dir}}/.config/mise/config.toml'

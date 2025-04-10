@@ -6,17 +6,16 @@ depends:
 
 actions:
 
-  - action: directory.copy
+  - action: file.link
     from: xresources/.XresourceThemes
-    to: '{{user.home_dir}}'
+    to: '{{user.home_dir}}/.XresourceThemes'
 
-  - action: command.run
-    command: cp
-    args:
-      - shells/files/xresources/.Xresources
-      - "{{user.home_dir}}/.Xresources"
+  - action: file.link
+    from: xresources/.Xresources
+    to: '{{user.home_dir}}/.Xresources'
 
   - action: command.run
     command: xrdb
     args:
-      - -merge ~/.Xresources
+      - -merge
+      - '{{user.home_dir}}/.Xresources'

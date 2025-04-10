@@ -1,8 +1,6 @@
 ---
 where: os.name == "linux" || os.name == "macos"
 
-depends:
-  - shells.toolversions
 
 actions:
   - action: command.run
@@ -22,7 +20,6 @@ actions:
     args:
       - "-rf"
       - "{{user.home_dir}}/.zsh"
-
 
   - action: file.link
     to: "{{user.home_dir}}/.zshrc"
