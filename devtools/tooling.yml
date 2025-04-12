@@ -9,6 +9,9 @@ actions:
   - action: file.remove
     target: "{{user.home_dir}}/.config/mise/config.toml"
 
+  - action: file.remove
+    target: "{{user.home_dir}}/.tool-versions"
+
   - action: file.copy
     from: mise/config.toml
     to: '{{user.home_dir}}/.config/mise/config.toml'
