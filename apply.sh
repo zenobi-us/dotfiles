@@ -98,12 +98,12 @@ validate_module() {
   module_as_path=$(echo "$module" | tr '.' '/')
 
   # does "${module_as_path}.yml" exist?
-  [ ! -f "${module_as_path}.yml" ] && {
+  [ ! -e "${module_as_path}.yml" ] && {
     error "Invalid module: $module"
   }
 
   # if root is not valid module, print usage and exit
-  [ -z "$module_root" ] && {
+  [ -e "$module_root" ] && {
     error "Invalid module: $module"
   }
   
@@ -123,7 +123,7 @@ apply_module() {
   validate_module "$module"
 
   info "==> 🚀 Applying $module"
-  comtrya apply -m "$module"
+  comtrya -d . apply -m "$module"
 }
 
 
