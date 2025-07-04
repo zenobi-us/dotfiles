@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 . "${DOTFILE_ROOT}/lib/osinformation.sh"
+. "${DOTFILE_ROOT}/lib/logging.sh"
 
 ENABLED_DIR=${DOTFILE_ROOT}/config.d/enabled
 AVAILABLE_DIR=${DOTFILE_ROOT}/config.d/available
@@ -18,8 +19,7 @@ function dotfiles_config_enable () {
     done
 }
 
-
-function dotfiles_edit_config () {
+function dotfiles_edit_config_part () {
     local name=$1
     local regex="(${name:-"[a-zA-Z\-]*"})__([a-zA-Z\-]*).zsh"
     local configs=()
@@ -39,6 +39,20 @@ function dotfiles_edit_config () {
         
         $EDITOR $DOTFILE_ROOT/config.d/available/${choice}.zsh
     }
+}
+
+function dotfiles_edit_config () {
+    if [ ! -d "$DOTFILE_ROOT" ]; then
+        error "Dotfile root not found: $DOTFILE_ROOT"
+        return 1
+    fi
+    # if not editor set, error
+    if [ -z "$EDITOR" ]; then
+        warning "EDITOR not set. Please set the EDITOR environment variable."
+        return 1
+    fi
+
+    $EDITOR "$DOTFILE_ROOT/"
 }
 
 function dotfiles_enable_config_part () {
@@ -157,8 +171,11 @@ function dotfiles () {
         list)
             dotfiles_list_configs "${2}"
         ;;
+        editpart)
+            dotfiles_edit_config_part "${2}"
+        ;;
         edit)
-            dotfiles_edit_config "${2}"
+            dotfiles_edit_config
         ;;
         reload)
             dotfiles_reload
@@ -171,7 +188,8 @@ clear                           resets enabled config items
 enable    <item>                enables a config item
 disable   <item>                disables an item
 list      <enabled|available>   shows all available items
-edit      partname              edits item
+editpart  <partname>            edits item
+edit                            edits entire config
 reload                          reloads profile
 """
         ;;

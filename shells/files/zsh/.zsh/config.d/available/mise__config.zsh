@@ -1,9 +1,10 @@
+#!/usr/bin/env bash
 eval "$(/home/zenobius/.local/bin/mise activate zsh)"
 
-if test "$VSCODE_RESOLVING_ENVIRONMENT" = 1
-    mise activate zsh --shims | source
-else if status is-interactive
-    mise activate zsh | source
+if [ "$VSCODE_RESOLVING_ENVIRONMENT" = "1" ]; then
+    eval "$(/home/zenobius/.local/bin/mise activate zsh --shims)"
+elif [ -n "$PS1" ]; then
+    eval "$(/home/zenobius/.local/bin/mise activate zsh)"
 else
-    mise activate zsh --shims | source
-end
+    eval "$(/home/zenobius/.local/bin/mise activate zsh --shims)"
+fi
