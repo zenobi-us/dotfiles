@@ -26,3 +26,12 @@
 	start = "!read BRANCH && git checkout -b $BRANCH/$1 $(git config --get core.defaultBranch || echo master); git stash pop"
 	alias = "! git config --get-regexp ^alias\\. | sed -e 's/^alias\\.\\([^ ]*\\)/\\x1B[33m\\1\\x1B[0m =/'"
 	pivot = "!f() { WORKTREE_ROOT=$(git config --get core.worktreeRoot || {exit 1}); mkdir -p $WORKTREE_ROOT; git worktree add $WORKTREE_ROOT/$1 $2; code $WORKTREE_ROOT/$1;}; f"
+
+[includeIf "gitdir:Projects/Mine/Github/"]
+path = ~/Projects/Mine/Github/.gitconfig
+
+[includeIf "gitdir:Projects/Work/reckon/"]
+path = ~/Projects/Work/reckon/.gitconfig
+
+[includeIf "gitdir:Projects/Work/azure/"]
+path = ~/Projects/Work/azure/.gitconfig

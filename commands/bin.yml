@@ -1,15 +1,11 @@
 ---
 where: os.name == "linux"
 
+depends:
+  - shells.zsh
+
 actions:
 
   - action: directory.copy
     from: bin
     to: '{{user.home_dir}}/.local/'
-
-  - action: command.run
-    command: chmod
-    args:
-      - 'u+x'
-      - '-R'
-      - '{{user.home_dir}}/.local'

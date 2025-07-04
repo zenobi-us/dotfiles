@@ -1,5 +1,17 @@
 ---
+depends:
+  - devtools.tooling
+  - shells.mise
+  - shells.zsh
+
 actions:
+
+  - action: binary.github
+    name: starship
+    where: os.name == "linux"
+    directory: /usr/local/bin
+    repository: starship/starship
+    version: latest
 
   - action: package.install
     where: os.name == "windows"

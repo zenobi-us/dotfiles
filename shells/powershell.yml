@@ -77,9 +77,9 @@ actions:
     args:
       - scoop install uni
 
-  - action: packge.install
+  - action: package.install
     name: 7zip.7zip
 
-  - action: packge.install
+  - action: package.install
     name: GnuWin32.Tar
-    
+

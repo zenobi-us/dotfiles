@@ -2,7 +2,7 @@
 where: os.name == "windows"
 
 depends:
-  - devtools.sudo
+  - devtools.sudo-windows
 
 actions:
 

@@ -3,7 +3,7 @@ where: os.name == "windows"
 
 depends:
   - packagemanagers.winget
-  - devtools.sudo
+  - devtools.sudo-windows
 
 actions:
   # remove xbox gamebar because it's complete crap

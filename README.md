@@ -2,7 +2,6 @@
 
 - zsh
 - powershell
-- [comtrya](https://github.com/comtrya/comtrya)
 
 ## Install
 

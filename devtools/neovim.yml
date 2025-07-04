@@ -1,4 +1,9 @@
 ---
+depends:
+  - devtools.tooling
+  - shells.mise
+  - shells.zsh
+
 actions:
   - action: command.run
     command: rm
@@ -6,23 +11,20 @@ actions:
     args:
       - -rf
       - "{{ user.home_dir }}/.config/nvim"
+
   - action: command.run
     command: rm
     where: os.name == "linux" || os.name == "macos"
     args:
       - -rf
       - "{{user.home_dir}}/.local/share/nvim"
+
   - action: command.run
     command: rm
     where: os.name == "linux" || os.name == "macos"
     args:
       - -rf
       - "{{user.home_dir}}/.local/state/nvim"
-
-  - action: file.link
-    where: os.name == "linux" || os.name == "macos"
-    to: "{{user.home_dir}}/.config/nvim"
-    from: nvim
 
   - action: command.run
     where: os.name == "windows"
@@ -40,3 +42,8 @@ actions:
       - -c
       - |
         scoop install llvm
+
+  - action: git.clone
+    repo_url: https://github.com/zenobi-us/astronvim.profile
+    directory: "{{user.home_dir}}/.config/nvim"
+  
