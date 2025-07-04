@@ -6,7 +6,5 @@ depends:
 
 actions:
 
-  - action: command.run
-    command: powershell
-    args:
-      - scoop install autohotkey
+  - action: package.install
+    name: AutoHotkey.AutoHotkey
