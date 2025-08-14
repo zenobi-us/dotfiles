@@ -9,6 +9,16 @@ CONFIG_REGEX="([a-zA-Z\-]*)__([a-zA-Z\-]*).zsh"
 [ ! -d "${ENABLED_DIR}" ] && mkdir -p "${ENABLED_DIR}"
 [ ! -d "${AVAILABLE_DIR}" ] && mkdir -p "${AVAILABLE_DIR}"
 
+function edit() {
+    local path
+
+    path="${1}"
+
+    cd $DOTFILE_ROOT;
+
+    mise x -- nvim "${path}"
+}
+
 function dotfiles_config_enable () {
     for config in "${@}"; do
         dotfiles_enable_config_part "${config}__profile"
@@ -19,7 +29,7 @@ function dotfiles_config_enable () {
 }
 
 
-function dotfiles_edit_config () {
+function dotfiles_edit_config_part () {
     local name=$1
     local regex="(${name:-"[a-zA-Z\-]*"})__([a-zA-Z\-]*).zsh"
     local configs=()
@@ -37,7 +47,7 @@ function dotfiles_edit_config () {
         
         choice=$(printf "%s\n" "${configs[@]}" | fzf)
         
-        $EDITOR $DOTFILE_ROOT/config.d/available/${choice}.zsh
+        edit ./config.d/available/${choice}.zsh
     }
 }
 
@@ -157,8 +167,11 @@ function dotfiles () {
         list)
             dotfiles_list_configs "${2}"
         ;;
+        edit-part)
+            dotfiles_edit_config_part "${2}"
+        ;;
         edit)
-            dotfiles_edit_config "${2}"
+            edit
         ;;
         reload)
             dotfiles_reload
@@ -171,7 +184,8 @@ clear                           resets enabled config items
 enable    <item>                enables a config item
 disable   <item>                disables an item
 list      <enabled|available>   shows all available items
-edit      partname              edits item
+edit-part partname              edits item
+edit                            opens dotfile directory in your editor.
 reload                          reloads profile
 """
         ;;
