@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 . "${DOTFILE_ROOT}/lib/osinformation.sh"
+. "${DOTFILE_ROOT}/lib/logging.sh"
 
 ENABLED_DIR=${DOTFILE_ROOT}/config.d/enabled
 AVAILABLE_DIR=${DOTFILE_ROOT}/config.d/available
@@ -9,15 +10,6 @@ CONFIG_REGEX="([a-zA-Z\-]*)__([a-zA-Z\-]*).zsh"
 [ ! -d "${ENABLED_DIR}" ] && mkdir -p "${ENABLED_DIR}"
 [ ! -d "${AVAILABLE_DIR}" ] && mkdir -p "${AVAILABLE_DIR}"
 
-function edit() {
-    local path
-
-    path="${1}"
-
-    cd $DOTFILE_ROOT;
-
-    mise x -- nvim "${path}"
-}
 
 function dotfiles_config_enable () {
     for config in "${@}"; do
@@ -28,7 +20,28 @@ function dotfiles_config_enable () {
     done
 }
 
+function edit() {
+    local path
 
+    path="${1}"
+
+    if [ -z "${path}" ]; then
+        echo "No path provided. Using default dotfile root."
+        path="${DOTFILE_ROOT}"
+    fi
+
+    if [ ! -d "${path}" ]; then
+        echo "Path does not exist: ${path}"
+        return 1
+    fi
+
+    cd $path || {
+        echo "Failed to change directory to: ${path}"
+        return 1
+    }
+
+    mise x -- nvim "${path}"
+}
 function dotfiles_edit_config_part () {
     local name=$1
     local regex="(${name:-"[a-zA-Z\-]*"})__([a-zA-Z\-]*).zsh"
@@ -50,6 +63,7 @@ function dotfiles_edit_config_part () {
         edit ./config.d/available/${choice}.zsh
     }
 }
+
 
 function dotfiles_enable_config_part () {
     local name=$1
@@ -171,7 +185,7 @@ function dotfiles () {
             dotfiles_edit_config_part "${2}"
         ;;
         edit)
-            edit
+            edit "${DOTFILE_ROOT}"
         ;;
         reload)
             dotfiles_reload

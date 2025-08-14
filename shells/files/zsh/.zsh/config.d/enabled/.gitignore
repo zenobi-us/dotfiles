@@ -2,3 +2,11 @@
 *
 # except this file
 !.gitignore
+# and mise things.
+!mise*
+# and fzf things.
+!fzf*
+# and zinit things
+!zinit*
+# and autocomplete things
+!autocomplete*
