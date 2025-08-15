@@ -1,0 +1,15 @@
+---
+where: os.name == "linux"
+
+depends:
+  - shells.mise
+
+actions:
+
+  - action: command.run
+    command: mise
+    args:
+      - "use"
+      - "-g"
+      - "--pin"
+      - "npm:@anthropic-ai/claude-code"

@@ -6,6 +6,11 @@ actions:
     from: 'https://mise.run'
     to: '/tmp/mise.sh'
 
+  - action: package.install
+    where: os.name == "windows"
+    name: jdx.mise
+    provider: winget
+
   - action: command.run
     where: os.name == "linux" || os.name == "macos"
     command: sh

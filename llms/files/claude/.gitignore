@@ -1,0 +1,7 @@
+*
+!hooks/
+!commands/
+!docs/
+!mcp.json
+!CLAUDE.md
+!.gitignore
