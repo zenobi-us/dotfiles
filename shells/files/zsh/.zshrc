@@ -14,3 +14,5 @@ load-parts "config.d/enabled/*__aliases"
 load-parts "config.d/enabled/*__aliases-${MACHINE_OS}"
 load-parts "config.d/enabled/*__config"
 load-parts "config.d/enabled/*__config-${MACHINE_OS}"
+
+COLORTERM=truecolor
