@@ -215,14 +215,14 @@ function dotfiles () {
             echo """
 Commands are
 
-clear                           resets enabled config items
-enable    <item>                enables a config item
-disable   <item>                disables an item
-list      <enabled|available>   shows all available items
-edit-part partname              edits item
-edit                            opens dotfile directory in your editor.
-apply                           applies comtrya module
-reload                          reloads profile
+clear                                      resets enabled config items
+enable         <item>                      enables a config item
+disable        <item>                      disables an item
+list           <enabled|available>         shows all available items
+edit-part      partname                    edits item
+edit                                       opens dotfile directory in your editor.
+apply          [dot-notated-modulenames]   applies comtrya module
+reload                                     reloads profile
 """
         ;;
     esac
