@@ -20,7 +20,7 @@ function dotfiles_config_enable () {
     done
 }
 
-function edit() {
+function dotfiles_edit() {
     local path
 
     path="${1}"
@@ -42,6 +42,7 @@ function edit() {
 
     mise x -- nvim "${path}"
 }
+
 function dotfiles_edit_config_part () {
     local name=$1
     local regex="(${name:-"[a-zA-Z\-]*"})__([a-zA-Z\-]*).zsh"
@@ -57,9 +58,9 @@ function dotfiles_edit_config_part () {
     local count=${#configs[@]}
 
     if [ "${count}" -gt "0" ] && {
-        
+
         choice=$(printf "%s\n" "${configs[@]}" | fzf)
-        
+
         edit ./config.d/available/${choice}.zsh
     }
 }
@@ -82,7 +83,7 @@ function dotfiles_enable_config_part () {
             files=("${files[@]/$file}")
         }
     done
-    
+
     # test if there are any files left
     [ ${#files[@]} -eq 0 ] && {
         echo "❌ ${name} not found."
@@ -158,7 +159,24 @@ function dotfiles_list_configs () {
     for config in $(echo "${configs[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '); do
         echo "$(dotfiles_config_enabled_marker $config) ${config}"
     done
+}
 
+# Applies comtrya module
+function dotfiles_apply () {
+    local modules
+    local options
+
+    modules="${*}"
+    options=()
+
+    # if $modules is not empty and is space separated, convert to comma separated
+    # e.g. "module1 module2" -> "module1,module2"
+    if [ -n "${modules}" ]; then
+        echo "Applying comtrya modules: ${modules}"
+        options+=("--modules" "$(echo "${modules}" | tr ' ' ',')")
+    fi
+
+    comtrya -d "$DOTFILE_REPO_ROOT" apply "${options[@]}"
 }
 
 function dotfiles_reload () {
@@ -185,10 +203,13 @@ function dotfiles () {
             dotfiles_edit_config_part "${2}"
         ;;
         edit)
-            edit "${DOTFILE_ROOT}"
+            dotfiles_edit "${DOTFILE_ROOT}"
         ;;
         reload)
             dotfiles_reload
+        ;;
+        apply)
+            dotfiles_apply "${@:2}"
         ;;
         *)
             echo """
@@ -200,6 +221,7 @@ disable   <item>                disables an item
 list      <enabled|available>   shows all available items
 edit-part partname              edits item
 edit                            opens dotfile directory in your editor.
+apply                           applies comtrya module
 reload                          reloads profile
 """
         ;;
