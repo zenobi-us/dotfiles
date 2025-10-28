@@ -163,17 +163,17 @@ function dotfiles_list_configs () {
 
 # Applies comtrya module
 function dotfiles_apply () {
-    local modules
+    local manifests
     local options
 
-    modules="${*}"
+    manifests="${*}"
     options=()
 
-    # if $modules is not empty and is space separated, convert to comma separated
-    # e.g. "module1 module2" -> "module1,module2"
-    if [ -n "${modules}" ]; then
-        echo "Applying comtrya modules: ${modules}"
-        options+=("--modules" "$(echo "${modules}" | tr ' ' ',')")
+    # if $manifests is not empty and is space separated, convert to comma separated
+    # e.g. "manifest1 manifest2" -> "manifest1,manifest2"
+    if [ -n "${manifests}" ]; then
+        echo "Applying comtrya manifests: ${manifests}"
+        options+=("--manifests" "$(echo "${manifests}" | tr ' ' ',')")
     fi
 
     comtrya -d "$DOTFILE_REPO_ROOT" apply "${options[@]}"
