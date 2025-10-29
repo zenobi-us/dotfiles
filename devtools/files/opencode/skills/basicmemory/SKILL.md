@@ -9,33 +9,17 @@ permalink: skill
 
 You make sure there is a basic memory project that contains guides for using basic memory.
 
-1. list all projects `basicmemory_list_projects`
-2. if there is no project named `basicmemory`, create one `basicmemory_create_project`
+1. list all projects `basicmemory_list_memory_projects`
+2. if there is no project named `basicmemory`, create one `basicmemory_create_memory_project`
 3. To confirm it's setup properly, list all guides in the `basicmemory` project with
-  ```sh
-  basicmemory_list_directory(
-    project="basicmemory",
-    directory="references/guides"
-    file_name_glob="*.md"
-  )
-  ```
-
-## New Projects
-
-New projects are always created as a child directory of `~/Notes/Projects/`
 
 ```sh
-basicmemory_create_project(
-  name = "<ProjectName>",
-  path = "~/Notes/Projects/<ProjectName>"
+basicmemory_list_directory(
+  project="basicmemory",
+  directory="references/guides"
+  file_name_glob="*.md"
 )
 ```
-
-If the user asks to create a project for the current conversation:
-
-1. Use `basicmemory-worktree_getIdentifier` to identify what our project name will be.
-2. check that a project for the `identifier.repo` does not already exist. (If it does set that as the current project and inform the user.)
-3. Follow previous instructions on how to create a new project from the basicmemory skill.
 
 ## Guides
 
