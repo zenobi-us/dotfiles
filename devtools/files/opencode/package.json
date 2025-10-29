@@ -8,7 +8,7 @@
     "license": "ISC",
     "dependencies": {
         "@opencode-ai/plugin": "0.15.14",
-        "@types/node": "^24.7.2",
+        "@types/node": "^24.9.2",
         "@types/unist": "^3.0.3",
         "duckdb": "^1.4.1",
         "execa": "^9.6.0",
@@ -19,5 +19,8 @@
         "unist": "^0.0.1",
         "unist-util-visit": "^5.0.0",
         "vitest": "^3.2.4"
+    },
+    "devDependencies": {
+        "@types/bun": "^1.3.1"
     }
 }
