@@ -45,3 +45,17 @@ $env:PATH+=";$env:USERPROFILE\.comtrya"
 cd C:\Users\zeno.jiricek\AppData\Local\comtrya\manifests\git\githubcomairtonixdotfiles
 comtrya apply -m manifest.dot.notated.path.instead.of.slash.notated.paths
 ```
+
+## Usage
+
+This is mostly a reminder for myself.
+
+```sh
+dotfiles apply # applies all changes
+dotfiles apply zsh # applies only zsh related changes
+dotfiles apply powershell # applies only powershell related changes
+
+# with or without commas
+dotfiles apply devtools.opencode,windowmanagers.sway # applies only devtools and sway window manager related changes
+dotfiles apply devtools.opencode windowmanagers.sway # applies only devtools and sway window manager related changes
+```
