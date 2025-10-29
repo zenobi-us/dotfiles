@@ -185,6 +185,26 @@ function dotfiles_apply () {
     comtrya -d "$DOTFILE_REPO_ROOT" apply "${options[@]}"
 }
 
+function dotfiles_modules_list () {
+    selection=$(
+      find "$DOTFILE_REPO_ROOT" -type f -name "*.yml" \
+        | grep -v '/files/' \
+        | while read -r path; do
+            rel="${path#$DOTFILE_REPO_ROOT/}"
+            rel="${rel%.yml}"
+            dotpath="${rel//\//.}"
+            echo "$dotpath"
+          done | \
+        fzf --multi --preview 'dotfiles apply {}'
+    )
+
+    if [[ -n $selection ]]; then
+      # Convert newline-separated to comma-separated
+      comma_separated=$(echo "$selection" | paste -sd, -)
+      dotfiles apply "$comma_separated"
+    fi
+}
+
 function dotfiles_reload () {
     source ~/.zshrc
 }
@@ -216,6 +236,9 @@ function dotfiles () {
         ;;
         apply)
             dotfiles_apply "${@:2}"
+        ;;
+        modules)
+            dotfiles_modules_list
         ;;
         *)
             echo """
