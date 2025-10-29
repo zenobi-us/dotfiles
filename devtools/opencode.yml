@@ -1,33 +1,33 @@
 ---
 depends:
-    - devtools.tooling
-    - shells.mise
-    - shells.zsh
+  - devtools.tooling
+  - shells.mise
+  - shells.zsh
 
 actions:
-    - action: command.run
-      command: rm
-      where: os.name == "linux" || os.name == "macos"
-      args:
-          - -rf
-          - "{{ user.home_dir }}/.config/opencode"
+  - action: command.run
+    command: rm
+    where: os.name == "linux" || os.name == "macos"
+    args:
+      - -rf
+      - "{{ user.home_dir }}/.config/opencode"
 
-    - action: command.run
-      command: rm
-      where: os.name == "linux" || os.name == "macos"
-      args:
-          - -rf
-          - "{{user.home_dir}}/.cache/opencode"
+  - action: command.run
+    command: rm
+    where: os.name == "linux" || os.name == "macos"
+    args:
+      - -rf
+      - "{{user.home_dir}}/.cache/opencode"
 
-    - action: command.run
-      where: os.name == "windows"
-      command: pwsh
-      args:
-          - -c
-          - |
-              remove-item -recurse -force -erroraction SilentlyContinue $env:LOCALAPPDATA/opencode
-              new-item -path "$env:LOCALAPPDATA/opencode" -itemtype symboliclink -value "$(pwd)/devtools/files/nvim"
+  - action: command.run
+    where: os.name == "windows"
+    command: pwsh
+    args:
+      - -c
+      - |
+        remove-item -recurse -force -erroraction SilentlyContinue $env:LOCALAPPDATA/opencode
+        new-item -path "$env:LOCALAPPDATA/opencode" -itemtype symboliclink -value "$(pwd)/devtools/files/nvim"
 
-    - action: directory.copy
-      from: opencode
-      to: "{{ user.home_dir }}/.config/opencode"
+  - action: directory.copy
+    from: opencode
+    to: "{{ user.home_dir }}/.config/opencode/"
