@@ -176,6 +176,12 @@ function dotfiles_apply () {
         options+=("--manifests" "$(echo "${manifests}" | tr ' ' ',')")
     fi
 
+    echo "Applying comtrya manifests..."
+    # for each manifest, print the manifest name
+    for manifest in $(echo "${manifests}" | tr ' ' '\n'); do
+        echo " - ${manifest}"
+    done
+
     comtrya -d "$DOTFILE_REPO_ROOT" apply "${options[@]}"
 }
 

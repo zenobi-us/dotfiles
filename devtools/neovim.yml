@@ -1,6 +1,6 @@
 ---
 depends:
-  - devtools.tooling
+  - devtools.mise
   - shells.mise
   - shells.zsh
 
@@ -46,4 +46,3 @@ actions:
   - action: git.clone
     repo_url: https://github.com/zenobi-us/astronvim.profile
     directory: "{{user.home_dir}}/.config/nvim"
-  

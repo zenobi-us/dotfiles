@@ -1,11 +1,10 @@
 #!/usr/bin/env zsh
 # store path to this directory
-export DOTFILE_ROOT="$HOME/.zsh"
+export HEREDIR="$(cd "$(dirname "$(readlink -f "${(%):-%N}")")" && pwd)"
+export DOTFILE_REPO_ROOT="$(git -C "${HEREDIR}" rev-parse --show-toplevel 2>/dev/null || echo "${HEREDIR}")"
+export DOTFILE_ROOT="$HEREDIR/.zsh"
+
 . "${DOTFILE_ROOT}/lib/loadparts.zsh";
-
-HEREDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)";
-export DOTFILE_REPO_ROOT="$(git -C "${HEREDIR}" rev-parse --show-toplevel 2>/dev/null || echo "${HEREDIR}")";
-
 
 if [[ "$SSH_TTY" && "$SHLVL" -eq 1 && ! -o LOGIN ]]; then
   load-parts "config.d/*__env"

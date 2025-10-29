@@ -1,6 +1,6 @@
 ---
 depends:
-  - devtools.tooling
+  - devtools.mise
   - shells.mise
   - shells.zsh
 
@@ -28,6 +28,18 @@ actions:
         remove-item -recurse -force -erroraction SilentlyContinue $env:LOCALAPPDATA/opencode
         new-item -path "$env:LOCALAPPDATA/opencode" -itemtype symboliclink -value "$(pwd)/devtools/files/nvim"
 
-  - action: directory.copy
+  - action: file.link
+    to: "{{user.home_dir}}/.config/opencode"
     from: opencode
-    to: "{{ user.home_dir }}/.config/opencode/"
+
+  - action: command.run
+    dir: "{{user.home_dir}}/.config/opencode"
+    command: mise
+    args:
+      - install
+
+  - action: command.run
+    dir: "{{user.home_dir}}/.config/opencode"
+    command: bun
+    args:
+      - install

@@ -1,10 +1,9 @@
 ---
-
 actions:
   - action: file.download
     where: os.name == "linux" || os.name == "macos"
-    from: 'https://mise.run'
-    to: '/tmp/mise.sh'
+    from: "https://mise.run"
+    to: "/tmp/mise.sh"
 
   - action: package.install
     where: os.name == "windows"
@@ -14,7 +13,7 @@ actions:
   - action: command.run
     where: os.name == "linux" || os.name == "macos"
     command: sh
-    args: 
+    args:
       - "/tmp/mise.sh"
 
   - action: file.remove
