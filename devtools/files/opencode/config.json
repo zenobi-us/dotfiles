@@ -1,24 +1,30 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "plugin": ["opencode-skills", "opencode-sessions"],
-    "mcp": {
-        "basic-memory": {
-            "enabled": true,
-            "type": "local",
-            "command": ["basic-memory", "mcp"]
-        }
-        // "atlassian": {
-        //     "type": "local",
-        //     "command": [
-        //         "mise",
-        //         "x",
-        //         "node@22",
-        //         "--",
-        //         "npx",
-        //         "-y",
-        //         "mcp-remote",
-        //         "https://mcp.atlassian.com/v1/sse"
-        //     ]
-        // }
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "opencode-skills",
+    "opencode-sessions"
+  ],
+  "mcp": {
+    "basicmemory": {
+       "type": "local",
+       "command": ["basic-memory", "mcp"]
+    },
+    "atlassian": {
+      "type": "local",
+      "command": [
+        "mise",
+        "x",
+        "node@22",
+        "--",
+        "npx",
+        "-y",
+        "mcp-remote",
+        "https://mcp.atlassian.com/v1/sse"
+      ]
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app"
     }
+  }
 }

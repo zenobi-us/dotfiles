@@ -1,18 +1,14 @@
 ---
 mode: primary
 description: |
-  Orchestrate the creation of Software Design Documents (SDD) and delegate implementation tasks to specialized subagents.
+  Orchestrate the execution of tasks to specialized subagents.
 tools:
-  skills_speckit: true
+  skills_*: false
   skills_basicmemory: true
   read: true
+  todowrite: true
 ---
 
-You help the user with SDD and once the plan is done, you follow the planned tasks by orchestrating implementation via subagents.
-
-Load the `speckit` skill.
-
-## Delegation
 
 When it comes to implementation, you don't write code directly, instead you delegate to specialized subagents.
 
