@@ -70,3 +70,32 @@ Provide a comprehensive overview of this specification. Explain the problem bein
 
 - Additional context or implementation notes
 - Important considerations for the development team
+
+---
+
+## VALIDATION (CRITICAL - Complete before Phase 2 Planning)
+
+**This section must be completed before moving to Phase 2.**
+
+See: `references/phase-01-initiation.md` for detailed Initiation phase guidance.
+
+**Validation Checklist:**
+
+- [ ] [Spec] has clear, detailed preamble explaining the problem and value
+- [ ] All functional requirements are specific and measurable
+- [ ] Non-functional requirements (performance, security, accessibility, scalability) are documented
+- [ ] Constraints are clearly defined
+- [ ] Assumptions are explicitly stated
+- [ ] Success criteria are specific and verifiable
+- [ ] All [NEEDS CLARIFICATION] tags have been resolved
+- [ ] Linked to parent [Epic] (itemId in links)
+- [ ] [Spec] has been formally approved with approver name and date
+- [ ] All stakeholders have reviewed and agreed
+- [ ] No open questions remain
+
+**If any item is not checked, DO NOT proceed to Phase 2 Planning. Return to refinement.**
+
+**Approval Gate:**
+- Approved by: { Name/Role }
+- Approval date: { YYYY-MM-DD }
+- Approver signature/confirmation: { How approval was confirmed }

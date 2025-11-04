@@ -89,3 +89,26 @@ Provide a high-level overview of the epic. This should give readers a quick unde
 ## Notes
 
 - Any additional context or important notes
+
+---
+
+## VALIDATION (CRITICAL - Complete before proceeding to Planning phase)
+
+**This section must be completed before moving to Phase 2.**
+
+See: `references/phase-01-initiation.md` for detailed Initiation phase guidance.
+
+**Validation Checklist:**
+
+- [ ] [Epic] clearly defines the large body of work
+- [ ] [Epic] objectives are measurable and achievable
+- [ ] Scope clearly defines In Scope and Out of Scope
+- [ ] Success criteria are specific and verifiable
+- [ ] Related [Spec] artifact exists and is linked in frontmatter (itemId)
+- [ ] [Spec] has been formally approved (approver name + date)
+- [ ] All stakeholders understand and agree with epic scope
+- [ ] No outstanding [NEEDS CLARIFICATION] tags
+- [ ] Timeline and resource estimates are documented
+- [ ] [Epic] is ready for breakdown into [Story] artifacts
+
+**If any item is not checked, DO NOT proceed to Phase 2 Planning. Return to Initiation phase.**

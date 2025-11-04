@@ -105,3 +105,43 @@ Continue with additional test cases...
 - Links to relevant documentation
 - Technical considerations
 - [NEEDS CLARIFICATION]: Any questions or clarifications needed
+
+---
+
+## VALIDATION (CRITICAL - Definition of Done)
+
+**This section MUST be completed for a [Task] to be considered "Done".**
+
+See: `references/phase-05-execution.md` for detailed Execution phase guidance.
+
+**Task Definition of Done Checklist:**
+
+- [ ] All implementation steps have been completed
+- [ ] Code follows the team's coding standards and conventions
+- [ ] Code has been reviewed and approved by team
+- [ ] All automated tests pass (unit, integration, e2e if applicable)
+- [ ] No console errors or warnings remain
+- [ ] Performance meets documented requirements (if any)
+- [ ] Accessibility requirements are met (if any)
+- [ ] Documentation and code comments have been updated
+- [ ] No known bugs or issues remain
+- [ ] [Work Log] has been updated with final status
+- [ ] Task status in frontmatter is updated to "Done"
+
+**If any item is not checked, this task is NOT done. Continue working.**
+
+**Phase 3 Planning Validation (before Delegation):**
+
+When planning phase creates this task:
+
+- [ ] [Task] is atomic (cannot be broken down further)
+- [ ] [Task] is linked to parent [Story] (storyId in frontmatter)
+- [ ] [Task] is linked to parent [Epic] (epicId in frontmatter)
+- [ ] Story points are assigned (1, 2, 3, 5, 8, or 13)
+- [ ] No [Task] has > 8 story points (break down if larger)
+- [ ] Implementation steps are clear and actionable
+- [ ] Definition of Done section is specific and measurable
+- [ ] All dependencies are documented (blocking/dependent relationships)
+- [ ] All [NEEDS CLARIFICATION] items resolved
+
+**If any item is not checked during planning, return to planning phase refinement.**

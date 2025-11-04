@@ -510,121 +510,127 @@ Links:
 
 ## What is the lifecycle of a project initiative?
 
-1. Initiation: Define the project at a high level, including objectives and scope. Create an [Epic] and associated [Spec].
-   - Identify [ProjectId] using `./scripts/get_project_id.sh`
-   - Create basicmemory project if it does not exist: `basicmemory_create_memory_project`
-   - Create an [Epic] artifact to represent the initiative using epic_template.md
-   - Create a [Spec] artifact to detail the requirements and objectives using spec_template.md. Mark any unknowns as [NEEDS CLARIFICATION]. [Research] artifacts can be created to gather more information.
-   - Link the [Spec] to the [Epic] using frontmatter links.
-   - Discuss and refine the [Spec] using a Conversational TodoList until all major points are resolved.
-   - **SPEC APPROVAL GATE** (REQUIRED before moving to Planning):
-     - Who approves: Product Owner, Tech Lead, or designated Spec Reviewer
-     - Approval method: Documented in [Spec] frontmatter (approver name + date)
-     - Approval criteria: All [NEEDS CLARIFICATION] tags resolved, all requirements stated, no open questions
-     - If not approved: Return to refinement, create [Research] artifacts as needed
-   - VALIDATION (Checklist must be completed before moving to next phase):
-     - [ ] Ensure the [Epic] has a linked [Spec].
-     - [ ] Ensure the [Spec] clearly outlines objectives and scope.
-     - [ ] No remaining [NEEDS CLARIFICATION] tags in the [Spec].
-     - [ ] Spec has been formally approved (documented with approver name + date).
-     - [ ] Conversational TodoList contains no unresolved topics.
+A project progresses through 7 phases. Each phase has validation gates that must be completed before proceeding.
 
-2. Planning: Break down the [Epic] into one or more [Story].
+**For detailed phase guidance, see the references/phase-*.md files:**
 
-- Create [Story] artifacts for each major feature or requirement outlined in the [Spec].
-- Link each [Story] to the [Epic] and [Spec].
-- Link any [Research] or [Decision] artifacts that influenced the creation of the [Story].
-- For each [Story], ensure it contains "user stories" that follow the BDD format (As a {user}, I want {feature}, so that {benefit}).
-- VALIDATION (Checklist must be completed before moving to next phase):
-  - [ ] Each [Story] is linked to the [Epic] and [Spec].
-  - [ ] Each [Story] contains "user stories" in BDD format.
-  - [ ] All major features from the [Spec] are covered by a [Story].
+### Phase 1: Initiation
+**Goal:** Define the project at a high level. Create [Epic] and [Spec] artifacts.
 
-3. Planning: Break down each [Story] into required amount of [Task].
+→ **See: `references/phase-01-initiation.md`**
 
-- Read the [Spec] and related [Story] to identify specific work items.
-- Consider any [Research] or [Decision] that impact [Task] creation.
-- A delivery schedule which outlines priorities for each [Task] will guide you declaring the order and dependencies.
-- Consider "story points" or effort estimates for each [Task] to help with scheduling and resource allocation. Use fibonacci sequence for "story points" (1, 2, 3, 5, 8, 13, etc.).
-- If a [Task] can be broken down further, split it into smaller atomic [Task]. Story points can help determine this:
-  - If a [Task] is more than 8 story points, consider breaking it down.
-  - If a [Task] is less than 3 story points, consider combining it with another related [Task]. But only if it doesn't violate the atomicity principle and if it makes sense contextually.
-- Create one or more [Task] artifacts for each [Story], detailing the specific work needed to implement the [Story].
-- Link each [Task] to its parent [Story] and [Epic].
-- **CRITICAL PATH ANALYSIS**: Identify blocking and dependent-on relationships between [Task]:
-  - "Blocking" = This [Task] must complete BEFORE other [Task] can start (blocks others)
-  - "Dependent on" = This [Task] relies on another [Task] completing first (blocks this one)
-  - Use frontmatter links to establish these relationships
-  - Identify critical path (longest chain of dependent [Task]) - this determines minimum project duration
-  - Flag any [Task] with 3+ blockers or dependencies as high-risk (escalate if needed)
-- VALIDATION (Checklist must be completed before moving to next phase):
-  - [ ] Delivered outputs of [Task] must usable and not interupt the user experience.
-  - [ ] [Task] much be atomic, meaning they cannot be broken down further.
-  - [ ] [Story] points must be assigned to each [Task].
-  - [ ] Each [Task] is linked to its parent [Story] and [Epic].
-  - [ ] Blocking/dependent relationships are documented for all interdependent [Task].
-  - [ ] Critical path has been identified and its duration documented.
-  - [ ] All [Story] have associated [Task] covering all implementation aspects.
+**Quick Steps:**
+- Identify [ProjectId] using `./scripts/get_project_id.sh`
+- Create [Epic] and [Spec] artifacts
+- Get Spec formally approved (Approval Gate - REQUIRED)
+- Complete validation checklist in epic_template.md and spec_template.md
 
-4. Delegation: Assign Tasks to team members.
+---
 
-**use `skills_superpowers_dispatching_parallel_agents` and `skills_superpowers_subagent_driven_development` to manage team members and assignments.**
+### Phase 2: Planning - Stories
+**Goal:** Break down [Epic] into [Story] artifacts representing user-facing features.
 
-- Review the list of [Task] created in the previous phase.
-- Consider the skills, availability, and workload of each team member.
-- Request the agent communicate via the `sessions*` tools.
-- Communicate assignments clearly, providing any necessary context or resources.
-- Delegate work [Task] to the most suitable team member using the `task` tools.
-- VALIDATION (Checklist must be completed before moving to next phase):
-  - [ ] All [Task] have been assigned to team members.
-  - [ ] Team members have acknowledged their assignments.
-  - [ ] No team member is overloaded with [Task] beyond their capacity.
+→ **See: `references/phase-02-planning-stories.md`**
 
-5. Execution: Implement the delegated [Task]. (Executed by subagent)
-   - [BLOCKED] If you are blocked. Stop and discuss with the user "[WARNING] BLOCKED"
-   - [STARTING] If you are starting a new [Task] use `skills_superpowers_using-git-worktrees` to create a new worktree for the [Task].
-   - [CONTINUING] If you are continuing a [Task] use `skills_superpowers_using-git-worktrees` to switch to the existing worktree for the [Task].
-   - Work on the [Task] as per the defined priorities and schedule.
-   - Update the status of [Task] as they progress (e.g., To Do, In Progress, Done, Blocked).
-   - Document any [Decision] made during implementation as [Decision] artifacts, linking them to relevant [Story] or [Task].
-   - Completion of each [task]
-   - If implementing a task uncovers unexpected information:
-     - New requirements: Stop and discuss with the user "[WARNING] EDGE CASE DISCOVERED"
-     - Unresolved decisions: Document them as [Decision] artifacts with status "Unresolved".
-     - Blockers: Update the [Task] status to "Blocked" and link to the blocking Task. Discuss with the user.
-   - VALIDATION (Checklist must be completed before moving to next phase):
-     - [ ] All [Task] are marked as Done.
-     - [ ] All work completed meets the Definition of Done criteria.
-     - [ ] Any Decisions made are documented and linked appropriately.
-     - [ ] No [Task] remain in Blocked status without resolution plans.
+**Quick Steps:**
+- Create [Story] artifacts for each major feature in [Spec]
+- Write user stories in BDD format
+- Link [Story] to [Epic] and [Spec]
+- Complete validation checklist in story_template.md
 
-6. Monitoring and Controlling: Oversee project progress and make adjustments as needed.
-   - Regularly review the status of all [Task] and overall project progress.
-   - Respond to questions and issues raised by team members via `sessions*` tools.
-   - Ensure that project stays on track with respect to timelines and objectives.
-   - Update [Project Artifacts] as necessary to reflect changes or new information.
-   - Identify any deviations from the plan and implement corrective actions:
-     - If a [Task] is falling behind schedule, discuss with the assigned team member to understand the cause and adjust timelines or resources as needed.
-     - If new risks are identified, document them and develop mitigation strategies.
-     - Communicate any significant changes to the project plan to all stakeholders (the user).
-   - VALIDATION (Checklist must be completed before moving to next phase):
-     - [ ] Regular status updates are provided to the user.
-     - [ ] Any deviations from the plan are documented and addressed.
-     - [ ] [Project Artifacts] are kept up-to-date with the latest information.
+---
 
-7. Closing and Retrospective: Complete the project and document lessons learned.
-   - Conduct a [Retrospective] meeting with team members to review the project outcomes.
-   - Review all completed [Task], [Story], and [Epic] artifacts.
-   - Document all lessons learned, including:
-     - What went well during the project.
-     - What could be improved for future projects.
-     - Key challenges and how they were resolved.
-   - Link any unresolved [Decision] artifacts (status "Unresolved") to the [Retrospective].
-   - Document any process improvements or recommendations for future initiatives.
-   - Create a [Retrospective] artifact summarizing the review and outcomes.
-   - Archive or close all related [Project Artifacts].
-   - VALIDATION (Checklist must be completed before closing project):
-     - [ ] [Retrospective] artifact has been created and documented.
-     - [ ] All unresolved [Decision] artifacts have been linked to the [Retrospective].
-     - [ ] Lessons learned have been documented comprehensively.
-     - [ ] [Project Artifacts] have been properly archived or closed.
+### Phase 3: Planning - Tasks
+**Goal:** Break down each [Story] into [Task] artifacts (specific, atomic work items).
+
+→ **See: `references/phase-03-planning-tasks.md`**
+
+**Quick Steps:**
+- Create [Task] artifacts for each [Story]
+- Assign story points using Fibonacci sequence (1, 2, 3, 5, 8, 13)
+- Identify blocking/dependent relationships
+- Perform critical path analysis
+- Complete validation checklist in task_template.md
+
+---
+
+### Phase 4: Delegation
+**Goal:** Assign [Task] artifacts to team members with clear context.
+
+→ **See: `references/phase-04-delegation.md`**
+
+**Quick Steps:**
+- Review all [Task] and team member skills/availability
+- Assign [Task] to appropriate team members
+- Get acknowledgment and commitment from assignees
+- Verify no one is overloaded
+
+**Uses:** `skills_superpowers_dispatching_parallel_agents` and `skills_superpowers_subagent_driven_development`
+
+---
+
+### Phase 5: Execution
+**Goal:** Implement assigned [Task] artifacts. (Usually executed by subagents assigned to tasks.)
+
+→ **See: `references/phase-05-execution.md`**
+
+**Quick Steps:**
+- For new [Task]: Read artifact, review context, create git worktree, begin work
+- For continuing [Task]: Review [Work Log], switch to worktree, continue work
+- Update [Task] status as work progresses (To Do → In Progress → In Review → Done)
+- Create [Decision] artifacts for decisions made
+- Complete task Definition of Done checklist in task_template.md
+
+**Escalation Points:**
+- "[WARNING] BLOCKED" - Stop and discuss if blocked
+- "[WARNING] EDGE CASE DISCOVERED" - Stop and discuss if new requirements emerge
+- Create [Decision] artifacts with status "Unresolved" for uncertain decisions
+
+**Uses:** `skills_superpowers_using-git-worktrees`
+
+---
+
+### Phase 6: Monitoring and Controlling
+**Goal:** Oversee progress and make adjustments. (Runs parallel to Phase 5, not sequential.)
+
+→ **See: `references/phase-06-monitoring.md`**
+
+**Quick Steps:**
+- Review [Task] status regularly (weekly or more)
+- Identify blockers and deviations from plan
+- Take corrective actions (adjust resources, timeline, unblock dependencies)
+- Update [Project Artifacts] to reflect current state
+- Communicate changes to stakeholders
+
+**Continuous Activity:** Monitoring happens throughout execution, not after.
+
+---
+
+### Phase 7: Closing and Retrospective
+**Goal:** Complete the project and document lessons learned.
+
+→ **See: `references/phase-07-closing.md`**
+
+**Quick Steps:**
+- Conduct retrospective meeting with team
+- Create [Retrospective] artifact documenting lessons learned
+- Link all unresolved [Decision] artifacts to [Retrospective]
+- Document process improvements with specific action items
+- Archive [Project Artifacts]
+- Complete validation checklist in retrospective_template.md
+
+---
+
+## Validation Checkpoints
+
+**Critical validation checkpoints enforce quality at each phase transition:**
+
+| Phase | Validation Location | Must Complete Before |
+|-------|---|---|
+| Phase 1 (Initiation) | epic_template.md + spec_template.md | Proceeding to Phase 2 |
+| Phase 2 (Stories) | story_template.md | Proceeding to Phase 3 |
+| Phase 3 (Tasks) | task_template.md | Proceeding to Phase 4 |
+| Phase 5 (Execution) | task_template.md "Definition of Done" | Marking task as Done |
+| Phase 7 (Closing) | retrospective_template.md | Project closure |
+
+**Each template includes a VALIDATION section that must be completed. Do not skip validation - it prevents problems downstream.**

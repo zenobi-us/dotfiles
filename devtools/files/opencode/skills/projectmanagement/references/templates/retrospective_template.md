@@ -161,3 +161,29 @@ Raw notes from the retrospective session:
 - **Retrospective Date:** { YYYY-MM-DD }
 - **Distribution:** { Who received this retrospective }
 - **Next Review Date:** { When we'll follow up on action items }
+
+---
+
+## VALIDATION (CRITICAL - Project Closure)
+
+**This section confirms project closure is complete.**
+
+See: `references/phase-07-closing.md` for detailed Closing phase guidance.
+
+**Closing Validation Checklist:**
+
+- [ ] All assigned [Task] have been marked as "Done"
+- [ ] All [Story] have been marked as "Done"
+- [ ] [Epic] status has been updated to "Completed"
+- [ ] [Retrospective] artifact has been created
+- [ ] All unresolved [Decision] artifacts are linked to this [Retrospective]
+- [ ] Lessons learned have been documented comprehensively
+- [ ] Process improvements are specific and actionable (not just "better communication")
+- [ ] Follow-up action items have assigned owners and target dates
+- [ ] [Retrospective] has been shared with team and stakeholders
+- [ ] All [Project Artifacts] are organized and accessible
+- [ ] Project team has been thanked and celebrated
+
+**If any item is not checked, project closure is NOT complete. Return to closing phase.**
+
+**Project is now officially closed when all items are checked.**

@@ -100,3 +100,30 @@ The story is considered complete when:
 
 - Story Points: { Based on Fibonacci sequence: 3, 5, 8, 13 }
 - Rationale: Why this estimate?
+
+---
+
+## VALIDATION (CRITICAL - Complete before Phase 3 Planning Tasks)
+
+**This section must be completed for every [Story] before proceeding to Phase 3.**
+
+See: `references/phase-02-planning-stories.md` for detailed Planning phase guidance.
+
+**Validation Checklist:**
+
+- [ ] [Story] is linked to parent [Epic] (itemId in links)
+- [ ] [Story] is linked to parent [Spec] (itemId in links)
+- [ ] [Story] contains one or more user stories in BDD format (As a..., I want..., So that...)
+- [ ] Each user story is specific (not vague like "improve performance")
+- [ ] Acceptance criteria are defined and measurable
+- [ ] Acceptance criteria can be tested/verified
+- [ ] No dependencies on other stories (or dependencies are documented)
+- [ ] Story points/estimation is documented
+- [ ] All [NEEDS CLARIFICATION] tags resolved
+- [ ] Product owner has reviewed and approved this story
+
+**If any item is not checked, DO NOT proceed to Phase 3. Return to refinement.**
+
+**Ready for Task Breakdown:**
+
+When this checklist is complete, this [Story] is ready to be broken down into [Task] artifacts in Phase 3.
