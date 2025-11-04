@@ -1,20 +1,19 @@
 ---
 title: { Project Name } - Retrospective
-type: Retrospective
 projectId: { ProjectId }
-epicId: { Parent Epic ID }
+status: { In Progress | Complete }
 retrospectiveDate: { YYYY-MM-DD }
 createdDate: { YYYY-MM-DD }
 participantCount: { Number of participants }
 links:
   - type: epic
-    itemId: { Associated Epic ID }
+    itemId: { 0001 }
+  - type: epic
+    itemId: { 0002 }
   - type: reviewed_decision
-    itemId: { Unresolved Decision ID 1 }
+    itemId: { 0001.3.0001 }
   - type: reviewed_decision
-    itemId: { Unresolved Decision ID 2 }
-  - type: action_item
-    itemId: { Action Item Task ID }
+    itemId: { 0001.3.0002 }
 ---
 
 ## Project Summary
@@ -72,18 +71,20 @@ Identify challenges, inefficiencies, and areas for improvement:
 
 ### Challenge 3: Continue as needed...
 
-## Key Decisions Reviewed
+## Unresolved Decisions Reviewed
 
-Document unresolved decisions that were revisited:
+Document unresolved decisions that were revisited during retrospective:
 
-### Decision 1: { Decision Title }
+### Decision 1
 
 - Why it remained unresolved
 - New information or context gained
 - Final resolution or decision
 - Action items resulting from this decision
 
-### Decision 2: Continue for other unresolved decisions...
+### Decision 2
+
+Continue for other unresolved decisions...
 
 ## Lessons Learned
 
@@ -160,7 +161,3 @@ Raw notes from the retrospective session:
 - **Retrospective Date:** { YYYY-MM-DD }
 - **Distribution:** { Who received this retrospective }
 - **Next Review Date:** { When we'll follow up on action items }
-
----
-
-**Note:** This retrospective should be shared with the team and relevant stakeholders. Action items should be tracked and reviewed in subsequent projects.

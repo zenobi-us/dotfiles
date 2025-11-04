@@ -1,11 +1,10 @@
 ---
 title: { Task Title }
-type: Task
 projectId: { ProjectId }
-storyId: { Parent Story ID }
-epicId: { Parent Epic ID }
+storyId: { 0001.4.0001 }
+epicId: { 0001 }
 status: { To Do | In Progress | In Review | Done | Blocked }
-storyPoints: { Number of story points }
+storyPoints: { 1 | 2 | 3 | 5 | 8 }
 priority: { Critical | High | Medium | Low }
 assignee: { Team member name or empty }
 dueDate: { YYYY-MM-DD or empty }
@@ -13,19 +12,19 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: story
-    itemId: { Parent Story ID }
+    itemId: { 0001.4.0001 }
   - type: epic
-    itemId: { Parent Epic ID }
+    itemId: { 0001 }
   - type: blocking
-    itemId: { Task ID that this task blocks }
+    itemId: { 0001.5.0002 }
   - type: dependent_on
-    itemId: { Task ID that this task depends on }
+    itemId: { 0001.5.0001 }
   - type: related_to
-    itemId: { Related Task ID }
-  - type: informed_by_research
-    itemId: { Research ID }
-  - type: influenced_by_decision
-    itemId: { Decision ID }
+    itemId: { 0001.5.0003 }
+  - type: informed_by
+    itemId: { 0001.2.0001 }
+  - type: influenced_by
+    itemId: { 0001.3.0001 }
 ---
 
 ## Task Description

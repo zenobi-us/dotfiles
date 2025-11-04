@@ -1,16 +1,20 @@
 ---
 title: { Research Title }
-type: Research
 projectId: { ProjectId }
+epicId: { 0001 }
 status: { In Progress | Complete | Inconclusive | Superseded }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 researchType: { Market | Technical | User | Competitive | Process | Other }
 links:
+  - type: epic
+    itemId: { 0001 }
   - type: informs_spec
-    itemId: { Spec ID that this research informs }
+    itemId: { 0001.1.0001 }
   - type: informs_decision
-    itemId: { Decision ID that this research informs }
+    itemId: { 0001.3.0001 }
+  - type: informs_story
+    itemId: { 0001.4.0001 }
 ---
 
 ## Research Objective
@@ -73,7 +77,6 @@ Provide deeper analysis of the findings:
 
 - What decision or action should follow from this research?
 - Are there related research efforts needed?
-- Link to associated Decision artifacts if applicable
 
 ## Appendix
 

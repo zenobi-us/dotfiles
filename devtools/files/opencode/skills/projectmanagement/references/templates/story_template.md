@@ -1,27 +1,26 @@
 ---
 title: { Story Title }
-type: Story
 projectId: { ProjectId }
-epicId: { Parent Epic ID }
-specId: { Parent Spec ID }
+epicId: { 0001 }
+specId: { 0001.1.0001 }
 status: { To Do | In Progress | In Review | Done | Cancelled }
-storyPoints: { Number of points or estimate }
+storyPoints: { 3 | 5 | 8 | 13 }
 priority: { Critical | High | Medium | Low }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: epic
-    itemId: { Linked Epic ID }
+    itemId: { 0001 }
   - type: spec
-    itemId: { Linked Spec ID }
+    itemId: { 0001.1.0001 }
   - type: contains_task
-    itemId: { Task ID 1 }
+    itemId: { 0001.5.0001 }
   - type: contains_task
-    itemId: { Task ID 2 }
-  - type: informed_by_research
-    itemId: { Research ID }
-  - type: influenced_by_decision
-    itemId: { Decision ID }
+    itemId: { 0001.5.0002 }
+  - type: informed_by
+    itemId: { 0001.2.0001 }
+  - type: influenced_by
+    itemId: { 0001.3.0001 }
 ---
 
 ## Scenario Description
@@ -99,5 +98,5 @@ The story is considered complete when:
 
 ## Effort Estimation
 
-- Story Points: { Based on Fibonacci sequence: 1, 2, 3, 5, 8, 13 }
+- Story Points: { Based on Fibonacci sequence: 3, 5, 8, 13 }
 - Rationale: Why this estimate?

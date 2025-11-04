@@ -1,20 +1,22 @@
 ---
 title: { Decision Title }
-type: Decision
 projectId: { ProjectId }
+epicId: { 0001 }
 status: { Pending | Decided | Unresolved | Superseded }
 decisionDate: { YYYY-MM-DD or null if pending }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
-  - type: influenced_by_research
-    itemId: { Research ID that informed this decision }
+  - type: epic
+    itemId: { 0001 }
+  - type: influenced_by
+    itemId: { 0001.2.0001 }
   - type: influences_spec
-    itemId: { Spec ID affected by this decision }
+    itemId: { 0001.1.0001 }
   - type: influences_story
-    itemId: { Story ID affected by this decision }
+    itemId: { 0001.4.0001 }
   - type: influences_task
-    itemId: { Task ID affected by this decision }
+    itemId: { 0001.5.0001 }
 ---
 
 ## Decision Context
@@ -106,5 +108,4 @@ Clearly define the problem or choice that needs to be addressed.
 ## Notes
 
 - Any additional context
-- References to related decisions
-- If status is "Unresolved", explain why and when this should be revisited
+- If status is "Unresolved", explain why and when this should be revisited in the Retrospective

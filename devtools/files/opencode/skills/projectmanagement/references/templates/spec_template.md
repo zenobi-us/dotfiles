@@ -1,25 +1,24 @@
 ---
 title: { Spec Title }
-type: Spec
 projectId: { ProjectId }
-epicId: { Parent Epic ID }
+epicId: { 0001 }
 status: { Draft | In Review | Approved | Superseded }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: epic
-    itemId: { Linked Epic ID }
+    itemId: { 0001 }
   - type: contains_story
-    itemId: { Story ID 1 }
-  - type: informed_by_research
-    itemId: { Research ID }
-  - type: influenced_by_decision
-    itemId: { Decision ID }
+    itemId: { 0001.4.0001 }
+  - type: informed_by
+    itemId: { 0001.2.0001 }
+  - type: influenced_by
+    itemId: { 0001.3.0001 }
 ---
 
 ## Preamble
 
-Provide a comprehensive overview of this specification. Explain the problem being solved, the business value, and how this spec relates to the broader initiative and epic.
+Provide a comprehensive overview of this specification. Explain the problem being solved, the business value, and how this spec relates to the broader epic and project.
 
 ## Requirements
 
@@ -59,20 +58,13 @@ Provide a comprehensive overview of this specification. Explain the problem bein
 
 - [ ] SC-1: Specific, measurable success indicator
 - [ ] SC-2: Validatable against the requirements
-- [ ] SC-3: Related to the overall project objectives
+- [ ] SC-3: Related to the overall epic objectives
 
 ## Open Questions
 
 - [NEEDS CLARIFICATION]: Question 1 that needs resolution
 - [NEEDS CLARIFICATION]: Question 2 to be answered
 - [NEEDS CLARIFICATION]: Any other unknowns
-
-## References
-
-- Link to related Research artifacts
-- Link to related Decision artifacts
-- Link to design documents or mockups
-- Reference external documentation
 
 ## Notes
 

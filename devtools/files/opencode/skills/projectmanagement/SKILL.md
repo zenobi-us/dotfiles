@@ -104,6 +104,153 @@ This skill has access to templates for each artifact type.
 
 When creating or updating [Project Artifacts], use the corresponding template to ensure consistency.
 
+## Artifact Storage Structure (Johnny Decimal System)
+
+### Naming Convention
+
+All artifacts follow the Johnny Decimal naming system for consistent organization and human readability:
+
+```
+{epicid}.{typecode}.{incrementid}-{typename}-{title}.md
+```
+
+**Components:**
+
+- **{epicid}** - Epic identifier (0001, 0002, 0003, ...) - zero-padded
+  - Identifies which epic the artifact belongs to
+  - ALL artifacts except Retrospective must have an epic
+  
+- **{typecode}** - Artifact type code (fixed)
+  - `1` = Spec
+  - `2` = Research
+  - `3` = Decision
+  - `4` = Story
+  - `5` = Task
+  - `9` = Retrospective (project-level only, epic id is 0000)
+
+- **{incrementid}** - Increment counter (0001, 0002, 0003, ...) - zero-padded
+  - Increments per epic+type combination
+  - Spec: Always 0001 per epic (one spec per epic)
+  - Research: 0001, 0002, 0003... per epic
+  - Decision: 0001, 0002, 0003... per epic
+  - Story: 0001, 0002, 0003... per epic
+  - Task: 0001, 0002, 0003... per epic
+
+- **{typename}** - Human-readable type (spec, research, decision, story, task, retrospective)
+
+- **{title}** - Human-readable title in kebab-case (e.g., user-authentication-requirements)
+
+### Examples
+
+| Artifact | Filename | Meaning |
+|----------|----------|---------|
+| Epic 1 Spec | `0001.1.0001-spec-user-auth-requirements.md` | Epic 1, Spec, 1st (only) |
+| Epic 1 Research | `0001.2.0001-research-oauth-alternatives.md` | Epic 1, Research, 1st |
+| Epic 1 Research | `0001.2.0002-research-jwt-best-practices.md` | Epic 1, Research, 2nd |
+| Epic 1 Decision | `0001.3.0001-decision-jwt-vs-session.md` | Epic 1, Decision, 1st |
+| Epic 1 Story | `0001.4.0001-story-user-login-flow.md` | Epic 1, Story, 1st |
+| Epic 1 Task | `0001.5.0001-task-database-schema-design.md` | Epic 1, Task, 1st |
+| Epic 2 Spec | `0002.1.0001-spec-api-security.md` | Epic 2, Spec, 1st (only) |
+| Retrospective | `0000.9.0001-retrospective-project-closeout.md` | Project-level, Retrospective |
+
+### Folder Structure
+
+All artifacts are stored in basicmemory under a project folder with the following structure:
+
+```
+basicmemory/{ProjectId}/
+│
+├── {epicid}-{epic-name}/                    # Epic folder (groups related artifacts)
+│   ├── {epicid}.1.0001-spec-{title}.md      # Spec file (only one per epic)
+│   ├── {epicid}.2.0001-research-{title}.md  # Research files (multiple)
+│   ├── {epicid}.2.0002-research-{title}.md
+│   ├── {epicid}.3.0001-decision-{title}.md  # Decision files (multiple)
+│   ├── {epicid}.3.0002-decision-{title}.md
+│   ├── {epicid}.4.0001-story-{title}.md     # Story files (multiple)
+│   └── {epicid}.4.0002-story-{title}.md
+│
+├── {epicid}.5.0001-task-{title}.md          # Task files at project level
+├── {epicid}.5.0002-task-{title}.md
+├── {epicid}.5.0003-task-{title}.md
+│
+└── 0000.9.0001-retrospective-{title}.md     # Project-level retrospective
+```
+
+**Why this structure:**
+
+- ✅ **Visual hierarchy by path:** Human immediately sees which epic, which type, which order
+- ✅ **Type visible in filename:** No ambiguity - `0001.3.0001` is clearly a decision
+- ✅ **Johnny Decimal standard:** Familiar numbering system, naturally sorts in order
+- ✅ **Epic folders group work:** All specs, research, decisions, stories for an epic in one folder
+- ✅ **Tasks at project level:** Not nested, but epic/story IDs in filename show relationships
+- ✅ **Human readable:** Title at end explains purpose at a glance
+- ✅ **Operational oversight:** Manager opens folder, immediately sees all work organized
+
+### Real Example: User Authentication System
+
+```
+basicmemory/user-auth-system/
+│
+├── 0001-user-authentication/
+│   ├── 0001.1.0001-spec-user-authentication-requirements.md
+│   ├── 0001.2.0001-research-oauth-alternatives.md
+│   ├── 0001.2.0002-research-jwt-best-practices.md
+│   ├── 0001.3.0001-decision-jwt-vs-session.md
+│   ├── 0001.3.0002-decision-password-hashing-algorithm.md
+│   ├── 0001.4.0001-story-user-login-flow.md
+│   ├── 0001.4.0002-story-user-password-reset.md
+│   └── 0001.4.0003-story-account-recovery.md
+│
+├── 0001.5.0001-task-design-database-schema.md
+├── 0001.5.0002-task-implement-jwt-middleware.md
+├── 0001.5.0003-task-create-login-api-endpoint.md
+├── 0001.5.0004-task-create-password-reset-endpoint.md
+├── 0001.5.0005-task-implement-frontend-auth-integration.md
+├── 0001.5.0006-task-add-session-timeout-logic.md
+│
+├── 0002-api-rate-limiting/
+│   ├── 0002.1.0001-spec-api-rate-limiting-requirements.md
+│   ├── 0002.2.0001-research-rate-limiting-strategies.md
+│   ├── 0002.3.0001-decision-token-bucket-vs-sliding-window.md
+│   ├── 0002.4.0001-story-implement-rate-limiting.md
+│   └── 0002.4.0002-story-add-rate-limit-headers.md
+│
+├── 0002.5.0001-task-implement-rate-limiter-middleware.md
+├── 0002.5.0002-task-add-redis-caching.md
+├── 0002.5.0003-task-monitoring-rate-limit-metrics.md
+│
+└── 0000.9.0001-retrospective-project-closeout.md
+```
+
+### Important Constraint: All Artifacts Belong to an Epic
+
+Every artifact MUST be associated with an epic (except Retrospective):
+
+- ✅ **Spec:** Always 1 per epic (0001.1.0001, 0002.1.0001, etc.)
+- ✅ **Research:** Multiple per epic (0001.2.0001, 0001.2.0002, etc.)
+- ✅ **Decision:** Multiple per epic (0001.3.0001, 0001.3.0002, etc.)
+- ✅ **Story:** Multiple per epic (0001.4.0001, 0001.4.0002, etc.)
+- ✅ **Task:** Multiple per epic (0001.5.0001, 0001.5.0002, etc.)
+- ✅ **Retrospective:** Project-level, not tied to specific epic (0000.9.0001)
+
+This ensures no orphaned artifacts and clear lineage from epic down to task.
+
+### Obsidian Linking
+
+All artifacts use Obsidian wiki-style linking for navigation and relationship management:
+
+```markdown
+[[{epicid}-{epic-name}]]           # Link to epic folder
+[[{epicid}.{typecode}.{incrementid}-{typename}-{title}]]  # Link to artifact
+```
+
+Examples:
+- `[[0001-user-authentication]]` - Links to Epic 1 folder
+- `[[0001.1.0001-spec-user-authentication-requirements]]` - Links to specific spec
+- `[[0001.5.0001-task-design-database-schema]]` - Links to specific task
+
+See individual artifact templates for linking examples in frontmatter and body.
+
 ## Effort Estimation Hierarchy
 
 [Epic], [Story], and [Task] have different estimation levels:
