@@ -198,13 +198,13 @@ Links:
 
 3. Planning: Break down each [Story] into required amount of [Task].
 
-- Read the [Spect] and related [Story] to identify specific work items.
+- Read the [Spec] and related [Story] to identify specific work items.
 - Consider any [Research] or [Decision] that impact [Task] creation.
 - A delivery schedule which outlines priorities for each [Task] will guide you declaring the order and dependencies.
 - Consider "story points" or effort estimates for each [Task] to help with scheduling and resource allocation. Use fibonacci sequence for "story points" (1, 2, 3, 5, 8, 13, etc.).
 - If a [Task] can be broken down further, split it into smaller atomic [Task]. Story points can help determine this:
   - If a [Task] is more than 8 story points, consider breaking it down.
-  - If a [Task] is less than 3 story points, consider combining it with another related [Task]. But only if it doesn't violate the atomicity principle.
+   - If a [Task] is less than 3 story points, consider combining it with another related [Task]. But only if it doesn't violate the atomicity principle and if it makes sense contextually.
 - Create one or more [Task] artifacts for each [Story], detailing the specific work needed to implement the Story.
 - Link each Task to its parent Story and Epic.
 - Identify links to other tasks where it blocks or depends on them.
@@ -255,7 +255,25 @@ Links:
      - If a Task is falling behind schedule, discuss with the assigned team member to understand the cause and adjust timelines or resources as needed.
      - If new risks are identified, document them and develop mitigation strategies.
      - Communicate any significant changes to the project plan to all stakeholders (the user).
-   - VALIDATION (Checklist must be completed before moving to next phase):
-     - [ ] Regular status updates are provided to the user.
-     - [ ] Any deviations from the plan are documented and addressed.
-     - [ ] Project artifacts are kept up-to-date with the latest information.
+    - VALIDATION (Checklist must be completed before moving to next phase):
+      - [ ] Regular status updates are provided to the user.
+      - [ ] Any deviations from the plan are documented and addressed.
+      - [ ] Project artifacts are kept up-to-date with the latest information.
+
+7. Closing and Retrospective: Complete the project and document lessons learned.
+   - Conduct a [Retrospective] meeting with team members to review the project outcomes.
+   - Review all completed [Task], [Story], and [Epic] artifacts.
+   - Document all lessons learned, including:
+     - What went well during the project.
+     - What could be improved for future projects.
+     - Key challenges and how they were resolved.
+   - Link any unresolved [Decision] artifacts (status "Unresolved") to the [Retrospective].
+   - Document any process improvements or recommendations for future initiatives.
+   - Create a [Retrospective] artifact summarizing the review and outcomes.
+   - Archive or close all related [Project Artifacts].
+   - VALIDATION (Checklist must be completed before closing project):
+     - [ ] [Retrospective] artifact has been created and documented.
+     - [ ] All unresolved [Decision] artifacts have been linked to the [Retrospective].
+     - [ ] Lessons learned have been documented comprehensively.
+     - [ ] Project artifacts have been properly archived or closed.
+
