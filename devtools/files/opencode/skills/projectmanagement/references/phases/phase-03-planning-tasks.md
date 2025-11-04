@@ -30,13 +30,19 @@
 
 Use this sequence for task estimation: **1, 2, 3, 5, 8, 13**
 
-**Guidelines:**
-- **1 point:** Trivial work, <2 hours
-- **2 points:** Simple work, ~2-4 hours
-- **3 points:** Moderate work, ~4-8 hours
-- **5 points:** Substantial work, ~8-16 hours
-- **8 points:** Large work, ~16-32 hours (consider breaking down)
-- **13 points:** Very large (should almost always break down)
+Story points represent **relative complexity and effort**, NOT hours or days. They account for:
+- Technical complexity
+- Uncertainty and risk
+- Dependencies and blockers
+- Required testing and verification
+
+**Guidelines for relative sizing:**
+- **1 point:** Trivial work - minimal complexity, high confidence, well-understood
+- **2 points:** Simple work - straightforward, low risk, standard patterns
+- **3 points:** Moderate work - some complexity, some unknowns, requires testing
+- **5 points:** Substantial work - notable complexity, moderate risk, good planning needed
+- **8 points:** Large work - high complexity, multiple unknowns, significant risk (consider breaking down)
+- **13 points:** Very large - should almost always be broken down into smaller tasks
 
 **Atomicity Rule:**
 - If task > 8 points → **MUST break it down** into smaller tasks
@@ -68,14 +74,16 @@ An atomic task:
 
 ## Critical Path Analysis
 
-The critical path is the longest chain of dependent tasks. This determines minimum project duration.
+The critical path is the longest chain of dependent tasks. This identifies the minimum project timeline **in terms of task dependencies**, NOT in hours or calendar time.
 
 **Steps:**
 1. Map all blocking/dependent relationships
 2. Find the longest chain from start to finish
-3. Sum story points on that chain = minimum duration (assuming 1 point = 4 hours of work)
-4. Any task on critical path is high-risk if delayed
-5. Any task with 3+ blockers is high-risk due to complexity
+3. Sum story points on that chain to understand complexity
+4. Any task on critical path is high-risk if delayed (blocks downstream work)
+5. Any task with 3+ blockers is high-risk due to dependency complexity
+
+**Why this matters:** The critical path shows which tasks **cannot be delayed** without pushing the entire project timeline. Prioritize these for early completion and close monitoring.
 
 **Example:**
 ```
@@ -83,8 +91,12 @@ Task 1 (5pts) → Task 2 (3pts) → Task 4 (8pts)
 Task 1 (5pts) → Task 3 (2pts) → Task 4 (8pts)
 Task 4 (8pts) → Task 5 (3pts)
 
-Critical path: Task 1 → Task 2 → Task 4 → Task 5 = 5+3+8+3 = 19 points = ~76 hours minimum
+Critical path: Task 1 → Task 2 → Task 4 → Task 5 
+Total complexity: 5+3+8+3 = 19 story points
+Duration impact: These 4 tasks cannot be parallelized; they must happen sequentially
 ```
+
+**Note:** Story points indicate complexity, not hours. Actual calendar time depends on team velocity, team size, parallelization opportunities, and unknowns encountered.
 
 ## Validation Checklist (CRITICAL - Complete before Phase 4)
 

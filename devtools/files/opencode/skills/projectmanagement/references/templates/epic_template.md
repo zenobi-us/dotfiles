@@ -82,7 +82,8 @@ Provide a high-level overview of the epic. This should give readers a quick unde
 
 ## Timeline and Resources
 
-- **Estimated Duration**: { e.g., 4-6 weeks }
+- **Estimated Duration**: { High-level estimate, e.g., 4-6 weeks }
+  - *Note: This is a rough timeline estimate. Actual duration will be determined by the sum of story point estimates for all [Story] artifacts, team velocity, and parallelization opportunities.*
 - **Team Size**: { e.g., 3-4 engineers }
 - **Key Stakeholders**: { List by role or name }
 

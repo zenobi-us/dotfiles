@@ -74,12 +74,14 @@ Criterion 2: [Next testable behavior]
 
 ## Tips for Success
 
-- ✅ Aim for stories that can be completed in 1-2 weeks (rough target)
+- ✅ Aim for stories in the **3-8 story point range** (typically implementable by one person in a few days of focused work)
 - ✅ Each story should be independently valuable (can ship independently if needed)
 - ✅ Use user feedback/research to shape stories
 - ✅ Link to [Decision] artifacts that shaped the story
 - ✅ Be specific in BDD format - "I want email notifications" vs "I want communication improvements"
 - ✅ Have product owner review stories before proceeding
+- ✅ Stories that are > 8 points should be broken down into multiple stories
+- ✅ Stories that are < 3 points are too small and should be combined with related work
 
 ## Next Step
 
