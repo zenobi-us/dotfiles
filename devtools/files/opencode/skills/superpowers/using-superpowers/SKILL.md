@@ -17,11 +17,11 @@ This is not negotiable. This is not optional. You cannot rationalize your way ou
 
 Before responding to ANY user message, you MUST complete this checklist:
 
-1. ☐ List available skills in your mind
-2. ☐ Ask yourself: "Does ANY skill match this request?"
-3. ☐ If yes → Use the Skill tool to read and run the skill file
-4. ☐ Announce which skill you're using
-5. ☐ Follow the skill exactly
+- [ ] List available skills in your mind
+- [ ] Ask yourself: "Does ANY skill match this request?"
+- [ ] If yes → Use the Skill tool to read and run the skill file
+- [ ] Announce which skill you're using
+- [ ] Follow the skill exactly
 
 **Responding WITHOUT completing this checklist = automatic failure.**
 
@@ -53,6 +53,7 @@ If a skill for your task exists, you must use it or you will fail at your task.
 If a skill has a checklist, YOU MUST create TodoWrite todos for EACH item.
 
 **Don't:**
+
 - Work through checklist mentally
 - Skip creating todos "to save time"
 - Batch multiple items into one todo
@@ -66,6 +67,7 @@ Before using a skill, announce that you are using it.
 "I'm using [Skill Name] to [what you're doing]."
 
 **Examples:**
+
 - "I'm using the brainstorming skill to refine your idea into a design."
 - "I'm using the test-driven-development skill to implement this feature."
 
@@ -85,16 +87,17 @@ Your human partner's specific instructions describe WHAT to do, not HOW.
 
 "Add X", "Fix Y" = the goal, NOT permission to skip brainstorming, TDD, or RED-GREEN-REFACTOR.
 
-**Red flags:** "Instruction was specific" • "Seems simple" • "Workflow is overkill"
+**Failure flags:** "Instruction was specific" • "Seems simple" • "Workflow is overkill"
 
 **Why:** Specific instructions mean clear requirements, which is when workflows matter MOST. Skipping process on "simple" tasks is how simple tasks become complex problems.
 
 ## Summary
 
 **Starting any task:**
+
 1. If relevant skill exists → Use the skill
-3. Announce you're using it
-4. Follow what it says
+2. Announce you're using it
+3. Follow what it says
 
 **Skill has checklist?** TodoWrite for every item.
 

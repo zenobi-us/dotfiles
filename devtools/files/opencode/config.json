@@ -1,15 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "opencode-skills",
-    "opencode-sessions"
-  ],
+  "plugin": ["opencode-skills", "opencode-sessions"],
   "mcp": {
     "basicmemory": {
-       "type": "local",
-       "command": ["basic-memory", "mcp"]
+      "type": "local",
+      "enabled": true,
+      "command": ["basic-memory", "mcp"]
     },
     "atlassian": {
+      "enabled": false,
       "type": "local",
       "command": [
         "mise",

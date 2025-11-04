@@ -17,60 +17,35 @@ Git worktrees create isolated workspaces sharing the same repository, allowing w
 
 Follow this priority order:
 
-### 1. Check Existing Directories
+### 1. Check Existing Directory
 
 ```bash
 # Check in priority order
-ls -d .worktrees 2>/dev/null     # Preferred (hidden)
-ls -d worktrees 2>/dev/null      # Alternative
+ls -d ../$(basename "$(git rev-parse --show-toplevel)").worktrees 2>/dev/null      # Alternative
 ```
 
-**If found:** Use that directory. If both exist, `.worktrees` wins.
+**If found:** Use that directory.
 
-### 2. Check CLAUDE.md
+### 2. Check AGENTS.md
 
 ```bash
-grep -i "worktree.*director" CLAUDE.md 2>/dev/null
+grep -i "worktree.*director" AGENTS.md 2>/dev/null
 ```
 
 **If preference specified:** Use it without asking.
 
 ### 3. Ask User
 
-If no directory exists and no CLAUDE.md preference:
+If no directory exists and no AGENTS.md preference:
 
 ```
 No worktree directory found. Where should I create worktrees?
 
-1. .worktrees/ (project-local, hidden)
-2. ~/.config/superpowers/worktrees/<project-name>/ (global location)
+1. ../$(basename "$(git rev-parse --show-toplevel)").worktrees (project-local, hidden)
+2. ~/.locals/share/<project-name>.worktrees/ (global location)
 
 Which would you prefer?
 ```
-
-## Safety Verification
-
-### For Project-Local Directories (.worktrees or worktrees)
-
-**MUST verify .gitignore before creating worktree:**
-
-```bash
-# Check if directory pattern in .gitignore
-grep -q "^\.worktrees/$" .gitignore || grep -q "^worktrees/$" .gitignore
-```
-
-**If NOT in .gitignore:**
-
-Per Jesse's rule "Fix broken things immediately":
-1. Add appropriate line to .gitignore
-2. Commit the change
-3. Proceed with worktree creation
-
-**Why critical:** Prevents accidentally committing worktree contents to repository.
-
-### For Global Directory (~/.config/superpowers/worktrees)
-
-No .gitignore verification needed - outside project entirely.
 
 ## Creation Steps
 
@@ -83,17 +58,9 @@ project=$(basename "$(git rev-parse --show-toplevel)")
 ### 2. Create Worktree
 
 ```bash
-# Determine full path
-case $LOCATION in
-  .worktrees|worktrees)
-    path="$LOCATION/$BRANCH_NAME"
-    ;;
-  ~/.config/superpowers/worktrees/*)
-    path="~/.config/superpowers/worktrees/$project/$BRANCH_NAME"
-    ;;
-esac
-
 # Create worktree with new branch
+path="../${project}.worktrees/${feature_name}"
+mkdir -p "$path"
 git worktree add "$path" -b "$BRANCH_NAME"
 cd "$path"
 ```
@@ -103,8 +70,15 @@ cd "$path"
 Auto-detect and run appropriate setup:
 
 ```bash
-# Node.js
+# Node.js (npm)
 if [ -f package.json ]; then npm install; fi
+# Node.js (yarn)
+if [ -f package.json ]; then yarn install; fi
+# Node.js (bun)
+if [ -f package.json ]; then bun install; fi
+# Node.js (pnpm)
+if [ -f package.json ]; then pnpm install; fi
+
 
 # Rust
 if [ -f Cargo.toml ]; then cargo build; fi
@@ -143,31 +117,28 @@ Ready to implement <feature-name>
 
 ## Quick Reference
 
-| Situation | Action |
-|-----------|--------|
-| `.worktrees/` exists | Use it (verify .gitignore) |
-| `worktrees/` exists | Use it (verify .gitignore) |
-| Both exist | Use `.worktrees/` |
-| Neither exists | Check CLAUDE.md → Ask user |
-| Directory not in .gitignore | Add it immediately + commit |
-| Tests fail during baseline | Report failures + ask |
-| No package.json/Cargo.toml | Skip dependency install |
+| Situation                   | Action                            |
+| --------------------------- | --------------------------------- |
+| No worktrees yet            | Use `../<projectname>.worktrees/` |
+| Neither exists              | Check AGENTS.md → Ask user        |
+| Directory not in .gitignore | Add it immediately + commit       |
+| Tests fail during baseline  | Report failures + ask             |
+| No package.json/Cargo.toml  | Skip dependency install           |
 
 ## Common Mistakes
 
-**Skipping .gitignore verification**
-- **Problem:** Worktree contents get tracked, pollute git status
-- **Fix:** Always grep .gitignore before creating project-local worktree
-
 **Assuming directory location**
+
 - **Problem:** Creates inconsistency, violates project conventions
-- **Fix:** Follow priority: existing > CLAUDE.md > ask
+- **Fix:** Follow priority: existing > AGENTS.md > ask
 
 **Proceeding with failing tests**
+
 - **Problem:** Can't distinguish new bugs from pre-existing issues
 - **Fix:** Report failures, get explicit permission to proceed
 
 **Hardcoding setup commands**
+
 - **Problem:** Breaks on projects using different tools
 - **Fix:** Auto-detect from project files (package.json, etc.)
 
@@ -176,13 +147,12 @@ Ready to implement <feature-name>
 ```
 You: I'm using the using-git-worktrees skill to set up an isolated workspace.
 
-[Check .worktrees/ - exists]
-[Verify .gitignore - contains .worktrees/]
-[Create worktree: git worktree add .worktrees/auth -b feature/auth]
+[Check ../<projectname>.worktrees/ - exists]
+[Create worktree: git worktree add ../<projectname>.worktrees/auth -b feature/auth]
 [Run npm install]
 [Run npm test - 47 passing]
 
-Worktree ready at /Users/jesse/myproject/.worktrees/auth
+Worktree ready at /Users/jesse/myproject.worktrees/auth
 Tests passing (47 tests, 0 failures)
 Ready to implement auth feature
 ```
@@ -190,14 +160,16 @@ Ready to implement auth feature
 ## Red Flags
 
 **Never:**
-- Create worktree without .gitignore verification (project-local)
+
+- Create worktree within existing workspace
 - Skip baseline test verification
 - Proceed with failing tests without asking
 - Assume directory location when ambiguous
-- Skip CLAUDE.md check
+- Skip AGENTS.md check
 
 **Always:**
-- Follow directory priority: existing > CLAUDE.md > ask
+
+- Follow directory priority: existing > AGENTS.md > ask
 - Verify .gitignore for project-local
 - Auto-detect and run project setup
 - Verify clean test baseline
@@ -205,9 +177,11 @@ Ready to implement auth feature
 ## Integration
 
 **Called by:**
+
 - **brainstorming** (Phase 4) - REQUIRED when design is approved and implementation follows
 - Any skill needing isolated workspace
 
 **Pairs with:**
+
 - **finishing-a-development-branch** - REQUIRED for cleanup after work complete
 - **executing-plans** or **subagent-driven-development** - Work happens in this worktree

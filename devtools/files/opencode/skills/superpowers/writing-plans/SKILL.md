@@ -3,6 +3,8 @@ name: writing-plans
 description: Use when design is complete and you need detailed implementation tasks for engineers with zero codebase context - creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps assuming engineer has minimal domain knowledge
 ---
 
+If there is no spec yet, do NOT use this skill. Use brainstorming or specification skills first.
+
 # Writing Plans
 
 ## Overview
@@ -31,6 +33,9 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 **Every plan MUST start with this header:**
 
 ```markdown
+---
+insert frontmatter here
+---
 # [Feature Name] Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
@@ -40,9 +45,8 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 **Architecture:** [2-3 sentences about approach]
 
 **Tech Stack:** [Key technologies/libraries]
-
----
 ```
+
 
 ## Task Structure
 
