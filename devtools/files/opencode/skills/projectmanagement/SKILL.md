@@ -336,90 +336,11 @@ Each artifact type has valid status progressions that guide state management thr
 
 → **See: `references/status-flow.md`** for detailed status flow diagrams and descriptions for all artifact types (Epic, Spec, Story, Task, Decision, Research, Retrospective).
 
-### [Task] relationship schema
+## Artifact Schemas and Content Structure
 
-```markdown
----
-title: { Task Title }
-projectId: { ProjectId }
-storyId: { Parent Story ID }
-epicId: { Parent Epic ID }
-status: { To Do | In Progress | Done | Blocked }
-storyPoints: { Number of story points }
-links:
-  - type: blocking | dependent_on | related_to | duplicate_of
-    ItemItem: { Linked Task ID }
-  - type: influenced_by
-    ItemItem: { Research or Decision ID }
----
+All artifacts follow consistent schema patterns for organization and linking. Each artifact type has specific frontmatter requirements and content sections.
 
-{Task Body}
-```
-
-### [Task] content
-
-The body of a [Task] is different depending on the type.
-
-**[EPIC]**
-
-Links:
-
-- to a single [Spec].
-- to one or more [Story].
-- to one or more [Task] via linked [Story].
-
-- Preamble.
-- (heading) Objectives
-- (heading) Scope
-- (heading) Success Criteria
-
-**[SPEC]**
-
-Links:
-
-- to a single [Epic].
-- to one or more [Story].
-- to one or more [Research].
-- to one or more [Decision].
-
-- Detailed preamble.
-- (heading) Requirements
-- (heading) Objectives
-- (heading) Constraints
-- (heading) Assumptions
-- (heading) Success Criteria
-
-**[STORY]**
-
-Links:
-
-- to a single [Epic].
-- to a single [Spec].
-- to one or more [Task].
-- to one or more [Research].
-- to one or more [Decision].
-
-- Scenario description.
-- (heading) User Stories (in BDD format)
-- (heading) Acceptance Criteria
-
-**[TASK]**
-
-Links:
-
-- to a single [Story].
-- to a single [Epic].
-- to other [Task] (blocking, dependent on, related to, duplicate of).
-- to one or more [Research].
-- to one or more [Decision].
-
-- Specific work item description.
-- (heading) Implementation Steps
-- (heading) Out of Scope
-- (heading) Definition of Done
-- (heading) Notes
-- (heading) Work Log (to be filled during execution)
-- (heading) QA Testing Steps (to be filled out during execution)
+→ **See: `references/schema.md`** for detailed task relationship schema, artifact content structure, and link type definitions for all artifact types (Epic, Spec, Story, Task).
 
 ## What is the lifecycle of a project initiative?
 
