@@ -512,12 +512,12 @@ Links:
 
 A project progresses through 7 phases. Each phase has validation gates that must be completed before proceeding.
 
-**For detailed phase guidance, see the references/phase-*.md files:**
+**For detailed phase guidance, see the references/phases/phase-*.md files:**
 
 ### Phase 1: Initiation
 **Goal:** Define the project at a high level. Create [Epic] and [Spec] artifacts.
 
-→ **See: `references/phase-01-initiation.md`**
+→ **See: `references/phases/phase-01-initiation.md`**
 
 **Quick Steps:**
 - Identify [ProjectId] using `./scripts/get_project_id.sh`
@@ -530,7 +530,7 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ### Phase 2: Planning - Stories
 **Goal:** Break down [Epic] into [Story] artifacts representing user-facing features.
 
-→ **See: `references/phase-02-planning-stories.md`**
+→ **See: `references/phases/phase-02-planning-stories.md`**
 
 **Quick Steps:**
 - Create [Story] artifacts for each major feature in [Spec]
@@ -543,7 +543,7 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ### Phase 3: Planning - Tasks
 **Goal:** Break down each [Story] into [Task] artifacts (specific, atomic work items).
 
-→ **See: `references/phase-03-planning-tasks.md`**
+→ **See: `references/phases/phase-03-planning-tasks.md`**
 
 **Quick Steps:**
 - Create [Task] artifacts for each [Story]
@@ -557,7 +557,7 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ### Phase 4: Delegation
 **Goal:** Assign [Task] artifacts to team members with clear context.
 
-→ **See: `references/phase-04-delegation.md`**
+→ **See: `references/phases/phase-04-delegation.md`**
 
 **Quick Steps:**
 - Review all [Task] and team member skills/availability
@@ -572,7 +572,7 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ### Phase 5: Execution
 **Goal:** Implement assigned [Task] artifacts. (Usually executed by subagents assigned to tasks.)
 
-→ **See: `references/phase-05-execution.md`**
+→ **See: `references/phases/phase-05-execution.md`**
 
 **Quick Steps:**
 - For new [Task]: Read artifact, review context, create git worktree, begin work
@@ -593,7 +593,7 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ### Phase 6: Monitoring and Controlling
 **Goal:** Oversee progress and make adjustments. (Runs parallel to Phase 5, not sequential.)
 
-→ **See: `references/phase-06-monitoring.md`**
+→ **See: `references/phases/phase-06-monitoring.md`**
 
 **Quick Steps:**
 - Review [Task] status regularly (weekly or more)
@@ -609,7 +609,7 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ### Phase 7: Closing and Retrospective
 **Goal:** Complete the project and document lessons learned.
 
-→ **See: `references/phase-07-closing.md`**
+→ **See: `references/phases/phase-07-closing.md`**
 
 **Quick Steps:**
 - Conduct retrospective meeting with team
