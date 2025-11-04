@@ -15,7 +15,7 @@ Use this skill when:
 
 - Managing a project or major initiative with multiple phases
 - Need to coordinate work across team members
-- Creating Epics, Specs, Stories, or Tasks
+- Creating [Epics], [Spec], [Story], or [Task]
 - Organizing artifacts consistently across concurrent projects
 - Need to track dependencies, decisions, and research
 - Running retrospectives or closing out projects
@@ -119,7 +119,7 @@ All artifacts follow the Johnny Decimal naming system for consistent organizatio
 - **{epicid}** - Epic identifier (0001, 0002, 0003, ...) - zero-padded
   - Identifies which epic the artifact belongs to
   - ALL artifacts except Retrospective must have an epic
-  
+
 - **{typecode}** - Artifact type code (fixed)
   - `1` = Spec
   - `2` = Research
@@ -142,16 +142,16 @@ All artifacts follow the Johnny Decimal naming system for consistent organizatio
 
 ### Examples
 
-| Artifact | Filename | Meaning |
-|----------|----------|---------|
-| Epic 1 Spec | `0001.1.0001-spec-user-auth-requirements.md` | Epic 1, Spec, 1st (only) |
-| Epic 1 Research | `0001.2.0001-research-oauth-alternatives.md` | Epic 1, Research, 1st |
-| Epic 1 Research | `0001.2.0002-research-jwt-best-practices.md` | Epic 1, Research, 2nd |
-| Epic 1 Decision | `0001.3.0001-decision-jwt-vs-session.md` | Epic 1, Decision, 1st |
-| Epic 1 Story | `0001.4.0001-story-user-login-flow.md` | Epic 1, Story, 1st |
-| Epic 1 Task | `0001.5.0001-task-database-schema-design.md` | Epic 1, Task, 1st |
-| Epic 2 Spec | `0002.1.0001-spec-api-security.md` | Epic 2, Spec, 1st (only) |
-| Retrospective | `0000.9.0001-retrospective-project-closeout.md` | Project-level, Retrospective |
+| Artifact        | Filename                                        | Meaning                      |
+| --------------- | ----------------------------------------------- | ---------------------------- |
+| Epic 1 Spec     | `0001.1.0001-spec-user-auth-requirements.md`    | Epic 1, Spec, 1st (only)     |
+| Epic 1 Research | `0001.2.0001-research-oauth-alternatives.md`    | Epic 1, Research, 1st        |
+| Epic 1 Research | `0001.2.0002-research-jwt-best-practices.md`    | Epic 1, Research, 2nd        |
+| Epic 1 Decision | `0001.3.0001-decision-jwt-vs-session.md`        | Epic 1, Decision, 1st        |
+| Epic 1 Story    | `0001.4.0001-story-user-login-flow.md`          | Epic 1, Story, 1st           |
+| Epic 1 Task     | `0001.5.0001-task-database-schema-design.md`    | Epic 1, Task, 1st            |
+| Epic 2 Spec     | `0002.1.0001-spec-api-security.md`              | Epic 2, Spec, 1st (only)     |
+| Retrospective   | `0000.9.0001-retrospective-project-closeout.md` | Project-level, Retrospective |
 
 ### Folder Structure
 
@@ -220,7 +220,7 @@ basicmemory/user-auth-system/
 └── 0000.9.0001-retrospective-project-closeout.md
 ```
 
-**⚠️ FAILURE MODE:** Notice that ALL tasks (0001.5.*, 0002.5.*) are stored INSIDE their epic folders, NOT at the project level. Tasks at the project root level with no epic folder are an ERROR - they indicate orphaned work with unclear ownership and dependencies.
+**⚠️ FAILURE MODE:** Notice that ALL tasks (0001.5._, 0002.5._) are stored INSIDE their epic folders, NOT at the project level. Tasks at the project root level with no epic folder are an ERROR - they indicate orphaned work with unclear ownership and dependencies.
 
 ### Important Constraint: All Artifacts Belong to an Epic
 
@@ -240,11 +240,12 @@ This ensures no orphaned artifacts and clear lineage from epic down to task.
 All artifacts use Obsidian wiki-style linking for navigation and relationship management:
 
 ```markdown
-[[{epicid}-{epic-name}]]           # Link to epic folder
-[[{epicid}.{typecode}.{incrementid}-{typename}-{title}]]  # Link to artifact
+[[{epicid}-{epic-name}]] # Link to epic folder
+[[{epicid}.{typecode}.{incrementid}-{typename}-{title}]] # Link to artifact
 ```
 
 Examples:
+
 - `[[0001-user-authentication]]` - Links to Epic 1 folder
 - `[[0001.1.0001-spec-user-authentication-requirements]]` - Links to specific spec
 - `[[0001.5.0001-task-design-database-schema]]` - Links to specific task
@@ -346,14 +347,16 @@ All artifacts follow consistent schema patterns for organization and linking. Ea
 
 A project progresses through 7 phases. Each phase has validation gates that must be completed before proceeding.
 
-**For detailed phase guidance, see the references/phases/phase-*.md files:**
+**For detailed phase guidance, see the references/phases/phase-\*.md files:**
 
 ### Phase 1: Initiation
+
 **Goal:** Define the project at a high level. Create [Epic] and [Spec] artifacts.
 
 → **See: `references/phases/phase-01-initiation.md`**
 
 **Quick Steps:**
+
 - Identify [ProjectId] using `./scripts/get_project_id.sh`
 - Create [Epic] and [Spec] artifacts
 - Get Spec formally approved (Approval Gate - REQUIRED)
@@ -362,11 +365,13 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ---
 
 ### Phase 2: Planning - Stories
+
 **Goal:** Break down [Epic] into [Story] artifacts representing user-facing features.
 
 → **See: `references/phases/phase-02-planning-stories.md`**
 
 **Quick Steps:**
+
 - Create [Story] artifacts for each major feature in [Spec]
 - Write user stories in BDD format
 - Link [Story] to [Epic] and [Spec]
@@ -375,11 +380,13 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ---
 
 ### Phase 3: Planning - Tasks
+
 **Goal:** Break down each [Story] into [Task] artifacts (specific, atomic work items).
 
 → **See: `references/phases/phase-03-planning-tasks.md`**
 
 **Quick Steps:**
+
 - Create [Task] artifacts for each [Story]
 - Assign story points using Fibonacci sequence (1, 2, 3, 5, 8, 13)
 - Identify blocking/dependent relationships
@@ -389,11 +396,13 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ---
 
 ### Phase 4: Delegation
+
 **Goal:** Assign [Task] artifacts to team members with clear context.
 
 → **See: `references/phases/phase-04-delegation.md`**
 
 **Quick Steps:**
+
 - Review all [Task] and team member skills/availability
 - Assign [Task] to appropriate team members
 - Get acknowledgment and commitment from assignees
@@ -404,11 +413,13 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ---
 
 ### Phase 5: Execution
+
 **Goal:** Implement assigned [Task] artifacts. (Usually executed by subagents assigned to tasks.)
 
 → **See: `references/phases/phase-05-execution.md`**
 
 **Quick Steps:**
+
 - For new [Task]: Read artifact, review context, create git worktree, begin work
 - For continuing [Task]: Review [Work Log], switch to worktree, continue work
 - Update [Task] status as work progresses (To Do → In Progress → In Review → Done)
@@ -416,6 +427,7 @@ A project progresses through 7 phases. Each phase has validation gates that must
 - Complete task Definition of Done checklist in task_template.md
 
 **Escalation Points:**
+
 - "[WARNING] BLOCKED" - Stop and discuss if blocked
 - "[WARNING] EDGE CASE DISCOVERED" - Stop and discuss if new requirements emerge
 - Create [Decision] artifacts with status "Unresolved" for uncertain decisions
@@ -425,11 +437,13 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ---
 
 ### Phase 6: Monitoring and Controlling
+
 **Goal:** Oversee progress and make adjustments. (Runs parallel to Phase 5, not sequential.)
 
 → **See: `references/phases/phase-06-monitoring.md`**
 
 **Quick Steps:**
+
 - Review [Task] status regularly (weekly or more)
 - Identify blockers and deviations from plan
 - Take corrective actions (adjust resources, timeline, unblock dependencies)
@@ -441,11 +455,13 @@ A project progresses through 7 phases. Each phase has validation gates that must
 ---
 
 ### Phase 7: Closing and Retrospective
+
 **Goal:** Complete the project and document lessons learned.
 
 → **See: `references/phases/phase-07-closing.md`**
 
 **Quick Steps:**
+
 - Conduct retrospective meeting with team
 - Create [Retrospective] artifact documenting lessons learned
 - Link all unresolved [Decision] artifacts to [Retrospective]
@@ -459,12 +475,12 @@ A project progresses through 7 phases. Each phase has validation gates that must
 
 **Critical validation checkpoints enforce quality at each phase transition:**
 
-| Phase | Validation Location | Must Complete Before |
-|-------|---|---|
-| Phase 1 (Initiation) | epic_template.md + spec_template.md | Proceeding to Phase 2 |
-| Phase 2 (Stories) | story_template.md | Proceeding to Phase 3 |
-| Phase 3 (Tasks) | task_template.md | Proceeding to Phase 4 |
-| Phase 5 (Execution) | task_template.md "Definition of Done" | Marking task as Done |
-| Phase 7 (Closing) | retrospective_template.md | Project closure |
+| Phase                | Validation Location                   | Must Complete Before  |
+| -------------------- | ------------------------------------- | --------------------- |
+| Phase 1 (Initiation) | epic_template.md + spec_template.md   | Proceeding to Phase 2 |
+| Phase 2 (Stories)    | story_template.md                     | Proceeding to Phase 3 |
+| Phase 3 (Tasks)      | task_template.md                      | Proceeding to Phase 4 |
+| Phase 5 (Execution)  | task_template.md "Definition of Done" | Marking task as Done  |
+| Phase 7 (Closing)    | retrospective_template.md             | Project closure       |
 
 **Each template includes a VALIDATION section that must be completed. Do not skip validation - it prevents problems downstream.**
