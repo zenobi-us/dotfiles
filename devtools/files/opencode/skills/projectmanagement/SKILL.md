@@ -199,28 +199,28 @@ basicmemory/user-auth-system/
 │   ├── 0001.3.0002-decision-password-hashing-algorithm.md
 │   ├── 0001.4.0001-story-user-login-flow.md
 │   ├── 0001.4.0002-story-user-password-reset.md
-│   └── 0001.4.0003-story-account-recovery.md
-│
-├── 0001.5.0001-task-design-database-schema.md
-├── 0001.5.0002-task-implement-jwt-middleware.md
-├── 0001.5.0003-task-create-login-api-endpoint.md
-├── 0001.5.0004-task-create-password-reset-endpoint.md
-├── 0001.5.0005-task-implement-frontend-auth-integration.md
-├── 0001.5.0006-task-add-session-timeout-logic.md
+│   ├── 0001.4.0003-story-account-recovery.md
+│   ├── 0001.5.0001-task-design-database-schema.md
+│   ├── 0001.5.0002-task-implement-jwt-middleware.md
+│   ├── 0001.5.0003-task-create-login-api-endpoint.md
+│   ├── 0001.5.0004-task-create-password-reset-endpoint.md
+│   ├── 0001.5.0005-task-implement-frontend-auth-integration.md
+│   └── 0001.5.0006-task-add-session-timeout-logic.md
 │
 ├── 0002-api-rate-limiting/
 │   ├── 0002.1.0001-spec-api-rate-limiting-requirements.md
 │   ├── 0002.2.0001-research-rate-limiting-strategies.md
 │   ├── 0002.3.0001-decision-token-bucket-vs-sliding-window.md
 │   ├── 0002.4.0001-story-implement-rate-limiting.md
-│   └── 0002.4.0002-story-add-rate-limit-headers.md
-│
-├── 0002.5.0001-task-implement-rate-limiter-middleware.md
-├── 0002.5.0002-task-add-redis-caching.md
-├── 0002.5.0003-task-monitoring-rate-limit-metrics.md
+│   ├── 0002.4.0002-story-add-rate-limit-headers.md
+│   ├── 0002.5.0001-task-implement-rate-limiter-middleware.md
+│   ├── 0002.5.0002-task-add-redis-caching.md
+│   └── 0002.5.0003-task-monitoring-rate-limit-metrics.md
 │
 └── 0000.9.0001-retrospective-project-closeout.md
 ```
+
+**⚠️ FAILURE MODE:** Notice that ALL tasks (0001.5.*, 0002.5.*) are stored INSIDE their epic folders, NOT at the project level. Tasks at the project root level with no epic folder are an ERROR - they indicate orphaned work with unclear ownership and dependencies.
 
 ### Important Constraint: All Artifacts Belong to an Epic
 
