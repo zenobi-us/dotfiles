@@ -53,12 +53,33 @@ If you're starting a new [Task]:
   - "In Progress" → "Blocked" if something stops progress
 
 - **If you encounter unexpected information:**
-  - **New requirements emerge:** Stop and discuss "[WARNING] EDGE CASE DISCOVERED"
-  - **Unresolved decisions needed:** Create [Decision] artifact with status "Unresolved"
-  - **Blockers encountered:** Update status to "Blocked", document what's blocking, discuss with manager
-  - **Design issues discovered:** Create [Decision] artifact, link from [Task]
+   - **New requirements emerge:** Stop and discuss "[WARNING] EDGE CASE DISCOVERED"
+   - **Unresolved decisions needed:** Create [Decision] artifact with status "Unresolved"
+   - **Blockers encountered:** Update status to "Blocked", document what's blocking, discuss with manager
+   - **Design issues discovered:** Create [Decision] artifact, link from [Task]
+   - **Research contradictions discovered:** See "[WARNING] RESEARCH CONTRADICTION DISCOVERED" below
 
 - **Document decisions made:** All decisions should be recorded as [Decision] artifacts and linked from the [Task]
+
+## [WARNING] RESEARCH CONTRADICTION DISCOVERED
+
+If implementation reveals that prior [Research] was incorrect, incomplete, or based on wrong assumptions:
+
+1. **STOP the current work immediately**
+2. **Document what was discovered:**
+   - What assumption from research turned out to be wrong?
+   - What evidence contradicts the research?
+   - What are the implications for the current task and related tasks?
+3. **Create new [Research] artifact** documenting the finding with status "Complete"
+4. **Create [Decision] artifact** with status "Unresolved":
+   - Decision: "Accept the new finding and adjust approach" OR "Revert to original plan"
+   - Link to both old and new research
+5. **Escalate to team lead immediately:**
+   - This may impact other tasks on the critical path
+   - Dependencies may need to be re-evaluated
+   - Other stories/tasks may be built on the incorrect research
+6. **Update original [Research] artifact** status to "Superseded" with note linking to new research
+7. **Do not resume work on this task** until Decision is made and approach is clarified
 
 ### Continuing a Task
 

@@ -6,17 +6,18 @@ status: { Pending | Decided | Unresolved | Superseded }
 decisionDate: { YYYY-MM-DD or null if pending }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
+researchBasis: { 0001.2.0001-research-title } # Optional: Link to research that informed this decision
 links:
   - type: epic
-    itemId: { 0001 }
+    target: { 0001-epic-name }
   - type: influenced_by
-    itemId: { 0001.2.0001 }
+    target: { 0001.2.0001-research-title }
   - type: influences_spec
-    itemId: { 0001.1.0001 }
+    target: { 0001.1.0001-spec-title }
   - type: influences_story
-    itemId: { 0001.4.0001 }
+    target: { 0001.4.0001-story-title }
   - type: influences_task
-    itemId: { 0001.5.0001 }
+    target: { 0001.5.0001-task-title }
 ---
 
 ## Decision Context
@@ -109,3 +110,30 @@ Clearly define the problem or choice that needs to be addressed.
 
 - Any additional context
 - If status is "Unresolved", explain why and when this should be revisited in the Retrospective
+
+---
+
+## VALIDATION (CRITICAL - Complete before using Decision)
+
+**Validation Checklist:**
+
+- [ ] Decision context clearly explains why this decision is needed
+- [ ] All options have been documented with pros/cons
+- [ ] Recommended option has clear rationale
+- [ ] Key factors and trade-offs are documented
+- [ ] Risks and mitigations are identified
+- [ ] [OPTIONAL] Research basis linked in frontmatter (if this decision was informed by Research)
+- [ ] Approval documented with name and date (if decision has been made)
+- [ ] Stakeholders who were consulted are listed
+- [ ] If status is "Unresolved", criteria for reopening are documented
+
+**If any item is not checked, decision is incomplete. Complete before linking from other artifacts.**
+
+**Research Basis Check:**
+
+If this decision was informed by research, link it in the `researchBasis:` field in frontmatter:
+```yaml
+researchBasis: { 0001.2.0001-research-oauth-providers }
+```
+
+This creates traceability from decision back to the investigation that informed it.

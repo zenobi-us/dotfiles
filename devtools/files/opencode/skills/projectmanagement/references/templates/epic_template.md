@@ -7,11 +7,11 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: spec
-    itemId: { 0001.1.0001 }
+    target: { 0001.1.0001-spec-title }
   - type: contains_story
-    itemId: { 0001.4.0001 }
+    target: { 0001.4.0001-story-title }
   - type: contains_story
-    itemId: { 0001.4.0002 }
+    target: { 0001.4.0002-story-title }
 ---
 
 ## Folder Structure

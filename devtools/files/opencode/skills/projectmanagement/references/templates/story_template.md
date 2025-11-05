@@ -10,17 +10,17 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: epic
-    itemId: { 0001 }
+    target: { 0001-epic-name }
   - type: spec
-    itemId: { 0001.1.0001 }
+    target: { 0001.1.0001-spec-title }
   - type: contains_task
-    itemId: { 0001.5.0001 }
+    target: { 0001.5.0001-task-title }
   - type: contains_task
-    itemId: { 0001.5.0002 }
+    target: { 0001.5.0002-task-title }
   - type: informed_by
-    itemId: { 0001.2.0001 }
+    target: { 0001.2.0001-research-title }
   - type: influenced_by
-    itemId: { 0001.3.0001 }
+    target: { 0001.3.0001-decision-title }
 ---
 
 ## Scenario Description

@@ -61,6 +61,11 @@ Criterion 2: [Next testable behavior]
 - [ ] No [Story] is duplicating work of another story
 - [ ] All stakeholders agree the [Story] set covers the [Spec]
 
+**Research Tracking (CRITICAL):**
+
+- [ ] Each [Story] references relevant [Research] (linked in frontmatter or cited in Notes)
+- [ ] If no [Research] applies to a [Story], document why (e.g., requirement is clear, no unknowns)
+
 **If any item is not checked, DO NOT proceed to Phase 3. Return to refinement.**
 
 ## Common Pitfalls to Avoid

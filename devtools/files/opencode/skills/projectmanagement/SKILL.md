@@ -244,11 +244,26 @@ All artifacts use Obsidian wiki-style linking for navigation and relationship ma
 [[{epicid}.{typecode}.{incrementid}-{typename}-{title}]] # Link to artifact
 ```
 
+**Important:** Link targets MUST match the actual filename exactly (without `.md` extension).
+
 Examples:
 
 - `[[0001-user-authentication]]` - Links to Epic 1 folder
 - `[[0001.1.0001-spec-user-authentication-requirements]]` - Links to specific spec
 - `[[0001.5.0001-task-design-database-schema]]` - Links to specific task
+
+**Frontmatter Links:** All artifact templates use `target:` field (not `itemId:`) to specify link targets that match filenames. When creating artifacts, replace placeholder filenames with actual titles following the naming convention.
+
+Example frontmatter:
+```yaml
+links:
+  - type: epic
+    target: 0001-user-authentication
+  - type: spec
+    target: 0001.1.0001-spec-user-auth-requirements
+  - type: task
+    target: 0001.5.0001-task-schema-design
+```
 
 See individual artifact templates for linking examples in frontmatter and body.
 

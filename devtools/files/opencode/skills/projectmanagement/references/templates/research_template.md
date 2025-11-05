@@ -8,13 +8,13 @@ updatedDate: { YYYY-MM-DD }
 researchType: { Market | Technical | User | Competitive | Process | Other }
 links:
   - type: epic
-    itemId: { 0001 }
+    target: { 0001-epic-name }
   - type: informs_spec
-    itemId: { 0001.1.0001 }
+    target: { 0001.1.0001-spec-title }
   - type: informs_decision
-    itemId: { 0001.3.0001 }
+    target: { 0001.3.0001-decision-title }
   - type: informs_story
-    itemId: { 0001.4.0001 }
+    target: { 0001.4.0001-story-title }
 ---
 
 ## Research Objective

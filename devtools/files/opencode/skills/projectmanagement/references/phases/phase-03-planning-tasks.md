@@ -114,6 +114,11 @@ Duration impact: These 4 tasks cannot be parallelized; they must happen sequenti
 - [ ] Task outputs don't interrupt user experience
 - [ ] All dependencies are documented (external, other teams, resources)
 
+**Research Tracking (CRITICAL):**
+
+- [ ] Each [Task] has reviewed linked [Research] for implementation guidance
+- [ ] Story point estimates account for research findings (complexity, unknowns, constraints discovered)
+
 **If any item is not checked, DO NOT proceed to Phase 4. Return to refinement.**
 
 ## Common Pitfalls to Avoid

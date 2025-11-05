@@ -7,13 +7,13 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: epic
-    itemId: { 0001 }
+    target: { 0001-epic-name }
   - type: contains_story
-    itemId: { 0001.4.0001 }
+    target: { 0001.4.0001-story-title }
   - type: informed_by
-    itemId: { 0001.2.0001 }
+    target: { 0001.2.0001-research-title }
   - type: influenced_by
-    itemId: { 0001.3.0001 }
+    target: { 0001.3.0001-decision-title }
 ---
 
 ## Preamble
@@ -94,6 +94,17 @@ See: `references/phase-01-initiation.md` for detailed Initiation phase guidance.
 - [ ] No open questions remain
 
 **If any item is not checked, DO NOT proceed to Phase 2 Planning. Return to refinement.**
+
+## RESEARCH COMPLETION CHECKLIST (CRITICAL - Must complete before Spec Approval)
+
+For each `[NEEDS CLARIFICATION]` tag created during spec writing:
+
+- [ ] Research artifact created (or research not needed): { 0001.2.0001-research-title }
+- [ ] Research status is "Complete" or "Superseded" (NOT "In Progress")
+- [ ] Research findings referenced in [Spec] body or Notes section
+- [ ] If no research was needed, document why the clarification was resolved without research
+
+**If any [NEEDS CLARIFICATION] cannot be traced to completed research, DO NOT approve the Spec.**
 
 **Approval Gate:**
 - Approved by: { Name/Role }

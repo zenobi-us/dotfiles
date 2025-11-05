@@ -12,19 +12,19 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: story
-    itemId: { 0001.4.0001 }
+    target: { 0001.4.0001-story-title }
   - type: epic
-    itemId: { 0001 }
+    target: { 0001-epic-name }
   - type: blocking
-    itemId: { 0001.5.0002 }
+    target: { 0001.5.0002-task-title }
   - type: dependent_on
-    itemId: { 0001.5.0001 }
+    target: { 0001.5.0001-task-title }
   - type: related_to
-    itemId: { 0001.5.0003 }
+    target: { 0001.5.0003-task-title }
   - type: informed_by
-    itemId: { 0001.2.0001 }
+    target: { 0001.2.0001-research-title }
   - type: influenced_by
-    itemId: { 0001.3.0001 }
+    target: { 0001.3.0001-decision-title }
 ---
 
 ## Task Description
