@@ -15,9 +15,9 @@ Use this skill when:
 
 - Managing a project or major initiative with multiple phases
 - Need to coordinate work across team members
-- Creating [Epics], [Spec], [Story], or [Task]
+- Creating [Epic], [Spec], [Story], or [Task]
 - Organizing artifacts consistently across concurrent projects
-- Need to track dependencies, decisions, and research
+- Need to track dependencies, [Decision], and [Research]
 - Running retrospectives or closing out projects
 - Struggling with ad-hoc project organization
 
@@ -255,6 +255,7 @@ Examples:
 **Frontmatter Links:** All artifact templates use `target:` field (not `itemId:`) to specify link targets that match filenames. When creating artifacts, replace placeholder filenames with actual titles following the naming convention.
 
 Example frontmatter:
+
 ```yaml
 links:
   - type: epic
