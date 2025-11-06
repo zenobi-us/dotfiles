@@ -7,7 +7,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@opencode-ai/plugin": "0.15.23",
+        "@opencode-ai/plugin": "0.15.14",
         "@types/node": "^24.9.2",
         "@types/unist": "^3.0.3",
         "duckdb": "^1.4.1",
