@@ -1,5 +1,5 @@
 ---
-name: updating-pr-descriptions
+name: pr-descriptions
 description: Use when gh pr edit --body fails silently or returns no error but doesn't persist changes - provides fallback pattern using GitHub REST API directly for reliable PR description updates
 ---
 

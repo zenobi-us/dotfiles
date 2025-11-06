@@ -1,0 +1,45 @@
+---
+name: storage-basicmemory
+description: Use when storing project artifacts in basic memory storage.
+---
+
+**Core principle:** All project artifacts must be stored in basicmemory under a [ProjectId], with explicit linking and status tracking to maintain single source of truth across concurrent projects.
+
+> [!NOTE]
+> Before starting anything, ensure you have identified the correct [ProjectId] for the project you are working on.
+
+## Requirements:
+
+- use basicmemory mcp tools to read and write [Project Artifacts].
+- Recognise types of [Project Artifacts]: [Spec], [Research], [Descision], [Epic], [Story], [Task], [Retrospective].
+- Store [Project Artifacts] in basicmemory under the correct project context using [ProjectId].
+
+## How to interact with [Project Artifacts] storage?
+
+**CRITICAL** All [Project Artifacts] are interacted with via basicmemory mcp tools.
+**FAILURE MODE** Interacting with [Project Artifacts] via the file system directly is not allowed and will lead to disorganization and loss of data.
+
+- basicmemory_read_note - Read markdown notes
+- basicmemory_read_content - Read file raw content by path
+- basicmemory_view_note - View formatted notes
+- basicmemory_write_note - Create/update markdown notes
+- basicmemory_edit_note - Edit existing notes with operations
+- basicmemory_move_note - Move notes to new locations
+- basicmemory_delete_note - Delete notes by title
+- basicmemory_canvas - Create Obsidian canvas files
+- basicmemory_search_notes - Search across knowledge base
+- basicmemory_search - Search for content across knowledge base
+- basicmemory_fetch - Fetch full contents of search results
+- basicmemory_recent_activity - Get recent activity
+- basicmemory_build_context - Build context from memory URIs
+- basicmemory_list_memory_projects - List all available projects
+- basicmemory_create_memory_project - Create new projects
+- basicmemory_delete_project - Delete projects
+- basicmemory_list_directory - List directory contents
+- basicmemory_sync_status - Check file sync status
+
+### [ProjectId]
+
+1. Identify the [ProjectId] using `./scripts/get_project_id.sh`
+2. Create a basicmemory project using `basicmemory_create_memory_project(name="{ProjectId}", project_path="~/Notes/Projects/{ProjectId}")`
+3. Use this [ProjectId] in ALL subsequent interactions with basicmemory to read or write [Project Artifacts].

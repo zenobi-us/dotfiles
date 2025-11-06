@@ -1,39 +1,9 @@
 ---
-name: projectmanagement
-description: Use when managing project initiatives through full lifecycle from initiation to closing - provides artifact types, templates, and phase-based workflow for organizing complex work across teams with basicmemory integration
+name: info-project-artifacts
+description: Use to know about project artifacts used in project management.
 ---
 
-## Overview
-
-Project management skill provides a complete lifecycle framework for managing initiatives through seven phases: Initiation, Planning (Stories), Planning (Tasks), Delegation, Execution, Monitoring, and Closing. Each phase has validation gates and mandatory artifact creation to prevent ad-hoc approaches.
-
-**Core principle:** All project artifacts must be stored in basicmemory under a ProjectId, with explicit linking and status tracking to maintain single source of truth across concurrent projects.
-
-## When to Use This Skill
-
-Use this skill when:
-
-- Managing a project or major initiative with multiple phases
-- Need to coordinate work across team members
-- Creating [Epic], [Spec], [Story], or [Task]
-- Organizing artifacts consistently across concurrent projects
-- Need to track dependencies, [Decision], and [Research]
-- Running retrospectives or closing out projects
-- Struggling with ad-hoc project organization
-
-Do NOT use this skill for:
-
-- One-off tasks or quick fixes (no artifact overhead needed)
-- Personal task tracking (use simpler tools)
-- Formal Agile/Scrum implementation (this is lightweight, not framework-specific)
-
-## Requirements:
-
-- use basicmemory mcp tools to read and write [Project Artifacts].
-- Recognise types of [Project Artifacts]: [Spec], [Research], [Descision], [Epic], [Story], [Task], [Retrospective].
-- Store [Project Artifacts] in basicmemory under the correct project context using [ProjectId].
-
-## What are Project Artifact Types?
+## What are [Project Artifact] Types?
 
 - [Epic]: A large body of work that is described by Stories. An [Epic] is always accompanied by a [Spec], they have a 1:1 relationship.
 - [Spec]: A detailed description of the project's requirements and objectives. It leads to creation of one or more [Story].
@@ -42,11 +12,11 @@ Do NOT use this skill for:
 - [Story]: A smaller, manageable piece of work derived from an [Epic]. [Story] always contain "user stories". [Story] are always implemented by [Task].
 - [Task]: A specific piece of work that needs to be completed as part of a [Story]. They are always linked to both a [Story] and an [Epic]. They can also be linked to other [Task] in interesting ways (e.g., blocking, dependent on, related to).
 
-## Project Artifacts Require a ProjectId [CRITICAL]
+## [Project Artifact] Require a ProjectId [CRITICAL]
 
 Every [Project Artifact] must be associated with a [ProjectId] to ensure proper organization and retrieval.
 
-We use this [ProjectId] when first interacting with basicmemory. (Or if required, on every interaction)
+We use this [ProjectId] before interacting with any [Project Artifact]. (Or if required, on every interaction)
 
 ### ProjectId Naming and Format
 
@@ -60,37 +30,10 @@ We use this [ProjectId] when first interacting with basicmemory. (Or if required
   - Project name: "User Authentication System" → ProjectId: `user-authentication-system`
   - Example name "My App v2" → ProjectId: `my-app-v2`
 
-### ProjectId Setup
+## How do we write [Project Artifact]?
 
-1. Identify the [ProjectId] using `./scripts/get_project_id.sh`
-2. Create a basicmemory project using `basicmemory_create_memory_project(name="{ProjectId}", project_path="~/Notes/Projects/{ProjectId}")`
-3. Use this [ProjectId] in ALL subsequent interactions with basicmemory to read or write [Project Artifacts].
-
-## Where are [Project Artifacts] stored?
-
-**CRITICAL** All [Project Artifacts] are interacted with via basicmemory mcp tools.
-**FAILURE MODE** Interacting with [Project Artifacts] via the file system directly is not allowed and will lead to disorganization and loss of data.
-
-- basicmemory_read_note - Read markdown notes
-- basicmemory_read_content - Read file raw content by path
-- basicmemory_view_note - View formatted notes
-- basicmemory_write_note - Create/update markdown notes
-- basicmemory_edit_note - Edit existing notes with operations
-- basicmemory_move_note - Move notes to new locations
-- basicmemory_delete_note - Delete notes by title
-- basicmemory_canvas - Create Obsidian canvas files
-- basicmemory_search_notes - Search across knowledge base
-- basicmemory_search - Search for content across knowledge base
-- basicmemory_fetch - Fetch full contents of search results
-- basicmemory_recent_activity - Get recent activity
-- basicmemory_build_context - Build context from memory URIs
-- basicmemory_list_memory_projects - List all available projects
-- basicmemory_create_memory_project - Create new projects
-- basicmemory_delete_project - Delete projects
-- basicmemory_list_directory - List directory contents
-- basicmemory_sync_status - Check file sync status
-
-## How do we store Project Artifacts in basicmemory?
+> [!NOTE]
+> Wether creating a new [Project Artifact] or updating an existing one, consistency is key.
 
 This skill has access to templates for each artifact type.
 
@@ -102,7 +45,7 @@ This skill has access to templates for each artifact type.
 - [Task]: ./references/templates/task_template.md
 - [Retrospective]: ./references/templates/retrospective_template.md
 
-When creating or updating [Project Artifacts], use the corresponding template to ensure consistency.
+When creating or updating [Project Artifact], use the corresponding template to ensure consistency.
 
 ## Artifact Storage Structure (Johnny Decimal System)
 
@@ -155,10 +98,10 @@ All artifacts follow the Johnny Decimal naming system for consistent organizatio
 
 ### Folder Structure
 
-All artifacts are stored in basicmemory under a project folder with the following structure:
+Projects follow a hierarchy that groups artifacts by epic and type:
 
 ```
-basicmemory/{ProjectId}/
+{ProjectId}/
 │
 ├── {epicid}-{epic-name}/                    # Epic folder (groups related artifacts)
 │   ├── {epicid}.1.0001-spec-{title}.md      # Spec file (only one per epic)
@@ -189,7 +132,7 @@ basicmemory/{ProjectId}/
 ### Real Example: User Authentication System
 
 ```
-basicmemory/user-auth-system/
+user-auth-system/
 │
 ├── 0001-user-authentication/
 │   ├── 0001.1.0001-spec-user-authentication-requirements.md
@@ -358,145 +301,3 @@ Each artifact type has valid status progressions that guide state management thr
 All artifacts follow consistent schema patterns for organization and linking. Each artifact type has specific frontmatter requirements and content sections.
 
 → **See: `references/schema.md`** for detailed task relationship schema, artifact content structure, and link type definitions for all artifact types (Epic, Spec, Story, Task).
-
-## What is the lifecycle of a project initiative?
-
-A project progresses through 7 phases. Each phase has validation gates that must be completed before proceeding.
-
-**For detailed phase guidance, see the references/phases/phase-\*.md files:**
-
-### Phase 1: Initiation
-
-**Goal:** Define the project at a high level. Create [Epic] and [Spec] artifacts.
-
-→ **See: `references/phases/phase-01-initiation.md`**
-
-**Quick Steps:**
-
-- Identify [ProjectId] using `./scripts/get_project_id.sh`
-- Create [Epic] and [Spec] artifacts
-- Get Spec formally approved (Approval Gate - REQUIRED)
-- Complete validation checklist in epic_template.md and spec_template.md
-
----
-
-### Phase 2: Planning - Stories
-
-**Goal:** Break down [Epic] into [Story] artifacts representing user-facing features.
-
-→ **See: `references/phases/phase-02-planning-stories.md`**
-
-**Quick Steps:**
-
-- Create [Story] artifacts for each major feature in [Spec]
-- Write user stories in BDD format
-- Link [Story] to [Epic] and [Spec]
-- Complete validation checklist in story_template.md
-
----
-
-### Phase 3: Planning - Tasks
-
-**Goal:** Break down each [Story] into [Task] artifacts (specific, atomic work items).
-
-→ **See: `references/phases/phase-03-planning-tasks.md`**
-
-**Quick Steps:**
-
-- Create [Task] artifacts for each [Story]
-- Assign story points using Fibonacci sequence (1, 2, 3, 5, 8, 13)
-- Identify blocking/dependent relationships
-- Perform critical path analysis
-- Complete validation checklist in task_template.md
-
----
-
-### Phase 4: Delegation
-
-**Goal:** Assign [Task] artifacts to team members with clear context.
-
-→ **See: `references/phases/phase-04-delegation.md`**
-
-**Quick Steps:**
-
-- Review all [Task] and team member skills/availability
-- Assign [Task] to appropriate team members
-- Get acknowledgment and commitment from assignees
-- Verify no one is overloaded
-
-**Uses:** `skills_superpowers_dispatching_parallel_agents` and `skills_superpowers_subagent_driven_development`
-
----
-
-### Phase 5: Execution
-
-**Goal:** Implement assigned [Task] artifacts. (Usually executed by subagents assigned to tasks.)
-
-→ **See: `references/phases/phase-05-execution.md`**
-
-**Quick Steps:**
-
-- For new [Task]: Read artifact, review context, create git worktree, begin work
-- For continuing [Task]: Review [Work Log], switch to worktree, continue work
-- Update [Task] status as work progresses (To Do → In Progress → In Review → Done)
-- Create [Decision] artifacts for decisions made
-- Complete task Definition of Done checklist in task_template.md
-
-**Escalation Points:**
-
-- "[WARNING] BLOCKED" - Stop and discuss if blocked
-- "[WARNING] EDGE CASE DISCOVERED" - Stop and discuss if new requirements emerge
-- Create [Decision] artifacts with status "Unresolved" for uncertain decisions
-
-**Uses:** `skills_superpowers_using-git-worktrees`
-
----
-
-### Phase 6: Monitoring and Controlling
-
-**Goal:** Oversee progress and make adjustments. (Runs parallel to Phase 5, not sequential.)
-
-→ **See: `references/phases/phase-06-monitoring.md`**
-
-**Quick Steps:**
-
-- Review [Task] status regularly (weekly or more)
-- Identify blockers and deviations from plan
-- Take corrective actions (adjust resources, timeline, unblock dependencies)
-- Update [Project Artifacts] to reflect current state
-- Communicate changes to stakeholders
-
-**Continuous Activity:** Monitoring happens throughout execution, not after.
-
----
-
-### Phase 7: Closing and Retrospective
-
-**Goal:** Complete the project and document lessons learned.
-
-→ **See: `references/phases/phase-07-closing.md`**
-
-**Quick Steps:**
-
-- Conduct retrospective meeting with team
-- Create [Retrospective] artifact documenting lessons learned
-- Link all unresolved [Decision] artifacts to [Retrospective]
-- Document process improvements with specific action items
-- Archive [Project Artifacts]
-- Complete validation checklist in retrospective_template.md
-
----
-
-## Validation Checkpoints
-
-**Critical validation checkpoints enforce quality at each phase transition:**
-
-| Phase                | Validation Location                   | Must Complete Before  |
-| -------------------- | ------------------------------------- | --------------------- |
-| Phase 1 (Initiation) | epic_template.md + spec_template.md   | Proceeding to Phase 2 |
-| Phase 2 (Stories)    | story_template.md                     | Proceeding to Phase 3 |
-| Phase 3 (Tasks)      | task_template.md                      | Proceeding to Phase 4 |
-| Phase 5 (Execution)  | task_template.md "Definition of Done" | Marking task as Done  |
-| Phase 7 (Closing)    | retrospective_template.md             | Project closure       |
-
-**Each template includes a VALIDATION section that must be completed. Do not skip validation - it prevents problems downstream.**
