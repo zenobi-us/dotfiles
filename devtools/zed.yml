@@ -1,0 +1,6 @@
+---
+actions:
+    - action: file.copy
+      from: zed/settings.json
+      to: "{{ user.config_dir }}/zed/settings.json"
+      template: false

@@ -1,0 +1,145 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    // ////////////////////////////////////////////////
+    //
+    // AI Features
+    //
+    // ///////////////////////////////////////////////
+    "preview_tabs": {
+        "enabled": false
+    },
+    "tabs": {
+        "file_icons": false,
+        "show_close_button": "hidden"
+    },
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    },
+    "agent_buffer_font_size": 14.0,
+    "buffer_font_weight": 400.0,
+    "use_on_type_format": true,
+    "agent_servers": {
+        "opencode": {
+            "command": "mise",
+            "args": ["x", "--", "opencode", "acp"],
+            "env": {}
+        }
+    },
+    "agent": {
+        "default_model": {
+            "provider": "copilot_chat",
+            "model": "gpt-4.1"
+        },
+        "model_parameters": []
+    },
+    "edit_predictions": {
+        "mode": "eager",
+        "copilot": {
+            "proxy": null,
+            "proxy_no_verify": null
+        },
+        "enabled_in_text_threads": false
+    },
+    "features": {
+        "edit_prediction_provider": "copilot"
+    },
+    // ////////////////////////////////////////////////
+    //
+    // Linting, Formatting, LSP
+    //
+    // ///////////////////////////////////////////////
+    "format_on_save": "on",
+    "formatter": "language_server",
+    "lsp": {
+        "eslint": {
+            "settings": {
+                "run": "onSave",
+                "workingDirectory": {
+                    "mode": "auto"
+                },
+                "options": {
+                    "configFile": "eslint.config.cjs"
+                }
+            }
+        }
+    },
+    "languages": {
+        "JavaScript": {
+            "show_whitespaces": "all",
+            "show_edit_predictions": true,
+            "indent_guides": {
+                "enabled": false
+            },
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true
+            }
+        },
+        "TypeScript": {
+            "show_whitespaces": "all",
+            "show_edit_predictions": true,
+            "indent_guides": {
+                "enabled": false
+            },
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true
+            }
+        }
+    },
+    // ////////////////////////////////////////////////
+    //
+    // Remotes
+    //
+    // ///////////////////////////////////////////////
+    "ssh_connections": [
+        {
+            "host": "github.com",
+            "args": [],
+            "projects": []
+        }
+    ],
+    // ////////////////////////////////////////////////
+    //
+    // UI Settings
+    //
+    // ///////////////////////////////////////////////
+    "terminal": {
+        "font_size": 12.0,
+        "font_family": "Monaspace Krypton"
+    },
+    "gutter": {
+        "folds": true,
+        "runnables": true
+    },
+    "minimap": {
+        "show": "never"
+    },
+    "ui_font_weight": 400.0,
+    "ui_font_family": "JetBrainsMono Nerd Font Mono",
+    "current_line_highlight": "all",
+    "use_system_path_prompts": true,
+    "buffer_font_family": "Monaspace Krypton",
+    "buffer_line_height": "standard",
+    "file_types": {},
+    "show_whitespaces": "all",
+    "show_edit_predictions": true,
+    "indent_guides": {
+        "enabled": false,
+        "active_line_width": 4
+    },
+    "base_keymap": "VSCode",
+    "ui_font_size": 14.0,
+    "buffer_font_size": 12.0,
+    "theme": {
+        "mode": "system",
+        "light": "One Light",
+        "dark": "GitHub Dark Default"
+    }
+}
