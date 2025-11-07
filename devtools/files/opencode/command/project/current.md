@@ -3,6 +3,10 @@
 You are analyzing and displaying the current project context, active work, and providing intelligent next-action suggestions. Follow this systematic approach to give comprehensive situational awareness.
 
 **Task:** Analyze and display current project status and suggest next actions
+**Storage Backend**: basicmemory
+
+> [!CRITICAL]
+> Before doing anything, run the skills_projectmanagement_storage_basicmemory
 
 ## Step 1: Detect Project Type and Technology
 
@@ -21,22 +25,22 @@ You are analyzing and displaying the current project context, active work, and p
 
 ## Step 2: Analyze Active Work
 
-**Use the GitHub tool to gather comprehensive work status:**
+**Query the storage backend to gather comprehensive work status:**
 
-1. List all GitHub issues with `prd` and `feature` labels
-2. Check issue status for each (open, in-progress, closed)
-3. Identify linked task issues for each PRD/feature
-4. Calculate completion percentages based on closed vs total task issues
+1. Query the storage backend for items with `prd` and `feature` labels
+2. Check item status for each (open, in-progress, closed)
+3. Identify linked task items for each PRD/feature
+4. Calculate completion percentages based on closed vs total task items
 
 **Analyze PRDs and Features:**
 
-1. Fetch all issues labeled with `prd` to see active product requirements
-2. Fetch all issues labeled with `feature` to see technical features in progress
+1. Retrieve all items labeled with `prd` from the storage backend to see active product requirements
+2. Retrieve all items labeled with `feature` from the storage backend to see technical features in progress
 3. Determine current status and progress for each major work item
 
 **Calculate task progress:**
 
-1. Count total task issues vs completed (closed) task issues for each parent issue
+1. Count total task items vs completed (closed) task items for each parent item in the storage backend
 2. Identify tasks currently labeled as "in-progress"
 3. Highlight blocked or overdue tasks based on labels and comments
 4. Note any tasks with missing dependencies or prerequisites
@@ -66,7 +70,7 @@ You are analyzing and displaying the current project context, active work, and p
 
 **Assess recent activity patterns:**
 
-1. Look at recent GitHub issue activity to identify workflow patterns
+1. Query the storage backend for recent item activity to identify workflow patterns
 2. Identify any workflow bottlenecks or stalled work
 3. Note process improvements that could be made
 
@@ -95,11 +99,11 @@ You are analyzing and displaying the current project context, active work, and p
 
 ## Step 6: Provide Reference Guide
 
-**Explain GitHub issue reference patterns:**
+**Explain storage backend item reference patterns:**
 
-- **PRDs**: "#4", "#8", "user authentication", "issue #4"
-- **Features**: "#7", "#11", "dark mode", "issue #7"
-- **Tasks**: "#12", "#15", "#18" (individual task issue numbers)
+- **PRDs**: "#4", "#8", "user authentication", "item #4"
+- **Features**: "#7", "#11", "dark mode", "item #7"
+- **Tasks**: "#12", "#15", "#18" (individual task item identifiers)
 
 **Show common workflow patterns:**
 
@@ -154,4 +158,4 @@ You are analyzing and displaying the current project context, active work, and p
 └── Commands: /project:plan:prd, /project:plan:tasks, /project:do:task
 ```
 
-This systematic analysis provides comprehensive situational awareness using GitHub Issues as the source of truth for all project tracking and intelligent workflow navigation.
+This systematic analysis provides comprehensive situational awareness using the storage backend as the source of truth for all project tracking and intelligent workflow navigation.

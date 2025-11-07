@@ -1,10 +1,11 @@
 ---
-name: info-project-artifacts
-description: Use to know about project artifacts used in project management.
+name: info-planning-artifacts
+description: Use to know about Planning Artifacts used in project management.
 ---
 
-## What are [Project Artifact] Types?
+## What are [Planning Artifact] Types?
 
+- [Requirements]: High-level statements of what the product should achieve. They capture the needs and expectations of stakeholders.
 - [Epic]: A large body of work that is described by Stories. An [Epic] is always accompanied by a [Spec], they have a 1:1 relationship.
 - [Spec]: A detailed description of the project's requirements and objectives. It leads to creation of one or more [Story].
 - [Research]: Information gathering and analysis conducted to inform project decisions. [Research] can lead to or adjust creation of [Spec] and/or [Decision]. Created ad-hoc when questions need investigation; linked to relevant [Spec], [Decision], [Story], or [Task].
@@ -12,11 +13,11 @@ description: Use to know about project artifacts used in project management.
 - [Story]: A smaller, manageable piece of work derived from an [Epic]. [Story] always contain "user stories". [Story] are always implemented by [Task].
 - [Task]: A specific piece of work that needs to be completed as part of a [Story]. They are always linked to both a [Story] and an [Epic]. They can also be linked to other [Task] in interesting ways (e.g., blocking, dependent on, related to).
 
-## [Project Artifact] Require a ProjectId [CRITICAL]
+## [Planning Artifact] Require a ProjectId [CRITICAL]
 
-Every [Project Artifact] must be associated with a [ProjectId] to ensure proper organization and retrieval.
+Every [Planning Artifact] must be associated with a [ProjectId] to ensure proper organization and retrieval.
 
-We use this [ProjectId] before interacting with any [Project Artifact]. (Or if required, on every interaction)
+We use this [ProjectId] before interacting with any [Planning Artifact]. (Or if required, on every interaction)
 
 ### ProjectId Naming and Format
 
@@ -30,10 +31,10 @@ We use this [ProjectId] before interacting with any [Project Artifact]. (Or if r
   - Project name: "User Authentication System" → ProjectId: `user-authentication-system`
   - Example name "My App v2" → ProjectId: `my-app-v2`
 
-## How do we write [Project Artifact]?
+## How do we write [Planning Artifact]?
 
 > [!NOTE]
-> Wether creating a new [Project Artifact] or updating an existing one, consistency is key.
+> Wether creating a new [Planning Artifact] or updating an existing one, consistency is key.
 
 This skill has access to templates for each artifact type.
 
@@ -45,7 +46,7 @@ This skill has access to templates for each artifact type.
 - [Task]: ./references/templates/task_template.md
 - [Retrospective]: ./references/templates/retrospective_template.md
 
-When creating or updating [Project Artifact], use the corresponding template to ensure consistency.
+When creating or updating [Planning Artifact], use the corresponding template to ensure consistency.
 
 ## Artifact Storage Structure (Johnny Decimal System)
 

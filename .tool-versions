@@ -1,6 +1,0 @@
-just                1.8.0
-lua                 5.3.6
-neovim              latest
-ubi:comtrya/comtrya latest
-pipx:aider-chat     latest
-ubi:sst/opencode    0.15.14
