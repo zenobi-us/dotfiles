@@ -1,15 +1,42 @@
 # Create Product Requirements Document (PRD)
 
-You are creating a comprehensive Product Requirements Document for a high-level product feature. Follow this systematic approach to create a thorough, well-researched PRD as a GitHub issue.
+You are creating a comprehensive [Prd] artifact for a high-level product feature. Follow this systematic approach to create a thorough, well-researched [Prd] artifact.
 
-**Task:** Create a comprehensive PRD for: $ARGUMENTS
+**Task:** Create a comprehensive [Prd] for: $ARGUMENTS
+**Storage Backend**: basicmemory
 
-## Step 1: Perform Deep Analysis
+> [!CRITICAL]
+> Before doing anything, run these skills:
+> - skills_projectmanagement_storage_basicmemory
+> - skills_projectmanagement_info_planning_artifacts
+
+For all [Planning Artifacts], use the above storage backend.
+**NEVER** use GitHub Issues or direct file access for [Planning Artifacts].
+
+For all repo files, use the Read and Glob tools to analyze the current directory structure.
+
+## Step 1: Identify Project and Prerequisites
+
+**Verify project context:**
+
+1. Confirm you have a valid [ProjectId] for this project
+2. If no [ProjectId] exists, create one using `/project:init`
+3. Document the identified [ProjectId]:
+
+```md
+📋 Project ID: [ProjectId]
+```
+
+**Reference:** See `skills_projectmanagement_info_planning_artifacts` for ProjectId conventions (format: `slugified-project-name`)
+
+Then continue to Step 2 for deep analysis.
+
+## Step 2: Perform Deep Analysis
 
 **For complex product features, engage in extended thinking:**
 Think deeply about this product requirement: '$ARGUMENTS'. Consider market positioning, competitive analysis, user research implications, technical architecture decisions, business model impacts, and long-term strategic implications. Think about scalability, security, and integration with existing systems.
 
-## Step 2: Analyze Current Project Context
+## Step 3: Analyze Current Project Context
 
 **Use file analysis tools to understand the project:**
 
@@ -18,7 +45,7 @@ Think deeply about this product requirement: '$ARGUMENTS'. Consider market posit
 3. Use the Glob tool to review existing architecture patterns and system design
 4. Determine the project's current scale and complexity level
 
-## Step 3: Conduct Market Research
+## Step 4: Conduct Market Research
 
 **Perform targeted research based on your identified project type:**
 
@@ -43,111 +70,74 @@ Think deeply about this product requirement: '$ARGUMENTS'. Consider market posit
 3. Study installation and distribution strategies
 4. Analyze developer workflow integration patterns
 
-## Step 4: Create Comprehensive GitHub Issue
+## Step 5: Create [Prd] Artifact
 
-**Use the GitHub tool to create a new issue with this structure:**
+**Use the projectmanagement skills to create a [Prd] artifact with the following content:**
 
-1. Set the title using format: `[PRD] {Feature Name}`
-2. Add labels: `prd`, `planning`, and project-type label (e.g., `web-app`, `api-service`)
-3. Use this template for the issue body:
+The storage backend will handle:
+- Artifact file creation and naming (Johnny Decimal format)
+- ProjectId association
+- Directory structure and organization
+- Obsidian wiki-style link targets
 
-```markdown
-# PRD: {Feature Name}
+**Populate the [Prd] artifact with:**
 
-## Executive Summary
+1. **Executive Summary**
+   - Brief 2-3 sentence overview of the product requirement
+   - Clear statement of strategic value
 
-{Brief 2-3 sentence overview of the product requirement}
+2. **Problem Statement**
+   - Detailed description of the problem this [Prd] addresses
+   - Context and impact on stakeholders
 
-## Problem Statement
+3. **User Stories**
+   - Primary user story: "As a {user type}, I want to {capability} so that {benefit}"
+   - Additional user stories covering secondary use cases
 
-{Detailed description of the problem this PRD addresses}
+4. **Market Research Findings**
+   - Research insights based on project type
+   - Competitive landscape analysis
+   - Technology ecosystem recommendations
 
-## User Stories
+5. **Functional Requirements**
+   - Core capabilities needed
+   - Feature descriptions
+   - User-facing functionality
 
-### Primary User Story
+6. **Non-Functional Requirements**
+   - **Performance:** Performance criteria and benchmarks
+   - **Security:** Security and compliance requirements
+   - **Scalability:** Scalability and capacity requirements
+   - **Usability:** Accessibility and usability standards
 
-As a {user type}, I want to {capability} so that {benefit}.
+7. **Success Metrics**
+   - Primary metrics with measurable targets
+   - Secondary metrics for tracking progress
 
-### Additional User Stories
+8. **Technical Considerations**
+   - High-level technical architecture
+   - Integration points with existing systems
+   - Technology stack alignment
 
-- As a {user type}, I want to {capability} so that {benefit}
-- As a {user type}, I want to {capability} so that {benefit}
+9. **Implementation Approach**
+   - Phased breakdown and milestones
+   - MVP definition and scope
+   - Enhanced features and optimizations
+   - Advanced features and integrations
 
-## Market Research
+10. **Risk Assessment**
+    - Technical risks and mitigation strategies
+    - Business risks and mitigation strategies
 
-{Research findings based on project type}
+11. **Dependencies**
+    - Internal dependencies and prerequisites
+    - External dependencies and constraints
 
-## Functional Requirements
+**Reference:** See `info-planning-artifacts` templates for detailed [Prd] artifact structure and frontmatter requirements.
 
-- {Requirement 1}
-- {Requirement 2}
-- {Requirement 3}
+## Step 6: Validate [Prd] Quality
 
-## Non-Functional Requirements
-
-- **Performance:** {Performance criteria}
-- **Security:** {Security requirements}
-- **Scalability:** {Scalability requirements}
-- **Usability:** {Usability standards}
-
-## Success Metrics
-
-### Primary Metrics
-
-- {Metric 1}: {Target}
-- {Metric 2}: {Target}
-
-### Secondary Metrics
-
-- {Metric 3}: {Target}
-- {Metric 4}: {Target}
-
-## Technical Considerations
-
-{High-level technical architecture and integration requirements}
-
-## Implementation Phases
-
-### Phase 1: {Phase Name}
-
-{Core functionality and MVP requirements}
-
-### Phase 2: {Phase Name}
-
-{Enhanced features and optimizations}
-
-### Phase 3: {Phase Name}
-
-{Advanced features and integrations}
-
-## Risk Assessment
-
-### Technical Risks
-
-- {Risk 1}: {Mitigation strategy}
-- {Risk 2}: {Mitigation strategy}
-
-### Business Risks
-
-- {Risk 1}: {Mitigation strategy}
-- {Risk 2}: {Mitigation strategy}
-
-## Dependencies
-
-### Internal Dependencies
-
-- {Dependency 1}
-- {Dependency 2}
-
-### External Dependencies
-
-- {Dependency 1}
-- {Dependency 2}
-```
-
-## Step 5: Validate PRD Quality
-
-**Review your created PRD against these quality standards:**
+**Review your created [Prd] artifact against these quality standards:**
 
 **Strategic Alignment Check:**
 
@@ -177,14 +167,53 @@ As a {user type}, I want to {capability} so that {benefit}.
 3. Confirm dependencies and risks are identified
 4. Check that timeline and budget considerations are included
 
-## Step 6: Provide Summary
+## Step 7: Provide Summary
 
 **Create a comprehensive summary of what you accomplished:**
 
-- **GitHub Issue Created**: Issue number and full title
-- **Project Type**: Type identified and template adaptation used
-- **Key Research Findings**: Strategic insights from your market research
-- **Next Steps**: Recommended approach for task breakdown and implementation
-- **Reference**: Note that this PRD can be referenced by its GitHub issue number
+- **[Prd] Artifact Created**: Artifact location and reference (e.g., `1.1.1-prd-user-auth-requirements`)
+- **Project ID**: Confirmed [ProjectId] used for artifact organization
+- **Project Type**: Type identified and research findings adapted accordingly
+- **Key Research Findings**: Strategic insights and competitive positioning analysis
+- **Artifact Links**: Obsidian wiki-style links for cross-referencing
+- **Next Steps**: Suggest `/project:plan:feature "[Epic Name]"` to create Epic+Spec from this [Prd]
 
-This systematic approach ensures your PRD is comprehensive, well-researched, and actionable for future task breakdown and implementation.
+**Quality Assurance:**
+- ✅ [Prd] follows defined artifact structure
+- ✅ All sections completed with substantive content
+- ✅ Research findings validated and sourced
+- ✅ Success metrics are measurable
+- ✅ Risk assessment is comprehensive
+
+**What Happens Next:**
+
+The [Prd] artifact you created establishes high-level product direction. The next workflow step is to break this into one or more [Epic] artifacts, each with an accompanying [Spec] artifact. 
+
+Use the suggested command to create the first Epic+Spec, which will decompose this [Prd] into manageable work units that can be further broken down into [Story] and [Task] items.
+
+This systematic approach ensures your [Prd] is comprehensive, well-researched, and actionable for creating Epics, Specs, and eventual implementation tasks.
+
+## Step 8: Understand Planning Artifact Workflow
+
+**Context for future work:**
+
+The [Prd] you created is the start of a hierarchical planning system:
+
+```
+[Prd] (High-level strategic direction)
+  ↓
+[Epic] (Major work packages with 1:1 Spec)
+  ↓
+[Spec] (Detailed requirements)
+  ↓
+[Story] (User scenarios, use cases)
+  ↓
+[Task] (Specific implementation work)
+```
+
+**References:**
+- `current.md` - Use `/project:current` to see active work status
+- `skills_projectmanagement_info_planning_artifacts` - Artifact types, naming conventions, relationships
+- Project board - View progress across all artifacts
+
+Your [Prd] is now stored in basicmemory and ready for Epic creation. Check project status with `/project:current` to see where this [Prd] fits in overall planning.
