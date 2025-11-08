@@ -1,18 +1,33 @@
-# Break Down Issue Into Implementation Tasks
+# Break Down Story Into Implementation Tasks
 
-You are breaking down a PRD or feature GitHub issue into specific, implementable task sub-issues. The primary goal is to create individual GitHub sub-issues for each identified task and attach them to the parent issue for proper tracking and implementation workflow.
+You are analyzing a [Story] artifact and designing its decomposition into implementation [Task] artifacts. Follow this systematic approach to create a logical, implementable task breakdown that integrates with the planning artifact hierarchy.
 
-**Task:** Break down GitHub issue $ARGUMENTS into implementation task sub-issues
+**Task:** Design task breakdown for [Story]: $ARGUMENTS
+**Storage Backend**: basicmemory
 
-## Step 1: Fetch and Analyze Source Issue
+> [!CRITICAL]
+> Before doing anything, run these skills:
+> - skills_projectmanagement_storage_basicmemory
+> - skills_projectmanagement_info_planning_artifacts
+>
+> For all [Planning Artifacts], use the above storage backend.
+> **NEVER** use GitHub Issues or direct file access for [Planning Artifacts].
 
-**Use the GitHub tool to gather complete information:**
+## Step 1: Fetch and Validate [Story] Artifact
 
-1. Fetch the source issue details using the issue number from $ARGUMENTS
-2. Read the full issue description and all requirements
-3. Identify the issue type (PRD vs Feature) from labels and title
-4. Extract all acceptance criteria and technical requirements
-5. Review any comments or additional context provided
+**Use the storage backend to gather complete information:**
+
+1. Fetch the [Story] artifact from storage backend using the identifier from $ARGUMENTS
+2. Read the full story description, user stories, and acceptance criteria
+3. Validate that the [Story] has completed its validation checklist (from story_template.md)
+4. Extract the parent epic ID and spec context for task linking
+5. Verify story points are assigned to the parent [Story]
+6. Check that all acceptance criteria are measurable and testable
+
+**If validation fails, stop and request clarification:**
+- If [Story] artifact doesn't exist, return error: "Story not found in storage backend"
+- If validation checklist incomplete, return: "Story must complete validation before task breakdown"
+- If story points not assigned, return: "Parent story must have story points estimated"
 
 ## Step 2: Perform Deep Requirements Analysis
 
@@ -54,255 +69,147 @@ Think deeply about breaking down this work from issue $ARGUMENTS. Consider all t
 4. **Testing alongside**: Unit tests with implementation, integration tests after core features
 5. **Documentation last**: Comprehensive docs after implementation is stable
 
-## Step 4: Determine Task Breakdown Strategy and Numbering
+## Step 4: Design Task Breakdown Strategy
 
-**Choose your breakdown approach based on complexity:**
+**Choose your breakdown approach based on story complexity:**
 
-**For Simple Issues (2-4 tasks):**
+**For Simple Stories (3 points, 1-2 tasks):**
 
-1. Core implementation task
-2. Testing task
-3. Documentation task
-
-**For Moderate Issues (4-8 tasks):**
-
-1. Research/design task
-2. Backend implementation task(s)
-3. Frontend implementation task(s)
-4. Integration testing task
-5. Documentation task
-
-**For Complex Issues (8+ tasks):**
-
-1. Research and architecture task
-2. Backend implementation tasks
-   - 2.1. Database schema and models
-   - 2.2. API endpoints
-   - 2.3. Business logic
-3. Frontend implementation tasks
-   - 3.1. Components and UI
-   - 3.2. State management
-   - 3.3. Integration
-4. Testing tasks
-   - 4.1. Unit tests
-   - 4.2. Integration tests
-   - 4.3. End-to-end tests
-5. Documentation and deployment
-
-**Hierarchical Numbering Rules:**
-
-- **First level (1, 2, 3...)**: Major implementation phases or areas
-- **Second level (1.1, 1.2, 1.3...)**: Specific tasks within each major area
-- **Third level (1.1.1, 1.1.2...)**: Sub-components of complex tasks (use sparingly)
-- **Logical sequencing**: Number tasks in the order they should be implemented
-- **Dependency consideration**: Tasks with dependencies should be numbered to reflect implementation order
-
-## Step 5: Create Task Sub-Issues with Parent Relationships
-
-**For each identified task, use the GitHub tool to create task sub-issues with proper parent relationships:**
-
-**Use this title pattern:** `[Task {Number}] {Area}: {Specific Implementation}`
-
-**Example titles to guide your formatting:**
-
-- `[Task 1] Research: User authentication requirements and architecture`
-- `[Task 2.1] Backend: User schema and database migrations`
-- `[Task 2.2] Backend: Authentication API endpoints`
-- `[Task 2.3] Backend: JWT token management and validation`
-- `[Task 3.1] Frontend: Login form component`
-- `[Task 3.2] Frontend: Authentication state management`
-- `[Task 4.1] Testing: Unit tests for authentication API`
-- `[Task 4.2] Testing: Integration tests for login flow`
-- `[Task 5] Documentation: API documentation and user guide`
-
-**Use this template for each task issue body:**
-
-```markdown
-# Task {Number}: {Specific Implementation}
-
-**Parent Issue:** #{parent_issue_number} (Part of parent issue)
-**Task Number:** {Number} (e.g., 2.1, 3.2, 4)
-**Area:** {Frontend/Backend/CLI/Database/Infrastructure/Testing/Documentation}
-**Estimated Effort:** {S/M/L} ({timeframe})
-
-## Description
-
-{Clear description of what needs to be implemented}
-
-## Acceptance Criteria
-
-- [ ] {Specific deliverable 1}
-- [ ] {Specific deliverable 2}
-- [ ] {Specific deliverable 3}
-- [ ] Tests written and passing
-- [ ] Documentation updated (if needed)
-
-## Implementation Details
-
-### Approach
-
-{Step-by-step implementation approach}
-
-### Files to Modify/Create
-
-- {File 1}: {Changes needed}
-- {File 2}: {Changes needed}
-
-### Technical Specifications
-
-{API changes, data models, configuration updates}
-
-## Testing Requirements
-
-- [ ] {Test scenario 1}
-- [ ] {Test scenario 2}
-
-## Dependencies
-
-- **Prerequisite Tasks:** Task {Number}, Task {Number}
-- **Blocks Tasks:** Task {Number}, Task {Number}
-- **External:** {library/service}
-
-## Definition of Done
-
-- [ ] All acceptance criteria met
-- [ ] Code follows project standards
-- [ ] Tests passing
-- [ ] Documentation updated
-- [ ] Code reviewed and merged
-```
-
-**Set up GitHub relationships and labels:**
-
-1. **Create sub-issue relationship**: Use GitHub's issue creation with parent relationship
-2. **Add labels**: `task`, `{area}` (frontend/backend/etc.), `{size}` (S/M/L)
-3. **Link to parent**: Ensure proper parent-child relationship is established in GitHub
-4. **Reference in description**: Include "Part of #{parent_issue_number}" in the issue body
-
-## Step 6: Organize and Link Tasks
-
-**Manage task dependencies:**
-
-1. Identify which tasks must be completed before others can start
-2. Note external dependencies (libraries, services, approvals)
-3. Plan the critical path through the work
-
-**Establish issue relationships:**
-
-1. **Create parent-child relationships**: Use GitHub's sub-issue functionality when creating each task
-2. **Link in descriptions**: Include "Part of #{parent_issue_number}" in each task description
-3. **Cross-reference tasks**: Link related tasks using "Depends on #issue" or "Blocks #issue"
-4. **Update parent checklist**: Create comprehensive task checklist in parent issue description
-
-**Set task priorities:**
-
-1. **High**: Foundational work, blocking other tasks, high risk/uncertainty
-2. **Medium**: Core functionality, standard implementation
-3. **Low**: Enhancements, nice-to-have features, optimization
-
-## Step 7: Update Parent Issue
-
-**Use the GitHub tool to update the parent issue:**
-
-1. Add a task breakdown summary to the issue description
-2. Create a checklist of all created task issues
-3. Update labels to indicate "ready for implementation"
-4. Add a comment summarizing the breakdown
-
-**Parent Issue Update:**
-
-```markdown
-## Task Breakdown
-
-This issue has been broken down into the following implementation tasks:
-
-### 1. Research & Architecture
-
-- [ ] #{task1} - [Task 1] Research: Requirements and architecture analysis
-
-### 2. Backend Implementation
-
-- [ ] #{task2.1} - [Task 2.1] Backend: Database schema and models
-- [ ] #{task2.2} - [Task 2.2] Backend: API endpoints implementation
-- [ ] #{task2.3} - [Task 2.3] Backend: Business logic and validation
-
-### 3. Frontend Implementation
-
-- [ ] #{task3.1} - [Task 3.1] Frontend: UI components
-- [ ] #{task3.2} - [Task 3.2] Frontend: State management and integration
-
-### 4. Testing & Quality
-
-- [ ] #{task4.1} - [Task 4.1] Testing: Unit tests
-- [ ] #{task4.2} - [Task 4.2] Testing: Integration tests
-
-### 5. Documentation & Deployment
-
-- [ ] #{task5} - [Task 5] Documentation: API docs and user guides
-
-**Total Tasks:** {count}
-**Estimated Effort:** {total_estimate}
-**Critical Path:** Task 1 → Task 2.1 → Task 2.2 → Task 3.1 → Task 4.2
-**Implementation Order:** Follow task numbering sequence for optimal dependency flow
-```
-
-## Step 8: Validate Task Breakdown
-
-**Check completeness:**
-
-1. Verify all acceptance criteria are covered by tasks
-2. Ensure no implementation areas are missing
-3. Confirm dependencies are identified and sequenced
-4. Verify testing tasks are included for each major component
-
-**Check clarity:**
-
-1. Ensure each task has clear, actionable deliverables
-2. Verify implementation approach is obvious to developers
-3. Confirm effort estimates are realistic
-4. Check that dependencies don't create circular blocking
-
-**Check quality:**
-
-1. Verify tasks are appropriately sized (avoid too large or too small)
-2. Ensure critical path is clearly identified
-3. Confirm risk/uncertainty tasks are prioritized early
-
-## Step 9: Request Human Review If Needed
+1. Core implementation task (3-5 points)
+   - Single deliverable covering all acceptance criteria
+   - No separate testing task unless complex validation needed
+
+**For Moderate Stories (5-8 points, 3-5 tasks):**
+
+1. Backend/Core implementation task(s) (2-3 points each)
+2. Frontend/Integration task(s) (2-3 points each)
+3. Testing task if not covered in implementation (2-3 points)
+
+**For Complex Stories (8-13 points, 5-8 tasks):**
+
+1. Research/Architecture task (2-3 points) - only if significant unknowns
+2. Backend implementation tasks (2-3 points each)
+   - Data models and schema
+   - Core logic and APIs
+   - Specific business rules
+3. Frontend implementation tasks (2-3 points each)
+   - Components and UI
+   - State management
+   - Integration
+4. Testing tasks (2-3 points each)
+   - Unit/integration tests
+5. Documentation if needed (1-2 points)
+
+**Johnny Decimal Naming (Automatic by subskill):**
+
+- Tasks will be named: `{epicId}.5.{incrementId}-task-{title}`
+- Example: Epic 1, Story 1 → Tasks 1.5.1, 1.5.2, 1.5.3, etc.
+- **Don't manually create names - subskill handles this**
+
+**Task Sequencing Principles:**
+
+- Identify dependencies between tasks (A must finish before B can start)
+- Group independent tasks that can run in parallel
+- Plan critical path (longest chain of dependent tasks)
+- Document which tasks block which others
+
+**Story Point Constraints:**
+
+- ⚠️ No single [Task] should exceed 8 story points
+- If a task would be > 8 points, break it into smaller tasks
+- Sum of task points should roughly equal parent story points (±20% OK)
+- If sum significantly exceeds parent, re-estimate or reduce scope
+
+## Step 5: Delegate [Task] Artifact Creation to Subskill
+
+**You have designed the breakdown. Now delegate the actual artifact creation:**
+
+Delegate the creation of [Task] artifacts using the `task` tool with these instructions:
+
+> **Delegate to subskill:**
+> You are creating [Task] artifacts for the [Story]: '$ARGUMENTS'.
+> Based on the analysis and breakdown design from Steps 1-4, create [Task] artifacts.
+> 
+> **Do NOT analyze or redesign** - just create artifacts from the provided breakdown.
+> 
+> 1. Use `skills_projectmanagement_info_planning_artifacts` to understand [Task] artifact structure and Johnny Decimal naming
+> 2. Use the storage backend to create [Task] artifacts with proper frontmatter (storyId, epicId, storyPoints, links)
+> 3. For each identified task:
+>    - Create artifact with frontmatter populated
+>    - Link to parent [Story] artifact
+>    - Link to parent [Epic] artifact
+>    - Link any task dependencies (blocking/dependent_on/related_to)
+> 4. Use `session` tools to communicate the created artifact identifiers back
+> 5. Return summary of created artifacts: list of artifact IDs in Johnny Decimal format
+
+**What the subskill will handle (don't repeat here):**
+- ✅ Johnny Decimal naming (1.5.1, 1.5.2, etc.)
+- ✅ Frontmatter field population
+- ✅ Storage backend interaction
+- ✅ Artifact linking and relationships
+- ✅ Directory structure and organization
+
+## Step 6: Validate Task Breakdown Quality
+
+**Verify breakdown completeness and feasibility:**
+
+1. **Task Count**: Are there 2-8 tasks total? (If < 2, might be too simple; if > 8, might need re-analysis)
+2. **Story Points**: Does sum of task points roughly equal parent story points (±20% acceptable)?
+3. **No Circular Dependencies**: Verify no task A blocks B, B blocks C, C blocks A
+4. **Coverage**: Do all acceptance criteria get addressed by at least one task?
+5. **Atomic Tasks**: Can each task be completed independently with clear acceptance criteria?
+
+**Identify potential issues before creating artifacts:**
+
+- If any task > 8 points, flag for re-estimation or splitting
+- If dependencies form loops, flag for redesign
+- If acceptance criteria not covered, flag for scope adjustment
+- If task count seems wrong, reconsider breakdown strategy
+
+## Step 7: Provide Breakdown Summary
+
+**Summarize what was created (don't create again - subskill already did):**
+
+The subskill has created [Task] artifacts based on your breakdown design. Here's what to document:
+
+- **[Story] Analyzed**: Artifact identifier and title
+- **Parent Epic**: Epic ID for context
+- **[Task] Artifacts Created**: List all artifact identifiers in Johnny Decimal format
+  - `1.5.1-task-backend-jwt-implementation`
+  - `1.5.2-task-frontend-login-component`
+  - `1.5.3-task-integration-testing`
+  - etc.
+- **Task Count**: Total number of [Task] artifacts created
+- **Estimated Effort**: Sum of story points across all tasks
+- **Critical Path**: Key dependency chain (e.g., 1.5.1 → 1.5.2 → 1.5.3)
+- **How to Reference**: Use Obsidian wiki-style links like `[[1.5.1-task-backend-jwt-implementation]]`
+
+**What happens next:**
+- Each [Task] artifact is now ready for execution with `/project:do:task`
+- Developers can view task details, implementation steps, and dependencies.
+- Task status can be updated as work progresses
+
+## Step 8: Request Human Review If Needed
 
 **Stop and request human review when:**
 
 - Task breakdown reveals significantly higher complexity than expected
-- New architectural decisions are needed that weren't in the original issue
+- New architectural decisions are needed that weren't in the original story
 - External dependencies or approvals are required
 - Security or performance implications are discovered
+- Estimated effort dramatically exceeds or undershoots story points
 
-## Step 10: Deliver Sub-Issues and Summary
+## Step 9: Implementation Success Criteria
 
-**Primary Output: Created Sub-Issues**
-Ensure all identified task sub-issues have been created and properly linked to the parent issue. Each sub-issue should be immediately actionable with clear acceptance criteria and implementation details.
+**Verify task breakdown success:**
 
-**Create a detailed breakdown summary:**
+- ✅ All [Task] artifacts created following storage backend protocols
+- ✅ All [Task] artifacts linked to parent [Story] artifact
+- ✅ All [Task] artifacts linked to parent [Epic] artifact
+- ✅ Task dependencies documented as storage backend links (blocking/dependent_on/related_to)
+- ✅ All story points allocated (sum ≈ parent story points ±20%)
+- ✅ No [Task] exceeds 8 story points
+- ✅ Critical path identified and understood
+- ✅ Implementation team can begin execution using `/project:do:task`
 
-- **Parent Issue**: Issue number and full title
-- **Sub-Issues Created**: List of all created task sub-issue numbers with hierarchical numbering
-  - Task 1: [Title and link]
-  - Task 2.1: [Title and link]
-  - Task 2.2: [Title and link]
-  - Task 3.1: [Title and link]
-  - etc.
-- **Task Categories**: Distribution across areas (Frontend, Backend, Testing, etc.)
-- **Critical Path**: Key dependency chain showing numbered sequence (e.g., Task 1 → Task 2.1 → Task 3.1)
-- **Implementation Order**: Follow numerical sequence for optimal workflow
-- **Dependencies**: Any blocking factors or prerequisites identified
-
-**Success Criteria:**
-
-- ✅ All identified tasks are captured as individual GitHub sub-issues
-- ✅ All sub-issues have proper parent-child relationships established in GitHub
-- ✅ All sub-issues are properly linked to the parent issue with "Part of #{parent_issue}" references
-- ✅ Parent issue has been updated with numbered task checklist
-- ✅ Task dependencies are clearly documented with cross-references
-- ✅ Implementation team can immediately begin work following numerical task sequence
-
-This systematic approach ensures comprehensive task breakdown while maintaining clear traceability through GitHub's issue system, with the primary deliverable being a complete set of actionable sub-issues.
+This systematic approach ensures logical task decomposition while the subskill ensures proper artifact creation, storage, and linking in the storage backend.
