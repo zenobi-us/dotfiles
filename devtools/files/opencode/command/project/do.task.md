@@ -4,6 +4,8 @@ You are implementing a specific GitHub task issue. Follow this systematic approa
 
 **Task:** Implement GitHub issue $ARGUMENTS with deep technical analysis and smart test-first development.
 
+**Workflow Note:** This command integrates the `using-git-worktrees` skill to automatically create and detect isolated workspaces. You can re-run this command in future sessions—the skill will detect your existing worktree and resume work from there.
+
 ## Step 1: Fetch and Analyze the Task
 
 **Use the GitHub tool to:**
@@ -77,11 +79,16 @@ Think deeply about implementing this task issue $ARGUMENTS. Consider the technic
 3. Update the assignee field if needed
 4. Remove any "ready" or "todo" labels
 
-**Use Git commands to create a feature branch:**
+**Use the using-git-worktrees skill to create an isolated workspace:**
 
-1. Create a new branch with naming pattern: `task/{issue-number}-{brief-description}`
-2. Push the branch and set upstream tracking
-3. Link the branch to the GitHub issue if your project supports this
+This skill will:
+1. Detect if a worktree already exists for this task (enables idempotent resumption)
+2. Create a worktree with feature identifier: `task/{issue-number}-{brief-description}`
+3. Auto-detect and run project setup (npm/cargo/poetry/etc)
+4. Verify the baseline is clean with tests
+5. Report the worktree path when ready
+
+The skill handles all directory selection, creation, and verification logic automatically.
 
 ## Step 6: Reference Project Guidelines
 
