@@ -192,3 +192,19 @@ Then continue to Step 2.
 ```
 
 This systematic analysis provides comprehensive situational awareness using the storage backend as the source of truth for all project tracking and intelligent workflow navigation.
+
+## Step 9: Update Board View
+
+**Update the Status File:**
+
+Take the output from Step 8 and save it to a file named `status` in the root of the current storage backend.
+
+**Update Kanban Board Representation:**
+
+Using the storage backend, retrieve current project state including all [Epic], [Spec], [Story], and [Task] items.
+
+1. Retrieve current project state including all [Epic], [Spec], [Story], and [Task] items.
+2. Format the data into a Kanban board view, categorizing items by status (To Do, In Progress, Done).
+3. Save the updated board view to a file named `board` in the root of the current storage backend.
+
+

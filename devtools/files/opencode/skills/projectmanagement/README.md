@@ -3,6 +3,21 @@
 > [!NOTE]
 > This skill is easier to use when combined with the /project* commands.
 
+## Installing
+
+To install the Project Management skill, use the following command:
+
+Copy the skill directly into your agents skills folder:
+
+**Opencode**
+
+```
+cp -r ./devtools/files/opencode/skills/projectmanagement ~/.config/opencode/skills/
+mkdir -p ~/.config/opencode/command/project
+cp -r ~/.config/opencode/skills/projectmanagement/references/commands/* ~/.config/opencode/command/project/
+```
+
+
 ## Workflow
 
 **Contextual Phase**
@@ -36,6 +51,7 @@ Currently, this skill provides subskills for the following storage backends:
 - [ ] `/project:research epicid [topic]` - Conduct research and engage in discussion with stakeholders.
 - [ ] `/project:decide epicid [options]` - Facilitate decision-making processes.
 - [ ] `/project:retro epicid [topic]` - Perform retrospectives on completed epics.
+- [ ] Update the `/project/current` cmd to consistently update a file that matches the project id in the root with a canvas that represents a kanban board view of the current project state.
 
 **Storage Backends**
 
