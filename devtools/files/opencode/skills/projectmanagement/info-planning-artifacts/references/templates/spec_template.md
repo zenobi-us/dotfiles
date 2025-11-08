@@ -1,19 +1,19 @@
 ---
 title: { Spec Title }
 projectId: { ProjectId }
-epicId: { 0001 }
+epicId: { 1 }
 status: { Draft | In Review | Approved | Superseded }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: epic
-    target: { 0001-epic-name }
+    target: { 1-epic-name }
   - type: contains_story
-    target: { 0001.4.0001-story-title }
+    target: { 1.4.1-story-title }
   - type: informed_by
-    target: { 0001.2.0001-research-title }
+    target: { 1.2.1-research-title }
   - type: influenced_by
-    target: { 0001.3.0001-decision-title }
+    target: { 1.3.1-decision-title }
 ---
 
 ## Preamble
@@ -99,7 +99,7 @@ See: `references/phase-01-initiation.md` for detailed Initiation phase guidance.
 
 For each `[NEEDS CLARIFICATION]` tag created during spec writing:
 
-- [ ] Research artifact created (or research not needed): { 0001.2.0001-research-title }
+- [ ] Research artifact created (or research not needed): { 1.2.1-research-title }
 - [ ] Research status is "Complete" or "Superseded" (NOT "In Progress")
 - [ ] Research findings referenced in [Spec] body or Notes section
 - [ ] If no research was needed, document why the clarification was resolved without research

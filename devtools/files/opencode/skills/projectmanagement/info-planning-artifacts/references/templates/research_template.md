@@ -1,20 +1,20 @@
 ---
 title: { Research Title }
 projectId: { ProjectId }
-epicId: { 0001 }
+epicId: { 1 }
 status: { In Progress | Complete | Inconclusive | Superseded }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 researchType: { Market | Technical | User | Competitive | Process | Other }
 links:
   - type: epic
-    target: { 0001-epic-name }
+    target: { 1-epic-name }
   - type: informs_spec
-    target: { 0001.1.0001-spec-title }
+    target: { 1.1.1-spec-title }
   - type: informs_decision
-    target: { 0001.3.0001-decision-title }
+    target: { 1.3.1-decision-title }
   - type: informs_story
-    target: { 0001.4.0001-story-title }
+    target: { 1.4.1-story-title }
 ---
 
 ## Research Objective

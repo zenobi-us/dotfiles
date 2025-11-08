@@ -1,17 +1,17 @@
 ---
 title: { Epic Title }
 projectId: { ProjectId }
-epicId: { 0001 }
+epicId: { 1 }
 status: { Active | Completed | On Hold | Cancelled }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: spec
-    target: { 0001.1.0001-spec-title }
+    target: { 1.1.1-spec-title }
   - type: contains_story
-    target: { 0001.4.0001-story-title }
+    target: { 1.4.1-story-title }
   - type: contains_story
-    target: { 0001.4.0002-story-title }
+    target: { 1.4.2-story-title }
 ---
 
 ## Folder Structure
@@ -21,29 +21,29 @@ This epic creates a folder in the project: `{ProjectId}/{epicid}-{epic-name}/`
 **Filename format:** `{epicid}.{typecode}.{incrementid}-{typename}-{title}.md`
 
 The folder contains all related artifacts:
-- Spec: `{epicid}.1.0001-spec-{title}.md` (always 0001, one per epic)
-- Research: `{epicid}.2.0001-research-{title}.md`, `{epicid}.2.0002-research-{title}.md` (multiple)
-- Decision: `{epicid}.3.0001-decision-{title}.md`, `{epicid}.3.0002-decision-{title}.md` (multiple)
-- Story: `{epicid}.4.0001-story-{title}.md`, `{epicid}.4.0002-story-{title}.md` (multiple)
+- Spec: `{epicid}.1.1-spec-{title}.md` (always 1, one per epic)
+- Research: `{epicid}.2.1-research-{title}.md`, `{epicid}.2.2-research-{title}.md` (multiple)
+- Decision: `{epicid}.3.1-decision-{title}.md`, `{epicid}.3.2-decision-{title}.md` (multiple)
+- Story: `{epicid}.4.1-story-{title}.md`, `{epicid}.4.2-story-{title}.md` (multiple)
 
-Tasks are stored at project level: `{epicid}.5.0001-task-{title}.md`, `{epicid}.5.0002-task-{title}.md`
+Tasks are stored at project level: `{epicid}.5.1-task-{title}.md`, `{epicid}.5.2-task-{title}.md`
 
 ## Example
 
 ```
-0001-user-authentication/
-├── 0001.1.0001-spec-user-auth-requirements.md
-├── 0001.2.0001-research-oauth-options.md
-├── 0001.2.0002-research-jwt-best-practices.md
-├── 0001.3.0001-decision-jwt-vs-session.md
-├── 0001.3.0002-decision-password-hashing.md
-├── 0001.4.0001-story-login-flow.md
-├── 0001.4.0002-story-password-reset.md
-└── 0001.4.0003-story-account-recovery.md
+1-user-authentication/
+├── 1.1.1-spec-user-auth-requirements.md
+├── 1.2.1-research-oauth-options.md
+├── 1.2.2-research-jwt-best-practices.md
+├── 1.3.1-decision-jwt-vs-session.md
+├── 1.3.2-decision-password-hashing.md
+├── 1.4.1-story-login-flow.md
+├── 1.4.2-story-password-reset.md
+└── 1.4.3-story-account-recovery.md
 
-0001.5.0001-task-database-schema.md
-0001.5.0002-task-jwt-middleware.md
-0001.5.0003-task-login-endpoint.md
+1.5.1-task-database-schema.md
+1.5.2-task-jwt-middleware.md
+1.5.3-task-login-endpoint.md
 ```
 
 ## Preamble

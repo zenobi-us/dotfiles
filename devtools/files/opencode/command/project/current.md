@@ -6,9 +6,34 @@ You are analyzing and displaying the current project context, active work, and p
 **Storage Backend**: basicmemory
 
 > [!CRITICAL]
-> Before doing anything, run the skills_projectmanagement_storage_basicmemory
+> Before doing anything, run theses skills:
+> - skills_projectmanagement_storage_basicmemory
+> - skills_projectmanagement_info_project_artifacts
 
-## Step 1: Detect Project Type and Technology
+For all [Project Artifacts], use the above storage backend.
+**NEVER** use fs or direct file access for [Project Artifacts].
+
+For all repo files, use the Read and Glob tools to analyze the current directory structure.
+
+
+## Step 1: Identify Project
+
+The above instructions should contain steps on creating a [ProjectId]. If not, respond with:
+
+```md
+❗ Error: No [ProjectId] found. Please create a [ProjectId] using /project:init before proceeding.
+``` 
+
+Print the identified [ProjectId]:
+
+```md
+📋 Current Project ID: [ProjectId]
+```
+
+Then continue to Step 2.
+
+
+## Step 2: Detect Project Type and Technology
 
 **Use file analysis tools to understand the project:**
 
@@ -27,16 +52,18 @@ You are analyzing and displaying the current project context, active work, and p
 
 **Query the storage backend to gather comprehensive work status:**
 
-1. Query the storage backend for items with `prd` and `feature` labels
+1. Query the storage backend for [Epic] and [Spec]
 2. Check item status for each (open, in-progress, closed)
-3. Identify linked task items for each PRD/feature
+3. Identify linked [Story] and [Task] items derived from each [Spec].
 4. Calculate completion percentages based on closed vs total task items
 
-**Analyze PRDs and Features:**
+**Analyze [Prd], [Epic] and [Spec]:**
 
-1. Retrieve all items labeled with `prd` from the storage backend to see active product requirements
-2. Retrieve all items labeled with `feature` from the storage backend to see technical features in progress
-3. Determine current status and progress for each major work item
+1. Retrieve all [Prd] items with `active` label from the storage backend to see high-level goals.
+2. Retrieve all [Epic] items with `active` label to see major work areas.
+3. Retrieve all [Spec] items with `active` label to see detailed features and requirements.
+4. For each [Epic] and [Spec], retrieve linked [Story] and [Task] items to understand breakdown of work.
+5. Determine current status and progress for each major work item.
 
 **Calculate task progress:**
 
@@ -47,8 +74,8 @@ You are analyzing and displaying the current project context, active work, and p
 
 **Example analysis format:**
 
-- Issue #4: User Authentication PRD (60% complete, 3/5 tasks done)
-- Issue #7: Dark Mode Feature (planning phase, 0/3 tasks)
+- Issue #4: User Authentication [Epic] (60% complete, 3/5 tasks done)
+- Issue #7: Dark Mode [Spec] (planning phase, 0/3 tasks)
 
 ## Step 3: Generate Intelligent Suggestions
 
@@ -61,10 +88,13 @@ You are analyzing and displaying the current project context, active work, and p
 
 **Generate smart, actionable suggestions:**
 
-1. If PRDs need task breakdown: suggest `/project:plan:tasks #4`
-2. If tasks are ready for implementation: suggest `/project:do:task #12`
-3. If no active work exists: suggest `/project:plan:prd [idea]` or `/project:plan:feature [capability]`
-4. If work is blocked: suggest specific unblocking actions
+1. If [Prd] is incomplete: suggest `/project:plan:prd [idea]`
+2. If [Prd] needs [Epic]: suggest `/project:plan:feature [capability]`
+3. If [Epic] needs [Story] scenarios described: suggest `/project:plan:stories #4`
+4. If [Story] needs task breakdown or tasks: suggest `/project:plan:tasks #7`
+5. If tasks are ready for implementation: suggest `/project:do:task #12`
+6. If no active work exists: suggest `/project:plan:prd [idea]` or `/project:plan:feature [capability]`
+7. If work is blocked: suggest specific unblocking actions
 
 ## Step 4: Analyze Workflow Status
 
@@ -84,9 +114,10 @@ You are analyzing and displaying the current project context, active work, and p
 
 **Include planning command options:**
 
-- `/project:plan:prd "idea"` - Create comprehensive product requirements
-- `/project:plan:feature "capability"` - Create focused technical features
-- `/project:plan:tasks "#4"` - Break down work into tasks
+- `/project:plan:prd "idea"` - Create comprehensive [Epic] requirements
+- `/project:plan:feature "capability"` - Create focused [Spec] features
+- `/project:plan:stories "#4"` - Define user stories for [Epic]
+- `/project:plan:tasks "#14"` - Break down story into tasks
 
 **Include implementation command options:**
 
@@ -101,13 +132,14 @@ You are analyzing and displaying the current project context, active work, and p
 
 **Explain storage backend item reference patterns:**
 
-- **PRDs**: "#4", "#8", "user authentication", "item #4"
-- **Features**: "#7", "#11", "dark mode", "item #7"
-- **Tasks**: "#12", "#15", "#18" (individual task item identifiers)
+- **[Epic]**: "#4", "#8", "user authentication", "item #4"
+- **[Spec]**: "#7", "#11", "dark mode", "item #7"
+- **[Story]**: "#9", "#10", "login flow", "item #9"
+- **[Task]**: "#12", "#15", "#18" (individual task item identifiers)
 
 **Show common workflow patterns:**
 
-- View PRD: refer by issue number or title
+- View [Epic]: refer by issue number or title
 - Break down: `/project:plan:tasks #4`
 - Implement: `/project:do:task #12`
 - Check status: `/project:current`
@@ -116,7 +148,7 @@ You are analyzing and displaying the current project context, active work, and p
 
 **Assess quality indicators:**
 
-1. Evaluate task breakdown completeness across all PRDs/features
+1. Evaluate task breakdown completeness across all [Epic], [Spec] and [Story]
 2. Check implementation progress consistency
 3. Review testing and documentation coverage
 4. Identify technical debt and risk factors
@@ -133,13 +165,13 @@ You are analyzing and displaying the current project context, active work, and p
 📋 Project Context: [Project Type] ([Technology Stack])
 
 📂 Active Work:
-├── Issue #4: User Authentication PRD (60% complete, 3/5 tasks)
+├── Issue #4: User Authentication [Epic] (60% complete, 3/5 tasks)
 │   ├── ✅ Issue #12: Research OAuth providers (closed)
 │   ├── ✅ Issue #13: Backend API design (closed)
 │   ├── 🔄 Issue #14: Frontend integration (in-progress)
 │   ├── ⏳ Issue #15: Testing suite (open)
 │   └── ⏳ Issue #16: Documentation (open)
-├── Issue #7: Dark Mode Feature (planning, 0/3 tasks)
+├── Issue #7: Dark Mode [Spec] (planning, 0/3 tasks)
 │   └── 📋 Ready for task breakdown
 
 🎯 Suggested Next Actions:
@@ -153,8 +185,9 @@ You are analyzing and displaying the current project context, active work, and p
 └── Estimated Remaining: ~2-3 days
 
 📍 Quick Reference:
-├── PRDs: #4 (user auth), #8 (...)
-├── Features: #7 (dark mode), #11 (...)
+├── [Epic]: #4 (user auth), #8 (...)
+├── [Spec]: #7 (dark mode), #11 (...)
+├── [Story]: #9 (login flow), #10 (password reset)
 └── Commands: /project:plan:prd, /project:plan:tasks, /project:do:task
 ```
 

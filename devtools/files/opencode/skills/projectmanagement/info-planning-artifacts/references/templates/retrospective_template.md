@@ -7,13 +7,13 @@ createdDate: { YYYY-MM-DD }
 participantCount: { Number of participants }
 links:
   - type: epic
-    target: { 0001-epic-name }
+    target: { 1-epic-name }
   - type: epic
-    target: { 0002-epic-name }
+    target: { 2-epic-name }
   - type: reviewed_decision
-    target: { 0001.3.0001-decision-title }
+    target: { 1.3.1-decision-title }
   - type: reviewed_decision
-    target: { 0001.3.0002-decision-title }
+    target: { 1.3.2-decision-title }
 ---
 
 ## Project Summary

@@ -1,8 +1,8 @@
 ---
 title: { Story Title }
 projectId: { ProjectId }
-epicId: { 0001 }
-specId: { 0001.1.0001 }
+epicId: { 1 }
+specId: { 1.1.1 }
 status: { To Do | In Progress | In Review | Done | Cancelled }
 storyPoints: { 3 | 5 | 8 | 13 }
 priority: { Critical | High | Medium | Low }
@@ -10,17 +10,17 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: epic
-    target: { 0001-epic-name }
+    target: { 1-epic-name }
   - type: spec
-    target: { 0001.1.0001-spec-title }
+    target: { 1.1.1-spec-title }
   - type: contains_task
-    target: { 0001.5.0001-task-title }
+    target: { 1.5.1-task-title }
   - type: contains_task
-    target: { 0001.5.0002-task-title }
+    target: { 1.5.2-task-title }
   - type: informed_by
-    target: { 0001.2.0001-research-title }
+    target: { 1.2.1-research-title }
   - type: influenced_by
-    target: { 0001.3.0001-decision-title }
+    target: { 1.3.1-decision-title }
 ---
 
 ## Scenario Description

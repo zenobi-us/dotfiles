@@ -1,8 +1,8 @@
 ---
 title: { Task Title }
 projectId: { ProjectId }
-storyId: { 0001.4.0001 }
-epicId: { 0001 }
+storyId: { 1.4.1 }
+epicId: { 1 }
 status: { To Do | In Progress | In Review | Done | Blocked }
 storyPoints: { 1 | 2 | 3 | 5 | 8 }
 priority: { Critical | High | Medium | Low }
@@ -12,19 +12,19 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
   - type: story
-    target: { 0001.4.0001-story-title }
+    target: { 1.4.1-story-title }
   - type: epic
-    target: { 0001-epic-name }
+    target: { 1-epic-name }
   - type: blocking
-    target: { 0001.5.0002-task-title }
+    target: { 1.5.2-task-title }
   - type: dependent_on
-    target: { 0001.5.0001-task-title }
+    target: { 1.5.1-task-title }
   - type: related_to
-    target: { 0001.5.0003-task-title }
+    target: { 1.5.3-task-title }
   - type: informed_by
-    target: { 0001.2.0001-research-title }
+    target: { 1.2.1-research-title }
   - type: influenced_by
-    target: { 0001.3.0001-decision-title }
+    target: { 1.3.1-decision-title }
 ---
 
 ## Task Description

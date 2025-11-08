@@ -1,23 +1,23 @@
 ---
 title: { Decision Title }
 projectId: { ProjectId }
-epicId: { 0001 }
+epicId: { 1 }
 status: { Pending | Decided | Unresolved | Superseded }
 decisionDate: { YYYY-MM-DD or null if pending }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
-researchBasis: { 0001.2.0001-research-title } # Optional: Link to research that informed this decision
+researchBasis: { 1.2.1-research-title } # Optional: Link to research that informed this decision
 links:
   - type: epic
-    target: { 0001-epic-name }
+    target: { 1-epic-name }
   - type: influenced_by
-    target: { 0001.2.0001-research-title }
+    target: { 1.2.1-research-title }
   - type: influences_spec
-    target: { 0001.1.0001-spec-title }
+    target: { 1.1.1-spec-title }
   - type: influences_story
-    target: { 0001.4.0001-story-title }
+    target: { 1.4.1-story-title }
   - type: influences_task
-    target: { 0001.5.0001-task-title }
+    target: { 1.5.1-task-title }
 ---
 
 ## Decision Context
@@ -133,7 +133,7 @@ Clearly define the problem or choice that needs to be addressed.
 
 If this decision was informed by research, link it in the `researchBasis:` field in frontmatter:
 ```yaml
-researchBasis: { 0001.2.0001-research-oauth-providers }
+researchBasis: { 1.2.1-research-oauth-providers }
 ```
 
 This creates traceability from decision back to the investigation that informed it.
