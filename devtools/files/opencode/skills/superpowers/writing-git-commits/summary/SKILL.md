@@ -1,5 +1,5 @@
 ---
-name: writing-git-commits-summary
+name: summary
 description: Quick summary of Conventional Commits specification and core concepts for semantic commit messages.
 ---
 

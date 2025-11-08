@@ -1,5 +1,5 @@
 ---
-name: writing-git-commits-faq
+name: faq
 description: Frequently asked questions and practical guidance for implementing Conventional Commits in your workflow.
 ---
 

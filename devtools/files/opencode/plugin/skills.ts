@@ -28,13 +28,13 @@ import type { Plugin, PluginInput, ToolContext, ToolDefinition } from "@opencode
 import { tool } from "@opencode-ai/plugin"
 import envPaths from "env-paths";
 import matter from "gray-matter"
-import debug from "debug";
-import {mergeDeepLeft} from "ramda";
+import { mergeDeepLeft } from "ramda";
+import { Logger } from "../lib/logger";
 
 
 const SKILL_PATH_PATTERN = /skills\/.*\/SKILL.md$/;
 
-const log = console.log;
+const log = new Logger("skills.plugin");
 
 // Types
 type Skill = {
@@ -89,16 +89,16 @@ async function findSkillPaths(basePaths: string | string[]) {
     try {
         const paths: string[] = []
         
-        for (const basePath of basePathsArray) {
-             const stat = await lstat(basePath).catch(() => null);
-             console.log(`findSkillPaths.isDirectory`, basePath, stat?.isDirectory());
-             if (!stat?.isDirectory()) {
-                 continue;
-             }
-             paths.push(basePath);
-         }
+     for (const basePath of basePathsArray) {
+              const stat = await lstat(basePath).catch(() => null);
+              log.log(`findSkillPaths.isDirectory`, basePath, stat?.isDirectory());
+              if (!stat?.isDirectory()) {
+                  continue;
+              }
+              paths.push(basePath);
+          }
 
-         console.log("findSkillPaths.available", paths);
+          log.log("findSkillPaths.available", paths);
         const patterns = paths.map(basePath => join(basePath, "**/SKILL.md"))
         const matches = await fsPromises.glob(patterns)
         return matches;
@@ -269,11 +269,11 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
             continue;
         }
 
-        console.log(`✅  ${skill.toolName} `);
+         log.log(`✅  ${skill.toolName} `);
 
-         if (registry.has(skill.toolName)) {
-             dupes.push(skill.toolName);
-             console.log('discover.duplicate', skill.toolName);
+          if (registry.has(skill.toolName)) {
+              dupes.push(skill.toolName);
+              log.log('discover.duplicate', skill.toolName);
 
              continue;
          }
@@ -282,9 +282,9 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
         registry.set(skill.toolName, skill);
     }
 
-    if (!registry.size) {
-         console.log('discover.none');
-     }
+     if (!registry.size) {
+          log.log('discover.none');
+      }
 
     if (dupes.length) {
         console.warn(`⚠️  Duplicate skill tool names detected (skipped): ${dupes.join(", ")}`);
@@ -311,10 +311,10 @@ async function getPluginConfig(ctx: PluginInput) : Promise<PluginConfig> {
 }
 
 export const SkillsPlugin: Plugin = async (ctx) => {
-     const config = await getPluginConfig(ctx);
-     console.log('plugin.config', config);
-     // Discovery order: lowest to highest priority (last wins on duplicate tool names)
-     const tool = await createSkillRegistry(ctx, config)
+      const config = await getPluginConfig(ctx);
+      log.log('plugin.config', config);
+      // Discovery order: lowest to highest priority (last wins on duplicate tool names)
+      const tool = await createSkillRegistry(ctx, config)
 
-     return { tool }
- }
+      return { tool }
+  }

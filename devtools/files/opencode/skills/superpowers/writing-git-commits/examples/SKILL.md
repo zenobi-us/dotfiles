@@ -1,5 +1,5 @@
 ---
-name: writing-git-commits-examples
+name: examples
 description: Real-world examples of Conventional Commits for different scenarios and commit types.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: writing-git-commits-specification
+name: specification
 description: Complete technical specification for Conventional Commits with all formal rules and requirements.
 ---
 
