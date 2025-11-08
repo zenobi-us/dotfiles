@@ -20,9 +20,13 @@ cp -r ~/.config/opencode/skills/projectmanagement/references/commands/* ~/.confi
 
 ## Workflow
 
+**Starting**
+
+1. `/project:init [ProjectId]` - Initialize a new project with a unique Project ID. If no ID is provided, a default will be discovered and used.
+
 **Contextual Phase**
 
-1. `/project:current` - Continuously monitor project status and workflow
+1. `/project:status` - Continuously monitor project status and workflow
 
 **Planning Phase**
 
