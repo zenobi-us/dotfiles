@@ -2,6 +2,9 @@
 
 Add entry to CHANGELOG.md: $ARGUMENTS
 
+>  [!NOTE]
+>  This is a repo level artifact. Not a planning artifact.
+
 ## Process
 
 1. Parse arguments: `version change_type message`

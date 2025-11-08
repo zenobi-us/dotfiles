@@ -12,9 +12,14 @@ Create a semantic commit for staged changes: $ARGUMENTS
 
 ## Scope Rules
 
+Use the `skills_superpowers_writing_git_commits` skill to guide you in writing great commit messages and body content following the Conventional Commits specification.
+
+Key principles:
 - Use file directory or functionality as scope
 - Common scopes: `[ui]`, `[api]`, `[docs]`, `[config]`, `[claude]`
 - Description starts lowercase, concise and clear
+- Follow semantic commit format: `[type](scope): description`
+
 
 ## Examples
 

@@ -15,9 +15,17 @@ Git worktrees create isolated workspaces sharing the same repository, allowing w
 
 ## Directory Selection Process
 
-Follow this priority order:
+1. Determine what the path for the required workree will be "<parent-worktree-dir>/<feature-identifier>"
+2. Are we already there? Is it a git worktree? If so, report and exit.
+3. If we're are in the wrong worktree, report and exit.
+4. Identify parent worktree directory using priority:
+   - Existing worktree parent directory
+   - AGENTS.md preference
+   - User prompt
+5. Ensure project-local directories are in .gitignore
+6. Create worktree, run setup, verify clean baseline
 
-### 1. Check Existing Directory
+### 1. Check if there is an existing worktree parent directory
 
 ```bash
 # Check in priority order
@@ -112,7 +120,7 @@ go test ./...
 ```
 Worktree ready at <full-path>
 Tests passing (<N> tests, 0 failures)
-Ready to implement <feature-name>
+Ready to implement <feature-identifier>
 ```
 
 ## Quick Reference
