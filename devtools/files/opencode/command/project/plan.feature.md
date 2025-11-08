@@ -1,8 +1,17 @@
 # Create Technical Feature
 
-You are creating a focused technical feature document as a GitHub issue for direct implementation. Follow this systematic approach to create a well-scoped, implementable feature.
+You are creating a focused [Spec] artifact for a technical feature. Follow this systematic approach to create a well-scoped, implementable feature specification that integrates with the planning artifact hierarchy.
 
-**Task:** Create a technical feature for: $ARGUMENTS
+**Task:** Create a [Spec] artifact for: $ARGUMENTS
+**Storage Backend**: basicmemory
+
+> [!CRITICAL]
+> Before doing anything, run these skills:
+> - skills_projectmanagement_storage_basicmemory
+> - skills_projectmanagement_info_planning_artifacts
+>
+> For all [Planning Artifacts], use the above storage backend.
+> **NEVER** use GitHub Issues or direct file access for [Planning Artifacts].
 
 ## Step 1: Analyze Feature Scope
 
@@ -63,101 +72,16 @@ Think deeply about this technical feature: '$ARGUMENTS'. Consider the system arc
 3. Define scalability and reliability needs
 4. Ensure accessibility and usability standards are met
 
-## Step 5: Create GitHub Issue
+## Step 5: Create the [Spec] Artifact
 
-**Use the GitHub tool to create a focused feature issue:**
+Delegate the creation of the [Spec] artifact using `task` tool with these instructions:
 
-1. Set the title using format: `[Feature] {Feature Name}`
-2. Add labels: `feature`, `enhancement`, and area labels (e.g., `frontend`, `backend`, `api`)
-3. Use this template for the issue body:
-
-```markdown
-# Feature: {Feature Name}
-
-## Overview
-
-{2-3 sentence description of the feature}
-
-## User Story
-
-As a {user type}, I want to {capability} so that {benefit}.
-
-## Problem Statement
-
-{Specific problem this feature solves}
-
-## Acceptance Criteria
-
-- [ ] Given {condition}, when {action}, then {expected result}
-- [ ] Given {condition}, when {action}, then {expected result}
-- [ ] Given {condition}, when {action}, then {expected result}
-
-## Technical Requirements
-
-### System Areas Affected
-
-- [ ] Frontend
-- [ ] Backend
-- [ ] CLI
-- [ ] Database
-- [ ] Infrastructure
-
-### Implementation Approach
-
-{High-level approach to implementation}
-
-### Key Components
-
-- {Component 1}: {Description}
-- {Component 2}: {Description}
-
-### Data Requirements
-
-{Any data model changes, API endpoints, or storage needs}
-
-## Dependencies
-
-### Internal Dependencies
-
-- {Dependency 1}
-- {Dependency 2}
-
-### External Dependencies
-
-- {Library/Service 1}
-- {Library/Service 2}
-
-## Success Criteria
-
-### Definition of Done
-
-- [ ] All acceptance criteria met
-- [ ] Tests written and passing
-- [ ] Documentation updated
-- [ ] Code reviewed and merged
-- [ ] Feature deployed and verified
-
-### Success Metrics
-
-- {Metric 1}: {Target}
-- {Metric 2}: {Target}
-
-## Risk Assessment
-
-### Technical Risks
-
-- {Risk 1}: {Mitigation}
-- {Risk 2}: {Mitigation}
-
-### Timeline Risks
-
-- {Risk 1}: {Mitigation}
-- {Risk 2}: {Mitigation}
-
-## Technical Notes
-
-{Key implementation details and considerations}
-```
+> **Delegate to subskill:**
+> You are creating a [Spec] artifact for the technical feature: '$ARGUMENTS'.
+> No analysis is needed here, just create the artifact based on the previously gathered information.
+> 1. use `skills_projectmanagement_info_planning_artifacts` to understand the structure and fields required for a [Spec] artifact
+> 2. use the storage backend to create a new [Spec] artifact.
+> 3. use the `session` tools to communicate the unique identifier of the created [Spec] artifact.
 
 ## Step 6: Validate Feature Quality
 
@@ -186,10 +110,10 @@ As a {user type}, I want to {capability} so that {benefit}.
 
 **Create a comprehensive summary of what you accomplished:**
 
-- **GitHub Issue Created**: Issue number and full title
+- **[Spec] Artifact Created**: Artifact identifier in Johnny Decimal format (e.g., `1.1.1-spec-feature-title`)
 - **Project Type and Focus**: Areas identified and feature scope
 - **Key Technical Considerations**: Important architecture and integration decisions
-- **Next Steps**: Recommended approach for task breakdown and implementation
-- **Reference**: Note that this feature can be referenced by its GitHub issue number
+- **Next Steps**: Suggested command to view artifact or create user stories (e.g., `/project:plan:stories`)
+- **Reference**: How to reference this [Spec] artifact in basicmemory (e.g., `[[1.1.1-spec-feature-title]]`)
 
-This systematic approach ensures your feature is well-scoped, technically sound, and ready for task breakdown and implementation.
+This systematic approach ensures your feature is well-scoped, technically sound, and ready for user story breakdown and implementation.
