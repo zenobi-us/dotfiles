@@ -1,8 +1,8 @@
-# Project Retrospective and Closing
+# Interactive Retrospective Discussion
 
-You are conducting a project retrospective and documenting lessons learned. Follow this systematic approach to create a comprehensive [Retrospective] artifact that captures valuable insights for future projects.
+You are conducting an interactive retrospective discussion to capture lessons learned and insights. Follow this systematic approach to facilitate a question-and-answer flow that discovers and documents valuable project insights.
 
-**Task:** Conduct retrospective for project: $ARGUMENTS
+**Input:** $ARGUMENTS (epic name or project name)
 **Storage Backend**: basicmemory
 
 > [!CRITICAL]
@@ -13,288 +13,407 @@ You are conducting a project retrospective and documenting lessons learned. Foll
 > For all [Planning Artifacts], use the above storage backend.
 > **NEVER** use GitHub Issues or direct file access for [Planning Artifacts].
 
-## Step 1: Verify Project Readiness for Closing
+## Step 1: Validate and Clarify Input
 
-**Confirm project completion criteria:**
+**Check the input argument ($ARGUMENTS):**
 
-1. **Deliverables**: Are all major deliverables complete or accepted?
-2. **Open Issues**: Are there any blocking issues remaining?
-3. **Unresolved Decisions**: What [Decision] artifacts have status "Unresolved"?
-4. **Test Coverage**: Are tests passing and coverage acceptable?
-5. **Documentation**: Is project documentation complete?
+1. **No input provided**
+   ```
+   ❌ Error: No scope specified
+   
+   Please specify what retrospective you want to conduct:
+   
+   /project:closing:retrospective "epic-name"     → Conduct epic retrospective
+   /project:closing:retrospective "project-name"  → Conduct project retrospective
+   
+   Examples:
+   /project:closing:retrospective "user-authentication"
+   /project:closing:retrospective "my-project"
+   
+   STOP - Wait for user input before proceeding
+   ```
 
-**If closing criteria not met:**
+2. **Input is vague or ambiguous** (too generic, doesn't match artifacts)
+   
+   Examples of vague input:
+   - "project" or "epic" (generic, not specific)
+   - "work" (too vague)
+   - "something about auth" (ambiguous)
+   
+   ```
+   ❌ Error: Scope is too vague
+   
+   Please provide a specific epic or project name. Be precise:
+   
+   VAGUE:        "the authentication stuff"
+   CLEAR:        "user-authentication" or "auth-epic"
+   
+   VAGUE:        "this project"
+   CLEAR:        "dotfiles" or "my-saas-app"
+   
+   STOP - Wait for clear input before proceeding
+   ```
 
-Document blocking items that prevent closure:
-- List open/unresolved items
-- Estimate effort to complete
-- Recommend: Continue project execution or defer to phase 2
+3. **Input mentions both epic AND project scope**
+   
+   Example: "retrospective for search epic in my project"
+   
+   ```
+   ❌ Error: Ambiguous scope (both epic and project mentioned)
+   
+   Retrospectives should focus on ONE scope level:
+   - Epic retrospective: Focuses on one epic's work
+   - Project retrospective: Focuses on entire project
+   
+   Which do you want to discuss?
+   
+   /project:closing:retrospective "search"              ← Epic scope
+   /project:closing:retrospective "my-project"         ← Project scope
+   
+   STOP - Wait for scoped input before proceeding
+   ```
 
-**If ready to close:**
+4. **Input is clear and epic-focused**
+   
+   ```
+   ✅ Confirmed: Epic retrospective for "{epic-name}"
+   
+   Proceeding with interactive retrospective discussion...
+   Continue to Step 2: Start Q&A Facilitation
+   ```
 
-Proceed to gather retrospective data and insights.
+5. **Input is clear and project-focused**
+   
+   ```
+   ✅ Confirmed: Project retrospective for "{project-name}"
+   
+   Proceeding with interactive retrospective discussion...
+   Continue to Step 2: Start Q&A Facilitation
+   ```
 
-## Step 2: Gather Project Metrics and Data
+## Step 2: Verify Artifact Existence and Determine Mode
 
-**Collect quantitative project data:**
+**For Epic Retrospectives:**
 
-**Effort Metrics:**
-1. Total project duration (start to completion)
-2. Planned vs actual effort
-3. Story point velocity (if applicable)
-4. Scope changes during execution
+1. Check if [Epic] artifact exists in storage
+2. Check if retrospective artifact already exists (1.9.1, 1.9.2, etc.)
+3. Determine mode:
+   - **CREATE**: First retrospective for this epic
+   - **UPDATE**: Existing retrospective found, append new insights
 
-**Quality Metrics:**
-1. Test coverage percentage
-2. Bug count and severity distribution
-3. Technical debt items identified
-4. Code review insights
+**For Project Retrospectives:**
 
-**Delivery Metrics:**
-1. On-time delivery rate for iterations
-2. Scope creep percentage
-3. Risk items that materialized
-4. Blocked time and reasons
+1. Check if retrospective artifact already exists (0.9.1, etc.)
+2. Determine mode:
+   - **CREATE**: First retrospective for this project
+   - **UPDATE**: Existing retrospective found, append new insights
 
-**Team Metrics:**
-1. Team size and composition
-2. Communication patterns
-3. Skill gaps identified
-4. Knowledge gaps discovered
+**Document the mode:**
+- "Creating new retrospective for {name}"
+- "Updating existing retrospective for {name}"
 
-## Step 3: Review All Project Artifacts
+## Step 3: Open the Discussion
 
-**Analyze the complete artifact history:**
+**Start with context-setting:**
 
-1. **Fetch all [Epic] artifacts**: Review scope and completeness
-2. **Fetch all [Spec] artifacts**: Assess requirement clarity
-3. **Fetch all [Story] artifacts**: Review user-focused planning
-4. **Fetch all [Task] artifacts**: Analyze implementation complexity
-5. **Fetch all [Decision] artifacts**: Review decision quality
-6. **Fetch all [Research] artifacts**: Assess research usefulness
+```
+Let's conduct a retrospective for {scope}: {name}
 
-**For each artifact type, ask:**
-- Were requirements clear and complete?
-- Were estimates accurate?
-- Did artifacts guide implementation effectively?
-- What gaps existed in planning?
+I'll ask you a series of questions to understand what happened, 
+what worked well, what didn't, and what you learned.
 
-## Step 4: Conduct Retrospective Analysis
+Feel free to elaborate. This is your opportunity to capture 
+important lessons and insights.
 
-**For complex projects, engage in extended thinking:**
+Ready? Let's begin.
+```
 
-Think deeply about this project's journey: '$ARGUMENTS'. Consider what went well, what could improve, surprises encountered, risks that materialized, successes to celebrate, and patterns that emerged. What will we do differently next time?
+## Step 4: Facilitate Interactive Q&A Flow
 
-**Apply systematic retrospective framework:**
+**Follow this question sequence, adapted based on responses:**
 
-### What Went Well (Successes):
-1. **Execution**: What implementation decisions were excellent?
-2. **Planning**: What planning practices were most valuable?
-3. **Team**: What team dynamics were positive?
-4. **Process**: What process decisions worked well?
-5. **Technology**: What technical choices proved valuable?
+### Phase 1: Discovery (Understanding What Happened)
 
-### What Could Be Better (Improvements):
-1. **Execution**: What implementation challenges existed?
-2. **Planning**: What planning gaps caused issues?
-3. **Team**: What communication or collaboration issues arose?
-4. **Process**: What process friction points existed?
-5. **Technology**: What technical decisions caused pain?
+**Initial Questions:**
+1. "What was the primary goal or objective of this {epic/project}?"
+2. "How long did it take from start to finish?" (timeline)
+3. "What was the biggest challenge you faced?"
 
-### Surprising Discoveries:
-1. **Unexpected challenges**: What was harder than expected?
-2. **Unexpected successes**: What worked better than expected?
-3. **New learnings**: What did we discover during execution?
-4. **Market/user insights**: What surprised us about users or market?
+**Follow-up Pattern:**
+- User answers challenge question
+- You ask: "Tell me more about that. What made it difficult?"
+- Listen to answer
+- You ask: "How did you handle it?"
+- Listen to answer
+- Continue deepening until you understand the challenge fully
 
-### Key Decisions to Review:
-1. **Unresolved Decisions**: Which [Decision] artifacts are still "Unresolved"?
-2. **Reconsidered Decisions**: Which decisions needed reversal?
-3. **Decision Quality**: Were decision artifacts useful?
+### Phase 2: Successes (What Went Well)
 
-## Step 5: Analyze Unresolved Decisions
+**Questions:**
+1. "What part of this {epic/project} went exceptionally well?"
+2. "What were you most proud of completing?"
+3. "Which decisions or approaches worked great?"
 
-**Review all [Decision] artifacts with status "Unresolved":**
+**Follow-up Pattern:**
+- User mentions a success
+- You ask: "What made that work so well?"
+- Listen to answer
+- You ask: "Can we apply this pattern to other work?"
+- Continue until success is fully understood
 
-For each unresolved decision:
-1. **Can we resolve it now?**: Did the project provide enough information?
-2. **Should we defer?**: Does this need to be decided before next phase?
-3. **Impacts**: How did unresolved decision impact the project?
-4. **Recommendation**: What should happen with this decision?
+### Phase 3: Surprises and Learnings
 
-**Document resolution plan:**
-- Decisions to resolve before phase 2
-- Decisions to defer to later phases
-- Decisions that require further research
+**Questions:**
+1. "What surprised you most during this work?"
+2. "What did you learn that you didn't expect?"
+3. "What would you do differently if you did this again?"
 
-## Step 6: Create [Retrospective] Artifact
+**Follow-up Pattern:**
+- User shares learning
+- You ask: "Why do you think that happened?"
+- Listen to answer
+- You ask: "How will this change your approach next time?"
 
-**Delegate to subskill:**
+### Phase 4: Blockers and Pain Points
 
-Delegate the creation of the [Retrospective] artifact using the `task` tool:
+**Questions:**
+1. "What blocked your progress or slowed you down?"
+2. "Where did you feel friction in the process?"
+3. "What would have made this easier?"
 
+**Follow-up Pattern:**
+- User describes blocker
+- You ask: "How much time did this cost?"
+- Listen to answer
+- You ask: "Can we prevent this next time?"
+
+### Phase 5: Team and Collaboration
+
+**Questions:**
+1. "How was the collaboration on this work?"
+2. "Were there any communication gaps?"
+3. "What team strengths showed up?"
+
+**Follow-up Pattern:**
+- User comments on collaboration
+- You ask: "What could we improve?"
+- Listen to answer
+- You ask: "Do you have recommendations?"
+
+### Phase 6: Looking Forward
+
+**Questions:**
+1. "What should we start doing next time?"
+2. "What should we stop doing?"
+3. "What technical debt was created?"
+4. "What are the top 3 improvements for next iteration?"
+
+**Follow-up Pattern:**
+- User suggests improvement
+- You ask: "How would that help?"
+- Listen to answer
+- You ask: "When should we prioritize this?"
+
+## Step 5: Capture Responses During Q&A
+
+**As the user answers, document:**
+
+1. **Their exact quotes** (when meaningful)
+2. **Key insights** (what matters most)
+3. **Action items** (what to do differently)
+4. **Technical decisions** (what worked/didn't)
+5. **Team dynamics** (collaboration observations)
+6. **Timeline impacts** (how events affected schedule)
+
+**Format captured data:**
+```
+CHALLENGE: Performance optimization
+INSIGHT: "We didn't profile early enough"
+IMPACT: Added 3 days to timeline
+LEARNING: Profile performance before implementation
+NEXT TIME: Add performance profiling task to story planning
+```
+
+## Step 6: Synthesize and Confirm Understanding
+
+**After gathering insights, synthesize:**
+
+```
+Let me summarize what I'm hearing:
+
+SUCCESSES:
+- {success 1}
+- {success 2}
+- {success 3}
+
+CHALLENGES:
+- {challenge 1} → Learning: {learning}
+- {challenge 2} → Learning: {learning}
+
+ACTION ITEMS:
+- {action 1}
+- {action 2}
+- {action 3}
+
+Does this capture it accurately? Anything I missed?
+```
+
+**User confirms or adds more details**
+
+## Step 7: Ask if Discussion is Complete
+
+**Check if retrospective is thorough:**
+
+```
+Before I record this retrospective, do you want to add anything else?
+
+- Other challenges or successes not mentioned?
+- Additional learnings or decisions?
+- Other team members' perspectives?
+- Anything else that matters for next time?
+```
+
+**User adds more OR confirms complete**
+
+## Step 8: Delegate Artifact Creation/Update to Subskill
+
+**Once discussion is complete, delegate to subskill:**
+
+For **CREATE** (new retrospective):
 > **Delegate to subskill:**
-> You are creating a [Retrospective] artifact for project: '$ARGUMENTS'.
-> Document comprehensive lessons learned and project insights.
+> Create a [Retrospective] artifact for the epic/project: "{name}"
+> 
+> 1. Use `skills_projectmanagement_info_planning_artifacts` to understand structure
+> 2. Create artifact in storage backend with:
+>    - Type: Retrospective
+>    - Scope: Epic (1.9.x) or Project (0.9.x)
+>    - Title: "{name}"
+> 3. Populate artifact with:
+>    - Discussion summary and context
+>    - Successes and what went well
+>    - Challenges and blockers faced
+>    - Key learnings and discoveries
+>    - Action items and improvements
+>    - Team observations
+>    - Recommendations for next work
+> 4. For Epic: Link to parent [Epic] artifact
+> 5. Return artifact identifier (e.g., 1.9.1-retrospective-{epic-name})
+
+For **UPDATE** (appending to existing):
+> **Delegate to subskill:**
+> Update existing [Retrospective] artifact for: "{name}"
 >
-> 1. Use `skills_projectmanagement_info_planning_artifacts` to understand [Retrospective] structure
-> 2. Use the storage backend to create a [Retrospective] artifact
-> 3. [Retrospective] is project-level (ID: 0) not epic-level
-> 4. Populate with:
->    - Project overview and timeline
->    - Metrics and quantitative data
->    - What went well (successes)
->    - What could improve (improvements)
->    - Surprising discoveries
->    - Review of [Decision] artifacts
->    - Recommendations for future projects
->    - Team and process insights
->    - Technical learnings
-> 5. Link all unresolved [Decision] artifacts
-> 6. Use `session` tools to communicate the created [Retrospective] identifier
-> 7. Return artifact identifier (e.g., `0.9.1-retrospective-project-closeout`)
+> 1. Fetch existing retrospective artifact from storage
+> 2. Append new discussion insights to:
+>    - Additional successes discovered
+>    - New challenges identified
+>    - Updated learnings and perspectives
+>    - Additional action items
+> 3. Maintain version/update history
+> 4. Return updated artifact identifier
 
-## Step 7: Document Key Learnings
+## Step 9: Present Retrospective Record
 
-**Capture organizational knowledge:**
-
-### Process Learnings:
-1. What planning practices were most effective?
-2. What execution practices could improve?
-3. What team practices should we continue?
-4. What should we change for next project?
-
-### Technical Learnings:
-1. What technology choices proved valuable?
-2. What technology decisions caused issues?
-3. What technical patterns should we adopt?
-4. What should we avoid?
-
-### Team Learnings:
-1. What skills gaps were identified?
-2. What training is needed?
-3. What roles worked well?
-4. What collaboration patterns were effective?
-
-### User/Product Learnings:
-1. What user needs were discovered?
-2. What assumptions were wrong?
-3. What features were most valuable?
-4. What should inform next features?
-
-## Step 8: Create Improvement Backlog
-
-**Document recommendations for future work:**
-
-**High Priority Improvements:**
-1. Technical debt to address
-2. Architectural improvements needed
-3. Process changes for next phase
-4. Skills/training to address
-
-**Medium Priority Improvements:**
-1. Enhancements discovered but deferred
-2. Process optimizations
-3. Tool or infrastructure improvements
-
-**Future Feature Ideas:**
-1. User requests not implemented
-2. Technical opportunities discovered
-3. Market opportunities identified
-
-## Step 9: Validate Retrospective Quality
-
-**Verify the retrospective artifact:**
-
-1. **Completeness**: Are all major areas covered?
-2. **Balance**: Are successes and improvements balanced?
-3. **Data**: Are metrics and facts documented?
-4. **Insights**: Do findings provide actionable insights?
-5. **Decisions**: Are all unresolved decisions addressed?
-6. **Recommendations**: Are next steps clear?
-
-**Check for common issues:**
-
-- Retrospective too focused on problems (ignore successes)
-- Insufficient data to support conclusions
-- Vague recommendations without specifics
-- Unresolved decisions not addressed
-- Team perspectives not represented
-
-## Step 10: Present Retrospective Summary
-
-**Create a comprehensive project closing summary:**
-
-- **[Retrospective] Artifact Created**: Artifact identifier
-- **Project Duration**: Timeline and phases
-- **Key Metrics**: Effort, quality, delivery metrics
-- **Major Successes**: What went well
-- **Key Improvements**: What to change next time
-- **Unresolved Decisions**: Items requiring follow-up
-- **Technical Debt**: Items identified for next phase
-- **Team Insights**: Lessons about team dynamics
-- **Recommendations**: Top 3 changes for next project
-
-## Step 11: Archive Project Artifacts
-
-**Preserve project knowledge:**
-
-1. **Export all artifacts**: Ensure complete history is saved
-2. **Create index**: Document all major artifacts and locations
-3. **Link retrospective**: Ensure [Retrospective] links to key decisions and artifacts
-4. **Document process**: Capture how project was executed
-
-## Step 12: Reference and Linking
-
-**How [Retrospective] is organized:**
-
-- **Project-level**: [Retrospective] is ID `0` (project-level, not epic)
-- **Filename**: `0.9.1-retrospective-{project-name}-closeout`
-- **Links to**: All [Decision] artifacts with status "Unresolved"
-
-**Example links in [Retrospective]:**
-
-```markdown
-## Unresolved Decisions Requiring Follow-up
-
-- [[1.3.1-decision-jwt-vs-session]] - Deferred to phase 2
-- [[2.3.2-decision-microservices-architecture]] - Needs more data
-```
-
-## Step 13: Project Closing Workflow
-
-**Completing the project lifecycle:**
+**After artifact is created/updated, present summary:**
 
 ```
-[Prd] → [Epic] → [Spec] → [Story] → [Task] (Implementation)
-                                        ↓
-                                  [Retrospective] (Closing)
-                                        ↓
-                              Project Archived & Closed
+✅ Retrospective recorded for {scope}: {name}
+
+ARTIFACT: {artifact-id}
+MODE: {Created | Updated}
+SCOPE: {Epic | Project}
+
+KEY OUTCOMES:
+- Successes documented: {count}
+- Challenges identified: {count}
+- Action items recorded: {count}
+- Learnings captured: {count}
+
+NEXT STEPS:
+- Review artifact: [[{artifact-id}]]
+- Share with team: {recommendations}
+- Track action items: {who, when}
 ```
 
-**Post-Retrospective Actions:**
+## Step 10: Offer to Continue
 
-1. ✅ Archive all project artifacts
-2. ✅ Create next project if continuing work
-3. ✅ Schedule team retrospective meeting
-4. ✅ Create action items for process improvements
-5. ✅ Plan team celebration/recognition
-6. ✅ Update team wiki with learnings
+**Ask if user wants to continue retrospective work:**
 
-## Step 14: Implementation Success Criteria
+```
+This retrospective is recorded. Do you want to:
 
-**Verify project closing success:**
+1. Conduct retrospective for another epic/project?
+   /project:closing:retrospective "other-epic-name"
 
-- ✅ [Retrospective] artifact created with comprehensive insights
-- ✅ All major project artifacts reviewed
-- ✅ Metrics and data documented
-- ✅ Successes captured and celebrated
-- ✅ Improvements identified with specific recommendations
-- ✅ Unresolved [Decision] artifacts documented
-- ✅ Technical debt identified for next phase
-- ✅ Team learnings captured
-- ✅ Recommendations for future projects documented
-- ✅ Project archived and closed
+2. Review this retrospective?
+   View artifact: [[{artifact-id}]]
 
-This systematic approach ensures projects close with valuable learnings captured and knowledge preserved for future projects and team development.
+3. Update this retrospective later?
+   Run command again with same name to append new insights
+
+What's next?
+```
+
+## Key Design Principles
+
+**Facilitation Pattern:**
+- ✅ Ask genuine questions (not rhetorical)
+- ✅ Listen to answers fully before next question
+- ✅ Follow up with clarifying questions
+- ✅ Go deeper when insights matter
+- ✅ Confirm understanding before moving on
+
+**Interaction Style:**
+- ✅ Conversational, not directive
+- ✅ User-led (their experience matters)
+- ✅ Genuine curiosity about their perspective
+- ✅ Respect for their time and insights
+- ✅ Clear, plain language
+
+**Reusability:**
+- ✅ Can run multiple times per epic
+- ✅ Each run adds to existing retrospective
+- ✅ Updates create version history
+- ✅ Iterative discovery enabled
+- ✅ Longitudinal insights preserved
+
+**Scoping:**
+- ✅ Epic-level: 1.9.1, 1.9.2, etc. per epic
+- ✅ Project-level: 0.9.1 for entire project
+- ✅ Clear input validation
+- ✅ No ambiguity about scope
+- ✅ Supports focused discussions
+
+## Success Criteria
+
+This retrospective command succeeds when:
+
+1. **Input Validation**
+   - ✅ No input → Request input
+   - ✅ Vague input → Request clarity
+   - ✅ Ambiguous scope → Request epic or project
+   - ✅ Clear epic → Begin epic retrospective
+   - ✅ Clear project → Begin project retrospective
+
+2. **Interactive Flow**
+   - ✅ Questions are genuinely asked
+   - ✅ User responses are listened to
+   - ✅ Follow-up questions deepen understanding
+   - ✅ Conversation feels natural
+   - ✅ User feels heard and understood
+
+3. **Artifact Management**
+   - ✅ Create new retrospectives
+   - ✅ Update existing retrospectives
+   - ✅ Proper scoping (epic or project)
+   - ✅ Version history maintained
+   - ✅ Links to parent artifacts
+
+4. **Reusability**
+   - ✅ Can run same command multiple times
+   - ✅ Each run captures new insights
+   - ✅ Retrospective grows over time
+   - ✅ No data loss on updates
+   - ✅ Supports iterative discovery
+
+This interactive retrospective approach transforms project closing from a chore into a genuine learning conversation.
