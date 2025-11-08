@@ -13,7 +13,7 @@ You are creating a comprehensive [Prd] artifact for a high-level product feature
 For all [Planning Artifacts], use the above storage backend.
 **NEVER** use GitHub Issues or direct file access for [Planning Artifacts].
 
-For all repo files, use the Read and Glob tools to analyze the current directory structure.
+For all repo files, use the Read and Glob tools to analyze the current project structure.
 
 ## Step 1: Identify Project and Prerequisites
 

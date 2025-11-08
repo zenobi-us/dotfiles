@@ -6,7 +6,7 @@ You are analyzing and displaying the current project context, active work, and p
 **Storage Backend**: basicmemory
 
 > [!CRITICAL]
-> Before doing anything, run theses skills:
+> Before doing anything, run these skills:
 > - skills_projectmanagement_storage_basicmemory
 > - skills_projectmanagement_info_planning_artifacts
 
