@@ -8,7 +8,7 @@ You are analyzing and displaying the current project context, active work, and p
 > [!CRITICAL]
 > Before doing anything, run theses skills:
 > - skills_projectmanagement_storage_basicmemory
-> - skills_projectmanagement_info_project_artifacts
+> - skills_projectmanagement_info_planning_artifacts
 
 For all [Project Artifacts], use the above storage backend.
 **NEVER** use fs or direct file access for [Project Artifacts].
