@@ -34,7 +34,7 @@ import {mergeDeepLeft} from "ramda";
 
 const SKILL_PATH_PATTERN = /skills\/.*\/SKILL.md$/;
 
-const log = debug("opencode:plugin:skills");
+const log = console.log;
 
 // Types
 type Skill = {
@@ -90,15 +90,15 @@ async function findSkillPaths(basePaths: string | string[]) {
         const paths: string[] = []
         
         for (const basePath of basePathsArray) {
-            const stat = await lstat(basePath).catch(() => null);
-            log(`findSkillPaths.isDirectory`, basePath, stat?.isDirectory());
-            if (!stat?.isDirectory()) {
-                continue;
-            }
-            paths.push(basePath);
-        }
+             const stat = await lstat(basePath).catch(() => null);
+             console.log(`findSkillPaths.isDirectory`, basePath, stat?.isDirectory());
+             if (!stat?.isDirectory()) {
+                 continue;
+             }
+             paths.push(basePath);
+         }
 
-        log("findSkillPaths.available", paths);
+         console.log("findSkillPaths.available", paths);
         const patterns = paths.map(basePath => join(basePath, "**/SKILL.md"))
         const matches = await fsPromises.glob(patterns)
         return matches;
@@ -211,7 +211,7 @@ function createToolResourceReader(ctx: PluginInput, registry: SkillRegistry): To
     const sendPrompt = createInstructionInjector(ctx);
 
     return tool({
-        description: "Read a resource file from a skill's directory.",
+        description: "Read [[<relative_path>]] from a skill's resources and inject content silently. If loading skills, use the skills_<skillname> instead.",
         args: {
             skill_name: tool.schema.string(),
             relative_path: tool.schema.string()
@@ -259,7 +259,7 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
     const matches = await findSkillPaths(config.basePaths);
     const dupes: string[] = [];
     const tools:Record<string, ToolDefinition> = {
-        "skills_read_resource": createToolResourceReader(ctx, registry)
+        // "skills_read_resource": createToolResourceReader(ctx, registry)
     }
 
     for await (const match of matches) {
@@ -269,22 +269,22 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
             continue;
         }
 
-        log(`✅  ${skill.toolName} `);
+        console.log(`✅  ${skill.toolName} `);
 
-        if (registry.has(skill.toolName)) {
-            dupes.push(skill.toolName);
-            log('discover.duplicate', skill.toolName);
+         if (registry.has(skill.toolName)) {
+             dupes.push(skill.toolName);
+             console.log('discover.duplicate', skill.toolName);
 
-            continue;
-        }
+             continue;
+         }
 
         tools[skill.toolName] = createSkillTool(skill, { ctx });
         registry.set(skill.toolName, skill);
     }
 
     if (!registry.size) {
-        log('discover.none');
-    }
+         console.log('discover.none');
+     }
 
     if (dupes.length) {
         console.warn(`⚠️  Duplicate skill tool names detected (skipped): ${dupes.join(", ")}`);
@@ -293,7 +293,7 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
     return tools
 }
 
-const OpenCodePaths = envPaths("opencode");
+const OpenCodePaths = envPaths("opencode", { suffix: "" });
 
 async function getPluginConfig(ctx: PluginInput) : Promise<PluginConfig> {
     // const config = await ctx.client.config.get();
@@ -311,11 +311,10 @@ async function getPluginConfig(ctx: PluginInput) : Promise<PluginConfig> {
 }
 
 export const SkillsPlugin: Plugin = async (ctx) => {
-    const config = await getPluginConfig(ctx);
-    log.enabled = config.debug
-    log('plugin.config', config);
-    // Discovery order: lowest to highest priority (last wins on duplicate tool names)
-    const tool = await createSkillRegistry(ctx, config)
+     const config = await getPluginConfig(ctx);
+     console.log('plugin.config', config);
+     // Discovery order: lowest to highest priority (last wins on duplicate tool names)
+     const tool = await createSkillRegistry(ctx, config)
 
-    return { tool }
-}
+     return { tool }
+ }
