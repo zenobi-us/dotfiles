@@ -9,11 +9,10 @@ You are creating a comprehensive [Prd] artifact for a high-level product feature
 > Before doing anything, run these skills:
 > - skills_projectmanagement_storage_basicmemory
 > - skills_projectmanagement_info_planning_artifacts
-
-For all [Planning Artifacts], use the above storage backend.
-**NEVER** use GitHub Issues or direct file access for [Planning Artifacts].
-
-For all repo files, use the Read and Glob tools to analyze the current project structure.
+>
+> All [Planning Artifacts] are managed through the skills listed above.
+> Follow their guidance for creation, updates, and linking.
+> Do not try to use alternative methods.
 
 ## Step 1: Identify Project and Prerequisites
 

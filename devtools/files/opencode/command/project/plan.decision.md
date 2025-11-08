@@ -10,8 +10,9 @@ You are creating a [Decision] artifact to document a conclusion reached after ev
 > - skills_projectmanagement_storage_basicmemory
 > - skills_projectmanagement_info_planning_artifacts
 >
-> For all [Planning Artifacts], use the above storage backend.
-> **NEVER** use GitHub Issues or direct file access for [Planning Artifacts].
+> All [Planning Artifacts] are managed through the skills listed above.
+> Follow their guidance for creation, updates, and linking.
+> Do not try to use alternative methods.
 
 ## Step 1: Clarify the Decision Context
 
