@@ -37,9 +37,3 @@ actions:
     command: mise
     args:
       - install
-
-  - action: command.run
-    dir: "{{user.home_dir}}/.config/opencode"
-    command: bun
-    args:
-      - install
