@@ -95,7 +95,7 @@ Delegate the creation of the [Epic] artifact using the `task` tool with these in
 > 2. Use the storage backend to create a new [Epic] artifact
 > 3. Link to parent [Prd] if applicable
 > 4. Use `session` tools to communicate the created [Epic] identifier
-> 5. Return the artifact identifier in Johnny Decimal format (e.g., `1-epic-title`)
+> 5. Return the artifact identifier in Johnny Decimal format (e.g., `2.1.1-epic-title`)
 
 ## Step 6: Create Paired Specification Artifact
 
@@ -109,7 +109,13 @@ Create the paired [Spec] using the same delegation approach:
 > 2. Create [Spec] with epic-level detail (overview of all stories)
 > 3. Link to parent [Epic] artifact
 > 4. Use `session` tools to communicate the created [Spec] identifier
-> 5. Return the artifact identifier (e.g., `1.1.1-spec-title`)
+> 5. Return the artifact identifier (e.g., `2.1.1-spec-title` - spec paired with Epic 2.1.1)
+>
+> The storage backend will handle:
+> - Spec file creation and naming: `2.{sequence}.1-spec-{title}.md` (e.g., `2.1.1-spec-separate-cli-requirements.md`)
+> - Placement in `2-epics/` folder at project root (same as Epic)
+> - ProjectId association
+> - Obsidian wiki-style links between Epic and Spec
 
 ## Step 7: Validate Epic and Spec Quality
 

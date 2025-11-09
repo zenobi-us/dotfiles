@@ -160,7 +160,9 @@ Delegate the creation of [Story] artifacts using the `task` tool with these inst
 > 5. Return summary of created story identifiers in Johnny Decimal format
 
 **What the subskill will handle:**
-- ✅ Johnny Decimal naming (1.4.1, 1.4.2, etc.)
+- ✅ Johnny Decimal naming (4.1.1, 4.2.1, 4.3.1, etc.)
+- ✅ Artifact file creation and naming: `4.{sequence}.1-story-{title}.md`
+- ✅ Placement in `4-stories/` folder at project root
 - ✅ Frontmatter field population
 - ✅ Storage backend interaction
 - ✅ Artifact linking and relationships

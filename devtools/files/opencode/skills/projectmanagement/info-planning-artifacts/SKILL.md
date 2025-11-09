@@ -5,13 +5,14 @@ description: Use to know about Planning Artifacts used in project management.
 
 ## What are [Planning Artifact] Types?
 
-- [Prd]: High-level statements of what the product should achieve. They capture the needs and expectations of stakeholders. A [Prd] leads to creation of one or more [Epic].
+- [PRD]: Product Requirements Document, A high-level statement of what the product should achieve. They capture the needs and expectations of stakeholders. A [PRD] informs managers in the creation of one or more [Epic].
 - [Epic]: A large body of work that is described by Stories. An [Epic] is always accompanied by a [Spec], they have a 1:1 relationship.
 - [Spec]: A detailed description of the project's requirements and objectives. It leads to creation of one or more [Story].
-- [Research]: Information gathering and analysis conducted to inform project decisions. [Research] can lead to or adjust creation of [Spec] and/or [Decision]. Created ad-hoc when questions need investigation; linked to relevant [Spec], [Decision], [Story], or [Task].
+- [Research]: Information gathering and analysis conducted to inform project decisions. Primary phase: Planning/Initiation (during PRD/Epic/Spec creation). Secondary phase: ad-hoc during Execution when implementation raises unknowns. [Research] informs [Spec], [Decision], and project direction. Linked to [PRD], [Epic], [Spec], [Decision], [Story], or [Task].
 - [Decision]: A conclusion reached after evaluating options, often based on [Research]. [Decision] can influence [Spec] and project direction. Created during Initiation/Planning (for strategic decisions) or during Execution (for implementation decisions). Status must be "Decided" or "Unresolved". All [Decision] artifacts with status "Unresolved" MUST be linked to the [Retrospective] during the Closing phase.
 - [Story]: A scenario or use case, manageable piece of work derived from an [Epic]. [Story] always contain "user stories". [Story] are always implemented by [Task].
 - [Task]: A specific piece of work that needs to be completed as part of a [Story]. They are always linked to both a [Story] and an [Epic]. They can also be linked to other [Task] in interesting ways (e.g., blocking, dependent on, related to).
+- [Retrospective]: A reflective artifact created at the end of an epic or project phase to capture lessons learned, successes, and areas for improvement. It summarizes insights from the team and stakeholders to inform future projects. Each [Retrospective] is linked to its corresponding [Epic] and any unresolved [Decision] artifacts.
 
 ## [Planning Artifact] Require a ProjectId [CRITICAL]
 
@@ -38,6 +39,7 @@ We use this [ProjectId] before interacting with any [Planning Artifact]. (Or if 
 
 This skill has access to templates for each artifact type.
 
+- [PRD]: ./references/templates/prd_template.md
 - [Epic]: ./references/templates/epic_template.md
 - [Spec]: ./references/templates/spec_template.md
 - [Research]: ./references/templates/research_template.md
@@ -50,135 +52,180 @@ When creating or updating [Planning Artifact], use the corresponding template to
 
 ## Artifact Storage Structure (Johnny Decimal System)
 
+Projects organize all artifacts using **type-based Johnny Decimal structure**, grouping by artifact category rather than by epic:
+
+```
+1-prds/                                    # PRD layer (strategic)
+  1.1.1-prd-dayz-modding-template.md
+  1.2.1-prd-user-authentication.md
+2-epics/                                   # Epic layer (major work)
+  2.1.1-epic-separate-cli-tool.md
+  2.2.1-epic-user-auth-system.md
+3-research/                                # Research layer (investigation)
+  3.1.1-research-oauth-alternatives.md
+  3.2.1-research-jwt-best-practices.md
+  3.3.1-research-cli-modding-patterns.md
+4-stories/                                 # Story layer (user scenarios)
+  4.1.1-story-user-login-flow.md
+  4.2.1-story-password-reset.md
+  4.3.1-story-template-extraction.md
+5-tasks/                                   # Task layer (implementation)
+  5.1.1-task-database-schema-design.md
+  5.2.1-task-api-endpoints.md
+  5.3.1-task-extract-template-files.md
+9-retrospectives/                          # Retrospective layer (closure)
+  9.1.1-retrospective-epic-1-closeout.md
+  9.2.1-retrospective-epic-2-closeout.md
+```
+
 ### Naming Convention
 
-All artifacts follow the Johnny Decimal naming system for consistent organization and human readability:
+All artifacts follow Johnny Decimal format with this pattern:
 
-```
-{epicid}.{typecode}.{incrementid}-{typename}-{title}.md
-```
+**{category}.{sequence}.{increment}-{type}-{title}.md**
 
-**Components:**
+Where:
 
-- **{epicid}** - Epic identifier (1, 2, 3, ...)
-  - Identifies which epic the artifact belongs to
-  - ALL artifacts except Retrospective must have an epic
+- **{category}** - Top-level artifact category (1-9)
+  - `1` = PRD (Product Requirements)
+  - `2` = Epic (Major work packages)
+  - `3` = Research (Investigation and analysis)
+  - `4` = Story (User scenarios)
+  - `5` = Task (Implementation work)
+  - `6` = Decision (Choices and conclusions)
+  - `9` = Retrospective (Closure and reflection)
 
-- **{typecode}** - Artifact type code (fixed)
-  - `1` = Spec
-  - `2` = Research
-  - `3` = Decision
-  - `4` = Story
-  - `5` = Task
-  - `9` = Retrospective (project-level only, epic id is 0)
+- **{sequence}** - Sequential counter per category (1, 2, 3, ...)
+  - Increments each time you create a new artifact in that category
+  - Example: First PRD is `1.1.1`, second is `1.2.1`, third is `1.3.1`
 
-- **{incrementid}** - Increment counter (1, 2, 3, ...)
-  - Increments per epic+type combination
-  - Spec: Always 1 per epic (one spec per epic)
-  - Research: 1, 2, 3... per epic
-  - Decision: 1, 2, 3... per epic
-  - Story: 1, 2, 3... per epic
-  - Task: 1, 2, 3... per epic
+- **{increment}** - Always `1` for single artifacts (reserved for variants/versions)
 
-- **{typename}** - Human-readable type (spec, research, decision, story, task, retrospective)
+- **{type}** - Human-readable artifact type (prd, epic, research, story, task, decision, retrospective)
 
-- **{title}** - Human-readable title in kebab-case (e.g., user-authentication-requirements)
+- **{title}** - Human-readable title in kebab-case (e.g., user-authentication-system)
+
+### Relationship: Artifacts Link Across Categories
+
+Artifacts maintain relationships through frontmatter links. The typical flow is:
+
+**PRD → Epic:** A PRD informs which Epics to create
+- PRD `1.1.1-prd-user-auth.md` links to Epic `2.2.1-epic-user-auth-system.md`
+- Research often happens here to validate strategic direction
+
+**Epic → Research:** Epic planning may require investigation
+- Epic `2.1.1-epic-separate-cli.md` links to Research `3.3.1-research-cli-modding-patterns.md`
+- Research informs Epic scope and approach during Planning phase
+
+**Epic → Stories:** An Epic is broken down into Stories
+- Epic `2.1.1-epic-separate-cli.md` links to Story `4.3.1-story-template-extraction.md`
+
+**Story → Tasks:** A Story is implemented via Tasks
+- Story `4.3.1-story-template-extraction.md` links to Task `5.3.1-task-extract-template-files.md`
+
+**Ad-hoc Research:** Unexpected questions during execution
+- Task `5.1.1-task-database-schema-design.md` links to Research `3.1.1-research-performance-benchmarks.md`
+- Research happens ad-hoc when implementation reveals unknowns (secondary, not primary)
 
 ### Examples
 
-| Artifact        | Filename                                    | Meaning                      |
-| --------------- | ------------------------------------------- | ---------------------------- |
-| Epic 1 Spec     | `1.1.1-spec-user-auth-requirements.md`      | Epic 1, Spec, 1st (only)     |
-| Epic 1 Research | `1.2.1-research-oauth-alternatives.md`      | Epic 1, Research, 1st        |
-| Epic 1 Research | `1.2.2-research-jwt-best-practices.md`      | Epic 1, Research, 2nd        |
-| Epic 1 Decision | `1.3.1-decision-jwt-vs-session.md`          | Epic 1, Decision, 1st        |
-| Epic 1 Story    | `1.4.1-story-user-login-flow.md`            | Epic 1, Story, 1st           |
-| Epic 1 Task     | `1.5.1-task-database-schema-design.md`      | Epic 1, Task, 1st            |
-| Epic 2 Spec     | `2.1.1-spec-api-security.md`                | Epic 2, Spec, 1st (only)     |
-| Retrospective   | `0.9.1-retrospective-project-closeout.md`   | Project-level, Retrospective |
+| Artifact | Filename | Meaning |
+|----------|----------|---------|
+| PRD 1 | `1-prds/1.1.1-prd-dayz-modding-template.md` | Strategic direction: Separate DayZ template |
+| PRD 2 | `1-prds/1.2.1-prd-user-authentication.md` | Strategic direction: Auth system |
+| Epic 1 | `2-epics/2.1.1-epic-separate-cli-tool.md` | Major work: Extract template from CLI |
+| Epic 2 | `2-epics/2.2.1-epic-user-auth-system.md` | Major work: Build authentication |
+| Research 1 | `3-research/3.2.1-research-jwt-best-practices.md` | Investigation: JWT vs Sessions |
+| Research 2 | `3-research/3.3.1-research-oauth-alternatives.md` | Investigation: OAuth options |
+| Story 1 | `4-stories/4.1.1-story-user-login-flow.md` | User scenario: Login process |
+| Story 2 | `4-stories/4.3.1-story-template-extraction.md` | User scenario: Extract template |
+| Task 1 | `5-tasks/5.1.1-task-database-schema-design.md` | Implementation: Design schema |
+| Task 2 | `5-tasks/5.3.1-task-extract-template-files.md` | Implementation: Extract files |
+| Retrospective | `9-retrospectives/9.1.1-retrospective-epic-1-closeout.md` | Closure: Epic 1 lessons learned |
 
-### Folder Structure
+### Why This Structure
 
-Projects follow a hierarchy that groups artifacts by epic and type:
+- ✅ **True Johnny Decimal:** First digit denotes category, enabling visual scan at top level
+- ✅ **Type discovery:** All PRDs together, all Epics together—easier to browse and maintain
+- ✅ **Flat organization:** No nested folders per epic—scales well with many artifacts
+- ✅ **Clear relationships:** Frontmatter links establish parent-child relationships across categories
+- ✅ **Chronological order:** Artifacts naturally sort by creation order within category
+- ✅ **Flexible decomposition:** One PRD can link to multiple Epics; Epics can link to multiple Stories/Tasks
+- ✅ **Query-friendly:** "Show me all Stories for Epic 2" is clear (look at Story frontmatter)
+- ✅ **Research lifecycle:** Research happens primarily during Planning (PRD/Epic phase); ad-hoc Research surfaces during Execution as needed
 
+### Artifact Relationships Through Frontmatter
+
+Rather than folder nesting, relationships are defined in artifact frontmatter:
+
+Each artifact maintains parent/child links:
+
+```yaml
+# In Epic 2.1.1
+links:
+  - type: prd
+    target: 1.1.1-prd-dayz-modding-template
+  - type: story
+    target: 4.3.1-story-template-extraction
+
+# In Story 4.3.1
+links:
+  - type: epic
+    target: 2.1.1-epic-separate-cli-tool
+  - type: task
+    target: 5.3.1-task-extract-template-files
+  - type: research
+    target: 3.3.1-research-cli-modding-patterns
+
+# In Task 5.3.1
+links:
+  - type: story
+    target: 4.3.1-story-template-extraction
+  - type: epic
+    target: 2.1.1-epic-separate-cli-tool
 ```
-├── {epicid}-{epic-name}/                    # Epic folder (groups related artifacts)
-│   ├── {epicid}.1.1-spec-{title}.md         # Spec file (only one per epic)
-│   ├── {epicid}.2.1-research-{title}.md     # Research files (multiple)
-│   ├── {epicid}.2.2-research-{title}.md
-│   ├── {epicid}.3.1-decision-{title}.md     # Decision files (multiple)
-│   ├── {epicid}.3.2-decision-{title}.md
-│   ├── {epicid}.4.1-story-{title}.md        # Story files (multiple)
-│   ├── {epicid}.4.2-story-{title}.md
-│   ├── {epicid}.4.3-story-{title}.md
-│   ├── {epicid}.5.1-task-{title}.md         # Task files at project level (multiple)
-│   ├── {epicid}.5.2-task-{title}.md
-│   ├── {epicid}.5.3-task-{title}.md
-│   ├── {epicid}.5.4-task-{title}.md
-│   └── {epicid}.9.1-retrospective-{title}.md     # epic-level retrospective
-└── ...
-```
 
-**Why this structure:**
-
-- ✅ **Visual hierarchy by path:** Human immediately sees which epic, which type, which order
-- ✅ **Type visible in filename:** No ambiguity - `1.3.1` is clearly a decision
-- ✅ **Johnny Decimal standard:** Familiar numbering system, naturally sorts in order
-- ✅ **Epic folders group work:** All specs, research, decisions, stories for an epic in one folder
-- ✅ **Tasks at project level:** Not nested, but epic/story IDs in filename show relationships
-- ✅ **Human readable:** Title at end explains purpose at a glance
-- ✅ **Operational oversight:** Manager opens folder, immediately sees all work organized
-
-
-**⚠️ FAILURE MODE:** Notice that ALL tasks (1.5._, 2.5._) are stored INSIDE their epic folders, NOT at the project level. Tasks at the project root level with no epic folder are an ERROR - they indicate orphaned work with unclear ownership and dependencies.
-
-### Important Constraint: All Artifacts Belong to an Epic
-
-Every artifact MUST be associated with an epic (except Retrospective):
-
-- ✅ **Spec:** Always 1 per epic (1.1.1, 2.1.1, etc.)
-- ✅ **Research:** Multiple per epic (1.2.1, 1.2.2, etc.)
-- ✅ **Decision:** Multiple per epic (1.3.1, 1.3.2, etc.)
-- ✅ **Story:** Multiple per epic (1.4.1, 1.4.2, etc.)
-- ✅ **Task:** Multiple per epic (1.5.1, 1.5.2, etc.)
-- ✅ **Retrospective:** Epic-level, tied to specific epic (1.9.1)
-
-This ensures no orphaned artifacts and clear lineage from epic down to task.
+This creates a web of relationships without directory nesting.
 
 ### Obsidian Linking
 
-All artifacts use Obsidian wiki-style linking for navigation and relationship management:
+All artifacts use Obsidian wiki-style linking for navigation across the flat artifact structure:
 
-```markdown
-[[{epicid}-{epic-name}]] # Link to epic folder
-[[{epicid}.{typecode}.{incrementid}-{typename}-{title}]] # Link to artifact
-```
+**Linking format:** `[[{category}.{sequence}.{increment}-{type}-{title}]]`
+
+This works across all categories, creating a hyperlinked web of relationships.
+
+**Examples:**
+
+- `[[1.1.1-prd-dayz-modding-template]]` - Links to PRD 1
+- `[[2.1.1-epic-separate-cli-tool]]` - Links to Epic 1
+- `[[3.2.1-research-jwt-best-practices]]` - Links to Research artifact
+- `[[4.3.1-story-template-extraction]]` - Links to Story artifact
+- `[[5.3.1-task-extract-template-files]]` - Links to Task artifact
 
 **Important:** Link targets MUST match the actual filename exactly (without `.md` extension).
 
-Examples:
-
-- `[[1-user-authentication]]` - Links to Epic 1 folder
-- `[[1.1.1-spec-user-authentication-requirements]]` - Links to specific spec
-- `[[1.5.1-task-design-database-schema]]` - Links to specific task
-
-**Frontmatter Links:** All artifact templates use `target:` field (not `itemId:`) to specify link targets that match filenames. When creating artifacts, replace placeholder filenames with actual titles following the naming convention.
-
-Example frontmatter:
+**Frontmatter Links:** All artifact templates use `target:` field to specify link targets. The `type:` field identifies the artifact category:
 
 ```yaml
 links:
+  - type: prd
+    target: 1.1.1-prd-dayz-modding-template
   - type: epic
-    target: 1-user-authentication
-  - type: spec
-    target: 1.1.1-spec-user-auth-requirements
+    target: 2.1.1-epic-separate-cli-tool
+  - type: research
+    target: 3.2.1-research-jwt-best-practices
+  - type: story
+    target: 4.3.1-story-template-extraction
   - type: task
-    target: 1.5.1-task-schema-design
+    target: 5.3.1-task-extract-template-files
 ```
 
-See individual artifact templates for linking examples in frontmatter and body.
+See individual artifact templates for detailed linking examples in frontmatter and body.
 
 ## Effort Estimation Hierarchy
+
+[PRD] and [Spec] are not estimated directly. Instead, estimation flows down the hierarchy.
 
 [Epic], [Story], and [Task] have different estimation levels:
 
@@ -261,10 +308,10 @@ See individual artifact templates for linking examples in frontmatter and body.
 
 Each artifact type has valid status progressions that guide state management throughout the project lifecycle.
 
-→ **See: `references/status-flow.md`** for detailed status flow diagrams and descriptions for all artifact types (Epic, Spec, Story, Task, Decision, Research, Retrospective).
+→ **See: `references/status-flow.md`** for detailed status flow diagrams and descriptions for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
 
 ## Artifact Schemas and Content Structure
 
 All artifacts follow consistent schema patterns for organization and linking. Each artifact type has specific frontmatter requirements and content sections.
 
-→ **See: `references/schema.md`** for detailed task relationship schema, artifact content structure, and link type definitions for all artifact types (Epic, Spec, Story, Task).
+→ **See: `references/schema.md`** for detailed schema definitions, artifact content structure, and link type definitions for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).

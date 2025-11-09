@@ -1,6 +1,8 @@
 # Create Technical Feature
 
-You are creating a focused [Spec] artifact for a technical feature. Follow this systematic approach to create a well-scoped, implementable feature specification that integrates with the planning artifact hierarchy.
+You are creating a focused [Spec] artifact for a technical feature (feature = Epic + paired Spec). Follow this systematic approach to create a well-scoped, implementable feature specification that integrates with the planning artifact hierarchy.
+
+**Note:** "Feature" is an alias for [Epic] in the planning hierarchy. This workflow creates the paired [Spec] for the feature/epic.
 
 **Task:** Create a [Spec] artifact for: $ARGUMENTS
 **Storage Backend**: basicmemory
@@ -111,10 +113,10 @@ Delegate the creation of the [Spec] artifact using `task` tool with these instru
 
 **Create a comprehensive summary of what you accomplished:**
 
-- **[Spec] Artifact Created**: Artifact identifier in Johnny Decimal format (e.g., `1.1.1-spec-feature-title`)
+- **[Spec] Artifact Created**: Artifact identifier in Johnny Decimal format (e.g., `2.1.1-spec-feature-title` - paired with Epic 2.1.1)
 - **Project Type and Focus**: Areas identified and feature scope
 - **Key Technical Considerations**: Important architecture and integration decisions
 - **Next Steps**: Suggested command to view artifact or create user stories (e.g., `/project:plan:stories`)
-- **Reference**: How to reference this [Spec] artifact in basicmemory (e.g., `[[1.1.1-spec-feature-title]]`)
+- **Reference**: How to reference this [Spec] artifact in basicmemory (e.g., `[[2.1.1-spec-feature-title]]`)
 
 This systematic approach ensures your feature is well-scoped, technically sound, and ready for user story breakdown and implementation.

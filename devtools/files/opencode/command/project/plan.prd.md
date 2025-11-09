@@ -69,17 +69,9 @@ Think deeply about this product requirement: '$ARGUMENTS'. Consider market posit
 3. Study installation and distribution strategies
 4. Analyze developer workflow integration patterns
 
-## Step 5: Create [Prd] Artifact
+## Step 5: Compose PRD Content
 
-**Use the projectmanagement skills to create a [Prd] artifact with the following content:**
-
-The storage backend will handle:
-- Artifact file creation and naming (Johnny Decimal format)
-- ProjectId association
-- Directory structure and organization
-- Obsidian wiki-style link targets
-
-**Populate the [Prd] artifact with:**
+**Plan the [Prd] composition (don't create yet - just plan):**
 
 1. **Executive Summary**
    - Brief 2-3 sentence overview of the product requirement
@@ -134,6 +126,27 @@ The storage backend will handle:
 
 **Reference:** See `info-planning-artifacts` templates for detailed [Prd] artifact structure and frontmatter requirements.
 
+## Step 6: Create [Prd] Artifact
+
+Delegate the creation of the [Prd] artifact using the `task` tool with these instructions:
+
+> **Delegate to subskill:**
+> You are creating a [Prd] artifact: '$ARGUMENTS'.
+> No analysis needed, just create the artifact based on the analysis from Steps 1-4.
+> 1. Use `skills_projectmanagement_info_planning_artifacts` to understand [Prd] structure
+> 2. Use the storage backend to create a new [Prd] artifact
+> 3. Link to parent [Prd] if applicable
+> 4. Use `session` tools to communicate the created [Prd] identifier
+> 5. Return the artifact identifier in Johnny Decimal format (e.g., `1.1.1-prd-title`)
+
+The storage backend will handle:
+- Artifact file creation and naming: `1.{sequence}.1-prd-{title}.md` (e.g., `1.1.1-prd-dayz-modding.md`)
+- Placement in `1-prds/` folder at project root
+- ProjectId association
+- Directory structure and organization
+- Obsidian wiki-style link targets
+
+
 ## Step 6: Validate [Prd] Quality
 
 **Review your created [Prd] artifact against these quality standards:**
@@ -186,9 +199,9 @@ The storage backend will handle:
 
 **What Happens Next:**
 
-The [Prd] artifact you created establishes high-level product direction. The next workflow step is to break this into one or more [Epic] artifacts, each with an accompanying [Spec] artifact. 
+The [Prd] artifact you created establishes high-level product direction. The next workflow step is to break this into one or more [Epic] artifacts, each with an accompanying [Spec] artifact (not created here). 
 
-Use the suggested command to create the first Epic+Spec, which will decompose this [Prd] into manageable work units that can be further broken down into [Story] and [Task] items.
+Use the suggested command to create the first Epic, which will decompose this [Prd] into manageable work units. Later the user can use `/project:plan:stories "[Epic Name]"` to be further broken down into [Story] and, `/project:plan:tasks #StoryID` to create implementation tasks.
 
 This systematic approach ensures your [Prd] is comprehensive, well-researched, and actionable for creating Epics, Specs, and eventual implementation tasks.
 

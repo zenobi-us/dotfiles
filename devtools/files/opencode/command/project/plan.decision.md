@@ -112,7 +112,13 @@ Delegate the creation of the [Decision] artifact using the `task` tool:
 >    - Assumptions and constraints
 >    - Links to related [Research], [Spec], [Epic]
 > 6. Use `session` tools to communicate the created [Decision] identifier
-> 7. Return artifact identifier in Johnny Decimal format (e.g., `1.3.1-decision-title`)
+> 7. Return artifact identifier in Johnny Decimal format (e.g., `6.1.1-decision-title`)
+>
+> The storage backend will handle:
+> - Artifact file creation and naming: `6.{sequence}.1-decision-{title}.md` (e.g., `6.1.1-decision-jwt-vs-session.md`)
+> - Placement in `6-decisions/` folder at project root
+> - ProjectId association
+> - Obsidian wiki-style links to related artifacts
 
 ## Step 7: Link Decision to Implementation
 
@@ -175,9 +181,9 @@ Delegate the creation of the [Decision] artifact using the `task` tool:
 
 **How to reference this decision in other artifacts:**
 
-- **Decision link**: `[[1.3.1-decision-jwt-vs-session]]`
-- **From [Spec]**: `links: - type: decision, target: 1.3.1-decision-jwt-vs-session`
-- **From [Task]**: `influenced_by_decision: 1.3.1-decision-jwt-vs-session`
+- **Decision link**: `[[6.1.1-decision-jwt-vs-session]]`
+- **From [Spec]**: `links: - type: decision, target: 6.1.1-decision-jwt-vs-session`
+- **From [Task]**: `influenced_by_decision: 6.1.1-decision-jwt-vs-session`
 
 ## Step 12: Workflow Context
 

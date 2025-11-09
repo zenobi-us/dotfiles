@@ -144,7 +144,9 @@ Delegate the creation of [Task] artifacts using the `task` tool with these instr
 > 5. Return summary of created artifacts: list of artifact IDs in Johnny Decimal format
 
 **What the subskill will handle (don't repeat here):**
-- ✅ Johnny Decimal naming (1.5.1, 1.5.2, etc.)
+- ✅ Johnny Decimal naming (5.1.1, 5.2.1, 5.3.1, etc.) 
+- ✅ Artifact file creation and naming: `5.{sequence}.1-task-{title}.md`
+- ✅ Placement in `5-tasks/` folder at project root
 - ✅ Frontmatter field population
 - ✅ Storage backend interaction
 - ✅ Artifact linking and relationships
@@ -176,14 +178,15 @@ The subskill has created [Task] artifacts based on your breakdown design. Here's
 - **[Story] Analyzed**: Artifact identifier and title
 - **Parent Epic**: Epic ID for context
 - **[Task] Artifacts Created**: List all artifact identifiers in Johnny Decimal format
-  - `1.5.1-task-backend-jwt-implementation`
+  - `5.1.1-task-backend-jwt-implementation`
+  - `5.2.1-task-frontend-login-component`
   - `1.5.2-task-frontend-login-component`
   - `1.5.3-task-integration-testing`
   - etc.
 - **Task Count**: Total number of [Task] artifacts created
 - **Estimated Effort**: Sum of story points across all tasks
 - **Critical Path**: Key dependency chain (e.g., 1.5.1 → 1.5.2 → 1.5.3)
-- **How to Reference**: Use Obsidian wiki-style links like `[[1.5.1-task-backend-jwt-implementation]]`
+- **How to Reference**: Use Obsidian wiki-style links like `[[5.1.1-task-backend-jwt-implementation]]`
 
 **What happens next:**
 - Each [Task] artifact is now ready for execution with `/project:do:task`

@@ -16,12 +16,21 @@ You are creating a [Research] artifact to investigate questions that inform proj
 
 ## Step 1: Clarify the Research Question
 
+**Understand Research Lifecycle Context:**
+
+Research happens in two phases:
+- **Primary (Planning/Initiation)**: During PRD, Epic, and Spec creation. Research validates strategic direction and informs project decisions. This is the main phase where research is most valuable.
+- **Secondary (Ad-hoc/Execution)**: During Story and Task implementation when unexpected questions arise. This research solves specific implementation problems discovered during work.
+
+Identify which phase this research belongs to. Primary research informs project direction; secondary research solves specific problems.
+
 **Define what you're investigating:**
 
 1. **Research Goal**: What specific question needs answering?
 2. **Why It Matters**: How will findings influence project decisions?
-3. **Scope**: What's in scope and what's out of scope?
-4. **Success Criteria**: What information would answer your question?
+3. **Phase**: Is this primary (Planning) or secondary (Execution) research?
+4. **Scope**: What's in scope and what's out of scope?
+5. **Success Criteria**: What information would answer your question?
 
 **Categorize the research type:**
 
@@ -36,15 +45,21 @@ You are creating a [Research] artifact to investigate questions that inform proj
 
 **Determine if this research is linked to existing planning:**
 
-1. **Related [Spec]**: Does this research inform a specification?
-2. **Related [Decision]**: Will this research lead to a decision?
-3. **Related [Story]**: Is this research blocking story implementation?
-4. **Related [Epic]**: Does this research support epic planning?
+**Primary Research** (Planning phase - informs strategy):
+1. **Related [PRD]**: Does this research validate the strategic direction?
+2. **Related [Epic]**: Does this research support epic scope and approach?
+3. **Related [Spec]**: Does this research inform detailed specifications?
+4. **Related [Decision]**: Will this research lead to a strategic decision?
+
+**Secondary Research** (Execution phase - solves problems):
+1. **Related [Story]**: Is this research blocking story implementation?
+2. **Related [Task]**: Did this research question emerge during task work?
+3. **Related [Decision]**: Will this research lead to an implementation decision?
 
 **Document the context:**
-- If research is linked to a [Spec], [Story], or [Decision], note those references
-- [Research] can be created ad-hoc when questions arise
-- [Research] will be linked to the artifact that needed the investigation
+- Note which phase this research belongs to (primary or secondary)
+- Link to the artifact(s) that needed this investigation
+- Explain how findings will influence that artifact
 
 ## Step 3: Perform Extended Thinking (for Complex Research)
 
@@ -114,7 +129,13 @@ Delegate the creation of the [Research] artifact using the `task` tool:
 >    - Limitations and caveats
 > 4. Link to related [Spec], [Decision], [Story], or [Epic] if applicable
 > 5. Use `session` tools to communicate the created [Research] identifier
-> 6. Return artifact identifier in Johnny Decimal format (e.g., `1.2.1-research-title`)
+> 6. Return artifact identifier in Johnny Decimal format (e.g., `3.2.1-research-title`)
+>
+> The storage backend will handle:
+> - Artifact file creation and naming: `3.{sequence}.1-research-{title}.md` (e.g., `3.2.1-research-jwt-best-practices.md`)
+> - Placement in `3-research/` folder at project root
+> - ProjectId association
+> - Obsidian wiki-style links to related artifacts
 
 ## Step 6: Validate Research Quality
 
