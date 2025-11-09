@@ -1,25 +1,56 @@
 # Execute Implementation Task
 
-You are implementing a specific GitHub task issue. Follow this systematic approach for high-quality, complete implementation.
+You are implementing a specific task from either GitHub or Basic Memory. Follow this systematic approach for high-quality, complete implementation.
 
-**Task:** Implement GitHub issue $ARGUMENTS with deep technical analysis and smart test-first development.
+**Task:** Implement task $ARGUMENTS with deep technical analysis and smart test-first development.
+
+**Task Source Detection:**
+- **GitHub Issue**: `123` or `#123` → Uses GitHub API
+- **Basic Memory Artifact**: `5.1.1-task-*` (Johnny Decimal format) → Uses Basic Memory
 
 **Workflow Note:** This command integrates the `using-git-worktrees` skill to automatically create and detect isolated workspaces. You can re-run this command in future sessions—the skill will detect your existing worktree and resume work from there.
 
-## Step 1: Fetch and Analyze the Task
+## Step 1: Detect Source and Fetch the Task
+
+**Task: Determine if input is GitHub issue or Basic Memory artifact:**
+
+1. If `$ARGUMENTS` matches pattern `^\d+$` or `^#\d+$`:
+   - This is a **GitHub issue number**
+   - Extract issue number: `ISSUE_NUM=$(echo $ARGUMENTS | tr -d '#')`
+   - Go to **Step 1a (GitHub)**
+
+2. If `$ARGUMENTS` matches pattern `^\d+(\.\d+)+.*-.*$` (e.g., `5.1.1-task-name`):
+   - This is a **Basic Memory artifact ID**
+   - Extract Johnny Decimal path: `ARTIFACT_ID=$ARGUMENTS`
+   - Go to **Step 1b (Basic Memory)**
+
+3. Otherwise:
+   - Return error: "Invalid task format. Use GitHub issue (#123) or Johnny Decimal artifact (5.1.1-task-name)"
+
+### Step 1a: GitHub Issue Fetch
 
 **Use the GitHub tool to:**
 
-1. Fetch the complete task issue details for issue number $ARGUMENTS
+1. Fetch the complete task issue details for issue number `$ISSUE_NUM`
 2. Read the full issue description, acceptance criteria, and implementation requirements
 3. Identify the parent issue (PRD or Feature) to understand broader context
 4. Check for any dependent tasks or prerequisite work that must be completed first
 5. Review any linked pull requests or previous implementation attempts
 
+### Step 1b: Basic Memory Artifact Fetch
+
+**Use Basic Memory tools to:**
+
+1. Fetch the task artifact with ID matching `$ARTIFACT_ID` in folder `5-tasks/`
+2. Extract task details from the artifact content and frontmatter (status, epic_id, priority, dependencies)
+3. Identify the parent epic using `epic_id` field from frontmatter
+4. Check for any dependent tasks (look for `depends_on` relations)
+5. Verify artifact has required fields: title, description, acceptance criteria
+
 ## Step 2: Deep Technical Analysis
 
 **Perform extended thinking for complex implementations:**
-Think deeply about implementing this task issue $ARGUMENTS. Consider the technical approach, potential challenges, integration points, testing strategy, and how this fits into the overall system architecture. What are the key decisions that need to be made during implementation?
+Think deeply about implementing this task from Step 1. Consider the technical approach, potential challenges, integration points, testing strategy, and how this fits into the overall system architecture. What are the key decisions that need to be made during implementation?
 
 **Analyze the requirements systematically:**
 
@@ -72,18 +103,26 @@ Think deeply about implementing this task issue $ARGUMENTS. Consider the technic
 
 ## Step 5: Environment Setup
 
-**Use the GitHub tool to update task status:**
+**Update task status to in-progress:**
 
+**For GitHub issues:**
 1. Add "in-progress" label to the task issue
 2. Add a comment indicating implementation has started
 3. Update the assignee field if needed
 4. Remove any "ready" or "todo" labels
 
+**For Basic Memory artifacts:**
+1. Use `basicmemory_edit_note` to update frontmatter: `status: in-progress`
+2. Add a note comment indicating implementation has started
+3. Preserve all other frontmatter fields
+
 **Use the using-git-worktrees skill to create an isolated workspace:**
 
 This skill will:
 1. Detect if a worktree already exists for this task (enables idempotent resumption)
-2. Create a worktree with feature identifier: `task/{issue-number}-{brief-description}`
+2. Create a worktree with feature identifier:
+   - GitHub: `{issue-number}-{brief-description}`
+   - Basic Memory: `{johnny-decimal}-{brief-description}`
 3. Auto-detect and run project setup (npm/cargo/poetry/etc)
 4. Verify the baseline is clean with tests
 5. Report the worktree path when ready
@@ -205,12 +244,18 @@ The skill handles all directory selection, creation, and verification logic auto
 
 ## Step 13: Complete the Task
 
-**Use the GitHub tool to update task status:**
+**Update task status to completed:**
 
+**For GitHub issues:**
 1. Remove the "in-progress" label from the task issue
 2. Add "completed" or "ready-for-review" label as appropriate
 3. Add a completion comment summarizing what was implemented
 4. Update the task issue description with implementation details if needed
+
+**For Basic Memory artifacts:**
+1. Use `basicmemory_edit_note` to update frontmatter: `status: completed`
+2. Add a completion note summarizing what was implemented
+3. Update any relation fields (e.g., completed_by PR link)
 
 **Document your completion:**
 
@@ -224,7 +269,9 @@ The skill handles all directory selection, creation, and verification logic auto
 
 **Use the GitHub tool to create a pull request:**
 
-1. Create a PR that links to the task issue in the description
+1. Create a PR that links to the task in the description:
+   - **GitHub**: Include issue number `#{ISSUE_NUM}` in PR body
+   - **Basic Memory**: Include artifact ID `{ARTIFACT_ID}` in PR body (e.g., "Implements task 5.1.1-task-*")
 2. Include a clear summary of what changes were made
 3. Add testing instructions for reviewers
 4. Request appropriate reviewers based on the areas affected
@@ -234,7 +281,7 @@ The skill handles all directory selection, creation, and verification logic auto
 ```markdown
 ## Summary
 
-Implements task #{task_number}: {task_title}
+Implements task [GitHub issue reference or Basic Memory artifact ID]: {task_title}
 
 ## Changes
 
@@ -254,7 +301,7 @@ Implements task #{task_number}: {task_title}
 - [ ] Documentation updated
 - [ ] All acceptance criteria met
 
-Closes #{task_number}
+Closes #{ISSUE_NUM} [for GitHub issues only]
 ```
 
 ## Step 15: Follow Through to Completion
@@ -266,22 +313,31 @@ Closes #{task_number}
 3. Ensure all CI/CD tests continue to pass
 4. Update documentation based on reviewer feedback
 
-**After the PR is merged, use the GitHub tool to:**
+**After the PR is merged:**
 
+**For GitHub issues:**
 1. Verify the task issue was automatically closed (or close it manually)
 2. Update the parent issue (PRD or Feature) with progress
 3. Add a completion comment to the parent issue
 4. Clean up the feature branch if your project doesn't do this automatically
 
+**For Basic Memory artifacts:**
+1. Verify the task artifact has `status: completed` frontmatter
+2. Add a note linking to the merged PR (use basicmemory_edit_note)
+3. Update the parent epic's progress if applicable
+4. Add any learnings or follow-up tasks as separate notes
+
 ## Final Summary
 
 **Provide a comprehensive implementation summary:**
 
-- **Task Completed**: Issue #{issue_number} and brief description
+- **Task Completed**: 
+  - GitHub: Issue #{issue_number} - {description}
+  - Basic Memory: Artifact {johnny_decimal} - {description}
 - **Files Modified**: List the specific files changed and major modifications
 - **Tests Added**: Describe test coverage and key scenarios tested
 - **Key Decisions**: Note important implementation choices and rationale
 - **Next Steps**: Suggest any follow-up tasks or considerations
 - **PR Status**: Pull request number and current status
 
-This systematic approach ensures high-quality implementation with complete traceability through GitHub's issue and PR workflow.
+This systematic approach ensures high-quality implementation with complete traceability through either GitHub's issue and PR workflow or Basic Memory planning artifacts.
