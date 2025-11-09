@@ -38,6 +38,141 @@ description: Use when storing project artifacts in basic memory storage.
 - basicmemory_list_directory - List directory contents
 - basicmemory_sync_status - Check file sync status
 
+### Planning Artifact Frontmatter
+
+Frontmatter for planning artifacts is important. It must remain at the top of the markdown file as YAML, NOT as markdown code blocks.
+
+#### Understanding Frontmatter
+
+Templates contain YAML frontmatter blocks at the top, between `---` delimiters:
+
+```yaml
+---
+epic_id: 1
+title: Epic Title
+status: planned
+priority: high
+estimated_effort: 2 weeks
+linked_spec:
+  - type: spec
+    target: 2.1.1-spec-title
+---
+
+# Rest of markdown content here
+```
+
+This is **actual YAML frontmatter**, not a markdown code block. When you create artifacts, this structure must be preserved exactly.
+
+#### Frontmatter Preservation Workflow
+
+When creating or updating planning artifacts via `basicmemory_write_note`:
+
+**Step 1: Parse Template File**
+- Extract the frontmatter block (everything between first `---` and second `---`)
+- Extract the markdown body (everything after the closing `---`)
+- Keep them separate
+
+**Step 2: Assemble Content for basicmemory**
+The content passed to `basicmemory_write_note` must be:
+```
+---
+field1: value1
+field2: value2
+links:
+  - type: epic
+    target: 2.1.1-epic-title
+---
+
+# Markdown Heading
+
+Markdown body content here...
+```
+
+**Critical requirements:**
+- Content MUST start with `---`
+- Frontmatter block MUST end with `---`
+- Blank line MUST separate frontmatter from markdown body
+- All frontmatter fields from template MUST be preserved
+- No `## Frontmatter` markdown sections
+
+**Step 3: Call basicmemory_write_note**
+```
+basicmemory_write_note(
+    title="artifact-title",
+    folder="2-epics",  # or 1-prds, 3-research, etc.
+    content=assembled_content,  # With frontmatter at top
+    entity_type="epic",  # or spec, research, story, task, decision
+    tags=extracted_tags,  # Optional, if tags are in frontmatter
+    project=project_id
+)
+```
+
+**Step 4: basicmemory Handles the Rest**
+basicmemory automatically:
+- Detects the YAML frontmatter (via `has_frontmatter()`)
+- Parses all frontmatter fields
+- Removes frontmatter from markdown body (via `remove_frontmatter()`)
+- Preserves all fields in the final artifact as YAML frontmatter
+- Converts back to proper markdown with YAML frontmatter
+
+#### Field Mapping
+
+Template frontmatter fields become YAML frontmatter in the artifact:
+- `epic_id: 1` → stored in frontmatter as `epic_id`
+- `status: planned` → stored as `status`
+- `priority: high` → stored as `priority`
+- `estimated_effort: 2 weeks` → stored as `estimated_effort`
+- `linked_spec: [...]` → stored as YAML list in frontmatter
+- `derived_from: [...]` → stored as YAML list in frontmatter
+
+These are **structured metadata fields**, not markdown content.
+
+#### Common Mistake: Markdown Code Blocks
+
+❌ **WRONG** - Creates markdown code block, loses frontmatter:
+```
+---
+title: Artifact Title
+type: epic
+permalink: some-path
+---
+
+# Artifact Title
+
+## Frontmatter
+
+```yaml
+epic_id: 1
+status: planned
+```
+
+Rest of content...
+```
+
+✅ **CORRECT** - Preserves frontmatter as YAML:
+```
+---
+title: Artifact Title
+type: epic
+permalink: some-path
+epic_id: 1
+status: planned
+---
+
+# Artifact Title
+
+Rest of content...
+```
+
+#### Implementation Best Practices
+
+1. **Always parse frontmatter carefully** - Extract the YAML block as-is from the template
+2. **Preserve field order** - YAML field order matters for readability
+3. **Validate YAML syntax** - Ensure frontmatter is valid YAML before passing to basicmemory
+4. **Include all template fields** - Don't drop fields; merge with generated fields instead
+5. **Use proper YAML lists** - Use `-` for list items in frontmatter, not JSON arrays
+6. **Test round-trip** - After creation, verify the artifact has frontmatter, not markdown code blocks
+
 ### [ProjectId] Naming and Format
 
 **ProjectId Convention:**
