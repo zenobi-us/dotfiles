@@ -103,8 +103,10 @@ Think deeply about breaking down this work from issue $ARGUMENTS. Consider all t
 
 **Johnny Decimal Naming (Automatic by subskill):**
 
-- Tasks will be named: `{epicId}.5.{incrementId}-task-{title}`
-- Example: Epic 1, Story 1 → Tasks 1.5.1, 1.5.2, 1.5.3, etc.
+- Tasks will be named: `5.{sequence}.1-task-{title}`
+- Example: First task is 5.1.1, second is 5.2.1, third is 5.3.1, etc.
+- Tasks are stored in a flat `5-tasks/` folder with independent sequencing per category
+- Epic and Story relationships are maintained through frontmatter links, not naming hierarchy
 - **Don't manually create names - subskill handles this**
 
 **Task Sequencing Principles:**

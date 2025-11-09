@@ -88,7 +88,7 @@ Where:
 
 - **{category}** - Top-level artifact category (1-9)
   - `1` = PRD (Product Requirements)
-  - `2` = Epic (Major work packages)
+  - `2` = Epic (Major work packages) and Spec (Detailed requirements, paired 1:1 with Epic)
   - `3` = Research (Investigation and analysis)
   - `4` = Story (User scenarios)
   - `5` = Task (Implementation work)
@@ -101,7 +101,7 @@ Where:
 
 - **{increment}** - Always `1` for single artifacts (reserved for variants/versions)
 
-- **{type}** - Human-readable artifact type (prd, epic, research, story, task, decision, retrospective)
+- **{type}** - Human-readable artifact type (prd, epic, spec, research, story, task, decision, retrospective)
 
 - **{title}** - Human-readable title in kebab-case (e.g., user-authentication-system)
 
@@ -134,7 +134,9 @@ Artifacts maintain relationships through frontmatter links. The typical flow is:
 | PRD 1 | `1-prds/1.1.1-prd-dayz-modding-template.md` | Strategic direction: Separate DayZ template |
 | PRD 2 | `1-prds/1.2.1-prd-user-authentication.md` | Strategic direction: Auth system |
 | Epic 1 | `2-epics/2.1.1-epic-separate-cli-tool.md` | Major work: Extract template from CLI |
+| Spec 1 | `2-epics/2.1.1-spec-separate-cli-requirements.md` | Requirements: CLI template extraction |
 | Epic 2 | `2-epics/2.2.1-epic-user-auth-system.md` | Major work: Build authentication |
+| Spec 2 | `2-epics/2.2.1-spec-user-auth-requirements.md` | Requirements: User authentication system |
 | Research 1 | `3-research/3.2.1-research-jwt-best-practices.md` | Investigation: JWT vs Sessions |
 | Research 2 | `3-research/3.3.1-research-oauth-alternatives.md` | Investigation: OAuth options |
 | Story 1 | `4-stories/4.1.1-story-user-login-flow.md` | User scenario: Login process |

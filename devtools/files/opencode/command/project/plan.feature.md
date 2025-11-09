@@ -1,8 +1,8 @@
-# Create Technical Feature
+# Create Technical Feature Specification
 
-You are creating a focused [Spec] artifact for a technical feature (feature = Epic + paired Spec). Follow this systematic approach to create a well-scoped, implementable feature specification that integrates with the planning artifact hierarchy.
+You are creating a focused [Spec] artifact for a technical feature. Follow this systematic approach to create a well-scoped, implementable feature specification that integrates with the planning artifact hierarchy.
 
-**Note:** "Feature" is an alias for [Epic] in the planning hierarchy. This workflow creates the paired [Spec] for the feature/epic.
+**Important:** This command creates ONLY the [Spec] artifact. The paired [Epic] must already exist. If you need to create both Epic and Spec together, use `/project:plan:epic` first.
 
 **Task:** Create a [Spec] artifact for: $ARGUMENTS
 **Storage Backend**: basicmemory
@@ -15,6 +15,23 @@ You are creating a focused [Spec] artifact for a technical feature (feature = Ep
 > All [Planning Artifacts] are managed through the skills listed above.
 > Follow their guidance for creation, updates, and linking.
 > Do not try to use alternative methods.
+
+## Step 0: Verify Parent [Epic] Exists
+
+**PREREQUISITE CHECK:**
+
+Before creating a [Spec], the parent [Epic] must exist.
+
+1. Verify you have a valid [Epic] artifact ID (format: `2.X.1-epic-*`)
+2. If no [Epic] exists, run `/project:plan:epic "[Feature Name]"` first
+3. Obtain the Epic ID (e.g., `2.1.1-epic-user-authentication`)
+4. Use that Epic ID when referencing this [Spec] in frontmatter
+
+**Example:**
+- Epic exists: `2.3.1-epic-payment-system` → Can create corresponding Spec
+- Epic missing: → Must run `/project:plan:epic "payment system"` first
+
+If the [Epic] doesn't exist, STOP and create it first using the Epic command.
 
 ## Step 1: Analyze Feature Scope
 
