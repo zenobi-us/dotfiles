@@ -12,8 +12,7 @@ title: { Artifact Title }
 projectId: { ProjectId }
 status: { See status-flow.md for valid values per artifact type }
 links:
-  - type: { artifact-type | relationship-type }
-    target: { Artifact ID or target artifact ID }
+  - "[[artifact-id|link-type]]"
 ---
 
 {Artifact Body}
@@ -66,14 +65,10 @@ epicId: { Parent Epic ID (e.g., 2.1.1-epic-separate-cli-tool) }
 status: { To Do | In Progress | In Review | Done | Blocked }
 storyPoints: { 1, 2, 3, 5, 8 (1-8 range for tasks) }
 links:
-  - type: story
-    target: 4.3.1-story-template-extraction
-  - type: epic
-    target: 2.1.1-epic-separate-cli-tool
-  - type: blocking
-    target: 5.1.2-task-database-schema
-  - type: influenced_by_decision
-    target: 6.1.1-decision-jwt-vs-session
+  - "[[4.3.1-story-template-extraction|story]]"
+  - "[[2.1.1-epic-separate-cli-tool|epic]]"
+  - "[[5.1.2-task-database-schema|blocking]]"
+  - "[[6.1.1-decision-jwt-vs-session|influenced_by_decision]]"
 ---
 
 {Task Body}
@@ -102,7 +97,7 @@ The body of each artifact type follows a consistent pattern with specific sectio
 title: { PRD Title }
 projectId: { ProjectId }
 status: { Draft | In Review | Approved | Superseded }
-links: []  # PRDs don't typically link to other artifacts in frontmatter
+links: []
 ---
 ```
 
@@ -131,10 +126,8 @@ title: { Epic Title }
 projectId: { ProjectId }
 status: { Active | On Hold | Completed | Cancelled }
 links:
-  - type: prd
-    target: 1.1.1-prd-user-authentication
-  - type: spec
-    target: 2.1.1-spec-epic-requirements
+  - "[[1.1.1-prd-user-authentication|prd]]"
+  - "[[2.1.1-spec-epic-requirements|spec]]"
 ---
 ```
 
@@ -163,10 +156,8 @@ title: { Spec Title }
 projectId: { ProjectId }
 status: { Draft | In Review | Approved | Superseded }
 links:
-  - type: epic
-    target: 2.1.1-epic-separate-cli-tool
-  - type: research
-    target: 3.1.1-research-cli-patterns
+  - "[[2.1.1-epic-separate-cli-tool|epic]]"
+  - "[[3.1.1-research-cli-patterns|research]]"
 ---
 ```
 
@@ -195,10 +186,8 @@ title: { Research Title }
 projectId: { ProjectId }
 status: { In Progress | Complete | Inconclusive | Superseded }
 links:
-  - type: epic
-    target: 2.1.1-epic-separate-cli-tool
-  - type: decision
-    target: 6.1.1-decision-cli-framework
+  - "[[2.1.1-epic-separate-cli-tool|epic]]"
+  - "[[6.1.1-decision-cli-framework|decision]]"
 ---
 ```
 
@@ -226,10 +215,8 @@ title: { Decision Title }
 projectId: { ProjectId }
 status: { Pending | Decided | Unresolved | Superseded }
 links:
-  - type: research
-    target: 3.1.1-research-jwt-vs-sessions
-  - type: epic
-    target: 2.2.1-epic-user-auth-system
+  - "[[3.1.1-research-jwt-vs-sessions|research]]"
+  - "[[2.2.1-epic-user-auth-system|epic]]"
 ---
 ```
 
@@ -259,12 +246,9 @@ projectId: { ProjectId }
 status: { To Do | In Progress | In Review | Done | Blocked | Cancelled }
 storyPoints: { 3, 5, 8, 13 (typical range for stories) }
 links:
-  - type: epic
-    target: 2.1.1-epic-separate-cli-tool
-  - type: spec
-    target: 2.1.1-spec-cli-requirements
-  - type: task
-    target: 5.1.1-task-implement-extraction
+  - "[[2.1.1-epic-separate-cli-tool|epic]]"
+  - "[[2.1.1-spec-cli-requirements|spec]]"
+  - "[[5.1.1-task-implement-extraction|task]]"
 ---
 ```
 
@@ -295,14 +279,10 @@ epicId: 2.1.1-epic-separate-cli-tool
 status: { To Do | In Progress | In Review | Done | Blocked | Cancelled }
 storyPoints: { 1, 2, 3, 5, 8 (max 8 for tasks) }
 links:
-  - type: story
-    target: 4.3.1-story-template-extraction
-  - type: epic
-    target: 2.1.1-epic-separate-cli-tool
-  - type: blocking
-    target: 5.1.2-task-database-schema
-  - type: influenced_by_decision
-    target: 6.1.1-decision-jwt-vs-session
+  - "[[4.3.1-story-template-extraction|story]]"
+  - "[[2.1.1-epic-separate-cli-tool|epic]]"
+  - "[[5.1.2-task-database-schema|blocking]]"
+  - "[[6.1.1-decision-jwt-vs-session|influenced_by_decision]]"
 ---
 ```
 
@@ -332,10 +312,8 @@ title: { Retrospective Title }
 projectId: { ProjectId }
 status: { In Progress | Complete }
 links:
-  - type: epic
-    target: 2.1.1-epic-separate-cli-tool
-  - type: decision
-    target: 6.1.1-decision-cli-framework
+  - "[[2.1.1-epic-separate-cli-tool|epic]]"
+  - "[[6.1.1-decision-cli-framework|decision]]"
 ---
 ```
 
