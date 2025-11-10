@@ -6,14 +6,10 @@ retrospectiveDate: { YYYY-MM-DD }
 createdDate: { YYYY-MM-DD }
 participantCount: { Number of participants }
 links:
-  - type: epic
-    target: { 1-epic-name }
-  - type: epic
-    target: { 2-epic-name }
-  - type: reviewed_decision
-    target: { 1.3.1-decision-title }
-  - type: reviewed_decision
-    target: { 1.3.2-decision-title }
+  - "[[{ 1-epic-name }|epic]]"
+  - "[[{ 2-epic-name }|epic]]"
+  - "[[{ 1.3.1-decision-title }|decision]]"
+  - "[[{ 1.3.2-decision-title }|decision]]"
 ---
 
 ## Project Summary

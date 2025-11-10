@@ -11,20 +11,13 @@ dueDate: { YYYY-MM-DD or empty }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
-  - type: story
-    target: { 1.4.1-story-title }
-  - type: epic
-    target: { 1-epic-name }
-  - type: blocking
-    target: { 1.5.2-task-title }
-  - type: dependent_on
-    target: { 1.5.1-task-title }
-  - type: related_to
-    target: { 1.5.3-task-title }
-  - type: informed_by
-    target: { 1.2.1-research-title }
-  - type: influenced_by
-    target: { 1.3.1-decision-title }
+  - "[[{ 1.4.1-story-title }|story]]"
+  - "[[{ 1-epic-name }|epic]]"
+  - "[[{ 1.5.2-task-title }|blocking]]"
+  - "[[{ 1.5.1-task-title }|dependent_on]]"
+  - "[[{ 1.5.3-task-title }|related_to]]"
+  - "[[{ 1.2.1-research-title }|influenced_by_research]]"
+  - "[[{ 1.3.1-decision-title }|influenced_by_decision]]"
 ---
 
 ## Task Description

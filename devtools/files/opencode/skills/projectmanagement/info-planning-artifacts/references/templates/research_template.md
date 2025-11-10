@@ -7,14 +7,10 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 researchType: { Market | Technical | User | Competitive | Process | Other }
 links:
-  - type: epic
-    target: { 1-epic-name }
-  - type: informs_spec
-    target: { 1.1.1-spec-title }
-  - type: informs_decision
-    target: { 1.3.1-decision-title }
-  - type: informs_story
-    target: { 1.4.1-story-title }
+  - "[[{ 1-epic-name }|epic]]"
+  - "[[{ 1.1.1-spec-title }|spec]]"
+  - "[[{ 1.3.1-decision-title }|decision]]"
+  - "[[{ 1.4.1-story-title }|story]]"
 ---
 
 ## Research Objective

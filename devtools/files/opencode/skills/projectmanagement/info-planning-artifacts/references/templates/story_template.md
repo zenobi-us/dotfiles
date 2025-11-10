@@ -9,18 +9,12 @@ priority: { Critical | High | Medium | Low }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
-  - type: epic
-    target: { 1-epic-name }
-  - type: spec
-    target: { 1.1.1-spec-title }
-  - type: contains_task
-    target: { 1.5.1-task-title }
-  - type: contains_task
-    target: { 1.5.2-task-title }
-  - type: informed_by
-    target: { 1.2.1-research-title }
-  - type: influenced_by
-    target: { 1.3.1-decision-title }
+  - "[[{ 1-epic-name }|epic]]"
+  - "[[{ 1.1.1-spec-title }|spec]]"
+  - "[[{ 1.5.1-task-title }|task]]"
+  - "[[{ 1.5.2-task-title }|task]]"
+  - "[[{ 1.2.1-research-title }|influenced_by_research]]"
+  - "[[{ 1.3.1-decision-title }|influenced_by_decision]]"
 ---
 
 ## Scenario Description
