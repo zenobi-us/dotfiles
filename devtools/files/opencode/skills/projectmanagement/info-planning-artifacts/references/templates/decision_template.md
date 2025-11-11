@@ -8,16 +8,11 @@ createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 researchBasis: { 1.2.1-research-title } # Optional: Link to research that informed this decision
 links:
-  - type: epic
-    target: { 1-epic-name }
-  - type: influenced_by
-    target: { 1.2.1-research-title }
-  - type: influences_spec
-    target: { 1.1.1-spec-title }
-  - type: influences_story
-    target: { 1.4.1-story-title }
-  - type: influences_task
-    target: { 1.5.1-task-title }
+  - "[[{ 1-epic-name }|epic]]"
+  - "[[{ 1.2.1-research-title }|influenced_by_research]]"
+  - "[[{ 1.1.1-spec-title }|spec]]"
+  - "[[{ 1.4.1-story-title }|story]]"
+  - "[[{ 1.5.1-task-title }|task]]"
 ---
 
 ## Decision Context

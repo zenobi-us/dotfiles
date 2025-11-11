@@ -6,14 +6,10 @@ status: { Draft | In Review | Approved | Superseded }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
-  - type: epic
-    target: { 1-epic-name }
-  - type: contains_story
-    target: { 1.4.1-story-title }
-  - type: informed_by
-    target: { 1.2.1-research-title }
-  - type: influenced_by
-    target: { 1.3.1-decision-title }
+  - "[[{ 1-epic-name }|epic]]"
+  - "[[{ 1.4.1-story-title }|story]]"
+  - "[[{ 1.2.1-research-title }|influenced_by_research]]"
+  - "[[{ 1.3.1-decision-title }|influenced_by_decision]]"
 ---
 
 ## Preamble

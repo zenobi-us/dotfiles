@@ -6,12 +6,9 @@ status: { Active | Completed | On Hold | Cancelled }
 createdDate: { YYYY-MM-DD }
 updatedDate: { YYYY-MM-DD }
 links:
-  - type: spec
-    target: { 1.1.1-spec-title }
-  - type: contains_story
-    target: { 1.4.1-story-title }
-  - type: contains_story
-    target: { 1.4.2-story-title }
+  - "[[{ 1.1.1-spec-title }|spec]]"
+  - "[[{ 1.4.1-story-title }|story]]"
+  - "[[{ 1.4.2-story-title }|story]]"
 ---
 
 ## Folder Structure
