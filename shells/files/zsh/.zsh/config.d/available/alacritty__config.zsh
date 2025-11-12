@@ -1,1 +1,2 @@
-COLORTERM=truecolor
+export COLORTERM=truecolor
+export TERM=alacritty

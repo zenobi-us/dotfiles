@@ -20,6 +20,11 @@ Start by understanding the current project context, then ask questions one at a 
 - Only one question per message - if a topic needs more exploration, break it into multiple questions
 - Focus on understanding: purpose, constraints, success criteria
 
+**Research with Experts:**
+
+- If the idea involves specialized knowledge, identify relevant experts
+- Delegate reesarch task to subagent using the `task(Researcher)` tool
+
 **Exploring approaches:**
 - Propose 2-3 different approaches with trade-offs
 - Present options conversationally with your recommendation and reasoning
@@ -32,17 +37,42 @@ Start by understanding the current project context, then ask questions one at a 
 - Cover: architecture, components, data flow, error handling, testing
 - Be ready to go back and clarify if something doesn't make sense
 
+## During Dicsussion
+
+**Question Presentation:**
+
+- Present questions and options clearly and concisely
+- Show question as a title, with options or details below
+- use numbered or lettered lists for options. Allowing the user to pick by number/letter
+- After presenting a section of the design, ask: "Does this look right so far?"
+
+**Ensure Consistency:**
+
+- Keep track of previous answers and design decisions
+- Refer back to earlier points to ensure alignment
+- Adjust the design based on feedback and new information
+
+**Shift in Direction:**
+
+- If the user indicates a significant change in direction, pause and reassess
+- Check if the user is referring to forking a previous question. If so, go back to that question and present alternatives again
+- Ask clarifying questions to understand the new direction
+- Confirm understanding before proceeding with the new direction
+
 ## After the Design
 
 **Documentation:**
-- Write the validated design with scopecraft tools.
+
+- Write the validated design with the proscribed storage backend.
 - Use elements-of-style:writing-clearly-and-concisely skill if available
 - Commit the design document to git
 
 **Implementation (if continuing):**
-- Ask: "Ready to set up for implementation?"
-- Use superpowers:using-git-worktrees to create isolated workspace
-- Use superpowers:writing-plans to create detailed implementation plan
+
+- Ask: "Ready to set up for implementation?" If yes:
+  - Use `superpowers_using_git_worktrees` skill to create isolated workspace
+  - Use `superpowers_writing_plans` to create detailed implementation plan
+- Otherwise, end the session
 
 ## Key Principles
 

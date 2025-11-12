@@ -1,6 +1,6 @@
 ---
 name: Chrome Debug Subagent
-description: Use this task when you need to interact with Chrome DevTools Protocol to debug or inspect web pages programmatically.
+description: Use this task when you need to interact with Chrome DevTools Protocol to debug or inspect web pages programmatically. q
 mode: subagent
 tools:
   chrome-devtools: true
