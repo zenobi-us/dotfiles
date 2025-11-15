@@ -1,5 +1,5 @@
 ---
-description: Create and list Jira tickets
+description: Use when performing tasks with atlassian (confluence, or jira)
 tools:
   Atlassian: true
 mode: subagent

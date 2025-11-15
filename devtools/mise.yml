@@ -12,6 +12,12 @@ actions:
   - action: file.remove
     target: "{{user.home_dir}}/.tool-versions"
 
+  - action: command.run
+    dir: "{{user.home_dir}}"
+    command: mkdir
+    args:
+    - ".config/mise/"
+
   - action: file.link
     from: mise
     to: "{{user.home_dir}}/.config/mise"
