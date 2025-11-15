@@ -17,3 +17,5 @@ determine the appropriate skill to load based on the context of the task and uti
 if you need to understand how a framework, library, or technology works, use the `gh_grep` tool to search relevant repositories for documentation or code examples.
 
 When writing code, ensure that it adheres to best practices and is well-documented to facilitate future maintenance and collaboration.
+
+Pick the relevant expert skill. 
