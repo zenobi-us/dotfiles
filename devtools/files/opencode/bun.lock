@@ -5,7 +5,7 @@
     "": {
       "name": "opencode",
       "dependencies": {
-        "@opencode-ai/plugin": "1.0.61",
+        "@opencode-ai/plugin": "1.0.68",
         "@types/node": "^24.9.2",
         "@types/ramda": "0.31.1",
         "@types/unist": "^3.0.3",
@@ -82,9 +82,9 @@
 
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
-    "@opencode-ai/plugin": ["@opencode-ai/plugin@1.0.61", "", { "dependencies": { "@opencode-ai/sdk": "1.0.61", "zod": "4.1.8" } }, "sha512-lh5I7vxzeT0jzH+QVYmL98MN2gGlDePlZHEKF98pttcfReLBDL6J3GTulFtGO6lmadTgVaOKeq9+SGCB3duXoQ=="],
+    "@opencode-ai/plugin": ["@opencode-ai/plugin@1.0.68", "", { "dependencies": { "@opencode-ai/sdk": "1.0.68", "zod": "4.1.8" } }, "sha512-+2xN5tkOj+N7EjOFVoMSeiVHGPqIcIJV9lVdpGvthkCttmO9etskBQgoSCVBoESOT5f04qkJdkMvVlvUw8JwvQ=="],
 
-    "@opencode-ai/sdk": ["@opencode-ai/sdk@1.0.61", "", {}, "sha512-n6l4n/U2mRcWhz8RhXYAnqyLt9dJMwL6z5isr8IMOOzfv0fBWyZugkR68jsWbvpgOzzy2MOAKTAoryeO9zpHdQ=="],
+    "@opencode-ai/sdk": ["@opencode-ai/sdk@1.0.68", "", {}, "sha512-QdpLZw2L/nHdPFGCz8z4du2RvlALgZTFgNeKUM+kJuZTtOWC5t425ELGg5xKIpynD0kj83Euvfn6l6uHs99g3w=="],
 
     "@rollup/rollup-android-arm-eabi": ["@rollup/rollup-android-arm-eabi@4.52.5", "", { "os": "android", "cpu": "arm" }, "sha512-8c1vW4ocv3UOMp9K+gToY5zL2XiiVw3k7f1ksf4yO1FlDFQ1C2u72iACFnSOceJFsWskc2WZNqeRhFRPzv+wtQ=="],
 

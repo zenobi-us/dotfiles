@@ -2,32 +2,36 @@
 
 Create and open a pull request for completed work linked to planning artifacts: $ARGUMENTS
 
-**Task Source Detection:**
-- **GitHub Issue**: `123` or `#123` → Links to task issue
-- **Basic Memory Artifact**: `5.1.1-task-*` (Johnny Decimal format) → Links to planning artifact
-- **Branch Inference**: Empty or description → Infers from current branch/git history
-
 **Storage Backend**: basicmemory
 
 > [!CRITICAL]
 > Before doing anything, run these skills:
 > - skills_projectmanagement_storage_basicmemory
 > - skills_projectmanagement_info_planning_artifacts
->
-> All [Planning Artifacts] are managed through the skills listed above.
 
-## Step 1: Validate Readiness
+## Step 1: Early Exit Checks
 
-**Check:**
-1. `git status` - all changes committed
-2. `git fetch origin && git merge-base --is-ancestor origin/main HEAD` - branch up-to-date
-3. Tests pass: `npm test` / `pytest` / `cargo test`
-4. Linting passes: `npm run lint` / `pylint` / `clippy`
+**Check uncommitted changes:**
+```bash
+git status --short
+```
 
-**If validation fails:**
-- Report error: "Cannot create PR until all checks pass"
-- List specific failures
-- Stop
+**If changes exist:**
+```
+⚠️  UNCOMMITTED CHANGES - Commit these first:
+
+{git status output}
+
+Use: /project:do:commit "message"
+```
+**Exit here.** (Don't proceed until clean)
+
+**Validate readiness:**
+1. Not on main/develop: `git branch --show-current`
+2. Tests pass: Project-specific test command
+3. Linting passes: Project-specific lint command
+
+**If validation fails:** Report specific error and exit.
 
 ## Step 2: Fetch Planning Context
 
@@ -43,62 +47,39 @@ Create and open a pull request for completed work linked to planning artifacts: 
    - Verify status is "in-progress" or "completed"
 
 3. Otherwise:
-   - Extract feature identifier from branch name: `git branch --show-current`
+   - Extract feature identifier from branch name
    - Fallback to generic PR without artifact link
 
-## Step 3: Commit Remaining Changes
+## Step 3: Prepare PR
 
-**If uncommitted changes exist:**
-1. Run `/project:do:commit` with artifact context
-2. Wait for completion
-
-**If clean, proceed to Step 4**
-
-## Step 4: Prepare Push
-
-**Check:**
-- Not on main/develop: `git branch --show-current | grep -E "^(main|develop)$"` → error if true
-- Push branch if needed: `git push -u origin $(git branch --show-current)`
-
-## Step 5: Generate PR Title
-
-**Semantic format:**
+**Generate title (semantic format):**
 ```
 {type}({scope}): {title} ({artifact_id})
 ```
 
-**Examples:**
+Examples:
 - `feat(auth): implement login with OAuth (closes #123)`
 - `feat(database): design user schema (5.1.1-task-database-schema)`
-- `fix(api): handle null response (closes #456)`
 
-## Step 6: Generate PR Description
-
-**Structure:**
+**Generate description:**
 ```markdown
 ## Summary
 {One-sentence description of what this PR accomplishes}
 
-## Linked Planning Artifact
-{GitHub: Closes #{ISSUE_NUM}} OR {Basic Memory: Task {ARTIFACT_ID} (Epic {epic_id})}
+## Linked Artifact
+{GitHub: Closes #{ISSUE}} OR {BasicMemory: Task {ARTIFACT_ID} (Epic {epic_id})}
 
 ## Changes
 - {Specific change 1}
 - {Specific change 2}
-- {Specific change 3}
 
 ## Testing
 - [ ] Unit tests added/passing
 - [ ] Integration tests passing
 - [ ] Manual testing completed
-
-## Verification
-- [ ] Code follows project standards
-- [ ] All acceptance criteria met
-- [ ] Documentation updated
 ```
 
-## Step 7: Human Review
+## Step 4: Review & Confirm
 
 **Display:**
 1. PR Title
@@ -106,60 +87,32 @@ Create and open a pull request for completed work linked to planning artifacts: 
 3. Changed files: `git diff --name-stat origin/main...HEAD`
 4. Impact: `git diff --stat origin/main...HEAD`
 
-**Confirm:** "Proceed with creating this pull request?"
-- Allow editing title/description or cancel
+**Prompt:** "Proceed with creating this pull request?"
+- Option: Edit title/description
+- Option: Cancel
 
-## Step 8: Create PR
+## Step 5: Create PR
 
 **Execute:**
-1. Use GitHub tool to create PR
-   - Title: {Generated}
-   - Description: {Generated}
-   - Base: main/develop (auto-detect)
-   - Head: current branch
-   - Draft: false
+```bash
+gh pr create --title "{title}" --body "{description}" --base {target_branch}
+```
 
-2. If successful: Capture PR number and URL
-3. If failed: Report error with troubleshooting steps
+**Update artifacts:**
+- GitHub issues: Add comment with PR link, update labels
+- BasicMemory tasks: Update status to "in-review", add pr_link
 
-## Step 9: Update Planning Artifacts
+## Step 6: Summary
 
-**For GitHub issues:**
-- Add comment linking to PR
-- Add "pr-ready" or "in-review" label
-- Remove "in-progress" label
-
-**For Basic Memory artifacts:**
-- Use `basicmemory_edit_note` to update frontmatter:
-  - `pr_link: {PR_URL}`
-  - `status: in-review`
-
-## Step 10: Summary
-
-Display:
 ```markdown
-## Pull Request Created ✅
+✅ Pull Request Created
 
-- **PR**: #{PR_NUMBER} → {PR_URL}
-- **Title**: {pr_title}
-- **Branch**: {CURRENT_BRANCH}
-- **Files**: {count} changed, {+lines} added, {-lines} deleted
+- PR: #{PR_NUMBER} → {PR_URL}
+- Title: {pr_title}
+- Branch: {CURRENT_BRANCH}
+- Files: {count} changed, +{lines} -{lines}
 
-## Linked Artifact
-{Artifact context}
-
-## Next Steps
-1. Wait for code review
-2. Address feedback if needed
-3. Once approved, merge the PR
-4. For completed epic: Use `/project:close:retro`
+Next: Wait for review, address feedback, merge when approved
 ```
 
-## Workflow Integration
-
-This command fits into the planning workflow:
-```
-[Task] in-progress → [Implementation] → /project:do:pr → [PR] in-review → [Code Review] → [Merged] → [Task] completed
-```
-
-**Related:** `/project:do:task`, `/project:do:commit`, `/project:close:retro`
+**Related:** `/project:do:task`, `/project:do:commit`
