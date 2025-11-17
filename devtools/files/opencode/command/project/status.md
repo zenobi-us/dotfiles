@@ -1,5 +1,23 @@
 # Show Current Project Context
 
+## Execution Instructions
+
+**EXECUTE THIS TASK BY:**
+
+1. Read all content between `<message_to_subagent>` and `</message_to_subagent>` tags
+2. Copy that content exactly
+3. Call the Task tool with these parameters:
+   - `description`: "Analyze project status and active work"
+   - `subagent_type`: "general"
+   - `prompt`: [paste the content from step 1]
+4. Return the formatted output from the subagent to the user
+
+**IMPORTANT:** This command does NOT execute directly—it delegates to a subagent. You must call the Task tool.
+
+---
+
+<message_to_subagent>
+
 You are analyzing and displaying the current project context, active work, and providing intelligent next-action suggestions. Follow this systematic approach to give comprehensive situational awareness.
 
 **Task:** Analyze and display current project status and suggest next actions
@@ -162,6 +180,7 @@ Then continue to Step 2.
 **Present the analysis in this structured format:**
 
 ```
+🆔 Project Id: [ProjectId]
 📋 Project Context: [Project Type] ([Technology Stack])
 
 📂 Active Work:
@@ -192,3 +211,4 @@ Then continue to Step 2.
 ```
 
 This systematic analysis provides comprehensive situational awareness using the storage backend as the source of truth for all project tracking and intelligent workflow navigation.
+</message_to_subagent>
