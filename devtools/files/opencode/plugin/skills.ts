@@ -57,8 +57,6 @@ type PluginConfig = {
     basePaths: string | string[]
 }
 type SkillRegistry = Map<string, Skill>;
-type ToolArgs = Parameters<typeof tool>[0]["args"];
-
 
 // Validation Schema
 const SkillFrontmatterSchema = tool.schema.object({
@@ -338,7 +336,7 @@ function createToolResourceReader(ctx: PluginInput, registry: SkillRegistry): To
 /**
  * SkillRegistry manages skill discovery and parsing
  */
-async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
+async function createSkillRegistry(ctx: PluginInput, config: PluginConfig): Promise<SkillRegistry> {
 
     /**
      * Skill Registry Map
@@ -355,11 +353,6 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
     // Find all SKILL.md files recursively
     const matches = await findSkillPaths(config.basePaths);
     const dupes: string[] = [];
-    const tools: Record<string, ToolDefinition> = {
-        "use_skills": createUseSkillsTool(ctx, registry),
-        "find_skills": createFindSkillsTool(ctx, registry),
-        "skills_read_resource": createToolResourceReader(ctx, registry)
-    }
 
     for await (const match of matches) {
         const skill = await parseSkill(match);
@@ -388,7 +381,7 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
         console.warn(`⚠️  Duplicate skills detected (skipped): ${dupes.join(", ")}`);
     }
 
-    return tools
+    return registry
 }
 
 const OpenCodePaths = envPaths("opencode", { suffix: "" });
@@ -412,7 +405,13 @@ export const SkillsPlugin: Plugin = async (ctx) => {
     const config = await getPluginConfig(ctx);
     log.log('plugin.config', config);
     // Discovery order: lowest to highest priority (last wins on duplicate tool names)
-    const tool = await createSkillRegistry(ctx, config)
+    const registry = await createSkillRegistry(ctx, config)
 
-    return { tool }
+    return {
+        tool: {
+            "use_skills": createUseSkillsTool(ctx, registry),
+            "find_skills": createFindSkillsTool(ctx, registry),
+            "skills_read_resource": createToolResourceReader(ctx, registry)
+        }
+    }
 }
