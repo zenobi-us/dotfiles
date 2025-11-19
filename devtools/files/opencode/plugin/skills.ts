@@ -6,11 +6,16 @@
  * Features:
  * - Discovers SKILL.md files from .opencode/skills/, ~/.opencode/skills/, and ~/.config/opencode/skills/
  * - Validates skills against Anthropic's spec (YAML frontmatter + Markdown)
- * - Registers dynamic tools with pattern skills_{{skill_name}}
+ * - Provides unified skill discovery and loading via two main tools:
+ *   - use_skills(): Load one or more skills by name
+ *   - find_skills(): Search for skills by free-text query
  * - Delivers skill content via silent message insertion (noReply pattern)
  * - Supports nested skills with proper naming
  * 
  * Design Decisions:
+ * - Consolidates 50+ individual skill tools into 2 unified tools (cleaner namespace)
+ * - Skills are discovered resources, not always-on capabilities
+ * - Lazy loading: skills only inject when explicitly requested
  * - Tool restrictions handled at agent level (not skill level)
  * - Message insertion pattern ensures skill content persists (user messages not purged)
  * - Base directory context enables relative path resolution
@@ -186,19 +191,112 @@ function createInstructionInjector(ctx: PluginInput) {
 }
 
 /**
- * Creates a function to inject skill loading messages into the session
+ * Load a single skill into the chat
  */
-function createSkillTool<T extends ToolArgs>(skill: Skill, options: { ctx: PluginInput, args?: T }): ToolDefinition {
+async function loadSkill(skill: Skill, options: { ctx: PluginInput, sessionID: string }) {
     const sendPrompt = createInstructionInjector(options.ctx);
+    await sendPrompt(`The "${skill.name}" skill is loading\n${skill.name}`, { sessionId: options.sessionID });
+    await sendPrompt(`Base directory for this skill: ${skill.fullPath}\n\n${skill.content}`, { sessionId: options.sessionID });
+}
 
+/**
+ * Load multiple skills into the chat
+ */
+async function loadSkills(skillNames: string[], registry: SkillRegistry, options: { ctx: PluginInput, sessionID: string }) {
+    const loaded: string[] = [];
+    const notFound: string[] = [];
+
+    for (const skillName of skillNames) {
+        // Try to find skill by name (match against skill name, not tool name)
+        const skill = Array.from(registry.values()).find(s => s.name === skillName);
+        
+        if (!skill) {
+            notFound.push(skillName);
+            continue;
+        }
+
+        await loadSkill(skill, { ctx: options.ctx, sessionID: options.sessionID });
+        loaded.push(skillName);
+    }
+
+    return { loaded, notFound };
+}
+
+/**
+ * Tool to use (load) one or more skills
+ */
+function createUseSkillsTool(ctx: PluginInput, registry: SkillRegistry): ToolDefinition {
     return tool({
-        description: skill.description,
-        args: options.args || {},  // No args for MVP - can add template args later
-        execute: async (_, toolCtx) => {
-            await sendPrompt(`The "${skill.name}" skill is loading\n${skill.name}`, { sessionId: toolCtx.sessionID });
-            await sendPrompt(`Base directory for this skill: ${skill.fullPath}\n\n${skill.content}`, { sessionId: toolCtx.sessionID });
-            // Return minimal confirmation
-            return `Launching skill: ${skill.name}`;
+        description: "Load one or more skills into the chat. Provide an array of skill names to load them as user messages.",
+        args: {
+            skill_names: tool.schema.array(tool.schema.string())
+                .min(1, "Must provide at least one skill name")
+        },
+        execute: async (args, toolCtx: ToolContext) => {
+            const { loaded, notFound } = await loadSkills(args.skill_names, registry, { 
+                ctx, 
+                sessionID: toolCtx.sessionID 
+            });
+
+            let result = `Loaded ${loaded.length} skill(s): ${loaded.join(", ")}`;
+            if (notFound.length > 0) {
+                result += `\n\nSkills not found: ${notFound.join(", ")}`;
+            }
+            return result;
+        }
+    })
+}
+
+/**
+ * Tool to search for skills by free-text query
+ */
+function createFindSkillsTool(ctx: PluginInput, registry: SkillRegistry): ToolDefinition {
+    return tool({
+        description: "Search for skills by name or description. Returns a list of matching skills with their descriptions.",
+        args: {
+            query: tool.schema.string()
+                .min(1, "Query cannot be empty")
+        },
+        execute: async (args) => {
+            const query = args.query.toLowerCase();
+            const matches: Array<{ name: string; description: string; matchType: string }> = [];
+
+            for (const skill of registry.values()) {
+                const nameMatch = skill.name.toLowerCase().includes(query);
+                const descMatch = skill.description.toLowerCase().includes(query);
+
+                if (nameMatch) {
+                    matches.push({ 
+                        name: skill.name, 
+                        description: skill.description,
+                        matchType: "name"
+                    });
+                } else if (descMatch) {
+                    matches.push({ 
+                        name: skill.name, 
+                        description: skill.description,
+                        matchType: "description"
+                    });
+                }
+            }
+
+            if (matches.length === 0) {
+                return `No skills found matching "${args.query}"`;
+            }
+
+            // Sort: name matches first, then by skill name
+            matches.sort((a, b) => {
+                if (a.matchType !== b.matchType) {
+                    return a.matchType === "name" ? -1 : 1;
+                }
+                return a.name.localeCompare(b.name);
+            });
+
+            const results = matches
+                .map(m => `- **${m.name}**: ${m.description}`)
+                .join("\n");
+
+            return `Found ${matches.length} skill(s) matching "${args.query}":\n\n${results}`;
         }
     })
 }
@@ -245,10 +343,10 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
     /**
      * Skill Registry Map
      * 
-     * Key: toolName (e.g., "skills_brand_guidelines")
+     * Key: skill name (e.g., "writing-git-commits")
      * Value: Skill object
      * 
-     * - Handles duplicate tool names by logging and skipping
+     * - Handles duplicate skill names by logging and skipping
      * - Skills loaded from multiple base paths (last one wins)
      * - Stored as Map for metadata access by tool resource reader
      */
@@ -258,6 +356,8 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
     const matches = await findSkillPaths(config.basePaths);
     const dupes: string[] = [];
     const tools: Record<string, ToolDefinition> = {
+        "use_skills": createUseSkillsTool(ctx, registry),
+        "find_skills": createFindSkillsTool(ctx, registry),
         "skills_read_resource": createToolResourceReader(ctx, registry)
     }
 
@@ -268,17 +368,16 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
             continue;
         }
 
-        log.log(`✅  ${skill.toolName} `);
+        log.log(`✅  ${skill.name} `);
 
-        if (registry.has(skill.toolName)) {
-            dupes.push(skill.toolName);
-            log.log('discover.duplicate', skill.toolName);
+        if (registry.has(skill.name)) {
+            dupes.push(skill.name);
+            log.log('discover.duplicate', skill.name);
 
             continue;
         }
 
-        tools[skill.toolName] = createSkillTool(skill, { ctx });
-        registry.set(skill.toolName, skill);
+        registry.set(skill.name, skill);
     }
 
     if (!registry.size) {
@@ -286,7 +385,7 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
     }
 
     if (dupes.length) {
-        console.warn(`⚠️  Duplicate skill tool names detected (skipped): ${dupes.join(", ")}`);
+        console.warn(`⚠️  Duplicate skills detected (skipped): ${dupes.join(", ")}`);
     }
 
     return tools
