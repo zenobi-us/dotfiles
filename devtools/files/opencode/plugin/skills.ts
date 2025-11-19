@@ -38,8 +38,6 @@ import { mergeDeepLeft } from "ramda";
 
 const SKILL_PATH_PATTERN = /skills\/.*\/SKILL.md$/;
 
-const log = console;
-
 // Types
 type Skill = {
     name: string              // From frontmatter (e.g., "brand-guidelines")
@@ -93,14 +91,12 @@ async function findSkillPaths(basePaths: string | string[]) {
 
         for (const basePath of basePathsArray) {
             const stat = await lstat(basePath).catch(() => null);
-            log.log(`findSkillPaths.isDirectory`, basePath, stat?.isDirectory());
             if (!stat?.isDirectory()) {
                 continue;
             }
             paths.push(basePath);
         }
 
-        log.log("findSkillPaths.available", paths);
         const patterns = paths.map(basePath => join(basePath, "**/SKILL.md"))
         const matches = await fsPromises.glob(patterns)
         return matches;
@@ -361,20 +357,14 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig): Prom
             continue;
         }
 
-        log.log(`✅  ${skill.name} `);
 
         if (registry.has(skill.name)) {
             dupes.push(skill.name);
-            log.log('discover.duplicate', skill.name);
 
             continue;
         }
 
         registry.set(skill.name, skill);
-    }
-
-    if (!registry.size) {
-        log.log('discover.none');
     }
 
     if (dupes.length) {
@@ -403,15 +393,14 @@ async function getPluginConfig(ctx: PluginInput): Promise<PluginConfig> {
 
 export const SkillsPlugin: Plugin = async (ctx) => {
     const config = await getPluginConfig(ctx);
-    log.log('plugin.config', config);
     // Discovery order: lowest to highest priority (last wins on duplicate tool names)
     const registry = await createSkillRegistry(ctx, config)
 
     return {
         tool: {
-            "use_skills": createUseSkillsTool(ctx, registry),
-            "find_skills": createFindSkillsTool(ctx, registry),
-            "skills_read_resource": createToolResourceReader(ctx, registry)
+            "skill_use": createUseSkillsTool(ctx, registry),
+            "skill_find": createFindSkillsTool(ctx, registry),
+            "skill_resource": createToolResourceReader(ctx, registry)
         }
     }
 }
