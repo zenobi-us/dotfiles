@@ -29,12 +29,11 @@ import { tool } from "@opencode-ai/plugin"
 import envPaths from "env-paths";
 import matter from "gray-matter"
 import { mergeDeepLeft } from "ramda";
-import { Logger } from "../lib/logger";
 
 
 const SKILL_PATH_PATTERN = /skills\/.*\/SKILL.md$/;
 
-const log = new Logger("skills.plugin");
+const log = console;
 
 // Types
 type Skill = {
@@ -59,10 +58,10 @@ type ToolArgs = Parameters<typeof tool>[0]["args"];
 // Validation Schema
 const SkillFrontmatterSchema = tool.schema.object({
     name: tool.schema.string()
-    .regex(/^[a-z0-9-]+$/, "Name must be lowercase alphanumeric with hyphens")
-    .min(1, "Name cannot be empty"),
+        .regex(/^[a-z0-9-]+$/, "Name must be lowercase alphanumeric with hyphens")
+        .min(1, "Name cannot be empty"),
     description: tool.schema.string()
-    .min(20, "Description must be at least 20 characters for discoverability"),
+        .min(20, "Description must be at least 20 characters for discoverability"),
     license: tool.schema.string().optional(),
     "allowed-tools": tool.schema.array(tool.schema.string()).optional(),
     metadata: tool.schema.record(tool.schema.string(), tool.schema.string()).optional(),
@@ -77,10 +76,10 @@ const SkillFrontmatterSchema = tool.schema.object({
 */
 function toolName(skillPath: string): string {
     return skillPath
-    .replace(/\/SKILL\.md$/, "") // Remove trailing /SKILL.md
-    .split(sep)
-    .join("_")
-    .replace(/-/g, "_") // Replace hyphens with underscores
+        .replace(/\/SKILL\.md$/, "") // Remove trailing /SKILL.md
+        .split(sep)
+        .join("_")
+        .replace(/-/g, "_") // Replace hyphens with underscores
 }
 
 async function findSkillPaths(basePaths: string | string[]) {
@@ -88,17 +87,17 @@ async function findSkillPaths(basePaths: string | string[]) {
     const basePathsArray = Array.isArray(basePaths) ? basePaths : [basePaths]
     try {
         const paths: string[] = []
-        
-     for (const basePath of basePathsArray) {
-              const stat = await lstat(basePath).catch(() => null);
-              log.log(`findSkillPaths.isDirectory`, basePath, stat?.isDirectory());
-              if (!stat?.isDirectory()) {
-                  continue;
-              }
-              paths.push(basePath);
-          }
 
-          log.log("findSkillPaths.available", paths);
+        for (const basePath of basePathsArray) {
+            const stat = await lstat(basePath).catch(() => null);
+            log.log(`findSkillPaths.isDirectory`, basePath, stat?.isDirectory());
+            if (!stat?.isDirectory()) {
+                continue;
+            }
+            paths.push(basePath);
+        }
+
+        log.log("findSkillPaths.available", paths);
         const patterns = paths.map(basePath => join(basePath, "**/SKILL.md"))
         const matches = await fsPromises.glob(patterns)
         return matches;
@@ -151,7 +150,7 @@ async function parseSkill(skillPath: string): Promise<Skill | null> {
             )
             return null
         }
-        
+
         // Generate tool name from path
 
         return {
@@ -165,7 +164,7 @@ async function parseSkill(skillPath: string): Promise<Skill | null> {
             name: frontmatter.data.name,
             path: skillPath,
         }
-        
+
     } catch (error) {
         console.error(`❌ Error parsing skill ${skillPath}:`, error instanceof Error ? error.message : String(error))
         return null
@@ -174,7 +173,7 @@ async function parseSkill(skillPath: string): Promise<Skill | null> {
 
 function createInstructionInjector(ctx: PluginInput) {
     // Message 1: Skill loading header (silent insertion - no AI response)
-    const sendPrompt =(text: string, props:  {sessionId: string}) => {
+    const sendPrompt = (text: string, props: { sessionId: string }) => {
         ctx.client.session.prompt({
             path: { id: props.sessionId },
             body: {
@@ -189,7 +188,7 @@ function createInstructionInjector(ctx: PluginInput) {
 /**
  * Creates a function to inject skill loading messages into the session
  */
-function createSkillTool<T extends ToolArgs>(skill: Skill, options: { ctx: PluginInput, args?: T}): ToolDefinition {
+function createSkillTool<T extends ToolArgs>(skill: Skill, options: { ctx: PluginInput, args?: T }): ToolDefinition {
     const sendPrompt = createInstructionInjector(options.ctx);
 
     return tool({
@@ -225,10 +224,10 @@ function createToolResourceReader(ctx: PluginInput, registry: SkillRegistry): To
             const resourcePath = join(skill.fullPath, args.relative_path);
             try {
                 const content = await Bun.file(resourcePath).text();
-                
+
                 // Inject content silently
                 await sendPrompt(`Resource loaded from skill "${skill.name}": ${args.relative_path}\n\n${content}`, { sessionId: toolCtx.sessionID });
-                
+
                 return `Resource "${args.relative_path}" from skill "${skill.name}" has been loaded successfully.`;
             } catch (error) {
                 throw new Error(`Failed to read resource at ${resourcePath}: ${error instanceof Error ? error.message : String(error)}`);
@@ -242,7 +241,7 @@ function createToolResourceReader(ctx: PluginInput, registry: SkillRegistry): To
  * SkillRegistry manages skill discovery and parsing
  */
 async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
-    
+
     /**
      * Skill Registry Map
      * 
@@ -258,8 +257,8 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
     // Find all SKILL.md files recursively
     const matches = await findSkillPaths(config.basePaths);
     const dupes: string[] = [];
-    const tools:Record<string, ToolDefinition> = {
-        // "skills_read_resource": createToolResourceReader(ctx, registry)
+    const tools: Record<string, ToolDefinition> = {
+        "skills_read_resource": createToolResourceReader(ctx, registry)
     }
 
     for await (const match of matches) {
@@ -269,22 +268,22 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
             continue;
         }
 
-         log.log(`✅  ${skill.toolName} `);
+        log.log(`✅  ${skill.toolName} `);
 
-          if (registry.has(skill.toolName)) {
-              dupes.push(skill.toolName);
-              log.log('discover.duplicate', skill.toolName);
+        if (registry.has(skill.toolName)) {
+            dupes.push(skill.toolName);
+            log.log('discover.duplicate', skill.toolName);
 
-             continue;
-         }
+            continue;
+        }
 
         tools[skill.toolName] = createSkillTool(skill, { ctx });
         registry.set(skill.toolName, skill);
     }
 
-     if (!registry.size) {
-          log.log('discover.none');
-      }
+    if (!registry.size) {
+        log.log('discover.none');
+    }
 
     if (dupes.length) {
         console.warn(`⚠️  Duplicate skill tool names detected (skipped): ${dupes.join(", ")}`);
@@ -295,7 +294,7 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig) {
 
 const OpenCodePaths = envPaths("opencode", { suffix: "" });
 
-async function getPluginConfig(ctx: PluginInput) : Promise<PluginConfig> {
+async function getPluginConfig(ctx: PluginInput): Promise<PluginConfig> {
     // const config = await ctx.client.config.get();
     // const resolved = config.data.plugins?.find(skill => skill.name === "opencode-skills");
     const base = {
@@ -311,10 +310,10 @@ async function getPluginConfig(ctx: PluginInput) : Promise<PluginConfig> {
 }
 
 export const SkillsPlugin: Plugin = async (ctx) => {
-      const config = await getPluginConfig(ctx);
-      log.log('plugin.config', config);
-      // Discovery order: lowest to highest priority (last wins on duplicate tool names)
-      const tool = await createSkillRegistry(ctx, config)
+    const config = await getPluginConfig(ctx);
+    log.log('plugin.config', config);
+    // Discovery order: lowest to highest priority (last wins on duplicate tool names)
+    const tool = await createSkillRegistry(ctx, config)
 
-      return { tool }
-  }
+    return { tool }
+}
