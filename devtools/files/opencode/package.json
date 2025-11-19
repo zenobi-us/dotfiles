@@ -7,7 +7,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@opencode-ai/plugin": "0.15.24",
+        "@opencode-ai/plugin": "1.0.68",
         "@types/node": "^24.9.2",
         "@types/ramda": "0.31.1",
         "@types/unist": "^3.0.3",
@@ -15,6 +15,7 @@
         "env-paths": "^3.0.0",
         "execa": "^9.6.0",
         "gray-matter": "^4.0.3",
+        "mcporter": "^0.6.2",
         "ramda": "0.32.0",
         "remark-parse": "^11.0.0",
         "typescript": "^5.9.3",

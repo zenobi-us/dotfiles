@@ -8,4 +8,4 @@ actions:
 
   - action: directory.copy
     from: bin
-    to: '{{user.home_dir}}/.local/'
+    to: '{{user.home_dir}}/.local'
