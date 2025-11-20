@@ -55,6 +55,41 @@ type PluginConfig = {
     basePaths: string | string[]
 }
 type SkillRegistry = Map<string, Skill>;
+type SkillRegistryController = {
+    registry: SkillRegistry;
+    has: (key: string) => boolean;
+    get: (key: string) => Skill | undefined;
+    add: (key: string, skill: Skill) => void;
+    search: (...args: string[]) => Skill[];
+}
+function createSkillRegistryController(): SkillRegistryController {
+    const registry: SkillRegistry = new Map();
+    return {
+        registry,
+        has: (key: string) => registry.has(key),
+        get: (key: string) => registry.get(key),
+        add: (key: string, skill: Skill) => {
+            registry.set(key, skill);
+        },
+        search: (...args: string[]) => {
+            const results: Skill[] = [];
+            const query = args.map(a => a.toLowerCase());
+            for (const skill of registry.values()) {
+                const haystack = `${skill.name} ${skill.description}`.toLowerCase();
+                if (query.every(q => haystack.includes(q))) {
+                    results.push(skill);
+                }
+            }
+            return results;
+        }
+    }
+}
+
+type SkillRegistryManager = {
+    byFQDN: SkillRegistryController;
+    byName: SkillRegistryController;
+    search: (query: string) => Skill[];
+}
 
 // Validation Schema
 const SkillFrontmatterSchema = tool.schema.object({
@@ -196,15 +231,15 @@ async function loadSkill(skill: Skill, options: { ctx: PluginInput, sessionID: s
 /**
  * Load multiple skills into the chat
  */
-async function loadSkills(skillNames: string[], registry: SkillRegistry, options: { ctx: PluginInput, sessionID: string }) {
+async function loadSkills(skillNames: string[], manager: SkillRegistryManager, options: { ctx: PluginInput, sessionID: string }) {
     const loaded: string[] = [];
     const notFound: string[] = [];
 
     for (const skillName of skillNames) {
          // Try to find skill by toolName first (primary key), then by name (backward compat)
-         let skill = registry.get(skillName);
+         let skill = manager.byFQDN.get(skillName);
          if (!skill) {
-             skill = Array.from(registry.values()).find(s => s.name === skillName);
+             skill = manager.byName.get(skillName);
          }
          
          if (!skill) {
@@ -222,7 +257,7 @@ async function loadSkills(skillNames: string[], registry: SkillRegistry, options
 /**
  * Tool to use (load) one or more skills
  */
-function createUseSkillsTool(ctx: PluginInput, registry: SkillRegistry): ToolDefinition {
+function createUseSkillsTool(ctx: PluginInput, registry: SkillRegistryManager): ToolDefinition {
     return tool({
         description: "Load one or more skills into the chat. Provide an array of skill names to load them as user messages.",
         args: {
@@ -230,24 +265,24 @@ function createUseSkillsTool(ctx: PluginInput, registry: SkillRegistry): ToolDef
                 .min(1, "Must provide at least one skill name")
         },
         execute: async (args, toolCtx: ToolContext) => {
-            const { loaded, notFound } = await loadSkills(args.skill_names, registry, { 
-                ctx, 
-                sessionID: toolCtx.sessionID 
-            });
+             const response = await loadSkills(args.skill_names, registry, { 
+                 ctx, 
+                 sessionID: toolCtx.sessionID 
+             });
 
-            let result = `Loaded ${loaded.length} skill(s): ${loaded.join(", ")}`;
-            if (notFound.length > 0) {
-                result += `\n\nSkills not found: ${notFound.join(", ")}`;
-            }
-            return result;
-        }
+             let result = `Loaded ${response.loaded.length} skill(s): ${response.loaded.join(", ")}`;
+             if (response.notFound.length > 0) {
+                 result += `\n\nSkills not found: ${response.notFound.join(", ")}`;
+             }
+             return result;
+         }
     })
 }
 
 /**
  * Tool to search for skills by free-text query
  */
-function createFindSkillsTool(ctx: PluginInput, registry: SkillRegistry): ToolDefinition {
+function createFindSkillsTool(ctx: PluginInput, registry: SkillRegistryManager): ToolDefinition {
     return tool({
         description: "Search for skills by name or description. Returns a list of matching skills with their descriptions.",
         args: {
@@ -255,53 +290,48 @@ function createFindSkillsTool(ctx: PluginInput, registry: SkillRegistry): ToolDe
                 .min(1, "Query cannot be empty")
         },
         execute: async (args) => {
-            const query = args.query.toLowerCase();
-            const matches: Array<{ name: string; description: string; matchType: string }> = [];
+             const query = args.query.toLowerCase();
+             const skills = registry.search(query);
+             
+             // Rank results: name matches > FQDN matches > description matches
+             const ranked = skills.map(skill => {
+                 const nameMatch = skill.name.toLowerCase().includes(query);
+                 const fqdnMatch = skill.toolName.toLowerCase().includes(query);
+                 const descMatch = skill.description.toLowerCase().includes(query);
+                 
+                 let rank = 0;
+                 if (nameMatch) rank = 3;
+                 else if (fqdnMatch) rank = 2;
+                 else if (descMatch) rank = 1;
+                 
+                 return { skill, rank };
+             }).sort((a, b) => {
+                 if (b.rank !== a.rank) return b.rank - a.rank;
+                 return a.skill.name.localeCompare(b.skill.name);
+             });
 
-            for (const skill of registry.values()) {
-                const nameMatch = skill.name.toLowerCase().includes(query);
-                const descMatch = skill.description.toLowerCase().includes(query);
+             const matches = ranked.map(r => ({
+                 name: r.skill.name,
+                 description: r.skill.description
+             }));
 
-                if (nameMatch) {
-                    matches.push({ 
-                        name: skill.name, 
-                        description: skill.description,
-                        matchType: "name"
-                    });
-                } else if (descMatch) {
-                    matches.push({ 
-                        name: skill.name, 
-                        description: skill.description,
-                        matchType: "description"
-                    });
-                }
-            }
+             if (matches.length === 0) {
+                 return `No skills found matching "${args.query}"`;
+             }
 
-            if (matches.length === 0) {
-                return `No skills found matching "${args.query}"`;
-            }
+             const results = matches
+                 .map(m => `- **${m.name}**: ${m.description}`)
+                 .join("\n");
 
-            // Sort: name matches first, then by skill name
-            matches.sort((a, b) => {
-                if (a.matchType !== b.matchType) {
-                    return a.matchType === "name" ? -1 : 1;
-                }
-                return a.name.localeCompare(b.name);
-            });
-
-            const results = matches
-                .map(m => `- **${m.name}**: ${m.description}`)
-                .join("\n");
-
-            return `Found ${matches.length} skill(s) matching "${args.query}":\n\n${results}`;
-        }
+             return `Found ${matches.length} skill(s) matching "${args.query}":\n\n${results}`;
+         }
     })
 }
 
 /**
  *  Tool to read a resource file from a skill's directory
  */
-function createToolResourceReader(ctx: PluginInput, registry: SkillRegistry): ToolDefinition {
+function createToolResourceReader(ctx: PluginInput, registry: SkillRegistryManager): ToolDefinition {
     const sendPrompt = createInstructionInjector(ctx);
 
     return tool({
@@ -312,10 +342,7 @@ function createToolResourceReader(ctx: PluginInput, registry: SkillRegistry): To
         },
         execute: async (args, toolCtx: ToolContext) => {
              // Try to find skill by toolName first, then by name (backward compat)
-             let skill = registry.get(args.skill_name);
-             if (!skill) {
-                 skill = Array.from(registry.values()).find(s => s.name === args.skill_name);
-             }
+             let skill = registry.byFQDN.get(args.skill_name) || registry.byName.get(args.skill_name);
              if (!skill) {
                  throw new Error(`Skill not found: ${args.skill_name}`);
              }
@@ -339,7 +366,7 @@ function createToolResourceReader(ctx: PluginInput, registry: SkillRegistry): To
 /**
  * SkillRegistry manages skill discovery and parsing
  */
-async function createSkillRegistry(ctx: PluginInput, config: PluginConfig): Promise<SkillRegistry> {
+async function createSkillRegistry(ctx: PluginInput, config: PluginConfig): Promise<SkillRegistryManager> {
 
     /**
      * Skill Registry Map
@@ -351,34 +378,56 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig): Prom
      * - Skills loaded from multiple base paths (last one wins)
      * - Stored as Map for metadata access by tool resource reader
      */
-    const registry: SkillRegistry = new Map()
+     const byFQDN = createSkillRegistryController()
+     const byName = createSkillRegistryController()
 
-    // Find all SKILL.md files recursively
-    const matches = await findSkillPaths(config.basePaths);
-    const dupes: string[] = [];
+     // Find all SKILL.md files recursively
+     const matches = await findSkillPaths(config.basePaths);
+     const dupes: string[] = [];
 
-    for await (const match of matches) {
-        const skill = await parseSkill(match);
+     for await (const match of matches) {
+         const skill = await parseSkill(match);
 
-        if (!skill) {
-            continue;
-        }
+         if (!skill) {
+             continue;
+         }
 
 
-        if (registry.has(skill.toolName)) {
-            dupes.push(skill.toolName);
+         if (byFQDN.has(skill.toolName)) {
+             dupes.push(skill.toolName);
+             continue;
+         }
+         byName.add(skill.name, skill);
+         byFQDN.add(skill.toolName, skill);
+     }
 
-            continue;
-        }
+     if (dupes.length) {
+         console.warn(`⚠️  Duplicate skills detected (skipped): ${dupes.join(", ")}`);
+     }
 
-        registry.set(skill.toolName, skill);
-    }
+     /**
+      * search both registries for matching skills
+      * then de-duplicate results
+      */
+     function search (query: string): Skill[] {
+         const resultsByName = byName.search(query);
+         const resultsByFQDN = byFQDN.search(query);
 
-    if (dupes.length) {
-        console.warn(`⚠️  Duplicate skills detected (skipped): ${dupes.join(", ")}`);
-    }
+         const allResults = [...resultsByName, ...resultsByFQDN];
+         const uniqueResultsMap: Map<string, Skill> = new Map();
 
-    return registry
+         for (const skill of allResults) {
+             uniqueResultsMap.set(skill.toolName, skill);
+         }
+
+         return Array.from(uniqueResultsMap.values());
+     }
+
+     return {
+         byName,
+         byFQDN,
+         search
+     }
 }
 
 const OpenCodePaths = envPaths("opencode", { suffix: "" });
