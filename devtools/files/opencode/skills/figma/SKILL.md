@@ -1,5 +1,5 @@
 ---
-name: figma-mcporter
+name: figma
 description: Use when extracting Figma data programmatically, under time pressure to present design system data, or stuck on mcporter query syntax - provides deterministic discovery pattern (auth → list → understand → query) that prevents random parameter guessing, manual exports, and abandoning automation under pressure
 ---
 
