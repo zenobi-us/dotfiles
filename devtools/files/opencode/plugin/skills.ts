@@ -213,6 +213,9 @@ function createInstructionInjector(ctx: PluginInput) {
             body: {
                 noReply: true,
                 parts: [{ type: "text", text }],
+                /**
+                 * @todo get the current model from session and pass it here
+                 */
             },
         });
     }
