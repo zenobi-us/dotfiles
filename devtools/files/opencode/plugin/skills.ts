@@ -201,17 +201,20 @@ async function loadSkills(skillNames: string[], registry: SkillRegistry, options
     const notFound: string[] = [];
 
     for (const skillName of skillNames) {
-        // Try to find skill by name (match against skill name, not tool name)
-        const skill = Array.from(registry.values()).find(s => s.name === skillName);
-        
-        if (!skill) {
-            notFound.push(skillName);
-            continue;
-        }
+         // Try to find skill by toolName first (primary key), then by name (backward compat)
+         let skill = registry.get(skillName);
+         if (!skill) {
+             skill = Array.from(registry.values()).find(s => s.name === skillName);
+         }
+         
+         if (!skill) {
+             notFound.push(skillName);
+             continue;
+         }
 
-        await loadSkill(skill, { ctx: options.ctx, sessionID: options.sessionID });
-        loaded.push(skillName);
-    }
+         await loadSkill(skill, { ctx: options.ctx, sessionID: options.sessionID });
+         loaded.push(skillName);
+     }
 
     return { loaded, notFound };
 }
@@ -308,10 +311,14 @@ function createToolResourceReader(ctx: PluginInput, registry: SkillRegistry): To
             relative_path: tool.schema.string()
         },
         execute: async (args, toolCtx: ToolContext) => {
-            const skill = registry.get(args.skill_name);
-            if (!skill) {
-                throw new Error(`Skill not found: ${args.skill_name}`);
-            }
+             // Try to find skill by toolName first, then by name (backward compat)
+             let skill = registry.get(args.skill_name);
+             if (!skill) {
+                 skill = Array.from(registry.values()).find(s => s.name === args.skill_name);
+             }
+             if (!skill) {
+                 throw new Error(`Skill not found: ${args.skill_name}`);
+             }
 
             const resourcePath = join(skill.fullPath, args.relative_path);
             try {
@@ -358,13 +365,13 @@ async function createSkillRegistry(ctx: PluginInput, config: PluginConfig): Prom
         }
 
 
-        if (registry.has(skill.name)) {
-            dupes.push(skill.name);
+        if (registry.has(skill.toolName)) {
+            dupes.push(skill.toolName);
 
             continue;
         }
 
-        registry.set(skill.name, skill);
+        registry.set(skill.toolName, skill);
     }
 
     if (dupes.length) {
