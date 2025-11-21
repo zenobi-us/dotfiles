@@ -10,7 +10,7 @@
    - `description`: "Analyze project status and active work"
    - `subagent_type`: "general"
    - `prompt`: [paste the content from step 1]
-4. Return the formatted output from the subagent to the user
+4. Return the formatted output from the subagent exactly as received to the user
 
 **IMPORTANT:** This command does NOT execute directly—it delegates to a subagent. You must call the Task tool.
 

@@ -1,5 +1,24 @@
 # View Planning Artifact
 
+
+## Execution Instructions
+
+**EXECUTE THIS TASK BY:**
+
+1. Read all content between `<message_to_subagent>` and `</message_to_subagent>` tags
+2. Copy that content exactly
+3. Call the Task tool with these parameters:
+   - `description`: "Analyze project status and active work"
+   - `subagent_type`: "general"
+   - `prompt`: [paste the content from step 1]
+4. Return the formatted output from the subagent exactly as received to the user
+
+**IMPORTANT:** This command does NOT execute directly—it delegates to a subagent. You must call the Task tool.
+
+---
+
+<message_to_subagent>
+
 Display detailed information about a planning artifact (PRD, Epic, Spec, Story, Task, Research, Decision, or Retrospective).
 
 **Task:** Display artifact details for: $ARGUMENTS
@@ -62,8 +81,8 @@ Display detailed information about a planning artifact (PRD, Epic, Spec, Story, 
 ### Header Section
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ [ARTIFACT TYPE] - [TITLE]                                  │
-│ ID: [Johnny Decimal ID]  │  Status: [status]               │
+│ [ARTIFACT TYPE] - [TITLE]                                   │
+│ ID: [Johnny Decimal ID]  │  Status: [status]                │
 │ Project: [ProjectId]                                        │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -186,19 +205,19 @@ METADATA:
 **Based on artifact type, suggest next steps:**
 
 **For [Prd]:**
-- "Next: `/project:plan:epic \"[epic-name]\"` to break down into implementable work"
+- "Next: `/project/plan.epic \"[epic-name]\"` to break down into implementable work"
 
 **For [Epic]:**
-- "Next: `/project:plan:stories \"[epic-name]\"` to create user stories"
+- "Next: `/project/plan.stories \"[epic-name]\"` to create user stories"
 - "Or: View paired Spec with `/project:view [spec-id]`"
 
 **For [Story]:**
-- "Next: `/project:plan:tasks \"[story-name]\"` to break down into tasks"
-- "Or: Start implementation with `/project:do:task [story-id]`"
+- "Next: `/project/plan.tasks \"[story-name]\"` to break down into tasks"
+- "Or: Start implementation with `/project/do.task [story-id]`"
 
 **For [Task]:**
-- "Next: `/project:do:task [task-id]` to implement this task"
-- "Or: View parent Story with `/project:view [story-id]`"
+- "Next: `/project/do.task [task-id]` to implement this task"
+- "Or: View parent Story with `/project/view [story-id]`"
 
 ## Step 6: Handle Errors Gracefully
 
@@ -244,3 +263,5 @@ Use full artifact ID or GitHub issue number
 - Don't fetch entire project hierarchy unless requested
 
 This command provides a simple way to inspect any artifact in the planning hierarchy.
+
+</message_to_subagent>

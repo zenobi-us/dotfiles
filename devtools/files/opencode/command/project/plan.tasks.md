@@ -1,5 +1,22 @@
 # Break Down Story Into Implementation Tasks
 
+## Execution Instructions
+
+**EXECUTE THIS TASK BY:**
+
+1. Read all content between `<message_to_subagent>` and `</message_to_subagent>` tags
+2. Copy that content exactly
+3. Call the Task tool with these parameters:
+   - `description`: "Analyze project status and active work"
+   - `subagent_type`: "general"
+   - `prompt`: [paste the content from step 1]
+4. Return the formatted output from the subagent exactly as received to the user
+
+**IMPORTANT:** This command does NOT execute directly—it delegates to a subagent. You must call the Task tool.
+
+---
+
+<message_to_subagent>
 You are analyzing a [Story] artifact and designing its decomposition into implementation [Task] artifacts. Follow this systematic approach to create a logical, implementable task breakdown that integrates with the planning artifact hierarchy.
 
 **Task:** Design task breakdown for [Story]: $ARGUMENTS
@@ -219,3 +236,4 @@ The subskill has created [Task] artifacts based on your breakdown design. Here's
 - ✅ Implementation team can begin execution using `/project:do:task`
 
 This systematic approach ensures logical task decomposition while the subskill ensures proper artifact creation, storage, and linking in the storage backend.
+</message_to_subagent>

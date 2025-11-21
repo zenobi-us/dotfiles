@@ -1,5 +1,23 @@
 # Query Planning Artifacts
 
+
+## Execution Instructions
+
+**EXECUTE THIS TASK BY:**
+
+1. Read all content between `<message_to_subagent>` and `</message_to_subagent>` tags
+2. Copy that content exactly
+3. Call the Task tool with these parameters:
+   - `description`: "Analyze project status and active work"
+   - `subagent_type`: "general"
+   - `prompt`: [paste the content from step 1]
+4. Return the formatted output from the subagent exactly as received to the user
+
+**IMPORTANT:** This command does NOT execute directly—it delegates to a subagent. You must call the Task tool.
+
+---
+
+<message_to_subagent>
 Answer questions about planning artifacts and provide context about the current project. This command helps align agents on project state and artifact relationships.
 
 **Task:** Answer query about planning artifacts: $ARGUMENTS
@@ -799,3 +817,5 @@ This command transforms artifact data into meaningful answers that help agents a
 - **Learn Continuously**: Review retrospectives and apply learnings
 
 The planning artifacts framework creates a complete, auditable record of how work evolved from strategic vision through closure and lessons learned.
+
+<message_to_subagent>

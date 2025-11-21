@@ -1,5 +1,21 @@
 # Create Product Requirements Document (PRD)
+## Execution Instructions
 
+**EXECUTE THIS TASK BY:**
+
+1. Read all content between `<message_to_subagent>` and `</message_to_subagent>` tags
+2. Copy that content exactly
+3. Call the Task tool with these parameters:
+   - `description`: "Analyze project status and active work"
+   - `subagent_type`: "general"
+   - `prompt`: [paste the content from step 1]
+4. Return the formatted output from the subagent exactly as received to the user
+
+**IMPORTANT:** This command does NOT execute directly—it delegates to a subagent. You must call the Task tool.
+
+---
+
+<message_to_subagent>
 You are creating a comprehensive [Prd] artifact for a high-level product feature. Follow this systematic approach to create a thorough, well-researched [Prd] artifact.
 
 **Task:** Create a comprehensive [Prd] for: $ARGUMENTS
@@ -229,3 +245,4 @@ The [Prd] you created is the start of a hierarchical planning system:
 - Project board - View progress across all artifacts
 
 Your [Prd] is now stored in basicmemory and ready for Epic creation. Check project status with `/project:current` to see where this [Prd] fits in overall planning.
+</message_to_subagent>

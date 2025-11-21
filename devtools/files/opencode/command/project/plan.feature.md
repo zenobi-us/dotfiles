@@ -2,7 +2,7 @@
 
 You are creating a focused [Spec] artifact for a technical feature. Follow this systematic approach to create a well-scoped, implementable feature specification that integrates with the planning artifact hierarchy.
 
-**Important:** This command creates ONLY the [Spec] artifact. The paired [Epic] must already exist. If you need to create both Epic and Spec together, use `/project:plan:epic` first.
+**Important:** This command creates ONLY the [Spec] artifact. The paired [Epic] must already exist. If you need to create both Epic and Spec together, use `/project/plan.epic` first.
 
 **Task:** Create a [Spec] artifact for: $ARGUMENTS
 **Storage Backend**: basicmemory
@@ -23,13 +23,13 @@ You are creating a focused [Spec] artifact for a technical feature. Follow this 
 Before creating a [Spec], the parent [Epic] must exist.
 
 1. Verify you have a valid [Epic] artifact ID (format: `2.X.1-epic-*`)
-2. If no [Epic] exists, run `/project:plan:epic "[Feature Name]"` first
+2. If no [Epic] exists, run `/project/plan.epic "[Feature Name]"` first
 3. Obtain the Epic ID (e.g., `2.1.1-epic-user-authentication`)
 4. Use that Epic ID when referencing this [Spec] in frontmatter
 
 **Example:**
 - Epic exists: `2.3.1-epic-payment-system` → Can create corresponding Spec
-- Epic missing: → Must run `/project:plan:epic "payment system"` first
+- Epic missing: → Must run `/project/plan.epic "payment system"` first
 
 If the [Epic] doesn't exist, STOP and create it first using the Epic command.
 
@@ -133,7 +133,7 @@ Delegate the creation of the [Spec] artifact using `task` tool with these instru
 - **[Spec] Artifact Created**: Artifact identifier in Johnny Decimal format (e.g., `2.1.1-spec-feature-title` - paired with Epic 2.1.1)
 - **Project Type and Focus**: Areas identified and feature scope
 - **Key Technical Considerations**: Important architecture and integration decisions
-- **Next Steps**: Suggested command to view artifact or create user stories (e.g., `/project:plan:stories`)
+- **Next Steps**: Suggested command to view artifact or create user stories (e.g., `/project/plan.stories`)
 - **Reference**: How to reference this [Spec] artifact in basicmemory (e.g., `[[2.1.1-spec-feature-title]]`)
 
 This systematic approach ensures your feature is well-scoped, technically sound, and ready for user story breakdown and implementation.

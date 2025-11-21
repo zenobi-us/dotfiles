@@ -1,5 +1,21 @@
 # Conduct Research for Planning Decision
+## Execution Instructions
 
+**EXECUTE THIS TASK BY:**
+
+1. Read all content between `<message_to_subagent>` and `</message_to_subagent>` tags
+2. Copy that content exactly
+3. Call the Task tool with these parameters:
+   - `description`: "Analyze project status and active work"
+   - `subagent_type`: "general"
+   - `prompt`: [paste the content from step 1]
+4. Return the formatted output from the subagent exactly as received to the user
+
+**IMPORTANT:** This command does NOT execute directly—it delegates to a subagent. You must call the Task tool.
+
+---
+
+<message_to_subagent>
 You are creating a [Research] artifact to investigate questions that inform project planning and implementation decisions. Follow this systematic approach to document findings that reduce uncertainty.
 
 **Task:** Research: $ARGUMENTS
@@ -223,3 +239,5 @@ Execution Phase:
 [Research] artifacts are created ad-hoc whenever questions arise that need investigation to reduce uncertainty and inform decisions.
 
 This systematic approach ensures research is focused, documented, and directly linked to project decisions and implementation.
+
+</message_to_subagent>

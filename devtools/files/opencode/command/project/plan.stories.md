@@ -1,5 +1,22 @@
 # Create User Stories for Epic
 
+## Execution Instructions
+
+**EXECUTE THIS TASK BY:**
+
+1. Read all content between `<message_to_subagent>` and `</message_to_subagent>` tags
+2. Copy that content exactly
+3. Call the Task tool with these parameters:
+   - `description`: "Analyze project status and active work"
+   - `subagent_type`: "general"
+   - `prompt`: [paste the content from step 1]
+4. Return the formatted output from the subagent exactly as received to the user
+
+**IMPORTANT:** This command does NOT execute directly—it delegates to a subagent. You must call the Task tool.
+
+---
+
+<message_to_subagent>
 You are analyzing a [Spec] artifact and designing its decomposition into [Story] artifacts. Follow this systematic approach to create user-focused scenarios that bridge requirements and implementation tasks.
 
 **Task:** Create [Story] artifacts for [Epic]: $ARGUMENTS
@@ -230,3 +247,5 @@ Each [Story] is now ready for task breakdown. Use `/project:plan:tasks "[Story N
 ```
 
 This systematic approach ensures user-focused story decomposition while the subskill ensures proper artifact creation, storage, and linking in the storage backend.
+
+</message_to_subagent>
