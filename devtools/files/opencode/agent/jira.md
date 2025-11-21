@@ -112,3 +112,366 @@ All tickets are created when:
 - Ticket title should follow the format: `[COMPONENT_NAME] Short description of the issue`.
 - Always use the correct metadata for the squad field when creating a ticket.
 - Always use the correct metadata for the component field when creating a ticket.
+
+## Integration with mcporter
+
+mcporter provides a standardized Model Context Protocol (MCP) interface for integrating Jira with other tools and agents. This section covers configuration, CLI usage, TypeScript API patterns, and agent delegation strategies.
+
+### mcporter.json Configuration for Jira
+
+Configure the Jira MCP server in your mcporter configuration with HTTP-based transport and OAuth token caching:
+
+```json
+{
+  "mcpServers": {
+    "jira": {
+      "command": "jira-mcp-server",
+      "args": [],
+      "env": {
+        "JIRA_BASE_URL": "https://your-instance.atlassian.net",
+        "JIRA_AUTH_METHOD": "oauth",
+        "JIRA_OAUTH_CACHE_DIR": "~/.cache/mcporter/jira",
+        "JIRA_TOKEN_REFRESH_BUFFER": "300"
+      },
+      "transport": {
+        "type": "http",
+        "host": "localhost",
+        "port": 3001,
+        "ssl": false
+      },
+      "features": {
+        "connectionPooling": true,
+        "maxConnections": 5,
+        "requestTimeout": 30000,
+        "retryAttempts": 3,
+        "retryBackoff": "exponential"
+      },
+      "errorHandling": {
+        "logLevel": "warn",
+        "captureStackTrace": true,
+        "gracefulFallback": true
+      },
+      "caching": {
+        "enabled": true,
+        "ttl": 3600,
+        "strategies": ["metadata", "search_results"]
+      }
+    }
+  }
+}
+```
+
+**Key Configuration Points:**
+
+- **OAuth Token Caching**: Tokens cached in `~/.cache/mcporter/jira` with 5-minute refresh buffer to avoid expiration mid-request
+- **Connection Pooling**: Up to 5 concurrent connections for efficient throughput
+- **Retry Logic**: Exponential backoff with 3 retry attempts for transient failures
+- **Caching**: 1-hour TTL for metadata and search results to reduce token usage
+- **Timeout**: 30-second request timeout for long-running operations
+
+### CLI Approach Examples
+
+Use mcporter CLI to interact with Jira MCP directly:
+
+```bash
+# List all issues in a project
+mcporter jira list-issues --project PROJ --jql "assignee = currentUser()"
+
+# Search for specific issues
+mcporter jira search --jql "status = Open AND priority = High" --max-results 50
+
+# Fetch issue details
+mcporter jira get-issue --key PROJ-123
+
+# List project components (for metadata)
+mcporter jira get-project-metadata --project PROJ --fields components,issue-types,priorities
+
+# Create an issue
+mcporter jira create-issue \
+  --project PROJ \
+  --issue-type Story \
+  --summary "Add user authentication" \
+  --priority High \
+  --component "API" \
+  --epic-link PROJ-42
+
+# Get available transitions for status change
+mcporter jira get-transitions --key PROJ-123
+```
+
+**Typical Command Patterns:**
+
+- **Batch Operations**: Use `--max-results` and `--start-at` for pagination
+- **Filtering**: Leverage Jira Query Language (JQL) for sophisticated filtering
+- **Error Recovery**: CLI automatically retries with exponential backoff on 429 (rate limit) responses
+
+### TypeScript API Approach (Recommended)
+
+For agents, TypeScript API provides type-safe integration with automatic connection pooling:
+
+```typescript
+import { MCPorterClient } from 'mcporter';
+import type { JiraIssue, JiraProject } from 'mcporter/jira';
+
+// Initialize mcporter with Jira MCP
+const mcporter = new MCPorterClient({
+  configPath: '~/.config/mcporter/config.json',
+  server: 'jira',
+  autoConnect: true,
+  connectionPooling: {
+    maxConnections: 5,
+    idleTimeout: 60000,
+  },
+});
+
+// Connect and authenticate
+await mcporter.connect();
+
+/**
+ * Example: Fetch project metadata
+ * Results are cached for 1 hour
+ */
+async function getProjectMetadata(projectKey: string) {
+  try {
+    const metadata = await mcporter.call('getProjectMetadata', {
+      project: projectKey,
+      fields: ['components', 'issue-types', 'priorities', 'custom-fields'],
+    });
+    return metadata;
+  } catch (error) {
+    console.error(`Failed to fetch metadata for ${projectKey}:`, error);
+    // Graceful fallback - return cached data or empty structure
+    return {};
+  }
+}
+
+/**
+ * Example: Search issues with lazy loading
+ * Automatically handles pagination
+ */
+async function* searchIssuesLazy(jql: string, batchSize: number = 50) {
+  let startAt = 0;
+  let hasMore = true;
+
+  while (hasMore) {
+    const response = await mcporter.call('searchIssues', {
+      jql,
+      startAt,
+      maxResults: batchSize,
+    });
+
+    yield response.issues;
+
+    startAt += batchSize;
+    hasMore = response.total > startAt;
+  }
+}
+
+/**
+ * Example: Create issue with retry
+ */
+async function createIssueWithRetry(
+  issueData: Partial<JiraIssue>,
+  maxRetries: number = 3
+): Promise<string> {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const result = await mcporter.call('createIssue', issueData);
+      return result.key;
+    } catch (error: any) {
+      if (attempt === maxRetries) throw error;
+
+      const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+      console.log(`Retry ${attempt}/${maxRetries} after ${delay}ms...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
+/**
+ * Example: Batch operations with connection reuse
+ */
+async function batchCreateIssues(issues: Partial<JiraIssue>[]) {
+  const results: string[] = [];
+
+  // Connection pooling automatically reuses connections
+  for (const issue of issues) {
+    const key = await createIssueWithRetry(issue);
+    results.push(key);
+  }
+
+  return results;
+}
+```
+
+**Key Patterns:**
+
+- **Type Safety**: Full TypeScript types from `mcporter/jira` module
+- **Connection Pooling**: Automatic connection reuse across multiple operations
+- **Lazy Loading**: Generator functions for efficient pagination of large result sets
+- **Retry Logic**: Exponential backoff built into error handling
+- **Cache Awareness**: Metadata queries use the configured 1-hour cache
+
+### Agent Integration Patterns
+
+Show how Jira agents delegate work through mcporter:
+
+```typescript
+import { MCPorterClient } from 'mcporter';
+
+/**
+ * Agent delegation pattern for Jira operations
+ * Agents use mcporter for all Jira interactions
+ */
+class JiraAgent {
+  private mcporter: MCPorterClient;
+
+  constructor() {
+    this.mcporter = new MCPorterClient({
+      server: 'jira',
+      autoConnect: true,
+    });
+  }
+
+  /**
+   * Phase 1: Lazy-load metadata on demand
+   * Only fetches metadata when first needed
+   */
+  async getProjectMetadataLazy(projectKey: string) {
+    return this.mcporter.call('getProjectMetadata', {
+      project: projectKey,
+      // Cache hit on subsequent calls for same project
+      fields: ['components', 'issue-types', 'priorities'],
+    });
+  }
+
+  /**
+   * Phase 2: Delegate ticket crafting to mcporter
+   * Validates against fetched metadata before presenting to user
+   */
+  async validateTicketDraft(draft: any, projectKey: string) {
+    const metadata = await this.getProjectMetadataLazy(projectKey);
+
+    // Validate component exists
+    const componentExists = metadata.components.some(
+      (c: any) => c.id === draft.component_id
+    );
+    if (!componentExists) {
+      throw new Error(`Component ${draft.component_id} not found in project`);
+    }
+
+    return true;
+  }
+
+  /**
+   * Phase 3: Delegate ticket creation with error recovery
+   * Implements graceful fallback on transient failures
+   */
+  async createTicketWithRecovery(ticketData: any, maxRetries: number = 3) {
+    let lastError: Error | null = null;
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        const result = await this.mcporter.call('createIssue', ticketData);
+        console.log(`✓ Ticket created: ${result.key}`);
+        return result.key;
+      } catch (error: any) {
+        lastError = error;
+
+        // Check if error is recoverable
+        if (error.statusCode === 429) {
+          // Rate limited - wait and retry
+          const delay = Math.pow(2, attempt) * 1000;
+          console.log(`Rate limited. Retrying in ${delay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+        } else if (error.statusCode >= 500) {
+          // Server error - retry
+          console.log(`Server error. Retrying attempt ${attempt}/${maxRetries}...`);
+        } else {
+          // Client error - don't retry
+          throw error;
+        }
+      }
+    }
+
+    throw new Error(
+      `Failed to create ticket after ${maxRetries} attempts: ${lastError?.message}`
+    );
+  }
+
+  /**
+   * Example: Agent delegates to search issues
+   * Used by other agents to find related work
+   */
+  async searchRelatedIssues(epicKey: string) {
+    const jql = `parent = "${epicKey}" OR epic = "${epicKey}" ORDER BY created DESC`;
+
+    const results = [];
+    for await (const batch of this.searchIssuesLazy(jql)) {
+      results.push(...batch);
+    }
+
+    return results;
+  }
+
+  /**
+   * Lazy-load pagination for efficient memory usage
+   */
+  private async* searchIssuesLazy(jql: string) {
+    let startAt = 0;
+    let hasMore = true;
+
+    while (hasMore) {
+      const response = await this.mcporter.call('searchIssues', {
+        jql,
+        startAt,
+        maxResults: 50,
+      });
+
+      if (response.issues.length > 0) {
+        yield response.issues;
+      }
+
+      startAt += 50;
+      hasMore = response.total > startAt;
+    }
+  }
+}
+
+/**
+ * Usage in agent workflow
+ */
+async function jiraAgentWorkflow(epicKey: string) {
+  const agent = new JiraAgent();
+
+  try {
+    // Lazy-load metadata only when needed
+    const relatedIssues = await agent.searchRelatedIssues(epicKey);
+    console.log(`Found ${relatedIssues.length} related issues`);
+
+    // Validate and create tickets with error recovery
+    const newTicketData = {
+      project: 'PROJ',
+      issueType: 'Story',
+      summary: 'New feature story',
+      description: 'Description here',
+      parentKey: epicKey,
+    };
+
+    const createdKey = await agent.createTicketWithRecovery(newTicketData);
+    console.log(`Successfully created: ${createdKey}`);
+  } catch (error) {
+    console.error('Agent workflow failed:', error);
+    // Implement fallback or notify administrator
+  }
+}
+```
+
+**Integration Benefits:**
+
+- **Lazy Loading**: Metadata fetched only when agents first need it
+- **Connection Pooling**: Multiple concurrent operations reuse HTTP connections
+- **Error Recovery**: Transient failures automatically retry with exponential backoff
+- **Rate Limit Handling**: 429 responses trigger backoff retry strategy
+- **Token Management**: OAuth tokens cached and refreshed transparently
+- **Type Safety**: Full TypeScript support prevents runtime errors in agent code
