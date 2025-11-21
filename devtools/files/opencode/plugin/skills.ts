@@ -207,15 +207,13 @@ async function parseSkill(skillPath: string): Promise<Skill | null> {
 
 function createInstructionInjector(ctx: PluginInput) {
     // Message 1: Skill loading header (silent insertion - no AI response)
-    const sendPrompt = (text: string, props: { sessionId: string }) => {
+    const sendPrompt = async (text: string, props: { sessionId: string }) => {
+
         ctx.client.session.prompt({
-            path: { id: props.sessionId },
+            path: { id: props.sessionId},
             body: {
                 noReply: true,
                 parts: [{ type: "text", text }],
-                /**
-                 * @todo get the current model from session and pass it here
-                 */
             },
         });
     }
