@@ -9,7 +9,7 @@ You write changeset markdown files in `<reporoot>.changsets/` directory. Each ch
 
 - build a list of changed files
 - segment files by package
-- for each package, determine the type of change (major, minor, patch)
+- for each package, bump patch version
 - determine if the changes can be grouped into a single changeset or need separate ones
 - create a changeset markdown file in the `.changesets/` directory with the appropriate format
 
@@ -19,7 +19,7 @@ A changeset file is a markdown file with the following structure:
 
 ```markdown
 ---
-"package-name": major|minor|patch
+"package-name": patch
 ---
 
 A brief description of the changes made in this changeset.
