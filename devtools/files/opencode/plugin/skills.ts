@@ -34,6 +34,7 @@ import { tool } from "@opencode-ai/plugin"
 import envPaths from "env-paths";
 import matter from "gray-matter"
 import { mergeDeepLeft } from "ramda";
+import SearchString from 'search-string';
 
 
 const SKILL_PATH_PATTERN = /skills\/.*\/SKILL.md$/;
@@ -50,10 +51,208 @@ type Skill = {
     content: string           // Markdown body
     path: string              // Full path to SKILL.md
 }
+
+/**
+ * Text segment from parsed search query
+ */
+type TextSegment = {
+    text: string;
+    negated: boolean;
+}
+
+/**
+ * Parsed query structure from search-string
+ */
+type ParsedSkillQuery = {
+    include: string[];           // Positive search terms
+    exclude: string[];           // Negative search terms (-term)
+    originalQuery: string;       // Original query string
+    hasExclusions: boolean;      // Flag for user feedback
+    termCount: number;           // Total number of terms
+}
+
+/**
+ * Search result with ranking and feedback
+ */
+type SkillSearchResult = {
+    matches: Skill[];            // Ranked skill matches
+    totalMatches: number;        // Total count before exclusions
+    feedback: string;            // User-friendly interpretation message
+    query: ParsedSkillQuery;     // Parsed query structure
+}
+
+/**
+ * Ranking metrics for a skill match
+ */
+type SkillRank = {
+    skill: Skill;
+    nameMatches: number;         // How many terms matched the skill name
+    descMatches: number;         // How many terms matched the description
+    totalScore: number;          // Composite rank score
+}
 type PluginConfig = {
     debug: boolean
     basePaths: string | string[]
 }
+
+/**
+ * SkillSearcher - Natural Language Query Parser for Skills
+ *
+ * Provides clean abstraction over search-string library for skill discovery.
+ * Handles query parsing, ranking, and result formatting with support for:
+ * - Natural syntax (Gmail-style)
+ * - Negation (-term)
+ * - Quoted phrases
+ * - Multiple search terms (AND logic)
+ */
+class SkillSearcher {
+    private skills: Skill[];
+
+    constructor(skills: Skill[]) {
+        this.skills = skills;
+    }
+
+    /**
+     * Parse a user query into structured search terms
+     */
+    private parseQuery(queryString: string): ParsedSkillQuery {
+        const searchStringInstance = SearchString.parse(queryString);
+
+        const textSegments = searchStringInstance.getTextSegments() as TextSegment[];
+        const include = textSegments
+            .filter((s: TextSegment) => !s.negated)
+            .map((s: TextSegment) => s.text.toLowerCase())
+            .filter((s: string) => s.length > 0);
+
+        const exclude = textSegments
+            .filter((s: TextSegment) => s.negated)
+            .map((s: TextSegment) => s.text.toLowerCase())
+            .filter((s: string) => s.length > 0);
+
+        return {
+            include,
+            exclude,
+            originalQuery: queryString,
+            hasExclusions: exclude.length > 0,
+            termCount: textSegments.length,
+        };
+    }
+
+    /**
+     * Calculate ranking score for a skill against query terms
+     */
+    private rankSkill(skill: Skill, includeTerms: string[]): SkillRank {
+        const skillName = skill.name.toLowerCase();
+        const skillDesc = skill.description.toLowerCase();
+
+        let nameMatches = 0;
+        let descMatches = 0;
+
+        for (const term of includeTerms) {
+            if (skillName.includes(term)) {
+                nameMatches++;
+            } else if (skillDesc.includes(term)) {
+                descMatches++;
+            }
+        }
+
+        let exactBonus = 0;
+        if (includeTerms.length === 1 && skillName === includeTerms[0]) {
+            exactBonus = 10;
+        }
+
+        const totalScore = nameMatches * 3 + descMatches * 1 + exactBonus;
+
+        return { skill, nameMatches, descMatches, totalScore };
+    }
+
+    /**
+     * Filter out skills matching exclusion terms
+     */
+    private shouldIncludeSkill(skill: Skill, excludeTerms: string[]): boolean {
+        if (excludeTerms.length === 0) {
+            return true;
+        }
+
+        const haystack = `${skill.name} ${skill.description}`.toLowerCase();
+        return !excludeTerms.some(term => haystack.includes(term));
+    }
+
+    /**
+     * Generate user-friendly feedback about query interpretation
+     */
+    private generateFeedback(query: ParsedSkillQuery, matchCount: number): string {
+        const parts: string[] = [];
+
+        if (query.include.length > 0) {
+            parts.push(`📝 Searching for: **${query.include.join(', ')}**`);
+        }
+
+        if (query.hasExclusions) {
+            parts.push(`🚫 Excluding: **${query.exclude.join(', ')}**`);
+        }
+
+        if (matchCount === 0) {
+            parts.push(`❌ No matches found`);
+        } else if (matchCount === 1) {
+            parts.push(`✅ Found 1 match`);
+        } else {
+            parts.push(`✅ Found ${matchCount} matches`);
+        }
+
+        return parts.join(' | ');
+    }
+
+    /**
+     * Execute a search query and return ranked results
+     */
+    public search(queryString: string): SkillSearchResult {
+        const query = this.parseQuery(queryString);
+
+        if (query.include.length === 0) {
+            return {
+                matches: [],
+                totalMatches: 0,
+                feedback: this.generateFeedback(query, 0),
+                query,
+            };
+        }
+
+        let results = this.skills.filter(skill => {
+            const haystack = `${skill.name} ${skill.description}`.toLowerCase();
+            return query.include.every(term => haystack.includes(term));
+        });
+
+        const totalMatches = results.length;
+
+        results = results.filter(skill =>
+            this.shouldIncludeSkill(skill, query.exclude)
+        );
+
+        const ranked: SkillRank[] = results
+            .map(skill => this.rankSkill(skill, query.include))
+            .sort((a, b) => {
+                if (b.totalScore !== a.totalScore) {
+                    return b.totalScore - a.totalScore;
+                }
+                if (b.nameMatches !== a.nameMatches) {
+                    return b.nameMatches - a.nameMatches;
+                }
+                return a.skill.name.localeCompare(b.skill.name);
+            });
+
+        const matches = ranked.map(r => r.skill);
+        const feedback = this.generateFeedback(query, matches.length);
+
+        return {
+            matches,
+            totalMatches,
+            feedback,
+            query,
+        };
+    }
+}
+
 type SkillRegistry = Map<string, Skill>;
 type SkillRegistryController = {
     registry: SkillRegistry;
@@ -281,50 +480,39 @@ function createUseSkillsTool(ctx: PluginInput, registry: SkillRegistryManager): 
 }
 
 /**
- * Tool to search for skills by free-text query
+ * Tool to search for skills using natural language query syntax
+ *
+ * The SkillSearcher handles query parsing with support for:
+ * - Natural syntax (Gmail-style): "api design"
+ * - Negation: "testing -performance"
+ * - Quoted phrases: "git commits"
+ * - Multiple terms (AND logic): "typescript react testing"
  */
 function createFindSkillsTool(ctx: PluginInput, registry: SkillRegistryManager): ToolDefinition {
     return tool({
-        description: "Search for skills by name or description. Returns a list of matching skills with their descriptions.",
+        description: "Search for skills using natural query syntax. Supports negation (-term), quoted phrases, and free text. Examples: 'api design', 'testing -performance', 'react \"state management\"'",
         args: {
             query: tool.schema.string()
                 .min(1, "Query cannot be empty")
         },
         execute: async (args) => {
-             const query = args.query.toLowerCase();
-             const skills = registry.search(query);
+             // Get all skills from registry
+             const allSkills = Array.from(registry.byName.registry.values());
              
-             // Rank results: name matches > FQDN matches > description matches
-             const ranked = skills.map(skill => {
-                 const nameMatch = skill.name.toLowerCase().includes(query);
-                 const fqdnMatch = skill.toolName.toLowerCase().includes(query);
-                 const descMatch = skill.description.toLowerCase().includes(query);
-                 
-                 let rank = 0;
-                 if (nameMatch) rank = 3;
-                 else if (fqdnMatch) rank = 2;
-                 else if (descMatch) rank = 1;
-                 
-                 return { skill, rank };
-             }).sort((a, b) => {
-                 if (b.rank !== a.rank) return b.rank - a.rank;
-                 return a.skill.name.localeCompare(b.skill.name);
-             });
+             // Create searcher and execute search
+             const searcher = new SkillSearcher(allSkills);
+             const result = searcher.search(args.query);
 
-             const matches = ranked.map(r => ({
-                 name: r.skill.name,
-                 description: r.skill.description
-             }));
-
-             if (matches.length === 0) {
-                 return `No skills found matching "${args.query}"`;
+             // Format results
+             if (result.matches.length === 0) {
+                 return `${result.feedback}\n\nNo skills found matching "${args.query}"`;
              }
 
-             const results = matches
+             const resultsList = result.matches
                  .map(m => `- **${m.name}**: ${m.description}`)
                  .join("\n");
 
-             return `Found ${matches.length} skill(s) matching "${args.query}":\n\n${results}`;
+             return `${result.feedback}\n\n${resultsList}`;
          }
     })
 }
