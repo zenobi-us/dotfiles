@@ -4,7 +4,11 @@ sub_title: in VSCode
 author: Central Command
 ---
 
+<!-- jump_to_middle -->
+
 ## The Challenge
+
+<!-- alignment: center -->
 
 <!-- speaker_note: Start with the fundamental constraint - we have limited context. This is the hook. -->
 
@@ -23,6 +27,8 @@ author: Central Command
 <!-- end_slide -->
 
 ## The Solution
+
+<!-- alignment: center -->
 
 <!-- speaker_note: Subthreads aren't magic. They're about focused context, not token multiplication. -->
 
@@ -60,6 +66,8 @@ Each with **full capability** but **focused scope**
 
 ## How to Delegate in VSCode
 
+<!-- alignment: center -->
+
 <!-- speaker_note: Walk through the actual mechanics. This is hands-on. -->
 
 **Spawn a subthread via chat:**
@@ -78,6 +86,8 @@ in @packages/auth/src
 <!-- end_slide -->
 
 ## Context Passing: Key Patterns
+
+<!-- alignment: center -->
 
 <!-- speaker_note: These are the essential techniques for effective delegation. Show examples. -->
 
@@ -109,6 +119,8 @@ Prevents scope creep
 
 ## Automatic Context Injection
 
+<!-- alignment: center -->
+
 <!-- speaker_note: This is the productivity hack - you don't manually pass everything. The system does it. -->
 
 Subthreads **automatically receive:**
@@ -126,6 +138,8 @@ Subthreads **automatically receive:**
 <!-- end_slide -->
 
 ## Subthread Result Format
+
+<!-- alignment: center -->
 
 <!-- speaker_note: Understanding the result format helps you consume the output correctly. -->
 
@@ -151,6 +165,8 @@ Subthreads return **structured results:**
 
 ## Context Isolation = Multiplied Capacity
 
+<!-- alignment: center -->
+
 <!-- speaker_note: This is the core insight. Show them how focused context creates real capacity. -->
 
 ```
@@ -170,6 +186,8 @@ Result: 600K+ focused capacity vs 200K bloated
 <!-- end_slide -->
 
 ## Parallelization: When to Scale
+
+<!-- alignment: center -->
 
 <!-- speaker_note: These are safe to parallelize - no contention. Explain the danger of the others. -->
 
@@ -195,6 +213,8 @@ Result: 600K+ focused capacity vs 200K bloated
 <!-- end_slide -->
 
 ## Prompting: Good vs Bad
+
+<!-- alignment: center -->
 
 <!-- speaker_note: This is where most people fail. Walk through both examples and the differences. -->
 
@@ -230,6 +250,8 @@ Clear. Specific. Bounded. Testable.
 
 ## Best Practices Checklist
 
+<!-- alignment: center -->
+
 <!-- speaker_note: A quick reference guide. Use this before every delegation. -->
 
 <!-- pause -->
@@ -247,6 +269,8 @@ Clear. Specific. Bounded. Testable.
 
 ## Decision Tree: Delegate or Stay Local?
 
+<!-- alignment: center -->
+
 <!-- speaker_note: Quick mental model. When are subthreads worth the setup cost? -->
 
 ```
@@ -261,6 +285,8 @@ Single-step operation?       → YES → Stay local
 <!-- end_slide -->
 
 ## Real Example: Feature Implementation
+
+<!-- alignment: center -->
 
 <!-- speaker_note: Walk through a concrete real-world example. -->
 
@@ -285,5 +311,7 @@ Single-step operation?       → YES → Stay local
 <!-- end_slide -->
 
 ## Questions?
+
+<!-- alignment: center -->
 
 <!-- speaker_note: End with openness. Good presentations leave room for dialogue. -->
