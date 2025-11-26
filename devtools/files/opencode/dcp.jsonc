@@ -1,0 +1,20 @@
+{
+  // Enable or disable the Dynamic Context Pruning plugin
+  "enabled": true,
+
+  // Enable debug logging to ~/.config/opencode/logs/dcp/YYYY-MM-DD.log
+  "debug": false,
+
+  // Optional: Specify a model to use for analysis instead of the session model
+  // Format: "provider/model" (same as agent model config in opencode.jsonc)
+  // NOTE: Anthropic OAuth sonnet 4+ tier models are currently not supported
+  // "model": "anthropic/claude-haiku-4-5",
+
+  // Show toast notifications when model selection fails and falls back
+  // Set to false to disable these informational toasts
+  "showModelErrorToasts": true,
+
+  // List of tools that should never be pruned from context
+  // The 'task' tool is protected by default to preserve subagent coordination
+  "protectedTools": ["task"]
+}
