@@ -41,7 +41,7 @@ function edit_config () {
         echo "Choose item to edit >"
         read choice
 
-        micro $DOTFILE_ROOT/config.d/available/${configs[$choice]}.zsh
+        "$EDITOR" $DOTFILE_ROOT/config.d/available/${configs[$choice]}.zsh
     }
 }
 
