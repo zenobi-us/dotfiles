@@ -1,4 +1,9 @@
 ---
+depends:
+  - devtools.mise
+  - shells.mise
+  - shells.zsh
+
 actions:
   - action: command.run
     command: rm
@@ -39,9 +44,5 @@ actions:
         scoop install llvm
 
   - action: git.clone
-    repository: astronvim/astronvim
+    repo_url: https://github.com/zenobi-us/astronvim.profile
     directory: "{{user.home_dir}}/.config/nvim"
-
-  - action: git.clone
-    repository: airtonix/mouse-peasant.nvim
-    directory: "{{user.home_dir}}/.config/nvim/lua/user"

@@ -1,4 +1,8 @@
+[general]
 live_config_reload = true
+
+[env]
+TERM = "alacritty"
 
 [colors]
 draw_bold_text_with_bright_colors = false
@@ -30,3 +34,6 @@ startup_mode = "Windowed"
 [window.padding]
 x = 5
 y = 5
+
+[keyboard]
+bindings = [ { key = "Return", mods = "Shift", chars = "\n" } ]

@@ -1,0 +1,2 @@
+COLORTERM=truecolor
+TERM=alacritty

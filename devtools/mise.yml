@@ -1,0 +1,23 @@
+---
+where: os.name == "linux" || os.name == "macos"
+
+depends:
+  - shells.zsh
+  - commands.bin
+
+actions:
+  - action: file.remove
+    target: "{{user.home_dir}}/.config/mise"
+
+  - action: file.remove
+    target: "{{user.home_dir}}/.tool-versions"
+
+  - action: file.link
+    from: mise
+    to: "{{user.home_dir}}/.config/mise"
+
+  - action: command.run
+    dir: "{{user.home_dir}}"
+    command: mise
+    args:
+      - install

@@ -1,0 +1,21 @@
+---
+actions:
+  - action: file.download
+    where: os.name == "linux" || os.name == "macos"
+    from: "https://mise.run"
+    to: "/tmp/mise.sh"
+
+  - action: package.install
+    where: os.name == "windows"
+    name: jdx.mise
+    provider: winget
+
+  - action: command.run
+    where: os.name == "linux" || os.name == "macos"
+    command: sh
+    args:
+      - "/tmp/mise.sh"
+
+  - action: file.remove
+    where: os.name == "linux" || os.name == "macos"
+    target: "/tmp/mise.sh"

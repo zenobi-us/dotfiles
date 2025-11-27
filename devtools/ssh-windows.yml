@@ -3,7 +3,7 @@ where: os.name == "windows"
 
 depends:
   - packagemanagers.winget
-  - devtools.sudo
+  - devtools.sudo-windows
 
 actions:
   # https://www.yubico.com/blog/github-now-supports-ssh-security-keys/

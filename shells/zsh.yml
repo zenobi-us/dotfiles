@@ -1,6 +1,7 @@
 ---
 where: os.name == "linux" || os.name == "macos"
 
+
 actions:
   - action: command.run
     command: rm
@@ -19,7 +20,6 @@ actions:
     args:
       - "-rf"
       - "{{user.home_dir}}/.zsh"
-
 
   - action: file.link
     to: "{{user.home_dir}}/.zshrc"
