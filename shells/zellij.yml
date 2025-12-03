@@ -1,0 +1,30 @@
+---
+actions:
+  - action: package.install
+    where: os.name == "linux"
+    name: zellij
+
+  - action: package.install
+    where: os.name == "macos"
+    name: zellij
+
+  - action: command.run
+    where: os.name == "linux" || os.name == "macos"
+    command: rm
+    args:
+      - -rf
+      - '{{user.config_dir}}/zellij'
+
+  - action: file.link
+    where: os.name == "linux" || os.name == "macos"
+    from: zellij
+    to: '{{user.config_dir}}/zellij'
+
+  - action: command.run
+    where: os.name == "windows"
+    command: pwsh
+    args:
+      - -c
+      - |
+        remove-item -recurse -force -erroraction SilentlyContinue '{{user.config_dir}}/zellij'
+        new-item -path "{{user.config_dir}}/zellij" -itemtype symboliclink -value "$(pwd)/shells/files/zellij"

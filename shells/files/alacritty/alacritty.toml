@@ -10,20 +10,20 @@ draw_bold_text_with_bright_colors = false
 [font]
 size = 10
 
-[font.bold]
-family = "Cozette"
+[font.normal]
+family = "GohuFont 11 Nerd Font"
 style = "Regular"
 
-[font.bold_italic]
-family = "Cozette"
+[font.bold]
+family = "GohuFont 11 Nerd Font"
 style = "Regular"
 
 [font.italic]
-family = "Cozette"
+family = "GohuFont 11 Nerd Font"
 style = "Regular"
 
-[font.normal]
-family = "Cozette"
+[font.bold_italic]
+family = "GohuFont 11 Nerd Font"
 style = "Regular"
 
 [window]
