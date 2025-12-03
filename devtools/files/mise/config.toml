@@ -8,7 +8,7 @@ experimental = true
 "ubi:asciinema/asciinema" = "3.0.1"
 "ubi:mfontanini/presenterm" = "0.15.1"
 "ubi:scottmckendry/pokemon-go-colorscripts" = "0.3.1"
-"ubi:sst/opencode" = { version = "1.0.128", matching_regex = 'x64\.(tar\.gz|zip)$', matching = "opencode-linux-x64.tar.gz" }
+"ubi:sst/opencode" = { version = "latest", matching = "(\\.tar\\.gz|\\.zip)$" }
 act="0.2.31"
 actionlint="1.6.20"
 age="1.1.1"
@@ -24,7 +24,7 @@ fzf="0.34.0"
 github-cli= "2.83.0"
 golang="1.18.3"
 helm="3.10.0"
-java="system"
+java= "23.0.2"
 jless="0.9.0"
 jq="1.7.1"
 kubectl="1.18.17"
