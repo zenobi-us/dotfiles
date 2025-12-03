@@ -36,4 +36,9 @@ x = 5
 y = 5
 
 [keyboard]
-bindings = [ { key = "Return", mods = "Shift", chars = "\n" } ]
+bindings = [
+  { key = "Return", mods = "Shift", chars = "\n" },
+  # Send a unique escape sequence for Ctrl+Backspace (CSI 127 ; 5 u)
+  # This allows Neovim to distinguish it from Ctrl+H
+  { key = "Back", mods = "Control", chars = "\u001b[127;5u" },
+]

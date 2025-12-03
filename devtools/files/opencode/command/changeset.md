@@ -8,9 +8,9 @@ You write changeset markdown files in `<reporoot>.changsets/` directory. Each ch
 ## Process
 
 - build a list of changed files
-- segment files by package
-- for each package, bump patch version
-- determine if the changes can be grouped into a single changeset or need separate ones
+- segment files by nearest package.json#name
+- the frontmatter in a changeset is an object, each key is the package name, and the value is the semver change type.
+- determine if the changes can be grouped into a single changeset or need separate ones. Usually we can just create one changeset file.
 - create a changeset markdown file in the `.changesets/` directory with the appropriate format
 
 ## Format
@@ -24,7 +24,3 @@ A changeset file is a markdown file with the following structure:
 
 A brief description of the changes made in this changeset.
 ```
-
-## Key Principles
-
-- use `gh_grep` to understand how to create changeset files.

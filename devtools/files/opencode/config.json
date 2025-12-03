@@ -5,6 +5,7 @@
     "@zenobius/opencode-background",
     "@tarquinen/opencode-dcp@0.2.7"
   ],
+  "model": "anthropic/claude-haiku-4-5",
   "autoupdate": false,
   "provider": {
     "lmstudio": {
@@ -20,6 +21,14 @@
       }
     }
   },
+  
+  "formatter": {
+    "markdownlint": {
+      "command": ["mise" , "x", "--", "markdownlint", "--fix", "$FILE"],
+      "extensions": [".md"]
+    }
+  },
+ 
   "mcp": {
     "memoria": {
       "type": "local",
@@ -40,7 +49,7 @@
         "mcp-remote",
         "https://mcp.atlassian.com/v1/sse"
       ],
-      "enabled": false
+      "enabled": true
     },
     "gh_grep": {
       "type": "remote",
