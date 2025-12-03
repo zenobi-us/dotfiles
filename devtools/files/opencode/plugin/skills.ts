@@ -472,7 +472,7 @@ async function loadSkills(
       ctx: options.ctx,
       sessionID: options.sessionID,
     });
-    loaded.push(skillName);
+    loaded.push(skill.toolName);
   }
 
   return { loaded, notFound };
@@ -509,6 +509,21 @@ function createUseSkillsTool(
 }
 
 /**
+ * Normalize a query string to match against toolName paths
+ * Converts slashes and hyphens to underscores for prefix matching
+ */
+function normalizePathQuery(query: string): string {
+  return query.replace(/[/-]/g, "_").toLowerCase();
+}
+
+/**
+ * Strip the "skills_" prefix from toolName for user-facing matching
+ */
+function stripSkillsPrefix(toolName: string): string {
+  return toolName.replace(/^skills_/, "");
+}
+
+/**
  * Tool to search for skills using natural language query syntax
  *
  * The SkillSearcher handles query parsing with support for:
@@ -516,6 +531,11 @@ function createUseSkillsTool(
  * - Negation: "testing -performance"
  * - Quoted phrases: "git commits"
  * - Multiple terms (AND logic): "typescript react testing"
+ *
+ * Additionally supports path prefix matching:
+ * - "experts" → all skills under skills/experts/*
+ * - "experts/data-ai" → all skills under that subtree
+ * - "*" or empty → list all skills
  */
 function createFindSkillsTool(
   ctx: PluginInput,
@@ -523,25 +543,48 @@ function createFindSkillsTool(
 ): ToolDefinition {
   return tool({
     description:
-      "Search for skills using natural query syntax. Supports negation (-term), quoted phrases, and free text. Examples: 'api design', 'testing -performance', 'react \"state management\"'",
+      "Search for skills using natural query syntax. Supports path prefixes (e.g., 'experts', 'superpowers/writing'), negation (-term), quoted phrases, and free text. Use '*' to list all skills.",
     args: {
-      query: tool.schema.string().min(1, "Query cannot be empty"),
+      query: tool.schema.string(),
     },
     execute: async (args) => {
-      // Get all skills from registry
       const allSkills = Array.from(registry.byName.registry.values());
+      const query = args.query.trim();
 
-      // Create searcher and execute search
+      // List all skills if query is empty or "*"
+      if (query === "" || query === "*") {
+        const resultsList = allSkills
+          .sort((a, b) => a.toolName.localeCompare(b.toolName))
+          .map((m) => `- **${m.name}** \`${m.toolName}\`\n  ${m.description}`)
+          .join("\n");
+        return `Found ${allSkills.length} skill(s):\n\n${resultsList}`;
+      }
+
+      // Try path prefix matching first
+      const normalizedQuery = normalizePathQuery(query);
+      const prefixMatches = allSkills.filter((skill) => {
+        const shortName = stripSkillsPrefix(skill.toolName);
+        return shortName.startsWith(normalizedQuery);
+      });
+
+      if (prefixMatches.length > 0) {
+        const resultsList = prefixMatches
+          .sort((a, b) => a.toolName.localeCompare(b.toolName))
+          .map((m) => `- **${m.name}** \`${m.toolName}\`\n  ${m.description}`)
+          .join("\n");
+        return `Found ${prefixMatches.length} skill(s) matching path "${query}":\n\n${resultsList}`;
+      }
+
+      // Fall back to text search
       const searcher = new SkillSearcher(allSkills);
-      const result = searcher.search(args.query);
+      const result = searcher.search(query);
 
-      // Format results
       if (result.matches.length === 0) {
-        return `${result.feedback}\n\nNo skills found matching "${args.query}"`;
+        return `${result.feedback}\n\nNo skills found matching "${query}"`;
       }
 
       const resultsList = result.matches
-        .map((m) => `- **${m.name}**: ${m.description}`)
+        .map((m) => `- **${m.name}** \`${m.toolName}\`\n  ${m.description}`)
         .join("\n");
 
       return `${result.feedback}\n\n${resultsList}`;
