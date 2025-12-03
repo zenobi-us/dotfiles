@@ -6,27 +6,32 @@ Create and open a pull request for completed work linked to planning artifacts: 
 
 > [!CRITICAL]
 > Before doing anything, run these skills:
+>
 > - skills_projectmanagement_storage_basicmemory
 > - skills_projectmanagement_info_planning_artifacts
 
 ## Step 1: Early Exit Checks
 
 **Check uncommitted changes:**
+
 ```bash
 git status --short
 ```
 
 **If changes exist:**
-```
+
+```markdown
 ⚠️  UNCOMMITTED CHANGES - Commit these first:
 
 {git status output}
 
 Use: /project:do:commit "message"
 ```
+
 **Exit here.** (Don't proceed until clean)
 
 **Validate readiness:**
+
 1. Not on main/develop: `git branch --show-current`
 2. Tests pass: Project-specific test command
 3. Linting passes: Project-specific lint command
@@ -53,15 +58,18 @@ Use: /project:do:commit "message"
 ## Step 3: Prepare PR
 
 **Generate title (semantic format):**
-```
+
+```markdown
 {type}({scope}): {title} ({artifact_id})
 ```
 
 Examples:
+
 - `feat(auth): implement login with OAuth (closes #123)`
 - `feat(database): design user schema (5.1.1-task-database-schema)`
 
 **Generate description:**
+
 ```markdown
 ## Summary
 {One-sentence description of what this PR accomplishes}
@@ -82,23 +90,28 @@ Examples:
 ## Step 4: Review & Confirm
 
 **Display:**
+
 1. PR Title
 2. PR Description
 3. Changed files: `git diff --name-stat origin/main...HEAD`
 4. Impact: `git diff --stat origin/main...HEAD`
 
 **Prompt:** "Proceed with creating this pull request?"
+
 - Option: Edit title/description
 - Option: Cancel
 
 ## Step 5: Create PR
 
 **Execute:**
+
 ```bash
-gh pr create --title "{title}" --body "{description}" --base {target_branch}
+echo "{description}" > /tmp/pr_description.md
+gh pr create --title "{title}" --body-file "/tmp/pr_description.md" --base {target_branch}
 ```
 
 **Update artifacts:**
+
 - GitHub issues: Add comment with PR link, update labels
 - BasicMemory tasks: Update status to "in-review", add pr_link
 

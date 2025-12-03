@@ -49,7 +49,7 @@
         "mcp-remote",
         "https://mcp.atlassian.com/v1/sse"
       ],
-      "enabled": false
+      "enabled": true
     },
     "gh_grep": {
       "type": "remote",
