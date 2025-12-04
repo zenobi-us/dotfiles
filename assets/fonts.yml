@@ -1,0 +1,31 @@
+# Comtrya manifest: Install NerdFonts
+# Uses font-install binary (cross-platform font installer)
+# Assumes font-install is already installed via mise
+
+actions:
+  # Create temporary directory for font list
+  - action: command.run
+    command: mkdir
+    args:
+      - -p
+      - "{{ user.home_dir }}/tmp-{{ env.INVOCATION_ID }}"
+
+  # Copy font list to temp directory
+  - action: file.copy
+    from: fonts.txt
+    to: "{{ user.home_dir }}/tmp-{{ env.INVOCATION_ID }}/fonts.txt"
+    template: false
+
+  # Install all fonts from the list using font-install
+  - action: command.run
+    command: font-install
+    args:
+      - -fromFile
+      - "{{ user.home_dir }}/tmp-{{ env.INVOCATION_ID }}/fonts.txt"
+
+  # Clean up temporary directory
+  - action: command.run
+    command: rm
+    args:
+      - -rf
+      - "{{ user.home_dir }}/tmp-{{ env.INVOCATION_ID }}"
