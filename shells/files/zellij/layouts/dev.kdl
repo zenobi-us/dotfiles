@@ -1,0 +1,19 @@
+layout {
+    tab name="Dotfiles" {
+        pane name="editor" {
+            command "zsh"
+            args "-i" "-c" "dotfiles edit $DOTFILE_REPO_ROOT"
+        }
+    }
+    tab name="Nvim" {
+        pane name="config" {
+            cwd "~/.config/nvim"
+            command "nvim"
+        }
+    }
+    tab name="Projects" {
+        pane name="shell" {
+            cwd "/mnt/Store/Projects/Mine"
+        }
+    }
+}

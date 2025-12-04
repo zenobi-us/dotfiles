@@ -33,7 +33,7 @@
   "mcp": {
     "memoria": {
       "type": "local",
-      "enabled": true,
+      "enabled": false,
       "command": [
         "mise",
         "x",

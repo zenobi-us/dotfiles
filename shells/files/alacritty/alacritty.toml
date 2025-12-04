@@ -11,20 +11,20 @@ draw_bold_text_with_bright_colors = false
 size = 10
 
 [font.normal]
-family = "GohuFont 11 Nerd Font"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [font.bold]
-family = "GohuFont 11 Nerd Font"
-style = "Regular"
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
 
 [font.italic]
-family = "GohuFont 11 Nerd Font"
-style = "Regular"
+family = "FiraCode Nerd Font Mono"
+style = "Italic"
 
 [font.bold_italic]
-family = "GohuFont 11 Nerd Font"
-style = "Regular"
+family = "FiraCode Nerd Font Mono"
+style = "Bold Italic"
 
 [window]
 decorations = "none"

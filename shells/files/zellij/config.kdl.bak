@@ -306,7 +306,7 @@ default_layout "dev"
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-layout_dir "/mnt/Store/Projects/Mine/Github/Dotfiles/shells/files/zellij/layouts"
+layout_dir "~/.config/zellij/layouts"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
