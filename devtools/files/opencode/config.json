@@ -1,9 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    "opencode-sessions",
-    "@zenobius/opencode-background",
-    "@tarquinen/opencode-dcp@0.2.7"
+    "opencode-sessions@latest",
+    "@zenobius/opencode-background@latest",
+    "@tarquinen/opencode-dcp@latest"
   ],
   "model": "anthropic/claude-haiku-4-5",
   "autoupdate": false,
@@ -32,6 +32,7 @@
   "mcp": {
     "memoria": {
       "type": "local",
+      "enabled": false,
       "command": [
         "mise",
         "x",
@@ -58,6 +59,7 @@
     },
     "chrome-devtools": {
       "type": "local",
+      "enabled": false,
       "command": [
         "mise",
         "x",
