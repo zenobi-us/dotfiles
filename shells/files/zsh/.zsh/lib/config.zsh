@@ -27,7 +27,7 @@ function dotfiles_edit() {
 
     if [ -z "${path}" ]; then
         echo "No path provided. Using default dotfile root."
-        path="${DOTFILE_ROOT}"
+        path="${DOTFILES_REPO_ROOT}"
     fi
 
     if [ ! -d "${path}" ]; then
@@ -35,11 +35,13 @@ function dotfiles_edit() {
         return 1
     fi
 
+    echo "Opening editor at: ${path}"
+
     cd $path || {
         echo "Failed to change directory to: ${path}"
         return 1
     }
-
+    
     mise x -- nvim "${path}"
 }
 
@@ -229,7 +231,7 @@ function dotfiles () {
             dotfiles_edit_config_part "${2}"
         ;;
         edit)
-            dotfiles_edit "${DOTFILE_ROOT}"
+            dotfiles_edit "${2}"
         ;;
         reload)
             dotfiles_reload
