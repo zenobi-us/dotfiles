@@ -15,8 +15,9 @@
         "baseURL": "http://127.0.0.1:1234/v1"
       },
       "models": {
-        "openai/gpt-oss-20b": {
-          "name": "openai/gpt-oss-20b (local)"
+        "qwen/qwen3-8b": {
+          "name": "Qwen 3 8B",
+          "contextLength": 32768
         }
       }
     }
@@ -55,7 +56,7 @@
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app",
-      "enabled": true
+      "enabled": false
     },
     "chrome-devtools": {
       "type": "local",

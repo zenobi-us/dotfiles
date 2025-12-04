@@ -1,0 +1,34 @@
+---
+actions:
+  - action: package.install
+    where: os.name == "linux"
+    name: ghosttty
+
+  - action: package.install
+    where: os.name == "macos"
+    name: ghosttty
+
+  - action: package.install
+    where: os.name == "windows"
+    name: ghosttty
+
+  - action: command.run
+    where: os.name == "linux" || os.name == "macos"
+    command: rm
+    args:
+      - -rf
+      - "{{user.config_dir}}/ghosttty"
+
+  - action: file.link
+    where: os.name == "linux" || os.name == "macos"
+    to: "{{user.config_dir}}/ghosttty"
+    from: ghosttty
+
+  - action: command.run
+    where: os.name == "windows"
+    command: pwsh
+    args:
+      - -c
+      - |
+        remove-item -recurse -force -erroraction SilentlyContinue '{{user.config_dir}}/ghosttty'
+        new-item -path "{{user.config_dir}}/ghosttty" -itemtype symboliclink -value "$(pwd)/shells/files/ghosttty"

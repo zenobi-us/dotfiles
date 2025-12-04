@@ -8,10 +8,10 @@
 . "${DOTFILE_ROOT}/lib/loadparts.zsh"
 . "${DOTFILE_ROOT}/lib/config.zsh"
 
-load-parts "config.d/enabled/*__env"
-load-parts "config.d/enabled/*__env-${MACHINE_OS}"
-load-parts "config.d/enabled/*__aliases"
-load-parts "config.d/enabled/*__aliases-${MACHINE_OS}"
-load-parts "config.d/enabled/*__config"
-load-parts "config.d/enabled/*__config-${MACHINE_OS}"
+load-parts "$DOTFILE_ROOT" "config.d/enabled/*__env"
+load-parts "$DOTFILE_ROOT" "config.d/enabled/*__env-${MACHINE_OS}"
+load-parts "$DOTFILE_ROOT" "config.d/enabled/*__aliases"
+load-parts "$DOTFILE_ROOT" "config.d/enabled/*__aliases-${MACHINE_OS}"
+load-parts "$DOTFILE_ROOT" "config.d/enabled/*__config"
+load-parts "$DOTFILE_ROOT" "config.d/enabled/*__config-${MACHINE_OS}"
 
