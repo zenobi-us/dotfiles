@@ -248,7 +248,7 @@ keybinds clear-defaults=true {
 // changing these requires a restart to take effect
 plugins {
     about location="zellij:about"
-    // compact-bar location="zellij:compact-bar"
+    compact-bar location="zellij:compact-bar"
     configuration location="zellij:configuration"
     filepicker location="zellij:strider" {
         cwd "/"
@@ -301,12 +301,12 @@ theme "one-half-dark"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-// default_layout "dev"
+// default_layout "compact"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-// layout_dir "/mnt/Store/Projects/Mine/Github/Dotfiles/shells/files/zellij/layouts"
+// layout_dir "/tmp"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
@@ -410,7 +410,7 @@ theme "one-half-dark"
 //   - true (default)
 //   - false
 // 
-// session_serialization false
+session_serialization false
  
 // Whether pane viewports are serialized along with the session, default is false
 // Options:
@@ -503,7 +503,7 @@ theme "one-half-dark"
 // Whether to show tips on startup
 // Default: true
 // 
-// show_startup_tips false
+show_startup_tips false
  
 // Whether to show release notes on first version run
 // Default: true
