@@ -7,7 +7,7 @@ export DOTFILE_ROOT="$HEREDIR/.zsh"
 . "${DOTFILE_ROOT}/lib/loadparts.zsh";
 
 if [[ "$SSH_TTY" && "$SHLVL" -eq 1 && ! -o LOGIN ]]; then
-  load-parts "config.d/*__env"
+  load-parts "$DOTFILE_ROOT" "config.d/*__env"
 fi
 
 if [[ "$SSH_TTY" && "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then

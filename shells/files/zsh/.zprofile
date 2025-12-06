@@ -1,2 +1,2 @@
 #!/usr/bin/env zsh
-load-parts "config.d/enabled/*__profile"
+load-parts "$DOTFILE_ROOT" "config.d/enabled/*__profile"

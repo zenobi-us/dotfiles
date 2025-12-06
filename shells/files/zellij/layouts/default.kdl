@@ -1,5 +1,0 @@
-layout {
-  tab name="NeoVim" cwd="~/.config/nvim" {}
-  tab name="Dotfiles" cwd="$DOTFILE_REPO_ROOT" {}
-  tab name="Projects" cwd="$DOTFILE_DIRS_PROJECTS" {}
-}
