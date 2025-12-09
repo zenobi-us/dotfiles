@@ -29,16 +29,21 @@
       "extensions": [".md"]
     }
   },
- 
+  "tools" : {
+    "memoria_*": false,
+    "atlassian": false,
+    "gh_grep": false,
+    "chrome-devtools": false
+  },
   "mcp": {
     "memoria": {
       "type": "local",
-      "enabled": false,
       "command": [
         "mise",
         "x",
         "node@22", "--", "npx", "in-memoria", "server"]
     },
+    
     "atlassian": {
       "type": "local",
       "command": [
@@ -51,16 +56,17 @@
         "mcp-remote",
         "https://mcp.atlassian.com/v1/sse"
       ],
-      "enabled": false
-   },
+    },
+
+
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app",
-      "enabled": false
     },
+
+
     "chrome-devtools": {
       "type": "local",
-      "enabled": false,
       "command": [
         "mise",
         "x",
