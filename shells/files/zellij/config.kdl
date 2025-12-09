@@ -314,7 +314,7 @@ layout {
 // changing these requires a restart to take effect
 plugins {
     about location="zellij:about"
-    // compact-bar location="zellij:compact-bar"
+    compact-bar location="zellij:compact-bar"
     configuration location="zellij:configuration"
     filepicker location="zellij:strider" {
         cwd "/"
@@ -369,12 +369,12 @@ theme "one-half-dark"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-// default_layout "dev"
+// default_layout "compact"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-// layout_dir "/mnt/Store/Projects/Mine/Github/Dotfiles/shells/files/zellij/layouts"
+// layout_dir "/tmp"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)

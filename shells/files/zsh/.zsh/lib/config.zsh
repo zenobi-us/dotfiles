@@ -27,7 +27,7 @@ function dotfiles_edit() {
 
     if [ -z "${path}" ]; then
         echo "No path provided. Using default dotfile root."
-        path="${DOTFILES_REPO_ROOT}"
+        path="${DOTFILE_REPO_ROOT}"
     fi
 
     if [ ! -d "${path}" ]; then
