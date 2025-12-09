@@ -1,8 +1,6 @@
----
-name: miniproject
-description: 
----
+# Markdown Driven Task Management
 
+This is a simplified an concise project management ai memory framework 
 
 > [!NOTE]
 > **CRITICAL** Before doing any work,
@@ -15,12 +13,12 @@ description:
 
 - [knowledge] store findings in `.memory/` directory
 - [knowledge] all notes in `.memory/` must be in markdown format
-- [knowledge] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<id>-<title>.md`
+- [knowledge] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<8_char_hashid>-<title>.md`
 - [knowledge] where `<type>` is one of: `research`, `phase`, `guide`, `notes`, `implementation`, `task`
 - [knowledge] Always keep `.memory/summary.md` up to date with current status, prune incorrect or outdated information.
 - [tasks] when finishing a phase, compact relevant successful outcomes from implementation, research and phase into the `.memory/summary.md` and delete the other files. empty `.memory/todo.md` of completed tasks.
 - [tasks] break down tasks into manageable phases, each with clear objectives and deliverables.
-- [tasks] use `.memory/todo.md` to track remaining tasks. This file only contains links to `.memory/task-<id>-<title>.md` files. [CRITICAL] keep `.memory/todo.md` up to date at every step.
+- [tasks] use `.memory/todo.md` to track remaining tasks. This file only contains links to `.memory/task-<8_char_hash_id>-<title>.md` files. [CRITICAL] keep `.memory/todo.md` up to date at every step.
 - [git] when committing changes, follow conventional commit guidelines.
 - [git] Use clear commit messages referencing relevant files for changes.
 
