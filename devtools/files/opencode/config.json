@@ -3,12 +3,14 @@
   "plugin": [
     "opencode-sessions@latest",
     "@zenobius/opencode-background@latest",
-    "@tarquinen/opencode-dcp@latest"
+    "@tarquinen/opencode-dcp@0.4.2"
   ],
   "model": "anthropic/claude-haiku-4-5",
   "autoupdate": false,
   "experimental": {
-    "primary_tools": ["prune"]
+    "primary_tools": [
+      "prune"
+    ]
   },
   "provider": {
     "lmstudio": {
@@ -20,23 +22,30 @@
       "models": {
         "qwen/qwen3-8b": {
           "name": "Qwen 3 8B",
-          "contextLength": 32768
         }
       }
     }
   },
-  
   "formatter": {
     "markdownlint": {
-      "command": ["mise" , "x", "--", "markdownlint", "--fix", "$FILE"],
-      "extensions": [".md"]
+      "command": [
+        "mise",
+        "x",
+        "--",
+        "markdownlint",
+        "--fix",
+        "$FILE"
+      ],
+      "extensions": [
+        ".md"
+      ]
     }
   },
-  "tools" : {
+  "tools": {
     "memoria_*": false,
-    "atlassian": false,
-    "gh_grep": false,
-    "chrome-devtools": false
+    "atlassian*": false,
+    "gh_grep*": false,
+    "chrome-devtools*": false
   },
   "mcp": {
     "memoria": {
@@ -44,9 +53,13 @@
       "command": [
         "mise",
         "x",
-        "node@22", "--", "npx", "in-memoria", "server"]
+        "node@22",
+        "--",
+        "npx",
+        "in-memoria",
+        "server"
+      ]
     },
-    
     "atlassian": {
       "type": "local",
       "command": [
@@ -60,14 +73,10 @@
         "https://mcp.atlassian.com/v1/sse"
       ],
     },
-
-
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app",
     },
-
-
     "chrome-devtools": {
       "type": "local",
       "command": [
