@@ -3,7 +3,7 @@
   "plugin": [
     "opencode-sessions@latest",
     "@zenobius/opencode-background@latest",
-    "@tarquinen/opencode-dcp@0.4.2"
+    "@tarquinen/opencode-dcp@latest"
   ],
   "model": "anthropic/claude-haiku-4-5",
   "autoupdate": false,
