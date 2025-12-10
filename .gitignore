@@ -4,3 +4,8 @@
 mise.toml
 devtools/files/opencode/bin
 in-memoria*
+
+# In Memoria
+in-memoria.db
+.in-memoria/cache/
+.in-memoria/.env

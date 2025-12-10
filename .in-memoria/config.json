@@ -1,0 +1,41 @@
+{
+  "version": "0.6.0",
+  "project": {
+    "name": "Dotfiles",
+    "languages": [
+      "typescript",
+      "bash",
+      "comtrya",
+      "toml",
+      "yaml",
+      "lua"
+    ]
+  },
+  "intelligence": {
+    "enableRealTimeAnalysis": true,
+    "enablePatternLearning": true,
+    "vectorEmbeddings": true
+  },
+  "watching": {
+    "patterns": [
+      "**/*.ts",
+      "**/*.tsx"
+    ],
+    "ignored": [
+      "**/node_modules/**",
+      "**/.git/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/target/**"
+    ],
+    "debounceMs": 500
+  },
+  "mcp": {
+    "serverPort": 3000,
+    "enableAllTools": true
+  },
+  "setup": {
+    "createdAt": "2025-12-10T03:23:07.249Z",
+    "setupVersion": "interactive-v1"
+  }
+}

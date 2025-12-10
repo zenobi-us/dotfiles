@@ -61,6 +61,7 @@
       ]
     },
     "atlassian": {
+      "enabled": false,
       "type": "local",
       "command": [
         "mise",
