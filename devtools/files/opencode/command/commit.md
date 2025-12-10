@@ -9,6 +9,11 @@ Create a semantic commit for staged changes: $ARGUMENTS
 3. Suggest 3-5 commit message options
 4. Wait for user confirmation before committing
 5. Execute `git commit -m "selected message"`
+  - if branch name validation fails, always fix, never ignore or skip it.
+6. determine default branch with the gh cli tool
+7. fast forward the default branch from remote: ie: `git fetch origin master:master`
+8. rebase the current branch onto the default branch: ie: `git rebase master`
+9. push the current branch to remote: ie: `git push origin HEAD --force-with-lease`
 
 ## Scope Rules
 

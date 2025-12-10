@@ -1,14 +1,9 @@
 # Create Pull Request
 
-Create and open a pull request for completed work linked to planning artifacts: $ARGUMENTS
+**Meta**
 
-**Storage Backend**: basicmemory
+- DefaultBranch : !`gh repo view --json defaultBranchRef --template '{{.defaultBranchRef.name}}'`
 
-> [!CRITICAL]
-> Before doing anything, run these skills:
->
-> - skills_projectmanagement_storage_basicmemory
-> - skills_projectmanagement_info_planning_artifacts
 
 ## Step 1: Early Exit Checks
 
@@ -25,35 +20,58 @@ git status --short
 
 {git status output}
 
-Use: /project:do:commit "message"
+Use: /commit "message"
 ```
 
 **Exit here.** (Don't proceed until clean)
 
 **Validate readiness:**
-
-1. Not on main/develop: `git branch --show-current`
-2. Tests pass: Project-specific test command
-3. Linting passes: Project-specific lint command
+ 
+1. DefaultBranch must not be the current branch: !`git branch --show-current`
+  - Exit if same.
+2. Ensure current branch is pushed to remote:
+   - Check: `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
+   - Exit if not set.
+3. Verify `$ARGUMENTS` is provided (artifact reference):
+   -  Exit if missing.
 
 **If validation fails:** Report specific error and exit.
 
-## Step 2: Fetch Planning Context
+## Step 2: Gather Info
 
-**Determine artifact source:**
+**Identify current branch:**
 
-1. If `$ARGUMENTS` matches `^\d+$` or `^#\d+$`:
-   - GitHub issue: Extract number, use GitHub tool to fetch issue details
-   - Prepare: Issue number, title, URL, type, labels
+```bash
+CURRENT_BRANCH=$(git branch --show-current)
+```
 
-2. If `$ARGUMENTS` matches `^\d+(\.\d+)+.*-.*$`:
-   - Basic Memory artifact: Fetch from `5-tasks/` folder
-   - Extract: Task title, epic_id, story_id, status
-   - Verify status is "in-progress" or "completed"
+**Determine target branch:**
 
-3. Otherwise:
-   - Extract feature identifier from branch name
-   - Fallback to generic PR without artifact link
+```bash
+TARGET_BRANCH={DefaultBranch}
+```
+
+**Parse artifact reference from `$ARGUMENTS`:**
+
+- If GitHub issue: `#123`
+- If BasicMemory task: `5.1.1-task-database-schema`
+- If Jira ticket: `PROJ-456`
+
+**Fetch artifact details:**
+- For GitHub issues: Use `gh issue view {ISSUE_NUMBER} --json title,body,labels`
+- For BasicMemory tasks: Query BasicMemory API for task details
+- For Jira tickets: Delegate using `task(jira)` Use Jira API to get issue summary, description, labels
+
+**Review commits on current branch:**
+
+```bash
+git log {TARGET_BRANCH}...HEAD --oneline
+```
+
+**Summarize changes:**
+- Extract key changes from commit messages
+- Identify affected components/modules for scope
+- Propose the WHY based on commit context and artifact details
 
 ## Step 3: Prepare PR
 
@@ -128,4 +146,3 @@ gh pr create --title "{title}" --body-file "/tmp/pr_description.md" --base {targ
 Next: Wait for review, address feedback, merge when approved
 ```
 
-**Related:** `/project:do:task`, `/project:do:commit`
