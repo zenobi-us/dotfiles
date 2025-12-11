@@ -3,7 +3,8 @@
   "plugin": [
     "opencode-sessions@latest",
     "@zenobius/opencode-background@latest",
-    "@tarquinen/opencode-dcp@latest"
+    "@tarquinen/opencode-dcp@latest",
+    "@franlol/opencode-md-table-formatter@0.0.3",
   ],
   "model": "anthropic/claude-haiku-4-5",
   "autoupdate": false,

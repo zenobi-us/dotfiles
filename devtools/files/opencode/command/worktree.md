@@ -1,8 +1,4 @@
-# Worktree Branch 
-
-You manage worktrees and branches for the current repo.
-
-Based on user request you should either create or open branches in worktrees with the following rules in mind:
+Based on user request either create or open branches in worktrees with the following rules in mind:
 
 1. List current branches in open worktrees
   - if any match the user request list them in a numbered list and ask if the user wants to switch/open it (use below SelectBranchTemplate)

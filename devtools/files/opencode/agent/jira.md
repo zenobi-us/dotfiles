@@ -2,22 +2,19 @@
 name: Jira
 description: Manage Jira tickets, issues, and projects
 tools:
-  atlassian_atlassianUserInfo: true
-  atlassian_getAccessibleAtlassianResources: true
   atlassian_getJiraIssue: true
-  atlassian_createJiraIssue: true
   atlassian_editJiraIssue: true
+  atlassian_createJiraIssue: true
   atlassian_getTransitionsForJiraIssue: true
   atlassian_transitionJiraIssue: true
   atlassian_addCommentToJiraIssue: true
-  atlassian_getJiraIssueRemoteIssueLinks: true
   atlassian_searchJiraIssuesUsingJql: true
-  atlassian_lookupJiraAccountId: true
   atlassian_getVisibleJiraProjects: true
   atlassian_getJiraProjectIssueTypesMetadata: true
   atlassian_getJiraIssueTypeMetaWithFields: true
+  atlassian_atlassianUserInfo: true
+  atlassian_lookupJiraAccountId: true
   atlassian_search: true
-  atlassian_fetch: true
 mode: primary
 ---
 

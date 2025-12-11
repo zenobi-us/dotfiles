@@ -1,0 +1,213 @@
+# Team Provisioning Manifest Template
+# Purpose: Multi-OS setup with explicit policy and safety practices
+# Version: 1.0
+
+# ============================================================================
+# TEAM POLICY (Required - Document Here)
+# ============================================================================
+
+# TEAM PACKAGE MANAGER POLICY:
+#   Linux:  apt (primary), pip for Python, cargo for Rust
+#   macOS:  brew (primary), homebrew-cask for GUI apps
+#   Windows: winget (primary), choco for legacy packages
+#
+# EXCEPTIONS:
+#   - zenobius: Uses nix on Linux (isolated from apt)
+#   - (Add others here)
+#
+# VERSIONING POLICY:
+#   - Comtrya: 0.3.0+ (see version-pins section below)
+#   - manifest branches: main (stable), develop (testing)
+#
+
+# ============================================================================
+# VERSION PINS (Safety: Lock versions for reproducibility)
+# ============================================================================
+
+version_pins:
+  comtrya: "0.3.0"        # Pin to avoid version-dependent action changes
+  rust: "1.75.0"          # If installing specific versions
+  nodejs: "20.10.0"
+
+# ============================================================================
+# LAYER 1: BASE (Cross-platform, no variants needed)
+# ============================================================================
+
+base:
+  # Shell/config essentials
+  - action: package.install
+    name: git
+    # Default provider (apt on Linux, brew on macOS, winget on Windows)
+
+  - action: package.install
+    name: curl
+
+  # Dotfiles (assumes repo exists)
+  - action: git.clone
+    repo: "https://github.com/yourorg/dotfiles.git"
+    path: ~/.config/dotfiles
+    branch: main
+    id: "clone_dotfiles"
+
+  # Shell configuration via symlink
+  - action: file.symlink
+    source: ~/.config/dotfiles/shell/zshrc
+    target: ~/.zshrc
+    depends_on: ["clone_dotfiles"]
+
+  - action: file.symlink
+    source: ~/.config/dotfiles/shell/bashrc
+    target: ~/.bashrc
+    depends_on: ["clone_dotfiles"]
+
+# ============================================================================
+# LAYER 2: DEV-TOOLS (OS variants for different package managers)
+# ============================================================================
+
+dev_tools:
+  # Neovim with OS-specific providers
+  - action: package.install
+    name: neovim
+    variants:
+      - where: os.name == "linux"
+        provider: apt
+      - where: os.name == "macos"
+        provider: brew
+      - where: os.name == "windows"
+        provider: winget
+
+  # Rust installation (with exception for zenobius)
+  - action: package.install
+    name: rust
+    variants:
+      - where: user.username == "zenobius" && os.name == "linux"
+        provider: nix
+      - provider: cargo  # Default: cargo is comtrya provider
+    id: "install_rust"
+
+  # Python
+  - action: package.install
+    name: python3
+    variants:
+      - where: os.name == "linux"
+        provider: apt
+      - where: os.name == "macos"
+        provider: brew
+
+  # Node.js
+  - action: package.install
+    name: nodejs
+    variants:
+      - where: os.name == "linux"
+        provider: apt
+      - where: os.name == "macos"
+        provider: brew
+      - where: os.name == "windows"
+        provider: winget
+
+  # Docker (with dependency on group creation)
+  - action: group.create
+    name: docker
+    id: "create_docker_group"
+    where: os.name == "linux"
+
+  - action: package.install
+    name: docker
+    depends_on: ["create_docker_group"]
+    where: os.name == "linux"
+    id: "install_docker"
+
+  - action: command.run
+    cmd: "sudo systemctl enable docker"
+    depends_on: ["install_docker"]
+    where: os.name == "linux"
+
+# ============================================================================
+# LAYER 3: SYSTEM (OS-specific configuration)
+# ============================================================================
+
+system:
+  # macOS-specific
+  - action: macOS.defaults.write
+    domain: "com.apple.finder"
+    key: "AppleShowAllFiles"
+    value: true
+    type: "bool"
+    where: os.name == "macos"
+
+  - action: macOS.defaults.write
+    domain: "com.apple.dock"
+    key: "autohide"
+    value: true
+    type: "bool"
+    where: os.name == "macos"
+
+  # Linux systemd user services (only if systemd present)
+  - action: file.create
+    path: ~/.config/systemd/user/my-service.service
+    contents: |
+      [Unit]
+      Description=My custom service
+      After=network-online.target
+      
+      [Service]
+      Type=simple
+      ExecStart=/usr/local/bin/my-service
+      Restart=on-failure
+      
+      [Install]
+      WantedBy=default.target
+    where: os.name == "linux"
+
+  - action: command.run
+    cmd: "systemctl --user daemon-reload"
+    where: os.name == "linux"
+
+# ============================================================================
+# USAGE
+# ============================================================================
+
+# Before applying:
+# 1. Review team policy above
+# 2. Update exceptions if team changes
+# 3. Pin versions if using specific releases
+
+# Validate syntax:
+#   comtrya validate team-manifest-template.yml
+
+# Dry-run (preview changes without applying):
+#   comtrya apply --dry-run --manifest team-manifest-template.yml
+
+# Apply safely:
+#   comtrya apply --manifest team-manifest-template.yml
+
+# Apply multiple layers in order:
+#   comtrya apply \
+#     --manifest base.yml \
+#     --manifest dev-tools.yml \
+#     --manifest system.yml
+
+# ============================================================================
+# RECOVERY / ROLLBACK
+# ============================================================================
+
+# If something breaks, create recover.yml with inverse actions:
+#   - action: package.remove
+#     name: broken_package
+#   - action: file.delete
+#     path: ~/.config/broken_app
+#   - action: command.run
+#     cmd: "systemctl --user daemon-reload"
+#
+# Then: comtrya apply --manifest recover.yml
+# Then: Delete the actions from recover.yml and update manifest
+
+# ============================================================================
+# VERSION HISTORY
+# ============================================================================
+
+# v1.0 (2025-01-15):
+#   - Initial multi-OS setup
+#   - Added team policy documentation
+#   - Pinned comtrya 0.3.0
+#   - Added exception handling for zenobius nix usage
