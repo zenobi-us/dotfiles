@@ -1,0 +1,13 @@
+---
+where: os.name == "linux" || os.name == "macos"
+
+actions:
+  - action: command.run
+    command: rm
+    args:
+      - -rf
+      - "{{user.home_dir}}/.config/tmux"
+
+  - action: file.link
+    to: "{{user.home_dir}}/.config/tmux"
+    from: tmux
