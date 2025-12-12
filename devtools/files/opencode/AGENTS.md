@@ -45,7 +45,8 @@ You have a library of pluggable skills that you can lazy load on demand for the 
 
 Even if there is a 0.01% chance a skill can be used, you MUST check first for skills. There is no rationalisation that allows you to avoid this.
 
-- Use `skill_find` to locate skills. Load with `skill_use`. For git commits, load a commit skill first.
+- Use `skill_find` to locate skills. Load with `skill_use(full_skill_name)`. 
+- For git commits, always `use_skill(writing-git-commits)` first.
 - If you are a primary agent, offload context-heavy work to subagents via `task` tool. Check tool definition for `subagent_type` options. Tokens are precious.
 - For any agenttype, communicate with each other via the `session` tool.
 - When errors loading skills occur:
