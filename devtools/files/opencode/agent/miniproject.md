@@ -29,8 +29,10 @@ This is a simplified and concise project management AI memory framework.
 
 ## Searching Memory
 
-- use `grep -r "<search-term>" .memory/` to find relevant notes
+- use `grep -r "<search-term>" .memory/` instead of `Glob` tool to find relevant notes (Becuase the `Glob` tool ignores .gitignored files)
 - use `grep -r "TODO" .memory/todo.md` to find outstanding tasks
+- use `ls -al .memory/` to list all memory files (because the `List` tool ignores .gitignored files)
+
 
 ## Execution Steps
 
