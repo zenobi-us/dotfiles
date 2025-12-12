@@ -9,3 +9,4 @@ in-memoria*
 in-memoria.db
 .in-memoria/cache/
 .in-memoria/.env
+devtools/files/opencode/skills/jira/scripts/atlassian
