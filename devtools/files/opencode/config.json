@@ -78,17 +78,6 @@
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app",
-    },
-    "chrome-devtools": {
-      "type": "local",
-      "command": [
-        "mise",
-        "x",
-        "node@22",
-        "--",
-        "chrome-devtools-mcp",
-        "--browser-url=http://127.0.0.1:9222"
-      ],
     }
   }
 }

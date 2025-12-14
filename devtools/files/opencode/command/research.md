@@ -93,42 +93,126 @@ Research produces 5 files in StoragePrefix:
    - [ ] ThingsToAvoid stated (or confirmed not needed)
    - If ANY missing, STOP and ask user.
 
-3. **Delegate to deep-researcher subagent:**
+3. **Break topic into parallel subtopics:**
+   - Decompose ResearchTopic into 3-5 independent subtopics
+   - Each subtopic should be researchable independently
+   - Subtopics should cover different aspects (e.g., performance, security, compatibility, use cases)
+   - Plan to merge findings in final synthesis phase
+
+4. for each subagent, search for relevant skills using skill_find and load them to enhance research methodology.
+   - synthesise some adjective-nouns like "performance analysis", "security evaluation", "compatibility testing", "use case investigation"
+   - synthesise some noun only lists like "databases", "JavaScript", "cloud computing", "network protocols"
+   - then search for skills with skill_find using those keywords as a comma-separated list. skill_find(["keyword1", "keyword2", "phrase1" ...])
+
+5. **Delegate subtopics to parallel subagents:**
    ```
+   # Launch ALL subtopic researches in parallel (single message, multiple task calls)
+   
    task(
-     description: "Research [ResearchTopic]",
+     description: "Research [Subtopic 1]",
      subagent_type: "deep-researcher-subagent",
-     prompt: "Research: [ResearchTopic]
-              Storage: [StoragePrefix]
+     prompt: "Research subtopic: [Subtopic 1]
+              Parent topic: [ResearchTopic]
+              Storage: [StoragePrefix]/subtopic-1
               Avoid: [ThingsToAvoid]
               
+              CRITICAL: skill_use([DiscoveredSkillFor1, ...]) before starting research.
+              Load any applicable skills to enhance your research methodology.
+              
               Produce findings with 3+ independent sources per major claim.
-              Document all contradictions and confidence levels."
+              Document all contradictions and confidence levels.
+              Mark all biases with [BiasType] where applicable.
+              Provide citations to verify claims. [URLs + access dates] [CRITICAL]
+              "
    )
+   
+   task(
+     description: "Research [Subtopic 2]",
+     subagent_type: "deep-researcher-subagent",
+     prompt: "Research subtopic: [Subtopic 2]
+              Parent topic: [ResearchTopic]
+              Storage: [StoragePrefix]/subtopic-2
+              Avoid: [ThingsToAvoid]
+              
+              CRITICAL: skill_use([DiscoveredSkillFor2, ...]) before starting research.
+              Load any applicable skills to enhance your research methodology.
+              
+              Produce findings with 3+ independent sources per major claim.
+              Document all contradictions and confidence levels.
+              Mark all biases with [BiasType] where applicable.
+              Provide citations to verify claims. [URLs + access dates] [CRITICAL]
+              "
+   )
+   
+   # ... repeat for all subtopics in PARALLEL
    ```
 
-4. **Validate output:**
-   - [ ] 5 research files exist in StoragePrefix
+6. **Validate subagent outputs:**
+   - [ ] Each subtopic produced 5 research files in its subdirectory
    - [ ] Every claim has confidence level (HIGH/MEDIUM/LOW)
    - [ ] All contradictions documented with explanations
    - [ ] Evidence trails present (URLs + access dates)
-   - [ ] No speculation presented as fact
+   - [ ] Subagents documented which skills they loaded and why
 
-## Example: Proper Delegation
+7. **Synthesize parallel findings:**
+   - Merge subtopic findings into unified analysis
+   - Cross-reference contradictions between subtopics
+   - Identify patterns and relationships across research areas
+   - Update confidence levels based on synthesis
+
+## Example: Proper Delegation with Parallel Subtopics
 
 ```
 Topic: "Compare async/await vs. callbacks vs. promises in JavaScript testing"
 StoragePrefix: "/research/async-testing-patterns"
 ThingsToAvoid: "Exclude blog posts pre-2023, avoid marketing content"
 
-Research should cover:
-- Modern testing frameworks (Jest, Vitest, Playwright)
-- Best practices from official documentation
-- Community consensus on recommended patterns
-- Edge cases and when each approach is appropriate
+Subtopics (researched in PARALLEL):
+1. "Modern testing frameworks support for async patterns (Jest, Vitest, Playwright)"
+2. "Performance characteristics and benchmarks of each pattern"
+3. "Error handling and debugging capabilities comparison"
+4. "Community consensus and best practices from official documentation"
+5. "Real-world use cases and when each approach is appropriate"
 
-Minimum 3+ independent sources per major claim.
-Document all contradictions and confidence levels.
+Each subagent will:
+- Use skill_find to discover testing-related, JavaScript, or comparison skills
+- Load applicable skills to enhance research methodology
+- Produce 5 research files in subtopic-specific directory
+- Include minimum 3+ independent sources per major claim
+- Document all contradictions and confidence levels
+
+Final synthesis will merge all parallel findings into unified analysis.
+```
+
+## Parallel Research Architecture
+
+### Key Principles
+
+1. **Subtopic Independence:** Each subtopic must be researchable without blocking others
+2. **Concurrent Execution:** Launch ALL subtopic tasks in a single message (use `task` tool multiple times)
+3. **Skill Discovery:** Each subagent MUST run `skill_find` to discover relevant domain skills before researching
+4. **Unified Storage:** Subtopic results stored in `[StoragePrefix]/subtopic-N/` directories
+5. **Synthesis Phase:** After all parallel tasks complete, merge findings into unified analysis
+
+### Subagent Instructions Template
+
+When delegating to subagents, include this in the prompt:
+
+```
+BEFORE RESEARCHING:
+1. Run skill_find to discover skills relevant to: [SUBTOPIC_KEYWORDS]
+2. Load any discovered skills that enhance research methodology
+3. Document which skills you loaded and why
+
+DURING RESEARCH:
+- Target 3+ independent authoritative sources per major claim
+- Use loaded skills to validate findings and cross-reference sources
+- Document contradictions and confidence levels explicitly
+
+OUTPUT:
+- Produce 5 research files in assigned subdirectory
+- Include skill discovery results in thinking.md
+- Ensure all claims are evidence-traceable
 ```
 
 ## What This Enforces
