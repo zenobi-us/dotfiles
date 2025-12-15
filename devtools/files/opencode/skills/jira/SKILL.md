@@ -7,7 +7,7 @@ description: Use when needing to search Jira issues, retrieve issue details, get
 
 Master Jira automation and integration using the atlassian CLI tool. This skill enables programmatic access to Jira issues, projects, and metadata.
 
-> ⚠️ **IMPORTANT:** All usage of the `atlassian` binary MUST be prefixed with `mise x node@20 --`. Every command in this skill requires this wrapper to execute properly.
+> ⚠️ **IMPORTANT:** All usage of atlassian commands requires `mcporter` to invoke the underlying tools via the MCP protocol.
 
 ## Getting Started
 
@@ -16,7 +16,7 @@ Master Jira automation and integration using the atlassian CLI tool. This skill 
 Verify you're authenticated and retrieve your Atlassian account details.
 
 ```bash
-mise x node@20 -- atlassian atlassianUserInfo
+mcporter call atlassian.atlassianUserInfo
 ```
 
 **Output:** JSON object with `accountId`, `displayName`, `email`. Example:
@@ -34,7 +34,7 @@ mise x node@20 -- atlassian atlassianUserInfo
 All Jira operations require your cloud ID (site identifier). Store this for reuse.
 
 ```bash
-mise x node@20 -- atlassian getAccessibleAtlassianResources
+mcporter call atlassian.getAccessibleAtlassianResources
 ```
 
 **Output:** JSON array of available Atlassian sites. Example:
@@ -53,8 +53,8 @@ mise x node@20 -- atlassian getAccessibleAtlassianResources
 **Store cloud ID and URL for reuse:**
 
 ```bash
-export JIRA_CLOUD_ID=$(mise x node@20 -- atlassian getAccessibleAtlassianResources | jq -r '.[0].id')
-export JIRA_URL=$(mise x node@20 -- atlassian getAccessibleAtlassianResources | jq -r '.[0].url')
+export JIRA_CLOUD_ID=$(mcporter call atlassian.getAccessibleAtlassianResources | jq -r '.[0].id')
+export JIRA_URL=$(mcporter call atlassian.getAccessibleAtlassianResources | jq -r '.[0].url')
 echo "Cloud ID: $JIRA_CLOUD_ID"
 echo "URL: $JIRA_URL"
 ```
@@ -89,7 +89,7 @@ export JIRA_URL="https://yourcompany.atlassian.net"
 Find Jira issues matching criteria using JQL (Jira Query Language).
 
 ```bash
-mise x node@20 -- atlassian searchJiraIssuesUsingJql \
+mcporter call atlassian.searchJiraIssuesUsingJql \
   --cloud-id "$JIRA_CLOUD_ID" \
   --jql "assignee = currentUser() AND status = Open" \
   --max-results 50
@@ -131,7 +131,7 @@ mise x node@20 -- atlassian searchJiraIssuesUsingJql \
 Retrieve full details of a specific issue, including description, comments, and custom fields.
 
 ```bash
-mise x node@20 -- atlassian getJiraIssue \
+mcporter call atlassian.getJiraIssue \
   --cloud-id "$JIRA_CLOUD_ID" \
   --issue-id-or-key "PROJ-123"
 ```
@@ -154,7 +154,7 @@ mise x node@20 -- atlassian getJiraIssue \
 **Optimize payload (only fetch needed fields):**
 
 ```bash
-mise x node@20 -- atlassian getJiraIssue \
+mcporter call atlassian.getJiraIssue \
   --cloud-id "$JIRA_CLOUD_ID" \
   --issue-id-or-key "PROJ-123" \
   --fields "summary,status,assignee,description"
@@ -178,7 +178,7 @@ Get available issue types, required fields, and valid transitions before creatin
 **Get issue types in a project:**
 
 ```bash
-mise x node@20 -- atlassian getJiraProjectIssueTypesMetadata \
+mcporter call atlassian.getJiraProjectIssueTypesMetadata \
   --cloud-id "$JIRA_CLOUD_ID" \
   --project-id-or-key "PROJ"
 ```
@@ -186,7 +186,7 @@ mise x node@20 -- atlassian getJiraProjectIssueTypesMetadata \
 **Get field requirements for issue type:**
 
 ```bash
-mise x node@20 -- atlassian getJiraIssueTypeMetaWithFields \
+mcporter call atlassian.getJiraIssueTypeMetaWithFields \
   --cloud-id "$JIRA_CLOUD_ID" \
   --project-id-or-key "PROJ" \
   --issue-type-id "10001"
@@ -195,7 +195,7 @@ mise x node@20 -- atlassian getJiraIssueTypeMetaWithFields \
 **Get available transitions (for workflow moves):**
 
 ```bash
-mise x node@20 -- atlassian getTransitionsForJiraIssue \
+mcporter call atlassian.getTransitionsForJiraIssue \
   --cloud-id "$JIRA_CLOUD_ID" \
   --issue-id-or-key "PROJ-123"
 ```
@@ -209,7 +209,7 @@ mise x node@20 -- atlassian getTransitionsForJiraIssue \
 Retrieve linked issues, pull requests, Confluence pages, and other external references.
 
 ```bash
-mise x node@20 -- atlassian getJiraIssueRemoteIssueLinks \
+mcporter call atlassian.getJiraIssueRemoteIssueLinks \
   --cloud-id "$JIRA_CLOUD_ID" \
   --issue-id-or-key "PROJ-123"
 ```
@@ -241,7 +241,7 @@ mise x node@20 -- atlassian getJiraIssueRemoteIssueLinks \
 **Filter for pull requests:**
 
 ```bash
-mise x node@20 -- atlassian getJiraIssueRemoteIssueLinks \
+mcporter call atlassian.getJiraIssueRemoteIssueLinks \
   --cloud-id "$JIRA_CLOUD_ID" \
   --issue-id-or-key "PROJ-123" | \
   jq -r '.[]? | select(.type.name == "GitHub" or (.globalId | contains("github"))) | .object.url'
@@ -264,7 +264,7 @@ This workflow finds all issues assigned to you, displays their status, and check
 **Step 1: Get Cloud ID**
 
 ```bash
-CLOUD_ID=$(mise x node@20 -- atlassian getAccessibleAtlassianResources | jq -r '.[0].id')
+CLOUD_ID=$(mcporter call atlassian.getAccessibleAtlassianResources | jq -r '.[0].id')
 echo "Cloud ID: $CLOUD_ID"
 ```
 
@@ -274,7 +274,7 @@ echo "Cloud ID: $CLOUD_ID"
 
 ```bash
 CLOUD_ID="9a2dd552-3337-4821-9e53-bf3bb51ea6e0"  # From Step 1
-mise x node@20 -- atlassian searchJiraIssuesUsingJql \
+mcporter call atlassian.searchJiraIssuesUsingJql \
   --cloud-id "$CLOUD_ID" \
   --jql "assignee = currentUser() AND status = Open"
 ```
@@ -285,7 +285,7 @@ mise x node@20 -- atlassian searchJiraIssuesUsingJql \
 
 ```bash
 CLOUD_ID="9a2dd552-3337-4821-9e53-bf3bb51ea6e0"
-ISSUES=$(mise x node@20 -- atlassian searchJiraIssuesUsingJql \
+ISSUES=$(mcporter call atlassian.searchJiraIssuesUsingJql \
   --cloud-id "$CLOUD_ID" \
   --jql "assignee = currentUser() AND status = Open" | \
   jq -r '.issues[] | "\(.key):\(.fields.status.name)"')
@@ -300,7 +300,7 @@ echo "$ISSUES"
 CLOUD_ID="9a2dd552-3337-4821-9e53-bf3bb51ea6e0"
 ISSUE_KEY="UI-7083"
 
-mise x node@20 -- atlassian getJiraIssueRemoteIssueLinks \
+mcporter call atlassian.getJiraIssueRemoteIssueLinks \
   --cloud-id "$CLOUD_ID" \
   --issue-id-or-key "$ISSUE_KEY"
 ```
@@ -334,7 +334,7 @@ Example with PR link:
 CLOUD_ID="9a2dd552-3337-4821-9e53-bf3bb51ea6e0"
 ISSUE_KEY="UI-7083"
 
-mise x node@20 -- atlassian getJiraIssueRemoteIssueLinks \
+mcporter call atlassian.getJiraIssueRemoteIssueLinks \
   --cloud-id "$CLOUD_ID" \
   --issue-id-or-key "$ISSUE_KEY" | \
   jq -r '.[]? | select(.type.name == "GitHub" or (.globalId | contains("github"))) | "PR: \(.object.title) → \(.object.url)"'
@@ -352,10 +352,10 @@ If no PRs found, returns nothing (no error).
 
 ```bash
 # Get cloud ID (one time)
-CLOUD_ID=$(mise x node@20 -- atlassian getAccessibleAtlassianResources | jq -r '.[0].id')
+CLOUD_ID=$(mcporter call atlassian.getAccessibleAtlassianResources | jq -r '.[0].id')
 
 # Get all issues assigned to you that are Open
-ISSUES=$(mise x node@20 -- atlassian searchJiraIssuesUsingJql \
+ISSUES=$(mcporter call atlassian.searchJiraIssuesUsingJql \
   --cloud-id "$CLOUD_ID" \
   --jql "assignee = currentUser() AND status = Open" | \
   jq -r '.issues[] | "\(.key):\(.fields.status.name)"')
@@ -366,13 +366,13 @@ while read -r issue_data; do
   issue_status="${issue_data#*:}"
   echo "=== $issue_key ($issue_status) ==="
   
-  pr_count=$(mise x node@20 -- atlassian getJiraIssueRemoteIssueLinks --cloud-id "$CLOUD_ID" --issue-id-or-key "$issue_key" 2>/dev/null | \
+  pr_count=$(mcporter call atlassian.getJiraIssueRemoteIssueLinks --cloud-id "$CLOUD_ID" --issue-id-or-key "$issue_key" 2>/dev/null | \
     jq '[.[]? | select(.type.name == "GitHub" or (.globalId | contains("github")))] | length')
   
   if [ "$pr_count" -eq 0 ]; then
     echo "  No linked PRs"
   else
-    mise x node@20 -- atlassian getJiraIssueRemoteIssueLinks --cloud-id "$CLOUD_ID" --issue-id-or-key "$issue_key" | \
+    mcporter call atlassian.getJiraIssueRemoteIssueLinks --cloud-id "$CLOUD_ID" --issue-id-or-key "$issue_key" | \
       jq -r '.[]? | select(.type.name == "GitHub" or (.globalId | contains("github"))) | "  \(.object.title) → \(.object.url)"'
   fi
 done <<< "$ISSUES"
