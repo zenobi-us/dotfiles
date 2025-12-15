@@ -81,6 +81,98 @@ You: "Find the login button and tell me its HTML"
 Agent uses Chrome DevTools Protocol → Inspects element → Returns HTML/attributes
 ```
 
+## Detailed Examples
+
+### Example 1: Hover Detection & Measurement
+
+Hover an element and measure its dimensions after CSS transitions complete:
+
+```bash
+# Get target ID
+TARGET_ID=$(mcporter call chrome-devtools.getTabs | jq -r '.[0].id')
+
+# Hover the element and measure its computed dimensions
+mcporter call chrome-devtools.evaluateScript \
+  --targetId="$TARGET_ID" \
+  --script='
+    const el = document.querySelector(".tooltip-trigger");
+    const bounds = el.getBoundingClientRect();
+    
+    // Simulate hover
+    el.dispatchEvent(new MouseEvent("mouseover", { bubbles: true }));
+    
+    // Wait for transition and measure
+    setTimeout(() => {
+      const tooltip = document.querySelector(".tooltip");
+      const tooltipBounds = tooltip.getBoundingClientRect();
+      console.log(JSON.stringify({
+        trigger: { x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height },
+        tooltip: { x: tooltipBounds.x, y: tooltipBounds.y, width: tooltipBounds.width, height: tooltipBounds.height }
+      }));
+    }, 300);
+  '
+```
+
+### Example 2: Performance Measurement & Storage
+
+Execute JavaScript to measure page performance metrics and store results:
+
+```bash
+TARGET_ID=$(mcporter call chrome-devtools.getTabs | jq -r '.[0].id')
+
+# Measure performance metrics
+METRICS=$(mcporter call chrome-devtools.evaluateScript \
+  --targetId="$TARGET_ID" \
+  --script='
+    const perf = performance.getEntriesByType("navigation")[0];
+    {
+      pageLoadTime: perf.loadEventEnd - perf.fetchStart,
+      domInteractive: perf.domInteractive - perf.fetchStart,
+      domContentLoaded: perf.domContentLoadedEventEnd - perf.fetchStart,
+      firstPaint: performance.getEntriesByName("first-paint")[0]?.startTime || null,
+      memoryUsage: performance.memory ? performance.memory.usedJSHeapSize : null
+    }
+  ')
+
+# Store results
+echo "$METRICS" | jq '.' > ./perf-metrics-$(date +%s).json
+```
+
+### Example 3: Screenshot Capture & Storage Workflow
+
+Navigate, interact, and capture sequential screenshots:
+
+```bash
+TARGET_ID=$(mcporter call chrome-devtools.getTabs | jq -r '.[0].id')
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+SCREENSHOT_DIR="./screenshots/$TIMESTAMP"
+mkdir -p "$SCREENSHOT_DIR"
+
+# Take initial state screenshot
+mcporter call chrome-devtools.takeScreenshot --targetId="$TARGET_ID" > "$SCREENSHOT_DIR/01-initial.png"
+
+# Navigate and take screenshot
+mcporter call chrome-devtools.navigateToUrl \
+  --targetId="$TARGET_ID" \
+  --url='http://localhost:3000/page'
+
+# Wait for load and capture
+sleep 2
+mcporter call chrome-devtools.takeScreenshot --targetId="$TARGET_ID" > "$SCREENSHOT_DIR/02-after-nav.png"
+
+# Interact and capture
+mcporter call chrome-devtools.clickElement \
+  --targetId="$TARGET_ID" \
+  --selector='.expand-button'
+
+sleep 1
+mcporter call chrome-devtools.takeScreenshot --targetId="$TARGET_ID" > "$SCREENSHOT_DIR/03-after-click.png"
+
+# Generate summary
+echo "Screenshots saved to: $SCREENSHOT_DIR"
+ls -lh "$SCREENSHOT_DIR"
+```
+
 ## Real-World Impact
 
 Integrating Chrome DevTools Protocol into mcporter enables:
