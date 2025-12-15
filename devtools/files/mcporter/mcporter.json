@@ -20,6 +20,11 @@
         "https://mcp.atlassian.com/v1/sse"
       ]
     },
+    "figma": {
+      "type": "remote",
+      "auth": "oauth",
+      "baseUrl": "https://mcp.figma.com/mcp"
+    },
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app"
