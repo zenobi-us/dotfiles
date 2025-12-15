@@ -37,3 +37,7 @@ actions:
     command: mise
     args:
       - install
+
+  - action: file.link
+    to: "{{user.home_dir}}/.mcporter"
+    from: mcporter
