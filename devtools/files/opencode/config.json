@@ -44,9 +44,7 @@
   },
   "tools": {
     "memoria_*": false,
-    "atlassian*": false,
     "gh_grep*": false,
-    "chrome-devtools*": false
   },
   "mcp": {
     "memoria": {
@@ -60,20 +58,6 @@
         "in-memoria",
         "server"
       ]
-    },
-    "atlassian": {
-      "enabled": false,
-      "type": "local",
-      "command": [
-        "mise",
-        "x",
-        "node@22",
-        "--",
-        "npx",
-        "-y",
-        "mcp-remote",
-        "https://mcp.atlassian.com/v1/sse"
-      ],
     },
     "gh_grep": {
       "type": "remote",
