@@ -74,3 +74,4 @@ temp/
 .history/
 .viminfo
 .memory/
+in-memoria.db
