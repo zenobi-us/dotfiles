@@ -1,0 +1,75 @@
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.pytest_cache/
+
+# Ruby
+Gemfile.lock
+.bundle/
+
+# Go
+*.o
+*.a
+*.so
+.go/
+
+# Rust
+target/
+Cargo.lock
+
+# Build outputs
+dist/
+build/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Misc
+.env
+.env.local
+.env.*.local
+.cache/
+.tmp/
+temp/
+*.log
+.history/
+.viminfo

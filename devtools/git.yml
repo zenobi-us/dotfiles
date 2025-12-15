@@ -11,3 +11,15 @@ actions:
     command: powershell
     args:
       - winget install -e --id Git.Git
+
+  - action: file.copy
+    from: git/.gitignore_global
+    to: '{{user.home_dir}}/.gitignore_global'
+
+  - action: command.run
+    command: git
+    args:
+      - config
+      - --global
+      - core.excludesFile
+      - ~/.gitignore_global
