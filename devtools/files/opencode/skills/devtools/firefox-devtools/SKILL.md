@@ -1,3 +1,8 @@
+---
+name: firefox-devtools
+description: |
+  Integrate Firefox Remote Debugging Protocol (RDP) for development workflows.
+---
 # Firefox DevTools Integration Skill
 
 ## Purpose
