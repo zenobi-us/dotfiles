@@ -22,4 +22,4 @@ actions:
       - config
       - --global
       - core.excludesFile
-      - ~/.gitignore_global
+      - '{{user.home_dir}}/.gitignore_global'
