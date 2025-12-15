@@ -3,21 +3,19 @@ name: chrome-debug
 description: Use when debugging web applications in chrome via the remote debugging protocol. Provides capabilities for inspecting DOM, executing JS, taking screenshots, and automating browser interactions.
 ---
 
-# Chrome DevTools MCPorts Integration
+# Chrome Debugging and Browser Manipulation via Remote Debugging Prodocol
 
 ## Overview
 
-Chrome DevTools MCP (Model Context Protocol) server enables remote browser automation and debugging through mcporter. This skill documents the integration pattern, startup requirements, and common workflows for debugging web applications via Agent with live browser interaction.
+Chrome DevTools Protocol (CDP) enables remote browser automation and debugging.
 
-**Core principle:** Chrome DevTools MCP requires Chrome to be running with remote debugging enabled on port 9222 before mcporter can connect.
+This skill documents the integration pattern, startup requirements, and common workflows for debugging web applications via Agent with live browser interaction.
 
-## When to Use
-
-- Setting up browser automation capabilities in mcporter
-- Debugging JavaScript/DOM issues with Agent assistance
-- Creating interactive workflows that inspect/manipulate web pages
-- Adding Chrome DevTools to existing mcporter configurations
-- Troubleshooting mcporter → Chrome connection failures
+- Live browser debugging alongside Agent conversations
+- Automated form filling and interaction testing
+- Visual feedback on application behavior
+- Immediate error diagnostics from console logs
+- Screenshot-based validation workflows
 
 ## Prerequisites [CRITICAL]
 
@@ -59,158 +57,33 @@ This command must return Chrome version info. If it fails, get a human to help.
 
 ```
 You: "Navigate to http://localhost:3000 and take a screenshot"
-Agent uses Chrome DevTools MCP → Takes screenshot → Returns visual state
+Agent uses Chrome DevTools Protocol → Takes screenshot → Returns visual state
 ```
 
 ### 2. Debug JavaScript Errors
 
 ```
 You: "Open DevTools console and read the error messages"
-Agent uses Chrome DevTools MCP → Reads console → Explains errors
+Agent uses Chrome DevTools Protocol → Reads console → Explains errors
 ```
 
 ### 3. Automated Testing/Validation
 
 ```
 You: "Fill the form with test data and submit it"
-Agent uses Chrome DevTools MCP → Automates interaction → Reports results
+Agent uses Chrome DevTools Protocol → Automates interaction → Reports results
 ```
 
 ### 4. DOM Inspection
 
 ```
 You: "Find the login button and tell me its HTML"
-Agent uses Chrome DevTools MCP → Inspects element → Returns HTML/attributes
+Agent uses Chrome DevTools Protocol → Inspects element → Returns HTML/attributes
 ```
-
-## Troubleshooting
-
-### "Failed to connect to Chrome"
-
-**Cause:** Chrome not running or not listening on port 9222
-**Fix:**
-
-```bash
-# Kill any existing Chrome processes
-killall chrome
-# Launch with debugging enabled
-google-chrome --remote-debugging-port=9222 &
-# Verify with curl (should return JSON)
-curl http://127.0.0.1:9222/json/version
-```
-
-### "mcporter can't find chrome-devtools-mcp command"
-
-**Cause:** `chrome-devtools-mcp` not installed globally or in PATH
-**Fix:**
-
-```bash
-# Install globally
-npm install -g chrome-devtools-mcp
-# Verify installation
-which chrome-devtools-mcp
-# Then restart mcporter
-```
-
-### "Port 9222 already in use"
-
-**Cause:** Another process (often existing Chrome) using the debugging port
-**Fix:**
-
-```bash
-# Find what's using 9222
-lsof -i :9222
-# Kill that process, then restart Chrome with debugging
-kill -9 <PID>
-google-chrome --remote-debugging-port=9222 &
-```
-
-### "Browser DevTools MCP doesn't appear in mcporter after config"
-
-**Cause:** Config syntax error, mcporter not reloaded, or Chrome not running
-**Fix (in order):**
-
-1. **Validate JSON syntax:**
-
-   ```bash
-   jq . mcporter.json > /dev/null
-   # Silent exit = valid JSON. Error output = syntax problem
-   ```
-
-   Or with bun:
-
-   ```bash
-   bun run -e "import('./mcporter.json')"
-   ```
-
-2. **Verify Chrome is still running:**
-
-   ```bash
-   curl http://127.0.0.1:9222/json/version
-   # Should return JSON with Chrome version
-   ```
-
-3. **Check mcporter logs for errors:**
-
-   ```bash
-   mcporter --debug
-   # Logs print to terminal (stdout). Look for "chrome-devtools" connection attempts
-   # or "Failed to load" messages
-   ```
-
-4. **Restart mcporter:**
-
-   ```bash
-   # Kill any running mcporter
-   pkill mcporter
-   # Start fresh
-   mcporter
-   ```
-
-5. **If chrome-devtools-mcp still missing:**
-
-   ```bash
-   npm install -g chrome-devtools-mcp
-   # Restart mcporter again
-   ```
-
-**Expected outcome:** After valid config and Chrome running, Chrome DevTools MCP should appear in Agent/OpenCode tool list immediately.
-
-## Common Mistakes
-
-**❌ Forgetting to launch Chrome first**
-Starting mcporter without Chrome listening on 9222 = immediate connection failure. Chrome MUST be running BEFORE you start mcporter.
-
-**✅ Always:** Launch Chrome first, then mcporter. Verify with `curl http://127.0.0.1:9222/json/version` before touching mcporter.json.
-
-**❌ Changing --browser-url to different port**
-The default Chrome debugging port is 9222. Only change this if you explicitly launched Chrome with a different port (e.g., `--remote-debugging-port=9223`). If you change the port in --browser-url but Chrome is on 9222, connection fails.
-
-**✅ Check:** Always verify your Chrome launch command matches the --browser-url setting.
-
-**❌ Mixing Chrome instances**
-Running system Chrome + Chromium + Chrome Canary on same port = unpredictable behavior, connection timeouts, or wrong window accessed.
-
-**✅ Use:** One dedicated Chrome instance for mcporter debugging. Kill others first.
-
-**❌ mcporter.json in wrong location**
-File must be at `/mnt/Store/Projects/Mine/Github/Dotfiles/devtools/files/mcporter/mcporter.json` (the standard location mcporter reads from).
-
-**✅ Check:** Verify mcporter finds your config with `mcporter --config-path` or check mcporter docs.
-
-**❌ Assuming mcporter auto-detects Chrome**
-mcporter requires explicit chrome-devtools entry with correct --browser-url. It won't magically connect.
-
-**✅ Always:** Add complete chrome-devtools block to mcpServers object in mcporter.json
-
-## File References
-
-- **mcporter config:** `/mnt/Store/Projects/Mine/Github/Dotfiles/devtools/files/mcporter/mcporter.json`
-- **Related skill:** `devtools/mise` (for Node/tool management)
 
 ## Real-World Impact
 
-Integrating Chrome DevTools MCP into mcporter enables:
+Integrating Chrome DevTools Protocol into mcporter enables:
 
 - Live browser debugging alongside Agent conversations
 - Automated form filling and interaction testing
