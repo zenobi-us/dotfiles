@@ -7,14 +7,14 @@ description: Use when debugging web applications in chrome via the remote debugg
 
 ## Overview
 
-Chrome DevTools MCP (Model Context Protocol) server enables remote browser automation and debugging through mcporter. This skill documents the integration pattern, startup requirements, and common workflows for debugging web applications via Claude with live browser interaction.
+Chrome DevTools MCP (Model Context Protocol) server enables remote browser automation and debugging through mcporter. This skill documents the integration pattern, startup requirements, and common workflows for debugging web applications via Agent with live browser interaction.
 
 **Core principle:** Chrome DevTools MCP requires Chrome to be running with remote debugging enabled on port 9222 before mcporter can connect.
 
 ## When to Use
 
 - Setting up browser automation capabilities in mcporter
-- Debugging JavaScript/DOM issues with Claude assistance
+- Debugging JavaScript/DOM issues with Agent assistance
 - Creating interactive workflows that inspect/manipulate web pages
 - Adding Chrome DevTools to existing mcporter configurations
 - Troubleshooting mcporter → Chrome connection failures
@@ -25,70 +25,7 @@ Chrome DevTools MCP (Model Context Protocol) server enables remote browser autom
 mcporter call chrome-devtools.getVersion
 ```
 
-Should return Chrome version info (JSON). If it fails, Chrome isn't listening on port 9222.
-
-## Configuration Pattern
-
-Add to `mcporter.json` in the `mcpServers` object (root level, alongside `basicmemory`, `atlassian`, etc.):
-
-```json
-{
-  "mcpServers": {
-    "chrome-devtools": {
-      "type": "local",
-      "command": [
-        "mise",
-        "x",
-        "node@22",
-        "--",
-        "chrome-devtools-mcp",
-        "--browser-url=http://127.0.0.1:9222"
-      ]
-    }
-  }
-}
-```
-
-**Key elements:**
-
-- **Location:** Root level within `mcpServers` object (NOT nested)
-- **type:** `"local"` - Runs locally via command
-- **mise x node@22** - Ensures Node 22 available
-- **chrome-devtools-mcp** - MCP server command
-- **--browser-url=<http://127.0.0.1:9222>** - Chrome's debugging port (only change if Chrome started with different port)
-
-**Installation note:** `chrome-devtools-mcp` must be globally installed or in NODE_PATH:
-
-```bash
-npm install -g chrome-devtools-mcp
-```
-
-If missing, mcporter will fail with "Command not found" - install before restarting mcporter.
-
-## Startup Sequence
-
-1. **Launch Chrome with debugging:**
-
-   ```bash
-   google-chrome --remote-debugging-port=9222 &
-   ```
-
-2. **Start mcporter:**
-
-   ```bash
-   mcporter
-   ```
-
-3. **Verify in Claude/OpenCode:**
-   - Chrome DevTools MCP should appear in available tools
-   - Test with: "List open browser tabs"
-
-**If Chrome DevTools doesn't appear:**
-
-- Check Chrome is running: `lsof -i :9222`
-- Verify mcporter config syntax (JSON validation)
-- Restart mcporter after Chrome starts
-- Check mcporter logs for connection errors
+This command must return Chrome version info. If it fails, get a human to help.
 
 ## Available Tools
 
@@ -122,28 +59,28 @@ If missing, mcporter will fail with "Command not found" - install before restart
 
 ```
 You: "Navigate to http://localhost:3000 and take a screenshot"
-Claude uses Chrome DevTools MCP → Takes screenshot → Returns visual state
+Agent uses Chrome DevTools MCP → Takes screenshot → Returns visual state
 ```
 
 ### 2. Debug JavaScript Errors
 
 ```
 You: "Open DevTools console and read the error messages"
-Claude uses Chrome DevTools MCP → Reads console → Explains errors
+Agent uses Chrome DevTools MCP → Reads console → Explains errors
 ```
 
 ### 3. Automated Testing/Validation
 
 ```
 You: "Fill the form with test data and submit it"
-Claude uses Chrome DevTools MCP → Automates interaction → Reports results
+Agent uses Chrome DevTools MCP → Automates interaction → Reports results
 ```
 
 ### 4. DOM Inspection
 
 ```
 You: "Find the login button and tell me its HTML"
-Claude uses Chrome DevTools MCP → Inspects element → Returns HTML/attributes
+Agent uses Chrome DevTools MCP → Inspects element → Returns HTML/attributes
 ```
 
 ## Troubleshooting
@@ -237,7 +174,7 @@ google-chrome --remote-debugging-port=9222 &
    # Restart mcporter again
    ```
 
-**Expected outcome:** After valid config and Chrome running, Chrome DevTools MCP should appear in Claude/OpenCode tool list immediately.
+**Expected outcome:** After valid config and Chrome running, Chrome DevTools MCP should appear in Agent/OpenCode tool list immediately.
 
 ## Common Mistakes
 
@@ -275,10 +212,10 @@ mcporter requires explicit chrome-devtools entry with correct --browser-url. It 
 
 Integrating Chrome DevTools MCP into mcporter enables:
 
-- Live browser debugging alongside Claude conversations
+- Live browser debugging alongside Agent conversations
 - Automated form filling and interaction testing
 - Visual feedback on application behavior
 - Immediate error diagnostics from console logs
 - Screenshot-based validation workflows
 
-Without this integration, debugging web applications requires context-switching between browser and Claude.
+Without this integration, debugging web applications requires context-switching between browser and Agent.
