@@ -1,5 +1,5 @@
 ---
-name: testing-with-playwright
+name: playwright-testing
 description: Use when building e2e tests with Playwright, under deadline pressure to ship incomplete coverage, or struggling with wait strategies and mock-vs-reality tradeoffs - provides patterns for edge case coverage, deterministic waits, and strategic mocking decisions
 ---
 
