@@ -13,13 +13,21 @@ Master Jira automation and integration using the atlassian CLI tool. This skill 
 
 ## Quick Setup
 
-### Get Account Info
+### Get Current User Info
 
 ```bash
-mcporter call atlassian.atlassianUserInfo
+./scripts/get_current_user.sh
 ```
 
 Returns: `accountId`, `displayName`, `email`
+
+**Or get specific fields:**
+
+```bash
+./scripts/get_current_user.sh --account-id
+./scripts/get_current_user.sh --email
+./scripts/get_current_user.sh --display-name
+```
 
 ### Get Cloud ID (Required for all operations)
 
@@ -101,17 +109,6 @@ mcporter call atlassian.getJiraIssueRemoteIssueLinks \
   --cloud-id "$JIRA_CLOUD_ID" \
   --issue-id-or-key "PROJ-123" | \
   jq '.[]? | select(.type.name == "GitHub" or (.globalId | contains("github"))) | .object.url'
-```
-
-## Utility Scripts
-
-### Get Current User
-
-```bash
-./scripts/get_current_user.sh              # Full user info
-./scripts/get_current_user.sh --account-id # Just account ID
-./scripts/get_current_user.sh --email      # Just email
-./scripts/get_current_user.sh --display-name # Just display name
 ```
 
 ## Common Issues & Solutions
