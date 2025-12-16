@@ -112,19 +112,33 @@ mcporter call atlassian.getJiraIssueRemoteIssueLinks \
   jq '.[]? | select(.type.name == "GitHub" or (.globalId | contains("github"))) | .object.url'
 ```
 
+## Helper Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `./scripts/get_current_user.sh` | Get authenticated user info (accountId, displayName, email) |
+| `./scripts/get_cloud_id.sh` | Get Jira Cloud ID and URL |
+
 ## Common Issues & Solutions
 
 | Problem | Solution |
 |---------|----------|
-| **`--cloud-id` required but not provided** | Always fetch with `getAccessibleAtlassianResources` first, then pass `--cloud-id` explicitly or use env variable |
-| **Search returns 0 results** | Verify query syntax. Try `status = Open` instead of `status = "To Do"`. Test queries in Jira UI first. |
+| **No cloud ID available** | Run `./scripts/get_cloud_id.sh` to fetch and export it |
+| **Need current user info** | Use `./scripts/get_current_user.sh` or extract specific fields with flags |
+| **Search returns 0 results** | Verify JQL syntax. Try `status = Open` instead of `status = "To Do"`. Test queries in Jira UI first. |
 | **PR link not found in `remoteIssueLinks`** | Not all PRs auto-link. Check if "Link" was created in GitHub/Jira. |
 | **Transition fails with "Cannot transition"** | Wrong transition ID. Always run `getTransitionsForJiraIssue` first to see valid transitions for current status. |
-| **Command fails with parameter error** | mcporter CLI has constraints on parameter types (arrays, numbers). Use commands without optional parameters like `--max-results` or `--fields`. |
+| **Command fails with parameter error** | mcporter CLI has constraints on parameter types. Use commands without optional parameters like `--max-results` or `--fields`. |
 
 ## Tips
 
-- **Store cloud ID in env variable** once per session: `export JIRA_CLOUD_ID="..."`
+- **Setup once per session:**
+
+  ```bash
+  export JIRA_CLOUD_ID=$(./scripts/get_cloud_id.sh)
+  export JIRA_URL=$(./scripts/get_cloud_id.sh --url)
+  ```
+
 - **Always use `getTransitionsForJiraIssue` before transitioning** - transition IDs vary by project workflow
 - **Use `jq` for JSON parsing** in shell scripts
 - See `examples/` directory for full workflow examples
