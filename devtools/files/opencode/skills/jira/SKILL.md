@@ -32,7 +32,8 @@ Returns: `accountId`, `displayName`, `email`
 ### Get Cloud ID (Required for all operations)
 
 ```bash
-export JIRA_CLOUD_ID=$(mcporter call atlassian.getAccessibleAtlassianResources | jq -r '.[0].id')
+export JIRA_CLOUD_ID=$(./scripts/get_cloud_id.sh)
+export JIRA_URL=$(./scripts/get_cloud_id.sh --url)
 ```
 
 ## Core Operations
