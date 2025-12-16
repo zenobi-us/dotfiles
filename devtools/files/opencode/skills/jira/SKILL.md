@@ -7,7 +7,10 @@ description: Use when needing to search Jira issues, retrieve issue details, get
 
 Master Jira automation and integration using the atlassian CLI tool. This skill enables programmatic access to Jira issues, projects, and metadata.
 
-> ⚠️ **IMPORTANT:** All usage of atlassian commands requires `mcporter` to invoke the underlying tools via the MCP protocol.
+> [!NOTE]
+> ⚠️ **IMPORTANT:**
+> All usage of atlassian commands requires `mise x node@20 -- mcporter ...` to invoke the underlying tools via the MCP protocol.
+> Anywhere below you see `mcporter call atlassian.<command>`, it must be run within the `mise x node@20 -- mcporter ...` context.
 
 ## Getting Started
 
@@ -91,8 +94,7 @@ Find Jira issues matching criteria using JQL (Jira Query Language).
 ```bash
 mcporter call atlassian.searchJiraIssuesUsingJql \
   --cloud-id "$JIRA_CLOUD_ID" \
-  --jql "assignee = currentUser() AND status = Open" \
-  --max-results 50
+  --jql "assignee = currentUser() AND status = Open"
 ```
 
 **Output:** JSON with `issues[]` array. Example:
@@ -122,7 +124,7 @@ mcporter call atlassian.searchJiraIssuesUsingJql \
 - `issuetype = Bug` - Specific issue type
 - `AND`, `OR` - Combine conditions
 
-**Pagination:** Use `--max-results N` to limit results per request. Check `isLast` field to know if more results exist.
+**Pagination:** Results are paginated by the API. Check `isLast` field to know if more results exist.
 
 ---
 
@@ -151,16 +153,9 @@ mcporter call atlassian.getJiraIssue \
 }
 ```
 
-**Optimize payload (only fetch needed fields):**
+**Note on fields:**
 
-```bash
-mcporter call atlassian.getJiraIssue \
-  --cloud-id "$JIRA_CLOUD_ID" \
-  --issue-id-or-key "PROJ-123" \
-  --fields "summary,status,assignee,description"
-```
-
-**Useful fields:**
+The `--fields` parameter is not currently supported via mcporter CLI due to parameter type constraints. The default call returns all available fields. Some examples of useful fields available in the response:
 
 - `summary` - Issue title
 - `status` - Current status
@@ -406,12 +401,12 @@ done <<< "$ISSUES"
 
 | Problem | Solution |
 |---------|----------|
-| **`--cloud-id` required but not provided** | Always fetch with `getAccessibleAtlassianResources` first, then pass `-cloud-id` explicitly or use env variable |
-| **Search returns 0 results** | Verify query syntax. Try `status:Open` instead of `status:"To Do"`. Use `--jql` for advanced queries. |
+| **`--cloud-id` required but not provided** | Always fetch with `getAccessibleAtlassianResources` first, then pass `--cloud-id` explicitly or use env variable |
+| **Search returns 0 results** | Verify query syntax. Try `status = Open` instead of `status = "To Do"`. Use `--jql` for advanced queries. |
 | **PR link not found in `remoteIssueLinks`** | Not all PRs auto-link. Check if "Link" was created in GitHub/Jira. Filter by `globalId` containing "github". |
 | **Transition fails with "Cannot transition"** | Wrong transition ID. Always run `getTransitionsForJiraIssue` first to see valid transitions for current status. |
-| **Custom fields return null** | Explicitly request with `--fields`. Some require permission to view. Check project config for visibility. |
-| **Pagination cuts off results** | `search` shows `total` count. Use `--max-results 50` with cursor-based pagination for large sets. |
+| **Custom fields return null** | Some fields require permission to view. Check project config for visibility. The API returns all fields you have access to. |
+| **Command fails with parameter error** | mcporter CLI has constraints on parameter types (arrays, numbers). Use the commands without optional parameters like `--max-results` or `--fields`. |
 
 ---
 
@@ -421,5 +416,4 @@ done <<< "$ISSUES"
 - **Always use `getTransitionsForJiraIssue` before transitioning** - transition IDs vary by project workflow
 - **Test queries in Jira UI first**, then translate to `--jql` for scripting
 - **Use `jq` for JSON parsing** in shell scripts (installed by default on most systems)
-- **Optimize with `--fields`** when you only need specific data - reduces API response size
-- **For large result sets**, use `--max-results` and implement pagination manually
+- **mcporter CLI limitations** - Some optional parameters (arrays, numbers) don't work via CLI. Use commands without these parameters or find alternative invocation methods
