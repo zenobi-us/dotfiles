@@ -128,6 +128,28 @@ mise x node@20 -- mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_
 mise x node@20 -- mcporter call 'atlassian.getJiraProjectIssueTypesMetadata(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ")'
 ```
 
+### Edit Jira Issue Fields
+
+> TODO: Add example for updating fields on an issue
+
+### Add Comment to Issue
+
+```bash
+mise x node@20 -- mcporter call 'atlassian.addCommentToJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", commentBody: "Your comment here")'
+```
+
+**With GitHub permalink:**
+
+```bash
+mise x node@20 -- mcporter call 'atlassian.addCommentToJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", commentBody: "See implementation details:\n\nhttps://github.com/owner/repo/blob/commit-hash/path/to/file.ts#L123")'
+```
+
+Returns: Comment object with `id`, `body`, `author`, `created`, `updated`
+
+### Create New Issue
+
+> TODO: Add example for creating a new issue
+
 ### Get Issue Type Metadata
 
 ```bash
@@ -169,6 +191,77 @@ mise x node@20 -- mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId:
 | **Arrays not working** | Use bracket notation inside function call: `fields: ["key", "summary"]` NOT `--fields '["key","summary"]'` |
 | **Objects not working** | Use object notation inside function call: `transition: {id: "11"}` NOT `--transition '{"id":"11"}'` |
 
+## Discovering Function Parameters with Schema Introspection
+
+The mcporter CLI can introspect the MCP server schema to discover correct parameters and their types.
+
+### List All Available Tools
+
+```bash
+mise x node@20 -- mcporter list atlassian --json | jq -r ".tools[].name"
+```
+
+Returns:
+
+```
+atlassianUserInfo
+getAccessibleAtlassianResources
+getConfluenceSpaces
+getConfluencePage
+getPagesInConfluenceSpace
+getConfluencePageFooterComments
+getConfluencePageInlineComments
+getConfluencePageDescendants
+createConfluencePage
+updateConfluencePage
+createConfluenceFooterComment
+createConfluenceInlineComment
+searchConfluenceUsingCql
+getJiraIssue
+editJiraIssue
+createJiraIssue
+getTransitionsForJiraIssue
+transitionJiraIssue
+lookupJiraAccountId
+searchJiraIssuesUsingJql
+addCommentToJiraIssue
+addWorklogToJiraIssue
+getJiraIssueRemoteIssueLinks
+getVisibleJiraProjects
+getJiraProjectIssueTypesMetadata
+getJiraIssueTypeMetaWithFields
+search
+fetch
+```
+
+### Inspect a Specific Tool Schema
+
+```bash
+mise x node@20 -- mcporter list atlassian --json | jq '.tools[] | select(.name == "addCommentToJiraIssue")'
+```
+
+This returns the full JSON schema including:
+
+- `inputSchema.properties` - All available parameters with types and descriptions
+- `inputSchema.required` - Which parameters are mandatory
+- `options` - CLI-specific metadata for each parameter
+
+**Filter for just required parameters:**
+
+```bash
+mise x node@20 -- mcporter list atlassian --json | \
+  jq '.tools[] | select(.name == "addCommentToJiraIssue") | .inputSchema.required[]'
+```
+
+**Get parameter descriptions:**
+
+```bash
+mise x node@20 -- mcporter list atlassian --json | \
+  jq '.tools[] | select(.name == "addCommentToJiraIssue") | .inputSchema.properties | to_entries[] | "\(.key): \(.value.description)"'
+```
+
+This introspection approach works for any tool - just change the tool name in the `select()` filter.
+
 ## Tips
 
 - **Setup once per session:**
@@ -182,4 +275,5 @@ mise x node@20 -- mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId:
 - **Always use `getTransitionsForJiraIssue` before transitioning** - transition IDs vary by project workflow
 - **Interpolate env vars outside the quotes**: `mcporter call 'func(cloudId: "'$VAR'")'` works, but `mcporter call 'func(cloudId: "$VAR")'` does not
 - **Use `jq` for JSON parsing** in shell scripts
+- **Use schema introspection** when unsure about parameters - `mcporter list atlassian --json | jq` is your friend
 - See `examples/` directory for full workflow examples
