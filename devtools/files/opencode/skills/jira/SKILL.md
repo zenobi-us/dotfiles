@@ -7,13 +7,13 @@ description: Use when needing to search Jira issues, retrieve issue details, get
 
 Master Jira automation and integration using the atlassian MCP server. This skill enables programmatic access to Jira issues, projects, and metadata.
 
-> [!CRITICAL]
-> ⚠️ **IMPORTANT - Parameter Passing:**
+ > [!CRITICAL]
+> ⚠️ **IMPORTANT - Parameter Passing & Node Version:**
 >
-> Use **function-call syntax** (NOT flag syntax). This is the correct way to pass parameters to mcporter MCP calls:
+> Use **function-call syntax** (NOT flag syntax) with `mise x node@20 --` to ensure correct Node version:
 >
 > ```bash
-> mcporter call 'atlassian.functionName(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary"])'
+> mise x node@20 -- mcporter call 'atlassian.functionName(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary"])'
 > ```
 >
 > **Key Rules:**
@@ -30,7 +30,7 @@ Master Jira automation and integration using the atlassian MCP server. This skil
 ### Get Current User Info
 
 ```bash
-./scripts/get_current_user.sh
+mise x node@20 -- ./scripts/get_current_user.sh
 ```
 
 Returns: `accountId`, `displayName`, `email`
@@ -38,16 +38,16 @@ Returns: `accountId`, `displayName`, `email`
 **Or get specific fields:**
 
 ```bash
-./scripts/get_current_user.sh --account-id
-./scripts/get_current_user.sh --email
-./scripts/get_current_user.sh --display-name
+mise x node@20 -- ./scripts/get_current_user.sh --account-id
+mise x node@20 -- ./scripts/get_current_user.sh --email
+mise x node@20 -- ./scripts/get_current_user.sh --display-name
 ```
 
 ### Get Cloud ID (Required for all operations)
 
 ```bash
-export JIRA_CLOUD_ID=$(./scripts/get_cloud_id.sh)
-export JIRA_URL=$(./scripts/get_cloud_id.sh --url)
+export JIRA_CLOUD_ID=$(mise x node@20 -- ./scripts/get_cloud_id.sh)
+export JIRA_URL=$(mise x node@20 -- ./scripts/get_cloud_id.sh --url)
 ```
 
 This sets up environment variables for all subsequent mcporter calls.
@@ -57,19 +57,19 @@ This sets up environment variables for all subsequent mcporter calls.
 ### Search Issues
 
 ```bash
-mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser() AND status = Open")'
+mise x node@20 -- mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser() AND status = Open")'
 ```
 
 **With specific fields:**
 
 ```bash
-mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser()", fields: ["key", "summary", "status", "assignee"])'
+mise x node@20 -- mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser()", fields: ["key", "summary", "status", "assignee"])'
 ```
 
 **With pagination:**
 
 ```bash
-mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser()", maxResults: 50)'
+mise x node@20 -- mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser()", maxResults: 50)'
 ```
 
 Returns: `issues[]` array with `key`, `fields.summary`, `fields.status.name`
@@ -85,19 +85,19 @@ Returns: `issues[]` array with `key`, `fields.summary`, `fields.status.name`
 ### Get Issue Details
 
 ```bash
-mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
+mise x node@20 -- mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
 ```
 
 **With specific fields:**
 
 ```bash
-mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary", "status", "assignee", "description"])'
+mise x node@20 -- mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary", "status", "assignee", "description"])'
 ```
 
 **With expand for additional details:**
 
 ```bash
-mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", expand: ["changelog", "editmeta"])'
+mise x node@20 -- mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", expand: ["changelog", "editmeta"])'
 ```
 
 Returns: Full issue object with `key`, `fields` (summary, status, assignee, description, etc)
@@ -105,7 +105,7 @@ Returns: Full issue object with `key`, `fields` (summary, status, assignee, desc
 ### Get Issue Transitions
 
 ```bash
-mcporter call 'atlassian.getTransitionsForJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
+mise x node@20 -- mcporter call 'atlassian.getTransitionsForJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
 ```
 
 Returns: List of available transitions with IDs and names for workflow state changes
@@ -113,31 +113,31 @@ Returns: List of available transitions with IDs and names for workflow state cha
 ### Transition Issue to New Status
 
 ```bash
-mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", transition: {id: "11"})'
+mise x node@20 -- mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", transition: {id: "11"})'
 ```
 
 **With field updates:**
 
 ```bash
-mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", transition: {id: "11"}, fields: {assignee: {id: "USER_ID"}})'
+mise x node@20 -- mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", transition: {id: "11"}, fields: {assignee: {id: "USER_ID"}})'
 ```
 
 ### Get Project Metadata
 
 ```bash
-mcporter call 'atlassian.getJiraProjectIssueTypesMetadata(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ")'
+mise x node@20 -- mcporter call 'atlassian.getJiraProjectIssueTypesMetadata(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ")'
 ```
 
 ### Get Issue Type Metadata
 
 ```bash
-mcporter call 'atlassian.getJiraIssueTypeMetaWithFields(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ", issueTypeId: "10001")'
+mise x node@20 -- mcporter call 'atlassian.getJiraIssueTypeMetaWithFields(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ", issueTypeId: "10001")'
 ```
 
 ### Get Related Links (PRs, Confluence, etc)
 
 ```bash
-mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
+mise x node@20 -- mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
 ```
 
 Returns: `remoteIssueLinks[]` array with linked resources
@@ -145,7 +145,7 @@ Returns: `remoteIssueLinks[]` array with linked resources
 **Filter for GitHub PRs:**
 
 ```bash
-mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")' | \
+mise x node@20 -- mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")' | \
   jq '.[]? | select(.type.name == "GitHub" or (.globalId | contains("github"))) | .object.url'
 ```
 
@@ -174,8 +174,8 @@ mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'
 - **Setup once per session:**
 
   ```bash
-  export JIRA_CLOUD_ID=$(./scripts/get_cloud_id.sh)
-  export JIRA_URL=$(./scripts/get_cloud_id.sh --url)
+  export JIRA_CLOUD_ID=$(mise x node@20 -- ./scripts/get_cloud_id.sh)
+  export JIRA_URL=$(mise x node@20 -- ./scripts/get_cloud_id.sh --url)
   ```
 
 - **Function-call syntax is the mcporter standard** - use `mcporter call 'func(param: value)'` not flags
