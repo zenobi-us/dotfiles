@@ -8,12 +8,12 @@ description: Use when needing to search Jira issues, retrieve issue details, get
 Master Jira automation and integration using the atlassian MCP server. This skill enables programmatic access to Jira issues, projects, and metadata.
 
  > [!CRITICAL]
-> ⚠️ **IMPORTANT - Parameter Passing & Node Version:**
+> ⚠️ **IMPORTANT - Parameter Passing:**
 >
-> Use **function-call syntax** (NOT flag syntax) with `mise x node@20 --` to ensure correct Node version:
+> Use **function-call syntax** (NOT flag syntax). Parameters go inside the function call, not as flags:
 >
 > ```bash
-> mise x node@20 -- mcporter call 'atlassian.functionName(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary"])'
+> mcporter call 'atlassian.functionName(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary"])'
 > ```
 >
 > **Key Rules:**
