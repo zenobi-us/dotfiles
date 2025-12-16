@@ -5,11 +5,25 @@ description: Use when needing to search Jira issues, retrieve issue details, get
 
 # JIRA Skill
 
-Master Jira automation and integration using the atlassian CLI tool. This skill enables programmatic access to Jira issues, projects, and metadata.
+Master Jira automation and integration using the atlassian MCP server. This skill enables programmatic access to Jira issues, projects, and metadata.
 
-> [!NOTE]
-> ⚠️ **IMPORTANT:**
-> All usage of atlassian commands requires `mise x node@20 -- mcporter ...` to invoke the underlying tools via the MCP protocol.
+> [!CRITICAL]
+> ⚠️ **IMPORTANT - Parameter Passing:**
+>
+> Use **function-call syntax** (NOT flag syntax). This is the correct way to pass parameters to mcporter MCP calls:
+>
+> ```bash
+> mcporter call 'atlassian.functionName(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary"])'
+> ```
+>
+> **Key Rules:**
+>
+> - Parameters are camelCase inside the function call
+> - String values use double quotes: `"value"`
+> - Array values use bracket notation: `["item1", "item2"]`
+> - Object values use object notation: `{key: "value"}`
+> - Environment variables are interpolated outside quotes: `"'$VAR'"`
+> - NO `--flag` syntax, NO JSON string escaping needed
 
 ## Quick Setup
 
@@ -36,14 +50,26 @@ export JIRA_CLOUD_ID=$(./scripts/get_cloud_id.sh)
 export JIRA_URL=$(./scripts/get_cloud_id.sh --url)
 ```
 
+This sets up environment variables for all subsequent mcporter calls.
+
 ## Core Operations
 
 ### Search Issues
 
 ```bash
-mcporter call atlassian.searchJiraIssuesUsingJql \
-  --cloud-id "$JIRA_CLOUD_ID" \
-  --jql "assignee = currentUser() AND status = Open"
+mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser() AND status = Open")'
+```
+
+**With specific fields:**
+
+```bash
+mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser()", fields: ["key", "summary", "status", "assignee"])'
+```
+
+**With pagination:**
+
+```bash
+mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser()", maxResults: 50)'
 ```
 
 Returns: `issues[]` array with `key`, `fields.summary`, `fields.status.name`
@@ -59,9 +85,19 @@ Returns: `issues[]` array with `key`, `fields.summary`, `fields.status.name`
 ### Get Issue Details
 
 ```bash
-mcporter call atlassian.getJiraIssue \
-  --cloud-id "$JIRA_CLOUD_ID" \
-  --issue-id-or-key "PROJ-123"
+mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
+```
+
+**With specific fields:**
+
+```bash
+mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary", "status", "assignee", "description"])'
+```
+
+**With expand for additional details:**
+
+```bash
+mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", expand: ["changelog", "editmeta"])'
 ```
 
 Returns: Full issue object with `key`, `fields` (summary, status, assignee, description, etc)
@@ -69,36 +105,39 @@ Returns: Full issue object with `key`, `fields` (summary, status, assignee, desc
 ### Get Issue Transitions
 
 ```bash
-mcporter call atlassian.getTransitionsForJiraIssue \
-  --cloud-id "$JIRA_CLOUD_ID" \
-  --issue-id-or-key "PROJ-123"
+mcporter call 'atlassian.getTransitionsForJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
 ```
 
-Returns: List of available transitions with IDs
+Returns: List of available transitions with IDs and names for workflow state changes
+
+### Transition Issue to New Status
+
+```bash
+mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", transition: {id: "11"})'
+```
+
+**With field updates:**
+
+```bash
+mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", transition: {id: "11"}, fields: {assignee: {id: "USER_ID"}})'
+```
 
 ### Get Project Metadata
 
 ```bash
-mcporter call atlassian.getJiraProjectIssueTypesMetadata \
-  --cloud-id "$JIRA_CLOUD_ID" \
-  --project-id-or-key "PROJ"
+mcporter call 'atlassian.getJiraProjectIssueTypesMetadata(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ")'
 ```
 
 ### Get Issue Type Metadata
 
 ```bash
-mcporter call atlassian.getJiraIssueTypeMetaWithFields \
-  --cloud-id "$JIRA_CLOUD_ID" \
-  --project-id-or-key "PROJ" \
-  --issue-type-id "10001"
+mcporter call 'atlassian.getJiraIssueTypeMetaWithFields(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ", issueTypeId: "10001")'
 ```
 
 ### Get Related Links (PRs, Confluence, etc)
 
 ```bash
-mcporter call atlassian.getJiraIssueRemoteIssueLinks \
-  --cloud-id "$JIRA_CLOUD_ID" \
-  --issue-id-or-key "PROJ-123"
+mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
 ```
 
 Returns: `remoteIssueLinks[]` array with linked resources
@@ -106,9 +145,7 @@ Returns: `remoteIssueLinks[]` array with linked resources
 **Filter for GitHub PRs:**
 
 ```bash
-mcporter call atlassian.getJiraIssueRemoteIssueLinks \
-  --cloud-id "$JIRA_CLOUD_ID" \
-  --issue-id-or-key "PROJ-123" | \
+mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")' | \
   jq '.[]? | select(.type.name == "GitHub" or (.globalId | contains("github"))) | .object.url'
 ```
 
@@ -124,11 +161,13 @@ mcporter call atlassian.getJiraIssueRemoteIssueLinks \
 | Problem | Solution |
 |---------|----------|
 | **No cloud ID available** | Run `./scripts/get_cloud_id.sh` to fetch and export it |
-| **Need current user info** | Use `./scripts/get_current_user.sh` or extract specific fields with flags |
+| **Need current user info** | Use `./scripts/get_current_user.sh` to fetch accountId, displayName, email |
 | **Search returns 0 results** | Verify JQL syntax. Try `status = Open` instead of `status = "To Do"`. Test queries in Jira UI first. |
 | **PR link not found in `remoteIssueLinks`** | Not all PRs auto-link. Check if "Link" was created in GitHub/Jira. |
 | **Transition fails with "Cannot transition"** | Wrong transition ID. Always run `getTransitionsForJiraIssue` first to see valid transitions for current status. |
-| **Command fails with parameter error** | mcporter CLI has constraints on parameter types. Use commands without optional parameters like `--max-results` or `--fields`. |
+| **"Invalid arguments" or command fails** | Use function-call syntax, NOT flag syntax. Parameters go inside `functionName(param: value)` not `--param value` |
+| **Arrays not working** | Use bracket notation inside function call: `fields: ["key", "summary"]` NOT `--fields '["key","summary"]'` |
+| **Objects not working** | Use object notation inside function call: `transition: {id: "11"}` NOT `--transition '{"id":"11"}'` |
 
 ## Tips
 
@@ -139,6 +178,8 @@ mcporter call atlassian.getJiraIssueRemoteIssueLinks \
   export JIRA_URL=$(./scripts/get_cloud_id.sh --url)
   ```
 
+- **Function-call syntax is the mcporter standard** - use `mcporter call 'func(param: value)'` not flags
 - **Always use `getTransitionsForJiraIssue` before transitioning** - transition IDs vary by project workflow
+- **Interpolate env vars outside the quotes**: `mcporter call 'func(cloudId: "'$VAR'")'` works, but `mcporter call 'func(cloudId: "$VAR")'` does not
 - **Use `jq` for JSON parsing** in shell scripts
 - See `examples/` directory for full workflow examples
