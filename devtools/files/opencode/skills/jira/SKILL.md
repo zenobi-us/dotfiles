@@ -252,6 +252,41 @@ mcporter call atlassian.getJiraIssueRemoteIssueLinks \
 
 ---
 
+## Utility Scripts
+
+### Get Current User
+
+Helper script to retrieve current user information:
+
+```bash
+./scripts/get_current_user.sh
+```
+
+**Output:** JSON object with full user info:
+
+```json
+{
+  "accountId": "557058:abc123def456",
+  "displayName": "Your Name",
+  "email": "you@example.com"
+}
+```
+
+**Extract specific fields:**
+
+```bash
+# Get account ID only
+./scripts/get_current_user.sh --account-id
+
+# Get email only
+./scripts/get_current_user.sh --email
+
+# Get display name only
+./scripts/get_current_user.sh --display-name
+```
+
+---
+
 ## Workflow: Find My Open Issues with PR Links
 
 This workflow finds all issues assigned to you, displays their status, and checks for linked pull requests.
