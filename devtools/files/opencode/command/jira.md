@@ -1,5 +1,6 @@
 ---
-description: Update Jira ticket status, sprint, and assignee
+description: |
+  Perform various Jira ticket operations such as transitioning status, summarizing content, updating fields, and creating new tickets.
 subtask: true
 ---
 
