@@ -12,7 +12,7 @@ This skill enables seamless integration of Firefox Remote Debugging Protocol (RD
 ## Prerequisites [CRITICAL]
 
 ```bash
-mcporter call firefox-devtools.getVersion
+mise x node@20 -- mcporter call 'firefox-devtools.getVersion'
 ```
 
 Should return Firefox version info (JSON). If it fails, Firefox isn't listening on port 6000.
@@ -79,16 +79,16 @@ Agent uses Firefox Remote Debugging Protocol → Inspects storage → Returns va
 
 | Task | mcporter Call |
 |------|---------------|
-| Check Firefox listening | `mcporter call firefox-devtools.getVersion` |
-| List browser tabs | `mcporter call firefox-devtools.getTabs` |
-| Take screenshot | `mcporter call firefox-devtools.takeScreenshot --tabId=<id>` |
-| Click element | `mcporter call firefox-devtools.clickElement --tabId=<id> --selector='#login'` |
-| Fill form field | `mcporter call firefox-devtools.fillFormField --tabId=<id> --selector='#email' --value='test@example.com'` |
-| Get page content | `mcporter call firefox-devtools.getPageContent --tabId=<id>` |
-| Navigate to URL | `mcporter call firefox-devtools.navigateToUrl --tabId=<id> --url='http://localhost:3000'` |
-| Run JavaScript | `mcporter call firefox-devtools.evaluateScript --tabId=<id> --script='document.title'` |
-| Read console | `mcporter call firefox-devtools.getConsoleOutput --tabId=<id>` |
-| Access storage | `mcporter call firefox-devtools.getStorage --tabId=<id> --storageType='localStorage'` |
+| Check Firefox listening | `mise x node@20 -- mcporter call 'firefox-devtools.getVersion'` |
+| List browser tabs | `mise x node@20 -- mcporter call 'firefox-devtools.getTabs'` |
+| Take screenshot | `mise x node@20 -- mcporter call 'firefox-devtools.takeScreenshot(tabId: "<id>")'` |
+| Click element | `mise x node@20 -- mcporter call 'firefox-devtools.clickElement(tabId: "<id>", selector: "#login")'` |
+| Fill form field | `mise x node@20 -- mcporter call 'firefox-devtools.fillFormField(tabId: "<id>", selector: "#email", value: "test@example.com")'` |
+| Get page content | `mise x node@20 -- mcporter call 'firefox-devtools.getPageContent(tabId: "<id>")'` |
+| Navigate to URL | `mise x node@20 -- mcporter call 'firefox-devtools.navigateToUrl(tabId: "<id>", url: "http://localhost:3000")'` |
+| Run JavaScript | `mise x node@20 -- mcporter call 'firefox-devtools.evaluateScript(tabId: "<id>", script: "document.title")'` |
+| Read console | `mise x node@20 -- mcporter call 'firefox-devtools.getConsoleOutput(tabId: "<id>")'` |
+| Access storage | `mise x node@20 -- mcporter call 'firefox-devtools.getStorage(tabId: "<id>", storageType: "localStorage")'` |
 
 ## Detailed Examples
 
@@ -97,36 +97,24 @@ Agent uses Firefox Remote Debugging Protocol → Inspects storage → Returns va
 Fill a form, submit, and verify localStorage was updated:
 
 ```bash
-TAB_ID=$(mcporter call firefox-devtools.getTabs | jq -r '.[0].id')
+TAB_ID=$(mise x node@20 -- mcporter call 'firefox-devtools.getTabs' | jq -r '.[0].id')
 
 # Navigate to form page
-mcporter call firefox-devtools.navigateToUrl \
-  --tabId="$TAB_ID" \
-  --url='http://localhost:3000/form'
+mise x node@20 -- mcporter call 'firefox-devtools.navigateToUrl(tabId: "'$TAB_ID'", url: "http://localhost:3000/form")'
 
 sleep 2
 
 # Fill and submit form
-mcporter call firefox-devtools.fillFormField \
-  --tabId="$TAB_ID" \
-  --selector='#email' \
-  --value='test@example.com'
+mise x node@20 -- mcporter call 'firefox-devtools.fillFormField(tabId: "'$TAB_ID'", selector: "#email", value: "test@example.com")'
 
-mcporter call firefox-devtools.fillFormField \
-  --tabId="$TAB_ID" \
-  --selector='#password' \
-  --value='testpass123'
+mise x node@20 -- mcporter call 'firefox-devtools.fillFormField(tabId: "'$TAB_ID'", selector: "#password", value: "testpass123")'
 
-mcporter call firefox-devtools.clickElement \
-  --tabId="$TAB_ID" \
-  --selector='#submit'
+mise x node@20 -- mcporter call 'firefox-devtools.clickElement(tabId: "'$TAB_ID'", selector: "#submit")'
 
 sleep 1
 
 # Check localStorage for auth token
-STORAGE=$(mcporter call firefox-devtools.getStorage \
-  --tabId="$TAB_ID" \
-  --storageType='localStorage')
+STORAGE=$(mise x node@20 -- mcporter call 'firefox-devtools.getStorage(tabId: "'$TAB_ID'", storageType: "localStorage")')
 
 echo "$STORAGE" | jq '.auth_token'
 ```
@@ -136,36 +124,15 @@ echo "$STORAGE" | jq '.auth_token'
 Measure element properties and simulate hover state:
 
 ```bash
-TAB_ID=$(mcporter call firefox-devtools.getTabs | jq -r '.[0].id')
+TAB_ID=$(mise x node@20 -- mcporter call 'firefox-devtools.getTabs' | jq -r '.[0].id')
 
 # Navigate to page with interactive elements
-mcporter call firefox-devtools.navigateToUrl \
-  --tabId="$TAB_ID" \
-  --url='http://localhost:3000/interactive'
+mise x node@20 -- mcporter call 'firefox-devtools.navigateToUrl(tabId: "'$TAB_ID'", url: "http://localhost:3000/interactive")'
 
 sleep 2
 
 # Measure element dimensions and trigger hover
-MEASUREMENTS=$(mcporter call firefox-devtools.evaluateScript \
-  --tabId="$TAB_ID" \
-  --script='
-    const el = document.querySelector(".interactive-button");
-    const bounds = el.getBoundingClientRect();
-    
-    // Simulate hover
-    el.dispatchEvent(new MouseEvent("mouseenter", { bubbles: true }));
-    
-    // Wait for CSS transitions
-    setTimeout(() => {
-      const computed = window.getComputedStyle(el);
-      console.log(JSON.stringify({
-        bounds: { x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height },
-        backgroundColor: computed.backgroundColor,
-        transform: computed.transform,
-        opacity: computed.opacity
-      }));
-    }, 300);
-  ')
+MEASUREMENTS=$(mise x node@20 -- mcporter call 'firefox-devtools.evaluateScript(tabId: "'$TAB_ID'", script: "const el = document.querySelector(\".interactive-button\"); const bounds = el.getBoundingClientRect(); el.dispatchEvent(new MouseEvent(\"mouseenter\", { bubbles: true })); setTimeout(() => { const computed = window.getComputedStyle(el); console.log(JSON.stringify({ bounds: { x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height }, backgroundColor: computed.backgroundColor, transform: computed.transform, opacity: computed.opacity })); }, 300);")')
 
 echo "$MEASUREMENTS" | jq '.'
 ```
@@ -175,39 +142,26 @@ echo "$MEASUREMENTS" | jq '.'
 Measure page load performance and capture visual progression:
 
 ```bash
-TAB_ID=$(mcporter call firefox-devtools.getTabs | jq -r '.[0].id')
+TAB_ID=$(mise x node@20 -- mcporter call 'firefox-devtools.getTabs' | jq -r '.[0].id')
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 SCREENSHOT_DIR="./firefox-screenshots/$TIMESTAMP"
 mkdir -p "$SCREENSHOT_DIR"
 
 # Clear and start fresh
-mcporter call firefox-devtools.evaluateScript \
-  --tabId="$TAB_ID" \
-  --script='performance.mark("test-start");'
+mise x node@20 -- mcporter call 'firefox-devtools.evaluateScript(tabId: "'$TAB_ID'", script: "performance.mark(\"test-start\");")'
 
 # Navigate and capture
-mcporter call firefox-devtools.navigateToUrl \
-  --tabId="$TAB_ID" \
-  --url='http://localhost:3000/dashboard'
+mise x node@20 -- mcporter call 'firefox-devtools.navigateToUrl(tabId: "'$TAB_ID'", url: "http://localhost:3000/dashboard")'
 
 # Screenshot at different stages
 sleep 1
-mcporter call firefox-devtools.takeScreenshot --tabId="$TAB_ID" > "$SCREENSHOT_DIR/01-load-complete.png"
+mise x node@20 -- mcporter call 'firefox-devtools.takeScreenshot(tabId: "'$TAB_ID'")' > "$SCREENSHOT_DIR/01-load-complete.png"
 
 sleep 2
-mcporter call firefox-devtools.takeScreenshot --tabId="$TAB_ID" > "$SCREENSHOT_DIR/02-render-complete.png"
+mise x node@20 -- mcporter call 'firefox-devtools.takeScreenshot(tabId: "'$TAB_ID'")' > "$SCREENSHOT_DIR/02-render-complete.png"
 
 # Measure performance metrics
-PERF=$(mcporter call firefox-devtools.evaluateScript \
-  --tabId="$TAB_ID" \
-  --script='
-    const perf = performance.getEntriesByType("navigation")[0];
-    {
-      pageLoadTime: perf.loadEventEnd - perf.fetchStart,
-      domContentLoaded: perf.domContentLoadedEventEnd - perf.fetchStart,
-      firstPaint: performance.getEntriesByName("first-paint")[0]?.startTime || null
-    }
-  ')
+PERF=$(mise x node@20 -- mcporter call 'firefox-devtools.evaluateScript(tabId: "'$TAB_ID'", script: "const perf = performance.getEntriesByType(\"navigation\")[0]; { pageLoadTime: perf.loadEventEnd - perf.fetchStart, domContentLoaded: perf.domContentLoadedEventEnd - perf.fetchStart, firstPaint: performance.getEntriesByName(\"first-paint\")[0]?.startTime || null }")')
 
 echo "$PERF" | jq '.' > "$SCREENSHOT_DIR/perf-metrics.json"
 echo "Test complete. Results in: $SCREENSHOT_DIR"

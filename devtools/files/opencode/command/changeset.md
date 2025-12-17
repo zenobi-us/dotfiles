@@ -12,18 +12,17 @@ $ARGUMENTS
 
 ## Process
 
-
-### Step 1. Get Changed Packages
-
-!`pnpm ls --filter "...[master]" --json | jq -r ".[] | .name"`
-
-### Step 2. Get Changed Files
+### Step 1. Get Changed Files
 
 !`git diff --name-only master...HEAD`
 
+### Step 2. Determine Affected Packages
+
+!`pnpm list -r --json --depth=0 | jq -r '.[] | "\(.name) \(.path)"'`
+
 ### Step 3. Write Changeset File
 
-- Write a brief description of the changes made in the above files. 
+- Write a brief description of the changes made in the above files.
 - This will be the body content of the changeset file.
 - Ensure the package names are correct. See Step 1.
 
