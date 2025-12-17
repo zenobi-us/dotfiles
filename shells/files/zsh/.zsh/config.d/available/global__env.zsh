@@ -5,3 +5,4 @@
 [ -e "${HOME}/Applications/android-studio" ] && export PATH=$HOME/Applications/android-studio:$PATH
 
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export XDG_CACHE_HOME="$HOME/.cache"
