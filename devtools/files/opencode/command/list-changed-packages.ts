@@ -31,6 +31,7 @@ for (const pkgFile of pkgFiles) {
       const pkgJson = JSON.parse(readFileSync(pkgFile, "utf-8"));
       const pkgName = pkgJson.name || pkgDir;
       changedPkgs.set(pkgName, pkgDir);
+    } catch (e) {
       changedPkgs.set(pkgDir, pkgDir);
     }
   }
