@@ -15,3 +15,6 @@ load-parts "$DOTFILE_ROOT" "config.d/enabled/*__aliases-${MACHINE_OS}"
 load-parts "$DOTFILE_ROOT" "config.d/enabled/*__config"
 load-parts "$DOTFILE_ROOT" "config.d/enabled/*__config-${MACHINE_OS}"
 
+
+# bun completions
+[ -s "/home/zenobius/.bun/_bun" ] && source "/home/zenobius/.bun/_bun"

@@ -290,12 +290,13 @@ web_client {
 //   - false (Default)
 // 
 simplified_ui true
- 
+
+
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "one-half-dark"
- 
+theme "onedark"
+
 // Choose the base input mode of zellij.
 // Default: normal
 // 
@@ -313,7 +314,7 @@ theme "one-half-dark"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-// default_layout "compact"
+default_layout "compact"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
@@ -339,7 +340,7 @@ theme "one-half-dark"
 //   - true (default, enabled)
 //   - false
 // 
-// pane_frames false
+pane_frames false
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
@@ -429,7 +430,7 @@ session_serialization true
 //   - true
 //   - false (default)
 // 
-// serialize_pane_viewport false
+serialize_pane_viewport true
  
 // Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
