@@ -1,6 +1,6 @@
 ---
-title: miniproject
-model: anthropic/claude-opus-4-5
+name: miniproject
+description: Simple local project and knowledge management useing markdown files (MDTM).
 ---
 
 # Markdown Driven Task Management

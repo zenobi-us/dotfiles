@@ -1,17 +1,9 @@
 ---
+name: deep-research
 description: |
     Use this agent when delegating research tasks that require collecting and verifying beyond surface-level sources. The agent crawls, collates, verifies, and fact-checks information, providing evidence of its verification process.
-mode: subagent
-tools:
-    webfetch: true
-    gh_grep: true
-    bash: true
-    write: true
-    read: true
-    skill_use: true
 ---
 
-# Deep Researcher Subagent
 
 ## ⚠️ REQUEST VALIDATION (DO THIS FIRST)
 
