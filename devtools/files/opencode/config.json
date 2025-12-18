@@ -63,6 +63,6 @@
     "gh_grep": {
       "type": "remote",
       "url": "https://mcp.grep.app",
-    }
+    },
   }
 }
