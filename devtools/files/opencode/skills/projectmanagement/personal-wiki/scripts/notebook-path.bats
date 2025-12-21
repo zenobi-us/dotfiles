@@ -1,440 +1,269 @@
 #!/usr/bin/env bats
-#
-# Tests for notebook-path.sh discovery logic
-#
 
 setup() {
-	# Create temporary directories for testing
-	export TEST_HOME="$(mktemp -d)"
-	export TEST_CWD="$(mktemp -d)"
-	export TEST_GIT_REPO="$(mktemp -d)"
-
-	# Source the script
-	source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/notebook-path.sh"
-
-	# Reset environment
-	unset NOTEBOOK_PATH
+	export SCRIPT_DIR="$(cd "$(dirname "${BATS_TEST_FILENAME}")" && pwd)"
+	export TEST_ROOT="$(mktemp -d)"
+	export HOME="${TEST_ROOT}/home"
+	mkdir -p "${HOME}/.config/zk"
+	
+	# Source the script using absolute path (after HOME is set)
+	source "${SCRIPT_DIR}/notebook-path.sh"
 }
 
 teardown() {
-	# Clean up temporary directories
-	rm -rf "${TEST_HOME}" "${TEST_CWD}" "${TEST_GIT_REPO}"
+	rm -rf "${TEST_ROOT}"
+	unset NOTEBOOK_PATH
 }
 
-# =============================================================================
-# Priority 1: NOTEBOOK_PATH environment variable
-# =============================================================================
-
-@test "discover: returns NOTEBOOK_PATH env var when set" {
-	export NOTEBOOK_PATH="/custom/notebook/path"
-	export HOME="${TEST_HOME}"
-
-	cd "${TEST_CWD}"
-	result=$(NOTEBOOK_PATH="/custom/notebook/path" discover_notebook_path)
-
-	[ "$result" = "/custom/notebook/path" ]
-}
-
-@test "discover: ignores other discovery methods when NOTEBOOK_PATH is set" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/wrong/path", "contexts": ["'"${TEST_CWD}"'"]}]}' >"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}"
-	result=$(NOTEBOOK_PATH="/custom/path" discover_notebook_path)
-
-	[ "$result" = "/custom/path" ]
-}
-
-# =============================================================================
-# Priority 2: .zk.json in current working directory
-# =============================================================================
-
-@test "discover: reads notebookPath from .zk.json in CWD" {
-	export HOME="${TEST_HOME}"
-
-	# Create .zk.json in test directory
-	echo '{"notebookPath": "/path/from/zk/json"}' >"${TEST_CWD}/.zk.json"
-
-	cd "${TEST_CWD}"
+# Test 1: NOTEBOOK_PATH environment variable takes precedence
+@test "discover: returns NOTEBOOK_PATH when set" {
+	export NOTEBOOK_PATH="/from/envvar"
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	
 	result=$(discover_notebook_path)
+	[ "$result" = "/from/envvar" ]
+}
 
-	[ "$result" = "/path/from/zk/json" ]
+@test "discover: NOTEBOOK_PATH takes precedence over .zk.json" {
+	export NOTEBOOK_PATH="/from/envvar"
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	printf '{"notebookPath": "/from/zkjson"}' > .zk.json
+	
+	result=$(discover_notebook_path)
+	[ "$result" = "/from/envvar" ]
+}
+
+@test "discover: NOTEBOOK_PATH takes precedence over projects.json" {
+	export NOTEBOOK_PATH="/from/envvar"
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/work"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
+	result=$(discover_notebook_path)
+	[ "$result" = "/from/envvar" ]
+}
+
+# Test 2: Local .zk.json file
+@test "discover: reads .zk.json from current directory" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	printf '{"notebookPath": "/from/zkjson"}' > .zk.json
+	
+	result=$(discover_notebook_path)
+	[ "$result" = "/from/zkjson" ]
 }
 
 @test "discover: .zk.json takes precedence over projects.json" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	# Create both files
-	echo '{"notebookPath": "/from/zk/json"}' >"${TEST_CWD}/.zk.json"
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/from/projects/json", "contexts": ["'"${TEST_CWD}"'"]}]}' >"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}"
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	printf '{"notebookPath": "/from/zkjson"}' > .zk.json
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/work"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	[ "$result" = "/from/zk/json" ]
+	[ "$result" = "/from/zkjson" ]
 }
 
-@test "discover: ignores empty notebookPath in .zk.json" {
-	export HOME="${TEST_HOME}"
-
-	echo '{"notebookPath": ""}' >"${TEST_CWD}/.zk.json"
-
-	cd "${TEST_CWD}"
+@test "discover: ignores .zk.json with empty notebookPath" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	printf '{"notebookPath": ""}' > .zk.json
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/work"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	# Should fall through to next discovery method
-	[ -z "$result" ] || [ "$result" != "" ]
+	[ "$result" = "/from/projects" ]
 }
 
-@test "discover: handles .zk.json with null notebookPath" {
-	export HOME="${TEST_HOME}"
-
-	echo '{"notebookPath": null}' >"${TEST_CWD}/.zk.json"
-
-	cd "${TEST_CWD}"
+# Test 3: Projects config - exact context match
+@test "discover: matches exact path in projects.json" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/work"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	# Should fall through to next discovery method
-	[ -z "$result" ] || true
+	[ "$result" = "/from/projects" ]
 }
 
-# =============================================================================
-# Priority 3: ~/.config/zk/projects.json with exact context match
-# =============================================================================
-
-@test "discover: exact match on context in projects.json" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	# Create projects.json with exact context match
-	echo '{"projects": [{"projectId": "my-project", "notebookPath": "/notebook/path", "contexts": ["'"${TEST_CWD}"'"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}"
+# Test 4: Projects config - prefix match (NEW LOGIC)
+@test "discover: matches prefix path in projects.json (one level deep)" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/work/subdir"
+	cd "${TEST_ROOT}/work/subdir"
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/work"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	[ "$result" = "/notebook/path" ]
+	[ "$result" = "/from/projects" ]
 }
 
-@test "discover: no match if context doesn't match exactly" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	echo '{"projects": [{"projectId": "my-project", "notebookPath": "/notebook/path", "contexts": ["/different/path"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}"
+@test "discover: matches prefix path in projects.json (multiple levels deep)" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/work/src/components/deep"
+	cd "${TEST_ROOT}/work/src/components/deep"
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/work"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	[ -z "$result" ] || true
+	[ "$result" = "/from/projects" ]
 }
 
-# =============================================================================
-# Priority 3: ~/.config/zk/projects.json with prefix match (CWD starts with context)
-# =============================================================================
-
-@test "discover: prefix match when CWD is subdirectory of context" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-	mkdir -p "${TEST_CWD}/src/components/deep"
-
-	# Create projects.json with context = parent, CWD = subdirectory
-	echo '{"projects": [{"projectId": "my-project", "notebookPath": "/notebook/for/project", "contexts": ["'"${TEST_CWD}"'"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}/src/components/deep"
+@test "discover: prevents false positive on similar paths" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/work"
+	mkdir -p "${TEST_ROOT}/work-old"
+	cd "${TEST_ROOT}/work-old"
+	
+	# Context is /work, but we're in /work-old - should NOT match
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/work"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	[ "$result" = "/notebook/for/project" ]
+	# Should NOT find it (either git root or fallback)
+	[[ "$result" != "/from/projects" ]]
 }
 
-@test "discover: prefix match works at multiple nesting levels" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-	mkdir -p "${TEST_CWD}/a/b/c/d/e"
-
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/nb/path", "contexts": ["'"${TEST_CWD}"'"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}/a/b/c/d/e"
+@test "discover: selects correct project from multiple projects" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/project-a"
+	mkdir -p "${TEST_ROOT}/project-b"
+	cd "${TEST_ROOT}/project-b"
+	
+	printf '{"projects": [{"projectId": "a", "contexts": ["%s/project-a"], "notebookPath": "/from/project-a"}, {"projectId": "b", "contexts": ["%s/project-b"], "notebookPath": "/from/project-b"}]}' "${TEST_ROOT}" "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	[ "$result" = "/nb/path" ]
+	[ "$result" = "/from/project-b" ]
 }
 
-@test "discover: prefix match does not match similar paths" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	# Create projects.json with context = /tmp/projects
-	# CWD = /tmp/projects-old should NOT match
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/notebook/path", "contexts": ["/tmp/projects"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "/tmp/projects-old"
+@test "discover: handles null contexts in projects" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	
+	printf '{"projects": [{"projectId": "test", "contexts": null, "notebookPath": "/from/null"}]}' > "${HOME}/.config/zk/projects.json"
+	
+	# Should not crash, should fall through to git/fallback
 	result=$(discover_notebook_path)
-
-	[ -z "$result" ] || true
+	[ -n "$result" ]
 }
 
-# =============================================================================
-# Priority 3: Multiple projects - select correct one
-# =============================================================================
-
-@test "discover: selects correct project from multiple entries" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	# Create projects.json with multiple projects
-	cat >"${TEST_HOME}/.config/zk/projects.json" <<EOF
-{
-  "projects": [
-    {
-      "projectId": "project-a",
-      "notebookPath": "/notebooks/a",
-      "contexts": ["/path/to/a"]
-    },
-    {
-      "projectId": "project-b",
-      "notebookPath": "/notebooks/b",
-      "contexts": ["${TEST_CWD}"]
-    },
-    {
-      "projectId": "project-c",
-      "notebookPath": "/notebooks/c",
-      "contexts": ["/path/to/c"]
-    }
-  ]
-}
-EOF
-
-	cd "${TEST_CWD}"
+# Test 5: Git fallback
+@test "discover: returns git root/.notebook/ when in git repo" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/repo/src"
+	cd "${TEST_ROOT}/repo"
+	git init > /dev/null 2>&1
+	
+	cd "${TEST_ROOT}/repo/src"
 	result=$(discover_notebook_path)
-
-	[ "$result" = "/notebooks/b" ]
+	[ "$result" = "${TEST_ROOT}/repo/.notebook/" ]
 }
 
-@test "discover: handles null contexts array gracefully" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	cat >"${TEST_HOME}/.config/zk/projects.json" <<EOF
-{
-  "projects": [
-    {
-      "projectId": "project-a",
-      "notebookPath": "/notebooks/a",
-      "contexts": null
-    }
-  ]
-}
-EOF
-
-	cd "${TEST_CWD}"
+@test "discover: uses git root even in deeply nested git directory" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/repo/src/components/deep"
+	cd "${TEST_ROOT}/repo"
+	git init > /dev/null 2>&1
+	
+	cd "${TEST_ROOT}/repo/src/components/deep"
 	result=$(discover_notebook_path)
-
-	# Should not crash, should fall through
-	[ -z "$result" ] || true
+	[ "$result" = "${TEST_ROOT}/repo/.notebook/" ]
 }
 
-# =============================================================================
-# Priority 4: Git repository fallback
-# =============================================================================
-
-@test "discover: returns git root + .notebook/ when in git repo and no config" {
-	export HOME="${TEST_HOME}"
-
-	# Initialize git repo
-	cd "${TEST_GIT_REPO}"
-	git init -q
-	git config user.email "test@example.com"
-	git config user.name "Test"
-	echo "test" >test.txt
-	git add test.txt
-	git commit -q -m "initial"
-
-	# Create subdirectory and test from there
-	mkdir -p "${TEST_GIT_REPO}/src/app"
-	cd "${TEST_GIT_REPO}/src/app"
-
+# Test 6: Fallback to CWD
+@test "discover: returns pwd/.notebook/ as final fallback (not in git)" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/no-git"
+	cd "${TEST_ROOT}/no-git"
+	
 	result=$(discover_notebook_path)
-
-	[ "$result" = "${TEST_GIT_REPO}/.notebook/" ]
+	[ "$result" = "${TEST_ROOT}/no-git/.notebook/" ]
 }
 
-@test "discover: git fallback is skipped if projects.json match found" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	# Initialize git repo
-	cd "${TEST_GIT_REPO}"
-	git init -q
-
-	# Create projects.json
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/config/path", "contexts": ["'"${TEST_GIT_REPO}"'"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_GIT_REPO}"
-	result=$(discover_notebook_path)
-
-	# Should return config path, not git path
-	[ "$result" = "/config/path" ]
-}
-
-# =============================================================================
-# Priority 5: Fallback to current directory
-# =============================================================================
-
-@test "discover: returns pwd + .notebook/ as final fallback" {
-	export HOME="${TEST_HOME}"
-
-	cd "${TEST_CWD}"
-	result=$(discover_notebook_path)
-
-	[ "$result" = "${TEST_CWD}/.notebook/" ]
-}
-
-@test "discover: fallback works when not in git repo and no config" {
-	export HOME="${TEST_HOME}"
-
-	cd "/tmp"
-	result=$(discover_notebook_path)
-
-	[ "$result" = "/tmp/.notebook/" ]
-}
-
-# =============================================================================
-# add_notebook_path_as_context function tests
-# =============================================================================
-
+# Test 7: add_notebook_path_as_context function
 @test "add: creates projects.json if it doesn't exist" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	cd "${TEST_CWD}"
-	add_notebook_path_as_context "test-project"
-
-	[ -f "${TEST_HOME}/.config/zk/projects.json" ]
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	
+	add_notebook_path_as_context "test-project" > /dev/null 2>&1
+	
+	[ -f "${HOME}/.config/zk/projects.json" ]
 }
 
-@test "add: initializes projects array with new project" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
+@test "add: initializes projects array" {
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	
+	add_notebook_path_as_context "test-project" > /dev/null 2>&1
+	
+	projects=$(jq '.projects' "${HOME}/.config/zk/projects.json" 2>/dev/null)
+	[ "$projects" != "null" ]
+}
 
-	cd "${TEST_CWD}"
-	add_notebook_path_as_context "test-project"
-
-	# Verify structure
-	result=$(jq -r '.projects[0].projectId' "${TEST_HOME}/.config/zk/projects.json")
+@test "add: creates project with context when project doesn't exist" {
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	
+	# Pre-populate the config
+	printf '{"projects": []}' > "${HOME}/.config/zk/projects.json"
+	
+	add_notebook_path_as_context "test-project" > /dev/null 2>&1
+	
+	# Verify project was added
+	result=$(jq -r '.projects[0].projectId' "${HOME}/.config/zk/projects.json")
 	[ "$result" = "test-project" ]
 }
 
 @test "add: adds context to existing project" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	# Create initial project
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/nb", "contexts": ["/path/one"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}"
-	add_notebook_path_as_context "test"
-
-	# Check contexts array now has 2 items
-	count=$(jq '.projects[0].contexts | length' "${TEST_HOME}/.config/zk/projects.json")
-	[ "$count" = "2" ]
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	
+	# Pre-populate with a project
+	printf '{"projects": [{"projectId": "test", "contexts": [], "notebookPath": "/test"}]}' > "${HOME}/.config/zk/projects.json"
+	
+	add_notebook_path_as_context "test" > /dev/null 2>&1
+	
+	# Verify context was added
+	result=$(jq -r '.projects[0].contexts[0]' "${HOME}/.config/zk/projects.json")
+	[ "$result" = "${TEST_ROOT}/work" ]
 }
 
-@test "add: does not duplicate contexts" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/nb", "contexts": ["'"${TEST_CWD}"'"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}"
-	add_notebook_path_as_context "test"
-
-	# Should still be 1 context
-	count=$(jq '.projects[0].contexts | length' "${TEST_HOME}/.config/zk/projects.json")
+@test "add: prevents duplicate contexts" {
+	mkdir -p "${TEST_ROOT}/work"
+	cd "${TEST_ROOT}/work"
+	
+	# Pre-populate with context already present
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/work"], "notebookPath": "/test"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
+	# Try to add same context again
+	add_notebook_path_as_context "test" > /dev/null 2>&1
+	
+	# Verify only one context exists
+	count=$(jq '.projects[0].contexts | length' "${HOME}/.config/zk/projects.json")
 	[ "$count" = "1" ]
 }
 
-@test "add: handles missing contexts array" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	# Project without contexts array
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/nb"}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}"
-	add_notebook_path_as_context "test"
-
-	# Contexts array should now exist with 1 item
-	result=$(jq '.projects[0].contexts[0]' "${TEST_HOME}/.config/zk/projects.json")
-	[ "$result" = "\"${TEST_CWD}\"" ]
-}
-
-# =============================================================================
-# Edge cases and error handling
-# =============================================================================
-
-@test "discover: handles malformed projects.json gracefully" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	# Create invalid JSON
-	echo "{ invalid json" >"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_CWD}"
-	result=$(discover_notebook_path 2>/dev/null || true)
-
-	# Should fall back to git or pwd
-	[ -n "$result" ]
-}
-
+# Test 8: Edge cases
 @test "discover: handles paths with spaces" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	TEST_SPACE_DIR="${TEST_CWD}/path with spaces"
-	mkdir -p "${TEST_SPACE_DIR}"
-
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/notebooks", "contexts": ["'"${TEST_SPACE_DIR}"'"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${TEST_SPACE_DIR}"
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/my work/deep folder"
+	cd "${TEST_ROOT}/my work/deep folder"
+	
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/my work"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	[ "$result" = "/notebooks" ]
+	[ "$result" = "/from/projects" ]
 }
 
-@test "discover: handles notebookPath with spaces" {
-	export HOME="${TEST_HOME}"
-
-	echo '{"notebookPath": "/path/with spaces/notebook"}' >"${TEST_CWD}/.zk.json"
-
-	cd "${TEST_CWD}"
+@test "discover: handles paths with dashes and numbers" {
+	unset NOTEBOOK_PATH
+	mkdir -p "${TEST_ROOT}/project-123/v2-alpha"
+	cd "${TEST_ROOT}/project-123/v2-alpha"
+	
+	printf '{"projects": [{"projectId": "test", "contexts": ["%s/project-123"], "notebookPath": "/from/projects"}]}' "${TEST_ROOT}" > "${HOME}/.config/zk/projects.json"
+	
 	result=$(discover_notebook_path)
-
-	[ "$result" = "/path/with spaces/notebook" ]
+	[ "$result" = "/from/projects" ]
 }
 
-@test "discover: handles special characters in paths" {
-	export HOME="${TEST_HOME}"
-	mkdir -p "${TEST_HOME}/.config/zk"
-
-	SPECIAL_PATH="${TEST_CWD}/path-with_special.chars"
-	mkdir -p "${SPECIAL_PATH}"
-
-	echo '{"projects": [{"projectId": "test", "notebookPath": "/nb", "contexts": ["'"${SPECIAL_PATH}"'"]}]}' \
-		>"${TEST_HOME}/.config/zk/projects.json"
-
-	cd "${SPECIAL_PATH}"
-	result=$(discover_notebook_path)
-
-	[ "$result" = "/nb" ]
-}

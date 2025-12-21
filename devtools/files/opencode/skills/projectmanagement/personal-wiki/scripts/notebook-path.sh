@@ -7,11 +7,11 @@ HEREDIR=$(
 	cd "$(dirname "${BASH_SOURCE[0]}")" && pwd
 )
 
-notebook_path_envvar="${NOTEBOOK_PATH:-}"
-notebook_path_cwd="$(pwd)/.zk.json"
-notebook_path_config="${HOME}/.config/zk/projects.json"
-
 function discover_notebook_path() {
+	# Set these at runtime, not module load time (allows testing)
+	local notebook_path_envvar="${NOTEBOOK_PATH:-}"
+	local notebook_path_cwd="$(pwd)/.zk.json"
+	local notebook_path_config="${HOME}/.config/zk/projects.json"
 	# discover in order:
 	# 1. is there an envvar for NOTEBOOK_PATH?
 	# 2. does the current CWD contain a .zk.json with notebookPath defined?
@@ -52,8 +52,10 @@ function discover_notebook_path() {
 		)
 
 		# if we found a project, return its notebook path
+		# (project is already the notebookPath string from jq -r output above)
 		if [[ -n "${project}" ]]; then
-			echo "${project}" | jq -r '.notebookPath'
+			echo "${project}"
+			return 0
 		fi
 
 	fi
@@ -75,6 +77,7 @@ function discover_notebook_path() {
 function add_notebook_path_as_context() {
 	local project_id
 	local project_context
+	local notebook_path_config="${HOME}/.config/zk/projects.json"
 
 	project_id="${1:-$("${HEREDIR}/get_project_id.sh")}"
 	project_context="$(pwd)"
