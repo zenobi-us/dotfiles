@@ -74,7 +74,8 @@ When creating or updating planning artifacts via `basicmemory_write_note`:
 
 **Step 2: Assemble Content for basicmemory**
 The content passed to `basicmemory_write_note` must be:
-```
+
+```md
 ---
 field1: value1
 field2: value2
@@ -96,7 +97,7 @@ Markdown body content here...
 - No `## Frontmatter` markdown sections
 
 **Step 3: Call basicmemory_write_note**
-```
+```md
 basicmemory_write_note(
     title="artifact-title",
     folder="2-epics",  # or 1-prds, 3-research, etc.
@@ -130,7 +131,8 @@ These are **structured metadata fields**, not markdown content.
 #### Common Mistake: Markdown Code Blocks
 
 ❌ **WRONG** - Creates markdown code block, loses frontmatter:
-```
+
+```md
 ---
 title: Artifact Title
 type: epic
@@ -141,16 +143,16 @@ permalink: some-path
 
 ## Frontmatter
 
-```yaml
-epic_id: 1
+\`\`\`yaml
+epic_idid: 1
 status: planned
-```
+\`\`\`
 
 Rest of content...
 ```
 
 ✅ **CORRECT** - Preserves frontmatter as YAML:
-```
+```md
 ---
 title: Artifact Title
 type: epic
