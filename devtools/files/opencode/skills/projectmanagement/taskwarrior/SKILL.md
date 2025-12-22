@@ -46,19 +46,18 @@ task project:$PROJECT_ID priority:L list
 **Complex filtering:**
 ```bash
 task project:$PROJECT_ID +bug priority:H status:pending list
-task project:$PROJECT_ID due.before:tomorrow status:pending list
 ```
 
 ### 3. Task CRUD Operations
 
 **Add a new task:**
 ```bash
-task project:$PROJECT_ID add "Task description" +tag priority:H due:tomorrow
+task project:$PROJECT_ID add "Task description" +tag priority:H
 ```
 
 **Create task with full attributes:**
 ```bash
-task project:$PROJECT_ID add "Implementation task" project:$PROJECT_ID +feature +backend priority:M due:next-week
+task project:$PROJECT_ID add "Implementation task" project:$PROJECT_ID +feature +backend priority:M
 ```
 
 **Update existing task:**
@@ -94,15 +93,7 @@ task project:$PROJECT_ID summary
 task project:$PROJECT_ID active list
 ```
 
-**Show overdue tasks:**
-```bash
-task project:$PROJECT_ID overdue list
-```
 
-**View task burndown:**
-```bash
-task project:$PROJECT_ID burndown.weekly
-```
 
 ### 5. Export & Import
 
@@ -143,10 +134,10 @@ When implementing commands that use this agent:
 
 ### Search with Multiple Filters
 ```bash
-# Find urgent bugs due this week
-task project:zenobi-us-dotfiles +bug priority:H due.before:eow list
+# Find urgent bugs with high priority
+task project:zenobi-us-dotfiles +bug priority:H list
 
-# Find pending tasks assigned to me with high priority
+# Find pending tasks with high priority
 task project:zenobi-us-dotfiles status:pending priority:H +important list
 ```
 
@@ -165,7 +156,7 @@ task project:zenobi-us-dotfiles 1,2,3 modify +reviewed
 task project:zenobi-us-dotfiles 'description~Bug' list
 
 # Combine filters with AND/OR
-task project:zenobi-us-dotfiles '(priority:H or due.before:tomorrow)' list
+task project:zenobi-us-dotfiles '(priority:H or status:pending)' list
 ```
 
 ## Integration Points

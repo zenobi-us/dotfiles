@@ -1,0 +1,251 @@
+#!/bin/bash
+
+#
+# This script discovers the path to notebook of the current project.
+#
+
+NOTEBOOKS_DIR="${NOTEBOOKS:-~/Notes/}"
+NOTEBOOK_ZK_CONFIG="zk/config.toml"
+
+function read_toml() {
+	mise x -- yq -p toml "$1" "${2:-cat}" 2>/dev/null
+}
+function write_toml() {
+	mise x -- yq -p toml -o toml -i "$1" "$2" 2>/dev/null
+}
+
+# Discovers the Notebook Path for the provided directory.
+# Discovery Process:
+#
+# 1. Environment variable NOTEBOOK_PATH
+#   1.1 if set, use it directly. exit 0
+#   1.2 if not set, continue to step 2.
+#
+# 2. "./.${NOTEBOOK_ZK_CONFIG}" in any ancestor directory.
+#   2.1 if found, use the parent folder of the zk folder as notebook path. exit 0
+#   2.2 if not found, continue to step 3.
+#
+# 3. Scan "$NOTEBOOKS_DIR/**/.${NOTEBOOK_ZK_CONFIG}" for matching context.
+#   3.1 for each found, check if the config has a notebook.contexts field.
+#   3.2 if so, check if CWD starts with any of the contexts.
+#   3.3 if match found, use the parent folder of the zk folder as notebook path. exit 0
+#   3.4 if no match found, continue to next found.
+#
+# 4. Default to global notebook at "~/.config/
+#  4.1 default to global notebook at "~/.config/zk/config.toml"
+#  4.2 if found, read the notebook.dir field.
+#  4.2.1 if no notebook.dir field, exit 1
+#  4.2.2 if notebook.dir field exists, use its value as notebook path. exit 0
+#  4.3 if not found, exit 1
+#
+function discover_notebook_path() {
+	local cwd="${1:-$(pwd)}"
+	local notebook_path
+
+	# Step 1: Check NOTEBOOK_PATH environment variable
+	if [ -n "$NOTEBOOK_PATH" ]; then
+		echo "$NOTEBOOK_PATH"
+		return 0
+	fi
+
+	# Step 2: Search ancestor directories for zk/config.toml
+	local current_dir="$cwd"
+	while [ "$current_dir" != "/" ]; do
+		if [ -f "$current_dir/$NOTEBOOK_ZK_CONFIG" ]; then
+			echo "$current_dir"
+			return 0
+		fi
+		current_dir=$(dirname "$current_dir")
+	done
+
+	# Step 3: Scan $NOTEBOOKS_DIR for matching contexts
+	if [ -d "$NOTEBOOKS_DIR" ]; then
+		while IFS= read -r config_file; do
+			# Extract contexts from config file using yq
+			local contexts
+			contexts=$(read_toml '.notebook.contexts[]?' "$config_file")
+
+			if [ -n "$contexts" ]; then
+				# Check if CWD starts with any context
+				while IFS= read -r context; do
+					if [[ "$cwd" == "$context"* ]]; then
+						echo "$(dirname "$(dirname "$config_file")")"
+						return 0
+					fi
+				done <<<"$contexts"
+			fi
+		done < <(find "$NOTEBOOKS_DIR" -name "$NOTEBOOK_ZK_CONFIG" -type f 2>/dev/null)
+	fi
+
+	# Step 4: Fall back to global notebook
+	local global_config="$HOME/.config/$NOTEBOOK_ZK_CONFIG"
+	if [ -f "$global_config" ]; then
+		# Try to read notebook.dir field
+		local notebook_dir
+		notebook_dir=$(read_toml '.notebook.dir // empty' "$global_config" 2>/dev/null)
+		if [ -n "$notebook_dir" ]; then
+			echo "$notebook_dir"
+			return 0
+		fi
+	fi
+
+	return 1
+}
+
+##
+# Adds current CWD as a context for a project.
+# without a current Notebook Path, this is a no-op. exit 1
+# with a current Notebook Path, adds a context entry to the config file.
+#
+# [notebook]
+# contexts = [
+#  "/path/to/project",
+#  "/another/project"
+# ]
+#
+function add_notebook_path_as_context() {
+	local cwd
+	local notebook_path
+	local config_file
+	local contexts
+	local exists
+
+	cwd=$(pwd)
+	notebook_path=$(discover_notebook_path "$cwd")
+
+	if [ -z "$notebook_path" ]; then
+		echo "No notebook path found. Cannot add context." >&2
+		return 1
+	fi
+
+	config_file="$notebook_path/$NOTEBOOK_ZK_CONFIG"
+
+	# Ensure the config file exists
+	mkdir -p "$(dirname "$config_file")"
+	if [ ! -f "$config_file" ]; then
+		touch "$config_file"
+	fi
+
+	contexts=$(read_toml '.notebook.contexts // empty' "$config_file" 2>/dev/null || echo "[]")
+	if [ -z "$contexts" ]; then
+		# Initialize contexts as an empty array if it doesn't exist
+		write_toml '.notebook.contexts = []' "$config_file"
+	fi
+
+	# Ensure notebook.contexts is an array
+
+	# Check if the context already exists
+	# or if CWD starts with one of the existing contexts
+	exists=$(echo "$contexts" | read_toml ".any(. == \"$cwd\" or startswith(\"$cwd\")" 2>/dev/null)
+	if [ "$exists" == "true" ]; then
+		echo "Context '$cwd' already exists in notebook config at '$config_file'."
+		return 0
+	fi
+
+	# Add the context using yq
+	write_toml ".notebook.contexts += [\"$cwd\"]" "$config_file"
+
+	echo "Added context '$cwd' to notebook config at '$config_file'."
+	return 0
+
+}
+
+# Function to slugify text
+function slugify() {
+	local text="$1"
+	echo "$text" |
+		tr '[:upper:]' '[:lower:]' |
+		tr '\n' ' ' |
+		sed 's/[^a-z0-9[:space:]]\+//g' |
+		sed 's/[[:space:]]\+/-/g' |
+		sed 's/^-\+//g' |
+		sed 's/-\+$//g'
+}
+
+# Get git information
+function get_project_id() {
+	local target_pwd
+
+	target_pwd="${1:-$(pwd)}"
+
+	# Try to get git repository info
+	if git_root=$(git rev-parse --show-toplevel 2>/dev/null); then
+		remote=$(git remote 2>/dev/null | head -1)
+		if [ -z "$remote" ]; then
+			remote="origin"
+		fi
+
+		repo_url=$(git remote get-url "$remote" 2>/dev/null || echo "")
+
+		# Slugify the repository URL
+		if [ -n "$repo_url" ]; then
+			repo_slug=$(slugify "$repo_url")
+		else
+			repo_slug=$(slugify "$git_root")
+		fi
+
+		# Slugify the git root path
+		path_slug=$(slugify "$git_root")
+	else
+		# Not in a git repository, use current directory
+		repo_slug=$(slugify "$target_pwd")
+		path_slug=$(slugify "$target_pwd")
+		remote=""
+	fi
+
+	# Default project ID is the repository slug
+	project_id="$repo_slug"
+
+	# Output as JSON
+	cat <<EOF
+{
+  "projectId": "$project_id",
+  "repo": "$repo_slug",
+  "remote": "$remote",
+  "path": "$path_slug"
+}
+EOF
+}
+
+function main() {
+	local args=("$@")
+	local cmd="$1"
+	shift
+
+	case "${cmd}" in
+	project)
+		local subcmd="$1"
+		shift
+		case "${subcmd}" in
+
+		id)
+			get_project_id "$@"
+			;;
+		discover)
+			discover_notebook_path "$@"
+			;;
+		add)
+			add_notebook_path_as_context "$@"
+			;;
+		*)
+			echo "Usage: $0 {discover|add|id}" >&2
+			echo "" >&2
+			echo "  discover [path]   - Discover the notebook path for the current project." >&2
+			echo "  add      path     - Add the current project path as a context to the notebook." >&2
+			echo "  id       [path]   - Get the project ID and related information." >&2
+
+			exit 1
+			;;
+		esac
+		;;
+
+	*)
+		zk "${args}"
+		;;
+
+	esac
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+	main "$@"
+fi

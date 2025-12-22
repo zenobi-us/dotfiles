@@ -1,6 +1,7 @@
 ---
 name: Research
 description: Delegate structured research with verification methodology - breaks topics into subtopics, requires multiple source verification, produces evidence-based findings with confidence levels
+subtask: true
 ---
 
 # Research Command

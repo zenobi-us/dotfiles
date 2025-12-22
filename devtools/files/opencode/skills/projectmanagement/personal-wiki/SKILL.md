@@ -1,9 +1,18 @@
 ---
-name: using-zk-cli
+name: personal-wiki
 description: Use when creating, linking, searching, or exporting notes with zk—prevents confusion on command flags, link syntax, working directory behavior, and export formats
 ---
 
-# Using ZK CLI
+# Personal Wiki with ZK CLI
+
+> [!Note]
+>
+> Any usage of the `zk` command must include a NotebookPath via the `-W` flag. This is **not optional**.
+> 
+> - **ProjectId**: !`echo "$URL" | sed 's|.*/||; s/\.git$//; s/[^a-zA-Z0-9]/-/g; s/^-\+\|-\+$//g' | tr '[:upper:]' '[:lower:]'`
+> - The NotebookPath is `~/Notes/Projects/{{ ProjectId }}`
+> - All `zk` commands must include `-W ~/Notes/Projects/{{ ProjectId }}`
+
 
 ## Overview
 

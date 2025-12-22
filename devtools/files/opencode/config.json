@@ -3,9 +3,9 @@
   "plugin": [
     "opencode-sessions@latest",
     "@zenobius/opencode-background@latest",
-    "@zenobius/opencode-skillful@1.0.0",
     "@tarquinen/opencode-dcp@latest",
     "@franlol/opencode-md-table-formatter@0.0.3",
+    "/mnt/Store/Projects/Mine/Github/opencode-skillful/dist/index.js"
   ],
   "model": "anthropic/claude-haiku-4-5",
   "autoupdate": false,
