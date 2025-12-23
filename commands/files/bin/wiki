@@ -150,7 +150,9 @@ function add_notebook_path_as_context() {
 
 }
 
+##
 # Function to slugify text
+#
 function slugify() {
 	local text="$1"
 	echo "$text" |
@@ -162,7 +164,9 @@ function slugify() {
 		sed 's/-\+$//g'
 }
 
+##
 # Get git information
+#
 function get_project_id() {
 	local target_pwd
 
@@ -207,12 +211,30 @@ function get_project_id() {
 EOF
 }
 
+##
+# Edit a single note
+#
+function edit_note() {
+	local note_id
+
+	note_id="$1"
+
+}
+
+##
+# Edit multiple n
+##
+# Main entry point
+#
 function main() {
 	local args=("$@")
 	local cmd="$1"
 	shift
 
 	case "${cmd}" in
+	edit)
+		edit_note "$@"
+		;;
 	project)
 		local subcmd="$1"
 		shift
