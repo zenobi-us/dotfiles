@@ -1,0 +1,49 @@
+---
+depends:
+  - devtools.mise
+  - shells.mise
+  - shells.zsh
+  - devtools.mcporter
+
+actions:
+  - action: command.run
+    command: rm
+    where: os.name == "linux" || os.name == "macos"
+    args:
+      - -rf
+      - "{{ user.home_dir }}/.pi"
+
+  - action: command.run
+    where: os.name == "windows"
+    command: pwsh
+    args:
+      - -c
+      - |
+        remove-item -recurse -force -erroraction SilentlyContinue $env:LOCALAPPDATA/pi
+        new-item -path "$env:LOCALAPPDATA/pi" -itemtype symboliclink -value "$(pwd)/devtools/files/pi"
+
+  - action: command.run
+    command: mkdir
+    where: os.name == "linux" || os.name == "macos"
+    args:
+      - -p
+      - "{{user.home_dir}}/.pi/agent"
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/tools"
+    from: pi/agent/tools
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/themes"
+    from: pi/agent/themes
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/settings.json"
+    from: pi/agent/settings.json
+
+  - action: command.run
+    dir: "{{user.home_dir}}/.pi"
+    command: mise
+    args:
+      - install
+

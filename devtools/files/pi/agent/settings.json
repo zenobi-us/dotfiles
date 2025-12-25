@@ -1,0 +1,10 @@
+{
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-haiku-4-5",
+  "defaultThinkingLevel": "minimal",
+  "lastChangelogVersion": "0.27.6",
+  "theme": "rose-pine",
+  "terminal": {
+    "showImages": true
+  }
+}

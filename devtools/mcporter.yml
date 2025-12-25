@@ -1,0 +1,27 @@
+---
+depends:
+  - devtools.mise
+  - shells.mise
+  - shells.zsh
+
+actions:
+  - action: command.run
+    command: rm
+    where: os.name == "linux" || os.name == "macos"
+    args:
+      - -rf
+      - "{{ user.home_dir }}/.mcporter"
+
+  - action: command.run
+    where: os.name == "windows"
+    command: pwsh
+    args:
+      - -c
+      - |
+        remove-item -recurse -force -erroraction SilentlyContinue $env:LOCALAPPDATA/mcporter
+        new-item -path "$env:LOCALAPPDATA/mcporter" -itemtype symboliclink -value "$(pwd)/devtools/files/mcporter"
+
+  - action: file.link
+    to: "{{user.home_dir}}/.mcporter"
+    from: mcporter
+
