@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+bundles="${1}"
+
+if [ -z "$bundles" ]; then
+	echo "Usage: mise run build-opencode-desktop <bundles>"
+	echo "Example: mise run build-opencode-desktop rpm,deb"
+	exit 1
+fi
+
+# Check if we're in a git repo and verify it's sst/opencode
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+	echo "Error: Not in a git repository"
+	exit 1
+fi
+
+origin_remote=$(git config --get remote.origin.url)
+upstream_remote=$(git config --get remote.upstream.url)
+has_sst_opencode="${origin_remote}${upstream_remote}"
+# if origin or upstream doesn't contain sst/opencode, exit with error
+if [[ "$has_sst_opencode" != *"sst/opencode"* ]]; then
+	echo "Error: This task can only run in the sst/opencode repository"
+	exit 1
+fi
+
+# Detect current platform and set RUST_TARGET
+arch=$(uname -m)
+platform=$(uname -s)
+
+case "$platform-$arch" in
+Linux-x86_64)
+	rustTarget="x86_64-unknown-linux-gnu"
+	;;
+Linux-aarch64)
+	rustTarget="aarch64-unknown-linux-gnu"
+	;;
+Darwin-x86_64)
+	rustTarget="x86_64-apple-darwin"
+	;;
+Darwin-arm64)
+	rustTarget="aarch64-apple-darwin"
+	;;
+*)
+	echo "Unsupported platform: $platform $arch"
+	exit 1
+	;;
+esac
+
+echo "Building for target: $rustTarget"
+
+# Set RUST_TARGET and run predev
+export TAURI_ENV_TARGET_TRIPLE="$rustTarget"
+cd ./packages/desktop || exit 1
+echo "Running predev script..."
+bun ./scripts/predev.ts
+
+# Run tauri build with specified bundles
+echo "Building Tauri bundles: $bundles"
+bun tauri build --bundles "$bundles"
+
+echo "Build complete!"
+
+cd - >/dev/null 2>&1 || exit 1

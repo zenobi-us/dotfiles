@@ -108,7 +108,7 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
-        bind "Ctrl o" { SwitchToMode "normal"; }
+        bind "Ctrl o" { SwitchToMode "normal"; }  // DISABLED - using Ctrl+O in programs
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 floating true
@@ -168,7 +168,7 @@ keybinds clear-defaults=true {
         bind "Ctrl h" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
-        bind "Ctrl o" { SwitchToMode "session"; }
+        bind "Ctrl o" { SwitchToMode "session"; }  // DISABLED - using Ctrl+O in programs
     }
     shared_except "locked" "entersearch" "renametab" "renamepane" "prompt" "tmux" {
         bind "Ctrl q" { Quit; }

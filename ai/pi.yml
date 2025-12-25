@@ -1,0 +1,18 @@
+---
+depends:
+  - devtools.pi
+
+
+actions:
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/commands"
+    from: commands
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/skills"
+    from: skills
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/AGENT.md"
+    from: AGENTS.md

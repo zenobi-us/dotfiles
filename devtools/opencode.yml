@@ -3,6 +3,7 @@ depends:
   - devtools.mise
   - shells.mise
   - shells.zsh
+  - devtools.mcporter
 
 actions:
   - action: command.run
@@ -26,7 +27,7 @@ actions:
       - -c
       - |
         remove-item -recurse -force -erroraction SilentlyContinue $env:LOCALAPPDATA/opencode
-        new-item -path "$env:LOCALAPPDATA/opencode" -itemtype symboliclink -value "$(pwd)/devtools/files/nvim"
+        new-item -path "$env:LOCALAPPDATA/opencode" -itemtype symboliclink -value "$(pwd)/devtools/files/opencode"
 
   - action: file.link
     to: "{{user.home_dir}}/.config/opencode"
@@ -38,6 +39,3 @@ actions:
     args:
       - install
 
-  - action: file.link
-    to: "{{user.home_dir}}/.mcporter"
-    from: mcporter

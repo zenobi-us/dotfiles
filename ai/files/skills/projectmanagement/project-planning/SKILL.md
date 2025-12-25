@@ -116,6 +116,7 @@ Each artifact type has valid status progressions that guide state management thr
 
 ## Artifact Schemas and Content Structure
 
-All artifacts follow consistent schema patterns for organization and linking. Each artifact type has specific frontmatter requirements and content sections.
+All artifacts follow consistent schema patterns for organization and linking. 
+Each artifact type has specific frontmatter requirements and content sections.
 
-→ **See: `references/schema.md`** for detailed schema definitions, artifact content structure, and link type definitions for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
+→ Use the linked skill resources for detailed schema definitions, artifact content structure, and link type definitions for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
