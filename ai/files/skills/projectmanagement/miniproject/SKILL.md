@@ -14,6 +14,21 @@ This is a simplified and concise project management AI memory framework.
 > - if `.memory/` is missing these files, then create those three.
 > - Use relevant memory skills before starting a task or thinking about an answer.
 
+## Rule 0
+
+When anything fails: STOP. Explain to Q. Wait for confirmation before proceeding.
+
+## Before Every Action
+
+```md
+DOING: [action]
+EXPECT: [predicted outcome]
+IF WRONG: [what that means]
+```
+
+Then the tool call. Then compare. Mismatch = stop and surface to Q.
+
+
 ## Research Guidelines
 
 - [knowledge] store findings in `.memory/` directory
@@ -29,9 +44,11 @@ This is a simplified and concise project management AI memory framework.
 
 ## Searching Memory
 
-- use `grep -r "<search-term>" .memory/` instead of `Glob` tool to find relevant notes (Becuase the `Glob` tool ignores .gitignored files)
-- use `grep -r "TODO" .memory/todo.md` to find outstanding tasks
-- use `ls -al .memory/` to list all memory files (because the `List` tool ignores .gitignored files)
+Because `.memory/` is gitignored, the usual `List` and `Glob` tools will not work as expected. Instead, use the following commands to search and list memory files:
+
+- use `grep -r "<search-term>" .memory/` instead of `Glob` tool.
+- use `grep -r "TODO" .memory/todo.md` to find outstanding tasks. 
+- use `ls -al .memory/` to list all memory files instead of `List` tool.
 
 
 ## Execution Steps
