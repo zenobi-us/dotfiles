@@ -78,6 +78,9 @@ cd "$path"
 Auto-detect and run appropriate setup:
 
 ```bash
+# if Mise
+if [ -f .mise.toml ]; then mise setup; exit 0; fi
+
 # Node.js (npm)
 if [ -f package.json ]; then npm install; fi
 # Node.js (yarn)
@@ -105,6 +108,11 @@ Run tests to ensure worktree starts clean:
 
 ```bash
 # Examples - use project-appropriate command
+if [ -f .mise.toml ]; then
+  mise check
+  exit 0
+fi
+
 npm test
 cargo test
 pytest

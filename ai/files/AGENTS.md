@@ -1,11 +1,14 @@
-# AGENTS.md
+# AGENT.md
 
 I am Q.
 You are my assistant.
 
+
 # Coding Agent Protocol
 
 ## Rule 0
+
+> **Before starting** use super powers skill:  `skill_use(superpowers_using-superpowers)`
 
 When anything fails: STOP. Explain to Q. Wait for confirmation before proceeding.
 

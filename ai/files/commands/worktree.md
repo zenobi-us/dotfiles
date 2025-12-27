@@ -38,7 +38,6 @@ If the branch exists but is not in a worktree, create a new worktree for that br
 
 Output the path to the created or selected worktree.
 
-
 ## Guidelines
 
 ### Guideline: Branch Name Conventions
@@ -47,7 +46,7 @@ Output the path to the created or selected worktree.
 - prefix with type/ (e.g. feature/, fix/, chore/, docs/, etc.)
 - use hyphens to separate words
 - limit branch name to 50 characters
-- If a JIRA ticket is associated, include the ticket number at the start (e.g. `feat/PROJ-1234-feature-description`)
+- If a some kind of ticket/issue id is associated, include the ticket number at the start (e.g. `feat/PROJ-1234-feature-description` or `fix/345-bug-description`)
 
 ### Guideline: Worktree Folder Location and Naming
 
