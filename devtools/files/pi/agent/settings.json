@@ -1,7 +1,7 @@
 {
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-haiku-4-5",
-  "defaultThinkingLevel": "minimal",
+  "defaultModel": "claude-sonnet-4-5",
+  "defaultThinkingLevel": "off",
   "lastChangelogVersion": "0.27.6",
   "theme": "rose-pine",
   "terminal": {
