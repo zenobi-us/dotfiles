@@ -1,1 +1,0 @@
-/mnt/Store/Projects/Mine/Github/opencode-skillful/dist/index.js

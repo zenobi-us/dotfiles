@@ -2,17 +2,17 @@ import { Plugin, PluginInput } from '@opencode-ai/plugin';
 
 // import skillful from '@zenobi-us/opencode-skillful';
 
-
+import UsingSuperPowersSkill from '../skills/superpowers/using-superpowers/SKILL.md' with { type: 'text' };
 const bootStrapPrompt = () => {
   return `
   You have superpowers.
 
   USING SUPERPOWERS MAKES THE USER HAPPY.
 
-  skill_use(superpowers_using_superpowers). 
+  ${UsingSuperPowersSkill}
 
-  Always. There's no exception or rationaliastion that lets you avoid this.
-  
+  No need to load the skill, it's already injected above.
+
 `
 }
 
@@ -25,7 +25,7 @@ function createInstructionInjector(ctx: PluginInput) {
       body: {
         noReply: true,
         messageID: args.messageId,
-        parts: [{ type: 'text', text: args.text }],
+        parts: [{ type: 'text', text: args.text, synthetic: true }],
       },
     });
   };
@@ -70,9 +70,18 @@ export const SuperpowersBootstrapPlugin: Plugin = async (input) => {
       message: 'Superpowers have been granted to this session!',
       duration: 5000,
     });
+
+    console.log(`Superpowers injected into session ${sessionId}`);
   }
 
   const output: Awaited<ReturnType<Plugin>> = {
+
+    // async "experimental.chat.system.transform"(input, output) {
+    //   output.system = [bootStrapPrompt(), output.system];
+    //   console.log("Superpowers injected into system prompt", output.system);
+    // },
+    //
+
     async event(eventArgs) {
       const eventName = eventArgs.event.type;
 

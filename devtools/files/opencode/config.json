@@ -4,6 +4,7 @@
     "opencode-sessions@latest",
     "@zenobius/opencode-background@latest",
     "@franlol/opencode-md-table-formatter@0.0.3",
+    "@zenobius/opencode-skillful@next"
   ],
   "model": "anthropic/claude-haiku-4-5",
   "autoupdate": false,

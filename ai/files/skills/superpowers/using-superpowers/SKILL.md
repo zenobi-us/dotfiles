@@ -25,6 +25,14 @@ Before responding to ANY user message, you MUST complete this checklist:
 
 **Responding WITHOUT completing this checklist = automatic failure.**
 
+## Finding Skills
+
+- `skill_find [topic]` → Lists relevant skills for the topic
+  - `skill_find debugging, other topic` → Lists debugging skills and skills for other topic
+  - `skill_find marketing, -online` → Lists marketing skills excluding online marketing skills
+- `skill_use [skill name]` → Reads and runs the specified skill
+- `skill_resource [skill name] [relative/path]` → Accesses a resource file within the specified skill
+
 ## Critical Rules
 
 1. **Follow mandatory workflows.** Brainstorming before coding. Check for relevant skills before ANY task.
