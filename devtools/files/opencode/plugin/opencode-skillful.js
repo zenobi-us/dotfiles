@@ -1,0 +1,1 @@
+/mnt/Store/Projects/Mine/Github/opencode-skillful.worktrees/feature-prompt-render-format/dist/index.js

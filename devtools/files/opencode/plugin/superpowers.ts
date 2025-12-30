@@ -3,6 +3,7 @@ import { Plugin, PluginInput } from '@opencode-ai/plugin';
 // import skillful from '@zenobi-us/opencode-skillful';
 
 import UsingSuperPowersSkill from '../skills/superpowers/using-superpowers/SKILL.md' with { type: 'text' };
+
 const bootStrapPrompt = () => {
   return `
   You have superpowers.
@@ -71,16 +72,13 @@ export const SuperpowersBootstrapPlugin: Plugin = async (input) => {
       duration: 5000,
     });
 
-    console.log(`Superpowers injected into session ${sessionId}`);
   }
 
   const output: Awaited<ReturnType<Plugin>> = {
 
-    // async "experimental.chat.system.transform"(input, output) {
-    //   output.system = [bootStrapPrompt(), output.system];
-    //   console.log("Superpowers injected into system prompt", output.system);
-    // },
-    //
+    async "experimental.chat.system.transform"(input, output) {
+      output.system = [...output.system, bootStrapPrompt()];
+    },
 
     async event(eventArgs) {
       const eventName = eventArgs.event.type;

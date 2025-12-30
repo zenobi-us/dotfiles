@@ -12,7 +12,26 @@
   "showModelErrorToasts": true,
   // List of tools that should never be pruned from context
   // The 'task' tool is protected by default to preserve subagent coordination
-  "protectedTools": [
-    "task"
-  ]
+  "pruneNotifcation": "minimal",
+  "turnProtection": {
+    "enabled": true,
+    "turns": 4
+  },
+  "tools": {
+    "settings": {
+      "nudgeEnabled": false
+    },
+    "discard": {
+      "enabled": false
+    }
+  },
+  "strategies": {
+    "onIdle": {
+      "protectedTools": [
+        "skill_use",
+        "skill_find",
+        "skill_resource"
+      ]
+    }
+  }
 }

@@ -16,19 +16,23 @@ You are mastering the art of semantic commit messages that communicate intent to
 - Aligns with Semantic Versioning (SemVer) for automated release management
 - Drives more organized development practices
 
-## Key Resources
+## Child Skills
 
 - **Summary**: Quick overview of the specification and core concepts
   - → See `./summary/SKILL.md`
-  
+    - or if needed `skill_use(superpowers_writing_git_commits_summary)`
+
 - **Examples**: Real-world commit message examples for different scenarios
   - → See `./examples/SKILL.md`
+    - or if needed `skill_use(superpowers_writing_git_commits_examples)`
   
 - **Specification**: Complete technical specification with all rules and requirements
   - → See `./specification/SKILL.md`
+    - or if needed `skill_use(superpowers_writing_git_commits_specification)`
   
 - **FAQ**: Frequently asked questions and practical guidance
   - → See `./faq/SKILL.md`
+    - or if needed `skill_use(superpowers_writing_git_commits_faq)`
 
 ## Basic Structure
 
