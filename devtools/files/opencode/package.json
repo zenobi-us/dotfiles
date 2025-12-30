@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@opencode-ai/plugin": "1.0.186",
+    "@opencode-ai/plugin": "1.0.209",
     "@types/node": "^24.9.2",
     "@types/ramda": "0.31.1",
     "@types/unist": "^3.0.3",

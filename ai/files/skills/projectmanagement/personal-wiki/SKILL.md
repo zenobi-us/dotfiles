@@ -1,49 +1,142 @@
 ---
 name: personal-wiki
-description: Use when creating, linking, searching, or exporting notes with zk—prevents confusion on command flags, link syntax, working directory behavior, and export formats
+description: Use when creating, linking, searching, or exporting notes—use `wiki` CLI for automatic notebook discovery, or `zk` directly when you need explicit control
 ---
 
-# Personal Wiki with ZK CLI
+# Personal Wiki: Using the `wiki` CLI
 
 > [!Note]
 >
-> Any usage of the `zk` command must include a NotebookPath via the `-W` flag. This is **not optional**.
-> 
-> - **ProjectId**: !`echo "$URL" | sed 's|.*/||; s/\.git$//; s/[^a-zA-Z0-9]/-/g; s/^-\+\|-\+$//g' | tr '[:upper:]' '[:lower:]'`
-> - The NotebookPath is `~/Notes/Projects/{{ ProjectId }}`
-> - All `zk` commands must include `-W ~/Notes/Projects/{{ ProjectId }}`
+> **Preferred approach:** Use the `wiki` CLI wrapper for automatic notebook discovery.
+> Fallback to direct `zk` commands only when you need explicit control over notebook paths.
 
+## Quick Start: `wiki` CLI
+
+The `wiki` CLI intelligently discovers your notebook path. No `-W` flag needed:
+
+```bash
+# Discover notebook for current project
+wiki project discover
+
+# Get project ID and metadata
+wiki project id
+
+# Use discovered notebook (auto-discovers path internally)
+wiki new --title "My Note"
+wiki list --match="pattern"
+wiki list --format=json > export.json
+```
+
+If you need the notebook path explicitly for direct `zk` commands:
+```bash
+NOTEBOOK=$(wiki project discover)
+zk list -W "$NOTEBOOK" --match="search"
+```
+
+## Discovery Process
+
+The `wiki` script uses this priority order:
+
+1. **Environment variable** `NOTEBOOK_PATH` (if set, use it directly)
+2. **Ancestor directory search** (finds `.zk/config.toml` in parent directories)
+3. **Context matching** (scans `~/Notes/` for matching project contexts)
+4. **Global fallback** (uses `~/.config/zk/config.toml` if it defines `notebook.dir`)
+
+This means in most cases, you just run `wiki` commands without specifying paths.
 
 ## Overview
 
-ZK is a lightweight zettelkasten CLI tool for managing interconnected notes. Core principle: **all data is markdown files; CLI just organizes, searches, and exports them**. Avoid assuming commands exist (no `export` or `link` commands); instead use flags and manual editing.
+Personal Wiki is a lightweight zettelkasten system using ZK (a markdown-based CLI tool). Core principle: **all data is markdown files; CLI just organizes, searches, and exports them**. Avoid assuming commands exist (no `export` or `link` commands); instead use flags and manual editing.
+
+## Common Workflows with `wiki` CLI
+
+### Single Note: Create → Link → Search → Export
+
+```bash
+# 1. Create new note (auto-discovers notebook)
+NOTE_PATH=$(wiki new --title "Research Topic" --print-path)
+
+# 2. Edit file and add links (manual)
+echo -e "\n\nRelated: [[existing-note-id]]" >> "$NOTE_PATH"
+
+# 3. Search for related notes
+wiki list --match="Research" --format=long
+
+# 4. Export results
+wiki list --match="Research" --format=json > related-notes.json
+```
+
+### Get Project Info & Notebook Path
+
+```bash
+# Get project ID for the current directory
+wiki project id
+
+# Get the actual notebook path
+NOTEBOOK_PATH=$(wiki project discover)
+echo "Using notebook at: $NOTEBOOK_PATH"
+
+# Register current project with notebook (for context matching)
+wiki project add
+```
+
+### Export All Notes from Project
+
+```bash
+# Get notebook, then export
+NOTEBOOK=$(wiki project discover)
+wiki list --format=json > all-notes.json
+
+# Validate export
+jq . < all-notes.json > /dev/null && echo "Valid JSON"
+```
 
 ## When to Use
 
 **Symptoms:**
-- Creating notes but unsure about link syntax
-- Trying to export notes (no direct export command)
-- Confused about working directory `-W` flag
-- Getting errors with list/search commands
-- Uncertain about output formats (json, csv, oneline)
+- Creating notes but unsure about notebook path
+- Need to export notes in various formats
+- Want automatic project-to-notebook mapping
+- Working with multiple projects and notebooks
 
 **When NOT to use:**
 - Editing notebook configuration (see zk documentation for `config.toml`)
 - Advanced templating (templates are Handlebars, see zk docs)
 - LSP setup (language server integration, separate config)
 
-## Quick Reference
+## `wiki` vs. Direct `zk` Commands
+
+| Scenario | Use | Example |
+|----------|-----|---------|
+| **Notebook path unknown** | `wiki` CLI | `wiki new --title "Note"` (auto-discovers) |
+| **Known notebook path** | Direct `zk` | `zk list -W /path --match="x"` (explicit control) |
+| **Get notebook path first** | `wiki project discover` | `NOTEBOOK=$(wiki project discover)` |
+| **Get project ID** | `wiki project id` | Returns JSON: projectId, repo, remote |
+| **Register project context** | `wiki project add` | Helps future discovery for this project |
+
+## Quick Reference: `wiki` CLI Commands
 
 | Task | Command | Notes |
 |------|---------|-------|
-| Create note | `zk new -W <dir> --title "Title" --print-path` | Returns path; use `[[path]]` to link |
-| List all notes | `zk list -W <dir>` | Defaults to table format |
+| Create note | `wiki new --title "Title" --print-path` | Auto-discovers notebook; returns path |
+| List all notes | `wiki list` | Defaults to table format |
+| Search pattern | `wiki list --match="pattern"` | Regex or plain text |
+| Export JSON | `wiki list --format=json > file.json` | Use redirection for output |
+| Export CSV | `wiki list --format=csv > file.csv` | RFC 4180 compliant; use CSV parser |
+| Export oneline | `wiki list --format=oneline > file.txt` | Minimal format, easy to parse |
+| Find backlinks | `wiki list --linked-by=<note-id>` | Shows notes linking to target |
+| Show note details | `wiki list --match=<note-id> --format=long` | Includes metadata and preview |
+
+## Quick Reference: Direct `zk` Commands (When You Need Explicit Control)
+
+| Task | Command | Notes |
+|------|---------|-------|
+| Create note | `zk new -W <dir> --title "Title" --print-path` | Explicit notebook path required |
+| List all notes | `zk list -W <dir>` | Always include `-W` flag |
 | Search pattern | `zk list -W <dir> --match="pattern"` | Regex or plain text |
 | Export JSON | `zk list -W <dir> --format=json > file.json` | Use redirection for output |
 | Export CSV | `zk list -W <dir> --format=csv > file.csv` | RFC 4180 compliant; use CSV parser |
-| Export oneline | `zk list -W <dir> --format=oneline > file.txt` | Minimal format, easy to parse |
 | Find backlinks | `zk list -W <dir> --linked-by=<note-id>` | Shows notes linking to target |
-| Show note details | `zk list -W <dir> --match=<note-id> --format=long` | Includes metadata and preview |
 
 ## Filtering Options
 
@@ -55,47 +148,53 @@ ZK is a lightweight zettelkasten CLI tool for managing interconnected notes. Cor
 
 **Important:** For any filtering not shown here, always verify with `zk list --help` before assuming syntax. ZK may add new filters in newer versions.
 
-## Core Pattern: The Working Directory Flag
+## Understanding Notebook Discovery
 
-ZK requires explicit notebook path via `-W <dir>`. This is **not optional**:
+The `wiki` CLI **automatically handles notebook discovery** using a smart search algorithm. No need to manually specify `-W` flags.
+
+### How `wiki` Discovers Your Notebook
+
+When you run any `wiki` command, it searches in this order:
+
+1. **Environment variable** `NOTEBOOK_PATH` (if explicitly set)
+2. **Ancestor directories** for `.zk/config.toml` (finds project-local notebooks)
+3. **Context registry** in `~/Notes/` (matches your project path to a registered notebook)
+4. **Global fallback** `~/.config/zk/config.toml` (if it defines a `notebook.dir`)
+
+**Advantage:** You don't need to worry about getting the path wrong. Just run `wiki` commands.
+
+### Direct `zk` Commands: Explicit `-W` Flag Required
+
+If you bypass `wiki` and use `zk` directly, you **must** always include `-W`:
 
 ```bash
-# ❌ DON'T - assumes CWD is notebook
+# ❌ DON'T - unsafe, ambiguous which notebook is used
 zk list --match="search"
 
 # ✅ DO - explicit notebook path
 zk list -W /path/to/notebook --match="search"
 ```
 
-### Without `-W`: Search Algorithm (Why It's Dangerous)
+**Why?** Without `-W`, ZK searches UP the directory tree until it finds the first `.zk` folder. With nested notebooks, this can pick the wrong one:
 
-If you omit `-W`, ZK searches UP the directory tree:
-1. Current working directory (`pwd`)
-2. Parent directory
-3. Parent's parent (and so on to root)
-4. **Stops at FIRST `.zk` folder found**
-
-**Problem:** If you have nested notebooks, you might accidentally use the wrong one:
 ```
 ~/projects/
   .zk/                 # master notebook
   project-a/
-    .zk/               # project-a notebook
+    .zk/               # project-a notebook ← you want this
     notes/
 ```
 
-If you're in `~/projects/project-a/notes/` and run `zk list` without `-W`, it finds `~/projects/.zk` (the master), not `~/projects/project-a/.zk`.
+If you're in `~/projects/project-a/notes/` and run `zk list` without `-W`, it might find `~/projects/.zk` instead.
 
-### Rule: Always Use `-W` for Predictable Behavior
+### Troubleshooting: Verify Which Notebook Is Active
 
-Never rely on the search algorithm in scripts or shared commands. Explicit paths prevent confusion:
 ```bash
-zk list -W /path/to/notebook --match="search"
-```
+# Using wiki (recommended)
+wiki project discover
+# Returns: /path/to/notebook
 
-### Verify Active Notebook (Troubleshooting)
-To see which notebook ZK is using:
-```bash
+# Using direct zk with explicit path
 zk info -W /path/to/notebook
 # Shows: notebook path, config, note count
 ```
@@ -180,12 +279,14 @@ Output: `id - title - path` on single line per note
 
 | Mistake | Problem | Fix |
 |---------|---------|-----|
-| `zk export` | No export command exists | Use `zk list --format=X > file` |
-| `zk link note1 note2` | No link command | Edit markdown files, add `[[note-id]]` |
-| `zk list --match="x"` | Missing `-W` flag | Add `-W /notebook/path` before flags |
-| `--format json` (no redirection) | Output prints to stdout, not file | Use `> file.json` to capture |
+| Using `zk` without `-W` flag | Ambiguous which notebook is used | Use `wiki` CLI (auto-discovers) or explicit `-W /path` |
+| `zk export` | No export command exists | Use `wiki list --format=X > file` (or `zk list -W <dir>...`) |
+| `zk link note1 note2` | No link command | Edit markdown files, add `[[note-id]]` manually |
+| `wiki list --match="x"` fails | Notebook not discovered | Run `wiki project discover` to verify path |
+| `--format json` (no redirection) | Output prints to stdout, not file | Use `> file.json` to capture output |
 | `[[filepath]]` instead of `[[id]]` | Wiki-links use ID, not path | Use note ID or filename without extension |
-| Assuming links created CLI-side | Links are manually edited | Always add links by editing note files |
+| Assuming links created CLI-side | Links are manually edited | Always add links by editing note files directly |
+| Hardcoding notebook paths in scripts | Breaks when project moves | Use `wiki` CLI or `wiki project discover` instead |
 
 ## Reference: Output Formats
 
@@ -232,27 +333,71 @@ xxx - My Note - /notebook/notes/xxx.md
 
 ## Workflow Examples
 
-### Single Note: Create → Link → Search → Export
+### Single Note: Create → Link → Search → Export (Using `wiki` CLI)
 
 ```bash
-# 1. Create new note in notebook
-NOTE_PATH=$(zk new -W /notebook --title "Research Topic" --print-path)
+# 1. Create new note (notebook auto-discovered)
+NOTE_PATH=$(wiki new --title "Research Topic" --print-path)
 
 # 2. Edit file and add links (manual)
 echo -e "\n\nRelated: [[existing-note-id]]" >> "$NOTE_PATH"
 
 # 3. Search for related notes
-zk list -W /notebook --match="Research" --format=long
+wiki list --match="Research" --format=long
 
 # 4. Export results
-zk list -W /notebook --match="Research" --linked-by="research-topic-id" --format=json > related-notes.json
+wiki list --match="Research" --linked-by="research-topic-id" --format=json > related-notes.json
+```
+
+**Advantage:** No need to discover notebook path manually. `wiki` handles it.
+
+### Single Note: Using Direct `zk` (When You Need Explicit Control)
+
+```bash
+# 1. Create new note with explicit notebook path
+NOTEBOOK="/path/to/notebook"
+NOTE_PATH=$(zk new -W "$NOTEBOOK" --title "Research Topic" --print-path)
+
+# 2. Edit file and add links (manual)
+echo -e "\n\nRelated: [[existing-note-id]]" >> "$NOTE_PATH"
+
+# 3. Search for related notes
+zk list -W "$NOTEBOOK" --match="Research" --format=long
+
+# 4. Export results
+zk list -W "$NOTEBOOK" --match="Research" --linked-by="research-topic-id" --format=json > related-notes.json
 ```
 
 **Note:** Step 2 requires manual file editing. No CLI command creates links; you add them to markdown content.
 
-### Bulk: Create Multiple Notes & Link to Master
+### Bulk: Create Multiple Notes & Link to Master (Using `wiki`)
 
 For creating 10+ notes that all link to a master note:
+
+```bash
+#!/bin/bash
+MASTER_ID="master-index"
+
+# Create notes in a loop (notebook auto-discovered)
+for i in {1..10}; do
+  NOTE_PATH=$(wiki new \
+    --title "Topic $i" \
+    --print-path)
+  
+  # Add link to master note
+  echo "" >> "$NOTE_PATH"
+  echo "See master: [[${MASTER_ID}]]" >> "$NOTE_PATH"
+done
+
+# Verify all notes link to master
+wiki list --linked-by="$MASTER_ID" --format=long
+```
+
+**Advantage:** No need to discover or pass notebook path. `wiki` handles it automatically.
+
+### Bulk: Using Direct `zk` (Explicit Notebook Path)
+
+For explicit control over notebook:
 
 ```bash
 #!/bin/bash
@@ -276,7 +421,41 @@ zk list -W "$NOTEBOOK" --linked-by="$MASTER_ID" --format=long
 
 **Constraint:** ZK doesn't have a bulk-link command. Manual editing via script is the standard approach.
 
-### Export Large Notebook Safely
+### Export Large Notebook Safely (Using `wiki`)
+
+```bash
+#!/bin/bash
+EXPORT_DIR="$HOME/exports"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+
+# Create export directory with timestamp
+mkdir -p "$EXPORT_DIR"
+
+# Test export format on small sample (notebook auto-discovered)
+echo "=== Testing format on 1 note ==="
+wiki list -l 1 --format=json | jq . > /dev/null
+if [ $? -ne 0 ]; then
+  echo "ERROR: JSON validation failed"
+  exit 1
+fi
+
+# Full export
+echo "=== Exporting all notes ==="
+wiki list --format=json > "$EXPORT_DIR/export_${TIMESTAMP}.json"
+
+# Validate output
+jq . < "$EXPORT_DIR/export_${TIMESTAMP}.json" > /dev/null
+if [ $? -eq 0 ]; then
+  echo "✓ Export successful: $EXPORT_DIR/export_${TIMESTAMP}.json"
+else
+  echo "✗ Export failed: JSON is invalid"
+  exit 1
+fi
+```
+
+**Advantage:** No manual path discovery needed.
+
+### Export Large Notebook Safely (Direct `zk` with Explicit Path)
 
 ```bash
 #!/bin/bash

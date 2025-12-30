@@ -3,6 +3,7 @@
   "plugin": [
     "opencode-sessions@latest",
     "@zenobius/opencode-background@latest",
+    "@zenobius/opencode-skillful@1.2.0",
     "@franlol/opencode-md-table-formatter@0.0.3",
     "@tarquinen/opencode-dcp@latest",
     "@openspoon/subtask2"
