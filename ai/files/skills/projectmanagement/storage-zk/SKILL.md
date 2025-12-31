@@ -1,5 +1,5 @@
 ---
-name: personal-wiki
+name: storage-zk
 description: Use when creating, linking, searching, or exporting notes—use `wiki` CLI for automatic notebook discovery, or `zk` directly when you need explicit control
 ---
 
