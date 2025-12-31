@@ -1,5 +1,5 @@
 ---
-name: taskwarrior
+name: storage-taskwarrior
 description: Manage Taskwarrior tasks scoped to the current git repository using its remote URL as a project identifier.
 ---
 
