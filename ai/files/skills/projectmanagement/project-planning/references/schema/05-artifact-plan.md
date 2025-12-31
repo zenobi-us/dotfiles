@@ -8,8 +8,8 @@ title: { Spec Title }
 projectId: { ProjectId }
 status: { Draft | In Review | Approved | Superseded }
 links:
-  - "[[2.1.1-epic-separate-cli-tool|epic]]"
-  - "[[3.1.1-research-cli-patterns|research]]"
+  - "[[abc123-epic-separate-cli-tool|epic]]"
+  - "[[def456-research-cli-patterns|research]]"
 ---
 ```
 

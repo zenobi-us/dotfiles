@@ -78,15 +78,13 @@ links:
 ---
 title: Task Title
 projectId: ProjectId
-storyId: 4.3.1-story-template-extraction
-epicId: 2.1.1-epic-separate-cli-tool
 status: To Do
 storyPoints: 5
 links:
-  - "[[4.3.1-story-template-extraction|story]]"
-  - "[[2.1.1-epic-separate-cli-tool|epic]]"
-  - "[[5.1.2-task-database-schema|blocking]]"
-  - "[[6.1.1-decision-jwt-vs-session|influenced_by_decision]]"
+  - "[[abc123-story-template-extraction|story]]"
+  - "[[def456-epic-separate-cli-tool|epic]]"
+  - "[[ghi789-task-database-schema|blocking]]"
+  - "[[jkl012-decision-jwt-vs-session|influenced_by_decision]]"
 ---
 ```
 
@@ -94,24 +92,24 @@ links:
 
 ## Obsidian Linking in Artifact Bodies
 
-Use wiki-style linking within artifact bodies. Links must match the exact Johnny Decimal filename (without `.md`):
+Use wiki-style linking within artifact bodies. Links must match the exact artifact ID (without `.md`):
 
 ```markdown
-This epic is part of [[1.1.1-prd-user-authentication]] PRD.
-It includes [[4.1.1-story-user-login-flow]] story.
-The design was influenced by [[3.2.1-research-oauth-alternatives]] research.
-Implemented based on [[6.1.1-decision-jwt-vs-session]] decision.
-After completion, see [[9.1.1-retrospective-epic-1-closeout]] retrospective.
+This epic is part of [[abc123-prd-user-authentication]] PRD.
+It includes [[def456-story-user-login-flow]] story.
+The design was influenced by [[ghi789-research-oauth-alternatives]] research.
+Implemented based on [[jkl012-decision-jwt-vs-session]] decision.
+After completion, see [[mno345-retrospective-epic-1-closeout]] retrospective.
 ```
 
 ### Linking Examples by Category
 
-- **PRD**: `[[1.1.1-prd-user-authentication]]` or `[[1.2.1-prd-dayz-modding]]`
-- **Epic**: `[[2.1.1-epic-separate-cli-tool]]` or `[[2.2.1-epic-user-auth-system]]`
-- **Spec**: `[[2.1.1-spec-cli-requirements]]` or `[[2.2.1-spec-auth-requirements]]`
-- **Research**: `[[3.1.1-research-jwt-best-practices]]` or `[[3.2.1-research-oauth-alternatives]]`
-- **Decision**: `[[6.1.1-decision-jwt-vs-session]]` or `[[6.2.1-decision-cli-framework]]`
-- **Story**: `[[4.1.1-story-user-login-flow]]` or `[[4.3.1-story-template-extraction]]`
-- **Task**: `[[5.1.1-task-database-schema]]` or `[[5.3.1-task-extract-files]]`
-- **Retrospective**: `[[9.1.1-retrospective-epic-1-closeout]]`
+- **PRD**: `[[abc123-prd-user-authentication]]` or `[[def456-prd-dayz-modding]]`
+- **Epic**: `[[ghi789-epic-separate-cli-tool]]` or `[[jkl012-epic-user-auth-system]]`
+- **Spec**: `[[mno345-spec-cli-requirements]]` or `[[pqr678-spec-auth-requirements]]`
+- **Research**: `[[stu901-research-jwt-best-practices]]` or `[[vwx234-research-oauth-alternatives]]`
+- **Decision**: `[[yza567-decision-jwt-vs-session]]` or `[[bcd890-decision-cli-framework]]`
+- **Story**: `[[efg123-story-user-login-flow]]` or `[[hij456-story-template-extraction]]`
+- **Task**: `[[klm789-task-database-schema]]` or `[[nop012-task-extract-files]]`
+- **Retrospective**: `[[qrs345-retrospective-epic-1-closeout]]`
 

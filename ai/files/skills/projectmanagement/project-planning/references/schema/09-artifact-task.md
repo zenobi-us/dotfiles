@@ -6,15 +6,13 @@
 ---
 title: { Task Title }
 projectId: { ProjectId }
-storyId: 4.3.1-story-template-extraction
-epicId: 2.1.1-epic-separate-cli-tool
 status: { To Do | In Progress | In Review | Done | Blocked | Cancelled }
 storyPoints: { 1, 2, 3, 5, 8 (max 8 for tasks) }
 links:
-  - "[[4.3.1-story-template-extraction|story]]"
-  - "[[2.1.1-epic-separate-cli-tool|epic]]"
-  - "[[5.1.2-task-database-schema|blocking]]"
-  - "[[6.1.1-decision-jwt-vs-session|influenced_by_decision]]"
+  - "[[abc123-story-template-extraction|story]]"
+  - "[[def456-epic-separate-cli-tool|epic]]"
+  - "[[ghi789-task-database-schema|blocking]]"
+  - "[[jkl012-decision-jwt-vs-session|influenced_by_decision]]"
 ---
 ```
 

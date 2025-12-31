@@ -8,8 +8,8 @@ title: { Epic Title }
 projectId: { ProjectId }
 status: { Active | On Hold | Completed | Cancelled }
 links:
-  - "[[1.1.1-prd-user-authentication|prd]]"
-  - "[[2.1.1-spec-epic-requirements|spec]]"
+  - "[[abc123-prd-user-authentication|prd]]"
+  - "[[def456-spec-epic-requirements|spec]]"
 ---
 ```
 

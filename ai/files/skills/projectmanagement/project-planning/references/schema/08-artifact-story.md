@@ -9,9 +9,9 @@ projectId: { ProjectId }
 status: { To Do | In Progress | In Review | Done | Blocked | Cancelled }
 storyPoints: { 3, 5, 8, 13 (typical range for stories) }
 links:
-  - "[[2.1.1-epic-separate-cli-tool|epic]]"
-  - "[[2.1.1-spec-cli-requirements|spec]]"
-  - "[[5.1.1-task-implement-extraction|task]]"
+  - "[[abc123-epic-separate-cli-tool|epic]]"
+  - "[[def456-spec-cli-requirements|spec]]"
+  - "[[ghi789-task-implement-extraction|task]]"
 ---
 ```
 
