@@ -227,7 +227,6 @@ function edit_note() {
 # Main entry point
 #
 function main() {
-	local args=("$@")
 	local cmd="$1"
 	shift
 
@@ -262,7 +261,7 @@ function main() {
 		;;
 
 	*)
-		zk "${args}"
+		zk -W "$(discover_notebook_path)" "${@}"
 		;;
 
 	esac

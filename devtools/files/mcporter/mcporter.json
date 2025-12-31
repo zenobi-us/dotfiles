@@ -54,6 +54,12 @@
       "env": {
         "npm_config_loglevel": "error"
       }
+    },
+    "forgetful": {
+      "type": "local",
+      "command": [
+        "forgetful --transport stdio"
+      ]
     }
   }
 }

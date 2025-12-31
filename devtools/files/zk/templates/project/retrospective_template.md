@@ -1,134 +1,231 @@
 ---
-title: { Project Name } - Retrospective
-projectId: { ProjectId }
-status: { In Progress | Complete }
-retrospectiveDate: { YYYY-MM-DD }
-createdDate: { YYYY-MM-DD }
-participantCount: { Number of participants }
-links:
-  - "[[{ 1-epic-name }|epic]]"
-  - "[[{ 2-epic-name }|epic]]"
-  - "[[{ 1.3.1-decision-title }|decision]]"
-  - "[[{ 1.3.2-decision-title }|decision]]"
+title: {{ title }}                          # immutable
+type: retrospective                         # immutable
+status: {{ extra.status | default("todo") }}
+createdDate: {{ format-date now "%Y-%m-%d" }}
+updatedDate: {{ format-date now "%Y-%m-%d" }}
 ---
+
+<!--
+[INSTRUCTIONS]
+
+This is a template for documenting project retrospectives to capture learnings, identify improvements, and close out projects effectively.
+
+1. Read each [INSTRUCTION], [EVENT: <event>] and [REPLACE: <instructions>] comment block carefully.
+2. [EVENT: <event>] blocks indicate when to take action (e.g., on generation, update).
+3. [REPLACE: <instructions>] blocks indicate where to add content.
+
+[EVENT: On Generation]
+- Replace each comment block annotated with [REPLACE: <instructions>], following instructions within.
+- Leave comment blocks that are annotated with [INSTRUCTION] intact.
+- Change status from `todo` to `in-progress` when retrospective session begins.
+- Change status from `in-progress` to `complete` when retrospective is finalized.
+
+[EVENT: On Update]
+- Every edit to this file must also update the `updatedDate` field (using format "%Y-%m-%d").
+- Review all links throughout the page and in the Links section.
+- Ensure link targets still exist and remain relevant.
+- Update link descriptions if related artifacts' status/scope changed.
+- If follow-up decisions or tasks are created from this retrospective, add them to the Links section.
+-->
+
+## Preamble
+
+<!--
+[REPLACE: with an overview of the project and retrospective context]
+
+- Provide a brief summary of the project, its scope, and timeline.
+- Explain the objectives and outcomes achieved.
+- Note the retrospective date and participation.
+-->
 
 ## Project Summary
 
 ### Overview
 
-Provide a brief summary of the project, its objectives, and timeline:
+<!--
+[REPLACE: with project details]
 
-- **Project Name:** { Name }
-- **Duration:** { Start date to end date }
-- **Team Size:** { Number of team members }
-- **Key Stakeholders:** { List of stakeholders }
+- **Project Name:** Project title
+- **Duration:** Start date to end date
+- **Team Size:** Number of team members
+- **Key Stakeholders:** List of stakeholders or roles
+-->
 
 ### Delivered Outputs
 
-- Deliverable 1: { Description and metrics }
-- Deliverable 2: { Description and metrics }
-- Deliverable 3: { Description and metrics }
+<!--
+[REPLACE: with list of deliverables and their metrics]
+
+- Deliverable 1: Description and impact metrics
+- Deliverable 2: Description and impact metrics
+- Deliverable 3: Description and impact metrics
+-->
 
 ## What Went Well
 
-Identify successes and positive outcomes:
+<!--
+[REPLACE: with successes and positive outcomes from the project]
 
-### Success 1: { Area or practice }
+Structure with subsections (e.g., ### Success 1, ### Success 2) for clarity.
+Each success should include:
+- What specifically went well
+- Why we think it was successful
+- Contributing factors or team members
+- How can we replicate this in future projects?
+-->
+
+### Success 1
+
+<!--
+[REPLACE: with details about this success]
 
 - What specifically went well
 - Why we think it was successful
-- Team members involved
-- How can we replicate this in future projects?
+- Contributing factors
+- How to replicate in the future
+-->
 
-### Success 2: { Area or practice }
+### Success 2
+
+<!--
+[REPLACE: with details about this success]
 
 - Details of what worked
 - Contributing factors
 - Impact on project success
-
-### Success 3: Continue as needed...
+-->
 
 ## What Could Be Improved
 
-Identify challenges, inefficiencies, and areas for improvement:
+<!--
+[REPLACE: with challenges, inefficiencies, and areas for improvement]
 
-### Challenge 1: { Area or process }
-
+Structure with subsections (e.g., ### Challenge 1, ### Challenge 2) for clarity.
+Each challenge should include:
 - What happened that could have been better
 - Root cause (if identified)
 - Impact on project timeline or quality
 - Suggested improvement
+-->
 
-### Challenge 2: { Area or process }
+### Challenge 1
+
+<!--
+[REPLACE: with details about this challenge]
+
+- What happened that could have been better
+- Root cause (if identified)
+- Impact on project outcome
+- Suggested improvement
+-->
+
+### Challenge 2
+
+<!--
+[REPLACE: with details about this challenge]
 
 - What went wrong or inefficiently
 - Why it happened
 - What we'd do differently next time
-
-### Challenge 3: Continue as needed...
-
-## Unresolved Decisions Reviewed
-
-Document unresolved decisions that were revisited during retrospective:
-
-### Decision 1
-
-- Why it remained unresolved
-- New information or context gained
-- Final resolution or decision
-- Action items resulting from this decision
-
-### Decision 2
-
-Continue for other unresolved decisions...
+-->
 
 ## Lessons Learned
 
-Distill key insights and learning points:
+<!--
+[REPLACE: with key insights and learning points from the project]
 
-1. **Lesson 1:** { Key insight from the project }
-   - How we apply this in the future
-   - Related to which challenge or success?
+- **Lesson 1:** Key insight from the project
+  - How we apply this in the future
+  - Related to which challenge or success?
 
-2. **Lesson 2:** { Another important learning }
-   - Application and impact
+- **Lesson 2:** Another important learning
+  - Application and impact
 
-3. **Lesson 3:** Continue as needed...
+- **Lesson 3:** Continue as needed...
+-->
 
 ## Metrics and Results
 
 ### Project Metrics
 
-- Timeline: { Planned vs. Actual }
-- Budget: { Planned vs. Actual }
-- Scope: { Completed vs. Originally Planned }
-- Quality: { Bugs, defects, incidents }
+<!--
+[REPLACE: with project performance data]
+
+- Timeline: Planned vs. Actual
+- Budget: Planned vs. Actual
+- Scope: Completed vs. Originally Planned
+- Quality: Bugs, defects, or incidents
+-->
 
 ### Team Metrics
 
-- Velocity: { Story points completed }
-- Burndown: { Progress tracking }
-- Team satisfaction: { Feedback from team }
+<!--
+[REPLACE: with team performance data]
+
+- Velocity: Story points or tasks completed
+- Efficiency: Burndown or progress tracking
+- Team satisfaction: Feedback or engagement level
+-->
 
 ## Process Improvements and Recommendations
 
-Document recommended changes for future initiatives:
+<!--
+[REPLACE: with recommended changes for future initiatives]
+
+Structure with subsections (e.g., ### Improvement 1, ### Improvement 2) for clarity.
+Each improvement should include:
+- Current process and how it was executed
+- Recommended change and rationale
+- Expected benefit or impact
+- Implementation owner and timeline
+-->
 
 ### Process Improvement 1
 
-- Current process: { How it was done }
-- Recommended change: { Suggested improvement }
-- Expected benefit: { Why this matters }
-- Implementation owner: { Who will drive this }
-- Timeline: { When to implement }
+<!--
+[REPLACE: with details about this improvement]
+
+- Current process: How it was done
+- Recommended change: Suggested improvement
+- Expected benefit: Why this matters
+- Implementation owner: Who will drive this
+- Timeline: When to implement
+-->
 
 ### Process Improvement 2
 
+<!--
+[REPLACE: with details about this improvement]
+
 Continue with additional recommendations...
+-->
+
+## Unresolved Decisions Reviewed
+
+<!--
+[REPLACE: with unresolved decisions that were revisited during retrospective]
+
+- Decision 1: What decision remained unresolved
+  - Why it remained unresolved
+  - New information or context gained
+  - Final resolution or decision
+  - Action items resulting from this decision
+
+- Decision 2: Continue for other unresolved decisions...
+-->
 
 ## Follow-up Actions
 
-List action items resulting from this retrospective:
+<!--
+[REPLACE: with action items resulting from this retrospective]
+
+Format as a table with clear ownership and deadlines:
+- Action Item: What needs to be done
+- Owner: Who is responsible
+- Target Date: When it should be completed
+- Notes: Additional context
+-->
 
 | Action Item | Owner | Target Date | Notes |
 |---|---|---|---|
@@ -138,7 +235,8 @@ List action items resulting from this retrospective:
 
 ## Appendix: Raw Feedback
 
-Raw notes from the retrospective session:
+<!--
+[REPLACE: with raw notes and feedback from retrospective participants]
 
 ### Team Feedback
 
@@ -149,14 +247,28 @@ Raw notes from the retrospective session:
 ### Stakeholder Feedback
 
 - Stakeholder feedback
-- Customer/user feedback if applicable
+- Customer or user feedback if applicable
+-->
 
-## Sign-off
+## Links
 
-- **Facilitator:** { Name }
-- **Retrospective Date:** { YYYY-MM-DD }
-- **Distribution:** { Who received this retrospective }
-- **Next Review Date:** { When we'll follow up on action items }
+<!--
+[INSTRUCTION] Keep this section updated as the retrospective evolves.
+
+Use relationship types to clarify how artifacts relate to this retrospective:
+
+[EVENT: OnGenerate, OnUpdate]
+- [related_to] Related epics, plans, or stories from this project
+- [informed_by] Decisions that shaped the project
+- [documents_closure] This retrospective closes out which epic/project
+- [follow_up] New decisions or tasks created from retrospective findings
+
+Example:
+- [documents_closure] [1.0 User Authentication Epic](../1.0-user-auth-epic.md)
+- [informed_by] [1.3.1 JWT vs Sessions Decision](../1.3.1-jwt-decision.md)
+- [follow_up] [2.1 Improved CI/CD Pipeline](../2.1-ci-cd-improvement.md)
+- [related_to] [1.4.1 Login Flow Story](../1.4.1-login-flow.md)
+-->
 
 ---
 
@@ -168,16 +280,16 @@ See: `references/phase-07-closing.md` for detailed Closing phase guidance.
 
 **Closing Validation Checklist:**
 
-- [ ] All assigned [Task] have been marked as "Done"
-- [ ] All [Story] have been marked as "Done"
-- [ ] [Epic] status has been updated to "Completed"
-- [ ] [Retrospective] artifact has been created
-- [ ] All unresolved [Decision] artifacts are linked to this [Retrospective]
+- [ ] All assigned [Task] artifacts are marked as "Done"
+- [ ] All [Story] artifacts are marked as "Done"
+- [ ] Related [Epic] status has been updated to "Completed"
+- [ ] [Retrospective] artifact has been created and completed
+- [ ] All unresolved [Decision] artifacts are linked in Links section
 - [ ] Lessons learned have been documented comprehensively
-- [ ] Process improvements are specific and actionable (not just "better communication")
+- [ ] Process improvements are specific and actionable (not vague)
 - [ ] Follow-up action items have assigned owners and target dates
 - [ ] [Retrospective] has been shared with team and stakeholders
-- [ ] All [Project Artifacts] are organized and accessible
+- [ ] All project artifacts are organized and linked
 - [ ] Project team has been thanked and celebrated
 
 **If any item is not checked, project closure is NOT complete. Return to closing phase.**

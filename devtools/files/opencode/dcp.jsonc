@@ -4,7 +4,7 @@
   "pruneNotification": "minimal",
   "turnProtection": {
     "enabled": true,
-    "turns": 4
+    "turns": 2
   },
   "strategies": {
     "onIdle": {

@@ -1,5 +1,5 @@
 ---
-title: Markdown Driven Task Management
+name: MiniProject
 model: anthropic/claude-opus-4-5
 ---
 
