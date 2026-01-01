@@ -6,7 +6,6 @@
     "@zenobius/opencode-skillful@1.2.0",
     "@franlol/opencode-md-table-formatter@0.0.3",
     "@tarquinen/opencode-dcp@latest",
-    "@openspoon/subtask2"
   ],
   "model": "anthropic/claude-haiku-4-5",
   "autoupdate": false,
