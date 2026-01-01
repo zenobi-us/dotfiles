@@ -10,3 +10,4 @@ in-memoria.db
 .in-memoria/cache/
 .in-memoria/.env
 devtools/files/mcporter/credentials.json
+devtools/files/opencode/plugin/subtask2/logs/debug.log
