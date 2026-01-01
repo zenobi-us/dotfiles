@@ -7,9 +7,6 @@
 title: { Decision Title }
 projectId: { ProjectId }
 status: { Pending | Decided | Unresolved | Superseded }
-links:
-  - "[[abc123-research-jwt-vs-sessions|research]]"
-  - "[[def456-epic-user-auth-system|epic]]"
 ---
 ```
 

@@ -1,4 +1,3 @@
-
 ### [Epic] Content Structure
 
 **Frontmatter:**
@@ -7,9 +6,6 @@
 title: { Epic Title }
 projectId: { ProjectId }
 status: { Active | On Hold | Completed | Cancelled }
-links:
-  - "[[abc123-prd-user-authentication|prd]]"
-  - "[[def456-spec-epic-requirements|spec]]"
 ---
 ```
 

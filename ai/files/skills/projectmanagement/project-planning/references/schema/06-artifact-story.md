@@ -8,10 +8,6 @@ title: { Story Title }
 projectId: { ProjectId }
 status: { To Do | In Progress | In Review | Done | Blocked | Cancelled }
 storyPoints: { 3, 5, 8, 13 (typical range for stories) }
-links:
-  - "[[abc123-epic-separate-cli-tool|epic]]"
-  - "[[def456-spec-cli-requirements|spec]]"
-  - "[[ghi789-task-implement-extraction|task]]"
 ---
 ```
 

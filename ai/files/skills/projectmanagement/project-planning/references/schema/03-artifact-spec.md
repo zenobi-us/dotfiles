@@ -1,4 +1,3 @@
-
 ### [Spec] Content Structure
 
 **Frontmatter:**
@@ -7,9 +6,6 @@
 title: { Spec Title }
 projectId: { ProjectId }
 status: { Draft | In Review | Approved | Superseded }
-links:
-  - "[[abc123-epic-separate-cli-tool|epic]]"
-  - "[[def456-research-cli-patterns|research]]"
 ---
 ```
 

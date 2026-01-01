@@ -1,6 +1,3 @@
-
-The body of each artifact type follows a consistent pattern with specific sections.
-
 ### [PRD] Content Structure
 
 **Frontmatter:**
@@ -9,7 +6,6 @@ The body of each artifact type follows a consistent pattern with specific sectio
 title: { PRD Title }
 projectId: { ProjectId }
 status: { Draft | In Review | Approved | Superseded }
-links: []
 ---
 ```
 

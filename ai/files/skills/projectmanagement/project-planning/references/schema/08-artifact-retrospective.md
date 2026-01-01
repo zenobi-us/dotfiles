@@ -7,9 +7,6 @@
 title: { Retrospective Title }
 projectId: { ProjectId }
 status: { In Progress | Complete }
-links:
-  - "[[abc123-epic-separate-cli-tool|epic]]"
-  - "[[def456-decision-cli-framework|decision]]"
 ---
 ```
 

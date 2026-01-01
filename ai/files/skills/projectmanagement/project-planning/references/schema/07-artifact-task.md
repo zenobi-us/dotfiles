@@ -8,11 +8,6 @@ title: { Task Title }
 projectId: { ProjectId }
 status: { To Do | In Progress | In Review | Done | Blocked | Cancelled }
 storyPoints: { 1, 2, 3, 5, 8 (max 8 for tasks) }
-links:
-  - "[[abc123-story-template-extraction|story]]"
-  - "[[def456-epic-separate-cli-tool|epic]]"
-  - "[[ghi789-task-database-schema|blocking]]"
-  - "[[jkl012-decision-jwt-vs-session|influenced_by_decision]]"
 ---
 ```
 
