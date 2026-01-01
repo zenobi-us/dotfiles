@@ -47,8 +47,6 @@ Projects flow through five phases:
 
 **Purpose:** Strategic business vision and objectives
 
-**Template:** `prd_template.md`
-
 **Status progression:** Draft → In Review → Approved (→ Superseded if needed)
 
 **Must be completed before:** Epic creation
@@ -58,17 +56,19 @@ Projects flow through five phases:
 - Key Objectives (3-5), Success Metrics
 - Timeline & Phasing, Assumptions, Constraints, Out of Scope
 
-**Validation gate:** PRD must reach Approved status before Epic can be created. All [NEEDS CLARIFICATION] tags must be resolved (see prd_template.md validation checklist).
+**Validation gate:** PRD must reach Approved status before Epic can be created. All [NEEDS CLARIFICATION] tags must be resolved (see validation checklist in the planning artifact).
 
 **Escalation notes:** If scope or vision unclear/contested, escalate to Q via Escalation Matrix.
+
+**FAILURE MODES**:
+
+- missing validation checklist
 
 ---
 
 ### 2. Epic(s) — Required (can be multiple per PRD)
 
 **Purpose:** Break PRD vision into large bodies of work
-
-**Template:** `epic_template.md`
 
 **Status progression:** Draft → Active (→ On Hold / Completed / Cancelled if needed)
 
@@ -79,17 +79,20 @@ Projects flow through five phases:
 - Links (implements PRD, dependent_on other Epics, influenced_by Decisions)
 - Timeline & Resources
 
-**Validation:** Done by epic_template.md
+**Validation:** Done by validation checklist in the planning artifact.
 
 **Escalation notes:** If scope expands beyond initial Epic definition, escalate to Q. Multiple Epics allowed if work is large or spans different timelines.
+
+
+**FAILURE MODES**:
+
+- missing validation checklist
 
 ---
 
 ### 3. Spec (Specification) — Required per Epic
 
 **Purpose:** Technical blueprint for implementing Epic
-
-**Template:** `spec_template.md` (renamed from plan_template.md)
 
 **Status progression:** Draft → In Review → Approved (→ Superseded if needed)
 
@@ -99,17 +102,19 @@ Projects flow through five phases:
 - Detailed Preamble, Functional/Non-Functional Requirements
 - Technical Objectives, Constraints, Assumptions, Success Criteria
 
-**Validation:** Done by spec_template.md
+**Validation:** Done by validation checklist in the planning artifact.
 
 **Escalation notes:** If technical approach conflicts with PRD vision, or if Research reveals design changes, escalate to Q.
+
+**FAILURE MODES**:
+
+- missing validation checklist
 
 ---
 
 ### 4. Research (Optional) — Created on demand
 
 **Purpose:** Discovery work for questions that arise during Planning
-
-**Template:** `research_template.md`
 
 **Status progression:** In Progress → Complete (or Inconclusive / Superseded)
 
@@ -119,13 +124,15 @@ Projects flow through five phases:
 
 **Escalation notes:** If Research reveals scope or timeline changes, escalate findings to Q via Escalation Matrix.
 
+**FAILURE MODES**:
+
+- missing validation checklist
+
 ---
 
 ### 5. Decision (Optional) — Created on demand OR by user command
 
 **Purpose:** Capture architectural/strategic choices made during Planning
-
-**Template:** `decision_template.md`
 
 **Status progression:** Pending → Decided (or Unresolved / Superseded)
 
@@ -139,19 +146,25 @@ Projects flow through five phases:
 
 **Escalation notes:** If Decision impacts scope/timeline/resources significantly, escalate to Q.
 
+**FAILURE MODES**:
+
+- missing validation checklist
+
 ---
 
 ### 6. Story — Required per Spec
 
 **Purpose:** User-facing work units implementing Spec
 
-**Template:** `story_template.md`
-
 **Status progression:** Draft → Approved (→ Cancelled if needed)
 
 **Spawns:** Task(s)
 
-**Validation:** Done by story_template.md
+**Validation:** Described by the story artifacts validation checklist.
+
+**FAILURE MODES**:
+
+- missing validation checklist
 
 ---
 
@@ -166,6 +179,10 @@ Projects flow through five phases:
 **Validation:** Done by task_template.md
 
 **Note:** When all Tasks reach To-Do status, Planning phase is complete and Execution phase begins.
+
+**FAILURE MODES**:
+
+- missing validation checklist
 
 ---
 
@@ -262,8 +279,8 @@ Retrospective (optional learning capture)
 ```
 
 **For detailed artifact structure and relationships, see:**
+- **CRTICAL** Always prioritise the artifact validation guidelines in the [Planning Artifact] you are reading.
 - `relationships.md` — Relationship types and semantics
-- `schema/01-structure.md` — Artifact metadata structure
 - Individual schema files (`03-artifact-prd.md`, `04-artifact-epic.md`, etc.)
 
 ---
@@ -301,12 +318,3 @@ When beginning a project:
 9. When work complete, Closing phase: Archive artifacts
 10. Optional: Create Retrospective using `retrospective_template.md`
 
----
-
-## Links
-
-- **Templates:** `devtools/files/zk/templates/project/`
-- **Artifact Schemas:** `schema/` directory
-- **Status Transitions:** `status-flow.md`
-- **Relationships:** `relationships.md`
-- **Storage/Persistence:** Storage-zk skill handles wiki/notebook management

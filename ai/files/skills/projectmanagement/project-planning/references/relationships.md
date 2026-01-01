@@ -3,8 +3,11 @@ name: relationships
 description: Use when you need to define or understand relationships between project planning artifacts like Tasks, Stories, Epics, Research, and Decisions.
 ---
 
+# Artifact Relationships
 
-# Relationship Types
+Describing relationships between different project planning artifacts is crucial for traceability, impact analysis, and understanding dependencies. Below are common relationship types used in project planning.
+
+There are 
 
 ## Parent-Child Relationships
 
@@ -31,20 +34,10 @@ description: Use when you need to define or understand relationships between pro
 
 # Link Types and Relationships
 
-## Artifact-Type Links
 
-Cross-artifact relationships for linking between different artifact types:
+Throughout the project-planning instructions you will see often refernces to types in the form of [Epic], [Spec], [Story], [Task], [Research], and [Decision].
+This is to reinforce to you the reader or agent that these are distinct artifact types with specific roles.
 
-| Link Type | Usage |
-|-----------|-------|
-| `prd` | Link to a [PRD] |
-| `epic` | Link to an [Epic] |
-| `spec` | Link to a [Spec] |
-| `research` | Link to [Research] |
-| `decision` | Link to a [Decision] |
-| `story` | Link to a [Story] |
-| `task` | Link to a [Task] |
-| `retrospective` | Link to a [Retrospective] |
 
 ## Task-to-Task Relationship Links
 
@@ -94,29 +87,25 @@ Use `influenced_by` links in Task relationships to trace decisions made.
 
 ---
 
-## Obsidian Linking in Artifact Bodies
+## Link format in Artifact Bodiee
 
-Use wiki-style linking within artifact bodies. Links must match the exact artifact ID (without `.md`):
+Use markdown linking within artifact bodies. 
 
-```markdown
-This epic is part of [[abc123-prd-user-authentication]] PRD.
-It includes [[def456-story-user-login-flow]] story.
-The design was influenced by [[ghi789-research-oauth-alternatives]] research.
-Implemented based on [[jkl012-decision-jwt-vs-session]] decision.
-After completion, see [[mno345-retrospective-epic-1-closeout]] retrospective.
+Links must follow the format:
+
+```md
+[[artifact-id] title](relative-artifact-filepath-link)
 ```
 
-### Linking Examples by Category
+For example: 
 
-- **PRD**: `[[abc123-prd-user-authentication]]` or `[[def456-prd-dayz-modding]]`
-- **Epic**: `[[ghi789-epic-separate-cli-tool]]` or `[[jkl012-epic-user-auth-system]]`
-- **Spec**: `[[mno345-spec-cli-requirements]]` or `[[pqr678-spec-auth-requirements]]`
-- **Research**: `[[stu901-research-jwt-best-practices]]` or `[[vwx234-research-oauth-alternatives]]`
-- **Decision**: `[[yza567-decision-jwt-vs-session]]` or `[[bcd890-decision-cli-framework]]`
-- **Story**: `[[efg123-story-user-login-flow]]` or `[[hij456-story-template-extraction]]`
-- **Task**: `[[klm789-task-database-schema]]` or `[[nop012-task-extract-files]]`
-- **Retrospective**: `[[qrs345-retrospective-epic-1-closeout]]`
-
+```markdown
+This epic is part of [[abc123] User Authentication](../prd/abc123-user-authentication.md) PRD.
+It includes [[def456] User Login Flow](../story/def456-user-login-flow.md) story.
+The design was influenced by [[ghi789] OAuth Alternatives](../research/ghi789-research-oauth-alternatives.md) research.
+Implemented based on [[jkl012] JWT vs Session](../decision/jkl012-decision-jwt-vs-session.md) decision.
+After completion, see [[mno345] Epic 1 Closeout](../retrospective/mno345-retrospective-epic-1-closeout.md) retrospective.
+```
 
 ## How are [Task] relationships described?
 

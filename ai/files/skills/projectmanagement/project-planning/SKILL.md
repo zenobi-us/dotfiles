@@ -5,6 +5,10 @@ description: Use to know about Planning Artifacts used in project management.
 
 ## What are [Planning Artifact] Types?
 
+Throughout the project-planning instructions you will see often refernces to types in the form of [Epic], [Spec], [Story], [Task], [Research], and [Decision].
+
+This is to reinforce to you the reader or agent that these are distinct artifact types with specific roles.
+
 - [PRD]: Product Requirements Document, A high-level statement of what the product should achieve. They capture the needs and expectations of stakeholders. A [PRD] informs managers in the creation of one or more [Epic].
 - [Epic]: A large body of work that is described by Stories. An [Epic] is always accompanied by a [Spec], they have a 1:1 relationship.
 - [Spec]: A detailed description of the project's requirements and objectives. It leads to creation of one or more [Story].
@@ -13,6 +17,12 @@ description: Use to know about Planning Artifacts used in project management.
 - [Story]: A scenario or use case, manageable piece of work derived from an [Epic]. [Story] always contain "user stories". [Story] are always implemented by [Task].
 - [Task]: A specific piece of work that needs to be completed as part of a [Story]. They are always linked to both a [Story] and an [Epic]. They can also be linked to other [Task] in interesting ways (e.g., blocking, dependent on, related to).
 - [Retrospective]: A reflective artifact created at the end of an epic or project phase to capture lessons learned, successes, and areas for improvement. It summarizes insights from the team and stakeholders to inform future projects. Each [Retrospective] is linked to its corresponding [Epic] and any unresolved [Decision] artifacts.
+
+## Workflow Phases
+
+Creating effective project artifacts requires understanding the workflow phases they belong to. To understand this better, read the resources:
+
+- → **See: skill_reference(`references/workflow.md`)** for detailed workflow phases and their associated artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
 
 ## Estimation 
 
@@ -39,14 +49,14 @@ Each artifact type has specific frontmatter requirements and content sections.
 
 → Use the linked skill resources for detailed schema definitions, artifact content structure, and link type definitions for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
 
-- → **See: skill_reference(`references/schema/01-structure.md`)** for detailed artifact schema and content structure.
-- → **See: skill_reference(`references/schema/02-link-types-and-relationships-and-link-type-summary.md`)** for detailed link type definitions and usage guidelines.
-- → **See: skill_reference(`templates/project/epic_template.md`)** for an example of an Epic artifact template.
-- → **See: skill_reference(`templates/project/prd_template.md`)** for an example of a PRD artifact template.
-- → **See: skill_reference(`templates/project/spec_template.md`)** for an example of a Spec artifact template.
-- → **See: skill_reference(`templates/project/story_template.md`)** for an example of a Story artifact template.
-- → **See: skill_reference(`templates/project/task_template.md`)** for an example of a Task artifact template.
-- → **See: skill_reference(`templates/project/decision_template.md`)** for an example of a Decision artifact template.
-- → **See: skill_reference(`templates/project/research_template.md`)** for an example of a Research artifact template.
-- → **See: skill_reference(`templates/project/retrospective_template.md`)** for an example of a Retrospective artifact template.
+**See below for specific artifact schemas:**
+
+- → **PRD** skill_reference(`schema/01-artifact-prd.md`)
+- → **Epic** skill_reference(`schema/02-artifact-epic.md`)
+- → **Spec** skill_reference(`schema/03-artifact-spec.md`)
+- → **Research** skill_reference(`schema/04-artifact-research.md`)
+- → **Decision** skill_reference(`schema/05-artifact-decision.md`)
+- → **Story** skill_reference(`schema/06-artifact-story.md`)
+- → **Task** skill_reference(`schema/07-artifact-task.md`)
+- → **Retrospective** skill_reference(`schema/08-artifact-retrospective.md`)
 
