@@ -20,9 +20,33 @@ This is to reinforce to you the reader or agent that these are distinct artifact
 
 ## Workflow Phases
 
-Creating effective project artifacts requires understanding the workflow phases they belong to. To understand this better, read the resources:
+Projects flow through five distinct phases. Understanding where artifacts belong is critical for agents executing this skill.
 
-- → **See: skill_reference(`references/workflow.md`)** for detailed workflow phases and their associated artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
+**Agents make tactical decisions autonomously** (which artifact to create, when to move statuses, validating content) **but escalate strategic decisions to Q** (scope changes, timeline shifts, technical refactoring, resource constraints).
+
+### Phase Overview
+
+1. **Planning** — Create artifacts defining the work (PRD → Epic → Spec → Stories → Tasks)
+   - → **See: skill_reference(`references/workflow/planning-phase.md`)** for detailed artifact creation sequence and validation gates
+
+2. **Execution** — Move work to completion through status transitions
+   - → **See: skill_reference(`references/workflow/execution-phase.md`)** for execution guidance
+
+3. **Closing** — Archive completed work and formally close Epic/Project
+   - → **See: skill_reference(`references/workflow/closing-phase.md`)** for closing procedures
+
+4. **Retrospective** — Capture learnings (can follow Epic or Project completion)
+   - → **See: skill_reference(`references/workflow/retrospective-phase.md`)** for retrospective guidance
+
+### Escalation Matrix
+
+Pause and escalate to Q when encountering:
+- **Scope changes** — Feature additions/removals mid-Epic or mid-Planning
+- **Timeline shifts** — Projected delivery date moves >1 week
+- **Technical refactoring** — Discovered design changes during work
+- **Resource constraints** — Task/Story complexity exceeds capacity
+
+→ **See: skill_reference(`references/workflow/overview.md`)** for complete escalation matrix, artifact relationship diagram, and agent decision model.
 
 ## Estimation 
 
