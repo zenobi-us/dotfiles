@@ -1,22 +1,33 @@
 ---
 title: Markdown Driven Project Manangement
-agent: project-manager
-description: Use markdown files to manage project tasks and documentation.
+agent: ProjectManager
+subtask: true
 ---
 
-# Project Management Command
+## User Request
 
-If the agent has not loaded the project planning skill, load it now:
+```md
+<UserRequest>
+  $ARGUMENTS
+  </UserRequest>
+```
 
+## Steps to Execute
+
+1. Load the project id skill: 
+
+- `skill_use('projectmanagement_project_id')`
+
+2. If the agent has not loaded the project planning skill, load it now:
 
 - `skill_use('projectmanagement_project_planning')`
 - `skill_use('projectmanagement_storage_zk')`
 
-## Navigation Guide
+3. Follow the project management workflow outlined below to manage project tasks and documentation using markdown files.
 
-Follow the behaviour tree for systematic navigation:
+- `skill_resource('projectmanagement_project_planning', 'references/workflow/behaviour-tree.md')`
 
-**See:** `skill_resource('references/workflow/behaviour-tree.md')`
+## Guidelines 
 
 The behaviour tree provides:
 - Project tree display for no-input mode
@@ -25,10 +36,3 @@ The behaviour tree provides:
 - Escalation detection
 - Post-action loops
 
-## User Request
-
-```md
-<UserRequest>
-$ARGUMENTS
-</UserRequest>
-```

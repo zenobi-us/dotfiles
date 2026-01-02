@@ -37,12 +37,12 @@ Use the `skills_superpowers_writing_git_commits` skill to guide you in writing g
 Key principles:
 
 - Use file directory or functionality as scope
-- Common scopes: `[ui]`, `[api]`, `[docs]`, `[config]`, `[claude]`
+- Common scopes: `ui`, `api`, `docs`, `config`, `claude`
 - Description starts lowercase, concise and clear
-- Follow semantic commit format: `[type](scope): description`
+- Follow semantic commit format: `type(scope): description`
 
 ## Examples
 
-- `[ui] fix button styling on mobile devices`
-- `[api] add user authentication endpoint`
-- `[docs] update installation instructions`
+- `fix(ui): correct button styling on mobile devices`
+- `fix(api): add user authentication endpoint`
+- `chore(docs): update installation instructions`

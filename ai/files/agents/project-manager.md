@@ -1,6 +1,6 @@
 ---
-name: WikiManager
-description: Use personal-wiki skill to manage project tasks.
+name: ProjectManager
+description: Use project management skills to plan and execute projects effectively.
 model: anthropic/claude-opus-4-5
 ---
 
