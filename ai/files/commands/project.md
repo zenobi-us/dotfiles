@@ -9,7 +9,7 @@ subtask: true
 ```md
 <UserRequest>
   $ARGUMENTS
-  </UserRequest>
+</UserRequest>
 ```
 
 ## Steps to Execute
@@ -21,6 +21,7 @@ subtask: true
 2. If the agent has not loaded the project planning skill, load it now:
 
 - `skill_use('projectmanagement_project_planning')`
+- `skill_use('projectmanagement_storage_function_structure')`
 - `skill_use('projectmanagement_storage_zk')`
 
 3. Follow the project management workflow outlined below to manage project tasks and documentation using markdown files.

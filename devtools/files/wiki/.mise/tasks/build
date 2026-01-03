@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Build wiki-cli binary from TypeScript source
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+
+echo "Building wiki-cli..."
+cd "$SCRIPT_DIR"
+bun build ./src/index.ts --compile --outfile wiki-cli
+
+# Make executable
+chmod +x wiki-cli
+
+echo "✓ wiki-cli built successfully at $SCRIPT_DIR/wiki-cli"

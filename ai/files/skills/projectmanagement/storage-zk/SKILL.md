@@ -1,52 +1,21 @@
 ---
-name: storage-zk
-description: Use when creating, linking, searching, or exporting notes—use `wiki` CLI for automatic notebook discovery, or `zk` directly when you need explicit control
+namie: storage-wiki-cli
+description: Use when creating, linking, searching, or updating notes with the `wiki` CLI.
 ---
 
 # Personal Wiki: Using the `wiki` CLI
 
-> [!Note]
->
-> **Preferred approach:** Use the `wiki` CLI wrapper for automatic notebook discovery.
-> Fallback to direct `zk` commands only when you need explicit control over notebook paths.
-
 ## Quick Start: `wiki` CLI
 
-The `wiki` CLI intelligently discovers your notebook path. No `-W` flag needed:
+The `wiki` CLI intelligently discovers your notebook patih.
 
 ```bash
-# Discover notebook for current project
-wiki project discover
-
-# Get project ID and metadata
-wiki project id
-
-# Use discovered notebook (auto-discovers path internally)
 wiki new --title "My Note"
 wiki list --match="pattern"
-wiki list --format=json > export.json
+wiki list --format=json | jq .
 ```
+# Use discovered notebook (auto-discovers path internally)
 
-If you need the notebook path explicitly for direct `zk` commands:
-```bash
-NOTEBOOK=$(wiki project discover)
-zk list -W "$NOTEBOOK" --match="search"
-```
-
-## Discovery Process
-
-The `wiki` script uses this priority order:
-
-1. **Environment variable** `NOTEBOOK_PATH` (if set, use it directly)
-2. **Ancestor directory search** (finds `.zk/config.toml` in parent directories)
-3. **Context matching** (scans `~/Notes/` for matching project contexts)
-4. **Global fallback** (uses `~/.config/zk/config.toml` if it defines `notebook.dir`)
-
-This means in most cases, you just run `wiki` commands without specifying paths.
-
-## Overview
-
-Personal Wiki is a lightweight zettelkasten system using ZK (a markdown-based CLI tool). Core principle: **all data is markdown files; CLI just organizes, searches, and exports them**. Avoid assuming commands exist (no `export` or `link` commands); instead use flags and manual editing.
 
 ## Common Workflows with `wiki` CLI
 
@@ -57,25 +26,18 @@ Personal Wiki is a lightweight zettelkasten system using ZK (a markdown-based CL
 NOTE_PATH=$(wiki new --title "Research Topic" --print-path)
 
 # 2. Edit file and add links (manual)
-echo -e "\n\nRelated: [[existing-note-id]]" >> "$NOTE_PATH"
+echo -e "\n\nRelated: [existing-note-id](Existing Note Title)" >> "$NOTE_PATH"
 
 # 3. Search for related notes
 wiki list --match="Research" --format=long
 
 # 4. Export results
-wiki list --match="Research" --format=json > related-notes.json
+wiki list --match="Research" --format=json | jq .
 ```
 
-### Get Project Info & Notebook Path
+### Register Project with Notebook
 
 ```bash
-# Get project ID for the current directory
-wiki project id
-
-# Get the actual notebook path
-NOTEBOOK_PATH=$(wiki project discover)
-echo "Using notebook at: $NOTEBOOK_PATH"
-
 # Register current project with notebook (for context matching)
 wiki project add
 ```
@@ -94,7 +56,6 @@ jq . < all-notes.json > /dev/null && echo "Valid JSON"
 ## When to Use
 
 **Symptoms:**
-- Creating notes but unsure about notebook path
 - Need to export notes in various formats
 - Want automatic project-to-notebook mapping
 - Working with multiple projects and notebooks
@@ -108,10 +69,8 @@ jq . < all-notes.json > /dev/null && echo "Valid JSON"
 
 | Scenario | Use | Example |
 |----------|-----|---------|
-| **Notebook path unknown** | `wiki` CLI | `wiki new --title "Note"` (auto-discovers) |
-| **Known notebook path** | Direct `zk` | `zk list -W /path --match="x"` (explicit control) |
-| **Get notebook path first** | `wiki project discover` | `NOTEBOOK=$(wiki project discover)` |
-| **Get project ID** | `wiki project id` | Returns JSON: projectId, repo, remote |
+| **Notebook auto-discovery** | `wiki` CLI | `wiki new --title "Note"` (auto-discovers) |
+| **Explicit notebook control** | Direct `zk` | `zk list -W /path --match="x"` (explicit control) |
 | **Register project context** | `wiki project add` | Helps future discovery for this project |
 
 ## Quick Reference: `wiki` CLI Commands
@@ -174,17 +133,6 @@ zk list --match="search"
 # ✅ DO - explicit notebook path
 zk list -W /path/to/notebook --match="search"
 ```
-
-**Why?** Without `-W`, ZK searches UP the directory tree until it finds the first `.zk` folder. With nested notebooks, this can pick the wrong one:
-
-```
-~/projects/
-  .zk/                 # master notebook
-  project-a/
-    .zk/               # project-a notebook ← you want this
-    notes/
-```
-
 If you're in `~/projects/project-a/notes/` and run `zk list` without `-W`, it might find `~/projects/.zk` instead.
 
 ### Troubleshooting: Verify Which Notebook Is Active

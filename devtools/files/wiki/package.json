@@ -1,0 +1,23 @@
+{
+  "name": "@dotfiles/wiki-cli",
+  "version": "0.1.0",
+  "description": "TypeScript CLI wrapper for zk notebook discovery and project management",
+  "type": "module",
+  "main": "wiki-cli.ts",
+  "bin": {
+    "wiki-cli": "./wiki-cli"
+  },
+  "scripts": {
+    "build": "bun build wiki-cli.ts --target bun --outfile wiki-cli",
+    "dev": "bun wiki-cli.ts",
+    "test": "bun test"
+  },
+  "keywords": [
+    "zk",
+    "notebook",
+    "cli",
+    "project-management"
+  ],
+  "author": "",
+  "license": "MIT"
+}
