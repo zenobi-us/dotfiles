@@ -7,11 +7,6 @@
   "bin": {
     "wiki-cli": "./wiki-cli"
   },
-  "scripts": {
-    "build": "bun build wiki-cli.ts --target bun --outfile wiki-cli",
-    "dev": "bun wiki-cli.ts",
-    "test": "bun test"
-  },
   "keywords": [
     "zk",
     "notebook",
@@ -19,5 +14,22 @@
     "project-management"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@clerc/plugin-friendly-error": "^1.1.1",
+    "@clerc/plugin-not-found": "^1.1.1",
+    "@clerc/plugin-strict-flags": "^1.1.1",
+    "@clerc/plugin-update-notifier": "^1.1.1",
+    "arktype": "^2.1.29",
+    "bunfig": "^0.15.6",
+    "clerc": "^1.1.1",
+    "env-paths": "^3.0.0"
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
 }
