@@ -1,5 +1,6 @@
 
 import { defineCommand } from "clerc";
+import { NotebookService } from "../../services/NotebookService";
 
 export const NotesCommand = defineCommand({
   name: "notes",
@@ -8,8 +9,8 @@ export const NotesCommand = defineCommand({
     notebook: {
       description: "Specify the notebook to use for notes",
       type: String,
-      default: () => {
-        ProjectService.discoverCurrentProject();
+      default: async () => {
+        return await NotebookService.discoverNotebookPath();
       }
     }
   },
