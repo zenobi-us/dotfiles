@@ -68,4 +68,3 @@ export async function createConfigService(args: {
   return resolvedConfig;
 }
 
-export const ConfigService = await createConfigService({ directory: process.cwd() });

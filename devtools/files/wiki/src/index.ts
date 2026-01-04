@@ -16,7 +16,20 @@ import { NotesAddCommand } from "./cmds/notes/NotesAddCmd.ts";
 import { NotesListCommand } from "./cmds/notes/NotesListCmd.ts";
 import { NotesRemoveCommand } from "./cmds/notes/NotesRemoveCmd.ts";
 import { NotesSearchCommand } from "./cmds/notes/NotesSearchCmd.ts";
+import { Logger } from "./services/LoggerService.ts";
+import { createConfigService } from "./services/ConfigService.ts";
+import { createNotebookService } from "./services/NotebookService.ts";
 
+import type { Config } from './services/ConfigService.ts';
+import type { NotebookService } from './services/NotebookService.ts';
+import { NotebookCreateCommand } from "./cmds/notebook/NotebookCreateCmd.ts";
+
+declare module "@clerc/core" {
+  export interface ContextStore {
+    config: Config,
+    notebooKService: NotebookService
+  }
+}
 
 Cli() // Create a new CLI with help and version plugins
   .name("wiki") // Optional, CLI readable name
@@ -31,10 +44,23 @@ Cli() // Create a new CLI with help and version plugins
     // @ts-expect-error pkg is json
     pkg
   })) // use the update notifier plugin to notify users of updates
+  .interceptor(async (ctx, next) => {
+    Logger.debug("Interceptor.before");
+
+    const config = await createConfigService({ directory: process.cwd() });
+    const notebookService = createNotebookService({ config });
+
+    ctx.store.config = config;
+    ctx.store.notebooKService = notebookService;
+
+    await next();
+    Logger.debug("Interceptor.after");
+  })
   .command([
     NotebookCommand,
     NotebookListCommand,
     NotebookAddContextPathCommand,
+    NotebookCreateCommand,
     NotesCommand,
     NotesAddCommand,
     NotesListCommand,

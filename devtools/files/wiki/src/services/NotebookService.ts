@@ -1,4 +1,4 @@
-import { ConfigService, type Config } from "./ConfigService";
+import { type Config } from "./ConfigService";
 import { promises as fs } from "fs";
 import { dirname, join } from "path";
 import { Glob } from "bun";
@@ -28,8 +28,8 @@ export type NotebookGroup = typeof NotebookGroupSchema.infer;
 const NotebookConfigSchema = type({
   name: 'string',
   contexts: 'string[]?',
-  templates: NotebookTemplatesSchema,
-  groups: NotebookGroupSchema.array()
+  templates: NotebookTemplatesSchema.optional(),
+  groups: NotebookGroupSchema.array().optional(),
 })
 
 type NotebookConfig = typeof NotebookConfigSchema.infer;
@@ -51,39 +51,47 @@ export function createNotebookService(serviceOptions: {
     path: string,
   }) {
     const notebookPath = join(args.path, slugify(args.name));
-    await fs.mkdir(notebookPath, { recursive: true });
+    const configPath = join(notebookPath, `.${serviceOptions.config.configFilePath}`);
+    Logger.debug("NotebookService.createNotebook %s", notebookPath);
 
-    const configPath = join(notebookPath, serviceOptions.config.configFilePath);
+    await fs.mkdir(dirname(configPath), { recursive: true });
+
     const defaultConfig: NotebookConfig = {
       name: args.name,
       templates: {},
       groups: [],
+      contexts: [process.cwd()],
     };
 
     await writeNotebookConfig(configPath, defaultConfig);
+    Logger.debug("NotebookService.createNotebook.writeConfig %s", configPath);
 
     console.log(`Created notebook '${args.name}' at '${notebookPath}'`);
-    return notebookPath;
 
+    return notebookPath;
   }
 
   async function getNotebook(notebookPath: string): Promise<Notebook | null> {
-    const configPath = join(notebookPath, serviceOptions.config.configFilePath);
+    const configPath = join(notebookPath, `.${serviceOptions.config.configFilePath}`);
+    Logger.debug("NotebookService.getNotebook %s", configPath);
     const config = await loadNotebookConfig(configPath);
     if (!config) return null;
 
-    // Load templates
-    // templates are listed as a mapping of template name to file path
-    for (const [templateName, templatePath] of Object.entries(config.templates)) {
-      try {
-        const template = await import(templatePath, { assert: { type: "markdown" } }).then(mod => mod.default);
-        config.templates[templateName] = template;
-      } catch (error) {
-        console.error(`Error loading template at ${templatePath}:`, error);
+    if (config.templates) {
+      // Load templates
+      // templates are listed as a mapping of template name to file path
+      for (const [templateName, templatePath] of Object.entries(config.templates)) {
+        try {
+          const template = await import(templatePath, { assert: { type: "markdown" } }).then(mod => mod.default);
+          config.templates[templateName] = template;
+        } catch (error) {
+          console.error(`Error loading template at ${templatePath}:`, error);
+        }
       }
     }
 
     const notebook = NotebookSchema({
+      path: notebookPath,
       name: config.name,
       config,
       templates: {},
@@ -151,15 +159,15 @@ export function createNotebookService(serviceOptions: {
   async function discoverNotebookPath(cwd: string = process.cwd()): Promise<string | null> {
     // Step 1: Check environment/cli-arg variable (resolved and provided by the ConfigService)
     if (serviceOptions.config.notebookPath) {
-      Logger.debug('discoverNotebookPath: USE_DECLARED_PATH %s', serviceOptions.config.notebookPath);
+      Logger.debug('NotebookService.discoverNotebookPath: USE_DECLARED_PATH %s', serviceOptions.config.notebookPath);
       return serviceOptions.config.notebookPath;
     }
 
     // STEP 2: Check for notebook configs in config.notebooks
     for (const notebookPath of serviceOptions.config.notebooks) {
-      Logger.debug('discoverNotebookPath: CHECKING_NOTEBOOK_PATH %s', notebookPath);
+      Logger.debug('NotebookService.discoverNotebookPath: CHECKING_NOTEBOOK_PATH %s', notebookPath);
       if (!await fs.exists(notebookPath)) {
-        Logger.debug('discoverNotebookPath: NOTEBOOK_PATH_NOT_FOUND %s', notebookPath);
+        Logger.debug('NotebookService.discoverNotebookPath: NOTEBOOK_PATH_NOT_FOUND %s', notebookPath);
         continue;
       }
 
@@ -171,17 +179,17 @@ export function createNotebookService(serviceOptions: {
       }));
 
       for await (const configFile of notebooks) {
-        Logger.debug('discoverNotebookPath: FOUND_NOTEBOOK_CONFIG %s', configFile);
+        Logger.debug('NotebookService.discoverNotebookPath: FOUND_NOTEBOOK_CONFIG %s', configFile);
 
         const notebookConfig = await loadNotebookConfig(configFile);
         if (!notebookConfig?.contexts) continue;
-        Logger.debug('discoverNotebookPat: CHECKING_CONTEXTS %o', notebookConfig.contexts);
+        Logger.debug('NotebookService.discoverNotebookPath: CHECKING_CONTEXTS %o', notebookConfig.contexts);
         const matchedContext = notebookConfig.contexts.find(context => cwd.startsWith(context));
         if (!matchedContext) {
-          Logger.debug('discoverNotebookPath: NO_CONTEXT_MATCH %o', { cwd, contexts: notebookConfig.contexts });
+          Logger.debug('NotebookService.discoverNotebookPath: NO_CONTEXT_MATCH %o', { cwd, contexts: notebookConfig.contexts });
           continue;
         }
-        Logger.debug('discoverNotebookPath: MATCHED_CONTEXT %s', matchedContext);
+        Logger.debug('NotebookService.discoverNotebookPath: MATCHED_CONTEXT %s', matchedContext);
         return dirname(configFile);
       }
     }
@@ -191,15 +199,15 @@ export function createNotebookService(serviceOptions: {
     let current = cwd;
     while (current !== "/") {
       const configPath = join(current, serviceOptions.config.configFilePath);
-      Logger.debug('discoverNotebookPath: CHECKING_ANCESTOR %s', configPath);
+      Logger.debug('NotebookService.discoverNotebookPath: CHECKING_ANCESTOR %s', configPath);
       if (await fs.exists(configPath)) {
-        Logger.debug('discoverNotebookPath: FOUND_ANCESTOR_NOTEBOOK %s', current);
+        Logger.debug('NotebookService.discoverNotebookPath: FOUND_ANCESTOR_NOTEBOOK %s', current);
         return current;
       }
       current = dirname(current);
     }
 
-    Logger.debug('discoverNotebookPath: NO_NOTEBOOK_FOUND');
+    Logger.debug('NotebookService.discoverNotebookPath: NO_NOTEBOOK_FOUND');
     return null;
   }
 
@@ -278,12 +286,60 @@ export function createNotebookService(serviceOptions: {
 
     // Update notebook config
     const config = notebook.config;
-    config.templates[slug] = templatePath;
+    config.templates = {
+      ...(config.templates || {}),
+      [slug]: templatePath,
+    }
+
     await writeNotebookConfig(join(args.notebookPath, serviceOptions.config.configFilePath), config);
 
     console.log(`Created template '${args.name}' at '${templatePath}'`);
   }
 
+  async function discoverNotebooks(cwd: string = process.cwd()): Promise<Notebook[]> {
+    const output: Notebook[] = [];
+
+    // List all registered notebooks
+    for (const notebookPath of serviceOptions.config.notebooks) {
+      Logger.debug('NotebookService.discoverNotebooks: CHECKING_NOTEBOOK_PATH %s', notebookPath);
+      if (!await fs.exists(notebookPath)) {
+        Logger.debug('NotebookService.discoverNotebooks: NOTEBOOK_PATH_NOT_FOUND %s', notebookPath);
+        continue;
+      }
+
+      const notebook = await getNotebook(notebookPath);
+      if (notebook) {
+        output.push(notebook);
+      }
+    }
+
+
+    // discover ancestor notebooks
+    let current = cwd
+    while (current !== "/") {
+      const configPath = join(current, `.${serviceOptions.config.configFilePath}`);
+      Logger.debug('NotebookService.discoverNotebooks: CHECKING_ANCESTOR %s', configPath);
+      const exists = await fs.exists(configPath);
+      if (!exists) {
+        current = dirname(current);
+        continue;
+      }
+
+      Logger.debug('NotebookService.discoverNotebooks: FOUND_ANCESTOR_NOTEBOOK %s', current);
+      const notebook = await getNotebook(current);
+      if (!notebook) {
+        current = dirname(current);
+        continue;
+      }
+
+      Logger.debug('NotebookService.discoverNotebooks: ADDING_ANCESTOR_NOTEBOOK %s', current);
+      output.push(notebook);
+      current = dirname(current);
+    }
+
+
+    return output;
+  }
 
   /**
    * Return the public API
@@ -294,9 +350,11 @@ export function createNotebookService(serviceOptions: {
     addNotebookContext,
     getNotebook,
     createNotebookTemplate,
+    discoverNotebooks,
   }
 
 }
 
 
-export const NotebookService = createNotebookService({ config: ConfigService });
+export type NotebookService = ReturnType<typeof createNotebookService>;
+

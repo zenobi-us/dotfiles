@@ -1,7 +1,7 @@
 
 
-import { type } from "arktype";
 import { defineCommand } from "clerc";
+import { Logger } from "../../services/LoggerService";
 
 export const NotebookAddContextPathCommand = defineCommand({
   name: "notebook add-context-path",
@@ -18,5 +18,5 @@ export const NotebookAddContextPathCommand = defineCommand({
     "[path]"
   ],
 }, (ctx) => {
-  console.log("Notebook command executed", ctx);
+  Logger.debug("Notebook add-context-path command executed");
 })

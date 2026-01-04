@@ -1,5 +1,6 @@
 
 import { defineCommand } from "clerc";
+import { Logger } from "../../services/LoggerService";
 
 export const NotebookCommand = defineCommand({
   name: "notebook",
@@ -8,5 +9,5 @@ export const NotebookCommand = defineCommand({
   alias: ["nb"],
   parameters: []
 }, (ctx) => {
-  console.log("Notebook command executed");
+  Logger.debug("Notebook command executed");
 })
