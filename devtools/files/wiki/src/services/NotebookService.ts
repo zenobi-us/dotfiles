@@ -59,7 +59,12 @@ export function createNotebookService(serviceOptions: {
     const defaultConfig: NotebookConfig = {
       name: args.name,
       templates: {},
-      groups: [],
+      groups: [{
+        name: "Default",
+        description: "Default group for all notes",
+        globs: ["**/*.md"],
+        metadata: {},
+      }],
       contexts: [process.cwd()],
     };
 
@@ -144,8 +149,23 @@ export function createNotebookService(serviceOptions: {
 
   const NotebookGlob = new Glob(`**/.${serviceOptions.config.configFilePath}`);
 
+  async function getNotebookConfigPath(path?: string): Promise<string | null> {
+    if (!path) {
+      return null;
+    }
+
+    const configPath = join(path, `.${serviceOptions.config.configFilePath}`);
+    if (!await fs.exists(configPath)) {
+      return null;
+    }
+
+    return configPath
+  }
+
   /**
-   * Discover the notebook path based on the current working directory
+   * Discover the notebook path based on the current working directory.
+   *
+   * A notebook path is any folder that contains a .wiki/config.json
    *
    * Priority:
    *
@@ -158,53 +178,46 @@ export function createNotebookService(serviceOptions: {
    */
   async function discoverNotebookPath(cwd: string = process.cwd()): Promise<string | null> {
     // Step 1: Check environment/cli-arg variable (resolved and provided by the ConfigService)
-    if (serviceOptions.config.notebookPath) {
+    if (await getNotebookConfigPath(serviceOptions.config.notebookPath)) {
       Logger.debug('NotebookService.discoverNotebookPath: USE_DECLARED_PATH %s', serviceOptions.config.notebookPath);
-      return serviceOptions.config.notebookPath;
+      return serviceOptions.config.notebookPath || null;
     }
 
     // STEP 2: Check for notebook configs in config.notebooks
     for (const notebookPath of serviceOptions.config.notebooks) {
-      Logger.debug('NotebookService.discoverNotebookPath: CHECKING_NOTEBOOK_PATH %s', notebookPath);
-      if (!await fs.exists(notebookPath)) {
-        Logger.debug('NotebookService.discoverNotebookPath: NOTEBOOK_PATH_NOT_FOUND %s', notebookPath);
+      Logger.debug('NotebookService.discoverNotebookPath: CHECKING_REGISTERED_NOTEBOOK %s', notebookPath);
+      const configFilePath = await getNotebookConfigPath(notebookPath);
+      if (!configFilePath) {
         continue;
       }
 
-      const notebooks = await Array.fromAsync(NotebookGlob.scan({
-        absolute: true,
-        cwd: notebookPath,
-        followSymlinks: true,
-        onlyFiles: true,
-      }));
+      const notebookConfig = await loadNotebookConfig(configFilePath);
 
-      for await (const configFile of notebooks) {
-        Logger.debug('NotebookService.discoverNotebookPath: FOUND_NOTEBOOK_CONFIG %s', configFile);
+      if (!notebookConfig?.contexts) continue;
 
-        const notebookConfig = await loadNotebookConfig(configFile);
-        if (!notebookConfig?.contexts) continue;
-        Logger.debug('NotebookService.discoverNotebookPath: CHECKING_CONTEXTS %o', notebookConfig.contexts);
-        const matchedContext = notebookConfig.contexts.find(context => cwd.startsWith(context));
-        if (!matchedContext) {
-          Logger.debug('NotebookService.discoverNotebookPath: NO_CONTEXT_MATCH %o', { cwd, contexts: notebookConfig.contexts });
-          continue;
-        }
-        Logger.debug('NotebookService.discoverNotebookPath: MATCHED_CONTEXT %s', matchedContext);
-        return dirname(configFile);
+      const matchedContext = notebookConfig.contexts.find(context => cwd.startsWith(context));
+      if (!matchedContext) {
+        continue;
       }
+
+      Logger.debug('NotebookService.discoverNotebookPath: MATCHED_REGISTERED_CONTEXT %s', matchedContext);
+
+      return notebookPath;
     }
 
 
     // Step 3: Search ancestor directories
     let current = cwd;
-    while (current !== "/") {
-      const configPath = join(current, serviceOptions.config.configFilePath);
-      Logger.debug('NotebookService.discoverNotebookPath: CHECKING_ANCESTOR %s', configPath);
-      if (await fs.exists(configPath)) {
-        Logger.debug('NotebookService.discoverNotebookPath: FOUND_ANCESTOR_NOTEBOOK %s', current);
-        return current;
+    while (current !== "") {
+      const configFilePath = await getNotebookConfigPath(current);
+      Logger.debug('NotebookService.discoverNotebookPath: CHECKING_ANCESTOR %s', configFilePath);
+      if (!configFilePath) {
+        current = dirname(current);
+        continue;
       }
-      current = dirname(current);
+
+      Logger.debug('NotebookService.discoverNotebookPath: FOUND_ANCESTOR_NOTEBOOK %s', current);
+      return current
     }
 
     Logger.debug('NotebookService.discoverNotebookPath: NO_NOTEBOOK_FOUND');

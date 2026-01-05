@@ -1,6 +1,7 @@
 
 import { defineCommand } from "clerc";
 import { Logger } from "../../services/LoggerService";
+import { requireNotebookMiddleware } from "../../middleware/requireNotebookMiddleware";
 
 export const NotebookCommand = defineCommand({
   name: "notebook",
@@ -8,6 +9,19 @@ export const NotebookCommand = defineCommand({
   flags: {},
   alias: ["nb"],
   parameters: []
-}, (ctx) => {
-  Logger.debug("Notebook command executed");
+}, async (ctx) => {
+  Logger.debug("NotebookCmd called");
+
+  const notebookPath = await requireNotebookMiddleware({
+    notebookService: ctx.store.notebooKService,
+    path: ctx.flags.notebook
+  });
+
+  Logger.debug("NotebookCmd: %s", notebookPath);
+
+  if (!notebookPath) {
+    return
+  }
+
+
 })

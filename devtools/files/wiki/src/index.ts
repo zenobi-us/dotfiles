@@ -23,11 +23,13 @@ import { createNotebookService } from "./services/NotebookService.ts";
 import type { Config } from './services/ConfigService.ts';
 import type { NotebookService } from './services/NotebookService.ts';
 import { NotebookCreateCommand } from "./cmds/notebook/NotebookCreateCmd.ts";
+import { createDbService, type DbService } from "./services/Db.ts";
 
 declare module "@clerc/core" {
   export interface ContextStore {
-    config: Config,
+    config: Config
     notebooKService: NotebookService
+    dbService: DbService
   }
 }
 
@@ -49,9 +51,11 @@ Cli() // Create a new CLI with help and version plugins
 
     const config = await createConfigService({ directory: process.cwd() });
     const notebookService = createNotebookService({ config });
+    const dbService = createDbService();
 
     ctx.store.config = config;
     ctx.store.notebooKService = notebookService;
+    ctx.store.dbService = dbService;
 
     await next();
     Logger.debug("Interceptor.after");
