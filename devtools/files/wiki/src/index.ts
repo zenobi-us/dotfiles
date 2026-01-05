@@ -20,13 +20,13 @@ import { Logger } from "./services/LoggerService.ts";
 import { createConfigService } from "./services/ConfigService.ts";
 import { createNotebookService } from "./services/NotebookService.ts";
 
-import type { Config } from './services/ConfigService.ts';
 import type { NotebookService } from './services/NotebookService.ts';
 import { NotebookCreateCommand } from "./cmds/notebook/NotebookCreateCmd.ts";
+import { InitCommand } from "./cmds/init/InitCmd.ts";
 
 declare module "@clerc/core" {
   export interface ContextStore {
-    config: Config,
+    config: Awaited<ReturnType<typeof createConfigService>>;
     notebooKService: NotebookService
   }
 }
@@ -36,14 +36,14 @@ Cli() // Create a new CLI with help and version plugins
   .scriptName("wiki") // CLI script name (the command used to run the CLI)
   .description("A wiki CLI") // CLI description
   .version(getGitTag() || 'dev') // CLI version
-  .use(friendlyErrorPlugin()) // use the friendly error plugin to handle errors gracefully
-  .use(notFoundPlugin()) // use the not found plugin to handle unknown commands
-  .use(strictFlagsPlugin()) // use the strict flags plugin to enforce strict flag parsing
+  .use(friendlyErrorPlugin()) // Use the friendly error plugin to handle errors gracefully
+  .use(notFoundPlugin()) // Use the not found plugin to handle unknown commands
+  .use(strictFlagsPlugin()) // Use the strict flags "plugin" to enforce strict flag parsing
   .use(updateNotifierPlugin({
     notify: {},
     // @ts-expect-error pkg is json
     pkg
-  })) // use the update notifier plugin to notify users of updates
+  })) // Use the update notifier plugin to notify users of updates
   .interceptor(async (ctx, next) => {
     Logger.debug("Interceptor.before");
 
@@ -57,6 +57,7 @@ Cli() // Create a new CLI with help and version plugins
     Logger.debug("Interceptor.after");
   })
   .command([
+    InitCommand,
     NotebookCommand,
     NotebookListCommand,
     NotebookAddContextPathCommand,
@@ -66,5 +67,5 @@ Cli() // Create a new CLI with help and version plugins
     NotesListCommand,
     NotesRemoveCommand,
     NotesSearchCommand,
-  ]) // register the notebook and notes commands
+  ]) // Register the notebook and notes commands
   .parse(); // Parse the CLI arguments and execute commands 

@@ -28,16 +28,19 @@ export const NotesListCommand = defineCommand({
     return;
   }
 
-  const noteService = createNoteService({
-    notebook,
-    config,
-  });
+   const noteService = createNoteService({
+     notebook,
+     config: config.store,
+   });
 
-  const results = await noteService.searchNotes(`SELECT * from read_markdown('${notebookPath}/**/*.md')`);
+   const results = await noteService.searchNotes({
+     fields: ['content', 'markdown'],
+     where: `SELECT * from read_markdown('${notebookPath}/**/*.md')`,
+   });
 
-  for (const note of results) {
-    console.log(`- ${note.path}`);
-  }
+   for (const note of results) {
+     console.log(`- ${JSON.stringify(note.metadata)}`);
+   }
 
 
 })

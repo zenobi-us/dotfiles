@@ -37,9 +37,10 @@ import { type } from 'arktype';
 
 import { join } from 'node:path';
 import envPaths from 'env-paths';
+import { mkdir } from 'node:fs/promises';
 
 
-const Paths = envPaths('wiki', { suffix: '' });
+export const Paths = envPaths('wiki', { suffix: '' });
 
 export const ConfigSchema = type({
   notebooks: 'string[]',
@@ -48,6 +49,7 @@ export const ConfigSchema = type({
 });
 
 export type Config = typeof ConfigSchema.infer;
+export const UserConfigFile = join(Paths.config, 'config.json');
 
 const options: ConfigShape<Config> = {
   name: 'opentask',
@@ -60,11 +62,28 @@ const options: ConfigShape<Config> = {
   },
 };
 
+export interface ConfigService {
+  store: Config;
+  write(config: Config): Promise<void>;
+}
+
 export async function createConfigService(args: {
   directory: string;
-}): Promise<Config> {
+}): Promise<ConfigService> {
   const resolvedConfig = await loadConfig(options);
 
-  return resolvedConfig;
+  return {
+    store: resolvedConfig,
+    async write(config: Config): Promise<void> {
+      const parsed = ConfigSchema(config);
+      if (parsed instanceof type.errors) {
+        throw new Error(`Invalid config: ${parsed.toString()}`);
+      }
+
+      const configDir = join(Paths.config);
+      await mkdir(configDir, { recursive: true });
+      await Bun.write(UserConfigFile, JSON.stringify(parsed, null, 2));
+    },
+  };
 }
 

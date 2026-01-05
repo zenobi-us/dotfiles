@@ -1,5 +1,5 @@
 import { type } from "arktype";
-import type { Config } from "./ConfigService";
+import type { ConfigService } from "./ConfigService";
 import type { Notebook } from "./NotebookService";
 import { open } from "@evan/duckdb";
 
@@ -14,7 +14,7 @@ export type Note = typeof NoteSchema.infer;
 
 export function createNoteService(args: {
   notebook: Notebook | null
-  config: Config
+  config: ConfigService
 }) {
   let db: Database | null = null;
 
