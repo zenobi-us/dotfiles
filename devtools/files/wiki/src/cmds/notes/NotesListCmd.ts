@@ -24,16 +24,20 @@ export const NotesListCommand = defineCommand({
 
   const notebook = await ctx.store.notebooKService?.getNotebook(notebookPath)
   const config = ctx.store.config;
-  if (!notebook || !config) {
+  const dbService = ctx.store.dbService;
+
+  if (!notebook || !config || !dbService) {
+    console.error("Failed to load notebook or config or dbService");
     return;
   }
 
   const noteService = createNoteService({
     notebook,
     config,
+    dbService
   });
 
-  const results = await noteService.searchNotes(`SELECT * from read_markdown('${notebookPath}/**/*.md')`);
+  const results = await noteService.searchNotes();
 
   for (const note of results) {
     console.log(`- ${note.path}`);

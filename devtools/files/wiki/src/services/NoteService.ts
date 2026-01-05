@@ -2,6 +2,8 @@ import { type } from "arktype";
 import type { Config } from "./ConfigService";
 import type { Notebook } from "./NotebookService";
 import type { DbService } from "./Db";
+import { VARCHAR } from "@duckdb/node-api";
+import { Logger } from "./LoggerService";
 
 
 const NoteSchema = type({
@@ -10,6 +12,8 @@ const NoteSchema = type({
 })
 
 export type Note = typeof NoteSchema.infer;
+
+const Log = Logger.child({ namespace: "NoteService" });
 
 export function createNoteService(options: {
   dbService: DbService,
@@ -68,21 +72,23 @@ export function createNoteService(options: {
    * @param query - Raw DuckDB SQL query
    * @returns Array of note IDs (filenames without extension) matching the query
    */
-  async function searchNotes(args: {
-    query: string,
+  async function searchNotes(args?: {
+    query?: string,
   }) {
     if (!options.notebook) {
       throw new Error("No notebook selected");
     }
 
+    Log.debug('searchNotes: query=%s notebookPath=%s', args?.query, options.notebook.path);
+
     const db = await options.dbService.getDb();
     const prepared = await db.prepare(`
-      SELECT * FROM read_markdown('$filepath')
-      WHERE $where
+      SELECT * FROM read_markdown($filepath)
     `);
     prepared.bind({
       filepath: `${options.notebook.path}/**/*.md`,
-      where: args.query || '',
+    }, {
+      filepath: VARCHAR,
     })
 
     const result = await prepared.run();
