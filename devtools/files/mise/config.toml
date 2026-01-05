@@ -8,7 +8,6 @@ experimental = true
 "ubi:asciinema/asciinema" = "3.0.1"
 "ubi:mfontanini/presenterm" = "0.15.1"
 "ubi:scottmckendry/pokemon-go-colorscripts" = "0.3.1"
-"ubi:sst/opencode" = { version = "latest", matching = "(\\.tar\\.gz|\\.zip)$" }
 act="0.2.31"
 actionlint="1.6.20"
 age="1.1.1"
@@ -61,3 +60,12 @@ semver = "latest"
 "npm:gh-actions-language-server" = "0.0.3"
 "pipx:yq" = "latest"
 "npm:@scopecraft/cmd" = "latest"
+
+
+[tools."github:anomalyco/opencode"]
+version = "latest"
+
+[tools."github:anomalyco/opencode".platforms]
+linux-x64 = { asset_pattern = "opencode-linux-x64.tar.gz" }
+macos-arm64 = { asset_pattern = "opencode-darwin-x64.tar.gz" }
+windows-x64 = { asset_pattern = "opencode-windows-x64.zip" }
