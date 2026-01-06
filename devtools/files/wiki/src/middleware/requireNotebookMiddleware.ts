@@ -10,7 +10,7 @@ export async function requireNotebookMiddleware(args: {
   const notebook = args?.path || await args.notebookService?.discoverNotebookPath();
 
   if (!notebook) {
-    console.log(await RenderMarkdownTui(dedent(`
+    console.error(await RenderMarkdownTui(dedent(`
 
         # No Notebook Yet
         
@@ -22,6 +22,7 @@ export async function requireNotebookMiddleware(args: {
         wiki notebook create [path]
         \`\`\`
     `)))
+    return null;
   }
 
 

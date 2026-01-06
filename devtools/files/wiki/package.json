@@ -20,6 +20,7 @@
     "@clerc/plugin-not-found": "^1.1.1",
     "@clerc/plugin-strict-flags": "^1.1.1",
     "@clerc/plugin-update-notifier": "^1.1.1",
+    "@duckdb/node-api": "^1.4.3-r.2",
     "@evan/duckdb": "^0.1.5",
     "arktype": "^2.1.29",
     "bunfig": "^0.15.6",
