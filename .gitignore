@@ -12,3 +12,7 @@ in-memoria.db
 devtools/files/mcporter/credentials.json
 devtools/files/opencode/plugin/subtask2/logs/debug.log
 devtools/files/opencode/plugin/subtask2/logs/debug.log
+devtools/files/opencode/AGENTS.md
+devtools/files/opencode/agent
+devtools/files/opencode/command
+devtools/files/opencode/skills
