@@ -7,30 +7,26 @@ description: Web search and content extraction via Brave Search API. Use for sea
 
 Headless web search and content extraction using Brave Search. No browser required.
 
-## Setup
+## When to Use
 
-Run once before first use:
-
-```bash
-cd ~/Projects/agent-scripts/skills/brave-search
-npm ci
-```
-
-Needs env: `BRAVE_API_KEY`.
+- Searching for documentation or API references
+- Looking up facts or current information
+- Fetching content from specific URLs
+- Any task requiring web search without interactive browsing
 
 ## Search
 
 ```bash
-./search.js "query"                    # Basic search (5 results)
-./search.js "query" -n 10              # More results
-./search.js "query" --content          # Include page content as markdown
-./search.js "query" -n 3 --content     # Combined
+scripts/search "query"                    # Basic search (5 results)
+scripts/search "query" -n 10              # More results
+scripts/search "query" --content          # Include page content as markdown
+scripts/search "query" -n 3 --content     # Combined
 ```
 
 ## Extract Page Content
 
 ```bash
-./content.js https://example.com/article
+scripts/content https://example.com/article
 ```
 
 Fetches a URL and extracts readable content as markdown.
@@ -48,10 +44,7 @@ Content: (if --content flag used)
 --- Result 2 ---
 ...
 ```
+## Execution Steps
 
-## When to Use
-
-- Searching for documentation or API references
-- Looking up facts or current information
-- Fetching content from specific URLs
-- Any task requiring web search without interactive browsing
+1. use `{skill_path}/scripts/search` resource to perform searches.
+2. use `{skill_path}/scripts/content` resource to fetch and extract page content from searches.
