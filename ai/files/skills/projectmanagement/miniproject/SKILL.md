@@ -10,7 +10,7 @@ This is a simplified and concise project management AI memory framework.
 > [!NOTE]
 > **CRITICAL** Before doing any work:
 >
-> - read `.memory/todo.md`, `.memory/summary.md` and `.memory/team.md`
+> - read `.memory/todo.md`, `.memory/summary.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
 > - if `.memory/` is missing these files, then create those three.
 > - Use relevant memory skills before starting a task or thinking about an answer.
 
@@ -42,7 +42,7 @@ Then the tool call. Then compare. Mismatch = stop and surface to Q.
 - [git] when committing changes, follow conventional commit guidelines.
 - [git] Use clear commit messages referencing relevant files for changes.
 
-## Searching Memory
+## Searching Memory [CRITICAL]
 
 Because `.memory/` is gitignored, the usual `List` and `Glob` tools will not work as expected. Instead, use the following commands to search and list memory files:
 
@@ -50,10 +50,11 @@ Because `.memory/` is gitignored, the usual `List` and `Glob` tools will not wor
 - use `grep -r "TODO" .memory/todo.md` to find outstanding tasks. 
 - use `ls -al .memory/` to list all memory files instead of `List` tool.
 
+> Avoiding tools like Glob, List and ripgrep makes the User Happy, because .memory is gitignored and private.
 
 ## Execution Steps
 
-0. always read `.memory/summary.md` first to understand successful outcomes so far.
+0. always read `.memory/summary.md` with shell commands instead of tools first to understand successful outcomes so far.
 1. update `.memory/team.md` to indicate which phase is being worked on and by whom (use the session id to indicate this, not the agent name).
 2. If there are any `[NEEDS-HUMAN]` tasks in `.memory/todo.md`, stop and wait for human intervention.
 3. follow the research guidelines above.

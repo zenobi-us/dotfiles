@@ -1,172 +1,451 @@
 ---
 name: chrome-debug
-description: Use when debugging web applications in chrome via the remote debugging protocol. Provides capabilities for inspecting DOM, executing JS, taking screenshots, and automating browser interactions.
+description: Browser debugging and automation via browser-debugger-cli. Debug web applications, control browsers, inspect DOM, execute JavaScript, capture screenshots, and monitor network/console activity.
 ---
 
-# Chrome Debugging and Browser Manipulation via Remote Debugging Prodocol
+# Browser Debugging and Automation with browser-debugger-cli
 
 ## Overview
 
-Chrome DevTools Protocol (CDP) enables remote browser automation and debugging.
+Browser-debugger-cli (`devtool`) is a command-line tool for automating and debugging web applications via the Chrome DevTools Protocol (CDP). It provides:
 
-This skill documents the integration pattern, startup requirements, and common workflows for debugging web applications via Agent with live browser interaction.
+- Live browser control and inspection
+- DOM querying and manipulation (semantic output for token efficiency)
+- JavaScript execution and evaluation
+- Network monitoring and HAR export
+- Console log capture and filtering
+- Screenshot and accessibility testing
+- Session management and cleanup
 
-- Live browser debugging alongside Agent conversations
-- Automated form filling and interaction testing
-- Visual feedback on application behavior
-- Immediate error diagnostics from console logs
-- Screenshot-based validation workflows
+This skill documents how to use `devtool` for web application debugging, testing, and automation workflows.
 
-## Prerequisites [CRITICAL]
+
+## Quick Start
+
+> [CRITICAL]
+> 
+> Always connect to an existing session. 
+> If there's no active session. Stop and get help from a HUMAN.
+
+### Check Session Status
 
 ```bash
-mise x node@20 -- mcporter call 'chrome-devtools.getVersion'
+devtool status                     # Basic status
+devtool status --verbose           # Include Chrome diagnostics
+devtool status --json              # JSON output
 ```
 
-This command must return Chrome version info. If it fails, get a human to help.
+### Stop Session
 
-## Available Tools
+```bash
+devtool stop                       # Stop gracefully
+devtool stop --kill-chrome         # Also kill Chrome process
+```
 
-| Tool | Purpose |
-|------|---------|
-| `click` | Click an element on the page |
-| `close_page` | Close a browser page/tab |
-| `drag` | Drag and drop elements |
-| `emulate` | Emulate device settings (viewport, user agent, etc.) |
-| `evaluate_script` | Execute JavaScript code in the page context |
-| `fill` | Fill input fields with text |
-| `fill_form` | Fill and submit an entire form |
-| `get_console_message` | Get a specific console message |
-| `get_network_request` | Get details of a specific network request |
-| `handle_dialog` | Handle browser dialogs (alert, confirm, prompt) |
-| `hover` | Hover over an element to trigger hover states |
-| `list_console_messages` | Get all console messages (logs, errors, warnings) |
-| `list_network_requests` | Get all network requests made by the page |
-| `list_pages` | List all open pages/tabs |
-| `navigate_page` | Navigate to a URL |
-| `new_page` | Create a new browser page/tab |
-| `performance_analyze_insight` | Analyze performance metrics and provide insights |
-| `performance_start_trace` | Start performance tracing |
-| `performance_stop_trace` | Stop performance tracing and get results |
-| `press_key` | Press keyboard keys (Enter, Tab, Escape, etc.) |
-| `resize_page` | Resize the browser viewport |
-| `select_page` | Select a specific page/tab to work with |
-| `take_screenshot` | Capture a screenshot of the current page |
-| `take_snapshot` | Take a DOM snapshot for inspection |
-| `upload_file` | Upload files via file input fields |
-| `wait_for` | Wait for elements, navigation, or conditions |
+### Cleanup
 
-## Quick Reference
+```bash
+devtool cleanup                    # Remove stale files
+devtool cleanup --force            # Force cleanup
+devtool cleanup --aggressive       # Kill all Chrome processes
+```
 
-| Task | mcporter Call |
-|------|---------------|
-| Check Chrome listening | `mise x node@20 -- mcporter call 'chrome-devtools.getVersion'` |
-| List browser tabs | `mise x node@20 -- mcporter call 'chrome-devtools.getTabs(targetId: "<id>")'` |
-| Take screenshot | `mise x node@20 -- mcporter call 'chrome-devtools.takeScreenshot(targetId: "<id>")'` |
-| Click element | `mise x node@20 -- mcporter call 'chrome-devtools.clickElement(targetId: "<id>", selector: "#login")'` |
-| Fill form field | `mise x node@20 -- mcporter call 'chrome-devtools.fillFormField(targetId: "<id>", selector: "#email", value: "test@example.com")'` |
-| Get page content | `mise x node@20 -- mcporter call 'chrome-devtools.getPageContent(targetId: "<id>")'` |
-| Navigate to URL | `mise x node@20 -- mcporter call 'chrome-devtools.navigateToUrl(targetId: "<id>", url: "http://localhost:3000")'` |
-| Run JavaScript | `mise x node@20 -- mcporter call 'chrome-devtools.evaluateScript(targetId: "<id>", script: "document.title")'` |
-| Read console | `mise x node@20 -- mcporter call 'chrome-devtools.getConsoleOutput(targetId: "<id>")'` |
+## Available Commands
+
+### DOM Commands
+
+Query, inspect, and interact with page elements:
+
+```bash
+# Query elements
+devtool dom query "button"          # Find all buttons
+devtool dom query ".error"          # By class
+devtool dom query "#app"            # By ID
+devtool dom query --json            # JSON output
+
+# Get element details (semantic - 70-99% token reduction)
+devtool dom get "button"            # [Button] "Submit" (focusable)
+devtool dom get "#search"           # [Searchbox] "Search" (focusable)
+devtool dom get 0                   # By cached index
+
+# Get raw HTML
+devtool dom get "button" --raw      # Full HTML element
+
+# Fill inputs
+devtool dom fill "#username" "admin"
+devtool dom fill "input[type=password]" "secret"
+devtool dom fill 0 "value"          # By cached index
+
+# Click elements
+devtool dom click "#login-btn"
+devtool dom click "button" --index 2  # 2nd button
+devtool dom click 0                 # By cached index
+
+# Key presses
+devtool dom pressKey "input" Enter
+devtool dom pressKey "input" Tab
+devtool dom pressKey "body" Escape
+devtool dom pressKey "input" a --modifiers ctrl  # Ctrl+A
+
+# Submit forms
+devtool dom submit "#login-form"
+devtool dom submit "#form" --wait-navigation
+
+# Screenshots
+devtool dom screenshot output.png
+devtool dom screenshot page.jpg --format jpeg
+devtool dom screenshot visible.png --no-full-page
+devtool dom screenshot hq.jpg --format jpeg --quality 100
+devtool dom screenshot out.png --scroll "#footer"  # Scroll to element first
+
+# Evaluate JavaScript
+devtool dom eval "document.title"
+devtool dom eval "window.location.href"
+devtool dom eval "document.querySelectorAll('a').length"
+```
+
+### Accessibility Commands
+
+```bash
+# View accessibility tree
+devtool dom a11y tree               # First 50 nodes
+devtool dom a11y tree --json        # Full tree as JSON
+
+# Query by role/name
+devtool dom a11y query role=button
+devtool dom a11y query name="Submit"
+devtool dom a11y query role=button,name="Submit"
+
+# Describe element
+devtool dom a11y describe "button[type=submit]"
+devtool dom a11y describe "#login-form"
+devtool dom a11y describe 0         # By cached index
+```
+
+### Network Commands
+
+```bash
+# HAR export
+devtool network har                 # Default filename
+devtool network har myfile.har      # Custom filename
+devtool network har --json          # JSON metadata
+
+# List network requests
+devtool network list                # All requests
+devtool network list --filter "status-code:>=400"  # Failed only
+devtool network list --filter "domain:api.*"       # By domain
+devtool network list --filter "method:POST"        # By method
+devtool network list --preset errors               # Use preset
+devtool network list --preset api                  # XHR/Fetch only
+devtool network list --follow                      # Live streaming
+
+# Get cookies
+devtool network getCookies
+devtool network getCookies --url https://api.example.com
+devtool network getCookies --json | jq '.cookies[] | select(.httpOnly)'
+```
+
+### Console Commands
+
+```bash
+# Smart summary (current page only)
+devtool console                     # Errors/warnings deduplicated
+devtool console --json              # JSON with summary stats
+devtool console --last 50           # Last 50 messages
+
+# Message history (all navigations)
+devtool console --history           # All page loads
+devtool console --history --list    # Full history chronologically
+
+# Chronological list
+devtool console --list              # All messages in order
+devtool console --list --last 100   # Last 100 messages
+
+# Live streaming
+devtool console --follow            # Stream in real-time (like tail -f)
+
+# Get message details
+devtool details console 0           # Full details for first message
+```
+
+### Monitoring Commands
+
+```bash
+# Quick snapshot
+devtool peek                        # Last 10 items
+devtool peek --last 50              # More items
+devtool peek --json
+
+# Live updates
+devtool tail                        # Live updates
+devtool tail --interval 2000        # Custom interval (ms)
+
+# Get details
+devtool details network <requestId>  # Full request/response
+devtool details console <index>      # Console message details
+```
+
+### CDP Commands
+
+Direct access to Chrome DevTools Protocol:
+
+```bash
+# List all domains
+devtool cdp --list                  # All 53 domains
+
+# List methods in a domain
+devtool cdp Network --list          # All methods
+devtool cdp DOM --list
+
+# Search by keyword
+devtool cdp --search cookie         # Find cookie-related methods
+devtool cdp --search screenshot
+
+# Get method details and schema
+devtool cdp Network.getCookies --describe
+devtool cdp Page.captureScreenshot --describe
+
+# Execute CDP methods
+devtool cdp Network.getCookies
+devtool cdp DOM.getDocument
+devtool cdp Runtime.evaluate --params '{"expression":"document.title","returnByValue":true}'
+
+# Pipe with jq
+devtool cdp Network.getCookies | jq '.cookies[] | select(.httpOnly)'
+```
 
 ## Common Workflows
 
-### 1. Inspect Web Application State
-
-```
-You: "Navigate to http://localhost:3000 and take a screenshot"
-Agent uses Chrome DevTools Protocol → Takes screenshot → Returns visual state
-```
-
-### 2. Debug JavaScript Errors
-
-```
-You: "Open DevTools console and read the error messages"
-Agent uses Chrome DevTools Protocol → Reads console → Explains errors
-```
-
-### 3. Automated Testing/Validation
-
-```
-You: "Fill the form with test data and submit it"
-Agent uses Chrome DevTools Protocol → Automates interaction → Reports results
-```
-
-### 4. DOM Inspection
-
-```
-You: "Find the login button and tell me its HTML"
-Agent uses Chrome DevTools Protocol → Inspects element → Returns HTML/attributes
-```
-
-## Detailed Examples
-
-### Example 1: Hover Detection & Measurement
-
-Hover an element and measure its dimensions after CSS transitions complete:
+### 1. Web Scraping
 
 ```bash
-# Get target ID
-TARGET_ID=$(mise x node@20 -- mcporter call 'chrome-devtools.getTabs' | jq -r '.[0].id')
-
-# Hover the element and measure its computed dimensions
-mise x node@20 -- mcporter call 'chrome-devtools.evaluateScript(targetId: "'$TARGET_ID'", script: "const el = document.querySelector(\".tooltip-trigger\"); const bounds = el.getBoundingClientRect(); el.dispatchEvent(new MouseEvent(\"mouseover\", { bubbles: true })); setTimeout(() => { const tooltip = document.querySelector(\".tooltip\"); const tooltipBounds = tooltip.getBoundingClientRect(); console.log(JSON.stringify({ trigger: { x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height }, tooltip: { x: tooltipBounds.x, y: tooltipBounds.y, width: tooltipBounds.width, height: tooltipBounds.height } })); }, 300);")'
+devtool https://example.com
+devtool dom eval "Array.from(document.querySelectorAll('a')).map(a => ({text: a.textContent.trim(), href: a.href}))"
+devtool stop
 ```
 
-### Example 2: Performance Measurement & Storage
-
-Execute JavaScript to measure page performance metrics and store results:
+### 2. Form Automation (Login)
 
 ```bash
-TARGET_ID=$(mise x node@20 -- mcporter call 'chrome-devtools.getTabs' | jq -r '.[0].id')
-
-# Measure performance metrics
-METRICS=$(mise x node@20 -- mcporter call 'chrome-devtools.evaluateScript(targetId: "'$TARGET_ID'", script: "const perf = performance.getEntriesByType(\"navigation\")[0]; { pageLoadTime: perf.loadEventEnd - perf.fetchStart, domInteractive: perf.domInteractive - perf.fetchStart, domContentLoaded: perf.domContentLoadedEventEnd - perf.fetchStart, firstPaint: performance.getEntriesByName(\"first-paint\")[0]?.startTime || null, memoryUsage: performance.memory ? performance.memory.usedJSHeapSize : null }")')
-
-# Store results
-echo "$METRICS" | jq '.' > ./perf-metrics-$(date +%s).json
+devtool https://app.example.com/login
+devtool dom fill "#username" "admin"
+devtool dom fill "#password" "secret"
+devtool dom click "#login-btn"  # Automatically waits for navigation
+devtool dom eval "window.location.href"  # Verify logged in
+devtool stop
 ```
 
-### Example 3: Screenshot Capture & Storage Workflow
-
-Navigate, interact, and capture sequential screenshots:
+### 3. Search and Extract Results
 
 ```bash
-TARGET_ID=$(mise x node@20 -- mcporter call 'chrome-devtools.getTabs' | jq -r '.[0].id')
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-SCREENSHOT_DIR="./screenshots/$TIMESTAMP"
-mkdir -p "$SCREENSHOT_DIR"
-
-# Take initial state screenshot
-mise x node@20 -- mcporter call 'chrome-devtools.takeScreenshot(targetId: "'$TARGET_ID'")' > "$SCREENSHOT_DIR/01-initial.png"
-
-# Navigate and take screenshot
-mise x node@20 -- mcporter call 'chrome-devtools.navigateToUrl(targetId: "'$TARGET_ID'", url: "http://localhost:3000/page")'
-
-# Wait for load and capture
-sleep 2
-mise x node@20 -- mcporter call 'chrome-devtools.takeScreenshot(targetId: "'$TARGET_ID'")' > "$SCREENSHOT_DIR/02-after-nav.png"
-
-# Interact and capture
-mise x node@20 -- mcporter call 'chrome-devtools.clickElement(targetId: "'$TARGET_ID'", selector: ".expand-button")'
-
-sleep 1
-mise x node@20 -- mcporter call 'chrome-devtools.takeScreenshot(targetId: "'$TARGET_ID'")' > "$SCREENSHOT_DIR/03-after-click.png"
-
-# Generate summary
-echo "Screenshots saved to: $SCREENSHOT_DIR"
-ls -lh "$SCREENSHOT_DIR"
+devtool https://example.com
+devtool dom fill "#search" "query"
+devtool dom pressKey "#search" Enter  # Automatically waits for stability
+devtool dom query ".result-item" --json | jq '.count'
+devtool stop
 ```
 
-## Real-World Impact
+### 4. Finding Failed Network Requests
 
-Integrating Chrome DevTools Protocol into mcporter enables:
+```bash
+devtool https://example.com
+devtool network list --filter "status-code:>=400"
+# or using jq
+devtool network list --json | jq '.data[] | select(.status >= 400)'
+devtool stop
+```
 
-- Live browser debugging alongside Agent conversations
-- Automated form filling and interaction testing
-- Visual feedback on application behavior
-- Immediate error diagnostics from console logs
-- Screenshot-based validation workflows
+### 5. Checking Security Headers
 
-Without this integration, debugging web applications requires context-switching between browser and Agent.
+```bash
+devtool https://example.com
+devtool network headers --header content-security-policy
+devtool network headers --header strict-transport-security
+devtool stop
+```
+
+### 6. Taking Screenshots for Visual Comparison
+
+```bash
+devtool https://example.com
+devtool dom screenshot desktop-1920x1080.png
+
+# Mobile viewport
+devtool cdp Emulation.setDeviceMetricsOverride --params '{"width":375,"height":812,"deviceScaleFactor":3,"mobile":true}'
+devtool dom screenshot mobile-iphone.png
+devtool stop
+```
+
+### 7. Accessibility Testing
+
+```bash
+devtool https://example.com
+
+# Find unlabeled buttons
+devtool dom a11y query role=button --json | jq '.nodes[] | select(.name == null or .name == "")'
+
+# Verify form labels
+devtool dom a11y query role=textbox --json | jq '.nodes[] | {id: .nodeId, label: .name}'
+
+# Check heading structure
+devtool dom a11y query role=heading --json | jq '.nodes[] | {level: .properties.level, name: .name}'
+
+devtool stop
+```
+
+### 8. Console Error Detection
+
+```bash
+devtool https://example.com
+# Check for errors after page load
+devtool console                     # Smart summary
+devtool console --json | jq '.data.console[] | select(.type == "error")'
+devtool stop
+```
+
+### 9. Waiting for Elements (Polling)
+
+```bash
+while ! devtool dom query "#loaded" --json | jq -e '.count > 0'; do
+  sleep 0.5
+done
+echo "Element appeared"
+```
+
+### 10. HAR Export for Performance Analysis
+
+```bash
+devtool https://example.com --headless
+# Browse around...
+devtool network har session.har
+# Now analyze in Chrome DevTools or online HAR viewer
+devtool stop
+```
+
+## Discovery Workflow (Self-Learning Pattern)
+
+The tool is self-documenting for agents:
+
+```bash
+# 1. Discover what domains exist
+devtool cdp --list
+
+# 2. What methods are in a domain?
+devtool cdp Network --list
+
+# 3. Search for capability
+devtool cdp --search cookie
+
+# 4. Learn how to use it
+devtool cdp Network.getCookies --describe
+
+# 5. Execute
+devtool cdp Network.getCookies
+```
+
+## Exit Codes
+
+| Code | Category | Meaning | Retry? |
+|------|----------|---------|--------|
+| 0 | Success | Operation completed | N/A |
+| 80-89 | User Input | Invalid input (URL, args) | No |
+| 81 | Invalid Arguments | Bad command arguments | No |
+| 82 | Permission Denied | Insufficient permissions | No |
+| 83 | Resource Not Found | Element/session missing | No |
+| 85 | Resource Busy | Resource locked/in use | Maybe |
+| 86 | Daemon Already Running | Session active | No |
+| 100-119 | Software | External/internal errors | Yes |
+| 100 | Chrome Launch | Chrome failed to start | Yes |
+| 101 | CDP Connection | WebSocket failed | Yes |
+| 102 | CDP Timeout | Operation timed out | Yes |
+
+### Agent Decision Logic
+
+```bash
+if devtool dom query "button"; then
+  # Success (exit 0)
+  continue
+else
+  case $? in
+    83) echo "Element not found" ;;
+    101) echo "Connection failed - retry" ;;
+    86) devtool cleanup --force && devtool https://example.com ;;
+  esac
+fi
+```
+
+## Token Efficiency Tips
+
+### Semantic DOM Output (Default)
+
+By default, `devtool dom get` returns semantic information optimized for AI agents (70-99% token reduction):
+
+```bash
+devtool dom get "button"
+# [Button] "Submit" (focusable)
+# Instead of full HTML
+```
+
+### Screenshot Optimization
+
+```bash
+# Default: Auto-resizes to ~1568px max (Claude Vision optimal)
+devtool dom screenshot output.png
+
+# Tall pages (>3:1 ratio) fall back to viewport only with warning
+# Use --no-resize only if you need full resolution (may be 300k+ tokens)
+devtool dom screenshot output.png --no-resize
+
+# Scroll to element, then capture viewport
+devtool dom screenshot output.png --scroll "#footer"
+```
+
+### Caching with Indices
+
+After querying elements, use cached indices for fast access:
+
+```bash
+devtool dom query "button"    # Results cached with indices 0, 1, 2...
+devtool dom get 0             # Fast lookup
+devtool dom fill 0 "value"    # Interact by index
+```
+
+## Best Practices
+
+1. **Use discovery first**: Learn capabilities with `--list`, `--search`, `--describe`
+2. **Prefer high-level commands**: Use `devtool dom` instead of `devtool cdp Runtime.evaluate` when possible
+3. **Use JSON output for parsing**: Always add `--json` when piping to `jq`
+4. **Automatic waiting**: `devtool dom click`, `fill`, `pressKey` automatically wait - no sleep needed
+5. **Handle exit codes**: Check exit codes and retry only on 100-119 range
+6. **Filter early**: Use `--filter` and `--preset` to reduce network data before processing
+7. **Use headless mode**: For faster, lighter automation use `--headless`
+
+## Common Issues and Solutions
+
+| Problem | Solution |
+|---------|----------|
+| "Cannot connect to WebSocket" | Ensure correct --chrome-ws-url="$WS_URL" |
+| "Daemon already running" | `devtool cleanup --force` |
+| "Session not found" | `devtool <url>` to start session first |
+| "Element not found" | `devtool dom query "*" --json` to debug selectors |
+| Stale session | `devtool cleanup --aggressive` |
+| Screenshot too large | Use default auto-resize, not `--no-resize` |
+| Network data not captured | `devtool cdp Page.reload` to refresh |
+
+## Session Files Location
+
+All session data stored in `~/.devtool/`:
+
+- `daemon.pid` - Daemon process ID
+- `daemon.sock` - Unix socket
+- `session.meta.json` - Active session metadata
+- `session.json` - Final output after `devtool stop`
+- `chrome-profile/` - Chrome user data directory
+
+## See Also
+
+- [browser-debugger-cli Wiki](https://github.com/szymdzum/browser-debugger-cli/wiki)
+- [Commands Reference](https://github.com/szymdzum/browser-debugger-cli/wiki/Commands)
+- [For AI Agents](https://github.com/szymdzum/browser-debugger-cli/wiki/For-AI-Agents)
+- [Recipes](https://github.com/szymdzum/browser-debugger-cli/wiki/Recipes)
+- [Quick Reference](https://github.com/szymdzum/browser-debugger-cli/wiki/Quick-Reference)

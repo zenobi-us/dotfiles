@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bdg --chrome-ws-url=$(curl -s http://127.0.0.1:9222/json | jq -r '.[0].webSocketDebuggerUrl') "$@"

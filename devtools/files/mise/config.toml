@@ -58,6 +58,7 @@ semver = "latest"
 "ubi:dlvhdr/gh-dash" = "4.20.1"
 "npm:gh-actions-language-server" = "0.0.3"
 "npm:@scopecraft/cmd" = "latest"
+"npm:browser-debugger-cli" = "alpha"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"

@@ -17,12 +17,12 @@ actions:
     command: rm
     args:
       - -rf
-      - "{{user.config_dir}}/ghosttty"
+      - "{{user.config_dir}}/ghostty"
 
   - action: file.link
     where: os.name == "linux" || os.name == "macos"
-    to: "{{user.config_dir}}/ghosttty"
-    from: ghosttty
+    to: "{{user.config_dir}}/ghostty"
+    from: ghostty
 
   - action: command.run
     where: os.name == "windows"
@@ -30,5 +30,7 @@ actions:
     args:
       - -c
       - |
-        remove-item -recurse -force -erroraction SilentlyContinue '{{user.config_dir}}/ghosttty'
-        new-item -path "{{user.config_dir}}/ghosttty" -itemtype symboliclink -value "$(pwd)/shells/files/ghosttty"
+        remove-item -recurse -force -erroraction SilentlyContinue `
+          '{{user.config_dir}}/ghostty'
+        new-item -path "{{user.config_dir}}/ghosttty" `
+          -itemtype symboliclink -value "$(pwd)/shells/files/ghostty"
