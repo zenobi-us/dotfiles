@@ -1,5 +1,5 @@
 ---
-name: obsidian-leaflet-mapping
+name: leaflet-mapping
 description: Use when creating interactive maps in Obsidian using LeafletJS plugin - covers real-world maps, image maps, markers from notes, overlays, GeoJSON, GPX tracks, and common issues with bounds/zoom levels
 ---
 # Obsidian Leaflet Mapping
