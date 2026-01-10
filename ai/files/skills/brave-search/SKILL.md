@@ -7,6 +7,8 @@ description: Web search and content extraction via Brave Search API. Use for sea
 
 Headless web search and content extraction using Brave Search. No browser required.
 
+The below scripts use bun shebangs and can be executed directly if Bun is installed.
+
 ## When to Use
 
 - Searching for documentation or API references

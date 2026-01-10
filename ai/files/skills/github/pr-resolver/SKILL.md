@@ -1,5 +1,5 @@
 ---
-name: github-pr-resolver
+name: pr-resolver
 description: "Automate GitHub pull request review resolution by processing ALL review comments and fixing ALL failing CI checks. Use when: (1) A PR has review comments that need to be addressed and resolved, (2) CI/CD checks are failing and need fixes, (3) You want to process all PR feedback and mark conversations as resolved, (4) You need to iterate on PR feedback quickly. IMPORTANT: This skill processes EVERY comment - no skipping allowed. Always fetches fresh data from GitHub. The only acceptable end state is zero unresolved threads. COMMIT CADENCE: Each thread gets its own commit (fix → commit → resolve → next). Never batch commits at the end."
 ---
 

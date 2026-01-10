@@ -1,7 +1,6 @@
 ---
 name: mise
 description: Expert in mise—a fast, flexible polyglot runtime and task manager. Specializes in tool version management, environment variable control, task automation, and shell integration across development workflows.
-tags: ["version-management", "tool-management", "task-automation", "environment-variables", "polyglot", "dev-tools"]
 ---
 
 # Mise Expert

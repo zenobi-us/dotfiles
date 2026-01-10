@@ -1,5 +1,5 @@
 ---
-name: github-pr-comment-analyzer
+name: pr-comment-analyzer
 description: Use when analyzing PR review comments to determine relevance, identify ambiguities, and generate a comprehensive report without making code changes. Useful for understanding feedback landscape and initiating collaborative Q&A discussions about unclear or potentially outdated comments.
 ---
 

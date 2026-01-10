@@ -2,7 +2,6 @@
 name: basicmemory
 description: Provides guides and initialisation for priming basic memory with guides.
 license: MIT
-permalink: skill
 ---
 
 ## Initialisation

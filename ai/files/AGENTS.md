@@ -57,6 +57,9 @@ When confused: stop, think, present theories, get signoff. Never silently retry 
 
 > Q will be unhappy if you try to silenty retry after multiple failures.
 
+## Basic Techniques
+
+- if you can't search the internet with dedicated tools or scripts, always try to use lynx cli. 
 
 ## Behavioral Core
 
