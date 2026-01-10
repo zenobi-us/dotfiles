@@ -18,6 +18,8 @@ $ARGUMENTS
 
 ## Execution Steps
 
+1. Delegate the following steps to a subagent named `MiniProject`.
+
 1. Load the `miniproject` skill if not already loaded:
 
    - `skill_use('miniproject')`

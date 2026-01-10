@@ -1,6 +1,6 @@
 {
   "defaultProvider": "github-copilot",
-  "defaultModel": "claude-haiku-4.5",
+  "defaultModel": "claude-sonnet-4",
   "defaultThinkingLevel": "off",
   "lastChangelogVersion": "0.42.0",
   "theme": "rose-pine",
