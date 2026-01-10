@@ -1,5 +1,10 @@
 # Phase: Subagent Command Implementation
 
+**Epic:** [Pi Extensions Development](epic-f4a8b2c6-pi-extensions-development.md)  
+**Status:** Complete  
+**Started:** 2026-01-11 02:24  
+**Completed:** 2026-01-11 02:35
+
 ## Overview
 
 Implement slash commands for managing agents in the subagent extension: list, add, and edit operations.
@@ -19,16 +24,17 @@ Implement slash commands for managing agents in the subagent extension: list, ad
 ## Tasks
 
 Links to task files:
-- ✅ [Task: Design command specifications](.memory/task-39282875-design-command-specs.md)
-- ✅ [Task: Implement list command](.memory/task-8c7d3d20-implement-list-command.md)
-- ✅ [Task: Implement add command](.memory/task-b75d4e5c-implement-add-command.md)
-- ✅ [Task: Implement edit command](.memory/task-ccc03ceb-implement-edit-command.md)
-- 🔄 [Task: Add tests and documentation](.memory/task-82937436-tests-and-docs.md) - NEXT
+- ✅ [Task: Design command specifications](task-39282875-design-command-specs.md)
+- ✅ [Task: Implement list command](task-8c7d3d20-implement-list-command.md)
+- ✅ [Task: Implement add command](task-b75d4e5c-implement-add-command.md)
+- ✅ [Task: Implement edit command](task-ccc03ceb-implement-edit-command.md)
+- 🔄 [Task: Add tests and documentation](task-82937436-tests-and-docs.md) - IN PROGRESS
 
 ## Learnings
 
-- [Agent discovery mechanism research](.memory/research-6e3d737d-subagent-extension-structure.md)
-- [Extension command patterns](.memory/learning-d8d1c166-extension-command-patterns.md)
+- [Agent discovery mechanism research](research-6e3d737d-subagent-extension-structure.md)
+- [Extension command patterns](learning-d8d1c166-extension-command-patterns.md)
+- [Pi extensions guide](learning-76e583ca-pi-extensions-guide.md)
 
 ## End Criteria
 
@@ -39,11 +45,9 @@ Links to task files:
 
 ## Progress
 
-**Started:** 2026-01-11 02:24
-**Completed:** 2026-01-11 02:35
-**Status:** Implementation complete, ready for testing
-
 ### Iteration 1 ✅
+**Date:** 2026-01-11
+
 - Loaded phase plan and understood full context
 - Reviewed existing subagent extension structure  
 - Studied ralph-wiggum extension for slash command patterns
@@ -56,3 +60,23 @@ Links to task files:
 - Integrated with existing discoverAgents() API
 - Committed changes with detailed conventional commit message
 - All implementation tasks complete
+
+### Remaining Work
+
+- Complete documentation task (task-82937436-tests-and-docs.md)
+- Manual testing of all three commands
+- Update README with usage examples
+
+## Outcomes
+
+Successfully delivered three functional slash commands for the subagent extension:
+
+1. **`/subagent list`** - Lists agents with scope filtering (user/project/both) and verbose mode showing full details
+2. **`/subagent add`** - Creates new agents with template support (basic/scout/worker)
+3. **`/subagent edit`** - Identifies agent file location and guides user to edit
+
+All commands integrate cleanly with existing agent discovery mechanisms and follow established Pi extension patterns.
+
+## Back to Epic
+
+Return to [Pi Extensions Development Epic](epic-f4a8b2c6-pi-extensions-development.md) for overall project status.
