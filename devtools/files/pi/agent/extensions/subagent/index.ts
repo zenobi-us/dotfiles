@@ -965,6 +965,14 @@ export default function (pi: ExtensionAPI) {
 
 	/**
 	 * Parse command arguments for /subagent list
+	 * 
+	 * Extracts --scope and --verbose flags from argument string.
+	 * 
+	 * @param argsStr - Raw argument string from command
+	 * @returns Parsed scope (user/project/both) and verbose flag
+	 * @example
+	 * parseListArgs("--scope user --verbose")
+	 * // => { scope: "user", verbose: true }
 	 */
 	function parseListArgs(argsStr: string): { scope: AgentScope; verbose: boolean } {
 		const tokens = argsStr.trim().split(/\s+/);
@@ -989,6 +997,14 @@ export default function (pi: ExtensionAPI) {
 
 	/**
 	 * Parse command arguments for /subagent add
+	 * 
+	 * Extracts agent name and optional --scope and --template flags.
+	 * 
+	 * @param argsStr - Raw argument string from command
+	 * @returns Parsed name, scope (user/project), and template (basic/scout/worker)
+	 * @example
+	 * parseAddArgs("my-agent --scope project --template scout")
+	 * // => { name: "my-agent", scope: "project", template: "scout" }
 	 */
 	function parseAddArgs(argsStr: string): {
 		name: string;
@@ -1024,6 +1040,14 @@ export default function (pi: ExtensionAPI) {
 
 	/**
 	 * Parse command arguments for /subagent edit
+	 * 
+	 * Extracts agent name and optional --scope flag.
+	 * 
+	 * @param argsStr - Raw argument string from command
+	 * @returns Parsed name and scope (user/project/both)
+	 * @example
+	 * parseEditArgs("my-agent --scope user")
+	 * // => { name: "my-agent", scope: "user" }
 	 */
 	function parseEditArgs(argsStr: string): { name: string; scope: AgentScope } {
 		const tokens = argsStr.trim().split(/\s+/);
@@ -1048,6 +1072,20 @@ export default function (pi: ExtensionAPI) {
 
 	/**
 	 * Validate agent name format
+	 * 
+	 * Agent names must:
+	 * - Contain only lowercase letters, numbers, hyphens, and underscores
+	 * - Start with a letter
+	 * - End with a letter or number
+	 * 
+	 * @param name - Agent name to validate
+	 * @returns Validation result with error message if invalid
+	 * @example
+	 * validateAgentName("my-agent")
+	 * // => { valid: true }
+	 * 
+	 * validateAgentName("123invalid")
+	 * // => { valid: false, error: "Agent name must start with a letter" }
 	 */
 	function validateAgentName(name: string): { valid: boolean; error?: string } {
 		if (!name) {
@@ -1064,6 +1102,14 @@ export default function (pi: ExtensionAPI) {
 
 	/**
 	 * Get the file path for an agent in the specified scope
+	 * 
+	 * @param name - Agent name (without .md extension)
+	 * @param scope - Whether to use user-level or project-level directory
+	 * @param cwd - Current working directory (for project scope)
+	 * @returns Full file path where agent should be created/found
+	 * @example
+	 * getAgentPath("my-agent", "user", "/some/path")
+	 * // => "~/.pi/agent/agents/my-agent.md"
 	 */
 	function getAgentPath(name: string, scope: "user" | "project", cwd: string): string {
 		if (scope === "user") {
@@ -1076,6 +1122,15 @@ export default function (pi: ExtensionAPI) {
 
 	/**
 	 * Generate template content for a new agent
+	 * 
+	 * Creates agent markdown file with YAML frontmatter and system prompt.
+	 * 
+	 * @param name - Agent name for the template
+	 * @param template - Template type to generate
+	 *   - "basic": Minimal template with core fields only
+	 *   - "scout": Fast reconnaissance with read/grep/find/bash tools
+	 *   - "worker": Full-capability template with all default tools
+	 * @returns Complete markdown content for the agent file
 	 */
 	function generateTemplate(name: string, template: "basic" | "scout" | "worker"): string {
 		if (template === "basic") {
@@ -1136,7 +1191,11 @@ You have access to all default tools for reading, writing, executing commands, a
 	}
 
 	/**
-	 * Format agent list for display
+	 * Format agent list for display in /subagent list output
+	 * 
+	 * @param agents - Array of discovered agent configurations
+	 * @param verbose - Whether to show full descriptions and file paths
+	 * @returns Formatted string with agent list grouped by source (user/project)
 	 */
 	function formatAgentList(agents: AgentConfig[], verbose: boolean): string {
 		if (agents.length === 0) {

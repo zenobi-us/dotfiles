@@ -64,6 +64,77 @@ To enable project-local agents, pass `agentScope: "both"` (or `"project"`). Only
 
 When running interactively, the tool prompts for confirmation before running project-local agents. Set `confirmProjectAgents: false` to disable.
 
+## Management Commands
+
+The `/subagent` command provides management capabilities for creating and organizing agents.
+
+### List Agents
+
+List available agents with optional filtering:
+
+```
+/subagent list [--scope user|project|both] [--verbose]
+```
+
+**Examples:**
+```
+/subagent list
+/subagent list --scope user
+/subagent list --scope both --verbose
+```
+
+**Options:**
+- `--scope user|project|both` - Filter by agent location (default: `both`)
+- `--verbose` - Show full descriptions and file paths
+
+### Add Agent
+
+Create a new agent definition from a template:
+
+```
+/subagent add <name> [--scope user|project] [--template basic|scout|worker]
+```
+
+**Examples:**
+```
+/subagent add my-agent
+/subagent add my-scout --template scout --scope project
+/subagent add analyzer --template worker
+```
+
+**Options:**
+- `--scope user|project` - Where to create the agent (default: `user`)
+  - `user` - Creates in `~/.pi/agent/agents/` (available globally)
+  - `project` - Creates in `.pi/agents/` (project-specific)
+- `--template basic|scout|worker` - Agent template to use (default: `basic`)
+  - `basic` - Minimal template with name, description, and system prompt
+  - `scout` - Fast reconnaissance template with read/grep/find/bash tools
+  - `worker` - Full-capability template with all default tools
+
+**Agent Naming:**
+- Must contain only lowercase letters, numbers, hyphens, and underscores
+- Must start with a letter
+- Must end with a letter or number
+
+### Edit Agent
+
+Show the location of an existing agent for editing:
+
+```
+/subagent edit <name> [--scope user|project|both]
+```
+
+**Examples:**
+```
+/subagent edit scout
+/subagent edit my-agent --scope project
+```
+
+**Options:**
+- `--scope user|project|both` - Where to search for the agent (default: `both`)
+
+The command displays the file path where the agent is defined. Use your preferred editor to modify the agent configuration and system prompt. Changes take effect on the next subagent invocation.
+
 ## Usage
 
 ### Single agent
