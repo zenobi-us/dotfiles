@@ -1,6 +1,6 @@
 # Phase: Subagent Command Implementation
 
-**Epic:** [Pi Extensions Development](epic-f4a8b2c6-pi-extensions-development.md)  
+**Epic:** [Subagent Extension Enhancement](epic-a7d3e9f1-subagent-extension-enhancement.md)  
 **Status:** Complete  
 **Started:** 2026-01-11 02:24  
 **Completed:** 2026-01-11 02:35
@@ -79,4 +79,4 @@ All commands integrate cleanly with existing agent discovery mechanisms and foll
 
 ## Back to Epic
 
-Return to [Pi Extensions Development Epic](epic-f4a8b2c6-pi-extensions-development.md) for overall project status.
+Return to [Subagent Extension Enhancement Epic](epic-a7d3e9f1-subagent-extension-enhancement.md) for overall project status.

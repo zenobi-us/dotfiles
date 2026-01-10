@@ -1,6 +1,6 @@
 # Phase: Theme Palette Extension
 
-**Epic:** [Pi Extensions Development](epic-f4a8b2c6-pi-extensions-development.md)  
+**Epic:** [Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md)  
 **Status:** Not Started  
 **Planned Start:** 2026-01-11
 
@@ -94,4 +94,4 @@ Key learning opportunity: Understanding Pi's theme system and widget rendering w
 
 ## Back to Epic
 
-Return to [Pi Extensions Development Epic](epic-f4a8b2c6-pi-extensions-development.md) for overall project status.
+Return to [Theme Development Tools Epic](epic-c2b8f4e6-theme-development-tools.md) for overall project status.
