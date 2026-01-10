@@ -2,8 +2,10 @@
 
 ## Active Sessions
 
-_(none)_
+- **Ralph Loop: subagent-management-commands** - Planning slash commands for subagent management
 
 ## Phase Assignments
 
-_(no phases currently in progress)_
+- **Research & Planning Phase** - Currently in progress
+  - Researching existing subagent extension structure
+  - Designing slash command specifications
