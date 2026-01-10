@@ -16,12 +16,85 @@ import { spawn } from "node:child_process";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-import { Type } from "@sinclair/typebox";
-import type { AgentToolResult, Message } from "@mariozechner/pi-ai";
-import { StringEnum } from "@mariozechner/pi-ai";
+import { Type, type TSchema } from "@sinclair/typebox";
 import { Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
 import { getMarkdownTheme, type CustomAgentTool, type CustomToolFactory, type ToolAPI } from "@mariozechner/pi-coding-agent";
 import { type AgentConfig, type AgentScope, discoverAgents, formatAgentList } from "./agents.js";
+
+// Local type definitions (from @mariozechner/pi-ai)
+interface TextContent {
+	type: "text";
+	text: string;
+}
+
+interface ImageContent {
+	type: "image";
+	data: string;
+	mimeType: string;
+}
+
+interface ThinkingContent {
+	type: "thinking";
+	thinking: string;
+}
+
+interface ToolCall {
+	type: "toolCall";
+	id: string;
+	name: string;
+	arguments: Record<string, any>;
+}
+
+interface Usage {
+	input: number;
+	output: number;
+	cacheRead: number;
+	cacheWrite: number;
+	totalTokens: number;
+	cost: { input: number; output: number; cacheRead: number; cacheWrite: number; total: number };
+}
+
+type StopReason = "stop" | "length" | "toolUse" | "error" | "aborted";
+
+interface UserMessage {
+	role: "user";
+	content: string | (TextContent | ImageContent)[];
+	timestamp: number;
+}
+
+interface AssistantMessage {
+	role: "assistant";
+	content: (TextContent | ThinkingContent | ToolCall)[];
+	api: string;
+	provider: string;
+	model: string;
+	usage: Usage;
+	stopReason: StopReason;
+	errorMessage?: string;
+	timestamp: number;
+}
+
+interface ToolResultMessage {
+	role: "toolResult";
+	toolCallId: string;
+	toolName: string;
+	content: (TextContent | ImageContent)[];
+	details?: any;
+	isError: boolean;
+	timestamp: number;
+}
+
+type Message = UserMessage | AssistantMessage | ToolResultMessage;
+
+interface AgentToolResult<T = any> {
+	content: (TextContent | ImageContent)[];
+	details: T;
+}
+
+// Helper to create string enum schema
+function StringEnum<T extends readonly string[]>(values: T, options?: { description?: string; default?: T[number] }): TSchema {
+	return Type.Union(values.map(v => Type.Literal(v)), options);
+}
 
 const MAX_PARALLEL_TASKS = 8;
 const MAX_CONCURRENCY = 4;
@@ -203,7 +276,6 @@ async function runSingleAgent(
 	agents: AgentConfig[],
 	agentName: string,
 	task: string,
-	cwd: string | undefined,
 	step: number | undefined,
 	signal: AbortSignal | undefined,
 	onUpdate: OnUpdateCallback | undefined,
@@ -264,7 +336,7 @@ async function runSingleAgent(
 		let wasAborted = false;
 
 		const exitCode = await new Promise<number>((resolve) => {
-			const proc = spawn("pi", args, { cwd: cwd ?? pi.cwd, shell: false, stdio: ["ignore", "pipe", "pipe"] });
+			const proc = spawn("pi", args, { cwd: pi.cwd, shell: false, stdio: ["ignore", "pipe", "pipe"] });
 			let buffer = "";
 
 			const processLine = (line: string) => {
@@ -339,13 +411,11 @@ async function runSingleAgent(
 const TaskItem = Type.Object({
 	agent: Type.String({ description: "Name of the agent to invoke" }),
 	task: Type.String({ description: "Task to delegate to the agent" }),
-	cwd: Type.Optional(Type.String({ description: "Working directory for the agent process" })),
 });
 
 const ChainItem = Type.Object({
 	agent: Type.String({ description: "Name of the agent to invoke" }),
 	task: Type.String({ description: "Task with optional {previous} placeholder for prior output" }),
-	cwd: Type.Optional(Type.String({ description: "Working directory for the agent process" })),
 });
 
 const AgentScopeSchema = StringEnum(["user", "project", "both"] as const, {
@@ -360,7 +430,6 @@ const SubagentParams = Type.Object({
 	chain: Type.Optional(Type.Array(ChainItem, { description: "Array of {agent, task} for sequential execution" })),
 	agentScope: Type.Optional(AgentScopeSchema),
 	confirmProjectAgents: Type.Optional(Type.Boolean({ description: "Prompt before running project-local agents. Default: true.", default: true })),
-	cwd: Type.Optional(Type.String({ description: "Working directory for the agent process (single mode)" })),
 });
 
 const factory: CustomToolFactory = (pi) => {
@@ -387,7 +456,7 @@ const factory: CustomToolFactory = (pi) => {
 		parameters: SubagentParams,
 
 		async execute(_toolCallId, params, signal, onUpdate) {
-			const agentScope: AgentScope = params.agentScope ?? "user";
+			const agentScope: AgentScope = (params.agentScope as AgentScope | undefined) ?? "user";
 			const discovery = discoverAgents(pi.cwd, agentScope);
 			const agents = discovery.agents;
 			const confirmProjectAgents = params.confirmProjectAgents ?? true;
@@ -445,7 +514,7 @@ const factory: CustomToolFactory = (pi) => {
 						}
 					} : undefined;
 					
-					const result = await runSingleAgent(pi, agents, step.agent, taskWithContext, step.cwd, i + 1, signal, chainUpdate, makeDetails("chain"));
+					const result = await runSingleAgent(pi, agents, step.agent, taskWithContext, i + 1, signal, chainUpdate, makeDetails("chain"));
 					results.push(result);
 					
 					const isError = result.exitCode !== 0 || result.stopReason === "error" || result.stopReason === "aborted";
@@ -490,7 +559,7 @@ const factory: CustomToolFactory = (pi) => {
 				
 				const results = await mapWithConcurrencyLimit(params.tasks, MAX_CONCURRENCY, async (t, index) => {
 					const result = await runSingleAgent(
-						pi, agents, t.agent, t.task, t.cwd, undefined, signal,
+						pi, agents, t.agent, t.task, undefined, signal,
 						// Per-task update callback
 						(partial) => {
 							if (partial.details?.results[0]) {
@@ -515,7 +584,7 @@ const factory: CustomToolFactory = (pi) => {
 			}
 
 			if (params.agent && params.task) {
-				const result = await runSingleAgent(pi, agents, params.agent, params.task, params.cwd, undefined, signal, onUpdate, makeDetails("single"));
+				const result = await runSingleAgent(pi, agents, params.agent, params.task, undefined, signal, onUpdate, makeDetails("single"));
 				const isError = result.exitCode !== 0 || result.stopReason === "error" || result.stopReason === "aborted";
 				if (isError) {
 					const errorMsg = result.errorMessage || result.stderr || getFinalOutput(result.messages) || "(no output)";
@@ -529,7 +598,7 @@ const factory: CustomToolFactory = (pi) => {
 		},
 
 		renderCall(args, theme) {
-			const scope: AgentScope = args.agentScope ?? "user";
+			const scope: AgentScope = (args.agentScope as AgentScope | undefined) ?? "user";
 			if (args.chain && args.chain.length > 0) {
 				let text = theme.fg("toolTitle", theme.bold("subagent ")) + theme.fg("accent", `chain (${args.chain.length} steps)`) + theme.fg("muted", ` [${scope}]`);
 				for (let i = 0; i < Math.min(args.chain.length, 3); i++) {

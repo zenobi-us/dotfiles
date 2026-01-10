@@ -1,0 +1,34 @@
+{
+  "name": "pi-dcp",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Dynamic Context Pruning extension for pi - intelligently removes obsolete messages to optimize token usage",
+  "main": "./index.ts",
+  "scripts": {
+    "dev": "bun run index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "keywords": [
+    "pi",
+    "pi-extension",
+    "context-pruning",
+    "token-optimization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-agent-core": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  },
+  "pi": {
+    "extensions": ["./index.ts"]
+  },
+  "dependencies": {
+    "bunfig": "^0.15.6"
+  }
+}

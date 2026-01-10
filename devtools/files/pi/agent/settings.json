@@ -1,8 +1,8 @@
 {
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-5",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "claude-haiku-4.5",
   "defaultThinkingLevel": "off",
-  "lastChangelogVersion": "0.41.0",
+  "lastChangelogVersion": "0.42.0",
   "theme": "rose-pine",
   "terminal": {
     "showImages": true

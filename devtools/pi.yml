@@ -30,8 +30,8 @@ actions:
       - "{{user.home_dir}}/.pi/agent"
 
   - action: file.link
-    to: "{{user.home_dir}}/.pi/agent/tools"
-    from: pi/agent/tools
+    to: "{{user.home_dir}}/.pi/agent/extensions"
+    from: pi/agent/extensions
 
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/themes"

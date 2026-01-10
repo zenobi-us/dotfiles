@@ -43,7 +43,7 @@ Then in pi:
 > add a todo "test custom tools"
 > list todos
 > toggle todo #1
-> clear todos
+ clear todos
 ```
 
 ## Writing Custom Tools
