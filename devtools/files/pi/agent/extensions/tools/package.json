@@ -1,0 +1,32 @@
+{
+  "name": "as-grep",
+  "type": "module",
+  "main": "./index.ts",
+  "keywords": [
+    "pi",
+    "pi-extension",
+    "context-pruning",
+    "token-optimization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-agent-core": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  },
+  "pi": {
+    "extensions": [
+      "./todo/index.ts",
+      "./as-grep/index.ts",
+      "./look-at/index.ts",
+      "./ultrathink/index.ts",
+      "./oracle/index.ts",
+      "./plan-mode/index.ts",
+      "./status-widget/index.ts"
+    ]
+  }
+}

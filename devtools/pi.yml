@@ -41,6 +41,10 @@ actions:
     to: "{{user.home_dir}}/.pi/agent/settings.json"
     from: pi/agent/settings.json
 
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/package.json"
+    from: pi/agent/package.json
+
   - action: command.run
     dir: "{{user.home_dir}}/.pi"
     command: mise

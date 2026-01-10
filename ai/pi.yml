@@ -2,13 +2,11 @@
 depends:
   - devtools.pi
 
-
 actions:
 
   - action: file.link
-    to: "{{user.home_dir}}/.pi/agent/commands"
+    to: "{{user.home_dir}}/.pi/agent/prompts"
     from: commands
-
     
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/skills"
