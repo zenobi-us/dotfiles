@@ -960,4 +960,367 @@ export default function (pi: ExtensionAPI) {
 			return new Text(text?.type === "text" ? text.text : "(no output)", 0, 0);
 		},
 	});
+
+	// --- Slash Commands ---
+
+	/**
+	 * Parse command arguments for /subagent list
+	 */
+	function parseListArgs(argsStr: string): { scope: AgentScope; verbose: boolean } {
+		const tokens = argsStr.trim().split(/\s+/);
+		let scope: AgentScope = "both";
+		let verbose = false;
+
+		for (let i = 0; i < tokens.length; i++) {
+			const tok = tokens[i];
+			if (tok === "--scope" && tokens[i + 1]) {
+				const val = tokens[i + 1];
+				if (val === "user" || val === "project" || val === "both") {
+					scope = val;
+				}
+				i++;
+			} else if (tok === "--verbose" || tok === "-v") {
+				verbose = true;
+			}
+		}
+
+		return { scope, verbose };
+	}
+
+	/**
+	 * Parse command arguments for /subagent add
+	 */
+	function parseAddArgs(argsStr: string): {
+		name: string;
+		scope: "user" | "project";
+		template: "basic" | "scout" | "worker";
+	} {
+		const tokens = argsStr.trim().split(/\s+/);
+		let name = "";
+		let scope: "user" | "project" = "user";
+		let template: "basic" | "scout" | "worker" = "basic";
+
+		for (let i = 0; i < tokens.length; i++) {
+			const tok = tokens[i];
+			if (tok === "--scope" && tokens[i + 1]) {
+				const val = tokens[i + 1];
+				if (val === "user" || val === "project") {
+					scope = val;
+				}
+				i++;
+			} else if (tok === "--template" && tokens[i + 1]) {
+				const val = tokens[i + 1];
+				if (val === "basic" || val === "scout" || val === "worker") {
+					template = val;
+				}
+				i++;
+			} else if (!tok.startsWith("--") && !name) {
+				name = tok;
+			}
+		}
+
+		return { name, scope, template };
+	}
+
+	/**
+	 * Parse command arguments for /subagent edit
+	 */
+	function parseEditArgs(argsStr: string): { name: string; scope: AgentScope } {
+		const tokens = argsStr.trim().split(/\s+/);
+		let name = "";
+		let scope: AgentScope = "both";
+
+		for (let i = 0; i < tokens.length; i++) {
+			const tok = tokens[i];
+			if (tok === "--scope" && tokens[i + 1]) {
+				const val = tokens[i + 1];
+				if (val === "user" || val === "project" || val === "both") {
+					scope = val;
+				}
+				i++;
+			} else if (!tok.startsWith("--") && !name) {
+				name = tok;
+			}
+		}
+
+		return { name, scope };
+	}
+
+	/**
+	 * Validate agent name format
+	 */
+	function validateAgentName(name: string): { valid: boolean; error?: string } {
+		if (!name) {
+			return { valid: false, error: "Agent name is required" };
+		}
+		if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
+			return {
+				valid: false,
+				error: "Agent name must contain only letters, numbers, hyphens, and underscores",
+			};
+		}
+		return { valid: true };
+	}
+
+	/**
+	 * Get the file path for an agent in the specified scope
+	 */
+	function getAgentPath(name: string, scope: "user" | "project", cwd: string): string {
+		if (scope === "user") {
+			return path.join(os.homedir(), ".pi", "agent", "agents", `${name}.md`);
+		} else {
+			// For project scope, use .pi/agents in current working directory
+			return path.join(cwd, ".pi", "agents", `${name}.md`);
+		}
+	}
+
+	/**
+	 * Generate template content for a new agent
+	 */
+	function generateTemplate(name: string, template: "basic" | "scout" | "worker"): string {
+		if (template === "basic") {
+			return `---
+name: ${name}
+description: Brief description of what this agent does
+model: claude-sonnet-4-5
+tools: read, grep, find, ls
+---
+
+You are a specialized AI agent for [purpose].
+
+Your responsibilities:
+- [Task 1]
+- [Task 2]
+
+Guidelines:
+- [Guideline 1]
+- [Guideline 2]
+`;
+		} else if (template === "scout") {
+			return `---
+name: ${name}
+description: Fast reconnaissance for [domain]
+model: claude-haiku-4-5
+tools: read, grep, find, ls, bash
+---
+
+You are a fast reconnaissance agent specializing in [domain].
+
+Your goal is to quickly gather relevant context and return compressed findings.
+
+Focus on:
+- Finding key files and patterns
+- Extracting important information
+- Providing concise summaries
+
+Keep responses brief and actionable.
+`;
+		} else {
+			// worker template
+			return `---
+name: ${name}
+description: General-purpose agent for [domain]
+model: claude-sonnet-4-5
+---
+
+You are a capable AI agent with full tool access for [domain].
+
+Your responsibilities:
+- [Task 1]
+- [Task 2]
+- [Task 3]
+
+You have access to all default tools for reading, writing, executing commands, and more.
+`;
+		}
+	}
+
+	/**
+	 * Format agent list for display
+	 */
+	function formatAgentList(agents: AgentConfig[], verbose: boolean): string {
+		if (agents.length === 0) {
+			return "(no agents)";
+		}
+
+		const userAgents = agents.filter((a) => a.source === "user");
+		const projectAgents = agents.filter((a) => a.source === "project");
+
+		const sections: string[] = [];
+
+		const formatAgent = (agent: AgentConfig) => {
+			if (verbose) {
+				const lines: string[] = [
+					`  • ${agent.name}`,
+					`    Description: ${agent.description}`,
+					`    Model: ${agent.model || "(default)"}`,
+					`    Tools: ${agent.tools.length > 0 ? agent.tools.join(", ") : "(none)"}`,
+					`    File: ${agent.filePath}`,
+				];
+				return lines.join("\n");
+			}
+			return `  • ${agent.name} - ${agent.description}`;
+		};
+
+		if (userAgents.length > 0) {
+			const header = verbose ? "User agents (~/.pi/agent/agents/):" : "User agents:";
+			sections.push(header);
+			sections.push(userAgents.map(formatAgent).join("\n"));
+		}
+
+		if (projectAgents.length > 0) {
+			const header = verbose ? "\nProject agents (.pi/agents/):" : "\nProject agents:";
+			sections.push(header);
+			sections.push(projectAgents.map(formatAgent).join("\n"));
+		}
+
+		return sections.join("\n");
+	}
+
+	pi.registerCommand("subagent", {
+		description: "Manage agents: list, add, edit",
+		handler: async (args, ctx) => {
+			const [cmd, ...rest] = args.trim().split(/\s+/);
+			const restStr = rest.join(" ");
+
+			if (cmd === "list") {
+				const { scope, verbose } = parseListArgs(restStr);
+				const discovery = discoverAgents(ctx.cwd, scope);
+				const agents = discovery.agents;
+
+				// Sort agents alphabetically by name within their groups
+				agents.sort((a, b) => {
+					if (a.source !== b.source) {
+						return a.source === "user" ? -1 : 1;
+					}
+					return a.name.localeCompare(b.name);
+				});
+
+				let message = `Available agents (${agents.length}):\n\n`;
+
+				if (agents.length === 0) {
+					message += `No agents found for scope: ${scope}`;
+				} else {
+					message += formatAgentList(agents, verbose);
+				}
+
+				ctx.ui.notify(message, "info");
+			} else if (cmd === "add") {
+				const { name, scope, template } = parseAddArgs(restStr);
+
+				// Validate name
+				const validation = validateAgentName(name);
+				if (!validation.valid) {
+					ctx.ui.notify(`Error: ${validation.error}`, "error");
+					return;
+				}
+
+				// Get target path
+				const agentPath = getAgentPath(name, scope, ctx.cwd);
+				const agentDir = path.dirname(agentPath);
+
+				// Check if agent already exists
+				if (fs.existsSync(agentPath)) {
+					const relativePath = scope === "user" ? agentPath.replace(os.homedir(), "~") : agentPath;
+					ctx.ui.notify(
+						`Error: Agent '${name}' already exists at ${relativePath}\n\nUse /subagent edit ${name} to modify it.`,
+						"error",
+					);
+					return;
+				}
+
+				// Create directory if needed
+				try {
+					fs.mkdirSync(agentDir, { recursive: true });
+				} catch (err) {
+					ctx.ui.notify(`Error: Cannot create directory ${agentDir}\n${err}`, "error");
+					return;
+				}
+
+				// Generate and write template
+				const content = generateTemplate(name, template);
+				try {
+					fs.writeFileSync(agentPath, content, "utf-8");
+				} catch (err) {
+					ctx.ui.notify(`Error: Cannot write agent file\n${err}`, "error");
+					return;
+				}
+
+				// Success message
+				const relativePath = scope === "user" ? agentPath.replace(os.homedir(), "~") : agentPath;
+				const message = `Creating agent: ${name}
+Scope: ${scope}
+Template: ${template}
+Location: ${relativePath}
+
+✓ Agent created successfully!
+
+Next steps:
+  1. Edit ${relativePath} to customize the system prompt
+  2. Test with the subagent tool
+  3. Use in conversations with: "Use ${name} to [task description]"`;
+
+				ctx.ui.notify(message, "info");
+			} else if (cmd === "edit") {
+				const { name, scope } = parseEditArgs(restStr);
+
+				// Validate name
+				if (!name) {
+					ctx.ui.notify("Error: Agent name is required\n\nUsage: /subagent edit <name> [--scope user|project|both]", "error");
+					return;
+				}
+
+				// Discover agents
+				const discovery = discoverAgents(ctx.cwd, scope);
+				const agent = discovery.agents.find((a) => a.name === name);
+
+				if (!agent) {
+					// Show error with available agents
+					const available = discovery.agents.map((a) => `  • ${a.name} (${a.source})`).join("\n");
+					const message = `Agent '${name}' not found in scope: ${scope}\n\n${
+						available ? `Available agents:\n${available}\n\n` : "No agents found.\n\n"
+					}Use /subagent list for more details.`;
+					ctx.ui.notify(message, "error");
+					return;
+				}
+
+				// Show file path for editing
+				const relativePath =
+					agent.source === "user" ? agent.filePath.replace(os.homedir(), "~") : agent.filePath;
+
+				const message = `Opening agent: ${agent.name}
+Scope: ${agent.source}
+Location: ${relativePath}
+
+Edit this file with your preferred editor, then save.
+
+Changes will take effect on the next subagent invocation.`;
+
+				ctx.ui.notify(message, "info");
+			} else {
+				const help = `Subagent management commands:
+
+Commands:
+  /subagent list [--scope user|project|both] [--verbose]
+    Display available agents with filtering options
+    
+  /subagent add <name> [--scope user|project] [--template basic|scout|worker]
+    Create a new agent definition
+    
+  /subagent edit <name> [--scope user|project|both]
+    Show location of agent file for editing
+
+Examples:
+  /subagent list
+  /subagent list --scope user --verbose
+  /subagent add my-agent
+  /subagent add scout-v2 --scope project --template scout
+  /subagent add worker-bot --template worker
+  /subagent edit my-agent
+  /subagent edit scout-v2 --scope project`;
+
+				ctx.ui.notify(help, "info");
+			}
+		},
+	});
 }
