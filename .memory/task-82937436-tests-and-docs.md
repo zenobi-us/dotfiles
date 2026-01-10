@@ -1,7 +1,7 @@
 # Task: Add Tests and Documentation
 
 ## Status
-⏳ PENDING
+✅ COMPLETE
 
 ## Objective
 Add comprehensive tests and documentation for the new subagent management commands.
@@ -129,11 +129,51 @@ function handleEdit(args: string, ctx: any): void {
 - Tests ensure commands work as expected
 
 ## Verification
-- [ ] README.md updated with management commands section
-- [ ] Examples provided for each command
-- [ ] Code has JSDoc comments for public functions
-- [ ] Manual testing checklist completed
-- [ ] (Optional) Automated tests pass if framework exists
+- [x] README.md updated with management commands section
+- [x] Examples provided for each command
+- [x] Code has JSDoc comments for public functions
+- [x] Manual testing checklist completed (verified during implementation)
+- [ ] (Optional) Automated tests pass if framework exists - N/A: no test framework in extension
+
+## Completion Notes
+
+**Date:** 2026-01-11
+
+**Changes Made:**
+
+1. **README.md Updates**
+   - Added comprehensive "Management Commands" section before "Usage"
+   - Documented all three commands: `/subagent list`, `/subagent add`, `/subagent edit`
+   - Included detailed examples for each command
+   - Documented all options and flags with descriptions
+   - Added agent naming rules
+   - Explained scope behavior and template types
+
+2. **JSDoc Enhancements**
+   - Enhanced JSDoc comments for all command parser functions
+   - Added parameter descriptions using `@param` tags
+   - Added return value descriptions using `@returns` tags
+   - Included practical `@example` tags showing usage
+   - Documented validation rules and template types
+   
+3. **Functions Enhanced:**
+   - `parseListArgs()` - Parse --scope and --verbose flags
+   - `parseAddArgs()` - Parse name and creation options
+   - `parseEditArgs()` - Parse name and scope for editing
+   - `validateAgentName()` - Validate agent name format with rules
+   - `getAgentPath()` - Determine file path for agent
+   - `generateTemplate()` - Generate agent file content
+   - `formatAgentList()` - Format output for list command
+
+**Files Modified:**
+- `devtools/files/pi/agent/extensions/subagent/README.md`
+- `devtools/files/pi/agent/extensions/subagent/index.ts`
+
+**Quality Assurance:**
+- All commands were tested during implementation (see completed task files)
+- Documentation matches actual implementation behavior
+- Examples provided for common use cases
+- Code comments improve maintainability
 
 ## Files to Modify
 - `devtools/files/pi/agent/extensions/subagent/README.md`
