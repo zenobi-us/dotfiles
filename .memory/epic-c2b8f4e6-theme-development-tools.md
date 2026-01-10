@@ -1,9 +1,10 @@
 # Epic: Theme Development Tools
 
-**Status:** Not Started ⏳  
+**Status:** Active 🔄  
 **Timeline:** Q1 2026  
 **Owner:** Development Team  
-**Created:** 2026-01-11
+**Created:** 2026-01-11  
+**Activated:** 2026-01-11
 
 ## Vision
 
@@ -22,10 +23,10 @@ Create visual development tools that help Pi extension developers understand and
 
 ## Phases
 
-### Phase 1: Theme Palette Extension ⏳
+### Phase 1: Theme Palette Extension 🔄
 **File:** [phase-e8f9a1b2-theme-palette-extension.md](phase-e8f9a1b2-theme-palette-extension.md)  
-**Status:** Not Started  
-**Planned Start:** 2026-01-11
+**Status:** Active  
+**Started:** 2026-01-11
 
 Create a sidebar extension that displays Pi theme colors in an organized, visual format to help extension developers understand available theme colors and how they render in the TUI.
 

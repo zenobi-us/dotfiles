@@ -4,34 +4,31 @@
 
 Two self-contained, unrelated epics exist:
 
-1. **[Subagent Extension Enhancement](epic-a7d3e9f1-subagent-extension-enhancement.md)** ✅ - Functionally Complete
-2. **[Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md)** ⏳ - Not Started
+1. **[Subagent Extension Enhancement](epic-a7d3e9f1-subagent-extension-enhancement.md)** ✅ - **COMPLETE**
+2. **[Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md)** 🔄 - **ACTIVE**
 
 **Per miniproject guidelines:** Only ONE epic should be active at a time unless explicitly approved by human.
 
+**Status:** Epic 1 completed 2026-01-11. Epic 2 activated 2026-01-11.
+
 ---
 
-## Epic 1: Subagent Extension Enhancement ✅
+## Epic 1: Subagent Extension Enhancement ✅ COMPLETE
 
-**Status:** Functionally Complete (Documentation polish remaining)
+**Status:** Fully Complete  
+**Completed:** 2026-01-11
 
-### Remaining Work
-
-1. [Add tests and documentation](task-82937436-tests-and-docs.md)
-   - Update README.md with management commands
-   - Add code comments and JSDoc
-   - Complete manual testing checklist
-   - **Priority:** Low - Polish/quality assurance
-   - **Status:** Ready for work
-
-### Completed ✅
+### All Tasks Completed ✅
 
 - ✅ [Design command specifications](task-39282875-design-command-specs.md)
 - ✅ [Implement list command](task-8c7d3d20-implement-list-command.md)
 - ✅ [Implement add command](task-b75d4e5c-implement-add-command.md)
 - ✅ [Implement edit command](task-ccc03ceb-implement-edit-command.md)
+- ✅ [Add tests and documentation](task-82937436-tests-and-docs.md)
 
-**Epic Outcome:** Three functional slash commands delivered (`/subagent list`, `/subagent add`, `/subagent edit`) that integrate with Pi's agent discovery mechanisms.
+**Epic Outcome:** Three functional slash commands delivered (`/subagent list`, `/subagent add`, `/subagent edit`) with comprehensive documentation and learning materials distilled.
+
+**Learning Distilled:** [Agent Management Patterns](learning-a9f4c2d1-subagent-management-patterns.md)
 
 ---
 
