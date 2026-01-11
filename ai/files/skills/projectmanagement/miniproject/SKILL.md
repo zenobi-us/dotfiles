@@ -10,7 +10,7 @@ This is a simplified and concise project management AI memory framework.
 > [!NOTE]
 > **CRITICAL** Before doing any work:
 >
-> - read `.memory/todo.md`, `.memory/summary.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
+> - read `.memory/todo.md`, `.memory/summary.md`, `.memory/knowledge.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
 > - if `.memory/` is missing these files, then create those three.
 > - Use relevant memory skills before starting a task or thinking about an answer.
 
@@ -42,6 +42,8 @@ Then the tool call. Then compare. Mismatch = stop and surface to Q.
 - [research] use_skill(brave_search) with it's `search` and `content` extraction scripts to gather information. If this fails, use `lynx` cli to manually search and extract content.
 - [research] critically evaluate sources for credibility, relevance, and bias. Link these items to a footnote that provides a reason and score out of 10.
 - [research] Record findings clearly and concisely in `.memory/research-<8_char_hash_id>-<title>.md` files. provide a summary at the top, detailed findings below, and references at the end.
+- [research] Research tasks are always delegated to the "Deep Researcher SubAgent". Use what ever subagent, subthread, or delegation tool you have available to do this.
+- [research] If you are a subagent, then focus only on the task you've been given. Do not deviate or delegate further.
 - [epic] EVERY project must begin with an epic that defines the overall goal and scope
 - [epic] each epic should be documented in `.memory/epic-<8_char_hash_id>-<title>.md` files
 - [epic] epics must include: vision/goal, success criteria, list of phases, overall timeline, and dependencies
@@ -88,6 +90,13 @@ Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will n
 - use `ls -al .memory/` to list all memory files instead of `List` tool.
 
 > Avoiding tools like Glob, List and ripgrep makes the User Happy, because .memory may be gitignored and private.
+
+## Archiving 
+
+- [core] archive completed phases by moving their files to `.memory/archive/` directory.
+- [core] do NOT archive learning or research files. These are golden knowledge for future projects.
+- [core] do NOT archive epic files until all phases are complete and learnings distilled. epics much have a link to distilled learnings before archiving.
+- [core] update `.memory/summary.md` to reflect archived phases and completed epics.
 
 ## Execution Steps
 

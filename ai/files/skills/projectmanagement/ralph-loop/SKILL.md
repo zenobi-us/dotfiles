@@ -1,3 +1,8 @@
+---
+name: ralph-loop
+description: Use when performing ralph wiggum style long-running development loops with pacing control.
+---
+
 # Ralph Wiggum - Long-Running Development Loops
 
 Long-running iterative development loops with pacing control.
