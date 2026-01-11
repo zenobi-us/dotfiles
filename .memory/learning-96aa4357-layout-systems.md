@@ -650,9 +650,9 @@ class OptimizedFlex extends Flex {
 }
 ```
 
-## Application to UI Primitives Library
+## Application to Future Component Libraries
 
-**How Layout Systems Apply to Epic 3:**
+**How Layout Systems Apply to Component Development:**
 
 ### Blanket Component
 - No layout needed (fullscreen overlay)

@@ -22,7 +22,7 @@ subtask: true
 
 - `skill_use('projectmanagement_project_planning')`
 - `skill_use('projectmanagement_storage_function_structure')`
-- `skill_use('projectmanagement_storage_zk')`
+- `skill_use('projectmanagement_storage_opennotes')`
 
 3. Follow the project management workflow outlined below to manage project tasks and documentation using markdown files.
 

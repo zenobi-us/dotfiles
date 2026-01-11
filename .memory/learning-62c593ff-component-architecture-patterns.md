@@ -516,9 +516,9 @@ class BorderedComponent extends Box {
 }
 ```
 
-## Application to UI Primitives Library
+## Application to Future Component Libraries
 
-**How These Patterns Apply to Epic 3:**
+**How These Patterns Apply to Component Development:**
 
 1. **Blanket Component**: Follow Chip pattern (leaf component)
 2. **Modal Component**: Follow Group pattern (container + content)
@@ -551,6 +551,6 @@ class BorderedComponent extends Box {
 
 ## Conclusion
 
-The theme-palette extension documentation represents a comprehensive case study in building production-ready component systems for Pi TUI. The patterns extracted here form the foundation for building the UI Primitives Library (Epic 3) and future component development.
+The theme-palette extension documentation represents a comprehensive case study in building production-ready component systems for Pi TUI. The patterns extracted here form the foundation for future component development and library creation.
 
 **Key Takeaway**: Start with data-driven design, build composable components, document thoroughly, and provide clear migration paths.
