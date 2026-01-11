@@ -17,8 +17,8 @@
 
 import type { ExtensionAPI, ExtensionContext, Theme } from "@mariozechner/pi-coding-agent";
 import type { TUI } from "@mariozechner/pi-tui";
-import { ResponsivePalette } from "./components/Palette-responsive.js";
-import type { PaletteData } from "./components/Palette-responsive.js";
+import { Palette } from "./components/Palette.js";
+import type { PaletteData } from "./components/Palette.js";
 
 // Color definitions with categories
 const THEME_PALETTE_DATA: PaletteData = {
@@ -140,7 +140,7 @@ export default function (pi: ExtensionAPI) {
 		if (!ctx.hasUI) return;
 
 		ctx.ui.setWidget("theme-palette-responsive", (tui: TUI, theme: Theme) => {
-			return new ResponsivePalette(theme, THEME_PALETTE_DATA);
+			return new Palette(theme, THEME_PALETTE_DATA);
 		});
 	}
 

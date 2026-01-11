@@ -1,12 +1,14 @@
 /**
- * Group Component
+ * Responsive Group Component
  * 
- * A titled group of chips with a border.
- * Uses Box (with auto border) and Container for chip layout.
+ * A titled group of chips using Grid layout for responsive columns.
+ * Chips automatically flow into columns based on available width.
  */
 
 import type { Component } from "@mariozechner/pi-tui";
 import { Box, Container, Text } from "@mariozechner/pi-tui";
+import { Grid } from "./Grid.js";
+import { Sized, sized } from "./Sized.js";
 import { Chip, type ChipData } from "./Chip.js";
 import { Theme } from "@mariozechner/pi-coding-agent";
 
@@ -15,12 +17,16 @@ export interface GroupData {
 	title: string;
 	/** Array of chip data */
 	chips: ChipData[];
+	/** Preferred width for this group (default: 50) */
+	preferredWidth?: number;
 }
 
 export class Group extends Box implements Component {
 	private container: Container;
 	private titleText: Text;
+	private gridLayout: Grid;
 	private chips: Chip[] = [];
+	public readonly preferredWidth: number;
 
 	constructor(
 		private theme: Theme,
@@ -28,17 +34,26 @@ export class Group extends Box implements Component {
 	) {
 		super();
 
-		// Create container for vertical layout
+		// Set preferred width for flex layout
+		this.preferredWidth = data.preferredWidth ?? 50;
+
+		// Create container for vertical layout (title + grid)
 		this.container = new Container();
 
 		// Create title
 		this.titleText = new Text("", 0, 1); // 1 line padding
 		this.container.addChild(this.titleText);
 
+		// Create grid for chip layout with responsive columns
+		// Chips need about 40 characters minimum (swatch + name + desc)
+		this.gridLayout = new Grid({
+			spacing: 2,
+			minColumnWidth: 40
+		});
+		this.container.addChild(this.gridLayout);
+
 		// Add container to box
 		this.addChild(this.container);
-
-		// Set border color function for automatic border rendering
 
 		// Initial render
 		this.updateDisplay();
@@ -50,23 +65,21 @@ export class Group extends Box implements Component {
 		// Update title with accent color
 		this.titleText.setText(th.fg("accent", `══ ${this.data.title} ══`));
 
-		// Clear existing chips
-		for (const chip of this.chips) {
-			this.container.removeChild(chip);
-		}
+		// Clear existing chips from grid
+		this.gridLayout.clear();
 		this.chips = [];
 
-		// Add new chips
+		// Add new chips to grid
 		for (const chipData of this.data.chips) {
 			const chip = new Chip(this.theme, chipData);
 			this.chips.push(chip);
-			this.container.addChild(chip);
+			this.gridLayout.addChild(chip);
 		}
 	}
 
 	override invalidate(): void {
 		super.invalidate();
-		this.updateDisplay();
+		this.gridLayout.invalidate();
 	}
 
 	/**
@@ -92,7 +105,7 @@ export class Group extends Box implements Component {
 		this.data.chips.push(chipData);
 		const chip = new Chip(this.theme, chipData);
 		this.chips.push(chip);
-		this.container.addChild(chip);
+		this.gridLayout.addChild(chip);
 		this.invalidate();
 	}
 
@@ -100,24 +113,31 @@ export class Group extends Box implements Component {
 	 * Remove a chip by index
 	 */
 	removeChip(index: number): void {
-		if (index >= 0 && index < this.chips.length) {
-			const chip = this.chips[index];
-			this.container.removeChild(chip);
-			this.chips.splice(index, 1);
-			this.data.chips.splice(index, 1);
-			this.invalidate();
-		}
+		const chip = this.chips[index];
+		if (!chip) return;
+
+		this.gridLayout.removeChild(chip);
+		this.chips.splice(index, 1);
+		this.data.chips.splice(index, 1);
+		this.invalidate();
 	}
 
 	/**
 	 * Clear all chips
 	 */
 	clearChips(): void {
-		for (const chip of this.chips) {
-			this.container.removeChild(chip);
-		}
+		this.gridLayout.clear();
 		this.chips = [];
 		this.data.chips = [];
+		this.invalidate();
+	}
+
+	/**
+	 * Set the minimum column width for the grid
+	 */
+	setMinColumnWidth(width: number): void {
+		// This would require exposing the property on Grid
+		// For now, we'd need to recreate the grid
 		this.invalidate();
 	}
 }

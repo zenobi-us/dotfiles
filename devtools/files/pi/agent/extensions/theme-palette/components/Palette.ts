@@ -1,12 +1,13 @@
 /**
- * Palette Component
+ * Responsive Palette Component
  * 
- * Top-level component containing multiple groups.
- * Uses Box as root with Container for vertical layout of groups.
+ * Top-level component using Flex layout for responsive group arrangement.
+ * Groups wrap to the next row when width is constrained.
  */
 
 import type { Component } from "@mariozechner/pi-tui";
-import { Box, Container, Text } from "@mariozechner/pi-tui";
+import { Box, Text } from "@mariozechner/pi-tui";
+import { Flex } from "./Flex.js";
 import { Group, type GroupData } from "./Group.js";
 import { Theme } from "@mariozechner/pi-coding-agent";
 
@@ -18,7 +19,7 @@ export interface PaletteData {
 }
 
 export class Palette extends Box implements Component {
-	private container: Container;
+	private flexLayout: Flex;
 	private titleText?: Text;
 	private groups: Group[] = [];
 
@@ -28,43 +29,40 @@ export class Palette extends Box implements Component {
 	) {
 		super();
 
-		// Create container for content
-		this.container = new Container();
-		this.addChild(this.container);
-
-		// Set border color function
+		// Create flex container with wrap mode for responsive layout
+		this.flexLayout = new Flex({ mode: 'wrap', spacing: 2 });
 
 		// Initial render
 		this.updateDisplay();
+
+		// Add flex container to box
+		this.addChild(this.flexLayout);
 	}
 
 	private updateDisplay(): void {
 		const th = this.theme;
 
-		// Clear existing children from container
-		this.container.clear();
+		// Clear existing groups
+		this.flexLayout.clear();
 		this.groups = [];
 
-		// Add title if provided
+		// Add title if provided (spans full width)
 		if (this.data.title) {
-			this.titleText = new Text(th.bold(th.fg("accent", this.data.title)), 1, 0);
-			this.container.addChild(this.titleText);
+			this.titleText = new Text(th.bold(th.fg("accent", this.data.title)), 1, 1);
+			this.flexLayout.addChild(this.titleText);
 		}
 
-		// Add groups
+		// Add groups - they will wrap automatically based on available width
 		for (const groupData of this.data.groups) {
 			const group = new Group(this.theme, groupData);
 			this.groups.push(group);
-			this.container.addChild(group);
-
-			// Add spacing between groups
-			this.container.addChild(new Text("", 0, 1));
+			this.flexLayout.addChild(group);
 		}
 	}
 
 	override invalidate(): void {
 		super.invalidate();
-		this.updateDisplay();
+		this.flexLayout.invalidate();
 	}
 
 	/**
@@ -90,9 +88,7 @@ export class Palette extends Box implements Component {
 		this.data.groups.push(groupData);
 		const group = new Group(this.theme, groupData);
 		this.groups.push(group);
-		this.container.addChild(group);
-		// Add spacing
-		this.container.addChild(new Text("", 0, 1));
+		this.flexLayout.addChild(group);
 		this.invalidate();
 	}
 
@@ -100,20 +96,19 @@ export class Palette extends Box implements Component {
 	 * Remove a group by index
 	 */
 	removeGroup(index: number): void {
-		if (index >= 0 && index < this.groups.length) {
-			const group = this.groups[index];
-			this.container.removeChild(group);
-			this.groups.splice(index, 1);
-			this.data.groups.splice(index, 1);
-			this.invalidate();
-		}
+		const group = this.groups[index];
+		if (!group) return;
+		this.flexLayout.removeChild(group);
+		this.groups.splice(index, 1);
+		this.data.groups.splice(index, 1);
+		this.invalidate();
 	}
 
 	/**
 	 * Clear all groups
 	 */
 	clearGroups(): void {
-		this.container.clear();
+		this.flexLayout.clear();
 		this.groups = [];
 		this.data.groups = [];
 		if (this.data.title) {
@@ -135,5 +130,20 @@ export class Palette extends Box implements Component {
 	 */
 	getGroups(): Group[] {
 		return [...this.groups];
+	}
+
+	/**
+	 * Set the flex layout mode
+	 */
+	setLayoutMode(mode: 'wrap' | 'fill'): void {
+		this.flexLayout.setMode(mode);
+		this.invalidate();
+	}
+
+	/**
+	 * Get the current flex layout mode
+	 */
+	getLayoutMode(): 'wrap' | 'fill' {
+		return this.flexLayout.getMode();
 	}
 }
