@@ -74,6 +74,7 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 ### Research Files
 - [research-6e3d737d-subagent-extension-structure.md](research-6e3d737d-subagent-extension-structure.md) - Subagent extension analysis
 - [research-30fe5140-command-specifications.md](research-30fe5140-command-specifications.md) - Command specifications
+- [research-5231cb8a-pi-mono-ui-components.md](research-5231cb8a-pi-mono-ui-components.md) - Comprehensive guide to pi-mono custom UI components, overlays, and interaction capabilities (2026-01-11)
 
 ## Recent Outcomes
 
