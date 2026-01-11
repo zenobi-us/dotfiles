@@ -18,6 +18,20 @@ A beautiful dark theme with warm, saturated colors inspired by the popular Ayu c
 
 See [ayu-dark-README.md](./ayu-dark-README.md) for details.
 
+### Rosé Pine (`rose-pine`)
+An elegant dark theme with soho vibes inspired by the popular Rosé Pine color scheme.
+
+**Features:**
+- Cozy purple-toned backgrounds for a distinctive aesthetic
+- Carefully balanced warm accents (foam, rose, gold, iris)
+- Deep purple-black base (#191724)
+- Soft cyan accent (#9ccfd8)
+- Low eye strain with warm color palette
+
+**Best for:** Purple theme enthusiasts, cozy focused coding, developers who enjoy soho vibes aesthetics
+
+See [rose-pine-README.md](./rose-pine-README.md) for details.
+
 ## Theme Installation
 
 Custom themes are automatically discovered from this directory (`~/.pi/agent/themes/`).

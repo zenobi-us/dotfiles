@@ -3,7 +3,7 @@
   "defaultModel": "claude-sonnet-4-5",
   "defaultThinkingLevel": "off",
   "lastChangelogVersion": "0.42.2",
-  "theme": "ayu-dark",
+  "theme": "rose-pine",
   "terminal": {
     "showImages": true
   }
