@@ -26,7 +26,8 @@
       "./ultrathink/index.ts",
       "./oracle/index.ts",
       "./plan-mode/index.ts",
-      "./status-widget/index.ts"
+      "./status-widget/index.ts",
+      "./theme-palette/index.ts"
     ]
   }
 }
