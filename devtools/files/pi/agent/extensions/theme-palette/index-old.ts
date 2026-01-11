@@ -1,32 +1,25 @@
 /**
- * Theme Palette Extension v3 - Responsive Layout
+ * Theme Palette Extension v2 - Using Component Architecture
  * 
- * Displays all available theme colors using a responsive layout system.
- * Groups wrap and flow based on available terminal width.
- * Chips within groups are arranged in responsive columns.
+ * Displays all available theme colors using the Palette/Group/Chip component system.
  * 
  * Commands:
  *   /theme-palette - Toggle palette visibility
  * 
- * Keyboard Shortcuts:
- *   Ctrl+Shift+T - Toggle palette visibility
- * 
  * Usage:
- *   pi -e ~/.pi/agent/extensions/theme-palette/index-responsive.ts
+ *   pi -e ~/.pi/agent/extensions/theme-palette/index-v2.ts
  */
 
 import type { ExtensionAPI, ExtensionContext, Theme } from "@mariozechner/pi-coding-agent";
 import type { TUI } from "@mariozechner/pi-tui";
-import { ResponsivePalette } from "./components/Palette-responsive.js";
-import type { PaletteData } from "./components/Palette-responsive.js";
+import { Palette, type PaletteData } from "./components/index.js";
 
 // Color definitions with categories
 const THEME_PALETTE_DATA: PaletteData = {
-	title: "🎨 Theme Palette (Responsive)",
+	title: "Theme Palette",
 	groups: [
 		{
 			title: "UI Colors",
-			preferredWidth: 45,
 			chips: [
 				{ name: "accent", description: "Primary accent color" },
 				{ name: "border", description: "Default border color" },
@@ -39,7 +32,6 @@ const THEME_PALETTE_DATA: PaletteData = {
 		},
 		{
 			title: "Semantic Colors",
-			preferredWidth: 45,
 			chips: [
 				{ name: "success", description: "Success/positive state" },
 				{ name: "error", description: "Error/negative state" },
@@ -48,7 +40,6 @@ const THEME_PALETTE_DATA: PaletteData = {
 		},
 		{
 			title: "Message Colors",
-			preferredWidth: 50,
 			chips: [
 				{ name: "thinkingText", description: "AI thinking text" },
 				{ name: "userMessageText", description: "User message text" },
@@ -58,7 +49,6 @@ const THEME_PALETTE_DATA: PaletteData = {
 		},
 		{
 			title: "Tool Colors",
-			preferredWidth: 50,
 			chips: [
 				{ name: "toolTitle", description: "Tool call title" },
 				{ name: "toolOutput", description: "Tool output text" },
@@ -69,7 +59,6 @@ const THEME_PALETTE_DATA: PaletteData = {
 		},
 		{
 			title: "Markdown Colors",
-			preferredWidth: 50,
 			chips: [
 				{ name: "mdHeading", description: "Markdown headings" },
 				{ name: "mdLink", description: "Markdown link text" },
@@ -85,7 +74,6 @@ const THEME_PALETTE_DATA: PaletteData = {
 		},
 		{
 			title: "Syntax Colors",
-			preferredWidth: 50,
 			chips: [
 				{ name: "syntaxComment", description: "Code comments" },
 				{ name: "syntaxKeyword", description: "Language keywords" },
@@ -100,7 +88,6 @@ const THEME_PALETTE_DATA: PaletteData = {
 		},
 		{
 			title: "Thinking Level Colors",
-			preferredWidth: 50,
 			chips: [
 				{ name: "thinkingOff", description: "Thinking: off" },
 				{ name: "thinkingMinimal", description: "Thinking: minimal" },
@@ -112,7 +99,6 @@ const THEME_PALETTE_DATA: PaletteData = {
 		},
 		{
 			title: "Background Colors",
-			preferredWidth: 50,
 			chips: [
 				{ name: "selectedBg", description: "Selected item background" },
 				{ name: "userMessageBg", description: "User message background" },
@@ -124,7 +110,6 @@ const THEME_PALETTE_DATA: PaletteData = {
 		},
 		{
 			title: "Special Colors",
-			preferredWidth: 45,
 			chips: [
 				{ name: "bashMode", description: "Bash mode indicator" },
 			],
@@ -139,14 +124,14 @@ export default function (pi: ExtensionAPI) {
 	function showPalette(ctx: ExtensionContext) {
 		if (!ctx.hasUI) return;
 
-		ctx.ui.setWidget("theme-palette-responsive", (tui: TUI, theme: Theme) => {
-			return new ResponsivePalette(theme, THEME_PALETTE_DATA);
+		ctx.ui.setWidget("theme-palette", (tui: TUI, theme: Theme) => {
+			return new Palette(theme, THEME_PALETTE_DATA);
 		});
 	}
 
 	function hidePalette(ctx: ExtensionContext) {
 		if (!ctx.hasUI) return;
-		ctx.ui.setWidget("theme-palette-responsive", undefined);
+		ctx.ui.setWidget("theme-palette", undefined);
 	}
 
 	// Auto-show on session start if previously visible
@@ -168,7 +153,7 @@ export default function (pi: ExtensionAPI) {
 
 	// Toggle command
 	pi.registerCommand("theme-palette", {
-		description: "Toggle responsive theme palette display",
+		description: "Toggle theme palette display",
 		handler: async (_args, ctx) => {
 			if (!ctx.hasUI) {
 				ctx.ui.notify("Theme palette requires UI mode", "warning");
@@ -180,17 +165,17 @@ export default function (pi: ExtensionAPI) {
 
 			if (isVisible) {
 				showPalette(ctx);
-				ctx.ui.notify("Responsive theme palette enabled", "info");
+				ctx.ui.notify("Theme palette enabled", "info");
 			} else {
 				hidePalette(ctx);
-				ctx.ui.notify("Responsive theme palette disabled", "info");
+				ctx.ui.notify("Theme palette disabled", "info");
 			}
 		},
 	});
 
 	// Keyboard shortcut: Ctrl+Shift+T for theme palette
 	pi.registerShortcut("ctrl+shift+t", {
-		description: "Toggle responsive theme palette",
+		description: "Toggle theme palette",
 		handler: async (ctx) => {
 			if (!ctx.hasUI) return;
 
@@ -199,10 +184,10 @@ export default function (pi: ExtensionAPI) {
 
 			if (isVisible) {
 				showPalette(ctx);
-				ctx.ui.notify("Responsive theme palette enabled", "info");
+				ctx.ui.notify("Theme palette enabled", "info");
 			} else {
 				hidePalette(ctx);
-				ctx.ui.notify("Responsive theme palette disabled", "info");
+				ctx.ui.notify("Theme palette disabled", "info");
 			}
 		},
 	});
