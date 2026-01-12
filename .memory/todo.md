@@ -15,27 +15,30 @@
 
 ### Epic 3: Multi-Harness Agent Loader
 
-**Phase:** [Research & Discovery](phase-ab3b84bd-research-discovery.md)
+**Current Phase:** [Phase 2: Architecture Design](phase-TODO-architecture-design.md) 🔄
 
 | Status | Task | Priority | Notes |
 |--------|------|----------|-------|
-| ✅ | [Research Harness Formats](task-db140ba7-research-harness-formats.md) | High | **COMPLETE** - [Consolidated Research](research-8c4d2b1f-ai-harness-formats.md) |
-| ⏳ | Design Extension Architecture | Medium | Next: Create detailed design doc |
-| ⏳ | Build Proof-of-Concept | Medium | Start with Claude Code adapter |
+| ✅ | [Phase 1: Research & Discovery](phase-ab3b84bd-research-discovery.md) | High | **COMPLETE** - [Consolidated Research](research-8c4d2b1f-ai-harness-formats.md) |
+| ⏳ | Create Architecture Design Document | High | Start Phase 2 - Define adapter interfaces, import mechanisms |
+| ⏳ | Design Claude Code Adapter | High | First priority - highest compatibility |
+| ⏳ | Design OpenCode Adapter | Medium | Second priority - good compatibility |
+| ⏳ | Build Proof-of-Concept | Medium | After design complete |
 
 ---
 
 ## Quick Reference
 
-**Current Focus:**
-- ✅ Research complete - 7 AI harnesses documented and consolidated
-- Design extension architecture
-- Build Claude Code adapter proof-of-concept
+**Current Focus (2026-01-13):**
+- ✅ Phase 1: Research complete - 7 AI harnesses researched and consolidated
+- 🔄 Phase 2: Architecture Design - Ready to start
+- Prioritize: Claude Code and OpenCode adapters
 
 **Next Actions:**
-1. Review consolidated research in [research-8c4d2b1f-ai-harness-formats.md](research-8c4d2b1f-ai-harness-formats.md)
-2. Create detailed design document for extension architecture
-3. Build proof-of-concept for Claude Code command import
+1. Create detailed architecture design document for Phase 2
+2. Define adapter interface and data transformation pipeline
+3. Document Claude Code import mechanism
+4. Document OpenCode import mechanism
 
 ---
 
