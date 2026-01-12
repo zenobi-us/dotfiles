@@ -1,12 +1,11 @@
 /**
  * Responsive Palette Component
  * 
- * Top-level component using Flex layout for responsive group arrangement.
- * Groups wrap to the next row when width is constrained.
+ * Demonstrates design hierarchy using Box and Flex components from @mariozechner/pi-tui
+ * Showcases border weights, depth, spacing, and color contrast hierarchy
  */
-
 import type { Component } from "@mariozechner/pi-tui";
-import { Box, Text } from "@mariozechner/pi-tui";
+import { Box, Text, Container } from "@mariozechner/pi-tui";
 import { Flex } from "./Flex.js";
 import { Group, type GroupData } from "./Group.js";
 import { Theme } from "@mariozechner/pi-coding-agent";
@@ -18,9 +17,12 @@ export interface PaletteData {
 	groups: GroupData[];
 }
 
-export class Palette extends Box implements Component {
+export class Palette extends Container implements Component {
+	private headerBox: Box;
+	private contentBox: Box;
 	private flexLayout: Flex;
-	private titleText?: Text;
+	private titleText: Text;
+	private subtitleText: Text;
 	private groups: Group[] = [];
 
 	constructor(
@@ -29,14 +31,40 @@ export class Palette extends Box implements Component {
 	) {
 		super();
 
+		const th = this.theme;
+
+		// Header Box - elevated surface with subtle depth
+		this.headerBox = new Box(2, 1, (s) => th.bg("surface+1", s));
+		
+		// Title with primary accent color
+		const titleContent = th.bold(th.fg("accent", this.data.title || "Theme Palette"));
+		this.titleText = new Text(titleContent, 0, 0);
+		
+		// Subtitle with muted text showing hierarchy
+		const subtitleContent = th.fg("dim", "Design system color tokens with hierarchical contrast");
+		this.subtitleText = new Text(subtitleContent, 0, 0);
+		
+		// Header container
+		const headerContent = new Container();
+		headerContent.addChild(this.titleText);
+		headerContent.addChild(this.subtitleText);
+		this.headerBox.addChild(headerContent);
+
+		// Content Box - base surface with border separation
+		this.contentBox = new Box(2, 1, (s) => th.bg("base", s));
+		
 		// Create flex container with wrap mode for responsive layout
 		this.flexLayout = new Flex({ mode: 'wrap', spacing: 2 });
-
+		
 		// Initial render
 		this.updateDisplay();
+		
+		// Add flex container to content box
+		this.contentBox.addChild(this.flexLayout);
 
-		// Add flex container to box
-		this.addChild(this.flexLayout);
+		// Add boxes to main container
+		this.addChild(this.headerBox);
+		this.addChild(this.contentBox);
 	}
 
 	private updateDisplay(): void {
@@ -45,12 +73,6 @@ export class Palette extends Box implements Component {
 		// Clear existing groups
 		this.flexLayout.clear();
 		this.groups = [];
-
-		// Add title if provided (spans full width)
-		if (this.data.title) {
-			this.titleText = new Text(th.bold(th.fg("accent", this.data.title)), 1, 1);
-			this.flexLayout.addChild(this.titleText);
-		}
 
 		// Add groups - they will wrap automatically based on available width
 		for (const groupData of this.data.groups) {
