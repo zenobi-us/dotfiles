@@ -58,7 +58,10 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 - Epic 1 - Subagent Extension Enhancement ✅
 - Epic 2 - Theme Development Tools ✅
 
-**Status:** Two epics completed successfully in January 2026. All planned work completed.
+**Active Epic:**
+- Epic 3 - Multi-Harness Agent Loader 🔄
+
+**Status:** New epic started 2026-01-12. Researching extension to load agents/commands from other AI harnesses (Claude Code, Aider, Continue, etc.).
 
 ## Knowledge Base
 
@@ -127,6 +130,37 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 - `shells/` - Shell configs (alacritty, powershell, starship, zsh, zellij)
 - `startup/` - Systemd services
 - `windowmanagers/` - AutoHotKey configs
+
+---
+
+### 3. [Multi-Harness Agent Loader](epic-4dd87a16-multi-harness-agent-loader.md) 🔄 IN PROGRESS
+
+**Vision:** Create a Pi-mono extension that enables loading and using agents/commands from other AI coding harnesses (Claude Code, Aider, Continue, Cursor, etc.).
+
+**Status:** Research Phase  
+**Timeline:** Q1 2026  
+**Started:** 2026-01-12
+
+#### Phases
+- ✅ **[Phase 1: Research & Discovery](phase-ab3b84bd-research-discovery.md)** - **COMPLETE**
+  - ✅ Researched 6 AI harnesses: Claude Code, Aider, Continue, Cursor, OpenCode, Cody
+  - ✅ Documented all configuration formats and schemas
+  - ✅ Created compatibility matrix and translation feasibility assessment
+  - ✅ Research output: `.memory/research/ai-harness-formats/`
+
+- 🔄 **Phase 2: Architecture Design** - Next
+  - Create detailed extension architecture document
+  - Define adapter interfaces for each harness
+  - Plan import/discovery mechanisms
+
+- ⏳ **Phase 3: Implementation** - Pending
+
+#### Research Findings
+- **High Compatibility**: Claude Code, OpenCode (similar markdown+frontmatter formats)
+- **Medium Compatibility**: Aider (YAML→JSON), Continue (transitioning formats)
+- **Low Compatibility**: Cursor (plain text), Cody (cloud-based)
+- **Recommendation**: Start with Claude Code and OpenCode adapters
+- **Consolidated Research**: [research-8c4d2b1f-ai-harness-formats.md](research-8c4d2b1f-ai-harness-formats.md) - Complete analysis of 7 harnesses with schemas, compatibility matrix, and design recommendations
 
 ---
 
