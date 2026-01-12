@@ -22,7 +22,7 @@ import type { PaletteData } from "./components/Palette.js";
 
 // Color definitions with categories
 const THEME_PALETTE_DATA: PaletteData = {
-	title: "🎨 Theme Palette (Responsive)",
+	title: "🎨 Theme",
 	groups: [
 		{
 			title: "UI Colors",

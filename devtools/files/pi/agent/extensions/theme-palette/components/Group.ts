@@ -63,7 +63,7 @@ export class Group extends Box implements Component {
 		const th = this.theme;
 
 		// Update title with accent color
-		this.titleText.setText(th.fg("accent", `══ ${this.data.title} ══`));
+		this.titleText.setText(th.fg("accent", this.data.title));
 
 		// Clear existing chips from grid
 		this.gridLayout.clear();
