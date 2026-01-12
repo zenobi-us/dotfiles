@@ -11,6 +11,8 @@ Comtrya is a declarative system provisioning tool (YAML/TOML) that applies confi
 
 **Key insight:** System provisioning requires thinking in layers (OS detection, package managers, privilege levels, dependency order, rollback safety).
 
+**Critical:** File operations (`file.link`, `file.copy`, `directory.copy`) require source files in a `files/` subdirectory relative to the manifest. This prevents Comtrya from parsing config files as manifests.
+
 ## When to Use
 
 - Designing multi-OS provisioning (dev teams, CI/CD, personal machines)
@@ -109,16 +111,18 @@ Comtrya **does not automatically order** actions - declare dependencies explicit
 
 ```yaml
 actions:
-  - action: group.create
-    name: docker
-    id: 1001
+  - action: group.add
+    group_name: docker
+    id: docker_group
 
   - action: package.install
     name: docker
     depends_on: ["docker_group"]  # Wait for group creation
 
   - action: command.run
-    cmd: "sudo systemctl enable docker"
+    command: systemctl
+    args: ["enable", "docker"]
+    privileged: true
     depends_on: ["docker_package"]
 ```
 
@@ -126,33 +130,35 @@ actions:
 
 ## Privilege Escalation Patterns
 
-### Using `sudo`
+### Using Privilege Escalation
 
-For actions requiring elevation:
+For actions requiring elevation, use `privileged: true`:
 
 ```yaml
 - action: command.run
-  cmd: "systemctl enable nginx"
-  shell: "bash -c"
+  command: systemctl
+  args: ["enable", "nginx"]
+  privileged: true
   where: os.name == "linux"
 ```
 
-Comtrya runs with current user privileges by default. **For system actions, wrap in `sudo`** or run entire manifest with `sudo comtrya apply`.
+Or run entire manifest with `sudo comtrya apply`.
 
-### Security: Minimize Sudo
+### Security: Minimize Privilege Escalation
 
 Avoid elevation where possible:
 
 ```yaml
-# ❌ Avoid: Full sudo for user config
+# ❌ Avoid: Privileged command for user config
 - action: command.run
-  cmd: "sudo tee ~/.config/app/config.json"
+  command: tee
+  args: ["~/.config/app/config.json"]
+  privileged: true
 
-# ✅ Better: User-owned config without sudo
-- action: file.create
-  path: ~/.config/app/config.json
-  contents: |
-    { ... }
+# ✅ Better: User-owned file without privileges
+- action: file.copy
+  from: app-config.json
+  to: ~/.config/app/config.json
 ```
 
 ## Before You Apply: Dry-Run and Validation
@@ -241,46 +247,62 @@ Recover.yml is not an alternative to validation—it's a fire extinguisher. Don'
 
 ## Common Patterns
 
-### Conditional File Creation Based on OS
+### Symlink Config Files
 
 ```yaml
-- action: file.create
-  path: ~/.config/app/config.yml
-  contents: |
-    linux_only: true
-  where: os.name == "linux"
+# Single file symlink (from files/ directory)
+- action: file.link
+  from: nvim/init.lua
+  to: ~/.config/nvim/init.lua
 
-- action: file.create
-  path: ~/.config/app/config.yml
-  contents: |
-    macos_only: true
-  where: os.name == "macos"
+# Walk directory and symlink all files
+- action: file.link
+  source: shell-configs
+  target: ~/.config/shell
+  walk_dir: true
+```
+
+### Download and Install Binary
+
+```yaml
+- action: file.download
+  from: https://example.com/tool.tar.gz
+  to: /tmp/tool.tar.gz
+
+- action: file.unarchive
+  from: /tmp/tool.tar.gz
+  to: /usr/local/bin/
+
+- action: file.remove
+  target: /tmp/tool.tar.gz
 ```
 
 ### Git Repository as Part of Provisioning
 
 ```yaml
 - action: git.clone
-  repo: "https://github.com/user/dotfiles.git"
-  path: ~/.config/dotfiles
-  branch: main
+  repo_url: "https://github.com/user/dotfiles.git"
+  directory: ~/dotfiles
 
-- action: file.symlink
-  source: ~/.config/dotfiles/zshrc
-  target: ~/.zshrc
+- action: file.link
+  from: dotfiles/zshrc
+  to: ~/.zshrc
 ```
 
 ### User and Group Management (Privilege Required)
 
 ```yaml
-- action: group.create
-  name: dev
-  id: 5000
+- action: group.add
+  group_name: dev
 
-- action: user.create
+- action: user.add
+  fullname: Dev User
   username: devuser
-  groups: ["dev", "sudo"]
-  home: /home/devuser
+  home_dir: /home/devuser
+  shell: /bin/bash
+  group:
+    - dev
+    - sudo
 ```
 
 ## Version Compatibility Notes
@@ -298,17 +320,47 @@ COMTRYA_VERSION=0.3.0
 curl -fsSL https://get.comtrya.dev | INSTALL_VERSION=$COMTRYA_VERSION sh
 ```
 
-## Quick Reference: Common Actions
+## Quick Reference: Actions (v0.9.2)
 
-| Action | Use Case | Example |
-|--------|----------|---------|
-| `package.install` | Install via system package manager | `name: git` |
-| `file.create` | Create files with content | Config files, dotfiles |
-| `file.symlink` | Link config files | `source: ~/repo/zshrc`, `target: ~/.zshrc` |
-| `git.clone` | Clone repositories | Dotfiles, projects |
-| `command.run` | Execute custom commands | Build scripts, setup hooks |
-| `group.create` / `user.create` | Manage system users | Docker group, dev user |
-| `macOS.*` | macOS-specific | Defaults, Finder settings |
+### File & Directory Actions
+| Action | Required | Optional | Description |
+|--------|----------|----------|-------------|
+| `file.copy` | `from`, `to` | `template`, `chmod`, `owned_by_user/group` | Copy file from files/ dir |
+| `file.link` | `from`, `to` | `walk_dir`, `source`, `target` | Symlink file from files/ dir |
+| `file.download` | `from`/`source`, `to`/`target` | `owned_by_user/group` | Download from URL |
+| `file.remove` | `target` | - | Remove file |
+| `file.chown` | `path`, `user`, `group` | - | Change ownership |
+| `file.unarchive` | `from`, `to` | `force` | Extract tar.gz |
+| `directory.copy` | `from`, `to` | - | Copy directory from files/ dir |
+
+**Important:** `file.link`, `file.copy`, `directory.copy` require source in `files/` subdirectory.
+
+### Package Actions
+| Action | Required | Optional | Description |
+|--------|----------|----------|-------------|
+| `package.install` | `name` OR `list` | `provider`, `repository`, `file` | Install packages |
+| `package.repository` | `name` (url) | `key`, `provider` | Add package repo |
+
+**Providers:** `apt`, `brew`, `pacman`, `yay`, `paru`, `pkg`, `pkgin`, `winget`, `xbps`, `zypper`, `macports`, `dnf`, `snapcraft`
+
+### Other Actions
+| Action | Required | Optional | Description |
+|--------|----------|----------|-------------|
+| `command.run` (or `cmd.run`) | `command` | `args`, `dir`, `privileged`, `env` | Execute command |
+| `git.clone` | `repo_url`, `directory` | - | Clone repository (v0.9.1+) |
+| `user.add` | `fullname`, `home_dir`, `username` | `shell`, `group` | Create user |
+| `user.group` | `username`, `group` | - | Add user to groups |
+| `group.add` | `group_name` | - | Create group |
+| `binary.github` | `name`, `directory`, `repository`, `version` | - | Download GitHub binary |
+| `macos.default` | `domain`, `key`, `kind`, `value` | - | Set macOS defaults |
+
+### Context Variables
+| Variable | Example | Description |
+|----------|---------|-------------|
+| `{{ user.home_dir }}` | `/home/zenobius` | Home directory |
+| `{{ user.config_dir }}` | `/home/zenobius/.config` | Config directory |
+| `{{ user.username }}` | `zenobius` | Username |
+| `{{ os.name }}` | `linux`, `macos`, `windows` | OS name |
 
 ## Common Mistakes (Red Flags)
 
