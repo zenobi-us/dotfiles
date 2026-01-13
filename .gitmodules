@@ -1,0 +1,3 @@
+[submodule "devtools/files/pi/agent/extensions/powerline-footer"]
+	path = devtools/files/pi/agent/extensions/powerline-footer
+	url = https://github.com/nicobailon/pi-powerline-footer
