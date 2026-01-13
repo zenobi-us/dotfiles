@@ -3,8 +3,8 @@
 ## Epic Status
 
 ### Completed Epics
-1. **[Subagent Extension Enhancement](epic-a7d3e9f1-subagent-extension-enhancement.md)** ✅ - **COMPLETE**
-2. **[Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md)** ✅ - **COMPLETE**
+1. **[Subagent Extension Enhancement](epic-a7d3e9f1-subagent-extension-enhancement.md)** ✅ - **COMPLETE** (2026-01-11)
+2. **[Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md)** ✅ - **COMPLETE** (2026-01-11)
 
 ### Active Epic
 3. **[Multi-Harness Agent Loader](epic-4dd87a16-multi-harness-agent-loader.md)** 🔄 - **IN PROGRESS**
@@ -15,15 +15,15 @@
 
 ### Epic 3: Multi-Harness Agent Loader
 
-**Current Phase:** [Phase 2: Architecture Design](phase-TODO-architecture-design.md) 🔄
+**Current Phase:** [Phase 2: Architecture Design](phase-d0309796-architecture-design.md) 🔄
 
 | Status | Task | Priority | Notes |
 |--------|------|----------|-------|
 | ✅ | [Phase 1: Research & Discovery](phase-ab3b84bd-research-discovery.md) | High | **COMPLETE** - [Consolidated Research](research-8c4d2b1f-ai-harness-formats.md) |
-| ⏳ | Create Architecture Design Document | High | Start Phase 2 - Define adapter interfaces, import mechanisms |
-| ⏳ | Design Claude Code Adapter | High | First priority - highest compatibility |
-| ⏳ | Design OpenCode Adapter | Medium | Second priority - good compatibility |
-| ⏳ | Build Proof-of-Concept | Medium | After design complete |
+| ⏳ | [Extension Architecture Document](task-7f2e4c1a-architecture-document.md) | High | Overall system design and components |
+| ⏳ | [Claude Code Adapter Design](task-8a3d5b2b-claude-code-adapter.md) | High | First priority - highest compatibility |
+| ⏳ | [OpenCode Adapter Design](task-9b4e6c3c-opencode-adapter.md) | High | Second priority - good compatibility |
+| ⏳ | [Data Transformation Pipeline](task-6c5f7d4d-transformation-pipeline.md) | High | Core transformation logic |
 
 ---
 
@@ -31,14 +31,15 @@
 
 **Current Focus (2026-01-13):**
 - ✅ Phase 1: Research complete - 7 AI harnesses researched and consolidated
-- 🔄 Phase 2: Architecture Design - Ready to start
-- Prioritize: Claude Code and OpenCode adapters
+- 🔄 Phase 2: Architecture Design - **STARTED**
+- Timeline: Target completion 2026-01-15 (2-3 days)
+- Prioritize: Extension architecture, Claude Code, OpenCode adapters
 
 **Next Actions:**
-1. Create detailed architecture design document for Phase 2
-2. Define adapter interface and data transformation pipeline
-3. Document Claude Code import mechanism
-4. Document OpenCode import mechanism
+1. Create extension architecture document (overall design)
+2. Design Claude Code adapter interface and transformation rules
+3. Design OpenCode adapter interface and transformation rules
+4. Design data transformation pipeline and conflict resolution
 
 ---
 
@@ -50,3 +51,7 @@
 ### Epic 2: Theme Development Tools ✅  
 - All tasks completed 2026-01-11
 - [Copy Research to DCP](task-b4f7c8d3-copy-research-to-dcp.md) ✅
+
+### Epic 3: Phase 1 - Research & Discovery ✅
+- [Research Harness Formats](task-db140ba7-research-harness-formats.md) ✅
+- Consolidated into [research-8c4d2b1f-ai-harness-formats.md](research-8c4d2b1f-ai-harness-formats.md) ✅

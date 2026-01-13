@@ -1,0 +1,6 @@
+---
+
+actions:
+  - action: file.link
+    source: bun/bunfig.toml
+    target: ~/.bunfig.toml

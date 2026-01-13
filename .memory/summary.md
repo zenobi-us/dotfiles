@@ -52,16 +52,50 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 
 ---
 
+### 3. [Theme Palette Tool Ergonomics Enhancement](epic-d4e7a2f9-theme-palette-ergonomics.md) 🔄 ACTIVE
+
+**Vision:** Enhance the ergonomics and user experience of the theme palette tool by creating a proper modal-based application component structure.
+
+**Status:** Active (Started 2026-01-12)  
+**Timeline:** Q1 2026  
+**Estimated Duration:** 3-4 days
+
+#### Goals
+- Create `ThemeApp` parent component for application logic
+- Implement `Modal` component with escape affordance
+- Compose Modal → Palette component hierarchy
+- Add visual `[ esc ]` button indicator (top-right)
+- Maintain all existing functionality (47 colors, 8 categories)
+- Document new architecture patterns
+
+#### Current Phase
+⏳ **Phase 1: Component Architecture Design** (Ready to Start)
+
+**Next Steps:**
+1. Design ThemeApp component structure
+2. Define Modal component API and responsibilities
+3. Plan escape affordance placement and styling
+4. Document component hierarchy
+
+**Parent Epic:** Split from [Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md) - focuses on UX refinement and modal architecture
+
+---
+
 ## Current Focus
 
-**Completed Epics:** 
-- Epic 1 - Subagent Extension Enhancement ✅
-- Epic 2 - Theme Development Tools ✅
+**Active Epic:** Epic 3 - Theme Palette Tool Ergonomics Enhancement 🔄  
+**Phase:** Design phase starting  
+**Next Milestone:** Component architecture design complete
 
 **Active Epic:**
 - Epic 3 - Multi-Harness Agent Loader 🔄
 
 **Status:** New epic started 2026-01-12. Researching extension to load agents/commands from other AI harnesses (Claude Code, Aider, Continue, etc.).
+**Completed Epics:** 
+- Epic 1 - Subagent Extension Enhancement ✅ (2026-01-11)
+- Epic 2 - Theme Development Tools ✅ (2026-01-11)
+
+**Status:** Three epics total - two completed, one active. New epic focuses on enhancing UX of completed theme palette tool.
 
 ## Knowledge Base
 
@@ -93,37 +127,45 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 - [research-6e3d737d-subagent-extension-structure.md](research-6e3d737d-subagent-extension-structure.md) - Subagent extension analysis
 - [research-30fe5140-command-specifications.md](research-30fe5140-command-specifications.md) - Command specifications
 - [research-5231cb8a-pi-mono-ui-components.md](research-5231cb8a-pi-mono-ui-components.md) - Comprehensive guide to pi-mono custom UI components, overlays, and interaction capabilities
+- [research-theme-api-access.md](research-theme-api-access.md) - Theme API access patterns (Epic 2)
 
 ## Recent Outcomes
-
-### Epic 1 Complete - 2026-01-11 ✅
-
-**Subagent Extension Enhancement** - Fully complete with all success criteria met:
-
-**Delivered:**
-- ✅ `/subagent list` - Display available agents with scope filtering
-- ✅ `/subagent add` - Create new agent definitions with templates
-- ✅ `/subagent edit` - Show agent file locations for editing
-- ✅ Comprehensive README documentation with examples
-- ✅ Enhanced JSDoc comments for all functions
-- ✅ Learning materials distilled
-
-**Files Modified:**
-- `devtools/files/pi/agent/extensions/subagent/README.md` - Added Management Commands section
-- `devtools/files/pi/agent/extensions/subagent/index.ts` - Enhanced JSDoc comments
-
-**Learning Created:**
-- [Agent Management Patterns](learning-a9f4c2d1-subagent-management-patterns.md) - Command design, UX patterns, validation strategies
 
 ### Epic 2 Complete - 2026-01-11 ✅
 
 **Theme Development Tools** - Fully complete with all success criteria exceeded
+
+**Delivered:**
+- ✅ Theme palette extension with 47 colors across 8 categories
+- ✅ Responsive layout system with component architecture
+- ✅ V1 → V2 refactoring achieving 78% code reduction
+- ✅ Comprehensive documentation suite (7 docs, ~2,000 lines)
+- ✅ 13 working examples (7 core + 6 layout)
+- ✅ Learning materials extracted (5 documents, 34KB knowledge)
+
+**Files Created:**
+- Implementation: index.ts, index-v2.ts, 6 component files
+- Documentation: README, QUICKSTART, ARCHITECTURE, COMPARISON, etc.
+- Learning: 2 additional learning documents (component + layout patterns)
+
+### Epic 3 Started - 2026-01-12 🔄
+
+**Theme Palette Tool Ergonomics Enhancement** - Active
+
+**Status:** Epic file created, ready to begin Phase 1 (component architecture design)
+
+**Scope:**
+- Create ThemeApp parent component
+- Implement Modal component with escape affordance
+- Enhance user experience with visual feedback
+- Maintain backward compatibility
 
 ## Repository Structure
 
 - `assets/` - Fonts and static assets
 - `commands/` - Shell scripts and application launchers
 - `devtools/` - Developer tool configurations (git, mise, opencode, vscode, zed)
+  - `files/pi/agent/extensions/theme-palette/` - Theme palette extension (Epic 2 & 3)
 - `dotfiles/` - Git submodules management
 - `packagemanagers/` - Scoop/winget configurations
 - `secrets/` - GPG, pass, yubikey configurations
@@ -150,12 +192,17 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
   - ✅ Clear recommendation: Start with Claude Code and OpenCode adapters
   - ✅ Consolidated research: [research-8c4d2b1f-ai-harness-formats.md](research-8c4d2b1f-ai-harness-formats.md) (1000+ lines)
 
-- 🔄 **Phase 2: Architecture Design** - Next
+- 🔄 **Phase 2: Architecture Design** - **IN PROGRESS (Started 2026-01-13)**
   - Create detailed extension architecture document
-  - Define adapter interfaces for Claude Code and OpenCode (prioritized)
-  - Plan import/discovery mechanisms
+  - Define adapter interfaces for Claude Code and OpenCode
+  - Design data transformation pipeline
+  - **Tasks:**
+    - [Architecture Document](task-7f2e4c1a-architecture-document.md) ⏳
+    - [Claude Code Adapter](task-8a3d5b2b-claude-code-adapter.md) ⏳
+    - [OpenCode Adapter](task-9b4e6c3c-opencode-adapter.md) ⏳
+    - [Transformation Pipeline](task-6c5f7d4d-transformation-pipeline.md) ⏳
 
-- ⏳ **Phase 3: Implementation** - Pending
+- ⏳ **Phase 3: Implementation** - Pending (Target start: 2026-01-16)
 
 #### Research Findings
 - **High Compatibility**: Claude Code, OpenCode (similar markdown+frontmatter formats)
@@ -168,28 +215,25 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 
 ## Current Task (2026-01-11)
 
-**Task:** Copy research and learnings to pi-mono-ds .memory directory  
-**Status:** **COMPLETE ✅**
+**Task:** Epic 3 - Phase 1 Component Architecture Design  
+**Status:** **READY TO START ⏳**
 
-### Outcome
+### Next Actions
 
-Successfully copied 11 files (~126KB) to `devtools/files/pi/agent/extensions/theme-palette/node_modules/@zenobius/pi-mono-ds/.memory`:
+1. **Design ThemeApp component structure**
+   - Define component interface
+   - Plan state management (visibility)
+   - Design keyboard event handling
 
-**Pi Extensions Core (27KB):**
-- `learning-76e583ca-pi-extensions-guide.md` (12KB)
-- `learning-d8d1c166-extension-command-patterns.md` (8KB)
-- `learning-a9f4c2d1-subagent-management-patterns.md` (7KB)
+2. **Define Modal component API**
+   - Border and title bar design
+   - Escape affordance placement
+   - Child component rendering
 
-**Widget/TUI Components (56KB):**
-- `learning-extension-widget-rendering.md` (12KB)
-- `learning-theme-widget-patterns.md` (9KB)
-- `learning-62c593ff-component-architecture-patterns.md` (16KB)
-- `learning-96aa4357-layout-systems.md` (20KB)
+3. **Document component hierarchy**
+   - ThemeApp → Modal → Palette
+   - Data flow and props
+   - Theme integration points
 
-**Research (43KB):**
-- `research-theme-api-access.md` (7KB)
-- `research-5231cb8a-pi-mono-ui-components.md` (23KB)
-- `research-6e3d737d-subagent-extension-structure.md` (4KB)
-- `research-30fe5140-command-specifications.md` (9KB)
+**Expected Outcome:** Complete component architecture design document ready for implementation.
 
-All files are now available in the pi-mono-ds package for reference during development.

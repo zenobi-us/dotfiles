@@ -1,8 +1,11 @@
 /**
  * Responsive Group Component
  * 
- * A titled group of chips using Grid layout for responsive columns.
- * Chips automatically flow into columns based on available width.
+ * Demonstrates design hierarchy with Box component:
+ * - Subtle borders for definition (border-1)
+ * - Elevated surface backgrounds (surface+1)
+ * - Typography hierarchy with color contrast
+ * - Consistent spacing on 4px grid
  */
 
 import type { Component } from "@mariozechner/pi-tui";
@@ -23,7 +26,9 @@ export interface GroupData {
 
 export class Group extends Box implements Component {
 	private container: Container;
+	private titleBox: Box;
 	private titleText: Text;
+	private contentBox: Box;
 	private gridLayout: Grid;
 	private chips: Chip[] = [];
 	public readonly preferredWidth: number;
@@ -32,27 +37,34 @@ export class Group extends Box implements Component {
 		private theme: Theme,
 		private data: GroupData,
 	) {
-		super();
+		// Outer box with subtle border and elevated background
+		super(1, 0, (s) => theme.bg("surface+1", s));
 
 		// Set preferred width for flex layout
 		this.preferredWidth = data.preferredWidth ?? 50;
 
-		// Create container for vertical layout (title + grid)
+		// Create container for vertical layout (title + content)
 		this.container = new Container();
 
-		// Create title
-		this.titleText = new Text("", 0, 1); // 1 line padding
-		this.container.addChild(this.titleText);
+		// Title box - slightly elevated with padding
+		this.titleBox = new Box(1, 1);
+		this.titleText = new Text("", 0, 0);
+		this.titleBox.addChild(this.titleText);
+		this.container.addChild(this.titleBox);
 
+		// Content box - contains grid with chips
+		this.contentBox = new Box(1, 1, (s) => theme.bg("base+1", s));
+		
 		// Create grid for chip layout with responsive columns
 		// Chips need about 40 characters minimum (swatch + name + desc)
 		this.gridLayout = new Grid({
 			spacing: 2,
 			minColumnWidth: 40
 		});
-		this.container.addChild(this.gridLayout);
+		this.contentBox.addChild(this.gridLayout);
+		this.container.addChild(this.contentBox);
 
-		// Add container to box
+		// Add container to main box
 		this.addChild(this.container);
 
 		// Initial render
@@ -62,8 +74,9 @@ export class Group extends Box implements Component {
 	private updateDisplay(): void {
 		const th = this.theme;
 
-		// Update title with accent color
-		this.titleText.setText(th.fg("accent", `══ ${this.data.title} ══`));
+		// Update title with accent color and medium weight
+		const titleContent = th.bold(th.fg("accent", this.data.title));
+		this.titleText.setText(titleContent);
 
 		// Clear existing chips from grid
 		this.gridLayout.clear();
