@@ -220,7 +220,7 @@ export class Flex implements Component {
 	 * 2. Calculate total space needed by fixed children
 	 * 3. Distribute remaining space among flexible children
 	 * 4. If space doesn't fit, fall back to equal distribution
-	 * 5. Render each child at calculated width
+	 * 5. Render each child at calculated width (or natural width if child has alignment)
 	 * 6. Combine columns horizontally with spacing
 	 *
 	 * Best Practice: Use fixed() for icons/labels, sized() for flexible columns:
@@ -292,7 +292,7 @@ export class Flex implements Component {
 			columnWidths = this.children.map(() => equalWidth);
 		}
 
-		// Render children at calculated widths
+		// Render children at their allocated widths
 		const columns = this.children.map((child, i) => child.render(columnWidths[i]!));
 
 		return this.combineColumns(columns, columnWidths, width);
@@ -390,7 +390,7 @@ export class Flex implements Component {
 	 * Combine columns horizontally with consistent spacing
 	 *
 	 * Aligns all columns to the same height by padding shorter columns.
-	 * Each column is padded to its calculated width to maintain alignment.
+	 * When this Flex has non-left alignment, trims and re-aligns content within allocated width.
 	 *
 	 * Used by fill mode to create Grid-like horizontal alignment.
 	 *
@@ -411,17 +411,32 @@ export class Flex implements Component {
 				const columnWidth = columnWidths[col]!;
 				const line = row < column.length ? column[row]! : '';
 
-				// Pad line to column width
-				const lineWidth = visibleWidth(line);
-				const padding = ' '.repeat(Math.max(0, columnWidth - lineWidth));
-				rowParts.push(line + padding);
+				// Check if child is a Flex with its own alignment preference
+				const child = this.children[col]!;
+				const childAlign = this.getChildAlignment(child);
+				
+				if (childAlign) {
+					// Child Flex wants specific alignment - trim and apply it
+					const trimmedLine = line.trimEnd();
+					const alignedLine = this.applyAlignment(trimmedLine, columnWidth, childAlign);
+					rowParts.push(alignedLine);
+				} else {
+					// Default: pad to column width (left-aligned)
+					const lineWidth = visibleWidth(line);
+					const padding = ' '.repeat(Math.max(0, columnWidth - lineWidth));
+					rowParts.push(line + padding);
+				}
 			}
 
 			let rowLine = rowParts.join(spacer);
 			
-			// Apply alignment if container width is provided
+			// Apply row-level alignment if container width is provided
 			if (containerWidth !== undefined) {
-				rowLine = this.applyAlignment(rowLine, containerWidth);
+				// Trim if this Flex has non-left alignment
+				if (this.align !== 'left') {
+					rowLine = rowLine.trimEnd();
+				}
+				rowLine = this.applyAlignment(rowLine, containerWidth, this.align);
 			}
 
 			lines.push(rowLine);
@@ -493,30 +508,52 @@ export class Flex implements Component {
 	 *
 	 * @param line - The line content to align
 	 * @param containerWidth - Total available width
+	 * @param align - Alignment to apply (defaults to this.align)
 	 * @returns Aligned line with appropriate padding
 	 */
-	private applyAlignment(line: string, containerWidth: number): string {
+	private applyAlignment(line: string, containerWidth: number, align?: FlexAlign): string {
+		const alignment = align ?? this.align;
 		const lineWidth = visibleWidth(line);
 		const availableSpace = containerWidth - lineWidth;
 
 		if (availableSpace <= 0) {
+			// If line is already at or exceeds container width, pad to exact width
+			if (lineWidth < containerWidth) {
+				return line + ' '.repeat(containerWidth - lineWidth);
+			}
 			return line;
 		}
 
-		switch (this.align) {
+		switch (alignment) {
 			case 'left':
-				// Left alignment (default) - no padding needed
-				return line;
+				// Left alignment - pad on the right
+				return line + ' '.repeat(availableSpace);
 			case 'center':
 				// Center alignment - pad equally on both sides
 				const leftPad = Math.floor(availableSpace / 2);
-				return ' '.repeat(leftPad) + line;
+				const rightPad = availableSpace - leftPad;
+				return ' '.repeat(leftPad) + line + ' '.repeat(rightPad);
 			case 'right':
 				// Right alignment - pad on the left
 				return ' '.repeat(availableSpace) + line;
 			default:
-				return line;
+				return line + ' '.repeat(availableSpace);
 		}
+	}
+	
+	/**
+	 * Get alignment preference from a child component
+	 * 
+	 * Checks if the child is a Flex component with its own alignment setting
+	 * 
+	 * @param child - Child component to check
+	 * @returns Child's alignment preference, or undefined
+	 */
+	private getChildAlignment(child: Component): FlexAlign | undefined {
+		if (child instanceof Flex) {
+			return child.getAlign();
+		}
+		return undefined;
 	}
 
 	/**

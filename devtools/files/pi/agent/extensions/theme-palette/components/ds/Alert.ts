@@ -343,24 +343,18 @@ export class Alert implements Component {
 		// Clear flex
 		this.flex.clear();
 
-		// Recreate icon text with current type's color
-		const icon = new Flex({ align: "right" });
-		const iconBox = new Box(0, 0);
+		// Create icon with center alignment
+		const iconFlex = new Flex({ align: "center" });
 		const iconText = new Text(this.theme.fg(Alert.getIconColor(this.type), this.icon), 0, 0);
+		iconFlex.addChild(iconText);
 
-		iconBox.addChild(iconText);
-		icon.addChild(iconBox);
-
-
-		const message = new Flex({ align: "left" });
-		const messageBox = new Box(0, 0);
+		// Create message with left alignment
+		const messageFlex = new Flex({ align: "left" });
 		const messageText = new Text(this.theme.fg(Alert.getTextColor(this.type), this.message), 0, 0);
+		messageFlex.addChild(messageText);
 
-		messageBox.addChild(messageText);
-		message.addChild(messageBox);
-
-		this.flex.addChild(fixed(icon, 10));
-		this.flex.addChild(message);
+		this.flex.addChild(fixed(iconFlex, 5));
+		this.flex.addChild(messageFlex);
 
 		this.invalidate();
 	}
