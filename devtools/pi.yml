@@ -6,6 +6,15 @@ depends:
   - devtools.mcporter
 
 actions:
+  # Initialize git submodules (e.g., powerline-footer extension)
+  - action: command.run
+    command: git
+    args:
+      - submodule
+      - update
+      - --init
+      - --recursive
+
   - action: command.run
     command: rm
     where: os.name == "linux" || os.name == "macos"
