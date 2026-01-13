@@ -28,7 +28,7 @@ Search GitHub for skills in AI agent repositories using path-based search to dis
 The core search pattern targets skill directories in AI agent repos:
 
 ```bash
-path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/
+path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/
 ```
 
 This pattern finds files in paths like:
@@ -49,10 +49,10 @@ Search for all skills matching a keyword:
 
 ```bash
 # Search for skills related to "testing"
-gh search code "testing path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "testing path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 
 # Search for zellij skills
-gh search code "zellij path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "zellij path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 ```
 
 ### 2. Find Skills by File Type
@@ -61,42 +61,42 @@ Search for specific file types (e.g., all SKILL.md files):
 
 ```bash
 # Find SKILL.md files
-gh search code "SKILL.md path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 50
+gh search code "SKILL.md path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 50
 
 # Find skill implementations in TypeScript
-gh search code "extension:ts path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "extension:ts path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 
 # Find shell script skills
-gh search code "extension:sh path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "extension:sh path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 ```
 
 ### 3. Language-Specific Skills
 
 ```bash
 # Find Python skills
-gh search code "language:python path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "language:python path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 
 # Find JavaScript/TypeScript skills
-gh search code "language:typescript path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "language:typescript path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 
 # Find Rust skills
-gh search code "language:rust path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "language:rust path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 ```
 
 ### 4. Find Skills by Domain
 
 ```bash
 # Database skills
-gh search code "database OR postgres OR mysql path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "database OR postgres OR mysql path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 
 # DevOps skills
-gh search code "docker OR kubernetes OR terraform path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "docker OR kubernetes OR terraform path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 
 # Web development skills
-gh search code "react OR vue OR angular path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "react OR vue OR angular path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 
 # Testing skills
-gh search code "playwright OR selenium OR jest path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 20
+gh search code "playwright OR selenium OR jest path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 20
 ```
 
 ### 5. Discover Popular Repositories
@@ -105,7 +105,7 @@ Find repos with the most skills:
 
 ```bash
 # Search and group by repository
-gh search code "path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" --limit 100 --json repository,path | \
+gh search code "path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" --limit 100 --json repository,path | \
   jq -r '.[] | .repository.fullName' | sort | uniq -c | sort -rn | head -10
 ```
 
@@ -132,13 +132,13 @@ gh api repos/<owner>/<repo>/contents/<path-to-skill-file> \
 ```bash
 # 1. Search for zellij skills
 echo "Searching for zellij skills..."
-gh search code "zellij path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "zellij path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 20 \
   --json repository,path,url
 
 # 2. Search more broadly for terminal multiplexer skills
 echo "Searching for terminal/tmux/multiplexer skills..."
-gh search code "tmux OR terminal OR multiplexer path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "tmux OR terminal OR multiplexer path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 20 \
   --json repository,path,url
 
@@ -162,7 +162,7 @@ echo "Downloaded to /tmp/reference-skill.md for review"
 
 ```bash
 # Skills updated in the last month
-gh search code "path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/ pushed:>$(date -d '1 month ago' +%Y-%m-%d)" \
+gh search code "path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/ pushed:>$(date -d '1 month ago' +%Y-%m-%d)" \
   --limit 30
 ```
 
@@ -170,7 +170,7 @@ gh search code "path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory
 
 ```bash
 # Skills from popular repositories (>100 stars)
-gh search code "path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/ stars:>100" \
+gh search code "path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/ stars:>100" \
   --limit 30
 ```
 
@@ -178,15 +178,15 @@ gh search code "path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory
 
 ```bash
 # Skills that use subagents
-gh search code "subagent path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "subagent path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 20
 
 # Skills that use MCP (Model Context Protocol)
-gh search code "MCP OR 'Model Context Protocol' path:/./.?.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "MCP OR 'Model Context Protocol' path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 20
 
 # Skills with tool implementations
-gh search code "tool OR function_call path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "tool OR function_call path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 20
 ```
 
@@ -196,14 +196,14 @@ gh search code "tool OR function_call path:/./.?(opencode|ai|llm|claude|codex|ag
 
 ```bash
 # Get a clean list of repositories with skills
-gh search code "path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 100 \
   --json repository | \
   jq -r '.[].repository | "\(.fullName) - \(.description // "No description")"' | \
   sort -u
 
 # Create a markdown report of found skills
-gh search code "SKILL.md path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "SKILL.md path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 50 \
   --json repository,path,url | \
   jq -r '.[] | "- [\(.repository.fullName)](\(.repository.url)) - [\(.path)](\(.url))"' > skills-report.md
@@ -216,7 +216,7 @@ gh search code "SKILL.md path:/./.?(opencode|ai|llm|claude|codex|agents|pi|curso
 ```bash
 # Check if someone already solved this problem
 SKILL_TOPIC="docker"
-gh search code "${SKILL_TOPIC} path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "${SKILL_TOPIC} path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 20 \
   --json repository,path,url | \
   jq -r '.[] | "[\(.repository.fullName)] \(.path)\n  \(.url)\n"'
@@ -226,7 +226,7 @@ gh search code "${SKILL_TOPIC} path:/./.?(opencode|ai|llm|claude|codex|agents|pi
 
 ```bash
 # Find skills with comprehensive documentation
-gh search code "## Prerequisites OR ## Requirements OR ## Installation path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "## Prerequisites OR ## Requirements OR ## Installation path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 30
 ```
 
@@ -234,7 +234,7 @@ gh search code "## Prerequisites OR ## Requirements OR ## Installation path:/./.
 
 ```bash
 # Find skills that use specific frameworks
-gh search code "playwright OR puppeteer OR selenium path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "playwright OR puppeteer OR selenium path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 20
 ```
 
@@ -258,7 +258,7 @@ CATEGORY="terminal-management"
 mkdir -p "${RESEARCH_DIR}/${CATEGORY}"
 
 # Save search results
-gh search code "tmux OR zellij OR screen path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "tmux OR zellij OR screen path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 30 \
   --json repository,path,url > "${RESEARCH_DIR}/${CATEGORY}/search-results.json"
 
@@ -282,36 +282,36 @@ After downloading and reviewing a skill, suggest appropriate locations within `a
 suggest_skill_location() {
   local skill_name="$1"
   local skill_content="$2"
-  
+
   echo "📂 Where should '${skill_name}' be stored in ai/files/skills/?"
   echo ""
-  
+
   # Analyze content to suggest locations
   if grep -qi "github\|gh cli\|pull request\|pr\|issue" "${skill_content}"; then
     echo "1. ai/files/skills/github/${skill_name}/"
     echo "   ✓ GitHub-related functionality"
   fi
-  
+
   if grep -qi "test\|playwright\|selenium\|cypress" "${skill_content}"; then
     echo "2. ai/files/skills/devtools/${skill_name}/"
     echo "   ✓ Development and testing tools"
   fi
-  
+
   if grep -qi "project\|task\|planning\|tracking" "${skill_content}"; then
     echo "3. ai/files/skills/projectmanagement/${skill_name}/"
     echo "   ✓ Project management and workflow"
   fi
-  
+
   if grep -qi "design\|ui\|ux\|figma" "${skill_content}"; then
     echo "4. ai/files/skills/design/${skill_name}/"
     echo "   ✓ Design-related skills"
   fi
-  
+
   if grep -qi "research\|search\|discover" "${skill_content}"; then
     echo "5. ai/files/skills/research/${skill_name}/"
     echo "   ✓ Research and discovery"
   fi
-  
+
   echo ""
   echo "Choose a number (1-5), or provide your own path:"
   echo "Example: ai/files/skills/custom-category/${skill_name}/"
@@ -330,7 +330,7 @@ case $location_choice in
   3) TARGET_DIR="${SKILLS_ROOT}/projectmanagement/${SKILL_NAME}" ;;
   4) TARGET_DIR="${SKILLS_ROOT}/design/${SKILL_NAME}" ;;
   5) TARGET_DIR="${SKILLS_ROOT}/research/${SKILL_NAME}" ;;
-  *) 
+  *)
     # User provided custom path
     if [[ "$location_choice" =~ ^ai/files/skills/ ]]; then
       TARGET_DIR="${DOTFILES_ROOT}/${location_choice}"
@@ -356,7 +356,7 @@ The regex in the path already handles variations like `skill` vs `skills` with t
 
 ```bash
 # Find skills that mention specific tools
-gh search code "gh cli OR 'github cli' path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "gh cli OR 'github cli' path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 20
 ```
 
@@ -364,7 +364,7 @@ gh search code "gh cli OR 'github cli' path:/./.?(opencode|ai|llm|claude|codex|a
 
 ```bash
 # Find skills written in specific languages with content search
-gh search code "language:markdown 'use when' path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "language:markdown 'use when' path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 30
 ```
 
@@ -372,7 +372,7 @@ gh search code "language:markdown 'use when' path:/./.?(opencode|ai|llm|claude|c
 
 ```bash
 # Search but exclude your own repos
-gh search code "path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/ -user:yourusername" \
+gh search code "path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/ -user:yourusername" \
   --limit 30
 ```
 
@@ -393,7 +393,7 @@ if ! gh auth status &> /dev/null; then
 fi
 
 # Handle rate limiting
-gh search code "path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 30 || {
     echo "Error: GitHub API rate limit exceeded"
     echo "Check status: gh api rate_limit"
@@ -433,7 +433,7 @@ echo ""
 
 # 1. Initial search
 echo "Step 1: Searching GitHub..."
-gh search code "${TOPIC} path:/./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)/skills?/" \
+gh search code "${TOPIC} path:/^./.?(opencode|ai|llm|claude|codex|agents|pi|cursor|factory)\/skills?\/.*\.md$/" \
   --limit 50 \
   --json repository,path,url \
   > "${OUTPUT_DIR}/search-results.json"
