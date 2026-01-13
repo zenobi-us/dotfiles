@@ -1,9 +1,11 @@
 # Epic: Multi-Harness Agent Loader Extension
 
-**Status:** Research
+**Status:** Architecture Design Phase
 **Timeline:** Q1 2026
-**Owner:** Research Team
+**Owner:** Architecture Team
 **Created:** 2026-01-12
+**Phase 1 Completed:** 2026-01-13
+**Phase 2 Started:** 2026-01-13
 
 ## Vision
 
@@ -25,9 +27,10 @@ Users who work across multiple AI tools cannot easily share or reuse their agent
 
 ## Success Criteria
 
-- [ ] Research completed: Document agent/command formats for 3+ AI harnesses
-- [ ] Feasibility assessment: Determine which harnesses have compatible patterns
-- [ ] Architecture draft: Design extension structure for loading external formats
+- [x] Research completed: Document agent/command formats for 7 AI harnesses ✅
+- [x] Feasibility assessment: Determine which harnesses have compatible patterns ✅
+- [ ] Architecture design: Complete detailed architecture specifications
+- [ ] Adapter designs: Claude Code and OpenCode adapters
 - [ ] Proof of concept: Load at least one external agent format into Pi
 - [ ] Documentation: Comprehensive guide for using multi-harness agents
 
@@ -50,20 +53,26 @@ Users who work across multiple AI tools cannot easily share or reuse their agent
 
 ## Phases
 
-1. **[Phase 1: Research & Discovery](phase-ab3b84bd-research-discovery.md)** 🔄 IN PROGRESS
-   - Document agent formats for each target harness
-   - Identify common patterns and incompatibilities
-   - Assess translation feasibility
+1. **[Phase 1: Research & Discovery](phase-ab3b84bd-research-discovery.md)** ✅ COMPLETE
+   - ✅ Document agent formats for 7 target harnesses
+   - ✅ Identify common patterns and incompatibilities
+   - ✅ Assess translation feasibility
+   - ✅ Consolidated research: [research-8c4d2b1f-ai-harness-formats.md](research-8c4d2b1f-ai-harness-formats.md)
 
-2. **[Phase 2: Architecture Design](phase-TODO-architecture-design.md)** ⏳
+2. **[Phase 2: Architecture Design](phase-d0309796-architecture-design.md)** 🔄 IN PROGRESS
    - Design loader extension structure
-   - Define translation layer interfaces
+   - Define adapter and transformation interfaces
    - Plan plugin architecture for new harness support
+   - **Tasks:**
+     - [Extension Architecture Document](task-7f2e4c1a-architecture-document.md)
+     - [Claude Code Adapter Design](task-8a3d5b2b-claude-code-adapter.md)
+     - [OpenCode Adapter Design](task-9b4e6c3c-opencode-adapter.md)
+     - [Data Transformation Pipeline](task-6c5f7d4d-transformation-pipeline.md)
 
 3. **[Phase 3: Implementation](phase-TODO-implementation.md)** ⏳
    - Build core loader extension
-   - Implement translators for priority harnesses
-   - Create user-facing commands
+   - Implement adapters for Claude Code and OpenCode
+   - Create user-facing import commands
 
 ## Dependencies
 
