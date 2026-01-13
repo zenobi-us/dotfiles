@@ -16,11 +16,35 @@ You perform Jira tasks using the jira skill `skill_use(jira)`.
 $ARGUMENTS
 </UserRequest>
 
-Action: "$1"
-Remaining: "${@:2}"
+## Argument Parsing
 
-- The first argument `$1` indicates the action to perform (e.g., "transition", "summarise", "update", "create").
-- The remaining arguments provide necessary details such as ticket ID, target status, or fields to update. What they are depends on the action. see ([Scenarios](#process)).
+The command supports two invocation patterns:
+
+### Pattern 1: Ticket ID Only (infers "summarize")
+```
+jira RWR-13629
+```
+- `$1` = Ticket ID (e.g., "RWR-13629")
+- **Action**: Inferred as "summarize"
+
+### Pattern 2: Explicit Action + Arguments
+```
+jira summarize RWR-13629
+jira transition RWR-13629 "In Progress"
+jira update RWR-13629 assignee me sprint "Sprint 5"
+```
+- `$1` = Action verb (e.g., "transition", "summarize", "update", "create")
+- `$2` = Ticket ID (for existing ticket operations)
+- `$3...` = Additional arguments (status, field updates, etc.)
+
+### Detection Logic
+1. If `$1` matches a Jira ticket pattern (e.g., `PROJ-123`):
+   - Action = "summarize"
+   - Ticket ID = `$1`
+2. Otherwise:
+   - Action = `$1`
+   - Ticket ID = `$2`
+   - Remaining args = `$3`, `$4`, etc. (or `${@:3}` for all remaining)
 
 ## Process
 
@@ -44,7 +68,9 @@ Remaining: "${@:2}"
 
 Action Verbs: Transition
 
-- Transition Jira ticket `$2` to status `$3`.
+Arguments: `transition <TICKET-ID> <STATUS>`
+
+- Transition Jira ticket (from `$2`) to status (from `$3`).
 - To assign the ticket to the current user: use a follow-up update action to set the assignee field.
 - To add to appropriate sprint (if not already in one):
   1. Get available sprints for the project using the skill
@@ -53,22 +79,36 @@ Action Verbs: Transition
 
 #### Scenario: Summarize Jira Ticket Content
 
-Action Verbs: Summarize, Summarize, Get, Fetch, Show, Display, Read
+Action Verbs: Summarize, Get, Fetch, Show, Display, Read, or just a ticket ID
 
-- Fetch and summarize the content of Jira ticket `$2`.
+- Fetch and summarize the content of Jira ticket (ticket ID from `$1` if Pattern 1, or `$2` if Pattern 2).
 - Return key details including summary, description, status, assignee, and sprint.
+- Use the `get_ticket_summary.sh` script for efficient one-shot retrieval.
 
 #### Scenario: Update Jira Ticket Fields
 
 Action Verbs: Update, Edit, Modify, Change
 
-- Update Jira ticket `$2` with the following changes: `${@:3}`.
-- The remaining arguments (`${@:3}`) are user-provided values describing which fields to update (e.g., "assignee to john", "sprint to Sprint 5", "add label critical").
+Arguments: `update <TICKET-ID> <field> <value> [<field> <value> ...]`
+
+- Update Jira ticket (from `$2`) with field changes from remaining arguments.
+- Parse field-value pairs from `$3`, `$4`, `$5`, etc. (or use `${@:3}` to capture all remaining)
+- Example field updates:
+  - `update RWR-13629 assignee me` 
+  - `update RWR-13629 sprint "Sprint 5" label critical`
 
 #### Scenario: Create New Jira Ticket
 
 Action Verbs: Create, New, Add, Bug, Task
 
+Arguments: `create <SUMMARY> [description text...]` or `bug <SUMMARY>` or `task <SUMMARY>`
+
 - Determine project key: prioritize keys from recent git branches, fall back to listing available project keys.
-- Determine issue type: use best guess based on action verb (e.g., "Bug" → bug, "Task" → task) or list available issue types and ask user.
-- Use remaining arguments (`${@:2}`) as summary and description: parse as a title or body text provided by the user (e.g., "Fix login redirect" or "Add dark mode toggle to settings").
+- Determine issue type: use best guess based on action verb (e.g., "bug" → Bug, "task" → Task) or list available issue types and ask user.
+- Parse remaining arguments from `$2` onwards (use `${@:2}` to capture all) as:
+  - First part = summary/title
+  - Remaining parts = description body
+- Examples:
+  - `create Fix login redirect loop on logout`
+  - `bug Unable to save employee on second attempt`
+  - `task Add dark mode toggle to settings page`
