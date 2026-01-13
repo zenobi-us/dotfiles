@@ -13,6 +13,7 @@
 import type { Component } from "@mariozechner/pi-tui";
 import { Box, Container, Text } from "@mariozechner/pi-tui";
 import { Theme } from "@mariozechner/pi-coding-agent";
+import { Alert } from "./Alert.js";
 import { Flex } from "./Flex.js";
 import { Grid } from "./Grid.js";
 import { sized } from "./Sized.js";
@@ -280,41 +281,44 @@ export class UISimulator extends Container implements Component {
 		// Content box
 		const content = new Box(2, 1, (s) => th.bg("customMessageBg", s));
 		
-		// Use Grid for horizontal arrangement
+		// Use Grid for horizontal arrangement of alerts
 		const grid = new Grid({ spacing: 2, minColumnWidth: 30 });
 
-		// Success Alert
-		const successBox = new Box(2, 1, (s) => th.bg("userMessageBg", s));
-		const successIcon = new Text(th.fg("success", "✓"), 0, 0);
-		const successText = new Text(
-			th.fg("text", "Operation completed"),
-			0, 0
-		);
-		successBox.addChild(successIcon);
-		successBox.addChild(successText);
-		grid.addChild(successBox);
+		// Success Alert using Alert component
+		const successAlert = new Alert(th, {
+			message: "Operation completed",
+			type: "success",
+			bgColor: "userMessageBg",
+			padding: 2,
+		});
+		grid.addChild(successAlert);
 
-		// Warning Alert
-		const warningBox = new Box(2, 1, (s) => th.bg("userMessageBg", s));
-		const warningIcon = new Text(th.fg("warning", "⚠"), 0, 0);
-		const warningText = new Text(
-			th.fg("text", "Cannot be undone"),
-			0, 0
-		);
-		warningBox.addChild(warningIcon);
-		warningBox.addChild(warningText);
-		grid.addChild(warningBox);
+		// Warning Alert using Alert component
+		const warningAlert = new Alert(th, {
+			message: "Cannot be undone",
+			type: "warning",
+			bgColor: "userMessageBg",
+			padding: 2,
+		});
+		grid.addChild(warningAlert);
 
-		// Error Alert
-		const errorBox = new Box(2, 1, (s) => th.bg("userMessageBg", s));
-		const errorIcon = new Text(th.fg("error", "✗"), 0, 0);
-		const errorText = new Text(
-			th.fg("text", "Connection failed"),
-			0, 0
-		);
-		errorBox.addChild(errorIcon);
-		errorBox.addChild(errorText);
-		grid.addChild(errorBox);
+		// Error Alert using Alert component
+		const errorAlert = new Alert(th, {
+			message: "Connection failed",
+			type: "error",
+			bgColor: "userMessageBg",
+			padding: 2,
+		});
+		grid.addChild(errorAlert);
+
+		// Info Alert using Alert component
+		const infoAlert = new Alert(th, {
+			message: "New updates available",
+			type: "info",
+			bgColor: "userMessageBg",
+			padding: 2,
+		});
+		grid.addChild(infoAlert);
 
 		content.addChild(grid);
 
