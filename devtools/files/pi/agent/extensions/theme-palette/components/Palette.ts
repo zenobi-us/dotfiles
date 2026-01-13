@@ -34,7 +34,7 @@ export class Palette extends Container implements Component {
 		const th = this.theme;
 
 		// Header Box - elevated surface with subtle depth
-		this.headerBox = new Box(2, 1, (s) => th.bg("surface+1", s));
+		this.headerBox = new Box(2, 1, (s) => th.bg("userMessageBg", s));
 		
 		// Title with primary accent color
 		const titleContent = th.bold(th.fg("accent", this.data.title || "Theme Palette"));
@@ -51,7 +51,7 @@ export class Palette extends Container implements Component {
 		this.headerBox.addChild(headerContent);
 
 		// Content Box - base surface with border separation
-		this.contentBox = new Box(2, 1, (s) => th.bg("base", s));
+		this.contentBox = new Box(2, 1, (s) => th.bg("customMessageBg", s));
 		
 		// Create flex container with wrap mode for responsive layout
 		this.flexLayout = new Flex({ mode: 'wrap', spacing: 2 });

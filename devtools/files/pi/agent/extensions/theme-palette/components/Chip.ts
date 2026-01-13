@@ -31,19 +31,19 @@ export class Chip extends Box implements Component {
 		private data: ChipData,
 	) {
 		// Chip container with subtle background and border
-		super(1, 1, (s) => theme.bg("overlay-1", s));
+		super(1, 1, (s) => theme.bg("customMessageBg", s));
 
 		// Main container for layout
 		this.container = new Container();
 
 		// Swatch box - colored square showing the actual color
 		this.swatchBox = new Box(0, 0);
-		
+
 		// Content box for name and description
 		this.contentBox = new Box(1, 0);
 		this.nameText = new Text("", 0, 0);
 		this.descText = new Text("", 0, 0);
-		
+
 		this.contentBox.addChild(this.nameText);
 		this.contentBox.addChild(this.descText);
 
@@ -64,12 +64,12 @@ export class Chip extends Box implements Component {
 
 		// For background colors, show with bg() instead of fg()
 		const swatch = isBgColor
-			? th.bg(this.data.name as any, "    ")  // 4 spaces for bg colors
-			: th.fg(this.data.name as any, "████");   // 4 blocks for fg colors
+			? th.bg(this.data.name as any, "  ")  // 4 spaces for bg colors
+			: th.fg(this.data.name as any, "██");   // 4 blocks for fg colors
 
 		// Color name in primary text weight
 		const name = th.fg("text", this.data.name.padEnd(22));
-		
+
 		// Description in muted secondary text - demonstrates hierarchy
 		const desc = th.fg("dim", this.data.description);
 

@@ -38,7 +38,7 @@ export class Group extends Box implements Component {
 		private data: GroupData,
 	) {
 		// Outer box with subtle border and elevated background
-		super(1, 0, (s) => theme.bg("surface+1", s));
+		super(1, 0, (s) => theme.bg("userMessageBg", s));
 
 		// Set preferred width for flex layout
 		this.preferredWidth = data.preferredWidth ?? 50;
@@ -53,8 +53,8 @@ export class Group extends Box implements Component {
 		this.container.addChild(this.titleBox);
 
 		// Content box - contains grid with chips
-		this.contentBox = new Box(1, 1, (s) => theme.bg("base+1", s));
-		
+		this.contentBox = new Box(1, 1, (s) => theme.bg("customMessageBg", s));
+
 		// Create grid for chip layout with responsive columns
 		// Chips need about 40 characters minimum (swatch + name + desc)
 		this.gridLayout = new Grid({
