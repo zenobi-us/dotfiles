@@ -13,10 +13,8 @@
 import type { Component } from "@mariozechner/pi-tui";
 import { Box, Container, Text } from "@mariozechner/pi-tui";
 import { Theme } from "@mariozechner/pi-coding-agent";
-import { Alert } from "./Alert.js";
-import { Flex } from "./Flex.js";
-import { Grid } from "./Grid.js";
-import { sized } from "./Sized.js";
+import { Alert } from "./ds/Alert.js";
+import { Grid } from "./ds/Grid.js";
 
 export class UISimulator extends Container implements Component {
 	private sections: Container[] = [];
@@ -31,16 +29,16 @@ export class UISimulator extends Container implements Component {
 
 		// Section 1: Interactive Elements
 		this.sections.push(this.createInteractiveSection());
-		
+
 		// Section 2: Message Bubbles
 		this.sections.push(this.createMessageSection());
-		
+
 		// Section 3: Code Blocks
 		this.sections.push(this.createCodeSection());
-		
+
 		// Section 4: Alerts & Status
 		this.sections.push(this.createAlertSection());
-		
+
 		// Section 5: Form Elements
 		this.sections.push(this.createFormSection());
 
@@ -104,7 +102,7 @@ export class UISimulator extends Container implements Component {
 	private createButton(label: string, fgColor: any, bgColor: any): Container {
 		const th = this.theme;
 		const container = new Container();
-		
+
 		const box = new Box(1, 0, (s) => th.bg(bgColor, s));
 		const text = new Text(
 			" " + th.fg(fgColor, th.bold(label)) + " ",
@@ -112,7 +110,7 @@ export class UISimulator extends Container implements Component {
 		);
 		box.addChild(text);
 		container.addChild(box);
-		
+
 		return container;
 	}
 
@@ -191,7 +189,7 @@ export class UISimulator extends Container implements Component {
 
 		// Code block with syntax highlighting
 		const codeBox = new Box(2, 1, (s) => th.bg("toolPendingBg", s));
-		
+
 		const line1 = new Text(
 			th.fg("syntaxKeyword", "function ") +
 			th.fg("syntaxFunction", "greet") +
@@ -203,7 +201,7 @@ export class UISimulator extends Container implements Component {
 			th.fg("syntaxPunctuation", " {"),
 			0, 0
 		);
-		
+
 		const line2 = new Text(
 			"  " + th.fg("syntaxKeyword", "return ") +
 			th.fg("syntaxString", '"Hello, "') +
@@ -212,19 +210,19 @@ export class UISimulator extends Container implements Component {
 			th.fg("syntaxPunctuation", ";"),
 			0, 0
 		);
-		
+
 		const line3 = new Text(
 			th.fg("syntaxPunctuation", "}"),
 			0, 0
 		);
-		
+
 		const line4 = new Text("", 0, 0);
-		
+
 		const line5 = new Text(
 			th.fg("syntaxComment", "// Call the function"),
 			0, 0
 		);
-		
+
 		const line6 = new Text(
 			th.fg("syntaxKeyword", "const ") +
 			th.fg("syntaxVariable", "message") +
@@ -247,12 +245,12 @@ export class UISimulator extends Container implements Component {
 
 		// Diff view
 		const diffBox = new Box(2, 1, (s) => th.bg("toolPendingBg", s));
-		
+
 		const diffHeader = new Text(th.fg("dim", "git diff"), 0, 0);
 		const diffRemoved = new Text(th.fg("toolDiffRemoved", "- const x = 1;"), 0, 0);
 		const diffAdded = new Text(th.fg("toolDiffAdded", "+ const x = 2;"), 0, 0);
 		const diffContext = new Text(th.fg("toolDiffContext", "  console.log(x);"), 0, 0);
-		
+
 		diffBox.addChild(diffHeader);
 		diffBox.addChild(diffRemoved);
 		diffBox.addChild(diffAdded);
@@ -280,44 +278,48 @@ export class UISimulator extends Container implements Component {
 
 		// Content box
 		const content = new Box(2, 1, (s) => th.bg("customMessageBg", s));
-		
+
 		// Use Grid for horizontal arrangement of alerts
 		const grid = new Grid({ spacing: 2, minColumnWidth: 30 });
 
 		// Success Alert using Alert component
-		const successAlert = new Alert(th, {
-			message: "Operation completed",
-			type: "success",
-			bgColor: "userMessageBg",
-			padding: 2,
-		});
+		const successAlert = new Alert(
+			th,
+			"success",
+			"Operation completed",
+		);
+
 		grid.addChild(successAlert);
 
 		// Warning Alert using Alert component
-		const warningAlert = new Alert(th, {
-			message: "Cannot be undone",
-			type: "warning",
-			bgColor: "userMessageBg",
-			padding: 2,
-		});
+		const warningAlert = new Alert(
+			th,
+			'warning',
+			"Cannot be undone",
+		);
 		grid.addChild(warningAlert);
 
 		// Error Alert using Alert component
-		const errorAlert = new Alert(th, {
-			message: "Connection failed",
-			type: "error",
-			bgColor: "userMessageBg",
-			padding: 2,
-		});
+		const errorAlert = new Alert(
+			th,
+			'error',
+			"Connection failed",
+			{
+				padding: 2,
+				bgColor: "toolPendingBg",
+			});
+
 		grid.addChild(errorAlert);
 
 		// Info Alert using Alert component
-		const infoAlert = new Alert(th, {
-			message: "New updates available",
-			type: "info",
-			bgColor: "userMessageBg",
-			padding: 2,
-		});
+		const infoAlert = new Alert(
+			th,
+			"info",
+			"New updates available",
+			{
+				bgColor: "userMessageBg",
+				padding: 2,
+			});
 		grid.addChild(infoAlert);
 
 		content.addChild(grid);

@@ -10,10 +10,10 @@
 
 import type { Component } from "@mariozechner/pi-tui";
 import { Box, Container, Text } from "@mariozechner/pi-tui";
-import { Grid } from "./Grid.js";
-import { Sized, sized } from "./Sized.js";
+import { Grid } from "./ds/Grid.js";
 import { Chip, type ChipData } from "./Chip.js";
 import { Theme } from "@mariozechner/pi-coding-agent";
+import type { SizedComponent } from "./ds/Flex.js";
 
 export interface GroupData {
 	/** Title of the group */
@@ -24,7 +24,7 @@ export interface GroupData {
 	preferredWidth?: number;
 }
 
-export class Group extends Box implements Component {
+export class Group extends Box implements Component, SizedComponent {
 	private container: Container;
 	private titleBox: Box;
 	private titleText: Text;
