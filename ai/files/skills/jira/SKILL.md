@@ -27,6 +27,29 @@ Master Jira automation and integration using the atlassian MCP server. This skil
 
 ## Quick Setup
 
+### Get Ticket Summary (One-Shot)
+
+**The fastest way to get ticket information:**
+
+```bash
+mise x node@20 -- ./scripts/get_ticket_summary.sh TICKET-123
+```
+
+Returns human-readable summary with:
+- Key, summary, type, status, priority, assignee
+- Created/updated timestamps
+- Full description
+- Linked resources (PRs, etc.)
+- Direct link to Jira
+
+**JSON output for parsing:**
+
+```bash
+mise x node@20 -- ./scripts/get_ticket_summary.sh TICKET-123 --json
+```
+
+Returns structured JSON with `ticket` and `remoteLinks` objects.
+
 ### Get Current User Info
 
 ```bash
@@ -175,6 +198,7 @@ mise x node@20 -- mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId:
 
 | Script | Purpose |
 |--------|---------|
+| `./scripts/get_ticket_summary.sh` | **One-shot ticket summary** - Get all ticket info in one call (human or JSON format) |
 | `./scripts/get_current_user.sh` | Get authenticated user info (accountId, displayName, email) |
 | `./scripts/get_cloud_id.sh` | Get Jira Cloud ID and URL |
 
