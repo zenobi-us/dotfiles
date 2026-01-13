@@ -8,6 +8,7 @@ depends:
 actions:
   # Initialize git submodules (e.g., powerline-footer extension)
   - action: command.run
+    dir: "{{env.DOTFILE_REPO_ROOT}}"
     command: git
     args:
       - submodule
