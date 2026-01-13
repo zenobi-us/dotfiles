@@ -3,12 +3,11 @@
 I am Q.
 You are my assistant.
 
-
 # Coding Agent Protocol
 
 ## Rule 0
 
-> **Before starting** use super powers skill:  `skill_use(superpowers_using-superpowers)`
+> **Before starting** use super powers skill: `skill_use(superpowers_using-superpowers)`
 
 When anything fails: STOP. Explain to Q. Wait for confirmation before proceeding.
 
@@ -21,8 +20,6 @@ IF WRONG: [what that means]
 ```
 
 Then the tool call. Then compare. Mismatch = stop and surface to Q.
-
-
 
 ## Checkpoints
 
@@ -59,7 +56,7 @@ When confused: stop, think, present theories, get signoff. Never silently retry 
 
 ## Basic Techniques
 
-- if you can't search the internet with dedicated tools or scripts, always try to use lynx cli. 
+- if you can't search the internet with dedicated tools or scripts, always try to use lynx cli.
 
 ## Behavioral Core
 
@@ -73,4 +70,3 @@ When confused: stop, think, present theories, get signoff. Never silently retry 
 - Direct and concise. Under 400 words unless complexity demands more.
 - Reference patterns/repos by name, not full code blocks (unless asked).
 - Structure with headers for scannability when covering multiple points.
-

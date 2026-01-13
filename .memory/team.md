@@ -14,120 +14,98 @@ Split from original "Pi Extensions Development" epic on 2026-01-11.
 - ✅ Documentation complete
 - ✅ Learning materials distilled
 
-### Epic 2: Theme Development Tools 🔄 ACTIVE
+### Epic 2: Theme Development Tools ✅ COMPLETE
 **Created:** 2026-01-11  
-**Activated:** 2026-01-11  
+**Completed:** 2026-01-11  
 **Owner:** Development Team
 
-Split from original "Pi Extensions Development" epic on 2026-01-11.
+**Final Status:** All success criteria exceeded
+- ✅ Theme palette extension with 47 colors, 8 categories
+- ✅ Component architecture V2 (78% code reduction)
+- ✅ Comprehensive documentation (7 docs, ~2,000 lines)
+- ✅ Learning materials distilled (5 documents)
 
-**Current Focus:** Theme API research (critical path)
+### Epic 3: Multi-Harness Agent Loader 🔄 ACTIVE
+**Created:** 2026-01-12  
+**Owner:** Research Team
 
-### Archived Epics
+**Current Focus:** Research AI harness agent/command formats
 
-- **epic-f4a8b2c6-pi-extensions-development.md** - Archived after split on 2026-01-11
-  - Original combined epic
-  - Split into focused work streams
+---
 
 ## Active Epic Status
 
 **Per miniproject guidelines:** Only ONE epic should be active at a time unless explicitly approved by human.
 
-**Active Epic:** [Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md)  
+**Active Epic:** [Multi-Harness Agent Loader](epic-4dd87a16-multi-harness-agent-loader.md)  
 **Status:** Research phase  
-**Next Task:** Research Pi theme API access methods
-
-## Active Sessions
-
-- **Session 2026-01-11 10:00** - Epic 1 completion and Epic 2 activation
-  - Completed documentation task for Epic 1
-  - Updated README.md with Management Commands section
-  - Enhanced JSDoc comments for all functions
-  - Distilled learning materials (agent management patterns)
-  - Marked Epic 1 as complete with all success criteria met
-  - Activated Epic 2 (Theme Development Tools)
-  - Updated all memory files (summary.md, todo.md, team.md)
-  - **Status:** Ready to commit
-
-## Phase Assignments
-
-### Epic 1: Subagent Extension Enhancement ✅ COMPLETE
-
-#### Phase 1: Subagent Management Commands ✅
-**Status:** Complete  
-**Owner:** Development Team  
-**Completed:** 2026-01-11 10:00
-
-All deliverables complete including documentation.
-
-**Deliverables:**
-- ✅ `/subagent list` command
-- ✅ `/subagent add` command
-- ✅ `/subagent edit` command
-- ✅ Documentation with examples
-- ✅ JSDoc comments
-- ✅ Learning materials
+**Current Phase:** [Research & Discovery](phase-ab3b84bd-research-discovery.md)  
+**Next Task:** [Research Harness Formats](task-db140ba7-research-harness-formats.md)
 
 ---
 
-### Epic 2: Theme Development Tools 🔄 ACTIVE
+## Active Sessions
 
-#### Phase 1: Theme Palette Extension ⏳
-**Status:** Ready to Start  
-**Owner:** Development Team  
-**Started:** 2026-01-11
+### Session 2026-01-12 16:53
+**Epic:** Multi-Harness Agent Loader  
+**Phase:** Research & Discovery  
+**Activity:** Epic creation and research planning
 
-**Critical Path:** Research Pi theme API access methods
+**Created:**
+- `epic-4dd87a16-multi-harness-agent-loader.md`
+- `phase-ab3b84bd-research-discovery.md`
+- `task-db140ba7-research-harness-formats.md`
 
-**Planned Steps:**
-1. Research theme API (NEXT)
-2. Implement MVP with basic widget
-3. Enhance display with categorization
-4. Add interactivity features
+**Status:** Ready to begin research task
 
-#### Phase 2: Learning & Documentation 🔄
-**Status:** Planned
-**Owner:** Development Team
+---
 
-Continuous learning extraction throughout theme palette development.
+## Phase Assignments
+
+### Epic 3: Multi-Harness Agent Loader 🔄 ACTIVE
+
+#### Phase 1: Research & Discovery 🔄
+**Status:** In Progress  
+**Owner:** Research Team  
+**Started:** 2026-01-12
+
+**Goal:** Research agent formats for Claude Code, Aider, Continue, and other AI harnesses.
+
+**Tasks:**
+- ⏳ Research Harness Formats (ready to start)
+
+#### Phase 2: Architecture Design ⏳
+**Status:** Pending  
+**Blocked by:** Phase 1 completion
+
+#### Phase 3: Implementation ⏳
+**Status:** Pending  
+**Blocked by:** Phase 2 completion
 
 ---
 
 ## Notes
 
-### Epic Split Rationale
+### Epic 3 Rationale
 
-The original "Pi Extensions Development" epic combined two unrelated work streams:
+User requested research into creating a Pi-mono extension that can load agents and commands from other AI harnesses. This enables:
+- Portability of agent definitions across tools
+- Reduced duplication of configuration effort
+- Experimentation with agents from other ecosystems
+- Sharing agent configurations between tools
 
-1. **Agent Management** (command-line tooling)
-   - Focused on CLI commands for agent CRUD operations
-   - Completed implementation
-   - No dependency on theme system
+### Research Targets
 
-2. **Theme Visualization** (visual TUI widgets)
-   - Focused on rendering theme colors
-   - Not yet started
-   - No dependency on agent system
+1. Claude Code (Anthropic) - Highest priority
+2. Aider - Popular AI pair programming tool
+3. Continue - Open-source VS Code extension
+4. Cursor - AI-first code editor
+5. OpenCode - Open-source coding agent
+6. Cody (Sourcegraph) - AI coding assistant
 
-**Decision:** Split into independent epics to maintain focus and follow miniproject guideline that "only ONE epic should be active at a time."
+### Next Actions
 
-### Compliance with miniproject Guidelines
-
-- ✅ Each epic has clear vision and success criteria
-- ✅ All phases link to parent epic
-- ✅ Phases have start/end criteria
-- ✅ Old epic archived (not deleted)
-- ✅ Learning files preserved
-- ✅ Only one epic active at a time (pending human decision)
-- ✅ All files follow naming conventions
-
-### Next Session Actions
-
-**Ready for:** Theme API research and implementation
-
-Recommended workflow:
-1. Research Pi theme system to understand color access methods
-2. Create research file documenting findings
-3. Begin MVP implementation of theme palette widget
-4. Test with default themes
-5. Iterate based on findings
+1. Begin research task using brave-search skill or delegate to Deep Researcher
+2. Document findings in research file
+3. Create compatibility matrix
+4. Make recommendation for implementation priority
