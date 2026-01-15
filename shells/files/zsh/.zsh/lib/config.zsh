@@ -188,6 +188,15 @@ function dotfiles_apply () {
 }
 
 function dotfiles_modules_list () {
+    local module="${1}"
+
+    # If a module is provided as parameter, apply it directly
+    if [[ -n "${module}" ]]; then
+        dotfiles apply "${module}"
+        return
+    fi
+
+    # Otherwise, show fzf selector
     selection=$(
       find "$DOTFILE_REPO_ROOT" -type f -name "*.yml" \
         | grep -v '/files/' \
@@ -240,7 +249,7 @@ function dotfiles () {
             dotfiles_apply "${@:2}"
         ;;
         modules)
-            dotfiles_modules_list
+            dotfiles_modules_list "${2}"
         ;;
         *)
             echo """

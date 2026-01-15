@@ -3,6 +3,13 @@ depends:
   - devtools.pi
 
 actions:
+  # clean links before recreating them
+  - action: command.run
+    command: rm
+    where: os.name == "linux" || os.name == "macos"
+    args:
+      - -rf
+      - "{{ user.home_dir }}/.pi/agent/{prompts,skills,agents,AGENT.md}"
 
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/prompts"

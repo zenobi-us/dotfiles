@@ -1,4 +1,5 @@
 .env
+!.zsh*
 !/shells/zsh/files/config.d/enabled/README.md
 /shells/zsh/files/config.d/enabled/*
 mise.toml
