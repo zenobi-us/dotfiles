@@ -1,3 +1,4 @@
+---
 # Comtrya manifest: Install NerdFonts
 # Uses font-install binary (cross-platform font installer)
 # Assumes font-install is already installed via mise

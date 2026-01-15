@@ -1,7 +1,4 @@
 ---
-depends:
-  - devtools.mise
-
 actions:
   # Initialize git submodules (e.g., powerline-footer extension)
   - action: command.run
@@ -13,7 +10,7 @@ actions:
       - --init
       - --recursive
 
-  # remove everything except for auth.json and sessions/    
+  # remove everything except for auth.json and sessions/
   - action: command.run
     command: rm
     where: os.name == "linux" || os.name == "macos"
@@ -61,4 +58,3 @@ actions:
     command: mise
     args:
       - install
-

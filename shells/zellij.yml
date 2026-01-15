@@ -1,13 +1,6 @@
 ---
 actions:
-  - action: package.install
-    where: os.name == "linux"
-    name: zellij
-
-  - action: package.install
-    where: os.name == "macos"
-    name: zellij
-
+  
   - action: command.run
     where: os.name == "linux" || os.name == "macos"
     command: rm

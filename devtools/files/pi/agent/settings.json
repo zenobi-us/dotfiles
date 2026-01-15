@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.45.3",
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-5",
+  "defaultModel": "claude-3-5-haiku-latest",
   "defaultThinkingLevel": "off",
   "theme": "rose-pine-moon"
 }
