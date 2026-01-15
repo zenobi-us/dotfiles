@@ -55,3 +55,14 @@
 ### Epic 3: Phase 1 - Research & Discovery ✅
 - [Research Harness Formats](task-db140ba7-research-harness-formats.md) ✅
 - Consolidated into [research-8c4d2b1f-ai-harness-formats.md](research-8c4d2b1f-ai-harness-formats.md) ✅
+
+---
+
+## Standalone Configuration Tasks
+
+These tasks are not part of an epic but are important configuration/maintenance work.
+
+| Status | Task | Priority | Notes |
+|--------|------|----------|-------|
+| ⏳ | [Zellij Leader Key Update](task-e8a7c4d2-zellij-leader-key-update.md) | Medium | Update Zellij config to use Ctrl+/ as leader with minimal keymap |
+
