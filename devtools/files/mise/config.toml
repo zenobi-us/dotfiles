@@ -59,6 +59,7 @@ semver = "latest"
 "npm:@scopecraft/cmd" = "latest"
 "npm:browser-debugger-cli" = "alpha"
 "npm:@mariozechner/pi-coding-agent" = "latest"
+"cargo:p1rallels/codemapper" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"

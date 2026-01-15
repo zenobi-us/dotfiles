@@ -29,7 +29,7 @@ Git worktrees create isolated workspaces sharing the same repository, allowing w
 
 ```bash
 # Check in priority order
-ls -d ../$(basename "$(git rev-parse --show-toplevel)").worktrees 2>/dev/null      # Alternative
+ls -d "../$(git rev-parse --path-format=absolute --git-common-dir | xargs dirname).worktrees" 2>/dev/null      # Alternative
 ```
 
 **If found:** Use that directory.
@@ -60,7 +60,7 @@ Which would you prefer?
 ### 1. Detect Project Name
 
 ```bash
-project=$(basename "$(git rev-parse --show-toplevel)")
+project=$(git rev-parse --path-format=absolute --git-common-dir | xargs dirname)
 ```
 
 ### 2. Create Worktree
@@ -78,6 +78,9 @@ cd "$path"
 Auto-detect and run appropriate setup:
 
 ```bash
+# if Justfile
+if [ -f Justfile ]; then just setup; fi
+
 # if Mise
 if [ -f .mise.toml ]; then mise setup; exit 0; fi
 
@@ -108,6 +111,9 @@ Run tests to ensure worktree starts clean:
 
 ```bash
 # Examples - use project-appropriate command
+# if Justfile
+if [ -f Justfile ]; then just test; fi
+
 if [ -f .mise.toml ]; then
   mise check
   exit 0

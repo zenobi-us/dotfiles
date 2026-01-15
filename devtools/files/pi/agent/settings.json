@@ -2,5 +2,6 @@
   "lastChangelogVersion": "0.45.3",
   "defaultProvider": "anthropic",
   "defaultModel": "claude-sonnet-4-5",
-  "defaultThinkingLevel": "off"
+  "defaultThinkingLevel": "off",
+  "theme": "rose-pine-moon"
 }

@@ -9,7 +9,9 @@ This is a simplified and concise project management AI memory framework.
 
 > [!NOTE]
 > **CRITICAL** Before doing any work:
->
+> 
+> - If in a git repo, always refer to the main worktree `git rev-parse --path-format=absolute --git-common-dir | xargs dirname`
+> - agent memory lives in '.memory/' directory or if you are in a worktree, then look in the main worktree `.memory/` directory.
 > - read `.memory/todo.md`, `.memory/summary.md`, `.memory/knowledge.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
 > - if `.memory/` is missing these files, then create those three.
 > - Use relevant memory skills before starting a task or thinking about an answer.

@@ -20,7 +20,11 @@ $ARGUMENTS
 
 ### Step 2. Determine Affected Packages
 
-!`pnpm list -r --json --depth=0 | jq -r '.[] | "\(.name) \(.path)"'`
+!`mise x node -- pnpm list -r --json --depth=0 | jq -r '.[] | "\(.name) \(.path)"'`
+
+- use mise to ensure local version of node is used
+- use pnpm to list packages in repo/monorepo
+- use jq to format output as `package-name package-path`
 
 ### Step 3. Write Changeset File
 
@@ -30,19 +34,21 @@ $ARGUMENTS
 
 Brief description of the changes made in this changeset.
 
+**Validation Gate**
+
+- Ensure the changeset file is valid according to @changesets/cli spec.
+- Package names must exist in the monorepo.
+
 ## Guidelines
 
-### Patch Vs Minor Vs Major
+### Always Patch
 
-- **Patch**: Backwards-compatible bug fixes. Use for small changes that do not add new features or break existing functionality.
-- **Minor**: Backwards-compatible new features. Use when adding new functionality in a backwards-compatible manner.
-- **Major**: Incompatible API changes. Use when making changes that break existing
-
-If in doubt, default to `patch`.
+We never create minor or major changesets directly. All changesets must be of type `patch`. 
+Version bumps will be determined automatically based on the nature of the changes during the release process.
 
 ### Selecting Affected Packages
 
-- **Critical** Ensure correct package-names are used `pnpm ls --filter "...[master]" --json | jq -r ".[] | .name"`!
+- **Critical** Ensure correct package-names are used `mise x node -- pnpm ls --filter "...[master]" --json | jq -r ".[] | .name"`!
 - Include all packages that have been modified in the changeset.
 - If a package's public API has changed, include it even if only internal files were modified
 
