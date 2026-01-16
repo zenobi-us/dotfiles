@@ -104,6 +104,31 @@ const SubagentParams = Type.Object({
 
 export default function (pi: ExtensionAPI) {
 	pi.registerTool({
+		name: "list-agents",
+		label: "List Agents",
+		description: "List available subagents",
+		parameters: Type.Object({}),
+
+		async execute(_toolCallId, _params, _onUpdate, ctx, _signal) {
+			const discovery = discoverAgents(ctx.cwd);
+			const agents = discovery.agents;
+			if (agents.size === 0) {
+				return {
+					content: [{ type: "text", text: "No agents found." }],
+					details: { agents: [] }
+				};
+			}
+			const rendered = renderAgentList(agents, { verbosity: "dense" });
+			return {
+				content: [{ type: "text", text: rendered }],
+				details: {
+					agents: Array.from(agents.keys())
+				}
+			}
+		}
+	});
+
+	pi.registerTool({
 		name: "subagent",
 		label: "Subagent",
 		description: [
@@ -665,7 +690,7 @@ export default function (pi: ExtensionAPI) {
 
 					// Replace $ARGUMENTS with all arguments
 					promptContent = promptContent.replace(/\$ARGUMENTS\b/g, args);
-					
+
 					// Replace $@ with all arguments (fixed: @ is not a word char, so use lookahead)
 					promptContent = promptContent.replace(/\$@(?=\s|$)/g, args);
 
