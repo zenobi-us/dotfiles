@@ -1142,6 +1142,30 @@ You have access to all default tools for reading, writing, executing commands, a
 	}
 
 
+	// Shorthand command to quickly list agents
+	pi.registerCommand("agents", {
+		description: "List discovered agents (alias for /subagent list)",
+		handler: async (args, ctx) => {
+			const { scope, verbose } = parseListArgs(args);
+			const discovery = discoverAgents(ctx.cwd);
+			const agents = discovery.agents;
+
+			// Sort agents alphabetically by name
+			agents.sort((a, b) => a.name.localeCompare(b.name));
+
+			let message = `📋 Available agents (${agents.length}):\n\n`;
+
+			if (agents.length === 0) {
+				message += `No agents found for scope: ${scope}\n\nCreate one with: /subagent add <name>`;
+			} else {
+				message += renderAgentList(agents, { verbose });
+				message += `\n\nUse --verbose for more details\nManage with: /subagent add|edit`;
+			}
+
+			ctx.ui.notify(message, "info");
+		},
+	});
+
 	pi.registerCommand("subagent", {
 		description: "Manage agents: list, add, edit",
 		handler: async (args, ctx) => {
