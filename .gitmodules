@@ -1,3 +1,12 @@
 [submodule "devtools/files/pi/agent/extensions/powerline-footer"]
 	path = devtools/files/pi/agent/extensions/powerline-footer
 	url = https://github.com/nicobailon/pi-powerline-footer
+[submodule "shells/files/xresources/.XresourceThemes"]
+	path = shells/files/xresources/.XresourceThemes
+	url = https://github.com/janoamaral/Xresources-themes.git
+[submodule "windowmanagers/files/awesome/radical"]
+	path = windowmanagers/files/awesome/radical
+	url = https://github.com/Elv13/radical
+[submodule "windowmanagers/files/awesome/widgets"]
+	path = windowmanagers/files/awesome/widgets
+	url = https://github.com/streetturtle/awesome-wm-widgets.git
