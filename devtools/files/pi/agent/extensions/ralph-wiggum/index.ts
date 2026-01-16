@@ -40,6 +40,15 @@ Update the task file with your reflection, then continue working.`;
 
 type LoopStatus = "active" | "paused" | "completed";
 
+interface SubagentTaskResult {
+	taskIndex: number;
+	taskDescription: string;
+	success: boolean;
+	output: string;
+	attempts: number;
+	error?: string;
+}
+
 interface LoopState {
 	name: string;
 	taskFile: string;
@@ -53,6 +62,10 @@ interface LoopState {
 	startedAt: string;
 	completedAt?: string;
 	lastReflectionAt: number; // Last iteration we reflected at
+	useSubagents: boolean; // Delegate each task to a separate subagent thread
+	subagentAgent: string; // Name of subagent to use
+	currentTaskIndex: number; // Track which task we're on in subagent mode
+	subagentResults: SubagentTaskResult[]; // Results from subagent executions
 }
 
 const STATUS_ICONS: Record<LoopStatus, string> = { active: "▶", paused: "⏸", completed: "✓" };
@@ -115,6 +128,11 @@ export default function (pi: ExtensionAPI) {
 		if ("lastReflectionAtItems" in raw && raw.lastReflectionAt === undefined) {
 			raw.lastReflectionAt = (raw as any).lastReflectionAtItems;
 		}
+		// Set defaults for new fields
+		if (raw.useSubagents === undefined) raw.useSubagents = false;
+		if (!raw.subagentAgent) raw.subagentAgent = "default";
+		if (raw.currentTaskIndex === undefined) raw.currentTaskIndex = 0;
+		if (!raw.subagentResults) raw.subagentResults = [];
 		return raw as LoopState;
 	}
 
@@ -204,7 +222,17 @@ export default function (pi: ExtensionAPI) {
 			theme.fg("dim", `Iteration: ${state.iteration}${maxStr}`),
 			theme.fg("dim", `Task: ${state.taskFile}`),
 		];
-		if (state.reflectEvery > 0) {
+
+		if (state.useSubagents) {
+			const content = tryRead(path.resolve(ctx.cwd, state.taskFile));
+			if (content) {
+				const tasks = extractTasks(content);
+				lines.push(theme.fg("accent", `Mode: Subagent (${state.subagentAgent})`));
+				lines.push(theme.fg("dim", `Progress: ${state.currentTaskIndex}/${tasks.length} tasks`));
+			}
+		}
+
+		if (state.reflectEvery > 0 && !state.useSubagents) {
 			const next = state.reflectEvery - ((state.iteration - 1) % state.reflectEvery);
 			lines.push(theme.fg("dim", `Next reflection in: ${next} iterations`));
 		}
@@ -215,7 +243,78 @@ export default function (pi: ExtensionAPI) {
 		ctx.ui.setWidget("ralph", lines);
 	}
 
+	// --- Task extraction ---
+
+	function extractTasks(taskContent: string): string[] {
+		const checklistRegex = /^- \[([ x])\] (.+)$/gm;
+		const tasks: string[] = [];
+		let match;
+
+		while ((match = checklistRegex.exec(taskContent)) !== null) {
+			if (match[1] === " ") {
+				// Only uncompleted tasks
+				tasks.push(match[2]);
+			}
+		}
+
+		return tasks;
+	}
+
 	// --- Prompt building ---
+
+	function buildSubagentProgressPrompt(state: LoopState, tasks: string[]): string {
+		const completed = state.currentTaskIndex;
+		const total = tasks.length;
+		const currentTask = tasks[completed];
+
+		const header = `───────────────────────────────────────────────────────────────────────
+🔄 RALPH LOOP (Subagent Mode): ${state.name} | Task ${completed + 1}/${total}
+───────────────────────────────────────────────────────────────────────`;
+
+		const parts = [header, ""];
+
+		parts.push(`## Progress\n`);
+		parts.push(`Completed: ${completed}/${total} tasks`);
+
+		if (state.subagentResults.length > 0) {
+			const recent = state.subagentResults.slice(-3);
+			parts.push("");
+			recent.forEach((r) => {
+				const icon = r.success ? "✓" : "✗";
+				parts.push(`  ${icon} Task ${r.taskIndex + 1}: ${r.taskDescription}`);
+			});
+		}
+
+		parts.push("");
+		parts.push(`## Current Task\n`);
+
+		if (completed < total) {
+			parts.push(`Task ${completed + 1}/${total}: **${currentTask}**`);
+			parts.push("");
+			parts.push(`## Instructions\n`);
+			parts.push(`1. Use the \`subagent\` tool to delegate this task to agent: **${state.subagentAgent}**`);
+			parts.push(`2. After subagent completes, verify the task was marked complete in ${state.taskFile}`);
+			parts.push(`3. Call \`ralph_done\` to proceed to next task`);
+			parts.push("");
+			parts.push(`### Subagent Task Template:`);
+			parts.push("");
+			parts.push(`\`\`\`json`);
+			parts.push(`{`);
+			parts.push(`  "agent": "${state.subagentAgent}",`);
+			parts.push(
+				`  "task": "Context: Ralph loop '${state.name}'\\n\\nTask file: ${state.taskFile}\\n\\nYour task (${completed + 1}/${total}): ${currentTask}\\n\\nInstructions:\\n1. Complete the task\\n2. Mark as done: - [x] ${currentTask}\\n3. Report what you did",`,
+			);
+			parts.push(`  "agentScope": "user"`);
+			parts.push(`}`);
+			parts.push(`\`\`\``);
+		} else {
+			parts.push(`All tasks complete!`);
+			parts.push("");
+			parts.push(`Respond with: ${COMPLETE_MARKER}`);
+		}
+
+		return parts.join("\n");
+	}
 
 	function buildPrompt(state: LoopState, taskContent: string, isReflection: boolean): string {
 		const maxStr = state.maxIterations > 0 ? `/${state.maxIterations}` : "";
@@ -256,6 +355,8 @@ export default function (pi: ExtensionAPI) {
 			itemsPerIteration: 0,
 			reflectEvery: 0,
 			reflectInstructions: DEFAULT_REFLECT_INSTRUCTIONS,
+			useSubagents: false,
+			subagentAgent: "default",
 		};
 
 		for (let i = 0; i < tokens.length; i++) {
@@ -272,6 +373,11 @@ export default function (pi: ExtensionAPI) {
 				i++;
 			} else if (tok === "--reflect-instructions" && next) {
 				result.reflectInstructions = next.replace(/^"|"$/g, "");
+				i++;
+			} else if (tok === "--use-subagents") {
+				result.useSubagents = true;
+			} else if (tok === "--subagent-agent" && next) {
+				result.subagentAgent = next;
 				i++;
 			} else if (!tok.startsWith("--")) {
 				result.name = tok;
@@ -322,6 +428,10 @@ export default function (pi: ExtensionAPI) {
 				status: "active",
 				startedAt: existing?.startedAt || new Date().toISOString(),
 				lastReflectionAt: 0,
+				useSubagents: args.useSubagents,
+				subagentAgent: args.subagentAgent,
+				currentTaskIndex: 0,
+				subagentResults: [],
 			};
 
 			saveState(ctx, state);
@@ -333,7 +443,18 @@ export default function (pi: ExtensionAPI) {
 				ctx.ui.notify(`Could not read task file: ${taskFile}`, "error");
 				return;
 			}
-			pi.sendUserMessage(buildPrompt(state, content, false));
+
+			if (state.useSubagents) {
+				const tasks = extractTasks(content);
+				if (tasks.length === 0) {
+					ctx.ui.notify(`No uncompleted tasks found in checklist. Add tasks with "- [ ] Task name"`, "warning");
+					pauseLoop(ctx, state);
+					return;
+				}
+				pi.sendUserMessage(buildSubagentProgressPrompt(state, tasks));
+			} else {
+				pi.sendUserMessage(buildPrompt(state, content, false));
+			}
 		},
 
 		stop(_rest, ctx) {
@@ -391,9 +512,14 @@ export default function (pi: ExtensionAPI) {
 				return;
 			}
 
-			const needsReflection =
-				state.reflectEvery > 0 && state.iteration > 1 && (state.iteration - 1) % state.reflectEvery === 0;
-			pi.sendUserMessage(buildPrompt(state, content, needsReflection));
+			if (state.useSubagents) {
+				const tasks = extractTasks(content);
+				pi.sendUserMessage(buildSubagentProgressPrompt(state, tasks));
+			} else {
+				const needsReflection =
+					state.reflectEvery > 0 && state.iteration > 1 && (state.iteration - 1) % state.reflectEvery === 0;
+				pi.sendUserMessage(buildPrompt(state, content, needsReflection));
+			}
 		},
 
 		status(_rest, ctx) {
@@ -547,12 +673,15 @@ Options:
   --items-per-iteration N  Suggest N items per turn (prompt hint)
   --reflect-every N        Reflect every N iterations
   --max-iterations N       Stop after N iterations (default 50)
+  --use-subagents          Delegate each task to a separate subagent thread
+  --subagent-agent NAME    Name of subagent to use (default: 'default')
 
 To stop: press ESC to interrupt, then run /ralph-stop when idle
 
 Examples:
   /ralph start my-feature
-  /ralph start review --items-per-iteration 5 --reflect-every 10`;
+  /ralph start review --items-per-iteration 5 --reflect-every 10
+  /ralph start tasks --use-subagents --subagent-agent default`;
 
 	pi.registerCommand("ralph", {
 		description: "Ralph Wiggum - long-running development loops",
@@ -608,6 +737,12 @@ Examples:
 			itemsPerIteration: Type.Optional(Type.Number({ description: "Suggest N items per turn (0 = no limit)" })),
 			reflectEvery: Type.Optional(Type.Number({ description: "Reflect every N iterations" })),
 			maxIterations: Type.Optional(Type.Number({ description: "Max iterations (default: 50)", default: 50 })),
+			useSubagents: Type.Optional(
+				Type.Boolean({ description: "Delegate each task to a separate subagent thread (default: false)" }),
+			),
+			subagentAgent: Type.Optional(
+				Type.String({ description: "Name of subagent to use in subagent mode (default: 'default')" }),
+			),
 		}),
 		async execute(_toolCallId, params, _onUpdate, ctx) {
 			const loopName = sanitize(params.name);
@@ -633,18 +768,47 @@ Examples:
 				status: "active",
 				startedAt: new Date().toISOString(),
 				lastReflectionAt: 0,
+				useSubagents: params.useSubagents ?? false,
+				subagentAgent: params.subagentAgent ?? "default",
+				currentTaskIndex: 0,
+				subagentResults: [],
 			};
 
 			saveState(ctx, state);
 			currentLoop = loopName;
 			updateUI(ctx);
 
-			pi.sendUserMessage(buildPrompt(state, params.taskContent, false), { deliverAs: "followUp" });
-
-			return {
-				content: [{ type: "text", text: `Started loop "${loopName}" (max ${state.maxIterations} iterations).` }],
-				details: {},
-			};
+			if (state.useSubagents) {
+				const tasks = extractTasks(params.taskContent);
+				if (tasks.length === 0) {
+					pauseLoop(ctx, state);
+					return {
+						content: [
+							{
+								type: "text",
+								text: `Error: No uncompleted tasks found in checklist. Add tasks with "- [ ] Task name"`,
+							},
+						],
+						details: {},
+					};
+				}
+				pi.sendUserMessage(buildSubagentProgressPrompt(state, tasks), { deliverAs: "followUp" });
+				return {
+					content: [
+						{
+							type: "text",
+							text: `Started subagent loop "${loopName}" with ${tasks.length} tasks (agent: ${state.subagentAgent}).`,
+						},
+					],
+					details: {},
+				};
+			} else {
+				pi.sendUserMessage(buildPrompt(state, params.taskContent, false), { deliverAs: "followUp" });
+				return {
+					content: [{ type: "text", text: `Started loop "${loopName}" (max ${state.maxIterations} iterations).` }],
+					details: {},
+				};
+			}
 		},
 	});
 
@@ -671,6 +835,68 @@ Examples:
 				};
 			}
 
+			const content = tryRead(path.resolve(ctx.cwd, state.taskFile));
+			if (!content) {
+				pauseLoop(ctx, state);
+				return { content: [{ type: "text", text: `Error: Could not read task file: ${state.taskFile}` }], details: {} };
+			}
+
+			// Handle subagent mode
+			if (state.useSubagents) {
+				const tasks = extractTasks(content);
+
+				if (state.currentTaskIndex >= tasks.length) {
+					// All tasks complete
+					completeLoop(
+						ctx,
+						state,
+						`───────────────────────────────────────────────────────────────────────
+✅ RALPH LOOP COMPLETE: ${state.name} | All ${tasks.length} tasks completed via subagents
+───────────────────────────────────────────────────────────────────────`,
+					);
+					return {
+						content: [{ type: "text", text: `All ${tasks.length} tasks complete. Loop finished.` }],
+						details: {},
+					};
+				}
+
+				const completedTask = tasks[state.currentTaskIndex];
+				
+				// Record that task was completed
+				state.subagentResults.push({
+					taskIndex: state.currentTaskIndex,
+					taskDescription: completedTask,
+					success: true,
+					output: "Delegated to subagent",
+					attempts: 1,
+				});
+
+				// Move to next task
+				state.currentTaskIndex++;
+				state.iteration++;
+				saveState(ctx, state);
+				updateUI(ctx);
+
+				// Re-read task file to get updated checklist
+				const updatedContent = tryRead(path.resolve(ctx.cwd, state.taskFile)) || content;
+				const updatedTasks = extractTasks(updatedContent);
+
+				// Queue next task prompt
+				pi.sendUserMessage(buildSubagentProgressPrompt(state, updatedTasks), { deliverAs: "followUp" });
+
+				const taskNum = state.currentTaskIndex;
+				return {
+					content: [
+						{
+							type: "text",
+							text: `Task ${taskNum}/${tasks.length} recorded. Next task queued (${state.currentTaskIndex + 1}/${updatedTasks.length} remaining).`,
+						},
+					],
+					details: {},
+				};
+			}
+
+			// Normal (non-subagent) mode
 			// Increment iteration
 			state.iteration++;
 
@@ -691,12 +917,6 @@ Examples:
 
 			saveState(ctx, state);
 			updateUI(ctx);
-
-			const content = tryRead(path.resolve(ctx.cwd, state.taskFile));
-			if (!content) {
-				pauseLoop(ctx, state);
-				return { content: [{ type: "text", text: `Error: Could not read task file: ${state.taskFile}` }], details: {} };
-			}
 
 			// Queue next iteration - use followUp so user can still interrupt
 			pi.sendUserMessage(buildPrompt(state, content, needsReflection), { deliverAs: "followUp" });

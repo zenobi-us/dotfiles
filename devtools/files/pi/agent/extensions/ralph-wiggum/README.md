@@ -48,6 +48,8 @@ If you hit `esc`, you can run `/ralph-stop` to clear the loop. Alternatively, ju
 | `--max-iterations N` | Stop after N iterations (default 50) |
 | `--items-per-iteration N` | Suggest N items per turn (prompt hint) |
 | `--reflect-every N` | Reflect every N iterations |
+| `--use-subagents` | Delegate each task to a separate subagent thread |
+| `--subagent-agent NAME` | Name of subagent to use (default: 'default') |
 
 ## Agent Tool
 
@@ -62,6 +64,56 @@ ralph_start({
   reflectEvery: 10
 })
 ```
+
+## Subagent Mode
+
+Delegate each checklist task to a separate subagent thread for isolated execution:
+
+```bash
+# Start with subagent delegation
+/ralph start my-tasks --use-subagents
+
+# Use a specific subagent
+/ralph start security-review --use-subagents --subagent-agent security-auditor
+```
+
+Or via the tool:
+
+```
+ralph_start({
+  name: "feature-tasks",
+  taskContent: "# Features\n\n## Checklist\n- [ ] Add login\n- [ ] Add logout",
+  useSubagents: true,
+  subagentAgent: "default"
+})
+```
+
+**How it works:**
+1. Extracts uncompleted checklist items (`- [ ] Task name`)
+2. Each task is delegated to a fresh subagent thread
+3. Subagent completes the task and marks it done (`- [x] Task name`)
+4. Main loop tracks progress and orchestrates execution
+5. Loop completes when all checklist items are done
+
+**Benefits:**
+- Fresh context for each task (no context pollution)
+- Automated task tracking and completion
+- Retry logic for failed tasks
+- Clear progress reporting
+
+## Documentation
+
+### Core Documentation
+- [Main README](./README.md) - This file, overview and basic usage
+- [Quick Reference](./QUICK_REFERENCE.md) - Quick command and usage reference
+
+### Subagent Mode
+- [Subagent Mode Guide](./SUBAGENT_MODE.md) - Detailed guide for using subagent delegation
+- [Subagent Mode Example](./examples/subagent-mode-example.md) - Complete authentication system example
+- [Architecture](./ARCHITECTURE.md) - System architecture and design diagrams
+
+### Testing
+- [Test Script](./test-subagent-mode.sh) - Shell script to test basic mechanics
 
 ## Credits
 
