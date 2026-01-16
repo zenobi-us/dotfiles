@@ -22,7 +22,7 @@ import { StringEnum } from "@mariozechner/pi-ai";
 import { type ExtensionAPI, getMarkdownTheme } from "@mariozechner/pi-coding-agent";
 import { Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
 import { Type } from "@sinclair/typebox";
-import { type AgentConfig, type AgentScope, discoverAgents } from "./agents.js";
+import { type AgentConfig, type AgentScope, discoverAgents, renderAgentList } from "./agents.js";
 
 const MAX_PARALLEL_TASKS = 8;
 const MAX_CONCURRENCY = 4;
@@ -141,7 +141,6 @@ interface UsageStats {
 
 interface SingleResult {
 	agent: string;
-	agentSource: "user" | "project" | "unknown";
 	task: string;
 	exitCode: number;
 	messages: Message[];
@@ -155,8 +154,6 @@ interface SingleResult {
 
 interface SubagentDetails {
 	mode: "single" | "parallel" | "chain";
-	agentScope: AgentScope;
-	projectAgentsDir: string | null;
 	results: SingleResult[];
 }
 
@@ -233,7 +230,6 @@ async function runSingleAgent(
 	if (!agent) {
 		return {
 			agent: agentName,
-			agentSource: "unknown",
 			task,
 			exitCode: 1,
 			messages: [],
@@ -252,7 +248,6 @@ async function runSingleAgent(
 
 	const currentResult: SingleResult = {
 		agent: agentName,
-		agentSource: agent.source,
 		task,
 		exitCode: 0,
 		messages: [],
@@ -398,9 +393,6 @@ const SubagentParams = Type.Object({
 	tasks: Type.Optional(Type.Array(TaskItem, { description: "Array of {agent, task} for parallel execution" })),
 	chain: Type.Optional(Type.Array(ChainItem, { description: "Array of {agent, task} for sequential execution" })),
 	agentScope: Type.Optional(AgentScopeSchema),
-	confirmProjectAgents: Type.Optional(
-		Type.Boolean({ description: "Prompt before running project-local agents. Default: true.", default: true }),
-	),
 	cwd: Type.Optional(Type.String({ description: "Working directory for the agent process (single mode)" })),
 });
 
@@ -417,10 +409,8 @@ export default function (pi: ExtensionAPI) {
 		parameters: SubagentParams,
 
 		async execute(_toolCallId, params, onUpdate, ctx, signal) {
-			const agentScope: AgentScope = params.agentScope ?? "user";
-			const discovery = discoverAgents(ctx.cwd, agentScope);
+			const discovery = discoverAgents(ctx.cwd);
 			const agents = discovery.agents;
-			const confirmProjectAgents = params.confirmProjectAgents ?? true;
 
 			const hasChain = (params.chain?.length ?? 0) > 0;
 			const hasTasks = (params.tasks?.length ?? 0) > 0;
@@ -429,15 +419,13 @@ export default function (pi: ExtensionAPI) {
 
 			const makeDetails =
 				(mode: "single" | "parallel" | "chain") =>
-				(results: SingleResult[]): SubagentDetails => ({
-					mode,
-					agentScope,
-					projectAgentsDir: discovery.projectAgentsDir,
-					results,
-				});
+					(results: SingleResult[]): SubagentDetails => ({
+						mode,
+						results,
+					});
 
 			if (modeCount !== 1) {
-				const available = agents.map((a) => `${a.name} (${a.source})`).join(", ") || "none";
+				const available = renderAgentList(agents)
 				return {
 					content: [
 						{
@@ -447,31 +435,6 @@ export default function (pi: ExtensionAPI) {
 					],
 					details: makeDetails("single")([]),
 				};
-			}
-
-			if ((agentScope === "project" || agentScope === "both") && confirmProjectAgents && ctx.hasUI) {
-				const requestedAgentNames = new Set<string>();
-				if (params.chain) for (const step of params.chain) requestedAgentNames.add(step.agent);
-				if (params.tasks) for (const t of params.tasks) requestedAgentNames.add(t.agent);
-				if (params.agent) requestedAgentNames.add(params.agent);
-
-				const projectAgentsRequested = Array.from(requestedAgentNames)
-					.map((name) => agents.find((a) => a.name === name))
-					.filter((a): a is AgentConfig => a?.source === "project");
-
-				if (projectAgentsRequested.length > 0) {
-					const names = projectAgentsRequested.map((a) => a.name).join(", ");
-					const dir = discovery.projectAgentsDir ?? "(unknown)";
-					const ok = await ctx.ui.confirm(
-						"Run project-local agents?",
-						`Agents: ${names}\nSource: ${dir}\n\nProject agents are repo-controlled. Only continue for trusted repositories.`,
-					);
-					if (!ok)
-						return {
-							content: [{ type: "text", text: "Canceled: project-local agents not approved." }],
-							details: makeDetails(hasChain ? "chain" : hasTasks ? "parallel" : "single")([]),
-						};
-				}
 			}
 
 			if (params.chain && params.chain.length > 0) {
@@ -485,16 +448,16 @@ export default function (pi: ExtensionAPI) {
 					// Create update callback that includes all previous results
 					const chainUpdate: OnUpdateCallback | undefined = onUpdate
 						? (partial) => {
-								// Combine completed results with current streaming result
-								const currentResult = partial.details?.results[0];
-								if (currentResult) {
-									const allResults = [...results, currentResult];
-									onUpdate({
-										content: partial.content,
-										details: makeDetails("chain")(allResults),
-									});
-								}
+							// Combine completed results with current streaming result
+							const currentResult = partial.details?.results[0];
+							if (currentResult) {
+								const allResults = [...results, currentResult];
+								onUpdate({
+									content: partial.content,
+									details: makeDetails("chain")(allResults),
+								});
 							}
+						}
 						: undefined;
 
 					const result = await runSingleAgent(
@@ -548,7 +511,6 @@ export default function (pi: ExtensionAPI) {
 				for (let i = 0; i < params.tasks.length; i++) {
 					allResults[i] = {
 						agent: params.tasks[i].agent,
-						agentSource: "unknown",
 						task: params.tasks[i].task,
 						exitCode: -1, // -1 = still running
 						messages: [],
@@ -638,7 +600,7 @@ export default function (pi: ExtensionAPI) {
 				};
 			}
 
-			const available = agents.map((a) => `${a.name} (${a.source})`).join(", ") || "none";
+			const available = agents.map((a) => `${a.name}`).join(", ") || "none";
 			return {
 				content: [{ type: "text", text: `Invalid parameters. Available agents: ${available}` }],
 				details: makeDetails("single")([]),
@@ -723,7 +685,7 @@ export default function (pi: ExtensionAPI) {
 
 				if (expanded) {
 					const container = new Container();
-					let header = `${icon} ${theme.fg("toolTitle", theme.bold(r.agent))}${theme.fg("muted", ` (${r.agentSource})`)}`;
+					let header = `${icon} ${theme.fg("toolTitle", theme.bold(r.agent))}`;
 					if (isError && r.stopReason) header += ` ${theme.fg("error", `[${r.stopReason}]`)}`;
 					container.addChild(new Text(header, 0, 0));
 					if (isError && r.errorMessage)
@@ -759,7 +721,7 @@ export default function (pi: ExtensionAPI) {
 					return container;
 				}
 
-				let text = `${icon} ${theme.fg("toolTitle", theme.bold(r.agent))}${theme.fg("muted", ` (${r.agentSource})`)}`;
+				let text = `${icon} ${theme.fg("toolTitle", theme.bold(r.agent))}`;
 				if (isError && r.stopReason) text += ` ${theme.fg("error", `[${r.stopReason}]`)}`;
 				if (isError && r.errorMessage) text += `\n${theme.fg("error", `Error: ${r.errorMessage}`)}`;
 				else if (displayItems.length === 0) text += `\n${theme.fg("muted", "(no output)")}`;
@@ -794,9 +756,9 @@ export default function (pi: ExtensionAPI) {
 					container.addChild(
 						new Text(
 							icon +
-								" " +
-								theme.fg("toolTitle", theme.bold("chain ")) +
-								theme.fg("accent", `${successCount}/${details.results.length} steps`),
+							" " +
+							theme.fg("toolTitle", theme.bold("chain ")) +
+							theme.fg("accent", `${successCount}/${details.results.length} steps`),
 							0,
 							0,
 						),
@@ -1190,51 +1152,6 @@ You have access to all default tools for reading, writing, executing commands, a
 		}
 	}
 
-	/**
-	 * Format agent list for display in /subagent list output
-	 * 
-	 * @param agents - Array of discovered agent configurations
-	 * @param verbose - Whether to show full descriptions and file paths
-	 * @returns Formatted string with agent list grouped by source (user/project)
-	 */
-	function formatAgentList(agents: AgentConfig[], verbose: boolean): string {
-		if (agents.length === 0) {
-			return "(no agents)";
-		}
-
-		const userAgents = agents.filter((a) => a.source === "user");
-		const projectAgents = agents.filter((a) => a.source === "project");
-
-		const sections: string[] = [];
-
-		const formatAgent = (agent: AgentConfig) => {
-			if (verbose) {
-				const lines: string[] = [
-					`  • ${agent.name}`,
-					`    Description: ${agent.description}`,
-					`    Model: ${agent.model || "(default)"}`,
-					`    Tools: ${agent.tools.length > 0 ? agent.tools.join(", ") : "(none)"}`,
-					`    File: ${agent.filePath}`,
-				];
-				return lines.join("\n");
-			}
-			return `  • ${agent.name} - ${agent.description}`;
-		};
-
-		if (userAgents.length > 0) {
-			const header = verbose ? "User agents (~/.pi/agent/agents/):" : "User agents:";
-			sections.push(header);
-			sections.push(userAgents.map(formatAgent).join("\n"));
-		}
-
-		if (projectAgents.length > 0) {
-			const header = verbose ? "\nProject agents (.pi/agents/):" : "\nProject agents:";
-			sections.push(header);
-			sections.push(projectAgents.map(formatAgent).join("\n"));
-		}
-
-		return sections.join("\n");
-	}
 
 	pi.registerCommand("subagent", {
 		description: "Manage agents: list, add, edit",
@@ -1244,14 +1161,11 @@ You have access to all default tools for reading, writing, executing commands, a
 
 			if (cmd === "list") {
 				const { scope, verbose } = parseListArgs(restStr);
-				const discovery = discoverAgents(ctx.cwd, scope);
+				const discovery = discoverAgents(ctx.cwd);
 				const agents = discovery.agents;
 
 				// Sort agents alphabetically by name within their groups
 				agents.sort((a, b) => {
-					if (a.source !== b.source) {
-						return a.source === "user" ? -1 : 1;
-					}
 					return a.name.localeCompare(b.name);
 				});
 
@@ -1260,7 +1174,7 @@ You have access to all default tools for reading, writing, executing commands, a
 				if (agents.length === 0) {
 					message += `No agents found for scope: ${scope}`;
 				} else {
-					message += formatAgentList(agents, verbose);
+					message += renderAgentList(agents, { verbose });
 				}
 
 				ctx.ui.notify(message, "info");
@@ -1330,25 +1244,22 @@ Next steps:
 				}
 
 				// Discover agents
-				const discovery = discoverAgents(ctx.cwd, scope);
+				const discovery = discoverAgents(ctx.cwd);
 				const agent = discovery.agents.find((a) => a.name === name);
 
 				if (!agent) {
 					// Show error with available agents
-					const available = discovery.agents.map((a) => `  • ${a.name} (${a.source})`).join("\n");
-					const message = `Agent '${name}' not found in scope: ${scope}\n\n${
-						available ? `Available agents:\n${available}\n\n` : "No agents found.\n\n"
-					}Use /subagent list for more details.`;
+					const available = discovery.agents.map((a) => `  • ${a.name}`).join("\n");
+					const message = `Agent '${name}' not found in scope: ${scope}\n\n${available ? `Available agents:\n${available}\n\n` : "No agents found.\n\n"
+						}Use /subagent list for more details.`;
 					ctx.ui.notify(message, "error");
 					return;
 				}
 
 				// Show file path for editing
-				const relativePath =
-					agent.source === "user" ? agent.filePath.replace(os.homedir(), "~") : agent.filePath;
+				const relativePath = path.relative(ctx.cwd, agent.filePath);
 
 				const message = `Opening agent: ${agent.name}
-Scope: ${agent.source}
 Location: ${relativePath}
 
 Edit this file with your preferred editor, then save.

@@ -1,156 +1,226 @@
 /**
  * Agent discovery and configuration
  */
-
+import Bun, { Glob } from "bun";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
+import dedent from "dedent";
 
 export type AgentScope = "user" | "project" | "both";
 
 export interface AgentConfig {
-	name: string;
-	description: string;
-	tools?: string[];
-	model?: string;
-	systemPrompt: string;
-	source: "user" | "project";
-	filePath: string;
+  name: string;
+  description: string;
+  tools?: string[];
+  model?: string;
+  systemPrompt: string;
+  filePath: string;
 }
 
 export interface AgentDiscoveryResult {
-	agents: AgentConfig[];
-	projectAgentsDir: string | null;
+  agents: AgentConfig[];
 }
 
-function parseFrontmatter(content: string): { frontmatter: Record<string, string>; body: string } {
-	const frontmatter: Record<string, string> = {};
-	const normalized = content.replace(/\r\n/g, "\n");
+function parseFrontmatter(content: string): {
+  frontmatter: Record<string, string>;
+  body: string;
+} {
+  const frontmatter: Record<string, string> = {};
+  const normalized = content.replace(/\r\n/g, "\n");
 
-	if (!normalized.startsWith("---")) {
-		return { frontmatter, body: normalized };
-	}
+  if (!normalized.startsWith("---")) {
+    return { frontmatter, body: normalized };
+  }
 
-	const endIndex = normalized.indexOf("\n---", 3);
-	if (endIndex === -1) {
-		return { frontmatter, body: normalized };
-	}
+  const endIndex = normalized.indexOf("\n---", 3);
+  if (endIndex === -1) {
+    return { frontmatter, body: normalized };
+  }
 
-	const frontmatterBlock = normalized.slice(4, endIndex);
-	const body = normalized.slice(endIndex + 4).trim();
+  const frontmatterBlock = normalized.slice(4, endIndex);
+  const body = normalized.slice(endIndex + 4).trim();
 
-	for (const line of frontmatterBlock.split("\n")) {
-		const match = line.match(/^([\w-]+):\s*(.*)$/);
-		if (match) {
-			let value = match[2].trim();
-			if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-				value = value.slice(1, -1);
-			}
-			frontmatter[match[1]] = value;
-		}
-	}
+  for (const line of frontmatterBlock.split("\n")) {
+    const match = line.match(/^([\w-]+):\s*(.*)$/);
+    if (match) {
+      let value = match[2].trim();
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+      frontmatter[match[1]] = value;
+    }
+  }
 
-	return { frontmatter, body };
+  return { frontmatter, body };
 }
 
-function loadAgentsFromDir(dir: string, source: "user" | "project"): AgentConfig[] {
-	const agents: AgentConfig[] = [];
-
-	if (!fs.existsSync(dir)) {
-		return agents;
-	}
-
-	let entries: fs.Dirent[];
-	try {
-		entries = fs.readdirSync(dir, { withFileTypes: true });
-	} catch {
-		return agents;
-	}
-
-	for (const entry of entries) {
-		if (!entry.name.endsWith(".md")) continue;
-		if (!entry.isFile() && !entry.isSymbolicLink()) continue;
-
-		const filePath = path.join(dir, entry.name);
-		let content: string;
-		try {
-			content = fs.readFileSync(filePath, "utf-8");
-		} catch {
-			continue;
-		}
-
-		const { frontmatter, body } = parseFrontmatter(content);
-
-		if (!frontmatter.name || !frontmatter.description) {
-			continue;
-		}
-
-		const tools = frontmatter.tools
-			?.split(",")
-			.map((t) => t.trim())
-			.filter(Boolean);
-
-		agents.push({
-			name: frontmatter.name,
-			description: frontmatter.description,
-			tools: tools && tools.length > 0 ? tools : undefined,
-			model: frontmatter.model,
-			systemPrompt: body,
-			source,
-			filePath,
-		});
-	}
-
-	return agents;
+/**
+ * Summarise the content of an agent file to a brief description.
+ *
+ * This simply returns the first X lines for now.
+ */
+function summariseAgentContent(content: string, lines: number = 1): string {
+  return content.trim().split("\n").slice(0, lines).join(" ").trim();
 }
+
+function loadAgent(filePath: string): AgentConfig | null {
+  if (!filePath.endsWith(".md")) return null
+
+  let content: string;
+  try {
+    content = fs.readFileSync(filePath, "utf-8");
+  } catch {
+    return null;
+  }
+
+  const parsed = parseFrontmatter(content);
+
+  const tools = parsed.frontmatter.tools
+    ?.split(",")
+    .map((t) => t.trim())
+    .filter(Boolean);
+
+  const name = parsed.frontmatter.name || path.basename(filePath, ".md");
+  const description = parsed.frontmatter.description || summariseAgentContent(parsed.body) || "No description";
+
+  return {
+    name,
+    description,
+    tools: tools && tools.length > 0 ? tools : undefined,
+    model: parsed.frontmatter.model,
+    systemPrompt: parsed.body,
+    filePath,
+  }
+}
+
 
 function isDirectory(p: string): boolean {
-	try {
-		return fs.statSync(p).isDirectory();
-	} catch {
-		return false;
-	}
+  try {
+    return fs.statSync(p).isDirectory();
+  } catch {
+    return false;
+  }
 }
 
-function findNearestProjectAgentsDir(cwd: string): string | null {
-	let currentDir = cwd;
-	while (true) {
-		const candidate = path.join(currentDir, ".pi", "agents");
-		if (isDirectory(candidate)) return candidate;
+const NonGobalAgentsGlob = new Bun.Glob(".pi/agents/**/*.md");
+const GlobalAgentsGlob = new Bun.Glob(
+  path.join(os.homedir(), ".pi", "agent", "agents", "**/*.md"),
+);
 
-		const parentDir = path.dirname(currentDir);
-		if (parentDir === currentDir) return null;
-		currentDir = parentDir;
-	}
+
+/**
+ * Find a path by searching upwards from a starting directory.
+ */
+function findFirstUp(startDir: string, targetPath: string): string | undefined {
+  let currentDir = path.resolve(startDir);
+
+  while (true) {
+    const potentialPath = path.join(currentDir, targetPath);
+    if (fs.existsSync(potentialPath)) {
+      return potentialPath;
+    }
+
+    const parentDir = path.dirname(currentDir);
+    if (parentDir === currentDir) {
+      break;
+    }
+    currentDir = parentDir;
+  }
 }
 
-export function discoverAgents(cwd: string, scope: AgentScope): AgentDiscoveryResult {
-	const userDir = path.join(os.homedir(), ".pi", "agent", "agents");
-	const projectAgentsDir = findNearestProjectAgentsDir(cwd);
+/**
+ * Start at a dir and traverse upwards to find occurances of a path
+  * and collect them.
+  * Finish at a boundary path
+  */
+function findAllUp(
+  startDir: string,
+  targeGlob: Glob,
+  boundaryPaths: string[],
+): string[] {
+  const foundPaths: string[][] = [];
+  let currentDir = path.resolve(startDir);
+  const isBoundary = (p: string) => boundaryPaths.some((bp) => p === bp);
 
-	const userAgents = scope === "project" ? [] : loadAgentsFromDir(userDir, "user");
-	const projectAgents = scope === "user" || !projectAgentsDir ? [] : loadAgentsFromDir(projectAgentsDir, "project");
+  while (true) {
+    const matches = Array.from(targeGlob.scanSync(currentDir));
+    foundPaths.push(matches);
 
-	const agentMap = new Map<string, AgentConfig>();
+    // Stop if current dir is a boundary 
+    if (isBoundary(currentDir)) {
+      break;
+    }
 
-	if (scope === "both") {
-		for (const agent of userAgents) agentMap.set(agent.name, agent);
-		for (const agent of projectAgents) agentMap.set(agent.name, agent);
-	} else if (scope === "user") {
-		for (const agent of userAgents) agentMap.set(agent.name, agent);
-	} else {
-		for (const agent of projectAgents) agentMap.set(agent.name, agent);
-	}
+    const parentDir = path.dirname(currentDir);
+    // Stop if next dir is same as current or is a boundary
+    if (parentDir === currentDir || isBoundary(parentDir)) {
+      break;
+    }
+    currentDir = parentDir;
+  }
 
-	return { agents: Array.from(agentMap.values()), projectAgentsDir };
+  return foundPaths.flat();
 }
 
-export function formatAgentList(agents: AgentConfig[], maxItems: number): { text: string; remaining: number } {
-	if (agents.length === 0) return { text: "none", remaining: 0 };
-	const listed = agents.slice(0, maxItems);
-	const remaining = agents.length - listed.length;
-	return {
-		text: listed.map((a) => `${a.name} (${a.source}): ${a.description}`).join("; "),
-		remaining,
-	};
+function getGitRootDir(startDir: string): string | undefined {
+  return findFirstUp(startDir, ".git");
 }
+
+
+export function discoverAgents(cwd: string): AgentDiscoveryResult {
+
+  const agentMap = new Map<string, AgentConfig>();
+  const paths = [
+    ...GlobalAgentsGlob.scanSync(path.join(os.homedir(), ".pi", "agent", "agents")),
+    ...findAllUp(
+      cwd,
+      NonGobalAgentsGlob,
+      [
+        os.homedir(),
+        path.sep,
+        getGitRootDir(cwd)
+      ].filter(Boolean) as string[]),
+  ]
+
+  for (const agentFile of paths) {
+    const file = path.resolve(agentFile);
+    const agent = loadAgent(file);
+    if (!agent) continue;
+    agentMap.set(agent.name, agent);
+  }
+
+
+  return { agents: Array.from(agentMap.values()) };
+}
+
+export function renderAgentList(
+  agents: AgentConfig[],
+  options: { verbose?: boolean } = {},
+): string {
+  if (agents.length === 0) return "(No agents found)";
+
+  return agents
+    .map((a) => renderAgentListItem(a, options))
+    .join("\n");
+
+}
+
+export function renderAgentListItem(agent: AgentConfig, options: { verbose?: boolean } = {}): string {
+
+  if (!options.verbose) {
+    return `  • ${agent.name} - ${agent.description}`;
+  }
+
+  return dedent`
+  • ${agent.name}
+    Description: ${agent.description}
+    Model: ${agent.model || "(default)"}
+    Tools: ${agent.tools && agent.tools.length > 0 ? agent.tools.join(", ") : "(none)"}
+    File: ${agent.filePath}
+  `;
+}
+

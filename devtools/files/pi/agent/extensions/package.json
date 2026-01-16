@@ -12,10 +12,14 @@
   "license": "MIT",
   "peerDependencies": {
     "@mariozechner/pi-coding-agent": "*",
-    "@mariozechner/pi-agent-core": "*"
+    "@mariozechner/pi-agent-core": "*",
+    "@sinclair/typebox": "*"
   },
   "devDependencies": {
+    "dedent": "^0.7.0",
+    "bun-types": "latest",
     "@types/node": "^22.0.0",
+    "@types/dedent": "^0.7.0",
     "typescript": "^5.0.0"
   },
   "pi": {

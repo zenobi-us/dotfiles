@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext", "ES2022"],
-    "target": "ES2022",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "noImplicitAny": true,
     "allowImportingTsExtensions": true,
-    "esModuleInterop": true,
-    "types": ["bun", "node"]
+    "types": [
+      "bun-types"
+    ]
   }
 }
