@@ -16,17 +16,19 @@ import type { Message } from "@mariozechner/pi-ai";
 import { type ExtensionAPI, getMarkdownTheme } from "@mariozechner/pi-coding-agent";
 import { Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
 import { Type } from "@sinclair/typebox";
+import fg from "fast-glob";
+import path from "node:path";
+import fs from "node:fs";
+
 import { discoverAgents, renderAgentList } from "./agents.js";
 import { formatToolCall, formatUsageStats } from "./formatting.js";
 import { handleList, handleAdd, handleEdit, handlePaths, handleHelp } from "./commands/index.js";
-import fg from "fast-glob";
 import {
 	runSingleAgent,
 	type SingleResult,
 	type SubagentDetails,
 	type OnUpdateCallback,
 } from "./subagent.js";
-import path from "node:path";
 
 const MAX_PARALLEL_TASKS = 8;
 const MAX_CONCURRENCY = 4;
@@ -661,19 +663,25 @@ export default function (pi: ExtensionAPI) {
 					let promptContent = options.content;
 					const argList = args.split(/\s+/);
 
-					promptContent = promptContent.replace(/\$ARGUMENTS/g, args);
+					// Replace $ARGUMENTS with all arguments
+					promptContent = promptContent.replace(/\$ARGUMENTS\b/g, args);
+					
+					// Replace $@ with all arguments (fixed: @ is not a word char, so use lookahead)
+					promptContent = promptContent.replace(/\$@(?=\s|$)/g, args);
 
-					promptContent = promptContent.replace(/\$(\d+)/g, (_match, p1) => {
+					// Replace $1, $2, etc. with individual arguments
+					promptContent = promptContent.replace(/\$(\d+)\b/g, (_match, p1) => {
 						const index = parseInt(p1, 10) - 1;
 						return argList[index] || "";
 					});
 
+					// Replace ${@:N} with first N arguments
 					promptContent = promptContent.replace(/\$\{@:(\d+)\}/g, (_match, p1) => {
 						const count = parseInt(p1, 10);
 						return argList.slice(0, count).join(" ");
 					});
 
-					pi.sendUserMessage(promptContent, { toolCalls: true }, ctx);
+					pi.sendUserMessage(promptContent, { deliverAs: 'steer' });
 
 				}
 			}
@@ -681,7 +689,7 @@ export default function (pi: ExtensionAPI) {
 	}
 
 	fg.sync(path.join(__dirname, "prompts", "*.md")).forEach((promptPath) => {
-		const content = ctx.fs.readFileSync(promptPath, "utf-8");
+		const content = fs.readFileSync(promptPath, "utf-8");
 		createPromptCommand({ path: promptPath, content })
 	})
 }
