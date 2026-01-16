@@ -7,7 +7,7 @@
 import { Type } from "@sinclair/typebox";
 import { readFileSync, statSync } from "fs";
 import { extname, basename } from "path";
-import type { CustomToolFactory } from "@mariozechner/pi-coding-agent";
+import type { ExtensionFactory } from "@mariozechner/pi-coding-agent";
 
 const LARGE_FILE_THRESHOLD = 100 * 1024;
 const MAX_LINES_WITHOUT_EXTRACT = 200;
@@ -73,47 +73,49 @@ function extractStructure(content: string, ext: string): string {
   return `## File Preview (${total} lines)\n\n### First 10 lines:\n${lines.slice(0, 10).join("\n")}\n\n### Last 5 lines:\n${lines.slice(-5).join("\n")}`;
 }
 
-const factory: CustomToolFactory = (pi) => ({
-  name: "look_at",
-  label: "Look At",
-  description: `Extract key information from a file to save context tokens.
+const factory: ExtensionFactory = (pi) => {
+  pi.registerTool({
+    name: "look_at",
+    label: "Look At",
+    description: `Extract key information from a file to save context tokens.
 For large files, returns structure/outline instead of full content.
 Use when you need to understand a file without loading all content.`,
-  parameters: Type.Object({
-    filePath: Type.String({ description: "Path to the file" }),
-  }),
-  async execute(_toolCallId, params, _signal, _onUpdate) {
-    try {
-      const filePath = (params as { filePath: string }).filePath;
-      const stats = statSync(filePath);
-      const ext = extname(filePath).toLowerCase();
-      const name = basename(filePath);
-      const content = readFileSync(filePath, "utf-8");
-      const lines = content.split("\n");
+    parameters: Type.Object({
+      filePath: Type.String({ description: "Path to the file" }),
+    }),
+    async execute(_toolCallId, params, _onUpdate, _ctx, _signal) {
+      try {
+        const filePath = params.filePath;
+        const stats = statSync(filePath);
+        const ext = extname(filePath).toLowerCase();
+        const name = basename(filePath);
+        const content = readFileSync(filePath, "utf-8");
+        const lines = content.split("\n");
 
-      if (stats.size < LARGE_FILE_THRESHOLD && lines.length <= MAX_LINES_WITHOUT_EXTRACT) {
+        if (stats.size < LARGE_FILE_THRESHOLD && lines.length <= MAX_LINES_WITHOUT_EXTRACT) {
+          return {
+            content: [{ type: "text", text: `## ${name} (${lines.length} lines)\n\n${content}` }],
+            details: { full: true, lines: lines.length },
+          };
+        }
+
+        let output = `## ${name}\n**Size**: ${Math.round(stats.size / 1024)}KB | **Lines**: ${lines.length}\n\n`;
+        output += extractStructure(content, ext);
+        output += `\n\n---\n*Use Read tool with line offset/limit for specific sections*`;
+
         return {
-          content: [{ type: "text", text: `## ${name} (${lines.length} lines)\n\n${content}` }],
-          details: { full: true, lines: lines.length },
+          content: [{ type: "text", text: output }],
+          details: { full: false, lines: lines.length, size: stats.size },
+        };
+      } catch (e) {
+        return {
+          content: [{ type: "text", text: `Error: ${e instanceof Error ? e.message : String(e)}` }],
+          details: {},
+          isError: true,
         };
       }
-
-      let output = `## ${name}\n**Size**: ${Math.round(stats.size / 1024)}KB | **Lines**: ${lines.length}\n\n`;
-      output += extractStructure(content, ext);
-      output += `\n\n---\n*Use Read tool with line offset/limit for specific sections*`;
-
-      return {
-        content: [{ type: "text", text: output }],
-        details: { full: false, lines: lines.length, size: stats.size },
-      };
-    } catch (e) {
-      return {
-        content: [{ type: "text", text: `Error: ${e instanceof Error ? e.message : String(e)}` }],
-        details: {},
-        isError: true,
-      };
-    }
-  },
-});
+    },
+  });
+};
 
 export default factory;
