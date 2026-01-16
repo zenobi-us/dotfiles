@@ -56,13 +56,11 @@ done
 
 This tool executes a separate `pi` subprocess with a delegated system prompt and tool/model configuration.
 
-**Project-local agents** (`.pi/agents/*.md`) are repo-controlled prompts that can instruct the model to read files, run bash commands, etc.
+Agents are discovered from:
+- `~/.pi/agent/agents/*.md` - User-level agents (always loaded)
+- `.pi/agents/*.md` - Project-level agents (searched upward from current directory to git root)
 
-**Default behavior:** Only loads **user-level agents** from `~/.pi/agent/agents`.
-
-To enable project-local agents, pass `agentScope: "both"` (or `"project"`). Only do this for repositories you trust.
-
-When running interactively, the tool prompts for confirmation before running project-local agents. Set `confirmProjectAgents: false` to disable.
+Project-local agents can instruct the model to read files, run bash commands, etc. Only use agents from repositories you trust.
 
 ## Management Commands
 
@@ -70,21 +68,19 @@ The `/subagent` command provides management capabilities for creating and organi
 
 ### List Agents
 
-List available agents with optional filtering:
+List available agents:
 
 ```
-/subagent list [--scope user|project|both] [--verbose]
+/subagent list [--verbose]
 ```
 
 **Examples:**
 ```
 /subagent list
-/subagent list --scope user
-/subagent list --scope both --verbose
+/subagent list --verbose
 ```
 
 **Options:**
-- `--scope user|project|both` - Filter by agent location (default: `both`)
 - `--verbose` - Show full descriptions and file paths
 
 ### Add Agent
@@ -92,20 +88,17 @@ List available agents with optional filtering:
 Create a new agent definition from a template:
 
 ```
-/subagent add <name> [--scope user|project] [--template basic|scout|worker]
+/subagent add <name> [--template basic|scout|worker]
 ```
 
 **Examples:**
 ```
 /subagent add my-agent
-/subagent add my-scout --template scout --scope project
+/subagent add my-scout --template scout
 /subagent add analyzer --template worker
 ```
 
 **Options:**
-- `--scope user|project` - Where to create the agent (default: `user`)
-  - `user` - Creates in `~/.pi/agent/agents/` (available globally)
-  - `project` - Creates in `.pi/agents/` (project-specific)
 - `--template basic|scout|worker` - Agent template to use (default: `basic`)
   - `basic` - Minimal template with name, description, and system prompt
   - `scout` - Fast reconnaissance template with read/grep/find/bash tools
@@ -116,22 +109,21 @@ Create a new agent definition from a template:
 - Must start with a letter
 - Must end with a letter or number
 
+**Note:** Agents are always created in `~/.pi/agent/agents/` (user-level, available globally)
+
 ### Edit Agent
 
 Show the location of an existing agent for editing:
 
 ```
-/subagent edit <name> [--scope user|project|both]
+/subagent edit <name>
 ```
 
 **Examples:**
 ```
 /subagent edit scout
-/subagent edit my-agent --scope project
+/subagent edit my-agent
 ```
-
-**Options:**
-- `--scope user|project|both` - Where to search for the agent (default: `both`)
 
 The command displays the file path where the agent is defined. Use your preferred editor to modify the agent configuration and system prompt. Changes take effect on the next subagent invocation.
 
@@ -208,9 +200,9 @@ System prompt for the agent goes here.
 
 **Locations:**
 - `~/.pi/agent/agents/*.md` - User-level (always loaded)
-- `.pi/agents/*.md` - Project-level (only with `agentScope: "project"` or `"both"`)
+- `.pi/agents/*.md` - Project-level (searched upward from current directory to git root)
 
-Project agents override user agents with the same name when `agentScope: "both"`.
+Project agents override user agents with the same name.
 
 ## Sample Agents
 

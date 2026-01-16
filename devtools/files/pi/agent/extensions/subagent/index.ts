@@ -21,7 +21,7 @@ import type { Message } from "@mariozechner/pi-ai";
 import { type ExtensionAPI, getMarkdownTheme } from "@mariozechner/pi-coding-agent";
 import { Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
 import { Type } from "@sinclair/typebox";
-import { type AgentConfig, type AgentScope, discoverAgents, renderAgentList } from "./agents.js";
+import { type AgentConfig, discoverAgents, getAgentSearchPaths, renderAgentList } from "./agents.js";
 import { formatToolCall, formatUsageStats } from "./formatting.js";
 
 const MAX_PARALLEL_TASKS = 8;
@@ -816,65 +816,49 @@ export default function (pi: ExtensionAPI) {
 	/**
 	 * Parse command arguments for /subagent list
 	 * 
-	 * Extracts --scope and --verbose flags from argument string.
+	 * Extracts --verbose flag from argument string.
 	 * 
 	 * @param argsStr - Raw argument string from command
-	 * @returns Parsed scope (user/project/both) and verbose flag
+	 * @returns Parsed verbose flag
 	 * @example
-	 * parseListArgs("--scope user --verbose")
-	 * // => { scope: "user", verbose: true }
+	 * parseListArgs("--verbose")
+	 * // => { verbose: true }
 	 */
-	function parseListArgs(argsStr: string): { scope: AgentScope; verbose: boolean } {
+	function parseListArgs(argsStr: string): { verbose: boolean } {
 		const tokens = argsStr.trim().split(/\s+/);
-		let scope: AgentScope = "both";
 		let verbose = false;
 
-		for (let i = 0; i < tokens.length; i++) {
-			const tok = tokens[i];
-			if (tok === "--scope" && tokens[i + 1]) {
-				const val = tokens[i + 1];
-				if (val === "user" || val === "project" || val === "both") {
-					scope = val;
-				}
-				i++;
-			} else if (tok === "--verbose" || tok === "-v") {
+		for (const tok of tokens) {
+			if (tok === "--verbose" || tok === "-v") {
 				verbose = true;
 			}
 		}
 
-		return { scope, verbose };
+		return { verbose };
 	}
 
 	/**
 	 * Parse command arguments for /subagent add
 	 * 
-	 * Extracts agent name and optional --scope and --template flags.
+	 * Extracts agent name and optional --template flag.
 	 * 
 	 * @param argsStr - Raw argument string from command
-	 * @returns Parsed name, scope (user/project), and template (basic/scout/worker)
+	 * @returns Parsed name and template (basic/scout/worker)
 	 * @example
-	 * parseAddArgs("my-agent --scope project --template scout")
-	 * // => { name: "my-agent", scope: "project", template: "scout" }
+	 * parseAddArgs("my-agent --template scout")
+	 * // => { name: "my-agent", template: "scout" }
 	 */
 	function parseAddArgs(argsStr: string): {
 		name: string;
-		scope: "user" | "project";
 		template: "basic" | "scout" | "worker";
 	} {
 		const tokens = argsStr.trim().split(/\s+/);
 		let name = "";
-		let scope: "user" | "project" = "user";
 		let template: "basic" | "scout" | "worker" = "basic";
 
 		for (let i = 0; i < tokens.length; i++) {
 			const tok = tokens[i];
-			if (tok === "--scope" && tokens[i + 1]) {
-				const val = tokens[i + 1];
-				if (val === "user" || val === "project") {
-					scope = val;
-				}
-				i++;
-			} else if (tok === "--template" && tokens[i + 1]) {
+			if (tok === "--template" && tokens[i + 1]) {
 				const val = tokens[i + 1];
 				if (val === "basic" || val === "scout" || val === "worker") {
 					template = val;
@@ -885,39 +869,31 @@ export default function (pi: ExtensionAPI) {
 			}
 		}
 
-		return { name, scope, template };
+		return { name, template };
 	}
 
 	/**
 	 * Parse command arguments for /subagent edit
 	 * 
-	 * Extracts agent name and optional --scope flag.
+	 * Extracts agent name from argument string.
 	 * 
 	 * @param argsStr - Raw argument string from command
-	 * @returns Parsed name and scope (user/project/both)
+	 * @returns Parsed name
 	 * @example
-	 * parseEditArgs("my-agent --scope user")
-	 * // => { name: "my-agent", scope: "user" }
+	 * parseEditArgs("my-agent")
+	 * // => { name: "my-agent" }
 	 */
-	function parseEditArgs(argsStr: string): { name: string; scope: AgentScope } {
+	function parseEditArgs(argsStr: string): { name: string } {
 		const tokens = argsStr.trim().split(/\s+/);
 		let name = "";
-		let scope: AgentScope = "both";
 
-		for (let i = 0; i < tokens.length; i++) {
-			const tok = tokens[i];
-			if (tok === "--scope" && tokens[i + 1]) {
-				const val = tokens[i + 1];
-				if (val === "user" || val === "project" || val === "both") {
-					scope = val;
-				}
-				i++;
-			} else if (!tok.startsWith("--") && !name) {
+		for (const tok of tokens) {
+			if (!tok.startsWith("--") && !name) {
 				name = tok;
 			}
 		}
 
-		return { name, scope };
+		return { name };
 	}
 
 	/**
@@ -1047,7 +1023,7 @@ You have access to all default tools for reading, writing, executing commands, a
 			const restStr = rest.join(" ");
 
 			if (cmd === "list") {
-				const { scope, verbose } = parseListArgs(restStr);
+				const { verbose } = parseListArgs(restStr);
 				const discovery = discoverAgents(ctx.cwd);
 				const agents = discovery.agents;
 
@@ -1059,14 +1035,14 @@ You have access to all default tools for reading, writing, executing commands, a
 				let message = `Available agents (${agents.length}):\n\n`;
 
 				if (agents.length === 0) {
-					message += `No agents found for scope: ${scope}`;
+					message += "No agents found";
 				} else {
 					message += renderAgentList(agents, { verbose });
 				}
 
 				ctx.ui.notify(message, "info");
 			} else if (cmd === "add") {
-				const { name, scope, template } = parseAddArgs(restStr);
+				const { name, template } = parseAddArgs(restStr);
 
 				// Validate name
 				const validation = validateAgentName(name);
@@ -1075,13 +1051,13 @@ You have access to all default tools for reading, writing, executing commands, a
 					return;
 				}
 
-				// Get target path
-				const agentPath = getAgentPath(name, scope, ctx.cwd);
+				// Get target path (always user-level)
+				const agentPath = getAgentPath(name, "user", ctx.cwd);
 				const agentDir = path.dirname(agentPath);
 
 				// Check if agent already exists
 				if (fs.existsSync(agentPath)) {
-					const relativePath = scope === "user" ? agentPath.replace(os.homedir(), "~") : agentPath;
+					const relativePath = agentPath.replace(os.homedir(), "~");
 					ctx.ui.notify(
 						`Error: Agent '${name}' already exists at ${relativePath}\n\nUse /subagent edit ${name} to modify it.`,
 						"error",
@@ -1107,9 +1083,8 @@ You have access to all default tools for reading, writing, executing commands, a
 				}
 
 				// Success message
-				const relativePath = scope === "user" ? agentPath.replace(os.homedir(), "~") : agentPath;
+				const relativePath = agentPath.replace(os.homedir(), "~");
 				const message = `Creating agent: ${name}
-Scope: ${scope}
 Template: ${template}
 Location: ${relativePath}
 
@@ -1122,11 +1097,11 @@ Next steps:
 
 				ctx.ui.notify(message, "info");
 			} else if (cmd === "edit") {
-				const { name, scope } = parseEditArgs(restStr);
+				const { name } = parseEditArgs(restStr);
 
 				// Validate name
 				if (!name) {
-					ctx.ui.notify("Error: Agent name is required\n\nUsage: /subagent edit <name> [--scope user|project|both]", "error");
+					ctx.ui.notify("Error: Agent name is required\n\nUsage: /subagent edit <name>", "error");
 					return;
 				}
 
@@ -1137,7 +1112,7 @@ Next steps:
 				if (!agent) {
 					// Show error with available agents
 					const available = discovery.agents.map((a) => `  • ${a.name}`).join("\n");
-					const message = `Agent '${name}' not found in scope: ${scope}\n\n${available ? `Available agents:\n${available}\n\n` : "No agents found.\n\n"
+					const message = `Agent '${name}' not found\n\n${available ? `Available agents:\n${available}\n\n` : "No agents found.\n\n"
 						}Use /subagent list for more details.`;
 					ctx.ui.notify(message, "error");
 					return;
@@ -1154,27 +1129,59 @@ Edit this file with your preferred editor, then save.
 Changes will take effect on the next subagent invocation.`;
 
 				ctx.ui.notify(message, "info");
+			} else if (cmd === "paths") {
+				// Display agent search paths
+				const searchPaths = getAgentSearchPaths(ctx.cwd);
+				
+				if (searchPaths.length === 0) {
+					ctx.ui.notify("No agent directories found.\n\nCreate one with:\n  mkdir -p ~/.pi/agent/agents", "info");
+					return;
+				}
+				
+				let message = `Agent search paths (${searchPaths.length}):\n\n`;
+				
+				for (const searchPath of searchPaths) {
+					const relativePath = searchPath.replace(os.homedir(), "~");
+					const exists = fs.existsSync(searchPath);
+					const agentCount = exists 
+						? fs.readdirSync(searchPath).filter(f => f.endsWith('.md')).length 
+						: 0;
+					
+					const status = exists 
+						? `${agentCount} agent${agentCount !== 1 ? 's' : ''}`
+						: "(not found)";
+					
+					message += `  • ${relativePath}\n    ${status}\n\n`;
+				}
+				
+				message += "Agents are loaded in priority order (first match wins).\n\n";
+				message += "To create a new directory:\n  mkdir -p .pi/agents  # project-local\n  mkdir -p ~/.pi/agent/agents  # global";
+				
+				ctx.ui.notify(message, "info");
 			} else {
 				const help = `Subagent management commands:
 
 Commands:
-  /subagent list [--scope user|project|both] [--verbose]
-    Display available agents with filtering options
+  /subagent list [--verbose]
+    Display available agents
     
-  /subagent add <name> [--scope user|project] [--template basic|scout|worker]
+  /subagent add <name> [--template basic|scout|worker]
     Create a new agent definition
     
-  /subagent edit <name> [--scope user|project|both]
+  /subagent edit <name>
     Show location of agent file for editing
+    
+  /subagent paths
+    Display directories searched for agents
 
 Examples:
   /subagent list
-  /subagent list --scope user --verbose
+  /subagent list --verbose
   /subagent add my-agent
-  /subagent add scout-v2 --scope project --template scout
+  /subagent add scout-v2 --template scout
   /subagent add worker-bot --template worker
   /subagent edit my-agent
-  /subagent edit scout-v2 --scope project`;
+  /subagent paths`;
 
 				ctx.ui.notify(help, "info");
 			}

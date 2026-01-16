@@ -7,7 +7,7 @@ import * as os from "node:os";
 import * as path from "node:path";
 import dedent from "dedent";
 
-export type AgentScope = "user" | "project" | "both";
+const AGENTS_PATTERN = ["**", "agents", "**", "*.md"].join(path.sep);
 
 export interface AgentConfig {
   name: string;
@@ -106,8 +106,6 @@ function isDirectory(p: string): boolean {
   }
 }
 
-const NON_GLOBAL_AGENTS_PATTERN = ".pi/agents/**/*.md";
-const GLOBAL_AGENTS_PATTERN = "**/*.md";
 
 
 /**
@@ -129,30 +127,44 @@ function findFirstUp(startDir: string, targetPath: string): string | undefined {
     currentDir = parentDir;
   }
 }
+function getGitRootDir(startDir: string): string | undefined {
+  const gitPath = findFirstUp(startDir, ".git");
+  return gitPath ? path.dirname(gitPath) : undefined;
+}
+
 
 /**
- * Start at a dir and traverse upwards to find occurances of a path
-  * and collect them.
-  * Finish at a boundary path
-  */
-function findAllUp(
-  startDir: string,
-  targetPattern: string,
-  boundaryPaths: string[],
-): string[] {
-  const foundPaths: string[][] = [];
-  let currentDir = path.resolve(startDir);
-  const isBoundary = (p: string) => boundaryPaths.some((bp) => p === bp);
+ * Get all directories where agents are searched for.
+ * 
+ * Returns paths in search order (higher priority first):
+ * 1. ~/.pi/agent/agents (global agents)
+ * 2. Project-specific .pi/agents directories (from cwd up to git root or home)
+ */
+export function getAgentSearchPaths(cwd: string): string[] {
+  const searchPaths: string[] = [];
+  const globalAgentsDir = path.join(os.homedir(), ".pi",);
+
+  // Global agents directory (always first)
+  if (isDirectory(globalAgentsDir)) {
+    searchPaths.push(globalAgentsDir);
+  }
+
+  // Find all .pi/agents directories from cwd up to boundaries
+  const boundaries = [
+    os.homedir(),
+    getGitRootDir(cwd)
+  ].filter(Boolean) as string[];
+
+  let currentDir = path.resolve(cwd);
+  const isBoundary = (p: string) => boundaries.some((bp) => p === bp);
 
   while (true) {
-    const matches = fg.sync(targetPattern, {
-      cwd: currentDir,
-      absolute: true,
-      followSymbolicLinks: true
-    });
-    foundPaths.push(matches);
+    const projectAgentsDir = path.join(currentDir, ".pi");
+    if (isDirectory(projectAgentsDir) && !searchPaths.includes(projectAgentsDir)) {
+      searchPaths.push(projectAgentsDir);
+    }
 
-    // Stop if current dir is a boundary 
+    // Stop if current dir is a boundary
     if (isBoundary(currentDir)) {
       break;
     }
@@ -165,36 +177,25 @@ function findAllUp(
     currentDir = parentDir;
   }
 
-  return foundPaths.flat();
+  return searchPaths;
 }
-
-function getGitRootDir(startDir: string): string | undefined {
-  const gitPath = findFirstUp(startDir, ".git");
-  return gitPath ? path.dirname(gitPath) : undefined;
-}
-
 
 export function discoverAgents(cwd: string): AgentDiscoveryResult {
 
   const agentMap = new Map<string, AgentConfig>();
-  const globalAgentsDir = path.join(os.homedir(), ".pi", "agent", "agents");
+  const paths = getAgentSearchPaths(cwd)
 
-  const paths = [
-    ...fg.sync(GLOBAL_AGENTS_PATTERN, {
-      cwd: globalAgentsDir,
+  const agentFiles = fg.sync(
+    getAgentSearchPaths(cwd).map((p) => path.join(p, AGENTS_PATTERN)),
+    {
+      dot: true,
       absolute: true,
-      followSymbolicLinks: true
-    }),
-    ...findAllUp(
-      cwd,
-      NON_GLOBAL_AGENTS_PATTERN,
-      [
-        os.homedir(),
-        getGitRootDir(cwd)
-      ].filter(Boolean) as string[]),
-  ]
+      followSymbolicLinks: true,
+    }
+  );
 
-  for (const agentFile of paths) {
+
+  for (const agentFile of agentFiles) {
     const file = path.resolve(agentFile);
     const agent = loadAgent(file);
     if (!agent) continue;
