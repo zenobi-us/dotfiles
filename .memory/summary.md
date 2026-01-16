@@ -104,6 +104,7 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 - [learning-76e583ca-pi-extensions-guide.md](learning-76e583ca-pi-extensions-guide.md) - Comprehensive guide to creating Pi extensions
 - [learning-d8d1c166-extension-command-patterns.md](learning-d8d1c166-extension-command-patterns.md) - Command registration patterns
 - [learning-a9f4c2d1-subagent-management-patterns.md](learning-a9f4c2d1-subagent-management-patterns.md) - Agent management patterns (Epic 1)
+- [learning-432b51be-subagent-extension-architecture.md](learning-432b51be-subagent-extension-architecture.md) - Subagent extension architecture deep-dive (2026-01-16)
 - [learning-extension-widget-rendering.md](learning-extension-widget-rendering.md) - Widget rendering patterns (Epic 2)
 - [learning-theme-widget-patterns.md](learning-theme-widget-patterns.md) - Theme integration patterns (Epic 2)
 - [learning-62c593ff-component-architecture-patterns.md](learning-62c593ff-component-architecture-patterns.md) - Component architecture patterns (Epic 2)
@@ -122,6 +123,9 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 - Data-driven design patterns
 - Layout systems (Grid vs Flex)
 - Progressive enhancement (V1 → V2)
+- Subagent subprocess execution and streaming
+- Agent discovery system (hierarchical paths)
+- Execution modes (single, parallel, chain)
 
 ### Research Files
 - [research-6e3d737d-subagent-extension-structure.md](research-6e3d737d-subagent-extension-structure.md) - Subagent extension analysis

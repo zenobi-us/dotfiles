@@ -29,10 +29,9 @@
 
 ## Quick Reference
 
-**Current Focus (2026-01-13):**
-- ✅ Phase 1: Research complete - 7 AI harnesses researched and consolidated
-- 🔄 Phase 2: Architecture Design - **STARTED**
-- Timeline: Target completion 2026-01-15 (2-3 days)
+**Current Focus (2026-01-16):**
+- 🔄 Epic 3: Multi-Harness Agent Loader - Phase 2 Architecture Design
+- Timeline: Target completion 2026-01-17
 - Prioritize: Extension architecture, Claude Code, OpenCode adapters
 
 **Next Actions:**
@@ -56,13 +55,9 @@
 - [Research Harness Formats](task-db140ba7-research-harness-formats.md) ✅
 - Consolidated into [research-8c4d2b1f-ai-harness-formats.md](research-8c4d2b1f-ai-harness-formats.md) ✅
 
----
-
-## Standalone Configuration Tasks
-
-These tasks are not part of an epic but are important configuration/maintenance work.
-
-| Status | Task | Priority | Notes |
-|--------|------|----------|-------|
-| ⏳ | [Zellij Leader Key Update](task-e8a7c4d2-zellij-leader-key-update.md) | Medium | Update Zellij config to use Ctrl+/ as leader with minimal keymap |
-
+### Standalone Configuration Tasks ✅
+- [Zellij Leader Key Update](task-e8a7c4d2-zellij-leader-key-update.md) ✅ - **COMPLETE** (2026-01-16)
+  - Restructured Zellij config with `Ctrl /` leader key
+  - Implemented hierarchical mode system (tmux → tab/pane)
+  - Fixed missing `SwitchToMode` bug that prevented keybindings from working
+  - Committed: `471a8647`
