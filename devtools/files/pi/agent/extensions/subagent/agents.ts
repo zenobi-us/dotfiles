@@ -17,6 +17,12 @@ export interface AgentConfig {
   filePath: string;
 }
 
+export const PredicatableAgentPaths = {
+  Builtin: path.join(__dirname, "agents"),
+  User: path.join(os.homedir(), ".pi", "agent", "agents"),
+  Project: path.join(".pi", "agents"),
+}
+
 export type AgentRegistry = Map<string, AgentConfig>;
 
 export interface AgentDiscoveryResult {
@@ -149,17 +155,15 @@ export function getAgentSearchPaths(cwd: string): string[] {
   }
 
   const searchPaths: string[] = [];
-  const globalAgentsDir = path.join(os.homedir(), ".pi", "agents",);
 
-  const extensionHereDir = path.join(__dirname, "agents");
-  if (isDirectory(extensionHereDir)) {
-    searchPaths.push(createSearchPath(extensionHereDir));
+  if (isDirectory(PredicatableAgentPaths.Builtin)) {
+    searchPaths.push(createSearchPath(PredicatableAgentPaths.Builtin));
   }
 
   // Global agents directory (always first)
-  const isGlobalDir = fg.sync(globalAgentsDir, { onlyDirectories: true, absolute: true });
+  const isGlobalDir = fg.sync(PredicatableAgentPaths.User, { onlyDirectories: true, absolute: true });
   if (isGlobalDir.length > 0) {
-    searchPaths.push(createSearchPath(globalAgentsDir));
+    searchPaths.push(createSearchPath(PredicatableAgentPaths.User));
   }
 
   // Find all .pi/agents directories from cwd up to boundaries
@@ -172,7 +176,7 @@ export function getAgentSearchPaths(cwd: string): string[] {
   const isBoundary = (p: string) => boundaries.some((bp) => p === bp);
 
   while (true) {
-    const projectAgentsDir = path.join(currentDir, ".pi", "agents");
+    const projectAgentsDir = path.join(currentDir, PredicatableAgentPaths.Project);
     if (isDirectory(projectAgentsDir) && !searchPaths.includes(projectAgentsDir)) {
       searchPaths.push(createSearchPath(projectAgentsDir));
     }

@@ -12,49 +12,24 @@
  * Uses JSON mode to capture structured output from subagents.
  */
 
-import { spawn } from "node:child_process";
-import * as fs from "node:fs";
-import * as os from "node:os";
-import * as path from "node:path";
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { Message } from "@mariozechner/pi-ai";
 import { type ExtensionAPI, getMarkdownTheme } from "@mariozechner/pi-coding-agent";
 import { Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
 import { Type } from "@sinclair/typebox";
-import { AgentRegistry, discoverAgents, getAgentSearchPaths, renderAgentList } from "./agents.js";
+import { type AgentRegistry, discoverAgents, renderAgentList } from "./agents.js";
 import { formatToolCall, formatUsageStats } from "./formatting.js";
+import { handleList, handleAdd, handleEdit, handlePaths, handleHelp } from "./commands/index.js";
+import {
+	runSingleAgent,
+	type SingleResult,
+	type SubagentDetails,
+	type OnUpdateCallback,
+	type UsageStats,
+} from "./subagent.js";
 
 const MAX_PARALLEL_TASKS = 8;
 const MAX_CONCURRENCY = 4;
 const COLLAPSED_ITEM_COUNT = 10;
-
-interface UsageStats {
-	input: number;
-	output: number;
-	cacheRead: number;
-	cacheWrite: number;
-	cost: number;
-	contextTokens: number;
-	turns: number;
-}
-
-interface SingleResult {
-	agent: string;
-	task: string;
-	exitCode: number;
-	messages: Message[];
-	stderr: string;
-	usage: UsageStats;
-	model?: string;
-	stopReason?: string;
-	errorMessage?: string;
-	step?: number;
-}
-
-interface SubagentDetails {
-	mode: "single" | "parallel" | "chain";
-	results: SingleResult[];
-}
 
 function getFinalOutput(messages: Message[]): string {
 	for (let i = messages.length - 1; i >= 0; i--) {
@@ -67,6 +42,7 @@ function getFinalOutput(messages: Message[]): string {
 	}
 	return "";
 }
+
 
 type DisplayItem = { type: "text"; text: string } | { type: "toolCall"; name: string; args: Record<string, any> };
 
@@ -101,172 +77,6 @@ async function mapWithConcurrencyLimit<TIn, TOut>(
 	});
 	await Promise.all(workers);
 	return results;
-}
-
-function writePromptToTempFile(agentName: string, prompt: string): { dir: string; filePath: string } {
-	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "pi-subagent-"));
-	const safeName = agentName.replace(/[^\w.-]+/g, "_");
-	const filePath = path.join(tmpDir, `prompt-${safeName}.md`);
-	fs.writeFileSync(filePath, prompt, { encoding: "utf-8", mode: 0o600 });
-	return { dir: tmpDir, filePath };
-}
-
-type OnUpdateCallback = (partial: AgentToolResult<SubagentDetails>) => void;
-
-async function runSingleAgent(
-	defaultCwd: string,
-	agents: AgentRegistry,
-	agentName: string,
-	task: string,
-	cwd: string | undefined,
-	step: number | undefined,
-	signal: AbortSignal | undefined,
-	onUpdate: OnUpdateCallback | undefined,
-	makeDetails: (results: SingleResult[]) => SubagentDetails,
-): Promise<SingleResult> {
-	const agent = agents.get(agentName);
-
-	if (!agent) {
-		return {
-			agent: agentName,
-			task,
-			exitCode: 1,
-			messages: [],
-			stderr: `Unknown agent: ${agentName}`,
-			usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, cost: 0, contextTokens: 0, turns: 0 },
-			step,
-		};
-	}
-
-	const args: string[] = ["--mode", "json", "-p", "--no-session"];
-	if (agent.model) args.push("--model", agent.model);
-	if (agent.tools && agent.tools.length > 0) args.push("--tools", agent.tools.join(","));
-
-	let tmpPromptDir: string | null = null;
-	let tmpPromptPath: string | null = null;
-
-	const currentResult: SingleResult = {
-		agent: agentName,
-		task,
-		exitCode: 0,
-		messages: [],
-		stderr: "",
-		usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, cost: 0, contextTokens: 0, turns: 0 },
-		model: agent.model,
-		step,
-	};
-
-	const emitUpdate = () => {
-		if (onUpdate) {
-			onUpdate({
-				content: [{ type: "text", text: getFinalOutput(currentResult.messages) || "(running...)" }],
-				details: makeDetails([currentResult]),
-			});
-		}
-	};
-
-	try {
-		if (agent.systemPrompt.trim()) {
-			const tmp = writePromptToTempFile(agent.name, agent.systemPrompt);
-			tmpPromptDir = tmp.dir;
-			tmpPromptPath = tmp.filePath;
-			args.push("--append-system-prompt", tmpPromptPath);
-		}
-
-		args.push(`Task: ${task}`);
-		let wasAborted = false;
-
-		const exitCode = await new Promise<number>((resolve) => {
-			const proc = spawn("pi", args, { cwd: cwd ?? defaultCwd, shell: false, stdio: ["ignore", "pipe", "pipe"] });
-			let buffer = "";
-
-			const processLine = (line: string) => {
-				if (!line.trim()) return;
-				let event: any;
-				try {
-					event = JSON.parse(line);
-				} catch {
-					return;
-				}
-
-				if (event.type === "message_end" && event.message) {
-					const msg = event.message as Message;
-					currentResult.messages.push(msg);
-
-					if (msg.role === "assistant") {
-						currentResult.usage.turns++;
-						const usage = msg.usage;
-						if (usage) {
-							currentResult.usage.input += usage.input || 0;
-							currentResult.usage.output += usage.output || 0;
-							currentResult.usage.cacheRead += usage.cacheRead || 0;
-							currentResult.usage.cacheWrite += usage.cacheWrite || 0;
-							currentResult.usage.cost += usage.cost?.total || 0;
-							currentResult.usage.contextTokens = usage.totalTokens || 0;
-						}
-						if (!currentResult.model && msg.model) currentResult.model = msg.model;
-						if (msg.stopReason) currentResult.stopReason = msg.stopReason;
-						if (msg.errorMessage) currentResult.errorMessage = msg.errorMessage;
-					}
-					emitUpdate();
-				}
-
-				if (event.type === "tool_result_end" && event.message) {
-					currentResult.messages.push(event.message as Message);
-					emitUpdate();
-				}
-			};
-
-			proc.stdout.on("data", (data) => {
-				buffer += data.toString();
-				const lines = buffer.split("\n");
-				buffer = lines.pop() || "";
-				for (const line of lines) processLine(line);
-			});
-
-			proc.stderr.on("data", (data) => {
-				currentResult.stderr += data.toString();
-			});
-
-			proc.on("close", (code) => {
-				if (buffer.trim()) processLine(buffer);
-				resolve(code ?? 0);
-			});
-
-			proc.on("error", () => {
-				resolve(1);
-			});
-
-			if (signal) {
-				const killProc = () => {
-					wasAborted = true;
-					proc.kill("SIGTERM");
-					setTimeout(() => {
-						if (!proc.killed) proc.kill("SIGKILL");
-					}, 5000);
-				};
-				if (signal.aborted) killProc();
-				else signal.addEventListener("abort", killProc, { once: true });
-			}
-		});
-
-		currentResult.exitCode = exitCode;
-		if (wasAborted) throw new Error("Subagent was aborted");
-		return currentResult;
-	} finally {
-		if (tmpPromptPath)
-			try {
-				fs.unlinkSync(tmpPromptPath);
-			} catch {
-				/* ignore */
-			}
-		if (tmpPromptDir)
-			try {
-				fs.rmdirSync(tmpPromptDir);
-			} catch {
-				/* ignore */
-			}
-	}
 }
 
 const TaskItem = Type.Object({
@@ -813,333 +623,28 @@ export default function (pi: ExtensionAPI) {
 	});
 
 
-	/**
-	 * Parse command arguments for /subagent add
-	 * 
-	 * Extracts agent name and optional --template flag.
-	 * 
-	 * @param argsStr - Raw argument string from command
-	 * @returns Parsed name and template (basic/scout/worker)
-	 * @example
-	 * parseAddArgs("my-agent --template scout")
-	 * // => { name: "my-agent", template: "scout" }
-	 */
-	function parseAddArgs(argsStr: string): {
-		name: string;
-		template: "basic" | "scout" | "worker";
-	} {
-		const tokens = argsStr.trim().split(/\s+/);
-		let name = "";
-		let template: "basic" | "scout" | "worker" = "basic";
-
-		for (let i = 0; i < tokens.length; i++) {
-			const tok = tokens[i];
-			if (tok === "--template" && tokens[i + 1]) {
-				const val = tokens[i + 1];
-				if (val === "basic" || val === "scout" || val === "worker") {
-					template = val;
-				}
-				i++;
-			} else if (!tok.startsWith("--") && !name) {
-				name = tok;
-			}
-		}
-
-		return { name, template };
-	}
-
-	/**
-	 * Parse command arguments for /subagent edit
-	 * 
-	 * Extracts agent name from argument string.
-	 * 
-	 * @param argsStr - Raw argument string from command
-	 * @returns Parsed name
-	 * @example
-	 * parseEditArgs("my-agent")
-	 * // => { name: "my-agent" }
-	 */
-	function parseEditArgs(argsStr: string): { name: string } {
-		const tokens = argsStr.trim().split(/\s+/);
-		let name = "";
-
-		for (const tok of tokens) {
-			if (!tok.startsWith("--") && !name) {
-				name = tok;
-			}
-		}
-
-		return { name };
-	}
-
-	/**
-	 * Validate agent name format
-	 * 
-	 * Agent names must:
-	 * - Contain only lowercase letters, numbers, hyphens, and underscores
-	 * - Start with a letter
-	 * - End with a letter or number
-	 * 
-	 * @param name - Agent name to validate
-	 * @returns Validation result with error message if invalid
-	 * @example
-	 * validateAgentName("my-agent")
-	 * // => { valid: true }
-	 * 
-	 * validateAgentName("123invalid")
-	 * // => { valid: false, error: "Agent name must start with a letter" }
-	 */
-	function validateAgentName(name: string): { valid: boolean; error?: string } {
-		if (!name) {
-			return { valid: false, error: "Agent name is required" };
-		}
-		if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
-			return {
-				valid: false,
-				error: "Agent name must contain only letters, numbers, hyphens, and underscores",
-			};
-		}
-		return { valid: true };
-	}
-
-	/**
-	 * Get the file path for an agent in the specified scope
-	 * 
-	 * @param name - Agent name (without .md extension)
-	 * @param scope - Whether to use user-level or project-level directory
-	 * @param cwd - Current working directory (for project scope)
-	 * @returns Full file path where agent should be created/found
-	 * @example
-	 * getAgentPath("my-agent", "user", "/some/path")
-	 * // => "~/.pi/agent/agents/my-agent.md"
-	 */
-	function getAgentPath(name: string, scope: "user" | "project", cwd: string): string {
-		if (scope === "user") {
-			return path.join(os.homedir(), ".pi", "agent", "agents", `${name}.md`);
-		} else {
-			// For project scope, use .pi/agents in current working directory
-			return path.join(cwd, ".pi", "agents", `${name}.md`);
-		}
-	}
-
-	/**
-	 * Generate template content for a new agent
-	 * 
-	 * Creates agent markdown file with YAML frontmatter and system prompt.
-	 * 
-	 * @param name - Agent name for the template
-	 * @param template - Template type to generate
-	 *   - "basic": Minimal template with core fields only
-	 *   - "scout": Fast reconnaissance with read/grep/find/bash tools
-	 *   - "worker": Full-capability template with all default tools
-	 * @returns Complete markdown content for the agent file
-	 */
-	function generateTemplate(name: string, template: "basic" | "scout" | "worker"): string {
-		if (template === "basic") {
-			return `---
-name: ${name}
-description: Brief description of what this agent does
-model: claude-sonnet-4-5
-tools: read, grep, find, ls
----
-
-You are a specialized AI agent for [purpose].
-
-Your responsibilities:
-- [Task 1]
-- [Task 2]
-
-Guidelines:
-- [Guideline 1]
-- [Guideline 2]
-`;
-		} else if (template === "scout") {
-			return `---
-name: ${name}
-description: Fast reconnaissance for [domain]
-model: claude-haiku-4-5
-tools: read, grep, find, ls, bash
----
-
-You are a fast reconnaissance agent specializing in [domain].
-
-Your goal is to quickly gather relevant context and return compressed findings.
-
-Focus on:
-- Finding key files and patterns
-- Extracting important information
-- Providing concise summaries
-
-Keep responses brief and actionable.
-`;
-		} else {
-			// worker template
-			return `---
-name: ${name}
-description: General-purpose agent for [domain]
-model: claude-sonnet-4-5
----
-
-You are a capable AI agent with full tool access for [domain].
-
-Your responsibilities:
-- [Task 1]
-- [Task 2]
-- [Task 3]
-
-You have access to all default tools for reading, writing, executing commands, and more.
-`;
-		}
-	}
-
 	pi.registerCommand("subagent", {
 		description: "Manage agents: list, add, edit",
 		handler: async (args, ctx) => {
 			const [cmd, ...rest] = args.trim().split(/\s+/);
 			const restStr = rest.join(" ");
 
-			if (cmd === "list") {
-				const discovery = discoverAgents(ctx.cwd);
-				const agents = discovery.agents;
-
-				const message = renderAgentList(agents, { verbosity: 'dense', style: 'list' });
-
-				ctx.ui.notify(message, "info");
-			} else if (cmd === "add") {
-				const { name, template } = parseAddArgs(restStr);
-
-				// Validate name
-				const validation = validateAgentName(name);
-				if (!validation.valid) {
-					ctx.ui.notify(`Error: ${validation.error}`, "error");
-					return;
-				}
-
-				// Get target path (always user-level)
-				const agentPath = getAgentPath(name, "user", ctx.cwd);
-				const agentDir = path.dirname(agentPath);
-
-				// Check if agent already exists
-				if (fs.existsSync(agentPath)) {
-					const relativePath = agentPath.replace(os.homedir(), "~");
-					ctx.ui.notify(
-						`Error: Agent '${name}' already exists at ${relativePath}\n\nUse /subagent edit ${name} to modify it.`,
-						"error",
-					);
-					return;
-				}
-
-				// Create directory if needed
-				try {
-					fs.mkdirSync(agentDir, { recursive: true });
-				} catch (err) {
-					ctx.ui.notify(`Error: Cannot create directory ${agentDir}\n${err}`, "error");
-					return;
-				}
-
-				// Generate and write template
-				const content = generateTemplate(name, template);
-				try {
-					fs.writeFileSync(agentPath, content, "utf-8");
-				} catch (err) {
-					ctx.ui.notify(`Error: Cannot write agent file\n${err}`, "error");
-					return;
-				}
-
-				// Success message
-				const relativePath = agentPath.replace(os.homedir(), "~");
-				const message = `Creating agent: ${name}
-Template: ${template}
-Location: ${relativePath}
-
-✓ Agent created successfully!
-
-Next steps:
-  1. Edit ${relativePath} to customize the system prompt
-  2. Test with the subagent tool
-  3. Use in conversations with: "Use ${name} to [task description]"`;
-
-				ctx.ui.notify(message, "info");
-			} else if (cmd === "edit") {
-				const { name } = parseEditArgs(restStr);
-
-				// Validate name
-				if (!name) {
-					ctx.ui.notify("Error: Agent name is required\n\nUsage: /subagent edit <name>", "error");
-					return;
-				}
-
-				// Discover agents
-				const discovery = discoverAgents(ctx.cwd);
-				const agent = discovery.agents.get(name);
-
-				if (!agent) {
-					// Show error with available agents
-					const available = renderAgentList(discovery.agents);
-					const message = `Agent '${name}' not found\n\n${available ? `Available agents:\n${available}\n\n` : "No agents found.\n\n"
-						}Use /subagent list for more details.`;
-					ctx.ui.notify(message, "error");
-					return;
-				}
-
-				// Show file path for editing
-				const relativePath = path.relative(ctx.cwd, agent.filePath);
-
-				const message = `Opening agent: ${agent.name}
-Location: ${relativePath}
-
-Edit this file with your preferred editor, then save.
-
-Changes will take effect on the next subagent invocation.`;
-
-				ctx.ui.notify(message, "info");
-			} else if (cmd === "paths") {
-				// Display agent search paths
-				const searchPaths = getAgentSearchPaths(ctx.cwd);
-
-				if (searchPaths.length === 0) {
-					ctx.ui.notify("No agent directories found.\n\nCreate one with:\n  mkdir -p ~/.pi/agent/agents", "info");
-					return;
-				}
-
-				let message = `Agent search paths (${searchPaths.length}):\n\n`;
-
-				for (const searchPath of searchPaths) {
-					const relativePath = searchPath.replace(os.homedir(), "~");
-					message += `  • ${relativePath}\n`;
-				}
-
-				message += "\n";
-				message += "Agents are loaded in priority order (first match wins).\n\n";
-				message += "To create a new directory:\n  mkdir -p .pi/agents  # project-local\n  mkdir -p ~/.pi/agent/agents  # global";
-
-				ctx.ui.notify(message, "info");
-			} else {
-				const help = `Subagent management commands:
-
-Commands:
-  /subagent list [--verbose]
-    Display available agents
-    
-  /subagent add <name> [--template basic|scout|worker]
-    Create a new agent definition
-    
-  /subagent edit <name>
-    Show location of agent file for editing
-    
-  /subagent paths
-    Display directories searched for agents
-
-Examples:
-  /subagent list
-  /subagent list --verbose
-  /subagent add my-agent
-  /subagent add scout-v2 --template scout
-  /subagent add worker-bot --template worker
-  /subagent edit my-agent
-  /subagent paths`;
-
-				ctx.ui.notify(help, "info");
+			switch (cmd) {
+				case "list":
+					handleList(restStr, ctx);
+					break;
+				case "add":
+					handleAdd(restStr, ctx);
+					break;
+				case "edit":
+					handleEdit(restStr, ctx);
+					break;
+				case "paths":
+					handlePaths(restStr, ctx);
+					break;
+				default:
+					handleHelp(restStr, ctx);
+					break;
 			}
 		},
 	});
