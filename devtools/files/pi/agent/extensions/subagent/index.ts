@@ -382,17 +382,11 @@ const ChainItem = Type.Object({
 	cwd: Type.Optional(Type.String({ description: "Working directory for the agent process" })),
 });
 
-const AgentScopeSchema = StringEnum(["user", "project", "both"] as const, {
-	description: 'Which agent directories to use. Default: "user". Use "both" to include project-local agents.',
-	default: "user",
-});
-
 const SubagentParams = Type.Object({
 	agent: Type.Optional(Type.String({ description: "Name of the agent to invoke (for single mode)" })),
 	task: Type.Optional(Type.String({ description: "Task to delegate (for single mode)" })),
 	tasks: Type.Optional(Type.Array(TaskItem, { description: "Array of {agent, task} for parallel execution" })),
 	chain: Type.Optional(Type.Array(ChainItem, { description: "Array of {agent, task} for sequential execution" })),
-	agentScope: Type.Optional(AgentScopeSchema),
 	cwd: Type.Optional(Type.String({ description: "Working directory for the agent process (single mode)" })),
 });
 
@@ -403,8 +397,7 @@ export default function (pi: ExtensionAPI) {
 		description: [
 			"Delegate tasks to specialized subagents with isolated context.",
 			"Modes: single (agent + task), parallel (tasks array), chain (sequential with {previous} placeholder).",
-			'Default agent scope is "user" (from ~/.pi/agent/agents).',
-			'To enable project-local agents in .pi/agents, set agentScope: "both" (or "project").',
+			"Automatically discovers agents from ~/.pi/agent/agents and project-local .pi/agents directories.",
 		].join(" "),
 		parameters: SubagentParams,
 
@@ -608,12 +601,10 @@ export default function (pi: ExtensionAPI) {
 		},
 
 		renderCall(args, theme) {
-			const scope: AgentScope = args.agentScope ?? "user";
 			if (args.chain && args.chain.length > 0) {
 				let text =
 					theme.fg("toolTitle", theme.bold("subagent ")) +
-					theme.fg("accent", `chain (${args.chain.length} steps)`) +
-					theme.fg("muted", ` [${scope}]`);
+					theme.fg("accent", `chain (${args.chain.length} steps)`);
 				for (let i = 0; i < Math.min(args.chain.length, 3); i++) {
 					const step = args.chain[i];
 					// Clean up {previous} placeholder for display
@@ -632,8 +623,7 @@ export default function (pi: ExtensionAPI) {
 			if (args.tasks && args.tasks.length > 0) {
 				let text =
 					theme.fg("toolTitle", theme.bold("subagent ")) +
-					theme.fg("accent", `parallel (${args.tasks.length} tasks)`) +
-					theme.fg("muted", ` [${scope}]`);
+					theme.fg("accent", `parallel (${args.tasks.length} tasks)`);
 				for (const t of args.tasks.slice(0, 3)) {
 					const preview = t.task.length > 40 ? `${t.task.slice(0, 40)}...` : t.task;
 					text += `\n  ${theme.fg("accent", t.agent)}${theme.fg("dim", ` ${preview}`)}`;
@@ -645,8 +635,7 @@ export default function (pi: ExtensionAPI) {
 			const preview = args.task ? (args.task.length > 60 ? `${args.task.slice(0, 60)}...` : args.task) : "...";
 			let text =
 				theme.fg("toolTitle", theme.bold("subagent ")) +
-				theme.fg("accent", agentName) +
-				theme.fg("muted", ` [${scope}]`);
+				theme.fg("accent", agentName);
 			text += `\n  ${theme.fg("dim", preview)}`;
 			return new Text(text, 0, 0);
 		},

@@ -1,7 +1,7 @@
 /**
  * Agent discovery and configuration
  */
-import Bun, { Glob } from "bun";
+import fg from "fast-glob";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
@@ -106,10 +106,8 @@ function isDirectory(p: string): boolean {
   }
 }
 
-const NonGobalAgentsGlob = new Bun.Glob(".pi/agents/**/*.md");
-const GlobalAgentsGlob = new Bun.Glob(
-  path.join(os.homedir(), ".pi", "agent", "agents", "**/*.md"),
-);
+const NON_GLOBAL_AGENTS_PATTERN = ".pi/agents/**/*.md";
+const GLOBAL_AGENTS_PATTERN = "**/*.md";
 
 
 /**
@@ -139,7 +137,7 @@ function findFirstUp(startDir: string, targetPath: string): string | undefined {
   */
 function findAllUp(
   startDir: string,
-  targeGlob: Glob,
+  targetPattern: string,
   boundaryPaths: string[],
 ): string[] {
   const foundPaths: string[][] = [];
@@ -147,7 +145,11 @@ function findAllUp(
   const isBoundary = (p: string) => boundaryPaths.some((bp) => p === bp);
 
   while (true) {
-    const matches = Array.from(targeGlob.scanSync(currentDir));
+    const matches = fg.sync(targetPattern, {
+      cwd: currentDir,
+      absolute: true,
+      followSymbolicLinks: true
+    });
     foundPaths.push(matches);
 
     // Stop if current dir is a boundary 
@@ -167,21 +169,27 @@ function findAllUp(
 }
 
 function getGitRootDir(startDir: string): string | undefined {
-  return findFirstUp(startDir, ".git");
+  const gitPath = findFirstUp(startDir, ".git");
+  return gitPath ? path.dirname(gitPath) : undefined;
 }
 
 
 export function discoverAgents(cwd: string): AgentDiscoveryResult {
 
   const agentMap = new Map<string, AgentConfig>();
+  const globalAgentsDir = path.join(os.homedir(), ".pi", "agent", "agents");
+
   const paths = [
-    ...GlobalAgentsGlob.scanSync(path.join(os.homedir(), ".pi", "agent", "agents")),
+    ...fg.sync(GLOBAL_AGENTS_PATTERN, {
+      cwd: globalAgentsDir,
+      absolute: true,
+      followSymbolicLinks: true
+    }),
     ...findAllUp(
       cwd,
-      NonGobalAgentsGlob,
+      NON_GLOBAL_AGENTS_PATTERN,
       [
         os.homedir(),
-        path.sep,
         getGitRootDir(cwd)
       ].filter(Boolean) as string[]),
   ]

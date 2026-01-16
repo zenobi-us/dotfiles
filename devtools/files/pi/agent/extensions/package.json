@@ -15,8 +15,11 @@
     "@mariozechner/pi-agent-core": "*",
     "@sinclair/typebox": "*"
   },
+  "dependencies": {
+    "fast-glob": "^3.3.3",
+    "dedent": "^0.7.0"
+  },
   "devDependencies": {
-    "dedent": "^0.7.0",
     "bun-types": "latest",
     "@types/node": "^22.0.0",
     "@types/dedent": "^0.7.0",
@@ -31,7 +34,8 @@
       "./oracle/index.ts",
       "./plan-mode/index.ts",
       "./status-widget/index.ts",
-      "./theme-palette/index.ts"
+      "./theme-palette/index.ts",
+      "./subagent/index.ts"
     ]
   }
 }
