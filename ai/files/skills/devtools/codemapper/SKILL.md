@@ -59,7 +59,7 @@ cm inspect ./path/to/file --format ai
 | Untested code | `cm untested . --format ai` |
 | Breaking changes | `cm since <commit> --breaking --format ai` |
 
-**For complete command reference:** Read `command-reference.md`
+**For complete command reference:** Read `references/command-reference.md`
 
 ## Key Workflows
 
@@ -83,7 +83,7 @@ cm untested . --format ai                       # What's not tested?
 cm since <last_release> --breaking --format ai  # Breaking changes?
 ```
 
-**For detailed workflows:** Read `workflows.md`
+**For detailed workflows:** Read `references/workflows.md`
 
 ## Common Mistakes
 
@@ -116,7 +116,7 @@ cm map . --level 2 --format ai
 cm query something --format ai
 ```
 
-**For more examples:** Read `common-mistakes.md`
+**For more examples:** Read `references/common-mistakes.md`
 
 ## Best Practices
 
@@ -139,15 +139,15 @@ cm query something --format ai
 **Git Commands Fail?**
 - Must be in a git repository for: `diff`, `since`, `blame`, `history`
 
-**For detailed troubleshooting:** Read `troubleshooting.md`
+**For detailed troubleshooting:** Read `references/troubleshooting.md`
 
 ## Reference Documentation
 
-- **`command-reference.md`** - Complete command and flag reference
-- **`workflows.md`** - Detailed workflow patterns for common tasks
-- **`common-mistakes.md`** - Extended examples of what to avoid
-- **`troubleshooting.md`** - Comprehensive troubleshooting guide
-- **`integration-examples.md`** - CI/CD, documentation, code review patterns
+- **`references/command-reference.md`** - Complete command and flag reference
+- **`references/workflows.md`** - Detailed workflow patterns for common tasks
+- **`references/common-mistakes.md`** - Extended examples of what to avoid
+- **`references/troubleshooting.md`** - Comprehensive troubleshooting guide
+- **`references/integration-examples.md`** - CI/CD, documentation, code review patterns
 
 ## Performance
 
