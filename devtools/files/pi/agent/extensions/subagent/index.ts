@@ -19,12 +19,14 @@ import { Type } from "@sinclair/typebox";
 import { discoverAgents, renderAgentList } from "./agents.js";
 import { formatToolCall, formatUsageStats } from "./formatting.js";
 import { handleList, handleAdd, handleEdit, handlePaths, handleHelp } from "./commands/index.js";
+import fg from "fast-glob";
 import {
 	runSingleAgent,
 	type SingleResult,
 	type SubagentDetails,
 	type OnUpdateCallback,
 } from "./subagent.js";
+import path from "node:path";
 
 const MAX_PARALLEL_TASKS = 8;
 const MAX_CONCURRENCY = 4;
@@ -647,4 +649,39 @@ export default function (pi: ExtensionAPI) {
 			}
 		},
 	});
+
+	function createPromptCommand(options: { path: string, content: string }) {
+		const promptName = path.basename(options.path, ".md");
+		pi.registerCommand(
+			promptName,
+			{
+				description: `Run the "${promptName}" prompt`,
+				handler: async (args, ctx) => {
+					// Load prompt content and replace $ARGUMENTS, $\d, and ${@:\d} placeholders
+					let promptContent = options.content;
+					const argList = args.split(/\s+/);
+
+					promptContent = promptContent.replace(/\$ARGUMENTS/g, args);
+
+					promptContent = promptContent.replace(/\$(\d+)/g, (_match, p1) => {
+						const index = parseInt(p1, 10) - 1;
+						return argList[index] || "";
+					});
+
+					promptContent = promptContent.replace(/\$\{@:(\d+)\}/g, (_match, p1) => {
+						const count = parseInt(p1, 10);
+						return argList.slice(0, count).join(" ");
+					});
+
+					pi.sendUserMessage(promptContent, { toolCalls: true }, ctx);
+
+				}
+			}
+		)
+	}
+
+	fg.sync(path.join(__dirname, "prompts", "*.md")).forEach((promptPath) => {
+		const content = ctx.fs.readFileSync(promptPath, "utf-8");
+		createPromptCommand({ path: promptPath, content })
+	})
 }
