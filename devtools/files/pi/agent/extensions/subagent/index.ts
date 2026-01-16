@@ -16,7 +16,7 @@ import type { Message } from "@mariozechner/pi-ai";
 import { type ExtensionAPI, getMarkdownTheme } from "@mariozechner/pi-coding-agent";
 import { Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
 import { Type } from "@sinclair/typebox";
-import { type AgentRegistry, discoverAgents, renderAgentList } from "./agents.js";
+import { discoverAgents, renderAgentList } from "./agents.js";
 import { formatToolCall, formatUsageStats } from "./formatting.js";
 import { handleList, handleAdd, handleEdit, handlePaths, handleHelp } from "./commands/index.js";
 import {
@@ -24,7 +24,6 @@ import {
 	type SingleResult,
 	type SubagentDetails,
 	type OnUpdateCallback,
-	type UsageStats,
 } from "./subagent.js";
 
 const MAX_PARALLEL_TASKS = 8;

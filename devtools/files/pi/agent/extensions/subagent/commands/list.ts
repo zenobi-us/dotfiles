@@ -17,7 +17,7 @@ const Messages = {
 	`,
 };
 
-export function handleList(args: string, ctx: Parameters<Parameters<ExtensionAPI['registerCommand']>[1]['handler']>[1]) {
+export function handleList(_args: string, ctx: Parameters<Parameters<ExtensionAPI['registerCommand']>[1]['handler']>[1]) {
 	const discovery = discoverAgents(ctx.cwd);
 	const agents = discovery.agents;
 

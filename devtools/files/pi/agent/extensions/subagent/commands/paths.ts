@@ -29,7 +29,7 @@ const Messages = {
 	`,
 };
 
-export function handlePaths(args: string, ctx: Parameters<Parameters<ExtensionAPI['registerCommand']>[1]['handler']>[1]) {
+export function handlePaths(_args: string, ctx: Parameters<Parameters<ExtensionAPI['registerCommand']>[1]['handler']>[1]) {
 	// Display agent search paths
 	const searchPaths = getAgentSearchPaths(ctx.cwd);
 

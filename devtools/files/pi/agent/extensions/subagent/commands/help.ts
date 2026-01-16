@@ -3,8 +3,8 @@
  */
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 
-export function handleHelp(args: string, ctx: Parameters<Parameters<ExtensionAPI['registerCommand']>[1]['handler']>[1]) {
-	const help = `Subagent management commands:
+export function handleHelp(_args: string, ctx: Parameters<Parameters<ExtensionAPI['registerCommand']>[1]['handler']>[1]) {
+  const help = `Subagent management commands:
 
 Commands:
   /subagent list [--verbose]
@@ -28,5 +28,5 @@ Examples:
   /subagent edit my-agent
   /subagent paths`;
 
-	ctx.ui.notify(help, "info");
+  ctx.ui.notify(help, "info");
 }
