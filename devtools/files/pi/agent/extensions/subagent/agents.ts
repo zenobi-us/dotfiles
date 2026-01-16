@@ -7,7 +7,6 @@ import * as os from "node:os";
 import * as path from "node:path";
 import dedent from "dedent";
 
-const AGENTS_PATTERN = ["**", "agents", "**", "*.md"].join(path.sep);
 
 export interface AgentConfig {
   name: string;
@@ -18,8 +17,11 @@ export interface AgentConfig {
   filePath: string;
 }
 
+export type AgentRegistry = Map<string, AgentConfig>;
+
 export interface AgentDiscoveryResult {
-  agents: AgentConfig[];
+  agents: AgentRegistry;
+  agentFiles: string[];
 }
 
 function parseFrontmatter(content: string): {
@@ -141,12 +143,23 @@ function getGitRootDir(startDir: string): string | undefined {
  * 2. Project-specific .pi/agents directories (from cwd up to git root or home)
  */
 export function getAgentSearchPaths(cwd: string): string[] {
+
+  function createSearchPath(p: string) {
+    return path.join(p, "**", "*.md");
+  }
+
   const searchPaths: string[] = [];
-  const globalAgentsDir = path.join(os.homedir(), ".pi",);
+  const globalAgentsDir = path.join(os.homedir(), ".pi", "agents",);
+
+  const extensionHereDir = path.join(__dirname, "agents");
+  if (isDirectory(extensionHereDir)) {
+    searchPaths.push(createSearchPath(extensionHereDir));
+  }
 
   // Global agents directory (always first)
-  if (isDirectory(globalAgentsDir)) {
-    searchPaths.push(globalAgentsDir);
+  const isGlobalDir = fg.sync(globalAgentsDir, { onlyDirectories: true, absolute: true });
+  if (isGlobalDir.length > 0) {
+    searchPaths.push(createSearchPath(globalAgentsDir));
   }
 
   // Find all .pi/agents directories from cwd up to boundaries
@@ -159,9 +172,9 @@ export function getAgentSearchPaths(cwd: string): string[] {
   const isBoundary = (p: string) => boundaries.some((bp) => p === bp);
 
   while (true) {
-    const projectAgentsDir = path.join(currentDir, ".pi");
+    const projectAgentsDir = path.join(currentDir, ".pi", "agents");
     if (isDirectory(projectAgentsDir) && !searchPaths.includes(projectAgentsDir)) {
-      searchPaths.push(projectAgentsDir);
+      searchPaths.push(createSearchPath(projectAgentsDir));
     }
 
     // Stop if current dir is a boundary
@@ -182,13 +195,12 @@ export function getAgentSearchPaths(cwd: string): string[] {
 
 export function discoverAgents(cwd: string): AgentDiscoveryResult {
 
-  const agentMap = new Map<string, AgentConfig>();
-  const paths = getAgentSearchPaths(cwd)
+  const agents = new Map<string, AgentConfig>();
 
   const agentFiles = fg.sync(
-    getAgentSearchPaths(cwd).map((p) => path.join(p, AGENTS_PATTERN)),
+    getAgentSearchPaths(cwd),
     {
-      dot: true,
+      // dot: true,
       absolute: true,
       followSymbolicLinks: true,
     }
@@ -199,29 +211,43 @@ export function discoverAgents(cwd: string): AgentDiscoveryResult {
     const file = path.resolve(agentFile);
     const agent = loadAgent(file);
     if (!agent) continue;
-    agentMap.set(agent.name, agent);
+    agents.set(agent.name, agent);
   }
 
 
-  return { agents: Array.from(agentMap.values()) };
+  return { agents, agentFiles };
 }
 
 export function renderAgentList(
-  agents: AgentConfig[],
-  options: { verbose?: boolean } = {},
+  agents: AgentRegistry,
+  options: Parameters<typeof renderAgentListItem>[1] & {
+    style?: 'list' | 'inline'
+  } = {},
 ): string {
-  if (agents.length === 0) return "(No agents found)";
+  if (agents.size === 0) return "(No agents found)";
+  const output: string[] = []
 
-  return agents
-    .map((a) => renderAgentListItem(a, options))
-    .join("\n");
+  const prefix = options.style === 'list' ? "•" : ""
+
+  for (const agent of agents.values()) {
+    output.push(`${prefix} ${renderAgentListItem(agent, options)}`);
+  }
+
+  const separator = options.style === 'list' ? "\n" : ",";
+  return output.join(separator);
 
 }
 
-export function renderAgentListItem(agent: AgentConfig, options: { verbose?: boolean } = {}): string {
+export function renderAgentListItem(agent: AgentConfig,
+  options: { verbosity?: 'light' | 'dense' } = {},
+): string {
 
-  if (!options.verbose) {
-    return `  • ${agent.name} - ${agent.description}`;
+  if (!options.verbosity) {
+    return agent.name;
+  }
+
+  if (options.verbosity === 'light') {
+    return `${agent.name} - ${agent.description}`;
   }
 
   return dedent`

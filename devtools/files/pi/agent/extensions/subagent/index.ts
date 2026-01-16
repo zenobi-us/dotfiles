@@ -21,7 +21,7 @@ import type { Message } from "@mariozechner/pi-ai";
 import { type ExtensionAPI, getMarkdownTheme } from "@mariozechner/pi-coding-agent";
 import { Container, Markdown, Spacer, Text } from "@mariozechner/pi-tui";
 import { Type } from "@sinclair/typebox";
-import { type AgentConfig, discoverAgents, getAgentSearchPaths, renderAgentList } from "./agents.js";
+import { AgentRegistry, discoverAgents, getAgentSearchPaths, renderAgentList } from "./agents.js";
 import { formatToolCall, formatUsageStats } from "./formatting.js";
 
 const MAX_PARALLEL_TASKS = 8;
@@ -115,7 +115,7 @@ type OnUpdateCallback = (partial: AgentToolResult<SubagentDetails>) => void;
 
 async function runSingleAgent(
 	defaultCwd: string,
-	agents: AgentConfig[],
+	agents: AgentRegistry,
 	agentName: string,
 	task: string,
 	cwd: string | undefined,
@@ -124,7 +124,7 @@ async function runSingleAgent(
 	onUpdate: OnUpdateCallback | undefined,
 	makeDetails: (results: SingleResult[]) => SubagentDetails,
 ): Promise<SingleResult> {
-	const agent = agents.find((a) => a.name === agentName);
+	const agent = agents.get(agentName);
 
 	if (!agent) {
 		return {
@@ -317,7 +317,7 @@ export default function (pi: ExtensionAPI) {
 					});
 
 			if (modeCount !== 1) {
-				const available = renderAgentList(agents)
+				const available = renderAgentList(agents, { verbosity: "light", style: "inline" });
 				return {
 					content: [
 						{
@@ -492,7 +492,7 @@ export default function (pi: ExtensionAPI) {
 				};
 			}
 
-			const available = agents.map((a) => `${a.name}`).join(", ") || "none";
+			const available = renderAgentList(agents)
 			return {
 				content: [{ type: "text", text: `Invalid parameters. Available agents: ${available}` }],
 				details: makeDetails("single")([]),
@@ -809,33 +809,9 @@ export default function (pi: ExtensionAPI) {
 			const text = result.content[0];
 			return new Text(text?.type === "text" ? text.text : "(no output)", 0, 0);
 		},
+
 	});
 
-	// --- Slash Commands ---
-
-	/**
-	 * Parse command arguments for /subagent list
-	 * 
-	 * Extracts --verbose flag from argument string.
-	 * 
-	 * @param argsStr - Raw argument string from command
-	 * @returns Parsed verbose flag
-	 * @example
-	 * parseListArgs("--verbose")
-	 * // => { verbose: true }
-	 */
-	function parseListArgs(argsStr: string): { verbose: boolean } {
-		const tokens = argsStr.trim().split(/\s+/);
-		let verbose = false;
-
-		for (const tok of tokens) {
-			if (tok === "--verbose" || tok === "-v") {
-				verbose = true;
-			}
-		}
-
-		return { verbose };
-	}
 
 	/**
 	 * Parse command arguments for /subagent add
@@ -1023,22 +999,10 @@ You have access to all default tools for reading, writing, executing commands, a
 			const restStr = rest.join(" ");
 
 			if (cmd === "list") {
-				const { verbose } = parseListArgs(restStr);
 				const discovery = discoverAgents(ctx.cwd);
 				const agents = discovery.agents;
 
-				// Sort agents alphabetically by name within their groups
-				agents.sort((a, b) => {
-					return a.name.localeCompare(b.name);
-				});
-
-				let message = `Available agents (${agents.length}):\n\n`;
-
-				if (agents.length === 0) {
-					message += "No agents found";
-				} else {
-					message += renderAgentList(agents, { verbose });
-				}
+				const message = renderAgentList(agents, { verbosity: 'dense', style: 'list' });
 
 				ctx.ui.notify(message, "info");
 			} else if (cmd === "add") {
@@ -1107,11 +1071,11 @@ Next steps:
 
 				// Discover agents
 				const discovery = discoverAgents(ctx.cwd);
-				const agent = discovery.agents.find((a) => a.name === name);
+				const agent = discovery.agents.get(name);
 
 				if (!agent) {
 					// Show error with available agents
-					const available = discovery.agents.map((a) => `  • ${a.name}`).join("\n");
+					const available = renderAgentList(discovery.agents);
 					const message = `Agent '${name}' not found\n\n${available ? `Available agents:\n${available}\n\n` : "No agents found.\n\n"
 						}Use /subagent list for more details.`;
 					ctx.ui.notify(message, "error");
@@ -1132,31 +1096,23 @@ Changes will take effect on the next subagent invocation.`;
 			} else if (cmd === "paths") {
 				// Display agent search paths
 				const searchPaths = getAgentSearchPaths(ctx.cwd);
-				
+
 				if (searchPaths.length === 0) {
 					ctx.ui.notify("No agent directories found.\n\nCreate one with:\n  mkdir -p ~/.pi/agent/agents", "info");
 					return;
 				}
-				
+
 				let message = `Agent search paths (${searchPaths.length}):\n\n`;
-				
+
 				for (const searchPath of searchPaths) {
 					const relativePath = searchPath.replace(os.homedir(), "~");
-					const exists = fs.existsSync(searchPath);
-					const agentCount = exists 
-						? fs.readdirSync(searchPath).filter(f => f.endsWith('.md')).length 
-						: 0;
-					
-					const status = exists 
-						? `${agentCount} agent${agentCount !== 1 ? 's' : ''}`
-						: "(not found)";
-					
-					message += `  • ${relativePath}\n    ${status}\n\n`;
+					message += `  • ${relativePath}\n`;
 				}
-				
+
+				message += "\n";
 				message += "Agents are loaded in priority order (first match wins).\n\n";
 				message += "To create a new directory:\n  mkdir -p .pi/agents  # project-local\n  mkdir -p ~/.pi/agent/agents  # global";
-				
+
 				ctx.ui.notify(message, "info");
 			} else {
 				const help = `Subagent management commands:
