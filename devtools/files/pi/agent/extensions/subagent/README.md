@@ -178,7 +178,47 @@ You are a specialized agent that...
 - `name` - Agent identifier (defaults to filename without `.md`)
 - `description` - Brief description (defaults to first line of body)
 - `tools` - Comma-separated list of allowed tools (omit for all defaults)
-- `model` - Model to use (defaults to session default)
+- `model` - Model to use (see Model Inheritance below)
+
+## Model Inheritance
+
+Subagents use the following priority for model selection:
+
+1. **Agent-specific model** (frontmatter `model:` field) - Takes precedence
+2. **Parent session model** - Inherited from the session that invoked the subagent
+3. **System default** - Falls back to default model configuration
+
+**Examples:**
+
+Agent with explicit model override:
+```markdown
+---
+name: fast-scout
+model: claude-haiku-4-5
+---
+Fast reconnaissance with Haiku, regardless of parent session model.
+```
+
+Agent that inherits parent model:
+```markdown
+---
+name: adaptive-worker
+# No model field - inherits from parent session
+---
+Uses whatever model the parent session is currently using.
+```
+
+**Benefits:**
+- Create **cost-optimized** agents (e.g., Haiku for quick tasks)
+- Create **specialized** agents (e.g., Opus for complex reasoning)
+- Create **adaptive** agents that match the parent's model choice
+
+**Example usage:**
+```typescript
+// Parent session using claude-sonnet-4
+subagent({ agent: "scout", task: "..." })      // Uses Haiku (from scout.md)
+subagent({ agent: "worker", task: "..." })     // Uses Sonnet (inherited)
+```
 
 ## Built-in Agents
 

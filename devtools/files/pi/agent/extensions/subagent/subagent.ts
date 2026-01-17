@@ -8,6 +8,7 @@ import * as path from "node:path";
 import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { Message } from "@mariozechner/pi-ai";
 import type { AgentRegistry } from "./agents.js";
+import { ExtensionContext } from "@mariozechner/pi-coding-agent";
 
 export interface UsageStats {
 	input: number;
@@ -67,6 +68,7 @@ export async function runSingleAgent(
 	cwd: string | undefined,
 	step: number | undefined,
 	signal: AbortSignal | undefined,
+	ctx: ExtensionContext,
 	onUpdate: OnUpdateCallback | undefined,
 	makeDetails: (results: SingleResult[]) => SubagentDetails,
 ): Promise<SingleResult> {
@@ -85,7 +87,13 @@ export async function runSingleAgent(
 	}
 
 	const args: string[] = ["--mode", "json", "-p", "--no-session"];
-	if (agent.model) args.push("--model", agent.model);
+	
+	// Model selection priority: agent.model → ctx.model.id → system default
+	const modelToUse = agent.model || ctx.model?.id;
+	if (modelToUse) {
+		args.push("--model", modelToUse);
+	}
+	
 	if (agent.tools && agent.tools.length > 0) args.push("--tools", agent.tools.join(","));
 
 	let tmpPromptDir: string | null = null;
