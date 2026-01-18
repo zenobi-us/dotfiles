@@ -58,9 +58,10 @@ semver = "latest"
 "npm:gh-actions-language-server" = "0.0.3"
 "npm:@scopecraft/cmd" = "latest"
 "npm:browser-debugger-cli" = "alpha"
-"github:badlogic/pi-mono" = "latest"
+"github:badlogic/pi-mono" = "0.45.7"
 yt-dlp = "latest"
 "cargo:p1rallels/codemapper" = "latest"
+"github:zenobi-us/opennotes" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
