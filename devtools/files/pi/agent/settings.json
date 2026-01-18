@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.45.7",
+  "lastChangelogVersion": "0.48.0",
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-5",
+  "defaultModel": "claude-haiku-4-5",
   "defaultThinkingLevel": "off",
   "theme": "rose-pine-moon",
   "hideThinkingBlock": true
