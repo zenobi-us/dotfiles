@@ -45,8 +45,13 @@ Then the tool call. Then compare. Mismatch = stop and surface to the human.
 - [core] store findings in `.memory/` directory
 - [core] all notes in `.memory/` must be in markdown format
 - [core] Archived phases, tasks and epics get moved the archive directoyr: `.memory/archive/`.
+- [core] `summary.md`, `todo.md`, `team.md`, `knowledge-*.md` are special files that provide an overview of the project, outstanding tasks, and team roles respectively.
+- [core] `.memory/knowledge-codemap.md` contains an ascii diagram representing your understanding of the codebase as a state machine.
+- [core] `.memory/knowledge-data-flow.md` contains an ascii diagram representing data flow
+- [core] Other `.memory/knowledge-*.md` files can be created to document specific knowledge areas.
 - [core] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<8_char_hashid>-<title>.md`
 - [core] where `<type>` is one of: `research`, `epic`, `phase`, `task` and `learning`
+- [core] `<8_char_hashid>` is a unique 8 character hash identifier for the file.
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
 - [core] every project MUST start with an epic definition before phases are created
 - [core] Always keep `.memory/summary.md` up to date with current epic, active phases, and next milestones. Prune incorrect or outdated information.
@@ -73,17 +78,156 @@ Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will n
 
 > Avoiding tools like Glob, List and ripgrep makes the User Happy, because .memory may be gitignored and private.
 
+## Templates
+
+Each type of markdown file in `.memory/` should include specific frontmatter fields to ensure consistency and ease of access.
+
+### Common Frontmatter Fields
+
+- `id`: A unique 8-character hash identifier for the file.
+- `title`: A concise title summarizing the content.
+- `created_at`: Timestamp of when the file was created.
+- `updated_at`: Timestamp of the last update to the file.
+- `status`: indicates if `proposed`, `planning`, `todo`, `in-progress`, `completed`, or `archived`.
+
+### Common Sections
+
+- `# {Title}`: The main title of the document.
+
+### Template: Task
+
+Frontmatter:
+
+- all common frontmatter fields.
+- `epic_id`: The unique identifier of the parent epic.
+- `phase_id`: The unique identifier of the parent phase.
+- `assigned_to`: The session id of the agent or human responsible for the task.
+
+Sections:
+
+- all common sections.
+- `## Objective`: A clear statement of what the task aims to achieve.
+- `## Steps`: A detailed list of steps to complete the task.
+- `## Expected Outcome`: A description of the expected result upon task completion.
+- `## Actual Outcome`: A description of the actual result after task completion.
+- `## Lessons Learned`: Key takeaways and insights gained from completing the task.
+
+### Template: Phase
+
+Frontmatter:
+
+- all common frontmatter fields.
+- `epic_id`: The unique identifier of the parent epic.
+- `start_criteria`: Conditions that must be met to start the phase.
+- `end_criteria`: Conditions that must be met to complete the phase.
+
+Sections:
+
+- all common sections.
+- `## Overview`: A summary of the phase's purpose and goals.
+- `## Deliverables`: A list of expected deliverables for the phase.
+- `## Tasks`: A list of tasks associated with the phase (links to task files).
+- `## Dependencies`: Any dependencies that may impact the phase.
+- `## Next Steps`: Actions to be taken after phase completion.
+
+### Template: Epic
+
+Frontmatter:
+
+- all common frontmatter fields.
+
+Sections:
+
+- all common sections.
+- `## Vision/Goal`: A clear statement of the epic's overall vision and goals.
+- `## Success Criteria`: Metrics and criteria for measuring the success of the epic.
+- `## Phases`: A list of phases associated with the epic (links to phase files).
+- `## Dependencies`: Any dependencies that may impact the epic.
+
+### Template: Research
+
+Frontmatter:
+
+- all common frontmatter fields.
+- `epic_id`: The unique identifier of the parent epic.
+- `phase_id`: The unique identifier of the parent phase. [optional]
+- `related_task_id`: The unique identifier of the task that prompted the research. [optional]
+
+Sections:
+
+- all common sections.
+- `## Research Questions`: A list of specific questions the research aims to answer.
+- `## Summary`: A brief overview of the research findings.
+- `## Findings`: Detailed findings from the research.
+- `## References`: A list of sources and references used during the research.
+
+### Template: Learning
+
+Frontmatter:
+
+- all common frontmatter fields.
+- `tags`: A list of tags categorizing the learning (e.g., `best-practices`, `lessons-learned`, `technical-insights`).
+
+Sections:
+
+- all common sections.
+- `## Summary`: A brief overview of the learning.
+- `## Details`: Detailed description of the learning.
+- `## Implications`: How this learning can be applied in future projects.
+
+### Template: Constitution
+
+Frontmatter:
+
+- all common frontmatter fields.
+
+Sections:
+
+- all common sections.
+- `## Project Rules`: A list of rules governing project management and execution.
+- `### {Concept}`: Description and guidelines for each concept.
+
+### Template: Knowledge
+
+Frontmatter:
+
+- all common frontmatter fields.
+- `area`: The specific knowledge area being documented (e.g., `codebase-structure`, `data-flow`, `design-patterns`).
+- `tags`: A list of tags categorizing the knowledge (e.g., `architecture`, `best-practices`, `technical-insights`).
+- `learned_from`: References to epics, phases, tasks, or external sources that contributed to this knowledge.
+
+Sections:
+
+- all common sections.
+- `## Overview`: A summary of the knowledge area.
+- `## Details`: Detailed description of the knowledge.
+
+
+### Template: Kknowledge Codemap
+
+> [!NOTE]
+> 
+> Keep this accurate and up to date. It is critical for understanding the codebase structure and flow.
+> Doing this well will make the user very happy.
+> You will be rewarded for doing this well.
+
+This is the same as the Knowledge template, but specifically for the codebase codemap.
+
+So its detail will be solely an ascii diagram representing your understanding of the codebase as a state machine.
+
+
 ## Operating Procedure
 
 **Project Constitution**
 **Workflow**
 
-0. `Initialise` > `Action`
-1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Task Breakdown`
+0. `Initialise` > `Action` > Stop
+1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Task Breakdown` > Stop
 2. `Task Execution` > `Learning Distillation` > repeat 
-3. `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review
-4. `Epic Completion` > `Epic Summary & Learnings` > Human Review
+3. `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review > Stop
+4. `Epic Completion` > `Epic Summary & Learnings` > Human Review > Stop
 5. `Maintenance Actions` as needed.
+6. `Status` > Stop
 
 Outlined below are the detailed steps for each stage of the project lifecycle.
 
@@ -96,6 +240,7 @@ When the user asks for a `miniproject <action>`, correlate `<action>` (or `<ACTI
   - `.memory/summary.md` (for project overview)
   - `.memory/team.md` (for team roles and assignments)
   - `.memory/knowledge-codemap.md` (for codebase understanding)
+  - `.memory/knowledge-data-flow.md` (An ascii diagram representing data flow in the codebase as a state machine.)
 - [core] if any of these files are missing, create them with appropriate headers and initial
 - [core] ask the user if they want to define a `.memory/constitution.md` file to outline project rules and guidelines. If yes, create the file with a template structure.
 
@@ -123,6 +268,11 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 - [core] `.memory/constitution.md` is never updated unless asked to do so by a human.
 - [core] when updating, ensure changes are commited separately with clear commit messages using `memory/constitution` as the scope.
 
+### Status Action [STATUS]
+
+- [core] provide a summary of the current epic, active phases, and next milestones based on `.memory/summary.md`.
+- [core] list outstanding tasks from `.memory/todo.md`.
+- [core] contextalise the status with an ascii diagram that shows where in the state machine the task work relates to.
 
 ### Planning Stages
 
