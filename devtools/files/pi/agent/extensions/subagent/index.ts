@@ -198,6 +198,7 @@ export default function (pi: ExtensionAPI) {
 						step.cwd,
 						i + 1,
 						signal,
+						ctx,
 						chainUpdate,
 						makeDetails("chain"),
 					);
@@ -271,6 +272,7 @@ export default function (pi: ExtensionAPI) {
 						t.cwd,
 						undefined,
 						signal,
+						ctx,
 						// Per-task update callback
 						(partial) => {
 							if (partial.details?.results[0]) {
@@ -311,6 +313,7 @@ export default function (pi: ExtensionAPI) {
 					params.cwd,
 					undefined,
 					signal,
+					ctx,
 					onUpdate,
 					makeDetails("single"),
 				);
