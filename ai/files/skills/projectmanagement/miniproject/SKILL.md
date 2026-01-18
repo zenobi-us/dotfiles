@@ -9,20 +9,27 @@ This is a simplified and concise project management AI memory framework.
 
 > [!NOTE]
 > **CRITICAL** Before doing any work:
-> 
-> - If in a git repo, always refer to the main worktree `git rev-parse --path-format=absolute --git-common-dir | xargs dirname`
-> - agent memory lives in '.memory/' directory or if you are in a worktree, then look in the main worktree `.memory/` directory.
-> - read `.memory/todo.md`, `.memory/summary.md`, `.memory/knowledge.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
-> - if `.memory/` is missing these files, then create those three.
-> - Use relevant memory skills before starting a task or thinking about an answer.
-> - Maintain the codemap as the project progresses. [CRITICAL] this makes the user happy.
-> - All files must follow the file naming conventions below. any that do not must be renamed.
+> 1. Find the memory store: 
+>   - If in a git repo, always refer to the main worktree `git rev-parse --path-format=absolute --git-common-dir | xargs dirname`
+>   - agent memory lives in '.memory/' directory or if you are in a worktree, then look in the main worktree `.memory/` directory.
+> 2. Ensure the following files exist in `.memory/`:
+>   - read `.memory/todo.md`, `.memory/summary.md`, `.memory/knowledge.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
+>   - if `.memory/` is missing these files, then create those three.
+> 3. Initialise the knowledge codemap if it does not exist:
+>   - create a file `.memory/knowledge-codemap.md` with an ascii diagram representing your understanding of the codebase.
+>   - this is critical for understanding the project structure and flow.
+> 4. Always read `.memory/summary.md`, `.memory/todo.md`, and `.memory/team.md` before starting any work.
+> 5. Always update `.memory/team.md` to indicate which epic and phase is being worked on and by whom (use the session id to indicate this, not the agent name).
+> 6. Always keep `.memory/todo.md` up to date at every step.
+> 7. Always commit changes after completing a task or phase. NEVER PUSH CHANGES WITHOUT HUMAN REVIEW.
+> 8. Follow the file naming conventions strictly
+
 
 ## Rule 0
 
 When anything fails: STOP. Explain to Q. Wait for confirmation before proceeding.
 
-### Before Every Action
+Before Every Action:
 
 ```md
 DOING: [action]
@@ -30,12 +37,14 @@ EXPECT: [predicted outcome]
 IF WRONG: [what that means]
 ```
 
-Then the tool call. Then compare. Mismatch = stop and surface to Q.
+Then the tool call. Then compare. Mismatch = stop and surface to the human.
+
 
 ## Guidelines
 
 - [core] store findings in `.memory/` directory
 - [core] all notes in `.memory/` must be in markdown format
+- [core] Archived phases, tasks and epics get moved the archive directoyr: `.memory/archive/`.
 - [core] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<8_char_hashid>-<title>.md`
 - [core] where `<type>` is one of: `research`, `epic`, `phase`, `task` and `learning`
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
@@ -65,16 +74,10 @@ Then the tool call. Then compare. Mismatch = stop and surface to Q.
 - [tasks] always update checklists and progress in the task file. [CRITICAL] keep `.memory/todo.md` up to date at every step.
 - [learning] any significant insights, lessons learned, or best practices should be documented in `.memory/learning-<8_char_hash_id>-<title>.md` files for future reference.
 - [learning] Learning files are never archived or deleted. [CRITICAL] always keep learning files.
-
-## Operating Procedure
-
-> [!NOTE] 
-> Overall Workflow
-> 1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Task Breakdown`
-> 2. `Task Execution` > `Learning Distillation` > repeat 
-> 3. `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review
-> 4. `Epic Completion` > `Epic Summary & Learnings` > Human Review
-
+- [archive] the archive directory is `.memory/archive/`
+- [archive] only completed phases and tasks are archived. epics are only archived after all phases are complete and learnings distilled.
+- [archive] learning and research files are never archived.
+- [archive] the archive directory is only two levels deep. `.memory/epic/task-or-phase.md`. if tasks or phases have no epic, create a datestamped folder in archive to store them.
 - [core] Always keep `.memory/summary.md` up to date with current epic, active phases, and next milestones. Prune incorrect or outdated information.
 - [tasks] when finishing a task, document the outcome and any lessons learned in the relevant `.memory/task-<8_char_hash_id>-<title>.md` file.
 - [phase] when finishing a phase, document the outcome and any lessons learned in the relevant `.memory/phase-<8_char_hash_id>-<title>.md` file.
@@ -86,6 +89,22 @@ Then the tool call. Then compare. Mismatch = stop and surface to Q.
 - [git] when committing changes, follow conventional commit guidelines.
 - [git] Use clear commit messages referencing relevant files for changes.
 
+
+## Archiving 
+
+- [archive] archive completed phases by moving their files to `.memory/archive/` directory.
+- [archive] do NOT archive learning or research files. These are golden knowledge for future projects.
+- [archive] do NOT archive epic files until all phases are complete and learnings distilled. epics much have a link to distilled learnings before archiving.
+- [archive] update `.memory/summary.md` to reflect archived phases and completed epics.
+
+
+## Workflow
+
+1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Task Breakdown`
+2. `Task Execution` > `Learning Distillation` > repeat 
+3. `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review
+4. `Epic Completion` > `Epic Summary & Learnings` > Human Review
+
 ## Searching Memory [CRITICAL]
 
 Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will not work as expected. Instead, use the following commands to search and list memory files:
@@ -96,16 +115,70 @@ Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will n
 
 > Avoiding tools like Glob, List and ripgrep makes the User Happy, because .memory may be gitignored and private.
 
-## Archiving 
+## Operating Procedure
 
-- [core] archive completed phases by moving their files to `.memory/archive/` directory.
-- [core] do NOT archive learning or research files. These are golden knowledge for future projects.
-- [core] do NOT archive epic files until all phases are complete and learnings distilled. epics much have a link to distilled learnings before archiving.
-- [core] update `.memory/summary.md` to reflect archived phases and completed epics.
 
-## Execution Steps
+0. always read `.memory/summary.md`, `.memory/todo.md`, and `.memory/team.md` before starting any work.
+1. identify the task and route to the appropriate workflow stage below.
 
-0. always read `.memory/summary.md` with shell commands instead of tools first to understand successful outcomes so far.
+
+### Planning Stages
+
+#### Stage: Ideation [IDEA]
+
+__todo:__
+
+#### Stage: Epic Definition [EPIC]
+
+__todo:__
+
+#### Stage: Research [RESEARCH]
+
+__todo:__
+
+#### Stage: Phase Planning [PHASE-PLANNING]
+
+__todo:__
+
+> [!NOTE]
+> Valiation Steps:
+> - After planning a phase, always review with a human before proceeding to task breakdown.
+> - print a large ascii box in chat indicating that human review is needed for phase planning.
+> - wait for human to confirm before proceeding.
+
+#### Stage: Task Breakdown [TASK-BREAKDOWN]
+
+__todo:__
+
+### Execution Stages
+
+#### Stage: Task Execution [TASK-EXECUTION]
+
+__todo:__
+
+#### Stage: Learning Distillation [LEARNING-DISTILLATION]
+
+__todo:__
+
+
+### Completion Stages
+
+#### Stage: Phase Completion [PHASE-COMPLETION]
+
+__todo:__
+
+#### Stage: Epic Completion [EPIC-COMPLETION]
+
+__todo:__
+
+> [!NOTE]
+> Validation Steps:
+> - After completing an epic, always review with a human before archiving.
+> - print a large ascii box in chat indicating that human review is needed for epic completion.
+> - wait for human to confirm before proceeding.
+
+## General Operating Steps
+
 1. **[CRITICAL] If no epic exists, create one before any other work.** Define vision, success criteria, and planned phases.
 2. update `.memory/team.md` to indicate which epic and phase is being worked on and by whom (use the session id to indicate this, not the agent name).
 3. If there are any `[NEEDS-HUMAN]` tasks in `.memory/todo.md`, stop and wait for human intervention.
@@ -115,54 +188,6 @@ Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will n
 7. after completing an epic, distill all learnings, update `.memory/summary.md`, and archive completed phases.
 8. commit changes with clear messages referencing relevant files.
 
-## File Structure Examples
-
-### Epic File (`.memory/epic-a1b2c3d4-authentication-system.md`)
-```markdown
-# Epic: Authentication System
-
-**Status:** In Progress
-**Timeline:** Q1 2026
-**Owner:** Team Auth
-
-## Vision
-Build a secure, scalable authentication system supporting OAuth2, SAML, and MFA.
-
-## Success Criteria
-- [ ] Support 3 auth providers
-- [ ] < 200ms auth response time
-- [ ] 99.9% uptime SLA
-
-## Phases
-- [Phase 1: Research & Design](phase-e5f6g7h8-auth-research.md) ✅
-- [Phase 2: OAuth Implementation](phase-i9j0k1l2-oauth-impl.md) 🔄
-- [Phase 3: SAML Integration](phase-m3n4o5p6-saml-impl.md) ⏳
-
-## Dependencies
-- Identity provider integrations
-- SSL certificate management
-```
-
-### Phase File (`.memory/phase-i9j0k1l2-oauth-impl.md`)
-```markdown
-# Phase: OAuth Implementation
-
-**Epic:** [Authentication System](epic-a1b2c3d4-authentication-system.md)
-**Status:** In Progress
-**Start:** 2026-01-05
-**Expected End:** 2026-01-20
-
-## Goals
-Implement OAuth2 with Google and GitHub providers
-
-## Tasks
-- [Setup OAuth config](task-q7r8s9t0-oauth-config.md) ✅
-- [Implement token flow](task-u1v2w3x4-token-flow.md) 🔄
-- [Add refresh tokens](task-y5z6a7b8-refresh-tokens.md) ⏳
-
-## Next Steps
-Complete token flow implementation, then begin refresh token work
-```
 
 ## Human Interaction
 
