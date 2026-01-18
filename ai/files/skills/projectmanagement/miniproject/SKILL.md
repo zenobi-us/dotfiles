@@ -16,6 +16,7 @@ This is a simplified and concise project management AI memory framework.
 > - if `.memory/` is missing these files, then create those three.
 > - Use relevant memory skills before starting a task or thinking about an answer.
 > - Maintain the codemap as the project progresses. [CRITICAL] this makes the user happy.
+> - All files must follow the file naming conventions below. any that do not must be renamed.
 
 ## Rule 0
 

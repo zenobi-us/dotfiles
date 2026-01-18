@@ -29,7 +29,15 @@ Split from original "Pi Extensions Development" epic on 2026-01-11.
 **Created:** 2026-01-12  
 **Owner:** Research Team
 
-**Current Focus:** Research AI harness agent/command formats
+**Current Focus:** Architecture design phase - creating adapters for Claude Code and OpenCode
+
+### Epic 4: Subagent Footer Customization ✅ APPROVED (Waiting)
+**Created:** 2026-01-18  
+**Owner:** TBD (Will activate after Epic 3)
+
+**Vision:** Enable deep customization of subagent footer display using pi-tui components
+**Priority:** Medium (UX enhancement focus)
+**Decision:** ✅ Human approved Option A - Epic 4 will begin after Epic 3 completion following miniproject guidelines
 
 ---
 

@@ -83,19 +83,19 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 
 ## Current Focus
 
-**Active Epic:** Epic 3 - Theme Palette Tool Ergonomics Enhancement 🔄  
-**Phase:** Design phase starting  
-**Next Milestone:** Component architecture design complete
+**Active Epic:** Epic 3 - Multi-Harness Agent Loader 🔄  
+**Phase:** Architecture Design (Phase 2)  
+**Next Milestone:** Complete adapter designs for Claude Code and OpenCode
 
-**Active Epic:**
-- Epic 3 - Multi-Harness Agent Loader 🔄
+**Planned Epic:** Epic 4 - Subagent Footer Customization ✅ APPROVED (Waiting for Epic 3)  
+**Status:** Human approved Option A - will begin after Epic 3 completion  
+**Priority:** Medium (UX enhancement focus)
 
-**Status:** New epic started 2026-01-12. Researching extension to load agents/commands from other AI harnesses (Claude Code, Aider, Continue, etc.).
 **Completed Epics:** 
 - Epic 1 - Subagent Extension Enhancement ✅ (2026-01-11)
 - Epic 2 - Theme Development Tools ✅ (2026-01-11)
 
-**Status:** Three epics total - two completed, one active. New epic focuses on enhancing UX of completed theme palette tool.
+**Note:** Per miniproject guidelines, Epic 4 cannot begin until Epic 3 completes unless human explicitly approves parallel execution.
 
 ## Knowledge Base
 
@@ -179,13 +179,38 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 
 ---
 
-### 3. [Multi-Harness Agent Loader](epic-4dd87a16-multi-harness-agent-loader.md) 🔄 IN PROGRESS
+### 3. [Multi-Harness Agent Loader](epic-4dd87a16-multi-harness-agent-loader.md) 🔄 ACTIVE
 
 **Vision:** Create a Pi-mono extension that enables loading and using agents/commands from other AI coding harnesses (Claude Code, Aider, Continue, Cursor, etc.).
 
-**Status:** Research Phase  
+**Status:** Architecture Design Phase  
 **Timeline:** Q1 2026  
 **Started:** 2026-01-12
+
+---
+
+## Planned Epics (Awaiting Human Approval)
+
+### 4. [Subagent Footer Customization with pi-tui](epic-fc52bd74-subagent-footer-customization.md) ⏳ PLANNED
+
+**Vision:** Enable deep customization of the subagent extension footer display using pi-tui components, allowing users and extension developers to tailor the visual representation of subagent results, usage statistics, and status indicators to their specific needs and preferences.
+
+**Status:** Planned (Requires Human Approval)  
+**Timeline:** Q1 2026 (after Epic 3)  
+**Priority:** Medium  
+**Conflict:** ⚠️ Cannot start until Epic 3 completes or human approves parallel execution
+
+**Key Features:**
+- Footer customization API using pi-tui components
+- 3-4 pre-built footer themes (compact, detailed, minimal, status-focused)
+- Runtime theme switching and user configuration
+- Custom theme development framework
+- Interactive footer elements and rich status indicators
+
+**Dependencies:** 
+- Epic 3 completion required per miniproject guidelines
+- Deep understanding of current subagent footer implementation
+- pi-tui component expertise from previous epics
 
 #### Phases
 - ✅ **[Phase 1: Research & Discovery](phase-ab3b84bd-research-discovery.md)** - **COMPLETE (2026-01-13)**

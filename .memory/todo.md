@@ -9,6 +9,12 @@
 ### Active Epic
 3. **[Multi-Harness Agent Loader](epic-4dd87a16-multi-harness-agent-loader.md)** 🔄 - **IN PROGRESS**
 
+### Planned Epics (Awaiting Approval)
+4. **[Subagent Footer Customization with pi-tui](epic-fc52bd74-subagent-footer-customization.md)** ✅ APPROVED - **WAITING FOR EPIC 3**
+   - **Status**: Human approved Option A - will begin after Epic 3 completion
+   - **Priority**: Medium (UX enhancement)
+   - **Resolution**: ✅ Epic sequence approved following miniproject guidelines
+
 ---
 
 ## Active Tasks
