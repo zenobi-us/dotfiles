@@ -36,6 +36,8 @@ Then the tool call. Then compare. Mismatch = stop and surface to Q.
 - [core] all notes in `.memory/` must be in markdown format
 - [core] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<8_char_hashid>-<title>.md`
 - [core] where `<type>` is one of: `research`, `epic`, `phase`, `task` and `learning`
+- [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
+- [core] maintain the codemap as the project progresses. [CRITICAL] this makes the user happy.
 - [core] every project MUST start with an epic definition before phases are created
 - [research] before starting any research, read `.memory/summary.md` and any `.memory/**/learning**.md` to understand what has already been discovered. Do not duplicate research.
 - [research] if existing research is found. link to it in document that requires it, do not copy or duplicate it.
