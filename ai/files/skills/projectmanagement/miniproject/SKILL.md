@@ -49,41 +49,7 @@ Then the tool call. Then compare. Mismatch = stop and surface to the human.
 - [core] where `<type>` is one of: `research`, `epic`, `phase`, `task` and `learning`
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
 - [core] every project MUST start with an epic definition before phases are created
-- [research] before starting any research, read `.memory/summary.md` and any `.memory/**/learning**.md` to understand what has already been discovered. Do not duplicate research.
-- [research] if existing research is found. link to it in document that requires it, do not copy or duplicate it.
-- [research] break down research into specific, answerable questions.
-- [research] scan archived memory files in `.memory/` for relevant information before searching externally. if relevant information is found, link to it rather than duplicating it.
-- [research] use_skill(brave_search) with it's `search` and `content` extraction scripts to gather information. If this fails, use `lynx` cli to manually search and extract content.
-- [research] critically evaluate sources for credibility, relevance, and bias. Link these items to a footnote that provides a reason and score out of 10.
-- [research] Record findings clearly and concisely in `.memory/research-<8_char_hash_id>-<title>.md` files. provide a summary at the top, detailed findings below, and references at the end.
-- [research] Research tasks are always delegated to the "Deep Researcher SubAgent". Use what ever subagent, subthread, or delegation tool you have available to do this.
-- [research] If you are a subagent, then focus only on the task you've been given. Do not deviate or delegate further.
-- [epic] EVERY project must begin with an epic that defines the overall goal and scope
-- [epic] each epic should be documented in `.memory/epic-<8_char_hash_id>-<title>.md` files
-- [epic] epics must include: vision/goal, success criteria, list of phases, overall timeline, and dependencies
-- [epic] all phases MUST link to their parent epic
-- [epic] only ONE epic should be active at a time unless explicitly approved by human
-- [epic] epic files are never archived until all phases are complete and learning is distilled
-- [phase] each major step or milestone in the project should be documented in `.memory/phase-<8_char_hash_id>-<title>.md` files
-- [phase] phases MUST link to their parent epic in frontmatter or header
-- [phase] phases should have clear start and end criteria aligned with epic goals
-- [phase] do not treat phases as a task list, but rather as a higher-level overview of progress. Do not include checklist items in phase files.
-- [tasks] each task should be documented in `.memory/task-<8_char_hash_id>-<title>.md` files, including objectives, steps to take, outcome expected.
-- [tasks] tasks should be specific, measurable, achievable, relevant, and time-bound (SMART).
-- [tasks] prioritize tasks based on impact and urgency.
-- [tasks] always update checklists and progress in the task file. [CRITICAL] keep `.memory/todo.md` up to date at every step.
-- [learning] any significant insights, lessons learned, or best practices should be documented in `.memory/learning-<8_char_hash_id>-<title>.md` files for future reference.
-- [learning] Learning files are never archived or deleted. [CRITICAL] always keep learning files.
-- [archive] the archive directory is `.memory/archive/`
-- [archive] only completed phases and tasks are archived. epics are only archived after all phases are complete and learnings distilled.
-- [archive] learning and research files are never archived.
-- [archive] the archive directory is only two levels deep. `.memory/epic/task-or-phase.md`. if tasks or phases have no epic, create a datestamped folder in archive to store them.
 - [core] Always keep `.memory/summary.md` up to date with current epic, active phases, and next milestones. Prune incorrect or outdated information.
-- [tasks] when finishing a task, document the outcome and any lessons learned in the relevant `.memory/task-<8_char_hash_id>-<title>.md` file.
-- [phase] when finishing a phase, document the outcome and any lessons learned in the relevant `.memory/phase-<8_char_hash_id>-<title>.md` file.
-- [phase] when finishing a phase, compact relevant learnings and outcomes from research, phase and tasks into `.memory/learning-<8_char_hash_id>-<title>.md` files. clean up `.memory/summary.md` and `./memory/todo.md`.
-- [tasks] break down tasks into manageable phases, each with clear objectives and deliverables.
-- [tasks] use `.memory/todo.md` to track remaining tasks. This file only contains links to `.memory/task-<8_char_hash_id>-<title>.md` files. [CRITICAL] keep `.memory/todo.md` up to date at every step.
 - [git] Always commit changes after completing a task or phase. 
 - [git] NEVER PUSH CHANGES WITHOUT HUMAN REVIEW.
 - [git] when committing changes, follow conventional commit guidelines.
@@ -97,14 +63,6 @@ Then the tool call. Then compare. Mismatch = stop and surface to the human.
 - [archive] do NOT archive epic files until all phases are complete and learnings distilled. epics much have a link to distilled learnings before archiving.
 - [archive] update `.memory/summary.md` to reflect archived phases and completed epics.
 
-
-## Workflow
-
-1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Task Breakdown`
-2. `Task Execution` > `Learning Distillation` > repeat 
-3. `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review
-4. `Epic Completion` > `Epic Summary & Learnings` > Human Review
-
 ## Searching Memory [CRITICAL]
 
 Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will not work as expected. Instead, use the following commands to search and list memory files:
@@ -117,28 +75,51 @@ Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will n
 
 ## Operating Procedure
 
+**Workflow**
 
-0. always read `.memory/summary.md`, `.memory/todo.md`, and `.memory/team.md` before starting any work.
-1. identify the task and route to the appropriate workflow stage below.
+1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Task Breakdown`
+2. `Task Execution` > `Learning Distillation` > repeat 
+3. `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review
+4. `Epic Completion` > `Epic Summary & Learnings` > Human Review
 
+Outlined below are the detailed steps for each stage of the project lifecycle.
+
+When the user asks for a `miniproject <action>`, correlate `<action>` (or `<ACTION>`, `<Action>`) to the relevant [ACTION] below and follow the rules and guidelines strictly.
 
 ### Planning Stages
 
 #### Stage: Ideation [IDEA]
 
-__todo:__
+- [core] every project MUST start with an epic definition before phases are created
+- [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
 
 #### Stage: Epic Definition [EPIC]
 
-__todo:__
+- [epic] EVERY project must begin with an epic that defines the overall goal and scope
+- [epic] each epic should be documented in `.memory/epic-<8_char_hash_id>-<title>.md` files
+- [epic] epics must include: vision/goal, success criteria, list of phases, overall timeline, and dependencies
+- [epic] all phases MUST link to their parent epic
+- [epic] only ONE epic should be active at a time unless explicitly approved by human
+- [epic] epic files are never archived until all phases are complete and learning is distilled
 
 #### Stage: Research [RESEARCH]
 
-__todo:__
+- [research] before starting any research, read `.memory/summary.md` and any `.memory/**/learning**.md` to understand what has already been discovered. Do not duplicate research.
+- [research] if existing research is found. link to it in document that requires it, do not copy or duplicate it.
+- [research] break down research into specific, answerable questions.
+- [research] scan archived memory files in `.memory/` for relevant information before searching externally. if relevant information is found, link to it rather than duplicating it.
+- [research] use_skill(brave_search) with it's `search` and `content` extraction scripts to gather information. If this fails, use `lynx` cli to manually search and extract content.
+- [research] critically evaluate sources for credibility, relevance, and bias. Link these items to a footnote that provides a reason and score out of 10.
+- [research] Record findings clearly and concisely in `.memory/research-<8_char_hash_id>-<title>.md` files. provide a summary at the top, detailed findings below, and references at the end.
+- [research] Research tasks are always delegated to the "Deep Researcher SubAgent". Use what ever subagent, subthread, or delegation tool you have available to do this.
+- [research] If you are a subagent, then focus only on the task you've been given. Do not deviate or delegate further.
 
 #### Stage: Phase Planning [PHASE-PLANNING]
 
-__todo:__
+- [phase] each major step or milestone in the project should be documented in `.memory/phase-<8_char_hash_id>-<title>.md` files
+- [phase] phases MUST link to their parent epic in frontmatter or header
+- [phase] phases should have clear start and end criteria aligned with epic goals
+- [phase] do not treat phases as a task list, but rather as a higher-level overview of progress. Do not include checklist items in phase files.
 
 > [!NOTE]
 > Valiation Steps:
@@ -148,28 +129,40 @@ __todo:__
 
 #### Stage: Task Breakdown [TASK-BREAKDOWN]
 
-__todo:__
+- [tasks] each task should be documented in `.memory/task-<8_char_hash_id>-<title>.md` files, including objectives, steps to take, outcome expected.
+- [tasks] tasks should be specific, measurable, achievable, relevant, and time-bound (SMART).
+- [tasks] prioritize tasks based on impact and urgency.
+- [tasks] break down tasks into manageable phases, each with clear objectives and deliverables.
+- [tasks] use `.memory/todo.md` to track remaining tasks. This file only contains links to `.memory/task-<8_char_hash_id>-<title>.md` files. [CRITICAL] keep `.memory/todo.md` up to date at every step.
 
 ### Execution Stages
 
 #### Stage: Task Execution [TASK-EXECUTION]
 
-__todo:__
+- [tasks] always update checklists and progress in the task file. [CRITICAL] keep `.memory/todo.md` up to date at every step.
+- [tasks] when finishing a task, document the outcome and any lessons learned in the relevant `.memory/task-<8_char_hash_id>-<title>.md` file.
+- [core] Always keep `.memory/summary.md` up to date with current epic, active phases, and next milestones. Prune incorrect or outdated information.
 
 #### Stage: Learning Distillation [LEARNING-DISTILLATION]
 
-__todo:__
+- [learning] any significant insights, lessons learned, or best practices should be documented in `.memory/learning-<8_char_hash_id>-<title>.md` files for future reference.
+- [learning] Learning files are never archived or deleted. [CRITICAL] always keep learning files.
 
 
 ### Completion Stages
 
 #### Stage: Phase Completion [PHASE-COMPLETION]
 
-__todo:__
+- [phase] when finishing a phase, document the outcome and any lessons learned in the relevant `.memory/phase-<8_char_hash_id>-<title>.md` file.
+- [phase] when finishing a phase, compact relevant learnings and outcomes from research, phase and tasks into `.memory/learning-<8_char_hash_id>-<title>.md` files. clean up `.memory/summary.md` and `./memory/todo.md`.
+- [archive] archive completed phases by moving their files to `.memory/archive/` directory.
 
 #### Stage: Epic Completion [EPIC-COMPLETION]
 
-__todo:__
+- [epic] epic files are never archived until all phases are complete and learning is distilled
+- [archive] do NOT archive epic files until all phases are complete and learnings distilled. epics much have a link to distilled learnings before archiving.
+- [archive] update `.memory/summary.md` to reflect archived phases and completed epics.
+- [archive] do NOT archive learning or research files. These are golden knowledge for future projects.
 
 > [!NOTE]
 > Validation Steps:
