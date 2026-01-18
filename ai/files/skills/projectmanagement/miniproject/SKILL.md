@@ -15,6 +15,7 @@ This is a simplified and concise project management AI memory framework.
 > - read `.memory/todo.md`, `.memory/summary.md`, `.memory/knowledge.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
 > - if `.memory/` is missing these files, then create those three.
 > - Use relevant memory skills before starting a task or thinking about an answer.
+> - Maintain the codemap as the project progresses. [CRITICAL] this makes the user happy.
 
 ## Rule 0
 
@@ -37,7 +38,6 @@ Then the tool call. Then compare. Mismatch = stop and surface to Q.
 - [core] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<8_char_hashid>-<title>.md`
 - [core] where `<type>` is one of: `research`, `epic`, `phase`, `task` and `learning`
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
-- [core] maintain the codemap as the project progresses. [CRITICAL] this makes the user happy.
 - [core] every project MUST start with an epic definition before phases are created
 - [research] before starting any research, read `.memory/summary.md` and any `.memory/**/learning**.md` to understand what has already been discovered. Do not duplicate research.
 - [research] if existing research is found. link to it in document that requires it, do not copy or duplicate it.
