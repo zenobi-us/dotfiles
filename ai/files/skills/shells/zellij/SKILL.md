@@ -1,5 +1,5 @@
 ---
-name: zellij-reference
+name: zellij
 description: Use when manipulating Zellij sessions, creating tabs or panes, or looking up Zellij CLI commands for terminal multiplexer operations
 ---
 
