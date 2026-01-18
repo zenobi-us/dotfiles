@@ -8,6 +8,8 @@ Create a semantic commit to accomodate user request.
 </UserRequest>
 ```
 
+When user input is missing, assume that the user wants to commit all current changes in the working directory.
+
 ## Soft Validation
 
 If any of these checks fail, check with the user before proceeding.
