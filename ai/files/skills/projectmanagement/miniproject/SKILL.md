@@ -75,16 +75,54 @@ Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will n
 
 ## Operating Procedure
 
+**Project Constitution**
 **Workflow**
 
+0. `Initialise` > `Action`
 1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Task Breakdown`
 2. `Task Execution` > `Learning Distillation` > repeat 
 3. `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review
 4. `Epic Completion` > `Epic Summary & Learnings` > Human Review
+5. `Maintenance Actions` as needed.
 
 Outlined below are the detailed steps for each stage of the project lifecycle.
 
 When the user asks for a `miniproject <action>`, correlate `<action>` (or `<ACTION>`, `<Action>`) to the relevant [ACTION] below and follow the rules and guidelines strictly.
+
+### Initialisation Action [INITIALISE]
+
+- [core] ensure `.memory/` directory exists with the following files:
+  - `.memory/todo.md` (for tracking tasks)
+  - `.memory/summary.md` (for project overview)
+  - `.memory/team.md` (for team roles and assignments)
+  - `.memory/knowledge-codemap.md` (for codebase understanding)
+- [core] if any of these files are missing, create them with appropriate headers and initial
+- [core] ask the user if they want to define a `.memory/constitution.md` file to outline project rules and guidelines. If yes, create the file with a template structure.
+
+### Maintenance Actions
+
+Sometimes the `.memory/` directory needs maintenance. Use these actions as needed.
+
+#### Action: Summarize Memory [SUMMARIZE-MEMORY]
+
+- [core] read all `.memory/` files and update `.memory/summary.md` to reflect current epic, active phases, and next milestones. Prune incorrect or outdated information.
+- [core] ensure `.memory/summary.md` is concise and easy to understand at a glance.
+
+
+#### Action: Clean Up [CLEAN-UP]
+
+- [tasks] move completed tasks to `.memory/archive/` directory.
+- [learning] ensure all significant learnings are documented in `.memory/learning-<8_char_hash_id>-<title>.md` files.
+- [archive] move completed phases to `.memory/archive/` directory.
+
+
+#### Action: Refine Constitution [REFINE-CONSTITUTION]
+
+- [core] review and update `.memory/constitution.md` based on user input.
+- [core] ensure all team members are aware of any changes to the constitution.
+- [core] `.memory/constitution.md` is never updated unless asked to do so by a human.
+- [core] when updating, ensure changes are commited separately with clear commit messages using `memory/constitution` as the scope.
+
 
 ### Planning Stages
 
