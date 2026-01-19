@@ -91,9 +91,8 @@ Use the `skills_superpowers_writing_git_commits` skill to guide you in writing g
 Otherwise:
 
 1. Use conventional commit prefixes:
-- `feat:` - New feature or functionality
-- `fix:` - Bug fix
-- `refactor:` - Code restructuring without behavior change
+- `feat:` - New feature, functionality.
+- `fix:` - Bug fix or refactoring.
 - `docs:` - Documentation changes
 - `style:` - Formatting, whitespace (no code change)
 - `test:` - Adding or updating tests
@@ -111,7 +110,7 @@ Otherwise:
 Examples:
 - `feat: add user authentication endpoint`
 - `fix(config): resolve null pointer in config parser`
-- `refactor: extract validation logic to separate module`
+- `feat(scope): extract validation logic to separate module`
 - `docs(apiv2): update API documentation for v2 endpoints`
 - `chore: update dependencies to latest versions`
 
