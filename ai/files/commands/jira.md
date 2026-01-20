@@ -112,3 +112,13 @@ Arguments: `create <SUMMARY> [description text...]` or `bug <SUMMARY>` or `task 
   - `create Fix login redirect loop on logout`
   - `bug Unable to save employee on second attempt`
   - `task Add dark mode toggle to settings page`
+
+#### Scnario: Store locally
+
+Action Verbs: Store, Save
+
+Arguments: `store <TICKET-ID> <format or storage skill>`
+
+- Fetch Jira ticket (from `$2`) details.
+- Load the specified storage skill (from `$3`), or default to local file storage if none specified.
+- Save ticket details to a local file in markdown format according to the storage skill's conventions.
