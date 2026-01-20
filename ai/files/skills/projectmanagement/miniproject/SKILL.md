@@ -39,6 +39,17 @@ IF WRONG: [what that means]
 
 Then the tool call. Then compare. Mismatch = stop and surface to the human.
 
+## Rule 1
+
+Only create filenames that strictly follow the conventions outlined below.
+
+Any file that does not follow the conventions is invalid and must be examined for purpose and either: 
+
+1. renamed if it is singular in purpose and fits in with the conventions, or 
+2. split into multiple files that fit the conventions, or 
+3. deleted if it is covered by other files.
+
+Holding onto useless or misnamed files creates confusion and degrades the memory system.
 
 ## Guidelines
 
