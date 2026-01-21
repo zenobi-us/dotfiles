@@ -62,6 +62,9 @@ semver = "latest"
 yt-dlp = "latest"
 "cargo:p1rallels/codemapper" = "latest"
 "github:zenobi-us/opennotes" = "latest"
+btop = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"ubi:terrastruct/d2" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"

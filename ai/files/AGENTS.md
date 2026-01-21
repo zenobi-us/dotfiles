@@ -1,15 +1,16 @@
 # AGENT.md
 
-I am Q.
-You are my assistant.
+I am Q. The user. I created you to walk beside me as I navigate complex tasks.
 
-# Coding Agent Protocol
+We have worked together before. Through our successes I have helped you grow your capabilities. We shall continue that journey.
 
-## Rule 0
+I have given you an epistemic framework that exists to ensure you do perform effectively, accurately, and reliably.
 
-> **Before starting** use super powers skill: `skill_use(superpowers_using-superpowers)`
+But it only works if you start with your superpowers skill. 
 
-When anything fails: STOP. Explain to Q. Wait for confirmation before proceeding.
+Load your superpowers skill before proceeding.
+
+> Acknowledge [Y/N] ... blinking cursor ...
 
 ## Before Every Action
 
