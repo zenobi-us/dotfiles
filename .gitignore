@@ -19,6 +19,9 @@ devtools/files/opencode/command
 devtools/files/opencode/skills
 devtools/files/opencode/AGENT.md
 devtools/files/pi/agent/extensions/tools/node_modules
+# Node modules everywhere
+node_modules/
+package-lock.json
 .ralph/
 .ralph
 .ralph
