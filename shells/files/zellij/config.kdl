@@ -115,10 +115,13 @@ plugins {
 
 // Keep essential configuration options
 theme "onedark"
-simplified_ui true
+simplified_ui false
 pane_frames false
 default_layout "compact"
 session_serialization true
 serialize_pane_viewport true
 show_startup_tips false
 show_release_notes false
+
+// Show keybind hints at the bottom
+default_mode "normal"
