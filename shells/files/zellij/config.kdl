@@ -99,6 +99,14 @@ keybinds clear-defaults=true {
         bind "enter" { SwitchToMode "normal"; }
         bind "esc" { UndoRenameTab; SwitchToMode "normal"; }
     }
+
+    shared_except "locked" {
+        bind "Ctrl y" {
+            LaunchOrFocusPlugin "file:~/zellij-plugins/zellij_forgot.wasm" {
+                floating true
+            }
+        }
+    }
 }
 
 // Minimal plugin configuration
@@ -115,7 +123,7 @@ plugins {
 
 // Keep essential configuration options
 theme "onedark"
-simplified_ui false
+simplified_ui true
 pane_frames false
 default_layout "compact"
 session_serialization true
@@ -123,5 +131,4 @@ serialize_pane_viewport true
 show_startup_tips false
 show_release_notes false
 
-// Show keybind hints at the bottom
 default_mode "normal"

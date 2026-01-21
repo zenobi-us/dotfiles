@@ -17,6 +17,14 @@
 
 ---
 
+## Completed Today
+
+| Status | Task | Notes |
+|--------|------|-------|
+| ✅ | [Worktree Extension](task-d354b422-worktree-extension.md) | Standalone - Implemented `/worktree` command |
+
+---
+
 ## Active Tasks
 
 ### Epic 3: Multi-Harness Agent Loader
