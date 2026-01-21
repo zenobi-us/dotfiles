@@ -70,6 +70,18 @@ zellij action new-tab --name "backend" --cwd ~/api
 zellij action new-pane --direction down -- npm run dev
 ```
 
+**New pane with guaranteed working directory:**
+```bash
+# For interactive shell with specific directory
+zellij action new-pane --cwd /path/to/dir
+
+# For command that must run in specific directory
+zellij action new-pane --cwd /path/to/dir -- sh -c 'cd /path/to/dir && your-command'
+
+# For nvim that must start in specific directory
+zellij action new-pane --cwd /path/to/worktree -- sh -c 'cd /path/to/worktree && nvim'
+```
+
 **Floating scratch terminal:**
 ```bash
 zellij action new-pane --floating --width 90% --height 90%
@@ -87,6 +99,16 @@ Correct: `--direction down` (not `--horizontal`)
 **❌ Forgetting `action` subcommand**
 Wrong: `zellij new-tab`
 Right: `zellij action new-tab`
+
+**❌ Pane not starting in correct directory**
+Problem: Using `--cwd` alone doesn't always ensure the command runs in that directory
+```bash
+# ❌ Wrong - nvim might not start in the right directory
+zellij action new-pane --cwd /path/to/worktree -- nvim
+
+# ✅ Correct - explicitly cd first
+zellij action new-pane --cwd /path/to/worktree -- sh -c 'cd /path/to/worktree && nvim'
+```
 
 ## Notes
 
