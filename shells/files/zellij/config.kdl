@@ -118,7 +118,44 @@ plugins {
     session-manager location="zellij:session-manager"
     status-bar location="zellij:status-bar"
     sequence location="zellij:sequence"
+    zjstatus-hints location="file://~/.config/zellij/plugins/zjstatus-hints.wasm" {
+        // Maximum number of characters to display
+        max_length 0 // 0 = unlimited
+        // String to append when truncated
+        overflow_str "..." // default
+        // Name of the pipe for zjstatus integration
+        pipe_name "zjstatus_hints" // default
+        // Hide hints in base mode (a.k.a. default mode)
+        // E.g. if you have set default_mode to "locked", then
+        // you can hide hints in the locked mode by setting this to true
+        hide_in_base_mode false // default
+    }
 
+}
+
+
+load_plugins {
+    // Load at startup
+    zjstatus-hints
+}
+
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="zjstatus" {
+                format_left   "{mode} {tabs}"
+
+                // You can put `{pipe_zjstatus_hints}` inside of format_left, format_center, or format_right.
+                // The pipe name should match the pipe_name configuration option from above, which is zjstatus_hints by default.
+                // e.g. pipe_<pipe_name>
+                format_right  "{pipe_zjstatus_hints}{datetime} " 
+
+                // Note: this is necessary or else zjstatus won't render the pipe:
+                pipe_zjstatus_hints_format "{output}"
+            }
+        }
+    }
 }
 
 // Keep essential configuration options
