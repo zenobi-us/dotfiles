@@ -1,8 +1,13 @@
 {
   "lastChangelogVersion": "0.48.0",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-haiku-4-5",
+  "defaultProvider": "lmstudio",
+  "defaultModel": "openai/gpt-oss-20b",
   "defaultThinkingLevel": "off",
   "theme": "rose-pine-moon",
-  "hideThinkingBlock": true
+  "hideThinkingBlock": false,
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 256,
+    "keepRecentTokens": 2000
+  }
 }

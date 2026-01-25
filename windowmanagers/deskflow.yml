@@ -1,0 +1,24 @@
+---
+
+depends:
+  - packagemanagers.scoop
+
+actions:
+
+  # - action: package.install
+  #   where: os.name == "windows"
+  #   name: Deskflow.Deskflow
+  #
+  # - action: command.run
+  #   where: os.name == "linux"
+  #   command: mise 
+  #   args: 
+  #     - use 
+  #     - -g 
+  #     - github:deskflow/deskflow
+    
+  # create a symlink for deskflow config
+  - action: file.link
+    source: deskflow
+    to: "{{user.home_dir}}/.config/deskflow"
+
