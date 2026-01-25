@@ -65,6 +65,9 @@ yt-dlp = "latest"
 btop = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "ubi:terrastruct/d2" = "latest"
+"pipx:vllm" = "latest"
+"pipx:open-webui" = "latest"
+"pipx:vllm-playground" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
