@@ -1,0 +1,43 @@
+{
+  "providers": {
+    "lmstudio": {
+      "baseUrl": "http://localhost:1234/v1",
+      "apiKey": "lm-studio",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "qwen/qwen3-v1-30b",
+          "name": "Qwen3 v1 30B (Local LM Studio)",
+          "reasoning": true,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 31767,
+          "maxTokens": 30000
+        },
+        {
+          "id": "openai/gpt-oss-20b",
+          "name": "GPT-OSS 20B (Local LM Studio)",
+          "reasoning": true,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 130000,
+          "maxTokens": 130000
+        },
+        {
+          "id": "zai-org/glm-4.7-flash",
+          "name": "GLM-4.7 Flash (Local LM Studio)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 3075,
+          "maxTokens": 2048
+        }
+      ]
+    }
+  }
+}
