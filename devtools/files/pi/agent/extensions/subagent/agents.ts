@@ -7,7 +7,6 @@ import * as os from "node:os";
 import * as path from "node:path";
 import dedent from "dedent";
 
-
 export interface AgentConfig {
   name: string;
   description: string;
@@ -21,7 +20,7 @@ export const PredicatableAgentPaths = {
   Builtin: path.join(__dirname, "agents"),
   User: path.join(os.homedir(), ".pi", "agent", "agents"),
   Project: path.join(".pi", "agents"),
-}
+};
 
 export type AgentRegistry = Map<string, AgentConfig>;
 
@@ -76,7 +75,7 @@ function summariseAgentContent(content: string, lines: number = 1): string {
 }
 
 function loadAgent(filePath: string): AgentConfig | null {
-  if (!filePath.endsWith(".md")) return null
+  if (!filePath.endsWith(".md")) return null;
 
   let content: string;
   try {
@@ -93,7 +92,10 @@ function loadAgent(filePath: string): AgentConfig | null {
     .filter(Boolean);
 
   const name = parsed.frontmatter.name || path.basename(filePath, ".md");
-  const description = parsed.frontmatter.description || summariseAgentContent(parsed.body) || "No description";
+  const description =
+    parsed.frontmatter.description ||
+    summariseAgentContent(parsed.body) ||
+    "No description";
 
   return {
     name,
@@ -102,9 +104,8 @@ function loadAgent(filePath: string): AgentConfig | null {
     model: parsed.frontmatter.model,
     systemPrompt: parsed.body,
     filePath,
-  }
+  };
 }
-
 
 function isDirectory(p: string): boolean {
   try {
@@ -113,8 +114,6 @@ function isDirectory(p: string): boolean {
     return false;
   }
 }
-
-
 
 /**
  * Find a path by searching upwards from a starting directory.
@@ -140,16 +139,14 @@ function getGitRootDir(startDir: string): string | undefined {
   return gitPath ? path.dirname(gitPath) : undefined;
 }
 
-
 /**
  * Get all directories where agents are searched for.
- * 
+ *
  * Returns paths in search order (higher priority first):
  * 1. ~/.pi/agent/agents (global agents)
  * 2. Project-specific .pi/agents directories (from cwd up to git root or home)
  */
 export function getAgentSearchPaths(cwd: string): string[] {
-
   function createSearchPath(p: string) {
     return path.join(p, "**", "*.md");
   }
@@ -161,23 +158,31 @@ export function getAgentSearchPaths(cwd: string): string[] {
   }
 
   // Global agents directory (always first)
-  const isGlobalDir = fg.sync(PredicatableAgentPaths.User, { onlyDirectories: true, absolute: true });
+  const isGlobalDir = fg.sync(PredicatableAgentPaths.User, {
+    onlyDirectories: true,
+    absolute: true,
+  });
   if (isGlobalDir.length > 0) {
     searchPaths.push(createSearchPath(PredicatableAgentPaths.User));
   }
 
   // Find all .pi/agents directories from cwd up to boundaries
-  const boundaries = [
-    os.homedir(),
-    getGitRootDir(cwd)
-  ].filter(Boolean) as string[];
+  const boundaries = [os.homedir(), getGitRootDir(cwd)].filter(
+    Boolean,
+  ) as string[];
 
   let currentDir = path.resolve(cwd);
   const isBoundary = (p: string) => boundaries.some((bp) => p === bp);
 
   while (true) {
-    const projectAgentsDir = path.join(currentDir, PredicatableAgentPaths.Project);
-    if (isDirectory(projectAgentsDir) && !searchPaths.includes(projectAgentsDir)) {
+    const projectAgentsDir = path.join(
+      currentDir,
+      PredicatableAgentPaths.Project,
+    );
+    if (
+      isDirectory(projectAgentsDir) &&
+      !searchPaths.includes(projectAgentsDir)
+    ) {
       searchPaths.push(createSearchPath(projectAgentsDir));
     }
 
@@ -198,18 +203,13 @@ export function getAgentSearchPaths(cwd: string): string[] {
 }
 
 export function discoverAgents(cwd: string): AgentDiscoveryResult {
-
   const agents = new Map<string, AgentConfig>();
 
-  const agentFiles = fg.sync(
-    getAgentSearchPaths(cwd),
-    {
-      // dot: true,
-      absolute: true,
-      followSymbolicLinks: true,
-    }
-  );
-
+  const agentFiles = fg.sync(getAgentSearchPaths(cwd), {
+    // dot: true,
+    absolute: true,
+    followSymbolicLinks: true,
+  });
 
   for (const agentFile of agentFiles) {
     const file = path.resolve(agentFile);
@@ -218,48 +218,47 @@ export function discoverAgents(cwd: string): AgentDiscoveryResult {
     agents.set(agent.name, agent);
   }
 
-
   return { agents, agentFiles };
 }
 
 export function renderAgentList(
   agents: AgentRegistry,
   options: Parameters<typeof renderAgentListItem>[1] & {
-    style?: 'list' | 'inline'
+    style?: "list" | "inline";
   } = {},
 ): string {
   if (agents.size === 0) return "(No agents found)";
-  const output: string[] = []
+  const output: string[] = [];
 
-  const prefix = options.style === 'list' ? "•" : ""
+  const prefix = options.style === "list" ? "•" : "";
 
   for (const agent of agents.values()) {
     output.push(`${prefix} ${renderAgentListItem(agent, options)}`);
   }
 
-  const separator = options.style === 'list' ? "\n" : ",";
+  const separator = options.style === "list" ? "\n" : ",";
   return output.join(separator);
-
 }
 
-export function renderAgentListItem(agent: AgentConfig,
-  options: { verbosity?: 'light' | 'dense' } = {},
+export function renderAgentListItem(
+  agent: AgentConfig,
+  options: { verbosity?: "light" | "dense" } = {},
 ): string {
-
   if (!options.verbosity) {
     return agent.name;
   }
 
-  if (options.verbosity === 'light') {
+  if (options.verbosity === "light") {
     return `${agent.name} - ${agent.description}`;
   }
 
   return dedent`
-  • ${agent.name}
+  **${agent.name}**
+
     Description: ${agent.description}
-    Model: ${agent.model || "(default)"}
-    Tools: ${agent.tools && agent.tools.length > 0 ? agent.tools.join(", ") : "(none)"}
-    File: ${agent.filePath}
+          Model: ${agent.model || "(inherit)"}
+          Tools: ${agent.tools && agent.tools.length > 0 ? agent.tools.join(", ") : "(none)"}
+           File: ${agent.filePath}
+
   `;
 }
-

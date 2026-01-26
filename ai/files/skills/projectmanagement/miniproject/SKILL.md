@@ -272,6 +272,11 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 - [archive] move completed phases to `.memory/archive/` directory.
 
 
+#### Action: Validate Memory [VALIDATE-MEMORY]
+
+- [core] run the validation script to ensure all memory files comply with the frontmatter rules: `./scripts/validate.ts`
+
+
 #### Action: Refine Constitution [REFINE-CONSTITUTION]
 
 - [core] review and update `.memory/constitution.md` based on user input.
