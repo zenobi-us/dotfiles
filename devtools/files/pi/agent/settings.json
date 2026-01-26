@@ -1,15 +1,18 @@
 {
-  "lastChangelogVersion": "0.49.3",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-haiku-4-5",
+  "lastChangelogVersion": "0.50.0",
+  "defaultProvider": "google-antigravity",
+  "defaultModel": "gemini-3-pro-high",
   "defaultThinkingLevel": "off",
   "theme": "rose-pine-moon",
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "compaction": {
     "enabled": true,
     "reserveTokens": 256,
     "keepRecentTokens": 2000
   },
   "collapseChangelog": true,
-  "quietStartup": true
+  "quietStartup": true,
+  "packages": [
+    "git:github.com/zenobi-us/pi-rose-pine"
+  ]
 }

@@ -67,7 +67,8 @@ btop = "latest"
 "pipx:vllm" = "latest"
 "pipx:open-webui" = "latest"
 "pipx:vllm-playground" = "latest"
-"npm:@mariozechner/pi-coding-agent" = "0.49.3"
+"npm:@mariozechner/pi-coding-agent" = "0.50.0"
+"npm:antigravity-usage" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
