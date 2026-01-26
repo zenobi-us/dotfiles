@@ -20,6 +20,7 @@ actions:
       - "{{user.home_dir}}/.pi/agent/themes"
       - "{{user.home_dir}}/.pi/agent/settings.json"
       - "{{user.home_dir}}/.pi/agent/package.json"
+      - "{{user.home_dir}}/.pi/agent/models.json"
 
   - action: command.run
     where: os.name == "windows"
@@ -52,6 +53,10 @@ actions:
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/package.json"
     from: pi/agent/package.json
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/models.json"
+    from: pi/agent/models.json
 
   - action: command.run
     dir: "{{user.home_dir}}/.pi"

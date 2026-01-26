@@ -12,25 +12,7 @@
           "input": ["text"],
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "contextWindow": 31767,
-          "maxTokens": 262144,
-          "settings": {
-            "server": {
-              "gpuOffload": "43/48",
-              "cpuThreadPoolSize": 6,
-              "evaluationBatchSize": 512,
-              "offloadKVCacheToGPU": true,
-              "keepModelInMemory": true,
-              "tryMmap": true,
-              "numberOfExperts": 8
-            },
-            "inference": {
-              "temperature": 0.7,
-              "topKSampling": 20,
-              "minPSampling": 0.05,
-              "topPSampling": 0.8,
-              "limitResponseLength": false
-            }
-          }
+          "maxTokens": 30000
         },
         {
           "id": "openai/gpt-oss-20b",
