@@ -1,77 +1,39 @@
-# Tasks
+# TODO - Dotfiles Project
 
-## Epic Status
+## Active Work
 
-### Completed Epics
-1. **[Subagent Extension Enhancement](epic-a7d3e9f1-subagent-extension-enhancement.md)** ✅ - **COMPLETE** (2026-01-11)
-2. **[Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md)** ✅ - **COMPLETE** (2026-01-11)
+### Zellij Extension Development
 
-### Active Epic
-3. **[Multi-Harness Agent Loader](epic-4dd87a16-multi-harness-agent-loader.md)** 🔄 - **IN PROGRESS**
+**Epic**: `.memory/epic-ze11ij01-preset-based-tab-management.md`
 
-### Planned Epics (Awaiting Approval)
-4. **[Subagent Footer Customization with pi-tui](epic-fc52bd74-subagent-footer-customization.md)** ✅ APPROVED - **WAITING FOR EPIC 3**
-   - **Status**: Human approved Option A - will begin after Epic 3 completion
-   - **Priority**: Medium (UX enhancement)
-   - **Resolution**: ✅ Epic sequence approved following miniproject guidelines
+**Priority**: High
+**Status**: Planning Complete → Ready for Implementation
 
----
+#### Phase 1: Core Infrastructure (ze11ph01) ✅ COMPLETED
+- [x] `.memory/task-ze11ts01-preset-storage.md` - Implement preset JSON storage
+- [x] `.memory/task-ze11ts02-cli-wrapper.md` - Create Zellij CLI wrapper utilities
+- [x] `.memory/task-ze11ts03-validation.md` - Add preset validation logic
 
-## Completed Today
+#### Phase 2: Preset Management (ze11ph02)
+- [ ] `.memory/task-ze11ts04-preset-create.md` - Implement preset creation command
+- [ ] `.memory/task-ze11ts05-preset-list.md` - Implement preset listing
+- [ ] `.memory/task-ze11ts06-preset-delete.md` - Implement preset deletion
 
-| Status | Task | Notes |
-|--------|------|-------|
-| ✅ | [Worktree Extension](task-d354b422-worktree-extension.md) | Standalone - Implemented `/worktree` command |
-
----
-
-## Active Tasks
-
-### Epic 3: Multi-Harness Agent Loader
-
-**Current Phase:** [Phase 2: Architecture Design](phase-d0309796-architecture-design.md) 🔄
-
-| Status | Task | Priority | Notes |
-|--------|------|----------|-------|
-| ✅ | [Phase 1: Research & Discovery](phase-ab3b84bd-research-discovery.md) | High | **COMPLETE** - [Consolidated Research](research-8c4d2b1f-ai-harness-formats.md) |
-| ⏳ | [Extension Architecture Document](task-7f2e4c1a-architecture-document.md) | High | Overall system design and components |
-| ⏳ | [Claude Code Adapter Design](task-8a3d5b2b-claude-code-adapter.md) | High | First priority - highest compatibility |
-| ⏳ | [OpenCode Adapter Design](task-9b4e6c3c-opencode-adapter.md) | High | Second priority - good compatibility |
-| ⏳ | [Data Transformation Pipeline](task-6c5f7d4d-transformation-pipeline.md) | High | Core transformation logic |
+#### Phase 3: Tab Creation (ze11ph03)
+- [ ] `.memory/task-ze11ts07-tab-creation.md` - Implement basic tab creation
+- [ ] `.memory/task-ze11ts08-preset-application.md` - Apply presets to tabs
+- [ ] `.memory/task-ze11ts09-pane-focusing.md` - Pane focusing and command execution
 
 ---
 
-## Quick Reference
+## Next Actions
 
-**Current Focus (2026-01-16):**
-- 🔄 Epic 3: Multi-Harness Agent Loader - Phase 2 Architecture Design
-- Timeline: Target completion 2026-01-17
-- Prioritize: Extension architecture, Claude Code, OpenCode adapters
-
-**Next Actions:**
-1. Create extension architecture document (overall design)
-2. Design Claude Code adapter interface and transformation rules
-3. Design OpenCode adapter interface and transformation rules
-4. Design data transformation pipeline and conflict resolution
+1. Begin Phase 1 implementation
+2. Test preset storage and CLI wrapper
+3. Validate before moving to Phase 2
 
 ---
 
-## Completed Tasks
+## Completed
 
-### Epic 1: Subagent Extension ✅
-- All tasks completed 2026-01-11
-
-### Epic 2: Theme Development Tools ✅  
-- All tasks completed 2026-01-11
-- [Copy Research to DCP](task-b4f7c8d3-copy-research-to-dcp.md) ✅
-
-### Epic 3: Phase 1 - Research & Discovery ✅
-- [Research Harness Formats](task-db140ba7-research-harness-formats.md) ✅
-- Consolidated into [research-8c4d2b1f-ai-harness-formats.md](research-8c4d2b1f-ai-harness-formats.md) ✅
-
-### Standalone Configuration Tasks ✅
-- [Zellij Leader Key Update](task-e8a7c4d2-zellij-leader-key-update.md) ✅ - **COMPLETE** (2026-01-16)
-  - Restructured Zellij config with `Ctrl /` leader key
-  - Implemented hierarchical mode system (tmux → tab/pane)
-  - Fixed missing `SwitchToMode` bug that prevented keybindings from working
-  - Committed: `471a8647`
+*(Items will be moved here as they complete)*

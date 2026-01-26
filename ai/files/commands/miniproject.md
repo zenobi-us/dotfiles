@@ -17,4 +17,4 @@ $ARGUMENTS
 ## Execution Steps
 
 1. Delegate the following steps to the `general` subagent.
-3. Load the `miniproject` skill and follow the instructions it describes to process the user request.
+2. Load the `miniproject` skill and follow the instructions it describes to process the user request.

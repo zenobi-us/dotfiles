@@ -266,3 +266,38 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 
 **Expected Outcome:** Complete component architecture design document ready for implementation.
 
+
+---
+
+## Zellij Extension Development (ze11ij01)
+
+**Status**: Planning Complete → Implementation Ready  
+**Created**: 2026-01-23  
+**Priority**: High
+
+### Overview
+Building a Pi agent extension for preset-based Zellij tab management. Focus on rapid workspace setup via named presets that define layouts and pane commands.
+
+### Core Features
+- Preset management (create/list/delete)
+- Tab creation with preset application
+- Storage in `~/.pi/agent/pi-zellij.json`
+
+### Current Phase
+Phase 1: Core Infrastructure
+- Preset JSON storage
+- Zellij CLI wrapper
+- Validation logic
+
+### Phases
+1. **Core Infrastructure** (ze11ph01) - Storage and CLI foundation
+2. **Preset Management** (ze11ph02) - CRUD operations for presets
+3. **Tab Creation** (ze11ph03) - Apply presets to tabs with pane commands
+
+### Key Files
+- Epic: `.memory/epic-ze11ij01-preset-based-tab-management.md`
+- Implementation: `devtools/files/pi/agent/extensions/zellij/index.ts`
+- Q&A: `.memory/research-qa-zellij-extension.md`
+
+### Next Milestone
+Complete Phase 1 tasks and have preset storage functional.
