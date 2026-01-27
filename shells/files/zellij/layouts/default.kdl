@@ -1,0 +1,48 @@
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+                format_left   "{mode} #[fg=#9ccfd8,bold]{session}"
+                format_center "{tabs}"
+                format_right  "{command_git_branch} {datetime}"
+                format_space  ""
+
+                border_enabled  "false"
+                border_char     "─"
+                border_format   "#[fg=#6e6a86]{char}"
+                border_position "top"
+
+                hide_frame_for_single_pane "true"
+
+
+                mode_normal        "#[bg=#9ccfd8,fg=#232136,bold] {name} "
+                mode_locked        "#[bg=#eb6f92,fg=#232136,bold] {name} "
+                mode_resize        "#[bg=#f6c177,fg=#232136,bold] {name} "
+                mode_pane          "#[bg=#3e8fb0,fg=#232136,bold] {name} "
+                mode_tab           "#[bg=#c4a7e7,fg=#232136,bold] {name} "
+                mode_scroll        "#[bg=#ea9a97,fg=#232136,bold] {name} "
+                mode_enter_search  "#[bg=#e0def4,fg=#232136,bold] {name} "
+                mode_search        "#[bg=#e0def4,fg=#232136,bold] {name} "
+                mode_rename_tab    "#[bg=#c4a7e7,fg=#232136,bold] {name} "
+                mode_rename_pane   "#[bg=#3e8fb0,fg=#232136,bold] {name} "
+                mode_session       "#[bg=#908caa,fg=#232136,bold] {name} "
+                mode_move          "#[bg=#f6c177,fg=#232136,bold] {name} "
+                mode_prompt        "#[bg=#908caa,fg=#232136,bold] {name} "
+                mode_tmux          "#[bg=#f6c177,fg=#232136,bold] {name} "
+
+                tab_normal   "#[fg=#6e6a86] {name} "
+                tab_active   "#[fg=#e0def4,bold,italic] {name} "
+
+                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+                command_git_branch_format      "#[fg=#9ccfd8] {stdout} "
+                command_git_branch_interval    "10"
+                command_git_branch_rendermode  "static"
+
+                datetime        "#[fg=#6e6a86,bold] {format} "
+                datetime_format "%A, %d %b %Y %H:%M"
+                datetime_timezone "Europe/Berlin"
+            }
+        }
+    }
+}

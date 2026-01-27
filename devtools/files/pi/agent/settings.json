@@ -2,7 +2,7 @@
   "lastChangelogVersion": "0.50.1",
   "defaultThinkingLevel": "off",
   "packages": [
-    "npm:@zenobius/pi-rose-pine"
-  ],
-  "theme": "rose-pine-moon"
-}
+    "git:github.com/zenobi-us/pi-rose-pine",
+    "npm:@marckrenn/pi-sub-core",
+    "npm:@marckrenn/pi-sub-bar"
+  ]
