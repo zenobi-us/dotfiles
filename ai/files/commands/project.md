@@ -1,8 +1,10 @@
 ---
 title: Markdown Driven Project Manangement
-agent: ProjectManager
-subtask: true
 ---
+
+## Goal 
+
+Perform project management tasks and store or read project guidance using markdown files according to user requests.
 
 ## User Request
 
@@ -14,19 +16,12 @@ subtask: true
 
 ## Steps to Execute
 
-1. Load the project id skill: 
-
-- `skill_use('projectmanagement_project_id')`
-
-2. If the agent has not loaded the project planning skill, load it now:
-
-- `skill_use('projectmanagement_project_planning')`
-- `skill_use('projectmanagement_storage_function_structure')`
-- `skill_use('projectmanagement_storage_opennotes')`
-
-3. Follow the project management workflow outlined below to manage project tasks and documentation using markdown files.
-
-- `skill_resource('projectmanagement_project_planning', 'references/workflow/behaviour-tree.md')`
+1. Load the following skills: 
+  - opennotes vaults (our storage backend)
+  - project_planning
+  - storage_function_structure
+2. Understand the available project_planning resources, but don't load them until required.
+3. read the project_planning/workflow behaviour tree resource. Follow it according the user request.
 
 ## Guidelines 
 
