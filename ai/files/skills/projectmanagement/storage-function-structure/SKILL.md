@@ -3,10 +3,7 @@ name: storage-function-structure
 description: Define the structure and organization of storage functions within a project.
 ---
 
-
-
 # File Structure for Project Planning Artifacts
-
 
 - [Planning Artifact] are stored in dedicated directories based on their type, with each file named using a short hash and a descriptive title.
 - These directories are typically stored in a parent folder. defer to the storage backend conventions for exact paths.
@@ -20,12 +17,11 @@ description: Define the structure and organization of storage functions within a
   - `Story/` for User Stories
   - `Task/` for Tasks
   - `Decision/` for Decisions
-  - `Ressearch/` for Research Documents
+  - `Research/` for Research Documents
   - `Retro/` for Retrospectives
   
 - Files within these directories are named using the format:
   - `<short-hash>-<descriptive-title>.md`
-
 
 ```
 Prd/
