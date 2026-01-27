@@ -1,17 +1,8 @@
 {
-  "lastChangelogVersion": "0.48.0",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-5",
+  "lastChangelogVersion": "0.50.1",
   "defaultThinkingLevel": "off",
-  "theme": "rose-pine-moon",
-  "hideThinkingBlock": false,
-  "compaction": {
-    "enabled": true,
-    "reserveTokens": 256,
-    "keepRecentTokens": 2000
-  },
-  "collapseChangelog": true,
-  "quietStartup": true,
   "packages": [
-    "git:github.com/zenobi-us/pi-rose-pine"
-  ]
+    "npm:@zenobius/pi-rose-pine"
+  ],
+  "theme": "rose-pine-moon"
+}
