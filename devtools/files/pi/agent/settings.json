@@ -13,5 +13,7 @@
   "collapseChangelog": true,
   "quietStartup": true,
   "packages": [
-    "git:github.com/zenobi-us/pi-rose-pine"
+    "git:github.com/zenobi-us/pi-rose-pine",
+    "npm:@marckrenn/pi-sub-core",
+    "npm:@marckrenn/pi-sub-bar"
   ]
