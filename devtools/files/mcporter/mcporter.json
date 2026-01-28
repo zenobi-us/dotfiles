@@ -20,10 +20,9 @@
         "https://mcp.atlassian.com/v1/sse"
       ]
     },
-    "figma": {
+    "figma-desktop": {
       "type": "remote",
-      "auth": "oauth",
-      "baseUrl": "https://mcp.figma.com/mcp"
+      "baseUrl": "http://127.0.0.1:3845/mcp"
     },
     "gh_grep": {
       "type": "remote",
