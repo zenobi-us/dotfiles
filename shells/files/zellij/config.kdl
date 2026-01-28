@@ -58,6 +58,7 @@ keybinds clear-defaults=true {
         // Pane operations
         bind "v" { NewPane "right"; SwitchToMode "normal"; }
         bind "h" { NewPane "down"; SwitchToMode "normal"; }
+        bind "s" { NewPane "stacked"; SwitchToMode "normal"; }
         bind "x" { CloseFocus; SwitchToMode "normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "resize"; }
