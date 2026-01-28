@@ -61,7 +61,7 @@ Holding onto useless or misnamed files creates confusion and degrades the memory
 - [core] `.memory/knowledge-data-flow.md` contains an ascii diagram representing data flow
 - [core] Other `.memory/knowledge-*.md` files can be created to document specific knowledge areas.
 - [core] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<8_char_hashid>-<title>.md`
-- [core] where `<type>` is one of: `research`, `epic`, `phase`, `task` and `learning`
+- [core] where `<type>` is one of: `research`, `epic`, `phase`, `task`, `story`, and `learning`
 - [core] `<8_char_hashid>` is a unique 8 character hash identifier for the file.
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
 - [core] every project MUST start with an epic definition before phases are created
@@ -112,12 +112,14 @@ Frontmatter:
 - all common frontmatter fields.
 - `epic_id`: The unique identifier of the parent epic.
 - `phase_id`: The unique identifier of the parent phase.
+- `story_id`: The unique identifier of the parent story. [optional - if task implements a story]
 - `assigned_to`: The session id of the agent or human responsible for the task.
 
 Sections:
 
 - all common sections.
 - `## Objective`: A clear statement of what the task aims to achieve.
+- `## Related Story`: Link to the story this task implements (if applicable).
 - `## Steps`: A detailed list of steps to complete the task.
 - `## Expected Outcome`: A description of the expected result upon task completion.
 - `## Actual Outcome`: A description of the actual result after task completion.
@@ -154,6 +156,33 @@ Sections:
 - `## Success Criteria`: Metrics and criteria for measuring the success of the epic.
 - `## Phases`: A list of phases associated with the epic (links to phase files).
 - `## Dependencies`: Any dependencies that may impact the epic.
+
+### Template: Story
+
+Frontmatter:
+
+- all common frontmatter fields.
+- `epic_id`: The unique identifier of the parent epic.
+- `phase_id`: The unique identifier of the parent phase. [optional]
+- `priority`: Priority level (e.g., `critical`, `high`, `medium`, `low`).
+- `story_points`: Estimated effort/complexity (optional, e.g., `1`, `2`, `3`, `5`, `8`, `13`).
+
+Sections:
+
+- all common sections.
+- `## User Story`: The user story statement in the format: "As a [persona], I want [goal] so that [benefit]."
+- `## Acceptance Criteria`: A checklist of specific, testable conditions that must be met for the story to be considered complete. Use `- [ ]` for incomplete and `- [x]` for completed criteria.
+- `## Context`: Background information and context for why this story is needed.
+- `## Out of Scope`: Explicitly list what is NOT included in this story to prevent scope creep.
+- `## Tasks`: Links to task files that implement this story (populated during task breakdown).
+- `## Notes`: Additional notes, edge cases, or considerations.
+
+> [!NOTE]
+> Stories are the bridge between business requirements and technical tasks.
+> - Stories capture the "what" and "why" from a user perspective.
+> - Tasks capture the "how" from an implementation perspective.
+> - A single story may spawn multiple tasks.
+> - Acceptance criteria should be written before tasks are created.
 
 ### Template: Research
 
@@ -233,9 +262,9 @@ So its detail will be solely an ascii diagram representing your understanding of
 **Workflow**
 
 0. `Initialise` > `Action` > Stop
-1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Task Breakdown` > Stop
+1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Story Definition` > `Task Breakdown` > Stop
 2. `Task Execution` > `Learning Distillation` > repeat 
-3. `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review > Stop
+3. `Story Completion` > verify acceptance criteria > `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review > Stop
 4. `Epic Completion` > `Epic Summary & Learnings` > Human Review > Stop
 5. `Maintenance Actions` as needed.
 6. `Status` > Stop
@@ -331,6 +360,24 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 > - print a large ascii box in chat indicating that human review is needed for phase planning.
 > - wait for human to confirm before proceeding.
 
+#### Stage: Story Definition [STORY-DEFINITION]
+
+- [story] stories capture user requirements with clear acceptance criteria before implementation begins
+- [story] each story should be documented in `.memory/story-<8_char_hash_id>-<title>.md` files
+- [story] stories MUST include a user story statement, acceptance criteria, and context
+- [story] stories SHOULD link to their parent epic and optionally to a phase
+- [story] acceptance criteria must be specific, testable, and written as a checklist
+- [story] stories are written BEFORE tasks are created - tasks implement stories
+- [story] a single story may result in multiple tasks
+- [story] when all acceptance criteria are met and verified, mark the story as `completed`
+- [story] stories help separate "what the user needs" from "how we implement it"
+
+> [!NOTE]
+> Story vs Task:
+> - **Story**: "As a user, I want to reset my password so that I can regain access to my account."
+>   - Acceptance Criteria: "User receives email within 2 minutes", "Link expires after 24 hours", etc.
+> - **Tasks**: "Implement password reset API endpoint", "Create email template", "Add expiry logic", etc.
+
 #### Stage: Task Breakdown [TASK-BREAKDOWN]
 
 - [tasks] each task should be documented in `.memory/task-<8_char_hash_id>-<title>.md` files, including objectives, steps to take, outcome expected.
@@ -354,6 +401,15 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 
 ### Completion Stages
+
+#### Stage: Story Completion [STORY-COMPLETION]
+
+- [story] before marking a story as complete, verify ALL acceptance criteria are met
+- [story] update each acceptance criterion checkbox (`- [ ]` to `- [x]`) as it is verified
+- [story] if any acceptance criterion cannot be met, document why in the story's Notes section
+- [story] link completed tasks to the story in the `## Tasks` section
+- [story] once all criteria are verified, update the story status to `completed`
+- [story] stories are NOT archived - they remain as documentation of requirements and their fulfillment
 
 #### Stage: Phase Completion [PHASE-COMPLETION]
 
