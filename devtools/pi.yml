@@ -43,10 +43,6 @@ actions:
     from: pi/agent/extensions
 
   - action: file.link
-    to: "{{user.home_dir}}/.pi/agent/themes"
-    from: pi/agent/themes
-
-  - action: file.link
     to: "{{user.home_dir}}/.pi/agent/settings.json"
     from: pi/agent/settings.json
 

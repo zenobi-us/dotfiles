@@ -5,6 +5,9 @@
   "packages": [
     "npm:@zenobius/pi-rose-pine",
     "npm:@marckrenn/pi-sub-core",
-    "npm:@marckrenn/pi-sub-bar"
-  ]
+    "npm:@marckrenn/pi-sub-bar",
+    "npm:pi-powerline-footer"
+  ],
+  "hideThinkingBlock": true,
+  "quietStartup": true,
 }
