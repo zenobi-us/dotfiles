@@ -16,7 +16,7 @@ This is a simplified and concise project management AI memory framework.
 >   - read `.memory/todo.md`, `.memory/summary.md`, `.memory/knowledge.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
 >   - if `.memory/` is missing these files, then create those three.
 > 3. Initialise the knowledge codemap if it does not exist:
->   - create a file `.memory/knowledge-codemap.md` with an ascii diagram representing your understanding of the codebase.
+>   - create a file `.memory/knowledge-codemap.md` with an ascii statemachine diagram representing your understanding of the codebase.
 >   - this is critical for understanding the project structure and flow.
 > 4. Always read `.memory/summary.md`, `.memory/todo.md`, and `.memory/team.md` before starting any work.
 > 5. Always update `.memory/team.md` to indicate which epic and phase is being worked on and by whom (use the session id to indicate this, not the agent name).
