@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.50.1",
-  "defaultThinkingLevel": "off",
+  "defaultThinkingLevel": "low",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
@@ -10,4 +10,6 @@
   ],
   "hideThinkingBlock": true,
   "quietStartup": true,
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-5"
 }
