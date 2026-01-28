@@ -70,6 +70,7 @@ btop = "latest"
 "npm:@mariozechner/pi-coding-agent" = "0.50.1"
 "npm:antigravity-usage" = "latest"
 "npm:@mariozechner/pi-coding-agent" = "latest"
+"go:github.com/Crosse/font-install" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"

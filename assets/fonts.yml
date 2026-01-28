@@ -9,12 +9,12 @@ actions:
     command: mkdir
     args:
       - -p
-      - "{{ user.home_dir }}/tmp-{{ env.INVOCATION_ID }}"
+      - /tmp/fontinstall
 
   # Copy font list to temp directory
   - action: file.copy
     from: fonts.txt
-    to: "{{ user.home_dir }}/tmp-{{ env.INVOCATION_ID }}/fonts.txt"
+    to: /tmp/fontinstall/fonts.txt
     template: false
 
   # Install all fonts from the list using font-install
@@ -22,11 +22,11 @@ actions:
     command: font-install
     args:
       - -fromFile
-      - "{{ user.home_dir }}/tmp-{{ env.INVOCATION_ID }}/fonts.txt"
+      - /tmp/fontinstall/fonts.txt
 
   # Clean up temporary directory
   - action: command.run
     command: rm
     args:
       - -rf
-      - "{{ user.home_dir }}/tmp-{{ env.INVOCATION_ID }}"
+      - /tmp/fontinstall

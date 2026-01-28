@@ -9,7 +9,7 @@ actions:
     where: os.name == "linux" || os.name == "macos"
     args:
       - -rf
-      - "{{ user.home_dir }}/.pi/agent/{prompts,skills,agents,AGENT.md}"
+      - "{{ user.home_dir }}/.pi/agent/{prompts,skills,agents,AGENTS.md}"
 
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/prompts"

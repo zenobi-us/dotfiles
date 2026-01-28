@@ -184,7 +184,7 @@ function dotfiles_apply () {
         echo " - ${manifest}"
     done
 
-    comtrya -d "$DOTFILE_REPO_ROOT" -vv apply "${options[@]}"
+    comtrya -d "$DOTFILE_REPO_ROOT" apply "${options[@]}"
 }
 
 function dotfiles_modules_list () {

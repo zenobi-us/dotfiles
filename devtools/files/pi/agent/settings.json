@@ -1,6 +1,7 @@
 {
   "lastChangelogVersion": "0.50.1",
-  "defaultThinkingLevel": "off",
+  "defaultThinkingLevel": "low",
+  "theme": "rose-pine-moon",
   "packages": [
     "git:github.com/zenobi-us/pi-rose-pine",
     "npm:@marckrenn/pi-sub-core",
@@ -9,4 +10,6 @@
   ],
   "hideThinkingBlock": true,
   "quietStartup": true,
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-5"
 }
