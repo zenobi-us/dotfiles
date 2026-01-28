@@ -24,5 +24,5 @@ actions:
     from: agents
 
   - action: file.link
-    to: "{{user.home_dir}}/.pi/agent/AGENT.md"
+    to: "{{user.home_dir}}/.pi/agent/AGENTS.md"
     from: AGENTS.md
