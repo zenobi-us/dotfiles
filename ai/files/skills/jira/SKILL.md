@@ -1,315 +1,303 @@
 ---
 name: jira
-description: Use when searching Jira issues, viewing issue details, managing transitions, or automating Jira workflows - provides complete examples using the Atlassian CLI (acli) for all common Jira operations
+description: Use when needing to search Jira issues, retrieve issue details, get pull request links, or manage issue workflows programmatically - provides complete workflows and examples for common Jira automation tasks using the atlassian CLI
 ---
 
-# Jira Skill
+# JIRA Skill
 
-Master Jira automation using the Atlassian CLI (acli). Provides programmatic access to issues, projects, comments, and workflows.
+Master Jira automation and integration using the atlassian MCP server. This skill enables programmatic access to Jira issues, projects, and metadata.
 
-> [!NOTE]
-> ACLI uses "workitem" terminology instead of "issue" throughout its commands.
-> `acli jira workitem view KEY-123` = View issue KEY-123
+ > [!CRITICAL]
+> ⚠️ **IMPORTANT - Parameter Passing:**
+>
+> Use **function-call syntax** (NOT flag syntax). Parameters go inside the function call, not as flags:
+>
+> ```bash
+> mcporter call 'atlassian.functionName(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary"])'
+> ```
+>
+> **Key Rules:**
+>
+> - Parameters are camelCase inside the function call
+> - String values use double quotes: `"value"`
+> - Array values use bracket notation: `["item1", "item2"]`
+> - Object values use object notation: `{key: "value"}`
+> - Environment variables are interpolated outside quotes: `"'$VAR'"`
+> - NO `--flag` syntax, NO JSON string escaping needed
 
 ## Quick Setup
 
-### Authentication (One-Time)
+### Get Ticket Summary (One-Shot)
+
+**The fastest way to get ticket information:**
 
 ```bash
-# OAuth via browser (recommended)
-acli jira auth login --web
-
-# Or via API token
-echo $JIRA_TOKEN | acli jira auth login --site "yoursite.atlassian.net" --email "you@example.com" --token
+mise x node@20 -- ./scripts/get_ticket_summary.sh TICKET-123
 ```
 
-### Check Auth Status
+Returns human-readable summary with:
+- Key, summary, type, status, priority, assignee
+- Created/updated timestamps
+- Full description
+- Linked resources (PRs, etc.)
+- Direct link to Jira
+
+**JSON output for parsing:**
 
 ```bash
-acli jira auth status
+mise x node@20 -- ./scripts/get_ticket_summary.sh TICKET-123 --json
 ```
+
+Returns structured JSON with `ticket` and `remoteLinks` objects.
+
+### Get Current User Info
+
+```bash
+mise x node@20 -- ./scripts/get_current_user.sh
+```
+
+Returns: `accountId`, `displayName`, `email`
+
+**Or get specific fields:**
+
+```bash
+mise x node@20 -- ./scripts/get_current_user.sh --account-id
+mise x node@20 -- ./scripts/get_current_user.sh --email
+mise x node@20 -- ./scripts/get_current_user.sh --display-name
+```
+
+### Get Cloud ID (Required for all operations)
+
+```bash
+export JIRA_CLOUD_ID=$(mise x node@20 -- ./scripts/get_cloud_id.sh)
+export JIRA_URL=$(mise x node@20 -- ./scripts/get_cloud_id.sh --url)
+```
+
+This sets up environment variables for all subsequent mcporter calls.
 
 ## Core Operations
-
-### View Issue
-
-```bash
-# Basic view
-acli jira workitem view KEY-123
-
-# JSON output for parsing
-acli jira workitem view KEY-123 --json
-
-# Specific fields
-acli jira workitem view KEY-123 --fields "summary,description,status,assignee"
-
-# Open in browser
-acli jira workitem view KEY-123 --web
-```
-
-**Default fields:** `key,issuetype,summary,status,assignee,description`
-
-**Field selection:**
-- `*all` - All fields
-- `*navigable` - Navigable fields only
-- `-description` - Exclude description
-- `summary,comment` - Only these fields
 
 ### Search Issues
 
 ```bash
-# Basic JQL search (--paginate or --limit required)
-acli jira workitem search --jql "project = TEAM" --paginate
-
-# With limit
-acli jira workitem search --jql "project = TEAM" --limit 50
-
-# Specific fields as JSON
-acli jira workitem search --jql "assignee = currentUser()" --fields "key,summary,status" --json --paginate
-
-# Export as CSV
-acli jira workitem search --jql "project = TEAM" --fields "key,summary,priority" --csv --paginate
-
-# Count only
-acli jira workitem search --jql "project = TEAM AND status = Open" --count
-
-# Using saved filter
-acli jira workitem search --filter 10001 --paginate
+mise x node@20 -- mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser() AND status = Open")'
 ```
 
-> **Note:** Most search commands require `--paginate` or `--limit` flag.
+**With specific fields:**
+
+```bash
+mise x node@20 -- mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser()", fields: ["key", "summary", "status", "assignee"])'
+```
+
+**With pagination:**
+
+```bash
+mise x node@20 -- mcporter call 'atlassian.searchJiraIssuesUsingJql(cloudId: "'$JIRA_CLOUD_ID'", jql: "assignee = currentUser()", maxResults: 50)'
+```
+
+Returns: `issues[]` array with `key`, `fields.summary`, `fields.status.name`
 
 **Common JQL:**
-- `assignee = currentUser()` - My issues
+
+- `assignee = currentUser()` - Issues assigned to you
+- `status = Open` - Filter by status
 - `project = PROJ` - Specific project
-- `status = "In Progress"` - By status
-- `updated >= -7d` - Recent updates
-- `issuetype = Bug` - By type
+- `updated >= -7d` - Updated in last 7 days
+- `issuetype = Bug` - Specific issue type
 
-### Create Issue
-
-```bash
-# Minimal create
-acli jira workitem create --project "TEAM" --type "Task" --summary "New Task"
-
-# Full create
-acli jira workitem create \
-  --project "TEAM" \
-  --type "Bug" \
-  --summary "Login fails on Safari" \
-  --description "Users report login issues on Safari 17" \
-  --assignee "@me" \
-  --label "bug,frontend"
-
-# From JSON file
-acli jira workitem create --from-json "issue.json"
-
-# Generate JSON template
-acli jira workitem create --generate-json
-
-# Using editor for description
-acli jira workitem create --project "TEAM" --type "Story" --editor
-```
-
-### Edit Issue
+### Get Issue Details
 
 ```bash
-# Update summary
-acli jira workitem edit --key "KEY-123" --summary "Updated Title"
-
-# Update assignee
-acli jira workitem edit --key "KEY-123" --assignee "user@example.com"
-
-# Self-assign
-acli jira workitem edit --key "KEY-123" --assignee "@me"
-
-# Remove assignee
-acli jira workitem edit --key "KEY-123" --remove-assignee
-
-# Update labels
-acli jira workitem edit --key "KEY-123" --labels "urgent,frontend"
-
-# Bulk edit via JQL
-acli jira workitem edit --jql "project = TEAM AND status = Open" --assignee "@me" --yes
+mise x node@20 -- mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
 ```
 
-### Transition Issue (Change Status)
+**With specific fields:**
 
 ```bash
-# Transition by status name
-acli jira workitem transition --key "KEY-123" --status "In Progress"
-acli jira workitem transition --key "KEY-123" --status "Done"
-
-# Skip confirmation
-acli jira workitem transition --key "KEY-123" --status "Done" --yes
-
-# Bulk transition
-acli jira workitem transition --jql "assignee = currentUser() AND status = Open" --status "In Progress" --yes
+mise x node@20 -- mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", fields: ["key", "summary", "status", "assignee", "description"])'
 ```
 
-> **Note:** Unlike mcporter, ACLI uses status NAMES directly - no need to lookup transition IDs!
-
-### Add Comment
+**With expand for additional details:**
 
 ```bash
-# Simple comment
-acli jira workitem comment create --key "KEY-123" --body "Work in progress"
-
-# From file
-acli jira workitem comment create --key "KEY-123" --body-file "comment.txt"
-
-# Using editor
-acli jira workitem comment create --key "KEY-123" --editor
-
-# With GitHub permalink
-acli jira workitem comment create --key "KEY-123" --body "Implementation: https://github.com/org/repo/blob/abc123/src/file.ts#L42"
-
-# Bulk comment
-acli jira workitem comment create --jql "project = TEAM AND sprint = 'Sprint 5'" --body "Sprint review complete"
+mise x node@20 -- mcporter call 'atlassian.getJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", expand: ["changelog", "editmeta"])'
 ```
 
-### List Comments
+Returns: Full issue object with `key`, `fields` (summary, status, assignee, description, etc)
+
+### Get Issue Transitions
 
 ```bash
-acli jira workitem comment list KEY-123
-acli jira workitem comment list KEY-123 --json
+mise x node@20 -- mcporter call 'atlassian.getTransitionsForJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
 ```
 
-### Issue Links
+Returns: List of available transitions with IDs and names for workflow state changes
+
+### Transition Issue to New Status
 
 ```bash
-# List links on an issue
-acli jira workitem link list --key "KEY-123"
-
-# Create link (KEY-123 blocks KEY-456)
-acli jira workitem link create --out "KEY-123" --in "KEY-456" --type "Blocks"
-
-# Create link with relates type
-acli jira workitem link create --out "KEY-123" --in "KEY-456" --type "Relates"
-
-# List available link types
-acli jira workitem link type
-
-# View link types with details (JSON)
-acli jira workitem link type --json
-
-# Delete link
-acli jira workitem link delete --out "KEY-123" --in "KEY-456" --type "Blocks"
+mise x node@20 -- mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", transition: {id: "11"})'
 ```
 
-**Link Direction:**
-- `--out` = Outward issue (the "source" of the relationship)
-- `--in` = Inward issue (the "target" of the relationship)
-- For "Blocks": `--out` is the blocker, `--in` is blocked
-
-## Project Operations
+**With field updates:**
 
 ```bash
-# List recently viewed projects (up to 20)
-acli jira project list --recent
-
-# List all projects (paginated)
-acli jira project list --paginate
-
-# List with limit
-acli jira project list --limit 50
-
-# List as JSON
-acli jira project list --limit 30 --json
-
-# View project details
-acli jira project view TEAM
+mise x node@20 -- mcporter call 'atlassian.transitionJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", transition: {id: "11"}, fields: {assignee: {id: "USER_ID"}})'
 ```
 
-## Output Formats
-
-| Flag | Format | Use Case |
-|------|--------|----------|
-| (none) | Table | Interactive terminal use |
-| `--json` | JSON | Scripting, parsing with jq |
-| `--csv` | CSV | Spreadsheet export |
-| `--web` | Browser | Visual inspection |
-
-### Parsing JSON Output
+### Get Project Metadata
 
 ```bash
-# Get issue key from search
-acli jira workitem search --jql "assignee = currentUser()" --json | jq -r '.[].key'
-
-# Get status of issue
-acli jira workitem view KEY-123 --json | jq -r '.fields.status.name'
-
-# Get all open issues as list
-acli jira workitem search --jql "status = Open" --json | jq -r '.[].key' | tr '\n' ','
+mise x node@20 -- mcporter call 'atlassian.getJiraProjectIssueTypesMetadata(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ")'
 ```
 
-## Scripting Patterns
+### Edit Jira Issue Fields
 
-### Get Current User
+> TODO: Add example for updating fields on an issue
+
+### Add Comment to Issue
 
 ```bash
-# Email from auth
-acli jira auth status 2>&1 | grep Email | awk '{print $2}'
+mise x node@20 -- mcporter call 'atlassian.addCommentToJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", commentBody: "Your comment here")'
 ```
 
-### My Open Issues
+**With GitHub permalink:**
 
 ```bash
-acli jira workitem search --jql "assignee = currentUser() AND resolution = Unresolved" --fields "key,summary,status" --json
+mise x node@20 -- mcporter call 'atlassian.addCommentToJiraIssue(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123", commentBody: "See implementation details:\n\nhttps://github.com/owner/repo/blob/commit-hash/path/to/file.ts#L123")'
 ```
 
-### Close All Done Issues
+Returns: Comment object with `id`, `body`, `author`, `created`, `updated`
+
+### Create New Issue
+
+> TODO: Add example for creating a new issue
+
+### Get Issue Type Metadata
 
 ```bash
-acli jira workitem transition --jql "assignee = currentUser() AND status = 'Done' AND resolution = Unresolved" --status "Closed" --yes
+mise x node@20 -- mcporter call 'atlassian.getJiraIssueTypeMetaWithFields(cloudId: "'$JIRA_CLOUD_ID'", projectIdOrKey: "PROJ", issueTypeId: "10001")'
 ```
 
-### Daily Standup Script
+### Get Related Links (PRs, Confluence, etc)
 
 ```bash
-#!/bin/bash
-echo "=== Yesterday ==="
-acli jira workitem search --jql "assignee = currentUser() AND updated >= -1d AND status changed" --fields "key,summary,status"
-
-echo "=== Today ==="
-acli jira workitem search --jql "assignee = currentUser() AND status != Done" --fields "key,summary,status"
+mise x node@20 -- mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")'
 ```
+
+Returns: `remoteIssueLinks[]` array with linked resources
+
+**Filter for GitHub PRs:**
+
+```bash
+mise x node@20 -- mcporter call 'atlassian.getJiraIssueRemoteIssueLinks(cloudId: "'$JIRA_CLOUD_ID'", issueIdOrKey: "PROJ-123")' | \
+  jq '.[]? | select(.type.name == "GitHub" or (.globalId | contains("github"))) | .object.url'
+```
+
+## Helper Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `./scripts/get_ticket_summary.sh` | **One-shot ticket summary** - Get all ticket info in one call (human or JSON format) |
+| `./scripts/get_current_user.sh` | Get authenticated user info (accountId, displayName, email) |
+| `./scripts/get_cloud_id.sh` | Get Jira Cloud ID and URL |
 
 ## Common Issues & Solutions
 
 | Problem | Solution |
 |---------|----------|
-| "Not authenticated" | Run `acli jira auth login --web` |
-| "No work items found" | Check JQL syntax, verify project key |
-| "Cannot transition" | Verify target status is valid for current workflow |
-| "Field not editable" | Check field permissions in Jira |
-| Status with spaces | Quote it: `--status "In Progress"` |
+| **No cloud ID available** | Run `./scripts/get_cloud_id.sh` to fetch and export it |
+| **Need current user info** | Use `./scripts/get_current_user.sh` to fetch accountId, displayName, email |
+| **Search returns 0 results** | Verify JQL syntax. Try `status = Open` instead of `status = "To Do"`. Test queries in Jira UI first. |
+| **PR link not found in `remoteIssueLinks`** | Not all PRs auto-link. Check if "Link" was created in GitHub/Jira. |
+| **Transition fails with "Cannot transition"** | Wrong transition ID. Always run `getTransitionsForJiraIssue` first to see valid transitions for current status. |
+| **"Invalid arguments" or command fails** | Use function-call syntax, NOT flag syntax. Parameters go inside `functionName(param: value)` not `--param value` |
+| **Arrays not working** | Use bracket notation inside function call: `fields: ["key", "summary"]` NOT `--fields '["key","summary"]'` |
+| **Objects not working** | Use object notation inside function call: `transition: {id: "11"}` NOT `--transition '{"id":"11"}'` |
+
+## Discovering Function Parameters with Schema Introspection
+
+The mcporter CLI can introspect the MCP server schema to discover correct parameters and their types.
+
+### List All Available Tools
+
+```bash
+mise x node@20 -- mcporter list atlassian --json | jq -r ".tools[].name"
+```
+
+Returns:
+
+```
+atlassianUserInfo
+getAccessibleAtlassianResources
+getConfluenceSpaces
+getConfluencePage
+getPagesInConfluenceSpace
+getConfluencePageFooterComments
+getConfluencePageInlineComments
+getConfluencePageDescendants
+createConfluencePage
+updateConfluencePage
+createConfluenceFooterComment
+createConfluenceInlineComment
+searchConfluenceUsingCql
+getJiraIssue
+editJiraIssue
+createJiraIssue
+getTransitionsForJiraIssue
+transitionJiraIssue
+lookupJiraAccountId
+searchJiraIssuesUsingJql
+addCommentToJiraIssue
+addWorklogToJiraIssue
+getJiraIssueRemoteIssueLinks
+getVisibleJiraProjects
+getJiraProjectIssueTypesMetadata
+getJiraIssueTypeMetaWithFields
+search
+fetch
+```
+
+### Inspect a Specific Tool Schema
+
+```bash
+mise x node@20 -- mcporter list atlassian --json | jq '.tools[] | select(.name == "addCommentToJiraIssue")'
+```
+
+This returns the full JSON schema including:
+
+- `inputSchema.properties` - All available parameters with types and descriptions
+- `inputSchema.required` - Which parameters are mandatory
+- `options` - CLI-specific metadata for each parameter
+
+**Filter for just required parameters:**
+
+```bash
+mise x node@20 -- mcporter list atlassian --json | \
+  jq '.tools[] | select(.name == "addCommentToJiraIssue") | .inputSchema.required[]'
+```
+
+**Get parameter descriptions:**
+
+```bash
+mise x node@20 -- mcporter list atlassian --json | \
+  jq '.tools[] | select(.name == "addCommentToJiraIssue") | .inputSchema.properties | to_entries[] | "\(.key): \(.value.description)"'
+```
+
+This introspection approach works for any tool - just change the tool name in the `select()` filter.
 
 ## Tips
 
-- **Bulk operations:** Most commands accept `--jql` flag
-- **Skip prompts:** Add `--yes` to dangerous operations
-- **JSON for scripts:** Always use `--json` when parsing output
-- **Self-assign:** Use `@me` for assignee
-- **Editor mode:** Use `--editor` for long descriptions
-- **CSV export:** Great for sharing with non-technical stakeholders
+- **Setup once per session:**
 
----
+  ```bash
+  export JIRA_CLOUD_ID=$(mise x node@20 -- ./scripts/get_cloud_id.sh)
+  export JIRA_URL=$(mise x node@20 -- ./scripts/get_cloud_id.sh --url)
+  ```
 
-## Migration from mcporter
-
-If you previously used mcporter-based Jira commands:
-
-| Old (mcporter) | New (ACLI) |
-|----------------|------------|
-| `mcporter call 'atlassian.getJiraIssue(...)'` | `acli jira workitem view KEY-123` |
-| `mcporter call 'atlassian.searchJiraIssuesUsingJql(...)'` | `acli jira workitem search --jql "..."` |
-| `mcporter call 'atlassian.transitionJiraIssue(..., transition: {id: "11"})'` | `acli jira workitem transition --key KEY-123 --status "Done"` |
-| `mcporter call 'atlassian.addCommentToJiraIssue(...)'` | `acli jira workitem comment create --key KEY-123 --body "..."` |
-| `export JIRA_CLOUD_ID=$(./scripts/get_cloud_id.sh)` | Not needed - ACLI manages sessions |
-
-**Key differences:**
-- No more `JIRA_CLOUD_ID` environment variable
-- Status transitions use names, not IDs
-- Standard CLI flags instead of function-call syntax
-- Built-in OAuth via browser (`--web` flag)
+- **Function-call syntax is the mcporter standard** - use `mcporter call 'func(param: value)'` not flags
+- **Always use `getTransitionsForJiraIssue` before transitioning** - transition IDs vary by project workflow
+- **Interpolate env vars outside the quotes**: `mcporter call 'func(cloudId: "'$VAR'")'` works, but `mcporter call 'func(cloudId: "$VAR")'` does not
+- **Use `jq` for JSON parsing** in shell scripts
+- **Use schema introspection** when unsure about parameters - `mcporter list atlassian --json | jq` is your friend
+- See `examples/` directory for full workflow examples
