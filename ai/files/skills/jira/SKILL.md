@@ -179,17 +179,28 @@ acli jira workitem comment list KEY-123 --json
 
 ```bash
 # List links on an issue
-acli jira workitem link list KEY-123
+acli jira workitem link list --key "KEY-123"
 
-# Create link
-acli jira workitem link create --key "KEY-123" --target "KEY-456" --type "Blocks"
+# Create link (KEY-123 blocks KEY-456)
+acli jira workitem link create --out "KEY-123" --in "KEY-456" --type "Blocks"
+
+# Create link with relates type
+acli jira workitem link create --out "KEY-123" --in "KEY-456" --type "Relates"
 
 # List available link types
 acli jira workitem link type
 
+# View link types with details (JSON)
+acli jira workitem link type --json
+
 # Delete link
-acli jira workitem link delete --key "KEY-123" --target "KEY-456" --type "Blocks"
+acli jira workitem link delete --out "KEY-123" --in "KEY-456" --type "Blocks"
 ```
+
+**Link Direction:**
+- `--out` = Outward issue (the "source" of the relationship)
+- `--in` = Inward issue (the "target" of the relationship)
+- For "Blocks": `--out` is the blocker, `--in` is blocked
 
 ## Project Operations
 
