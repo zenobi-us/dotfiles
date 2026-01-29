@@ -2,6 +2,8 @@
 
 ## Active Work
 
+
+
 ### Zellij Extension Development
 
 **Epic**: `.memory/epic-ze11ij01-preset-based-tab-management.md`
@@ -36,4 +38,19 @@
 
 ## Completed
 
-*(Items will be moved here as they complete)*
+### ACLI Jira Skill Migration ✅ (2026-01-29)
+
+**Epic**: `.memory/epic-jiraf2a6-acli-jira-skill-migration.md`  
+**Commit**: 23d5c96  
+**Learning**: [ACLI Jira Migration](learning-88ca47c3-acli-jira-migration.md)
+
+#### Deliverables
+- [x] ACLI capabilities documented: `.memory/research-1af8e04c-acli-capabilities.md`
+- [x] mcporter vs ACLI comparison: `.memory/research-98bec10e-mcporter-vs-acli-comparison.md`
+- [x] Migration task: `.memory/task-acli0001-migrate-jira-skill-to-acli.md`
+- [x] Updated skill: `~/.pi/agent/skills/jira/SKILL.md`
+- [x] Tested with real Jira instance (RWR-14013)
+
+**Outcome**: Simplified authentication, improved UX, reduced documentation by 19%
+
+---

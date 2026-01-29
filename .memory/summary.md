@@ -87,6 +87,11 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 **Phase:** Architecture Design (Phase 2)  
 **Next Milestone:** Complete adapter designs for Claude Code and OpenCode
 
+**Completed Migration:** ACLI Jira Skill Migration ✅  
+**Status:** Complete (Committed 23d5c96)  
+**Outcome:** Successfully migrated from mcporter to ACLI, 19% smaller skill documentation  
+**Learning:** [ACLI Jira Migration](learning-88ca47c3-acli-jira-migration.md)
+
 **Planned Epic:** Epic 4 - Subagent Footer Customization ✅ APPROVED (Waiting for Epic 3)  
 **Status:** Human approved Option A - will begin after Epic 3 completion  
 **Priority:** Medium (UX enhancement focus)
@@ -127,11 +132,26 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 - Agent discovery system (hierarchical paths)
 - Execution modes (single, parallel, chain)
 
+### CLI Tools & Integrations
+**Files:**
+- [learning-88ca47c3-acli-jira-migration.md](learning-88ca47c3-acli-jira-migration.md) - ACLI Jira migration lessons: stderr handling, pagination, OAuth flow, bulk operations (2026-01-29)
+
+**Topics Covered:**
+- ACLI stderr behavior and JSON parsing
+- Search and list pagination requirements
+- Comment operations and named parameters
+- OAuth browser authentication flow
+- Direct status transitions by name
+- Bulk operations via JQL queries
+- Migration patterns from MCP to native CLI
+
 ### Research Files
 - [research-6e3d737d-subagent-extension-structure.md](research-6e3d737d-subagent-extension-structure.md) - Subagent extension analysis
 - [research-30fe5140-command-specifications.md](research-30fe5140-command-specifications.md) - Command specifications
 - [research-5231cb8a-pi-mono-ui-components.md](research-5231cb8a-pi-mono-ui-components.md) - Comprehensive guide to pi-mono custom UI components, overlays, and interaction capabilities
 - [research-theme-api-access.md](research-theme-api-access.md) - Theme API access patterns (Epic 2)
+- [research-1af8e04c-acli-capabilities.md](research-1af8e04c-acli-capabilities.md) - ACLI capabilities and command reference
+- [research-98bec10e-mcporter-vs-acli-comparison.md](research-98bec10e-mcporter-vs-acli-comparison.md) - Comparison between mcporter and ACLI approaches
 
 ## Recent Outcomes
 
