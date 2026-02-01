@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.50.7",
-  "defaultThinkingLevel": "off",
+  "defaultThinkingLevel": "minimal",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
@@ -8,8 +8,7 @@
     "npm:@marckrenn/pi-sub-bar",
     "npm:pi-powerline-footer"
   ],
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "quietStartup": true,
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-5"
-}
+  "defaultProvider": "google-antigravity",
+  "defaultModel": "gemini-3-pro-high"

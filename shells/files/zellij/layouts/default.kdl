@@ -41,7 +41,7 @@ layout {
 
                 datetime        "#[fg=#6e6a86,bold] {format} "
                 datetime_format "%A, %d %b %Y %H:%M"
-                datetime_timezone "Europe/Berlin"
+                datetime_timezone "Australia/Adelaide"
             }
         }
     }
