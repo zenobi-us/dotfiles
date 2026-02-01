@@ -9,9 +9,12 @@ This is a simplified and concise project management AI memory framework.
 
 > [!NOTE]
 > **CRITICAL** Before doing any work:
-> 1. Find the memory store: 
->   - If in a git repo, always refer to the main worktree `git rev-parse --path-format=absolute --git-common-dir | xargs dirname`
->   - agent memory lives in '.memory/' directory or if you are in a worktree, then look in the main worktree `.memory/` directory.
+> 1. Find the memory store using the helper script:
+>    ```bash
+>    MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh)
+>    ```
+>    - This handles git worktrees automatically (finds `.memory/` in the main worktree)
+>    - Use `--create` flag to create the directory if it doesn't exist
 > 2. Ensure the following files exist in `.memory/`:
 >   - read `.memory/todo.md`, `.memory/summary.md`, `.memory/knowledge.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
 >   - if `.memory/` is missing these files, then create those three.
@@ -25,21 +28,39 @@ This is a simplified and concise project management AI memory framework.
 > 8. Follow the file naming conventions strictly
 
 
-## Rule 0
+## Rule 0: The Memory Store
 
-When anything fails: STOP. Explain to Q. Wait for confirmation before proceeding.
+The `.memory/` directory is critical. All project management and knowledge files must be stored here.
 
-Before Every Action:
 
-```md
-DOING: [action]
-EXPECT: [predicted outcome]
-IF WRONG: [what that means]
+## Rule 0.1: Locating the Memory Store
+
+Use the helper script to find the memory directory:
+
+```bash
+# Find the .memory directory (fails if not found)
+MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh)
+
+# Find or create the .memory directory
+MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh --create)
 ```
 
-Then the tool call. Then compare. Mismatch = stop and surface to the human.
+The script handles:
+- Git worktrees (finds `.memory/` in the main worktree, not the worktree checkout)
+- Regular git repositories
+- Returns the absolute path to `.memory/`
 
-## Rule 1
+> [!WARNING]
+> `.memory/` may be gitignored, so normal file listing tools (Glob, List, ripgrep) may not work as expected.
+
+## Rule 0.2: Saving Memory Store
+
+When editing or creating files in `.memory/`, always:
+
+1. use git to commit changes, with the memory store as the working directory.
+
+
+## Rule 1: Filename Conventions
 
 Only create filenames that strictly follow the conventions outlined below.
 
@@ -81,13 +102,24 @@ Holding onto useless or misnamed files creates confusion and degrades the memory
 
 ## Searching Memory [CRITICAL]
 
-Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will not work as expected. Instead, use the following commands to search and list memory files:
+Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will not work as expected. Use ripgrep with `--no-ignore` to bypass gitignore rules:
 
-- use `grep -r "<search-term>" .memory/` instead of `Glob` tool.
-- use `grep -r "TODO" .memory/todo.md` to find outstanding tasks. 
-- use `ls -al .memory/` to list all memory files instead of `List` tool.
+```bash
+# First, get the memory directory path
+MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh)
 
-> Avoiding tools like Glob, List and ripgrep makes the User Happy, because .memory may be gitignored and private.
+# Search for terms (--no-ignore bypasses .gitignore)
+rg --no-ignore "<search-term>" "$MEMORY_DIR/"
+
+# Find outstanding tasks
+rg --no-ignore "TODO" "$MEMORY_DIR/todo.md"
+
+# List all memory files
+ls -al "$MEMORY_DIR/"
+```
+
+> [!TIP]
+> Use `rg -u` as shorthand for `rg --no-ignore`. Use `rg -uu` to also search hidden files.
 
 ## Templates
 
@@ -275,14 +307,18 @@ When the user asks for a `miniproject <action>`, correlate `<action>` (or `<ACTI
 
 ### Initialisation Action [INITIALISE]
 
-- [core] ensure `.memory/` directory exists with the following files:
-  - `.memory/todo.md` (for tracking tasks)
-  - `.memory/summary.md` (for project overview)
-  - `.memory/team.md` (for team roles and assignments)
-  - `.memory/knowledge-codemap.md` (for codebase understanding)
-  - `.memory/knowledge-data-flow.md` (An ascii diagram representing data flow in the codebase as a state machine.)
-- [core] if any of these files are missing, create them with appropriate headers and initial
-- [core] ask the user if they want to define a `.memory/constitution.md` file to outline project rules and guidelines. If yes, create the file with a template structure.
+- [core] locate or create the memory directory:
+  ```bash
+  MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh --create)
+  ```
+- [core] ensure the following files exist in `$MEMORY_DIR/`:
+  - `todo.md` (for tracking tasks)
+  - `summary.md` (for project overview)
+  - `team.md` (for team roles and assignments)
+  - `knowledge-codemap.md` (for codebase understanding)
+  - `knowledge-data-flow.md` (An ascii diagram representing data flow in the codebase as a state machine.)
+- [core] if any of these files are missing, create them with appropriate headers and initial content
+- [core] ask the user if they want to define a `constitution.md` file to outline project rules and guidelines. If yes, create the file with a template structure.
 
 ### Maintenance Actions
 
