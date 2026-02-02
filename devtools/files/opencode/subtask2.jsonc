@@ -1,7 +1,0 @@
-{
-  // Replace OpenCode's generic "Summarize..." prompt when no return is specified
-  "replace_generic": true
-
-  // Custom prompt to use (uses subtask2 substitution prompt by default)
-  // "prompt": "Challenge and validate the task tool output above. Verify assumptions, identify gaps or errors, then continue with the next logical step."
-}
