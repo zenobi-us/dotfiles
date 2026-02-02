@@ -1,15 +1,21 @@
 {
-  "lastChangelogVersion": "0.50.7",
-  "defaultThinkingLevel": "minimal",
+  "lastChangelogVersion": "0.50.8",
+  "defaultThinkingLevel": "off",
   "theme": "rose-pine-moon",
   "packages": [
     "git:github.com/zenobi-us/pi-rose-pine",
     "npm:@marckrenn/pi-sub-core",
     "npm:@marckrenn/pi-sub-bar",
-    "npm:pi-powerline-footer"
+    "npm:pi-powerline-footer",
+    "npm:pi-subagents",
+    "npm:pi-interview",
+    "npm:pi-subdir-context",
+    "npm:pi-messenger"
   ],
   "hideThinkingBlock": false,
   "quietStartup": true,
-  "defaultProvider": "google-antigravity",
-  "defaultModel": "gemini-3-pro-high"
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.2-codex",
+  "workingVibe": "theme",
+  "workingVibeModel": "antigravity/gemini-3-flash"
 }
