@@ -171,3 +171,5 @@ function PiHandoffExtension(pi: ExtensionAPI) {
     },
   });
 }
+
+export default PiHandoffExtension;
