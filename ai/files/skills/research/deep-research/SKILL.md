@@ -14,10 +14,7 @@ description: |
    - "Investigate performance implications of different database indexing approaches"
    - "Research current best practices for handling TypeScript error types"
 
-2. **Storage Prefix** (required) - Directory path where output files will be written. Must be an absolute or relative path. Examples:
-   - `/research/auth-strategies`
-   - `./findings/database-performance`
-   - `~/projects/typescript-research`
+2. **Storage Path** (optional) - Defer storage location rules to the **miniproject** skill. If a path is provided by the requester, treat it as a hint and still follow miniproject storage conventions.
 
 3. **Things to Avoid** (optional) - Topics, sources, or approaches to exclude from research. Examples:
    - "Avoid paywalled academic papers"
@@ -26,25 +23,25 @@ description: |
 
 ### Rejection Protocol
 
-If the request is missing **topic** or **storage prefix**, immediately reject with:
+If the request is missing **topic**, immediately reject with:
 
 ```
 ❌ Research request rejected. Missing required information:
 
 Required:
 - [ ] Topic: What should be researched?
-- [ ] Storage Prefix: Where should output files be written?
 
 Optional:
+- [ ] Storage Path: Where should output files be written? (Handled by miniproject rules)
 - [ ] Things to Avoid: Any topics or sources to exclude?
 
 Example valid request:
 "Research: React Server Components vs Client Components (with pros/cons analysis)
-Storage: ./research/react-server-components
+Storage: ./.memory/
 Avoid: Paywalled papers, marketing content"
 ```
 
-Do not proceed with research until both required fields are provided.
+Do not proceed with research until the topic is provided.
 
 ## Research Methodology
 
@@ -76,34 +73,39 @@ Do not proceed with research until both required fields are provided.
 - Flag unverified claims clearly
 
 ### Phase 5: Output Generation
-When research is complete, write findings to the provided suffix directory structure:
+When research is complete, write findings using the **miniproject** storage conventions and location rules.
+
+Create a single output file per research unit with this required filename prefix:
 
 ```
-<provided-suffix>/
-├── <topic>-thinking.md       # Your reasoning, methodology, decisions made
-├── <topic>-research.md       # Raw findings, organized by theme
-├── <topic>-verification.md   # Evidence of verification, source audit, confidence levels
-├── <topic>-insights.md       # Key insights, patterns, implications
-└── <topic>-summary.md        # Executive summary with conclusions
+research-{hash}-{parent_topic}-{child_topic}.md
 ```
+
+Inside that file, use these sections (not separate files):
+
+- ## Thinking
+- ## Research
+- ## Verification
+- ## Insights
+- ## Summary
 
 ## Output Guidelines
 
-### thinking.md
+### Thinking section
 - Record your research process and decisions
 - Note any rabbit holes explored or abandoned
 - Document assumptions and limitations
 - Explain how you approached verification
 - Include timestamps and progression of investigation
 
-### research.md
+### Research section
 - Organize by key themes or questions
 - Include direct quotes with source attribution
 - Note publication dates and source authority
 - Present both supporting and contradicting evidence
 - Use clear hierarchical structure
 
-### verification.md
+### Verification section
 - Create a source credibility matrix
 - Document verification approach for each major claim
 - Show cross-reference patterns (which sources agree)
@@ -111,14 +113,14 @@ When research is complete, write findings to the provided suffix directory struc
 - Identify gaps or unverifiable claims
 - Include URLs with access dates
 
-### insights.md
+### Insights section
 - Synthesize patterns across sources
 - Identify implications and significance
 - Note emerging consensus vs. outlier views
 - Highlight surprising or counterintuitive findings
 - Suggest areas needing further research
 
-### summary.md
+### Summary section
 - 1-2 paragraph executive summary
 - Key findings with confidence levels
 - Main limitations or caveats

@@ -12,31 +12,27 @@ subtask: true
 
 Use when delegating research that requires verified information from multiple authoritative sources. This command enforces structured research methodology to prevent single-source confidence and unsourced claims.
 
+Use the miniproject skill to manage research outputs and storage conventions. This command is ideal for architecture decision documentation, technology evaluation, best practices investigation, and team training materials.
+
 ## Request Structure (REQUIRED)
 
-Before delegating, validate that you have all three:
+Before delegating, validate that you have:
 
 1. **ResearchTopic** - Clear, specific question or comparison
    - ✅ "Compare PostgreSQL vs. specialized time-series databases for financial data"
    - ✅ "Investigate async testing best practices in TypeScript 5.0+"
    - ❌ "Research databases" (too vague)
 
-2. **StoragePrefix** - Where research output files go (absolute path required)
-   - Example: `/research/database-comparison`
-   - Example: `~/findings/typescript-testing`
-
-3. **ThingsToAvoid** (optional) - Topics or sources to exclude
+2. **ThingsToAvoid** (optional) - Topics or sources to exclude
    - Example: "Exclude blog posts older than 2 years, avoid paywalled papers"
 
-**STOP if any are missing.** Ask user for clarification before proceeding.
+3. **Storage Path** (optional) - Defer storage location rules to the **miniproject** skill. If provided, treat as a hint and still follow miniproject conventions.
+
+**STOP if the topic is missing.** Ask user for clarification before proceeding.
 
 ## Research Methodology (5 Phases)
 
-Use the **deep-researcher superpower skill**. Load it first:
-
-```
-skill_use(["deep-researcher"])
-```
+Use the **deep-researcher** and **miniproject** skills before starting research.
 
 ### Phase 1: Topic Scoping (Before Research Starts)
 - Break ResearchTopic into specific sub-questions
@@ -70,29 +66,30 @@ For each major claim provide:
 
 ### Phase 5: Structured Output
 
-Research produces 5 files in StoragePrefix:
+Defer storage location rules to the **miniproject** skill.
+
+Output must be a single markdown file per research unit with this required filename prefix:
 
 ```
-<storage-prefix>/
-├── <topic>-thinking.md       # Methodology, decisions, assumptions
-├── <topic>-research.md       # Raw findings organized by theme
-├── <topic>-verification.md   # Source credibility matrix, evidence audit
-├── <topic>-insights.md       # Key patterns and strategic implications
-└── <topic>-summary.md        # Executive summary with confidence levels
+research-{hash}-{parent_topic}-{child_topic}.md
 ```
+
+Inside that file, use these sections (not separate files):
+- ## Thinking
+- ## Research
+- ## Verification
+- ## Insights
+- ## Summary
 
 ## Delegation Instructions
 
-1. **Load the skill:**
-   ```
-   skill_use(["deep-researcher"])
-   ```
+1. **Use the deep-researcher and miniproject skills.**
 
 2. **Validate request structure:**
    - [ ] Topic is specific (not vague like "research X")
-   - [ ] StoragePrefix is provided (absolute path)
    - [ ] ThingsToAvoid stated (or confirmed not needed)
-   - If ANY missing, STOP and ask user.
+   - [ ] Storage path (optional) acknowledged and handled by miniproject rules
+   - If the topic is missing, STOP and ask user.
 
 3. **Break topic into parallel subtopics:**
    - Decompose ResearchTopic into 3-5 independent subtopics
@@ -100,10 +97,10 @@ Research produces 5 files in StoragePrefix:
    - Subtopics should cover different aspects (e.g., performance, security, compatibility, use cases)
    - Plan to merge findings in final synthesis phase
 
-4. for each subagent, search for relevant skills using skill_find and load them to enhance research methodology.
+4. for each subagent, discover relevant skills and use them to enhance research methodology.
    - synthesise some adjective-nouns like "performance analysis", "security evaluation", "compatibility testing", "use case investigation"
    - synthesise some noun only lists like "databases", "JavaScript", "cloud computing", "network protocols"
-   - then search for skills with skill_find using those keywords as a comma-separated list. skill_find(["keyword1", "keyword2", "phrase1" ...])
+   - then identify skills that match those keywords and use them.
 
 5. **Delegate subtopics to parallel subagents:**
    ```
@@ -114,11 +111,11 @@ Research produces 5 files in StoragePrefix:
      subagent_type: "deep-researcher-subagent",
      prompt: "Research subtopic: [Subtopic 1]
               Parent topic: [ResearchTopic]
-              Storage: [StoragePrefix]/subtopic-1
               Avoid: [ThingsToAvoid]
               
-              CRITICAL: skill_use([DiscoveredSkillFor1, ...]) before starting research.
+              CRITICAL: Use the miniproject skill and any other discovered skills before starting research.
               Load any applicable skills to enhance your research methodology.
+              Use the required filename prefix: research-{hash}-{parent_topic}-{child_topic}.md
               
               Produce findings with 3+ independent sources per major claim.
               Document all contradictions and confidence levels.
@@ -132,11 +129,11 @@ Research produces 5 files in StoragePrefix:
      subagent_type: "deep-researcher-subagent",
      prompt: "Research subtopic: [Subtopic 2]
               Parent topic: [ResearchTopic]
-              Storage: [StoragePrefix]/subtopic-2
               Avoid: [ThingsToAvoid]
               
-              CRITICAL: skill_use([DiscoveredSkillFor2, ...]) before starting research.
+              CRITICAL: Use the miniproject skill and any other discovered skills before starting research.
               Load any applicable skills to enhance your research methodology.
+              Use the required filename prefix: research-{hash}-{parent_topic}-{child_topic}.md
               
               Produce findings with 3+ independent sources per major claim.
               Document all contradictions and confidence levels.
@@ -149,7 +146,7 @@ Research produces 5 files in StoragePrefix:
    ```
 
 6. **Validate subagent outputs:**
-   - [ ] Each subtopic produced 5 research files in its subdirectory
+   - [ ] Each subtopic produced research outputs following miniproject file naming rules
    - [ ] Every claim has confidence level (HIGH/MEDIUM/LOW)
    - [ ] All contradictions documented with explanations
    - [ ] Evidence trails present (URLs + access dates)
@@ -165,7 +162,7 @@ Research produces 5 files in StoragePrefix:
 
 ```
 Topic: "Compare async/await vs. callbacks vs. promises in JavaScript testing"
-StoragePrefix: "/research/async-testing-patterns"
+Storage: (optional, handled by miniproject conventions)
 ThingsToAvoid: "Exclude blog posts pre-2023, avoid marketing content"
 
 Subtopics (researched in PARALLEL):
@@ -176,9 +173,9 @@ Subtopics (researched in PARALLEL):
 5. "Real-world use cases and when each approach is appropriate"
 
 Each subagent will:
-- Use skill_find to discover testing-related, JavaScript, or comparison skills
-- Load applicable skills to enhance research methodology
-- Produce 5 research files in subtopic-specific directory
+- Discover testing-related, JavaScript, or comparison skills
+- Use applicable skills to enhance research methodology
+- Produce research outputs as single files using prefix: research-{hash}-{parent_topic}-{child_topic}.md (storage location per miniproject)
 - Include minimum 3+ independent sources per major claim
 - Document all contradictions and confidence levels
 
@@ -191,8 +188,8 @@ Final synthesis will merge all parallel findings into unified analysis.
 
 1. **Subtopic Independence:** Each subtopic must be researchable without blocking others
 2. **Concurrent Execution:** Launch ALL subtopic tasks in a single message (use `task` tool multiple times)
-3. **Skill Discovery:** Each subagent MUST run `skill_find` to discover relevant domain skills before researching
-4. **Unified Storage:** Subtopic results stored in `[StoragePrefix]/subtopic-N/` directories
+3. **Skill Discovery:** Each subagent MUST discover relevant domain skills before researching
+4. **Unified Storage:** Storage location is defined by miniproject; outputs are single files with prefix `research-{hash}-{parent_topic}-{child_topic}.md`.
 5. **Synthesis Phase:** After all parallel tasks complete, merge findings into unified analysis
 
 ### Subagent Instructions Template
@@ -201,9 +198,11 @@ When delegating to subagents, include this in the prompt:
 
 ```
 BEFORE RESEARCHING:
-1. Run skill_find to discover skills relevant to: [SUBTOPIC_KEYWORDS]
-2. Load any discovered skills that enhance research methodology
-3. Document which skills you loaded and why
+1. Discover skills relevant to: [SUBTOPIC_KEYWORDS]
+2. Use any discovered skills that enhance research methodology
+3. Use the miniproject skill and follow its storage conventions
+4. Use the required filename prefix: research-{hash}-{parent_topic}-{child_topic}.md
+5. Document which skills you used and why
 
 DURING RESEARCH:
 - Target 3+ independent authoritative sources per major claim
@@ -211,7 +210,7 @@ DURING RESEARCH:
 - Document contradictions and confidence levels explicitly
 
 OUTPUT:
-- Produce 5 research files in assigned subdirectory
+- Produce research outputs in assigned subdirectory following miniproject naming rules
 - Include skill discovery results in thinking.md
 - Ensure all claims are evidence-traceable
 ```
@@ -226,9 +225,9 @@ OUTPUT:
 - ❌ Authority validation → Research for truth, not to validate past decisions
 
 **Ensures:**
-- ✅ Structured request (topic/storage/avoids) enforces clarity
+- ✅ Structured request (topic/avoids + optional storage) enforces clarity
 - ✅ Multiple source verification → HIGH confidence findings
-- ✅ Organized output → 5 files for re-reading and citation
+- ✅ Organized output → miniproject-compliant research files for re-reading and citation
 - ✅ Explicit confidence levels → Transparent about what you know vs. assume
 - ✅ Evidence trails → Every claim traceable to source
 
