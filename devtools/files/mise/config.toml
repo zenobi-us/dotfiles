@@ -71,6 +71,7 @@ btop = "latest"
 "npm:@mariozechner/pi-coding-agent" = "latest"
 "go:github.com/Crosse/font-install" = "latest"
 "http:acli"= { version = "latest", url = "https://acli.atlassian.com/linux/{version}/acli_linux_amd64/acli" }
+"npm:surf-cli" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
