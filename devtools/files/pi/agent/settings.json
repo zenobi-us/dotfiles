@@ -3,9 +3,7 @@
   "defaultThinkingLevel": "low",
   "theme": "rose-pine-moon",
   "packages": [
-    "git:github.com/zenobi-us/pi-rose-pine",
-    "npm:@marckrenn/pi-sub-core",
-    "npm:@marckrenn/pi-sub-bar",
+    "npm:@zenobius/pi-rose-pine",
     "npm:pi-powerline-footer",
     "npm:pi-interview",
     "npm:pi-subdir-context",
