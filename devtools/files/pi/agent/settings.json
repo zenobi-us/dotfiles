@@ -4,8 +4,6 @@
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
-    "npm:@marckrenn/pi-sub-core",
-    "npm:@marckrenn/pi-sub-bar",
     "npm:pi-powerline-footer",
     "npm:pi-interview",
     "npm:pi-subdir-context",

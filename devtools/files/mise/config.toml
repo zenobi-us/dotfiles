@@ -4,7 +4,6 @@ experimental = true
 
 [tools]
 "npm:chrome-devtools-mcp" = "0.10.2"
-"pipx:basic-memory" = "0.15.2"
 "ubi:asciinema/asciinema" = "3.0.1"
 "ubi:mfontanini/presenterm" = "0.15.1"
 "ubi:scottmckendry/pokemon-go-colorscripts" = "0.3.1"
@@ -53,7 +52,6 @@ glow = "latest"
 dasel = "latest"
 watchexec = "latest"
 semver = "latest"
-"pipx:homeassistant-cli" = "latest"
 "ubi:dlvhdr/gh-dash" = "4.20.1"
 "npm:gh-actions-language-server" = "0.0.3"
 "npm:@scopecraft/cmd" = "latest"
@@ -68,7 +66,6 @@ btop = "latest"
 "pipx:open-webui" = "latest"
 "pipx:vllm-playground" = "latest"
 "npm:antigravity-usage" = "latest"
-"npm:@mariozechner/pi-coding-agent" = "latest"
 "go:github.com/Crosse/font-install" = "latest"
 "http:acli"= { version = "latest", url = "https://acli.atlassian.com/linux/{version}/acli_linux_amd64/acli" }
 "npm:surf-cli" = "latest"
@@ -76,11 +73,3 @@ btop = "latest"
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
 
-
-[tools."github:anomalyco/opencode"]
-version = "1.1.1"
-
-[tools."github:anomalyco/opencode".platforms]
-linux-x64 = { asset_pattern = "opencode-linux-x64.tar.gz" }
-macos-arm64 = { asset_pattern = "opencode-darwin-x64.tar.gz" }
-windows-x64 = { asset_pattern = "opencode-windows-x64.zip" }

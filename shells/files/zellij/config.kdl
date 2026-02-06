@@ -16,6 +16,7 @@ keybinds clear-defaults=true {
             SwitchToMode "normal";
         }
 
+
         bind "c" {
             LaunchOrFocusPlugin "configuration" {
                 floating true
@@ -62,6 +63,8 @@ keybinds clear-defaults=true {
         bind "x" { CloseFocus; SwitchToMode "normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "resize"; }
+
+        bind "b" { TogglePaneFrames; }
 
         bind "Ctrl Left" { MovePane "left"; }
         bind "Ctrl Down" { MovePane "down"; }
