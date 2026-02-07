@@ -17,6 +17,10 @@ export const defaultFooterProviders: Array<{
   name: string;
   provider: FooterContextProvider;
 }> = [
+  ...createPlatformContextProviders("copilot", [
+    { id: "window1", duration: 15 * 60, remaining: 10 * 60 },
+    { id: "window2", duration: 60 * 60, remaining: 45 * 60 },
+  ]),
   { name: "time", provider: timeProvider },
   { name: "git_branch_name", provider: gitBranchNameProvider },
   { name: "git_worktree_name", provider: gitWorktreeNameProvider },
