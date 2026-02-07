@@ -1,11 +1,15 @@
 import { hasAuthKey, readPiAuthJson } from "../auth.ts";
-import { API_TIMEOUT_MS, createUsageWindow } from "../numbers.ts";
-import type { Window } from "../types.ts";
-import type { ProviderStrategy } from "../types.ts";
+import { API_TIMEOUT_MS, TimeFrame, percentToSnapshot } from "../numbers.ts";
+import type { UsageSnapshot } from "../types.ts";
+import { usageTracker } from "../store.ts";
 
-export const anthropicProvider: ProviderStrategy = {
+usageTracker.registerProvider("anthropic", {
   id: "anthropic",
   label: "Anthropic",
+  quotas: [
+    { id: "5_hour", duration: TimeFrame.FiveHour },
+    { id: "5_day", duration: TimeFrame.FiveDay },
+  ],
   hasAuthentication: () => hasAuthKey("anthropic"),
   fetchUsage: async () => {
     const auth = readPiAuthJson();
@@ -23,16 +27,21 @@ export const anthropicProvider: ProviderStrategy = {
 
     const data = (await res.json()) as {
       five_hour?: { utilization?: number };
+      five_day?: { utilization?: number };
       seven_day?: { utilization?: number };
     };
 
-    const windows: Window[] = [];
+    const windows: UsageSnapshot[] = [];
     if (data.five_hour?.utilization !== undefined) {
-      windows.push(createUsageWindow(data.five_hour.utilization, 5 * 60));
+      windows.push(percentToSnapshot("5_hour", data.five_hour.utilization));
     }
-    if (data.seven_day?.utilization !== undefined) {
-      windows.push(createUsageWindow(data.seven_day.utilization, 7 * 24 * 60));
+
+    const dayUtilization =
+      data.five_day?.utilization ?? data.seven_day?.utilization;
+    if (dayUtilization !== undefined) {
+      windows.push(percentToSnapshot("5_day", dayUtilization));
     }
+
     return windows;
   },
-};
+});

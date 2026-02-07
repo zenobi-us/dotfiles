@@ -1,10 +1,11 @@
 import { execFileSync } from "node:child_process";
-import { API_TIMEOUT_MS, percentToWindow } from "../numbers.ts";
+import { API_TIMEOUT_MS, percentToSnapshot } from "../numbers.ts";
 import type { ProviderStrategy } from "../types.ts";
 
 export const kiroProvider: ProviderStrategy = {
   id: "kiro",
   label: "Kiro",
+  quotas: [{ id: "global", amount: 100 }],
   hasAuthentication: () => {
     try {
       execFileSync("kiro-cli", ["whoami"], {
@@ -30,6 +31,6 @@ export const kiroProvider: ProviderStrategy = {
 
     const percentMatch = output.match(/█+\s*(\d+)%/);
     const used = percentMatch ? Number(percentMatch[1]) : 0;
-    return [percentToWindow(used, 100)];
+    return [percentToSnapshot("global", used)];
   },
 };

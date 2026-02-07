@@ -1,10 +1,11 @@
 import { hasAuthKey, readPiAuthJson } from "../auth.ts";
-import { API_TIMEOUT_MS } from "../numbers.ts";
+import { API_TIMEOUT_MS, TimeFrame } from "../numbers.ts";
 import type { ProviderStrategy } from "../types.ts";
 
 export const copilotProvider: ProviderStrategy = {
   id: "copilot",
   label: "Copilot",
+  quotas: [{ id: "30_day", duration: TimeFrame.ThirtyDay }],
   hasAuthentication: () => hasAuthKey("github-copilot"),
   fetchUsage: async () => {
     const auth = readPiAuthJson();
@@ -40,9 +41,15 @@ export const copilotProvider: ProviderStrategy = {
     const entitlement = Math.max(1, premium.entitlement ?? 0);
     const remaining = Math.max(
       0,
-      premium.remaining ?? (entitlement * (premium.percent_remaining ?? 0)) / 100,
+      premium.remaining ??
+        (entitlement * (premium.percent_remaining ?? 0)) / 100,
     );
 
-    return [{ duration: entitlement, remaining }];
+    return [
+      {
+        id: "30_day",
+        remainingRatio: Math.max(0, Math.min(1, remaining / entitlement)),
+      },
+    ];
   },
 };
