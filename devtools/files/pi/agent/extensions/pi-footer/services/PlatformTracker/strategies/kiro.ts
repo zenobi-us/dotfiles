@@ -1,8 +1,8 @@
 import { execFileSync } from "node:child_process";
 import { API_TIMEOUT_MS, percentToSnapshot } from "../numbers.ts";
-import type { ProviderStrategy } from "../types.ts";
+import { usageTracker } from "../store.ts";
 
-export const kiroProvider: ProviderStrategy = {
+usageTracker.registerProvider({
   id: "kiro",
   label: "Kiro",
   quotas: [{ id: "global", amount: 100 }],
@@ -33,4 +33,4 @@ export const kiroProvider: ProviderStrategy = {
     const used = percentMatch ? Number(percentMatch[1]) : 0;
     return [percentToSnapshot("global", used)];
   },
-};
+});

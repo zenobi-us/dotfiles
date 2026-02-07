@@ -94,8 +94,8 @@ export function createUsageTracker(
     store: initialStore ?? new Map(),
     providers: new Map(),
 
-    registerProvider(name, provider) {
-      this.providers.set(name, provider);
+    registerProvider(provider) {
+      this.providers.set(provider.id, provider);
     },
 
     async updateAll() {

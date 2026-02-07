@@ -1,8 +1,9 @@
 import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS } from "../numbers.ts";
-import type { ProviderStrategy, UsageSnapshot } from "../types.ts";
+import type { UsageSnapshot } from "../types.ts";
+import { usageTracker } from "../store.ts";
 
-export const antigravityProvider: ProviderStrategy = {
+usageTracker.registerProvider({
   id: "antigravity",
   label: "Google Antigravity",
   quotas: [
@@ -62,4 +63,4 @@ export const antigravityProvider: ProviderStrategy = {
 
     return windows;
   },
-};
+});
