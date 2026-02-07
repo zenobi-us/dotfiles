@@ -1,4 +1,4 @@
-import type { Window } from "./types.ts";
+import type { UsageSnapshot } from "./types.ts";
 
 export function clampPositiveInt(value: number, fallback: number): number {
   if (!Number.isFinite(value) || value <= 0) return fallback;
@@ -7,8 +7,21 @@ export function clampPositiveInt(value: number, fallback: number): number {
 
 export const API_TIMEOUT_MS = 5_000;
 
-export function createUsageWindow(percentUsed: number, duration = 100): Window {
+export const TimeFrame = {
+  OneHour: 3_600,
+  FiveHour: 5 * 3_600,
+  OneDay: 24 * 3_600,
+  FiveDay: 5 * 24 * 3_600,
+  SevenDay: 7 * 24 * 3_600,
+  ThirtyDay: 30 * 24 * 3_600,
+} as const;
+
+export function percentToSnapshot(id: string, percentUsed: number): UsageSnapshot {
   const clampedUsed = Math.max(0, Math.min(100, percentUsed));
-  const remaining = Math.max(0, duration * (1 - clampedUsed / 100));
-  return { duration, remaining };
+  const usedRatio = clampedUsed / 100;
+  return {
+    id,
+    usedRatio,
+    remainingRatio: 1 - usedRatio,
+  };
 }

@@ -1,6 +1,9 @@
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 import {
   Listener,
+  QuotaDefinition,
+  ResolvedUsageWindow,
+  UsageSnapshot,
   UsageStore,
   UsageStoreEntry,
   UsageTrackerInternal,
@@ -12,6 +15,70 @@ const DEFAULT_SETTINGS: UsageTrackerSettings = {
   intervalMs: 60_000,
   maxBackoffMultiplier: 8,
 };
+
+function clamp01(value: number): number {
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.min(1, value));
+}
+
+function resolveUsageWindow(
+  quota: QuotaDefinition,
+  snapshot: UsageSnapshot,
+): ResolvedUsageWindow {
+  const total = quota.duration ?? quota.amount ?? 100;
+
+  const remainingFromNumbers =
+    snapshot.remaining ??
+    (snapshot.used !== undefined
+      ? Math.max(0, total - snapshot.used)
+      : undefined);
+
+  const usedFromNumbers =
+    snapshot.used ??
+    (snapshot.remaining !== undefined
+      ? Math.max(0, total - snapshot.remaining)
+      : undefined);
+
+  const remainingRatioFromNumbers =
+    remainingFromNumbers !== undefined && total > 0
+      ? clamp01(remainingFromNumbers / total)
+      : undefined;
+
+  const usedRatioFromNumbers =
+    usedFromNumbers !== undefined && total > 0
+      ? clamp01(usedFromNumbers / total)
+      : undefined;
+
+  const remainingRatio = clamp01(
+    snapshot.remainingRatio ??
+      remainingRatioFromNumbers ??
+      (snapshot.usedRatio !== undefined ? 1 - snapshot.usedRatio : 0),
+  );
+
+  const usedRatio = clamp01(
+    snapshot.usedRatio ?? usedRatioFromNumbers ?? 1 - remainingRatio,
+  );
+
+  const remaining = Math.max(
+    0,
+    snapshot.remaining ?? remainingFromNumbers ?? remainingRatio * total,
+  );
+
+  const used = Math.max(
+    0,
+    snapshot.used ?? usedFromNumbers ?? usedRatio * total,
+  );
+
+  return {
+    id: quota.id,
+    duration: quota.duration,
+    amount: quota.amount,
+    remaining,
+    used,
+    remainingRatio,
+    usedRatio,
+  };
+}
 
 export function createUsageTracker(
   initialStore?: UsageStore,
@@ -86,7 +153,14 @@ export function createUsageTracker(
           return;
         }
 
-        nextEntry.windows = await provider.fetchUsage(currentCtx);
+        const snapshots = await provider.fetchUsage(currentCtx);
+
+        const resolved: ResolvedUsageWindow[] = [];
+        for (const snapshot of snapshots) {
+          //TODO: update store with usage data
+        }
+
+        nextEntry.windows = resolved;
         nextEntry.active = true;
         nextEntry.fails = 0;
       } catch {

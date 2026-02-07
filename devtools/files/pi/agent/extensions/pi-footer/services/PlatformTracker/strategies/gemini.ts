@@ -1,10 +1,14 @@
 import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS } from "../numbers.ts";
-import type { ProviderStrategy } from "../types.ts";
+import type { ProviderStrategy, UsageSnapshot } from "../types.ts";
 
 export const geminiProvider: ProviderStrategy = {
   id: "gemini",
   label: "Gemini",
+  quotas: [
+    { id: "pro", amount: 100 },
+    { id: "flash", amount: 100 },
+  ],
   hasAuthentication: () => hasAuthKey("google-gemini-cli"),
   fetchUsage: async () => {
     const auth = readPiAuthJson();
@@ -40,17 +44,17 @@ export const geminiProvider: ProviderStrategy = {
       if (model.includes("flash")) flashFractions.push(fraction);
     }
 
-    const windows = [];
+    const windows: UsageSnapshot[] = [];
     if (proFractions.length > 0) {
       windows.push({
-        duration: 100,
-        remaining: Math.min(...proFractions) * 100,
+        id: "pro",
+        remainingRatio: Math.min(...proFractions),
       });
     }
     if (flashFractions.length > 0) {
       windows.push({
-        duration: 100,
-        remaining: Math.min(...flashFractions) * 100,
+        id: "flash",
+        remainingRatio: Math.min(...flashFractions),
       });
     }
 
