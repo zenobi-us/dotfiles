@@ -57,3 +57,7 @@ usageTracker.setSettings({
   maxBackoffMultiplier: 6,
 });
 ```
+
+## Slash commands
+
+- `/usage-store` – prints a table of the current `UsageTracker` store.

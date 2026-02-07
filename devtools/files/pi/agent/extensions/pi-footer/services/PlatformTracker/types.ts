@@ -1,6 +1,6 @@
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 
-export type Window = { duration: number; remaining: number };
+export type Window = { id: string; duration: number; remaining: number };
 
 export type UsageStoreEntry = {
   windows: Window[];
