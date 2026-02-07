@@ -1,8 +1,9 @@
 import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS, TimeFrame } from "../numbers.ts";
-import type { ProviderStrategy, UsageSnapshot } from "../types.ts";
+import type { UsageSnapshot } from "../types.ts";
+import { usageTracker } from "../store.ts";
 
-export const codexProvider: ProviderStrategy = {
+usageTracker.registerProvider({
   id: "codex",
   label: "Codex",
   quotas: [
@@ -74,4 +75,4 @@ export const codexProvider: ProviderStrategy = {
 
     return windows;
   },
-};
+});

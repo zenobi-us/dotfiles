@@ -1,10 +1,20 @@
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 
-export type QuotaDefinition = {
+export type ProviderId = string;
+export type ModelId = `${ProviderId}/${string}`; // e.g., "anthropic/claude-sonnet-4-7"
+
+export type QuotaDurationDefinition = {
   id: string;
   duration?: number;
-  amount?: number;
+  modelIds?: string[]; // Optional list of model IDs this quota applies to (e.g., ["gpt-4", "gpt-3.5"])
 };
+export type QuotaAmountDefinition = {
+  id: string;
+  amount?: number;
+  modelIds?: string[]; // Optional list of model IDs this quota applies to (e.g., ["gpt-4", "gpt-3.5"])
+};
+
+export type QuotaDefinition = QuotaDurationDefinition | QuotaAmountDefinition;
 
 export type UsageSnapshot = {
   id: string;
@@ -55,7 +65,7 @@ export interface ProviderStrategy {
 export interface UsageTracker {
   store: UsageStore;
   providers: Map<string, ProviderStrategy>;
-  registerProvider(name: string, provider: ProviderStrategy): void;
+  registerProvider(provider: ProviderStrategy): void;
   update: (providerId: string) => Promise<void>;
   updateAll: () => Promise<void>;
 }

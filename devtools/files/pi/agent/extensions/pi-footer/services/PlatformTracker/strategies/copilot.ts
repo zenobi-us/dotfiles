@@ -1,8 +1,8 @@
 import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS, TimeFrame } from "../numbers.ts";
-import type { ProviderStrategy } from "../types.ts";
+import { usageTracker } from "../store.ts";
 
-export const copilotProvider: ProviderStrategy = {
+usageTracker.registerProvider({
   id: "copilot",
   label: "Copilot",
   quotas: [{ id: "30_day", duration: TimeFrame.ThirtyDay }],
@@ -52,4 +52,4 @@ export const copilotProvider: ProviderStrategy = {
       },
     ];
   },
-};
+});

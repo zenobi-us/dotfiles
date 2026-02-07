@@ -3,7 +3,7 @@ import { API_TIMEOUT_MS, TimeFrame, percentToSnapshot } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
 
-usageTracker.registerProvider("anthropic", {
+usageTracker.registerProvider({
   id: "anthropic",
   label: "Anthropic",
   quotas: [

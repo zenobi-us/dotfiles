@@ -1,8 +1,9 @@
 import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS } from "../numbers.ts";
-import type { ProviderStrategy, UsageSnapshot } from "../types.ts";
+import type { UsageSnapshot } from "../types.ts";
+import { usageTracker } from "../store.ts";
 
-export const geminiProvider: ProviderStrategy = {
+usageTracker.registerProvider({
   id: "gemini",
   label: "Gemini",
   quotas: [
@@ -60,4 +61,4 @@ export const geminiProvider: ProviderStrategy = {
 
     return windows;
   },
-};
+});
