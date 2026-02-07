@@ -1,134 +1,124 @@
 import type { FooterContextProvider } from "../types.ts";
 import { usageTracker } from "../services/PlatformTracker/store.ts";
 
-function formatWindow(window: { duration: number; remaining: number }) {
-  return `${Math.max(0, Math.round(window.remaining))}/${Math.max(
-    0,
-    Math.round(window.duration),
-  )}`;
+type UsageWindow = { duration: number; remaining: number };
+
+function getWindowById(
+  platformId: string,
+  windowId: string,
+): UsageWindow | undefined {
+  const entry = usageTracker.store.get(platformId);
+  if (!entry?.windows?.length) return undefined;
+
+  return entry.windows.find((window) => window.id === windowId);
 }
 
-// For each platform we want these context providers:
-// WindowProgressPercentage: For each window, how far into the window are we 0-1? (e.g. 0.75)
-// WindowRemainingTime: For each window, how much time is left (in seconds)? (e.g. 120s)
-// WindowUsedTime: For each window, how much time has been used (in seconds)? (e.g. 480s)
-// WindowTotalTime: For each window, what is the total time (in seconds)? (e.g. 600s)
-// WindowQuotaUsedPercentage: For each window, how much of the quota has been used 0-1? (e.g. 0.8)
-// WindowQuotaRemainingPercentage: For each window, how much of the quota is remaining 0-1? (e.g. 0.2)
-
 /**
- * For window progress percentage, we want to show how far into the window we are as a percentage (e.g. "75%"). This is calculated as (duration - remaining) / duration, but we need to make sure to handle edge cases where duration might be 0 or negative, or where remaining might be greater than duration.
+ * Returns progress through the window as a fraction in [0, 1], or undefined.
  */
 function createWindowProgressPercentageProvider(
-  id: string,
+  platformId: string,
   windowId: string,
 ): FooterContextProvider {
-  return (ctx) => {
-    const stored = usageTracker.store.get(id);
-    const window = stored?.windows.find((w) => w.id === windowId);
+  return () => {
+    const window = getWindowById(platformId, windowId);
     if (!window) return undefined;
+    if (window.duration <= 0) return 0;
 
-    const percentage =
-      window.duration > 0
-        ? Math.max(0, Math.min(1, 1 - window.remaining / window.duration))
-        : 0;
-    return `${Math.round(percentage * 100)}`;
+    return Math.max(0, Math.min(1, 1 - window.remaining / window.duration));
   };
 }
 
 /**
- * For window remaining time, we want to show how much time is left in seconds (e.g. "120").
+ * Returns remaining time in seconds as a number, or undefined.
  */
 function createWindowRemainingTimeProvider(
-  id: string,
+  platformId: string,
   windowId: string,
 ): FooterContextProvider {
-  return (ctx) => {
-    const stored = usageTracker.store.get(id);
-    const window = stored?.windows.find((w) => w.id === windowId);
-    if (!window) return "?";
-    return `${Math.round(window.remaining)}`;
+  return () => {
+    const window = getWindowById(platformId, windowId);
+    if (!window) return undefined;
+    return Math.max(0, window.remaining);
   };
 }
 
 /**
- * Used time is total duration minus remaining time, but we want to make sure it never goes below 0 in case of any weird edge cases with the data.
+ * Returns used time in seconds as a number, or undefined.
  */
 function createWindowUsedTimeProvider(
-  id: string,
+  platformId: string,
   windowId: string,
 ): FooterContextProvider {
-  return (ctx) => {
-    const stored = usageTracker.store.get(id);
-    const window = stored?.windows.find((w) => w.id === windowId);
-    if (!window) return "?";
-    const used = Math.max(0, window.duration - window.remaining);
-    return `${Math.round(used)}`;
+  return () => {
+    const window = getWindowById(platformId, windowId);
+    if (!window) return undefined;
+
+    return Math.max(0, window.duration - window.remaining);
   };
 }
 
 /**
- * For total time, we just want to show the total duration of the window in seconds (e.g. "600").
+ * Returns total window duration in seconds as a number, or undefined.
  */
 function createWindowTotalTimeProvider(
-  id: string,
+  platformId: string,
   windowId: string,
 ): FooterContextProvider {
-  return (ctx) => {
-    const stored = usageTracker.store.get(id);
-    const window = stored?.windows.find((w) => w.id === windowId);
-    if (!window) return "?";
-    return `${Math.round(window.duration)}`;
-  };
-
-function createWindowQuotaUsedPercentageProvider(
-  id: string,
-  windowId: string,
-): FooterContextProvider {
-  return (ctx) => {
-    const stored = usageTracker.store.get(id);
-    const window = stored?.windows.find((w) => w.id === windowId);
-    if (!window) return "?";
-    const percentage =
-      window.duration > 0
-        ? Math.max(
-            0,
-            Math.min(1, (window.duration - window.remaining) / window.duration),
-          )
-        : 0;
-    return Math.round(percentage * 100);
+  return () => {
+    const window = getWindowById(platformId, windowId);
+    if (!window) return undefined;
+    return Math.max(0, window.duration);
   };
 }
 
 /**
- * For quota remaining percentage, we want to show how much of
- * the quota is remaining as number betwee 0 and 100.
+ * Returns quota used as a fraction in [0, 1], or undefined.
+ */
+function createWindowQuotaUsedPercentageProvider(
+  platformId: string,
+  windowId: string,
+): FooterContextProvider {
+  return () => {
+    const window = getWindowById(platformId, windowId);
+    if (!window) return undefined;
+    if (window.duration <= 0) return 0;
+
+    return Math.max(
+      0,
+      Math.min(1, (window.duration - window.remaining) / window.duration),
+    );
+  };
+}
+
+/**
+ * Returns quota remaining as a fraction in [0, 1], or undefined.
  */
 function createWindowQuotaRemainingPercentageProvider(
-  id: string,
+  platformId: string,
   windowId: string,
 ): FooterContextProvider {
-  return (ctx) => {
-    const stored = usageTracker.store.get(id);
-    const window = stored?.windows.find((w) => w.id === windowId);
-    if (!window) return "?";
-    const percentage =
-      window.duration > 0
-        ? Math.max(0, Math.min(1, window.remaining / window.duration))
-        : 0;
-    return `${Math.round(percentage * 100)}`;
+  return () => {
+    const window = getWindowById(platformId, windowId);
+    if (!window) return undefined;
+    if (window.duration <= 0) return 0;
+
+    return Math.max(0, Math.min(1, window.remaining / window.duration));
   };
 }
 
 /**
- * For a given platform, create a set of context providers for each of its usage windows. The provider ids will be in the format `${platformId}-${windowId}-${metric}` (e.g. "copilot-window1-progress-percentage").
+ * Creates numeric platform usage providers per window.
+ *
+ * Provider IDs use `${platformId}-${windowId}-${metric}`.
+ * Each provider returns `number | undefined`.
  */
-
-function createPlatformContextProviders(
+export function createPlatformContextProviders(
   platformId: string,
   windows: Array<{ id: string; duration: number; remaining: number }>,
 ): Array<{ name: string; provider: FooterContextProvider }> {
-  const providers = [];
+  const providers: Array<{ name: string; provider: FooterContextProvider }> = [];
+
   for (const window of windows) {
     providers.push({
       name: `${platformId}-${window.id}-progress-percentage`,
@@ -158,5 +148,6 @@ function createPlatformContextProviders(
       ),
     });
   }
+
   return providers;
 }
