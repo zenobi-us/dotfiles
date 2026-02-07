@@ -13,16 +13,14 @@
  */
 
 import { complete, type Message } from "@mariozechner/pi-ai";
-import type { SessionEntry } from "@mariozechner/pi-coding-agent";
+import type {
+  ExtensionFactory,
+  SessionEntry,
+} from "@mariozechner/pi-coding-agent";
 import {
   BorderedLoader,
   convertToLlm,
   serializeConversation,
-} from "@mariozechner/pi-coding-agent";
-
-import type {
-  ExtensionAPI,
-  ExtensionCommandContext,
 } from "@mariozechner/pi-coding-agent";
 
 const SYSTEM_PROMPT = `You are a context transfer assistant. Given a conversation history and the user's goal for a new thread, generate a focused prompt that:
@@ -47,7 +45,7 @@ Files involved:
 ## Task
 [Clear description of what to do next based on user's goal]`;
 
-function PiHandoffExtension(pi: ExtensionAPI) {
+const PiHandoffExtension: ExtensionFactory = (pi) => {
   pi.registerCommand("handoff", {
     description: "Transfer context to a new focused session",
     handler: async (args, ctx) => {
@@ -170,6 +168,6 @@ function PiHandoffExtension(pi: ExtensionAPI) {
       ctx.ui.notify("Handoff ready. Submit when ready.", "info");
     },
   });
-}
+};
 
 export default PiHandoffExtension;

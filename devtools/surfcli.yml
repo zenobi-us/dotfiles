@@ -1,0 +1,11 @@
+---
+actions:
+  - action: command.run
+    command: rm
+    args:
+      - -rf
+      - "{{user.home_dir}}/.surf"
+
+  - action: file.link
+    to: "{{user.home_dir}}/.surf"
+    from: surfcli
