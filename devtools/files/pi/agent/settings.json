@@ -1,19 +1,18 @@
 {
-  "lastChangelogVersion": "0.51.2",
-  "defaultThinkingLevel": "low",
+  "lastChangelogVersion": "0.52.6",
+  "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
-    "npm:pi-powerline-footer",
     "npm:pi-interview",
     "npm:pi-subdir-context",
     "npm:pi-messenger",
-    "npm:pi-mermaid"
+    "npm:pi-mermaid",
+    "npm:pi-subagents",
+    "npm:@marckrenn/pi-sub-bar@1.0.6"
   ],
   "hideThinkingBlock": true,
-  "quietStartup": true,
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-5",
-  "workingVibe": "theme",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }
