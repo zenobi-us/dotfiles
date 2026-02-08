@@ -24,13 +24,13 @@
   - Updated cleanup/error handling for per-model entries
   - Added provider default metadata accessor wiring
 
-### Phase 4: Query & Context ⏳
-- [ ] **task-6c377cf9**: Platform Tracker - Query Functions and Context Providers
+### Phase 4: Query & Context ✅
+- [x] **task-6c377cf9**: Platform Tracker - Query Functions and Context Providers
   - ✅ **CRITICAL BUG FIX**: Implemented createPlatformContextProviders()
   - ✅ Updated query functions to (providerId, modelId, windowId)
   - ✅ Added helper functions (getProviderModels, getProviderEntries)
   - ✅ Implemented dynamic provider creation per model × quota
-  - ⛔ Missing: convenience factories for specific platforms (e.g. Copilot Spark, Anthropic)
+  - ✅ Added convenience factories for specific platforms (Copilot Spark, Anthropic)
 
 ## Notes
 
