@@ -16,11 +16,16 @@ export const TimeFrame = {
   ThirtyDay: 30 * 24 * 3_600,
 } as const;
 
-export function percentToSnapshot(id: string, percentUsed: number): UsageSnapshot {
+export function percentToSnapshot(
+  id: string,
+  modelId: string,
+  percentUsed: number
+): UsageSnapshot {
   const clampedUsed = Math.max(0, Math.min(100, percentUsed));
   const usedRatio = clampedUsed / 100;
   return {
     id,
+    modelId,
     usedRatio,
     remainingRatio: 1 - usedRatio,
   };

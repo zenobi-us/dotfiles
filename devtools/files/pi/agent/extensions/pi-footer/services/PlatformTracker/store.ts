@@ -8,6 +8,8 @@ import {
   UsageStoreEntry,
   UsageTrackerInternal,
   UsageTrackerSettings,
+  makeStorageKey,
+  getProviderMetadata,
 } from "./types";
 import { clampPositiveInt } from "./numbers";
 
@@ -25,7 +27,15 @@ function resolveUsageWindow(
   quota: QuotaDefinition,
   snapshot: UsageSnapshot,
 ): ResolvedUsageWindow {
-  const total = quota.duration ?? quota.amount ?? 100;
+  // Handle different quota types
+  let total = 100; // Default for percentage-only quotas
+  if ('duration' in quota && quota.duration) {
+    total = quota.duration;
+  } else if ('amount' in quota && quota.amount) {
+    total = quota.amount;
+  } else if ('baseAmount' in quota && quota.baseAmount) {
+    total = quota.baseAmount;
+  }
 
   const remainingFromNumbers =
     snapshot.remaining ??
@@ -71,12 +81,14 @@ function resolveUsageWindow(
 
   return {
     id: quota.id,
-    duration: quota.duration,
-    amount: quota.amount,
+    modelId: snapshot.modelId, // NEW: Include modelId from snapshot
+    duration: 'duration' in quota ? quota.duration : undefined,
+    amount: 'amount' in quota ? quota.amount : undefined,
     remaining,
     used,
     remainingRatio,
     usedRatio,
+    meta: snapshot.meta, // Preserve metadata from snapshot
   };
 }
 
@@ -95,7 +107,13 @@ export function createUsageTracker(
     providers: new Map(),
 
     registerProvider(provider) {
-      this.providers.set(provider.id, provider);
+      const withDefaults = {
+        ...provider,
+        getMetadata:
+          provider.getMetadata ??
+          ((entry: UsageStoreEntry) => getProviderMetadata(entry)),
+      };
+      this.providers.set(provider.id, withDefaults);
     },
 
     async updateAll() {
@@ -114,60 +132,99 @@ export function createUsageTracker(
       }
     },
 
-    async update(name) {
-      if (!currentCtx || !name) return;
+    async update(providerId) {
+      if (!currentCtx || !providerId) return;
 
-      const provider = this.providers.get(name);
+      const provider = this.providers.get(providerId);
+      
+      // Provider removed - clean up all entries
       if (!provider) {
-        this.store.delete(name);
+        for (const [key] of this.store) {
+          if (key.startsWith(`${providerId}/`)) {
+            this.store.delete(key);
+          }
+        }
         return;
       }
 
-      const previous = this.store.get(name);
+      // Check backoff throttling - use ANY entry for this provider
       const now = Date.now();
-      const failures = previous?.fails ?? 0;
-      const lastUpdate = previous?.updated ?? 0;
-      const backoffMultiplier = Math.min(
-        1 + failures,
-        settings.maxBackoffMultiplier,
-      );
-
-      if (lastUpdate + settings.intervalMs * backoffMultiplier > now) {
-        return;
+      let shouldSkip = false;
+      
+      for (const [key, entry] of this.store) {
+        if (key.startsWith(`${providerId}/`)) {
+          const failures = entry.fails ?? 0;
+          const lastUpdate = entry.updated ?? 0;
+          const backoffMultiplier = Math.min(
+            1 + failures,
+            settings.maxBackoffMultiplier,
+          );
+          
+          if (lastUpdate + settings.intervalMs * backoffMultiplier > now) {
+            shouldSkip = true;
+            break;
+          }
+        }
       }
-
-      const nextEntry: UsageStoreEntry = {
-        windows: previous?.windows ?? [],
-        updated: now,
-        fails: failures,
-        active: previous?.active ?? true,
-      };
+      
+      if (shouldSkip) return;
 
       try {
+        // Check auth once per provider
         const hasAuth = await provider.hasAuthentication(currentCtx);
+        
         if (!hasAuth) {
-          nextEntry.active = false;
-          nextEntry.windows = [];
-          nextEntry.fails = 0;
-          this.store.set(name, nextEntry);
+          // Mark all models inactive
+          for (const [key, entry] of this.store) {
+            if (key.startsWith(`${providerId}/`)) {
+              this.store.set(key, {
+                ...entry,
+                active: false,
+                windows: [],
+                fails: 0,
+              });
+            }
+          }
           return;
         }
 
+        // Fetch usage data
         const snapshots = await provider.fetchUsage(currentCtx);
 
-        const resolved: ResolvedUsageWindow[] = [];
+        // CRITICAL FIX: Process each snapshot into per-model storage
         for (const snapshot of snapshots) {
-          //TODO: update store with usage data
+          const storageKey = makeStorageKey(providerId, snapshot.modelId);
+          
+          // Find matching quota definition
+          const quota = provider.quotas.find(q => q.id === snapshot.id);
+          if (!quota) continue;
+          
+          // Resolve snapshot to window
+          const resolved = resolveUsageWindow(quota, snapshot);
+          
+          // Update or create entry
+          const entry: UsageStoreEntry = {
+            providerId,
+            modelId: snapshot.modelId,
+            windows: [resolved],
+            updated: now,
+            fails: 0,
+            active: true,
+          };
+          
+          this.store.set(storageKey, entry);
         }
-
-        nextEntry.windows = resolved;
-        nextEntry.active = true;
-        nextEntry.fails = 0;
-      } catch {
-        nextEntry.fails = failures + 1;
+      } catch (error) {
+        // Increment fails for all models of this provider
+        for (const [key, entry] of this.store) {
+          if (key.startsWith(`${providerId}/`)) {
+            this.store.set(key, {
+              ...entry,
+              fails: (entry.fails ?? 0) + 1,
+            });
+          }
+        }
       }
-
-      this.store.set(name, nextEntry);
     },
 
     start(ctx, nextSettings) {

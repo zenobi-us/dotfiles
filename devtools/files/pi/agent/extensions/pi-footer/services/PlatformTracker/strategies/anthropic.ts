@@ -3,15 +3,23 @@ import { API_TIMEOUT_MS, TimeFrame, percentToSnapshot } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
 
-usageTracker.registerProvider({
+// Anthropic-specific metadata type
+type AnthropicMeta = {
+  sessionStart?: number;
+  windowType: "rolling" | "session";
+  utilizationSource: "five_hour" | "five_day" | "seven_day";
+};
+
+usageTracker.registerProvider<AnthropicMeta>({
   id: "anthropic",
   label: "Anthropic",
+  models: ["default"], // Single model provider
   quotas: [
-    { id: "5_hour", duration: TimeFrame.FiveHour },
-    { id: "5_day", duration: TimeFrame.FiveDay },
+    { id: "5_hour", percentageOnly: true }, // Percentage-only quota
+    { id: "5_day", percentageOnly: true },
   ],
   hasAuthentication: () => hasAuthKey("anthropic"),
-  fetchUsage: async () => {
+  fetchUsage: async (): Promise<UsageSnapshot<AnthropicMeta>[]> => {
     const auth = readPiAuthJson();
     const token = (auth.anthropic as { access?: string } | undefined)?.access;
     if (!token) return [];
@@ -31,15 +39,30 @@ usageTracker.registerProvider({
       seven_day?: { utilization?: number };
     };
 
-    const windows: UsageSnapshot[] = [];
+    const windows: UsageSnapshot<AnthropicMeta>[] = [];
+    
+    // Add 5-hour window with metadata
     if (data.five_hour?.utilization !== undefined) {
-      windows.push(percentToSnapshot("5_hour", data.five_hour.utilization));
+      windows.push({
+        ...percentToSnapshot("5_hour", "default", data.five_hour.utilization),
+        meta: {
+          windowType: "session",
+          utilizationSource: "five_hour",
+        },
+      });
     }
 
+    // Add 5-day window with metadata
     const dayUtilization =
       data.five_day?.utilization ?? data.seven_day?.utilization;
     if (dayUtilization !== undefined) {
-      windows.push(percentToSnapshot("5_day", dayUtilization));
+      windows.push({
+        ...percentToSnapshot("5_day", "default", dayUtilization),
+        meta: {
+          windowType: "rolling",
+          utilizationSource: data.five_day?.utilization !== undefined ? "five_day" : "seven_day",
+        },
+      });
     }
 
     return windows;

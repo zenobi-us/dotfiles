@@ -1,11 +1,16 @@
 import { execFileSync } from "node:child_process";
 import { API_TIMEOUT_MS, percentToSnapshot } from "../numbers.ts";
+import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
 
-usageTracker.registerProvider({
+// Kiro metadata type (no extra metadata for now)
+type KiroMeta = Record<string, unknown>;
+
+usageTracker.registerProvider<KiroMeta>({
   id: "kiro",
   label: "Kiro",
-  quotas: [{ id: "global", amount: 100 }],
+  models: ["default"], // Single model provider
+  quotas: [{ id: "global", percentageOnly: true }], // Percentage-only quota
   hasAuthentication: () => {
     try {
       execFileSync("kiro-cli", ["whoami"], {
@@ -18,7 +23,7 @@ usageTracker.registerProvider({
       return false;
     }
   },
-  fetchUsage: async () => {
+  fetchUsage: async (): Promise<UsageSnapshot<KiroMeta>[]> => {
     const output = execFileSync(
       "kiro-cli",
       ["chat", "--no-interactive", "/usage"],
@@ -31,6 +36,6 @@ usageTracker.registerProvider({
 
     const percentMatch = output.match(/█+\s*(\d+)%/);
     const used = percentMatch ? Number(percentMatch[1]) : 0;
-    return [percentToSnapshot("global", used)];
+    return [percentToSnapshot("global", "default", used)];
   },
 });

@@ -3,15 +3,19 @@ import { API_TIMEOUT_MS } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
 
-usageTracker.registerProvider({
+// Gemini-specific metadata type
+type GeminiMeta = {
+  modelId: string; // Full model ID from API
+  bucketIndex: number; // Which bucket this came from
+};
+
+usageTracker.registerProvider<GeminiMeta>({
   id: "gemini",
   label: "Gemini",
-  quotas: [
-    { id: "pro", amount: 100 },
-    { id: "flash", amount: 100 },
-  ],
+  models: ["pro", "flash"], // Model families
+  quotas: [{ id: "quota", percentageOnly: true }], // Percentage-only quota
   hasAuthentication: () => hasAuthKey("google-gemini-cli"),
-  fetchUsage: async () => {
+  fetchUsage: async (): Promise<UsageSnapshot<GeminiMeta>[]> => {
     const auth = readPiAuthJson();
     const token = (auth["google-gemini-cli"] as { access?: string } | undefined)
       ?.access;
@@ -35,30 +39,30 @@ usageTracker.registerProvider({
       buckets?: Array<{ modelId?: string; remainingFraction?: number }>;
     };
 
-    const proFractions: number[] = [];
-    const flashFractions: number[] = [];
+    const snapshots: UsageSnapshot<GeminiMeta>[] = [];
 
-    for (const bucket of data.buckets ?? []) {
+    // Create snapshot per bucket/model
+    for (const [index, bucket] of (data.buckets ?? []).entries()) {
       const model = (bucket.modelId ?? "").toLowerCase();
       const fraction = Math.max(0, Math.min(1, bucket.remainingFraction ?? 1));
-      if (model.includes("pro")) proFractions.push(fraction);
-      if (model.includes("flash")) flashFractions.push(fraction);
-    }
 
-    const windows: UsageSnapshot[] = [];
-    if (proFractions.length > 0) {
-      windows.push({
-        id: "pro",
-        remainingRatio: Math.min(...proFractions),
+      // Normalize model ID to family
+      let normalizedId = "unknown";
+      if (model.includes("pro")) normalizedId = "pro";
+      if (model.includes("flash")) normalizedId = "flash";
+
+      snapshots.push({
+        id: "quota",
+        modelId: normalizedId, // Per-model family
+        remainingRatio: fraction,
+        usedRatio: 1 - fraction,
+        meta: {
+          modelId: bucket.modelId ?? "",
+          bucketIndex: index,
+        },
       });
     }
-    if (flashFractions.length > 0) {
-      windows.push({
-        id: "flash",
-        remainingRatio: Math.min(...flashFractions),
-      });
-    }
 
-    return windows;
+    return snapshots;
   },
 });

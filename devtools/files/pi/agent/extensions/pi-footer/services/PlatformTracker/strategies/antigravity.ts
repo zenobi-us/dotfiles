@@ -3,15 +3,35 @@ import { API_TIMEOUT_MS } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
 
-usageTracker.registerProvider({
+// Antigravity-specific metadata type
+type AntigravityMeta = {
+  modelName: string; // Full model name from API
+  limit?: string; // API limit descriptor ("high", "medium", etc.)
+  quotaFraction: number; // This model's remaining fraction
+};
+
+// Helper to normalize model IDs
+function normalizeModelId(fullId: string): string {
+  // "gemini-3-pro-001" → "gemini-3-pro"
+  // "claude-sonnet-4-5-20250101" → "claude-sonnet-4-5"
+  return fullId
+    .toLowerCase()
+    .replace(/-\d{8}$/, "") // Remove date suffix
+    .replace(/-\d{3}$/, ""); // Remove version suffix
+}
+
+usageTracker.registerProvider<AntigravityMeta>({
   id: "antigravity",
   label: "Google Antigravity",
-  quotas: [
-    { id: "pro", amount: 100 },
-    { id: "flash", amount: 100 },
+  models: [
+    "gemini-3-pro",
+    "gemini-3-flash",
+    "claude-sonnet-4-5",
+    "claude-opus-4-5",
   ],
+  quotas: [{ id: "quota", percentageOnly: true }], // Percentage-only quota
   hasAuthentication: () => hasAuthKey("google-antigravity"),
-  fetchUsage: async () => {
+  fetchUsage: async (): Promise<UsageSnapshot<AntigravityMeta>[]> => {
     const auth = readPiAuthJson();
     const token = (
       auth["google-antigravity"] as { access?: string } | undefined
@@ -39,28 +59,30 @@ usageTracker.registerProvider({
       >;
     };
 
-    const proFractions: number[] = [];
-    const flashFractions: number[] = [];
+    const snapshots: UsageSnapshot<AntigravityMeta>[] = [];
 
+    // Each model has independent quota - create snapshot per model
     for (const [modelId, model] of Object.entries(data.models ?? {})) {
-      const name = modelId.toLowerCase();
       const fraction = Math.max(
         0,
         Math.min(1, model.quotaInfo?.remainingFraction ?? 1),
       );
 
-      if (name.includes("pro")) proFractions.push(fraction);
-      if (name.includes("flash")) flashFractions.push(fraction);
+      const normalizedId = normalizeModelId(modelId);
+
+      snapshots.push({
+        id: "quota",
+        modelId: normalizedId, // Per-model snapshots
+        remainingRatio: fraction,
+        usedRatio: 1 - fraction,
+        meta: {
+          modelName: modelId,
+          limit: model.quotaInfo?.limit,
+          quotaFraction: fraction,
+        },
+      });
     }
 
-    const windows: UsageSnapshot[] = [];
-    if (proFractions.length > 0) {
-      windows.push({ id: "pro", remainingRatio: Math.min(...proFractions) });
-    }
-    if (flashFractions.length > 0) {
-      windows.push({ id: "flash", remainingRatio: Math.min(...flashFractions) });
-    }
-
-    return windows;
+    return snapshots;
   },
 });

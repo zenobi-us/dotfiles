@@ -1,17 +1,24 @@
 import { hasAuthKey, readPiAuthJson } from "../auth.ts";
-import { API_TIMEOUT_MS, TimeFrame } from "../numbers.ts";
+import { API_TIMEOUT_MS } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
 
-usageTracker.registerProvider({
+// Codex-specific metadata type
+type CodexMeta = {
+  windowType: "rolling";
+  windowSeconds: number;
+};
+
+usageTracker.registerProvider<CodexMeta>({
   id: "codex",
   label: "Codex",
+  models: ["default"], // Single model provider
   quotas: [
-    { id: "primary", duration: TimeFrame.FiveHour },
-    { id: "secondary", duration: TimeFrame.SevenDay },
+    { id: "primary", percentageOnly: true }, // Percentage-only quota
+    { id: "secondary", percentageOnly: true },
   ],
   hasAuthentication: () => hasAuthKey("openai-codex"),
-  fetchUsage: async () => {
+  fetchUsage: async (): Promise<UsageSnapshot<CodexMeta>[]> => {
     const auth = readPiAuthJson();
     const codex = auth["openai-codex"] as
       | { access?: string; accountId?: string }
@@ -46,7 +53,9 @@ usageTracker.registerProvider({
       };
     };
 
-    const windows: UsageSnapshot[] = [];
+    const windows: UsageSnapshot<CodexMeta>[] = [];
+    
+    // Primary window with metadata
     const primary = data.rate_limit?.primary_window;
     if (primary) {
       const usedRatio = Math.max(
@@ -55,11 +64,17 @@ usageTracker.registerProvider({
       );
       windows.push({
         id: "primary",
+        modelId: "default", // Single model
         usedRatio,
         remainingRatio: 1 - usedRatio,
+        meta: {
+          windowType: "rolling",
+          windowSeconds: primary.limit_window_seconds ?? 18000, // Default 5 hours
+        },
       });
     }
 
+    // Secondary window with metadata
     const secondary = data.rate_limit?.secondary_window;
     if (secondary) {
       const usedRatio = Math.max(
@@ -68,8 +83,13 @@ usageTracker.registerProvider({
       );
       windows.push({
         id: "secondary",
+        modelId: "default", // Single model
         usedRatio,
         remainingRatio: 1 - usedRatio,
+        meta: {
+          windowType: "rolling",
+          windowSeconds: secondary.limit_window_seconds ?? 604800, // Default 7 days
+        },
       });
     }
 
