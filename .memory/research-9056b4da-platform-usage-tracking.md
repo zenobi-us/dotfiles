@@ -2,7 +2,7 @@
 id: 9056b4da
 title: Platform Usage Tracking Research - Complete Architecture
 created_at: 2026-02-07T20:35:00+10:30
-updated_at: 2026-02-08T01:00:00+10:30
+updated_at: 2026-02-08T01:30:00+10:30
 status: completed
 epic_id: fc52bd74
 phase_id: null
@@ -21,7 +21,7 @@ This document consolidates all platform usage tracking research, architectural d
 1. **Per-model storage**: Keys are `"provider/model"`, not just `"provider"`
 2. **Type safety via generics**: Each provider defines its metadata type
 3. **Minimal schema**: QuotaDefinition describes structure only, not behavior
-4. **Provider-owned type guards**: Guards are methods on ProviderStrategy
+4. **Type safety from provider reference**: Metadata type known from provider, not runtime checks
 5. **Identity in data**: Entries know their providerId and modelId
 
 ## Research Questions
@@ -443,21 +443,46 @@ export interface ProviderStrategy<TMeta = Record<string, unknown>> {
   // Returns snapshots with modelId per snapshot
   fetchUsage: (ctx: ExtensionContext) => Promise<UsageSnapshot<TMeta>[]>;
   
-  // Type guard private to this provider
-  isMetadata?: (meta: unknown) => meta is TMeta;
+  // Type-safe metadata accessor - no runtime guard needed!
+  getMetadata(entry: UsageStoreEntry): TMeta | undefined {
+    return entry.windows[0]?.meta as TMeta;
+  }
+  
+  // Optional: only for validation/debugging
+  validateMetadata?: (meta: unknown) => meta is TMeta;
 }
 ```
 
-### Type Guards
+### Type-Safe Metadata Access
 
-Type guards are **provider methods**, not standalone functions:
+**Key Insight**: When you have a provider reference and a storage entry, you already know the metadata type at compile time. No runtime type guard needed!
 
 ```typescript
-// CORRECT: Type guard as provider method
+// Type safety from provider reference
+const provider = usageTracker.providers.get("copilot");
+if (!provider) return;
+
+const entry = usageTracker.store.get(makeStorageKey("copilot", "spark"));
+if (!entry) return;
+
+// Type-safe accessor - metadata is CopilotMeta!
+const meta = provider.getMetadata(entry);
+console.log(meta?.resetTime);         // Type-safe!
+console.log(meta?.modelMultiplier);   // Autocomplete works!
+```
+
+**Why this works**:
+- Entry was created by `provider.fetchUsage()` which returns `UsageSnapshot<TMeta>[]`
+- Storage key enforces provider/model relationship
+- Generic parameter `TMeta` flows from provider to entry
+- No runtime validation needed for normal usage
+
+**Optional validation** (for debugging only):
+```typescript
 usageTracker.registerProvider<CopilotMeta>({
   id: "copilot",
   // ...
-  isMetadata: (meta: unknown): meta is CopilotMeta => {
+  validateMetadata: (meta: unknown): meta is CopilotMeta => {
     return (
       typeof meta === "object" &&
       meta !== null &&
@@ -466,16 +491,6 @@ usageTracker.registerProvider<CopilotMeta>({
     );
   }
 });
-
-// Usage
-const provider = usageTracker.providers.get("copilot");
-const key = makeStorageKey("copilot", "spark");
-const meta = usageTracker.store.get(key)?.windows[0]?.meta;
-
-if (provider?.isMetadata?.(meta)) {
-  console.log(meta.resetTime);  // Type-safe!
-  console.log(meta.modelMultiplier);  // Autocomplete works!
-}
 ```
 
 ---
@@ -545,15 +560,6 @@ usageTracker.registerProvider<AnthropicMeta>({
     }
 
     return windows;
-  },
-  
-  isMetadata: (meta: unknown): meta is AnthropicMeta => {
-    return (
-      typeof meta === "object" &&
-      meta !== null &&
-      "windowType" in meta &&
-      (meta.windowType === "rolling" || meta.windowType === "session")
-    );
   }
 });
 ```
@@ -650,16 +656,6 @@ usageTracker.registerProvider<CopilotMeta>({
     }
 
     return snapshots;
-  },
-  
-  isMetadata: (meta: unknown): meta is CopilotMeta => {
-    return (
-      typeof meta === "object" &&
-      meta !== null &&
-      "resetType" in meta &&
-      meta.resetType === "calendar" &&
-      "modelMultiplier" in meta
-    );
   }
 });
 ```
@@ -743,16 +739,6 @@ usageTracker.registerProvider<AntigravityMeta>({
     }
 
     return snapshots;
-  },
-  
-  isMetadata: (meta: unknown): meta is AntigravityMeta => {
-    return (
-      typeof meta === "object" &&
-      meta !== null &&
-      "modelName" in meta &&
-      "quotaFraction" in meta &&
-      typeof meta.quotaFraction === "number"
-    );
   }
 });
 
@@ -890,21 +876,26 @@ function getProviderEntries(providerId: string): UsageStoreEntry[] {
   return entries;
 }
 
-// Type-safe metadata accessor using provider's guard
-function getTypedMeta<TMeta>(
+// Type-safe metadata accessor using provider reference
+function getProviderMetadata<TMeta>(
+  provider: ProviderStrategy<TMeta>,
   providerId: string,
-  modelId: string,
-  typeGuard: (meta: unknown) => meta is TMeta
+  modelId: string
 ): TMeta | undefined {
   const key = makeStorageKey(providerId, modelId);
   const entry = usageTracker.store.get(key);
-  const meta = entry?.windows?.[0]?.meta;
   
-  if (typeGuard(meta)) {
-    return meta;
-  }
+  if (!entry) return undefined;
   
-  return undefined;
+  // Type-safe! TMeta flows from provider generic
+  return provider.getMetadata(entry);
+}
+
+// Example usage
+const copilotProvider = usageTracker.providers.get("copilot");
+if (copilotProvider) {
+  const meta = getProviderMetadata(copilotProvider, "copilot", "spark");
+  console.log(meta?.modelMultiplier);  // Type-safe, no guard needed!
 }
 ```
 
@@ -1033,9 +1024,9 @@ export function createPlatformContextProviders(
 
 ### 2. Type Safety
 - Each provider defines its metadata type via generics
-- Type guards are provider-owned methods
+- Type flows from provider reference, not runtime checks
 - IDE autocomplete for metadata fields
-- Compile-time validation
+- Compile-time validation without runtime overhead
 
 ### 3. Flexible Storage
 - Internal storage remains `Record<string, unknown>`
@@ -1091,10 +1082,10 @@ No need to reverse-engineer which provider/model an entry belongs to.
 Providers own their:
 - Quota schema definition
 - Metadata type definition
-- Type guard implementation
+- Type-safe accessor method (`getMetadata`)
 - Fetch logic
 
-Consumers don't need to know provider internals.
+Consumers don't need to know provider internals. Type safety comes from the provider reference itself.
 
 ### 4. Minimal Schema, Rich Metadata
 
@@ -1124,7 +1115,8 @@ meta: {
 - ✅ Add `providerId` and `modelId` to `UsageStoreEntry`
 - ✅ Add `modelId` to `UsageSnapshot`
 - ✅ Add `modelId` to `ResolvedUsageWindow`
-- ✅ Add `isMetadata` method to `ProviderStrategy`
+- ✅ Add `getMetadata()` method to `ProviderStrategy`
+- ✅ Add optional `validateMetadata()` for debugging only
 - ✅ Update `UsageStore` to `Map<StorageKey, UsageStoreEntry<any>>`
 
 ### Phase 2: Provider Updates
@@ -1133,7 +1125,8 @@ meta: {
 - ✅ Update Antigravity to return snapshots per model
 - ✅ Update Codex to return `modelId: "default"`
 - ✅ Update Gemini to return per-model snapshots
-- ✅ Add `isMetadata` method to each provider
+- ✅ Providers automatically get `getMetadata()` from interface default
+- ✅ Add `validateMetadata()` only if validation needed
 
 ### Phase 3: Store Logic
 - ✅ Fix snapshot processing loop
@@ -1146,7 +1139,7 @@ meta: {
 - ✅ Update `getWindowById` to `getWindowByProviderModel`
 - ✅ Add `getProviderModels()` helper
 - ✅ Add `getProviderEntries()` helper
-- ✅ Add `getTypedMeta()` helper
+- ✅ Add `getProviderMetadata()` helper
 
 ### Phase 5: Context Providers
 - ✅ Update all provider creation functions to accept 3 params
@@ -1199,7 +1192,7 @@ This research establishes a complete, type-safe architecture for tracking usage 
 
 **Key Achievements**:
 - ✅ Per-model storage with compound keys
-- ✅ Type safety via generics and provider-owned guards
+- ✅ Type safety via generics without runtime guards
 - ✅ Minimal schema with rich runtime metadata
 - ✅ Support for 3 distinct tracking patterns
 - ✅ Clear separation of concerns
