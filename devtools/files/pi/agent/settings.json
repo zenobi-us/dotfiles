@@ -12,7 +12,7 @@
     "npm:@marckrenn/pi-sub-bar@1.0.6"
   ],
   "hideThinkingBlock": true,
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.3-codex",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-sonnet-4-5",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }

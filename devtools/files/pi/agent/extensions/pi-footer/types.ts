@@ -30,6 +30,7 @@ export interface FooterInstance {
   ): string[];
   registerContextProvider(name: string, provider: FooterContextProvider): void;
   unregisterContextProvider(name: string): void;
+  listContextProviders(): string[];
 }
 export type FooterTheme = {
   fg(colorName: string, text: string): string;

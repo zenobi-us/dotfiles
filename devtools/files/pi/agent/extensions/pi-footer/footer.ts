@@ -149,6 +149,9 @@ export function createFooterSingleton(): FooterInstance {
     unregisterContextProvider(name) {
       providers.delete(name);
     },
+    listContextProviders() {
+      return Array.from(providers.keys()).sort((a, b) => a.localeCompare(b));
+    },
     render(ctx, theme, width, options) {
       const providerData: Record<string, string> = {};
 

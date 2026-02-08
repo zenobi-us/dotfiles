@@ -3,6 +3,7 @@ import type {
   ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
 import { registerUsageStoreCommand } from "./cmds/usage-store.ts";
+import { registerContextProvidersCommand } from "./cmds/context-providers.ts";
 import { createDefaultFooterProviders } from "./context/index.ts";
 import { createFooterSingleton } from "./footer.ts";
 import { usageTracker } from "./services/PlatformTracker/store.ts";
@@ -23,6 +24,7 @@ for (const { name, provider } of createDefaultFooterProviders()) {
 
 export default function piFooterExtension(pi: ExtensionAPI) {
   registerUsageStoreCommand(pi);
+  registerContextProvidersCommand(pi, Footer);
 
   const attach = (ctx: ExtensionContext) => {
     usageTracker.start(ctx);
