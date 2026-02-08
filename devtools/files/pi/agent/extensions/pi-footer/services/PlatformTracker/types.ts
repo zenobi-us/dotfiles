@@ -146,6 +146,7 @@ export type UsageTrackerInternal = UsageTracker & {
     settings?: Partial<UsageTrackerSettings>,
   ) => void;
   stop: () => void;
+  trigger: (reason?: string) => void;
   setSettings: (settings: Partial<UsageTrackerSettings>) => void;
   subscribe: (listener: Listener) => () => void;
 };
