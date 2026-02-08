@@ -1,56 +1,46 @@
-# TODO - Dotfiles Project
+# Outstanding Tasks
 
-## Active Work
+## Platform Tracker Implementation
 
+### Phase 1: Core Types ⏳
+- [ ] **task-845f3788**: Platform Tracker - Core Type Refactor
+  - Add StorageKey type and helpers
+  - Add providerId/modelId to UsageStoreEntry
+  - Add modelId to UsageSnapshot and ResolvedUsageWindow
+  - Update ProviderStrategy interface with getMetadata()
+  - **Blocks**: Phase 2, 3, 4
 
+### Phase 2: Provider Updates ⏳
+- [ ] **task-fcc4dbe3**: Platform Tracker - Provider Strategy Updates
+  - Update Anthropic to return modelId
+  - Update Codex to return modelId
+  - Update Copilot to return per-model snapshots
+  - Update Antigravity to return per-model snapshots
+  - Update Gemini to return per-model snapshots
+  - Remove isMetadata methods
+  - **Depends on**: task-845f3788
+  - **Blocks**: Phase 3
 
-### Zellij Extension Development
+### Phase 3: Store Logic ⏳
+- [ ] **task-1ae9bcdf**: Platform Tracker - Store Update Logic
+  - **CRITICAL BUG FIX**: Implement empty snapshot processing loop
+  - Use compound keys for storage
+  - Update auth failure handling
+  - Update error handling for per-model entries
+  - **Depends on**: task-fcc4dbe3
+  - **Blocks**: Phase 4
 
-**Epic**: `.memory/epic-ze11ij01-preset-based-tab-management.md`
+### Phase 4: Query & Context ⏳
+- [ ] **task-6c377cf9**: Platform Tracker - Query Functions and Context Providers
+  - **CRITICAL BUG FIX**: Implement empty createPlatformContextProviders()
+  - Update all query functions to use (providerId, modelId, windowId)
+  - Add helper query functions
+  - Create convenience provider factories
+  - **Depends on**: task-1ae9bcdf
 
-**Priority**: High
-**Status**: Planning Complete → Ready for Implementation
+## Notes
 
-#### Phase 1: Core Infrastructure (ze11ph01) ✅ COMPLETED
-- [x] `.memory/task-ze11ts01-preset-storage.md` - Implement preset JSON storage
-- [x] `.memory/task-ze11ts02-cli-wrapper.md` - Create Zellij CLI wrapper utilities
-- [x] `.memory/task-ze11ts03-validation.md` - Add preset validation logic
-
-#### Phase 2: Preset Management (ze11ph02)
-- [ ] `.memory/task-ze11ts04-preset-create.md` - Implement preset creation command
-- [ ] `.memory/task-ze11ts05-preset-list.md` - Implement preset listing
-- [ ] `.memory/task-ze11ts06-preset-delete.md` - Implement preset deletion
-
-#### Phase 3: Tab Creation (ze11ph03)
-- [ ] `.memory/task-ze11ts07-tab-creation.md` - Implement basic tab creation
-- [ ] `.memory/task-ze11ts08-preset-application.md` - Apply presets to tabs
-- [ ] `.memory/task-ze11ts09-pane-focusing.md` - Pane focusing and command execution
-
----
-
-## Next Actions
-
-1. Begin Phase 1 implementation
-2. Test preset storage and CLI wrapper
-3. Validate before moving to Phase 2
-
----
-
-## Completed
-
-### ACLI Jira Skill Migration ✅ (2026-01-29)
-
-**Epic**: `.memory/epic-jiraf2a6-acli-jira-skill-migration.md`  
-**Commit**: 23d5c96  
-**Learning**: [ACLI Jira Migration](learning-88ca47c3-acli-jira-migration.md)
-
-#### Deliverables
-- [x] ACLI capabilities documented: `.memory/research-1af8e04c-acli-capabilities.md`
-- [x] mcporter vs ACLI comparison: `.memory/research-98bec10e-mcporter-vs-acli-comparison.md`
-- [x] Migration task: `.memory/task-acli0001-migrate-jira-skill-to-acli.md`
-- [x] Updated skill: `~/.pi/agent/skills/jira/SKILL.md`
-- [x] Tested with real Jira instance (RWR-14013)
-
-**Outcome**: Simplified authentication, improved UX, reduced documentation by 19%
-
----
+- Epic: fc52bd74 (subagent-footer-customization)
+- Research: research-9056b4da-platform-usage-tracking.md
+- All tasks created from research implementation checklist
+- Two critical bugs will be fixed: snapshot processing (Phase 3) and context providers (Phase 4)
