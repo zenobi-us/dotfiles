@@ -2,45 +2,38 @@
 
 ## Platform Tracker Implementation
 
-### Phase 1: Core Types ⏳
-- [ ] **task-845f3788**: Platform Tracker - Core Type Refactor
+### Phase 1: Core Types ✅
+- [x] **task-845f3788**: Platform Tracker - Core Type Refactor
   - Add StorageKey type and helpers
   - Add providerId/modelId to UsageStoreEntry
   - Add modelId to UsageSnapshot and ResolvedUsageWindow
   - Update ProviderStrategy interface with getMetadata()
-  - **Blocks**: Phase 2, 3, 4
 
-### Phase 2: Provider Updates ⏳
-- [ ] **task-fcc4dbe3**: Platform Tracker - Provider Strategy Updates
-  - Update Anthropic to return modelId
-  - Update Codex to return modelId
+### Phase 2: Provider Updates ✅
+- [x] **task-fcc4dbe3**: Platform Tracker - Provider Strategy Updates
+  - Update Anthropic/Codex/Kiro/Z.ai to return modelId="default" where applicable
   - Update Copilot to return per-model snapshots
-  - Update Antigravity to return per-model snapshots
-  - Update Gemini to return per-model snapshots
-  - Remove isMetadata methods
-  - **Depends on**: task-845f3788
-  - **Blocks**: Phase 3
+  - Update Antigravity and Gemini to return per-model snapshots
+  - Remove isMetadata usage from provider implementations
 
-### Phase 3: Store Logic ⏳
-- [ ] **task-1ae9bcdf**: Platform Tracker - Store Update Logic
-  - **CRITICAL BUG FIX**: Implement empty snapshot processing loop
-  - Use compound keys for storage
-  - Update auth failure handling
-  - Update error handling for per-model entries
-  - **Depends on**: task-fcc4dbe3
-  - **Blocks**: Phase 4
+### Phase 3: Store Logic ✅
+- [x] **task-1ae9bcdf**: Platform Tracker - Store Update Logic
+  - **CRITICAL BUG FIX**: Implemented snapshot processing loop
+  - Implemented snapshot → per-model storage conversion
+  - Use compound keys (provider/model)
+  - Updated cleanup/error handling for per-model entries
+  - Added provider default metadata accessor wiring
 
-### Phase 4: Query & Context ⏳
-- [ ] **task-6c377cf9**: Platform Tracker - Query Functions and Context Providers
-  - **CRITICAL BUG FIX**: Implement empty createPlatformContextProviders()
-  - Update all query functions to use (providerId, modelId, windowId)
-  - Add helper query functions
-  - Create convenience provider factories
-  - **Depends on**: task-1ae9bcdf
+### Phase 4: Query & Context ✅
+- [x] **task-6c377cf9**: Platform Tracker - Query Functions and Context Providers
+  - **CRITICAL BUG FIX**: Implemented createPlatformContextProviders()
+  - Updated query functions to (providerId, modelId, windowId)
+  - Added helper functions (getProviderModels, getProviderEntries)
+  - Implemented dynamic provider creation per model × quota
 
 ## Notes
 
 - Epic: fc52bd74 (subagent-footer-customization)
 - Research: research-9056b4da-platform-usage-tracking.md
-- All tasks created from research implementation checklist
-- Two critical bugs will be fixed: snapshot processing (Phase 3) and context providers (Phase 4)
+- Validation: Full workspace tsc has unrelated/pre-existing errors in non-target modules.
+- Current implementation changes are complete for phases 1–4 in the target PlatformTracker area.
