@@ -3,6 +3,8 @@ import type { FooterTemplate } from "./services/config/defaults";
 
 export type FooterContextValue = string | number | boolean | null | undefined;
 
+export type FilterFunction = (value: unknown, ...args: unknown[]) => string;
+
 export type FooterContextProvider = (
   ctx: ExtensionContext,
 ) => FooterContextValue | FooterContextValue[];

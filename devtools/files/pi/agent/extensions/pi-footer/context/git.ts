@@ -1,11 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { basename } from "node:path";
 import type { FooterContextProvider } from "../types.ts";
-
-type CacheEntry<T> = {
-  value: T;
-  expiresAt: number;
-};
+import { truncate } from "../core/strings.ts";
 
 type GitStatus = {
   branch: string;
@@ -21,38 +17,8 @@ type GitCommit = {
   subject: string;
 };
 
-const STATUS_CACHE_TTL_MS = 2_000;
-const COMMITS_CACHE_TTL_MS = 5_000;
-const WORKTREE_CACHE_TTL_MS = 5_000;
 const GIT_TIMEOUT_MS = 250;
 const MAX_SUBJECT_LENGTH = 44;
-
-const statusCache = new Map<string, CacheEntry<GitStatus | null>>();
-const commitsCache = new Map<string, CacheEntry<GitCommit[]>>();
-const worktreeCache = new Map<string, CacheEntry<string | null>>();
-
-function fromCache<T>(cache: Map<string, CacheEntry<T>>, key: string): T | null {
-  const entry = cache.get(key);
-  if (!entry) return null;
-  if (Date.now() > entry.expiresAt) {
-    cache.delete(key);
-    return null;
-  }
-  return entry.value;
-}
-
-function toCache<T>(
-  cache: Map<string, CacheEntry<T>>,
-  key: string,
-  value: T,
-  ttlMs: number,
-): T {
-  cache.set(key, {
-    value,
-    expiresAt: Date.now() + ttlMs,
-  });
-  return value;
-}
 
 function runGit(cwd: string, args: string[]): string | null {
   try {
@@ -114,34 +80,20 @@ function parseStatus(output: string): GitStatus {
   return { branch, ahead, behind, staged, unstaged, untracked };
 }
 
-function truncate(text: string, maxLength: number): string {
-  if (text.length <= maxLength) return text;
-  return `${text.slice(0, Math.max(0, maxLength - 1))}…`;
-}
-
 function getGitStatus(cwd: string): GitStatus | null {
-  const cacheKey = cwd;
-  const cached = fromCache(statusCache, cacheKey);
-  if (cached !== null) return cached;
-
   const output = runGit(cwd, [
     "status",
     "--porcelain=v1",
     "--branch",
     "--untracked-files=normal",
   ]);
-  if (!output) {
-    return toCache(statusCache, cacheKey, null, STATUS_CACHE_TTL_MS);
-  }
+  if (!output) return null;
 
-  return toCache(statusCache, cacheKey, parseStatus(output), STATUS_CACHE_TTL_MS);
+  return parseStatus(output);
 }
 
 function getRecentCommits(cwd: string, limit = 2): GitCommit[] {
   const safeLimit = Math.max(1, Math.min(limit, 5));
-  const cacheKey = `${cwd}:${safeLimit}`;
-  const cached = fromCache(commitsCache, cacheKey);
-  if (cached !== null) return cached;
 
   const output = runGit(cwd, [
     "log",
@@ -150,35 +102,20 @@ function getRecentCommits(cwd: string, limit = 2): GitCommit[] {
     "--no-show-signature",
   ]);
 
-  if (!output) {
-    return toCache(commitsCache, cacheKey, [], COMMITS_CACHE_TTL_MS);
-  }
+  if (!output) return [];
 
-  const commits = output
+  return output
     .split(/\r?\n/)
     .map((line) => line.split("\t"))
     .map(([hash = "", subject = ""]) => ({ hash, subject }))
     .filter((entry) => entry.hash.length > 0 && entry.subject.length > 0);
-
-  return toCache(commitsCache, cacheKey, commits, COMMITS_CACHE_TTL_MS);
 }
 
 function getGitWorktreeName(cwd: string): string | null {
-  const cacheKey = cwd;
-  const cached = fromCache(worktreeCache, cacheKey);
-  if (cached !== null) return cached;
-
   const worktreeRoot = runGit(cwd, ["rev-parse", "--show-toplevel"]);
-  if (!worktreeRoot) {
-    return toCache(worktreeCache, cacheKey, null, WORKTREE_CACHE_TTL_MS);
-  }
+  if (!worktreeRoot) return null;
 
-  return toCache(
-    worktreeCache,
-    cacheKey,
-    basename(worktreeRoot),
-    WORKTREE_CACHE_TTL_MS,
-  );
+  return basename(worktreeRoot);
 }
 
 export const gitBranchNameProvider: FooterContextProvider = (ctx) => {

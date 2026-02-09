@@ -1,10 +1,6 @@
 import { truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
 import { applyFilter, parseFilter } from "./core/filters";
-import {
-  FooterInstance,
-  FooterContextProvider,
-  FooterTheme,
-} from "./types";
+import { FooterInstance, FooterContextProvider, FooterTheme } from "./types";
 import {
   FooterTemplate,
   FooterTemplateObjectItem,
@@ -28,23 +24,22 @@ function interpolateTemplate(
   data: Record<string, string>,
   rawData: Record<string, unknown>,
 ): string {
-  return template.replace(/\{\s*([\w-]+)(?:\s*\|\s*([\w()\d,\s]+))?\s*\}/g, (
-    _match,
-    key: string,
-    filterExpr?: string,
-  ) => {
-    const value = data[key] ?? "";
-    
-    // If no filter, return stringified value
-    if (!filterExpr) return value;
-    
-    // Parse and apply filter to raw value
-    const filter = parseFilter(filterExpr.trim());
-    if (!filter) return value;
-    
-    const rawValue = rawData[key];
-    return applyFilter(rawValue, filter.name, filter.args);
-  });
+  return template.replace(
+    /\{\s*([\w-]+)(?:\s*\|\s*([\w()\d,\s]+))?\s*\}/g,
+    (_match, key: string, filterExpr?: string) => {
+      const value = data[key] ?? "";
+
+      // If no filter, return stringified value
+      if (!filterExpr) return value;
+
+      // Parse and apply filter to raw value
+      const filter = parseFilter(filterExpr.trim());
+      if (!filter) return value;
+
+      const rawValue = rawData[key];
+      return applyFilter(rawValue, filter.name, filter.args);
+    },
+  );
 }
 
 function applyStyles(
@@ -79,14 +74,20 @@ function renderTemplateItem(
   rootSeparator: string,
 ): RenderedTemplateItem | null {
   if (typeof entry === "string") {
-    const text = interpolateTemplate(entry, data, rawData).replace(/\s+/g, " ").trim();
+    const text = interpolateTemplate(entry, data, rawData)
+      .replace(/\s+/g, " ")
+      .trim();
     if (!text) return null;
     return { text, align: "left", flexGrow: false };
   }
 
   const separator = entry.separator ?? rootSeparator;
   const renderedChildren = entry.items
-    .map((child) => renderTemplateItem(child, data, rawData, theme, rootSeparator)?.text ?? "")
+    .map(
+      (child) =>
+        renderTemplateItem(child, data, rawData, theme, rootSeparator)?.text ??
+        "",
+    )
     .filter((value) => value.trim().length > 0);
 
   const text = applyStyles(theme, renderedChildren.join(separator), {
@@ -151,7 +152,9 @@ function renderFromTemplate(
   width: number,
   theme: FooterTheme,
 ): string[] {
-  return template.map((line) => renderTemplateLine(line, data, rawData, width, theme));
+  return template.map((line) =>
+    renderTemplateLine(line, data, rawData, width, theme),
+  );
 }
 
 export function createFooterSingleton(): FooterInstance {
@@ -177,7 +180,8 @@ export function createFooterSingleton(): FooterInstance {
           rawProviderData[name] = value;
           providerData[name] = stringifyProviderValue(value);
         } catch (error) {
-          const message = error instanceof Error ? error.message : String(error);
+          const message =
+            error instanceof Error ? error.message : String(error);
           providerData[name] = `${name}: ${message}`;
           rawProviderData[name] = undefined;
         }
@@ -197,3 +201,5 @@ export function createFooterSingleton(): FooterInstance {
     },
   };
 }
+
+export const Footer = createFooterSingleton();

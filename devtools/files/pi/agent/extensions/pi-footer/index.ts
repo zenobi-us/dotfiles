@@ -4,8 +4,7 @@ import type {
 } from "@mariozechner/pi-coding-agent";
 import { registerUsageStoreCommand } from "./cmds/usage-store.ts";
 import { registerContextProvidersCommand } from "./cmds/context-providers.ts";
-import { createDefaultFooterProviders } from "./context/index.ts";
-import { createFooterSingleton } from "./footer.ts";
+import { Footer } from "./footer.ts";
 import { usageTracker } from "./services/PlatformTracker/store.ts";
 import { Config } from "./services/config";
 import "./services/PlatformTracker/strategies/anthropic.ts";
@@ -15,8 +14,6 @@ import "./services/PlatformTracker/strategies/copilot.ts";
 import "./services/PlatformTracker/strategies/gemini.ts";
 import "./services/PlatformTracker/strategies/kiro.ts";
 import "./services/PlatformTracker/strategies/zai.ts";
-
-export const Footer = createFooterSingleton();
 
 for (const { name, provider } of createDefaultFooterProviders()) {
   Footer.registerContextProvider(name, provider);

@@ -54,4 +54,5 @@ export const DEFAULT_TEMPLATE: FooterTemplate = [
       align: "right",
     },
   ],
+  [{ items: ["{}"], align: "right", fg: "gray" }],
 ];
