@@ -4,6 +4,7 @@ import {
   modelContextUsedProvider,
   modelContextWindowProvider,
   modelNameProvider,
+  modelThinkingLevelProvider,
 } from "./model.ts";
 import {
   gitBranchNameProvider,
@@ -80,6 +81,7 @@ export function createDefaultFooterProviders(): Array<{
     { name: "git_worktree_name", provider: gitWorktreeNameProvider },
     { name: "model_context_used", provider: modelContextUsedProvider },
     { name: "model_context_window", provider: modelContextWindowProvider },
+    { name: "model_thinking_level", provider: modelThinkingLevelProvider },
     { name: "git-status", provider: gitStatusProvider },
     { name: "recent-commits", provider: recentCommitsProvider },
     { name: "model_name", provider: modelNameProvider },

@@ -71,6 +71,16 @@ export const modelContextUsedProvider: FooterContextProvider = (ctx) => {
   return `${percentage}%`;
 };
 
+export const modelThinkingLevelProvider: FooterContextProvider = (ctx) => {
+  const level = ctx.getThinkingLevel();
+
+  if (typeof level === "string" && level.length > 0) {
+    return level;
+  }
+
+  return "-";
+};
+
 export const modelProvider: FooterContextProvider = (ctx) => {
   const name = ctx.model?.provider;
 

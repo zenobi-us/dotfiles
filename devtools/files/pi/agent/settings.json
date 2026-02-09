@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.52.6",
-  "defaultThinkingLevel": "low",
+  "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
@@ -12,7 +12,7 @@
     "npm:@marckrenn/pi-sub-bar@1.0.6"
   ],
   "hideThinkingBlock": true,
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-5",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }

@@ -44,6 +44,7 @@ Available for: `anthropic`, `copilot`, `codex`
 - `{git_worktree_name}` – Git worktree name
 - `{model_context_used}` – Model context used
 - `{model_context_window}` – Model context window
+- `{model_thinking_level}` – Current thinking level
 - `{model_name}` – Current model name
 - `{cwd}` – Current working directory
 
