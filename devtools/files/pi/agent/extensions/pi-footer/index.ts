@@ -7,6 +7,11 @@ import { registerContextProvidersCommand } from "./cmds/context-providers.ts";
 import { Footer } from "./footer.ts";
 import { usageTracker } from "./services/PlatformTracker/store.ts";
 import { Config } from "./services/config";
+import "./context/cwd.ts";
+import "./context/git.ts";
+import "./context/model.ts";
+import "./context/time.ts";
+import "./context/usage.ts";
 import "./services/PlatformTracker/strategies/anthropic.ts";
 import "./services/PlatformTracker/strategies/antigravity.ts";
 import "./services/PlatformTracker/strategies/codex.ts";
@@ -14,10 +19,6 @@ import "./services/PlatformTracker/strategies/copilot.ts";
 import "./services/PlatformTracker/strategies/gemini.ts";
 import "./services/PlatformTracker/strategies/kiro.ts";
 import "./services/PlatformTracker/strategies/zai.ts";
-
-for (const { name, provider } of createDefaultFooterProviders()) {
-  Footer.registerContextProvider(name, provider);
-}
 
 export default function piFooterExtension(pi: ExtensionAPI) {
   registerUsageStoreCommand(pi);

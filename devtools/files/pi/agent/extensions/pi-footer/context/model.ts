@@ -1,5 +1,6 @@
 import type { AssistantMessage } from "@mariozechner/pi-ai";
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
+import { Footer } from "../footer.ts";
 import type { FooterContextProvider } from "../types.ts";
 
 function getContextWindow(ctx: ExtensionContext): number | null {
@@ -22,10 +23,10 @@ function getUsedTokens(ctx: ExtensionContext): number {
   // Get last assistant message (skip aborted messages)
   // Context window shows current prompt context, not cumulative usage
   const branch = ctx.sessionManager.getBranch();
-  
+
   // Find last assistant message (reverse iteration)
   let lastAssistantMessage: AssistantMessage | undefined;
-  
+
   for (let i = branch.length - 1; i >= 0; i--) {
     const entry = branch[i];
     if (entry.type === "message" && entry.message.role === "assistant") {
@@ -49,29 +50,26 @@ function getUsedTokens(ctx: ExtensionContext): number {
   );
 }
 
-export const modelNameProvider: FooterContextProvider = (ctx) => {
+const modelNameProvider: FooterContextProvider = (ctx) => {
   return ctx.model?.id ?? "no-model";
 };
 
-export const modelContextWindowProvider: FooterContextProvider = (ctx) => {
+const modelContextWindowProvider: FooterContextProvider = (ctx) => {
   const limit = getContextWindow(ctx);
   if (!limit) return " - ";
   return `${Math.round(limit / 1_000)}k`;
 };
 
-export const modelContextUsedProvider: FooterContextProvider = (ctx) => {
+const modelContextUsedProvider: FooterContextProvider = (ctx) => {
   const limit = getContextWindow(ctx);
   if (!limit) return " - ";
 
   const used = getUsedTokens(ctx);
-  const percentage = Math.max(
-    0,
-    Math.min(100, Math.round((used / limit) * 100)),
-  );
+  const percentage = Math.max(0, Math.min(100, Math.round((used / limit) * 100)));
   return `${percentage}%`;
 };
 
-export const modelThinkingLevelProvider: FooterContextProvider = (ctx) => {
+const modelThinkingLevelProvider: FooterContextProvider = (ctx) => {
   const level = (
     ctx as ExtensionContext & { getThinkingLevel?: () => unknown }
   ).getThinkingLevel?.();
@@ -83,9 +81,15 @@ export const modelThinkingLevelProvider: FooterContextProvider = (ctx) => {
   return "-";
 };
 
-export const modelPlatformNameProvider: FooterContextProvider = (ctx) => {
+const modelPlatformNameProvider: FooterContextProvider = (ctx) => {
   const name = ctx.model?.provider;
 
   if (name) return name;
   return "-";
 };
+
+Footer.registerContextProvider("model_context_used", modelContextUsedProvider);
+Footer.registerContextProvider("model_context_window", modelContextWindowProvider);
+Footer.registerContextProvider("model_thinking_level", modelThinkingLevelProvider);
+Footer.registerContextProvider("model_name", modelNameProvider);
+Footer.registerContextProvider("model_provider", modelPlatformNameProvider);

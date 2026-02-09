@@ -1,6 +1,7 @@
 import type { FooterContextProvider } from "../types.ts";
+import { Footer } from "../footer.ts";
 
-export const timeProvider: FooterContextProvider = () => {
+const timeProvider: FooterContextProvider = () => {
   const now = new Date();
   return now.toLocaleTimeString([], {
     hour: "2-digit",
@@ -8,3 +9,5 @@ export const timeProvider: FooterContextProvider = () => {
     hour12: false,
   });
 };
+
+Footer.registerContextProvider("time", timeProvider);

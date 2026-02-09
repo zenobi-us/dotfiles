@@ -14,7 +14,11 @@ function stringifyProviderValue(
   const entries = Array.isArray(value) ? value : [value];
 
   return entries
-    .map((entry) => String(entry ?? "").trim())
+    .map((entry) => {
+      if (entry == null) return "";
+      if (typeof entry === "object") return "";
+      return String(entry).trim();
+    })
     .filter((entry) => entry.length > 0)
     .join(" ");
 }

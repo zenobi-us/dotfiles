@@ -1,7 +1,8 @@
 import { execFileSync } from "node:child_process";
 import { basename } from "node:path";
-import type { FooterContextProvider } from "../types.ts";
 import { truncate } from "../core/strings.ts";
+import { Footer } from "../footer.ts";
+import type { FooterContextProvider } from "../types.ts";
 
 type GitStatus = {
   branch: string;
@@ -118,37 +119,31 @@ function getGitWorktreeName(cwd: string): string | null {
   return basename(worktreeRoot);
 }
 
-export const gitBranchNameProvider: FooterContextProvider = (ctx) => {
+const gitBranchNameProvider: FooterContextProvider = (ctx) => {
   const status = getGitStatus(ctx.cwd);
   return status?.branch ?? "";
 };
 
-export const gitWorktreeNameProvider: FooterContextProvider = (ctx) => {
+const gitWorktreeNameProvider: FooterContextProvider = (ctx) => {
   return getGitWorktreeName(ctx.cwd) ?? "";
 };
 
-export const gitStatusProvider: FooterContextProvider = (ctx) => {
-  const status = getGitStatus(ctx.cwd);
-  if (!status) return null;
-
-  const markers: string[] = [];
-  if (status.staged > 0) markers.push(`+${status.staged}`);
-  if (status.unstaged > 0) markers.push(`~${status.unstaged}`);
-  if (status.untracked > 0) markers.push(`?${status.untracked}`);
-  if (status.ahead > 0) markers.push(`↑${status.ahead}`);
-  if (status.behind > 0) markers.push(`↓${status.behind}`);
-
-  const summary = markers.length > 0 ? ` ${markers.join(" ")}` : " clean";
-
-  return ctx.ui.theme.fg("dim", `git:${status.branch}${summary}`);
+const gitStatusProvider: FooterContextProvider = (ctx) => {
+  return getGitStatus(ctx.cwd);
 };
 
-export const recentCommitsProvider: FooterContextProvider = (ctx) => {
+const recentCommitsProvider: FooterContextProvider = (ctx) => {
   const recent = getRecentCommits(ctx.cwd, 1);
   const latest = recent[0];
   if (!latest) return null;
 
-  const subject = truncate(latest.subject, MAX_SUBJECT_LENGTH);
-
-  return ctx.ui.theme.fg("muted", `last:${latest.hash} ${subject}`);
+  return {
+    hash: latest.hash,
+    subject: truncate(latest.subject, MAX_SUBJECT_LENGTH),
+  };
 };
+
+Footer.registerContextProvider("git_branch_name", gitBranchNameProvider);
+Footer.registerContextProvider("git_worktree_name", gitWorktreeNameProvider);
+Footer.registerContextProvider("git_status", gitStatusProvider);
+Footer.registerContextProvider("recent_commits", recentCommitsProvider);

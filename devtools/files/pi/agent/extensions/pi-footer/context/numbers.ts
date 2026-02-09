@@ -54,7 +54,7 @@ export const numericFilters: Record<string, FilterFunction> = {
    * Round to N decimal places
    * 3.14159 | round(2) → "3.14"
    */
-  round: (value: unknown, decimals = 0): string => {
+  round: (value: unknown, decimals: number = 0): string => {
     if (typeof value !== "number" || !Number.isFinite(value)) return "--";
     return value.toFixed(decimals);
   },
@@ -63,7 +63,7 @@ export const numericFilters: Record<string, FilterFunction> = {
    * Clamp value between min and max
    * 150 | clamp(0,100) → "100"
    */
-  clamp: (value: unknown, min = 0, max = 100): string => {
+  clamp: (value: unknown, min: number = 0, max: number = 100): string => {
     if (typeof value !== "number" || !Number.isFinite(value)) return "--";
     return Math.max(min, Math.min(max, value)).toString();
   },

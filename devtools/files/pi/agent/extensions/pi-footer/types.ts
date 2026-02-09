@@ -1,9 +1,15 @@
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 import type { FooterTemplate } from "./services/config/defaults";
 
-export type FooterContextValue = string | number | boolean | null | undefined;
+export type FooterContextValue =
+  | string
+  | number
+  | boolean
+  | Record<string, unknown>
+  | null
+  | undefined;
 
-export type FilterFunction = (value: unknown, ...args: unknown[]) => string;
+export type FilterFunction = (value: unknown, ...args: any[]) => string;
 
 export type FooterContextProvider = (
   ctx: ExtensionContext,
