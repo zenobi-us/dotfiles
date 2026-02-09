@@ -1,5 +1,6 @@
 import { truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
 import { normalize } from "./core/formattings";
+import { applyFilter, parseFilter } from "./core/filters";
 import {
   FooterInstance,
   FooterContextProvider,
@@ -30,9 +31,24 @@ function stringifyProviderValue(
 function interpolateTemplate(
   template: string,
   data: Record<string, string>,
+  rawData: Record<string, unknown>,
 ): string {
-  return template.replace(/\{\s*([\w-]+)\s*\}/g, (_, key: string) => {
-    return data[key] ?? "";
+  return template.replace(/\{\s*([\w-]+)(?:\s*\|\s*([\w()\d,\s]+))?\s*\}/g, (
+    _match,
+    key: string,
+    filterExpr?: string,
+  ) => {
+    const value = data[key] ?? "";
+    
+    // If no filter, return stringified value
+    if (!filterExpr) return value;
+    
+    // Parse and apply filter to raw value
+    const filter = parseFilter(filterExpr.trim());
+    if (!filter) return value;
+    
+    const rawValue = rawData[key];
+    return applyFilter(rawValue, filter.name, filter.args);
   });
 }
 
@@ -63,17 +79,18 @@ type RenderedTemplateItem = {
 function renderTemplateItem(
   entry: string | FooterTemplateObjectItem,
   data: Record<string, string>,
+  rawData: Record<string, unknown>,
   theme: FooterTheme,
 ): RenderedTemplateItem | null {
   if (typeof entry === "string") {
-    const text = interpolateTemplate(entry, data).replace(/\s+/g, " ").trim();
+    const text = interpolateTemplate(entry, data, rawData).replace(/\s+/g, " ").trim();
     if (!text) return null;
     return { text, align: "left", flexGrow: false };
   }
 
   const separator = entry.separator ?? " ";
   const renderedChildren = entry.items
-    .map((child) => renderTemplateItem(child, data, theme)?.text ?? "")
+    .map((child) => renderTemplateItem(child, data, rawData, theme)?.text ?? "")
     .filter((value) => value.trim().length > 0);
 
   const text = applyStyles(theme, renderedChildren.join(separator), {
@@ -95,6 +112,7 @@ function renderTemplateItem(
 function renderTemplateLine(
   line: FooterTemplate[number],
   data: Record<string, string>,
+  rawData: Record<string, unknown>,
   width: number,
   theme: FooterTheme,
 ): string {
@@ -102,7 +120,7 @@ function renderTemplateLine(
     ? line
     : [line];
   const rendered = entries
-    .map((entry) => renderTemplateItem(entry, data, theme))
+    .map((entry) => renderTemplateItem(entry, data, rawData, theme))
     .filter((entry): entry is RenderedTemplateItem => entry !== null);
 
   if (rendered.length === 0) return "";
@@ -133,10 +151,11 @@ function renderTemplateLine(
 function renderFromTemplate(
   template: FooterTemplate,
   data: Record<string, string>,
+  rawData: Record<string, unknown>,
   width: number,
   theme: FooterTheme,
 ): string[] {
-  return template.map((line) => renderTemplateLine(line, data, width, theme));
+  return template.map((line) => renderTemplateLine(line, data, rawData, width, theme));
 }
 
 export function createFooterSingleton(): FooterInstance {
@@ -154,17 +173,20 @@ export function createFooterSingleton(): FooterInstance {
     },
     render(ctx, theme, width, options) {
       const providerData: Record<string, string> = {};
+      const rawProviderData: Record<string, unknown> = {};
 
       const segments = Array.from(providers.entries()).reduce<FooterSegment[]>(
         (acc, [name, provider]) => {
           try {
             const value = provider(ctx);
+            rawProviderData[name] = value;
             providerData[name] = stringifyProviderValue(value);
             return acc.concat(normalize(name, value));
           } catch (error) {
             const message =
               error instanceof Error ? error.message : String(error);
             providerData[name] = `${name}: ${message}`;
+            rawProviderData[name] = undefined;
             return acc.concat({
               text: theme.fg("error", `${name}: ${message}`),
               align: "left",
@@ -179,6 +201,7 @@ export function createFooterSingleton(): FooterInstance {
         return renderFromTemplate(
           options.template,
           providerData,
+          rawProviderData,
           width,
           theme as unknown as FooterTheme,
         );

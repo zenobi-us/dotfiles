@@ -19,20 +19,34 @@ function getContextWindow(ctx: ExtensionContext): number | null {
 }
 
 function getUsedTokens(ctx: ExtensionContext): number {
-  let input = 0;
-  let output = 0;
-
-  for (const entry of ctx.sessionManager.getBranch()) {
-    if (entry.type !== "message" || entry.message.role !== "assistant") {
-      continue;
+  // Get last assistant message (skip aborted messages)
+  // Context window shows current prompt context, not cumulative usage
+  const branch = ctx.sessionManager.getBranch();
+  
+  // Find last assistant message (reverse iteration)
+  let lastAssistantMessage: AssistantMessage | undefined;
+  
+  for (let i = branch.length - 1; i >= 0; i--) {
+    const entry = branch[i];
+    if (entry.type === "message" && entry.message.role === "assistant") {
+      const assistant = entry.message as AssistantMessage;
+      // Skip aborted messages
+      if (assistant.stopReason !== "aborted") {
+        lastAssistantMessage = assistant;
+        break;
+      }
     }
-
-    const assistant = entry.message as AssistantMessage;
-    input += assistant.usage.input;
-    output += assistant.usage.output;
   }
 
-  return input + output;
+  if (!lastAssistantMessage) return 0;
+
+  // Include all token types that count toward context window
+  return (
+    lastAssistantMessage.usage.input +
+    lastAssistantMessage.usage.output +
+    lastAssistantMessage.usage.cacheRead +
+    lastAssistantMessage.usage.cacheWrite
+  );
 }
 
 export const modelNameProvider: FooterContextProvider = (ctx) => {
@@ -41,21 +55,25 @@ export const modelNameProvider: FooterContextProvider = (ctx) => {
 
 export const modelContextWindowProvider: FooterContextProvider = (ctx) => {
   const limit = getContextWindow(ctx);
-  if (!limit) return "?";
+  if (!limit) return " - ";
   return `${Math.round(limit / 1_000)}k`;
 };
 
 export const modelContextUsedProvider: FooterContextProvider = (ctx) => {
   const limit = getContextWindow(ctx);
-  if (!limit) return "--";
+  if (!limit) return " - ";
 
   const used = getUsedTokens(ctx);
-  const percentage = Math.max(0, Math.min(100, Math.round((used / limit) * 100)));
+  const percentage = Math.max(
+    0,
+    Math.min(100, Math.round((used / limit) * 100)),
+  );
   return `${percentage}%`;
 };
 
-export const modelProvider: FooterContextProvider = (ctx) => ({
-  text: ctx.ui.theme.fg("dim", ctx.model?.id ?? "no-model"),
-  align: "right",
-  order: 10,
-});
+export const modelProvider: FooterContextProvider = (ctx) => {
+  const name = ctx.model?.provider;
+
+  if (name) return name;
+  return "-";
+};
