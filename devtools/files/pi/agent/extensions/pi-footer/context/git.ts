@@ -203,11 +203,7 @@ export const gitStatusProvider: FooterContextProvider = (ctx) => {
 
   const summary = markers.length > 0 ? ` ${markers.join(" ")}` : " clean";
 
-  return {
-    text: ctx.ui.theme.fg("dim", `git:${status.branch}${summary}`),
-    align: "left",
-    order: 20,
-  };
+  return ctx.ui.theme.fg("dim", `git:${status.branch}${summary}`);
 };
 
 export const recentCommitsProvider: FooterContextProvider = (ctx) => {
@@ -217,9 +213,5 @@ export const recentCommitsProvider: FooterContextProvider = (ctx) => {
 
   const subject = truncate(latest.subject, MAX_SUBJECT_LENGTH);
 
-  return {
-    text: ctx.ui.theme.fg("muted", `last:${latest.hash} ${subject}`),
-    align: "left",
-    order: 21,
-  };
+  return ctx.ui.theme.fg("muted", `last:${latest.hash} ${subject}`);
 };

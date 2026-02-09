@@ -1,23 +1,11 @@
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 import type { FooterTemplate } from "./services/config/defaults";
 
-export type FooterSegment = {
-  text: string | number | boolean;
-  align?: "left" | "right";
-  order?: number;
-  enabled?: boolean;
-};
+export type FooterContextValue = string | number | boolean | null | undefined;
 
 export type FooterContextProvider = (
   ctx: ExtensionContext,
-) =>
-  | string
-  | number
-  | boolean
-  | FooterSegment
-  | FooterSegment[]
-  | null
-  | undefined;
+) => FooterContextValue | FooterContextValue[];
 
 export interface FooterInstance {
   render(

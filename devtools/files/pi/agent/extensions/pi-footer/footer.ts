@@ -1,10 +1,8 @@
 import { truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
-import { normalize } from "./core/formattings";
 import { applyFilter, parseFilter } from "./core/filters";
 import {
   FooterInstance,
   FooterContextProvider,
-  FooterSegment,
   FooterTheme,
 } from "./types";
 import {
@@ -16,15 +14,12 @@ function stringifyProviderValue(
   value: ReturnType<FooterContextProvider>,
 ): string {
   if (value == null) return "";
-  if (typeof value === "string") return value;
 
-  const segments = Array.isArray(value)
-    ? value
-    : [value as string | FooterSegment];
+  const entries = Array.isArray(value) ? value : [value];
 
-  return segments
-    .map((entry) => (typeof entry === "string" ? entry : entry.text))
-    .filter((entry) => entry.trim().length > 0)
+  return entries
+    .map((entry) => String(entry ?? "").trim())
+    .filter((entry) => entry.length > 0)
     .join(" ");
 }
 
@@ -81,6 +76,7 @@ function renderTemplateItem(
   data: Record<string, string>,
   rawData: Record<string, unknown>,
   theme: FooterTheme,
+  rootSeparator: string,
 ): RenderedTemplateItem | null {
   if (typeof entry === "string") {
     const text = interpolateTemplate(entry, data, rawData).replace(/\s+/g, " ").trim();
@@ -88,9 +84,9 @@ function renderTemplateItem(
     return { text, align: "left", flexGrow: false };
   }
 
-  const separator = entry.separator ?? " ";
+  const separator = entry.separator ?? rootSeparator;
   const renderedChildren = entry.items
-    .map((child) => renderTemplateItem(child, data, rawData, theme)?.text ?? "")
+    .map((child) => renderTemplateItem(child, data, rawData, theme, rootSeparator)?.text ?? "")
     .filter((value) => value.trim().length > 0);
 
   const text = applyStyles(theme, renderedChildren.join(separator), {
@@ -119,13 +115,13 @@ function renderTemplateLine(
   const entries: (string | FooterTemplateObjectItem)[] = Array.isArray(line)
     ? line
     : [line];
+  const separator = theme.fg("dim", " · ");
+
   const rendered = entries
-    .map((entry) => renderTemplateItem(entry, data, rawData, theme))
+    .map((entry) => renderTemplateItem(entry, data, rawData, theme, separator))
     .filter((entry): entry is RenderedTemplateItem => entry !== null);
 
   if (rendered.length === 0) return "";
-
-  const separator = theme.fg("dim", " · ");
 
   const left = rendered
     .filter((item) => item.align === "left" && !item.flexGrow)
@@ -175,58 +171,29 @@ export function createFooterSingleton(): FooterInstance {
       const providerData: Record<string, string> = {};
       const rawProviderData: Record<string, unknown> = {};
 
-      const segments = Array.from(providers.entries()).reduce<FooterSegment[]>(
-        (acc, [name, provider]) => {
-          try {
-            const value = provider(ctx);
-            rawProviderData[name] = value;
-            providerData[name] = stringifyProviderValue(value);
-            return acc.concat(normalize(name, value));
-          } catch (error) {
-            const message =
-              error instanceof Error ? error.message : String(error);
-            providerData[name] = `${name}: ${message}`;
-            rawProviderData[name] = undefined;
-            return acc.concat({
-              text: theme.fg("error", `${name}: ${message}`),
-              align: "left",
-              order: 999,
-            });
-          }
-        },
-        [],
-      );
-
-      if (options.template) {
-        return renderFromTemplate(
-          options.template,
-          providerData,
-          rawProviderData,
-          width,
-          theme as unknown as FooterTheme,
-        );
+      for (const [name, provider] of providers.entries()) {
+        try {
+          const value = provider(ctx);
+          rawProviderData[name] = value;
+          providerData[name] = stringifyProviderValue(value);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          providerData[name] = `${name}: ${message}`;
+          rawProviderData[name] = undefined;
+        }
       }
 
-      const left = segments
-        .filter((segment) => segment.align !== "right")
-        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-        .map((segment) => segment.text)
-        .join(theme.fg("dim", " · "));
-
-      const right = segments
-        .filter((segment) => segment.align === "right")
-        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-        .map((segment) => segment.text)
-        .join(theme.fg("dim", " · "));
-
-      if (!right) {
-        return [truncateToWidth(left || "", width)];
+      if (!options.template) {
+        return [""];
       }
 
-      const pad = " ".repeat(
-        Math.max(1, width - visibleWidth(left) - visibleWidth(right)),
+      return renderFromTemplate(
+        options.template,
+        providerData,
+        rawProviderData,
+        width,
+        theme as unknown as FooterTheme,
       );
-      return [truncateToWidth(`${left}${pad}${right}`, width)];
     },
   };
 }

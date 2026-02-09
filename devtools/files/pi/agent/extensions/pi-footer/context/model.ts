@@ -72,7 +72,9 @@ export const modelContextUsedProvider: FooterContextProvider = (ctx) => {
 };
 
 export const modelThinkingLevelProvider: FooterContextProvider = (ctx) => {
-  const level = ctx.getThinkingLevel();
+  const level = (
+    ctx as ExtensionContext & { getThinkingLevel?: () => unknown }
+  ).getThinkingLevel?.();
 
   if (typeof level === "string" && level.length > 0) {
     return level;

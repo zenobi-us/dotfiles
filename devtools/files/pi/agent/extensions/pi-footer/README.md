@@ -96,11 +96,9 @@ import piFooterExtension, { Footer } from "./pi-footer/index.ts";
 export default function (pi) {
   piFooterExtension(pi);
 
-  Footer.registerContextProvider("custom-provider", (ctx) => ({
-    text: ctx.ui.theme.fg("accent", "value"),
-    align: "left",
-    order: 30,
-  }));
+  Footer.registerContextProvider("custom-provider", (ctx) =>
+    ctx.ui.theme.fg("accent", "value")
+  );
 }
 ```
 
@@ -121,7 +119,7 @@ Config.template = [
 ];
 ```
 
-Supported segment attributes:
+Supported template item attributes:
 - `align="left|right"`
 - `fg="themeColorName"`
 - `bg="themeColorName"`

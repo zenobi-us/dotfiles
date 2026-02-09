@@ -1,6 +1,6 @@
 export type FooterTemplateObjectItemBase = {
   flexGrow?: boolean;
-  align: "left" | "right";
+  align?: "left" | "right";
   bg?: string;
   fg?: string;
 };
@@ -45,6 +45,13 @@ export type FooterTemplate = (
  *
  */
 export const DEFAULT_TEMPLATE: FooterTemplate = [
-  ["{git_worktree_name}:{git_branch_name}", "{cwd}"],
-  "{model_provider}.{model_name} [{model_context_window}:{model_context_used}]",
+  [
+    { items: ["[{git_worktree_name}:{git_branch_name}] / {cwd}"] },
+    {
+      items: [
+        "{model_provider}.{model_name} [{model_context_window}:{model_context_used}]",
+      ],
+      align: "right",
+    },
+  ],
 ];
