@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { basename } from "node:path";
 import { truncate } from "../core/strings.ts";
 import { Footer } from "../footer.ts";
-import type { FooterContextProvider } from "../types.ts";
+import type { FilterFunction, FooterContextProvider } from "../types.ts";
 
 type GitStatus = {
   branch: string;
@@ -16,6 +16,37 @@ type GitStatus = {
 type GitCommit = {
   hash: string;
   subject: string;
+};
+
+type GitStatusIconStyle = {
+  branch: string;
+  staged: string;
+  unstaged: string;
+  untracked: string;
+  ahead: string;
+  behind: string;
+  clean: string;
+};
+
+const GIT_STATUS_STYLES: Record<string, GitStatusIconStyle> = {
+  ascii: {
+    branch: "git:",
+    staged: "+",
+    unstaged: "~",
+    untracked: "?",
+    ahead: "^",
+    behind: "v",
+    clean: "clean",
+  },
+  unicode: {
+    branch: " ",
+    staged: "●",
+    unstaged: "✚",
+    untracked: "…",
+    ahead: "↑",
+    behind: "↓",
+    clean: "clean",
+  },
 };
 
 const GIT_TIMEOUT_MS = 250;
@@ -119,6 +150,58 @@ function getGitWorktreeName(cwd: string): string | null {
   return basename(worktreeRoot);
 }
 
+function isGitStatus(value: unknown): value is GitStatus {
+  if (!value || typeof value !== "object") return false;
+  const candidate = value as Partial<GitStatus>;
+  return (
+    typeof candidate.branch === "string" &&
+    typeof candidate.staged === "number" &&
+    typeof candidate.unstaged === "number" &&
+    typeof candidate.untracked === "number" &&
+    typeof candidate.ahead === "number" &&
+    typeof candidate.behind === "number"
+  );
+}
+
+function resolveGitStatusStyle(styleArg: unknown): GitStatusIconStyle {
+  if (typeof styleArg !== "string") return GIT_STATUS_STYLES.ascii;
+
+  const normalized = styleArg.trim();
+  if (!normalized) return GIT_STATUS_STYLES.ascii;
+
+  if (normalized in GIT_STATUS_STYLES) {
+    return GIT_STATUS_STYLES[normalized];
+  }
+
+  if (normalized.startsWith("GitStatusStyle.")) {
+    const key = normalized.slice("GitStatusStyle.".length);
+    if (key in GIT_STATUS_STYLES) {
+      return GIT_STATUS_STYLES[key];
+    }
+  }
+
+  return GIT_STATUS_STYLES.ascii;
+}
+
+const gitStatusIconsFilter: FilterFunction = (
+  value: unknown,
+  styleArg?: unknown,
+): string => {
+  if (!isGitStatus(value)) return "--";
+
+  const style = resolveGitStatusStyle(styleArg);
+  const markers: string[] = [];
+
+  if (value.staged > 0) markers.push(`${style.staged}${value.staged}`);
+  if (value.unstaged > 0) markers.push(`${style.unstaged}${value.unstaged}`);
+  if (value.untracked > 0) markers.push(`${style.untracked}${value.untracked}`);
+  if (value.ahead > 0) markers.push(`${style.ahead}${value.ahead}`);
+  if (value.behind > 0) markers.push(`${style.behind}${value.behind}`);
+
+  const summary = markers.length > 0 ? markers.join(" ") : style.clean;
+  return `${style.branch}${value.branch} ${summary}`.trim();
+};
+
 const gitBranchNameProvider: FooterContextProvider = (ctx) => {
   const status = getGitStatus(ctx.cwd);
   return status?.branch ?? "";
@@ -147,3 +230,5 @@ Footer.registerContextProvider("git_branch_name", gitBranchNameProvider);
 Footer.registerContextProvider("git_worktree_name", gitWorktreeNameProvider);
 Footer.registerContextProvider("git_status", gitStatusProvider);
 Footer.registerContextProvider("recent_commits", recentCommitsProvider);
+
+Footer.registerContextFilter("git_status_icons", gitStatusIconsFilter);

@@ -1,8 +1,6 @@
 export type FooterTemplateObjectItemBase = {
   flexGrow?: boolean;
   align?: "left" | "right";
-  bg?: string;
-  fg?: string;
 };
 
 export type FooterTemplateObjectItem = {
@@ -54,5 +52,5 @@ export const DEFAULT_TEMPLATE: FooterTemplate = [
       align: "right",
     },
   ],
-  [{ items: ["{}"], align: "right", fg: "gray" }],
+  [{ items: ["{}"], align: "right" }],
 ];

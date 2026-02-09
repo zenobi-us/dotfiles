@@ -8,7 +8,9 @@ export function registerContextProvidersCommand(
   pi.registerCommand("context-providers", {
     description: "List registered footer context providers",
     handler: async (_args, ctx) => {
-      const providers = footer.listContextProviders();
+      const providers = Array.from(footer.template.providers.keys()).sort(
+        (a, b) => a.localeCompare(b),
+      );
 
       if (!ctx.hasUI) {
         console.log(providers.join("\n"));

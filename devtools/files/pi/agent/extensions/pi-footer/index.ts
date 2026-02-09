@@ -10,6 +10,7 @@ import { Config } from "./services/config";
 import "./context/cwd.ts";
 import "./context/git.ts";
 import "./context/model.ts";
+import "./context/numbers.ts";
 import "./context/time.ts";
 import "./context/usage.ts";
 import "./services/PlatformTracker/strategies/anthropic.ts";
