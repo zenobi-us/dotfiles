@@ -304,6 +304,7 @@ export function createUsageTracker(initialStore?: UsageStore): UsageTrackerInter
       currentCtx = undefined;
       providerRuntime.clear();
       modelRuntime.clear();
+      listeners.clear();
     },
 
     setSettings(nextSettings) {

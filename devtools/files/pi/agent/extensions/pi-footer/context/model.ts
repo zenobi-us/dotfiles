@@ -81,7 +81,7 @@ export const modelThinkingLevelProvider: FooterContextProvider = (ctx) => {
   return "-";
 };
 
-export const modelProvider: FooterContextProvider = (ctx) => {
+export const modelPlatformNameProvider: FooterContextProvider = (ctx) => {
   const name = ctx.model?.provider;
 
   if (name) return name;

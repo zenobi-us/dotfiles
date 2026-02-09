@@ -56,10 +56,12 @@ export default function piFooterExtension(pi: ExtensionAPI) {
   };
 
   pi.on("session_start", async (_event, ctx) => {
+    usageTracker.stop();
     attach(ctx);
   });
 
   pi.on("session_switch", async (_event, ctx) => {
+    usageTracker.stop();
     attach(ctx);
   });
 
@@ -75,7 +77,8 @@ export default function piFooterExtension(pi: ExtensionAPI) {
     usageTracker.trigger("turn_end");
   });
 
-  pi.on("session_shutdown", async () => {
+  pi.on("session_shutdown", async (_event, ctx) => {
+    ctx.ui.setFooter(undefined);
     usageTracker.stop();
   });
 }
