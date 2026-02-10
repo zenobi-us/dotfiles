@@ -1,18 +1,4 @@
-export type FooterTemplateObjectItemBase = {
-  flexGrow?: boolean;
-  align?: "left" | "right";
-};
-
-export type FooterTemplateObjectItem = {
-  separator?: string;
-  items: (string | FooterTemplateObjectItem)[];
-} & FooterTemplateObjectItemBase;
-
-export type FooterTemplate = (
-  | string
-  | FooterTemplateObjectItem
-  | (string | FooterTemplateObjectItem)[]
-)[];
+import { FooterTemplate } from "../../types";
 
 /**
  * Default configuration for the PI Footer extension.

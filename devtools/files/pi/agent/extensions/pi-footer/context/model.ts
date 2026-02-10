@@ -1,7 +1,7 @@
 import type { AssistantMessage } from "@mariozechner/pi-ai";
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 import { Footer } from "../footer.ts";
-import type { FilterFunction, FooterContextProvider } from "../types.ts";
+import type { ContextFilterProvider, ContextValueProvider } from "../types.ts";
 
 function getContextWindow(ctx: ExtensionContext): number | null {
   const model = ctx.model as { contextWindow?: unknown } | undefined;
@@ -50,17 +50,17 @@ function getUsedTokens(ctx: ExtensionContext): number {
   );
 }
 
-const modelNameProvider: FooterContextProvider = (props) => {
+const modelNameProvider: ContextValueProvider = (props) => {
   return props.ctx.model?.id ?? "no-model";
 };
 
-const modelContextWindowProvider: FooterContextProvider = (props) => {
+const modelContextWindowProvider: ContextValueProvider = (props) => {
   const limit = getContextWindow(props.ctx);
   if (!limit) return " - ";
   return `${Math.round(limit / 1_000)}k`;
 };
 
-const modelContextUsedProvider: FooterContextProvider = (props) => {
+const modelContextUsedProvider: ContextValueProvider = (props) => {
   const limit = getContextWindow(props.ctx);
   if (!limit) return " - ";
 
@@ -72,7 +72,7 @@ const modelContextUsedProvider: FooterContextProvider = (props) => {
   return `${percentage}%`;
 };
 
-const modelThinkingLevelProvider: FooterContextProvider = (props) => {
+const modelThinkingLevelProvider: ContextValueProvider = (props) => {
   const level = props.pi.getThinkingLevel?.();
 
   if (typeof level === "string" && level.length > 0) {
@@ -82,16 +82,16 @@ const modelThinkingLevelProvider: FooterContextProvider = (props) => {
   return "-";
 };
 
-const modelPlatformNameProvider: FooterContextProvider = (props) => {
+const modelPlatformNameProvider: ContextValueProvider = (props) => {
   const name = props.ctx.model?.provider;
 
   if (name) return name;
   return "-";
 };
 
-const thinkingLevelIconsFilter: FilterFunction = (
+const thinkingLevelIconsFilter: ContextFilterProvider<"unicode" | "ascii"> = (
   value: unknown,
-  style: "unicode" | "ascii" = "unicode",
+  style,
 ): string => {
   if (typeof value !== "string" || value.length === 0 || value === "-") {
     return "-";
@@ -117,16 +117,10 @@ const thinkingLevelIconsFilter: FilterFunction = (
   return icons[value as keyof typeof icons] ?? value;
 };
 
-Footer.registerContextProvider("model_context_used", modelContextUsedProvider);
-Footer.registerContextProvider(
-  "model_context_window",
-  modelContextWindowProvider,
-);
-Footer.registerContextProvider(
-  "model_thinking_level",
-  modelThinkingLevelProvider,
-);
-Footer.registerContextProvider("model_name", modelNameProvider);
-Footer.registerContextProvider("model_provider", modelPlatformNameProvider);
+Footer.registerContextValue("model_context_used", modelContextUsedProvider);
+Footer.registerContextValue("model_context_window", modelContextWindowProvider);
+Footer.registerContextValue("model_thinking_level", modelThinkingLevelProvider);
+Footer.registerContextValue("model_name", modelNameProvider);
+Footer.registerContextValue("model_provider", modelPlatformNameProvider);
 
 Footer.registerContextFilter("thinking_level_icons", thinkingLevelIconsFilter);

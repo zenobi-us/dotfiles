@@ -2,7 +2,7 @@ import { execFileSync } from "node:child_process";
 import { basename } from "node:path";
 import { truncate } from "../core/strings.ts";
 import { Footer } from "../footer.ts";
-import type { FilterFunction, FooterContextProvider } from "../types.ts";
+import type { ContextFilterProvider, ContextValueProvider } from "../types.ts";
 
 type GitStatus = {
   branch: string;
@@ -185,7 +185,7 @@ function resolveGitStatusStyle(styleArg: unknown): GitStatusIconStyle {
   return GIT_STATUS_STYLES.ascii;
 }
 
-const gitStatusIconsFilter: FilterFunction = (
+const gitStatusIconsFilter: ContextFilterProvider<"ascii" | "unicode"> = (
   value: unknown,
   styleArg?: unknown,
 ): string => {
@@ -204,20 +204,20 @@ const gitStatusIconsFilter: FilterFunction = (
   return `${style.branch}${value.branch} ${summary}`.trim();
 };
 
-const gitBranchNameProvider: FooterContextProvider = (props) => {
+const gitBranchNameProvider: ContextValueProvider = (props) => {
   const status = getGitStatus(props.ctx.cwd);
   return status?.branch ?? "";
 };
 
-const gitWorktreeNameProvider: FooterContextProvider = (props) => {
+const gitWorktreeNameProvider: ContextValueProvider = (props) => {
   return getGitWorktreeName(props.ctx.cwd) ?? "";
 };
 
-const gitStatusProvider: FooterContextProvider = (props) => {
+const gitStatusProvider: ContextValueProvider = (props) => {
   return getGitStatus(props.ctx.cwd);
 };
 
-const recentCommitsProvider: FooterContextProvider = (props) => {
+const recentCommitsProvider: ContextValueProvider = (props) => {
   const recent = getRecentCommits(props.ctx.cwd, 1);
   const latest = recent[0];
   if (!latest) return null;
@@ -228,9 +228,9 @@ const recentCommitsProvider: FooterContextProvider = (props) => {
   };
 };
 
-Footer.registerContextProvider("git_branch_name", gitBranchNameProvider);
-Footer.registerContextProvider("git_worktree_name", gitWorktreeNameProvider);
-Footer.registerContextProvider("git_status", gitStatusProvider);
-Footer.registerContextProvider("recent_commits", recentCommitsProvider);
+Footer.registerContextValue("git_branch_name", gitBranchNameProvider);
+Footer.registerContextValue("git_worktree_name", gitWorktreeNameProvider);
+Footer.registerContextValue("git_status", gitStatusProvider);
+Footer.registerContextValue("recent_commits", recentCommitsProvider);
 
 Footer.registerContextFilter("git_status_icons", gitStatusIconsFilter);

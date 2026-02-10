@@ -1,7 +1,7 @@
 import { Footer } from "../footer.ts";
-import type { FilterFunction } from "../types.ts";
+import type { ContextFilterProvider } from "../types.ts";
 
-const humaniseTimeFilter: FilterFunction = (value: unknown): string => {
+const humaniseTimeFilter: ContextFilterProvider = (value: unknown): string => {
   if (typeof value !== "number" || !Number.isFinite(value)) return "--";
 
   const seconds = Math.max(0, Math.round(value));
@@ -15,29 +15,40 @@ const humaniseTimeFilter: FilterFunction = (value: unknown): string => {
   return `${seconds}s`;
 };
 
-const humanisePercentFilter: FilterFunction = (value: unknown): string => {
+const humanisePercentFilter: ContextFilterProvider = (
+  value: unknown,
+): string => {
   if (typeof value !== "number" || !Number.isFinite(value)) return "--";
 
   const percent = Math.max(0, Math.min(100, Math.round(value * 100)));
   return `${percent}%`;
 };
 
-const humaniseAmountFilter: FilterFunction = (value: unknown): string => {
+const humaniseAmountFilter: ContextFilterProvider = (
+  value: unknown,
+): string => {
   if (typeof value !== "number" || !Number.isFinite(value)) return "--";
   return Math.round(value).toString();
 };
 
-const humaniseNumberFilter: FilterFunction = (value: unknown): string => {
+const humaniseNumberFilter: ContextFilterProvider = (
+  value: unknown,
+): string => {
   if (typeof value !== "number" || !Number.isFinite(value)) return "--";
   return Math.round(value).toLocaleString();
 };
 
-const roundFilter: FilterFunction = (value: unknown, decimals: number = 0): string => {
+const roundFilter: ContextFilterProvider = (
+  state,
+  value: unknown,
+  decimals: number = 0,
+): string => {
   if (typeof value !== "number" || !Number.isFinite(value)) return "--";
   return value.toFixed(decimals);
 };
 
-const clampFilter: FilterFunction = (
+const clampFilter: ContextFilterProvider = (
+  state,
   value: unknown,
   min: number = 0,
   max: number = 100,

@@ -2,8 +2,23 @@ import type {
   ExtensionAPI,
   ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
-import type { FooterTemplate } from "./services/config/defaults";
 import type { Template } from "./core/template";
+
+export type FooterTemplateObjectItemBase = {
+  flexGrow?: boolean;
+  align?: "left" | "right";
+};
+
+export type FooterTemplateObjectItem = {
+  separator?: string;
+  items: (string | FooterTemplateObjectItem)[];
+} & FooterTemplateObjectItemBase;
+
+export type FooterTemplate = (
+  | string
+  | FooterTemplateObjectItem
+  | (string | FooterTemplateObjectItem)[]
+)[];
 
 export type FooterContextValue =
   | string
@@ -13,15 +28,23 @@ export type FooterContextValue =
   | null
   | undefined;
 
-export type FilterFunction = (value: unknown, ...args: any[]) => string;
-
-export type FooterContextProvider = (props: {
-  ctx: ExtensionContext;
+export type FooterContextState = {
   pi: ExtensionAPI;
-}) => FooterContextValue | FooterContextValue[];
+  ctx: ExtensionContext;
+  theme: ExtensionContext["ui"]["theme"];
+};
+
+export type ContextFilterProvider<A = any> = (
+  state: FooterContextState,
+  value: unknown,
+  ...args: A[]
+) => string;
+
+export type ContextValueProvider = (
+  state: FooterContextState,
+) => FooterContextValue | FooterContextValue[];
 
 export interface FooterInstance {
-  template: Template;
   render(
     pi: ExtensionAPI,
     ctx: ExtensionContext,
@@ -31,6 +54,6 @@ export interface FooterInstance {
       template?: FooterTemplate;
     },
   ): string[];
-  registerContextProvider(name: string, provider: FooterContextProvider): void;
-  registerContextFilter(name: string, filter: FilterFunction): void;
+  registerContextValue(name: string, provider: ContextValueProvider): void;
+  registerContextFilter(name: string, filter: ContextFilterProvider): void;
 }

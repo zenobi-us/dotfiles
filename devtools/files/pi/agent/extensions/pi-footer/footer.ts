@@ -1,10 +1,10 @@
 import { truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
 import { Template, TemplateContext } from "./core/template";
-import { FooterInstance } from "./types";
 import {
+  FooterInstance,
   FooterTemplate,
   FooterTemplateObjectItem,
-} from "./services/config/defaults";
+} from "./types";
 
 type RenderedTemplateItem = {
   text: string;
@@ -84,12 +84,11 @@ function renderTemplateLine(
   return truncateToWidth(`${left}${pad}${trailing}`, width);
 }
 
-export function createFooterSingleton(): FooterInstance {
+function createFooter(): FooterInstance {
   const template = new Template();
 
   return {
-    template,
-    registerContextProvider(name, provider) {
+    registerContextValue(name, provider) {
       template.registerContextProvider(name, provider);
     },
     registerContextFilter(name, filter) {
@@ -115,4 +114,4 @@ export function createFooterSingleton(): FooterInstance {
   };
 }
 
-export const Footer = createFooterSingleton();
+export const Footer = createFooter();
