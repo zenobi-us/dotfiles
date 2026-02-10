@@ -32,6 +32,9 @@
   - ✅ Implemented dynamic provider creation per model × quota
   - ✅ Added convenience factories for specific platforms (Copilot Spark, Anthropic)
 
+## Incoming Tasks
+- [ ] [task-c7f1a2de-write-user-request-to-task-file.md](task-c7f1a2de-write-user-request-to-task-file.md)
+
 ## Notes
 
 - Epic: fc52bd74 (subagent-footer-customization)
