@@ -1,11 +1,11 @@
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
-import { Footer } from "../footer.ts";
+import { Footer } from "../../pi-footer/footer.ts";
 import { usageTracker } from "../services/PlatformTracker/store.ts";
 import type {
   ResolvedUsageWindow,
   UsageStoreEntry,
 } from "../services/PlatformTracker/types.ts";
-import type { FooterContextProvider } from "../types.ts";
+import type { FooterContextProvider } from "../../pi-footer/types.ts";
 
 // Platform detection mapping: model name → provider id
 const MODEL_TO_PROVIDER: Record<string, string> = {
@@ -57,11 +57,15 @@ function getProviderEntry(providerId: string): UsageStoreEntry | undefined {
   return undefined;
 }
 
-function getPrimaryQuota(entry: UsageStoreEntry): ResolvedUsageWindow | undefined {
+function getPrimaryQuota(
+  entry: UsageStoreEntry,
+): ResolvedUsageWindow | undefined {
   return entry.windows[0];
 }
 
-function getQuotaHealth(remainingRatio: number): "good" | "warning" | "critical" {
+function getQuotaHealth(
+  remainingRatio: number,
+): "good" | "warning" | "critical" {
   if (remainingRatio > 0.5) return "good";
   if (remainingRatio > 0.2) return "warning";
   return "critical";
@@ -217,42 +221,17 @@ const usageQuotaPercentUsedProvider: FooterContextProvider = (ctx) => {
 
 Footer.registerContextProvider("usage_emoji", usageEmojiProvider);
 Footer.registerContextProvider("usage_platform", usagePlatformProvider);
-Footer.registerContextProvider("usage_quota_remaining", usageQuotaRemainingProvider);
+Footer.registerContextProvider(
+  "usage_quota_remaining",
+  usageQuotaRemainingProvider,
+);
 Footer.registerContextProvider("usage_quota_used", usageQuotaUsedProvider);
 Footer.registerContextProvider("usage_quota_total", usageQuotaTotalProvider);
 Footer.registerContextProvider(
   "usage_quota_percent_remaining",
   usageQuotaPercentRemainingProvider,
 );
-Footer.registerContextProvider("usage_quota_percent_used", usageQuotaPercentUsedProvider);
-
-for (const providerId of ["anthropic", "copilot", "codex"]) {
-  Footer.registerContextProvider(
-    `${providerId}_emoji`,
-    createPlatformEmojiProvider(providerId),
-  );
-  Footer.registerContextProvider(
-    `${providerId}_platform`,
-    createPlatformNameProvider(providerId),
-  );
-  Footer.registerContextProvider(
-    `${providerId}_quota_remaining`,
-    createPlatformQuotaProvider(providerId, "remaining"),
-  );
-  Footer.registerContextProvider(
-    `${providerId}_quota_used`,
-    createPlatformQuotaProvider(providerId, "used"),
-  );
-  Footer.registerContextProvider(
-    `${providerId}_quota_total`,
-    createPlatformQuotaProvider(providerId, "total"),
-  );
-  Footer.registerContextProvider(
-    `${providerId}_quota_percent_remaining`,
-    createPlatformQuotaProvider(providerId, "percent_remaining"),
-  );
-  Footer.registerContextProvider(
-    `${providerId}_quota_percent_used`,
-    createPlatformQuotaProvider(providerId, "percent_used"),
-  );
-}
+Footer.registerContextProvider(
+  "usage_quota_percent_used",
+  usageQuotaPercentUsedProvider,
+);

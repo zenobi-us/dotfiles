@@ -29,7 +29,3 @@ export interface FooterInstance {
   registerContextProvider(name: string, provider: FooterContextProvider): void;
   registerContextFilter(name: string, filter: FilterFunction): void;
 }
-export type FooterTheme = {
-  fg(colorName: string, text: string): string;
-  bg?(colorName: string, text: string): string;
-};

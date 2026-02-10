@@ -1,6 +1,6 @@
 import { truncateToWidth, visibleWidth } from "@mariozechner/pi-tui";
 import { Template, TemplateContext } from "./core/template";
-import { FooterInstance, FooterTheme } from "./types";
+import { FooterInstance } from "./types";
 import {
   FooterTemplate,
   FooterTemplateObjectItem,
@@ -101,7 +101,7 @@ export function createFooterSingleton(): FooterInstance {
       }
 
       const context = template.createContext(ctx);
-      const separator = (theme as unknown as FooterTheme).fg("dim", " · ");
+      const separator = theme.fg("dim", " · ");
       const lines: string[] = [];
 
       for (const line of options.template) {

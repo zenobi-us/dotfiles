@@ -10,19 +10,13 @@ import {
   UsageTrackerSettings,
   makeStorageKey,
   getProviderMetadata,
+  RuntimeState,
 } from "./types";
 import { clampPositiveInt } from "./numbers";
 
 const DEFAULT_SETTINGS: UsageTrackerSettings = {
   intervalMs: 60_000,
   maxBackoffMultiplier: 8,
-};
-
-type RuntimeState = {
-  inFlight: boolean;
-  queued: boolean;
-  nextEligibleAt: number;
-  backoffLevel: number;
 };
 
 function clamp01(value: number): number {
@@ -80,7 +74,10 @@ function resolveUsageWindow(
     snapshot.remaining ?? remainingFromNumbers ?? remainingRatio * total,
   );
 
-  const used = Math.max(0, snapshot.used ?? usedFromNumbers ?? usedRatio * total);
+  const used = Math.max(
+    0,
+    snapshot.used ?? usedFromNumbers ?? usedRatio * total,
+  );
 
   return {
     id: quota.id,
@@ -104,7 +101,9 @@ function createRuntimeState(): RuntimeState {
   };
 }
 
-export function createUsageTracker(initialStore?: UsageStore): UsageTrackerInternal {
+export function createUsageTracker(
+  initialStore?: UsageStore,
+): UsageTrackerInternal {
   const listeners = new Set<Listener>();
 
   let settings: UsageTrackerSettings = { ...DEFAULT_SETTINGS };
@@ -136,7 +135,10 @@ export function createUsageTracker(initialStore?: UsageStore): UsageTrackerInter
 
   const markProviderFailure = (providerId: string, now: number) => {
     const p = getProviderState(providerId);
-    p.backoffLevel = Math.min(p.backoffLevel + 1, settings.maxBackoffMultiplier);
+    p.backoffLevel = Math.min(
+      p.backoffLevel + 1,
+      settings.maxBackoffMultiplier,
+    );
     p.nextEligibleAt = now + settings.intervalMs * Math.max(1, p.backoffLevel);
 
     for (const [key, entry] of tracker.store) {
@@ -152,7 +154,11 @@ export function createUsageTracker(initialStore?: UsageStore): UsageTrackerInter
     }
   };
 
-  const markProviderSuccess = (providerId: string, modelIds: string[], now: number) => {
+  const markProviderSuccess = (
+    providerId: string,
+    modelIds: string[],
+    now: number,
+  ) => {
     const p = getProviderState(providerId);
     p.backoffLevel = 0;
     p.nextEligibleAt = now + settings.intervalMs;

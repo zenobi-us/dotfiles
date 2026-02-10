@@ -7,12 +7,18 @@ export type ModelId = `${ProviderId}/${string}`; // e.g., "anthropic/claude-sonn
 export type StorageKey = `${string}/${string}`; // "provider/model"
 
 // Helper to construct storage keys
-export function makeStorageKey(providerId: string, modelId: string): StorageKey {
+export function makeStorageKey(
+  providerId: string,
+  modelId: string,
+): StorageKey {
   return `${providerId}/${modelId}`;
 }
 
 // Helper to parse storage keys
-export function parseStorageKey(key: StorageKey): { providerId: string; modelId: string } {
+export function parseStorageKey(key: StorageKey): {
+  providerId: string;
+  modelId: string;
+} {
   const [providerId, modelId] = key.split("/", 2);
   return { providerId, modelId };
 }
@@ -140,13 +146,28 @@ export type RegisteredProvider = {
   provider: ProviderStrategy;
 };
 
+export type RuntimeState = {
+  inFlight: boolean;
+  queued: boolean;
+  nextEligibleAt: number;
+  backoffLevel: number;
+};
+
+export type TriggerReason =
+  | "start"
+  | "updateAll"
+  | "attach"
+  | "turn_start"
+  | "tool_result"
+  | "turn_end";
+
 export type UsageTrackerInternal = UsageTracker & {
   start: (
     ctx: ExtensionContext,
     settings?: Partial<UsageTrackerSettings>,
   ) => void;
   stop: () => void;
-  trigger: (reason?: string) => void;
+  trigger: (reason?: TriggerReason) => void;
   setSettings: (settings: Partial<UsageTrackerSettings>) => void;
   subscribe: (listener: Listener) => () => void;
 };

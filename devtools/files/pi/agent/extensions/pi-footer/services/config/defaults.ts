@@ -44,7 +44,7 @@ export type FooterTemplate = (
  */
 export const DEFAULT_TEMPLATE: FooterTemplate = [
   [
-    { items: ["[{git_worktree_name}:{git_branch_name}] / {cwd}"] },
+    { items: ["[{git_worktree_name}:{git_branch_name}]"] },
     {
       items: [
         "{model_provider}.{model_name} [{model_context_window}:{model_context_used}]",
@@ -52,5 +52,5 @@ export const DEFAULT_TEMPLATE: FooterTemplate = [
       align: "right",
     },
   ],
-  [{ items: ["{}"], align: "right" }],
+  [{ items: ["{mode_thinking_level}"], align: "right" }],
 ];
