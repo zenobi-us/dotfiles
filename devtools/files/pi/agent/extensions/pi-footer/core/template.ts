@@ -1,4 +1,7 @@
-import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
+import type {
+  ExtensionAPI,
+  ExtensionContext,
+} from "@mariozechner/pi-coding-agent";
 import { FooterContextProvider, FilterFunction } from "../types";
 
 export type TemplateContext = {
@@ -23,21 +26,67 @@ export function stringifyProviderValue(
     .join(" ");
 }
 
+function parseArg(part: string): unknown {
+  const trimmed = part.trim();
+  if (trimmed.length === 0) return "";
+
+  const quoted = trimmed.match(/^(["'])(.*)\1$/);
+  if (quoted) return quoted[2];
+
+  if (trimmed === "true") return true;
+  if (trimmed === "false") return false;
+  if (trimmed === "null") return null;
+
+  const num = Number(trimmed);
+  if (!Number.isNaN(num) && Number.isFinite(num)) return num;
+
+  return trimmed;
+}
+
+function splitArgs(argsStr: string): string[] {
+  const parts: string[] = [];
+  let current = "";
+  let quote: "'" | '"' | null = null;
+
+  for (let i = 0; i < argsStr.length; i++) {
+    const ch = argsStr[i];
+
+    if ((ch === "'" || ch === '"') && (i === 0 || argsStr[i - 1] !== "\\")) {
+      if (quote === ch) {
+        quote = null;
+      } else if (quote === null) {
+        quote = ch;
+      }
+      current += ch;
+      continue;
+    }
+
+    if (ch === "," && quote === null) {
+      parts.push(current.trim());
+      current = "";
+      continue;
+    }
+
+    current += ch;
+  }
+
+  if (current.trim().length > 0) parts.push(current.trim());
+  return parts;
+}
+
 function parseFilter(
   filterExpr: string,
 ): { name: string; args: unknown[] } | null {
-  const match = filterExpr.match(/^(\w+)(?:\(([^)]*)\))?$/);
+  const match = filterExpr.match(/^([A-Za-z_][\w-]*)(?:\((.*)\))?$/);
   if (!match) return null;
 
   const name = match[1];
   const argsStr = match[2];
 
   const args: unknown[] = [];
-  if (argsStr) {
-    const parts = argsStr.split(",").map((s) => s.trim());
-    for (const part of parts) {
-      const num = Number(part);
-      args.push(Number.isNaN(num) ? part : num);
+  if (argsStr && argsStr.trim().length > 0) {
+    for (const part of splitArgs(argsStr)) {
+      args.push(parseArg(part));
     }
   }
 
@@ -64,13 +113,16 @@ export class Template {
     this.filters.delete(name);
   }
 
-  createContext(ctx: ExtensionContext): TemplateContext {
+  createContext(props: {
+    pi: ExtensionAPI;
+    ctx: ExtensionContext;
+  }): TemplateContext {
     const data: Record<string, string> = {};
     const rawData: Record<string, unknown> = {};
 
     for (const [name, provider] of this.providers.entries()) {
       try {
-        const value = provider(ctx);
+        const value = provider(props);
         rawData[name] = value;
         data[name] = stringifyProviderValue(value);
       } catch (error) {
@@ -87,7 +139,7 @@ export class Template {
     const filterMemo = new Map<string, string>();
 
     return template.replace(
-      /\{\s*([\w-]+)(?:\s*\|\s*([\w()\d,\s]+))?\s*\}/g,
+      /\{\s*([\w-]+)(?:\s*\|\s*([^}]+))?\s*\}/g,
       (_match, key: string, filterExpr?: string) => {
         const value = context.data[key] ?? "";
 

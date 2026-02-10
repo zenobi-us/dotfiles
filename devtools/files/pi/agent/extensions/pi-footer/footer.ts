@@ -95,12 +95,12 @@ export function createFooterSingleton(): FooterInstance {
     registerContextFilter(name, filter) {
       template.registerContextFilter(name, filter);
     },
-    render(ctx, theme, width, options) {
+    render(pi, ctx, theme, width, options) {
       if (!options.template) {
         return [""];
       }
 
-      const context = template.createContext(ctx);
+      const context = template.createContext({ pi, ctx });
       const separator = theme.fg("dim", " · ");
       const lines: string[] = [];
 

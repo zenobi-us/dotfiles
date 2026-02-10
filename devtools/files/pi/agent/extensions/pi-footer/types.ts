@@ -1,4 +1,7 @@
-import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
+import type {
+  ExtensionAPI,
+  ExtensionContext,
+} from "@mariozechner/pi-coding-agent";
 import type { FooterTemplate } from "./services/config/defaults";
 import type { Template } from "./core/template";
 
@@ -12,13 +15,15 @@ export type FooterContextValue =
 
 export type FilterFunction = (value: unknown, ...args: any[]) => string;
 
-export type FooterContextProvider = (
-  ctx: ExtensionContext,
-) => FooterContextValue | FooterContextValue[];
+export type FooterContextProvider = (props: {
+  ctx: ExtensionContext;
+  pi: ExtensionAPI;
+}) => FooterContextValue | FooterContextValue[];
 
 export interface FooterInstance {
   template: Template;
   render(
+    pi: ExtensionAPI,
     ctx: ExtensionContext,
     theme: ExtensionContext["ui"]["theme"],
     width: number,

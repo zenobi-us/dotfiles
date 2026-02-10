@@ -31,7 +31,7 @@ export default function piFooterExtension(pi: ExtensionAPI) {
           tui.requestRender();
         },
         render(width: number) {
-          return Footer.render(ctx, theme, width, {
+          return Footer.render(pi, ctx, theme, width, {
             template: Config.template,
           });
         },

@@ -85,7 +85,9 @@ function parseStatus(output: string): GitStatus {
 
   const header = lines[0];
   if (header?.startsWith("## ")) {
-    const branchMatch = header.match(/^## ([^.\s]+)(?:\.\.\.[^\s]+)?(?: \[(.+)\])?/);
+    const branchMatch = header.match(
+      /^## ([^.\s]+)(?:\.\.\.[^\s]+)?(?: \[(.+)\])?/,
+    );
     if (branchMatch?.[1]) {
       branch = branchMatch[1] === "HEAD" ? "detached" : branchMatch[1];
     }
@@ -202,21 +204,21 @@ const gitStatusIconsFilter: FilterFunction = (
   return `${style.branch}${value.branch} ${summary}`.trim();
 };
 
-const gitBranchNameProvider: FooterContextProvider = (ctx) => {
-  const status = getGitStatus(ctx.cwd);
+const gitBranchNameProvider: FooterContextProvider = (props) => {
+  const status = getGitStatus(props.ctx.cwd);
   return status?.branch ?? "";
 };
 
-const gitWorktreeNameProvider: FooterContextProvider = (ctx) => {
-  return getGitWorktreeName(ctx.cwd) ?? "";
+const gitWorktreeNameProvider: FooterContextProvider = (props) => {
+  return getGitWorktreeName(props.ctx.cwd) ?? "";
 };
 
-const gitStatusProvider: FooterContextProvider = (ctx) => {
-  return getGitStatus(ctx.cwd);
+const gitStatusProvider: FooterContextProvider = (props) => {
+  return getGitStatus(props.ctx.cwd);
 };
 
-const recentCommitsProvider: FooterContextProvider = (ctx) => {
-  const recent = getRecentCommits(ctx.cwd, 1);
+const recentCommitsProvider: FooterContextProvider = (props) => {
+  const recent = getRecentCommits(props.ctx.cwd, 1);
   const latest = recent[0];
   if (!latest) return null;
 

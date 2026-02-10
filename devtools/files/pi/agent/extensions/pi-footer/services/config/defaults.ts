@@ -52,5 +52,10 @@ export const DEFAULT_TEMPLATE: FooterTemplate = [
       align: "right",
     },
   ],
-  [{ items: ["{mode_thinking_level}"], align: "right" }],
+  [
+    {
+      items: ["🧠 {model_thinking_level | thinking_level_icons('ascii')}"],
+      align: "right",
+    },
+  ],
 ];
