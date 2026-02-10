@@ -5,8 +5,7 @@ import "./services/PlatformTracker/strategies/copilot.ts";
 import "./services/PlatformTracker/strategies/gemini.ts";
 import "./services/PlatformTracker/strategies/kiro.ts";
 import "./services/PlatformTracker/strategies/zai.ts";
-import { usageTracker } from "./services/PlatformTracker/store.ts";
 
-export { usageTracker };
+export { usageTracker } from "./services/PlatformTracker/store.ts";
 
 export default function () {}

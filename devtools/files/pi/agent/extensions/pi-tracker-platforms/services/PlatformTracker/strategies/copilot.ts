@@ -1,4 +1,3 @@
-import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
@@ -11,16 +10,26 @@ type CopilotMeta = {
   modelMultiplier: number; // Cost for this specific model
 };
 
+type CopilotAuth = {
+  refresh?: string;
+};
+
+function isCopilotAuth(auth: unknown): auth is CopilotAuth {
+  return (
+    typeof auth === "object" &&
+    auth !== null &&
+    ("refresh" in auth ? typeof (auth as any).refresh === "string" : true)
+  );
+}
+
 usageTracker.registerProvider<CopilotMeta>({
   id: "copilot",
   label: "Copilot",
   models: ["gpt-4o", "gpt-4.1", "gpt-5-mini", "standard", "spark"], // Multiple models
   quotas: [{ id: "30_day", amount: 300 }], // Amount-based quota
-  hasAuthentication: () => hasAuthKey("github-copilot"),
-  fetchUsage: async (): Promise<UsageSnapshot<CopilotMeta>[]> => {
-    const auth = readPiAuthJson();
-    const token = (auth["github-copilot"] as { refresh?: string } | undefined)
-      ?.refresh;
+  fetchUsage: async (ctx): Promise<UsageSnapshot<CopilotMeta>[]> => {
+    const auth = ctx.auth;
+    const token = isCopilotAuth(auth) ? auth.refresh : undefined;
     if (!token) return [];
 
     const res = await fetch("https://api.github.com/copilot_internal/user", {

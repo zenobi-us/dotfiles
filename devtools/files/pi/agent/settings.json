@@ -11,9 +11,7 @@
     "npm:pi-mermaid"
   ],
   "hideThinkingBlock": true,
-  "quietStartup": true,
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-5",
-  "workingVibe": "theme",
+  "defaultModel": "claude-opus-4-6",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }

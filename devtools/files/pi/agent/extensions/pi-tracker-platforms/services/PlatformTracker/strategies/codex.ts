@@ -1,4 +1,3 @@
-import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
@@ -9,6 +8,21 @@ type CodexMeta = {
   windowSeconds: number;
 };
 
+type CodexAuth = {
+  access?: string;
+  accountId?: string;
+};
+
+function isCodexAuth(auth: unknown): auth is CodexAuth {
+  if (!auth || typeof auth !== "object") return false;
+  if (!("access" in auth) || typeof (auth as any).access !== "string")
+    return false;
+  if (!("accountId" in auth) || typeof (auth as any).accountId !== "string")
+    return false;
+
+  return true;
+}
+
 usageTracker.registerProvider<CodexMeta>({
   id: "codex",
   label: "Codex",
@@ -17,21 +31,18 @@ usageTracker.registerProvider<CodexMeta>({
     { id: "primary", percentageOnly: true }, // Percentage-only quota
     { id: "secondary", percentageOnly: true },
   ],
-  hasAuthentication: () => hasAuthKey("openai-codex"),
-  fetchUsage: async (): Promise<UsageSnapshot<CodexMeta>[]> => {
-    const auth = readPiAuthJson();
-    const codex = auth["openai-codex"] as
-      | { access?: string; accountId?: string }
-      | undefined;
-    const token = codex?.access;
+  fetchUsage: async (ctx): Promise<UsageSnapshot<CodexMeta>[]> => {
+    const auth = ctx.auth;
+    if (!isCodexAuth(auth)) return [];
+    const token = auth.access;
     if (!token) return [];
 
     const headers: Record<string, string> = {
       Authorization: `Bearer ${token}`,
       Accept: "application/json",
     };
-    if (codex?.accountId) {
-      headers["ChatGPT-Account-Id"] = codex.accountId;
+    if (auth.accountId) {
+      headers["ChatGPT-Account-Id"] = auth.accountId;
     }
 
     const res = await fetch("https://chatgpt.com/backend-api/wham/usage", {
@@ -54,7 +65,7 @@ usageTracker.registerProvider<CodexMeta>({
     };
 
     const windows: UsageSnapshot<CodexMeta>[] = [];
-    
+
     // Primary window with metadata
     const primary = data.rate_limit?.primary_window;
     if (primary) {

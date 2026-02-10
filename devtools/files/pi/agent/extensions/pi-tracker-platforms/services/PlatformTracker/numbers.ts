@@ -8,6 +8,9 @@ export function clampPositiveInt(value: number, fallback: number): number {
 export const API_TIMEOUT_MS = 5_000;
 
 export const TimeFrame = {
+  OneMinute: 60,
+  FiveMinute: 300,
+  TenMinute: 600,
   OneHour: 3_600,
   FiveHour: 5 * 3_600,
   OneDay: 24 * 3_600,
@@ -19,7 +22,7 @@ export const TimeFrame = {
 export function percentToSnapshot(
   id: string,
   modelId: string,
-  percentUsed: number
+  percentUsed: number,
 ): UsageSnapshot {
   const clampedUsed = Math.max(0, Math.min(100, percentUsed));
   const usedRatio = clampedUsed / 100;

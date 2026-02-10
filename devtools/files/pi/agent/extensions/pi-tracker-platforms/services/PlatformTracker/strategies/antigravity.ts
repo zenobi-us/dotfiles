@@ -1,4 +1,3 @@
-import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
@@ -9,6 +8,18 @@ type AntigravityMeta = {
   limit?: string; // API limit descriptor ("high", "medium", etc.)
   quotaFraction: number; // This model's remaining fraction
 };
+
+type AntigravityAuth = {
+  access?: string;
+};
+
+function isAntigravityAuth(auth: unknown): auth is AntigravityAuth {
+  return (
+    typeof auth === "object" &&
+    auth !== null &&
+    ("access" in auth ? typeof (auth as any).access === "string" : true)
+  );
+}
 
 // Helper to normalize model IDs
 function normalizeModelId(fullId: string): string {
@@ -30,12 +41,9 @@ usageTracker.registerProvider<AntigravityMeta>({
     "claude-opus-4-5",
   ],
   quotas: [{ id: "quota", percentageOnly: true }], // Percentage-only quota
-  hasAuthentication: () => hasAuthKey("google-antigravity"),
-  fetchUsage: async (): Promise<UsageSnapshot<AntigravityMeta>[]> => {
-    const auth = readPiAuthJson();
-    const token = (
-      auth["google-antigravity"] as { access?: string } | undefined
-    )?.access;
+  fetchUsage: async (ctx): Promise<UsageSnapshot<AntigravityMeta>[]> => {
+    const auth = ctx.auth;
+    const token = isAntigravityAuth(auth) ? auth.access : undefined;
     if (!token) return [];
 
     const res = await fetch(
