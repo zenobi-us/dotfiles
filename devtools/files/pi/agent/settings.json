@@ -1,6 +1,6 @@
 {
-  "lastChangelogVersion": "0.51.2",
-  "defaultThinkingLevel": "low",
+  "lastChangelogVersion": "0.52.6",
+  "defaultThinkingLevel": "off",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",

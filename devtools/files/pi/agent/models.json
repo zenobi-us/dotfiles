@@ -36,6 +36,15 @@
           },
           "contextWindow": 3075,
           "maxTokens": 2048
+        },
+        {
+          "id": "liquid/lfm2.5-1.2b",
+          "name": "LFM 2.5 1.2B (Local LM Studio)",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 32768,
+          "maxTokens": 32768
         }
       ]
     }
