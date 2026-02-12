@@ -25,32 +25,46 @@
 - [ ] `.memory/task-ze11ts07-tab-creation.md` - Implement basic tab creation
 - [ ] `.memory/task-ze11ts08-preset-application.md` - Apply presets to tabs
 - [ ] `.memory/task-ze11ts09-pane-focusing.md` - Pane focusing and command execution
+# Outstanding Tasks
 
----
+## Platform Tracker Implementation
 
-## Next Actions
+### Phase 1: Core Types ✅
+- [x] **task-845f3788**: Platform Tracker - Core Type Refactor
+  - Add StorageKey type and helpers
+  - Add providerId/modelId to UsageStoreEntry
+  - Add modelId to UsageSnapshot and ResolvedUsageWindow
+  - Update ProviderStrategy interface with getMetadata()
 
-1. Begin Phase 1 implementation
-2. Test preset storage and CLI wrapper
-3. Validate before moving to Phase 2
+### Phase 2: Provider Updates ✅
+- [x] **task-fcc4dbe3**: Platform Tracker - Provider Strategy Updates
+  - Update Anthropic/Codex/Kiro/Z.ai to return modelId="default" where applicable
+  - Update Copilot to return per-model snapshots
+  - Update Antigravity and Gemini to return per-model snapshots
+  - Remove isMetadata usage from provider implementations
 
----
+### Phase 3: Store Logic ✅
+- [x] **task-1ae9bcdf**: Platform Tracker - Store Update Logic
+  - **CRITICAL BUG FIX**: Implemented snapshot processing loop
+  - Implemented snapshot → per-model storage conversion
+  - Use compound keys (provider/model)
+  - Updated cleanup/error handling for per-model entries
+  - Added provider default metadata accessor wiring
 
-## Completed
+### Phase 4: Query & Context ✅
+- [x] **task-6c377cf9**: Platform Tracker - Query Functions and Context Providers
+  - ✅ **CRITICAL BUG FIX**: Implemented createPlatformContextProviders()
+  - ✅ Updated query functions to (providerId, modelId, windowId)
+  - ✅ Added helper functions (getProviderModels, getProviderEntries)
+  - ✅ Implemented dynamic provider creation per model × quota
+  - ✅ Added convenience factories for specific platforms (Copilot Spark, Anthropic)
 
-### ACLI Jira Skill Migration ✅ (2026-01-29)
+## Incoming Tasks
+- [ ] [task-c7f1a2de-write-user-request-to-task-file.md](task-c7f1a2de-write-user-request-to-task-file.md)
 
-**Epic**: `.memory/epic-jiraf2a6-acli-jira-skill-migration.md`  
-**Commit**: 23d5c96  
-**Learning**: [ACLI Jira Migration](learning-88ca47c3-acli-jira-migration.md)
+## Notes
 
-#### Deliverables
-- [x] ACLI capabilities documented: `.memory/research-1af8e04c-acli-capabilities.md`
-- [x] mcporter vs ACLI comparison: `.memory/research-98bec10e-mcporter-vs-acli-comparison.md`
-- [x] Migration task: `.memory/task-acli0001-migrate-jira-skill-to-acli.md`
-- [x] Updated skill: `~/.pi/agent/skills/jira/SKILL.md`
-- [x] Tested with real Jira instance (RWR-14013)
-
-**Outcome**: Simplified authentication, improved UX, reduced documentation by 19%
-
----
+- Epic: fc52bd74 (subagent-footer-customization)
+- Research: research-9056b4da-platform-usage-tracking.md
+- Validation: Full workspace tsc has unrelated/pre-existing errors in non-target modules.
+- Current implementation changes are complete for phases 1–4 in the target PlatformTracker area.

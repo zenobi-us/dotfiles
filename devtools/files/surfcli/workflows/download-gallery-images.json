@@ -1,0 +1,55 @@
+{
+  "name": "collect-gallery-link-urls",
+  "description": "Navigate to a gallery page, collect all link refs, and read each link node (no JS)",
+  "args": {
+    "url": {
+      "required": true,
+      "desc": "Starting gallery URL"
+    },
+    "linkSelector": {
+      "required": true,
+      "desc": "CSS selector to filter links (optional)"
+    },
+    "imageSelector": {
+      "required": true,
+      "desc": "CSS selector to filter image links (optional)"
+    }
+  },
+  "steps": [
+    {
+      "tool": "navigate",
+      "args": {
+        "url": "%{url}"
+      }
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "const links = document.querySelectorAll('%{linkSelector}'); return Array.from(links).map(link => link.href);",
+        "all": true
+      },
+      "as": "links"
+    },
+    {
+      "each": "%{links}",
+      "as": "item",
+      "output": "images",
+      "steps": [
+        {
+          "tool": "navigate",
+          "args": {
+            "url": "%{item}"
+          }
+        },
+        {
+          "tool": "js",
+          "args": {
+            "code": "const images = document.querySelectorAll('%{imageSelector}'); return Array.from(images).map(img => img.src);",
+            "all": true
+          },
+          "as": "images"
+        }
+      ]
+    }
+  ]
+}
