@@ -1,4 +1,4 @@
-import type { FooterContextProvider } from "../../pi-footer/types.ts";
+import type { FooterContextProvider } from "@zenobius/pi-footer";
 import { usageTracker } from "../services/PlatformTracker/store.ts";
 import type {
   ProviderStrategy,

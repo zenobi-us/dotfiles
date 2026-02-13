@@ -316,6 +316,7 @@ function createUsageTracker<C>(options: {
     },
 
     stop() {
+      this.trigger("stop");
       currentCtx = undefined;
       providerRuntime.clear();
       modelRuntime.clear();

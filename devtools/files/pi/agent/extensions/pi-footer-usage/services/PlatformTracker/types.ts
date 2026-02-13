@@ -154,6 +154,7 @@ export type RuntimeState = {
 
 export type TriggerReason =
   | "start"
+  | "stop"
   | "updateAll"
   | "attach"
   | "turn_start"

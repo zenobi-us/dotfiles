@@ -1,0 +1,6 @@
+{
+  "name": "pi-footer-usage",
+  "dependencies": {
+    "@zenobius/pi-footer": "*"
+  }
+}
