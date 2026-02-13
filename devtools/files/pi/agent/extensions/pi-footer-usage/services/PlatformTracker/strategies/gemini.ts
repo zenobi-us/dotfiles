@@ -1,4 +1,3 @@
-import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
@@ -9,16 +8,26 @@ type GeminiMeta = {
   bucketIndex: number; // Which bucket this came from
 };
 
+type GeminiAuth = {
+  access?: string;
+};
+
+function isGeminiAuth(auth: unknown): auth is GeminiAuth {
+  return (
+    typeof auth === "object" &&
+    auth !== null &&
+    ("access" in auth ? typeof (auth as any).access === "string" : true)
+  );
+}
+
 usageTracker.registerProvider<GeminiMeta>({
   id: "gemini",
   label: "Gemini",
   models: ["pro", "flash"], // Model families
   quotas: [{ id: "quota", percentageOnly: true }], // Percentage-only quota
-  hasAuthentication: () => hasAuthKey("google-gemini-cli"),
-  fetchUsage: async (): Promise<UsageSnapshot<GeminiMeta>[]> => {
-    const auth = readPiAuthJson();
-    const token = (auth["google-gemini-cli"] as { access?: string } | undefined)
-      ?.access;
+  fetchUsage: async (ctx): Promise<UsageSnapshot<GeminiMeta>[]> => {
+    const auth = ctx.auth;
+    const token = isGeminiAuth(auth) ? auth.access : undefined;
     if (!token) return [];
 
     const res = await fetch(

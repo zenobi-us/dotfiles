@@ -1,10 +1,10 @@
-import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
+import { AuthResolver } from "./auth";
 
 export type ProviderId = string;
-export type ModelId = `${ProviderId}/${string}`; // e.g., "anthropic/claude-sonnet-4-7"
+export type ModelId = string; // e.g., "anthropic/claude-sonnet-4-7"
 
 // Compound storage key type for per-model storage
-export type StorageKey = `${string}/${string}`; // "provider/model"
+export type StorageKey = `${ProviderId}/${ModelId}`; // "provider/model"
 
 // Helper to construct storage keys
 export function makeStorageKey(
@@ -106,8 +106,7 @@ export interface ProviderStrategy<TMeta = Record<string, unknown>> {
   quotas: QuotaDefinition[];
   models?: string[]; // Supported models
 
-  hasAuthentication: (ctx: ExtensionContext) => Promise<boolean> | boolean;
-  fetchUsage: (ctx: ExtensionContext) => Promise<UsageSnapshot<TMeta>[]>;
+  fetchUsage: (ctx: { auth: unknown }) => Promise<UsageSnapshot<TMeta>[]>;
 
   // Type-safe metadata accessor signature only.
   // If omitted, tracker injects a default accessor in registerProvider().
@@ -155,17 +154,16 @@ export type RuntimeState = {
 
 export type TriggerReason =
   | "start"
+  | "stop"
   | "updateAll"
   | "attach"
   | "turn_start"
   | "tool_result"
-  | "turn_end";
+  | "turn_end"
+  | "auth_change";
 
 export type UsageTrackerInternal = UsageTracker & {
-  start: (
-    ctx: ExtensionContext,
-    settings?: Partial<UsageTrackerSettings>,
-  ) => void;
+  start: (settings?: Partial<UsageTrackerSettings>) => void;
   stop: () => void;
   trigger: (reason?: TriggerReason) => void;
   setSettings: (settings: Partial<UsageTrackerSettings>) => void;

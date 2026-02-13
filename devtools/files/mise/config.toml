@@ -63,6 +63,7 @@ btop = "latest"
 "go:github.com/Crosse/font-install" = "latest"
 "npm:surf-cli" = "latest"
 "npm:@mariozechner/pi-coding-agent" = "latest"
+"pipx:vllm" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"

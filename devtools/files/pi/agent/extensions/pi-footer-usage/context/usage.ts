@@ -1,11 +1,12 @@
 import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
-import { Footer } from "../../pi-footer/footer.ts";
+import { Footer } from "@zenobius/pi-footer";
+import type { FooterContextProvider } from "@zenobius/pi-footer";
+
 import { usageTracker } from "../services/PlatformTracker/store.ts";
 import type {
   ResolvedUsageWindow,
   UsageStoreEntry,
 } from "../services/PlatformTracker/types.ts";
-import type { FooterContextProvider } from "../../pi-footer/types.ts";
 
 // Platform detection mapping: model name → provider id
 const MODEL_TO_PROVIDER: Record<string, string> = {

@@ -1,4 +1,3 @@
-import { hasAuthKey, readPiAuthJson } from "../auth.ts";
 import { API_TIMEOUT_MS, TimeFrame, percentToSnapshot } from "../numbers.ts";
 import type { UsageSnapshot } from "../types.ts";
 import { usageTracker } from "../store.ts";
@@ -10,6 +9,18 @@ type AnthropicMeta = {
   utilizationSource: "five_hour" | "five_day" | "seven_day";
 };
 
+type AnthropicAuth = {
+  access?: string;
+};
+
+function isAnthropicAuth(auth: unknown): auth is AnthropicAuth {
+  return (
+    typeof auth === "object" &&
+    auth !== null &&
+    ("access" in auth ? typeof (auth as any).access === "string" : true)
+  );
+}
+
 usageTracker.registerProvider<AnthropicMeta>({
   id: "anthropic",
   label: "Anthropic",
@@ -18,10 +29,9 @@ usageTracker.registerProvider<AnthropicMeta>({
     { id: "5_hour", percentageOnly: true }, // Percentage-only quota
     { id: "5_day", percentageOnly: true },
   ],
-  hasAuthentication: () => hasAuthKey("anthropic"),
-  fetchUsage: async (): Promise<UsageSnapshot<AnthropicMeta>[]> => {
-    const auth = readPiAuthJson();
-    const token = (auth.anthropic as { access?: string } | undefined)?.access;
+  fetchUsage: async (ctx): Promise<UsageSnapshot<AnthropicMeta>[]> => {
+    const auth = ctx.auth;
+    const token = isAnthropicAuth(auth) ? auth.access : undefined;
     if (!token) return [];
 
     const res = await fetch("https://api.anthropic.com/api/oauth/usage", {
@@ -40,7 +50,7 @@ usageTracker.registerProvider<AnthropicMeta>({
     };
 
     const windows: UsageSnapshot<AnthropicMeta>[] = [];
-    
+
     // Add 5-hour window with metadata
     if (data.five_hour?.utilization !== undefined) {
       windows.push({
@@ -60,7 +70,8 @@ usageTracker.registerProvider<AnthropicMeta>({
         ...percentToSnapshot("5_day", "default", dayUtilization),
         meta: {
           windowType: "rolling",
-          utilizationSource: data.five_day?.utilization !== undefined ? "five_day" : "seven_day",
+          utilizationSource:
+            data.five_day?.utilization !== undefined ? "five_day" : "seven_day",
         },
       });
     }

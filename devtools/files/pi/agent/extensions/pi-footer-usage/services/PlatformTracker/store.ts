@@ -1,4 +1,3 @@
-import type { ExtensionContext } from "@mariozechner/pi-coding-agent";
 import {
   Listener,
   QuotaDefinition,
@@ -11,8 +10,12 @@ import {
   makeStorageKey,
   getProviderMetadata,
   RuntimeState,
+  ProviderId,
+  StorageKey,
+  ModelId,
 } from "./types";
 import { clampPositiveInt } from "./numbers";
+import { AuthResolver } from "./auth";
 
 const DEFAULT_SETTINGS: UsageTrackerSettings = {
   intervalMs: 60_000,
@@ -101,18 +104,25 @@ function createRuntimeState(): RuntimeState {
   };
 }
 
-export function createUsageTracker(
-  initialStore?: UsageStore,
-): UsageTrackerInternal {
+function createUsageTracker<C>(options: {
+  authResolver?: AuthResolver;
+  initialStore?: UsageStore;
+}): UsageTrackerInternal {
   const listeners = new Set<Listener>();
 
   let settings: UsageTrackerSettings = { ...DEFAULT_SETTINGS };
-  let currentCtx: ExtensionContext | undefined;
+  let currentCtx: C | undefined;
 
-  const providerRuntime = new Map<string, RuntimeState>();
-  const modelRuntime = new Map<string, RuntimeState>(); // key: provider/model
+  let authResolver: AuthResolver = options.authResolver || new AuthResolver();
+  const providerRuntime = new Map<ProviderId, RuntimeState>();
+  const modelRuntime = new Map<StorageKey, RuntimeState>(); // key: provider/model
 
-  const getProviderState = (providerId: string): RuntimeState => {
+  const registerAuthResolver = (resolver: AuthResolver) => {
+    authResolver = resolver;
+    tracker.trigger("auth_change");
+  };
+
+  const getProviderState = (providerId: ProviderId): RuntimeState => {
     const state = providerRuntime.get(providerId);
     if (state) return state;
     const created = createRuntimeState();
@@ -120,7 +130,10 @@ export function createUsageTracker(
     return created;
   };
 
-  const getModelState = (providerId: string, modelId: string): RuntimeState => {
+  const getModelState = (
+    providerId: ProviderId,
+    modelId: ModelId,
+  ): RuntimeState => {
     const key = makeStorageKey(providerId, modelId);
     const state = modelRuntime.get(key);
     if (state) return state;
@@ -172,8 +185,6 @@ export function createUsageTracker(
   };
 
   const runProviderUpdate = async (providerId: string): Promise<void> => {
-    if (!currentCtx) return;
-
     const provider = tracker.providers.get(providerId);
     if (!provider) {
       providerRuntime.delete(providerId);
@@ -185,11 +196,10 @@ export function createUsageTracker(
     }
 
     const now = Date.now();
-
     try {
-      const hasAuth = await provider.hasAuthentication(currentCtx);
+      const auth = await options.authResolver?.resolve(providerId);
 
-      if (!hasAuth) {
+      if (!auth) {
         const p = getProviderState(providerId);
         p.backoffLevel = 0;
         p.nextEligibleAt = now + settings.intervalMs;
@@ -214,7 +224,9 @@ export function createUsageTracker(
         return;
       }
 
-      const snapshots = await provider.fetchUsage(currentCtx);
+      const snapshots = await provider.fetchUsage({
+        auth,
+      });
       const touchedModelIds = new Set<string>();
 
       for (const snapshot of snapshots) {
@@ -259,7 +271,7 @@ export function createUsageTracker(
   };
 
   const tracker: UsageTrackerInternal = {
-    store: initialStore ?? new Map(),
+    store: options.initialStore ?? new Map(),
     providers: new Map(),
 
     registerProvider(provider) {
@@ -285,8 +297,6 @@ export function createUsageTracker(
     },
 
     trigger(_reason) {
-      if (!currentCtx) return;
-
       for (const providerId of this.providers.keys()) {
         const p = getProviderState(providerId);
         p.queued = true;
@@ -300,13 +310,13 @@ export function createUsageTracker(
       }
     },
 
-    start(ctx, nextSettings) {
-      currentCtx = ctx;
+    start(nextSettings) {
       if (nextSettings) this.setSettings(nextSettings);
       this.trigger("start");
     },
 
     stop() {
+      this.trigger("stop");
       currentCtx = undefined;
       providerRuntime.clear();
       modelRuntime.clear();
@@ -339,4 +349,4 @@ export function createUsageTracker(
   return tracker;
 }
 
-export const usageTracker = createUsageTracker();
+export const usageTracker = createUsageTracker({});
