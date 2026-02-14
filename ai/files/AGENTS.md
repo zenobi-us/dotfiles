@@ -71,3 +71,10 @@ When confused: stop, think, present theories, get signoff. Never silently retry 
 - Direct and concise. Under 400 words unless complexity demands more.
 - Reference patterns/repos by name, not full code blocks (unless asked).
 - Structure with headers for scannability when covering multiple points.
+
+
+## Tool and Skill Preferences
+
+- use lynx to search the web and read pages. 
+- when exploring code, use codemapper, lsp and ast to understand structure and find relevant sections. 
+- construct statemachine diagrams to help you track undiscovered code paths and understand the flow of execution.

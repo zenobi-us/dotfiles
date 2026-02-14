@@ -1,5 +1,5 @@
 ---
-name: surf
+name: controlling-chrome-with-surfcli
 description: Control Chrome browser via CLI for testing, automation, and debugging. Use when the user needs browser automation, screenshots, form filling, page inspection, network/CPU emulation, DevTools streaming, or AI queries via ChatGPT/Gemini/Perplexity/Grok.
 ---
 
