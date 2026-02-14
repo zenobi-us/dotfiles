@@ -5,12 +5,14 @@
   "packages": [
     "npm:@zenobius/pi-rose-pine",
     "npm:@zenobius/pi-worktrees@0.1.0-next.1",
+    "npm:@marckrenn/pi-sub-bar",
     "npm:pi-interview",
     "npm:pi-subdir-context",
     "npm:pi-messenger",
     "npm:pi-mermaid",
     "npm:pi-subagents",
-    "npm:pi-read-map"
+    "npm:pi-read-map",
+    "npm:@marckrenn/pi-sub-core"
   ],
   "hideThinkingBlock": true,
   "defaultProvider": "openai-codex",
