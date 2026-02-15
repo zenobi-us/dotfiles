@@ -12,12 +12,10 @@
     "npm:pi-mermaid",
     "npm:pi-subagents",
     "npm:pi-read-map",
-    "npm:@marckrenn/pi-sub-core",
-    "npm:pi-superpowers-plus"
+    "npm:@marckrenn/pi-sub-core"
   ],
   "hideThinkingBlock": true,
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }
-
