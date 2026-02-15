@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.52.10",
+  "lastChangelogVersion": "0.52.12",
   "defaultThinkingLevel": "high",
   "theme": "rose-pine-moon",
   "packages": [
@@ -12,10 +12,12 @@
     "npm:pi-mermaid",
     "npm:pi-subagents",
     "npm:pi-read-map",
-    "npm:@marckrenn/pi-sub-core"
+    "npm:@marckrenn/pi-sub-core",
+    "npm:pi-superpowers-plus"
   ],
   "hideThinkingBlock": true,
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }
+

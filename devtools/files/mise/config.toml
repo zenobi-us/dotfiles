@@ -63,6 +63,8 @@ watchexec = "latest"
 yarn="1.22.19"
 yt-dlp = "latest"
 zig="0.10.1"
+"pipx:gitgossip" = "latest"
+"cargo:commitgenius" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
