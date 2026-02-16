@@ -1,0 +1,147 @@
+/**
+ * Qualified Skills Extension
+ *
+ * Replaces built-in skill loading with path-qualified kebab-case names.
+ *
+ * Example:
+ *   skills/experts/data-ai/data-analyst/SKILL.md
+ *   -> qualifiedName: "experts-data-ai-data-analyst"
+ *   -> shortname: "data-analyst"
+ *
+ * Usage:
+ *   pi --no-skills   # Disable built-in skills, this extension takes over
+ *
+ * System Prompt Format:
+ *   <available_skills>
+ *     <skill>
+ *       <name>experts-data-ai-data-analyst</name>
+ *       <shortname>data-analyst</shortname>
+ *       <description>...</description>
+ *       <location>/path/to/SKILL.md</location>
+ *     </skill>
+ *   </available_skills>
+ *
+ * Commands:
+ *   /skill:experts-data-ai-data-analyst   # Load skill by qualified name
+ */
+
+import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import { loadSkills, formatSkillsForPrompt, readSkillContent, type Skill } from "./skill-loader.js";
+
+export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
+  let skills: Skill[] = [];
+  let skillsByQualifiedName: Map<string, Skill> = new Map();
+  let skillPromptBlock: string = "";
+
+  // Load skills on session start
+  pi.on("session_start", async (_event, ctx) => {
+    const result = loadSkills({
+      cwd: ctx.cwd,
+      includeDefaults: true,
+    });
+
+    skills = result.skills;
+    skillsByQualifiedName = new Map(skills.map((s) => [s.qualifiedName, s]));
+    skillPromptBlock = formatSkillsForPrompt(skills);
+
+    // Log diagnostics
+    for (const diag of result.diagnostics) {
+      if (diag.type === "collision") {
+        console.warn(`[qualified-skills] Collision: ${diag.message} (${diag.path})`);
+      }
+    }
+
+    // Notify user
+    if (skills.length > 0) {
+      ctx.ui.notify(`Loaded ${skills.length} skill(s) with qualified names`, "info");
+    }
+
+    // Register skill commands
+    for (const skill of skills) {
+      const commandName = `skill:${skill.qualifiedName}`;
+
+      pi.registerCommand(commandName, {
+        description: skill.description,
+        handler: async (args, cmdCtx) => {
+          const body = readSkillContent(skill);
+          const skillBlock = `<skill name="${skill.qualifiedName}" shortname="${skill.name}" location="${skill.filePath}">
+References are relative to ${skill.baseDir}.
+
+${body}
+</skill>`;
+
+          // Send as user message with skill content + any args
+          const message = args ? `${skillBlock}\n\nUser: ${args}` : skillBlock;
+
+          pi.sendUserMessage(message);
+        },
+      });
+    }
+  });
+
+  // Inject skills into system prompt
+  pi.on("before_agent_start", async (event) => {
+    if (!skillPromptBlock) {
+      return;
+    }
+
+    return {
+      systemPrompt: event.systemPrompt + skillPromptBlock,
+    };
+  });
+
+  // Intercept /skill: commands in input (for short name fallback)
+  pi.on("input", async (event, ctx) => {
+    const text = event.text.trim();
+
+    // Check for /skill:name pattern
+    const skillMatch = text.match(/^\/skill:([^\s]+)(?:\s+(.*))?$/);
+    if (!skillMatch) {
+      return { action: "continue" as const };
+    }
+
+    const [, requestedName, args] = skillMatch;
+
+    // Try qualified name first
+    let skill = skillsByQualifiedName.get(requestedName);
+
+    // If not found, try matching by shortname (with warning if ambiguous)
+    if (!skill) {
+      const matchingSkills = skills.filter((s) => s.name === requestedName);
+
+      if (matchingSkills.length === 1) {
+        skill = matchingSkills[0];
+        ctx.ui.notify(
+          `Using "${skill.qualifiedName}" for shortname "${requestedName}"`,
+          "info"
+        );
+      } else if (matchingSkills.length > 1) {
+        // Ambiguous - show options
+        const options = matchingSkills.map((s) => s.qualifiedName);
+        ctx.ui.notify(
+          `Ambiguous shortname "${requestedName}". Use qualified name:\n${options.map((o) => `  /skill:${o}`).join("\n")}`,
+          "warning"
+        );
+        return { action: "handled" as const };
+      }
+    }
+
+    if (!skill) {
+      ctx.ui.notify(`Skill not found: ${requestedName}`, "error");
+      return { action: "handled" as const };
+    }
+
+    // Load and send skill
+    const body = readSkillContent(skill);
+    const skillBlock = `<skill name="${skill.qualifiedName}" shortname="${skill.name}" location="${skill.filePath}">
+References are relative to ${skill.baseDir}.
+
+${body}
+</skill>`;
+
+    const message = args ? `${skillBlock}\n\nUser: ${args}` : skillBlock;
+
+    pi.sendUserMessage(message);
+    return { action: "handled" as const };
+  });
+}
