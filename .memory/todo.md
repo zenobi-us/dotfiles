@@ -2,6 +2,26 @@
 
 ## Active Work
 
+### Generate Commit Message Modal Fixes 🔧 IN PROGRESS
+
+**Research**: `.memory/research-f1e37c82-commit-modal-fixes.md`
+
+**Status**: Research Complete → Ready for Implementation
+
+**Issues Identified:**
+1. **'q' key not closing modal** - Being captured by filter input regex
+2. **Border rendering with selection highlight** - Background applied to borders
+3. **Potential Unicode alignment issues** - Using `padEnd()` instead of `visibleWidth()`
+
+**Fix Location:** `devtools/files/pi/agent/extensions/generate-commit-message/index.ts`
+
+**Tasks:**
+- [ ] Add 'q'/'Q' key handler before filter logic (line ~610)
+- [ ] Fix background application on selected row (lines 526-532)
+- [ ] Use visibleWidth for model ID padding (line 513)
+
+---
+
 ### Model Alias Manager Extension ❌ CANCELLED
 
 **Epic**: `.memory/epic-m0d3la1s-model-alias-manager-extension.md`
