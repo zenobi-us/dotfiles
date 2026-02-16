@@ -1,11 +1,12 @@
 {
   "lastChangelogVersion": "0.52.12",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "off",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
     "npm:@zenobius/pi-worktrees@0.1.0-next.1",
     "npm:@marckrenn/pi-sub-bar",
+    "npm:pi-fzf",
     "npm:pi-interview",
     "npm:pi-subdir-context",
     "npm:pi-messenger",
@@ -19,3 +20,4 @@
   "defaultModel": "claude-opus-4.5",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }
+
