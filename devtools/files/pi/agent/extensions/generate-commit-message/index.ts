@@ -524,12 +524,9 @@ async function selectModelInteractive(
                   spacing +
                   theme.fg("muted", costPart);
                 lines.push(
-                  theme.bg(
-                    "userMessageBg",
-                    theme.fg("border", "│") +
-                      pad(itemContent, innerW) +
-                      theme.fg("border", "│"),
-                  ),
+                  theme.fg("border", "│") +
+                  theme.bg("userMessageBg", pad(itemContent, innerW)) +
+                  theme.fg("border", "│"),
                 );
               } else {
                 // For unselected items, build with separate colors and spacing

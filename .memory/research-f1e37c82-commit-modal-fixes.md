@@ -3,7 +3,7 @@ id: f1e37c82
 title: Generate Commit Message Modal - Fix Analysis
 created_at: 2026-02-17
 updated_at: 2026-02-17
-status: in-progress
+status: done
 epic_id: null
 phase_id: null
 related_task_id: null
@@ -154,20 +154,18 @@ This could cause alignment issues if the overlay system doesn't expect empty lin
 
 ## Recommended Fixes
 
-### Fix 1: Add 'q' Key Handler
+### Fix 1: 'q' Key for Modal Close - REMOVED
 
-**File:** `devtools/files/pi/agent/extensions/generate-commit-message/index.ts`
-**Location:** In `handleInput()`, BEFORE the filter character check
+**Decision:** User requested to remove 'q' as a modal close option.
 
-```typescript
-// Handle 'q' or 'Q' to close modal (BEFORE filter logic)
-if (data === "q" || data === "Q") {
-  done(null);
-  return;
-}
-```
+**Rationale:** 
+- The filter input captures 'q' for fuzzy matching model names
+- Using 'q' to close would conflict with typing model names containing 'q'
+- Escape and Ctrl+C remain the canonical close methods
 
-### Fix 2: Fix Background Application on Selected Row
+**Action:** No change needed - 'q' was never implemented as a close option.
+
+### Fix 2: Fix Background Application on Selected Row - IMPLEMENTED ✅
 
 **Location:** Lines 526-532
 
@@ -183,13 +181,16 @@ lines.push(
 );
 ```
 
-**After:**
+**After (APPLIED):**
 ```typescript
-const highlightedContent = theme.bg("userMessageBg", pad(itemContent, innerW));
 lines.push(
-  theme.fg("border", "│") + highlightedContent + theme.fg("border", "│")
+  theme.fg("border", "│") +
+  theme.bg("userMessageBg", pad(itemContent, innerW)) +
+  theme.fg("border", "│"),
 );
 ```
+
+This keeps borders outside the background color, preventing visual artifacts.
 
 ### Fix 3: Use visibleWidth for Model ID Padding
 
@@ -217,8 +218,16 @@ const modelPadded = modelPart + " ".repeat(Math.max(0, maxModelIdLen - modelVisi
 ## Test Plan
 
 1. Test Escape key closes modal
-2. Test 'q' key closes modal  
-3. Test filtering still works (type model name)
+2. Test Ctrl+C closes modal
+3. Test filtering still works (type model name including 'q')
 4. Verify border alignment with different terminal widths
 5. Verify selected row highlighting doesn't break borders
 6. Test with unicode model IDs (if any exist)
+
+## Implementation Status
+
+| Fix | Status | Notes |
+|-----|--------|-------|
+| 'q' key close | REMOVED | User decision - conflicts with filter input |
+| Border background | ✅ DONE | Applied to content only, borders excluded |
+| visibleWidth padding | DEFERRED | Low priority, only affects unicode model IDs |
