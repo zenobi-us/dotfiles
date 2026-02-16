@@ -181,11 +181,34 @@ async function getModelCost(
 
 /**
  * Format cost for display.
- * Shows input/output cost per million tokens.
+ * Shows input/output cost per million tokens with appropriate precision.
+ * Avoids rounding up small values (e.g., $0.0375 → $0.0375, not $0.04).
  */
 function formatCost(cost: ModelInfo["cost"] | null): string {
   if (!cost) return "unknown pricing";
-  return `$${cost.input.toFixed(2)}/$${cost.output.toFixed(2)} per 1M tokens (in/out)`;
+  
+  const formatPrice = (price: number): string => {
+    if (price === 0) return "0";
+    
+    // Convert to string and count significant decimals
+    const str = price.toString();
+    
+    // For very small prices, preserve more decimals
+    if (price < 0.001) {
+      return price.toFixed(5).replace(/0+$/, "");
+    } else if (price < 0.01) {
+      // Show up to 4 decimals, remove trailing zeros
+      return price.toFixed(4).replace(/0+$/, "");
+    } else if (price < 1) {
+      // Show up to 3 decimals
+      return price.toFixed(3).replace(/0+$/, "");
+    } else {
+      // For >= $1, use 2 decimals
+      return price.toFixed(2).replace(/\.?0+$/, "").replace(/^(\d+)$/, "$1.00");
+    }
+  };
+  
+  return `$${formatPrice(cost.input)}/$${formatPrice(cost.output)} per 1M tokens (in/out)`;
 }
 
 function stripQuotes(value: string): string {
