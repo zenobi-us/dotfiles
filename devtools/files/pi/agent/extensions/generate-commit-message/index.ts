@@ -2,6 +2,7 @@ import type {
   ExtensionAPI,
   ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
+import { matchesKey, visibleWidth } from "@mariozechner/pi-tui";
 import {
   existsSync,
   mkdirSync,
@@ -100,14 +101,14 @@ function normalizeMode(mode?: string): string | undefined {
  */
 function calculateCostScore(model: ModelInfo): number {
   const { input, output } = model.cost;
-  
+
   // Deprioritize request-based pricing models (GitHub Copilot shows $0/$0)
   // These don't fit the token-cost model and should only be selected if
   // no token-based options exist
   if (input === 0 && output === 0) {
     return Number.MAX_SAFE_INTEGER;
   }
-  
+
   return input + output * 2;
 }
 
@@ -127,7 +128,7 @@ interface ModelSelection {
 /**
  * Pick the cheapest available model based on actual pricing data.
  * Falls back to name-based heuristics if cost data is unavailable.
- * 
+ *
  * Note: Request-based pricing models (GitHub Copilot: $0/$0) are deprioritized
  * in favor of token-based models where costs are transparent and comparable.
  */
@@ -145,7 +146,7 @@ async function pickCheapestModel(
   const tokenBased = available.filter(
     (m) => !(m.cost.input === 0 && m.cost.output === 0),
   );
-  
+
   const cheapModels = tokenBased
     .filter((m) => m.cost.output <= maxOutputCost)
     .sort((a, b) => calculateCostScore(a) - calculateCostScore(b));
@@ -221,13 +222,13 @@ async function getModelCost(
  */
 function formatCost(cost: ModelInfo["cost"] | null): string {
   if (!cost) return "unknown pricing";
-  
+
   const formatPrice = (price: number): string => {
     if (price === 0) return "0";
-    
+
     // Convert to string and count significant decimals
     const str = price.toString();
-    
+
     // For very small prices, preserve more decimals
     if (price < 0.001) {
       return price.toFixed(5).replace(/0+$/, "");
@@ -239,10 +240,13 @@ function formatCost(cost: ModelInfo["cost"] | null): string {
       return price.toFixed(3).replace(/0+$/, "");
     } else {
       // For >= $1, use 2 decimals
-      return price.toFixed(2).replace(/\.?0+$/, "").replace(/^(\d+)$/, "$1.00");
+      return price
+        .toFixed(2)
+        .replace(/\.?0+$/, "")
+        .replace(/^(\d+)$/, "$1.00");
     }
   };
-  
+
   return `$${formatPrice(cost.input)}/$${formatPrice(cost.output)} per 1M tokens (in/out)`;
 }
 
@@ -357,7 +361,7 @@ async function selectModelInteractive(
   }
 
   const available = (await ctx.modelRegistry.getAvailable()) as ModelInfo[];
-  
+
   if (available.length === 0) {
     ctx.ui.notify("No models available", "error");
     return null;
@@ -369,6 +373,18 @@ async function selectModelInteractive(
       let selectedIndex = 0;
       let sortBy: "name" | "provider" | "cost" = "name";
       let sortAsc = true;
+      let filterQuery = "";
+
+      // Fuzzy filter function
+      const fuzzyMatch = (text: string, query: string): boolean => {
+        let queryIdx = 0;
+        for (let i = 0; i < text.length && queryIdx < query.length; i++) {
+          if (text[i].toLowerCase() === query[queryIdx].toLowerCase()) {
+            queryIdx++;
+          }
+        }
+        return queryIdx === query.length;
+      };
 
       // Format model options
       const getFormattedOptions = () => {
@@ -379,8 +395,14 @@ async function selectModelInteractive(
           return { modelId, costLabel, model, inputCost };
         });
 
+        // Filter based on query
+        let filtered = opts;
+        if (filterQuery) {
+          filtered = opts.filter((opt) => fuzzyMatch(opt.modelId, filterQuery));
+        }
+
         // Sort based on current sort mode
-        const sorted = [...opts].sort((a, b) => {
+        const sorted = [...filtered].sort((a, b) => {
           let cmp = 0;
           if (sortBy === "name") {
             cmp = a.modelId.localeCompare(b.modelId);
@@ -404,139 +426,199 @@ async function selectModelInteractive(
           const lines: string[] = [];
           const options = getFormattedOptions();
 
-          // Top border
-          lines.push(theme.fg("border", "┌" + "─".repeat(width - 2) + "┐"));
+          // Helper: pad text to exact length, handling ANSI codes
+          const pad = (s: string, len: number): string => {
+            const vis = visibleWidth(s);
+            return s + " ".repeat(Math.max(0, len - vis));
+          };
+
+          // Helper: render border row with content on sides
+          const row = (content: string): string => {
+            const innerW = width - 2;
+            return (
+              theme.fg("border", "│") +
+              pad(content, innerW) +
+              theme.fg("border", "│")
+            );
+          };
+
+          // Helper: render centered header with rounded corners
+          const renderHeader = (text: string): string => {
+            const innerW = width - 2;
+            const padLen = Math.max(0, innerW - visibleWidth(text));
+            const padLeft = Math.floor(padLen / 2);
+            const padRight = padLen - padLeft;
+            return (
+              theme.fg("border", "╭" + "─".repeat(padLeft)) +
+              theme.fg("accent", text) +
+              theme.fg("border", "─".repeat(padRight) + "╮")
+            );
+          };
+
+          // Helper: render centered footer with rounded corners
+          const renderFooter = (text: string): string => {
+            const innerW = width - 2;
+            const padLen = Math.max(0, innerW - visibleWidth(text));
+            const padLeft = Math.floor(padLen / 2);
+            const padRight = padLen - padLeft;
+            return (
+              theme.fg("border", "╰" + "─".repeat(padLeft)) +
+              theme.fg("dim", text) +
+              theme.fg("border", "─".repeat(padRight) + "╯")
+            );
+          };
+
+          // Top spacing
+          lines.push("");
 
           // Header with sort status
           const sortLabel = `${sortBy}${sortAsc ? " ↑" : " ↓"}`;
-          const sortInfo = theme.fg("muted", `[sorted by ${sortLabel}]`);
-          const headerText = "Select a model for commit generation";
-          const contentWidth = width - 4; // Account for borders and padding
+          const headerText = `Select a model for commit generation [${sortLabel}]`;
+          lines.push(renderHeader(headerText));
 
-          // Truncate if needed
-          const header = headerText.length > contentWidth 
-            ? headerText.substring(0, contentWidth - 3) + "..."
-            : headerText;
+          // Filter input line
+          const filterDisplay =
+            filterQuery || theme.fg("muted", "(type to filter)");
+          lines.push(
+            row(
+              " " +
+              theme.fg("accent", ">") +
+              " " +
+              filterDisplay
+            ),
+          );
 
-          lines.push(
-            theme.fg("border", "│") +
-              " " +
-              theme.fg("accent", header.padEnd(contentWidth - 1)) +
-              theme.fg("border", "│"),
-          );
-          lines.push(
-            theme.fg("border", "│") +
-              " " +
-              sortInfo.padEnd(contentWidth - 1) +
-              theme.fg("border", "│"),
-          );
-          lines.push(
-            theme.fg("border", "│") + " ".repeat(contentWidth + 1) + theme.fg("border", "│"),
-          );
+          lines.push(row(""));
 
           if (options.length === 0) {
             lines.push(
-              theme.fg("border", "│") +
-                " " +
-                theme.fg("muted", "No models available".padEnd(contentWidth - 1)) +
-                theme.fg("border", "│"),
+              row(" " + theme.fg("muted", "No models matching filter")),
             );
           } else {
-            // Find max lengths for alignment
+            // Find max model ID length for alignment
             const maxModelIdLen = Math.max(
               ...options.map((o) => o.modelId.length),
             );
-            const maxCostLen = Math.max(
-              ...options.map((o) => o.costLabel.length),
-            );
-
-            // Check if we have room for full display
-            const itemContentWidth = contentWidth - 1;
-            const fullItemWidth = maxModelIdLen + 2 + maxCostLen;
 
             // Options with formatting
             for (let i = 0; i < options.length; i++) {
               const opt = options[i];
               const isSelected = i === selectedIndex;
 
-              const modelPart = opt.modelId.padEnd(maxModelIdLen);
-              const costPart = opt.costLabel.padStart(maxCostLen);
-              let itemLine = modelPart + "  " + costPart;
-
-              // Truncate if needed to fit width
-              if (itemLine.length > itemContentWidth) {
-                itemLine = itemLine.substring(0, itemContentWidth - 3) + "...";
-              } else {
-                itemLine = itemLine.padEnd(itemContentWidth);
-              }
+              const modelPart = opt.modelId;
+              const costPart = opt.costLabel;
 
               if (isSelected) {
+                // For selected items, construct content first, then highlight
+                const modelPadded = modelPart.padEnd(maxModelIdLen);
+                const innerW = width - 2;
+                const contentWidth =
+                  visibleWidth("▶ " + modelPadded + "  " + costPart);
+                const spacing = " ".repeat(
+                  Math.max(0, innerW - contentWidth),
+                );
+                const itemContent =
+                  "▶ " +
+                  theme.fg("text", modelPadded) +
+                  "  " +
+                  spacing +
+                  theme.fg("muted", costPart);
                 lines.push(
-                  theme.fg("border", "│") +
-                    theme.bg(
-                      "selectedBg",
-                      theme.fg("accent", "▶ " + itemLine),
-                    ) +
-                    theme.fg("border", "│"),
+                  theme.bg(
+                    "userMessageBg",
+                    theme.fg("border", "│") +
+                      pad(itemContent, innerW) +
+                      theme.fg("border", "│"),
+                  ),
                 );
               } else {
+                // For unselected items, build with separate colors and spacing
+                const modelPadded = modelPart.padEnd(maxModelIdLen);
+                const innerW = width - 2;
+                const contentWidth =
+                  visibleWidth("  " + modelPadded + "  " + costPart);
+                const spacing = " ".repeat(
+                  Math.max(0, innerW - contentWidth),
+                );
+                const itemContent =
+                  "  " +
+                  theme.fg("text", modelPadded) +
+                  "  " +
+                  spacing +
+                  theme.fg("muted", costPart);
                 lines.push(
                   theme.fg("border", "│") +
-                    " " +
-                    theme.fg("text", modelPart) +
-                    "  " +
-                    theme.fg("muted", costPart).padEnd(itemContentWidth - maxModelIdLen - 3) +
-                    " " +
+                    pad(itemContent, innerW) +
                     theme.fg("border", "│"),
                 );
               }
             }
           }
 
-          // Blank line before instructions
-          lines.push(
-            theme.fg("border", "│") + " ".repeat(contentWidth + 1) + theme.fg("border", "│"),
-          );
+          // Preview footer for selected model
+          if (options.length > 0 && selectedIndex < options.length) {
+            const selected = options[selectedIndex];
+            lines.push(row(""));
+            lines.push(row(" " + theme.fg("accent", selected.modelId)));
+            lines.push(row(" " + theme.fg("muted", selected.costLabel)));
+          }
 
-          // Instructions line
+          // Footer with instructions
+          lines.push(row(""));
           const instructions =
-            "↑/↓ Navigate  Enter/Space Select  n/p/c Sort  q/Esc Cancel";
-          const instDisplay = instructions.length > contentWidth
-            ? instructions.substring(0, contentWidth - 3) + "..."
-            : instructions.padEnd(contentWidth);
+            "↑/↓ Navigate  Enter/Space Select  n/p/c Sort  Backspace Clear  Esc/Ctrl+C Cancel";
+          const instDisplay =
+            instructions.length > width - 4
+              ? instructions.substring(0, width - 7) + "..."
+              : instructions;
+          lines.push(renderFooter(instDisplay));
 
-          lines.push(
-            theme.fg("border", "│") +
-              " " +
-              theme.fg("dim", instDisplay) +
-              theme.fg("border", "│"),
-          );
-
-          // Bottom border
-          lines.push(theme.fg("border", "└" + "─".repeat(width - 2) + "┘"));
+          // Bottom spacing
+          lines.push("");
 
           return lines;
         }
 
         handleInput(data: string): void {
           const options = getFormattedOptions();
-          if (data === "\x1b[A" || data === "k") {
+          
+          // Handle Escape or Ctrl+C to cancel (using matchesKey for cross-terminal compatibility)
+          if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) {
+            done(null);
+            return;
+          }
+          
+          // Handle arrow keys or vim navigation
+          if (matchesKey(data, "up") || data === "k") {
             // Up arrow or 'k'
-            selectedIndex = (selectedIndex - 1 + options.length) % options.length;
-          } else if (data === "\x1b[B" || data === "j") {
+            selectedIndex =
+              (selectedIndex - 1 + options.length) % options.length;
+            return;
+          } else if (matchesKey(data, "down") || data === "j") {
             // Down arrow or 'j'
             selectedIndex = (selectedIndex + 1) % options.length;
-          } else if (data === "\r" || data === " ") {
+            return;
+          }
+          
+          // Handle backspace to clear filter
+          if (matchesKey(data, "backspace")) {
+            filterQuery = filterQuery.slice(0, -1);
+            selectedIndex = 0;
+            return;
+          }
+          
+          // Handle regular characters for filtering
+          if (data.length === 1 && /[a-zA-Z0-9\-_/.]/.test(data)) {
+            filterQuery += data;
+            selectedIndex = 0;
+            return;
+          }
+          
+          if (matchesKey(data, "enter") || matchesKey(data, "space")) {
             // Enter or Space
-            done(options[selectedIndex].modelId);
-          } else if (
-            data === "\x1b" ||
-            data === "\x1b[" ||
-            data === "q" ||
-            data === "Q"
-          ) {
-            // Escape, Escape[, q, or Q
-            done(null);
+            if (options.length > 0) {
+              done(options[selectedIndex].modelId);
+            }
           } else if (data.toLowerCase() === "n") {
             // Sort by name
             if (sortBy === "name") {
@@ -574,7 +656,7 @@ async function selectModelInteractive(
 
       return new ModelSelector();
     },
-    { overlay: true, overlayOptions: { anchor: "top-center", margin: 1 } },
+    { overlay: true, overlayOptions: { width: "100%" } },
   );
 
   return result || null;
@@ -591,7 +673,7 @@ async function runGenerateCommit(
 
   // Determine model selection
   let selection: ModelSelection;
-  
+
   // Priority: explicit model > configured model > auto-select
   if (explicitModel) {
     const cost = await getModelCost(ctx, explicitModel);
@@ -620,7 +702,8 @@ async function runGenerateCommit(
 
   // Provide user feedback
   if (ctx.hasUI) {
-    const sourceLabel = selection.source === "config" ? "configured" : "auto-selected (cheapest)";
+    const sourceLabel =
+      selection.source === "config" ? "configured" : "auto-selected (cheapest)";
     const costLabel = formatCost(selection.cost);
 
     ctx.ui.notify(
