@@ -1,0 +1,560 @@
+#!/usr/bin/env bash
+#
+# ghostty-shaders - Ghostty shader manager with live preview
+#
+# Usage:
+#   ghostty-shaders              # Interactive picker
+#   ghostty-shaders list         # List available shaders
+#   ghostty-shaders add <source> # Add source (path/repo/url)
+#   ghostty-shaders apply <name> # Apply shader by name
+#   ghostty-shaders clear        # Remove current shader
+#   ghostty-shaders fav [cmd]    # Manage favorites
+
+set -euo pipefail
+
+# === Configuration ===
+DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/ghostty-shaders"
+SOURCES_DIR="$DATA_DIR/sources"
+FAVORITES_FILE="$DATA_DIR/favorites"
+GHOSTTY_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
+BACKUP_CONFIG="$DATA_DIR/.config.backup"
+
+# === Colors ===
+RED=$'\033[0;31m'
+GREEN=$'\033[0;32m'
+YELLOW=$'\033[0;33m'
+BLUE=$'\033[0;34m'
+CYAN=$'\033[0;36m'
+DIM=$'\033[2m'
+BOLD=$'\033[1m'
+NC=$'\033[0m'
+
+# === Helpers ===
+log_info()  { echo -e "${BLUE}▸${NC} $*"; }
+log_ok()    { echo -e "${GREEN}✓${NC} $*"; }
+log_warn()  { echo -e "${YELLOW}!${NC} $*"; }
+log_error() { echo -e "${RED}✗${NC} $*" >&2; }
+
+reload_ghostty() {
+    # Trigger config reload based on platform
+    case "$(uname -s)" in
+        Linux)
+            # Use DBus on Linux
+            if command -v gdbus &>/dev/null; then
+                gdbus call --session --dest com.mitchellh.ghostty \
+                    --object-path /com/mitchellh/ghostty \
+                    --method org.gtk.Actions.Activate \
+                    "reload-config" "[]" "{}" &>/dev/null || true
+            fi
+            ;;
+        Darwin)
+            # Use AppleScript on macOS to send Cmd+Shift+,
+            if command -v osascript &>/dev/null; then
+                osascript -e 'tell application "System Events" to keystroke "," using {command down, shift down}' &>/dev/null || true
+            fi
+            ;;
+    esac
+}
+
+ensure_dirs() {
+    mkdir -p "$SOURCES_DIR" "$DATA_DIR"
+    touch "$FAVORITES_FILE"
+}
+
+check_deps() {
+    local missing=()
+    command -v gum &>/dev/null || missing+=("gum")
+    command -v ghostty &>/dev/null || missing+=("ghostty")
+    
+    if [[ ${#missing[@]} -gt 0 ]]; then
+        log_error "Missing dependencies: ${missing[*]}"
+        exit 1
+    fi
+    
+    # Warn about optional deps for specific features
+    case "$(uname -s)" in
+        Linux)
+            command -v gdbus &>/dev/null || log_warn "gdbus not found - auto-reload won't work (use Ctrl+Shift+,)"
+            ;;
+        Darwin)
+            # osascript is always present on macOS
+            # but may need accessibility permissions
+            ;;
+    esac
+    command -v git &>/dev/null || log_warn "git not found - cloning repos won't work"
+    command -v curl &>/dev/null || log_warn "curl not found - downloading URLs won't work"
+}
+
+# === Source Detection & Management ===
+detect_source_type() {
+    local source="$1"
+    
+    if [[ -e "$source" ]]; then
+        echo "path"
+    elif [[ "$source" =~ ^https?:// ]]; then
+        if [[ "$source" =~ \.glsl$ ]]; then
+            echo "url"
+        else
+            echo "repo-url"
+        fi
+    elif [[ "$source" =~ ^[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+$ ]]; then
+        echo "github"
+    else
+        echo "unknown"
+    fi
+}
+
+add_source() {
+    local source="$1"
+    local type
+    type=$(detect_source_type "$source")
+    
+    case "$type" in
+        path)
+            local abs_path
+            abs_path=$(realpath "$source")
+            if [[ -d "$abs_path" ]]; then
+                local link_name
+                link_name=$(basename "$abs_path")
+                ln -sfn "$abs_path" "$SOURCES_DIR/$link_name"
+                log_ok "Linked directory: $link_name"
+            elif [[ -f "$abs_path" ]]; then
+                mkdir -p "$SOURCES_DIR/local"
+                cp "$abs_path" "$SOURCES_DIR/local/"
+                log_ok "Copied shader: $(basename "$abs_path")"
+            fi
+            ;;
+        github)
+            local repo_name="${source//\//_}"
+            local repo_dir="$SOURCES_DIR/$repo_name"
+            if [[ -d "$repo_dir" ]]; then
+                log_info "Updating $source..."
+                git -C "$repo_dir" pull --quiet
+            else
+                log_info "Cloning $source..."
+                git clone --quiet "https://github.com/$source.git" "$repo_dir"
+            fi
+            log_ok "Added GitHub repo: $source"
+            ;;
+        repo-url)
+            local repo_name
+            repo_name=$(basename "$source" .git)
+            local repo_dir="$SOURCES_DIR/$repo_name"
+            if [[ -d "$repo_dir" ]]; then
+                log_info "Updating $repo_name..."
+                git -C "$repo_dir" pull --quiet
+            else
+                log_info "Cloning $repo_name..."
+                git clone --quiet "$source" "$repo_dir"
+            fi
+            log_ok "Added repo: $repo_name"
+            ;;
+        url)
+            mkdir -p "$SOURCES_DIR/downloaded"
+            local filename
+            filename=$(basename "$source")
+            log_info "Downloading $filename..."
+            curl -sSL "$source" -o "$SOURCES_DIR/downloaded/$filename"
+            log_ok "Downloaded: $filename"
+            ;;
+        *)
+            log_error "Unknown source type: $source"
+            log_info "Supported: local path, GitHub (owner/repo), or URL"
+            exit 1
+            ;;
+    esac
+}
+
+# === Shader Discovery ===
+list_shaders() {
+    find "$SOURCES_DIR" -name "*.glsl" -type f 2>/dev/null | sort
+}
+
+get_shader_display_name() {
+    local path="$1"
+    local rel_path="${path#$SOURCES_DIR/}"
+    echo "$rel_path"
+}
+
+is_favorite() {
+    local path="$1"
+    grep -qxF "$path" "$FAVORITES_FILE" 2>/dev/null
+}
+
+# === Config Management ===
+backup_config() {
+    if [[ -f "$GHOSTTY_CONFIG" ]]; then
+        cp "$GHOSTTY_CONFIG" "$BACKUP_CONFIG"
+    fi
+}
+
+restore_config() {
+    if [[ -f "$BACKUP_CONFIG" ]]; then
+        cp "$BACKUP_CONFIG" "$GHOSTTY_CONFIG"
+        rm -f "$BACKUP_CONFIG"
+        reload_ghostty
+    fi
+}
+
+get_current_shader() {
+    grep -E "^custom-shader\s*=" "$GHOSTTY_CONFIG" 2>/dev/null | sed 's/.*=\s*//' | head -1 || true
+}
+
+apply_shader() {
+    local shader_path="$1"
+    local config_content
+    
+    # Read current config, remove existing custom-shader line
+    config_content=$(grep -vE "^custom-shader\s*=" "$GHOSTTY_CONFIG" 2>/dev/null || true)
+    # Also remove old comment
+    config_content=$(echo "$config_content" | grep -v "# Shader applied by ghostty-shaders" || true)
+    
+    # Write back with new shader
+    {
+        echo "$config_content"
+        echo ""
+        echo "# Shader applied by ghostty-shaders"
+        echo "custom-shader = $shader_path"
+    } > "$GHOSTTY_CONFIG"
+    
+    # Trigger Ghostty to reload
+    reload_ghostty
+}
+
+clear_shader() {
+    local config_content
+    config_content=$(grep -vE "^custom-shader\s*=" "$GHOSTTY_CONFIG" 2>/dev/null || true)
+    # Also remove the comment
+    config_content=$(echo "$config_content" | grep -v "# Shader applied by ghostty-shaders" || true)
+    echo "$config_content" > "$GHOSTTY_CONFIG"
+    reload_ghostty
+    log_ok "Shader cleared"
+}
+
+# === Favorites ===
+add_favorite() {
+    local path="$1"
+    if ! is_favorite "$path"; then
+        echo "$path" >> "$FAVORITES_FILE"
+        log_ok "Added to favorites: $(get_shader_display_name "$path")"
+    fi
+}
+
+remove_favorite() {
+    local path="$1"
+    local tmp
+    tmp=$(mktemp)
+    grep -vxF "$path" "$FAVORITES_FILE" > "$tmp" || true
+    mv "$tmp" "$FAVORITES_FILE"
+    log_ok "Removed from favorites"
+}
+
+list_favorites() {
+    if [[ -s "$FAVORITES_FILE" ]]; then
+        while IFS= read -r path; do
+            if [[ -f "$path" ]]; then
+                echo "⭐ $(get_shader_display_name "$path")"
+            fi
+        done < "$FAVORITES_FILE"
+    else
+        log_info "No favorites yet"
+    fi
+}
+
+# === Interactive UI ===
+interactive_picker() {
+    local shaders=()
+    local display_names=()
+    local favorites=()
+    
+    # Load favorites first
+    if [[ -s "$FAVORITES_FILE" ]]; then
+        while IFS= read -r fav; do
+            if [[ -f "$fav" ]]; then
+                favorites+=("$fav")
+            fi
+        done < "$FAVORITES_FILE"
+    fi
+    
+    # Load all shaders
+    while IFS= read -r shader; do
+        [[ -n "$shader" ]] && shaders+=("$shader")
+    done < <(list_shaders)
+    
+    if [[ ${#shaders[@]} -eq 0 ]]; then
+        log_warn "No shaders found!"
+        echo ""
+        log_info "Add shaders with:"
+        echo "  ghostty-shaders add 0xhckr/ghostty-shaders"
+        echo "  ghostty-shaders add /path/to/shaders"
+        echo "  ghostty-shaders add https://example.com/shader.glsl"
+        exit 0
+    fi
+    
+    # Build display list (favorites first)
+    for shader in "${shaders[@]}"; do
+        local name
+        name=$(get_shader_display_name "$shader")
+        if is_favorite "$shader"; then
+            display_names+=("⭐ $name")
+        else
+            display_names+=("   $name")
+        fi
+    done
+    
+    # Backup current config
+    backup_config
+    trap 'restore_config; exit 0' INT TERM
+    
+    local current_shader
+    current_shader=$(get_current_shader)
+    
+    while true; do
+        # Show picker
+        echo -e "${DIM}Select shader (ESC to cancel)${NC}"
+        local selected
+        selected=$(printf '%s\n' "${display_names[@]}" | gum filter \
+            --placeholder="Search shaders..." \
+            --height=15) || {
+            restore_config
+            log_info "Cancelled"
+            exit 0
+        }
+        
+        # Find the actual shader path
+        local selected_name="${selected#⭐ }"
+        selected_name="${selected_name#   }"
+        local shader_path="$SOURCES_DIR/$selected_name"
+        
+        # Apply for preview
+        apply_shader "$shader_path"
+        log_info "Previewing: $selected_name"
+        echo -e "${DIM}  (Ghostty will hot-reload the shader)${NC}"
+        
+        # Action menu
+        local action
+        action=$(gum choose \
+            "✓ Apply permanently" \
+            "⭐ Toggle favorite" \
+            "↩ Try another" \
+            "✗ Cancel") || action="✗ Cancel"
+        
+        case "$action" in
+            "✓ Apply permanently")
+                rm -f "$BACKUP_CONFIG"
+                log_ok "Applied: $selected_name"
+                exit 0
+                ;;
+            "⭐ Toggle favorite")
+                if is_favorite "$shader_path"; then
+                    remove_favorite "$shader_path"
+                    # Update display
+                    for i in "${!shaders[@]}"; do
+                        if [[ "${shaders[$i]}" == "$shader_path" ]]; then
+                            display_names[$i]="   $selected_name"
+                            break
+                        fi
+                    done
+                else
+                    add_favorite "$shader_path"
+                    # Update display
+                    for i in "${!shaders[@]}"; do
+                        if [[ "${shaders[$i]}" == "$shader_path" ]]; then
+                            display_names[$i]="⭐ $selected_name"
+                            break
+                        fi
+                    done
+                fi
+                ;;
+            "↩ Try another")
+                # Restore original config before trying another
+                if [[ -f "$BACKUP_CONFIG" ]]; then
+                    cp "$BACKUP_CONFIG" "$GHOSTTY_CONFIG"
+                    reload_ghostty
+                fi
+                continue
+                ;;
+            "✗ Cancel")
+                restore_config
+                log_info "Reverted to previous config"
+                exit 0
+                ;;
+        esac
+    done
+}
+
+cmd_list() {
+    local current
+    current=$(get_current_shader)
+    
+    local count=0
+    echo -e "${BOLD}Available Shaders:${NC}"
+    echo ""
+    
+    while IFS= read -r shader; do
+        [[ -z "$shader" ]] && continue
+        count=$((count + 1))
+        
+        local name
+        name=$(get_shader_display_name "$shader")
+        local prefix="  "
+        local suffix=""
+        
+        if is_favorite "$shader"; then
+            prefix="⭐"
+        fi
+        
+        if [[ "$shader" == "$current" ]]; then
+            suffix=" ${GREEN}(active)${NC}"
+        fi
+        
+        echo -e "$prefix $name$suffix"
+    done < <(list_shaders)
+    
+    if [[ $count -eq 0 ]]; then
+        log_warn "No shaders found"
+    fi
+}
+
+cmd_apply() {
+    local query="$1"
+    local match
+    
+    # Try exact match first
+    match=$(list_shaders | grep -F "$query" | head -1)
+    
+    if [[ -z "$match" ]]; then
+        log_error "No shader matching: $query"
+        exit 1
+    fi
+    
+    apply_shader "$match"
+    log_ok "Applied: $(get_shader_display_name "$match")"
+}
+
+cmd_fav() {
+    local subcmd="${1:-list}"
+    
+    case "$subcmd" in
+        list)
+            list_favorites
+            ;;
+        add)
+            local query="${2:-}"
+            if [[ -z "$query" ]]; then
+                log_error "Usage: ghostty-shaders fav add <shader>"
+                exit 1
+            fi
+            local match
+            match=$(list_shaders | grep -F "$query" | head -1)
+            if [[ -n "$match" ]]; then
+                add_favorite "$match"
+            else
+                log_error "Shader not found: $query"
+            fi
+            ;;
+        rm|remove)
+            local query="${2:-}"
+            if [[ -z "$query" ]]; then
+                log_error "Usage: ghostty-shaders fav rm <shader>"
+                exit 1
+            fi
+            local match
+            match=$(list_shaders | grep -F "$query" | head -1)
+            if [[ -n "$match" ]]; then
+                remove_favorite "$match"
+            fi
+            ;;
+        *)
+            log_error "Unknown favorite command: $subcmd"
+            echo "Usage: ghostty-shaders fav [list|add|rm] [shader]"
+            exit 1
+            ;;
+    esac
+}
+
+show_help() {
+    cat <<EOF
+${BOLD}ghostty-shaders${NC} - Ghostty shader manager with live preview
+
+${BOLD}USAGE:${NC}
+    ghostty-shaders              Interactive shader picker
+    ghostty-shaders list         List available shaders
+    ghostty-shaders add <src>    Add shader source
+    ghostty-shaders apply <name> Apply shader by name
+    ghostty-shaders clear        Remove current shader
+    ghostty-shaders fav [cmd]    Manage favorites
+
+${BOLD}ADD SOURCES:${NC}
+    ghostty-shaders add 0xhckr/ghostty-shaders    # GitHub repo
+    ghostty-shaders add /path/to/shaders          # Local directory
+    ghostty-shaders add https://.../shader.glsl   # Direct URL
+
+${BOLD}FAVORITES:${NC}
+    ghostty-shaders fav list     List favorites
+    ghostty-shaders fav add X    Add shader to favorites
+    ghostty-shaders fav rm X     Remove from favorites
+
+${BOLD}EXAMPLES:${NC}
+    # First time setup
+    ghostty-shaders add 0xhckr/ghostty-shaders
+    
+    # Browse and preview shaders
+    ghostty-shaders
+    
+    # Quick apply
+    ghostty-shaders apply crt
+EOF
+}
+
+# === Main ===
+main() {
+    ensure_dirs
+    check_deps
+    
+    local cmd="${1:-}"
+    
+    case "$cmd" in
+        ""|pick|preview)
+            interactive_picker
+            ;;
+        list|ls)
+            cmd_list
+            ;;
+        add)
+            shift
+            if [[ $# -eq 0 ]]; then
+                log_error "Usage: ghostty-shaders add <source>"
+                exit 1
+            fi
+            for src in "$@"; do
+                add_source "$src"
+            done
+            ;;
+        apply|use)
+            shift
+            if [[ $# -eq 0 ]]; then
+                log_error "Usage: ghostty-shaders apply <shader-name>"
+                exit 1
+            fi
+            cmd_apply "$1"
+            ;;
+        clear|reset|rm)
+            clear_shader
+            ;;
+        fav|favorite|favorites)
+            shift
+            cmd_fav "$@"
+            ;;
+        -h|--help|help)
+            show_help
+            ;;
+        *)
+            log_error "Unknown command: $cmd"
+            show_help
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
