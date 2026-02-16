@@ -337,8 +337,14 @@ function buildPrompt(
   return DEFAULT_PROMPT;
 }
 
+/** Picker item types for grouped model list */
+type PickerItem =
+  | { type: "separator"; label: string }
+  | { type: "model"; modelId: string; modelName: string; costLabel: string; model: ModelInfo };
+
 /**
  * Display a formatted model selection widget with colors, alignment, and sorting.
+ * Models are grouped by provider with separator headers.
  * Returns the selected model ID or null if cancelled.
  */
 async function selectModelInteractive(
@@ -359,7 +365,7 @@ async function selectModelInteractive(
   const result = await ctx.ui.custom<string | null>(
     (tui, theme, _keybindings, done) => {
       let selectedIndex = 0;
-      let sortBy: "name" | "provider" | "cost" = "name";
+      let sortBy: "name" | "provider" | "cost" = "provider";
       let sortAsc = true;
       let filterQuery = "";
 
@@ -374,45 +380,103 @@ async function selectModelInteractive(
         return queryIdx === query.length;
       };
 
-      // Format model options
-      const getFormattedOptions = () => {
-        const opts = available.map((model) => {
-          const modelId = `${model.provider}/${model.id}`;
-          const costLabel = formatCost(model.cost);
-          const inputCost = model.cost.input;
-          return { modelId, costLabel, model, inputCost };
-        });
+      // Group models by provider
+      const groupByProvider = (models: ModelInfo[]): Map<string, ModelInfo[]> => {
+        const groups = new Map<string, ModelInfo[]>();
+        for (const model of models) {
+          const existing = groups.get(model.provider) || [];
+          existing.push(model);
+          groups.set(model.provider, existing);
+        }
+        return groups;
+      };
 
-        // Filter based on query
-        let filtered = opts;
+      // Build picker items with separators
+      const buildPickerItems = (): PickerItem[] => {
+        // First filter models
+        let filtered = available;
         if (filterQuery) {
-          filtered = opts.filter((opt) => fuzzyMatch(opt.modelId, filterQuery));
+          filtered = available.filter((m) =>
+            fuzzyMatch(`${m.provider}/${m.id}`, filterQuery)
+          );
         }
 
-        // Sort based on current sort mode
+        // Sort models
         const sorted = [...filtered].sort((a, b) => {
           let cmp = 0;
           if (sortBy === "name") {
-            cmp = a.modelId.localeCompare(b.modelId);
+            cmp = a.id.localeCompare(b.id);
           } else if (sortBy === "provider") {
-            const providerCmp = a.model.provider.localeCompare(
-              b.model.provider,
-            );
+            const providerCmp = a.provider.localeCompare(b.provider);
             if (providerCmp !== 0) cmp = providerCmp;
-            else cmp = a.modelId.localeCompare(b.modelId);
+            else cmp = a.id.localeCompare(b.id);
           } else if (sortBy === "cost") {
-            cmp = a.inputCost - b.inputCost;
+            cmp = a.cost.input - b.cost.input;
           }
           return sortAsc ? cmp : -cmp;
         });
 
-        return sorted;
+        // Group by provider
+        const groups = groupByProvider(sorted);
+        const items: PickerItem[] = [];
+
+        // Sort provider names
+        const providers = [...groups.keys()].sort((a, b) =>
+          sortAsc ? a.localeCompare(b) : b.localeCompare(a)
+        );
+
+        for (const provider of providers) {
+          const models = groups.get(provider)!;
+          items.push({ type: "separator", label: provider });
+          for (const model of models) {
+            items.push({
+              type: "model",
+              modelId: `${model.provider}/${model.id}`,
+              modelName: model.id,
+              costLabel: formatCost(model.cost),
+              model,
+            });
+          }
+        }
+
+        return items;
+      };
+
+      // Find next selectable index (skip separators)
+      const nextSelectableIndex = (
+        items: PickerItem[],
+        current: number,
+        direction: 1 | -1
+      ): number => {
+        let next = current + direction;
+        // Wrap around
+        if (next < 0) next = items.length - 1;
+        if (next >= items.length) next = 0;
+        
+        // Skip separators
+        const startNext = next;
+        while (items[next]?.type === "separator") {
+          next += direction;
+          if (next < 0) next = items.length - 1;
+          if (next >= items.length) next = 0;
+          // Prevent infinite loop if all items are separators
+          if (next === startNext) break;
+        }
+        return next;
+      };
+
+      // Find first selectable index
+      const findFirstSelectable = (items: PickerItem[]): number => {
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].type === "model") return i;
+        }
+        return 0;
       };
 
       class ModelSelector {
         render(width: number): string[] {
           const lines: string[] = [];
-          const options = getFormattedOptions();
+          const items = buildPickerItems();
 
           // Helper: pad text to exact length, handling ANSI codes
           const pad = (s: string, len: number): string => {
@@ -456,6 +520,20 @@ async function selectModelInteractive(
             );
           };
 
+          // Helper: render separator line
+          const renderSeparator = (label: string): string => {
+            const innerW = width - 2;
+            const prefix = `── ${label} `;
+            const prefixLen = visibleWidth(prefix);
+            const dashCount = Math.max(0, innerW - prefixLen - 1);
+            return (
+              theme.fg("border", "│") +
+              " " +
+              theme.fg("dim", prefix + "─".repeat(dashCount)) +
+              theme.fg("border", "│")
+            );
+          };
+
           // Top spacing
           lines.push("");
 
@@ -478,74 +556,81 @@ async function selectModelInteractive(
 
           lines.push(row(""));
 
-          if (options.length === 0) {
+          // Count actual model items for "no models" check
+          const modelItems = items.filter((i) => i.type === "model");
+
+          if (modelItems.length === 0) {
             lines.push(
               row(" " + theme.fg("muted", "No models matching filter")),
             );
           } else {
-            // Find max model ID length for alignment
-            const maxModelIdLen = Math.max(
-              ...options.map((o) => o.modelId.length),
+            // Find max model name length for alignment (just the model name, not full ID)
+            const maxModelNameLen = Math.max(
+              ...modelItems.map((i) => (i as Extract<PickerItem, { type: "model" }>).modelName.length),
             );
 
-            // Options with formatting
-            for (let i = 0; i < options.length; i++) {
-              const opt = options[i];
-              const isSelected = i === selectedIndex;
+            // Render items
+            for (let i = 0; i < items.length; i++) {
+              const item = items[i];
 
-              const modelPart = opt.modelId;
-              const costPart = opt.costLabel;
-
-              if (isSelected) {
-                // For selected items, construct content first, then highlight
-                const modelPadded = modelPart.padEnd(maxModelIdLen);
-                const innerW = width - 2;
-                const contentWidth =
-                  visibleWidth("▶ " + modelPadded + "  " + costPart);
-                const spacing = " ".repeat(
-                  Math.max(0, innerW - contentWidth),
-                );
-                const itemContent =
-                  "▶ " +
-                  theme.fg("text", modelPadded) +
-                  "  " +
-                  spacing +
-                  theme.fg("muted", costPart);
-                lines.push(
-                  theme.fg("border", "│") +
-                  theme.bg("userMessageBg", pad(itemContent, innerW)) +
-                  theme.fg("border", "│"),
-                );
+              if (item.type === "separator") {
+                lines.push(renderSeparator(item.label));
               } else {
-                // For unselected items, build with separate colors and spacing
-                const modelPadded = modelPart.padEnd(maxModelIdLen);
-                const innerW = width - 2;
-                const contentWidth =
-                  visibleWidth("  " + modelPadded + "  " + costPart);
-                const spacing = " ".repeat(
-                  Math.max(0, innerW - contentWidth),
-                );
-                const itemContent =
-                  "  " +
-                  theme.fg("text", modelPadded) +
-                  "  " +
-                  spacing +
-                  theme.fg("muted", costPart);
-                lines.push(
-                  theme.fg("border", "│") +
-                    pad(itemContent, innerW) +
+                const isSelected = i === selectedIndex;
+                const modelPart = item.modelName;
+                const costPart = item.costLabel;
+
+                if (isSelected) {
+                  // For selected items, construct content first, then highlight
+                  const modelPadded = modelPart.padEnd(maxModelNameLen);
+                  const innerW = width - 2;
+                  const contentWidth =
+                    visibleWidth(" ▶ " + modelPadded + "  " + costPart);
+                  const spacing = " ".repeat(
+                    Math.max(0, innerW - contentWidth),
+                  );
+                  const itemContent =
+                    " ▶ " +
+                    theme.fg("text", modelPadded) +
+                    "  " +
+                    spacing +
+                    theme.fg("muted", costPart);
+                  lines.push(
+                    theme.fg("border", "│") +
+                    theme.bg("userMessageBg", pad(itemContent, innerW)) +
                     theme.fg("border", "│"),
-                );
+                  );
+                } else {
+                  // For unselected items, build with separate colors and spacing
+                  const modelPadded = modelPart.padEnd(maxModelNameLen);
+                  const innerW = width - 2;
+                  const contentWidth =
+                    visibleWidth("   " + modelPadded + "  " + costPart);
+                  const spacing = " ".repeat(
+                    Math.max(0, innerW - contentWidth),
+                  );
+                  const itemContent =
+                    "   " +
+                    theme.fg("text", modelPadded) +
+                    "  " +
+                    spacing +
+                    theme.fg("muted", costPart);
+                  lines.push(
+                    theme.fg("border", "│") +
+                      pad(itemContent, innerW) +
+                      theme.fg("border", "│"),
+                  );
+                }
               }
             }
           }
 
           // Preview footer for selected model
-          if (options.length > 0 && selectedIndex < options.length) {
-            const selected = options[selectedIndex];
+          const selectedItem = items[selectedIndex];
+          if (selectedItem?.type === "model") {
             lines.push(row(""));
-            lines.push(row(" " + theme.fg("accent", selected.modelId)));
-            lines.push(row(" " + theme.fg("muted", selected.costLabel)));
+            lines.push(row(" " + theme.fg("accent", selectedItem.modelId)));
+            lines.push(row(" " + theme.fg("muted", selectedItem.costLabel)));
           }
 
           // Footer with instructions
@@ -565,7 +650,7 @@ async function selectModelInteractive(
         }
 
         handleInput(data: string): void {
-          const options = getFormattedOptions();
+          const items = buildPickerItems();
           
           // Handle Escape or Ctrl+C to cancel (using matchesKey for cross-terminal compatibility)
           if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) {
@@ -573,36 +658,36 @@ async function selectModelInteractive(
             return;
           }
           
-          // Handle arrow keys or vim navigation
+          // Handle arrow keys or vim navigation (skip separators)
           if (matchesKey(data, "up") || data === "k") {
-            // Up arrow or 'k'
-            selectedIndex =
-              (selectedIndex - 1 + options.length) % options.length;
+            selectedIndex = nextSelectableIndex(items, selectedIndex, -1);
             return;
           } else if (matchesKey(data, "down") || data === "j") {
-            // Down arrow or 'j'
-            selectedIndex = (selectedIndex + 1) % options.length;
+            selectedIndex = nextSelectableIndex(items, selectedIndex, 1);
             return;
           }
           
           // Handle backspace to clear filter
           if (matchesKey(data, "backspace")) {
             filterQuery = filterQuery.slice(0, -1);
-            selectedIndex = 0;
+            const newItems = buildPickerItems();
+            selectedIndex = findFirstSelectable(newItems);
             return;
           }
           
           // Handle regular characters for filtering
           if (data.length === 1 && /[a-zA-Z0-9\-_/.]/.test(data)) {
             filterQuery += data;
-            selectedIndex = 0;
+            const newItems = buildPickerItems();
+            selectedIndex = findFirstSelectable(newItems);
             return;
           }
           
           if (matchesKey(data, "enter") || matchesKey(data, "space")) {
-            // Enter or Space
-            if (options.length > 0) {
-              done(options[selectedIndex].modelId);
+            // Enter or Space - select current model
+            const item = items[selectedIndex];
+            if (item?.type === "model") {
+              done(item.modelId);
             }
           } else if (data.toLowerCase() === "n") {
             // Sort by name
@@ -612,7 +697,8 @@ async function selectModelInteractive(
               sortBy = "name";
               sortAsc = true;
             }
-            selectedIndex = 0;
+            const newItems = buildPickerItems();
+            selectedIndex = findFirstSelectable(newItems);
           } else if (data.toLowerCase() === "p") {
             // Sort by provider
             if (sortBy === "provider") {
@@ -621,7 +707,8 @@ async function selectModelInteractive(
               sortBy = "provider";
               sortAsc = true;
             }
-            selectedIndex = 0;
+            const newItems = buildPickerItems();
+            selectedIndex = findFirstSelectable(newItems);
           } else if (data.toLowerCase() === "c") {
             // Sort by cost
             if (sortBy === "cost") {
@@ -630,7 +717,8 @@ async function selectModelInteractive(
               sortBy = "cost";
               sortAsc = true;
             }
-            selectedIndex = 0;
+            const newItems = buildPickerItems();
+            selectedIndex = findFirstSelectable(newItems);
           }
         }
 
