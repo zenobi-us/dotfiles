@@ -103,6 +103,12 @@ function isCheapModelName(id: string): boolean {
   return /(mini|flash|nano|haiku|lite|micro|free)/i.test(id);
 }
 
+interface ModelSelection {
+  model: string;
+  source: "config" | "auto";
+  cost: ModelInfo["cost"] | null;
+}
+
 /**
  * Pick the cheapest available model based on actual pricing data.
  * Falls back to name-based heuristics if cost data is unavailable.
@@ -110,11 +116,11 @@ function isCheapModelName(id: string): boolean {
 function pickCheapestModel(
   ctx: ExtensionContext,
   maxOutputCost: number = DEFAULT_MAX_OUTPUT_COST,
-): string {
+): ModelSelection {
   const available = ctx.modelRegistry.getAvailable() as ModelInfo[];
 
   if (available.length === 0) {
-    return HARD_FALLBACK_MODEL;
+    return { model: HARD_FALLBACK_MODEL, source: "auto", cost: null };
   }
 
   // First, try to find models under the cost threshold
@@ -124,7 +130,11 @@ function pickCheapestModel(
 
   if (cheapModels.length > 0) {
     const best = cheapModels[0];
-    return `${best.provider}/${best.id}`;
+    return {
+      model: `${best.provider}/${best.id}`,
+      source: "auto",
+      cost: best.cost,
+    };
   }
 
   // If no models under threshold, look for "cheap-sounding" names
@@ -134,7 +144,11 @@ function pickCheapestModel(
 
   if (cheapNamed.length > 0) {
     const best = cheapNamed[0];
-    return `${best.provider}/${best.id}`;
+    return {
+      model: `${best.provider}/${best.id}`,
+      source: "auto",
+      cost: best.cost,
+    };
   }
 
   // Last resort: pick the cheapest overall
@@ -142,7 +156,36 @@ function pickCheapestModel(
     (a, b) => calculateCostScore(a) - calculateCostScore(b),
   );
   const best = sorted[0];
-  return `${best.provider}/${best.id}`;
+  return {
+    model: `${best.provider}/${best.id}`,
+    source: "auto",
+    cost: best.cost,
+  };
+}
+
+/**
+ * Look up cost info for a configured model.
+ */
+function getModelCost(
+  ctx: ExtensionContext,
+  modelString: string,
+): ModelInfo["cost"] | null {
+  const [provider, ...idParts] = modelString.split("/");
+  const modelId = idParts.join("/");
+  const available = ctx.modelRegistry.getAvailable() as ModelInfo[];
+  const found = available.find(
+    (m) => m.provider === provider && m.id === modelId,
+  );
+  return found?.cost ?? null;
+}
+
+/**
+ * Format cost for display.
+ * Shows input/output cost per million tokens.
+ */
+function formatCost(cost: ModelInfo["cost"] | null): string {
+  if (!cost) return "unknown pricing";
+  return `$${cost.input.toFixed(2)}/$${cost.output.toFixed(2)} per 1M tokens (in/out)`;
 }
 
 function stripQuotes(value: string): string {
@@ -250,24 +293,40 @@ function runGenerateCommit(
   pi: ExtensionAPI,
 ): void {
   const config = parseJsonConfig(CONFIG_PATH);
-
-  const configuredMode = normalizeMode(config.mode);
   const maxCost = config.maxOutputCost ?? DEFAULT_MAX_OUTPUT_COST;
-  const mode = configuredMode ?? pickCheapestModel(ctx, maxCost);
+
+  // Determine model selection
+  let selection: ModelSelection;
+  const configuredMode = normalizeMode(config.mode);
+
+  if (configuredMode) {
+    const cost = getModelCost(ctx, configuredMode);
+    selection = { model: configuredMode, source: "config", cost };
+  } else {
+    selection = pickCheapestModel(ctx, maxCost);
+  }
+
   const prompt = buildPrompt(config, args);
   const agent = chooseAgent(ctx.cwd);
 
   const payload = {
     agent,
     task: prompt,
-    model: mode,
+    model: selection.model,
     skill: DEFAULT_SKILL,
     clarify: false,
     agentScope: "both",
   };
 
+  // Provide user feedback
   if (ctx.hasUI) {
-    ctx.ui.notify(`Generating commits via ${agent} (${mode})`, "info");
+    const sourceLabel = selection.source === "config" ? "configured" : "auto-selected (cheapest)";
+    const costLabel = formatCost(selection.cost);
+
+    ctx.ui.notify(
+      `Commit: ${selection.model} [${sourceLabel}] — ${costLabel}`,
+      "info",
+    );
   }
 
   pi.sendUserMessage(
