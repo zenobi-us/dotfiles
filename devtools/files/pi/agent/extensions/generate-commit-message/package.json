@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@zenobius/pi-extension-config": "0.0.1-next.1"
+    "@zenobius/pi-extension-config": "0.0.2"
   }
 }
