@@ -3,6 +3,7 @@ import type {
   ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
 import { matchesKey, visibleWidth } from "@mariozechner/pi-tui";
+import { createConfigService } from "@zenobius/pi-extension-config";
 import {
   existsSync,
   mkdirSync,
@@ -31,14 +32,8 @@ interface ModelInfo {
   };
 }
 
-const CMDS = ["commit", "commit-model"];
-const CONFIG_PATH = path.join(
-  homedir(),
-  ".pi",
-  "agent",
-  "generate-commit-message.json",
-);
 const USER_AGENTS_DIR = path.join(homedir(), ".pi", "agent", "agents");
+const CONFIG_NAME = "generate-commit-message";
 
 const DEFAULT_PROMPT =
   "Write and stage commits according to the writing-git-commits skill";
@@ -69,18 +64,11 @@ Create and stage clean, atomic, conventional commits for the current repository.
 Use the writing-git-commits skill and keep commits scoped, descriptive, and safe.
 `;
 
-function parseJsonConfig(configPath: string): GenerateCommitMessageConfig {
-  if (!existsSync(configPath)) return {};
-
-  try {
-    const raw = readFileSync(configPath, "utf-8");
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== "object") return {};
-    return parsed as GenerateCommitMessageConfig;
-  } catch {
-    return {};
-  }
-}
+/** Default configuration values */
+const DEFAULT_CONFIG: GenerateCommitMessageConfig = {
+  prompt: DEFAULT_PROMPT,
+  maxOutputCost: DEFAULT_MAX_OUTPUT_COST,
+};
 
 function normalizeMode(mode?: string): string | undefined {
   if (!mode) return undefined;
@@ -665,7 +653,11 @@ async function runGenerateCommit(
   pi: ExtensionAPI,
   explicitModel?: string,
 ): Promise<void> {
-  const config = parseJsonConfig(CONFIG_PATH);
+  const configService = await createConfigService<GenerateCommitMessageConfig>(
+    CONFIG_NAME,
+    { defaults: DEFAULT_CONFIG },
+  );
+  const config = configService.config;
   const maxCost = config.maxOutputCost ?? DEFAULT_MAX_OUTPUT_COST;
 
   // Determine model selection
@@ -749,13 +741,15 @@ export default function generateCommitMessageExtension(pi: ExtensionAPI) {
         }
       }
 
-      // Write configuration to file
-      const config: GenerateCommitMessageConfig = {
-        mode: selectedModel,
-      };
-
+      // Write configuration using config service
       try {
-        writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2), "utf-8");
+        const configService = await createConfigService<GenerateCommitMessageConfig>(
+          CONFIG_NAME,
+          { defaults: DEFAULT_CONFIG },
+        );
+        await configService.set("mode", selectedModel, "home");
+        await configService.save("home");
+
         if (ctx.hasUI) {
           const cost = await getModelCost(ctx, selectedModel);
           const costLabel = formatCost(cost);

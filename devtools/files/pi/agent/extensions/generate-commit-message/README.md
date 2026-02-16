@@ -49,7 +49,13 @@ Configure which model to use for future commits. Can be called with or without a
 
 ## Configuration
 
-Configuration is stored in `~/.pi/agent/generate-commit-message.json`:
+Configuration uses `@zenobius/pi-extension-config` for layered config management.
+
+**Config locations (highest priority first):**
+1. **Environment variables** — `GENERATE_COMMIT_MESSAGE_MODE`, `GENERATE_COMMIT_MESSAGE_MAX_OUTPUT_COST`
+2. **Project config** — `.pi/generate-commit-message.config.json` (in git root or cwd)
+3. **Home config** — `~/.pi/agent/generate-commit-message.config.json`
+4. **Defaults** — Built-in defaults
 
 ```json
 {
@@ -57,8 +63,9 @@ Configuration is stored in `~/.pi/agent/generate-commit-message.json`:
 }
 ```
 
-### Optional Fields
+### Config Fields
 
+- `mode` (string) - Model to use in `provider/model-id` format
 - `prompt` (string) - Default prompt to use when running `/commit` with no arguments
 - `maxOutputCost` (number) - Maximum output cost per million tokens for "cheap" model filtering (default: 1.0)
 
@@ -270,6 +277,7 @@ cat ~/.pi/agent/agents/commit-writer.md
 ```
 devtools/files/pi/agent/extensions/generate-commit-message/
 ├── index.ts          # Main extension code
+├── package.json      # Dependencies (pi-extension-config)
 └── README.md         # This file
 ```
 
