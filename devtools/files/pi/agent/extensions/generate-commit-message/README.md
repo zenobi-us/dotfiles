@@ -43,7 +43,9 @@ Configure which model to use for future commits. Can be called with or without a
 - `p` - Sort by provider (toggle A→Z / Z→A)
 - `c` - Sort by cost (toggle cheapest first / most expensive first)
 - `Enter` or `Space` - Select and save configuration
-- `Esc` or `q` - Cancel without saving
+- `Esc` or `Ctrl+C` - Cancel without saving
+- Type any character - Filter models by fuzzy matching
+- `Backspace` - Clear filter
 
 ## Configuration
 
@@ -329,6 +331,4 @@ To test the extension:
 ## See Also
 
 - `.memory/learning-fc61d42a-generate-commit-message-extension.md` - Distilled architecture and design patterns
-- `COMMIT_MESSAGE_EXTENSION_CHANGES.md` - Detailed changelog of command router enhancement
-- `MODEL_PICKER_QUICK_REFERENCE.md` - Quick reference for interactive picker controls
-- `MODEL_PICKER_UI_PREVIEW.md` - Visual preview and color scheme details
+- `.memory/research-f1e37c82-commit-modal-fixes.md` - Modal UI fixes and analysis
