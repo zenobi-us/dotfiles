@@ -4,6 +4,8 @@
 **Source:** https://github.com/nicobailon/pi-subagents
 **Related Epic:** epic-m0d3la1s-model-alias-manager-extension.md
 
+> **UPDATE (2026-02-17):** This research has been consolidated into a comprehensive learning document with additional details on fuzzy search algorithms, keyboard handling, and scrollable list implementation. See [learning-42c8d9e1-pi-subagents-ui-patterns-complete.md](learning-42c8d9e1-pi-subagents-ui-patterns-complete.md) for the complete reference with code checklists and integration guidance.
+
 ## Overview
 
 The pi-subagents project provides a clean, reusable pattern for creating overlay modals with box-drawing borders. The implementation separates rendering helpers from component logic.
