@@ -1,5 +1,5 @@
 ---
-name: writing-git-commits
+name: writing-and-creating-git-commits
 description: Create semantic git commits following best practices and Conventional Commits specification.
 ---
 

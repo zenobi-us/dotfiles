@@ -1,0 +1,172 @@
+{
+  "version": 2,
+  "display": {
+    "alignment": "left",
+    "barStyle": "percentage",
+    "barType": "horizontal-bar",
+    "barWidth": 6,
+    "barCharacter": "light",
+    "containBar": true,
+    "brailleFillEmpty": false,
+    "brailleFullBlocks": false,
+    "colorScheme": "monochrome",
+    "usageColorTargets": {
+      "title": true,
+      "timer": true,
+      "bar": false,
+      "usageLabel": true,
+      "status": true
+    },
+    "resetTimePosition": "integrated",
+    "resetTimeFormat": "relative",
+    "resetTimeContainment": "none",
+    "statusIndicatorMode": "icon",
+    "statusIconPack": "minimal",
+    "statusIconCustom": "😎😳😵🤔",
+    "statusProviderDivider": true,
+    "statusDismissOk": false,
+    "showProviderName": true,
+    "providerLabel": "none",
+    "providerLabelColon": false,
+    "providerLabelBold": false,
+    "baseTextColor": "muted",
+    "backgroundColor": "customMessageBg",
+    "showWindowTitle": false,
+    "boldWindowTitle": false,
+    "showUsageLabels": false,
+    "dividerCharacter": "|",
+    "dividerColor": "border",
+    "dividerBlanks": 1,
+    "showProviderDivider": true,
+    "dividerFooterJoin": false,
+    "showTopDivider": true,
+    "showBottomDivider": true,
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "widgetPlacement": "belowEditor",
+    "showContextBar": false,
+    "errorThreshold": 25,
+    "warningThreshold": 50,
+    "overflow": "truncate",
+    "successThreshold": 75
+  },
+  "providers": {
+    "anthropic": {
+      "showStatus": true,
+      "windows": {
+        "show5h": true,
+        "show7d": true,
+        "showExtra": true
+      }
+    },
+    "copilot": {
+      "showStatus": true,
+      "showMultiplier": true,
+      "showRequestsLeft": true,
+      "quotaDisplay": "percentage",
+      "windows": {
+        "showMonth": true
+      }
+    },
+    "gemini": {
+      "showStatus": true,
+      "windows": {
+        "showPro": true,
+        "showFlash": true
+      }
+    },
+    "antigravity": {
+      "showStatus": true,
+      "showCurrentModel": true,
+      "showScopedModels": true,
+      "windows": {
+        "showModels": true
+      },
+      "modelVisibility": {},
+      "modelOrder": []
+    },
+    "codex": {
+      "showStatus": true,
+      "invertUsage": false,
+      "windows": {
+        "showPrimary": true,
+        "showSecondary": true
+      }
+    },
+    "kiro": {
+      "showStatus": false,
+      "windows": {
+        "showCredits": true
+      }
+    },
+    "zai": {
+      "showStatus": false,
+      "windows": {
+        "showTokens": true,
+        "showMonthly": true
+      }
+    }
+  },
+  "displayThemes": [
+    {
+      "id": "mine",
+      "name": "Mine",
+      "display": {
+        "alignment": "center",
+        "barStyle": "percentage",
+        "barType": "horizontal-bar",
+        "barWidth": 8,
+        "barCharacter": "heavy",
+        "containBar": true,
+        "brailleFillEmpty": false,
+        "brailleFullBlocks": false,
+        "colorScheme": "success-base-warning-error",
+        "usageColorTargets": {
+          "title": true,
+          "timer": true,
+          "bar": true,
+          "usageLabel": true,
+          "status": true
+        },
+        "resetTimePosition": "front",
+        "resetTimeFormat": "relative",
+        "resetTimeContainment": "blank",
+        "statusIndicatorMode": "icon",
+        "statusIconPack": "minimal",
+        "statusIconCustom": "✓⚠×?",
+        "statusProviderDivider": false,
+        "statusDismissOk": false,
+        "showProviderName": true,
+        "providerLabel": "none",
+        "providerLabelColon": false,
+        "providerLabelBold": true,
+        "baseTextColor": "muted",
+        "backgroundColor": "customMessageBg",
+        "showWindowTitle": true,
+        "boldWindowTitle": true,
+        "showUsageLabels": true,
+        "dividerCharacter": "│",
+        "dividerColor": "dim",
+        "dividerBlanks": 1,
+        "showProviderDivider": true,
+        "dividerFooterJoin": true,
+        "showTopDivider": false,
+        "showBottomDivider": true,
+        "widgetPlacement": "belowEditor",
+        "errorThreshold": 20,
+        "warningThreshold": 40,
+        "overflow": "truncate",
+        "successThreshold": 75,
+        "paddingLeft": 1,
+        "paddingRight": 1
+      },
+      "source": "saved"
+    }
+  ],
+  "displayUserTheme": null,
+  "pinnedProvider": null,
+  "keybindings": {
+    "cycleProvider": "ctrl+alt+p",
+    "toggleResetFormat": "ctrl+alt+r"
+  }
+}

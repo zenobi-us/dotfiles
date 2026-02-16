@@ -19,6 +19,8 @@ actions:
       - "{{user.home_dir}}/.pi/agent/extensions"
       - "{{user.home_dir}}/.pi/agent/themes"
       - "{{user.home_dir}}/.pi/agent/settings.json"
+      - "{{user.home_dir}}/.pi/agent/pi-sub-bar-settings.json"
+      - "{{user.home_dir}}/.pi/agent/pi-sub-core-settings.json"
       - "{{user.home_dir}}/.pi/agent/models.json"
 
   - action: command.run
@@ -48,6 +50,14 @@ actions:
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/models.json"
     from: pi/agent/models.json
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/pi-sub-bar-settings.json"
+    from: pi/agent/pi-sub-bar-settings.json
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/pi-sub-core-settings.json"
+    from: pi/agent/pi-sub-core-settings.json
 
   - action: command.run
     dir: "{{user.home_dir}}/.pi"
