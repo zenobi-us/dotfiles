@@ -54,6 +54,36 @@ Split from original "Pi Extensions Development" epic on 2026-01-11.
 
 ## Active Sessions
 
+### Session 2026-02-16 20:31 → 21:54 ❌ CANCELLED
+**Epic:** Model Alias Manager Extension (m0d3la1s)  
+**Phase:** Research & Design (m0d3ph01)  
+**Activity:** Implementation cancelled after discovery
+
+**Created:**
+- `epic-m0d3la1s-model-alias-manager-extension.md`
+- `phase-m0d3ph01-research-design.md`
+- `story-m0d3st01-overlay-list-view.md`
+- `story-m0d3st02-settings-editor.md`
+- `story-m0d3st03-model-picker.md`
+- `research-pi-subagents-overlay-patterns.md`
+- `task-m0d3ts01-render-helpers.md`
+
+**Research:**
+- Analyzed nicobailon/pi-subagents for overlay patterns
+- Adapted render-helpers for full-width (no side borders)
+- Documented patterns in research file
+
+**Cancellation Reason:**
+- Thinking level configuration belongs in agent configs (pi-subagents), not model aliases
+- `models.json` only supports `reasoning: boolean` for capability, not runtime thinking level
+- pi-subagents already handles thinking per-agent via model suffix (e.g., `anthropic/claude-sonnet-4:high`)
+
+**Retained:** Research file `research-pi-subagents-overlay-patterns.md` - useful for future overlay/modal implementations
+
+**Status:** ❌ CANCELLED - Extension not needed
+
+---
+
 ### Session 2026-01-12 16:53
 **Epic:** Multi-Harness Agent Loader  
 **Phase:** Research & Discovery  

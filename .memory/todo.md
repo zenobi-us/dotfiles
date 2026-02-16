@@ -2,6 +2,18 @@
 
 ## Active Work
 
+### Model Alias Manager Extension ❌ CANCELLED
+
+**Epic**: `.memory/epic-m0d3la1s-model-alias-manager-extension.md`
+
+**Status**: Cancelled
+
+**Reason**: Discovered that thinking level configuration belongs in agent configs (pi-subagents), not model aliases. The `models.json` format only supports `reasoning: boolean` to indicate capability, not runtime thinking level. User determined the extension was not needed.
+
+**Learning**: Model aliases define model *capabilities* (reasoning support, context window, etc.). Thinking *level* is a runtime/session setting managed by pi-subagents or `setThinkingLevel()`.
+
+---
+
 
 
 ### Zellij Extension Development

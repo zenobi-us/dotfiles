@@ -5,9 +5,12 @@
     "": {
       "name": "file-based-compaction-extension",
       "dependencies": {
+        "just-bash": "^1.4.1",
+      },
+      "peerDependencies": {
         "@mariozechner/pi-ai": "*",
         "@mariozechner/pi-coding-agent": "*",
-        "just-bash": "^1.4.1",
+        "@sinclair/typebox": "*",
       },
     },
   },

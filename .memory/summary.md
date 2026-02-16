@@ -81,11 +81,29 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 
 ---
 
+### 5. [Model Alias Manager Extension](epic-m0d3la1s-model-alias-manager-extension.md) ❌ CANCELLED
+
+**Vision:** Create a TUI extension for managing model aliases through an intuitive overlay-based interface.
+
+**Status:** Cancelled  
+**Timeline:** Q1 2026  
+**Started:** 2026-02-16  
+**Cancelled:** 2026-02-16
+
+**Reason:** Discovered that thinking level configuration belongs in agent configs (pi-subagents), not model aliases. The `models.json` format only supports `reasoning: boolean` to indicate model capability, not runtime thinking level.
+
+**Learning:** 
+- Model aliases define model *capabilities* (reasoning support, context window, max tokens, cost)
+- Thinking *level* is a runtime/session setting managed by pi-subagents or `setThinkingLevel()`
+- pi-subagents already handles thinking level per-agent via model suffix (e.g., `anthropic/claude-sonnet-4:high`)
+
+**Research Retained:** [pi-subagents Overlay Patterns](research-pi-subagents-overlay-patterns.md) - useful for future overlay/modal implementations
+
+---
+
 ## Current Focus
 
-**Active Epic:** Epic 3 - Multi-Harness Agent Loader 🔄  
-**Phase:** Architecture Design (Phase 2)  
-**Next Milestone:** Complete adapter designs for Claude Code and OpenCode
+**No Active Epic** - Ready for new work
 
 **Completed Migration:** ACLI Jira Skill Migration ✅  
 **Status:** Complete (Committed 23d5c96)  
@@ -147,6 +165,7 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 
 ### Research Files
 - [research-6e3d737d-subagent-extension-structure.md](research-6e3d737d-subagent-extension-structure.md) - Subagent extension analysis
+- [research-pi-subagents-overlay-patterns.md](research-pi-subagents-overlay-patterns.md) - pi-subagents overlay/modal patterns (Epic 5)
 - [research-30fe5140-command-specifications.md](research-30fe5140-command-specifications.md) - Command specifications
 - [research-5231cb8a-pi-mono-ui-components.md](research-5231cb8a-pi-mono-ui-components.md) - Comprehensive guide to pi-mono custom UI components, overlays, and interaction capabilities
 - [research-theme-api-access.md](research-theme-api-access.md) - Theme API access patterns (Epic 2)
