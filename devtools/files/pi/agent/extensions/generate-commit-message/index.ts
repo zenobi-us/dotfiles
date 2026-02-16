@@ -113,11 +113,11 @@ interface ModelSelection {
  * Pick the cheapest available model based on actual pricing data.
  * Falls back to name-based heuristics if cost data is unavailable.
  */
-function pickCheapestModel(
+async function pickCheapestModel(
   ctx: ExtensionContext,
   maxOutputCost: number = DEFAULT_MAX_OUTPUT_COST,
-): ModelSelection {
-  const available = ctx.modelRegistry.getAvailable() as ModelInfo[];
+): Promise<ModelSelection> {
+  const available = (await ctx.modelRegistry.getAvailable()) as ModelInfo[];
 
   if (available.length === 0) {
     return { model: HARD_FALLBACK_MODEL, source: "auto", cost: null };
@@ -166,13 +166,13 @@ function pickCheapestModel(
 /**
  * Look up cost info for a configured model.
  */
-function getModelCost(
+async function getModelCost(
   ctx: ExtensionContext,
   modelString: string,
-): ModelInfo["cost"] | null {
+): Promise<ModelInfo["cost"] | null> {
   const [provider, ...idParts] = modelString.split("/");
   const modelId = idParts.join("/");
-  const available = ctx.modelRegistry.getAvailable() as ModelInfo[];
+  const available = (await ctx.modelRegistry.getAvailable()) as ModelInfo[];
   const found = available.find(
     (m) => m.provider === provider && m.id === modelId,
   );
@@ -287,11 +287,11 @@ function buildPrompt(
   return DEFAULT_PROMPT;
 }
 
-function runGenerateCommit(
+async function runGenerateCommit(
   args: string,
   ctx: ExtensionContext,
   pi: ExtensionAPI,
-): void {
+): Promise<void> {
   const config = parseJsonConfig(CONFIG_PATH);
   const maxCost = config.maxOutputCost ?? DEFAULT_MAX_OUTPUT_COST;
 
@@ -300,10 +300,10 @@ function runGenerateCommit(
   const configuredMode = normalizeMode(config.mode);
 
   if (configuredMode) {
-    const cost = getModelCost(ctx, configuredMode);
+    const cost = await getModelCost(ctx, configuredMode);
     selection = { model: configuredMode, source: "config", cost };
   } else {
-    selection = pickCheapestModel(ctx, maxCost);
+    selection = await pickCheapestModel(ctx, maxCost);
   }
 
   const prompt = buildPrompt(config, args);
