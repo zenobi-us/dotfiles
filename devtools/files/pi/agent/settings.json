@@ -17,7 +17,6 @@
   ],
   "hideThinkingBlock": true,
   "defaultProvider": "github-copilot",
-  "defaultModel": "claude-opus-4.5",
+  "defaultModel": "claude-haiku-4.5",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }
-
