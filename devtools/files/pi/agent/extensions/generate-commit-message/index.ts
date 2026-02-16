@@ -365,6 +365,7 @@ async function selectModelInteractive(
   const result = await ctx.ui.custom<string | null>(
     (tui, theme, _keybindings, done) => {
       let selectedIndex = 0;
+      let scrollOffset = 0;
       let sortBy: "name" | "provider" | "cost" = "provider";
       let sortAsc = true;
       let filterQuery = "";
@@ -478,6 +479,14 @@ async function selectModelInteractive(
           const lines: string[] = [];
           const items = buildPickerItems();
 
+          // Calculate target height: 35% of terminal height
+          const targetHeight = Math.floor(tui.terminal.rows * 0.35);
+          
+          // Fixed lines: header(1) + filter(1) + empty(1) + preview(3) + footer(1) = 7 lines
+          // Plus top/bottom spacing = 2 more
+          const fixedLines = 9;
+          const viewportHeight = Math.max(3, targetHeight - fixedLines);
+
           // Helper: pad text to exact length, handling ANSI codes
           const pad = (s: string, len: number): string => {
             const vis = visibleWidth(s);
@@ -534,6 +543,15 @@ async function selectModelInteractive(
             );
           };
 
+          // Adjust scroll offset to keep selected item visible
+          if (selectedIndex < scrollOffset) {
+            scrollOffset = selectedIndex;
+          } else if (selectedIndex >= scrollOffset + viewportHeight) {
+            scrollOffset = selectedIndex - viewportHeight + 1;
+          }
+          // Clamp scroll offset
+          scrollOffset = Math.max(0, Math.min(scrollOffset, Math.max(0, items.length - viewportHeight)));
+
           // Top spacing
           lines.push("");
 
@@ -563,20 +581,27 @@ async function selectModelInteractive(
             lines.push(
               row(" " + theme.fg("muted", "No models matching filter")),
             );
+            // Pad to fill viewport
+            for (let i = 1; i < viewportHeight; i++) {
+              lines.push(row(""));
+            }
           } else {
             // Find max model name length for alignment (just the model name, not full ID)
             const maxModelNameLen = Math.max(
               ...modelItems.map((i) => (i as Extract<PickerItem, { type: "model" }>).modelName.length),
             );
 
-            // Render items
-            for (let i = 0; i < items.length; i++) {
-              const item = items[i];
+            // Render only visible items (viewport)
+            const visibleItems = items.slice(scrollOffset, scrollOffset + viewportHeight);
+            
+            for (let vi = 0; vi < visibleItems.length; vi++) {
+              const item = visibleItems[vi];
+              const actualIndex = scrollOffset + vi;
 
               if (item.type === "separator") {
                 lines.push(renderSeparator(item.label));
               } else {
-                const isSelected = i === selectedIndex;
+                const isSelected = actualIndex === selectedIndex;
                 const modelPart = item.modelName;
                 const costPart = item.costLabel;
 
@@ -623,6 +648,11 @@ async function selectModelInteractive(
                 }
               }
             }
+            
+            // Pad remaining viewport space
+            for (let i = visibleItems.length; i < viewportHeight; i++) {
+              lines.push(row(""));
+            }
           }
 
           // Preview footer for selected model
@@ -631,10 +661,14 @@ async function selectModelInteractive(
             lines.push(row(""));
             lines.push(row(" " + theme.fg("accent", selectedItem.modelId)));
             lines.push(row(" " + theme.fg("muted", selectedItem.costLabel)));
+          } else {
+            // Pad if no selection
+            lines.push(row(""));
+            lines.push(row(""));
+            lines.push(row(""));
           }
 
           // Footer with instructions
-          lines.push(row(""));
           const instructions =
             "↑/↓ Navigate  Enter/Space Select  n/p/c Sort  Backspace Clear  Esc/Ctrl+C Cancel";
           const instDisplay =
@@ -729,7 +763,7 @@ async function selectModelInteractive(
 
       return new ModelSelector();
     },
-    { overlay: true, overlayOptions: { width: "100%" } },
+    { overlay: true, overlayOptions: { width: "100%", maxHeight: "35%", anchor: "bottom-center" } },
   );
 
   return result || null;
