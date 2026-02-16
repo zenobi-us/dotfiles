@@ -38,14 +38,25 @@ Configure which model to use for future commits. Can be called with or without a
 ```
 
 **Model picker controls:**
-- `↑` / `↓` or `j` / `k` - Navigate models
+- `↑` / `↓` or `j` / `k` - Navigate models (automatically skips provider headers)
 - `n` - Sort by name (toggle A→Z / Z→A)
-- `p` - Sort by provider (toggle A→Z / Z→A)
+- `p` - Sort by provider (toggle A→Z / Z→A) — default
 - `c` - Sort by cost (toggle cheapest first / most expensive first)
 - `Enter` or `Space` - Select and save configuration
 - `Esc` or `Ctrl+C` - Cancel without saving
 - Type any character - Filter models by fuzzy matching
 - `Backspace` - Clear filter
+
+**Model picker layout:**
+Models are grouped by provider with separator headers:
+```
+── anthropic ──────────────────────────────────────────────────────────────────
+   claude-sonnet-4                                    $3/$15 per 1M tokens
+ ▶ claude-sonnet-4-20250514                           $3/$15 per 1M tokens
+── openai ─────────────────────────────────────────────────────────────────────
+   gpt-4o                                             $5/$15 per 1M tokens
+   gpt-4o-mini                                        $0.15/$0.6 per 1M tokens
+```
 
 ## Configuration
 
