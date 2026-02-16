@@ -15,6 +15,19 @@ import * as path from "node:path";
 interface GenerateCommitMessageConfig {
   mode?: string;
   prompt?: string;
+  /** Maximum output cost per million tokens (default: 1.0) */
+  maxOutputCost?: number;
+}
+
+interface ModelInfo {
+  id: string;
+  provider: string;
+  cost: {
+    input: number;
+    output: number;
+    cacheRead: number;
+    cacheWrite: number;
+  };
 }
 
 const CMDS = ["commit"];
@@ -36,12 +49,11 @@ const DEFAULT_AGENT_CANDIDATES = [
   "scout",
 ] as const;
 
-const COPILOT_FALLBACKS = [
-  "github-copilot/gpt-4.1-mini",
-  "github-copilot/gpt-4o-mini",
-  "github-copilot/gemini-2.0-flash",
-  "github-copilot/claude-3.5-haiku",
-] as const;
+/** Maximum output cost per million tokens for "cheap" models */
+const DEFAULT_MAX_OUTPUT_COST = 1.0;
+
+/** Hard fallback if no models are available at all */
+const HARD_FALLBACK_MODEL = "github-copilot/gpt-4o-mini";
 
 const FALLBACK_AGENT_NAME = "commit-writer";
 
@@ -76,20 +88,61 @@ function normalizeMode(mode?: string): string | undefined {
   return /^[^/\s]+\/[^\s]+$/.test(trimmed) ? trimmed : undefined;
 }
 
-function pickCopilotDefaultMode(ctx: ExtensionContext): string {
-  const available = ctx.modelRegistry
-    .getAvailable()
-    .map((m) => `${m.provider}/${m.id}`)
-    .filter((id) => id.toLowerCase().includes("copilot"));
+/**
+ * Calculate a combined cost score for a model.
+ * Weights output cost more heavily since commit messages have short input but longer output.
+ */
+function calculateCostScore(model: ModelInfo): number {
+  return model.cost.input + model.cost.output * 2;
+}
 
-  if (available.length === 0) return COPILOT_FALLBACKS[0];
+/**
+ * Check if a model name suggests it's a cheap/lite variant.
+ */
+function isCheapModelName(id: string): boolean {
+  return /(mini|flash|nano|haiku|lite|micro|free)/i.test(id);
+}
 
-  const freeLike = available.find((id) =>
-    /(mini|flash|nano|haiku|free)/i.test(id),
+/**
+ * Pick the cheapest available model based on actual pricing data.
+ * Falls back to name-based heuristics if cost data is unavailable.
+ */
+function pickCheapestModel(
+  ctx: ExtensionContext,
+  maxOutputCost: number = DEFAULT_MAX_OUTPUT_COST,
+): string {
+  const available = ctx.modelRegistry.getAvailable() as ModelInfo[];
+
+  if (available.length === 0) {
+    return HARD_FALLBACK_MODEL;
+  }
+
+  // First, try to find models under the cost threshold
+  const cheapModels = available
+    .filter((m) => m.cost.output <= maxOutputCost)
+    .sort((a, b) => calculateCostScore(a) - calculateCostScore(b));
+
+  if (cheapModels.length > 0) {
+    const best = cheapModels[0];
+    return `${best.provider}/${best.id}`;
+  }
+
+  // If no models under threshold, look for "cheap-sounding" names
+  const cheapNamed = available
+    .filter((m) => isCheapModelName(m.id))
+    .sort((a, b) => calculateCostScore(a) - calculateCostScore(b));
+
+  if (cheapNamed.length > 0) {
+    const best = cheapNamed[0];
+    return `${best.provider}/${best.id}`;
+  }
+
+  // Last resort: pick the cheapest overall
+  const sorted = [...available].sort(
+    (a, b) => calculateCostScore(a) - calculateCostScore(b),
   );
-  if (freeLike) return freeLike;
-
-  return available[0];
+  const best = sorted[0];
+  return `${best.provider}/${best.id}`;
 }
 
 function stripQuotes(value: string): string {
@@ -199,7 +252,8 @@ function runGenerateCommit(
   const config = parseJsonConfig(CONFIG_PATH);
 
   const configuredMode = normalizeMode(config.mode);
-  const mode = configuredMode ?? pickCopilotDefaultMode(ctx);
+  const maxCost = config.maxOutputCost ?? DEFAULT_MAX_OUTPUT_COST;
+  const mode = configuredMode ?? pickCheapestModel(ctx, maxCost);
   const prompt = buildPrompt(config, args);
   const agent = chooseAgent(ctx.cwd);
 
