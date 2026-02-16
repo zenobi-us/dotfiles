@@ -1,0 +1,20 @@
+{
+  "name": "pi-shell-completions",
+  "version": "0.2.0",
+  "description": "Pi extension that adds native shell completions (fish/zsh/bash) to ! and !! bash mode commands",
+  "type": "module",
+  "keywords": ["pi-package"],
+  "license": "MIT",
+  "author": "laulauland",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laulauland/dotfiles"
+  },
+  "pi": {
+    "extensions": ["./index.ts"]
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-tui": "*"
+  }
+}
