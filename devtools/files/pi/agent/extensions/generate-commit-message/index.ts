@@ -4,6 +4,7 @@ import type {
 } from "@mariozechner/pi-coding-agent";
 import { matchesKey, visibleWidth } from "@mariozechner/pi-tui";
 import { createConfigService } from "@zenobius/pi-extension-config";
+import type { ConfigService } from "@zenobius/pi-extension-config";
 import {
   existsSync,
   mkdirSync,
@@ -35,8 +36,11 @@ interface ModelInfo {
 const USER_AGENTS_DIR = path.join(homedir(), ".pi", "agent", "agents");
 const CONFIG_NAME = "generate-commit-message";
 
-const DEFAULT_PROMPT =
-  "Write and stage commits according to the writing-git-commits skill";
+const DEFAULT_PROMPT = `
+Use the writing-git-commits skill to commit unstaged and staged changes in the current repository.
+Only stop for human input if there is a blocker. Otherwise generate and stage commits until all changes are committed.
+`.trim();
+
 const DEFAULT_SKILL = "writing-git-commits";
 const DEFAULT_AGENT_CANDIDATES = [
   "general",
@@ -340,7 +344,13 @@ function buildPrompt(
 /** Picker item types for grouped model list */
 type PickerItem =
   | { type: "separator"; label: string }
-  | { type: "model"; modelId: string; modelName: string; costLabel: string; model: ModelInfo };
+  | {
+      type: "model";
+      modelId: string;
+      modelName: string;
+      costLabel: string;
+      model: ModelInfo;
+    };
 
 /**
  * Display a formatted model selection widget with colors, alignment, and sorting.
@@ -382,7 +392,9 @@ async function selectModelInteractive(
       };
 
       // Group models by provider
-      const groupByProvider = (models: ModelInfo[]): Map<string, ModelInfo[]> => {
+      const groupByProvider = (
+        models: ModelInfo[],
+      ): Map<string, ModelInfo[]> => {
         const groups = new Map<string, ModelInfo[]>();
         for (const model of models) {
           const existing = groups.get(model.provider) || [];
@@ -398,7 +410,7 @@ async function selectModelInteractive(
         let filtered = available;
         if (filterQuery) {
           filtered = available.filter((m) =>
-            fuzzyMatch(`${m.provider}/${m.id}`, filterQuery)
+            fuzzyMatch(`${m.provider}/${m.id}`, filterQuery),
           );
         }
 
@@ -423,7 +435,7 @@ async function selectModelInteractive(
 
         // Sort provider names
         const providers = [...groups.keys()].sort((a, b) =>
-          sortAsc ? a.localeCompare(b) : b.localeCompare(a)
+          sortAsc ? a.localeCompare(b) : b.localeCompare(a),
         );
 
         for (const provider of providers) {
@@ -447,13 +459,13 @@ async function selectModelInteractive(
       const nextSelectableIndex = (
         items: PickerItem[],
         current: number,
-        direction: 1 | -1
+        direction: 1 | -1,
       ): number => {
         let next = current + direction;
         // Wrap around
         if (next < 0) next = items.length - 1;
         if (next >= items.length) next = 0;
-        
+
         // Skip separators
         const startNext = next;
         while (items[next]?.type === "separator") {
@@ -481,7 +493,7 @@ async function selectModelInteractive(
 
           // Calculate target height: 35% of terminal height
           const targetHeight = Math.floor(tui.terminal.rows * 0.35);
-          
+
           // Fixed lines: header(1) + filter(1) + empty(1) + preview(3) + footer(1) = 7 lines
           // Plus top/bottom spacing = 2 more
           const fixedLines = 9;
@@ -550,7 +562,10 @@ async function selectModelInteractive(
             scrollOffset = selectedIndex - viewportHeight + 1;
           }
           // Clamp scroll offset
-          scrollOffset = Math.max(0, Math.min(scrollOffset, Math.max(0, items.length - viewportHeight)));
+          scrollOffset = Math.max(
+            0,
+            Math.min(scrollOffset, Math.max(0, items.length - viewportHeight)),
+          );
 
           // Top spacing
           lines.push("");
@@ -563,14 +578,7 @@ async function selectModelInteractive(
           // Filter input line
           const filterDisplay =
             filterQuery || theme.fg("muted", "(type to filter)");
-          lines.push(
-            row(
-              " " +
-              theme.fg("accent", ">") +
-              " " +
-              filterDisplay
-            ),
-          );
+          lines.push(row(" " + theme.fg("accent", ">") + " " + filterDisplay));
 
           lines.push(row(""));
 
@@ -588,12 +596,19 @@ async function selectModelInteractive(
           } else {
             // Find max model name length for alignment (just the model name, not full ID)
             const maxModelNameLen = Math.max(
-              ...modelItems.map((i) => (i as Extract<PickerItem, { type: "model" }>).modelName.length),
+              ...modelItems.map(
+                (i) =>
+                  (i as Extract<PickerItem, { type: "model" }>).modelName
+                    .length,
+              ),
             );
 
             // Render only visible items (viewport)
-            const visibleItems = items.slice(scrollOffset, scrollOffset + viewportHeight);
-            
+            const visibleItems = items.slice(
+              scrollOffset,
+              scrollOffset + viewportHeight,
+            );
+
             for (let vi = 0; vi < visibleItems.length; vi++) {
               const item = visibleItems[vi];
               const actualIndex = scrollOffset + vi;
@@ -609,8 +624,9 @@ async function selectModelInteractive(
                   // For selected items, construct content first, then highlight
                   const modelPadded = modelPart.padEnd(maxModelNameLen);
                   const innerW = width - 2;
-                  const contentWidth =
-                    visibleWidth(" ▶ " + modelPadded + "  " + costPart);
+                  const contentWidth = visibleWidth(
+                    " ▶ " + modelPadded + "  " + costPart,
+                  );
                   const spacing = " ".repeat(
                     Math.max(0, innerW - contentWidth),
                   );
@@ -622,15 +638,16 @@ async function selectModelInteractive(
                     theme.fg("muted", costPart);
                   lines.push(
                     theme.fg("border", "│") +
-                    theme.bg("userMessageBg", pad(itemContent, innerW)) +
-                    theme.fg("border", "│"),
+                      theme.bg("userMessageBg", pad(itemContent, innerW)) +
+                      theme.fg("border", "│"),
                   );
                 } else {
                   // For unselected items, build with separate colors and spacing
                   const modelPadded = modelPart.padEnd(maxModelNameLen);
                   const innerW = width - 2;
-                  const contentWidth =
-                    visibleWidth("   " + modelPadded + "  " + costPart);
+                  const contentWidth = visibleWidth(
+                    "   " + modelPadded + "  " + costPart,
+                  );
                   const spacing = " ".repeat(
                     Math.max(0, innerW - contentWidth),
                   );
@@ -648,7 +665,7 @@ async function selectModelInteractive(
                 }
               }
             }
-            
+
             // Pad remaining viewport space
             for (let i = visibleItems.length; i < viewportHeight; i++) {
               lines.push(row(""));
@@ -685,13 +702,13 @@ async function selectModelInteractive(
 
         handleInput(data: string): void {
           const items = buildPickerItems();
-          
+
           // Handle Escape or Ctrl+C to cancel (using matchesKey for cross-terminal compatibility)
           if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) {
             done(null);
             return;
           }
-          
+
           // Handle arrow keys or vim navigation (skip separators)
           if (matchesKey(data, "up") || data === "k") {
             selectedIndex = nextSelectableIndex(items, selectedIndex, -1);
@@ -700,7 +717,7 @@ async function selectModelInteractive(
             selectedIndex = nextSelectableIndex(items, selectedIndex, 1);
             return;
           }
-          
+
           // Handle backspace to clear filter
           if (matchesKey(data, "backspace")) {
             filterQuery = filterQuery.slice(0, -1);
@@ -708,7 +725,7 @@ async function selectModelInteractive(
             selectedIndex = findFirstSelectable(newItems);
             return;
           }
-          
+
           // Handle regular characters for filtering
           if (data.length === 1 && /[a-zA-Z0-9\-_/.]/.test(data)) {
             filterQuery += data;
@@ -716,7 +733,7 @@ async function selectModelInteractive(
             selectedIndex = findFirstSelectable(newItems);
             return;
           }
-          
+
           if (matchesKey(data, "enter") || matchesKey(data, "space")) {
             // Enter or Space - select current model
             const item = items[selectedIndex];
@@ -763,7 +780,14 @@ async function selectModelInteractive(
 
       return new ModelSelector();
     },
-    { overlay: true, overlayOptions: { width: "100%", maxHeight: "35%", anchor: "bottom-center" } },
+    {
+      overlay: true,
+      overlayOptions: {
+        width: "100%",
+        maxHeight: "35%",
+        anchor: "bottom-center",
+      },
+    },
   );
 
   return result || null;
@@ -773,13 +797,9 @@ async function runGenerateCommit(
   args: string,
   ctx: ExtensionContext,
   pi: ExtensionAPI,
+  config: GenerateCommitMessageConfig,
   explicitModel?: string,
 ): Promise<void> {
-  const configService = await createConfigService<GenerateCommitMessageConfig>(
-    CONFIG_NAME,
-    { defaults: DEFAULT_CONFIG },
-  );
-  const config = configService.config;
   const maxCost = config.maxOutputCost ?? DEFAULT_MAX_OUTPUT_COST;
 
   // Determine model selection
@@ -828,11 +848,16 @@ async function runGenerateCommit(
   );
 }
 
-export default function generateCommitMessageExtension(pi: ExtensionAPI) {
+export default async function generateCommitMessageExtension(pi: ExtensionAPI) {
+  const configService = await createConfigService<GenerateCommitMessageConfig>(
+    CONFIG_NAME,
+    { defaults: DEFAULT_CONFIG },
+  );
+
   const baseCommand = {
     description: "Generate and stage semantic commits using a subagent",
     handler: async (args: string, ctx: ExtensionContext) => {
-      runGenerateCommit(args, ctx, pi);
+      await runGenerateCommit(args, ctx, pi, configService.config);
     },
   };
 
@@ -863,12 +888,8 @@ export default function generateCommitMessageExtension(pi: ExtensionAPI) {
         }
       }
 
-      // Write configuration using config service
+      // Write configuration using shared config service
       try {
-        const configService = await createConfigService<GenerateCommitMessageConfig>(
-          CONFIG_NAME,
-          { defaults: DEFAULT_CONFIG },
-        );
         await configService.set("mode", selectedModel, "home");
         await configService.save("home");
 
