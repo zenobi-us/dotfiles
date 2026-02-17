@@ -4,7 +4,6 @@ import type {
 } from "@mariozechner/pi-coding-agent";
 import { matchesKey, visibleWidth } from "@mariozechner/pi-tui";
 import { createConfigService } from "@zenobius/pi-extension-config";
-import type { ConfigService } from "@zenobius/pi-extension-config";
 import {
   existsSync,
   mkdirSync,
@@ -793,7 +792,7 @@ async function selectModelInteractive(
   return result || null;
 }
 
-async function runGenerateCommit(
+async function generateCommitCommand(
   args: string,
   ctx: ExtensionContext,
   pi: ExtensionAPI,
@@ -848,68 +847,78 @@ async function runGenerateCommit(
   );
 }
 
+const commitModelCommand = async (args: string, ctx: ExtensionContext) => {
+  const trimmedArgs = args.trim();
+  let selectedModel: string | null = null;
+
+  // If model provided as argument, validate and use it
+  if (trimmedArgs && !trimmedArgs.includes(" ")) {
+    // Single token = model name
+    selectedModel = trimmedArgs;
+  } else if (trimmedArgs) {
+    // Multiple tokens = show model picker
+    selectedModel = await selectModelInteractive(ctx);
+    if (!selectedModel) {
+      ctx.ui.notify("Model selection cancelled", "warning");
+      return;
+    }
+  } else {
+    // No arguments = show model picker
+    selectedModel = await selectModelInteractive(ctx);
+    if (!selectedModel) {
+      ctx.ui.notify("Model selection cancelled", "warning");
+      return;
+    }
+  }
+
+  // Write configuration using shared config service
+  try {
+    await configService.set("mode", selectedModel, "home");
+    await configService.save("home");
+
+    if (ctx.hasUI) {
+      const cost = await getModelCost(ctx, selectedModel);
+      const costLabel = formatCost(cost);
+      ctx.ui.notify(
+        `✓ Model configured: ${selectedModel} — ${costLabel}`,
+        "info",
+      );
+    }
+  } catch (error) {
+    ctx.ui.notify(
+      `Failed to save configuration: ${error instanceof Error ? error.message : "unknown error"}`,
+      "error",
+    );
+  }
+};
+
 export default async function generateCommitMessageExtension(pi: ExtensionAPI) {
   const configService = await createConfigService<GenerateCommitMessageConfig>(
     CONFIG_NAME,
     { defaults: DEFAULT_CONFIG },
   );
-
-  const baseCommand = {
-    description: "Generate and stage semantic commits using a subagent",
-    handler: async (args: string, ctx: ExtensionContext) => {
-      await runGenerateCommit(args, ctx, pi, configService.config);
-    },
-  };
-
-  const commitModelCommand = {
+  pi.registerCommand("cheap-commit", {
     description:
-      "Configure model for commit generation. Usage: /commit-model [provider/model-name]",
+      "Generate and stage semantic commits using a subagent. Optionally specify a prompt to customize the commit generation task.",
     handler: async (args: string, ctx: ExtensionContext) => {
-      const trimmedArgs = args.trim();
-      let selectedModel: string | null = null;
+      const input = args.trim();
+      const [command, ...rest] = input.split(" ");
 
-      // If model provided as argument, validate and use it
-      if (trimmedArgs && !trimmedArgs.includes(" ")) {
-        // Single token = model name
-        selectedModel = trimmedArgs;
-      } else if (trimmedArgs) {
-        // Multiple tokens = show model picker
-        selectedModel = await selectModelInteractive(ctx);
-        if (!selectedModel) {
-          ctx.ui.notify("Model selection cancelled", "warning");
-          return;
-        }
-      } else {
-        // No arguments = show model picker
-        selectedModel = await selectModelInteractive(ctx);
-        if (!selectedModel) {
-          ctx.ui.notify("Model selection cancelled", "warning");
-          return;
-        }
-      }
-
-      // Write configuration using shared config service
-      try {
-        await configService.set("mode", selectedModel, "home");
-        await configService.save("home");
-
-        if (ctx.hasUI) {
-          const cost = await getModelCost(ctx, selectedModel);
-          const costLabel = formatCost(cost);
-          ctx.ui.notify(
-            `✓ Model configured: ${selectedModel} — ${costLabel}`,
-            "info",
+      switch (command) {
+        case "model":
+          commitModelCommand(rest.join(" "), ctx);
+          break;
+        case "help":
+          break;
+        case "generate":
+        default:
+          await generateCommitCommand(
+            rest.join(" "),
+            ctx,
+            pi,
+            configService.config,
           );
-        }
-      } catch (error) {
-        ctx.ui.notify(
-          `Failed to save configuration: ${error instanceof Error ? error.message : "unknown error"}`,
-          "error",
-        );
       }
     },
-  };
-
-  pi.registerCommand("commit", baseCommand);
-  pi.registerCommand("commit-model", commitModelCommand);
+  });
 }
