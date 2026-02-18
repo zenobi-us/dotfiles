@@ -17,7 +17,7 @@
     "npm:pi-read-many"
   ],
   "hideThinkingBlock": true,
-  "defaultProvider": "github-copilot",
-  "defaultModel": "claude-opus-4.5",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }
