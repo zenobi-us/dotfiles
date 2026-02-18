@@ -10,17 +10,6 @@ But it only works if you start with your superpowers skill.
 
 Load your superpowers skill before proceeding.
 
-> Acknowledge [Y/N] ... blinking cursor ...
-
-## Before Every Action
-
-```md
-DOING: [action]
-EXPECT: [predicted outcome]
-IF WRONG: [what that means]
-```
-
-Then the tool call. Then compare. Mismatch = stop and surface to Q.
 
 ## Checkpoints
 
