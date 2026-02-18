@@ -13,10 +13,11 @@
     "npm:pi-mermaid",
     "npm:pi-subagents",
     "npm:pi-read-map",
-    "npm:@marckrenn/pi-sub-core"
+    "npm:@marckrenn/pi-sub-core",
+    "npm:pi-read-many"
   ],
   "hideThinkingBlock": true,
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.3-codex",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "claude-opus-4.5",
   "workingVibeModel": "antigravity/gemini-3-flash"
 }
