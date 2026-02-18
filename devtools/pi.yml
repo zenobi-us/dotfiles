@@ -16,6 +16,8 @@ actions:
     where: os.name == "linux" || os.name == "macos"
     args:
       - -rf
+      - "{{user.home_dir}}/.pi/agent/AGENT.md"
+      - "{{user.home_dir}}/.pi/agent/AGENTS.md"
       - "{{user.home_dir}}/.pi/agent/extensions"
       - "{{user.home_dir}}/.pi/agent/themes"
       - "{{user.home_dir}}/.pi/agent/settings.json"
@@ -42,6 +44,10 @@ actions:
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/extensions"
     from: pi/agent/extensions
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/AGENTS.md"
+    from: pi/agent/AGENTS.md
 
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/settings.json"
