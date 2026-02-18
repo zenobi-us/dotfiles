@@ -14,7 +14,8 @@
     "npm:pi-subagents",
     "npm:pi-read-map",
     "npm:@marckrenn/pi-sub-core",
-    "npm:pi-read-many"
+    "npm:pi-read-many",
+    "npm:claude-agent-sdk-pi"
   ],
   "hideThinkingBlock": true,
   "defaultProvider": "anthropic",
