@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.52.12",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "minimal",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
@@ -17,6 +17,7 @@
     "npm:pi-read-many",
     "npm:claude-agent-sdk-pi"
   ],
+  "shellCommandPrefix": "shopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",

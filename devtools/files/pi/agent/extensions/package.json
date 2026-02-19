@@ -1,0 +1,9 @@
+{
+  "name": "@zenobius/pi-agent-extensions",
+  "private": true,
+  "packageManager": "bun@1.3.4",
+  "workspaces": [
+    "*",
+    "!node_modules"
+  ]
+}

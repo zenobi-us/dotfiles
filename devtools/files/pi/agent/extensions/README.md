@@ -2,6 +2,27 @@
 
 Example custom tools for pi-coding-agent.
 
+## Bun workspace (monorepo)
+
+This directory can now be used as a Bun workspace root.
+
+```bash
+cd devtools/files/pi/agent/extensions
+bun install
+```
+
+Workspace packages currently included:
+- `cheap-commits`
+- `file-based-compaction`
+- `lsp`
+- `shell-completions`
+
+Run scripts across packages with Bun filters (for example):
+
+```bash
+bun run --filter '*' test
+```
+
 ## Examples
 
 Each example uses the `subdirectory/index.ts` structure required for tool discovery.
