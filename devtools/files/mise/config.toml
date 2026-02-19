@@ -70,3 +70,5 @@ jj = "latest"
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
 
+[shell_alias]
+pi = "mise x npm:@mariozechner/pi-coding-agent -- pi --no-skills"
