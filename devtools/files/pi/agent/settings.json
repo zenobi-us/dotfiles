@@ -17,8 +17,10 @@
     "npm:pi-read-many",
     "npm:claude-agent-sdk-pi"
   ],
+  "shellCommandPrefix": "shopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",
-  "workingVibeModel": "antigravity/gemini-3-flash"
+  "workingVibeModel": "antigravity/gemini-3-flash",
+  "skills": []
 }
