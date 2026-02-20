@@ -2,6 +2,11 @@
 
 ## Active Work
 
+### pi-interview pi-tui questionnaire IDEA (9c7e21ab)
+- [x] [task-5b2d7e91-repo-source-audit-pi-interview.md](task-5b2d7e91-repo-source-audit-pi-interview.md)
+- [ ] [task-1caa7d4e-confirm-pi-interview-source-location.md](task-1caa7d4e-confirm-pi-interview-source-location.md) [NEEDS-HUMAN]
+
+
 ### Generate Commit Message Modal Fixes ✅ DONE
 
 **Research**: `.memory/research-f1e37c82-commit-modal-fixes.md`

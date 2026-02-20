@@ -54,6 +54,21 @@ Split from original "Pi Extensions Development" epic on 2026-01-11.
 
 ## Active Sessions
 
+### Session session-20260220-1922
+**Epic:** pi-interview pi-tui questionnaire UI (9c7e21ab)
+**Phase:** Source discovery and feasibility (3a5f1c8d)
+**Activity:** IDEA-stage repo audit and feasibility research.
+
+**Created/Updated:**
+- `epic-9c7e21ab-pi-interview-pi-tui-questionnaire.md`
+- `phase-3a5f1c8d-source-discovery-and-feasibility.md`
+- `task-5b2d7e91-repo-source-audit-pi-interview.md`
+- `task-1caa7d4e-confirm-pi-interview-source-location.md`
+- `research-6d4f2a10-pi-interview-source-and-pi-tui-feasibility.md`
+- `todo.md`, `summary.md`
+
+**Status:** Waiting on human to confirm source-of-truth location for `pi-interview` implementation.
+
 ### Session 2026-02-16 20:31 → 21:54 ❌ CANCELLED
 **Epic:** Model Alias Manager Extension (m0d3la1s)  
 **Phase:** Research & Design (m0d3ph01)  

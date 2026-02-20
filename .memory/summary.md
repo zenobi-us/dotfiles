@@ -105,6 +105,12 @@ Following miniproject guidelines, only ONE epic should be active at a time unles
 
 **No Active Epic** - Ready for new work
 
+### IDEA Intake (2026-02-20)
+- Proposed epic: [epic-9c7e21ab-pi-interview-pi-tui-questionnaire.md](epic-9c7e21ab-pi-interview-pi-tui-questionnaire.md)
+- Current phase: [phase-3a5f1c8d-source-discovery-and-feasibility.md](phase-3a5f1c8d-source-discovery-and-feasibility.md)
+- Research outcome: `pi-interview` source was not found in this repository; only package reference exists in `devtools/files/pi/agent/settings.json`.
+- Next milestone: human confirms authoritative `pi-interview` source location.
+
 **Completed Migration:** ACLI Jira Skill Migration ✅  
 **Status:** Complete (Committed 23d5c96)  
 **Outcome:** Successfully migrated from mcporter to ACLI, 19% smaller skill documentation  
