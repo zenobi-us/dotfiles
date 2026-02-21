@@ -1,56 +1,67 @@
 ---
 id: codemap
-title: Dotfiles Project Codebase Structure
+title: pi-interview and proposed pi-tui questionnaire codemap
 created_at: 2026-01-23T12:51:00+10:30
-updated_at: 2026-01-23T12:51:00+10:30
+updated_at: 2026-02-20T19:39:55+10:30
 area: codebase-structure
-tags: [architecture, structure, state-machine]
+tags: [architecture, state-machine, interview, pi-tui]
+learned_from: [epic-9c7e21ab-pi-interview-pi-tui-questionnaire.md, research-6d4f2a10-pi-interview-source-and-pi-tui-feasibility.md]
 ---
 
-# Dotfiles Project Codebase Structure
-
-## Overview
-
-This is a dotfiles repository containing Pi agent extensions and configurations.
+# pi-interview and pi-tui codemap
 
 ## State Machine Diagram
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      DOTFILES REPOSITORY                         │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                   │
-│  devtools/                                                        │
-│  └── files/                                                       │
-│      └── pi/                                                      │
-│          └── agent/                                               │
-│              └── extensions/                                      │
-│                  ├── worktree/  [COMPLETE]                        │
-│                  │   └── index.ts                                 │
-│                  │       • Git worktree management                │
-│                  │       • Session/workspace isolation            │
-│                  │                                                 │
-│                  └── zellij/    [IN PROGRESS - SKELETON]          │
-│                      └── index.ts                                 │
-│                          • Terminal multiplexer management        │
-│                          • Session/tab/pane control               │
-│                                                                   │
-│  .memory/                                                         │
-│  └── [Project knowledge and task tracking]                       │
-│                                                                   │
-└─────────────────────────────────────────────────────────────────┘
-```
+```text
+CURRENT: pi-interview-tool (web flow)
 
-## Component Flow
+[Tool call: interview()]
+          |
+          v
+[load+validate questions (schema.ts)] --invalid--> [throw error]
+          |
+          v
+[startInterviewServer(server.ts)]
+          |
+          v
+[open browser URL + token]
+          |
+          v
+[form/script.js session loop]
+    |        |         |          |
+    |        |         |          +--> [POST /save] -> [snapshot html/images]
+    |        |         +--------------> [POST /cancel timeout/stale/user] -> [recovery json]
+    |        +------------------------> [POST /heartbeat] -> [session kept alive]
+    +-------------------------------> [POST /submit responses+images]
+                                          |
+                                          v
+                                [onSubmit callbacks -> tool result]
+                                          |
+                                          v
+                                    [server close]
 
+
+TARGET: pi-tui questionnaire (inside Pi)
+
+[Tool call: interview_tui() or interview(mode=tui)]
+          |
+          v
+[load+validate questions (reuse schema rules)]
+          |
+          v
+[ctx.ui.custom overlay mount]
+          |
+          v
+[Question loop state]
+  ├─> [render info/single/multi/text]
+  ├─> [capture answer / optional attachment paths]
+  ├─> [validate next]
+  ├─> [cancel] ------> [cancelled result]
+  └─> [timeout] -----> [timeout result (+ partial answers)]
+          |
+          v
+[review + submit]
+          |
+          v
+[tool returns structured responses]
 ```
-User Command → Extension Router → Handler Functions → Zellij CLI
-                                                    ↓
-                                        Settings ← ~/.pi/settings.json
-```
-
-## Key Files
-
-- `devtools/files/pi/agent/extensions/worktree/index.ts` - Reference implementation
-- `devtools/files/pi/agent/extensions/zellij/index.ts` - Target implementation (skeleton created)
-- `.memory/*` - Project knowledge base

@@ -1,175 +1,18 @@
 # Team Status
 
-## Epic History
-
-### Epic 1: Subagent Extension Enhancement ✅ COMPLETE
-**Created:** 2026-01-11  
-**Completed:** 2026-01-11  
-**Owner:** Development Team
-
-Split from original "Pi Extensions Development" epic on 2026-01-11.
-
-**Final Status:** All success criteria met
-- ✅ Three slash commands implemented
-- ✅ Documentation complete
-- ✅ Learning materials distilled
-
-### Epic 2: Theme Development Tools ✅ COMPLETE
-**Created:** 2026-01-11  
-**Completed:** 2026-01-11  
-**Owner:** Development Team
-
-**Final Status:** All success criteria exceeded
-- ✅ Theme palette extension with 47 colors, 8 categories
-- ✅ Component architecture V2 (78% code reduction)
-- ✅ Comprehensive documentation (7 docs, ~2,000 lines)
-- ✅ Learning materials distilled (5 documents)
-
-### Epic 3: Multi-Harness Agent Loader 🔄 ACTIVE
-**Created:** 2026-01-12  
-**Owner:** Research Team
-
-**Current Focus:** Architecture design phase - creating adapters for Claude Code and OpenCode
-
-### Epic 4: Subagent Footer Customization ✅ APPROVED (Waiting)
-**Created:** 2026-01-18  
-**Owner:** TBD (Will activate after Epic 3)
-
-**Vision:** Enable deep customization of subagent footer display using pi-tui components
-**Priority:** Medium (UX enhancement focus)
-**Decision:** ✅ Human approved Option A - Epic 4 will begin after Epic 3 completion following miniproject guidelines
-
----
-
 ## Active Epic Status
-
-**Per miniproject guidelines:** Only ONE epic should be active at a time unless explicitly approved by human.
-
-**Active Epic:** [Multi-Harness Agent Loader](epic-4dd87a16-multi-harness-agent-loader.md)  
-**Status:** Research phase  
-**Current Phase:** [Research & Discovery](phase-ab3b84bd-research-discovery.md)  
-**Next Task:** [Research Harness Formats](task-db140ba7-research-harness-formats.md)
-
----
+- **Active Epic:** `9c7e21ab` — pi-interview pi-tui questionnaire UI
+- **Current Phase:** `8b1e4d2f` — Local extension MVP planning
+- **Phase State:** Story definition + task breakdown complete; ready for execution
 
 ## Active Sessions
 
-### Session session-20260220-1922
-**Epic:** pi-interview pi-tui questionnaire UI (9c7e21ab)
-**Phase:** Source discovery and feasibility (3a5f1c8d)
-**Activity:** IDEA-stage repo audit and feasibility research.
+### Session session-20260220-1938
+- **Epic:** 9c7e21ab
+- **Phase:** 8b1e4d2f
+- **Activity:** created MVP stories and linked implementation tasks for local extension interview replacement, image flow, and no-timeout semantics.
+- **Status:** execution-ready backlog prepared.
 
-**Created/Updated:**
-- `epic-9c7e21ab-pi-interview-pi-tui-questionnaire.md`
-- `phase-3a5f1c8d-source-discovery-and-feasibility.md`
-- `task-5b2d7e91-repo-source-audit-pi-interview.md`
-- `task-1caa7d4e-confirm-pi-interview-source-location.md`
-- `research-6d4f2a10-pi-interview-source-and-pi-tui-feasibility.md`
-- `todo.md`, `summary.md`
-
-**Status:** Waiting on human to confirm source-of-truth location for `pi-interview` implementation.
-
-### Session 2026-02-16 20:31 → 21:54 ❌ CANCELLED
-**Epic:** Model Alias Manager Extension (m0d3la1s)  
-**Phase:** Research & Design (m0d3ph01)  
-**Activity:** Implementation cancelled after discovery
-
-**Created:**
-- `epic-m0d3la1s-model-alias-manager-extension.md`
-- `phase-m0d3ph01-research-design.md`
-- `story-m0d3st01-overlay-list-view.md`
-- `story-m0d3st02-settings-editor.md`
-- `story-m0d3st03-model-picker.md`
-- `research-pi-subagents-overlay-patterns.md`
-- `task-m0d3ts01-render-helpers.md`
-
-**Research:**
-- Analyzed nicobailon/pi-subagents for overlay patterns
-- Adapted render-helpers for full-width (no side borders)
-- Documented patterns in research file
-
-**Cancellation Reason:**
-- Thinking level configuration belongs in agent configs (pi-subagents), not model aliases
-- `models.json` only supports `reasoning: boolean` for capability, not runtime thinking level
-- pi-subagents already handles thinking per-agent via model suffix (e.g., `anthropic/claude-sonnet-4:high`)
-
-**Retained:** Research file `research-pi-subagents-overlay-patterns.md` - useful for future overlay/modal implementations
-
-**Status:** ❌ CANCELLED - Extension not needed
-
----
-
-### Session 2026-01-12 16:53
-**Epic:** Multi-Harness Agent Loader  
-**Phase:** Research & Discovery  
-**Activity:** Epic creation and research planning
-
-**Created:**
-- `epic-4dd87a16-multi-harness-agent-loader.md`
-- `phase-ab3b84bd-research-discovery.md`
-- `task-db140ba7-research-harness-formats.md`
-
-**Status:** Ready to begin research task
-
-### Session session-20260210-130715
-**Epic:** Multi-Harness Agent Loader (4dd87a16)  
-**Phase:** Research & Discovery (ab3b84bd)  
-**Activity:** Captured user request as a new miniproject task file.
-
-**Updated:**
-- `task-c7f1a2de-write-user-request-to-task-file.md`
-- `todo.md`
-
-**Status:** Task recorded in memory and linked in todo.
-
----
-
-## Phase Assignments
-
-### Epic 3: Multi-Harness Agent Loader 🔄 ACTIVE
-
-#### Phase 1: Research & Discovery 🔄
-**Status:** In Progress  
-**Owner:** Research Team  
-**Started:** 2026-01-12
-
-**Goal:** Research agent formats for Claude Code, Aider, Continue, and other AI harnesses.
-
-**Tasks:**
-- ⏳ Research Harness Formats (ready to start)
-
-#### Phase 2: Architecture Design ⏳
-**Status:** Pending  
-**Blocked by:** Phase 1 completion
-
-#### Phase 3: Implementation ⏳
-**Status:** Pending  
-**Blocked by:** Phase 2 completion
-
----
-
-## Notes
-
-### Epic 3 Rationale
-
-User requested research into creating a Pi-mono extension that can load agents and commands from other AI harnesses. This enables:
-- Portability of agent definitions across tools
-- Reduced duplication of configuration effort
-- Experimentation with agents from other ecosystems
-- Sharing agent configurations between tools
-
-### Research Targets
-
-1. Claude Code (Anthropic) - Highest priority
-2. Aider - Popular AI pair programming tool
-3. Continue - Open-source VS Code extension
-4. Cursor - AI-first code editor
-5. OpenCode - Open-source coding agent
-6. Cody (Sourcegraph) - AI coding assistant
-
-### Next Actions
-
-1. Begin research task using brave-search skill or delegate to Deep Researcher
-2. Document findings in research file
-3. Create compatibility matrix
-4. Make recommendation for implementation priority
+## Current Assignment
+- **Owner:** session-20260220-1938
+- **Focus:** begin task execution in priority order from `.memory/todo.md`.

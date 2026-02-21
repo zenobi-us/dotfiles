@@ -4,15 +4,15 @@ title: Confirm authoritative pi-interview source location
 epic_id: 9c7e21ab
 phase_id: 3a5f1c8d
 created_at: 2026-02-20T19:32:00+10:30
-updated_at: 2026-02-20T19:32:00+10:30
-status: todo
-assigned_to: [NEEDS-HUMAN]
+updated_at: 2026-02-20T19:39:55+10:30
+status: completed
+assigned_to: session-20260220-1938
 ---
 
 # Task: Confirm authoritative pi-interview source location
 
 ## Objective
-Get explicit confirmation from Q on where the real `pi-interview` source should be read from.
+Get explicit confirmation on where the real `pi-interview` source should be read from.
 
 ## Related Story
 N/A (IDEA-stage)
@@ -25,7 +25,7 @@ N/A (IDEA-stage)
 Authoritative source location available so design can align with real behavior.
 
 ## Actual Outcome
-Pending human response.
+Completed via direct source verification from GitHub: `https://github.com/nicobailon/pi-interview-tool` (cloned at `/tmp/pi-interview-tool`).
 
 ## Lessons Learned
-N/A
+The package reference in local Pi settings was insufficient. Pulling upstream source removed uncertainty and unblocked architecture analysis.

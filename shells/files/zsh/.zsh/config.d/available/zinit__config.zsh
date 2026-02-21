@@ -15,3 +15,7 @@ autoload -Uz _zinit
 zinit version
 zinit light Aloxaf/fzf-tab
 zinit light loiccoyle/zsh-github-copilot
+
+# zsh-fzf-history-search
+zinit ice lucid wait'0'
+zinit light joshskidmore/zsh-fzf-history-search

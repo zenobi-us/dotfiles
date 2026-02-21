@@ -361,6 +361,7 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 - [core] every project MUST start with an epic definition before phases are created
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
+- [epic] Announcing an idea, leads directly to a q & a session with the user to flesh out the idea and determine if it is worth pursuing. If it is worth pursuing, then move directly to epic definition stage. If not, then document the idea and why it was rejected in a `.memory/learning-<8_char_hash_id>-<title>.md` file for future reference.
 
 #### Stage: Epic Definition [EPIC]
 

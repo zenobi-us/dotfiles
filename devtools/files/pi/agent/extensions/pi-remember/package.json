@@ -1,0 +1,47 @@
+{
+  "name": "@howaboua/pi-remember",
+  "version": "0.1.0",
+  "description": "Pi extension for semantic long-term memory with local embeddings",
+  "keywords": [
+    "embeddings",
+    "memory",
+    "pi-extension",
+    "pi-package"
+  ],
+  "license": "MIT",
+  "files": [
+    "AGENTS.md",
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.48",
+    "better-sqlite3": "^12.6.2",
+    "fastembed": "^2.1.0"
+  },
+  "devDependencies": {
+    "@mariozechner/pi-coding-agent": "^0.52.10",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^20.17.17",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  }
+}

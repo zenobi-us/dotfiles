@@ -2,65 +2,87 @@
 id: 6d4f2a10
 title: pi-interview source and pi-tui feasibility
 created_at: 2026-02-20T19:31:00+10:30
-updated_at: 2026-02-20T19:31:00+10:30
+updated_at: 2026-02-20T19:39:55+10:30
 status: completed
 epic_id: 9c7e21ab
 phase_id: 3a5f1c8d
-related_task_id: 5b2d7e91
+related_task_id: 7e3f4a91
 ---
 
 # Research: pi-interview source and pi-tui feasibility
 
 ## Research Questions
-1. Is `pi-interview` source code present in this repository?
-2. What existing pi-tui interaction patterns are available locally to model a questionnaire UI?
-3. What is the minimal viable architecture for a pi-tui questionnaire version?
+1. Where is authoritative `pi-interview` source?
+2. What is the runtime architecture and request/response flow?
+3. Which parts should be reused vs redesigned for a pi-tui-native questionnaire in Pi?
 
 ## Summary
-`pi-interview` implementation source was **not found in this repository**. Evidence found only package reference in `devtools/files/pi/agent/settings.json` (`"npm:pi-interview"`).
+Authoritative source was verified in **GitHub repo `nicobailon/pi-interview-tool`**, cloned to `/tmp/pi-interview-tool`.
 
-Local pi-tui patterns do exist in installed code under `devtools/files/pi/agent/extensions/node_modules/@mariozechner/pi-coding-agent/dist/modes/interactive/components/` and provide concrete building blocks for selector/input/cancel-confirm flows.
+Architecture is split into:
+- Pi extension tool registration (`index.ts`)
+- Local HTTP server/session manager (`server.ts`)
+- Schema and validation (`schema.ts`)
+- Browser UI app (`form/index.html`, `form/script.js`, `form/styles.css`)
+
+A pi-tui version should keep schema + response contracts but replace HTTP/browser/session heartbeats with an in-process `ctx.ui.custom(..., { overlay: true })` flow.
 
 ## Findings
 
-### 1) Repository source availability
-- `rg -uu --files | rg 'pi-interview|interview'` returned no source files.
-- `find . -type d -name '*pi-interview*' -o -type f -name '*pi-interview*'` returned no matches.
-- `rg -uu -n "pi-interview|interview" .` found only one relevant entry: `devtools/files/pi/agent/settings.json` includes `"npm:pi-interview"`.
+### 1) Source of truth verified
+- `package.json` confirms package name `pi-interview` and extension entry `./index.ts`.
+- Repository: `https://github.com/nicobailon/pi-interview-tool`
+- Local audit path: `/tmp/pi-interview-tool`
 
-Interpretation: this repo currently references the package, but does not contain package source.
+### 2) Control-plane flow (tool + server)
+- `index.ts`
+  - Registers `interview` tool with TypeBox parameters.
+  - Validates/loads questions via `validateQuestions` from `schema.ts`.
+  - Starts server via `startInterviewServer(...)` from `server.ts`.
+  - Opens browser, handles queued interviews, and returns final status (`completed|cancelled|timeout|aborted|queued`) with structured responses.
+- `server.ts`
+  - Serves interview HTML/CSS/JS and theme assets.
+  - Owns session registry (`~/.pi/interview-sessions.json`) and stale detection.
+  - Endpoints: `GET /`, `/health`, `/sessions`, `/styles.css`, `/theme-*.css`, `/script.js`, `/media`; `POST /heartbeat`, `/cancel`, `/submit`, `/save`.
+  - Persists recovery files (`~/.pi/interview-recovery`) and snapshot HTML bundles (`~/.pi/interview-snapshots`).
 
-### 2) Verified local pi-tui component patterns
-From `.../extension-selector.js`:
-- Uses `Container`, `Text`, `Spacer`, `getEditorKeybindings`.
-- Maintains list state (`selectedIndex`) and handles up/down/confirm/cancel.
-- Renders key hints and dynamic list refresh (`updateList`).
+### 3) Data model + validation
+- `schema.ts` defines `Question` types: `single`, `multi`, `text`, `image`, `info`.
+- Supports recommendation metadata (`recommended`, `conviction`, `weight`), code blocks, and rich media blocks (`image`, `table`, `chart`, `mermaid`, `html`).
+- Validation enforces type-option compatibility and recommendation integrity.
 
-From `.../extension-input.js`:
-- Uses `Input` component with confirm/cancel handling.
-- Routes unmatched keystrokes to input field (`this.input.handleInput(keyData)`).
+### 4) Browser UX state machine (form/script.js)
+- Client state handles:
+  - Keyboard-first navigation across questions/options
+  - Timeout countdown + heartbeat refresh
+  - Queue toast for concurrent interviews
+  - LocalStorage restore keyed by question hash
+  - File/image handling (upload/paste/path), attachment support
+  - Submit/cancel/save snapshot interactions
+- Practical takeaway: most complexity is UI interaction and media rendering, not the question schema itself.
 
-From `.../oauth-selector.js`:
-- Demonstrates selectable list with status text and bounded navigation.
-- Uses `TruncatedText` for safe width rendering.
+### 5) Feasibility for pi-tui version
+**Directly reusable now:**
+- Question schema contract (`schema.ts` semantics)
+- Response object shape (`{ id, value, attachments? }`)
+- Cancellation/timeout status semantics
 
-### 3) Feasible architecture for pi-tui questionnaire
-A practical pi-tui questionnaire can be modeled as a screen state machine:
-- `question-active` -> render prompt + control type (single/multi/text)
-- `validation-error` -> inline error and continue same question
-- `question-commit` -> store answer and advance index
-- `review-submit` -> optional summary screen and submit
-- `cancelled` / `completed`
+**Must be redesigned in pi-tui:**
+- Browser/HTTP/session-token machinery
+- Rich media rendering parity (chart/mermaid/html)
+- Drag-drop/paste image workflows
+- Snapshot HTML generation
 
-Likely implementation split:
-- `questionnaire-component.ts` (main state and `handleInput` routing)
-- `renderers.ts` (single/multi/text/question header/help footer)
-- `types.ts` (question schema + answer model)
-- `index.ts` (command/tool entry + `ctx.ui.custom(..., { overlay: true })`)
+## Recommended pi-tui implementation slice
+1. **MVP (ship first):** `single`, `multi`, `text`, `info`; no rich media rendering except textual placeholders.
+2. **State machine component:** one overlay component with question index, answer map, validate-next, submit/cancel.
+3. **Parity phase:** add `image` path capture and attachment list support.
+4. **Optional advanced:** add markdown code block panel + table rendering; defer chart/mermaid/html to fallback links.
 
 ## References
-- Repository evidence: `devtools/files/pi/agent/settings.json`
-- UI patterns:
-  - `devtools/files/pi/agent/extensions/node_modules/@mariozechner/pi-coding-agent/dist/modes/interactive/components/extension-selector.js`
-  - `devtools/files/pi/agent/extensions/node_modules/@mariozechner/pi-coding-agent/dist/modes/interactive/components/extension-input.js`
-  - `devtools/files/pi/agent/extensions/node_modules/@mariozechner/pi-coding-agent/dist/modes/interactive/components/oauth-selector.js`
+- `nicobailon/pi-interview-tool` (GitHub)
+- `/tmp/pi-interview-tool/index.ts`
+- `/tmp/pi-interview-tool/server.ts`
+- `/tmp/pi-interview-tool/schema.ts`
+- `/tmp/pi-interview-tool/form/script.js`
+- `/tmp/pi-interview-tool/README.md`
