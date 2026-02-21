@@ -1,5 +1,8 @@
 # TODO - Dotfiles Project
 
+## Planning Queue (Epic dspya1b2 / Phase dspya101)
+- [ ] [task-dspyrvw-review-template-adapter-plan.md](task-dspyrvw-review-template-adapter-plan.md) `[NEEDS-HUMAN]`
+
 ## Priority Queue (Epic 9c7e21ab / Phase 8b1e4d2f)
 
 ### P0 - Core questionnaire foundation
