@@ -77,7 +77,7 @@ Configuration uses `@zenobius/pi-extension-config` for layered config management
 ### Config Fields
 
 - `mode` (string) - Model to use in `provider/model-id` format
-- `prompt` (string) - Default prompt to use when running `/commit` with no arguments
+- `prompt` (string) - Prompt template. If it contains `$ARGUMENTS`, runtime command arguments are injected into the prompt before dispatching to the subagent.
 - `maxOutputCost` (number) - Maximum output cost per million tokens for "cheap" model filtering (default: 1.0)
 
 ### Example Configurations
@@ -94,6 +94,13 @@ Configuration uses `@zenobius/pi-extension-config` for layered config management
 {
   "mode": "anthropic/claude-opus",
   "prompt": "Write semantic commits following the writing-git-commits skill"
+}
+```
+
+**Inject runtime context with `$ARGUMENTS`:**
+```json
+{
+  "prompt": "Use writing-git-commits skill. Focus on: $ARGUMENTS"
 }
 ```
 

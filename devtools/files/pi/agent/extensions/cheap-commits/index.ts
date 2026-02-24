@@ -40,6 +40,8 @@ Use the writing-git-commits skill to commit unstaged and staged changes in the c
 Only stop for human input if there is a blocker. Otherwise generate and stage commits until all changes are committed.
 `.trim();
 
+const ARGUMENTS_MARKER = "$ARGUMENTS";
+
 const DEFAULT_SKILL = "writing-git-commits";
 const DEFAULT_AGENT_CANDIDATES = [
   "general",
@@ -331,13 +333,19 @@ function buildPrompt(
   config: GenerateCommitMessageConfig,
   args: string,
 ): string {
-  const argPrompt = args.trim();
-  if (argPrompt) return argPrompt;
+  const argumentsContext = args.trim();
+  const promptTemplate = (config.prompt?.trim() || DEFAULT_PROMPT).trim();
 
-  const configPrompt = config.prompt?.trim();
-  if (configPrompt) return configPrompt;
+  // If the configured prompt includes $ARGUMENTS, treat incoming args as context
+  // and inject them into the template.
+  if (promptTemplate.includes(ARGUMENTS_MARKER)) {
+    return promptTemplate.replaceAll(ARGUMENTS_MARKER, argumentsContext);
+  }
 
-  return DEFAULT_PROMPT;
+  // Backward-compatible behavior: no marker means args override the prompt.
+  if (argumentsContext) return argumentsContext;
+
+  return promptTemplate;
 }
 
 /** Picker item types for grouped model list */
@@ -899,7 +907,7 @@ export default async function generateCommitMessageExtension(pi: ExtensionAPI) {
   );
   pi.registerCommand("cheap-commit", {
     description:
-      "Generate and stage semantic commits using a subagent. Optionally specify a prompt to customize the commit generation task.",
+      "Generate and stage semantic commits using a subagent. Args can be injected into configured prompts via the $ARGUMENTS marker.",
     handler: async (args: string, ctx: ExtensionContext) => {
       const input = args.trim();
       const [command, ...rest] = input.split(" ");

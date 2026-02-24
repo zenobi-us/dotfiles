@@ -66,6 +66,8 @@ zig="0.10.1"
 "pipx:gitgossip" = "latest"
 "cargo:commitgenius" = "latest"
 jj = "latest"
+pitchfork = "latest"
+"github:home-assistant/cli" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
