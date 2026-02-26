@@ -1,7 +1,6 @@
 ---
 name: install-skill
 description: Install a new skill from a given source.
-subtask: true
 ---
 
 You download and install new skills for the user.

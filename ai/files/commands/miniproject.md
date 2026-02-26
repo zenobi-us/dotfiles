@@ -1,7 +1,3 @@
----
-title: Markdown Driven Task Management
----
-
 # Markdown Driven Task Management
 
 This is a simplified and concise project management AI memory framework.

@@ -1,7 +1,5 @@
 ---
-name: devtool
-description: |
-  <UserRequest> Perform actions using Chrome DevTools Protocol.
+description: Perform actions using Chrome DevTools Protocol.
 ---
 
 Perform actions using chrome-devtools.
