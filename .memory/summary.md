@@ -28,12 +28,23 @@ Dotfiles repository with Pi local extensions. Current focus is planning a Templa
 #### Ready Backlog (still valid once work resumes)
 - Story/task set already defined for questionnaire renderer, navigation validation, image support, and compatibility parity.
 
+## Proposed Epic (New Idea Intake)
+
+### `e9b2c7d4` — Neovim ↔ Pi ZeroMQ Event Bus Extension
+- **Status:** Proposed (research in progress/completed for feasibility)
+- **Goal:** Star-topology event bus connecting Neovim and Pi clients, with first Pi instance bootstrapping broker lifecycle and participating as a normal client.
+- **Current artifacts:**
+  - Epic: `epic-e9b2c7d4-nvim-pi-zeromq-event-bus-extension.md`
+  - Phase: `phase-e9b2p101-research-consolidation-and-protocol-draft.md`
+  - Research: `research-a7f8b2c4-neovim-pi-zeromq-event-bus.md`
+
 ## Next Milestones
 1. **Human review of TemplateAdapter epic/phase plan** (`task-dspyrvw-review-template-adapter-plan.md`).
-2. After approval, create detailed tasks for Phase `dspya101` (repo audit, runner prototype, UX/storage spec).
-3. Decide whether to resume Epic `9c7e21ab` immediately or after TemplateAdapter foundation is delivered.
+2. **Human triage for new epic `e9b2c7d4`** (prioritize now vs keep in backlog).
+3. If prioritized, convert ZeroMQ research into story/task breakdown for phase `e9b2p101`.
+4. Decide whether to resume Epic `9c7e21ab` immediately or after current planning queues are cleared.
 
 ## Readiness Snapshot
 - TemplateAdapter plan artifacts: ✅ epic + 4 phases + architecture codemap created.
-- Task breakdown: ⏸️ waiting on human approval before generating task files per phase.
+- ZeroMQ event-bus idea: ✅ epic drafted + research brief captured; ⏸️ pending prioritization.
 - Questionnaire epic backlog: ✅ remains execution-ready but currently paused.
