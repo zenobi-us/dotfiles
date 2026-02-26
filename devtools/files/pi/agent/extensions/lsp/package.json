@@ -5,8 +5,9 @@
   "scripts": {
     "test": "npx tsx tests/lsp.test.ts",
     "test:tool": "npx tsx tests/index.test.ts",
+    "test:tool:execute": "npx tsx tests/lsp-tool.test.ts",
     "test:integration": "npx tsx tests/lsp-integration.test.ts",
-    "test:all": "npm test && npm run test:tool && npm run test:integration"
+    "test:all": "npm test && npm run test:tool && npm run test:tool:execute && npm run test:integration"
   },
   "keywords": [
     "lsp",
