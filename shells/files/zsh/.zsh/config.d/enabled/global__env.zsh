@@ -1,1 +1,0 @@
-/home/zenobius/.zsh/config.d/available/global__env.zsh

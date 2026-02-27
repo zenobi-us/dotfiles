@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-eval "$(/home/zenobius/.local/bin/mise activate zsh)"
+eval "$($HOME/.local/bin/mise activate zsh)"
 
 if [[ -n "$VSCODE_RESOLVING_ENVIRONMENT" && "$VSCODE_RESOLVING_ENVIRONMENT" == 1 ]]; then
     eval "$(mise activate zsh --yes --silent --shims)"

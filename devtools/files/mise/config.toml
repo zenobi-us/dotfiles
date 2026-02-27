@@ -68,6 +68,7 @@ zig="0.10.1"
 jj = "latest"
 pitchfork = "latest"
 "github:home-assistant/cli" = "latest"
+"github:cantino/mcfly" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"

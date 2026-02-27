@@ -1,2 +1,3 @@
 #!/usr/bin/env zsh
-load-parts "$DOTFILE_ROOT" "config.d/enabled/*__profile"
+source "${DOTFILE_ROOT}/zinit.zsh"
+zinit_load_profile_modules

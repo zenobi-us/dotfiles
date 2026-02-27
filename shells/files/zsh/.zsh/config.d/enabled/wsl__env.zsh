@@ -1,1 +1,0 @@
-/home/zenobius/.zsh/config.d/available/wsl__env.zsh

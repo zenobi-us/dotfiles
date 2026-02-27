@@ -3,7 +3,9 @@
   "private": true,
   "packageManager": "bun@1.3.4",
   "dependencies": {
-    "@zenobius/pi-extension-config": "0.0.2"
+    "@zenobius/pi-extension-config": "0.0.2",
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-tui": "*"
   },
   "workspaces": [
     "*",

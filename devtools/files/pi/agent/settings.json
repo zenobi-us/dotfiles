@@ -1,6 +1,6 @@
 {
-  "lastChangelogVersion": "0.53.0",
-  "defaultThinkingLevel": "medium",
+  "lastChangelogVersion": "0.55.1",
+  "defaultThinkingLevel": "minimal",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
@@ -22,5 +22,7 @@
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash",
-  "skills": []
+  "skills": [],
+  "quietStartup": true,
+  "collapseChangelog": true
 }
