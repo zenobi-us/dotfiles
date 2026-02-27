@@ -15,12 +15,6 @@ actions:
     command: rm
     args:
       - "{{user.home_dir}}/.zshenv"
-  - action: command.run
-    command: rm 
-    args:
-      - "-rf"
-      - "{{user.home_dir}}/.zsh"
-
   - action: file.link
     to: "{{user.home_dir}}/.zshrc"
     from: zsh/.zshrc
@@ -30,6 +24,4 @@ actions:
   - action: file.link
     to: "{{user.home_dir}}/.zshenv"
     from: zsh/.zshenv
-  - action: file.link
-    to: "{{user.home_dir}}/.zsh"
-    from: zsh/.zsh
+

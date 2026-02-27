@@ -7,7 +7,7 @@ experimental = true
 "cargo:zellij" = "0.43.1"
 "github:zenobi-us/opennotes" = "latest"
 "go:github.com/Crosse/font-install" = "latest"
-"npm:@mariozechner/pi-coding-agent" = "latest"
+"npm:@mariozechner/pi-coding-agent" = "0.52.5"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:chrome-devtools-mcp" = "0.10.2"
 "npm:firefox-devtools-mcp" = "0.4.0"
@@ -20,7 +20,6 @@ experimental = true
 "pipx:vllm-playground" = "latest"
 "ubi:Feel-ix-343/markdown-oxide" = "latest"
 "ubi:asciinema/asciinema" = "3.0.1"
-"ubi:dlvhdr/gh-dash" = "4.20.1"
 "ubi:mfontanini/presenterm" = "0.15.1"
 "ubi:scottmckendry/pokemon-go-colorscripts" = "0.3.1"
 "ubi:terrastruct/d2" = "latest"
@@ -49,7 +48,6 @@ jq="1.7.1"
 kubectl="1.18.17"
 lazygit="0.42.0"
 neovim = "0.11.5"
-node = "lts"
 python = "3.13.3"
 ripgrep="13.0.0"
 rust= "1.92.0"
@@ -69,9 +67,11 @@ jj = "latest"
 pitchfork = "latest"
 "github:home-assistant/cli" = "latest"
 "github:cantino/mcfly" = "latest"
+node = "lts"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
 
 [shell_alias]
-pi = "mise x npm:@mariozechner/pi-coding-agent -- pi --no-skills"
+pi = 'mise x node@lts -- pi "${@}"'
+mcporter = 'mise x node@lts-- mcporter "${@}"'
