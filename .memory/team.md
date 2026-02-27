@@ -19,6 +19,12 @@
 - **Activity:** Created MVP stories and linked implementation tasks for local extension interview replacement, image flow, and no-timeout semantics.
 - **Status:** Execution-ready backlog prepared but currently paused while TemplateAdapter planning is reviewed.
 
+### Session session-20260225-1908
+- **Epic:** e9b2c7d4
+- **Phase:** e9b2p101
+- **Activity:** Captured new epic for Neovim ↔ Pi ZeroMQ event bus and delegated/recorded feasibility research.
+- **Status:** Awaiting human prioritization decision before story/task breakdown.
+
 ## Current Assignment
-- **Owner:** session-20260221-2102
-- **Focus:** Secure approval for TemplateAdapter plan (task `dspyrvw1`), then spin up Phase `dspya101` tasks. Questionnaire epic remains paused until prioritization decision is made post-review.
+- **Owner:** session-20260225-1908
+- **Focus:** Hold e9b2c7d4 in intake queue pending human priority call; maintain existing active planning gate on dspya1b2.

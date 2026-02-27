@@ -86,6 +86,7 @@ export interface FileDiagnosticsResult { items: FileDiagnosticItem[]; }
 const SEARCH_PATHS = [
   ...(process.env.PATH?.split(path.delimiter) || []),
   "/usr/local/bin", "/opt/homebrew/bin",
+  `${process.env.HOME}/.local/share/mise/shims`,
   `${process.env.HOME}/.pub-cache/bin`, `${process.env.HOME}/fvm/default/bin`,
   `${process.env.HOME}/go/bin`, `${process.env.HOME}/.cargo/bin`,
 ];

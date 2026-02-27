@@ -140,8 +140,13 @@ Actions: definition, references, hover, signature, rename (require file + line/c
 Use bash to find files: find src -name "*.ts" -type f`,
     parameters: LspParams,
 
-    async execute(_toolCallId, params, _onUpdate, ctx, _signal) {
-      const manager = getOrCreateManager(ctx.cwd);
+    async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
+      const cwd = ctx?.cwd ?? process.cwd();
+      if (!cwd) {
+        throw new Error("Missing cwd in tool context and process cwd fallback.");
+      }
+
+      const manager = getOrCreateManager(cwd);
       const { action, file, files, line, column, endLine, endColumn, query, newName, severity } = params as LspParamsType;
       const sevFilter: SeverityFilter = severity || "all";
       const needsFile = action !== "workspace-diagnostics";
