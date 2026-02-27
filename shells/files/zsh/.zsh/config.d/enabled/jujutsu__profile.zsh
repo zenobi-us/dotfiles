@@ -1,0 +1,1 @@
+/home/zenobius/.zsh/config.d/available/jujutsu__profile.zsh

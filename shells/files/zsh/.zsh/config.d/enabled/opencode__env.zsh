@@ -1,0 +1,1 @@
+/mnt/Store/Projects/Mine/Github/Dotfiles/shells/files/zsh/.zsh/config.d/available/opencode__env.zsh
