@@ -48,6 +48,10 @@ actions:
     from: pi/agent/settings.json
 
   - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/fzf.json"
+    from: pi/agent/fzf.json
+
+  - action: file.link
     to: "{{user.home_dir}}/.pi/agent/models.json"
     from: pi/agent/models.json
 
@@ -58,4 +62,3 @@ actions:
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/pi-sub-core-settings.json"
     from: pi/agent/pi-sub-core-settings.json
-
