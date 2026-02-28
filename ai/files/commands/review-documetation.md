@@ -1,7 +1,5 @@
 ---
 description: Review supplied files for documentation quality and completeness.
-subtask: true
-agent: general
 ---
 
 Assist with a comprehensive documentation review of the files or content indicated by the user request.

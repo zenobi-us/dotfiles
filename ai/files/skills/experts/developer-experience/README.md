@@ -16,52 +16,47 @@ Use these subagents when you need to:
 
 ## =� Available Subagents
 
-### [**build-engineer**](build-engineer.md) - Build system specialist
+### [**build-engineer**](./build-engineer/SKILL.md) - Build system specialist
 Build optimization expert making compilation and bundling lightning fast. Masters various build tools, optimization techniques, and caching strategies. Reduces build times from minutes to seconds.
 
 **Use when:** Optimizing build times, configuring build tools, implementing build caching, setting up monorepo builds, or troubleshooting build issues.
 
-### [**cli-developer**](cli-developer.md) - Command-line tool creator
+### [**cli-developer**](./cli-developer/SKILL.md) - Command-line tool creator
 CLI specialist building intuitive command-line interfaces. Expert in argument parsing, interactive prompts, and cross-platform compatibility. Creates tools developers love to use.
 
 **Use when:** Building CLI tools, designing command interfaces, implementing interactive CLIs, creating developer utilities, or improving existing CLI applications.
 
-### [**dependency-manager**](dependency-manager.md) - Package and dependency specialist
+### [**dependency-manager**](./dependency-manager/SKILL.md) - Package and dependency specialist
 Dependency expert managing complex package ecosystems. Masters version resolution, security updates, and dependency optimization. Keeps dependencies secure and up-to-date without breaking things.
 
 **Use when:** Managing dependencies, resolving version conflicts, implementing security updates, optimizing package sizes, or setting up dependency automation.
 
-### [**documentation-engineer**](documentation-engineer.md) - Technical documentation expert
+### [**documentation-engineer**](./documentation-engineer/SKILL.md) - Technical documentation expert
 Documentation specialist creating clear, comprehensive technical docs. Masters API documentation, tutorials, and developer guides. Makes complex systems understandable through great documentation.
 
 **Use when:** Writing API documentation, creating developer guides, building documentation sites, improving existing docs, or setting up documentation workflows.
 
-### [**dx-optimizer**](dx-optimizer.md) - Developer experience optimization specialist
+### [**dx-optimizer**](./dx-optimizer/SKILL.md) - Developer experience optimization specialist
 DX expert identifying and eliminating developer friction. Analyzes workflows, tools, and processes to improve productivity. Makes development feel effortless and enjoyable.
 
 **Use when:** Improving developer workflows, analyzing productivity bottlenecks, selecting developer tools, optimizing development environments, or measuring developer experience.
 
-### [**git-workflow-manager**](git-workflow-manager.md) - Git workflow and branching expert
+### [**git-workflow-manager**](./git-workflow-manager/SKILL.md) - Git workflow and branching expert
 Git specialist designing efficient version control workflows. Masters branching strategies, merge conflict resolution, and Git automation. Ensures smooth collaboration through Git best practices.
 
 **Use when:** Designing Git workflows, implementing branching strategies, resolving complex merges, automating Git processes, or training teams on Git.
 
-### [**legacy-modernizer**](legacy-modernizer.md) - Legacy code modernization specialist
-Modernization expert breathing new life into old codebases. Masters incremental refactoring, dependency updates, and architecture improvements. Transforms legacy code without breaking functionality.
-
-**Use when:** Modernizing legacy applications, planning refactoring strategies, updating old frameworks, migrating to new technologies, or improving code maintainability.
-
-### [**mcp-developer**](mcp-developer.md) - Model Context Protocol specialist
+### [**mcp-developer**](./mcp-developer/SKILL.md) - Model Context Protocol specialist
 MCP expert building servers and clients that connect AI systems with external tools and data sources. Masters protocol specification, SDK implementation, and production-ready integrations. Creates seamless bridges between AI and external services.
 
 **Use when:** Building MCP servers, creating AI tool integrations, implementing Model Context Protocol clients, connecting AI systems to external APIs, or developing AI-powered applications with external data sources.
 
-### [**refactoring-specialist**](refactoring-specialist.md) - Code refactoring expert
+### [**refactoring-specialist**](./refactoring-specialist/SKILL.md) - Code refactoring expert
 Refactoring master improving code structure without changing behavior. Expert in design patterns, code smells, and safe refactoring techniques. Makes code cleaner and more maintainable.
 
 **Use when:** Refactoring complex code, eliminating code smells, implementing design patterns, improving code structure, or preparing code for new features.
 
-### [**tooling-engineer**](tooling-engineer.md) - Developer tooling specialist
+### [**tooling-engineer**](./tooling-engineer/SKILL.md) - Developer tooling specialist
 Tooling expert building and integrating developer tools. Masters IDE configurations, linters, formatters, and custom tooling. Creates development environments that boost productivity.
 
 **Use when:** Setting up development tools, creating custom tooling, configuring IDEs, implementing code quality tools, or building developer platforms.
@@ -76,7 +71,6 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Write documentation | **documentation-engineer** |
 | Improve workflows | **dx-optimizer** |
 | Design Git strategies | **git-workflow-manager** |
-| Modernize legacy code | **legacy-modernizer** |
 | Build MCP integrations | **mcp-developer** |
 | Refactor code | **refactoring-specialist** |
 | Build dev tools | **tooling-engineer** |
@@ -84,7 +78,6 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 ## =� Common DX Patterns
 
 **Legacy Modernization:**
-- **legacy-modernizer** for strategy
 - **refactoring-specialist** for code improvement
 - **dependency-manager** for package updates
 - **documentation-engineer** for new docs

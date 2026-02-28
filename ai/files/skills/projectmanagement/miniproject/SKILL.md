@@ -381,6 +381,7 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 - [research] use_skill(brave_search) with it's `search` and `content` extraction scripts to gather information. If this fails, use `lynx` cli to manually search and extract content.
 - [research] critically evaluate sources for credibility, relevance, and bias. Link these items to a footnote that provides a reason and score out of 10.
 - [research] Record findings clearly and concisely in `.memory/research-<8_char_hash_id>-<title>.md` files. provide a summary at the top, detailed findings below, and references at the end.
+- [research] When doing user-led discovery/planning Q&A, record the full session verbatim in the research artifact: each question, all presented options, and the user's exact answer. Summaries are supplemental and must not replace verbatim Q&A.
 - [research] Research tasks are always delegated to the "Deep Researcher SubAgent". Use what ever subagent, subthread, or delegation tool you have available to do this.
 - [research] If you are a subagent, then focus only on the task you've been given. Do not deviate or delegate further.
 

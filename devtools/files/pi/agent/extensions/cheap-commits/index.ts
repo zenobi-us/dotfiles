@@ -3,7 +3,10 @@ import type {
   ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
 import { matchesKey, visibleWidth } from "@mariozechner/pi-tui";
-import { createConfigService } from "@zenobius/pi-extension-config";
+import {
+  ConfigService,
+  createConfigService,
+} from "@zenobius/pi-extension-config";
 import {
   existsSync,
   mkdirSync,
@@ -855,7 +858,11 @@ async function generateCommitCommand(
   );
 }
 
-const commitModelCommand = async (args: string, ctx: ExtensionContext) => {
+const commitModelCommand = async (
+  args: string,
+  ctx: ExtensionContext,
+  configService: ConfigService<GenerateCommitMessageConfig>,
+) => {
   const trimmedArgs = args.trim();
   let selectedModel: string | null = null;
 
@@ -905,7 +912,7 @@ export default async function generateCommitMessageExtension(pi: ExtensionAPI) {
     CONFIG_NAME,
     { defaults: DEFAULT_CONFIG },
   );
-  pi.registerCommand("cheap-commit", {
+  pi.registerCommand("commit", {
     description:
       "Generate and stage semantic commits using a subagent. Args can be injected into configured prompts via the $ARGUMENTS marker.",
     handler: async (args: string, ctx: ExtensionContext) => {
@@ -914,7 +921,7 @@ export default async function generateCommitMessageExtension(pi: ExtensionAPI) {
 
       switch (command) {
         case "model":
-          commitModelCommand(rest.join(" "), ctx);
+          commitModelCommand(rest.join(" "), ctx, configService);
           break;
         case "help":
           break;

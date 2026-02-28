@@ -1,139 +1,121 @@
 # Core Development Subagents
 
-Core Development subagents are your essential toolkit for building modern applications from the ground up. These specialized agents cover the entire development spectrum - from backend services to frontend interfaces, from mobile apps to desktop applications, and from simple APIs to complex distributed systems.
+Core Development subagents are your essential toolkit for building modern applications from the ground up. These specialists cover architecture, frontend, backend integration, mobile experiences, and real-time systems.
 
 ## 🎯 When to Use Core Development Subagents
 
 Use these subagents when you need to:
-- **Build new applications** from scratch with proper architecture
-- **Implement complex features** that require deep technical expertise  
-- **Design scalable systems** that can grow with your needs
-- **Create beautiful UIs** that provide exceptional user experiences
-- **Develop real-time features** for interactive applications
-- **Modernize legacy systems** with current best practices
-- **Optimize performance** across the entire stack
+- **Build new applications** with strong technical foundations
+- **Implement complex features** across client and server boundaries
+- **Design scalable systems** that can evolve safely
+- **Create polished UIs** with strong usability and accessibility
+- **Develop real-time experiences** for interactive products
+- **Modernize legacy systems** with current patterns
+- **Optimize end-to-end performance** across your stack
 
 ## 📋 Available Subagents
 
-### [**api-designer**](api-designer.md) - REST and GraphQL API architect
-The architect who designs beautiful, intuitive, and scalable APIs. Expert in RESTful principles, GraphQL schemas, API versioning, and documentation. Ensures your APIs are developer-friendly and future-proof.
+### [**api-designer**](./api-designer/SKILL.md) - REST and GraphQL API architect
+The architect who designs intuitive, scalable APIs. Expert in REST principles, GraphQL schemas, API versioning, and documentation.
 
-**Use when:** Designing new APIs, refactoring existing endpoints, implementing API standards, or creating comprehensive API documentation.
+**Use when:** Designing new APIs, refactoring endpoints, defining standards, or improving API documentation.
 
-### [**backend-developer**](backend-developer.md) - Server-side expert for scalable APIs
-Your go-to specialist for building robust server applications, RESTful APIs, and microservices. Excels at database design, authentication systems, and performance optimization. Perfect for creating the backbone of your application with Node.js, Python, Java, or other backend technologies.
+### [**electron-pro**](./electron-pro/SKILL.md) - Desktop application expert
+Specialist in cross-platform desktop applications using Electron. Handles app packaging, system integration, auto-updates, and desktop-specific behavior.
 
-**Use when:** Building APIs, designing databases, implementing authentication, handling business logic, or optimizing server performance.
+**Use when:** Building desktop apps, porting web apps to desktop, adding native integrations, or supporting offline workflows.
 
-### [**electron-pro**](electron-pro.md) - Desktop application expert
-Specialist in building cross-platform desktop applications using web technologies. Masters Electron framework for creating installable desktop apps with native capabilities. Handles auto-updates, system integration, and desktop-specific features.
+### [**frontend-developer**](./frontend-developer/SKILL.md) - UI/UX specialist for React, Vue, and Angular
+Expert in responsive, accessible, and performant interfaces. Strong on component design, state management, and modern CSS architecture.
 
-**Use when:** Creating desktop applications, porting web apps to desktop, implementing system tray features, or building offline-capable desktop tools.
+**Use when:** Building UI, implementing complex components, improving frontend performance, or hardening accessibility.
 
-### [**frontend-developer**](frontend-developer.md) - UI/UX specialist for React, Vue, and Angular  
-Master of modern web interfaces who creates responsive, accessible, and performant user experiences. Expert in component architecture, state management, and modern CSS. Transforms designs into pixel-perfect, interactive applications.
+### [**fullstack-developer**](./fullstack-developer/SKILL.md) - End-to-end feature development
+A versatile builder who works across data, API, and UI layers. Ideal for shipping cohesive features quickly with clean integration.
 
-**Use when:** Creating web interfaces, implementing complex UI components, optimizing frontend performance, or ensuring accessibility compliance.
+**Use when:** Delivering full features, prototyping products, handling cross-stack tasks, or unblocking integration issues.
 
-### [**fullstack-developer**](fullstack-developer.md) - End-to-end feature development
-The versatile expert who seamlessly works across the entire stack. Builds complete features from database to UI, ensuring smooth integration between frontend and backend. Ideal for rapid prototyping and full feature implementation.
+### [**graphql-architect**](./graphql-architect/SKILL.md) - GraphQL schema and federation expert
+Specialist in GraphQL schemas, resolver design, federation, and query optimization.
 
-**Use when:** Building complete features, prototyping applications, working on small to medium projects, or when you need unified development across the stack.
+**Use when:** Building GraphQL APIs, designing schema boundaries, optimizing resolver performance, or migrating from REST.
 
-### [**graphql-architect**](graphql-architect.md) - GraphQL schema and federation expert
-Specialized in GraphQL ecosystem, from schema design to federation strategies. Masters resolver optimization, subscription patterns, and GraphQL best practices. Perfect for building flexible, efficient data layers.
+### [**microservices-architect**](./microservices-architect/SKILL.md) - Distributed systems designer
+Expert in service decomposition, communication patterns, orchestration, and resilience.
 
-**Use when:** Implementing GraphQL APIs, designing schemas, optimizing resolvers, setting up federation, or migrating from REST to GraphQL.
+**Use when:** Designing distributed systems, breaking monoliths apart, defining service boundaries, or improving reliability.
 
-### [**microservices-architect**](microservices-architect.md) - Distributed systems designer
-Expert in designing and implementing microservices architectures. Handles service decomposition, inter-service communication, distributed transactions, and orchestration. Ensures your system scales horizontally with resilience.
+### [**mobile-developer**](./mobile-developer/SKILL.md) - Cross-platform mobile specialist
+Builds native and cross-platform apps for iOS/Android, including offline support, notifications, and platform-aware UX.
 
-**Use when:** Breaking monoliths into microservices, designing distributed systems, implementing service mesh, or solving distributed system challenges.
+**Use when:** Building mobile applications, implementing device-specific features, optimizing mobile performance, or preparing releases.
 
-### [**mobile-developer**](mobile-developer.md) - Cross-platform mobile specialist
-Expert in creating native and cross-platform mobile applications for iOS and Android. Proficient in React Native, Flutter, and native development. Focuses on mobile-specific challenges like offline functionality, push notifications, and app store optimization.
+### [**ui-designer**](./ui-designer/SKILL.md) - Visual design and interaction specialist
+Design-focused specialist for high-quality interfaces, design systems, interaction patterns, and brand-consistent visuals.
 
-**Use when:** Building mobile apps, implementing mobile-specific features, optimizing for mobile performance, or preparing for app store deployment.
+**Use when:** Defining visual language, creating design systems, exploring interaction patterns, or preparing handoff-ready designs.
 
-### [**ui-designer**](ui-designer.md) - Visual design and interaction specialist
-Master of visual design who creates beautiful, intuitive, and accessible user interfaces. Expert in design systems, typography, color theory, and interaction patterns. Transforms ideas into polished designs that balance aesthetics with functionality while maintaining brand consistency.
+### [**websocket-engineer**](./websocket-engineer/SKILL.md) - Real-time communication specialist
+Expert in WebSocket architecture, connection lifecycle management, and scalable real-time systems.
 
-**Use when:** Creating visual designs, building design systems, defining interaction patterns, establishing brand identity, or preparing design handoffs for development.
-
-### [**websocket-engineer**](websocket-engineer.md) - Real-time communication specialist
-Master of real-time, bidirectional communication. Implements WebSocket servers, manages connections at scale, and handles real-time features like chat, notifications, and live updates. Expert in Socket.io and native WebSocket implementations.
-
-**Use when:** Building chat applications, implementing real-time notifications, creating collaborative features, or developing live-updating dashboards.
-
-### [**wordpress-master**](wordpress-master.md) - WordPress development and optimization expert
-Specialist in WordPress ecosystem who builds everything from simple blogs to enterprise platforms. Masters theme development, plugin architecture, Gutenberg blocks, and performance optimization. Expert in both classic PHP development and modern block-based solutions.
-
-**Use when:** Building WordPress sites, developing custom themes, creating plugins, implementing WooCommerce solutions, or optimizing WordPress performance.
+**Use when:** Building chat, live notifications, collaborative editing, multiplayer interactions, or streaming updates.
 
 ## 🚀 Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
-| Build a REST API with database | **backend-developer** |
-| Create a responsive web UI | **frontend-developer** |
-| Develop a complete web application | **fullstack-developer** |
-| Build a mobile app | **mobile-developer** |
-| Design user interfaces | **ui-designer** |
+| Design API contracts and standards | **api-designer** |
 | Create a desktop application | **electron-pro** |
-| Design a new API structure | **api-designer** |
-| Implement GraphQL | **graphql-architect** |
-| Build a distributed system | **microservices-architect** |
-| Add real-time features | **websocket-engineer** |
-| Create a WordPress site | **wordpress-master** |
+| Build a responsive web UI | **frontend-developer** |
+| Deliver full vertical features | **fullstack-developer** |
+| Implement GraphQL architecture | **graphql-architect** |
+| Design a distributed system | **microservices-architect** |
+| Build a mobile app | **mobile-developer** |
+| Design polished interfaces | **ui-designer** |
+| Add real-time communication | **websocket-engineer** |
 
 ## 💡 Common Combinations
 
-**Full-Stack Web Application:**
-- Start with **api-designer** for API structure
-- Use **backend-developer** for server implementation  
-- Employ **frontend-developer** for UI development
+**Full-Stack Web Product:**
+- **api-designer** for contract design
+- **fullstack-developer** for implementation
+- **frontend-developer** for UI depth
 
-**Enterprise System:**
-- Begin with **microservices-architect** for system design
-- Use **graphql-architect** for data layer
-- Add **backend-developer** for service implementation
+**Enterprise Platform:**
+- **microservices-architect** for system boundaries
+- **graphql-architect** for data access patterns
+- **fullstack-developer** for delivery
 
 **Real-time Application:**
-- Start with **websocket-engineer** for real-time infrastructure
-- Add **backend-developer** for business logic
-- Use **frontend-developer** for interactive UI
+- **websocket-engineer** for event infrastructure
+- **fullstack-developer** for feature integration
+- **frontend-developer** for interactive UX
 
-**Design-Driven Development:**
-- Begin with **ui-designer** for visual design and prototypes
-- Use **frontend-developer** for implementation
-- Add **accessibility-tester** for compliance validation
-
-**WordPress Project:**
-- Start with **wordpress-master** for architecture and setup
-- Add **php-pro** for custom PHP development
-- Use **frontend-developer** for custom JavaScript
+**Design-Driven Build:**
+- **ui-designer** for visual system and interactions
+- **frontend-developer** for implementation quality
+- **fullstack-developer** for end-to-end completion
 
 ## 🎬 Getting Started
 
-1. **Choose the right subagent** based on your specific needs
-2. **Provide clear context** about your project requirements
-3. **Specify your tech stack** preferences if any
-4. **Describe your constraints** (performance, scalability, timeline)
-5. **Let the subagent guide you** through best practices and implementation
+1. **Choose the right subagent** for your immediate bottleneck
+2. **Provide clear context** and constraints
+3. **Specify your stack** and deployment environment
+4. **Describe success criteria** (performance, UX, reliability)
+5. **Iterate in short cycles** for rapid validation
 
-Each subagent comes with:
-- Deep expertise in their domain
-- Knowledge of current best practices
-- Ability to work with your existing codebase
-- Focus on clean, maintainable code
-- Understanding of production requirements
+Each subagent brings:
+- Deep domain expertise
+- Current best practices
+- Production-readiness mindset
+- Focus on maintainability and clarity
 
 ## 📚 Best Practices
 
-- **Start with architecture:** Use architects (API, GraphQL, Microservices) before implementation
-- **Iterate frequently:** Work with subagents in short cycles for better results
-- **Combine expertise:** Use multiple subagents for complex projects
-- **Follow conventions:** Each subagent knows the best practices for their domain
-- **Think production-ready:** All subagents consider scalability, security, and maintenance
+- **Start with architecture:** Use architecture-focused subagents before implementation-heavy work
+- **Iterate quickly:** Prefer short implementation/review loops
+- **Combine specialists:** Complex work benefits from coordinated expertise
+- **Favor conventions:** Lean on proven ecosystem patterns
+- **Build for operations:** Consider reliability, security, and maintainability early
 
-Choose your subagent and start building amazing applications today!
+Choose your subagent and start building.

@@ -71,7 +71,3 @@ node = "lts"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
-
-[shell_alias]
-pi = 'mise x node@lts -- pi "${@}"'
-mcporter = 'mise x node@lts-- mcporter "${@}"'

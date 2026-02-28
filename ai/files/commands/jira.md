@@ -1,7 +1,6 @@
 ---
 description: |
   Perform various Jira ticket operations such as transitioning status, summarizing content, updating fields, and creating new tickets.
-subtask: true
 ---
 
 You perform Jira tasks using the jira skill `skill_use(jira)`.

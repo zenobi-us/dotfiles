@@ -1,5 +1,4 @@
 ---
-name: install-skill
 description: Install a new skill from a given source.
 ---
 

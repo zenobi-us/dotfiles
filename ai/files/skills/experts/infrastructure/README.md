@@ -16,62 +16,57 @@ Use these subagents when you need to:
 
 ## =Ë Available Subagents
 
-### [**cloud-architect**](cloud-architect.md) - AWS/GCP/Azure specialist
+### [**cloud-architect**](./cloud-architect/SKILL.md) - AWS/GCP/Azure specialist
 Multi-cloud expert designing scalable, cost-effective cloud solutions. Masters cloud-native architectures, serverless patterns, and cloud migration strategies. Ensures optimal resource utilization across major cloud providers.
 
 **Use when:** Designing cloud architectures, migrating to cloud, optimizing cloud costs, implementing multi-cloud strategies, or choosing cloud services.
 
-### [**database-administrator**](database-administrator.md) - Database management expert
+### [**database-administrator**](./database-administrator/SKILL.md) - Database management expert
 Database specialist managing relational and NoSQL databases at scale. Expert in performance tuning, replication, backup strategies, and high availability. Ensures data integrity and optimal database performance.
 
 **Use when:** Setting up databases, optimizing query performance, implementing backup strategies, designing database schemas, or troubleshooting database issues.
 
-### [**deployment-engineer**](deployment-engineer.md) - Deployment automation specialist
+### [**deployment-engineer**](./deployment-engineer/SKILL.md) - Deployment automation specialist
 Deployment expert automating application releases across environments. Masters blue-green deployments, canary releases, and rollback strategies. Ensures zero-downtime deployments with confidence.
 
 **Use when:** Setting up deployment pipelines, implementing release strategies, automating deployments, managing environments, or ensuring deployment reliability.
 
-### [**devops-engineer**](devops-engineer.md) - CI/CD and automation expert
+### [**devops-engineer**](./devops-engineer/SKILL.md) - CI/CD and automation expert
 DevOps practitioner bridging development and operations. Expert in CI/CD pipelines, automation tools, and DevOps culture. Accelerates delivery while maintaining stability and security.
 
 **Use when:** Building CI/CD pipelines, automating workflows, implementing DevOps practices, setting up development environments, or improving deployment velocity.
 
-### [**devops-incident-responder**](devops-incident-responder.md) - DevOps incident management
-Incident response specialist for DevOps environments. Masters troubleshooting, root cause analysis, and incident management. Minimizes downtime and prevents future incidents through systematic approaches.
-
-**Use when:** Responding to production incidents, setting up incident management processes, performing root cause analysis, or implementing incident prevention measures.
-
-### [**incident-responder**](incident-responder.md) - System incident response expert
+### [**incident-responder**](./incident-responder/SKILL.md) - System incident response expert
 Critical incident specialist handling system outages and emergencies. Expert in rapid diagnosis, recovery procedures, and post-mortem analysis. Restores service quickly while learning from failures.
 
 **Use when:** Managing critical incidents, developing incident response plans, conducting post-mortems, or training incident response teams.
 
-### [**kubernetes-specialist**](kubernetes-specialist.md) - Container orchestration master
+### [**kubernetes-specialist**](./kubernetes-specialist/SKILL.md) - Container orchestration master
 Kubernetes expert managing containerized applications at scale. Masters cluster design, workload optimization, and Kubernetes ecosystem tools. Ensures reliable container orchestration in production.
 
 **Use when:** Deploying to Kubernetes, designing cluster architecture, optimizing workloads, implementing service mesh, or troubleshooting Kubernetes issues.
 
-### [**network-engineer**](network-engineer.md) - Network infrastructure specialist
+### [**network-engineer**](./network-engineer/SKILL.md) - Network infrastructure specialist
 Network architecture expert designing secure, performant networks. Masters SDN, load balancing, and network security. Ensures reliable connectivity and optimal network performance.
 
 **Use when:** Designing network architectures, implementing load balancers, setting up VPNs, optimizing network performance, or troubleshooting connectivity.
 
-### [**platform-engineer**](platform-engineer.md) - Platform architecture expert
+### [**platform-engineer**](./platform-engineer/SKILL.md) - Platform architecture expert
 Platform specialist building internal developer platforms. Creates self-service infrastructure, golden paths, and platform abstractions. Empowers developers while maintaining governance.
 
 **Use when:** Building internal platforms, creating developer portals, implementing platform engineering, standardizing infrastructure, or improving developer productivity.
 
-### [**security-engineer**](security-engineer.md) - Infrastructure security specialist
+### [**security-engineer**](./security-engineer/SKILL.md) - Infrastructure security specialist
 Security expert protecting infrastructure and applications. Masters security hardening, compliance, and threat prevention. Implements defense-in-depth strategies across all layers.
 
 **Use when:** Securing infrastructure, implementing security policies, achieving compliance, performing security audits, or responding to security incidents.
 
-### [**sre-engineer**](sre-engineer.md) - Site reliability engineering expert
+### [**sre-engineer**](./sre-engineer/SKILL.md) - Site reliability engineering expert
 SRE practitioner ensuring system reliability through engineering. Masters SLIs/SLOs, error budgets, and chaos engineering. Balances feature velocity with system stability.
 
 **Use when:** Implementing SRE practices, defining SLOs, setting up monitoring, performing chaos engineering, or improving system reliability.
 
-### [**terraform-engineer**](terraform-engineer.md) - Infrastructure as Code expert
+### [**terraform-engineer**](./terraform-engineer/SKILL.md) - Infrastructure as Code expert
 IaC specialist using Terraform for infrastructure automation. Masters module design, state management, and multi-environment deployments. Ensures infrastructure consistency and repeatability.
 
 **Use when:** Writing Terraform code, designing IaC architecture, managing Terraform state, creating reusable modules, or automating infrastructure provisioning.
@@ -84,7 +79,6 @@ IaC specialist using Terraform for infrastructure automation. Masters module des
 | Manage databases | **database-administrator** |
 | Automate deployments | **deployment-engineer** |
 | Build CI/CD pipelines | **devops-engineer** |
-| Handle DevOps incidents | **devops-incident-responder** |
 | Manage critical outages | **incident-responder** |
 | Deploy with Kubernetes | **kubernetes-specialist** |
 | Design networks | **network-engineer** |
@@ -115,7 +109,6 @@ IaC specialist using Terraform for infrastructure automation. Masters module des
 
 **Incident Management:**
 - **incident-responder** for critical incidents
-- **devops-incident-responder** for DevOps issues
 - **sre-engineer** for prevention
 - **security-engineer** for security incidents
 
