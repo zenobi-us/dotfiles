@@ -27,6 +27,7 @@ const VALID_STATUSES = [
   "completed",
   "archived",
 ];
+const VALID_TEST_COVERAGE = ["none", "partial", "full"];
 const FILE_TYPES: Record<string, string[]> = {
   task: [
     "id",
@@ -60,6 +61,7 @@ const FILE_TYPES: Record<string, string[]> = {
     "status",
     "epic_id",
     "priority",
+    "test_coverage",
   ],
   research: [
     "id",
@@ -293,6 +295,30 @@ function frontmatterValidation(
     );
   }
 
+  const testCoverageValue = frontmatter.test_coverage;
+  if (
+    typeof testCoverageValue === "string" &&
+    testCoverageValue.length > 0 &&
+    !VALID_TEST_COVERAGE.includes(testCoverageValue)
+  ) {
+    warnings.push(
+      `Invalid test_coverage value: ${testCoverageValue}. Expected one of: ${VALID_TEST_COVERAGE.join(", ")}`,
+    );
+  }
+
+  // Stories cannot be completed without full test coverage
+  if (
+    meta.type === "story" &&
+    typeof statusValue === "string" &&
+    statusValue === "completed" &&
+    typeof testCoverageValue === "string" &&
+    testCoverageValue !== "full"
+  ) {
+    errors.push(
+      `Story is marked 'completed' but test_coverage is '${testCoverageValue}' (must be 'full')`,
+    );
+  }
+
   const idValue = frontmatter.id;
   if (typeof idValue === "string" && idValue !== meta.hashId) {
     errors.push(
@@ -331,6 +357,9 @@ function defaultValueForField(field: string, meta: NameMeta): FrontmatterValue {
   }
   if (field === "tags") {
     return [];
+  }
+  if (field === "test_coverage") {
+    return "none";
   }
   return "";
 }
@@ -380,6 +409,15 @@ function repairFrontmatter(
     changed = true;
   }
 
+  if (
+    meta.type === "story" &&
+    typeof next.test_coverage === "string" &&
+    !VALID_TEST_COVERAGE.includes(next.test_coverage)
+  ) {
+    next.test_coverage = "none";
+    changed = true;
+  }
+
   return { repaired: next, changed };
 }
 
@@ -399,6 +437,7 @@ function serializeFrontmatter(map: FrontmatterMap): string {
     "start_criteria",
     "end_criteria",
     "priority",
+    "test_coverage",
     "tags",
     "related_task_id",
     "area",

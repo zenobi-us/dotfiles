@@ -144,15 +144,16 @@ Frontmatter:
 - all common frontmatter fields.
 - `epic_id`: The unique identifier of the parent epic.
 - `phase_id`: The unique identifier of the parent phase.
-- `story_id`: The unique identifier of the parent story. [optional - if task implements a story]
+- `story_id`: The unique identifier of the parent story. [expected when a story exists, optional otherwise]
 - `assigned_to`: The session id of the agent or human responsible for the task.
 
 Sections:
 
 - all common sections.
 - `## Objective`: A clear statement of what the task aims to achieve.
-- `## Related Story`: Link to the story this task implements (if applicable).
+- `## Related Story`: Link to the story this task implements (if applicable). Must include which acceptance criteria this task contributes to satisfying.
 - `## Steps`: A detailed list of steps to complete the task.
+- `## Unit Tests`: A summary of unit tests written for this task. Each entry should state what is tested and which acceptance criterion of the parent story it supports. Format: `- [test name/file]: [what it verifies] → supports AC#N of story [hash]`. If the task has no parent story, document what the unit tests verify independently.
 - `## Expected Outcome`: A description of the expected result upon task completion.
 - `## Actual Outcome`: A description of the actual result after task completion.
 - `## Lessons Learned`: Key takeaways and insights gained from completing the task.
@@ -198,6 +199,7 @@ Frontmatter:
 - `phase_id`: The unique identifier of the parent phase. [optional]
 - `priority`: Priority level (e.g., `critical`, `high`, `medium`, `low`).
 - `story_points`: Estimated effort/complexity (optional, e.g., `1`, `2`, `3`, `5`, `8`, `13`).
+- `test_coverage`: Whether all acceptance criteria have linked passing tests. One of: `none`, `partial`, `full`.
 
 Sections:
 
@@ -207,6 +209,9 @@ Sections:
 - `## Context`: Background information and context for why this story is needed.
 - `## Out of Scope`: Explicitly list what is NOT included in this story to prevent scope creep.
 - `## Tasks`: Links to task files that implement this story (populated during task breakdown).
+- `## Test Specification`: Maps each acceptance criterion to its verification. Contains two subsections:
+  - `### E2E Tests`: A table mapping each acceptance criterion to its e2e test case. One story = one e2e test suite/file. Each acceptance criterion = one test case within that suite. Format: `| AC# | Criterion | Test file/case | Status |`
+  - `### Unit Test Coverage (via Tasks)`: A list of tasks spawned by this story, with a summary of what each task's unit tests verify and how that contributes to satisfying the story's acceptance criteria. Format: `- Task [hash]: [unit test summary] → satisfies AC#N`
 - `## Notes`: Additional notes, edge cases, or considerations.
 
 > [!NOTE]
@@ -215,6 +220,12 @@ Sections:
 > - Tasks capture the "how" from an implementation perspective.
 > - A single story may spawn multiple tasks.
 > - Acceptance criteria should be written before tasks are created.
+
+> [!NOTE]
+> **Stories are the primary test target.**
+> - **E2E tests verify stories.** Each story produces one e2e test suite. Each acceptance criterion becomes one test case within that suite. The relationship is 1 story : 1 test suite, N acceptance criteria : N test cases.
+> - **Unit tests verify tasks.** Unit tests are scoped to tasks (implementation), not stories (requirements). They trace to stories *through* their parent task: `story.acceptance_criteria → task.objective → task.unit_tests`.
+> - A story cannot be marked `completed` until `test_coverage` is `full` — meaning every acceptance criterion has a linked, passing test.
 
 ### Template: Research
 
@@ -294,9 +305,9 @@ So its detail will be solely an ascii diagram representing your understanding of
 **Workflow**
 
 0. `Initialise` > `Action` > Stop
-1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Story Definition` > `Task Breakdown` > Stop
-2. `Task Execution` > `Learning Distillation` > repeat 
-3. `Story Completion` > verify acceptance criteria > `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review > Stop
+1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Story Definition` (incl. Test Specification) > `Task Breakdown` > Stop
+2. `Task Execution` (incl. Unit Tests) > `Learning Distillation` > repeat 
+3. `Story Completion` > verify acceptance criteria + test coverage gate > `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review > Stop
 4. `Epic Completion` > `Epic Summary & Learnings` > Human Review > Stop
 5. `Maintenance Actions` as needed.
 6. `Status` > Stop
@@ -405,16 +416,22 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 - [story] stories MUST include a user story statement, acceptance criteria, and context
 - [story] stories SHOULD link to their parent epic and optionally to a phase
 - [story] acceptance criteria must be specific, testable, and written as a checklist
+- [story] after writing acceptance criteria, populate the `## Test Specification` section:
+  - define the e2e test suite name/file for this story
+  - map each acceptance criterion to a named e2e test case
+  - set `test_coverage: none` in frontmatter (updated as tests are written)
 - [story] stories are written BEFORE tasks are created - tasks implement stories
 - [story] a single story may result in multiple tasks
 - [story] when all acceptance criteria are met and verified, mark the story as `completed`
 - [story] stories help separate "what the user needs" from "how we implement it"
 
 > [!NOTE]
-> Story vs Task:
+> Story vs Task vs Test:
 > - **Story**: "As a user, I want to reset my password so that I can regain access to my account."
 >   - Acceptance Criteria: "User receives email within 2 minutes", "Link expires after 24 hours", etc.
+> - **E2E Tests** (verify the story): `password-reset.e2e.spec` → test case per acceptance criterion
 > - **Tasks**: "Implement password reset API endpoint", "Create email template", "Add expiry logic", etc.
+> - **Unit Tests** (verify the tasks): endpoint input validation, template rendering, token expiry logic, etc.
 
 #### Stage: Task Breakdown [TASK-BREAKDOWN]
 
@@ -446,7 +463,12 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 - [story] update each acceptance criterion checkbox (`- [ ]` to `- [x]`) as it is verified
 - [story] if any acceptance criterion cannot be met, document why in the story's Notes section
 - [story] link completed tasks to the story in the `## Tasks` section
-- [story] once all criteria are verified, update the story status to `completed`
+- [story] **TEST VERIFICATION GATE**: before marking a story as `completed`, verify:
+  - every acceptance criterion in `## Test Specification > ### E2E Tests` has a linked, passing test case
+  - every task listed in `## Test Specification > ### Unit Test Coverage` has documented its unit tests in its own `## Unit Tests` section
+  - update `test_coverage` frontmatter: `none` → `partial` (some tests linked) → `full` (all criteria covered and passing)
+  - a story CANNOT be marked `completed` while `test_coverage` is `none` or `partial`
+- [story] once all criteria are verified AND `test_coverage` is `full`, update the story status to `completed`
 - [story] stories are NOT archived - they remain as documentation of requirements and their fulfillment
 
 #### Stage: Phase Completion [PHASE-COMPLETION]
