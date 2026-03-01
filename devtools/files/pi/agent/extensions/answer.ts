@@ -10,7 +10,7 @@
  * 4. Submits the compiled answers when done
  */
 
-import { complete, type Model, type Api, type UserMessage } from "@mariozechner/pi-ai";
+import { complete, Type, type Model, type Api, type UserMessage } from "@mariozechner/pi-ai";
 import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
 import { BorderedLoader } from "@mariozechner/pi-coding-agent";
 import {
@@ -67,52 +67,132 @@ Example output:
   ]
 }`;
 
-const CODEX_MODEL_ID = "gpt-5.1-codex-mini";
-const HAIKU_MODEL_ID = "claude-haiku-4-5";
+/** Maximum output cost per million tokens for extraction models */
+const DEFAULT_MAX_OUTPUT_COST = 1.0;
+
+interface ModelInfo {
+	id: string;
+	provider: string;
+	cost: {
+		input: number;
+		output: number;
+		cacheRead: number;
+		cacheWrite: number;
+	};
+}
+
+interface ModelSelection {
+	model: Model<Api>;
+	modelId: string;
+	source: "auto" | "fallback";
+	cost: ModelInfo["cost"] | null;
+}
 
 /**
- * Prefer Codex mini for extraction when available, otherwise fallback to haiku or the current model.
+ * Calculate cost score for model comparison.
+ * Higher score = more expensive.
+ * Models with $0/$0 pricing (request-based) get deprioritized.
+ */
+function calculateCostScore(model: ModelInfo): number {
+	const { input, output } = model.cost;
+	if (input === 0 && output === 0) {
+		return Number.MAX_SAFE_INTEGER;
+	}
+	return input + output * 2;
+}
+
+/**
+ * Check if a model name suggests it's a cheap/lite variant.
+ */
+function isCheapModelName(id: string): boolean {
+	return /(mini|flash|nano|haiku|lite|micro|free)/i.test(id);
+}
+
+/**
+ * Select the cheapest available model for question extraction.
+ *
+ * Strategy (mirrors cheap-commits):
+ *  1. Token-based models under the cost threshold, sorted by cost
+ *  2. Token-based models with cheap-sounding names
+ *  3. Any token-based model (cheapest)
+ *  4. Request-based models ($0/$0)
+ *  5. Current model as last resort
  */
 async function selectExtractionModel(
 	currentModel: Model<Api>,
 	modelRegistry: {
 		find: (provider: string, modelId: string) => Model<Api> | undefined;
 		getApiKey: (model: Model<Api>) => Promise<string | undefined>;
+		getAvailable: () => Promise<ModelInfo[]>;
 	},
-): Promise<Model<Api>> {
-	const codexModel = modelRegistry.find("openai-codex", CODEX_MODEL_ID);
-	if (codexModel) {
-		const apiKey = await modelRegistry.getApiKey(codexModel);
-		if (apiKey) {
-			return codexModel;
+): Promise<ModelSelection> {
+	const available = await modelRegistry.getAvailable();
+
+	if (available.length === 0) {
+		return { model: currentModel, modelId: currentModel.id, source: "fallback", cost: null };
+	}
+
+	const tokenBased = available.filter((m) => !(m.cost.input === 0 && m.cost.output === 0));
+
+	// Tier 1: token-based models under the cost threshold
+	const cheapModels = tokenBased
+		.filter((m) => m.cost.output <= DEFAULT_MAX_OUTPUT_COST)
+		.sort((a, b) => calculateCostScore(a) - calculateCostScore(b));
+
+	// Tier 2: cheap-sounding names
+	const cheapNamed = tokenBased
+		.filter((m) => isCheapModelName(m.id))
+		.sort((a, b) => calculateCostScore(a) - calculateCostScore(b));
+
+	// Tier 3: any token-based (cheapest)
+	const anyTokenBased = [...tokenBased].sort((a, b) => calculateCostScore(a) - calculateCostScore(b));
+
+	// Tier 4: request-based ($0/$0)
+	const requestBased = available
+		.filter((m) => m.cost.input === 0 && m.cost.output === 0)
+		.sort((a, b) => a.id.localeCompare(b.id));
+
+	const candidates = [cheapModels, cheapNamed, anyTokenBased, requestBased];
+
+	for (const tier of candidates) {
+		if (tier.length === 0) continue;
+		const best = tier[0];
+		const found = modelRegistry.find(best.provider, best.id);
+		if (found) {
+			const apiKey = await modelRegistry.getApiKey(found);
+			if (apiKey) {
+				return {
+					model: found,
+					modelId: `${best.provider}/${best.id}`,
+					source: "auto",
+					cost: best.cost,
+				};
+			}
 		}
 	}
 
-	const haikuModel = modelRegistry.find("anthropic", HAIKU_MODEL_ID);
-	if (!haikuModel) {
-		return currentModel;
-	}
-
-	const apiKey = await modelRegistry.getApiKey(haikuModel);
-	if (!apiKey) {
-		return currentModel;
-	}
-
-	return haikuModel;
+	return { model: currentModel, modelId: currentModel.id, source: "fallback", cost: null };
 }
 
 /**
- * Parse the JSON response from the LLM
+ * Parse the JSON response from the LLM.
+ * Handles raw JSON, markdown code blocks, and JSON embedded in prose.
  */
 function parseExtractionResult(text: string): ExtractionResult | null {
 	try {
-		// Try to find JSON in the response (it might be wrapped in markdown code blocks)
 		let jsonStr = text;
 
-		// Remove markdown code block if present
+		// Try markdown code block first
 		const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
 		if (jsonMatch) {
 			jsonStr = jsonMatch[1].trim();
+		} else {
+			// Try to extract JSON object from surrounding prose
+			const braceStart = text.indexOf("{");
+			const braceEnd = text.lastIndexOf("}");
+			if (braceStart !== -1 && braceEnd > braceStart) {
+				jsonStr = text.slice(braceStart, braceEnd + 1);
+			}
 		}
 
 		const parsed = JSON.parse(jsonStr);
@@ -123,6 +203,119 @@ function parseExtractionResult(text: string): ExtractionResult | null {
 	} catch {
 		return null;
 	}
+}
+
+const ANSWER_TOOL_PARAMS = Type.Object({
+	text: Type.Optional(
+		Type.String({
+			description:
+				"Text to extract questions from. If omitted, the tool uses the last completed assistant message in the current branch.",
+		}),
+	),
+});
+
+type ExtractionInputSource = "provided" | "last_assistant";
+
+function resolveExtractionInput(
+	ctx: ExtensionContext,
+	text?: string,
+): { text: string; source: ExtractionInputSource } | { error: string } {
+	const provided = text?.trim();
+	if (provided) {
+		return { text: provided, source: "provided" };
+	}
+
+	const branch = ctx.sessionManager.getBranch();
+	for (let i = branch.length - 1; i >= 0; i--) {
+		const entry = branch[i];
+		if (entry.type !== "message") {
+			continue;
+		}
+
+		const msg = entry.message;
+		if (!("role" in msg) || msg.role !== "assistant") {
+			continue;
+		}
+
+		if (msg.stopReason !== "stop") {
+			return { error: `Last assistant message incomplete (${msg.stopReason})` };
+		}
+
+		const textParts = msg.content
+			.filter((c): c is { type: "text"; text: string } => c.type === "text")
+			.map((c) => c.text)
+			.filter(Boolean);
+
+		if (textParts.length > 0) {
+			return { text: textParts.join("\n"), source: "last_assistant" };
+		}
+	}
+
+	return { error: "No assistant messages found" };
+}
+
+async function extractQuestions(
+	ctx: ExtensionContext,
+	sourceText: string,
+	extractionModel: Model<Api>,
+	signal?: AbortSignal,
+): Promise<{ questions?: ExtractedQuestion[]; cancelled?: boolean; error?: string }> {
+	try {
+		const apiKey = await ctx.modelRegistry.getApiKey(extractionModel);
+		if (!apiKey) {
+			return { error: `No API key configured for ${extractionModel.id}` };
+		}
+
+		const userMessage: UserMessage = {
+			role: "user",
+			content: [{ type: "text", text: sourceText }],
+			timestamp: Date.now(),
+		};
+
+		const response = await complete(
+			extractionModel,
+			{ systemPrompt: SYSTEM_PROMPT, messages: [userMessage] },
+			{ apiKey, signal },
+		);
+
+		if (response.stopReason === "aborted") {
+			return { cancelled: true };
+		}
+
+		const responseText = response.content
+			.filter((c): c is { type: "text"; text: string } => c.type === "text")
+			.map((c) => c.text)
+			.join("\n");
+
+		const parsed = parseExtractionResult(responseText);
+		if (!parsed) {
+			return { error: "Question extraction returned invalid JSON" };
+		}
+
+		return { questions: parsed.questions };
+	} catch (error) {
+		if (signal?.aborted) {
+			return { cancelled: true };
+		}
+		const message = error instanceof Error ? error.message : String(error);
+		return { error: `Question extraction failed: ${message}` };
+	}
+}
+
+function formatQuestionsForTool(questions: ExtractedQuestion[]): string {
+	if (questions.length === 0) {
+		return "No questions found.";
+	}
+
+	const lines = ["Extracted questions:"];
+	for (let i = 0; i < questions.length; i++) {
+		const q = questions[i];
+		lines.push(`${i + 1}. ${q.question}`);
+		if (q.context) {
+			lines.push(`   Context: ${q.context}`);
+		}
+	}
+	return lines.join("\n");
 }
 
 /**
@@ -409,116 +602,161 @@ class QnAComponent implements Component {
 
 export default function (pi: ExtensionAPI) {
 	const answerHandler = async (ctx: ExtensionContext) => {
-			if (!ctx.hasUI) {
-				ctx.ui.notify("answer requires interactive mode", "error");
-				return;
-			}
+		if (!ctx.hasUI) {
+			ctx.ui.notify("answer requires interactive mode", "error");
+			return;
+		}
 
-			if (!ctx.model) {
-				ctx.ui.notify("No model selected", "error");
-				return;
-			}
+		if (!ctx.model) {
+			ctx.ui.notify("No model selected", "error");
+			return;
+		}
 
-			// Find the last assistant message on the current branch
-			const branch = ctx.sessionManager.getBranch();
-			let lastAssistantText: string | undefined;
+		const input = resolveExtractionInput(ctx);
+		if ("error" in input) {
+			ctx.ui.notify(input.error, "error");
+			return;
+		}
 
-			for (let i = branch.length - 1; i >= 0; i--) {
-				const entry = branch[i];
-				if (entry.type === "message") {
-					const msg = entry.message;
-					if ("role" in msg && msg.role === "assistant") {
-						if (msg.stopReason !== "stop") {
-							ctx.ui.notify(`Last assistant message incomplete (${msg.stopReason})`, "error");
-							return;
-						}
-						const textParts = msg.content
-							.filter((c): c is { type: "text"; text: string } => c.type === "text")
-							.map((c) => c.text);
-						if (textParts.length > 0) {
-							lastAssistantText = textParts.join("\n");
-							break;
-						}
-					}
+		const selection = await selectExtractionModel(ctx.model, ctx.modelRegistry);
+		type InteractiveExtractionOutcome =
+			| { status: "ok"; questions: ExtractedQuestion[] }
+			| { status: "cancelled" }
+			| { status: "error"; message: string };
+
+		const extractionOutcome = await ctx.ui.custom<InteractiveExtractionOutcome>((tui, theme, _kb, done) => {
+			const sourceLabel = selection.source === "auto" ? "auto" : "fallback";
+			const loader = new BorderedLoader(tui, theme, `Extracting questions using ${selection.modelId} [${sourceLabel}]...`);
+			let settled = false;
+			const finish = (result: InteractiveExtractionOutcome) => {
+				if (settled) {
+					return;
 				}
-			}
+				settled = true;
+				done(result);
+			};
 
-			if (!lastAssistantText) {
-				ctx.ui.notify("No assistant messages found", "error");
-				return;
-			}
+			loader.onAbort = () => finish({ status: "cancelled" });
 
-			// Select the best model for extraction (prefer Codex mini, then haiku)
-			const extractionModel = await selectExtractionModel(ctx.model, ctx.modelRegistry);
-
-			// Run extraction with loader UI
-			const extractionResult = await ctx.ui.custom<ExtractionResult | null>((tui, theme, _kb, done) => {
-				const loader = new BorderedLoader(tui, theme, `Extracting questions using ${extractionModel.id}...`);
-				loader.onAbort = () => done(null);
-
-				const doExtract = async () => {
-					const apiKey = await ctx.modelRegistry.getApiKey(extractionModel);
-					const userMessage: UserMessage = {
-						role: "user",
-						content: [{ type: "text", text: lastAssistantText! }],
-						timestamp: Date.now(),
-					};
-
-					const response = await complete(
-						extractionModel,
-						{ systemPrompt: SYSTEM_PROMPT, messages: [userMessage] },
-						{ apiKey, signal: loader.signal },
-					);
-
-					if (response.stopReason === "aborted") {
-						return null;
+			void extractQuestions(ctx, input.text, selection.model, loader.signal)
+				.then((result) => {
+					if (result.cancelled) {
+						finish({ status: "cancelled" });
+						return;
 					}
+					if (result.error) {
+						finish({ status: "error", message: result.error });
+						return;
+					}
+					finish({ status: "ok", questions: result.questions ?? [] });
+				})
+				.catch((error) => {
+					const message = error instanceof Error ? error.message : String(error);
+					finish({ status: "error", message: `Question extraction failed: ${message}` });
+				});
 
-					const responseText = response.content
-						.filter((c): c is { type: "text"; text: string } => c.type === "text")
-						.map((c) => c.text)
-						.join("\n");
+			return loader;
+		});
 
-					return parseExtractionResult(responseText);
-				};
+		if (extractionOutcome.status === "cancelled") {
+			ctx.ui.notify("Cancelled", "info");
+			return;
+		}
 
-				doExtract()
-					.then(done)
-					.catch(() => done(null));
+		if (extractionOutcome.status === "error") {
+			ctx.ui.notify(extractionOutcome.message, "error");
+			return;
+		}
 
-				return loader;
-			});
+		if (extractionOutcome.questions.length === 0) {
+			ctx.ui.notify("No questions found in the last message", "info");
+			return;
+		}
 
-			if (extractionResult === null) {
-				ctx.ui.notify("Cancelled", "info");
-				return;
-			}
+		const answersResult = await ctx.ui.custom<string | null>((tui, _theme, _kb, done) => {
+			return new QnAComponent(extractionOutcome.questions, tui, done);
+		});
 
-			if (extractionResult.questions.length === 0) {
-				ctx.ui.notify("No questions found in the last message", "info");
-				return;
-			}
+		if (answersResult === null) {
+			ctx.ui.notify("Cancelled", "info");
+			return;
+		}
 
-			// Show the Q&A component
-			const answersResult = await ctx.ui.custom<string | null>((tui, _theme, _kb, done) => {
-				return new QnAComponent(extractionResult.questions, tui, done);
-			});
-
-			if (answersResult === null) {
-				ctx.ui.notify("Cancelled", "info");
-				return;
-			}
-
-			// Send the answers directly as a message and trigger a turn
-			pi.sendMessage(
-				{
-					customType: "answers",
-					content: "I answered your questions in the following way:\n\n" + answersResult,
-					display: true,
-				},
-				{ triggerTurn: true },
-			);
+		pi.sendMessage(
+			{
+				customType: "answers",
+				content: "I answered your questions in the following way:\n\n" + answersResult,
+				display: true,
+			},
+			{ triggerTurn: true },
+		);
 	};
+
+	pi.registerTool({
+		name: "answer",
+		label: "Answer",
+		description:
+			"Extract questions that need user input from supplied text or, if omitted, from the last completed assistant message on the current branch.",
+		parameters: ANSWER_TOOL_PARAMS,
+		async execute(_toolCallId, params, signal, _onUpdate, ctx) {
+			if (!ctx.model) {
+				return {
+					content: [{ type: "text", text: "No model selected" }],
+					details: { error: "no_model" },
+					isError: true,
+				};
+			}
+
+			const input = resolveExtractionInput(ctx, params.text);
+			if ("error" in input) {
+				return {
+					content: [{ type: "text", text: input.error }],
+					details: { error: "no_input" },
+					isError: true,
+				};
+			}
+
+			const selection = await selectExtractionModel(ctx.model, ctx.modelRegistry);
+			const extraction = await extractQuestions(ctx, input.text, selection.model, signal);
+
+			if (extraction.cancelled) {
+				return {
+					content: [{ type: "text", text: "Cancelled" }],
+					details: {
+						cancelled: true,
+						modelId: selection.modelId,
+						modelSource: selection.source,
+						source: input.source,
+					},
+				};
+			}
+
+			if (extraction.error) {
+				return {
+					content: [{ type: "text", text: extraction.error }],
+					details: {
+						error: extraction.error,
+						modelId: selection.modelId,
+						modelSource: selection.source,
+						source: input.source,
+					},
+					isError: true,
+				};
+			}
+
+			const questions = extraction.questions ?? [];
+			return {
+				content: [{ type: "text", text: formatQuestionsForTool(questions) }],
+				details: {
+					questions,
+					questionCount: questions.length,
+					modelId: selection.modelId,
+					modelSource: selection.source,
+					source: input.source,
+				},
+			};
+		},
+	});
 
 	pi.registerCommand("answer", {
 		description: "Extract questions from last assistant message into interactive Q&A",
