@@ -1,9 +1,0 @@
-{
-  "name": "generate-commit-message",
-  "version": "0.0.1",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "@zenobius/pi-extension-config": "0.0.2"
-  }
-}
