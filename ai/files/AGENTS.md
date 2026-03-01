@@ -44,6 +44,10 @@ When confused: stop, think, present theories, get signoff. Never silently retry 
 
 > Q will be unhappy if you try to silenty retry after multiple failures.
 
+When requiring input from the user, either due to a Q & A session or you anticipate a need to 
+disambiguate via questions that could result in a dynamic change in direction, you should always 
+use any tool available that allows you to engage in questioning with the user. 
+
 ## Basic Techniques
 
 - if you can't search the internet with dedicated tools or scripts, always try to use lynx cli.
