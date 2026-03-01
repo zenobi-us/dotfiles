@@ -1,13 +1,12 @@
 {
   "lastChangelogVersion": "0.55.1",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
     "npm:@zenobius/pi-worktrees@0.1.0-next.1",
     "npm:@marckrenn/pi-sub-bar",
     "npm:pi-fzf",
-    "npm:pi-interview",
     "npm:pi-subdir-context",
     "npm:pi-messenger",
     "npm:pi-mermaid",
@@ -15,12 +14,13 @@
     "npm:pi-read-map",
     "npm:@marckrenn/pi-sub-core",
     "npm:pi-read-many",
-    "npm:claude-agent-sdk-pi"
+    "npm:claude-agent-sdk-pi",
+    "npm:pi-rtk"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.3-codex",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-5",
   "workingVibeModel": "antigravity/gemini-3-flash",
   "skills": [],
   "quietStartup": true,
