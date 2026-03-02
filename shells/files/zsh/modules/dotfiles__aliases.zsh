@@ -46,7 +46,7 @@ _dotfiles_normalize_manifests() {
 }
 
 dotfiles() {
-  local repo_root manifests
+  local repo_root manifests selected
 
   repo_root="$(_dotfiles_repo_root)"
   if [[ -z "$repo_root" ]]; then
@@ -55,14 +55,25 @@ dotfiles() {
   fi
 
   if (( $# == 0 )); then
-    command comtrya -d "$repo_root" apply
-    return $?
-  fi
+    # Interactive fzf selection; empty selection means "apply all"
+    selected=$(_dotfiles_manifest_list | fzf --multi --preview-window=hidden \
+      --header="Select manifests (TAB=multi, ENTER=confirm, ESC=all)" \
+      --bind="esc:abort" \
+      | tr '\n' ',' | sed 's/,$//')
 
-  manifests="$(_dotfiles_normalize_manifests "$@")"
-  if [[ -z "$manifests" ]]; then
-    echo "dotfiles: no manifests provided" >&2
-    return 1
+    if [[ -z "$selected" ]]; then
+      echo "dotfiles: applying all manifests..."
+      command comtrya -d "$repo_root" apply
+      return $?
+    fi
+
+    manifests="$selected"
+  else
+    manifests="$(_dotfiles_normalize_manifests "$@")"
+    if [[ -z "$manifests" ]]; then
+      echo "dotfiles: no manifests provided" >&2
+      return 1
+    fi
   fi
 
   command comtrya -d "$repo_root" apply -m "$manifests"
