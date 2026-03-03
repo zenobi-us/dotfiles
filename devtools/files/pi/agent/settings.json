@@ -19,10 +19,11 @@
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-5",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash",
   "skills": [],
+  "enableSkillCommands": false,
   "quietStartup": true,
   "collapseChangelog": true
 }

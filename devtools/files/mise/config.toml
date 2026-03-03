@@ -75,6 +75,3 @@ blender = "latest"
 version = "1.4.5"
 
 
-[shell_aliases]
-pi="mise x node@lts -- pi"
-mcporter="mise x node@lts -- mcporter"

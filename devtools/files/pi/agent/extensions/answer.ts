@@ -10,7 +10,8 @@
  * 4. Submits the compiled answers when done
  */
 
-import { complete, Type, type Model, type Api, type UserMessage } from "@mariozechner/pi-ai";
+import { complete, type Model, type Api, type UserMessage } from "@mariozechner/pi-ai";
+import { Type } from "@sinclair/typebox";
 import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
 import { BorderedLoader } from "@mariozechner/pi-coding-agent";
 import {
