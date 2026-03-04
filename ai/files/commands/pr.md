@@ -5,7 +5,7 @@
 - DefaultBranch : !`gh repo view --json defaultBranchRef --template '{{.defaultBranchRef.name}}'`
 
 
-## Step 1: Early Exit Checks
+## Step 1: Atomically Commit Uncommitted Changes
 
 **Check uncommitted changes:**
 
@@ -15,15 +15,8 @@ git status --short
 
 **If changes exist:**
 
-```markdown
-⚠️  UNCOMMITTED CHANGES - Commit these first:
+Run through the ~/.pi/agent/prompts/commit workflow to create atomic commits with conventional messages.
 
-{git status output}
-
-Use: /commit "message"
-```
-
-**Exit here.** (Don't proceed until clean)
 
 **Validate readiness:**
  
@@ -31,7 +24,7 @@ Use: /commit "message"
   - Exit if same.
 2. Ensure current branch is pushed to remote:
    - Check: `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
-   - Exit if not set.
+   - Push if missing: `git push -u origin HEAD`
 3. Verify `$ARGUMENTS` is provided (artifact reference):
    -  Exit if missing.
 
