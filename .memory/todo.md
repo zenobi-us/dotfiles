@@ -1,27 +1,17 @@
 # TODO - Dotfiles Project
 
-## Active Queue (Epic dpat2601 / Phase dpatp101)
+## Active Queue (Epic dpat2601)
 - [x] [task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md](task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md) `completed`
-- [x] [task-dpat1102-design-pattern-skill-schema-and-template-contract.md](task-dpat1102-design-pattern-skill-schema-and-template-contract.md) `completed` (outputs: `research-dpatr003-design-pattern-skill-schema-contract.md`, `research-dpatr004-design-pattern-skill-template-canonical.md`)
-- [x] [task-dpat1103-produce-dpatp101-pilot-shortlist-rubric-review-packet.md](task-dpat1103-produce-dpatp101-pilot-shortlist-rubric-review-packet.md) `completed` (output: `research-dpatr005-dpatp101-pilot-shortlist-rubric-review-packet.md`)
-- [ ] [task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md](task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md) `[NEEDS-HUMAN]`
+- [x] [task-dpat1102-design-pattern-skill-schema-and-template-contract.md](task-dpat1102-design-pattern-skill-schema-and-template-contract.md) `completed`
+- [x] [task-dpat1103-produce-dpatp101-pilot-shortlist-rubric-review-packet.md](task-dpat1103-produce-dpatp101-pilot-shortlist-rubric-review-packet.md) `completed`
+- [x] [task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md](task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md) `completed`
 
-## Planning Queue (Epic dspya1b2 / Phase dspya101)
+## Execution Queue (22-pattern delivery)
+- [ ] [task-dpat1201-author-creational-pattern-skills.md](task-dpat1201-author-creational-pattern-skills.md)
+- [ ] [task-dpat1301-author-structural-pattern-skills.md](task-dpat1301-author-structural-pattern-skills.md)
+- [ ] [task-dpat1401-author-behavioral-pattern-skills.md](task-dpat1401-author-behavioral-pattern-skills.md)
+- [ ] [task-dpat1501-validate-package-and-rollout-22-pattern-skills.md](task-dpat1501-validate-package-and-rollout-22-pattern-skills.md)
+
+## Other Queued Work
 - [ ] [task-dspyrvw-review-template-adapter-plan.md](task-dspyrvw-review-template-adapter-plan.md) `[NEEDS-HUMAN]`
-
-## Idea Intake Queue (Epic e9b2c7d4 / Phase e9b2p101)
 - [ ] [task-e9b2h001-review-zeromq-event-bus-epic-priority.md](task-e9b2h001-review-zeromq-event-bus-epic-priority.md) `[NEEDS-HUMAN]`
-
-## Priority Queue (Epic 9c7e21ab / Phase 8b1e4d2f)
-
-### P0 - Core questionnaire foundation
-- [ ] [task-d1a4e6b8-build-pi-tui-questionnaire-renderer.md](task-d1a4e6b8-build-pi-tui-questionnaire-renderer.md)
-- [ ] [task-e5c2f9a1-implement-questionnaire-navigation-validation.md](task-e5c2f9a1-implement-questionnaire-navigation-validation.md)
-
-### P1 - MVP image support
-- [ ] [task-f7b3c4d9-add-image-question-input-ui.md](task-f7b3c4d9-add-image-question-input-ui.md)
-- [ ] [task-a8d6e1c3-implement-image-attachment-serialization.md](task-a8d6e1c3-implement-image-attachment-serialization.md)
-
-### P2 - interview replacement contract
-- [ ] [task-b4e9a2d7-wire-local-extension-interview-replacement.md](task-b4e9a2d7-wire-local-extension-interview-replacement.md)
-- [ ] [task-c6f1b8e2-enforce-no-timeout-and-compatibility-contract.md](task-c6f1b8e2-enforce-no-timeout-and-compatibility-contract.md)
