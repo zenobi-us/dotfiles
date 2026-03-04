@@ -1,13 +1,14 @@
 # TODO - Dotfiles Project
 
+## Active Queue (Epic dpat2601 / Phase dpatp101)
+- [ ] [task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md](task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md) `in-progress`
+- [ ] [task-dpat1102-design-pattern-skill-schema-and-template-contract.md](task-dpat1102-design-pattern-skill-schema-and-template-contract.md) `todo`
+
 ## Planning Queue (Epic dspya1b2 / Phase dspya101)
 - [ ] [task-dspyrvw-review-template-adapter-plan.md](task-dspyrvw-review-template-adapter-plan.md) `[NEEDS-HUMAN]`
 
 ## Idea Intake Queue (Epic e9b2c7d4 / Phase e9b2p101)
 - [ ] [task-e9b2h001-review-zeromq-event-bus-epic-priority.md](task-e9b2h001-review-zeromq-event-bus-epic-priority.md) `[NEEDS-HUMAN]`
-
-## Idea Intake Queue (Epic dpat2601 / Phase dpatp101)
-- [ ] [task-dpath001-review-design-pattern-skills-epic-priority.md](task-dpath001-review-design-pattern-skills-epic-priority.md) `[NEEDS-HUMAN]`
 
 ## Priority Queue (Epic 9c7e21ab / Phase 8b1e4d2f)
 

@@ -3,8 +3,8 @@ id: dpatp101
 title: Source audit and skill architecture
 epic_id: dpat2601
 created_at: 2026-03-04T16:46:07+10:30
-updated_at: 2026-03-04T16:46:07+10:30
-status: proposed
+updated_at: 2026-03-04T20:04:20+10:30
+status: in-progress
 start_criteria: Epic dpat2601 approved and scope constraints confirmed by human.
 end_criteria: Human-approved phase brief with source boundaries, pattern shortlist, and skill template contract.
 ---
@@ -21,10 +21,8 @@ Audit Refactoring.Guru design-pattern material, define what can be transformed i
 - Evaluation checklist for pattern fit and misuse detection.
 
 ## Tasks
-- T101: Capture source structure and legal/attribution constraints.
-- T102: Define skill schema and section contract for pattern entries.
-- T103: Select pilot patterns and draft acceptance rubric.
-- T104: Produce human review packet for go/no-go.
+- [task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md](task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md)
+- [task-dpat1102-design-pattern-skill-schema-and-template-contract.md](task-dpat1102-design-pattern-skill-schema-and-template-contract.md)
 
 ## Dependencies
 - Access to Refactoring.Guru catalog pages.
@@ -32,5 +30,6 @@ Audit Refactoring.Guru design-pattern material, define what can be transformed i
 - Human review decision on priority relative to active epics.
 
 ## Next Steps
-1. Keep this phase in planning state pending human priority call.
-2. On approval, break T101–T104 into task artifacts and execute.
+1. Execute `dpat1101` in subagent flow (active now).
+2. Start `dpat1102` after source-boundary findings are captured.
+3. Prepare human review packet with pilot-pattern shortlist and rubric once both tasks are complete.

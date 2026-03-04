@@ -5,9 +5,9 @@ epic_id: dpat2601
 phase_id: dpatp101
 story_id: null
 created_at: 2026-03-04T16:46:07+10:30
-updated_at: 2026-03-04T16:46:07+10:30
-status: blocked
-assigned_to: human-review
+updated_at: 2026-03-04T20:04:20+10:30
+status: completed
+assigned_to: session-20260304-2003
 ---
 
 # Task: Review design-pattern skills epic priority
@@ -31,7 +31,7 @@ N/A
 A clear human decision enabling either task breakdown or archive/rejection handling.
 
 ## Actual Outcome
-Pending human review.
+Approved now by user instruction: "ok start first task in subagent" (2026-03-04). Epic moved to active execution for phase `dpatp101`.
 
 ## Lessons Learned
-TBD after human decision.
+Human gate tasks should be closed immediately once explicit priority instruction is provided.

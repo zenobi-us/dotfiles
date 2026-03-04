@@ -1,62 +1,39 @@
 # Project Summary
 
 ## Overview
-Dotfiles repository with Pi local extensions. Current focus is planning a TemplateAdapter-driven Pi extension that gives precise control over DSPy prompts directly inside Pi while keeping the previous pi-interview questionnaire epic on hold until TemplateAdapter planning is approved.
+Dotfiles repository with Pi local extensions and skill planning artifacts. Current execution focus has shifted to epic `dpat2601` after explicit human approval to start now.
 
 ## Active Epic
 
+### `dpat2601` — Design Pattern Skills from Refactoring.Guru
+- **Status:** In progress (approved-now)
+- **Goal:** Build a pattern-driven skill pack derived from Refactoring.Guru with pilot-first rollout and explicit pattern-fit verification.
+- **Current phase:** `dpatp101` — Source audit and skill architecture
+- **Execution tasks:**
+  - `task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md` (in progress)
+  - `task-dpat1102-design-pattern-skill-schema-and-template-contract.md` (todo)
+- **Human gate resolved:** `task-dpath001-review-design-pattern-skills-epic-priority.md` completed.
+
+## Other Queued Epics
+
 ### `dspya1b2` — TemplateAdapter Pi Extension
-- **Status:** Planning (awaiting human review)
-- **Goal:** Provide a `/template-adapter` extension that lets users author TemplateAdapter message templates (system/user/history directives, `{inputs()}/{outputs()}` helpers, parse modes) and run them via a managed Python runner that imports `dspy_template_adapter`.
-- **Key Decisions:**
-  1. Persist adapter definitions as JSON with versioned schema + checksum in repo.
-  2. Use `uv run python scripts/template_adapter_runner.py` as the execution boundary so the extension can call TemplateAdapter's `preview()`/`parse()`/`Predict` flows.
-  3. Surface TemplateAdapter invariants (single output field for `full_text`, parse mode/schema alignment, helper registration) inside the Pi overlay before hitting LMs.
-
-#### Phase Status
-- **Phase `dspya101` Research & Integration Spike:** 🟡 Proposed — needs human approval before tasks are created.
-- **Phase `dspya102` Extension Architecture & Template Management:** 🟡 Proposed — blocked on dspya101.
-- **Phase `dspya103` Execution Pipeline & Observability:** 🟡 Proposed — blocked on dspya101/102.
-- **Phase `dspya104` Validation, Packaging & Release Prep:** 🟡 Proposed — blocked on earlier phases.
-
-## Secondary Epic (Paused)
-
-### `9c7e21ab` — pi-interview pi-tui questionnaire UI
-- **Status:** Execution-ready but paused while TemplateAdapter plan is under review.
-- **Goal:** Local Dotfiles extension replaces `interview` with a pi-tui-native questionnaire flow.
-
-#### Ready Backlog (still valid once work resumes)
-- Story/task set already defined for questionnaire renderer, navigation validation, image support, and compatibility parity.
-
-## Proposed Epic (New Idea Intake)
+- **Status:** Planning queue (blocked by human review)
+- **Gate task:** `task-dspyrvw-review-template-adapter-plan.md` `[NEEDS-HUMAN]`
 
 ### `e9b2c7d4` — Neovim ↔ Pi ZeroMQ Event Bus Extension
-- **Status:** Proposed (research in progress/completed for feasibility)
-- **Goal:** Star-topology event bus connecting Neovim and Pi clients, with first Pi instance bootstrapping broker lifecycle and participating as a normal client.
-- **Current artifacts:**
-  - Epic: `epic-e9b2c7d4-nvim-pi-zeromq-event-bus-extension.md`
-  - Phase: `phase-e9b2p101-research-consolidation-and-protocol-draft.md`
-  - Research: `research-a7f8b2c4-neovim-pi-zeromq-event-bus.md`
+- **Status:** Idea intake queue (awaiting prioritization)
+- **Gate task:** `task-e9b2h001-review-zeromq-event-bus-epic-priority.md` `[NEEDS-HUMAN]`
 
-### `dpat2601` — Design Pattern Skills from Refactoring.Guru
-- **Status:** Proposed (idea intake documented; awaiting human prioritization)
-- **Goal:** Build a pattern-driven skill pack derived from Refactoring.Guru's catalog, with pilot-first rollout and explicit pattern-fit verification.
-- **Current artifacts:**
-  - Epic: `epic-dpat2601-design-pattern-skills-from-refactoring-guru.md`
-  - Phase: `phase-dpatp101-source-audit-and-skill-architecture.md`
-  - Research: `research-dpatr001-refactoring-guru-design-pattern-catalog-intake.md`
-  - Human gate: `task-dpath001-review-design-pattern-skills-epic-priority.md`
+### `9c7e21ab` — pi-interview pi-tui questionnaire UI
+- **Status:** Execution-ready backlog, currently paused.
 
 ## Next Milestones
-1. **Human review of TemplateAdapter epic/phase plan** (`task-dspyrvw-review-template-adapter-plan.md`).
-2. **Human triage for new epic `e9b2c7d4`** (prioritize now vs keep in backlog).
-3. **Human triage for new epic `dpat2601`** (approve-now vs queue vs reject).
-4. If prioritized, convert ZeroMQ research into story/task breakdown for phase `e9b2p101`.
-5. If prioritized, break down phase `dpatp101` into execution tasks (source boundary audit, template contract, pilot pattern set).
-6. Decide whether to resume Epic `9c7e21ab` immediately or after current planning queues are cleared.
+1. Complete `dpat1101` source-boundary audit artifact.
+2. Complete `dpat1102` skill schema/template contract.
+3. Produce phase `dpatp101` review packet (pilot pattern shortlist + rubric) for human go/no-go.
+4. Revisit blocked human-review gates in `dspya1b2` and `e9b2c7d4` queues.
 
 ## Readiness Snapshot
-- TemplateAdapter plan artifacts: ✅ epic + 4 phases + architecture codemap created.
-- ZeroMQ event-bus idea: ✅ epic drafted + research brief captured; ⏸️ pending prioritization.
-- Design-pattern skills idea: ✅ epic + phase + intake research captured; ⏸️ pending prioritization.
-- Questionnaire epic backlog: ✅ remains execution-ready but currently paused.
+- dpat2601 intake: ✅ epic + phase + intake research + resolved priority gate.
+- dpat2601 execution kickoff: ✅ first subagent-ready tasks created and task 1 started.
+- TemplateAdapter/ZeroMQ: ⏸️ waiting on separate human gates.
