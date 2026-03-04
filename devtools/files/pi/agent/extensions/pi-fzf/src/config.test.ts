@@ -202,4 +202,39 @@ describe("loadFzfConfig", () => {
     expect(testCmd).toBeDefined();
     expect(testCmd?.shortcut).toBeUndefined();
   });
+
+  it("loads selector placement when specified", () => {
+    writeProjectConfig({
+      commands: {
+        test: {
+          list: "ls",
+          action: "Read {{selected}}",
+          placement: "belowEditor",
+        },
+      },
+    });
+
+    const result = loadFzfConfig(testDir);
+    const testCmd = result.find((c) => c.name === "test");
+
+    expect(testCmd).toBeDefined();
+    expect(testCmd?.placement).toBe("belowEditor");
+  });
+
+  it("defaults selector placement to aboveEditor", () => {
+    writeProjectConfig({
+      commands: {
+        test: {
+          list: "ls",
+          action: "Read {{selected}}",
+        },
+      },
+    });
+
+    const result = loadFzfConfig(testDir);
+    const testCmd = result.find((c) => c.name === "test");
+
+    expect(testCmd).toBeDefined();
+    expect(testCmd?.placement).toBe("aboveEditor");
+  });
 });

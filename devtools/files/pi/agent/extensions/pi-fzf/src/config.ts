@@ -5,6 +5,7 @@ import { join } from "node:path";
 // --- Types ---
 
 export type BashOutput = "notify" | "editor" | "send";
+export type SelectorPlacement = "aboveEditor" | "belowEditor";
 
 export interface FzfActionLong {
   type: "editor" | "send" | "bash";
@@ -23,6 +24,8 @@ export interface FzfCommandConfig {
   action: FzfAction;
   /** Optional keyboard shortcut (e.g. "ctrl+shift+f") */
   shortcut?: string;
+  /** Where the selector widget should render (default: "aboveEditor") */
+  placement?: SelectorPlacement;
 }
 
 export interface FzfConfig {
@@ -44,6 +47,8 @@ export interface ResolvedCommand {
   action: ResolvedAction;
   /** Optional keyboard shortcut (e.g. "ctrl+shift+f") */
   shortcut?: string;
+  /** Where the selector widget should render */
+  placement: SelectorPlacement;
 }
 
 // --- Config loading ---
@@ -99,6 +104,7 @@ export function loadFzfConfig(cwd: string): ResolvedCommand[] {
     list: cmd.list,
     action: resolveAction(cmd.action),
     shortcut: cmd.shortcut,
+    placement: cmd.placement ?? "aboveEditor",
   }));
 }
 

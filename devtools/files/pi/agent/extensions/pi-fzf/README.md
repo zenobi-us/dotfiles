@@ -58,6 +58,25 @@ Add a `shortcut` field to trigger a command via a keyboard shortcut instead of t
 
 The shortcut format follows Pi's [keybinding syntax](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/keybindings.md#key-format): `modifier+key` where modifiers are `ctrl`, `shift`, `alt` (combinable).
 
+### Selector Placement
+
+Add a `placement` field to control where the fuzzy selector widget appears:
+
+- `"aboveEditor"` (default)
+- `"belowEditor"`
+
+```json
+{
+  "commands": {
+    "file": {
+      "list": "fd --type f --max-depth 4",
+      "action": "Read and explain {{selected}}",
+      "placement": "belowEditor"
+    }
+  }
+}
+```
+
 ## Actions
 
 ### Editor (default)

@@ -3,7 +3,8 @@
     "file": {
       "list": "fd --type f --max-depth 4",
       "action": "Read and explain {{selected}}",
-      "shortcut": "ctrl+shift+f"
+      "shortcut": "ctrl+shift+f",
+      "placement": "belowEditor"
     },
     "file-content": {
       "list": "fd --type f --max-depth 4",

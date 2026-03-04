@@ -11,12 +11,10 @@ export default function (pi: ExtensionAPI) {
   let commands: ResolvedCommand[] = [];
 
   pi.on("session_start", async (_event, ctx) => {
-    // Load config from global + project locations
     commands = loadFzfConfig(ctx.cwd);
 
     if (commands.length === 0) return;
 
-    // Register a /fzf:<name> command and optional shortcut for each entry
     for (const cmd of commands) {
       registerFzfCommand(pi, cmd);
 
@@ -30,7 +28,7 @@ export default function (pi: ExtensionAPI) {
 }
 
 /**
- * Run the fzf flow: list candidates, open fuzzy selector, execute action.
+ * Run the fzf flow: list candidates, open fuzzy selector widget, execute action.
  */
 async function runFzfSelector(
   pi: ExtensionAPI,
@@ -65,61 +63,73 @@ async function runFzfSelector(
     return;
   }
 
-  // 2. Open the fuzzy selector inline (non-overlay)
-  // Capture tui reference so we can request a render after the selector closes
+  // 2. Show selector as a widget, use custom() only for focused input routing
   let tuiRef: TUI | undefined;
 
-  const selected = await ctx.ui.custom<string | null>(
-    (tui, theme, _kb, done) => {
-      tuiRef = tui;
+  const selected = await ctx.ui.custom<string | null>((tui, theme, _kb, done) => {
+    tuiRef = tui;
 
-      const selectorTheme: SelectorTheme = {
-        accent: (t) => theme.fg("accent", t),
-        muted: (t) => theme.fg("muted", t),
-        dim: (t) => theme.fg("dim", t),
-        match: (t) => theme.fg("warning", theme.bold(t)),
-        border: (t) => theme.fg("border", t),
-        bold: (t) => theme.bold(t),
-      };
+    const selectorTheme: SelectorTheme = {
+      accent: (t) => theme.fg("accent", t),
+      muted: (t) => theme.fg("muted", t),
+      dim: (t) => theme.fg("dim", t),
+      match: (t) => theme.fg("warning", theme.bold(t)),
+      border: (t) => theme.fg("border", t),
+      bold: (t) => theme.bold(t),
+    };
 
-      const maxVisible = Math.min(candidates.length, 15);
-      const selector = new FuzzySelector(
-        candidates,
-        `fzf:${cmd.name}`,
-        maxVisible,
-        selectorTheme,
-      );
+    const maxVisible = Math.min(candidates.length, 15);
+    const selector = new FuzzySelector(
+      candidates,
+      `fzf:${cmd.name}`,
+      maxVisible,
+      selectorTheme,
+    );
 
-      selector.onSelect = (item) => done(item);
-      selector.onCancel = () => done(null);
+    const widgetKey = `pi-fzf:${cmd.name}:selector`;
 
-      return {
+    selector.onSelect = (item) => done(item);
+    selector.onCancel = () => done(null);
+
+    ctx.ui.setWidget(
+      widgetKey,
+      () => ({
         render(width: number) {
           return selector.render(width);
         },
         invalidate() {
           selector.invalidate();
         },
-        handleInput(data: string) {
-          selector.handleInput(data);
-          tui.requestRender();
-        },
-        // Focusable — propagate to selector for IME cursor support
-        get focused() {
-          return selector.focused;
-        },
-        set focused(value: boolean) {
-          selector.focused = value;
-        },
-      };
-    },
-  );
+      }),
+      { placement: cmd.placement },
+    );
+
+    return {
+      // Keep editor area visually untouched while widget renders in configured placement
+      render() {
+        return [];
+      },
+      invalidate() {},
+      handleInput(data: string) {
+        selector.handleInput(data);
+        tui.requestRender();
+      },
+      // Focusable — propagate to selector for IME cursor support
+      get focused() {
+        return selector.focused;
+      },
+      set focused(value: boolean) {
+        selector.focused = value;
+      },
+      dispose() {
+        ctx.ui.setWidget(widgetKey, undefined);
+      },
+    };
+  });
 
   // 3. If user selected something, execute the action
   if (selected !== null) {
     await executeAction(cmd.action, selected, pi, ctx);
-    // Explicitly request render to ensure the editor shows
-    // the new text after the selector closed
     tuiRef?.requestRender();
   }
 }
