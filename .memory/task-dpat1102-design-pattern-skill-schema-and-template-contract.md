@@ -19,11 +19,12 @@ Define a canonical, reusable skill template that maps each design pattern to cod
 N/A
 
 ## Steps
-1. Audit existing skill format conventions under `/home/zenobius/.pi/agent/skills`.
-2. Define mandatory sections (intent, applicability signals, contraindications, implementation checklist, verification rubric, references).
-3. Define optional sections for language-specific examples and migration guidance.
-4. Author a template specification artifact with frontmatter and section constraints.
-5. Validate template against at least 3 pilot patterns (Strategy, Factory Method, Observer) for completeness.
+1. Consume boundary constraints from `research-dpatr002-refactoring-guru-content-usage-boundaries.md` and convert them into non-optional template rules.
+2. Audit existing skill format conventions under `/home/zenobius/.pi/agent/skills`.
+3. Define mandatory sections (intent, applicability signals, contraindications, implementation checklist, verification rubric, references, attribution).
+4. Define optional sections for language-specific examples and migration guidance.
+5. Author a template specification artifact with frontmatter and section constraints.
+6. Validate template against at least 3 pilot patterns (Strategy, Factory Method, Observer) for completeness and boundary compliance.
 
 ## Unit Tests
 - N/A (planning/specification task).

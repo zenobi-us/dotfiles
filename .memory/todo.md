@@ -1,8 +1,8 @@
 # TODO - Dotfiles Project
 
 ## Active Queue (Epic dpat2601 / Phase dpatp101)
-- [ ] [task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md](task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md) `in-progress`
-- [ ] [task-dpat1102-design-pattern-skill-schema-and-template-contract.md](task-dpat1102-design-pattern-skill-schema-and-template-contract.md) `todo`
+- [x] [task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md](task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md) `completed`
+- [ ] [task-dpat1102-design-pattern-skill-schema-and-template-contract.md](task-dpat1102-design-pattern-skill-schema-and-template-contract.md) `todo` (ready; depends on `research-dpatr002-refactoring-guru-content-usage-boundaries.md`)
 
 ## Planning Queue (Epic dspya1b2 / Phase dspya101)
 - [ ] [task-dspyrvw-review-template-adapter-plan.md](task-dspyrvw-review-template-adapter-plan.md) `[NEEDS-HUMAN]`

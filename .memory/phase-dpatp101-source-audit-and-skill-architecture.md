@@ -3,7 +3,7 @@ id: dpatp101
 title: Source audit and skill architecture
 epic_id: dpat2601
 created_at: 2026-03-04T16:46:07+10:30
-updated_at: 2026-03-04T20:04:20+10:30
+updated_at: 2026-03-04T20:28:00+10:30
 status: in-progress
 start_criteria: Epic dpat2601 approved and scope constraints confirmed by human.
 end_criteria: Human-approved phase brief with source boundaries, pattern shortlist, and skill template contract.
@@ -30,6 +30,6 @@ Audit Refactoring.Guru design-pattern material, define what can be transformed i
 - Human review decision on priority relative to active epics.
 
 ## Next Steps
-1. Execute `dpat1101` in subagent flow (active now).
-2. Start `dpat1102` after source-boundary findings are captured.
+1. ✅ `dpat1101` completed with source-boundary artifact `research-dpatr002-refactoring-guru-content-usage-boundaries.md`.
+2. Start `dpat1102` and enforce the new attribution/boundary contract in the template spec.
 3. Prepare human review packet with pilot-pattern shortlist and rubric once both tasks are complete.

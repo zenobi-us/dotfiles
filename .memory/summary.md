@@ -10,8 +10,10 @@ Dotfiles repository with Pi local extensions and skill planning artifacts. Curre
 - **Goal:** Build a pattern-driven skill pack derived from Refactoring.Guru with pilot-first rollout and explicit pattern-fit verification.
 - **Current phase:** `dpatp101` — Source audit and skill architecture
 - **Execution tasks:**
-  - `task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md` (in progress)
-  - `task-dpat1102-design-pattern-skill-schema-and-template-contract.md` (todo)
+  - `task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md` (completed)
+  - `task-dpat1102-design-pattern-skill-schema-and-template-contract.md` (todo; next active)
+- **New research output:** `research-dpatr002-refactoring-guru-content-usage-boundaries.md` (derivative-content boundary matrix + attribution contract)
+- **New learning output:** `learning-dpatl001-refactoring-guru-derivative-authoring-guardrails.md` (handoff guardrails for dpat1102)
 - **Human gate resolved:** `task-dpath001-review-design-pattern-skills-epic-priority.md` completed.
 
 ## Other Queued Epics
@@ -28,12 +30,11 @@ Dotfiles repository with Pi local extensions and skill planning artifacts. Curre
 - **Status:** Execution-ready backlog, currently paused.
 
 ## Next Milestones
-1. Complete `dpat1101` source-boundary audit artifact.
-2. Complete `dpat1102` skill schema/template contract.
-3. Produce phase `dpatp101` review packet (pilot pattern shortlist + rubric) for human go/no-go.
-4. Revisit blocked human-review gates in `dspya1b2` and `e9b2c7d4` queues.
+1. Complete `dpat1102` skill schema/template contract with mandatory attribution + boundary controls.
+2. Produce phase `dpatp101` review packet (pilot pattern shortlist + rubric) for human go/no-go.
+3. Revisit blocked human-review gates in `dspya1b2` and `e9b2c7d4` queues.
 
 ## Readiness Snapshot
 - dpat2601 intake: ✅ epic + phase + intake research + resolved priority gate.
-- dpat2601 execution kickoff: ✅ first subagent-ready tasks created and task 1 started.
+- dpat2601 execution: ✅ dpat1101 complete; boundary research artifact published; dpat1102 unblocked.
 - TemplateAdapter/ZeroMQ: ⏸️ waiting on separate human gates.

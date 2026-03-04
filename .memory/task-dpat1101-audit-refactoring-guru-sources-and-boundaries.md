@@ -5,8 +5,8 @@ epic_id: dpat2601
 phase_id: dpatp101
 story_id: null
 created_at: 2026-03-04T20:04:20+10:30
-updated_at: 2026-03-04T20:04:20+10:30
-status: in-progress
+updated_at: 2026-03-04T20:27:00+10:30
+status: completed
 assigned_to: session-20260304-2003
 ---
 
@@ -32,7 +32,16 @@ N/A
 A reviewed source-boundary document that unblocks skill authoring with clear legal/sourcing guardrails.
 
 ## Actual Outcome
-In progress.
+Completed source boundary audit and produced:
+- `research-dpatr002-refactoring-guru-content-usage-boundaries.md`
+
+Audit established an actionable derivative policy for this project:
+- Use Refactoring.Guru for taxonomy anchoring and factual pattern relationships.
+- Rewrite all explanatory prose in original language.
+- Keep direct quotations short/non-substantial and always attributed.
+- Do not reproduce large text sections or artwork without explicit permission.
 
 ## Lessons Learned
-TBD.
+- Refactoring.Guru publishes a dedicated Content Usage Policy with specific reuse allowances; this is stronger evidence than relying on generic Terms text.
+- The safest authoring posture is “concept extraction + full rewrite,” not summary-by-paraphrase of long source passages.
+- Embedding mandatory attribution in the template contract (dpat1102) is necessary to prevent drift.
