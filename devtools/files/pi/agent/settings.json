@@ -1,12 +1,11 @@
 {
   "lastChangelogVersion": "0.55.1",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
     "npm:@zenobius/pi-worktrees@0.1.0-next.1",
     "npm:@marckrenn/pi-sub-bar",
-    "npm:pi-fzf",
     "npm:pi-subdir-context",
     "npm:pi-messenger",
     "npm:pi-mermaid",

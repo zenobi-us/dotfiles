@@ -30,8 +30,6 @@ zinit ice as"command" from"gh-r" \
 zinit light starship/starship
 
 zinit light Aloxaf/fzf-tab
-zinit light loiccoyle/zsh-github-copilot
-
 
 # env phase (explicit order) - constrained to config.d/enabled
 zinit_load_env_modules() {

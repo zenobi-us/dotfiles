@@ -65,8 +65,8 @@ async function runFzfSelector(
     return;
   }
 
-  // 2. Open the fuzzy selector overlay
-  // Capture tui reference so we can request a render after the overlay closes
+  // 2. Open the fuzzy selector inline (non-overlay)
+  // Capture tui reference so we can request a render after the selector closes
   let tuiRef: TUI | undefined;
 
   const selected = await ctx.ui.custom<string | null>(
@@ -113,14 +113,13 @@ async function runFzfSelector(
         },
       };
     },
-    { overlay: true },
   );
 
   // 3. If user selected something, execute the action
   if (selected !== null) {
     await executeAction(cmd.action, selected, pi, ctx);
     // Explicitly request render to ensure the editor shows
-    // the new text after the overlay closed
+    // the new text after the selector closed
     tuiRef?.requestRender();
   }
 }

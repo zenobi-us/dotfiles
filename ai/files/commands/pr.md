@@ -26,7 +26,7 @@ Run through the ~/.pi/agent/prompts/commit workflow to create atomic commits wit
    - Check: `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
    - Push if missing: `git push -u origin HEAD`
 3. Verify `$ARGUMENTS` is provided (artifact reference):
-   -  Exit if missing.
+   -  If missing, assume that the current branch can derive information.
 
 **If validation fails:** Report specific error and exit.
 
