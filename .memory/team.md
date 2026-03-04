@@ -2,16 +2,16 @@
 
 ## Active Epic Status
 - **Active Epic:** `dpat2601` — Design Pattern Skills from Refactoring.Guru
-- **Current Phase:** `dpatp101` — Source audit and skill architecture
-- **Phase State:** Awaiting human closeout decision (`task-dpath002`) after packet delivery.
+- **Current Phase:** `dpatp102` — Creational pattern skills (5)
+- **Phase State:** Ready to execute (`task-dpat1201`) after human go decision recorded in `task-dpath002`.
 
 ## Active Sessions
 
 ### Session session-20260304-2003
 - **Epic:** dpat2601
-- **Phase:** dpatp101
-- **Activity:** Resolved human priority gate (`dpath001`), completed `dpat1101` and `dpat1102`, and produced boundary/schema/template artifacts (`dpatr002`, `dpatr003`, `dpatr004`).
-- **Status:** Active; phase `dpatp101` implementation complete, pending human review packet/go-no-go.
+- **Phase:** Transitioned from `dpatp101` to execution queue (`dpatp102`+)
+- **Activity:** Completed source/boundary/schema/template packet and captured human scope correction to full 22-pattern delivery.
+- **Status:** Active; next action is authoring creational batch.
 
 ### Session session-20260221-2102
 - **Epic:** dspya1b2
@@ -25,12 +25,6 @@
 - **Activity:** Captured ZeroMQ event-bus epic and feasibility research.
 - **Status:** Awaiting human prioritization (`task-e9b2h001-review-zeromq-event-bus-epic-priority.md`).
 
-### Session session-20260220-1938
-- **Epic:** 9c7e21ab
-- **Phase:** 8b1e4d2f
-- **Activity:** Questionnaire MVP stories/tasks prepared.
-- **Status:** Execution-ready but paused.
-
 ## Current Assignment
 - **Owner:** session-20260304-2003
-- **Focus:** Prepare `dpatp101` human review packet (pilot shortlist + rubric) and await go/no-go for `dpatp102`.
+- **Focus:** Execute 22-pattern delivery queue starting with `task-dpat1201`, then `task-dpat1301`, `task-dpat1401`, and `task-dpat1501`.
