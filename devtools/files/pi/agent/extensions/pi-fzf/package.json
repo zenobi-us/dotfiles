@@ -1,0 +1,19 @@
+{
+  "name": "pi-fzf",
+  "version": "0.5.0",
+  "keywords": [
+    "pi-package"
+  ],
+  "dependencies": {
+    "fzf": "^0.5.2"
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-tui": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  }
+}
