@@ -8,11 +8,14 @@ Dotfiles repository with Pi local extensions and skill planning artifacts. Curre
 ### `dpat2601` — Design Pattern Skills from Refactoring.Guru
 - **Status:** In progress (approved-now)
 - **Goal:** Build a pattern-driven skill pack derived from Refactoring.Guru with pilot-first rollout and explicit pattern-fit verification.
-- **Current phase:** `dpatp101` — Source audit and skill architecture
+- **Current phase:** `dpatp101` — Source audit and skill architecture (execution complete; review packet prep)
 - **Execution tasks:**
   - `task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md` (completed)
-  - `task-dpat1102-design-pattern-skill-schema-and-template-contract.md` (todo; next active)
-- **New research output:** `research-dpatr002-refactoring-guru-content-usage-boundaries.md` (derivative-content boundary matrix + attribution contract)
+  - `task-dpat1102-design-pattern-skill-schema-and-template-contract.md` (completed)
+- **New research outputs:**
+  - `research-dpatr002-refactoring-guru-content-usage-boundaries.md` (derivative-content boundary matrix + attribution contract)
+  - `research-dpatr003-design-pattern-skill-schema-contract.md` (mandatory schema + policy gates)
+  - `research-dpatr004-design-pattern-skill-template-canonical.md` (canonical authoring template)
 - **New learning output:** `learning-dpatl001-refactoring-guru-derivative-authoring-guardrails.md` (handoff guardrails for dpat1102)
 - **Human gate resolved:** `task-dpath001-review-design-pattern-skills-epic-priority.md` completed.
 
@@ -30,11 +33,11 @@ Dotfiles repository with Pi local extensions and skill planning artifacts. Curre
 - **Status:** Execution-ready backlog, currently paused.
 
 ## Next Milestones
-1. Complete `dpat1102` skill schema/template contract with mandatory attribution + boundary controls.
-2. Produce phase `dpatp101` review packet (pilot pattern shortlist + rubric) for human go/no-go.
+1. Produce phase `dpatp101` review packet (pilot pattern shortlist + rubric) for human go/no-go.
+2. Decide go/no-go for entering `dpatp102` pilot skill authoring.
 3. Revisit blocked human-review gates in `dspya1b2` and `e9b2c7d4` queues.
 
 ## Readiness Snapshot
 - dpat2601 intake: ✅ epic + phase + intake research + resolved priority gate.
-- dpat2601 execution: ✅ dpat1101 complete; boundary research artifact published; dpat1102 unblocked.
+- dpat2601 execution: ✅ dpat1101 + dpat1102 complete; boundary, schema, and canonical template artifacts published.
 - TemplateAdapter/ZeroMQ: ⏸️ waiting on separate human gates.
