@@ -3,6 +3,8 @@
 ## Active Queue (Epic dpat2601 / Phase dpatp101)
 - [x] [task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md](task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md) `completed`
 - [x] [task-dpat1102-design-pattern-skill-schema-and-template-contract.md](task-dpat1102-design-pattern-skill-schema-and-template-contract.md) `completed` (outputs: `research-dpatr003-design-pattern-skill-schema-contract.md`, `research-dpatr004-design-pattern-skill-template-canonical.md`)
+- [x] [task-dpat1103-produce-dpatp101-pilot-shortlist-rubric-review-packet.md](task-dpat1103-produce-dpatp101-pilot-shortlist-rubric-review-packet.md) `completed` (output: `research-dpatr005-dpatp101-pilot-shortlist-rubric-review-packet.md`)
+- [ ] [task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md](task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md) `[NEEDS-HUMAN]`
 
 ## Planning Queue (Epic dspya1b2 / Phase dspya101)
 - [ ] [task-dspyrvw-review-template-adapter-plan.md](task-dspyrvw-review-template-adapter-plan.md) `[NEEDS-HUMAN]`

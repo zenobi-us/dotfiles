@@ -3,7 +3,7 @@
 ## Active Epic Status
 - **Active Epic:** `dpat2601` — Design Pattern Skills from Refactoring.Guru
 - **Current Phase:** `dpatp101` — Source audit and skill architecture
-- **Phase State:** In progress (user approved start-now on 2026-03-04).
+- **Phase State:** Awaiting human closeout decision (`task-dpath002`) after packet delivery.
 
 ## Active Sessions
 

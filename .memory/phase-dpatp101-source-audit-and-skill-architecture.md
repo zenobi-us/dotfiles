@@ -3,7 +3,7 @@ id: dpatp101
 title: Source audit and skill architecture
 epic_id: dpat2601
 created_at: 2026-03-04T16:46:07+10:30
-updated_at: 2026-03-04T20:57:30+10:30
+updated_at: 2026-03-04T21:52:21+10:30
 status: in-progress
 start_criteria: Epic dpat2601 approved and scope constraints confirmed by human.
 end_criteria: Human-approved phase brief with source boundaries, pattern shortlist, and skill template contract.
@@ -23,6 +23,8 @@ Audit Refactoring.Guru design-pattern material, define what can be transformed i
 ## Tasks
 - [task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md](task-dpat1101-audit-refactoring-guru-sources-and-boundaries.md)
 - [task-dpat1102-design-pattern-skill-schema-and-template-contract.md](task-dpat1102-design-pattern-skill-schema-and-template-contract.md)
+- [task-dpat1103-produce-dpatp101-pilot-shortlist-rubric-review-packet.md](task-dpat1103-produce-dpatp101-pilot-shortlist-rubric-review-packet.md)
+- [task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md](task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md) `[NEEDS-HUMAN]`
 
 ## Dependencies
 - Access to Refactoring.Guru catalog pages.
@@ -30,14 +32,14 @@ Audit Refactoring.Guru design-pattern material, define what can be transformed i
 - Human review decision on priority relative to active epics.
 
 ## Completion Snapshot
-- Task completion: 2/2 (`dpat1101`, `dpat1102`).
+- Task completion: 3/4 (`dpat1101`, `dpat1102`, `dpat1103` complete; `dpath002` pending human review).
 - Produced artifacts linked to this phase:
   - `research-dpatr002-refactoring-guru-content-usage-boundaries.md`
   - `research-dpatr003-design-pattern-skill-schema-contract.md`
   - `research-dpatr004-design-pattern-skill-template-canonical.md`
-- Remaining gate: human review packet + go/no-go to enter `dpatp102`.
+  - `research-dpatr005-dpatp101-pilot-shortlist-rubric-review-packet.md`
+- Remaining gate: human go/no-go decision to enter `dpatp102`.
 
 ## Next Steps
-1. Package pilot shortlist (Strategy, Factory Method, Observer) + rubric into review packet.
-2. Run human review for `dpatp101` closeout.
-3. On approval, start `dpatp102` pilot skill authoring.
+1. Run human review for `dpatp101` closeout using `task-dpath002-human-review-dpatp101-closeout-and-dpatp102-go-no-go.md`.
+2. On approval, start `dpatp102` pilot skill authoring.
