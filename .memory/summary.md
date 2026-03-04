@@ -38,13 +38,25 @@ Dotfiles repository with Pi local extensions. Current focus is planning a Templa
   - Phase: `phase-e9b2p101-research-consolidation-and-protocol-draft.md`
   - Research: `research-a7f8b2c4-neovim-pi-zeromq-event-bus.md`
 
+### `dpat2601` — Design Pattern Skills from Refactoring.Guru
+- **Status:** Proposed (idea intake documented; awaiting human prioritization)
+- **Goal:** Build a pattern-driven skill pack derived from Refactoring.Guru's catalog, with pilot-first rollout and explicit pattern-fit verification.
+- **Current artifacts:**
+  - Epic: `epic-dpat2601-design-pattern-skills-from-refactoring-guru.md`
+  - Phase: `phase-dpatp101-source-audit-and-skill-architecture.md`
+  - Research: `research-dpatr001-refactoring-guru-design-pattern-catalog-intake.md`
+  - Human gate: `task-dpath001-review-design-pattern-skills-epic-priority.md`
+
 ## Next Milestones
 1. **Human review of TemplateAdapter epic/phase plan** (`task-dspyrvw-review-template-adapter-plan.md`).
 2. **Human triage for new epic `e9b2c7d4`** (prioritize now vs keep in backlog).
-3. If prioritized, convert ZeroMQ research into story/task breakdown for phase `e9b2p101`.
-4. Decide whether to resume Epic `9c7e21ab` immediately or after current planning queues are cleared.
+3. **Human triage for new epic `dpat2601`** (approve-now vs queue vs reject).
+4. If prioritized, convert ZeroMQ research into story/task breakdown for phase `e9b2p101`.
+5. If prioritized, break down phase `dpatp101` into execution tasks (source boundary audit, template contract, pilot pattern set).
+6. Decide whether to resume Epic `9c7e21ab` immediately or after current planning queues are cleared.
 
 ## Readiness Snapshot
 - TemplateAdapter plan artifacts: ✅ epic + 4 phases + architecture codemap created.
 - ZeroMQ event-bus idea: ✅ epic drafted + research brief captured; ⏸️ pending prioritization.
+- Design-pattern skills idea: ✅ epic + phase + intake research captured; ⏸️ pending prioritization.
 - Questionnaire epic backlog: ✅ remains execution-ready but currently paused.
