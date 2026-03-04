@@ -25,6 +25,12 @@
 - **Activity:** Captured new epic for Neovim ↔ Pi ZeroMQ event bus and delegated/recorded feasibility research.
 - **Status:** Awaiting human prioritization decision before story/task breakdown.
 
+### Session session-20260304-1646
+- **Epic:** dpat2601
+- **Phase:** dpatp101
+- **Activity:** Processed idea intake for design-pattern skills derived from Refactoring.Guru; created epic, phase, research intake, and human review gate task.
+- **Status:** Blocked pending human prioritization decision (approve-now vs queue vs reject).
+
 ## Current Assignment
-- **Owner:** session-20260225-1908
-- **Focus:** Hold e9b2c7d4 in intake queue pending human priority call; maintain existing active planning gate on dspya1b2.
+- **Owner:** session-20260304-1646
+- **Focus:** Hold dpat2601 in idea-intake queue pending human priority call while preserving existing active planning gate on dspya1b2.
