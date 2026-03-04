@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.55.1",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
@@ -18,7 +18,7 @@
     "npm:pi-rtk"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash",
