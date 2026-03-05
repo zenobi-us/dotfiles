@@ -70,6 +70,7 @@ pitchfork = "latest"
 node = "lts"
 "npm:context-mode" = "latest"
 blender = "latest"
+"github:psviderski/uncloud" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
