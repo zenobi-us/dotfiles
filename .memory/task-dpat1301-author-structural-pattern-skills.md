@@ -5,8 +5,8 @@ epic_id: dpat2601
 phase_id: dpatp103
 story_id: null
 created_at: 2026-03-05T10:06:00+10:30
-updated_at: 2026-03-05T10:06:00+10:30
-status: todo
+updated_at: 2026-03-05T20:45:23+10:30
+status: completed
 assigned_to: session-20260304-2003
 ---
 
@@ -29,13 +29,13 @@ N/A
 8. Validate all 7 against schema/template contracts.
 
 ## Acceptance Criteria
-- [ ] `adapter` skill exists as standalone artifact.
-- [ ] `bridge` skill exists as standalone artifact.
-- [ ] `composite` skill exists as standalone artifact.
-- [ ] `decorator` skill exists as standalone artifact.
-- [ ] `facade` skill exists as standalone artifact.
-- [ ] `flyweight` skill exists as standalone artifact.
-- [ ] `proxy` skill exists as standalone artifact.
+- [x] `adapter` skill exists as standalone artifact.
+- [x] `bridge` skill exists as standalone artifact.
+- [x] `composite` skill exists as standalone artifact.
+- [x] `decorator` skill exists as standalone artifact.
+- [x] `facade` skill exists as standalone artifact.
+- [x] `flyweight` skill exists as standalone artifact.
+- [x] `proxy` skill exists as standalone artifact.
 
 ## Unit Tests
 - N/A (planning artifact).
@@ -44,7 +44,21 @@ N/A
 7/7 structural skills created and quality-gated.
 
 ## Actual Outcome
-Pending.
+Completed. Authored seven standalone structural pattern skill artifacts under `ai/files/skills/design-patterns/`:
+- `adapter/SKILL.md`
+- `bridge/SKILL.md`
+- `composite/SKILL.md`
+- `decorator/SKILL.md`
+- `facade/SKILL.md`
+- `flyweight/SKILL.md`
+- `proxy/SKILL.md`
+
+Validation performed against `research-dpatr003` and `research-dpatr004`:
+- Required frontmatter keys present in all seven artifacts.
+- Mandatory sections present in all seven artifacts.
+- No markdown image embeds and no blockquote-style source excerpts.
+- Attribution sections include source site, URLs, and derivation/policy notes.
 
 ## Lessons Learned
-TBD.
+- Using one canonical section order across all artifacts makes contract validation trivial and repeatable.
+- Structural pattern quality improved by explicitly distinguishing intent boundaries between similar wrappers (Decorator vs Proxy vs Facade).

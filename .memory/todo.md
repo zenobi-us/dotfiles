@@ -8,7 +8,7 @@
 
 ## Execution Queue (22-pattern delivery)
 - [x] [task-dpat1201-author-creational-pattern-skills.md](task-dpat1201-author-creational-pattern-skills.md) `completed`
-- [ ] [task-dpat1301-author-structural-pattern-skills.md](task-dpat1301-author-structural-pattern-skills.md)
+- [x] [task-dpat1301-author-structural-pattern-skills.md](task-dpat1301-author-structural-pattern-skills.md) `completed`
 - [ ] [task-dpat1401-author-behavioral-pattern-skills.md](task-dpat1401-author-behavioral-pattern-skills.md)
 - [ ] [task-dpat1501-validate-package-and-rollout-22-pattern-skills.md](task-dpat1501-validate-package-and-rollout-22-pattern-skills.md)
 
