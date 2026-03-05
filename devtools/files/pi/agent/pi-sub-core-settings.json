@@ -14,23 +14,23 @@
       "fetchStatus": true
     },
     "gemini": {
-      "enabled": "auto",
-      "fetchStatus": true
+      "enabled": false,
+      "fetchStatus": false
     },
     "antigravity": {
-      "enabled": "auto",
-      "fetchStatus": true
+      "enabled": false,
+      "fetchStatus": false
     },
     "codex": {
       "enabled": "auto",
       "fetchStatus": true
     },
     "kiro": {
-      "enabled": "auto",
+      "enabled": false,
       "fetchStatus": false
     },
     "zai": {
-      "enabled": "auto",
+      "enabled": false,
       "fetchStatus": false
     }
   },
