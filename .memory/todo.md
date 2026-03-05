@@ -10,7 +10,7 @@
 - [x] [task-dpat1201-author-creational-pattern-skills.md](task-dpat1201-author-creational-pattern-skills.md) `completed`
 - [x] [task-dpat1301-author-structural-pattern-skills.md](task-dpat1301-author-structural-pattern-skills.md) `completed`
 - [x] [task-dpat1401-author-behavioral-pattern-skills.md](task-dpat1401-author-behavioral-pattern-skills.md) `completed`
-- [ ] [task-dpat1501-validate-package-and-rollout-22-pattern-skills.md](task-dpat1501-validate-package-and-rollout-22-pattern-skills.md)
+- [x] [task-dpat1501-validate-package-and-rollout-22-pattern-skills.md](task-dpat1501-validate-package-and-rollout-22-pattern-skills.md) `completed`
 
 ## Other Queued Work
 - [ ] [task-dspyrvw-review-template-adapter-plan.md](task-dspyrvw-review-template-adapter-plan.md) `[NEEDS-HUMAN]`
