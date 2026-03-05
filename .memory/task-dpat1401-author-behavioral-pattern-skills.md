@@ -5,8 +5,8 @@ epic_id: dpat2601
 phase_id: dpatp104
 story_id: null
 created_at: 2026-03-05T10:07:00+10:30
-updated_at: 2026-03-05T10:07:00+10:30
-status: todo
+updated_at: 2026-03-05T20:52:38+10:30
+status: completed
 assigned_to: session-20260304-2003
 ---
 
@@ -32,16 +32,16 @@ N/A
 11. Validate all 10 against schema/template contracts.
 
 ## Acceptance Criteria
-- [ ] `chain-of-responsibility` skill exists as standalone artifact.
-- [ ] `command` skill exists as standalone artifact.
-- [ ] `iterator` skill exists as standalone artifact.
-- [ ] `mediator` skill exists as standalone artifact.
-- [ ] `memento` skill exists as standalone artifact.
-- [ ] `observer` skill exists as standalone artifact.
-- [ ] `state` skill exists as standalone artifact.
-- [ ] `strategy` skill exists as standalone artifact.
-- [ ] `template-method` skill exists as standalone artifact.
-- [ ] `visitor` skill exists as standalone artifact.
+- [x] `chain-of-responsibility` skill exists as standalone artifact.
+- [x] `command` skill exists as standalone artifact.
+- [x] `iterator` skill exists as standalone artifact.
+- [x] `mediator` skill exists as standalone artifact.
+- [x] `memento` skill exists as standalone artifact.
+- [x] `observer` skill exists as standalone artifact.
+- [x] `state` skill exists as standalone artifact.
+- [x] `strategy` skill exists as standalone artifact.
+- [x] `template-method` skill exists as standalone artifact.
+- [x] `visitor` skill exists as standalone artifact.
 
 ## Unit Tests
 - N/A (planning artifact).
@@ -50,7 +50,7 @@ N/A
 10/10 behavioral skills created and quality-gated.
 
 ## Actual Outcome
-Pending.
+Implemented 10 standalone behavioral pattern skills at `/home/zenobius/.pi/agent/skills/design-patterns/{chain-of-responsibility,command,iterator,mediator,memento,observer,state,strategy,template-method,visitor}/SKILL.md`. Ran local schema/template checks for required frontmatter, required sections, and policy gates (no blockquotes, no markdown image syntax); all ten passed.
 
 ## Lessons Learned
-TBD.
+Consistency checks are faster and safer when automated as a loop over required frontmatter/section gates, especially for batch authoring.

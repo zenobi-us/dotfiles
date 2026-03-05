@@ -21,10 +21,10 @@ Dotfiles repository with Pi local extensions and memory-based planning artifacts
 - `dpatp101` source audit and scope correction: ✅ completed
 - `dpatp102` creational batch: ✅ completed (`task-dpat1201`)
 - `dpatp103` structural batch: ✅ completed (`task-dpat1301`)
-- `dpatp104` behavioral batch: ⏳ todo (`task-dpat1401`)
+- `dpatp104` behavioral batch: ✅ completed (`task-dpat1401`)
 - `dpatp105` validation/package/rollout: ⏳ todo (`task-dpat1501`)
 
 ## Immediate Milestones
-1. Execute `task-dpat1401` (10 behavioral skills).
-2. Execute `task-dpat1501` (22/22 completeness validation).
-3. Package/publish index after 22/22 verification.
+1. Execute `task-dpat1501` (22/22 completeness validation).
+2. Package/publish index after 22/22 verification.
+3. Close epic `dpat2601` after human-reviewed rollout checks.
