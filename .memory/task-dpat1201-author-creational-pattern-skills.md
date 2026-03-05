@@ -5,8 +5,8 @@ epic_id: dpat2601
 phase_id: dpatp102
 story_id: null
 created_at: 2026-03-05T10:05:00+10:30
-updated_at: 2026-03-05T10:05:00+10:30
-status: todo
+updated_at: 2026-03-05T20:42:00+10:30
+status: completed
 assigned_to: session-20260304-2003
 ---
 
@@ -27,11 +27,11 @@ N/A
 6. Validate each artifact against `research-dpatr003` + `research-dpatr004`.
 
 ## Acceptance Criteria
-- [ ] `factory-method` skill exists as standalone artifact.
-- [ ] `abstract-factory` skill exists as standalone artifact.
-- [ ] `builder` skill exists as standalone artifact.
-- [ ] `prototype` skill exists as standalone artifact.
-- [ ] `singleton` skill exists as standalone artifact.
+- [x] `factory-method` skill exists as standalone artifact.
+- [x] `abstract-factory` skill exists as standalone artifact.
+- [x] `builder` skill exists as standalone artifact.
+- [x] `prototype` skill exists as standalone artifact.
+- [x] `singleton` skill exists as standalone artifact.
 
 ## Unit Tests
 - N/A (planning artifact).
@@ -40,7 +40,19 @@ N/A
 5/5 creational skills created and quality-gated.
 
 ## Actual Outcome
-Pending.
+Completed. Authored five standalone creational pattern skill artifacts under `ai/files/skills/design-patterns/`:
+- `factory-method/SKILL.md`
+- `abstract-factory/SKILL.md`
+- `builder/SKILL.md`
+- `prototype/SKILL.md`
+- `singleton/SKILL.md`
+
+Validation performed against `research-dpatr003` and `research-dpatr004`:
+- Required frontmatter keys present in all five artifacts.
+- Mandatory sections present in all five artifacts.
+- No markdown image embeds and no blockquote-style source excerpts.
+- Attribution sections include source site, URLs, and derivation/policy notes.
 
 ## Lessons Learned
-TBD.
+- A strict schema-first template keeps multi-artifact authoring consistent and faster to validate.
+- Pattern-specific misuse checks are the highest-value section for operational guidance quality.

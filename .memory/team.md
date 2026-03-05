@@ -2,16 +2,16 @@
 
 ## Active Epic Status
 - **Active Epic:** `dpat2601` — Design Pattern Skills from Refactoring.Guru
-- **Current Phase:** `dpatp102` — Creational pattern skills (5)
-- **Phase State:** Ready to execute (`task-dpat1201`) after human go decision recorded in `task-dpath002`.
+- **Current Phase:** `dpatp103` — Structural pattern skills (7)
+- **Phase State:** `dpatp102` completed; next queued task is `task-dpat1301`.
 
 ## Active Sessions
 
 ### Session session-20260304-2003
 - **Epic:** dpat2601
-- **Phase:** Transitioned from `dpatp101` to execution queue (`dpatp102`+)
-- **Activity:** Completed source/boundary/schema/template packet and captured human scope correction to full 22-pattern delivery.
-- **Status:** Active; next action is authoring creational batch.
+- **Phase:** dpatp103 (structural pattern authoring queued)
+- **Activity:** Completed `task-dpat1201` with five standalone creational skill artifacts authored and schema-gated.
+- **Status:** Active; awaiting execution of `task-dpat1301`.
 
 ### Session session-20260221-2102
 - **Epic:** dspya1b2
