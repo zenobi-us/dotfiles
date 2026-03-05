@@ -18,7 +18,7 @@ export async function executeAction(
 
   switch (action.type) {
     case "editor":
-      ctx.ui.pasteToEditor(rendered);
+      ctx.ui.setEditorText(rendered);
       break;
 
     case "send":
@@ -37,7 +37,7 @@ export async function executeAction(
 
       switch (action.output) {
         case "editor":
-          ctx.ui.pasteToEditor(output);
+          ctx.ui.setEditorText(output);
           break;
         case "send":
           if (output) {

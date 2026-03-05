@@ -29,6 +29,8 @@ export interface FzfCommandConfig {
 }
 
 export interface FzfConfig {
+  /** Default placement for selector widgets (can be overridden per command) */
+  defaultPlacement?: SelectorPlacement;
   commands: Record<string, FzfCommandConfig>;
 }
 
@@ -99,12 +101,18 @@ export function loadFzfConfig(cwd: string): ResolvedCommand[] {
     ...(projectConfig?.commands ?? {}),
   };
 
+  // Placement precedence: command > project default > global default > hard default
+  const defaultPlacement: SelectorPlacement =
+    projectConfig?.defaultPlacement ??
+    globalConfig?.defaultPlacement ??
+    "aboveEditor";
+
   return Object.entries(merged).map(([name, cmd]) => ({
     name,
     list: cmd.list,
     action: resolveAction(cmd.action),
     shortcut: cmd.shortcut,
-    placement: cmd.placement ?? "aboveEditor",
+    placement: cmd.placement ?? defaultPlacement,
   }));
 }
 

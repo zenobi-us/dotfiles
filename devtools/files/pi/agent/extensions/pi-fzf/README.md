@@ -60,22 +60,34 @@ The shortcut format follows Pi's [keybinding syntax](https://github.com/badlogic
 
 ### Selector Placement
 
-Add a `placement` field to control where the fuzzy selector widget appears:
+You can control selector widget placement in two ways:
+
+- Per-command via `placement`
+- Globally via top-level `defaultPlacement`
+
+Allowed values:
 
 - `"aboveEditor"` (default)
 - `"belowEditor"`
 
 ```json
 {
+  "defaultPlacement": "belowEditor",
   "commands": {
     "file": {
       "list": "fd --type f --max-depth 4",
-      "action": "Read and explain {{selected}}",
-      "placement": "belowEditor"
+      "action": "Read and explain {{selected}}"
+    },
+    "branch": {
+      "list": "git branch --format='%(refname:short)'",
+      "action": { "type": "bash", "template": "git checkout {{selected}}" },
+      "placement": "aboveEditor"
     }
   }
 }
 ```
+
+Precedence: `command.placement` → `defaultPlacement` → `"aboveEditor"`.
 
 ## Actions
 
