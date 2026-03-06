@@ -62,3 +62,10 @@ actions:
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/pi-sub-core-settings.json"
     from: pi/agent/pi-sub-core-settings.json
+
+  # Install extension dependencies
+  - action: command.run
+    dir: "{{env.DOTFILE_REPO_ROOT}}/devtools/files/pi/agent/extensions"
+    command: bun
+    args:
+      - install
