@@ -66,6 +66,6 @@ actions:
   # Install extension dependencies
   - action: command.run
     dir: "{{env.DOTFILE_REPO_ROOT}}/devtools/files/pi/agent/extensions"
-    command: bun
+    command: npm
     args:
       - install
