@@ -27,7 +27,62 @@
  */
 
 import type { ExtensionAPI, ExtensionContext } from "@mariozechner/pi-coding-agent";
+import { existsSync, readFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { join, resolve } from "node:path";
 import { loadSkills, formatSkillsForPrompt, readSkillContent, type Skill } from "./skill-loader.js";
+
+type RuntimeSettings = {
+  enableSkillCommands: boolean;
+};
+
+function getAgentDir(): string {
+  const envCandidates = ["PI_CODING_AGENT_DIR", "TAU_CODING_AGENT_DIR"];
+
+  for (const key of envCandidates) {
+    const value = process.env[key];
+    if (value) return value;
+  }
+
+  for (const [key, value] of Object.entries(process.env)) {
+    if (key.endsWith("_CODING_AGENT_DIR") && value) {
+      return value;
+    }
+  }
+
+  return join(homedir(), ".pi", "agent");
+}
+
+function readJsonFile(filePath: string): Record<string, unknown> {
+  if (!existsSync(filePath)) return {};
+
+  try {
+    const raw = readFileSync(filePath, "utf-8");
+    const parsed = JSON.parse(raw);
+    return typeof parsed === "object" && parsed !== null ? (parsed as Record<string, unknown>) : {};
+  } catch {
+    return {};
+  }
+}
+
+function getRuntimeSettings(cwd: string): RuntimeSettings {
+  const agentSettingsPath = join(getAgentDir(), "settings.json");
+  const projectSettingsPath = resolve(cwd, ".pi", "settings.json");
+
+  const agentSettings = readJsonFile(agentSettingsPath);
+  const projectSettings = readJsonFile(projectSettingsPath);
+
+  const enableSkillCommands =
+    typeof projectSettings.enableSkillCommands === "boolean"
+      ? projectSettings.enableSkillCommands
+      : typeof agentSettings.enableSkillCommands === "boolean"
+        ? agentSettings.enableSkillCommands
+        : true;
+
+  return {
+    enableSkillCommands,
+  };
+}
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
   let skills: Skill[] = [];
@@ -72,6 +127,8 @@ ${body}
 
   // Load skills on session start
   pi.on("session_start", async (_event, ctx) => {
+    const runtimeSettings = getRuntimeSettings(ctx.cwd);
+
     const result = loadSkills({
       cwd: ctx.cwd,
       includeDefaults: true,
@@ -91,6 +148,10 @@ ${body}
     // Notify user
     if (skills.length > 0) {
       ctx.ui.notify(`Loaded ${skills.length} skill(s) with qualified names`, "info");
+    }
+
+    if (!runtimeSettings.enableSkillCommands) {
+      return;
     }
 
     // Register fully-qualified per-skill commands: /skill:<qualified-name>
@@ -129,9 +190,13 @@ ${body}
     });
   });
 
-  // Inject skills into system prompt
+  // Inject skills into system prompt (only if no skills block already exists)
   pi.on("before_agent_start", async (event) => {
     if (!skillPromptBlock) {
+      return;
+    }
+
+    if (event.systemPrompt.includes("<available_skills>")) {
       return;
     }
 

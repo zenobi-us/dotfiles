@@ -21,8 +21,8 @@
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash",
-  "skills": [],
   "enableSkillCommands": false,
   "quietStartup": true,
   "collapseChangelog": true
 }
+
