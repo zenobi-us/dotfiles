@@ -1,5 +1,5 @@
 {
-  "name": "pi-context-mode",
+  "name": "context-mode",
   "version": "0.1.0",
   "description": "Context Mode extension for pi - reduce context window consumption by ~98%",
   "type": "module",
