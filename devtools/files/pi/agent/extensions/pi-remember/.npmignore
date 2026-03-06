@@ -1,6 +1,0 @@
-src/
-tsconfig.json
-.gitignore
-example-opencode.json
-*.log
-.DS_Store
