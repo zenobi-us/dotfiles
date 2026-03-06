@@ -22,6 +22,7 @@
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash",
   "enableSkillCommands": false,
+  "lazySkills": true,
   "quietStartup": true,
   "collapseChangelog": true
 }
