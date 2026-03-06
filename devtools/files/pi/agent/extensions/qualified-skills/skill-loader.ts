@@ -6,9 +6,23 @@
  *   -> name: "data-analyst"
  */
 
-import { existsSync, readdirSync, readFileSync, realpathSync, statSync } from "node:fs";
+import {
+  existsSync,
+  readdirSync,
+  readFileSync,
+  realpathSync,
+  statSync,
+} from "node:fs";
 import { homedir } from "node:os";
-import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
+import {
+  basename,
+  dirname,
+  isAbsolute,
+  join,
+  relative,
+  resolve,
+  sep,
+} from "node:path";
 
 export interface SkillFrontmatter {
   name?: string;
@@ -58,7 +72,10 @@ const MAX_DESCRIPTION_LENGTH = 1024;
 /**
  * Parse YAML frontmatter from markdown content
  */
-function parseFrontmatter(content: string): { frontmatter: SkillFrontmatter; body: string } {
+function parseFrontmatter(content: string): {
+  frontmatter: SkillFrontmatter;
+  body: string;
+} {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!match) {
     return { frontmatter: {}, body: content };
@@ -76,7 +93,10 @@ function parseFrontmatter(content: string): { frontmatter: SkillFrontmatter; bod
     let value: string | boolean = line.slice(colonIdx + 1).trim();
 
     // Handle quoted strings
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
       value = value.slice(1, -1);
     }
     // Handle booleans
@@ -97,10 +117,7 @@ function parseFrontmatter(content: string): { frontmatter: SkillFrontmatter; bod
  * e.g., "experts/data-ai/data-analyst" -> "experts-data-ai-data-analyst"
  */
 function pathToKebabName(relativePath: string): string {
-  return relativePath
-    .split(/[/\\]/)
-    .filter(Boolean)
-    .join("-");
+  return relativePath.split(/[/\\]/).filter(Boolean).join("-");
 }
 
 /**
@@ -110,13 +127,17 @@ function validateName(name: string, parentDirName: string): string[] {
   const errors: string[] = [];
 
   if (name !== parentDirName) {
-    errors.push(`name "${name}" does not match parent directory "${parentDirName}"`);
+    errors.push(
+      `name "${name}" does not match parent directory "${parentDirName}"`,
+    );
   }
   if (name.length > MAX_NAME_LENGTH) {
     errors.push(`name exceeds ${MAX_NAME_LENGTH} characters (${name.length})`);
   }
   if (!/^[a-z0-9-]+$/.test(name)) {
-    errors.push(`name contains invalid characters (must be lowercase a-z, 0-9, hyphens only)`);
+    errors.push(
+      `name contains invalid characters (must be lowercase a-z, 0-9, hyphens only)`,
+    );
   }
   if (name.startsWith("-") || name.endsWith("-")) {
     errors.push(`name must not start or end with a hyphen`);
@@ -137,7 +158,9 @@ function validateDescription(description: string | undefined): string[] {
   if (!description || description.trim() === "") {
     errors.push("description is required");
   } else if (description.length > MAX_DESCRIPTION_LENGTH) {
-    errors.push(`description exceeds ${MAX_DESCRIPTION_LENGTH} characters (${description.length})`);
+    errors.push(
+      `description exceeds ${MAX_DESCRIPTION_LENGTH} characters (${description.length})`,
+    );
   }
 
   return errors;
@@ -165,7 +188,7 @@ interface LoadFromDirOptions {
 function loadSkillFromFile(
   filePath: string,
   source: string,
-  skillsRoot: string
+  skillsRoot: string,
 ): { skill: Skill | null; diagnostics: SkillDiagnostic[] } {
   const diagnostics: SkillDiagnostic[] = [];
 
@@ -192,7 +215,10 @@ function loadSkillFromFile(
     }
 
     // Skip if no description
-    if (!frontmatter.description || (frontmatter.description as string).trim() === "") {
+    if (
+      !frontmatter.description ||
+      (frontmatter.description as string).trim() === ""
+    ) {
       return { skill: null, diagnostics };
     }
 
@@ -208,12 +234,14 @@ function loadSkillFromFile(
         filePath,
         baseDir: skillDir,
         source,
-        disableModelInvocation: frontmatter["disable-model-invocation"] === true,
+        disableModelInvocation:
+          frontmatter["disable-model-invocation"] === true,
       },
       diagnostics,
     };
   } catch (error) {
-    const message = error instanceof Error ? error.message : "failed to parse skill file";
+    const message =
+      error instanceof Error ? error.message : "failed to parse skill file";
     diagnostics.push({ type: "warning", message, path: filePath });
     return { skill: null, diagnostics };
   }
@@ -223,7 +251,7 @@ function loadSkillsFromDirInternal(
   dir: string,
   source: string,
   skillsRoot: string,
-  includeRootFiles: boolean
+  includeRootFiles: boolean,
 ): LoadSkillsResult {
   const skills: Skill[] = [];
   const diagnostics: SkillDiagnostic[] = [];
@@ -256,7 +284,12 @@ function loadSkillsFromDirInternal(
       }
 
       if (isDirectory) {
-        const subResult = loadSkillsFromDirInternal(fullPath, source, skillsRoot, false);
+        const subResult = loadSkillsFromDirInternal(
+          fullPath,
+          source,
+          skillsRoot,
+          false,
+        );
         skills.push(...subResult.skills);
         diagnostics.push(...subResult.diagnostics);
         continue;
@@ -345,8 +378,17 @@ export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
     const userSkillsDir = join(agentDir, "skills");
     const projectSkillsDir = resolve(cwd, CONFIG_DIR_NAME, "skills");
 
-    addSkills(loadSkillsFromDirInternal(userSkillsDir, "user", userSkillsDir, true));
-    addSkills(loadSkillsFromDirInternal(projectSkillsDir, "project", projectSkillsDir, true));
+    addSkills(
+      loadSkillsFromDirInternal(userSkillsDir, "user", userSkillsDir, true),
+    );
+    addSkills(
+      loadSkillsFromDirInternal(
+        projectSkillsDir,
+        "project",
+        projectSkillsDir,
+        true,
+      ),
+    );
   }
 
   // Handle explicit skill paths
@@ -354,7 +396,11 @@ export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
     const resolvedPath = resolveSkillPath(rawPath, cwd);
 
     if (!existsSync(resolvedPath)) {
-      allDiagnostics.push({ type: "warning", message: "skill path does not exist", path: resolvedPath });
+      allDiagnostics.push({
+        type: "warning",
+        message: "skill path does not exist",
+        path: resolvedPath,
+      });
       continue;
     }
 
@@ -362,19 +408,33 @@ export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
       const stats = statSync(resolvedPath);
 
       if (stats.isDirectory()) {
-        addSkills(loadSkillsFromDirInternal(resolvedPath, "path", resolvedPath, true));
+        addSkills(
+          loadSkillsFromDirInternal(resolvedPath, "path", resolvedPath, true),
+        );
       } else if (stats.isFile() && resolvedPath.endsWith(".md")) {
-        const result = loadSkillFromFile(resolvedPath, "path", dirname(resolvedPath));
+        const result = loadSkillFromFile(
+          resolvedPath,
+          "path",
+          dirname(resolvedPath),
+        );
         if (result.skill) {
-          addSkills({ skills: [result.skill], diagnostics: result.diagnostics });
+          addSkills({
+            skills: [result.skill],
+            diagnostics: result.diagnostics,
+          });
         } else {
           allDiagnostics.push(...result.diagnostics);
         }
       } else {
-        allDiagnostics.push({ type: "warning", message: "skill path is not a markdown file", path: resolvedPath });
+        allDiagnostics.push({
+          type: "warning",
+          message: "skill path is not a markdown file",
+          path: resolvedPath,
+        });
       }
     } catch (error) {
-      const message = error instanceof Error ? error.message : "failed to read skill path";
+      const message =
+        error instanceof Error ? error.message : "failed to read skill path";
       allDiagnostics.push({ type: "warning", message, path: resolvedPath });
     }
   }
@@ -419,7 +479,9 @@ export function formatSkillsForPrompt(skills: Skill[]): string {
     lines.push("  <skill>");
     lines.push(`    <name>${escapeXml(skill.qualifiedName)}</name>`);
     lines.push(`    <shortname>${escapeXml(skill.name)}</shortname>`);
-    lines.push(`    <description>${escapeXml(skill.description)}</description>`);
+    lines.push(
+      `    <description>${escapeXml(skill.description)}</description>`,
+    );
     lines.push(`    <location>${escapeXml(skill.filePath)}</location>`);
     lines.push("  </skill>");
   }
