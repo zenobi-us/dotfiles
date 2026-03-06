@@ -6,7 +6,6 @@
     "npm:@zenobius/pi-rose-pine",
     "npm:@zenobius/pi-worktrees@0.1.0-next.1",
     "npm:@marckrenn/pi-sub-bar",
-    "npm:pi-fzf",
     "npm:pi-subdir-context",
     "npm:pi-messenger",
     "npm:pi-mermaid",
@@ -23,6 +22,7 @@
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash",
   "skills": [],
+  "enableSkillCommands": false,
   "quietStartup": true,
   "collapseChangelog": true
 }

@@ -47,6 +47,17 @@
         "typescript": "^5.9.3",
       },
     },
+    "pi-fzf": {
+      "name": "pi-fzf",
+      "version": "0.5.0",
+      "dependencies": {
+        "fzf": "^0.5.2",
+      },
+      "peerDependencies": {
+        "@mariozechner/pi-coding-agent": "*",
+        "@mariozechner/pi-tui": "*",
+      },
+    },
     "pi-remember": {
       "name": "@howaboua/pi-remember",
       "version": "0.1.0",
@@ -529,6 +540,8 @@
 
     "fsevents": ["fsevents@2.3.3", "", { "os": "darwin" }, "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw=="],
 
+    "fzf": ["fzf@0.5.2", "", {}, "sha512-Tt4kuxLXFKHy8KT40zwsUPUkg1CrsgY25FxA2U/j/0WgEDCk3ddc/zLTCCcbSHX9FcKtLuVaDGtGE/STWC+j3Q=="],
+
     "gaxios": ["gaxios@7.1.3", "", { "dependencies": { "extend": "^3.0.2", "https-proxy-agent": "^7.0.1", "node-fetch": "^3.3.2", "rimraf": "^5.0.1" } }, "sha512-YGGyuEdVIjqxkxVH1pUTMY/XtmmsApXrCVv5EU25iX6inEPbV+VakJfLealkBtJN69AQmh1eGOdCl9Sm1UP6XQ=="],
 
     "gcp-metadata": ["gcp-metadata@8.1.2", "", { "dependencies": { "gaxios": "^7.0.0", "google-logging-utils": "^1.0.0", "json-bigint": "^1.0.0" } }, "sha512-zV/5HKTfCeKWnxG0Dmrw51hEWFGfcF2xiXqcA3+J90WDuP0SvoiSO5ORvcBsifmx/FoIjgQN3oNOGaQ5PhLFkg=="],
@@ -682,6 +695,8 @@
     "pi-agentic-compaction": ["pi-agentic-compaction@workspace:file-based-compaction"],
 
     "pi-context-mode": ["pi-context-mode@workspace:context-mode"],
+
+    "pi-fzf": ["pi-fzf@workspace:pi-fzf"],
 
     "pi-shell-completions": ["pi-shell-completions@workspace:shell-completions"],
 

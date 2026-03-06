@@ -1,50 +1,34 @@
 # Project Summary
 
 ## Overview
-Dotfiles repository with Pi local extensions. Current focus is planning a TemplateAdapter-driven Pi extension that gives precise control over DSPy prompts directly inside Pi while keeping the previous pi-interview questionnaire epic on hold until TemplateAdapter planning is approved.
+Dotfiles repository with Pi local extensions and memory-based planning artifacts.
 
 ## Active Epic
 
-### `dspya1b2` — TemplateAdapter Pi Extension
-- **Status:** Planning (awaiting human review)
-- **Goal:** Provide a `/template-adapter` extension that lets users author TemplateAdapter message templates (system/user/history directives, `{inputs()}/{outputs()}` helpers, parse modes) and run them via a managed Python runner that imports `dspy_template_adapter`.
-- **Key Decisions:**
-  1. Persist adapter definitions as JSON with versioned schema + checksum in repo.
-  2. Use `uv run python scripts/template_adapter_runner.py` as the execution boundary so the extension can call TemplateAdapter's `preview()`/`parse()`/`Predict` flows.
-  3. Surface TemplateAdapter invariants (single output field for `full_text`, parse mode/schema alignment, helper registration) inside the Pi overlay before hitting LMs.
+### `dpat2601` — Design Pattern Skills from Refactoring.Guru
+- **Status:** In progress
+- **Goal:** Deliver **22 separate GoF pattern skills** (one skill artifact per pattern URL).
+- **Scope lock:**
+  - **Creational (5):** factory-method, abstract-factory, builder, prototype, singleton
+  - **Structural (7):** adapter, bridge, composite, decorator, facade, flyweight, proxy
+  - **Behavioral (10):** chain-of-responsibility, command, iterator, mediator, memento, observer, state, strategy, template-method, visitor
+- **Category descriptions in plan:**
+  - Creational: object creation mechanisms; flexibility/reuse.
+  - Structural: composition/relationships; flexible efficient structures.
+  - Behavioral: algorithms and responsibility/communication.
 
-#### Phase Status
-- **Phase `dspya101` Research & Integration Spike:** 🟡 Proposed — needs human approval before tasks are created.
-- **Phase `dspya102` Extension Architecture & Template Management:** 🟡 Proposed — blocked on dspya101.
-- **Phase `dspya103` Execution Pipeline & Observability:** 🟡 Proposed — blocked on dspya101/102.
-- **Phase `dspya104` Validation, Packaging & Release Prep:** 🟡 Proposed — blocked on earlier phases.
+## Phase Status (dpat2601)
+- `dpatp101` source audit and scope correction: ✅ completed
+- `dpatp102` creational batch: ✅ completed (`task-dpat1201`)
+- `dpatp103` structural batch: ✅ completed (`task-dpat1301`)
+- `dpatp104` behavioral batch: ✅ completed (`task-dpat1401`)
+- `dpatp105` validation/package/rollout: ✅ completed (`task-dpat1501`)
 
-## Secondary Epic (Paused)
+## Validation Artifacts (dpatp105)
+- `.memory/research-dpatr006-dpat1501-pattern-skill-pack-validation-index.md` (22/22 + category/path checklist)
+- `.memory/learning-dpatl002-dpat1501-rollout-guidance-maintenance-policy.md` (rollout + maintenance governance)
 
-### `9c7e21ab` — pi-interview pi-tui questionnaire UI
-- **Status:** Execution-ready but paused while TemplateAdapter plan is under review.
-- **Goal:** Local Dotfiles extension replaces `interview` with a pi-tui-native questionnaire flow.
-
-#### Ready Backlog (still valid once work resumes)
-- Story/task set already defined for questionnaire renderer, navigation validation, image support, and compatibility parity.
-
-## Proposed Epic (New Idea Intake)
-
-### `e9b2c7d4` — Neovim ↔ Pi ZeroMQ Event Bus Extension
-- **Status:** Proposed (research in progress/completed for feasibility)
-- **Goal:** Star-topology event bus connecting Neovim and Pi clients, with first Pi instance bootstrapping broker lifecycle and participating as a normal client.
-- **Current artifacts:**
-  - Epic: `epic-e9b2c7d4-nvim-pi-zeromq-event-bus-extension.md`
-  - Phase: `phase-e9b2p101-research-consolidation-and-protocol-draft.md`
-  - Research: `research-a7f8b2c4-neovim-pi-zeromq-event-bus.md`
-
-## Next Milestones
-1. **Human review of TemplateAdapter epic/phase plan** (`task-dspyrvw-review-template-adapter-plan.md`).
-2. **Human triage for new epic `e9b2c7d4`** (prioritize now vs keep in backlog).
-3. If prioritized, convert ZeroMQ research into story/task breakdown for phase `e9b2p101`.
-4. Decide whether to resume Epic `9c7e21ab` immediately or after current planning queues are cleared.
-
-## Readiness Snapshot
-- TemplateAdapter plan artifacts: ✅ epic + 4 phases + architecture codemap created.
-- ZeroMQ event-bus idea: ✅ epic drafted + research brief captured; ⏸️ pending prioritization.
-- Questionnaire epic backlog: ✅ remains execution-ready but currently paused.
+## Immediate Milestones
+1. Human review of dpatp105 outputs and closeout decision.
+2. If approved, mark epic `dpat2601` completed and archive/cleanup per workflow.
+3. Run maintenance validation on next batch edits to pattern skills.

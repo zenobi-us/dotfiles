@@ -71,6 +71,10 @@ node = "lts"
 "npm:context-mode" = "latest"
 blender = "latest"
 "github:psviderski/uncloud" = "latest"
+bitwarden = "latest"
+"github:reckon-limited/webstack-compare-versions" = "v0.0.1-next.1"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
+
+

@@ -1,30 +1,30 @@
 # Team Status
 
 ## Active Epic Status
-- **Active Epic:** `dspya1b2` — TemplateAdapter Pi Extension
-- **Current Phase:** `dspya101` — Research & Integration Spike (planning)
-- **Phase State:** Proposed plan authored; waiting for human review before creating execution tasks.
+- **Active Epic:** `dpat2601` — Design Pattern Skills from Refactoring.Guru
+- **Current Phase:** `dpatp105` — Validation/package/rollout
+- **Phase State:** `dpatp104` completed via `task-dpat1401`; next queued task is `task-dpat1501`.
 
 ## Active Sessions
+
+### Session session-20260304-2003
+- **Epic:** dpat2601
+- **Phase:** dpatp105 (validation/package/rollout)
+- **Activity:** Completed `task-dpat1501` with full-pack validation (22/22) and published validation index + rollout/maintenance policy artifacts.
+- **Status:** Active; phase deliverables complete pending human closeout decision.
 
 ### Session session-20260221-2102
 - **Epic:** dspya1b2
 - **Phase:** dspya101 (plus drafted outlines for dspya102–dspya104)
-- **Activity:** Authored epic/phase docs, TemplateAdapter architecture codemap, and human-review gating task.
-- **Status:** Blocked pending human approval; ready to break down tasks once plan is accepted.
-
-### Session session-20260220-1938
-- **Epic:** 9c7e21ab
-- **Phase:** 8b1e4d2f
-- **Activity:** Created MVP stories and linked implementation tasks for local extension interview replacement, image flow, and no-timeout semantics.
-- **Status:** Execution-ready backlog prepared but currently paused while TemplateAdapter planning is reviewed.
+- **Activity:** Authored epic/phase docs and planning artifacts.
+- **Status:** Blocked pending human approval (`task-dspyrvw-review-template-adapter-plan.md`).
 
 ### Session session-20260225-1908
 - **Epic:** e9b2c7d4
 - **Phase:** e9b2p101
-- **Activity:** Captured new epic for Neovim ↔ Pi ZeroMQ event bus and delegated/recorded feasibility research.
-- **Status:** Awaiting human prioritization decision before story/task breakdown.
+- **Activity:** Captured ZeroMQ event-bus epic and feasibility research.
+- **Status:** Awaiting human prioritization (`task-e9b2h001-review-zeromq-event-bus-epic-priority.md`).
 
 ## Current Assignment
-- **Owner:** session-20260225-1908
-- **Focus:** Hold e9b2c7d4 in intake queue pending human priority call; maintain existing active planning gate on dspya1b2.
+- **Owner:** session-20260304-2003
+- **Focus:** `task-dpat1501` completed; awaiting human direction for phase/epic closeout and any packaging follow-ups.
