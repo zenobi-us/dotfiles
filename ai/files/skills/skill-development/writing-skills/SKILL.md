@@ -1,6 +1,6 @@
 ---
 name: writing-skills
-description: Use when creating new skills, editing existing skills, or verifying skills work before deployment
+description: Teaches test-driven skill authoring and validation, when creating/editing/verifying skills, resulting in robust reusable skills that pass pressure-tested scenarios
 ---
 
 # Writing Skills
@@ -9,7 +9,9 @@ description: Use when creating new skills, editing existing skills, or verifying
 
 **Writing skills IS Test-Driven Development applied to process documentation.**
 
-**Personal skills live in agent-specific directories (`~/.claude/skills` for Claude Code, `~/.codex/skills` for Codex)** 
+**Personal skills live in agent-specific directories (`$DOTFILE_REPO_ROOT/ai/files/skills`)** 
+
+**Project skills live in `.agents/skills/`**.
 
 You write test cases (pressure scenarios with subagents), watch them fail (baseline behavior), write the skill (documentation), watch tests pass (agents comply), and refactor (close loopholes).
 
@@ -17,7 +19,7 @@ You write test cases (pressure scenarios with subagents), watch them fail (basel
 
 **REQUIRED BACKGROUND:** You MUST understand superpowers:test-driven-development before using this skill. That skill defines the fundamental RED-GREEN-REFACTOR cycle. This skill adapts TDD to documentation.
 
-**Official guidance:** For Anthropic's official skill authoring best practices, use `skill_resource('writing-skills', 'anthropic-best-practices')`. This document provides additional patterns and guidelines that complement the TDD-focused approach in this skill.
+**Official guidance:** Load the `anthropic-best-practices` resource from the `writing-skills` skill. This document provides additional patterns and guidelines that complement the TDD-focused approach in this skill.
 
 ## What is a Skill?
 
@@ -27,9 +29,35 @@ A **skill** is a reference guide for proven techniques, patterns, or tools. Skil
 
 **Skills are NOT:** Narratives about how you solved a problem once
 
+## First: Classify the Skill Type
+
+Do this early, before writing sections.
+
+### Reference
+Lookup material: APIs, syntax, command options, compatibility notes.
+
+### Workflow
+Stepwise process to follow (often with gates/checklists).
+
+### Styleguide
+Standards and conventions: naming, formatting, tone, structure.
+
+### Persona
+Behavior profile for interaction style, priorities, and boundaries.
+
+### Technique/Pattern
+Method or mental model for solving recurring problems.
+
+If a skill spans multiple types, run this decision flow:
+
+1. **Ask intent first:** Ask the user whether the multi-type scope is intentional, or whether they want to split the concept into separate focused skills.
+2. **If not splitting:** Continue with one skill. Pick a **primary type**, make it explicit in the overview, and continue RED/GREEN/REFACTOR testing.
+3. **If splitting:** Analyze the concept and propose multiple splice options (for example by audience, lifecycle phase, problem type, or artifact type).
+4. **Collaborate to choose:** Work with the user to select the preferred split. Then produce temporary prompts for separate sessions, one prompt per new skill, each explicitly instructing the session to use this `writing-skills` skill.
+
 ## TDD Mapping for Skills
 
-For detailed TDD mapping table and concepts, use `skill_resource('writing-skills', 'references/tdd-mapping')`.
+For detailed TDD mapping table and concepts, load the `tdd-mapping` resource from the `writing-skills` skill.
 
 **Core concept:** The entire skill creation process follows RED-GREEN-REFACTOR, adapting TDD's cycle to documentation.
 
@@ -46,54 +74,51 @@ For detailed TDD mapping table and concepts, use `skill_resource('writing-skills
 - Standard practices well-documented elsewhere
 - Project-specific conventions (put in CLAUDE.md)
 
-## Skill Types
-
-### Technique
-Concrete method with steps to follow (condition-based-waiting, root-cause-tracing)
-
-### Pattern
-Way of thinking about problems (flatten-with-flags, test-invariants)
-
-### Reference
-API docs, syntax guides, tool documentation (office docs)
-
 ## Directory Structure
-
 
 ```
 skills/
   skill-name/
-    SKILL.md              # Main reference (required)
-    supporting-file.*     # Only if needed
+    SKILL.md
+    references/
+      extra-file.md
+    scripts/
+      codified-helper.sh
+      known-steps-cli.js
+    assets/
+      possibly-a-circle-mask.png
+      maybe-a-logo.png
 ```
+
+**Rule:** A skill directory contains only `SKILL.md`.
+
+Put everything else in categorized sibling folders:
+1. `references/` for heavy docs, guides, tables
+2. `scripts/` for executable helpers and generators
+3. `assets/` for diagrams, images, static files
 
 **Flat namespace** - all skills in one searchable namespace
 
-**Separate files for:**
-1. **Heavy reference** (100+ lines) - API docs, comprehensive syntax
-2. **Reusable tools** - Scripts, utilities, templates
-
-**Keep inline:**
+**Keep inline in `SKILL.md` whenever possible:**
 - Principles and concepts
-- Code patterns (< 50 lines)
-- Everything else
+- Short code patterns (< 50 lines)
+- Decision criteria and anti-patterns
 
 ## SKILL.md Structure
 
 **Frontmatter (YAML):**
 - Only two fields supported: `name` and `description`
 - Max 1024 characters total
-- `name`: Use letters, numbers, and hyphens only (no parentheses, special chars)
-- `description`: Third-person, describes ONLY when to use (NOT what it does)
-  - Start with "Use when..." to focus on triggering conditions
-  - Include specific symptoms, situations, and contexts
-  - **NEVER summarize the skill's process or workflow** (see CSO section for why)
+- `name`: Use letters, numbers, and hyphens only (no parentheses, special chars). Must match the folder name.
+- `description`: Third-person, written as: `{what it does}, {when to use it}, {what the result is}`
+  - Keep it concrete and searchable (symptoms, contexts, outcomes)
+  - Avoid vague language and hype
   - Keep under 500 characters if possible
 
 ```markdown
 ---
 name: Skill-Name-With-Hyphens
-description: Use when [specific triggering conditions and symptoms]
+description: [what it does], [when to use it], [what the result is]
 ---
 
 # Skill Name
@@ -127,12 +152,12 @@ Concrete results
 
 ## Claude Search Optimization (CSO)
 
-For comprehensive CSO guidance including description patterns, keyword coverage, and naming conventions, use `skill_resource('writing-skills', 'references/cso-guide')`.
+For comprehensive CSO guidance including description patterns, keyword coverage, and naming conventions, load the `cso-guide` resource from the `writing-skills` skill.
 
 Key principles:
-- **Description = When to Use, NOT What the Skill Does** (no workflow summary in description)
+- **Description format:** `{what it does}, {when to use it}, {what the result is}`
 - Write in third person for system prompt injection
-- Use concrete triggers and symptoms, not language-specific details
+- Use concrete triggers, symptoms, and outcomes
 - Include searchable keywords: error messages, symptoms, tools
 
 ## Flowchart Usage
@@ -147,12 +172,12 @@ Never use flowcharts for:
 - Code examples → Markdown blocks
 - Linear instructions → Numbered lists
 
-For graphviz style conventions, see `skill_resource('writing-skills', 'assets/graphviz-conventions')`.
+For graphviz style conventions, load the `graphviz-conventions` resource from the `writing-skills` skill.
 
-**Visualizing for your human partner:** Use `render-graphs.js` in the scripts/ directory to render flowcharts to SVG:
+**Visualizing for your human partner:** Use `render-graphs.js` from `scripts/writing-skills/` to render flowcharts to SVG:
 ```bash
-./scripts/render-graphs.js ../some-skill           # Each diagram separately
-./scripts/render-graphs.js ../some-skill --combine # All diagrams in one SVG
+./scripts/writing-skills/render-graphs.js ./skills/some-skill           # Each diagram separately
+./scripts/writing-skills/render-graphs.js ./skills/some-skill --combine # All diagrams in one SVG
 ```
 
 ## Code Examples
@@ -182,28 +207,35 @@ You're good at porting - one great example is enough.
 
 ### Self-Contained Skill
 ```
-defense-in-depth/
-  SKILL.md    # Everything inline
+skills/defense-in-depth/
+  SKILL.md
 ```
-When: All content fits, no heavy reference needed
+When: All content fits inline.
 
 ### Skill with Reusable Tool
 ```
-condition-based-waiting/
-  SKILL.md    # Overview + patterns
-  example.ts  # Working helpers to adapt
+skills/condition-based-waiting/
+  SKILL.md
+scripts/condition-based-waiting/
+  example.ts
 ```
-When: Tool is reusable code, not just narrative
+When: Tooling is reusable code.
 
 ### Skill with Heavy Reference
 ```
-pptx/
-  SKILL.md       # Overview + workflows
-  pptxgenjs.md   # 600 lines API reference
-  ooxml.md       # 500 lines XML structure
-  scripts/       # Executable tools
+skills/pptx/
+  SKILL.md
+references/pptx/
+  pptxgenjs.md
+  ooxml.md
+scripts/pptx/
+  render-slides.js
+assets/pptx/
+  diagrams/
 ```
-When: Reference material too large for inline
+When: Reference material is too large for inline docs.
+
+**Invariant:** `skills/<skill-name>/` contains `SKILL.md` only.
 
 ## The Iron Law (Same as TDD)
 
@@ -228,7 +260,7 @@ Edit skill without testing? Same violation.
 
 ## Testing All Skill Types
 
-For comprehensive testing methodology by skill type, use `skill_resource('writing-skills', 'references/testing-methodology')`.
+For comprehensive testing methodology by skill type, load the `testing-methodology` resource from the `writing-skills` skill.
 
 **Quick reference:**
 - **Discipline-enforcing skills:** Test under pressure (time, sunk cost, exhaustion)
@@ -240,7 +272,7 @@ For comprehensive testing methodology by skill type, use `skill_resource('writin
 
 ## Bulletproofing Skills Against Rationalization
 
-For detailed strategies on closing loopholes and addressing rationalizations in discipline-enforcing skills, use `skill_resource('writing-skills', 'references/rationalization-patterns')`.
+For detailed strategies on closing loopholes and addressing rationalizations in discipline-enforcing skills, load the `rationalization-patterns` resource from the `writing-skills` skill.
 
 **Key principles:**
 - Close every loophole explicitly - forbid specific workarounds
@@ -259,7 +291,7 @@ Follow the TDD cycle:
 
 3. **REFACTOR: Close Loopholes** - Agent found new rationalization? Add explicit counter. Re-test until bulletproof.
 
-For complete testing methodology including pressure types and meta-testing techniques, use `skill_resource('writing-skills', 'references/testing-methodology')`.
+For complete testing methodology including pressure types and meta-testing techniques, load the `testing-methodology` resource from the `writing-skills` skill.
 
 ## Anti-Patterns
 
@@ -295,7 +327,7 @@ Deploying untested skills = deploying untested code.
 
 ## Skill Creation Checklist (TDD Adapted)
 
-For the complete checklist with all RED-GREEN-REFACTOR phases and quality checks, use `skill_resource('writing-skills', 'references/skill-checklist')`.
+For the complete checklist with all RED-GREEN-REFACTOR phases and quality checks, load the `skill-checklist` resource from the `writing-skills` skill.
 
 **Use TodoWrite to create todos for EACH checklist item.**
 
