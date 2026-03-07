@@ -73,6 +73,8 @@ blender = "latest"
 "github:psviderski/uncloud" = "latest"
 bitwarden = "latest"
 "github:badlogic/pi-mono" = "latest"
+"github:moonrepo/moon" = "2.0.4"
+"github:moonrepo/proto" = "0.55.4"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
