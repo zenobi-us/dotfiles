@@ -64,7 +64,6 @@ keybinds clear-defaults=true {
         bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "resize"; }
 
-        bind "b" { TogglePaneFrames; }
 
         bind "Ctrl Left" { MovePane "left"; }
         bind "Ctrl Down" { MovePane "down"; }
@@ -130,8 +129,8 @@ theme "onedark"
 simplified_ui true
 pane_frames false
 default_layout "default"
-session_serialization true
-serialize_pane_viewport true
+session_serialization false
+serialize_pane_viewport false
 show_startup_tips false
 show_release_notes false
 
