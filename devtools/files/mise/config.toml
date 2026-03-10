@@ -7,7 +7,7 @@ experimental = true
 "cargo:zellij" = "0.43.1"
 "github:zenobi-us/opennotes" = "latest"
 "go:github.com/Crosse/font-install" = "latest"
-"npm:@mariozechner/pi-coding-agent" = "0.52.5"
+"npm:@mariozechner/pi-coding-agent" = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:chrome-devtools-mcp" = "0.10.2"
 "npm:firefox-devtools-mcp" = "0.4.0"
@@ -70,10 +70,14 @@ pitchfork = "latest"
 node = "lts"
 "npm:context-mode" = "latest"
 blender = "latest"
+"github:psviderski/uncloud" = "latest"
 bitwarden = "latest"
-"github:reckon-limited/webstack-compare-versions" = "v0.0.1-next.1"
+"github:badlogic/pi-mono" = "latest"
+"github:moonrepo/moon" = "2.0.4"
+"github:moonrepo/proto" = "0.55.4"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
 
-
+[shell_alias]
+pi="pi --no-skills"

@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "QR Code Generator",
+  "version": "1.0.0",
+  "description": "Generate a QR code for the current page URL",
+  "author": "zenobius",
+  
+  "icons": {
+    "48": "icons/qr.svg",
+    "96": "icons/qr.svg"
+  },
+  
+  "browser_action": {
+    "default_icon": "icons/qr.svg",
+    "default_title": "Generate QR Code",
+    "default_popup": "popup/popup.html"
+  },
+  
+  "permissions": [
+    "activeTab"
+  ],
+  
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "qr-code@zenobius.local",
+      "strict_min_version": "78.0"
+    }
+  }
+}

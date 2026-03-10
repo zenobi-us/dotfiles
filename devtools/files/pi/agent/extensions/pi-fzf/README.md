@@ -93,7 +93,7 @@ Precedence: `command.placement` → `defaultPlacement` → `"aboveEditor"`.
 
 ### Editor (default)
 
-Fills the Pi editor with text. You can review and edit before sending.
+Pastes text into the Pi editor at the current cursor position (without replacing existing text). You can review and edit before sending.
 
 ```json
 "action": "Explain {{selected}}"
@@ -126,7 +126,7 @@ Add `output` to route the command's stdout elsewhere:
 | Output | Behavior |
 |--------|----------|
 | `"notify"` | Show as notification (default) |
-| `"editor"` | Put stdout in the editor |
+| `"editor"` | Paste stdout into the editor at cursor |
 | `"send"` | Send stdout to the agent |
 
 ```json

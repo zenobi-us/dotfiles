@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.55.1",
+  "lastChangelogVersion": "0.56.2",
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
@@ -17,12 +17,13 @@
     "npm:pi-rtk"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash",
-  "skills": [],
   "enableSkillCommands": false,
+  "lazySkills": true,
   "quietStartup": true,
   "collapseChangelog": true
 }
+

@@ -76,16 +76,16 @@ Holding onto useless or misnamed files creates confusion and degrades the memory
 
 - [core] store findings in `.memory/` directory
 - [core] all notes in `.memory/` must be in markdown format
-- [core] Archived phases, tasks and epics get moved the archive directoyr: `.memory/archive/`.
+- [core] Archived stories, tasks and epics get moved to the archive directory: `.memory/archive/`.
 - [core] `summary.md`, `todo.md`, `team.md`, `knowledge-*.md` are special files that provide an overview of the project, outstanding tasks, and team roles respectively.
 - [core] `.memory/knowledge-codemap.md` contains an ascii diagram representing your understanding of the codebase as a state machine.
 - [core] `.memory/knowledge-data-flow.md` contains an ascii diagram representing data flow
 - [core] Other `.memory/knowledge-*.md` files can be created to document specific knowledge areas.
 - [core] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<8_char_hashid>-<title>.md`
-- [core] where `<type>` is one of: `research`, `epic`, `phase`, `task`, `story`, and `learning`
+- [core] where `<type>` is one of: `research`, `epic`, `task`, `story`, and `learning`
 - [core] `<8_char_hashid>` is a unique 8 character hash identifier for the file.
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
-- [core] every project MUST start with an epic definition before phases are created
+- [core] every project MUST start with an epic definition before stories or tasks are created
 - [core] Always keep `.memory/summary.md` up to date with current epic, active phases, and next milestones. Prune incorrect or outdated information.
 - [git] Always commit changes after completing a task or phase. 
 - [git] NEVER PUSH CHANGES WITHOUT HUMAN REVIEW.
@@ -93,12 +93,41 @@ Holding onto useless or misnamed files creates confusion and degrades the memory
 - [git] Use clear commit messages referencing relevant files for changes.
 
 
+## Conceptual Model: Stories, Phases, and Tasks
+
+Understanding the relationship between these artifacts is critical:
+
+```
+Epic (vision/goal)
+ ├── Stories (WHAT - phase-agnostic requirements)
+ │    └── Stories define what users need, independent of timeline
+ │
+ └── Phases (WHEN - inline sections in epic file)
+      └── Phases define when work happens
+           └── Tasks link to BOTH:
+                ├── story_id → the requirement being implemented (WHAT)
+                └── phase_id → the timeline slot (WHEN)
+```
+
+| Artifact | Concern | Links To | Phase-Agnostic? |
+|----------|---------|----------|-----------------|
+| Epic     | Vision  | -        | Yes             |
+| Story    | WHAT    | Epic     | **Yes**         |
+| Phase    | WHEN    | Epic (inline) | No         |
+| Task     | HOW + WHEN | Story + Phase | No      |
+| Research | Discovery | Epic/Task | Yes          |
+| Learning | Knowledge | -      | Yes             |
+
+**Key insight:** Stories are requirements that exist independently of when they'll be implemented. Phases group tasks (scheduled work), not stories (requirements). Tasks bridge both worlds by linking to their story (what they implement) and their phase (when they're scheduled).
+
+
 ## Archiving 
 
-- [archive] archive completed phases by moving their files to `.memory/archive/` directory.
+- [archive] archive completed tasks and stories by moving their files to `.memory/archive/` directory.
 - [archive] do NOT archive learning or research files. These are golden knowledge for future projects.
-- [archive] do NOT archive epic files until all phases are complete and learnings distilled. epics much have a link to distilled learnings before archiving.
-- [archive] update `.memory/summary.md` to reflect archived phases and completed epics.
+- [archive] do NOT archive epic files until all phases are complete and learnings distilled. Epics must have a link to distilled learnings before archiving.
+- [archive] update `.memory/summary.md` to reflect completed phases and epics.
+- [archive] phases are inline in epic files, so they are archived with the epic.
 
 ## Searching Memory [CRITICAL]
 
@@ -139,42 +168,34 @@ Each type of markdown file in `.memory/` should include specific frontmatter fie
 
 ### Template: Task
 
+Tasks implement stories within scheduled phases. They link to both their story (the "what") and their phase (the "when").
+
 Frontmatter:
 
 - all common frontmatter fields.
 - `epic_id`: The unique identifier of the parent epic.
-- `phase_id`: The unique identifier of the parent phase.
-- `story_id`: The unique identifier of the parent story. [expected when a story exists, optional otherwise]
+- `phase_id`: The phase this task is scheduled in (the "when" - required).
+- `story_id`: The story this task implements (the "what" - required when a story exists).
 - `assigned_to`: The session id of the agent or human responsible for the task.
+
+> [!NOTE]
+> **Dual-link model:** Tasks have two parent links serving different purposes:
+> - `story_id` → Links to WHAT requirement this task fulfills
+> - `phase_id` → Links to WHEN this task is scheduled
+> 
+> A task without a `story_id` is exploratory/infrastructure work. A task without a `phase_id` is unscheduled.
 
 Sections:
 
 - all common sections.
 - `## Objective`: A clear statement of what the task aims to achieve.
 - `## Related Story`: Link to the story this task implements (if applicable). Must include which acceptance criteria this task contributes to satisfying.
+- `## Related Phase`: Link to the phase this task is scheduled in. Include the phase name and epic context.
 - `## Steps`: A detailed list of steps to complete the task.
 - `## Unit Tests`: A summary of unit tests written for this task. Each entry should state what is tested and which acceptance criterion of the parent story it supports. Format: `- [test name/file]: [what it verifies] → supports AC#N of story [hash]`. If the task has no parent story, document what the unit tests verify independently.
 - `## Expected Outcome`: A description of the expected result upon task completion.
 - `## Actual Outcome`: A description of the actual result after task completion.
 - `## Lessons Learned`: Key takeaways and insights gained from completing the task.
-
-### Template: Phase
-
-Frontmatter:
-
-- all common frontmatter fields.
-- `epic_id`: The unique identifier of the parent epic.
-- `start_criteria`: Conditions that must be met to start the phase.
-- `end_criteria`: Conditions that must be met to complete the phase.
-
-Sections:
-
-- all common sections.
-- `## Overview`: A summary of the phase's purpose and goals.
-- `## Deliverables`: A list of expected deliverables for the phase.
-- `## Tasks`: A list of tasks associated with the phase (links to task files).
-- `## Dependencies`: Any dependencies that may impact the phase.
-- `## Next Steps`: Actions to be taken after phase completion.
 
 ### Template: Epic
 
@@ -187,19 +208,57 @@ Sections:
 - all common sections.
 - `## Vision/Goal`: A clear statement of the epic's overall vision and goals.
 - `## Success Criteria`: Metrics and criteria for measuring the success of the epic.
-- `## Phases`: A list of phases associated with the epic (links to phase files).
+- `## Stories`: A list of stories defining requirements for this epic (links to story files). Stories are phase-agnostic - they define WHAT needs to be built, not WHEN.
+- `## Phases`: Inline phase sections (see format below). Phases define WHEN work happens and contain scheduled tasks.
 - `## Dependencies`: Any dependencies that may impact the epic.
 
+#### Phase Section Format (Inline in Epic)
+
+Phases are defined as inline sections within the epic file, not as separate files:
+
+```markdown
+## Phases
+
+### Phase 1: Foundation
+- **Status**: completed
+- **Start Criteria**: Epic approved
+- **End Criteria**: Core data model implemented and tested
+- **Tasks**:
+  - [x] [task-abc12345-data-model](./task-abc12345-data-model.md)
+  - [x] [task-def67890-basic-api](./task-def67890-basic-api.md)
+- **Notes**: Completed ahead of schedule
+
+### Phase 2: Core Features  
+- **Status**: in-progress
+- **Start Criteria**: Phase 1 complete
+- **End Criteria**: All core user stories have passing tests
+- **Tasks**:
+  - [x] [task-ghi11111-auth-flow](./task-ghi11111-auth-flow.md)
+  - [ ] [task-jkl22222-user-dashboard](./task-jkl22222-user-dashboard.md)
+- **Notes**: Auth complete, dashboard in progress
+
+### Phase 3: Polish & Launch
+- **Status**: planned
+- **Start Criteria**: Phase 2 complete
+- **End Criteria**: Production deployment successful
+- **Tasks**: (to be assigned during task breakdown)
+```
+
 ### Template: Story
+
+Stories capture user requirements. They are **phase-agnostic** - a story defines WHAT users need, independent of WHEN it will be implemented.
 
 Frontmatter:
 
 - all common frontmatter fields.
 - `epic_id`: The unique identifier of the parent epic.
-- `phase_id`: The unique identifier of the parent phase. [optional]
 - `priority`: Priority level (e.g., `critical`, `high`, `medium`, `low`).
 - `story_points`: Estimated effort/complexity (optional, e.g., `1`, `2`, `3`, `5`, `8`, `13`).
 - `test_coverage`: Whether all acceptance criteria have linked passing tests. One of: `none`, `partial`, `full`.
+
+> [!NOTE]
+> Stories do NOT have a `phase_id`. Stories are requirements, not scheduled work.
+> Tasks link to stories (what they implement) AND phases (when they're scheduled).
 
 Sections:
 
@@ -208,7 +267,7 @@ Sections:
 - `## Acceptance Criteria`: A checklist of specific, testable conditions that must be met for the story to be considered complete. Use `- [ ]` for incomplete and `- [x]` for completed criteria.
 - `## Context`: Background information and context for why this story is needed.
 - `## Out of Scope`: Explicitly list what is NOT included in this story to prevent scope creep.
-- `## Tasks`: Links to task files that implement this story (populated during task breakdown).
+- `## Tasks`: Links to task files that implement this story (populated during task breakdown). Each task will also reference a phase for scheduling.
 - `## Test Specification`: Maps each acceptance criterion to its verification. Contains two subsections:
   - `### E2E Tests`: A table mapping each acceptance criterion to its e2e test case. One story = one e2e test suite/file. Each acceptance criterion = one test case within that suite. Format: `| AC# | Criterion | Test file/case | Status |`
   - `### Unit Test Coverage (via Tasks)`: A list of tasks spawned by this story, with a summary of what each task's unit tests verify and how that contributes to satisfying the story's acceptance criteria. Format: `- Task [hash]: [unit test summary] → satisfies AC#N`
@@ -218,7 +277,7 @@ Sections:
 > Stories are the bridge between business requirements and technical tasks.
 > - Stories capture the "what" and "why" from a user perspective.
 > - Tasks capture the "how" from an implementation perspective.
-> - A single story may spawn multiple tasks.
+> - A single story may spawn multiple tasks across different phases.
 > - Acceptance criteria should be written before tasks are created.
 
 > [!NOTE]
@@ -233,7 +292,6 @@ Frontmatter:
 
 - all common frontmatter fields.
 - `epic_id`: The unique identifier of the parent epic.
-- `phase_id`: The unique identifier of the parent phase. [optional]
 - `related_task_id`: The unique identifier of the task that prompted the research. [optional]
 
 Sections:
@@ -286,7 +344,7 @@ Sections:
 - `## Details`: Detailed description of the knowledge.
 
 
-### Template: Kknowledge Codemap
+### Template: Knowledge Codemap
 
 > [!NOTE]
 > 
@@ -305,9 +363,9 @@ So its detail will be solely an ascii diagram representing your understanding of
 **Workflow**
 
 0. `Initialise` > `Action` > Stop
-1. `Idea` > `Epic Definition` > `Research` > `Phase Planning` > Human Review > `Story Definition` (incl. Test Specification) > `Task Breakdown` > Stop
+1. `Idea` > `Epic Definition` > `Research` > `Story Definition` (incl. Test Specification) > `Phase Planning` > Human Review > `Task Breakdown` > Stop
 2. `Task Execution` (incl. Unit Tests) > `Learning Distillation` > repeat 
-3. `Story Completion` > verify acceptance criteria + test coverage gate > `Phase Completion` > `Learnings Distillation` > `Phase Cleanup` > Human Review > Stop
+3. `Story Completion` > verify acceptance criteria + test coverage gate > `Phase Completion` > `Learnings Distillation` > Human Review > Stop
 4. `Epic Completion` > `Epic Summary & Learnings` > Human Review > Stop
 5. `Maintenance Actions` as needed.
 6. `Status` > Stop
@@ -345,7 +403,7 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 - [tasks] move completed tasks to `.memory/archive/` directory.
 - [learning] ensure all significant learnings are documented in `.memory/learning-<8_char_hash_id>-<title>.md` files.
-- [archive] move completed phases to `.memory/archive/` directory.
+- [stories] move completed stories to `.memory/archive/` directory after all their tasks are archived.
 
 
 #### Action: Validate Memory [VALIDATE-MEMORY]
@@ -370,7 +428,7 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 #### Stage: Ideation [IDEA]
 
-- [core] every project MUST start with an epic definition before phases are created
+- [core] every project MUST start with an epic definition before stories or tasks are created
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
 - [epic] Announcing an idea, leads directly to a q & a session with the user to flesh out the idea and determine if it is worth pursuing. If it is worth pursuing, then move directly to epic definition stage. If not, then document the idea and why it was rejected in a `.memory/learning-<8_char_hash_id>-<title>.md` file for future reference.
 
@@ -378,8 +436,8 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 - [epic] EVERY project must begin with an epic that defines the overall goal and scope
 - [epic] each epic should be documented in `.memory/epic-<8_char_hash_id>-<title>.md` files
-- [epic] epics must include: vision/goal, success criteria, list of phases, overall timeline, and dependencies
-- [epic] all phases MUST link to their parent epic
+- [epic] epics must include: vision/goal, success criteria, list of stories, phases (inline), overall timeline, and dependencies
+- [epic] phases are inline sections in the epic file, not separate files
 - [epic] only ONE epic should be active at a time unless explicitly approved by human
 - [epic] epic files are never archived until all phases are complete and learning is distilled
 
@@ -396,49 +454,58 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 - [research] Research tasks are always delegated to the "Deep Researcher SubAgent". Use what ever subagent, subthread, or delegation tool you have available to do this.
 - [research] If you are a subagent, then focus only on the task you've been given. Do not deviate or delegate further.
 
-#### Stage: Phase Planning [PHASE-PLANNING]
-
-- [phase] each major step or milestone in the project should be documented in `.memory/phase-<8_char_hash_id>-<title>.md` files
-- [phase] phases MUST link to their parent epic in frontmatter or header
-- [phase] phases should have clear start and end criteria aligned with epic goals
-- [phase] do not treat phases as a task list, but rather as a higher-level overview of progress. Do not include checklist items in phase files.
-
-> [!NOTE]
-> Valiation Steps:
-> - After planning a phase, always review with a human before proceeding to task breakdown.
-> - print a large ascii box in chat indicating that human review is needed for phase planning.
-> - wait for human to confirm before proceeding.
-
 #### Stage: Story Definition [STORY-DEFINITION]
 
 - [story] stories capture user requirements with clear acceptance criteria before implementation begins
 - [story] each story should be documented in `.memory/story-<8_char_hash_id>-<title>.md` files
 - [story] stories MUST include a user story statement, acceptance criteria, and context
-- [story] stories SHOULD link to their parent epic and optionally to a phase
+- [story] stories link to their parent epic only - stories are phase-agnostic requirements
+- [story] stories do NOT have a `phase_id` - they define WHAT, not WHEN
 - [story] acceptance criteria must be specific, testable, and written as a checklist
 - [story] after writing acceptance criteria, populate the `## Test Specification` section:
   - define the e2e test suite name/file for this story
   - map each acceptance criterion to a named e2e test case
   - set `test_coverage: none` in frontmatter (updated as tests are written)
 - [story] stories are written BEFORE tasks are created - tasks implement stories
-- [story] a single story may result in multiple tasks
+- [story] a single story may result in multiple tasks scheduled across different phases
 - [story] when all acceptance criteria are met and verified, mark the story as `completed`
-- [story] stories help separate "what the user needs" from "how we implement it"
+- [story] stories help separate "what the user needs" from "how and when we implement it"
 
 > [!NOTE]
-> Story vs Task vs Test:
-> - **Story**: "As a user, I want to reset my password so that I can regain access to my account."
+> Story vs Phase vs Task:
+> - **Story**: "As a user, I want to reset my password so that I can regain access to my account." (phase-agnostic requirement)
 >   - Acceptance Criteria: "User receives email within 2 minutes", "Link expires after 24 hours", etc.
+> - **Phase**: "Phase 2: User Authentication" - a time-bounded work container in the epic
+> - **Tasks**: "Implement password reset API endpoint" (links to story + phase), "Create email template" (links to story + phase), etc.
 > - **E2E Tests** (verify the story): `password-reset.e2e.spec` → test case per acceptance criterion
-> - **Tasks**: "Implement password reset API endpoint", "Create email template", "Add expiry logic", etc.
 > - **Unit Tests** (verify the tasks): endpoint input validation, template rendering, token expiry logic, etc.
+
+#### Stage: Phase Planning [PHASE-PLANNING]
+
+- [phase] phases are inline sections within the epic file, not separate files
+- [phase] each phase should have: status, start criteria, end criteria, and task list
+- [phase] phases group TASKS (scheduled work), not stories (requirements)
+- [phase] phases should have clear start and end criteria aligned with epic goals
+- [phase] do not treat phases as a story list - phases contain tasks that implement stories
+- [phase] update the epic's `## Phases` section to add new phases
+
+> [!NOTE]
+> Validation Steps:
+> - After planning phases, always review with a human before proceeding to task breakdown.
+> - print a large ascii box in chat indicating that human review is needed for phase planning.
+> - wait for human to confirm before proceeding.
 
 #### Stage: Task Breakdown [TASK-BREAKDOWN]
 
 - [tasks] each task should be documented in `.memory/task-<8_char_hash_id>-<title>.md` files, including objectives, steps to take, outcome expected.
+- [tasks] tasks MUST have dual links:
+  - `story_id`: The story this task implements (the "what")
+  - `phase_id`: The phase this task is scheduled in (the "when")
+- [tasks] tasks without a story are infrastructure/exploratory work - document the objective clearly
+- [tasks] tasks without a phase are unscheduled - assign to a phase before execution
 - [tasks] tasks should be specific, measurable, achievable, relevant, and time-bound (SMART).
 - [tasks] prioritize tasks based on impact and urgency.
-- [tasks] break down tasks into manageable phases, each with clear objectives and deliverables.
+- [tasks] when creating a task, also add it to the appropriate phase section in the epic file.
 - [tasks] use `.memory/todo.md` to track remaining tasks. This file only contains links to `.memory/task-<8_char_hash_id>-<title>.md` files. [CRITICAL] keep `.memory/todo.md` up to date at every step.
 
 ### Execution Stages
@@ -447,6 +514,7 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 - [tasks] always update checklists and progress in the task file. [CRITICAL] keep `.memory/todo.md` up to date at every step.
 - [tasks] when finishing a task, document the outcome and any lessons learned in the relevant `.memory/task-<8_char_hash_id>-<title>.md` file.
+- [tasks] update the task checkbox in the parent phase section of the epic file.
 - [core] Always keep `.memory/summary.md` up to date with current epic, active phases, and next milestones. Prune incorrect or outdated information.
 
 #### Stage: Learning Distillation [LEARNING-DISTILLATION]
@@ -469,19 +537,27 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
   - update `test_coverage` frontmatter: `none` → `partial` (some tests linked) → `full` (all criteria covered and passing)
   - a story CANNOT be marked `completed` while `test_coverage` is `none` or `partial`
 - [story] once all criteria are verified AND `test_coverage` is `full`, update the story status to `completed`
-- [story] stories are NOT archived - they remain as documentation of requirements and their fulfillment
+- [story] stories are NOT archived until all linked tasks are archived - they remain as documentation of requirements and their fulfillment
 
 #### Stage: Phase Completion [PHASE-COMPLETION]
 
-- [phase] when finishing a phase, document the outcome and any lessons learned in the relevant `.memory/phase-<8_char_hash_id>-<title>.md` file.
-- [phase] when finishing a phase, compact relevant learnings and outcomes from research, phase and tasks into `.memory/learning-<8_char_hash_id>-<title>.md` files. clean up `.memory/summary.md` and `./memory/todo.md`.
-- [archive] archive completed phases by moving their files to `.memory/archive/` directory.
+- [phase] when finishing a phase, update the phase status to `completed` in the epic file
+- [phase] ensure all tasks in the phase are marked complete (checkbox `[x]`)
+- [phase] document any lessons learned in learning files
+- [phase] when finishing a phase, compact relevant learnings and outcomes from research and tasks into `.memory/learning-<8_char_hash_id>-<title>.md` files. clean up `.memory/summary.md` and `./memory/todo.md`.
+- [phase] archive completed tasks by moving their files to `.memory/archive/` directory
+
+> [!NOTE]
+> Validation Steps:
+> - After completing a phase, review with a human before starting the next phase.
+> - print a large ascii box in chat indicating that human review is needed for phase completion.
+> - wait for human to confirm before proceeding.
 
 #### Stage: Epic Completion [EPIC-COMPLETION]
 
 - [epic] epic files are never archived until all phases are complete and learning is distilled
 - [archive] do NOT archive epic files until all phases are complete and learnings distilled. epics much have a link to distilled learnings before archiving.
-- [archive] update `.memory/summary.md` to reflect archived phases and completed epics.
+- [archive] update `.memory/summary.md` to reflect completed phases and completed epics.
 - [archive] do NOT archive learning or research files. These are golden knowledge for future projects.
 
 > [!NOTE]
@@ -492,13 +568,13 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 ## General Operating Steps
 
-1. **[CRITICAL] If no epic exists, create one before any other work.** Define vision, success criteria, and planned phases.
+1. **[CRITICAL] If no epic exists, create one before any other work.** Define vision, success criteria, stories, and planned phases (inline).
 2. update `.memory/team.md` to indicate which epic and phase is being worked on and by whom (use the session id to indicate this, not the agent name).
 3. If there are any `[NEEDS-HUMAN]` tasks in `.memory/todo.md`, stop and wait for human intervention.
 4. follow the research guidelines above.
 5. when you are blocked by actions that require human intervention, create a task in `.memory/todo.md` listing what needs to be done by a human. tag it with `[NEEDS-HUMAN]` on the task line.
 6. after completing a phase, update `.memory/summary.md` and prune other files as necessary.
-7. after completing an epic, distill all learnings, update `.memory/summary.md`, and archive completed phases.
+7. after completing an epic, distill all learnings, update `.memory/summary.md`, and archive completed tasks/stories.
 8. commit changes with clear messages referencing relevant files.
 
 

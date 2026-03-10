@@ -1,0 +1,35 @@
+---
+# Firefox Extensions Manifest
+# Copies custom extensions to a sync directory and optionally installs them
+# 
+# Note: Firefox requires extensions to be signed or loaded via about:debugging
+# This manifest syncs extension source to a standard location for:
+# 1. Manual loading via about:debugging -> This Firefox -> Load Temporary Add-on
+# 2. Use with web-ext tool for development: web-ext run -s <extension-dir>
+# 3. Future policy-based installation
+
+where: os.name == "linux" || os.name == "macos"
+
+actions:
+  # Ensure extensions directory exists
+  - action: command.run
+    command: mkdir
+    args:
+      - "-p"
+      - "{{user.config_dir}}/firefox-extensions"
+
+  # Copy QR Code extension
+  - action: directory.copy
+    from: firefox/extensions/qr-code
+    to: "{{user.config_dir}}/firefox-extensions/qr-code"
+
+  # Create a helper script for loading extensions with web-ext
+  - action: file.copy
+    from: firefox/load-extensions.sh
+    to: "{{user.config_dir}}/firefox-extensions/load-extensions.sh"
+
+  - action: command.run
+    command: chmod
+    args:
+      - "+x"
+      - "{{user.config_dir}}/firefox-extensions/load-extensions.sh"

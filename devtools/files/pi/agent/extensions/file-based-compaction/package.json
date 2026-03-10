@@ -1,5 +1,5 @@
 {
-  "name": "pi-agentic-compaction",
+  "name": "file-based-compaction",
   "version": "0.3.0",
   "description": "Pi extension for intelligent conversation compaction using a virtual filesystem and LLM exploration",
   "type": "module",
