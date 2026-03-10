@@ -1,12 +1,5 @@
 {
   "mcpServers": {
-    "basicmemory": {
-      "type": "local",
-      "command": [
-        "basic-memory",
-        "mcp"
-      ]
-    },
     "atlassian": {
       "type": "local",
       "command": [
@@ -17,7 +10,7 @@
         "npx",
         "-y",
         "mcp-remote",
-        "https://mcp.atlassian.com/v1/sse"
+        "https://mcp.atlassian.com/v1/mcp"
       ]
     },
     "figma-desktop": {
@@ -37,27 +30,6 @@
         "--",
         "chrome-devtools-mcp",
         "--browser-url=http://127.0.0.1:9222"
-      ]
-    },
-    "firefox-devtools": {
-      "type": "local",
-      "command": [
-        "mise",
-        "x",
-        "node@22",
-        "--",
-        "npx",
-        "-y",
-        "firefox-devtools-mcp@latest"
-      ],
-      "env": {
-        "npm_config_loglevel": "error"
-      }
-    },
-    "forgetful": {
-      "type": "local",
-      "command": [
-        "forgetful --transport stdio"
       ]
     }
   }
