@@ -1,275 +1,105 @@
 ---
 name: release-please
-description: Use when adopting or operating Release Please for automated versioning, changelog generation, and GitHub releases in single-package or monorepo repositories
+description: Use when adopting or operating Release Please for automated versioning, changelog generation, and GitHub releases in single-package or manifest-mode repositories
 ---
 
 # Release Please
 
-Practical guide for setting up and operating Release Please using `googleapis/release-please` and `googleapis/release-please-action`.
+Lean operating guide for `googleapis/release-please` + `googleapis/release-please-action`.
+
+Use this file for **mode selection**, **quick setup**, and **guardrails**.
+Use references for **full examples**, **output contracts**, and **troubleshooting detail**.
 
 ## When to Use
 
 Use this skill when you need:
 
-- Automated version bumps + changelog from Conventional Commits
-- GitHub release PR automation on `main`/`master`
-- Monorepo or multi-package release orchestration (manifest mode)
-- Migration from manual version/changelog/tag release workflows
+- Conventional Commit-driven version bumps and changelog generation
+- Automated Release PR creation and GitHub release tagging
+- Single-package or monorepo/manifest release orchestration
+- Migration off manual tags/changelog/version workflows
 
-Use **single-package mode** when one version stream exists.
-Use **manifest mode** when multiple packages/paths version independently.
+## Choose a Mode
 
----
+- **Single-package mode**: one version stream from repo root.
+- **Manifest mode**: independent versions per path/package.
 
-## Prerequisites
+If you have more than one independently-versioned package, use manifest mode.
 
-## 1) Commit and branching hygiene
+## Prerequisites (Quick)
 
-- Conventional Commits are required for accurate semver bumping and changelog sections.
-- Protected default branch recommended (`main`)
-- CI must run on release PRs and direct pushes to default branch
+- Conventional Commits in default branch history (`fix:`, `feat:`, `!`/BREAKING)
+- Branch/workflow permissions sufficient for PR + release writes
+- Workflow trigger on your default release branch (`main`/`master`)
 
-## 2) Repository permissions and token strategy
-
-Choose one and stay consistent:
-
-- `GITHUB_TOKEN` (simpler, default)
-- PAT / GitHub App token (when cross-repo, stricter org policy, or release-trigger chaining is needed)
-
-Minimum permissions for workflow job:
+Recommended minimum workflow permissions:
 
 - `contents: write`
 - `pull-requests: write`
-- `issues: write` (optional but useful for labeling/commenting behavior)
+- `issues: write` (optional but commonly useful)
 
-## 3) Required files (depending on mode)
+## Quick Start
 
-Single-package (minimal):
+### A) Single-package (minimal)
 
-- `.github/workflows/release-please.yml`
+Create `.github/workflows/release-please.yml` with `googleapis/release-please-action@v4` on push to default branch.
 
-Manifest mode (monorepo / multiple packages):
+### B) Manifest mode
 
-- `.github/workflows/release-please.yml`
+Add:
+
 - `release-please-config.json`
 - `.release-please-manifest.json`
+- workflow passing `config-file` + `manifest-file`
 
----
+## Lifecycle
 
-## Implementation Playbooks
-
-## Playbook A — Action-based setup (single package)
-
-Create `.github/workflows/release-please.yml`:
-
-```yaml
-name: release-please
-
-on:
-  push:
-    branches: [main]
-
-permissions:
-  contents: write
-  pull-requests: write
-
-jobs:
-  release-please:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: googleapis/release-please-action@v4
-        id: release
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-```
-
-What happens:
-
-- On push to `main`, action evaluates commit history
-- Creates/updates a Release PR when a releasable change exists
-- After Release PR merge, creates tag + GitHub release
-
-## Playbook B — Config-driven setup (manifest mode)
-
-### `release-please-config.json`
-
-```json
-{
-  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-  "release-type": "node",
-  "packages": {
-    ".": {
-      "release-type": "node"
-    },
-    "packages/pkg-a": {
-      "release-type": "node"
-    },
-    "packages/pkg-b": {
-      "release-type": "node"
-    }
-  }
-}
-```
-
-### `.release-please-manifest.json`
-
-```json
-{
-  ".": "0.1.0",
-  "packages/pkg-a": "0.1.0",
-  "packages/pkg-b": "0.1.0"
-}
-```
-
-### Workflow (manifest)
-
-```yaml
-name: release-please
-
-on:
-  push:
-    branches: [main]
-
-permissions:
-  contents: write
-  pull-requests: write
-
-jobs:
-  release-please:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: googleapis/release-please-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          manifest-file: .release-please-manifest.json
-          config-file: release-please-config.json
-```
-
-Notes:
-
-- Package keys must match real repo paths exactly
-- Manifest versions are the source of truth for next bumps
-
-## Playbook C — Migration from manual releases
-
-1. Normalize commit style to Conventional Commits from now onward.
-2. Add workflow (single or manifest mode).
-3. Seed versions in `.release-please-manifest.json` to current released versions (manifest mode).
-4. Merge first Release PR.
-5. Stop manual tag/changelog edits on default branch.
-
----
-
-## Operational Workflows
-
-## Bootstrap first automated release
-
-Checklist:
-
-- [ ] Workflow merged to default branch
-- [ ] At least one releasable commit (`feat:`, `fix:`) exists after baseline
-- [ ] Token permissions validated
-- [ ] For manifest mode, config + manifest committed and valid paths
-
-Expected result: first Release PR appears (`release-please--branches--main` style).
-
-## Ongoing release PR lifecycle
-
-1. Developers merge Conventional Commit PRs.
-2. Release Please updates existing release PR (or opens a new one).
+1. Merge Conventional Commit PRs.
+2. Release Please opens/updates the Release PR.
 3. CI validates release PR.
-4. Merge release PR when ready.
+4. Merge release PR.
 5. Action creates tag + GitHub Release.
 
-## Tag/release behavior
+## Migration from Manual Releases
 
-- Tag/release happens after merge of release PR to tracked branch.
-- Changelog + version files are authored in the release PR.
-- Don’t hand-edit generated release PR content unless required by policy.
+- Stop manual changelog/tag edits on release-managed branch.
+- Seed manifest versions to currently released versions (manifest mode).
+- Merge first Release PR and validate output shape usage in downstream workflow steps.
 
-## Dry-run/testing strategy
+## Common Failure Patterns (Summary)
 
-- Validate config/manifest paths via PR checks before enabling strict branch rules.
-- In test repos/branches, run with same workflow first.
-- For production repos, start with one package path, then expand manifest coverage.
+- **No release PR**: no releasable commits, wrong branch trigger, stale autorelease labels, or token/permission mismatch
+- **Wrong bump**: commit semantics mismatch with Conventional Commit expectations
+- **Missing changelog entries**: non-conventional squash titles/commit history
+- **Manifest mismatch**: package path keys don’t match actual directories
+- **Workflow chain not firing**: using `GITHUB_TOKEN` when downstream workflows require PAT/App token behavior
 
----
+## Guardrails
 
-## Troubleshooting
-
-## No release PR created
-
-Check:
-
-- No releasable commit types since last release (docs/chore only)
-- Workflow not firing on tracked branch
-- Token lacks `contents: write` / `pull-requests: write`
-- Existing stale release PR already open
-
-## Wrong version bump
-
-Usually commit semantics mismatch:
-
-- `fix:` => patch
-- `feat:` => minor
-- breaking change footer / `!` => major
-
-Audit merged commit messages first; Release Please is usually doing exactly what commits say.
-
-## Changelog missing/incorrect entries
-
-- Confirm commits are Conventional Commit compliant
-- Check release type + package path mapping in config
-- Ensure squash merge titles are also Conventional Commit compatible
-
-## Manifest sync issues (monorepo)
-
-Symptoms: wrong package bumped or no bump.
-
-- Path key mismatch between `packages` config and actual directory
-- `.release-please-manifest.json` has stale/missing package key
-- Package moved/renamed without updating both files
-
-## Token/permissions failures
-
-- `Resource not accessible by integration` => wrong token scope/permissions
-- Org policy may block default `GITHUB_TOKEN`; use PAT/App token
-- Ensure workflow-level `permissions` block is explicitly set
-
----
-
-## Best Practices and Guardrails
-
-- Enforce Conventional Commit linting in CI
-- Keep release cadence predictable (e.g., weekly or on-demand but explicit)
-- Protect default branch and require CI on release PRs
-- Avoid manual tags/changelog edits on release-managed branches
-- Keep release PR small; don’t batch unrelated long-lived work
-- In monorepos, add packages incrementally and verify each path mapping
-- Document release ownership (who merges release PRs)
-
----
+- Enforce Conventional Commit linting in CI.
+- Keep release ownership explicit (who merges release PRs).
+- In monorepos, add package paths incrementally and verify each.
+- Avoid manual tags/changelog edits in release-managed paths.
+- Keep release PRs small and predictable.
 
 ## Quick Verification Checklist
 
-- [ ] Workflow triggers on push to default branch
-- [ ] Correct permissions in workflow
-- [ ] Single-package: release PR appears after releasable commit
-- [ ] Manifest mode: each package path maps correctly
-- [ ] Merge release PR creates both tag and GitHub Release
-
----
+- [ ] Workflow triggers on push to tracked branch
+- [ ] Permissions are explicitly set
+- [ ] Release PR appears after releasable commit
+- [ ] Merge creates tag and GitHub release
+- [ ] Downstream steps using action outputs parse expected keys safely
 
 ## References
 
-Primary upstream sources:
+### Core upstream
 
-- Core project: `googleapis/release-please`
-  - https://github.com/googleapis/release-please
-- GitHub Action (current): `googleapis/release-please-action`
-  - https://github.com/googleapis/release-please-action
+- Release Please: https://github.com/googleapis/release-please
+- Release Please Action: https://github.com/googleapis/release-please-action
 
-Historical/migration context:
+### Local references (read these for detail)
 
-- Archived old action: `google-github-actions/release-please-action`
-  - https://github.com/google-github-actions/release-please-action
+- `references/setup-examples.md`
+- `references/action-outputs.md`
+- `references/return-shapes.md`
+- `references/troubleshooting.md`
