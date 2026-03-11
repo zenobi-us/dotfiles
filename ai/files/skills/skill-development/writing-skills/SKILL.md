@@ -225,17 +225,16 @@ When: Tooling is reusable code.
 ```
 skills/pptx/
   SKILL.md
-references/pptx/
-  pptxgenjs.md
-  ooxml.md
-scripts/pptx/
-  render-slides.js
-assets/pptx/
-  diagrams/
+  references/
+    pptxgenjs.md
+    ooxml.md
+  scripts/
+    render-slides.js
+  assets/
+    diagrams/
 ```
 When: Reference material is too large for inline docs.
 
-**Invariant:** `skills/<skill-name>/` contains `SKILL.md` only.
 
 ## The Iron Law (Same as TDD)
 
