@@ -7,7 +7,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+((${+_comps})) && _comps[zinit]=_zinit
 
 # local module helper
 zinit_load_local_module() {
@@ -22,11 +22,11 @@ zi light junegunn/fzf
 
 zinit_load_local_module "git__aliases.zsh"
 zinit_load_local_module "granted__aliases.zsh"
-
+zinit_load_local_module "moonrepo__completions.zsh"
 
 zinit ice as"command" from"gh-r" \
-        atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-        atpull"%atclone" src"init.zsh"
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
 zinit light Aloxaf/fzf-tab
