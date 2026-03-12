@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.56.2",
+  "lastChangelogVersion": "0.57.1",
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
@@ -7,14 +7,13 @@
     "npm:@zenobius/pi-worktrees@0.1.0-next.1",
     "npm:@marckrenn/pi-sub-bar",
     "npm:pi-subdir-context",
-    "npm:pi-messenger",
     "npm:pi-mermaid",
     "npm:pi-subagents",
     "npm:pi-read-map",
+    "pi-token-burden",
     "npm:@marckrenn/pi-sub-core",
     "npm:pi-read-many",
-    "npm:claude-agent-sdk-pi",
-    "npm:pi-rtk"
+    "npm:claude-agent-sdk-pi"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
@@ -26,4 +25,3 @@
   "quietStartup": true,
   "collapseChangelog": true
 }
-
