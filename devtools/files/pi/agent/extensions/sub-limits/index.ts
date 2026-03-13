@@ -182,6 +182,28 @@ function isSubCoreAvailable(pi: ExtensionAPI): boolean {
 	}
 }
 
+function startLoadingStatus(ctx: ExtensionCommandContext, message: string): () => void {
+	const ui = ctx.ui as { setStatus?: (key: string, value: string | undefined) => void };
+	if (typeof ui.setStatus !== "function") {
+		return () => {};
+	}
+
+	const key = "sub-limits";
+	const frames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+	let i = 0;
+	ui.setStatus(key, `${frames[i]} ${message}`);
+
+	const timer = setInterval(() => {
+		i = (i + 1) % frames.length;
+		ui.setStatus?.(key, `${frames[i]} ${message}`);
+	}, 100);
+
+	return () => {
+		clearInterval(timer);
+		ui.setStatus?.(key, undefined);
+	};
+}
+
 async function fetchUsageEntries(
 	pi: ExtensionAPI,
 	ctx: ExtensionCommandContext
@@ -194,37 +216,42 @@ async function fetchUsageEntries(
 		return null;
 	}
 
-	return new Promise((resolve) => {
-		let responded = false;
-		const timeout = setTimeout(() => {
-			if (!responded) {
-				responded = true;
-				ctx.ui.notify("sub-core timed out.\nTry again or check provider credentials.", "warning");
-				resolve(null);
-			}
-		}, 5000);
+	const stopLoading = startLoadingStatus(ctx, "Fetching usage limits...");
+	try {
+		return await new Promise((resolve) => {
+			let responded = false;
+			const timeout = setTimeout(() => {
+				if (!responded) {
+					responded = true;
+					ctx.ui.notify("sub-core timed out.\nTry again or check provider credentials.", "warning");
+					resolve(null);
+				}
+			}, 5000);
 
-		const request: SubCoreEntriesRequest = {
-			type: "entries",
-			force: true,
-			reply: (payload) => {
+			const request: SubCoreEntriesRequest = {
+				type: "entries",
+				force: true,
+				reply: (payload) => {
+					if (!responded) {
+						responded = true;
+						clearTimeout(timeout);
+						resolve(payload.entries ?? []);
+					}
+				},
+			};
+
+			try {
+				pi.events.emit("sub-core:request", request);
+			} catch (err) {
 				if (!responded) {
 					responded = true;
 					clearTimeout(timeout);
-					resolve(payload.entries ?? []);
+					ctx.ui.notify(`Error: ${err}`, "error");
+					resolve(null);
 				}
-			},
-		};
-
-		try {
-			pi.events.emit("sub-core:request", request);
-		} catch (err) {
-			if (!responded) {
-				responded = true;
-				clearTimeout(timeout);
-				ctx.ui.notify(`Error: ${err}`, "error");
-				resolve(null);
 			}
-		}
-	});
+		});
+	} finally {
+		stopLoading();
+	}
 }
