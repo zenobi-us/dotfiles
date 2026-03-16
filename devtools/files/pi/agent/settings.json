@@ -10,7 +10,7 @@
     "npm:pi-mermaid",
     "npm:pi-subagents",
     "npm:pi-read-map",
-    "pi-token-burden",
+    "npm:pi-token-burden",
     "npm:@marckrenn/pi-sub-core",
     "npm:pi-read-many",
     "npm:claude-agent-sdk-pi"
