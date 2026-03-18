@@ -75,6 +75,8 @@ bitwarden = "latest"
 "github:badlogic/pi-mono" = "latest"
 "github:moonrepo/moon" = "2.0.4"
 "github:moonrepo/proto" = "0.55.4"
+"npm:@moonrepo/cli" = "latest"
+"github:hmarr/codeowners" = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
