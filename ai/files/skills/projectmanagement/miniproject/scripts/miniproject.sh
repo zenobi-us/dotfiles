@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 usage() {
 	cat <<'EOF'
 miniproject.sh - minimal MDTM CLI (subcommand routed)
@@ -559,7 +557,7 @@ cmd_migrate_phases_to_inline() {
 			fi
 			phases_migrated=$((phases_migrated + 1))
 			epics_updated=$((epics_updated + 1))
-		done <<< "$phase_files"
+		done <<<"$phase_files"
 	fi
 
 	local story_files
@@ -577,7 +575,7 @@ cmd_migrate_phases_to_inline() {
 					stories_updated=$((stories_updated + 1))
 				fi
 			fi
-		done <<< "$story_files"
+		done <<<"$story_files"
 	fi
 
 	if [[ -d "$mem/archive" ]]; then
@@ -596,7 +594,7 @@ cmd_migrate_phases_to_inline() {
 						stories_updated=$((stories_updated + 1))
 					fi
 				fi
-			done <<< "$archived_stories"
+			done <<<"$archived_stories"
 		fi
 	fi
 
