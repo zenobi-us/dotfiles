@@ -1,7 +1,57 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-usage() {
+# LLM MAINTENANCE INSTRUCTIONS
+# - This file has intentional state/data-flow diagrams.
+# - If you add/remove/edit logic in any command or helper, update diagrams in this header.
+# - Keep naming conventions strict:
+#   * Subcommands: cmd_{subcommand_name_with_underscores}
+#   * Non-subcommand helpers: lib_{domain}_{purpose}
+# - Refresh policy (keep this split):
+#   * mutating cmd_* MUST refresh derived views via lib_views_refresh_derived
+#   * query cmd_* MAY refresh only via lib_views_refresh_on_query
+#   * utility cmd_* MUST NOT refresh derived views
+#
+# IDEAL USER FLOW (STATE MACHINE)
+#
+#   [start]
+#      |
+#      v
+#   [discover work] --(next/tree/list-unclaimed-stories)--> [choose task]
+#      |                                                      |
+#      |                                                      v
+#      |<--(release-task)----------------------------- [lock-task]
+#      |                                                      |
+#      |                              (periodic heartbeat)    v
+#      |<--------------------------- [heartbeat] <---- [active work]
+#      |                                                      |
+#      |                                                      v
+#      +----(stale-sweep/takeover-task)--------------> [recovery]
+#
+# SUBCOMMAND DATA-FLOW SKETCHES
+# - cmd_help: args -> usage text -> stdout
+# - cmd_memory_dir: git context -> .memory path resolution -> stdout/fs(create)
+# - cmd_memory_git_repo: directory -> git root detect -> stdout
+# - cmd_migrate_phases_to_inline: phase files -> inline phase markdown -> epic/story file updates
+# - cmd_register_intent: args+identity -> .memory/.locks/intents/*.md
+# - cmd_discover_intents: intents/*.md -> frontmatter parse -> stdout table
+# - cmd_lock_task: task file + identity -> claim frontmatter upserts -> derived views refresh
+# - cmd_heartbeat: claimed task + identity -> lease extension upserts -> derived views refresh
+# - cmd_takeover_task: claimed task + force+reason -> previous owner snapshot + claim overwrite
+# - cmd_release_task: claimed task + owner -> release state upserts -> derived views refresh
+# - cmd_stale_sweep: task files -> stale detection -> optional claim_state=stale upsert
+# - cmd_project: all epic/story/task files -> team.md/todo.md/summary.md
+# - cmd_discover_locks: task files -> active/stale lock snapshot -> stdout
+# - cmd_list_by_owner: task files -> owner/workspace grouping -> stdout
+# - cmd_list_by_session: alias wrapper -> cmd_list_by_owner
+# - cmd_list_unclaimed_stories: story/task files -> unclaimed story list -> stdout
+# - cmd_tree: epic/story/task files -> hierarchy view -> stdout
+# - cmd_next: identity + task lock state -> recommended next commands -> stdout
+
+# Name: lib_cli_usage
+# What: Prints CLI help text and subcommand docs.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_cli_usage() {
 	cat <<'EOF'
 miniproject.sh - minimal MDTM CLI (subcommand routed)
 
@@ -63,6 +113,7 @@ Subcommands:
   list-by-session                       Deprecated alias for list-by-owner
   list-unclaimed-stories                List stories with no actively claimed tasks
   tree                                  Print epic > story > task tree (blocked annotated)
+  next                                  Print brief dynamic recommendations for what to run next
 
 Identity model (tool/framework agnostic):
   - owner_id: opaque identifier provided by your orchestration/human workflow
@@ -71,6 +122,8 @@ Identity model (tool/framework agnostic):
 
 Environment defaults (optional):
   - MP_OWNER_ID or OWNER_ID (for --owner)
+  - MP_AUTO_PROJECT=1|0 (default: 1; auto-refresh after mutating commands)
+  - MP_AUTO_PROJECT_QUERY=1|0 (default: 0; optional refresh before query commands)
 
 Notes:
   - Source of truth is task frontmatter in .memory/task-*.md.
@@ -78,11 +131,17 @@ Notes:
 EOF
 }
 
-now_iso() {
+# Name: lib_time_now_iso
+# What: Returns current UTC timestamp in ISO-8601.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_time_now_iso() {
 	date -u +"%Y-%m-%dT%H:%M:%SZ"
 }
 
-hash_text() {
+# Name: lib_text_hash
+# What: Hashes input text using available system hash tool.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_text_hash() {
 	local text
 	text="$1"
 	if command -v sha1sum >/dev/null 2>&1; then
@@ -96,7 +155,10 @@ hash_text() {
 	printf '%s' "$text" | cksum | awk '{print $1}'
 }
 
-owner_id_default() {
+# Name: lib_identity_owner_default
+# What: Resolves default owner identity from env vars.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_identity_owner_default() {
 	if [[ -n "${MP_OWNER_ID:-}" ]]; then
 		printf '%s\n' "$MP_OWNER_ID"
 		return 0
@@ -108,26 +170,38 @@ owner_id_default() {
 	printf '%s\n' ""
 }
 
-workspace_id_default() {
+# Name: lib_identity_workspace_default
+# What: Builds deterministic workspace id from repo/worktree path.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_identity_workspace_default() {
 	local repo_root worktree raw digest
 	repo_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd -P)"
 	worktree="$(pwd -P)"
 	raw="${repo_root}::${worktree}"
-	digest="$(hash_text "$raw" | cut -c1-12)"
+	digest="$(lib_text_hash "$raw" | cut -c1-12)"
 	printf 'ws-%s\n' "$digest"
 }
 
-run_id_default() {
+# Name: lib_identity_run_default
+# What: Generates ephemeral run id for current process.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_identity_run_default() {
 	printf 'run-%s-%s\n' "$(date +%Y%m%d-%H%M%S)" "$$"
 }
 
-safe_name() {
+# Name: lib_text_safe_name
+# What: Sanitizes text for safe filename fragments.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_text_safe_name() {
 	local raw
 	raw="$1"
 	printf '%s' "$raw" | tr '/[:space:]' '__' | tr -cd '[:alnum:]_.-'
 }
 
-iso_to_epoch() {
+# Name: lib_time_iso_to_epoch
+# What: Converts ISO timestamp to epoch seconds when possible.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_time_iso_to_epoch() {
 	local iso
 	iso="$1"
 	if [[ -z "$iso" ]]; then
@@ -137,13 +211,16 @@ iso_to_epoch() {
 	date -u -d "$iso" +%s 2>/dev/null || printf '%s\n' ""
 }
 
-claim_is_active_file() {
+# Name: lib_claim_is_active_file
+# What: Evaluates whether a task claim is currently active.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_claim_is_active_file() {
 	local file
 	file="$1"
 	local state owner lease now_e lease_e
-	state="$(frontmatter_get "$file" "claim_state")"
-	owner="$(frontmatter_get "$file" "claimed_by_owner_id")"
-	lease="$(frontmatter_get "$file" "lease_expires_at")"
+	state="$(lib_frontmatter_get "$file" "claim_state")"
+	owner="$(lib_frontmatter_get "$file" "claimed_by_owner_id")"
+	lease="$(lib_frontmatter_get "$file" "lease_expires_at")"
 
 	if [[ "$state" != "claimed" || -z "$owner" ]]; then
 		return 1
@@ -154,7 +231,7 @@ claim_is_active_file() {
 	fi
 
 	now_e="$(date -u +%s)"
-	lease_e="$(iso_to_epoch "$lease")"
+	lease_e="$(lib_time_iso_to_epoch "$lease")"
 	if [[ -z "$lease_e" ]]; then
 		return 0
 	fi
@@ -162,20 +239,23 @@ claim_is_active_file() {
 	[[ "$now_e" -lt "$lease_e" ]]
 }
 
-claim_is_stale_file() {
+# Name: lib_claim_is_stale_file
+# What: Evaluates whether a task claim is stale/expired.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_claim_is_stale_file() {
 	local file
 	file="$1"
 	local state owner lease now_e lease_e
-	state="$(frontmatter_get "$file" "claim_state")"
-	owner="$(frontmatter_get "$file" "claimed_by_owner_id")"
-	lease="$(frontmatter_get "$file" "lease_expires_at")"
+	state="$(lib_frontmatter_get "$file" "claim_state")"
+	owner="$(lib_frontmatter_get "$file" "claimed_by_owner_id")"
+	lease="$(lib_frontmatter_get "$file" "lease_expires_at")"
 
 	if [[ "$state" != "claimed" || -z "$owner" || -z "$lease" ]]; then
 		return 1
 	fi
 
 	now_e="$(date -u +%s)"
-	lease_e="$(iso_to_epoch "$lease")"
+	lease_e="$(lib_time_iso_to_epoch "$lease")"
 	if [[ -z "$lease_e" ]]; then
 		return 1
 	fi
@@ -183,7 +263,10 @@ claim_is_stale_file() {
 	[[ "$now_e" -ge "$lease_e" ]]
 }
 
-resolve_main_worktree_root() {
+# Name: lib_git_resolve_main_worktree_root
+# What: Finds main worktree root even from linked worktrees.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_git_resolve_main_worktree_root() {
 	local main_worktree
 	main_worktree="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null | xargs dirname || true)"
 	if [[ -z "$main_worktree" || "$main_worktree" == "." || ! -d "$main_worktree" ]]; then
@@ -191,7 +274,10 @@ resolve_main_worktree_root() {
 	fi
 	printf '%s\n' "$main_worktree"
 }
-memory_dir() {
+# Name: lib_memory_dir
+# What: Resolves .memory path and optionally creates it.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_memory_dir() {
 	local create_if_missing
 	local main_worktree
 	local dir
@@ -206,7 +292,7 @@ memory_dir() {
 		return 1
 	fi
 
-	main_worktree="$(resolve_main_worktree_root)"
+	main_worktree="$(lib_git_resolve_main_worktree_root)"
 	dir="$main_worktree/.memory"
 
 	if [[ -d "$dir" ]]; then
@@ -224,7 +310,10 @@ memory_dir() {
 	return 1
 }
 
-git_repo_root_for_dir() {
+# Name: lib_git_repo_root_for_dir
+# What: Finds git root for a provided directory.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_git_repo_root_for_dir() {
 	local directory real_path git_root
 	directory="$1"
 
@@ -253,7 +342,10 @@ git_repo_root_for_dir() {
 	return 1
 }
 
-frontmatter_get() {
+# Name: lib_frontmatter_get
+# What: Reads a frontmatter key from markdown file.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_frontmatter_get() {
 	local file
 	local key
 
@@ -278,7 +370,10 @@ frontmatter_get() {
   ' "$file"
 }
 
-frontmatter_upsert() {
+# Name: lib_frontmatter_upsert
+# What: Inserts or updates a frontmatter key atomically.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_frontmatter_upsert() {
 	local file
 	local key
 	local value
@@ -327,7 +422,10 @@ frontmatter_upsert() {
 	mv "$tmp" "$file"
 }
 
-resolve_owner_arg() {
+# Name: lib_identity_resolve_owner_arg
+# What: Normalizes owner from flag/session/env defaults.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_identity_resolve_owner_arg() {
 	local owner
 	local session_alias
 
@@ -341,11 +439,14 @@ resolve_owner_arg() {
 		printf '%s\n' "$session_alias"
 		return 0
 	fi
-	owner="$(owner_id_default)"
+	owner="$(lib_identity_owner_default)"
 	printf '%s\n' "$owner"
 }
 
-require_owner() {
+# Name: lib_identity_require_owner
+# What: Fails fast when owner identity is missing.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_identity_require_owner() {
 	local owner
 	owner="$1"
 	if [[ -z "$owner" ]]; then
@@ -354,7 +455,10 @@ require_owner() {
 	fi
 }
 
-find_task_file() {
+# Name: lib_task_find_file
+# What: Resolves task argument to concrete task file path.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_task_find_file() {
 	local mem
 	local arg
 
@@ -376,17 +480,44 @@ find_task_file() {
 	return 1
 }
 
-cmd_memory_git_repo() {
-	local directory
-	directory="${1:-}"
-	if [[ -z "$directory" ]]; then
-		echo "ERROR: memory-git-repo requires <directory>" >&2
-		exit 1
-	fi
-	git_repo_root_for_dir "$directory"
+# Name: lib_file_write_atomic
+# What: Writes stdin to target via temp file+rename.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_file_write_atomic() {
+	local target
+	local tmp
+
+	target="$1"
+	tmp="$(mktemp)"
+	cat >"$tmp"
+	mv "$tmp" "$target"
 }
 
-remove_phase_id_from_story() {
+# Name: lib_views_refresh_derived
+# What: Refreshes derived project views after mutating actions.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_views_refresh_derived() {
+	if [[ "${MP_AUTO_PROJECT:-1}" == "1" ]]; then
+		cmd_project >/dev/null
+	fi
+}
+
+# Name: lib_views_refresh_on_query
+# What: Optionally refreshes derived views before query commands.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_views_refresh_on_query() {
+	if [[ "${MP_AUTO_PROJECT_QUERY:-0}" == "1" ]]; then
+		cmd_project >/dev/null 2>&1 || true
+	fi
+}
+
+
+
+
+# Name: lib_migration_remove_phase_id_from_story
+# What: Removes deprecated phase_id from story frontmatter.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_migration_remove_phase_id_from_story() {
 	local story_file
 	story_file="$1"
 
@@ -401,15 +532,18 @@ remove_phase_id_from_story() {
 	return 1
 }
 
-generate_inline_phase() {
+# Name: lib_migration_generate_inline_phase
+# What: Builds inline phase markdown from phase file.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_migration_generate_inline_phase() {
 	local phase_file
 	phase_file="$1"
 
 	local title status start_criteria end_criteria
-	title="$(frontmatter_get "$phase_file" "title")"
-	status="$(frontmatter_get "$phase_file" "status")"
-	start_criteria="$(frontmatter_get "$phase_file" "start_criteria")"
-	end_criteria="$(frontmatter_get "$phase_file" "end_criteria")"
+	title="$(lib_frontmatter_get "$phase_file" "title")"
+	status="$(lib_frontmatter_get "$phase_file" "status")"
+	start_criteria="$(lib_frontmatter_get "$phase_file" "start_criteria")"
+	end_criteria="$(lib_frontmatter_get "$phase_file" "end_criteria")"
 
 	local phase_name
 	phase_name="$title"
@@ -460,7 +594,10 @@ generate_inline_phase() {
 	echo
 }
 
-append_phase_to_epic() {
+# Name: lib_migration_append_phase_to_epic
+# What: Appends generated phase section into epic file.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+lib_migration_append_phase_to_epic() {
 	local epic_file phase_content
 	epic_file="$1"
 	phase_content="$2"
@@ -482,6 +619,47 @@ append_phase_to_epic() {
 	fi
 }
 
+
+# Name: cmd_help
+# What: Subcommand entrypoint for help text.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+cmd_help() {
+	lib_cli_usage
+}
+
+# Name: cmd_memory_dir
+# What: Subcommand entrypoint for memory-dir.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+cmd_memory_dir() {
+	lib_memory_dir "$@"
+}
+
+# Name: cmd_list_by_session
+# What: Backwards-compatible alias for list-by-owner.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+cmd_list_by_session() {
+	cmd_list_by_owner "$@"
+}
+
+# Name: cmd_memory_git_repo
+# What: Subcommand entrypoint for memory-git-repo.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+cmd_memory_git_repo() {
+	local directory
+	directory="${1:-}"
+	if [[ -z "$directory" ]]; then
+		echo "ERROR: memory-git-repo requires <directory>" >&2
+		exit 1
+	fi
+	lib_git_repo_root_for_dir "$directory"
+}
+
+
+
+
+# Name: cmd_migrate_phases_to_inline
+# What: Migrates phase files into inline epic sections.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_migrate_phases_to_inline() {
 	local dry_run memory_dir_arg
 	dry_run="false"
@@ -504,7 +682,7 @@ cmd_migrate_phases_to_inline() {
 	if [[ -n "$memory_dir_arg" ]]; then
 		mem="$memory_dir_arg"
 	else
-		mem="$(memory_dir)"
+		mem="$(lib_memory_dir)"
 	fi
 
 	mem="$(cd "$mem" 2>/dev/null && pwd)" || {
@@ -535,7 +713,7 @@ cmd_migrate_phases_to_inline() {
 			phases_found=$((phases_found + 1))
 			echo "Processing: $(basename "$phase_file")"
 			local epic_id epic_file phase_content
-			epic_id="$(frontmatter_get "$phase_file" "epic_id")"
+			epic_id="$(lib_frontmatter_get "$phase_file" "epic_id")"
 			if [[ -z "$epic_id" ]]; then
 				echo "  ERROR: No epic_id found. Skipping."
 				errors=$((errors + 1))
@@ -547,12 +725,12 @@ cmd_migrate_phases_to_inline() {
 				errors=$((errors + 1))
 				continue
 			fi
-			phase_content="$(generate_inline_phase "$phase_file")"
+			phase_content="$(lib_migration_generate_inline_phase "$phase_file")"
 			if [[ "$dry_run" == "true" ]]; then
 				echo "  Preview:"
 				echo "$phase_content" | sed 's/^/    /'
 			else
-				append_phase_to_epic "$epic_file" "$phase_content"
+				lib_migration_append_phase_to_epic "$epic_file" "$phase_content"
 				rm "$phase_file"
 			fi
 			phases_migrated=$((phases_migrated + 1))
@@ -571,7 +749,7 @@ cmd_migrate_phases_to_inline() {
 					stories_updated=$((stories_updated + 1))
 				fi
 			else
-				if remove_phase_id_from_story "$story_file"; then
+				if lib_migration_remove_phase_id_from_story "$story_file"; then
 					stories_updated=$((stories_updated + 1))
 				fi
 			fi
@@ -590,7 +768,7 @@ cmd_migrate_phases_to_inline() {
 						stories_updated=$((stories_updated + 1))
 					fi
 				else
-					if remove_phase_id_from_story "$story_file"; then
+					if lib_migration_remove_phase_id_from_story "$story_file"; then
 						stories_updated=$((stories_updated + 1))
 					fi
 				fi
@@ -615,6 +793,9 @@ cmd_migrate_phases_to_inline() {
 	fi
 }
 
+# Name: cmd_register_intent
+# What: Creates lock intent record for a story.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_register_intent() {
 	local story_id
 	story_id="${1:-}"
@@ -632,8 +813,8 @@ cmd_register_intent() {
 
 	owner=""
 	session_alias=""
-	workspace="$(workspace_id_default)"
-	run_id="$(run_id_default)"
+	workspace="$(lib_identity_workspace_default)"
+	run_id="$(lib_identity_run_default)"
 	ttl_min="15"
 
 	while [[ $# -gt 0 ]]; do
@@ -665,20 +846,20 @@ cmd_register_intent() {
 		esac
 	done
 
-	owner="$(resolve_owner_arg "$owner" "$session_alias")"
-	require_owner "$owner"
+	owner="$(lib_identity_resolve_owner_arg "$owner" "$session_alias")"
+	lib_identity_require_owner "$owner"
 
 	local mem intents_dir now expires file
-	mem="$(memory_dir)"
+	mem="$(lib_memory_dir)"
 	intents_dir="$mem/.locks/intents"
 	mkdir -p "$intents_dir"
 
-	now="$(now_iso)"
+	now="$(lib_time_now_iso)"
 	expires="$(date -u -d "+${ttl_min} minutes" +"%Y-%m-%dT%H:%M:%SZ")"
 	local owner_key workspace_key story_key
-	owner_key="$(safe_name "$owner")"
-	workspace_key="$(safe_name "$workspace")"
-	story_key="$(safe_name "$story_id")"
+	owner_key="$(lib_text_safe_name "$owner")"
+	workspace_key="$(lib_text_safe_name "$workspace")"
+	story_key="$(lib_text_safe_name "$story_id")"
 	file="$intents_dir/${owner_key}__${workspace_key}__${story_key}.md"
 
 	cat >"$file" <<EOF
@@ -699,11 +880,15 @@ EOF
 	echo "Registered intent: $file"
 }
 
+# Name: cmd_discover_intents
+# What: Lists active lock intents from intents directory.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_discover_intents() {
+	lib_views_refresh_on_query
 	local mem
 	local intents_dir
 
-	mem="$(memory_dir)"
+	mem="$(lib_memory_dir)"
 	intents_dir="$mem/.locks/intents"
 	mkdir -p "$intents_dir"
 
@@ -713,12 +898,12 @@ cmd_discover_intents() {
 	for f in "$intents_dir"/*.md; do
 		found=1
 		local story owner workspace run exp status
-		story="$(frontmatter_get "$f" "story_id")"
-		owner="$(frontmatter_get "$f" "owner_id")"
-		workspace="$(frontmatter_get "$f" "workspace_id")"
-		run="$(frontmatter_get "$f" "run_id")"
-		exp="$(frontmatter_get "$f" "expires_at")"
-		status="$(frontmatter_get "$f" "status")"
+		story="$(lib_frontmatter_get "$f" "story_id")"
+		owner="$(lib_frontmatter_get "$f" "owner_id")"
+		workspace="$(lib_frontmatter_get "$f" "workspace_id")"
+		run="$(lib_frontmatter_get "$f" "run_id")"
+		exp="$(lib_frontmatter_get "$f" "expires_at")"
+		status="$(lib_frontmatter_get "$f" "status")"
 		echo "- story=$story owner=$owner workspace=$workspace run=$run status=${status:-unknown} expires=$exp file=$(basename "$f")"
 	done
 	shopt -u nullglob
@@ -728,6 +913,9 @@ cmd_discover_intents() {
 	fi
 }
 
+# Name: cmd_lock_task
+# What: Claims a task lock for an owner/workspace/run.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_lock_task() {
 	local task_arg
 	task_arg="${1:-}"
@@ -746,8 +934,8 @@ cmd_lock_task() {
 
 	owner=""
 	session_alias=""
-	workspace="$(workspace_id_default)"
-	run_id="$(run_id_default)"
+	workspace="$(lib_identity_workspace_default)"
+	run_id="$(lib_identity_run_default)"
 	reason="active work"
 	lease_min="45"
 
@@ -784,18 +972,18 @@ cmd_lock_task() {
 		esac
 	done
 
-	owner="$(resolve_owner_arg "$owner" "$session_alias")"
-	require_owner "$owner"
+	owner="$(lib_identity_resolve_owner_arg "$owner" "$session_alias")"
+	lib_identity_require_owner "$owner"
 
 	local mem file
-	mem="$(memory_dir)"
-	file="$(find_task_file "$mem" "$task_arg")"
+	mem="$(lib_memory_dir)"
+	file="$(lib_task_find_file "$mem" "$task_arg")"
 
 	local current_owner current_workspace
-	current_owner="$(frontmatter_get "$file" "claimed_by_owner_id")"
-	current_workspace="$(frontmatter_get "$file" "claimed_by_workspace_id")"
+	current_owner="$(lib_frontmatter_get "$file" "claimed_by_owner_id")"
+	current_workspace="$(lib_frontmatter_get "$file" "claimed_by_workspace_id")"
 
-	if claim_is_active_file "$file"; then
+	if lib_claim_is_active_file "$file"; then
 		if [[ "$current_owner" != "$owner" || "$current_workspace" != "$workspace" ]]; then
 			echo "ERROR: active lock conflict on $(basename "$file")" >&2
 			echo "  current_owner=$current_owner current_workspace=${current_workspace:-none}" >&2
@@ -806,26 +994,26 @@ cmd_lock_task() {
 	fi
 
 	local now expires claim_started
-	now="$(now_iso)"
+	now="$(lib_time_now_iso)"
 	expires="$(date -u -d "+${lease_min} minutes" +"%Y-%m-%dT%H:%M:%SZ")"
-	claim_started="$(frontmatter_get "$file" "claim_started_at")"
-	if [[ -z "$claim_started" ]] || ! claim_is_active_file "$file"; then
+	claim_started="$(lib_frontmatter_get "$file" "claim_started_at")"
+	if [[ -z "$claim_started" ]] || ! lib_claim_is_active_file "$file"; then
 		claim_started="$now"
 	fi
 
-	frontmatter_upsert "$file" "claimed_by_owner_id" "$owner"
-	frontmatter_upsert "$file" "claimed_by_workspace_id" "$workspace"
-	frontmatter_upsert "$file" "claimed_by_run_id" "$run_id"
-	frontmatter_upsert "$file" "claim_started_at" "$claim_started"
-	frontmatter_upsert "$file" "last_heartbeat_at" "$now"
-	frontmatter_upsert "$file" "lease_expires_at" "$expires"
-	frontmatter_upsert "$file" "claim_state" "claimed"
-	frontmatter_upsert "$file" "lock_reason" "$reason"
+	lib_frontmatter_upsert "$file" "claimed_by_owner_id" "$owner"
+	lib_frontmatter_upsert "$file" "claimed_by_workspace_id" "$workspace"
+	lib_frontmatter_upsert "$file" "claimed_by_run_id" "$run_id"
+	lib_frontmatter_upsert "$file" "claim_started_at" "$claim_started"
+	lib_frontmatter_upsert "$file" "last_heartbeat_at" "$now"
+	lib_frontmatter_upsert "$file" "lease_expires_at" "$expires"
+	lib_frontmatter_upsert "$file" "claim_state" "claimed"
+	lib_frontmatter_upsert "$file" "lock_reason" "$reason"
 
 	local story_id
-	story_id="$(frontmatter_get "$file" "story_id")"
+	story_id="$(lib_frontmatter_get "$file" "story_id")"
 
-	refresh_derived_views
+	lib_views_refresh_derived
 
 	echo "Locked task: $(basename "$file")"
 	echo "  owner_id: $owner"
@@ -837,6 +1025,9 @@ cmd_lock_task() {
 	fi
 }
 
+# Name: cmd_heartbeat
+# What: Renews lease/heartbeat for an owned task lock.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_heartbeat() {
 	local task_arg
 	task_arg="${1:-}"
@@ -855,7 +1046,7 @@ cmd_heartbeat() {
 	owner=""
 	session_alias=""
 	workspace=""
-	run_id="$(run_id_default)"
+	run_id="$(lib_identity_run_default)"
 	lease_min="45"
 
 	while [[ $# -gt 0 ]]; do
@@ -887,16 +1078,16 @@ cmd_heartbeat() {
 		esac
 	done
 
-	owner="$(resolve_owner_arg "$owner" "$session_alias")"
-	require_owner "$owner"
+	owner="$(lib_identity_resolve_owner_arg "$owner" "$session_alias")"
+	lib_identity_require_owner "$owner"
 
 	local mem file
-	mem="$(memory_dir)"
-	file="$(find_task_file "$mem" "$task_arg")"
+	mem="$(lib_memory_dir)"
+	file="$(lib_task_find_file "$mem" "$task_arg")"
 
 	local current_owner current_workspace
-	current_owner="$(frontmatter_get "$file" "claimed_by_owner_id")"
-	current_workspace="$(frontmatter_get "$file" "claimed_by_workspace_id")"
+	current_owner="$(lib_frontmatter_get "$file" "claimed_by_owner_id")"
+	current_workspace="$(lib_frontmatter_get "$file" "claimed_by_workspace_id")"
 
 	if [[ -z "$current_owner" || "$current_owner" != "$owner" ]]; then
 		echo "ERROR: heartbeat denied. task owned by '${current_owner:-none}', not '$owner'" >&2
@@ -908,21 +1099,24 @@ cmd_heartbeat() {
 	fi
 
 	local now expires
-	now="$(now_iso)"
+	now="$(lib_time_now_iso)"
 	expires="$(date -u -d "+${lease_min} minutes" +"%Y-%m-%dT%H:%M:%SZ")"
 
-	frontmatter_upsert "$file" "claim_state" "claimed"
-	frontmatter_upsert "$file" "claimed_by_run_id" "$run_id"
-	frontmatter_upsert "$file" "last_heartbeat_at" "$now"
-	frontmatter_upsert "$file" "lease_expires_at" "$expires"
+	lib_frontmatter_upsert "$file" "claim_state" "claimed"
+	lib_frontmatter_upsert "$file" "claimed_by_run_id" "$run_id"
+	lib_frontmatter_upsert "$file" "last_heartbeat_at" "$now"
+	lib_frontmatter_upsert "$file" "lease_expires_at" "$expires"
 
-	refresh_derived_views
+	lib_views_refresh_derived
 
 	echo "Heartbeat updated: $(basename "$file")"
 	echo "  owner_id: $owner"
 	echo "  lease_expires_at: $expires"
 }
 
+# Name: cmd_takeover_task
+# What: Force-takes over a task lock with reason.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_takeover_task() {
 	local task_arg
 	task_arg="${1:-}"
@@ -942,8 +1136,8 @@ cmd_takeover_task() {
 
 	owner=""
 	session_alias=""
-	workspace="$(workspace_id_default)"
-	run_id="$(run_id_default)"
+	workspace="$(lib_identity_workspace_default)"
+	run_id="$(lib_identity_run_default)"
 	reason=""
 	lease_min="45"
 	force="false"
@@ -985,8 +1179,8 @@ cmd_takeover_task() {
 		esac
 	done
 
-	owner="$(resolve_owner_arg "$owner" "$session_alias")"
-	require_owner "$owner"
+	owner="$(lib_identity_resolve_owner_arg "$owner" "$session_alias")"
+	lib_identity_require_owner "$owner"
 	if [[ "$force" != "true" ]]; then
 		echo "ERROR: takeover-task requires --force" >&2
 		exit 1
@@ -997,34 +1191,34 @@ cmd_takeover_task() {
 	fi
 
 	local mem file
-	mem="$(memory_dir)"
-	file="$(find_task_file "$mem" "$task_arg")"
+	mem="$(lib_memory_dir)"
+	file="$(lib_task_find_file "$mem" "$task_arg")"
 
 	local prev_owner prev_workspace prev_run
-	prev_owner="$(frontmatter_get "$file" "claimed_by_owner_id")"
-	prev_workspace="$(frontmatter_get "$file" "claimed_by_workspace_id")"
-	prev_run="$(frontmatter_get "$file" "claimed_by_run_id")"
+	prev_owner="$(lib_frontmatter_get "$file" "claimed_by_owner_id")"
+	prev_workspace="$(lib_frontmatter_get "$file" "claimed_by_workspace_id")"
+	prev_run="$(lib_frontmatter_get "$file" "claimed_by_run_id")"
 
 	local now expires
-	now="$(now_iso)"
+	now="$(lib_time_now_iso)"
 	expires="$(date -u -d "+${lease_min} minutes" +"%Y-%m-%dT%H:%M:%SZ")"
 
-	frontmatter_upsert "$file" "previous_owner_id" "$prev_owner"
-	frontmatter_upsert "$file" "previous_workspace_id" "$prev_workspace"
-	frontmatter_upsert "$file" "previous_run_id" "$prev_run"
-	frontmatter_upsert "$file" "takeover_at" "$now"
-	frontmatter_upsert "$file" "takeover_reason" "$reason"
+	lib_frontmatter_upsert "$file" "previous_owner_id" "$prev_owner"
+	lib_frontmatter_upsert "$file" "previous_workspace_id" "$prev_workspace"
+	lib_frontmatter_upsert "$file" "previous_run_id" "$prev_run"
+	lib_frontmatter_upsert "$file" "takeover_at" "$now"
+	lib_frontmatter_upsert "$file" "takeover_reason" "$reason"
 
-	frontmatter_upsert "$file" "claimed_by_owner_id" "$owner"
-	frontmatter_upsert "$file" "claimed_by_workspace_id" "$workspace"
-	frontmatter_upsert "$file" "claimed_by_run_id" "$run_id"
-	frontmatter_upsert "$file" "claim_started_at" "$now"
-	frontmatter_upsert "$file" "last_heartbeat_at" "$now"
-	frontmatter_upsert "$file" "lease_expires_at" "$expires"
-	frontmatter_upsert "$file" "claim_state" "claimed"
-	frontmatter_upsert "$file" "lock_reason" "takeover: $reason"
+	lib_frontmatter_upsert "$file" "claimed_by_owner_id" "$owner"
+	lib_frontmatter_upsert "$file" "claimed_by_workspace_id" "$workspace"
+	lib_frontmatter_upsert "$file" "claimed_by_run_id" "$run_id"
+	lib_frontmatter_upsert "$file" "claim_started_at" "$now"
+	lib_frontmatter_upsert "$file" "last_heartbeat_at" "$now"
+	lib_frontmatter_upsert "$file" "lease_expires_at" "$expires"
+	lib_frontmatter_upsert "$file" "claim_state" "claimed"
+	lib_frontmatter_upsert "$file" "lock_reason" "takeover: $reason"
 
-	refresh_derived_views
+	lib_views_refresh_derived
 
 	echo "Took over task: $(basename "$file")"
 	echo "  from_owner: ${prev_owner:-none}"
@@ -1033,6 +1227,9 @@ cmd_takeover_task() {
 	echo "  lease_expires_at: $expires"
 }
 
+# Name: cmd_stale_sweep
+# What: Detects stale claims and optionally marks them stale.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_stale_sweep() {
 	local apply
 	apply="false"
@@ -1050,20 +1247,20 @@ cmd_stale_sweep() {
 	done
 
 	local mem
-	mem="$(memory_dir)"
+	mem="$(lib_memory_dir)"
 
 	local found
 	found=0
 	shopt -s nullglob
 	for f in "$mem"/task-*.md; do
-		if claim_is_stale_file "$f"; then
+		if lib_claim_is_stale_file "$f"; then
 			found=1
 			local owner lease
-			owner="$(frontmatter_get "$f" "claimed_by_owner_id")"
-			lease="$(frontmatter_get "$f" "lease_expires_at")"
+			owner="$(lib_frontmatter_get "$f" "claimed_by_owner_id")"
+			lease="$(lib_frontmatter_get "$f" "lease_expires_at")"
 			echo "STALE  $(basename "$f")  owner=${owner:-none} lease_expires_at=${lease:-none}"
 			if [[ "$apply" == "true" ]]; then
-				frontmatter_upsert "$f" "claim_state" "stale"
+				lib_frontmatter_upsert "$f" "claim_state" "stale"
 			fi
 		fi
 	done
@@ -1072,11 +1269,14 @@ cmd_stale_sweep() {
 	if [[ "$found" -eq 0 ]]; then
 		echo "No stale locks."
 	elif [[ "$apply" == "true" ]]; then
-		refresh_derived_views
+		lib_views_refresh_derived
 		echo "Applied stale state to stale claims."
 	fi
 }
 
+# Name: cmd_release_task
+# What: Releases task lock ownership.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_release_task() {
 	local task_arg
 	task_arg="${1:-}"
@@ -1115,33 +1315,37 @@ cmd_release_task() {
 		esac
 	done
 
-	owner="$(resolve_owner_arg "$owner" "$session_alias")"
-	require_owner "$owner"
+	owner="$(lib_identity_resolve_owner_arg "$owner" "$session_alias")"
+	lib_identity_require_owner "$owner"
 
 	local mem file
-	mem="$(memory_dir)"
-	file="$(find_task_file "$mem" "$task_arg")"
+	mem="$(lib_memory_dir)"
+	file="$(lib_task_find_file "$mem" "$task_arg")"
 
 	local current_owner
-	current_owner="$(frontmatter_get "$file" "claimed_by_owner_id")"
+	current_owner="$(lib_frontmatter_get "$file" "claimed_by_owner_id")"
 	if [[ -n "$current_owner" && "$current_owner" != "$owner" ]]; then
 		echo "ERROR: task owned by '$current_owner', not '$owner'" >&2
 		exit 1
 	fi
 
-	frontmatter_upsert "$file" "claim_state" "released"
-	frontmatter_upsert "$file" "lock_reason" "$reason"
-	frontmatter_upsert "$file" "lease_expires_at" ""
-	frontmatter_upsert "$file" "last_heartbeat_at" "$(now_iso)"
+	lib_frontmatter_upsert "$file" "claim_state" "released"
+	lib_frontmatter_upsert "$file" "lock_reason" "$reason"
+	lib_frontmatter_upsert "$file" "lease_expires_at" ""
+	lib_frontmatter_upsert "$file" "last_heartbeat_at" "$(lib_time_now_iso)"
 
-	refresh_derived_views
+	lib_views_refresh_derived
 
 	echo "Released task: $(basename "$file")"
 }
 
+# Name: cmd_discover_locks
+# What: Shows active/stale task locks and derived story locks.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_discover_locks() {
+	lib_views_refresh_on_query
 	local mem
-	mem="$(memory_dir)"
+	mem="$(lib_memory_dir)"
 
 	local tasks_locked
 	local stories_tmp
@@ -1152,12 +1356,12 @@ cmd_discover_locks() {
 	shopt -s nullglob
 	for f in "$mem"/task-*.md; do
 		local state owner workspace story
-		state="$(frontmatter_get "$f" "claim_state")"
-		owner="$(frontmatter_get "$f" "claimed_by_owner_id")"
-		workspace="$(frontmatter_get "$f" "claimed_by_workspace_id")"
-		story="$(frontmatter_get "$f" "story_id")"
+		state="$(lib_frontmatter_get "$f" "claim_state")"
+		owner="$(lib_frontmatter_get "$f" "claimed_by_owner_id")"
+		workspace="$(lib_frontmatter_get "$f" "claimed_by_workspace_id")"
+		story="$(lib_frontmatter_get "$f" "story_id")"
 
-		if claim_is_active_file "$f"; then
+		if lib_claim_is_active_file "$f"; then
 			tasks_locked=$((tasks_locked + 1))
 			echo "TASK  $(basename "$f")  owner=$owner  workspace=${workspace:-none}  story=${story:-none}"
 			if [[ -n "$story" ]]; then
@@ -1182,20 +1386,24 @@ cmd_discover_locks() {
 	rm -f "$stories_tmp"
 }
 
+# Name: cmd_list_by_owner
+# What: Groups active claims by owner/workspace.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_list_by_owner() {
+	lib_views_refresh_on_query
 	local mem
 	local tmp
 
-	mem="$(memory_dir)"
+	mem="$(lib_memory_dir)"
 	tmp="$(mktemp)"
 
 	shopt -s nullglob
 	for f in "$mem"/task-*.md; do
 		local owner workspace story
-		owner="$(frontmatter_get "$f" "claimed_by_owner_id")"
-		workspace="$(frontmatter_get "$f" "claimed_by_workspace_id")"
-		story="$(frontmatter_get "$f" "story_id")"
-		if claim_is_active_file "$f"; then
+		owner="$(lib_frontmatter_get "$f" "claimed_by_owner_id")"
+		workspace="$(lib_frontmatter_get "$f" "claimed_by_workspace_id")"
+		story="$(lib_frontmatter_get "$f" "story_id")"
+		if lib_claim_is_active_file "$f"; then
 			echo "$owner|$workspace|$(basename "$f")|$story" >>"$tmp"
 		fi
 	done
@@ -1222,9 +1430,13 @@ cmd_list_by_owner() {
 	rm -f "$tmp"
 }
 
+# Name: cmd_list_unclaimed_stories
+# What: Lists stories that have no actively claimed tasks.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_list_unclaimed_stories() {
+	lib_views_refresh_on_query
 	local mem
-	mem="$(memory_dir)"
+	mem="$(lib_memory_dir)"
 
 	local claimed_stories
 	claimed_stories="$(mktemp)"
@@ -1232,8 +1444,8 @@ cmd_list_unclaimed_stories() {
 	shopt -s nullglob
 	for tf in "$mem"/task-*.md; do
 		local sid
-		sid="$(frontmatter_get "$tf" "story_id")"
-		if claim_is_active_file "$tf" && [[ -n "$sid" ]]; then
+		sid="$(lib_frontmatter_get "$tf" "story_id")"
+		if lib_claim_is_active_file "$tf" && [[ -n "$sid" ]]; then
 			echo "$sid" >>"$claimed_stories"
 		fi
 	done
@@ -1242,8 +1454,8 @@ cmd_list_unclaimed_stories() {
 	any=0
 	for sf in "$mem"/story-*.md; do
 		local sid title
-		sid="$(frontmatter_get "$sf" "id")"
-		title="$(frontmatter_get "$sf" "title")"
+		sid="$(lib_frontmatter_get "$sf" "id")"
+		title="$(lib_frontmatter_get "$sf" "title")"
 		if [[ -z "$sid" ]]; then
 			sid="$(basename "$sf" | awk -F'-' '{print $2}')"
 		fi
@@ -1261,9 +1473,13 @@ cmd_list_unclaimed_stories() {
 	rm -f "$claimed_stories"
 }
 
+# Name: cmd_tree
+# What: Prints epic/story/task tree with blocked annotations.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_tree() {
+	lib_views_refresh_on_query
 	local mem
-	mem="$(memory_dir)"
+	mem="$(lib_memory_dir)"
 
 	shopt -s nullglob
 
@@ -1272,8 +1488,8 @@ cmd_tree() {
 	for ef in "$mem"/epic-*.md; do
 		has_epic=1
 		local epic_id epic_title
-		epic_id="$(frontmatter_get "$ef" "id")"
-		epic_title="$(frontmatter_get "$ef" "title")"
+		epic_id="$(lib_frontmatter_get "$ef" "id")"
+		epic_title="$(lib_frontmatter_get "$ef" "title")"
 		if [[ -z "$epic_id" ]]; then
 			epic_id="$(basename "$ef" | awk -F'-' '{print $2}')"
 		fi
@@ -1283,12 +1499,12 @@ cmd_tree() {
 		story_count=0
 		for sf in "$mem"/story-*.md; do
 			local s_epic_id sid stitle
-			s_epic_id="$(frontmatter_get "$sf" "epic_id")"
+			s_epic_id="$(lib_frontmatter_get "$sf" "epic_id")"
 			[[ "$s_epic_id" == "$epic_id" ]] || continue
 			story_count=$((story_count + 1))
 
-			sid="$(frontmatter_get "$sf" "id")"
-			stitle="$(frontmatter_get "$sf" "title")"
+			sid="$(lib_frontmatter_get "$sf" "id")"
+			stitle="$(lib_frontmatter_get "$sf" "title")"
 			if [[ -z "$sid" ]]; then
 				sid="$(basename "$sf" | awk -F'-' '{print $2}')"
 			fi
@@ -1298,13 +1514,13 @@ cmd_tree() {
 			task_count=0
 			for tf in "$mem"/task-*.md; do
 				local t_story t_title t_status blocked_by ann
-				t_story="$(frontmatter_get "$tf" "story_id")"
+				t_story="$(lib_frontmatter_get "$tf" "story_id")"
 				[[ "$t_story" == "$sid" ]] || continue
 				task_count=$((task_count + 1))
 
-				t_title="$(frontmatter_get "$tf" "title")"
-				t_status="$(frontmatter_get "$tf" "status")"
-				blocked_by="$(frontmatter_get "$tf" "blocked_by")"
+				t_title="$(lib_frontmatter_get "$tf" "title")"
+				t_status="$(lib_frontmatter_get "$tf" "status")"
+				blocked_by="$(lib_frontmatter_get "$tf" "blocked_by")"
 				ann=""
 				if [[ "$t_status" == "blocked" || -n "$blocked_by" ]]; then
 					ann=" [BLOCKED${blocked_by:+ by $blocked_by}]"
@@ -1329,22 +1545,87 @@ cmd_tree() {
 	shopt -u nullglob
 }
 
-write_file_atomic() {
-	local target
-	local tmp
 
-	target="$1"
-	tmp="$(mktemp)"
-	cat >"$tmp"
-	mv "$tmp" "$target"
-}
 
-refresh_derived_views() {
-	if [[ "${MP_AUTO_PROJECT:-1}" == "1" ]]; then
-		cmd_project >/dev/null
+# Name: cmd_next
+# What: Prints concise dynamic suggestions for next commands.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+cmd_next() {
+	lib_views_refresh_on_query
+
+	local mem owner
+	mem="$(lib_memory_dir)"
+	owner="$(lib_identity_owner_default)"
+
+	local active_for_owner active_total stale_total unclaimed_open
+	active_for_owner=0
+	active_total=0
+	stale_total=0
+	unclaimed_open=0
+
+	shopt -s nullglob
+	for tf in "$mem"/task-*.md; do
+		local ts claimed_owner
+		ts="$(lib_frontmatter_get "$tf" "status")"
+		claimed_owner="$(lib_frontmatter_get "$tf" "claimed_by_owner_id")"
+
+		if lib_claim_is_active_file "$tf"; then
+			active_total=$((active_total + 1))
+			if [[ -n "$owner" && "$claimed_owner" == "$owner" ]]; then
+				active_for_owner=$((active_for_owner + 1))
+			fi
+		elif lib_claim_is_stale_file "$tf"; then
+			stale_total=$((stale_total + 1))
+		fi
+
+		case "$ts" in
+		completed|archived|cancelled) ;;
+		*)
+			if ! lib_claim_is_active_file "$tf"; then
+				unclaimed_open=$((unclaimed_open + 1))
+			fi
+			;;
+		esac
+	done
+	shopt -u nullglob
+
+	echo "Next actions (dynamic):"
+	if [[ -z "$owner" ]]; then
+		echo "- Set identity first: export MP_OWNER_ID=<your-id>"
+		echo "- Then run: miniproject.sh next"
+		return 0
 	fi
+
+	echo "- Identity detected: owner=$owner"
+	if [[ "$active_for_owner" -gt 0 ]]; then
+		echo "- You already hold $active_for_owner active task(s): run 'miniproject.sh list-by-owner'"
+		echo "- Keep leases alive while coding: miniproject.sh heartbeat <task-file> --owner $owner"
+		echo "- Finish/release when done: miniproject.sh release-task <task-file> --owner $owner --reason \"done\""
+	else
+		echo "- You have no active claims:"
+		echo "  - Inspect candidates: miniproject.sh list-unclaimed-stories"
+		echo "  - Inspect full structure: miniproject.sh tree"
+		echo "  - Claim a task: miniproject.sh lock-task <task-file> --owner $owner"
+	fi
+
+	if [[ "$stale_total" -gt 0 ]]; then
+		echo "- There are $stale_total stale lock(s): inspect/apply with miniproject.sh stale-sweep [--apply]"
+	fi
+	if [[ "$unclaimed_open" -gt 0 ]]; then
+		echo "- Open unclaimed tasks currently visible: $unclaimed_open"
+	fi
+
+	if [[ "${MP_AUTO_PROJECT_QUERY:-0}" != "1" ]]; then
+		echo "- Query auto-refresh is OFF; derived views may be stale until you run: miniproject.sh project"
+	fi
+	echo "- Refresh derived files anytime: miniproject.sh project"
+	echo "- Snapshot reads without writes: miniproject.sh project --stdout"
+	echo "- Coordination view: miniproject.sh discover-locks"
 }
 
+# Name: cmd_project
+# What: Rebuilds derived team/todo/summary views.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 cmd_project() {
 	local stdout_only
 	stdout_only="false"
@@ -1362,8 +1643,8 @@ cmd_project() {
 	done
 
 	local mem now
-	mem="$(memory_dir)"
-	now="$(now_iso)"
+	mem="$(lib_memory_dir)"
+	now="$(lib_time_now_iso)"
 
 	local t_open
 	local s_open
@@ -1387,11 +1668,11 @@ cmd_project() {
 		owners_tmp="$(mktemp)"
 		shopt -s nullglob
 		for tf in "$mem"/task-*.md; do
-			if claim_is_active_file "$tf"; then
+			if lib_claim_is_active_file "$tf"; then
 				local owner workspace story
-				owner="$(frontmatter_get "$tf" "claimed_by_owner_id")"
-				workspace="$(frontmatter_get "$tf" "claimed_by_workspace_id")"
-				story="$(frontmatter_get "$tf" "story_id")"
+				owner="$(lib_frontmatter_get "$tf" "claimed_by_owner_id")"
+				workspace="$(lib_frontmatter_get "$tf" "claimed_by_workspace_id")"
+				story="$(lib_frontmatter_get "$tf" "story_id")"
 				echo "$owner|${workspace:-none}|$(basename "$tf")|${story:-none}" >>"$owners_tmp"
 			fi
 		done
@@ -1419,9 +1700,9 @@ cmd_project() {
 		stale_any=0
 		shopt -s nullglob
 		for tf in "$mem"/task-*.md; do
-			if claim_is_stale_file "$tf"; then
+			if lib_claim_is_stale_file "$tf"; then
 				stale_any=1
-				echo "- $(basename "$tf") (owner=$(frontmatter_get "$tf" "claimed_by_owner_id"), lease_expires_at=$(frontmatter_get "$tf" "lease_expires_at"))"
+				echo "- $(basename "$tf") (owner=$(lib_frontmatter_get "$tf" "claimed_by_owner_id"), lease_expires_at=$(lib_frontmatter_get "$tf" "lease_expires_at"))"
 			fi
 		done
 		shopt -u nullglob
@@ -1441,15 +1722,15 @@ cmd_project() {
 		shopt -s nullglob
 		for tf in "$mem"/task-*.md; do
 			local status blocked_by title
-			status="$(frontmatter_get "$tf" "status")"
-			blocked_by="$(frontmatter_get "$tf" "blocked_by")"
-			title="$(frontmatter_get "$tf" "title")"
+			status="$(lib_frontmatter_get "$tf" "status")"
+			blocked_by="$(lib_frontmatter_get "$tf" "blocked_by")"
+			title="$(lib_frontmatter_get "$tf" "title")"
 
 			case "$status" in
 			completed | archived | cancelled) continue ;;
 			esac
 
-			if claim_is_active_file "$tf"; then
+			if lib_claim_is_active_file "$tf"; then
 				continue
 			fi
 
@@ -1467,9 +1748,9 @@ cmd_project() {
 		claimed_any=0
 		shopt -s nullglob
 		for tf in "$mem"/task-*.md; do
-			if claim_is_active_file "$tf"; then
+			if lib_claim_is_active_file "$tf"; then
 				claimed_any=1
-				echo "- $(basename "$tf") (owner=$(frontmatter_get "$tf" "claimed_by_owner_id"), workspace=$(frontmatter_get "$tf" "claimed_by_workspace_id"), lease=$(frontmatter_get "$tf" "lease_expires_at"))"
+				echo "- $(basename "$tf") (owner=$(lib_frontmatter_get "$tf" "claimed_by_owner_id"), workspace=$(lib_frontmatter_get "$tf" "claimed_by_workspace_id"), lease=$(lib_frontmatter_get "$tf" "lease_expires_at"))"
 			fi
 		done
 		shopt -u nullglob
@@ -1482,7 +1763,7 @@ cmd_project() {
 		shopt -s nullglob
 		for ef in "$mem"/epic-*.md; do
 			local es
-			es="$(frontmatter_get "$ef" "status")"
+			es="$(lib_frontmatter_get "$ef" "status")"
 			if [[ "$es" != "completed" && "$es" != "archived" ]]; then
 				e_active=$((e_active + 1))
 			fi
@@ -1490,7 +1771,7 @@ cmd_project() {
 
 		for sf in "$mem"/story-*.md; do
 			local ss
-			ss="$(frontmatter_get "$sf" "status")"
+			ss="$(lib_frontmatter_get "$sf" "status")"
 			if [[ "$ss" == "completed" ]]; then
 				s_completed=$((s_completed + 1))
 			else
@@ -1500,8 +1781,8 @@ cmd_project() {
 
 		for tf in "$mem"/task-*.md; do
 			local ts blocked_by
-			ts="$(frontmatter_get "$tf" "status")"
-			blocked_by="$(frontmatter_get "$tf" "blocked_by")"
+			ts="$(lib_frontmatter_get "$tf" "status")"
+			blocked_by="$(lib_frontmatter_get "$tf" "blocked_by")"
 			if [[ "$ts" == "completed" || "$ts" == "archived" || "$ts" == "cancelled" ]]; then
 				t_completed=$((t_completed + 1))
 			else
@@ -1510,9 +1791,9 @@ cmd_project() {
 			if [[ "$ts" == "blocked" || -n "$blocked_by" ]]; then
 				t_blocked=$((t_blocked + 1))
 			fi
-			if claim_is_active_file "$tf"; then
+			if lib_claim_is_active_file "$tf"; then
 				t_claimed=$((t_claimed + 1))
-			elif claim_is_stale_file "$tf"; then
+			elif lib_claim_is_stale_file "$tf"; then
 				t_stale=$((t_stale + 1))
 			fi
 		done
@@ -1533,11 +1814,11 @@ cmd_project() {
 		shopt -s nullglob
 		for tf in "$mem"/task-*.md; do
 			local ts
-			ts="$(frontmatter_get "$tf" "status")"
+			ts="$(lib_frontmatter_get "$tf" "status")"
 			if [[ "$ts" == "completed" || "$ts" == "archived" || "$ts" == "cancelled" ]]; then
 				continue
 			fi
-			if claim_is_active_file "$tf"; then
+			if lib_claim_is_active_file "$tf"; then
 				continue
 			fi
 			focus_any=1
@@ -1559,9 +1840,9 @@ cmd_project() {
 		echo "===== summary.md ====="
 		cat "$summary_tmp"
 	else
-		write_file_atomic "$mem/team.md" <"$team_tmp"
-		write_file_atomic "$mem/todo.md" <"$todo_tmp"
-		write_file_atomic "$mem/summary.md" <"$summary_tmp"
+		lib_file_write_atomic "$mem/team.md" <"$team_tmp"
+		lib_file_write_atomic "$mem/todo.md" <"$todo_tmp"
+		lib_file_write_atomic "$mem/summary.md" <"$summary_tmp"
 		echo "Updated derived views:"
 		echo "- $mem/team.md"
 		echo "- $mem/todo.md"
@@ -1571,14 +1852,17 @@ cmd_project() {
 	rm -f "$team_tmp" "$todo_tmp" "$summary_tmp"
 }
 
+# Name: main
+# What: Routes CLI subcommands to cmd_* handlers.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 main() {
 	local cmd
 	cmd="${1:-help}"
 	shift || true
 
 	case "$cmd" in
-	help | -h | --help) usage ;;
-	memory-dir) memory_dir ;;
+	help | -h | --help) cmd_help "$@" ;;
+	memory-dir) cmd_memory_dir "$@" ;;
 	memory-git-repo) cmd_memory_git_repo "$@" ;;
 	migrate-phases-to-inline) cmd_migrate_phases_to_inline "$@" ;;
 	register-intent) cmd_register_intent "$@" ;;
@@ -1591,13 +1875,14 @@ main() {
 	project) cmd_project "$@" ;;
 	discover-locks) cmd_discover_locks "$@" ;;
 	list-by-owner) cmd_list_by_owner "$@" ;;
-	list-by-session) cmd_list_by_owner "$@" ;;
+	list-by-session) cmd_list_by_session "$@" ;;
 	list-unclaimed-stories) cmd_list_unclaimed_stories "$@" ;;
 	tree) cmd_tree "$@" ;;
+	next) cmd_next "$@" ;;
 	*)
 		echo "ERROR: unknown subcommand: $cmd" >&2
 		echo
-		usage
+		lib_cli_usage
 		exit 1
 		;;
 	esac
