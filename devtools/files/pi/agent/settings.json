@@ -13,7 +13,6 @@
     "npm:@davidorex/pi-behavior-monitors",
     "npm:@davidorex/pi-project",
     "npm:@davidorex/pi-workflows",
-    "npm:pi-read-many",
     "npm:pi-token-burden",
     "npm:claude-agent-sdk-pi"
   ],
