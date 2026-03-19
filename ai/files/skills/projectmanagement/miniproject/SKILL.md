@@ -11,7 +11,7 @@ This is a simplified and concise project management AI memory framework.
 > **CRITICAL** Before doing any work:
 > 1. Find the memory store using the helper script:
 >    ```bash
->    MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh)
+>    MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/miniproject.sh memory-dir)
 >    ```
 >    - This handles git worktrees automatically (finds `.memory/` in the main worktree)
 >    - Use `--create` flag to create the directory if it doesn't exist
@@ -39,10 +39,10 @@ Use the helper script to find the memory directory:
 
 ```bash
 # Find the .memory directory (fails if not found)
-MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh)
+MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/miniproject.sh memory-dir)
 
 # Find or create the .memory directory
-MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh --create)
+MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/miniproject.sh memory-dir)
 ```
 
 The script handles:
@@ -135,7 +135,7 @@ Because `.memory/` might be gitignored, the usual `List` and `Glob` tools will n
 
 ```bash
 # First, get the memory directory path
-MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh)
+MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/miniproject.sh memory-dir)
 
 # Search for terms (--no-ignore bypasses .gitignore)
 rg --no-ignore "<search-term>" "$MEMORY_DIR/"
@@ -378,7 +378,7 @@ When the user asks for a `miniproject <action>`, correlate `<action>` (or `<ACTI
 
 - [core] locate or create the memory directory:
   ```bash
-  MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/get-memory-dir.sh --create)
+  MEMORY_DIR=$(/home/zenobius/.pi/agent/skills/projectmanagement/miniproject/scripts/miniproject.sh memory-dir)
   ```
 - [core] ensure the following files exist in `$MEMORY_DIR/`:
   - `todo.md` (for tracking tasks)
