@@ -3,10 +3,10 @@
   "private": true,
   "packageManager": "bun@1.3.4",
   "dependencies": {
-    "@zenobius/pi-extension-config": "0.0.2",
-    "@mariozechner/pi-coding-agent": "*",
     "@mariozechner/pi-ai": "*",
+    "@mariozechner/pi-coding-agent": "*",
     "@mariozechner/pi-tui": "*",
+    "@zenobius/pi-extension-config": "0.0.2",
     "dedent": "^1.7.0",
     "typebox": "^1.1.3"
   },
