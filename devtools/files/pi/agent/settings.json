@@ -4,15 +4,13 @@
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
+    "npm:@zenobius/pi-worktrees",
     "npm:@marckrenn/pi-sub-bar",
     "npm:@marckrenn/pi-sub-core",
     "npm:pi-subdir-context",
     "npm:pi-mermaid",
     "npm:pi-subagents",
     "npm:pi-hashline-readmap",
-    "npm:@davidorex/pi-behavior-monitors",
-    "npm:@davidorex/pi-project",
-    "npm:@davidorex/pi-workflows",
     "npm:pi-token-burden",
     "npm:claude-agent-sdk-pi"
   ],
