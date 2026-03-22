@@ -1,5 +1,5 @@
 ---
-name: jira
+name: reading-and-writing-jira-tickets
 description: Use when needing to search Jira issues, retrieve issue details, get pull request links, or manage issue workflows programmatically - provides complete workflows and examples for common Jira automation tasks using the atlassian CLI
 ---
 
