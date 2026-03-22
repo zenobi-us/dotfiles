@@ -5,7 +5,6 @@ experimental = true
 [tools]
 "cargo:p1rallels/codemapper" = "latest"
 "cargo:zellij" = "0.43.1"
-"github:zenobi-us/opennotes" = "latest"
 "go:github.com/Crosse/font-install" = "latest"
 "npm:@mariozechner/pi-coding-agent" = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
@@ -18,11 +17,11 @@ experimental = true
 "pipx:open-webui" = "latest"
 "pipx:vllm" = "latest"
 "pipx:vllm-playground" = "latest"
-"ubi:Feel-ix-343/markdown-oxide" = "latest"
-"ubi:asciinema/asciinema" = "3.0.1"
-"ubi:mfontanini/presenterm" = "0.15.1"
-"ubi:scottmckendry/pokemon-go-colorscripts" = "0.3.1"
-"ubi:terrastruct/d2" = "latest"
+"github:Feel-ix-343/markdown-oxide" = "latest"
+"github:asciinema/asciinema" = "3.0.1"
+"github:mfontanini/presenterm" = "0.15.1"
+"github:scottmckendry/pokemon-go-colorscripts" = "0.3.1"
+"github:terrastruct/d2" = "latest"
 act="0.2.31"
 actionlint="1.6.20"
 age="1.1.1"
@@ -81,5 +80,3 @@ bitwarden = "latest"
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
 
-[shell_alias]
-pi="pi --no-skills"
