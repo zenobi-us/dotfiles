@@ -1,0 +1,58 @@
+[
+	{
+		"id": "rephrase-question",
+		"description": "Rephrasing the user's question into a different question and answering that instead",
+		"severity": "warning",
+		"category": "substitution",
+		"source": "bundled"
+	},
+	{
+		"id": "assume-intent",
+		"description": "Assuming intent the user did not express",
+		"severity": "warning",
+		"category": "projection",
+		"source": "bundled"
+	},
+	{
+		"id": "add-questions",
+		"description": "Adding questions the user did not ask",
+		"severity": "warning",
+		"category": "augmentation",
+		"source": "bundled"
+	},
+	{
+		"id": "reinterpret-words",
+		"description": "Interpreting the user's words as meaning something other than what they said",
+		"severity": "warning",
+		"category": "substitution",
+		"source": "bundled"
+	},
+	{
+		"id": "attribute-position",
+		"description": "Attributing a position or preference the user did not state",
+		"severity": "warning",
+		"category": "projection",
+		"source": "bundled"
+	},
+	{
+		"id": "ask-permission",
+		"description": "Asking permission to do something instead of doing it when the user asked a direct question",
+		"severity": "warning",
+		"category": "deflection",
+		"source": "bundled"
+	},
+	{
+		"id": "qualify-yesno",
+		"description": "Answering a yes/no question with qualifiers instead of yes or no",
+		"severity": "info",
+		"category": "deflection",
+		"source": "bundled"
+	},
+	{
+		"id": "counter-question",
+		"description": "Deflecting with a counter-question when the user expected an answer",
+		"severity": "warning",
+		"category": "deflection",
+		"source": "bundled"
+	}
+]

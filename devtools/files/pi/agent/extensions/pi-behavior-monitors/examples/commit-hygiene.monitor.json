@@ -1,0 +1,33 @@
+{
+	"name": "commit-hygiene",
+	"description": "Detects uncommitted file changes at end of agent turn and steers to commit following project conventions",
+	"event": "agent_end",
+	"when": "has_file_writes",
+	"scope": { "target": "main" },
+	"classify": {
+		"model": "claude-sonnet-4-20250514",
+		"context": ["tool_calls", "assistant_text"],
+		"excludes": [],
+		"promptTemplate": "commit-hygiene/classify.md",
+		"prompt": "An agent made file changes (write/edit tool calls detected). Review the tool call history below.\n\n{tool_calls}\n\nKnown commit anti-patterns:\n{patterns}\n\n{instructions}\n\nDetermine:\n1. Did the agent run a git commit? Look for [call bash] with git commit in the arguments.\n2. If committed, was the commit message detailed and specific? Generic messages like 'update files', 'fix bug', 'changes' are violations.\n3. If committed, does the message avoid prohibited language (see patterns)?\n\nReply CLEAN if changes were committed with a proper message.\nReply FLAG:<description> if a known pattern was matched (no commit, generic message, prohibited language).\nReply NEW:<pattern>|<description> if an issue not covered by patterns was detected."
+	},
+	"patterns": {
+		"path": "commit-hygiene.patterns.json",
+		"learn": true
+	},
+	"instructions": {
+		"path": "commit-hygiene.instructions.json"
+	},
+	"actions": {
+		"on_flag": {
+			"steer": "Commit your changes now. Use a detailed, specific commit message that describes what changed and why — aims and intentions, not certainties."
+		},
+		"on_new": {
+			"steer": "Commit your changes now. Use a detailed, specific commit message that describes what changed and why — aims and intentions, not certainties.",
+			"learn_pattern": true
+		},
+		"on_clean": null
+	},
+	"ceiling": 3,
+	"escalate": "ask"
+}

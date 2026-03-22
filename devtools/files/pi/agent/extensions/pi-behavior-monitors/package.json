@@ -1,0 +1,55 @@
+{
+	"name": "@davidorex/pi-behavior-monitors",
+	"version": "0.3.0",
+	"description": "Behavior monitors for pi that watch agent activity and steer corrections",
+	"type": "module",
+	"keywords": [
+		"pi-package"
+	],
+	"license": "MIT",
+	"author": "David Ryan",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/davidorex/pi-project-workflows.git",
+		"directory": "packages/pi-behavior-monitors"
+	},
+	"homepage": "https://github.com/davidorex/pi-project-workflows/tree/main/packages/pi-behavior-monitors",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist/",
+		"examples",
+		"schemas",
+		"skills",
+		"README.md",
+		"CHANGELOG.md"
+	],
+	"pi": {
+		"extensions": [
+			"./dist/index.js"
+		],
+		"skills": [
+			"./skills"
+		]
+	},
+	"scripts": {
+		"clean": "rm -rf dist",
+		"build": "tsc -p tsconfig.build.json",
+		"prepublishOnly": "npm run clean && npm run build",
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"dependencies": {
+		"nunjucks": "^3.2.4"
+	},
+	"peerDependencies": {
+		"@mariozechner/pi-ai": "*",
+		"@mariozechner/pi-coding-agent": "*",
+		"@mariozechner/pi-tui": "*",
+		"@sinclair/typebox": "*"
+	},
+	"devDependencies": {
+		"@types/nunjucks": "^3.2.6",
+		"vitest": "^3.2.4"
+	}
+}

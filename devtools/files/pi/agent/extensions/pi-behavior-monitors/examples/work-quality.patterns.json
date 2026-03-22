@@ -1,0 +1,79 @@
+[
+	{
+		"id": "trial-and-error",
+		"description": "Trial-and-error instead of reading code to understand it first",
+		"severity": "warning",
+		"category": "methodology",
+		"source": "bundled"
+	},
+	{
+		"id": "no-verify",
+		"description": "Making changes without verifying them (no check/test run after edits)",
+		"severity": "error",
+		"category": "verification",
+		"source": "bundled"
+	},
+	{
+		"id": "symptom-fix",
+		"description": "Fixing symptoms instead of root causes",
+		"severity": "warning",
+		"category": "methodology",
+		"source": "bundled"
+	},
+	{
+		"id": "excessive-changes",
+		"description": "Changing more files than necessary to solve the problem",
+		"severity": "warning",
+		"category": "scope",
+		"source": "bundled"
+	},
+	{
+		"id": "copy-paste",
+		"description": "Copy-pasting code instead of extracting shared logic",
+		"severity": "warning",
+		"category": "quality",
+		"source": "bundled"
+	},
+	{
+		"id": "debug-artifacts",
+		"description": "Leaving debug artifacts (console.log, commented-out code, temporary files)",
+		"severity": "warning",
+		"category": "cleanup",
+		"source": "bundled"
+	},
+	{
+		"id": "double-edit",
+		"description": "Making an edit then immediately making another edit to the same file to fix the first edit",
+		"severity": "info",
+		"category": "methodology",
+		"source": "bundled"
+	},
+	{
+		"id": "edit-without-read",
+		"description": "Not reading a file before editing it",
+		"severity": "error",
+		"category": "methodology",
+		"source": "bundled"
+	},
+	{
+		"id": "insanity-retry",
+		"description": "Running a command, getting an error, and running the same command again expecting different results",
+		"severity": "warning",
+		"category": "methodology",
+		"source": "bundled"
+	},
+	{
+		"id": "wrong-problem",
+		"description": "Solving a different problem than the one that was asked about",
+		"severity": "error",
+		"category": "scope",
+		"source": "bundled"
+	},
+	{
+		"id": "no-plan",
+		"description": "Did not create a plan before starting work",
+		"severity": "info",
+		"category": "methodology",
+		"source": "bundled"
+	}
+]

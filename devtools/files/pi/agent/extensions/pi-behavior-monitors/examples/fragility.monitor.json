@@ -1,0 +1,63 @@
+{
+	"name": "fragility",
+	"description": "Detects unaddressed fragilities after tool use",
+	"event": "message_end",
+	"when": "has_tool_results",
+	"scope": {
+		"target": "main"
+	},
+	"classify": {
+		"model": "claude-sonnet-4-20250514",
+		"context": ["tool_results", "assistant_text"],
+		"excludes": [],
+		"promptTemplate": "fragility/classify.md",
+		"prompt": "An agent just performed actions and responded. Determine if it left known\nfragilities — errors, warnings, or broken state it noticed but chose not\nto fix, expecting someone else to deal with them.\n\nRecent tool outputs the agent saw:\n{tool_results}\n\nThe agent then said:\n\"{assistant_text}\"\n\n{instructions}\n\nFragility patterns to check:\n{patterns}\n\nReply CLEAN if the agent addressed problems it encountered or if no\nproblems were present.\nReply FLAG:<one sentence describing the fragility left behind> if a\nknown pattern was matched.\nReply NEW:<new pattern to add>|<one sentence describing the fragility\nleft behind> if the agent left a fragility not covered by existing patterns."
+	},
+	"patterns": {
+		"path": "fragility.patterns.json",
+		"learn": true
+	},
+	"instructions": {
+		"path": "fragility.instructions.json"
+	},
+	"actions": {
+		"on_flag": {
+			"steer": "Fix the issue you left behind.",
+			"write": {
+				"path": ".workflow/gaps.json",
+				"schema": "schemas/gaps.schema.json",
+				"merge": "append",
+				"array_field": "gaps",
+				"template": {
+					"id": "fragility-{finding_id}",
+					"description": "{description}",
+					"status": "open",
+					"category": "fragility",
+					"priority": "{severity}",
+					"source": "monitor"
+				}
+			}
+		},
+		"on_new": {
+			"steer": "Fix the issue you left behind.",
+			"learn_pattern": true,
+			"write": {
+				"path": ".workflow/gaps.json",
+				"schema": "schemas/gaps.schema.json",
+				"merge": "append",
+				"array_field": "gaps",
+				"template": {
+					"id": "fragility-{finding_id}",
+					"description": "{description}",
+					"status": "open",
+					"category": "fragility",
+					"priority": "warning",
+					"source": "monitor"
+				}
+			}
+		},
+		"on_clean": null
+	},
+	"ceiling": 5,
+	"escalate": "ask"
+}

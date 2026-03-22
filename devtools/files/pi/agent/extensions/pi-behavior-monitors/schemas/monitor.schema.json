@@ -1,0 +1,160 @@
+{
+	"type": "object",
+	"required": ["name", "event", "classify", "patterns", "actions"],
+	"properties": {
+		"name": { "type": "string" },
+		"description": { "type": "string" },
+		"event": {
+			"type": "string",
+			"enum": ["message_end", "turn_end", "agent_end", "command"]
+		},
+		"when": {
+			"type": "string",
+			"description": "Activation condition: 'always', 'has_tool_results', 'has_file_writes', 'has_bash', 'every(N)', 'tool(name)'",
+			"default": "always"
+		},
+		"scope": {
+			"type": "object",
+			"properties": {
+				"target": {
+					"type": "string",
+					"enum": ["main", "subagent", "all", "workflow"],
+					"default": "main"
+				},
+				"filter": {
+					"type": "object",
+					"properties": {
+						"agent_type": {
+							"type": "array",
+							"items": { "type": "string" },
+							"description": "Only monitor agents with these names/types"
+						},
+						"step_name": {
+							"type": "string",
+							"description": "Glob pattern for workflow step names"
+						},
+						"workflow": {
+							"type": "string",
+							"description": "Glob pattern for workflow names"
+						}
+					}
+				}
+			}
+		},
+		"classify": {
+			"type": "object",
+			"required": ["model", "context"],
+			"properties": {
+				"model": {
+					"type": "string",
+					"description": "Model ID or provider/model for classification calls"
+				},
+				"context": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Context collector names. Built-in: tool_results, assistant_text, user_text, tool_calls, custom_messages, project_vision, project_conventions, git_status. Unknown collectors produce empty string."
+				},
+				"excludes": {
+					"type": "array",
+					"items": { "type": "string" },
+					"description": "Skip activation if these monitors already steered this turn"
+				},
+				"promptTemplate": {
+					"type": "string",
+					"description": "Path to .md Nunjucks template file for classification prompt. Searched in .pi/monitors/, ~/.pi/agent/monitors/, then package examples/. Takes precedence over inline prompt."
+				},
+				"prompt": {
+					"type": "string",
+					"description": "Inline classification prompt with {placeholder} substitution. Used when promptTemplate is absent."
+				}
+			}
+		},
+		"patterns": {
+			"type": "object",
+			"required": ["path"],
+			"properties": {
+				"path": {
+					"type": "string",
+					"description": "Path to patterns JSON file (relative to monitor dir)"
+				},
+				"learn": {
+					"type": "boolean",
+					"default": true,
+					"description": "Auto-learn new patterns from 'new' verdicts"
+				}
+			}
+		},
+		"instructions": {
+			"type": "object",
+			"properties": {
+				"path": {
+					"type": "string",
+					"description": "Path to instructions JSON file (relative to monitor dir)"
+				}
+			}
+		},
+		"actions": {
+			"type": "object",
+			"properties": {
+				"on_flag": { "$ref": "#/$defs/action" },
+				"on_new": { "$ref": "#/$defs/action" },
+				"on_clean": { "$ref": "#/$defs/action" }
+			}
+		},
+		"ceiling": {
+			"type": "integer",
+			"default": 5,
+			"description": "Max consecutive steers before escalation"
+		},
+		"escalate": {
+			"type": "string",
+			"enum": ["ask", "dismiss"],
+			"default": "ask"
+		}
+	},
+	"$defs": {
+		"action": {
+			"type": "object",
+			"properties": {
+				"steer": {
+					"type": ["string", "null"],
+					"description": "Message to inject into conversation. Null = no steering."
+				},
+				"write": {
+					"type": "object",
+					"required": ["path", "merge"],
+					"properties": {
+						"path": {
+							"type": "string",
+							"description": "JSON file to write findings to"
+						},
+						"schema": {
+							"type": "string",
+							"description": "Schema the target file conforms to"
+						},
+						"merge": {
+							"type": "string",
+							"enum": ["append", "upsert"],
+							"description": "append = add to array, upsert = update by id"
+						},
+						"array_field": {
+							"type": "string",
+							"description": "Which field in the target JSON holds the array (e.g. 'gaps', 'findings')",
+							"default": "items"
+						},
+						"template": {
+							"type": "object",
+							"description": "Template for mapping classification output to target schema. Use {description}, {severity}, {finding_id}, {monitor_name}, {timestamp} placeholders."
+						}
+					}
+				},
+				"learn_pattern": {
+					"type": "boolean",
+					"description": "If true, add new pattern to patterns file on 'new' verdict"
+				}
+			}
+		}
+	}
+}
