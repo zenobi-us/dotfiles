@@ -1,0 +1,63 @@
+name: self-implement
+description: Read project blocks, decompose into plans, implement, verify
+version: "1"
+
+input:
+  type: object
+  required: [phaseSpec, architecture, conventions]
+  properties:
+    phaseSpec:
+      type: object
+      description: Phase spec JSON block
+    architecture:
+      type: object
+      description: Architecture JSON block
+    conventions:
+      type: object
+      description: Conventions JSON block
+
+steps:
+  plan:
+    agent: plan-decomposer
+    input:
+      phase: "${{ input.phaseSpec }}"
+      architecture: "${{ input.architecture }}"
+      conventions: "${{ input.conventions }}"
+    output:
+      format: json
+      schema: ../schemas/plan-breakdown.schema.json
+
+  implement:
+    forEach: "${{ steps.plan.output.plans }}"
+    as: plan
+    agent: spec-implementer
+    input:
+      plan: "${{ plan }}"
+      architecture: "${{ input.architecture }}"
+      conventions: "${{ input.conventions }}"
+    output:
+      format: json
+      schema: ../schemas/execution-results.schema.json
+
+  verify:
+    agent: verifier
+    input:
+      criteria: "${{ input.phaseSpec.success_criteria }}"
+      step_output: "${{ steps.implement.output }}"
+    output:
+      format: json
+      schema: ../schemas/verifier-output.schema.json
+
+  check:
+    gate:
+      check: "echo '${{ steps.verify.output.status }}' | grep -q passed"
+      onFail: fail
+
+completion:
+  message: |
+    Self-implementation workflow completed.
+    Verification status: ${{ steps.verify.output.status }}
+    Score: ${{ steps.verify.output.score }}
+  include:
+    - steps.verify.output.gaps
+    - steps.verify.output.criteria_results

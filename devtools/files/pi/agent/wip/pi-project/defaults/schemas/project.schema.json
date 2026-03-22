@@ -1,0 +1,50 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Project Identity",
+	"type": "object",
+	"required": ["name", "description", "core_value"],
+	"properties": {
+		"name": { "type": "string" },
+		"description": { "type": "string" },
+		"vision": { "type": "string", "description": "What this project aims to achieve and why it matters" },
+		"core_value": { "type": "string", "description": "One-sentence value proposition" },
+		"target_users": {
+			"type": "array",
+			"items": { "type": "string" }
+		},
+		"constraints": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["type", "description"],
+				"properties": {
+					"type": { "type": "string" },
+					"description": { "type": "string" }
+				}
+			}
+		},
+		"scope_boundaries": {
+			"type": "object",
+			"required": ["in", "out"],
+			"properties": {
+				"in": { "type": "array", "items": { "type": "string" } },
+				"out": { "type": "array", "items": { "type": "string" } }
+			}
+		},
+		"goals": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "description"],
+				"properties": {
+					"id": { "type": "string" },
+					"description": { "type": "string" },
+					"success_criteria": { "type": "array", "items": { "type": "string" } }
+				}
+			}
+		},
+		"status": { "type": "string", "enum": ["inception", "planning", "development", "maintenance", "complete"] },
+		"repository": { "type": "string" },
+		"stack": { "type": "array", "items": { "type": "string" } }
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"name": "@davidorex/pi-workflows",
+	"version": "0.3.0",
+	"description": "Workflow orchestration extension for Pi",
+	"license": "MIT",
+	"author": "David Ryan",
+	"type": "module",
+	"keywords": [
+		"pi-package"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/davidorex/pi-project-workflows.git",
+		"directory": "packages/pi-workflows"
+	},
+	"homepage": "https://github.com/davidorex/pi-project-workflows/tree/main/packages/pi-workflows",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"pi": {
+		"extensions": [
+			"./dist/index.js"
+		],
+		"skills": [
+			"./skills"
+		]
+	},
+	"files": [
+		"dist/",
+		"skills/",
+		"agents/",
+		"schemas/",
+		"workflows/",
+		"templates/",
+		"*.md"
+	],
+	"scripts": {
+		"clean": "rm -rf dist",
+		"build": "tsc -p tsconfig.build.json",
+		"prepublishOnly": "npm run clean && npm run build",
+		"test": "tsx --test src/*.test.ts"
+	},
+	"dependencies": {
+		"nunjucks": "^3.2.4",
+		"yaml": "^2.7.1"
+	},
+	"peerDependencies": {
+		"@mariozechner/pi-coding-agent": "*",
+		"@mariozechner/pi-tui": "*",
+		"@sinclair/typebox": "*",
+		"@davidorex/pi-project": "^0.3.0"
+	},
+	"devDependencies": {
+		"@types/nunjucks": "^3.2.6"
+	}
+}

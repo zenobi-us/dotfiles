@@ -1,0 +1,59 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Phase",
+	"type": "object",
+	"required": ["number", "name", "intent", "status"],
+	"properties": {
+		"number": { "type": "integer" },
+		"name": { "type": "string" },
+		"intent": { "type": "string" },
+		"goal": { "type": "string", "description": "What is true after this phase that was not true before" },
+		"status": { "type": "string", "enum": ["planned", "in-progress", "completed"] },
+		"success_criteria": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["criterion", "verify_method"],
+				"properties": {
+					"criterion": { "type": "string" },
+					"verify_method": { "type": "string", "enum": ["command", "inspect", "test"] }
+				}
+			}
+		},
+		"specs": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["number", "name", "intent", "status"],
+				"properties": {
+					"number": { "type": "integer" },
+					"name": { "type": "string" },
+					"intent": { "type": "string" },
+					"status": { "type": "string", "enum": ["planned", "in-progress", "completed"] },
+					"acceptance_criteria": {
+						"type": "array",
+						"items": { "type": "string" }
+					}
+				}
+			}
+		},
+		"dependencies": {
+			"type": "array",
+			"items": { "type": ["string", "integer"] }
+		},
+		"inputs": {
+			"type": "array",
+			"items": { "type": "string" },
+			"description": "What this phase needs from prior phases or external sources"
+		},
+		"outputs": {
+			"type": "array",
+			"items": { "type": "string" },
+			"description": "What this phase produces for later phases or users"
+		},
+		"artifacts_produced": {
+			"type": "array",
+			"items": { "type": "string" }
+		}
+	}
+}

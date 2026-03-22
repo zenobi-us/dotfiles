@@ -1,0 +1,12 @@
+name: spec-implementer
+role: action
+description: Implements a single plan from a phase decomposition
+
+tools: [read, write, edit, bash, grep, find]
+
+output:
+  format: json
+  schema: schemas/execution-results.schema.json
+
+prompt:
+  task: spec-implementer/task.md

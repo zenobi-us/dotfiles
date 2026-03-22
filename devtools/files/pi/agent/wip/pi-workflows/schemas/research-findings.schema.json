@@ -1,0 +1,44 @@
+{
+	"type": "object",
+	"required": ["questions", "patterns", "recommendations"],
+	"properties": {
+		"questions": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["question", "answer", "confidence"],
+				"properties": {
+					"question": { "type": "string" },
+					"answer": { "type": "string" },
+					"sources": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "Where the answer came from — docs, other projects, known patterns"
+					},
+					"confidence": {
+						"type": "string",
+						"enum": ["high", "medium", "low"],
+						"description": "How confident the answer is — high = well-known pattern, low = best guess"
+					}
+				}
+			}
+		},
+		"patterns": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["name", "description", "applicability"],
+				"properties": {
+					"name": { "type": "string" },
+					"description": { "type": "string" },
+					"applicability": { "type": "string", "description": "How this pattern applies to the specific gap" }
+				}
+			}
+		},
+		"recommendations": {
+			"type": "array",
+			"items": { "type": "string" },
+			"description": "Concrete recommendations based on research findings"
+		}
+	}
+}

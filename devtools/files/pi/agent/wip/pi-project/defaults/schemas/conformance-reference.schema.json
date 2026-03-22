@@ -1,0 +1,86 @@
+{
+	"type": "object",
+	"required": ["name", "scope", "principles"],
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "Name of this conformance reference"
+		},
+		"scope": {
+			"type": "object",
+			"required": ["type"],
+			"properties": {
+				"type": {
+					"type": "string",
+					"description": "What kind of project: pi-extension, swift-app, python-lib, rust-crate, etc."
+				},
+				"framework": {
+					"type": "string",
+					"description": "Framework if applicable: swiftui, django, actix, etc."
+				},
+				"sources": {
+					"type": "array",
+					"items": { "type": "string" },
+					"description": "Where these principles come from: docs, style guides, SDK, examples"
+				}
+			}
+		},
+		"principles": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "name", "rules"],
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Stable identifier: P1, P2, type-safety, error-handling, etc."
+					},
+					"name": { "type": "string" },
+					"description": { "type": "string" },
+					"rules": {
+						"type": "array",
+						"description": "Concrete, checkable rules under this principle",
+						"items": {
+							"type": "object",
+							"required": ["id", "rule"],
+							"properties": {
+								"id": {
+									"type": "string",
+									"description": "Stable rule ID: P1.1, P1.2, etc."
+								},
+								"rule": {
+									"type": "string",
+									"description": "The rule statement"
+								},
+								"check_method": {
+									"type": "string",
+									"enum": ["grep", "command", "ast", "inspect"],
+									"description": "How to verify compliance: grep (pattern match), command (run tool), ast (parse tree), inspect (LLM judgment)"
+								},
+								"check_pattern": {
+									"type": "string",
+									"description": "Grep pattern or command to run for automated checking"
+								},
+								"examples": {
+									"type": "array",
+									"items": { "type": "string" },
+									"description": "Correct usage examples (code snippets or references)"
+								},
+								"anti_patterns": {
+									"type": "array",
+									"items": { "type": "string" },
+									"description": "What violates this rule"
+								},
+								"severity": {
+									"type": "string",
+									"enum": ["error", "warning", "info"],
+									"description": "Default severity when this rule is violated"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

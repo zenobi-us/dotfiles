@@ -1,0 +1,16 @@
+name: phase-author
+role: reasoning
+description: Converts unstructured intent from conversation into a structured phase spec with numbered specs, acceptance criteria, and success criteria
+
+tools:
+  - read
+  - bash
+  - grep
+  - find
+
+output:
+  format: json
+  schema: ../../.workflow/schemas/phase.schema.json
+
+prompt:
+  task: templates/phase-author/task.md

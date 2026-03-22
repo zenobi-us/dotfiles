@@ -1,0 +1,27 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Design Rationale",
+	"type": "object",
+	"required": ["rationales"],
+	"properties": {
+		"rationales": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "title", "narrative"],
+				"properties": {
+					"id": { "type": "string" },
+					"title": { "type": "string" },
+					"narrative": { "type": "string" },
+					"related_decisions": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "IDs linking to decisions.json"
+					},
+					"phase": { "type": ["string", "integer"] },
+					"context": { "type": "string", "description": "What prompted this rationale" }
+				}
+			}
+		}
+	}
+}

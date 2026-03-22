@@ -1,0 +1,58 @@
+name: create-handoff
+description: Capture current work context for session resume
+version: "1"
+
+steps:
+  load-state:
+    command: |
+      node -e "
+        const fs = require('fs');
+        const path = require('path');
+        const projectDir = '.project';
+        const state = {};
+
+        // Read project identity
+        try { state.project = JSON.parse(fs.readFileSync(path.join(projectDir, 'project.json'), 'utf-8')); } catch {}
+
+        // Read phase files
+        try {
+          const phasesDir = path.join(projectDir, 'phases');
+          state.phases = fs.readdirSync(phasesDir).filter(f => f.endsWith('.json')).map(f => {
+            try { return JSON.parse(fs.readFileSync(path.join(phasesDir, f), 'utf-8')); } catch { return null; }
+          }).filter(Boolean);
+        } catch { state.phases = []; }
+
+        // Read block summaries
+        try {
+          state.gaps = JSON.parse(fs.readFileSync(path.join(projectDir, 'gaps.json'), 'utf-8'));
+        } catch {}
+        try {
+          state.decisions = JSON.parse(fs.readFileSync(path.join(projectDir, 'decisions.json'), 'utf-8'));
+        } catch {}
+        try {
+          state.tasks = JSON.parse(fs.readFileSync(path.join(projectDir, 'tasks.json'), 'utf-8'));
+        } catch {}
+
+        // Recent git activity
+        try {
+          const { execSync } = require('child_process');
+          state.recent_commits = execSync('git log --oneline -10', { encoding: 'utf-8' }).trim().split('\n');
+          state.changed_files = execSync('git diff --name-only HEAD~3 2>/dev/null || echo \"\"', { encoding: 'utf-8' }).trim().split('\n').filter(Boolean);
+        } catch { state.recent_commits = []; state.changed_files = []; }
+
+        console.log(JSON.stringify(state));
+      "
+    output:
+      format: json
+
+  capture:
+    agent: handoff-writer
+    input:
+      project_state: ${{ steps.load-state.output }}
+      path: "."
+    output:
+      format: json
+
+completion:
+  message: |
+    Handoff captured to .project/handoff.json. Resume context is available for the next session.

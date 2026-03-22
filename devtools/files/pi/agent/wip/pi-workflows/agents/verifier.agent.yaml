@@ -1,0 +1,12 @@
+name: verifier
+role: quality
+description: Verifies step outputs against declared intent and success criteria
+
+tools: [read, bash, grep, find]
+
+output:
+  format: json
+  schema: schemas/verifier-output.schema.json
+
+prompt:
+  task: verifier/task.md

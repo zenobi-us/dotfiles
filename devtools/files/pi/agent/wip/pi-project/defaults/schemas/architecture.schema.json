@@ -1,0 +1,39 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Architecture",
+	"type": "object",
+	"required": ["modules"],
+	"properties": {
+		"overview": { "type": "string", "description": "High-level description of the system architecture" },
+		"modules": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["name", "file", "responsibility"],
+				"properties": {
+					"name": { "type": "string" },
+					"file": { "type": "string" },
+					"responsibility": { "type": "string" },
+					"dependencies": { "type": "array", "items": { "type": "string" } },
+					"lines": { "type": "integer" }
+				}
+			}
+		},
+		"patterns": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["name", "description"],
+				"properties": {
+					"name": { "type": "string" },
+					"description": { "type": "string" },
+					"used_in": { "type": "array", "items": { "type": "string" } }
+				}
+			}
+		},
+		"boundaries": {
+			"type": "array",
+			"items": { "type": "string" }
+		}
+	}
+}

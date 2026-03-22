@@ -1,0 +1,50 @@
+{
+	"type": "object",
+	"required": ["specs", "ordering_rationale"],
+	"properties": {
+		"specs": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["name", "description", "files", "acceptance_criteria", "parallel_safe", "estimated_complexity"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "Kebab-case identifier for this spec"
+					},
+					"description": {
+						"type": "string",
+						"description": "What this spec implements — the unit of work"
+					},
+					"files": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "File paths this spec will modify"
+					},
+					"depends_on": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "Names of other specs that must complete before this one"
+					},
+					"acceptance_criteria": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "How to verify this spec is correctly implemented"
+					},
+					"parallel_safe": {
+						"type": "boolean",
+						"description": "Whether this spec can run in parallel with other parallel_safe specs that have no file overlap"
+					},
+					"estimated_complexity": {
+						"type": "string",
+						"enum": ["low", "medium", "high"]
+					}
+				}
+			}
+		},
+		"ordering_rationale": {
+			"type": "string",
+			"description": "Why this ordering and parallelization structure was chosen"
+		}
+	}
+}

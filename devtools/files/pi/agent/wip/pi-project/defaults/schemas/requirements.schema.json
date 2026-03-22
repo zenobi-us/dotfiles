@@ -1,0 +1,38 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Requirements",
+	"type": "object",
+	"required": ["requirements"],
+	"properties": {
+		"requirements": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "description", "type", "status", "priority"],
+				"properties": {
+					"id": { "type": "string" },
+					"description": { "type": "string" },
+					"type": { "type": "string", "enum": ["functional", "non-functional", "constraint", "integration"] },
+					"status": { "type": "string", "enum": ["proposed", "accepted", "deferred", "implemented", "verified"] },
+					"priority": { "type": "string", "enum": ["must", "should", "could", "wont"] },
+					"acceptance_criteria": { "type": "array", "items": { "type": "string" } },
+					"source": {
+						"type": "string",
+						"enum": ["human", "agent", "analysis"],
+						"description": "How this requirement was created"
+					},
+					"traces_to": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "Phase or task IDs that implement this"
+					},
+					"depends_on": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "IDs of other requirements this depends on"
+					}
+				}
+			}
+		}
+	}
+}

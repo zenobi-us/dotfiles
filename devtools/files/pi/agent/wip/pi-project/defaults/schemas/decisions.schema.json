@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Decisions",
+	"type": "object",
+	"required": ["decisions"],
+	"properties": {
+		"decisions": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "decision", "rationale", "status"],
+				"properties": {
+					"id": { "type": "string" },
+					"decision": { "type": "string" },
+					"rationale": { "type": "string" },
+					"phase": { "type": ["string", "integer"] },
+					"status": { "type": "string", "enum": ["decided", "tentative", "revisit", "superseded"] },
+					"context": { "type": "string", "description": "What prompted this decision" }
+				}
+			}
+		}
+	}
+}

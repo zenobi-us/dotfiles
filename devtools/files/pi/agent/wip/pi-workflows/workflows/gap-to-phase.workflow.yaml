@@ -1,0 +1,98 @@
+name: gap-to-phase
+description: Create a phase spec from a gap — loads gap context, enriches with project state, dispatches phase-author
+version: "1"
+
+input:
+  type: object
+  required: [gap_id]
+  properties:
+    gap_id:
+      type: string
+      description: ID of the gap to convert into a phase
+      source:
+        file: .project/gaps.json
+        array: gaps
+        filter: { status: open }
+        label: id
+        value: id
+
+steps:
+  load-gap:
+    command: |
+      node --experimental-strip-types -e "
+        import { readBlock } from './src/block-api.ts';
+        const gapId = process.argv[1];
+        const data = readBlock('.', 'gaps');
+        const gap = data.gaps.find(g => g.id === gapId);
+        if (!gap) { console.error('Gap not found: ' + gapId); process.exit(1); }
+        if (gap.status === 'resolved') { console.error('Gap already resolved: ' + gapId); process.exit(1); }
+        console.log(JSON.stringify({ gap }));
+      " '${{ input.gap_id }}'
+    output:
+      format: json
+
+  load-context:
+    command: |
+      node --experimental-strip-types -e "
+        import fs from 'fs';
+        import path from 'path';
+        import { readBlock } from './src/block-api.ts';
+
+        const phases = [];
+        const phasesDir = '.project/phases';
+        if (fs.existsSync(phasesDir)) {
+          for (const f of fs.readdirSync(phasesDir).filter(f => f.endsWith('.json')).sort()) {
+            phases.push(JSON.parse(fs.readFileSync(path.join(phasesDir, f), 'utf8')));
+          }
+        }
+
+        let architecture = {};
+        try { architecture = readBlock('.', 'architecture'); } catch {}
+        let conventions = {};
+        try { conventions = readBlock('.', 'conventions'); } catch {}
+        let gaps = { gaps: [] };
+        try { gaps = readBlock('.', 'gaps'); } catch {}
+        let inventory = {};
+        try { inventory = readBlock('.', 'inventory'); } catch {}
+
+        console.log(JSON.stringify({ phases, architecture, conventions, gaps: gaps.gaps.filter(g => g.status === 'open'), inventory }));
+      "
+    output:
+      format: json
+
+  author:
+    agent: phase-author
+    input:
+      intent: "Implement gap ${{ steps.load-gap.output.gap.id }}: ${{ steps.load-gap.output.gap.description }}"
+      gap: "${{ steps.load-gap.output.gap }}"
+      phases: "${{ steps.load-context.output.phases }}"
+      architecture: "${{ steps.load-context.output.architecture }}"
+      conventions: "${{ steps.load-context.output.conventions }}"
+      gaps: "${{ steps.load-context.output.gaps }}"
+      inventory: "${{ steps.load-context.output.inventory }}"
+    output:
+      format: json
+      schema: ../schemas/phase.schema.json
+
+  write-phase:
+    command: |
+      node --experimental-strip-types -e "
+        import fs from 'fs';
+        const phase = JSON.parse(process.argv[1]);
+        const num = String(phase.number).padStart(2, '0');
+        const name = phase.name.toLowerCase().replace(/\s+/g, '-');
+        const filename = '.project/phases/' + num + '-' + name + '.json';
+        fs.mkdirSync('.project/phases', { recursive: true });
+        fs.writeFileSync(filename, JSON.stringify(phase, null, 2));
+        console.log(JSON.stringify({ path: filename, phase_number: phase.number, spec_count: (phase.specs || []).length }));
+      " '${{ steps.author.output | json }}'
+    output:
+      format: json
+
+completion:
+  message: |
+    Phase ${{ steps.write-phase.output.phase_number }} created: ${{ steps.write-phase.output.path }}
+    Specs: ${{ steps.write-phase.output.spec_count }}
+    From gap: ${{ input.gap_id }}
+  include:
+    - steps.author.output

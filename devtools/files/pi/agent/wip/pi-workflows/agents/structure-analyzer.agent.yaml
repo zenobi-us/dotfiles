@@ -1,0 +1,21 @@
+name: structure-analyzer
+role: sensor
+description: Analyze code structure and return typed findings
+tools: [read, bash, ls]
+
+input:
+  type: object
+  required: [exploration, path]
+  properties:
+    exploration:
+      description: Prior exploration output (typed JSON)
+    path:
+      type: string
+
+output:
+  format: json
+  schema: schemas/structure-analysis.schema.json
+
+prompt:
+  system: analyzers/structure.md
+  task: analyzers/structure-task.md

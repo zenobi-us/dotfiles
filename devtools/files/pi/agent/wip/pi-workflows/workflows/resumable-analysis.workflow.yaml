@@ -1,0 +1,42 @@
+name: resumable-analysis
+description: A multi-step analysis workflow that demonstrates checkpoint/resume
+version: "1"
+
+input:
+  type: object
+  required: [path]
+  properties:
+    path:
+      type: string
+      description: Path to analyze
+
+steps:
+  explore:
+    agent: code-explorer
+    input:
+      path: ${{ input.path }}
+
+  analyze-structure:
+    agent: structure-analyzer
+    input:
+      exploration: ${{ steps.explore.textOutput }}
+      path: ${{ input.path }}
+
+  analyze-quality:
+    agent: quality-analyzer
+    input:
+      exploration: ${{ steps.explore.textOutput }}
+      path: ${{ input.path }}
+
+  synthesize:
+    agent: synthesizer
+    input:
+      structure: ${{ steps.analyze-structure.textOutput }}
+      quality: ${{ steps.analyze-quality.textOutput }}
+
+completion:
+  message: |
+    Present this analysis report. Note whether this was a fresh run
+    or resumed from a prior checkpoint.
+  include:
+    - steps.synthesize.textOutput

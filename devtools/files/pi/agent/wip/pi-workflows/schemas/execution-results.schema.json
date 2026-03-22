@@ -1,0 +1,50 @@
+{
+	"type": "object",
+	"required": ["status", "tasks"],
+	"properties": {
+		"status": {
+			"type": "string",
+			"enum": ["complete", "partial", "failed"]
+		},
+		"tasks": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["name", "status"],
+				"properties": {
+					"name": { "type": "string" },
+					"status": { "type": "string", "enum": ["done", "partial", "skipped", "failed"] },
+					"files_modified": { "type": "array", "items": { "type": "string" } },
+					"commit_hash": { "type": "string" },
+					"notes": { "type": "string" }
+				}
+			}
+		},
+		"decisions": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "decision", "rationale", "status"],
+				"properties": {
+					"id": { "type": "string" },
+					"decision": { "type": "string" },
+					"rationale": { "type": "string" },
+					"status": { "type": "string", "enum": ["decided", "deferred", "reversed"] }
+				}
+			}
+		},
+		"issues": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["severity", "description"],
+				"properties": {
+					"severity": { "type": "string", "enum": ["info", "warning", "error", "critical"] },
+					"description": { "type": "string" }
+				}
+			}
+		},
+		"test_count": { "type": "integer" },
+		"commit_hash": { "type": "string" }
+	}
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"step-transform.d.ts","sourceRoot":"","sources":["../src/step-transform.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAKH,OAAO,KAAK,EAAE,UAAU,EAAE,aAAa,EAAE,MAAM,YAAY,CAAC;AAE5D;;;GAGG;AACH,wBAAgB,gBAAgB,CAC/B,SAAS,EAAE,aAAa,EACxB,QAAQ,EAAE,MAAM,EAChB,KAAK,EAAE,MAAM,CAAC,MAAM,EAAE,OAAO,CAAC,EAC9B,MAAM,CAAC,EAAE,MAAM,EACf,UAAU,CAAC,EAAE,MAAM,GACjB,UAAU,CA2BZ"}

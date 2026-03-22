@@ -1,0 +1,74 @@
+name: analyze-existing-project
+description: Analyze an existing codebase, infer architecture and conventions, identify gaps, create planning state
+version: "1"
+
+input:
+  type: object
+  properties:
+    path:
+      type: string
+      description: Path to analyze (defaults to current directory)
+
+steps:
+  explore:
+    agent: code-explorer
+    input:
+      path: ${{ input.path }}
+
+  # These two analyze concurrently — no mutual dependencies, both depend only on explore
+  analyze-structure:
+    agent: structure-analyzer
+    input:
+      exploration: ${{ steps.explore.textOutput }}
+      path: ${{ input.path }}
+    output:
+      format: json
+
+  analyze-patterns:
+    agent: pattern-analyzer
+    input:
+      exploration: ${{ steps.explore.textOutput }}
+      path: ${{ input.path }}
+    output:
+      format: json
+
+  infer-architecture:
+    agent: architecture-inferrer
+    input:
+      analysis:
+        structure: ${{ steps.analyze-structure.output }}
+        patterns: ${{ steps.analyze-patterns.output }}
+      path: ${{ input.path }}
+    output:
+      format: json
+
+  infer-project:
+    agent: project-inferrer
+    input:
+      analysis:
+        structure: ${{ steps.analyze-structure.output }}
+        patterns: ${{ steps.analyze-patterns.output }}
+      path: ${{ input.path }}
+    output:
+      format: json
+
+  identify-gaps:
+    agent: gap-identifier
+    input:
+      analysis:
+        structure: ${{ steps.analyze-structure.output }}
+        patterns: ${{ steps.analyze-patterns.output }}
+      architecture: ${{ steps.infer-architecture.output }}
+      path: ${{ input.path }}
+    output:
+      format: json
+
+completion:
+  template: |
+    Existing project analyzed.
+
+    **Project:** ${{ steps.infer-project.output.name }} — ${{ steps.infer-project.output.core_value }}
+    **Architecture:** ${{ steps.infer-architecture.output.modules | length }} modules, ${{ steps.infer-architecture.output.patterns | length }} patterns
+    **Gaps:** ${{ steps.identify-gaps.output.gaps | length }} identified
+
+    Use `/project status` to see the full state. Use `/project validate` to check cross-block references.

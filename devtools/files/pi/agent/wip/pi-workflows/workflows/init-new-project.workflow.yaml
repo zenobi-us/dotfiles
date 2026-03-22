@@ -1,0 +1,55 @@
+name: init-new-project
+description: Bootstrap a new project from vision through requirements to initial plan
+version: "1"
+
+input:
+  type: object
+  required: [vision]
+  properties:
+    vision:
+      type: string
+      description: What the project aims to achieve, who it's for, and why it matters
+
+steps:
+  define-identity:
+    agent: project-definer
+    input:
+      vision: ${{ input.vision }}
+    output:
+      format: json
+
+  gather-requirements:
+    agent: requirements-gatherer
+    input:
+      project: ${{ steps.define-identity.output }}
+      vision: ${{ input.vision }}
+    output:
+      format: json
+
+  design-architecture:
+    agent: architecture-designer
+    input:
+      project: ${{ steps.define-identity.output }}
+      requirements: ${{ steps.gather-requirements.output }}
+    output:
+      format: json
+
+  create-plan:
+    agent: plan-creator
+    input:
+      project: ${{ steps.define-identity.output }}
+      requirements: ${{ steps.gather-requirements.output }}
+      architecture: ${{ steps.design-architecture.output }}
+    output:
+      format: json
+
+completion:
+  template: |
+    Project initialized from vision.
+
+    **Identity:** ${{ steps.define-identity.output.name }} — ${{ steps.define-identity.output.core_value }}
+    **Requirements:** ${{ steps.gather-requirements.output.requirements | length }} captured
+    **Architecture:** ${{ steps.design-architecture.output.modules | length }} modules
+    **Plan:** phases and tasks created
+
+    Use `/project status` to see the full state. Use `/project validate` to check cross-block references.

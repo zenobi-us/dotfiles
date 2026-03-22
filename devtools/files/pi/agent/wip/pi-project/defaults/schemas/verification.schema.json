@@ -1,0 +1,36 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Verification",
+	"type": "object",
+	"required": ["verifications"],
+	"properties": {
+		"verifications": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "target", "target_type", "status", "method"],
+				"properties": {
+					"id": { "type": "string" },
+					"target": { "type": "string", "description": "ID of what was verified (task, phase, requirement)" },
+					"target_type": { "type": "string", "enum": ["task", "phase", "requirement"] },
+					"status": { "type": "string", "enum": ["passed", "failed", "partial", "skipped"] },
+					"method": { "type": "string", "enum": ["command", "inspect", "test"] },
+					"evidence": { "type": "string", "description": "What was checked and what was found" },
+					"timestamp": { "type": "string" },
+					"criteria_results": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"required": ["criterion", "status"],
+							"properties": {
+								"criterion": { "type": "string" },
+								"status": { "type": "string", "enum": ["passed", "failed", "skipped"] },
+								"evidence": { "type": "string" }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

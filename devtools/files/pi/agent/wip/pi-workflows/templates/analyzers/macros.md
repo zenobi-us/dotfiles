@@ -1,0 +1,1 @@
+{% macro cite_instruction(level) %}{% if level == "files" %}Be specific — cite files and directories.{% elif level == "lines" %}Be specific — cite files and line ranges.{% else %}Be specific — cite examples.{% endif %}{% endmacro %}

@@ -1,0 +1,22 @@
+{
+	"type": "object",
+	"required": ["plans"],
+	"properties": {
+		"plans": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["name", "intent", "tasks", "acceptance_criteria"],
+				"properties": {
+					"name": { "type": "string" },
+					"intent": { "type": "string" },
+					"tasks": { "type": "array", "items": { "type": "string" } },
+					"files_to_change": { "type": "array", "items": { "type": "string" } },
+					"acceptance_criteria": { "type": "array", "items": { "type": "string" } },
+					"context_needed": { "type": "array", "items": { "type": "string" } },
+					"parallel_group": { "type": "string" }
+				}
+			}
+		}
+	}
+}
