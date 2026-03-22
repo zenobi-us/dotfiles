@@ -1,0 +1,56 @@
+{
+	"name": "@davidorex/pi-project",
+	"version": "0.3.0",
+	"description": "Schema-driven project state management for Pi",
+	"license": "MIT",
+	"author": "David Ryan",
+	"type": "module",
+	"keywords": [
+		"pi-package"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/davidorex/pi-project-workflows.git",
+		"directory": "packages/pi-project"
+	},
+	"homepage": "https://github.com/davidorex/pi-project-workflows/tree/main/packages/pi-project",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./src/*.js": {
+			"types": "./dist/*.d.ts",
+			"default": "./dist/*.js"
+		}
+	},
+	"pi": {
+		"extensions": [
+			"./dist/index.js"
+		],
+		"skills": [
+			"./skills"
+		]
+	},
+	"files": [
+		"dist/",
+		"skills/",
+		"defaults/",
+		"*.md"
+	],
+	"scripts": {
+		"clean": "rm -rf dist",
+		"build": "tsc -p tsconfig.build.json",
+		"prepublishOnly": "npm run clean && npm run build",
+		"test": "tsx --test src/*.test.ts"
+	},
+	"dependencies": {
+		"ajv": "^8.17.1"
+	},
+	"peerDependencies": {
+		"@mariozechner/pi-coding-agent": "*",
+		"@sinclair/typebox": "*"
+	}
+}

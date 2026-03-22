@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Gaps",
+	"type": "object",
+	"required": ["gaps"],
+	"properties": {
+		"gaps": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "description", "status", "category", "priority"],
+				"properties": {
+					"id": { "type": "string" },
+					"description": { "type": "string" },
+					"status": { "type": "string", "enum": ["open", "resolved", "deferred"] },
+					"category": {
+						"type": "string",
+						"enum": ["missing", "incomplete", "defect", "improvement", "technical-debt", "question"]
+					},
+					"priority": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+					"phase": { "type": ["string", "integer"], "description": "Phase this gap was discovered in or relates to" },
+					"resolved_by": { "type": "string", "description": "Task, phase, or decision ID that resolved this" },
+					"source": {
+						"type": "string",
+						"enum": ["human", "agent", "monitor", "workflow"],
+						"description": "How this gap was created"
+					},
+					"details": { "type": "string" }
+				}
+			}
+		}
+	}
+}

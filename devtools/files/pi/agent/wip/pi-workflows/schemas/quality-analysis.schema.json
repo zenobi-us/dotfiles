@@ -1,0 +1,35 @@
+{
+	"type": "object",
+	"required": ["concerns", "testCoverage", "maintainability"],
+	"properties": {
+		"concerns": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["description", "severity"],
+				"properties": {
+					"description": { "type": "string" },
+					"severity": { "type": "string", "enum": ["info", "warning", "critical"] },
+					"file": { "type": "string" },
+					"suggestion": { "type": "string" }
+				}
+			}
+		},
+		"testCoverage": {
+			"type": "object",
+			"required": ["tested", "untested"],
+			"properties": {
+				"tested": { "type": "array", "items": { "type": "string" } },
+				"untested": { "type": "array", "items": { "type": "string" } }
+			}
+		},
+		"maintainability": {
+			"type": "object",
+			"required": ["score", "factors"],
+			"properties": {
+				"score": { "type": "string", "enum": ["high", "medium", "low"] },
+				"factors": { "type": "array", "items": { "type": "string" } }
+			}
+		}
+	}
+}

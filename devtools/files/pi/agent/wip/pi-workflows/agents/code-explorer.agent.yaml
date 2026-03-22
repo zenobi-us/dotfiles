@@ -1,0 +1,11 @@
+name: code-explorer
+role: sensor
+description: Explore a codebase path and produce a structural overview
+tools: [read, bash, ls]
+
+output:
+  format: json
+
+prompt:
+  system: explorer/system.md
+  task: explorer/task.md

@@ -1,0 +1,18 @@
+name: audit-fixer
+role: action
+description: Fixes a cluster of related audit findings in source code
+
+tools:
+  - read
+  - write
+  - edit
+  - bash
+  - grep
+  - find
+
+output:
+  format: json
+  schema: schemas/execution-results.schema.json
+
+prompt:
+  task: audit-fixer/task.md

@@ -32,15 +32,15 @@ set -euo pipefail
 # - cmd_help: args -> usage text -> stdout
 # - cmd_memory_dir: git context -> .memory path resolution -> stdout/fs(create)
 # - cmd_memory_git_repo: directory -> git root detect -> stdout
-# - cmd_migrate_phases_to_inline: phase files -> inline phase markdown -> epic/story file updates
-# - cmd_register_intent: args+identity -> .memory/.locks/intents/*.md
+# - cmd_migrate_phases_to_inline: phase files -> inline phase markdown -> epic/story updates -> commit(.memory/*)
+# - cmd_register_intent: args+identity -> .memory/.locks/intents/*.md -> commit(.memory/*)
 # - cmd_discover_intents: intents/*.md -> frontmatter parse -> stdout table
-# - cmd_lock_task: task file + identity -> claim frontmatter upserts -> derived views refresh
-# - cmd_heartbeat: claimed task + identity -> lease extension upserts -> derived views refresh
-# - cmd_takeover_task: claimed task + force+reason -> previous owner snapshot + claim overwrite
-# - cmd_release_task: claimed task + owner -> release state upserts -> derived views refresh
-# - cmd_stale_sweep: task files -> stale detection -> optional claim_state=stale upsert
-# - cmd_project: all epic/story/task files -> team.md/todo.md/summary.md
+# - cmd_lock_task: task file + identity -> claim upserts -> derived refresh -> commit(.memory/*)
+# - cmd_heartbeat: claimed task + identity -> lease upserts -> derived refresh -> commit(.memory/*)
+# - cmd_takeover_task: claimed task + force+reason -> takeover metadata + claim overwrite -> commit(.memory/*)
+# - cmd_release_task: claimed task + owner -> release upserts -> derived refresh -> commit(.memory/*)
+# - cmd_stale_sweep: task files -> stale detection -> optional stale upsert -> commit(.memory/*)
+# - cmd_project: all epic/story/task files -> team.md/todo.md/summary.md -> commit(.memory/*)
 # - cmd_discover_locks: task files -> active/stale lock snapshot -> stdout
 # - cmd_list_by_owner: task files -> owner/workspace grouping -> stdout
 # - cmd_list_by_session: alias wrapper -> cmd_list_by_owner
@@ -128,6 +128,7 @@ Environment defaults (optional):
 Notes:
   - Source of truth is task frontmatter in .memory/task-*.md.
   - team.md / todo.md / summary.md should be treated as derived views.
+  - Mutating commands auto-commit changed .memory paths only; non-.memory paths are filtered out.
 EOF
 }
 
@@ -498,7 +499,7 @@ lib_file_write_atomic() {
 # Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
 lib_views_refresh_derived() {
 	if [[ "${MP_AUTO_PROJECT:-1}" == "1" ]]; then
-		cmd_project >/dev/null
+		MP_PROJECT_NO_COMMIT=1 cmd_project >/dev/null
 	fi
 }
 
@@ -509,6 +510,48 @@ lib_views_refresh_on_query() {
 	if [[ "${MP_AUTO_PROJECT_QUERY:-0}" == "1" ]]; then
 		cmd_project >/dev/null 2>&1 || true
 	fi
+}
+
+# Name: lib_git_commit_memory_changes
+# What: Stages and commits only .memory file changes from a caller-provided list.
+# Why: Enforce mutation-side auto-commit policy while preventing accidental non-.memory commits.
+lib_git_commit_memory_changes() {
+	local description mem
+	description="$1"
+	shift || true
+
+	if [[ -z "$description" ]]; then
+		echo "ERROR: commit description is required" >&2
+		return 1
+	fi
+	if ! git rev-parse --git-dir >/dev/null 2>&1; then
+		echo "ERROR: git repository is required for memory auto-commit" >&2
+		return 1
+	fi
+
+	mem="$(lib_memory_dir)"
+	local filtered
+	filtered=()
+	local path
+	for path in "$@"; do
+		[[ -n "$path" ]] || continue
+		if [[ "$path" == "$mem" || "$path" == "$mem/"* ]]; then
+			filtered+=("$path")
+		else
+			echo "WARN: skipping non-.memory path in auto-commit: $path" >&2
+		fi
+	done
+
+	if [[ "${#filtered[@]}" -eq 0 ]]; then
+		return 0
+	fi
+
+	git add -A -- "${filtered[@]}"
+	if git diff --cached --quiet -- "${filtered[@]}"; then
+		return 0
+	fi
+
+	git commit -m "chore(memory): ${description}" -- "${filtered[@]}" >/dev/null
 }
 
 
@@ -696,7 +739,9 @@ cmd_migrate_phases_to_inline() {
 	echo
 
 	local phases_found phases_migrated stories_updated epics_updated errors
+	local changed_files
 	phases_found=0
+	changed_files=()
 	phases_migrated=0
 	stories_updated=0
 	epics_updated=0
@@ -732,6 +777,7 @@ cmd_migrate_phases_to_inline() {
 			else
 				lib_migration_append_phase_to_epic "$epic_file" "$phase_content"
 				rm "$phase_file"
+				changed_files+=("$epic_file" "$phase_file")
 			fi
 			phases_migrated=$((phases_migrated + 1))
 			epics_updated=$((epics_updated + 1))
@@ -751,6 +797,7 @@ cmd_migrate_phases_to_inline() {
 			else
 				if lib_migration_remove_phase_id_from_story "$story_file"; then
 					stories_updated=$((stories_updated + 1))
+					changed_files+=("$story_file")
 				fi
 			fi
 		done <<<"$story_files"
@@ -770,6 +817,7 @@ cmd_migrate_phases_to_inline() {
 				else
 					if lib_migration_remove_phase_id_from_story "$story_file"; then
 						stories_updated=$((stories_updated + 1))
+						changed_files+=("$story_file")
 					fi
 				fi
 			done <<<"$archived_stories"
@@ -788,6 +836,8 @@ cmd_migrate_phases_to_inline() {
 		echo
 		echo "This was a dry run. No changes were made."
 	else
+		lib_views_refresh_derived
+		lib_git_commit_memory_changes "migrate phases to inline" 			"${changed_files[@]}" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
 		echo
 		echo "Migration complete."
 	fi
@@ -877,6 +927,7 @@ status: active
 Owner $owner intends to lock story $story_id.
 EOF
 
+	lib_git_commit_memory_changes "register intent for story ${story_id}" "$file"
 	echo "Registered intent: $file"
 }
 
@@ -1014,6 +1065,7 @@ cmd_lock_task() {
 	story_id="$(lib_frontmatter_get "$file" "story_id")"
 
 	lib_views_refresh_derived
+	lib_git_commit_memory_changes "lock task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
 
 	echo "Locked task: $(basename "$file")"
 	echo "  owner_id: $owner"
@@ -1108,6 +1160,7 @@ cmd_heartbeat() {
 	lib_frontmatter_upsert "$file" "lease_expires_at" "$expires"
 
 	lib_views_refresh_derived
+	lib_git_commit_memory_changes "heartbeat task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
 
 	echo "Heartbeat updated: $(basename "$file")"
 	echo "  owner_id: $owner"
@@ -1219,6 +1272,7 @@ cmd_takeover_task() {
 	lib_frontmatter_upsert "$file" "lock_reason" "takeover: $reason"
 
 	lib_views_refresh_derived
+	lib_git_commit_memory_changes "takeover task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
 
 	echo "Took over task: $(basename "$file")"
 	echo "  from_owner: ${prev_owner:-none}"
@@ -1250,7 +1304,9 @@ cmd_stale_sweep() {
 	mem="$(lib_memory_dir)"
 
 	local found
+	local changed_files
 	found=0
+	changed_files=()
 	shopt -s nullglob
 	for f in "$mem"/task-*.md; do
 		if lib_claim_is_stale_file "$f"; then
@@ -1261,6 +1317,7 @@ cmd_stale_sweep() {
 			echo "STALE  $(basename "$f")  owner=${owner:-none} lease_expires_at=${lease:-none}"
 			if [[ "$apply" == "true" ]]; then
 				lib_frontmatter_upsert "$f" "claim_state" "stale"
+				changed_files+=("$f")
 			fi
 		fi
 	done
@@ -1270,6 +1327,7 @@ cmd_stale_sweep() {
 		echo "No stale locks."
 	elif [[ "$apply" == "true" ]]; then
 		lib_views_refresh_derived
+		lib_git_commit_memory_changes "mark stale task locks" 			"${changed_files[@]}" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
 		echo "Applied stale state to stale claims."
 	fi
 }
@@ -1335,6 +1393,7 @@ cmd_release_task() {
 	lib_frontmatter_upsert "$file" "last_heartbeat_at" "$(lib_time_now_iso)"
 
 	lib_views_refresh_derived
+	lib_git_commit_memory_changes "release task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
 
 	echo "Released task: $(basename "$file")"
 }
@@ -1843,6 +1902,9 @@ cmd_project() {
 		lib_file_write_atomic "$mem/team.md" <"$team_tmp"
 		lib_file_write_atomic "$mem/todo.md" <"$todo_tmp"
 		lib_file_write_atomic "$mem/summary.md" <"$summary_tmp"
+		if [[ "${MP_PROJECT_NO_COMMIT:-0}" != "1" ]]; then
+			lib_git_commit_memory_changes "refresh derived project views" 				"$mem/team.md" "$mem/todo.md" "$mem/summary.md"
+		fi
 		echo "Updated derived views:"
 		echo "- $mem/team.md"
 		echo "- $mem/todo.md"

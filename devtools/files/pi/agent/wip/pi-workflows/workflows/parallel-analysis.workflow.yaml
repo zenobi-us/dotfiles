@@ -1,0 +1,62 @@
+name: parallel-analysis
+description: Analyze a codebase from multiple angles concurrently, then synthesize findings
+version: "1"
+
+input:
+  type: object
+  required: [path]
+  properties:
+    path:
+      type: string
+      description: Path to analyze (file or directory)
+    focus:
+      type: string
+      description: Optional area of focus for the analysis
+
+steps:
+  explore:
+    agent: code-explorer
+    input:
+      path: ${{ input.path }}
+
+  # These three steps have no mutual dependencies — they all depend only on
+  # 'explore'. The DAG will place them in the same execution layer and run
+  # them concurrently.
+  analyze-structure:
+    agent: structure-analyzer
+    input:
+      exploration: ${{ steps.explore.textOutput }}
+      path: ${{ input.path }}
+
+  analyze-quality:
+    agent: quality-analyzer
+    input:
+      exploration: ${{ steps.explore.textOutput }}
+      path: ${{ input.path }}
+
+  analyze-patterns:
+    agent: pattern-analyzer
+    input:
+      exploration: ${{ steps.explore.textOutput }}
+      path: ${{ input.path }}
+
+  # This step depends on all three analyzers — it must wait for all to complete
+  synthesize:
+    agent: synthesizer
+    input:
+      structure: ${{ steps.analyze-structure.textOutput }}
+      quality: ${{ steps.analyze-quality.textOutput }}
+      patterns: ${{ steps.analyze-patterns.textOutput }}
+      focus: ${{ input.focus }}
+
+artifacts:
+  report:
+    path: latest-analysis.md
+    from: steps.synthesize.textOutput
+
+completion:
+  message: |
+    Present this code analysis report to the user. Highlight the most important
+    findings and any areas that need immediate attention.
+  include:
+    - steps.synthesize.textOutput

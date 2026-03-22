@@ -1,0 +1,51 @@
+name: plan-from-requirements
+description: Decompose accepted requirements into phases and tasks
+version: "1"
+
+steps:
+  load-context:
+    command: |
+      node -e "
+        const fs = require('fs');
+        const path = require('path');
+        const projectDir = '.project';
+        const context = {};
+
+        // Read requirements
+        try { context.requirements = JSON.parse(fs.readFileSync(path.join(projectDir, 'requirements.json'), 'utf-8')); } catch { context.requirements = { requirements: [] }; }
+
+        // Read architecture
+        try { context.architecture = JSON.parse(fs.readFileSync(path.join(projectDir, 'architecture.json'), 'utf-8')); } catch { context.architecture = null; }
+
+        // Read project identity
+        try { context.project = JSON.parse(fs.readFileSync(path.join(projectDir, 'project.json'), 'utf-8')); } catch { context.project = null; }
+
+        // Read existing phases
+        try {
+          const phasesDir = path.join(projectDir, 'phases');
+          context.existing_phases = fs.readdirSync(phasesDir).filter(f => f.endsWith('.json')).map(f => {
+            try { return JSON.parse(fs.readFileSync(path.join(phasesDir, f), 'utf-8')); } catch { return null; }
+          }).filter(Boolean);
+        } catch { context.existing_phases = []; }
+
+        console.log(JSON.stringify(context));
+      "
+    output:
+      format: json
+
+  create-plan:
+    agent: plan-creator
+    input:
+      project: ${{ steps.load-context.output.project }}
+      requirements: ${{ steps.load-context.output.requirements }}
+      architecture: ${{ steps.load-context.output.architecture }}
+      existing_phases: ${{ steps.load-context.output.existing_phases }}
+    output:
+      format: json
+
+completion:
+  template: |
+    Plan created from requirements.
+
+    Use `/project status` to see the phase and task breakdown.
+    Use `/project validate` to check cross-block references.

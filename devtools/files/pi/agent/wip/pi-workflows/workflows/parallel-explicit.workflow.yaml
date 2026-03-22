@@ -1,0 +1,42 @@
+name: parallel-explicit
+description: Demo of explicit parallel step syntax
+version: "1"
+
+input:
+  type: object
+  required: [path]
+  properties:
+    path:
+      type: string
+
+steps:
+  explore:
+    agent: code-explorer
+    input:
+      path: ${{ input.path }}
+
+  analyzers:
+    parallel:
+      structure:
+        agent: structure-analyzer
+        input:
+          exploration: ${{ steps.explore.textOutput }}
+          path: ${{ input.path }}
+      quality:
+        agent: quality-analyzer
+        input:
+          exploration: ${{ steps.explore.textOutput }}
+          path: ${{ input.path }}
+
+  summary:
+    transform:
+      mapping:
+        structure: ${{ steps.analyzers.output.structure }}
+        quality: ${{ steps.analyzers.output.quality }}
+
+completion:
+  template: |
+    Analysis complete.
+
+    Structure: ${{ steps.analyzers.output.structure | json }}
+    Quality: ${{ steps.analyzers.output.quality | json }}

@@ -1,0 +1,63 @@
+name: typed-analysis
+description: >
+  Codebase analysis with typed JSON data flow. Analyzers produce
+  schema-bound JSON. Synthesizer renders from typed data via templates.
+  Proves: YAML spec → template composition → typed output → template task → agent.
+version: "1"
+
+input:
+  type: object
+  required: [path]
+  properties:
+    path:
+      type: string
+      description: Path to analyze
+
+steps:
+  explore:
+    agent: code-explorer
+    input:
+      path: ${{ input.path }}
+
+  analyze-structure:
+    agent: structure-analyzer
+    input:
+      exploration: ${{ steps.explore.output }}
+      path: ${{ input.path }}
+    output:
+      format: json
+      schema: ../schemas/structure-analysis.schema.json
+
+  analyze-quality:
+    agent: quality-analyzer
+    input:
+      exploration: ${{ steps.explore.output }}
+      path: ${{ input.path }}
+    output:
+      format: json
+      schema: ../schemas/quality-analysis.schema.json
+
+  analyze-patterns:
+    agent: pattern-analyzer
+    input:
+      exploration: ${{ steps.explore.output }}
+      path: ${{ input.path }}
+    output:
+      format: json
+      schema: ../schemas/pattern-analysis.schema.json
+
+  synthesize:
+    agent: synthesizer
+    input:
+      structure: ${{ steps.analyze-structure.output }}
+      quality: ${{ steps.analyze-quality.output }}
+      patterns: ${{ steps.analyze-patterns.output }}
+    output:
+      format: json
+      schema: ../schemas/synthesis.schema.json
+
+completion:
+  message: |
+    Present the analysis findings to the user.
+  include:
+    - steps.synthesize.output

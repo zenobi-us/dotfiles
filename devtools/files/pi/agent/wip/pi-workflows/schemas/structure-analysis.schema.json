@@ -1,0 +1,42 @@
+{
+	"type": "object",
+	"required": ["architecture", "modules", "dependencies"],
+	"properties": {
+		"architecture": {
+			"type": "object",
+			"required": ["patterns", "organization"],
+			"properties": {
+				"patterns": { "type": "array", "items": { "type": "string" } },
+				"organization": { "type": "string" }
+			}
+		},
+		"modules": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["name", "responsibility", "files"],
+				"properties": {
+					"name": { "type": "string" },
+					"responsibility": { "type": "string" },
+					"files": { "type": "array", "items": { "type": "string" } }
+				}
+			}
+		},
+		"dependencies": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["from", "to", "type"],
+				"properties": {
+					"from": { "type": "string" },
+					"to": { "type": "string" },
+					"type": { "type": "string", "enum": ["import", "runtime", "config"] }
+				}
+			}
+		},
+		"entryPoints": {
+			"type": "array",
+			"items": { "type": "string" }
+		}
+	}
+}

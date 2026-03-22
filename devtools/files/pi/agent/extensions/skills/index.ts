@@ -438,18 +438,24 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     });
   });
 
-  // Inject skills into system prompt (only if no skills block already exists)
+  // Inject skills into system prompt, replacing any existing <available_skills> block
   pi.on("before_agent_start", async (event) => {
     if (!skillPromptBlock) {
       return;
     }
 
-    if (event.systemPrompt.includes("<available_skills>")) {
-      return;
-    }
-
+    const cleanedPrompt = event.systemPrompt
+      .replace(/\n?<available_skills>[\s\S]*?<\/available_skills>\n?/g, "\n")
+      .replace(/\n{3,}/g, "\n\n");
+    const promptWithSkillsBeforeDate = cleanedPrompt.replace(
+      /(\nCurrent date:\s*\d{4}-\d{2}-\d{2})/,
+      `${skillPromptBlock}$1`,
+    );
     return {
-      systemPrompt: event.systemPrompt + skillPromptBlock,
+      systemPrompt:
+        promptWithSkillsBeforeDate === cleanedPrompt
+          ? cleanedPrompt + skillPromptBlock
+          : promptWithSkillsBeforeDate,
     };
   });
 }

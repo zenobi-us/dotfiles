@@ -1,0 +1,45 @@
+{
+	"type": "object",
+	"required": ["affected_files", "constraints", "risks", "needs_research", "complexity", "summary"],
+	"properties": {
+		"affected_files": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["path", "role", "current_behavior"],
+				"properties": {
+					"path": { "type": "string" },
+					"role": { "type": "string", "description": "What this file does in the context of the gap" },
+					"current_behavior": { "type": "string", "description": "What it currently does that's relevant to the gap" }
+				}
+			}
+		},
+		"constraints": {
+			"type": "array",
+			"items": { "type": "string" },
+			"description": "Technical constraints, invariants, or requirements that the solution must respect"
+		},
+		"risks": {
+			"type": "array",
+			"items": { "type": "string" },
+			"description": "What could go wrong, edge cases, regression risks"
+		},
+		"needs_research": {
+			"type": "boolean",
+			"description": "Whether the gap requires external knowledge beyond what codebase analysis and LLM training data provide"
+		},
+		"research_questions": {
+			"type": "array",
+			"items": { "type": "string" },
+			"description": "Specific questions for the research step to answer. Only meaningful if needs_research is true."
+		},
+		"complexity": {
+			"type": "string",
+			"enum": ["low", "medium", "high"]
+		},
+		"summary": {
+			"type": "string",
+			"description": "Concise summary of the investigation — what's the problem, what's involved, what's the path forward"
+		}
+	}
+}

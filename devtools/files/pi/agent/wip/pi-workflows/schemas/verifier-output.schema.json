@@ -1,0 +1,96 @@
+{
+	"type": "object",
+	"required": ["status", "score", "truths", "criteria_results"],
+	"properties": {
+		"status": {
+			"type": "string",
+			"enum": ["passed", "gaps_found", "human_needed"]
+		},
+		"score": {
+			"type": "string",
+			"description": "Score in N/M format (e.g. '5/7')"
+		},
+		"truths": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["truth", "status", "evidence"],
+				"properties": {
+					"truth": { "type": "string" },
+					"status": { "type": "string", "enum": ["verified", "failed", "uncertain"] },
+					"evidence": { "type": "string" }
+				}
+			}
+		},
+		"artifacts": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["path", "status"],
+				"properties": {
+					"path": { "type": "string" },
+					"status": { "type": "string", "enum": ["verified", "stub", "missing"] },
+					"exists": { "type": "boolean" },
+					"substantive": { "type": "boolean" },
+					"wired": { "type": "boolean" },
+					"details": { "type": "string" }
+				}
+			}
+		},
+		"requirements_coverage": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["requirement_id", "status"],
+				"properties": {
+					"requirement_id": { "type": "string" },
+					"status": { "type": "string", "enum": ["satisfied", "blocked", "needs_human"] },
+					"supporting_truths": {
+						"type": "array",
+						"items": { "type": "string" }
+					}
+				}
+			}
+		},
+		"criteria_results": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["criterion", "verify_method", "status"],
+				"properties": {
+					"criterion": { "type": "string" },
+					"verify_method": { "type": "string", "enum": ["command", "grep", "inspect"] },
+					"status": { "type": "string", "enum": ["passed", "failed", "uncertain", "skipped"] },
+					"expected_outcome": { "type": "string" },
+					"actual_outcome": { "type": "string" },
+					"evidence": { "type": "string" }
+				}
+			}
+		},
+		"human_verification": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["name", "test", "expected", "why_human"],
+				"properties": {
+					"name": { "type": "string" },
+					"test": { "type": "string" },
+					"expected": { "type": "string" },
+					"why_human": { "type": "string" }
+				}
+			}
+		},
+		"gaps": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["truth", "status", "reason"],
+				"properties": {
+					"truth": { "type": "string" },
+					"status": { "type": "string" },
+					"reason": { "type": "string" }
+				}
+			}
+		}
+	}
+}

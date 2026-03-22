@@ -1,0 +1,86 @@
+[
+	{
+		"id": "dismiss-preexisting",
+		"description": "Dismissing errors as pre-existing instead of fixing them",
+		"severity": "warning",
+		"category": "avoidance",
+		"source": "bundled"
+	},
+	{
+		"id": "empty-catch",
+		"description": "Silently catching exceptions with empty catch blocks",
+		"severity": "error",
+		"category": "error-handling",
+		"source": "bundled"
+	},
+	{
+		"id": "todo-instead-of-fix",
+		"description": "Adding TODO or FIXME comments instead of solving the problem now",
+		"severity": "warning",
+		"category": "deferral",
+		"source": "bundled"
+	},
+	{
+		"id": "happy-path-only",
+		"description": "Writing code that assumes happy path without handling failure cases",
+		"severity": "warning",
+		"category": "error-handling",
+		"source": "bundled"
+	},
+	{
+		"id": "not-my-change",
+		"description": "Leaving known broken state because 'it's not my change'",
+		"severity": "warning",
+		"category": "avoidance",
+		"source": "bundled"
+	},
+	{
+		"id": "early-return-on-unexpected",
+		"description": "Returning early or skipping logic when an unexpected condition is hit instead of handling it",
+		"severity": "warning",
+		"category": "error-handling",
+		"source": "bundled"
+	},
+	{
+		"id": "undocumented-delegation",
+		"description": "Deferring error handling to the caller without documenting or enforcing it",
+		"severity": "warning",
+		"category": "error-handling",
+		"source": "bundled"
+	},
+	{
+		"id": "silent-fallback",
+		"description": "Using fallback values that mask failures silently (returning empty string, null, undefined on error)",
+		"severity": "warning",
+		"category": "error-handling",
+		"source": "bundled"
+	},
+	{
+		"id": "prose-without-action",
+		"description": "Noting a problem in prose but not acting on it in code",
+		"severity": "warning",
+		"category": "deferral",
+		"source": "bundled"
+	},
+	{
+		"id": "blame-environment",
+		"description": "Blaming the environment or dependencies instead of working around or fixing the issue",
+		"severity": "warning",
+		"category": "avoidance",
+		"source": "bundled"
+	},
+	{
+		"id": "workaround-over-root-cause",
+		"description": "Identifying architectural inefficiencies but implementing workarounds instead of fixing the root cause",
+		"severity": "warning",
+		"category": "avoidance",
+		"source": "bundled"
+	},
+	{
+		"id": "elaborate-workaround-for-fixable",
+		"description": "Documenting a known dangerous state and designing elaborate workarounds instead of fixing the root cause",
+		"severity": "error",
+		"category": "avoidance",
+		"source": "bundled"
+	}
+]

@@ -1,0 +1,38 @@
+{
+	"type": "object",
+	"required": ["id", "description"],
+	"properties": {
+		"id": {
+			"type": "string",
+			"description": "Stable identifier for dedup"
+		},
+		"description": {
+			"type": "string",
+			"description": "What this pattern detects"
+		},
+		"severity": {
+			"type": "string",
+			"enum": ["error", "warning", "info"],
+			"default": "warning"
+		},
+		"category": {
+			"type": "string",
+			"description": "Grouping key for the pattern"
+		},
+		"examples": {
+			"type": "array",
+			"items": { "type": "string" },
+			"description": "Example manifestations of this pattern"
+		},
+		"learned_at": {
+			"type": "string",
+			"format": "date-time",
+			"description": "When this pattern was first detected"
+		},
+		"source": {
+			"type": "string",
+			"enum": ["bundled", "learned", "user"],
+			"description": "How this pattern was added"
+		}
+	}
+}

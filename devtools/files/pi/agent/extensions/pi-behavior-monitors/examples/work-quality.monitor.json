@@ -1,0 +1,63 @@
+{
+	"name": "work-quality",
+	"description": "On-demand work quality analysis",
+	"event": "command",
+	"when": "always",
+	"scope": {
+		"target": "main"
+	},
+	"classify": {
+		"model": "claude-sonnet-4-20250514",
+		"context": ["user_text", "tool_calls", "assistant_text"],
+		"excludes": [],
+		"promptTemplate": "work-quality/classify.md",
+		"prompt": "An agent was asked:\n\"{user_text}\"\n\nIt performed these actions:\n{tool_calls}\n\nThen it said:\n\"{assistant_text}\"\n\n{instructions}\n\nAnalyze the quality of the work. Check against these patterns:\n{patterns}\n\nReply CLEAN if the work was sound.\nReply FLAG:<one sentence describing the quality issue> if a known\npattern was matched.\nReply NEW:<new pattern to add>|<one sentence describing the quality\nissue> if there's a work quality problem not covered by existing patterns."
+	},
+	"patterns": {
+		"path": "work-quality.patterns.json",
+		"learn": true
+	},
+	"instructions": {
+		"path": "work-quality.instructions.json"
+	},
+	"actions": {
+		"on_flag": {
+			"steer": "Fix the quality issue.",
+			"write": {
+				"path": ".workflow/gaps.json",
+				"schema": "schemas/gaps.schema.json",
+				"merge": "append",
+				"array_field": "gaps",
+				"template": {
+					"id": "quality-{finding_id}",
+					"description": "{description}",
+					"status": "open",
+					"category": "work-quality",
+					"priority": "{severity}",
+					"source": "monitor"
+				}
+			}
+		},
+		"on_new": {
+			"steer": "Fix the quality issue.",
+			"learn_pattern": true,
+			"write": {
+				"path": ".workflow/gaps.json",
+				"schema": "schemas/gaps.schema.json",
+				"merge": "append",
+				"array_field": "gaps",
+				"template": {
+					"id": "quality-{finding_id}",
+					"description": "{description}",
+					"status": "open",
+					"category": "work-quality",
+					"priority": "warning",
+					"source": "monitor"
+				}
+			}
+		},
+		"on_clean": null
+	},
+	"ceiling": 3,
+	"escalate": "ask"
+}

@@ -1,0 +1,21 @@
+name: pattern-analyzer
+role: sensor
+description: Analyze design patterns and return typed findings
+tools: [read, bash, ls]
+
+input:
+  type: object
+  required: [exploration, path]
+  properties:
+    exploration:
+      description: Prior exploration output (typed JSON)
+    path:
+      type: string
+
+output:
+  format: json
+  schema: schemas/pattern-analysis.schema.json
+
+prompt:
+  system: analyzers/patterns.md
+  task: analyzers/patterns-task.md

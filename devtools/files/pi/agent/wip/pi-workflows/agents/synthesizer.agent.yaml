@@ -1,0 +1,23 @@
+name: synthesizer
+role: reasoning
+description: Synthesize typed analysis findings into a unified report
+tools: [read]
+
+input:
+  type: object
+  required: [structure, quality, patterns]
+  properties:
+    structure:
+      description: Structure analysis (typed JSON)
+    quality:
+      description: Quality analysis (typed JSON)
+    patterns:
+      description: Pattern analysis (typed JSON)
+
+output:
+  format: json
+  schema: schemas/synthesis.schema.json
+
+prompt:
+  system: synthesizer/system.md
+  task: synthesizer/task.md

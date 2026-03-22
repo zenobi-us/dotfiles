@@ -1,0 +1,67 @@
+name: create-phase
+description: Convert unstructured intent into a structured phase spec
+version: "1"
+
+input:
+  type: object
+  required: [intent]
+  properties:
+    intent:
+      type: string
+      description: Unstructured intent from conversation — what needs to be built and why
+
+steps:
+  load-context:
+    command: |
+      node --experimental-strip-types -e "
+        import fs from 'fs';
+        import { readBlock } from './src/block-api.ts';
+        import { PROJECT_DIR } from './src/project-dir.ts';
+        import path from 'path';
+        const phasesDir = path.join(PROJECT_DIR, 'phases');
+        const phases = fs.readdirSync(phasesDir)
+          .filter(f => f.endsWith('.json'))
+          .map(f => JSON.parse(fs.readFileSync(path.join(phasesDir, f), 'utf8')));
+        const arch = readBlock('.', 'architecture');
+        const conv = readBlock('.', 'conventions');
+        const gapsData = readBlock('.', 'gaps');
+        const inv = readBlock('.', 'inventory');
+        console.log(JSON.stringify({ phases, architecture: arch, conventions: conv, gaps: gapsData.gaps, inventory: inv }));
+      "
+    output:
+      format: json
+
+  author:
+    agent: phase-author
+    input:
+      intent: "${{ input.intent }}"
+      phases: "${{ steps.load-context.output.phases }}"
+      architecture: "${{ steps.load-context.output.architecture }}"
+      conventions: "${{ steps.load-context.output.conventions }}"
+      gaps: "${{ steps.load-context.output.gaps }}"
+      inventory: "${{ steps.load-context.output.inventory }}"
+    output:
+      format: json
+      schema: ../schemas/phase.schema.json
+
+  write-phase:
+    command: |
+      node --experimental-strip-types -e "
+        import fs from 'fs';
+        import { validateFromFile } from './src/schema-validator.ts';
+        const phase = JSON.parse(process.argv[1]);
+        validateFromFile('.project/schemas/phase.schema.json', phase, 'phase');
+        const filename = '.project/phases/' + String(phase.number).padStart(2, '0') + '-' + phase.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '') + '.json';
+        fs.writeFileSync(filename, JSON.stringify(phase, null, 2) + '\n');
+        console.log(JSON.stringify({ path: filename, phase_number: phase.number, spec_count: phase.specs.length }));
+      " '${{ steps.author.output | json }}'
+    output:
+      format: json
+
+completion:
+  message: |
+    Phase ${{ steps.write-phase.output.phase_number }} created at ${{ steps.write-phase.output.path }}
+    Contains ${{ steps.write-phase.output.spec_count }} specs.
+  include:
+    - steps.author.output.success_criteria
+    - steps.author.output.specs

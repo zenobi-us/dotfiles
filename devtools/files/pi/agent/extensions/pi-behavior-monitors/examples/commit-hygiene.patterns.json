@@ -1,0 +1,44 @@
+[
+	{
+		"id": "no-commit",
+		"description": "File changes made but no git commit in the tool call history",
+		"severity": "error",
+		"category": "missing-commit",
+		"source": "bundled"
+	},
+	{
+		"id": "generic-message",
+		"description": "Commit message is generic (e.g., 'update files', 'fix bug', 'changes', 'misc')",
+		"severity": "warning",
+		"category": "message-quality",
+		"source": "bundled"
+	},
+	{
+		"id": "certainty-language",
+		"description": "Commit message uses unjustifiably definitive language like 'this ensures', 'this fixes', 'this guarantees'",
+		"severity": "warning",
+		"category": "message-quality",
+		"source": "bundled"
+	},
+	{
+		"id": "no-context",
+		"description": "Commit message describes what changed but not why — missing rationale or intent",
+		"severity": "warning",
+		"category": "message-quality",
+		"source": "bundled"
+	},
+	{
+		"id": "amend-not-new",
+		"description": "Used git commit --amend instead of creating a new commit, potentially overwriting prior work",
+		"severity": "warning",
+		"category": "commit-safety",
+		"source": "bundled"
+	},
+	{
+		"id": "force-push",
+		"description": "Used git push --force which can overwrite remote history",
+		"severity": "error",
+		"category": "commit-safety",
+		"source": "bundled"
+	}
+]

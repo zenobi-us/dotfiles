@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Handoff",
+	"type": "object",
+	"required": ["context", "timestamp"],
+	"properties": {
+		"context": { "type": "string", "description": "What was being worked on, current state of thinking" },
+		"timestamp": { "type": "string" },
+		"current_phase": { "type": ["string", "integer"], "description": "Phase being worked on" },
+		"current_tasks": { "type": "array", "items": { "type": "string" }, "description": "Task IDs in progress" },
+		"blockers": { "type": "array", "items": { "type": "string" } },
+		"next_actions": { "type": "array", "items": { "type": "string" } },
+		"open_questions": { "type": "array", "items": { "type": "string" } },
+		"key_decisions_pending": {
+			"type": "array",
+			"items": { "type": "string" },
+			"description": "Decision IDs that need resolution"
+		},
+		"files_in_flux": { "type": "array", "items": { "type": "string" }, "description": "Files currently being modified" }
+	}
+}

@@ -473,23 +473,10 @@ export function formatSkillsForPrompt(
 
   if (options.lazySkills) {
     return `\n\n${dedent`
-      Skills are available, but lazySkills=true so the full catalog is omitted from this prompt.
-      Use find_skills to discover relevant skills and read_skill to load one by name.
+      ## Skills
 
-      <available_skills>
-        <skill>
-          <name>find_skills</name>
-          <shortname>find_skills</shortname>
-          <description>Search for skills by free-text query (use '*' to list all skills).</description>
-          <location>internal://skills/find_skills</location>
-        </skill>
-        <skill>
-          <name>read_skill</name>
-          <shortname>read_skill</shortname>
-          <description>Load a skill by name (qualified name preferred) and return its SKILL.md content.</description>
-          <location>internal://skills/read_skill</location>
-        </skill>
-      </available_skills>
+      - Skills are available, but lazySkills=true so the full catalog is omitted from this prompt.
+      - Use the find_skills tool to discover relevant skills and the read_skill tool to load one by name.
     `}`;
   }
 

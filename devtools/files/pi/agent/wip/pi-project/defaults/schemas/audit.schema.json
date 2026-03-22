@@ -1,0 +1,138 @@
+{
+	"type": "object",
+	"required": ["subject", "auditor", "timestamp", "findings", "summary"],
+	"properties": {
+		"subject": {
+			"type": "object",
+			"required": ["project", "files"],
+			"properties": {
+				"project": { "type": "string" },
+				"files": {
+					"type": "array",
+					"items": { "type": "string" }
+				},
+				"scope": { "type": "string", "description": "What was audited: 'full', 'entry-point', 'changed-files', etc." }
+			}
+		},
+		"auditor": {
+			"type": "object",
+			"required": ["name"],
+			"properties": {
+				"name": { "type": "string" },
+				"version": { "type": "string" },
+				"type": {
+					"type": "string",
+					"enum": ["tool", "agent", "hybrid"],
+					"description": "tool = deterministic linter, agent = LLM analysis, hybrid = both"
+				}
+			}
+		},
+		"timestamp": { "type": "string", "format": "date-time" },
+		"checks": {
+			"type": "array",
+			"description": "Automated pass/fail checks (deterministic, repeatable)",
+			"items": {
+				"type": "object",
+				"required": ["id", "description", "status"],
+				"properties": {
+					"id": { "type": "string" },
+					"description": { "type": "string" },
+					"status": { "type": "string", "enum": ["pass", "fail", "warn", "skip"] },
+					"category": { "type": "string" },
+					"details": { "type": "string" }
+				}
+			}
+		},
+		"findings": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "severity", "principle", "description", "locations", "fix"],
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Stable identifier for dedup across sources: principle-slug-file-concern"
+					},
+					"severity": {
+						"type": "string",
+						"enum": ["error", "warning", "info"]
+					},
+					"principle": {
+						"type": "string",
+						"description": "Which rule/principle/convention this violates"
+					},
+					"category": {
+						"type": "string",
+						"description": "Grouping key: type-safety, error-signaling, mode-awareness, conventions, etc."
+					},
+					"description": { "type": "string" },
+					"locations": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"required": ["file", "snippet"],
+							"properties": {
+								"file": { "type": "string" },
+								"lines": {
+									"type": "array",
+									"items": { "type": "integer" },
+									"description": "Line numbers (single or range)"
+								},
+								"snippet": {
+									"type": "string",
+									"description": "Relevant code at the finding location"
+								}
+							}
+						}
+					},
+					"fix": {
+						"type": "object",
+						"required": ["suggestion", "verify_method"],
+						"description": "How to fix and how to verify the fix",
+						"properties": {
+							"suggestion": { "type": "string" },
+							"verify_method": {
+								"type": "string",
+								"enum": ["command", "grep", "inspect"],
+								"description": "How to verify the fix was applied correctly"
+							},
+							"verify_command": {
+								"type": "string",
+								"description": "Shell command that exits 0 when fixed"
+							},
+							"verify_pattern": {
+								"type": "string",
+								"description": "Grep pattern that should NOT match after fix"
+							}
+						},
+						"allOf": [
+							{
+								"if": { "properties": { "verify_method": { "const": "command" } } },
+								"then": { "required": ["verify_command"] }
+							},
+							{
+								"if": { "properties": { "verify_method": { "const": "grep" } } },
+								"then": { "required": ["verify_pattern"] }
+							}
+						]
+					},
+					"related": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "IDs of related findings (same root cause, same fix)"
+					}
+				}
+			}
+		},
+		"summary": {
+			"type": "object",
+			"required": ["errors", "warnings", "infos"],
+			"properties": {
+				"errors": { "type": "integer" },
+				"warnings": { "type": "integer" },
+				"infos": { "type": "integer" },
+				"pass_rate": { "type": "string", "description": "Checks pass rate: N/M format" }
+			}
+		}
+	}
+}

@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.60.0",
+  "lastChangelogVersion": "0.61.1",
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
@@ -7,6 +7,7 @@
     "npm:@zenobius/pi-worktrees",
     "npm:@marckrenn/pi-sub-bar",
     "npm:@marckrenn/pi-sub-core",
+    "npm:@zenobius/pi-worktrees",
     "npm:pi-subdir-context",
     "npm:pi-mermaid",
     "npm:pi-subagents",
@@ -19,8 +20,9 @@
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.3-codex",
   "workingVibeModel": "antigravity/gemini-3-flash",
-  "enableSkillCommands": true,
+  "enableSkillCommands": false,
   "lazySkills": true,
   "quietStartup": true,
-  "collapseChangelog": true
+  "collapseChangelog": true,
+  "autocompleteMaxVisible": 10
 }

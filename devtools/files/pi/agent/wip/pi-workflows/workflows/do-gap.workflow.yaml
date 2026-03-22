@@ -1,0 +1,153 @@
+name: do-gap
+description: Standard path from gap to implementation — investigate, research, decompose, implement, verify, route
+version: "1"
+
+input:
+  type: object
+  required: [gap_id]
+  properties:
+    gap_id:
+      type: string
+      description: ID of the gap to work on
+      source:
+        file: .project/gaps.json
+        array: gaps
+        filter: { status: open }
+        label: id
+        value: id
+
+steps:
+  load:
+    command: |
+      node --experimental-strip-types -e "
+        import { readBlock } from './src/block-api.ts';
+        const gapId = process.argv[1];
+        const data = readBlock('.', 'gaps');
+        const gap = data.gaps.find(g => g.id === gapId);
+        if (!gap) { console.error('Gap not found: ' + gapId); process.exit(1); }
+        if (gap.status === 'resolved') { console.error('Gap already resolved: ' + gapId); process.exit(1); }
+        console.log(JSON.stringify({ gap }));
+      " '${{ input.gap_id }}'
+    output:
+      format: json
+
+  investigate:
+    agent: investigator
+    input:
+      gap: "${{ steps.load.output.gap }}"
+    output:
+      format: json
+      schema: ../schemas/investigation-findings.schema.json
+
+  research:
+    when: "${{ steps.investigate.output.needs_research }}"
+    agent: researcher
+    input:
+      gap: "${{ steps.load.output.gap }}"
+      research_questions: "${{ steps.investigate.output.research_questions }}"
+    output:
+      format: json
+      schema: ../schemas/research-findings.schema.json
+
+  decompose:
+    agent: decomposer
+    input:
+      gap: "${{ steps.load.output.gap }}"
+      investigation: "${{ steps.investigate.output }}"
+      research: "${{ steps.research.output }}"
+    output:
+      format: json
+      schema: ../schemas/decomposition-specs.schema.json
+
+  implement:
+    forEach: "${{ steps.decompose.output.specs }}"
+    as: spec
+    agent: spec-implementer
+    input:
+      spec: "${{ spec }}"
+      gap: "${{ steps.load.output.gap }}"
+      investigation: "${{ steps.investigate.output }}"
+    retry:
+      maxAttempts: 2
+      onExhausted: fail
+    output:
+      format: json
+      schema: ../schemas/execution-results.schema.json
+
+  verify:
+    command: |
+      node --experimental-strip-types -e "
+        import { execSync } from 'child_process';
+        const errors = [];
+
+        // Run tests
+        try {
+          execSync('node --experimental-strip-types --test src/*.test.ts', { stdio: 'pipe', timeout: 120000 });
+        } catch (e) {
+          errors.push('Tests failed: ' + (e.stderr?.toString().slice(-500) || 'unknown error'));
+        }
+
+        // Run linter on changed files
+        try {
+          const diff = execSync('git diff --name-only HEAD', { encoding: 'utf8' }).trim();
+          const srcFiles = diff.split('\n').filter(f => f.startsWith('src/') && f.endsWith('.ts') && !f.endsWith('.test.ts'));
+          for (const f of srcFiles) {
+            try {
+              execSync('/Users/david/Projects/pi-extension-linter/pi-extension-lint.sh ' + f, { stdio: 'pipe' });
+            } catch (e) {
+              const stderr = e.stderr?.toString() || e.stdout?.toString() || '';
+              if (stderr.includes('error')) errors.push('Lint errors in ' + f);
+            }
+          }
+        } catch {}
+
+        // Validate blocks
+        try {
+          const fs = await import('fs');
+          const schemasDir = '.project/schemas';
+          const schemas = fs.readdirSync(schemasDir).filter(f => f.endsWith('.schema.json'));
+          for (const s of schemas) {
+            const blockName = s.replace('.schema.json', '');
+            const blockPath = '.project/' + blockName + '.json';
+            if (fs.existsSync(blockPath)) {
+              try {
+                execSync('node --experimental-strip-types -e \"import{validateFromFile}from' + String.fromCharCode(39) + './src/schema-validator.ts' + String.fromCharCode(39) + ';import fs from' + String.fromCharCode(39) + 'fs' + String.fromCharCode(39) + ';validateFromFile(' + String.fromCharCode(39) + schemasDir + '/' + s + String.fromCharCode(39) + ',JSON.parse(fs.readFileSync(' + String.fromCharCode(39) + blockPath + String.fromCharCode(39) + ',' + String.fromCharCode(39) + 'utf8' + String.fromCharCode(39) + ')),' + String.fromCharCode(39) + blockName + String.fromCharCode(39) + ')\"', { stdio: 'pipe' });
+              } catch { errors.push('Block validation failed: ' + blockPath); }
+            }
+          }
+        } catch {}
+
+        const passed = errors.length === 0;
+        console.log(JSON.stringify({ status: passed ? 'passed' : 'failed', errors, passed }));
+      "
+    output:
+      format: json
+
+  route:
+    when: "${{ steps.verify.output.passed }}"
+    command: |
+      node --experimental-strip-types -e "
+        import { updateItemInBlock } from './src/block-api.ts';
+        const gapId = process.argv[1];
+        updateItemInBlock('.', 'gaps', 'gaps',
+          (g) => g.id === gapId,
+          { status: 'resolved', resolved_by: 'do-gap-workflow' }
+        );
+        console.log(JSON.stringify({ routed: true, gap_id: gapId, status: 'resolved' }));
+      " '${{ input.gap_id }}'
+    output:
+      format: json
+
+  check:
+    when: "${{ steps.route.output.routed }}"
+    gate:
+      check: "test '${{ steps.verify.output.status }}' = 'passed'"
+      onFail: fail
+
+completion:
+  message: |
+    Gap ${{ input.gap_id }} — ${{ steps.verify.output.status }}
+    Investigation complexity: ${{ steps.investigate.output.complexity }}
+    Specs implemented: ${{ steps.decompose.output.specs | length }}
+  include:
+    - steps.verify.output

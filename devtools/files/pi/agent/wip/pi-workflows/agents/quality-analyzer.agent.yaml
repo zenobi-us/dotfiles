@@ -1,0 +1,21 @@
+name: quality-analyzer
+role: sensor
+description: Analyze code quality and return typed findings
+tools: [read, bash, ls]
+
+input:
+  type: object
+  required: [exploration, path]
+  properties:
+    exploration:
+      description: Prior exploration output (typed JSON)
+    path:
+      type: string
+
+output:
+  format: json
+  schema: schemas/quality-analysis.schema.json
+
+prompt:
+  system: analyzers/quality.md
+  task: analyzers/quality-task.md
