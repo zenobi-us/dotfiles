@@ -6,7 +6,7 @@ experimental = true
 "cargo:p1rallels/codemapper" = "latest"
 "cargo:zellij" = "0.43.1"
 "go:github.com/Crosse/font-install" = "latest"
-"npm:@mariozechner/pi-coding-agent" = "0.60.0"
+"npm:@mariozechner/pi-coding-agent" = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:chrome-devtools-mcp" = "0.10.2"
 "npm:firefox-devtools-mcp" = "0.4.0"
@@ -80,3 +80,8 @@ bitwarden = "latest"
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
 
+
+[shell_alias]
+pi="pi --no-skills"
+piupdate="pi update"
+piinstall="pi install"
