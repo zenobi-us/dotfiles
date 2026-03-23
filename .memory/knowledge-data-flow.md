@@ -1,87 +1,42 @@
 ---
 id: dataflow
-title: Extension Data Flow
-created_at: 2026-01-23T12:51:00+10:30
-updated_at: 2026-01-23T12:51:00+10:30
+title: Pi 0.61.1 extension migration data flow
+created_at: 2026-03-24T09:02:06+10:30
+updated_at: 2026-03-24T09:02:06+10:30
 area: data-flow
-tags: [architecture, data-flow, extensions]
+tags: [architecture, data-flow, extensions, migration]
 ---
 
-# Extension Data Flow
-
-## Overview
-
-Data flow for Pi agent extensions focusing on command handling and external tool interaction.
+# Pi 0.61.1 extension migration data flow
 
 ## Data Flow Diagram
 
-```
-┌──────────────┐
-│   Pi Agent   │
-│  User Input  │
-└──────┬───────┘
-       │ /zellij <command> <args>
-       ↓
-┌────────────────────────────────────┐
-│  Extension Command Router          │
-│  - Parse command                   │
-│  - Route to handler                │
-└──────┬─────────────────────────────┘
-       │
-       ↓
-┌────────────────────────────────────┐
-│  Command Handler Functions         │
-│  - handleSession()                 │
-│  - handleTab()                     │
-│  - handlePane()                    │
-│  - handleList()                    │
-│  - etc.                            │
-└──────┬─────────────────────────────┘
-       │
-       ├─────────────┬──────────────────┐
-       ↓             ↓                  ↓
-┌──────────┐  ┌──────────┐      ┌─────────────┐
-│ Settings │  │ Zellij   │      │ Git Utils   │
-│ Manager  │  │ CLI      │      │ (optional)  │
-│          │  │ execSync │      │             │
-└──────┬───┘  └────┬─────┘      └──────┬──────┘
-       │           │                   │
-       │           ↓                   ↓
-       │      ┌──────────┐      ┌──────────────┐
-       │      │  Zellij  │      │ Git Branch   │
-       │      │  Session │      │ Info         │
-       │      │  Control │      │              │
-       │      └────┬─────┘      └──────┬───────┘
-       │           │                   │
-       ↓           ↓                   ↓
-┌───────────────────────────────────────────────┐
-│         Context Information                   │
-│  - Session state                              │
-│  - Project info                               │
-│  - Branch info                                │
-│  - User preferences                           │
-└───────────────────┬───────────────────────────┘
-                    │
-                    ↓
-            ┌───────────────┐
-            │  User Output  │
-            │  - Success    │
-            │  - Errors     │
-            │  - Status     │
-            └───────────────┘
-```
-
-## Key Data Structures
-
-1. **ZellijSessionInfo**: Session metadata
-2. **ZellijSettings**: User configuration from ~/.pi/settings.json
-3. **SessionCreatedContext**: Context for hooks and templates
-4. **ExtensionCommandContext**: Pi agent context with UI and CWD
-
-## Configuration Flow
-
-```
-User → /zellij init → Interactive prompts → ZellijSettings → ~/.pi/settings.json
-                                                                      ↓
-Future commands read settings ←───────────────────────────────────────┘
+```text
+[Upstream CHANGELOG.md]
+        |
+        v
+[Migration rules extracted]
+  - 0.61.0 keybinding namespace break
+  - 0.61.1 ToolCallEventResult availability
+        |
+        v
+[Local source scan: extensions/]
+        |
+        +--> [grep + sg hits in files.ts]
+        |
+        +--> [grep + sg hits in pi-fzf/src/selector.ts]
+        |
+        +--> [no tool_call handlers found]
+        v
+[Impact matrix]
+  blocker: keybinding id migration
+  watch: typed tool_call returns for future hooks
+        |
+        v
+[Memory artifacts]
+  research -> epic -> stories -> tasks -> todo/summary/team
+        |
+        v
+[Execution handoff]
+  implement code migration in extension files
 ```
