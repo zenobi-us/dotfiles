@@ -76,6 +76,7 @@ bitwarden = "latest"
 "github:moonrepo/proto" = "0.55.4"
 "npm:@moonrepo/cli" = "latest"
 "github:hmarr/codeowners" = "latest"
+zellij = "0.43.0"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
