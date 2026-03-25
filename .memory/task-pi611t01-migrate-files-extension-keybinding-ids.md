@@ -2,8 +2,8 @@
 id: pi611t01
 title: Migrate files extension keybinding IDs
 created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:02:06+10:30
-status: todo
+updated_at: 2026-03-24T09:44:00+10:30
+status: completed
 epic_id: pi611e01
 phase_id: phase-2-keybinding-migration
 story_id: pi611s01
@@ -34,7 +34,7 @@ Phase 2: Keybinding Migration in [epic-pi611e01-update-extensions-for-pi-0-61-1]
 `files.ts` uses only namespaced keybinding ids and remains behaviorally equivalent.
 
 ## Actual Outcome
-Pending.
+Updated `files.ts` selector input handling to use `tui.select.up`, `tui.select.down`, `tui.select.confirm`, and `tui.select.cancel`. Verified with grep that no legacy selector ids remain in this file.
 
 ## Lessons Learned
-Pending.
+Migration was mechanical and low risk; static grep verification is a fast guardrail before interactive validation.

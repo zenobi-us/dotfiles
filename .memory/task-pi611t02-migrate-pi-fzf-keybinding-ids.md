@@ -2,8 +2,8 @@
 id: pi611t02
 title: Migrate pi-fzf keybinding IDs
 created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:02:06+10:30
-status: todo
+updated_at: 2026-03-24T09:44:00+10:30
+status: completed
 epic_id: pi611e01
 phase_id: phase-2-keybinding-migration
 story_id: pi611s01
@@ -35,7 +35,7 @@ Phase 2: Keybinding Migration in [epic-pi611e01-update-extensions-for-pi-0-61-1]
 `pi-fzf` selector uses namespaced keybinding ids across both behavior and displayed key hints.
 
 ## Actual Outcome
-Pending.
+Updated `selector.ts` to namespaced ids in both `kb.matches(...)` and `editorKey(...)`: `tui.select.up/down/pageUp/pageDown/confirm/cancel`. Verified via grep that no legacy `select*` ids remain in this file.
 
 ## Lessons Learned
-Pending.
+Help-text key hints must be migrated alongside behavior checks; otherwise the UI lies about active bindings.

@@ -2,8 +2,8 @@
 id: pi611e01
 title: Update Extensions for Pi 0.61.1
 created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:02:06+10:30
-status: planning
+updated_at: 2026-03-24T09:44:00+10:30
+status: in-progress
 ---
 
 # Update Extensions for Pi 0.61.1
@@ -12,10 +12,10 @@ status: planning
 Bring local extensions in `./devtools/files/pi/agent/extensions/` to full compatibility with Pi 0.61.1, including required 0.61.0 keybinding-id migration and explicit audit of 0.61.1 extension API additions.
 
 ## Success Criteria
-- [ ] All extension UI keybinding id usage is namespaced and compatible with Pi 0.61.x.
+- [x] All extension UI keybinding id usage is namespaced and compatible with Pi 0.61.x.
 - [ ] `files` extension selector navigation works using namespaced keybindings.
 - [ ] `pi-fzf` selector navigation/help rendering works using namespaced keybindings.
-- [ ] `tool_call` hook usage is audited and documented for `ToolCallEventResult` adoption.
+- [x] `tool_call` hook usage is audited and documented for `ToolCallEventResult` adoption.
 - [ ] A regression validation pass is documented for command + shortcut behavior.
 
 ## Stories
@@ -33,20 +33,20 @@ Bring local extensions in `./devtools/files/pi/agent/extensions/` to full compat
 - **Notes**: Blocking risk confirmed in old keybinding ids used by `files.ts` and `pi-fzf/src/selector.ts`.
 
 ### Phase 2: Keybinding Migration
-- **Status**: todo
+- **Status**: completed
 - **Start Criteria**: Story pi611s01 accepted
-- **End Criteria**: All selector keybinding ids are namespaced and validated
+- **End Criteria**: All selector keybinding ids are namespaced (runtime interaction validation tracked in Phase 3)
 - **Tasks**:
-  - [ ] [task-pi611t01-migrate-files-extension-keybinding-ids](./task-pi611t01-migrate-files-extension-keybinding-ids.md)
-  - [ ] [task-pi611t02-migrate-pi-fzf-keybinding-ids](./task-pi611t02-migrate-pi-fzf-keybinding-ids.md)
+  - [x] [task-pi611t01-migrate-files-extension-keybinding-ids](./task-pi611t01-migrate-files-extension-keybinding-ids.md)
+  - [x] [task-pi611t02-migrate-pi-fzf-keybinding-ids](./task-pi611t02-migrate-pi-fzf-keybinding-ids.md)
 
 ### Phase 3: Validation and Guardrails
-- **Status**: todo
+- **Status**: in-progress
 - **Start Criteria**: Phase 2 completed
 - **End Criteria**: Regression validation + tool_call typing audit completed
 - **Tasks**:
   - [ ] [task-pi611t03-validate-shortcuts-and-selector-regressions](./task-pi611t03-validate-shortcuts-and-selector-regressions.md)
-  - [ ] [task-pi611t04-audit-tool-call-event-result-typing](./task-pi611t04-audit-tool-call-event-result-typing.md)
+  - [x] [task-pi611t04-audit-tool-call-event-result-typing](./task-pi611t04-audit-tool-call-event-result-typing.md)
 
 ## Dependencies
 - Upstream source of truth: `badlogic/pi-mono` changelog for `packages/coding-agent`.

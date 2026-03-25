@@ -2,8 +2,8 @@
 id: pi611t04
 title: Audit tool_call event result typing
 created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:02:06+10:30
-status: todo
+updated_at: 2026-03-24T09:44:00+10:30
+status: completed
 epic_id: pi611e01
 phase_id: phase-3-validation-and-guardrails
 story_id: pi611s02
@@ -33,7 +33,7 @@ Phase 3: Validation and Guardrails in [epic-pi611e01-update-extensions-for-pi-0-
 Explicitly documented no-op migration for 0.61.1 `ToolCallEventResult` with future-proofing guidance.
 
 ## Actual Outcome
-Pending.
+Audited extension sources for `pi.on("tool_call", ...)` and found no handlers. Related `tool_calls` strings in `pi-behavior-monitors` are metrics field names, not event hooks. Guardrail defined: any future `tool_call` handler MUST import and return `ToolCallEventResult` per Pi 0.61.1 changelog guidance.
 
 ## Lessons Learned
-Pending.
+Do not conflate telemetry field names with extension event subscriptions; search patterns must target hook signatures.

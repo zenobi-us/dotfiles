@@ -2,12 +2,12 @@
 id: pi611s01
 title: Keybinding ID Migration for Selector Extensions
 created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:02:06+10:30
-status: todo
+updated_at: 2026-03-24T09:44:00+10:30
+status: in-progress
 epic_id: pi611e01
 priority: critical
 story_points: 3
-test_coverage: none
+test_coverage: partial
 ---
 
 # Keybinding ID Migration for Selector Extensions
@@ -16,10 +16,10 @@ test_coverage: none
 As a Pi extension user, I want selector navigation and confirm/cancel actions to respect current namespaced keybindings so that local extensions behave consistently on Pi 0.61.x.
 
 ## Acceptance Criteria
-- [ ] `files.ts` no longer uses legacy keybinding ids (`selectUp`, `selectDown`, `selectConfirm`, `selectCancel`).
-- [ ] `pi-fzf/src/selector.ts` no longer uses legacy keybinding ids for navigation and help labels.
+- [x] `files.ts` no longer uses legacy keybinding ids (`selectUp`, `selectDown`, `selectConfirm`, `selectCancel`).
+- [x] `pi-fzf/src/selector.ts` no longer uses legacy keybinding ids for navigation and help labels.
 - [ ] Selector interactions remain functionally equivalent after migration.
-- [ ] Migration mapping is documented in task outcomes.
+- [x] Migration mapping is documented in task outcomes.
 
 ## Context
 Pi 0.61.0 introduced a breaking change requiring namespaced keybinding ids for extension keybinding helpers. Current code still uses legacy ids in `files.ts` and `pi-fzf/src/selector.ts`.

@@ -2,8 +2,8 @@
 id: pi611t03
 title: Validate shortcuts and selector regressions
 created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:02:06+10:30
-status: todo
+updated_at: 2026-03-24T11:06:00+10:30
+status: in-progress
 epic_id: pi611e01
 phase_id: phase-3-validation-and-guardrails
 story_id: pi611s01
@@ -30,11 +30,11 @@ Phase 3: Validation and Guardrails in [epic-pi611e01-update-extensions-for-pi-0-
 ## Unit Tests
 - `legacy-id scan guard`: verifies no `selectConfirm/selectUp/selectDown/selectCancel/selectPageUp/selectPageDown` ids remain in migrated files → supports AC3/AC4 of story `pi611s01`.
 
-## Expected Outcome
+Version drift can invalidate otherwise-correct migrations; verify runtime package versions before concluding behavior regressions.
 Migration is validated with no selector regressions and clear evidence trail.
 
 ## Actual Outcome
-Pending.
+Static regression scan passed (no legacy selector ids). Human runtime testing found selector nav/confirm/cancel broken. Root cause: extension workspace was still pinned to `@mariozechner/pi-tui@0.56.2` (legacy action ids), while migrated code used `tui.select.*` ids. Fix applied: upgraded extension deps to `@mariozechner/pi-coding-agent@0.61.1` + `@mariozechner/pi-tui@0.61.1`, and migrated code from `getEditorKeybindings()` to `getKeybindings()`. Awaiting human retest in live TUI.
 
 ## Lessons Learned
-Pending.
+Static scans catch migration misses quickly, but they cannot prove interaction parity; a human runtime pass is required.
