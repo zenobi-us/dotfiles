@@ -24,7 +24,6 @@ import { DynamicBorder } from "@mariozechner/pi-coding-agent";
 import {
 	Container,
 	fuzzyFilter,
-	getEditorKeybindings,
 	Input,
 	matchesKey,
 	type SelectItem,
@@ -33,6 +32,7 @@ import {
 	Text,
 	type TUI,
 } from "@mariozechner/pi-tui";
+import * as piTuiModule from "@mariozechner/pi-tui";
 
 type ContentBlock = {
 	type?: string;
@@ -79,6 +79,33 @@ const FILE_URL_REGEX = /file:\/\/[^\s"'<>]+/g;
 const PATH_REGEX = /(?:^|[\s"'`([{<])((?:~|\/)[^\s"'`<>)}\]]+)/g;
 
 const MAX_EDIT_BYTES = 40 * 1024 * 1024;
+const getCompatKeybindings = () => {
+	const fn =
+		(piTuiModule as { getKeybindings?: unknown; getEditorKeybindings?: unknown }).getKeybindings ??
+		(piTuiModule as { getKeybindings?: unknown; getEditorKeybindings?: unknown }).getEditorKeybindings;
+	if (typeof fn !== "function") {
+		throw new Error("No compatible keybindings manager found (getKeybindings/getEditorKeybindings)");
+	}
+	return (fn as () => { matches: (data: string, action: string) => boolean })();
+};
+const LEGACY_SELECT_ACTIONS: Record<string, string> = {
+	"tui.select.up": "selectUp",
+	"tui.select.down": "selectDown",
+	"tui.select.pageUp": "selectPageUp",
+	"tui.select.pageDown": "selectPageDown",
+	"tui.select.confirm": "selectConfirm",
+	"tui.select.cancel": "selectCancel",
+};
+
+const matchesSelectAction = (
+	kb: { matches: (data: string, action: string) => boolean },
+	data: string,
+	action: string,
+): boolean => {
+	if (kb.matches(data, action)) return true;
+	const legacy = LEGACY_SELECT_ACTIONS[action];
+	return legacy ? kb.matches(data, legacy) : false;
+};
 
 const extractFileReferencesFromText = (text: string): string[] => {
 	const refs: string[] = [];
@@ -937,16 +964,16 @@ const showFileSelector = async (
 					}
 				}
 
-				const kb = getEditorKeybindings();
+				const kb = getCompatKeybindings();
 				if (
-					kb.matches(data, "selectUp") ||
-					kb.matches(data, "selectDown") ||
-					kb.matches(data, "selectConfirm") ||
-					kb.matches(data, "selectCancel")
+					matchesSelectAction(kb, data, "tui.select.up") ||
+					matchesSelectAction(kb, data, "tui.select.down") ||
+					matchesSelectAction(kb, data, "tui.select.confirm") ||
+					matchesSelectAction(kb, data, "tui.select.cancel")
 				) {
 					if (selectList) {
 						selectList.handleInput(data);
-					} else if (kb.matches(data, "selectCancel")) {
+					} else if (matchesSelectAction(kb, data, "tui.select.cancel")) {
 						done(null);
 					}
 					tui.requestRender();

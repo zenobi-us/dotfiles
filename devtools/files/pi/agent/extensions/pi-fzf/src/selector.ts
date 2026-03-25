@@ -2,12 +2,40 @@ import { editorKey } from "@mariozechner/pi-coding-agent";
 import type { Focusable } from "@mariozechner/pi-tui";
 import {
   Container,
-  getEditorKeybindings,
   Input,
   truncateToWidth,
   visibleWidth,
 } from "@mariozechner/pi-tui";
+import * as piTuiModule from "@mariozechner/pi-tui";
 import { extendedMatch, Fzf, type FzfResultItem } from "fzf";
+
+const getCompatKeybindings = () => {
+  const fn =
+    (piTuiModule as { getKeybindings?: unknown; getEditorKeybindings?: unknown }).getKeybindings ??
+    (piTuiModule as { getKeybindings?: unknown; getEditorKeybindings?: unknown }).getEditorKeybindings;
+  if (typeof fn !== "function") {
+    throw new Error("No compatible keybindings manager found (getKeybindings/getEditorKeybindings)");
+  }
+  return (fn as () => { matches: (data: string, action: string) => boolean })();
+};
+const LEGACY_SELECT_ACTIONS: Record<string, string> = {
+  "tui.select.up": "selectUp",
+  "tui.select.down": "selectDown",
+  "tui.select.pageUp": "selectPageUp",
+  "tui.select.pageDown": "selectPageDown",
+  "tui.select.confirm": "selectConfirm",
+  "tui.select.cancel": "selectCancel",
+};
+
+const matchesSelectAction = (
+  kb: { matches: (data: string, action: string) => boolean },
+  data: string,
+  action: string,
+): boolean => {
+  if (kb.matches(data, action)) return true;
+  const legacy = LEGACY_SELECT_ACTIONS[action];
+  return legacy ? kb.matches(data, legacy) : false;
+};
 
 export interface SelectorTheme {
   accent: (text: string) => string;
@@ -83,10 +111,10 @@ export class FuzzySelector extends Container implements Focusable {
   }
 
   handleInput(data: string): void {
-    const kb = getEditorKeybindings();
+    const kb = getCompatKeybindings();
 
-    // Navigation: up/down (uses selectUp/selectDown keybindings)
-    if (kb.matches(data, "selectUp")) {
+    // Navigation: up/down (uses tui.select.up/tui.select.down keybindings)
+    if (matchesSelectAction(kb, data, "tui.select.up")) {
       if (this.filtered.length > 0) {
         this.selectedIndex =
           this.selectedIndex === 0
@@ -96,7 +124,7 @@ export class FuzzySelector extends Container implements Focusable {
       return;
     }
 
-    if (kb.matches(data, "selectDown")) {
+    if (matchesSelectAction(kb, data, "tui.select.down")) {
       if (this.filtered.length > 0) {
         this.selectedIndex =
           this.selectedIndex === this.filtered.length - 1
@@ -106,14 +134,14 @@ export class FuzzySelector extends Container implements Focusable {
       return;
     }
 
-    if (kb.matches(data, "selectPageUp")) {
+    if (matchesSelectAction(kb, data, "tui.select.pageUp")) {
       if (this.filtered.length > 0) {
         this.selectedIndex = Math.max(0, this.selectedIndex - this.maxVisible);
       }
       return;
     }
 
-    if (kb.matches(data, "selectPageDown")) {
+    if (matchesSelectAction(kb, data, "tui.select.pageDown")) {
       if (this.filtered.length > 0) {
         this.selectedIndex = Math.min(
           this.filtered.length - 1,
@@ -123,8 +151,8 @@ export class FuzzySelector extends Container implements Focusable {
       return;
     }
 
-    // Select (uses selectConfirm keybinding)
-    if (kb.matches(data, "selectConfirm")) {
+    // Select (uses tui.select.confirm keybinding)
+    if (matchesSelectAction(kb, data, "tui.select.confirm")) {
       const entry = this.filtered[this.selectedIndex];
       if (entry) {
         this.onSelect?.(entry.item);
@@ -132,8 +160,8 @@ export class FuzzySelector extends Container implements Focusable {
       return;
     }
 
-    // Cancel (uses selectCancel keybinding)
-    if (kb.matches(data, "selectCancel")) {
+    // Cancel (uses tui.select.cancel keybinding)
+    if (matchesSelectAction(kb, data, "tui.select.cancel")) {
       this.onCancel?.();
       return;
     }
@@ -238,10 +266,10 @@ export class FuzzySelector extends Container implements Focusable {
     }
 
     // Help line with configured keybindings
-    const upKey = prettyKey(editorKey("selectUp"));
-    const downKey = prettyKey(editorKey("selectDown"));
-    const confirmKey = prettyKey(editorKey("selectConfirm"));
-    const cancelKey = prettyKey(editorKey("selectCancel"));
+    const upKey = prettyKey(editorKey("tui.select.up"));
+    const downKey = prettyKey(editorKey("tui.select.down"));
+    const confirmKey = prettyKey(editorKey("tui.select.confirm"));
+    const cancelKey = prettyKey(editorKey("tui.select.cancel"));
     lines.push(
       boxLine(
         t.dim(
