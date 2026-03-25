@@ -181,9 +181,12 @@ export function formatReadSkillOutput(skill: Skill, body: string): string {
 qualified_name: ${skill.qualifiedName}
 shortname: ${skill.name}
 location: ${skill.filePath}
-references: relative to ${skill.baseDir}
+base_dir: ${skill.baseDir}
 ---
 
+> **Path Resolution**: Scripts, references, and assets use relative paths.
+> Resolve from: \`${skill.baseDir}\`
+> Example: \`./scripts/foo.sh\` → \`${skill.baseDir}/scripts/foo.sh\`
 ${body}`;
 }
 
