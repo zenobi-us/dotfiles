@@ -5,9 +5,8 @@
       "onCreate": [
         "mise trust --yes",
         "mise setup",
-        "zellij action new-tab --name {{name}}",
-        "zellij action go-to-tab-name {{name}}",
-        "zellij action new-pane --name pi --cwd {{path}}"
+        "zellij action new-tab --name {{name}} --cwd {{path}}",
+        "zellij action go-to-tab-name {{name}}"
       ]
     }
   }
