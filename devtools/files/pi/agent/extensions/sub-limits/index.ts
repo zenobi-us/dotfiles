@@ -204,6 +204,49 @@ function startLoadingStatus(ctx: ExtensionCommandContext, message: string): () =
 	};
 }
 
+// Retry configuration
+const MAX_RETRIES = 3;
+const ATTEMPT_TIMEOUT_MS = 5000;
+
+type AttemptResult =
+	| { ok: true; entries: ProviderUsageEntry[] }
+	| { ok: false; error: "timeout" | "emit_error"; details?: unknown };
+
+async function attemptFetch(pi: ExtensionAPI): Promise<AttemptResult> {
+	return new Promise((resolve) => {
+		let responded = false;
+
+		const timeout = setTimeout(() => {
+			if (!responded) {
+				responded = true;
+				resolve({ ok: false, error: "timeout" });
+			}
+		}, ATTEMPT_TIMEOUT_MS);
+
+		const request: SubCoreEntriesRequest = {
+			type: "entries",
+			force: true,
+			reply: (payload) => {
+				if (!responded) {
+					responded = true;
+					clearTimeout(timeout);
+					resolve({ ok: true, entries: payload.entries ?? [] });
+				}
+			},
+		};
+
+		try {
+			pi.events.emit("sub-core:request", request);
+		} catch (err) {
+			if (!responded) {
+				responded = true;
+				clearTimeout(timeout);
+				resolve({ ok: false, error: "emit_error", details: err });
+			}
+		}
+	});
+}
+
 async function fetchUsageEntries(
 	pi: ExtensionAPI,
 	ctx: ExtensionCommandContext
@@ -216,42 +259,43 @@ async function fetchUsageEntries(
 		return null;
 	}
 
-	const stopLoading = startLoadingStatus(ctx, "Fetching usage limits...");
-	try {
-		return await new Promise((resolve) => {
-			let responded = false;
-			const timeout = setTimeout(() => {
-				if (!responded) {
-					responded = true;
-					ctx.ui.notify("sub-core timed out.\nTry again or check provider credentials.", "warning");
-					resolve(null);
-				}
-			}, 5000);
+	let lastError: AttemptResult | null = null;
 
-			const request: SubCoreEntriesRequest = {
-				type: "entries",
-				force: true,
-				reply: (payload) => {
-					if (!responded) {
-						responded = true;
-						clearTimeout(timeout);
-						resolve(payload.entries ?? []);
-					}
-				},
-			};
+	for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+		const label = attempt > 1
+			? `Fetching usage limits... (retry ${attempt}/${MAX_RETRIES})`
+			: "Fetching usage limits...";
+		const stopLoading = startLoadingStatus(ctx, label);
 
-			try {
-				pi.events.emit("sub-core:request", request);
-			} catch (err) {
-				if (!responded) {
-					responded = true;
-					clearTimeout(timeout);
-					ctx.ui.notify(`Error: ${err}`, "error");
-					resolve(null);
-				}
+		try {
+			const result = await attemptFetch(pi);
+
+			if (result.ok) {
+				return result.entries;
 			}
-		});
-	} finally {
-		stopLoading();
+
+			lastError = result;
+		} finally {
+			stopLoading();
+		}
 	}
+
+	// All retries exhausted
+	if (lastError && lastError.ok === false) {
+		if (lastError.error === "emit_error") {
+			ctx.ui.notify(`Error after ${MAX_RETRIES} attempts: ${lastError.details}`, "error");
+		} else {
+			ctx.ui.notify(
+				`sub-core timed out after ${MAX_RETRIES} attempts.\nCheck provider credentials or try again later.`,
+				"warning"
+			);
+		}
+	} else {
+		ctx.ui.notify(
+			`sub-core timed out after ${MAX_RETRIES} attempts.\nCheck provider credentials or try again later.`,
+			"warning"
+		);
+	}
+
+	return null;
 }
