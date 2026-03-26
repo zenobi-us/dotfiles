@@ -1,73 +1,77 @@
-import type { Skill } from "../service/skill-registry.js";
+import type { SearchStrategy } from "../service/config.js";
+import { bm25Search } from "../service/search-bm25.js";
+import { lexicalScoreSearch } from "../service/search-lexical.js";
+import type { SearchQuery, SearchResults } from "../service/search-shared.js";
+import { vectorSearch } from "../service/search-vector.js";
 
-export function parseSkillQuery(query: string | string[]): {
-  include: string[];
-  exclude: string[];
-  listAll: boolean;
-} {
-  const raw = (Array.isArray(query) ? query : [query]).join(" ").trim();
+export type {
+  SearchQuery,
+  SearchResults,
+  ParsedSkillQuery,
+  QueryIntent,
+  NormalizedSkill,
+} from "../service/search-shared.js";
 
-  if (!raw || raw === "*") {
-    return { include: [], exclude: [], listAll: true };
-  }
+export { parseSkillQuery } from "../service/search-shared.js";
+export { lexicalScoreSearch } from "../service/search-lexical.js";
+export { bm25Search } from "../service/search-bm25.js";
+export { vectorSearch } from "../service/search-vector.js";
 
-  const parts = raw
-    .split(/\s+/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-  const include: string[] = [];
-  const exclude: string[] = [];
-
-  for (const part of parts) {
-    if (part.startsWith("-") && part.length > 1) {
-      exclude.push(part.slice(1).toLowerCase());
-      continue;
+function reciprocalRankFusion(
+  query: SearchQuery,
+  total: number,
+  lists: SearchResults[],
+): SearchResults {
+  const k = 60;
+  const scored = new Map<
+    string,
+    {
+      rank: number;
+      item: SearchResults["skills"][number];
     }
-    include.push(part.toLowerCase());
-  }
+  >();
 
-  return { include, exclude, listAll: include.length === 0 };
-}
-
-export function searchSkills(skills: Skill[], query: string | string[]) {
-  const parsed = parseSkillQuery(query);
-  const visibleSkills = skills.filter((s) => !s.disableModelInvocation);
-
-  let matches = visibleSkills;
-
-  if (!parsed.listAll) {
-    matches = matches.filter((skill) => {
-      const haystack =
-        `${skill.qualifiedName} ${skill.name} ${skill.description}`.toLowerCase();
-      return parsed.include.every((term) => haystack.includes(term));
+  for (const list of lists) {
+    list.skills.forEach((item, idx) => {
+      const weight = 1 / (k + idx + 1);
+      const existing = scored.get(item.name);
+      if (!existing) {
+        scored.set(item.name, { rank: weight, item });
+      } else {
+        existing.rank += weight;
+      }
     });
   }
 
-  if (parsed.exclude.length > 0) {
-    matches = matches.filter((skill) => {
-      const haystack =
-        `${skill.qualifiedName} ${skill.name} ${skill.description}`.toLowerCase();
-      return !parsed.exclude.some((term) => haystack.includes(term));
-    });
-  }
+  const merged = Array.from(scored.values())
+    .sort((a, b) => b.rank - a.rank)
+    .map((entry) => entry.item);
 
   return {
     query,
-    skills: matches.map((skill) => ({
-      name: skill.qualifiedName,
-      shortname: skill.name,
-      description: skill.description,
-      location: skill.filePath,
-    })),
+    skills: merged,
     summary: {
-      total: visibleSkills.length,
-      matches: matches.length,
+      total,
+      matches: merged.length,
       feedback:
-        matches.length === 0
-          ? "No skills matched. Try broader terms or query '*' to list all skills."
-          : parsed.listAll
-            ? `Listing all ${matches.length} skills`
-            : `Found ${matches.length} matching skill(s)`,
+        merged.length === 0
+          ? "No skills matched (hybrid). Try broader terms or query '*' to list all skills."
+          : `Found ${merged.length} matching skill(s) via hybrid`,
     },
   };
+}
+
+export function FindSkillsCmd(
+  skills: import("../service/skill-registry.js").Skill[],
+  query: SearchQuery,
+  strategy: SearchStrategy = "lexical",
+): SearchResults {
+  if (strategy === "lexical") return lexicalScoreSearch(query, skills);
+  if (strategy === "bm25") return bm25Search(query, skills);
+  if (strategy === "vector") return vectorSearch(query, skills);
+
+  const lexical = lexicalScoreSearch(query, skills);
+  const bm25 = bm25Search(query, skills);
+  const vector = vectorSearch(query, skills);
+  return reciprocalRankFusion(query, lexical.summary.total, [lexical, bm25, vector]);
 }

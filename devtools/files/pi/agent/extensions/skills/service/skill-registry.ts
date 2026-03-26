@@ -1,5 +1,3 @@
-import dedent from "dedent";
-import { formatReadSkillOutput } from "../cmds/read.js";
 import {
   existsSync,
   readdirSync,
@@ -445,59 +443,4 @@ export function resolveSkill(
   }
 
   return { kind: "not_found", requestedName };
-}
-
-export function readSkillResult(
-  requestedName: string,
-  skills: Skill[],
-  skillsByQualifiedName: Map<string, Skill>,
-) {
-  const resolved = resolveSkill(requestedName, skills, skillsByQualifiedName);
-
-  if (resolved.kind === "ambiguous") {
-    return {
-      ok: false as const,
-      error: {
-        content: [
-          {
-            type: "text" as const,
-            text:
-              `Ambiguous shortname \"${resolved.requestedName}\". ` +
-              `Use one of: ${resolved.options.join(", ")}`,
-          },
-        ],
-        details: resolved,
-        isError: true,
-      },
-    };
-  }
-
-  if (resolved.kind === "not_found") {
-    return {
-      ok: false as const,
-      error: {
-        content: [
-          {
-            type: "text" as const,
-            text: `Skill not found: ${resolved.requestedName}`,
-          },
-        ],
-        details: resolved,
-        isError: true,
-      },
-    };
-  }
-
-  const body = readSkillContent(resolved.skill);
-  const text = formatReadSkillOutput(resolved.skill, body);
-
-  return {
-    ok: true as const,
-    value: {
-      text,
-      body,
-      skill: resolved.skill,
-      usedShortnameFallback: resolved.usedShortnameFallback,
-    },
-  };
 }

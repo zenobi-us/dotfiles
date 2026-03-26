@@ -2,7 +2,7 @@ import { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { resolveSkill, Skill } from "../service/skill-registry";
 import { getRuntimeSettings } from "../service/config";
 
-export function SkillCommand(
+export function LoadSkillCommand(
   args: string,
   options: {
     skills: Skill[];

@@ -71,3 +71,43 @@ This is what happens in these two scenarios:
 ```
 
 
+
+## Skill Search Experience
+
+When the agent uses `find_skills`, it now picks results in a way that better matches how humans actually type queries.
+
+What this means for you as a user:
+
+- **Natural phrases work**  
+  If you type something like `how to debug flaky tests`, you should get skills that match the full intent of that phrase, not just exact token overlap.
+
+- **Keyword queries still work**  
+  If you type compact terms like `debug typescript -react`, it behaves like a focused skill search with exclusions.
+
+- **Typos and wording differences are more forgiving**  
+  Close wording, variations, and near matches are more likely to surface useful skills instead of returning nothing.
+
+- **Results can be tuned by strategy**  
+  Search can run in different modes (`lexical`, `bm25`, `vector`, `hybrid`) through settings, so teams can choose the style they prefer.
+
+- **Hybrid mode gives balanced outcomes**  
+  If enabled, hybrid combines multiple ranking styles so strong candidates from different approaches can rise to the top.
+
+In short: you can type either **a sentence** or **a list of terms**, and the skill finder should feel more relevant and less brittle.
+
+### Configurable search behavior
+
+Set this in `.pi/settings.json` (project or agent-level):
+
+```json
+{
+  "searchStrategy": "hybrid"
+}
+```
+
+Allowed values:
+
+- `lexical`
+- `bm25`
+- `vector`
+- `hybrid`

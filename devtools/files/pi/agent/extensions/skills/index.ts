@@ -13,46 +13,25 @@
  */
 
 import type {
-  BeforeAgentStartEvent,
   ExtensionAPI,
   ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
 import { Type } from "@mariozechner/pi-ai";
-import { searchSkills } from "./cmds/find.js";
-import { buildSkillUserMessage } from "./cmds/read.js";
+import { FindSkillsCmd } from "./cmds/find.js";
+import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
 export { formatReadSkillOutput, buildSkillUserMessage } from "./cmds/read.js";
 import { getRuntimeSettings } from "./service/config.js";
-import { readSkillResult, resolveSkill } from "./service/skill-registry.js";
 import {
   formatSkillsForPrompt,
   injectSkillsIntoSystemPrompt,
 } from "./service/systemprompt.js";
 import { loadSkills, type Skill } from "./service/skill-registry.js";
-import { CreateSkillSlashCommands, SkillCommand } from "./cmds/skill.js";
+import { CreateSkillSlashCommands, LoadSkillCommand } from "./cmds/skill.js";
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
   let skills: Skill[] = [];
   let skillsByQualifiedName: Map<string, Skill> = new Map();
   let skillPromptBlock = "";
-
-  function sendSkillMessage(
-    requestedName: string,
-    args: string | undefined,
-  ): void {
-    const result = readSkillResult(
-      requestedName,
-      skills,
-      skillsByQualifiedName,
-    );
-    if (!result.ok) return;
-
-    const message = buildSkillUserMessage(
-      result.value.skill,
-      result.value.body,
-      args,
-    );
-    pi.sendUserMessage(message);
-  }
 
   // Load skills on session start
   pi.on("session_start", async (_event, ctx) => {
@@ -92,7 +71,22 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       ctx.ui.notify(`Loaded ${skills.length} skill(s) (${mode})`, "info");
     }
 
-    CreateSkillSlashCommands(pi, skills, runtimeSettings, sendSkillMessage);
+    CreateSkillSlashCommands(
+      pi,
+      skills,
+      runtimeSettings,
+      function (name, args) {
+        const result = ReadSkillCommand(name, skills, skillsByQualifiedName);
+        if (!result.ok) return;
+
+        const message = buildSkillUserMessage(
+          result.value.skill,
+          result.value.body,
+          args,
+        );
+        pi.sendUserMessage(message);
+      },
+    );
 
     /**
      * TODO: end block for @zenobius/pi-extension-config
@@ -114,7 +108,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         ]),
       }),
       async execute(_toolCallId, params) {
-        const output = searchSkills(skills, params.query);
+        const output = FindSkillsCmd(skills, params.query, runtimeSettings.searchStrategy);
         return {
           content: [{ type: "text", text: JSON.stringify(output, null, 2) }],
           details: output,
@@ -131,7 +125,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         name: Type.String({ description: "Skill qualified name or shortname" }),
       }),
       async execute(_toolCallId, params) {
-        const result = readSkillResult(
+        const result = ReadSkillCommand(
           params.name,
           skills,
           skillsByQualifiedName,
@@ -157,10 +151,24 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     pi.registerCommand("skill", {
       description: "Load a skill by qualified name or shortname",
       handler: async (args, cmdCtx: ExtensionContext) => {
-        SkillCommand(args, {
+        LoadSkillCommand(args, {
           skills,
           skillsByQualifiedName,
-          sendSkillMessage,
+          sendSkillMessage(name, args) {
+            const result = ReadSkillCommand(
+              name,
+              skills,
+              skillsByQualifiedName,
+            );
+            if (!result.ok) return;
+
+            const message = buildSkillUserMessage(
+              result.value.skill,
+              result.value.body,
+              args,
+            );
+            pi.sendUserMessage(message);
+          },
           onInfoNotify(message) {
             cmdCtx.ui.notify(message, "info");
           },
