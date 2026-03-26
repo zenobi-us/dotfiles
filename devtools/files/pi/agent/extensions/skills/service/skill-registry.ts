@@ -1,12 +1,5 @@
-/**
- * Custom skill loader with qualified kebab-case names from paths
- *
- * Example: skills/experts/data-ai/data-analyst/SKILL.md
- *   -> qualifiedName: "experts-data-ai-data-analyst"
- *   -> name: "data-analyst"
- */
-
 import dedent from "dedent";
+import { formatReadSkillOutput } from "../cmds/read.js";
 import {
   existsSync,
   readdirSync,
@@ -22,8 +15,8 @@ import {
   join,
   relative,
   resolve,
-  sep,
 } from "node:path";
+import { pathToKebabName } from "../core/strings.js";
 
 export interface SkillFrontmatter {
   name?: string;
@@ -70,9 +63,6 @@ const CONFIG_DIR_NAME = ".pi";
 const MAX_NAME_LENGTH = 64;
 const MAX_DESCRIPTION_LENGTH = 1024;
 
-/**
- * Parse YAML frontmatter from markdown content
- */
 function parseFrontmatter(content: string): {
   frontmatter: SkillFrontmatter;
   body: string;
@@ -85,7 +75,6 @@ function parseFrontmatter(content: string): {
   const [, yamlBlock, body] = match;
   const frontmatter: SkillFrontmatter = {};
 
-  // Simple YAML parsing for key: value pairs
   for (const line of yamlBlock.split(/\r?\n/)) {
     const colonIdx = line.indexOf(":");
     if (colonIdx === -1) continue;
@@ -93,15 +82,12 @@ function parseFrontmatter(content: string): {
     const key = line.slice(0, colonIdx).trim();
     let value: string | boolean = line.slice(colonIdx + 1).trim();
 
-    // Handle quoted strings
     if (
       (value.startsWith('"') && value.endsWith('"')) ||
       (value.startsWith("'") && value.endsWith("'"))
     ) {
       value = value.slice(1, -1);
-    }
-    // Handle booleans
-    else if (value === "true") {
+    } else if (value === "true") {
       value = true;
     } else if (value === "false") {
       value = false;
@@ -113,17 +99,6 @@ function parseFrontmatter(content: string): {
   return { frontmatter, body };
 }
 
-/**
- * Convert path to kebab-case qualified name
- * e.g., "experts/data-ai/data-analyst" -> "experts-data-ai-data-analyst"
- */
-function pathToKebabName(relativePath: string): string {
-  return relativePath.split(/[/\\]/).filter(Boolean).join("-");
-}
-
-/**
- * Validate skill name per Agent Skills spec
- */
 function validateName(name: string, parentDirName: string): string[] {
   const errors: string[] = [];
 
@@ -137,22 +112,19 @@ function validateName(name: string, parentDirName: string): string[] {
   }
   if (!/^[a-z0-9-]+$/.test(name)) {
     errors.push(
-      `name contains invalid characters (must be lowercase a-z, 0-9, hyphens only)`,
+      "name contains invalid characters (must be lowercase a-z, 0-9, hyphens only)",
     );
   }
   if (name.startsWith("-") || name.endsWith("-")) {
-    errors.push(`name must not start or end with a hyphen`);
+    errors.push("name must not start or end with a hyphen");
   }
   if (name.includes("--")) {
-    errors.push(`name must not contain consecutive hyphens`);
+    errors.push("name must not contain consecutive hyphens");
   }
 
   return errors;
 }
 
-/**
- * Validate description per Agent Skills spec
- */
 function validateDescription(description: string | undefined): string[] {
   const errors: string[] = [];
 
@@ -180,12 +152,6 @@ function resolveSkillPath(p: string, cwd: string): string {
   return isAbsolute(normalized) ? normalized : resolve(cwd, normalized);
 }
 
-interface LoadFromDirOptions {
-  dir: string;
-  source: string;
-  skillsRoot: string; // Root to compute relative path from
-}
-
 function loadSkillFromFile(
   filePath: string,
   source: string,
@@ -200,22 +166,18 @@ function loadSkillFromFile(
     const skillDir = dirname(filePath);
     const parentDirName = basename(skillDir);
 
-    // Validate description
     const descErrors = validateDescription(frontmatter.description);
     for (const error of descErrors) {
       diagnostics.push({ type: "warning", message: error, path: filePath });
     }
 
-    // Use name from frontmatter, or fall back to parent directory name
     const name = (frontmatter.name as string) || parentDirName;
 
-    // Validate name
     const nameErrors = validateName(name, parentDirName);
     for (const error of nameErrors) {
       diagnostics.push({ type: "warning", message: error, path: filePath });
     }
 
-    // Skip if no description
     if (
       !frontmatter.description ||
       (frontmatter.description as string).trim() === ""
@@ -223,7 +185,6 @@ function loadSkillFromFile(
       return { skill: null, diagnostics };
     }
 
-    // Compute qualified name from relative path
     const relativeToRoot = relative(skillsRoot, skillDir);
     const qualifiedName = pathToKebabName(relativeToRoot) || name;
 
@@ -270,7 +231,6 @@ function loadSkillsFromDirInternal(
 
       const fullPath = join(dir, entry.name);
 
-      // Handle symlinks
       let isDirectory = entry.isDirectory();
       let isFile = entry.isFile();
 
@@ -280,7 +240,7 @@ function loadSkillsFromDirInternal(
           isDirectory = stats.isDirectory();
           isFile = stats.isFile();
         } catch {
-          continue; // Broken symlink
+          continue;
         }
       }
 
@@ -323,9 +283,6 @@ export interface LoadSkillsOptions {
   includeDefaults?: boolean;
 }
 
-/**
- * Load skills from all configured locations with qualified names
- */
 export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
   const {
     cwd = process.cwd(),
@@ -334,7 +291,6 @@ export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
     includeDefaults = true,
   } = options;
 
-  // Use qualifiedName as the key to prevent collisions
   const skillMap = new Map<string, Skill>();
   const realPathSet = new Set<string>();
   const allDiagnostics: SkillDiagnostic[] = [];
@@ -344,7 +300,6 @@ export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
     allDiagnostics.push(...result.diagnostics);
 
     for (const skill of result.skills) {
-      // Resolve symlinks to detect duplicates
       let realPath: string;
       try {
         realPath = realpathSync(skill.filePath);
@@ -354,7 +309,6 @@ export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
 
       if (realPathSet.has(realPath)) continue;
 
-      // Use qualifiedName for collision detection
       const existing = skillMap.get(skill.qualifiedName);
       if (existing) {
         collisionDiagnostics.push({
@@ -392,7 +346,6 @@ export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
     );
   }
 
-  // Handle explicit skill paths
   for (const rawPath of skillPaths) {
     const resolvedPath = resolveSkillPath(rawPath, cwd);
 
@@ -445,67 +398,6 @@ export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
     diagnostics: [...allDiagnostics, ...collisionDiagnostics],
   };
 }
-
-/**
- * Escape XML special characters
- */
-function escapeXml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-}
-
-/**
- * Format skills for system prompt with qualified names
- */
-export function formatSkillsForPrompt(
-  skills: Skill[],
-  options: { lazySkills?: boolean } = {}
-): string {
-  const visibleSkills = skills.filter((s) => !s.disableModelInvocation);
-
-  if (visibleSkills.length === 0) {
-    return "";
-  }
-
-  if (options.lazySkills) {
-    return `\n\n${dedent`
-      ## Skills
-
-      - Skills are available, but lazySkills=true so the full catalog is omitted from this prompt.
-      - Use the find_skills tool to discover relevant skills and the read_skill tool to load one by name.
-    `}`;
-  }
-
-  const lines = [
-    "\n\nThe following skills provide specialized instructions for specific tasks.",
-    "Use the read tool to load a skill's file when the task matches its description.",
-    "When a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.",
-    "",
-    "<available_skills>",
-  ];
-
-  for (const skill of visibleSkills) {
-    lines.push("  <skill>");
-    lines.push(`    <name>${escapeXml(skill.qualifiedName)}</name>`);
-    lines.push(`    <shortname>${escapeXml(skill.name)}</shortname>`);
-    lines.push(
-      `    <description>${escapeXml(skill.description)}</description>`,
-    );
-    lines.push(`    <location>${escapeXml(skill.filePath)}</location>`);
-    lines.push("  </skill>");
-  }
-
-  lines.push("</available_skills>");
-  return lines.join("\n");
-}
-
-/**
- * Read skill content for injection
- */
 export function readSkillContent(skill: Skill): string {
   try {
     const content = readFileSync(skill.filePath, "utf-8");
@@ -514,4 +406,98 @@ export function readSkillContent(skill: Skill): string {
   } catch {
     return "";
   }
+}
+
+export type ResolvedSkill =
+  | { kind: "found"; skill: Skill; usedShortnameFallback: boolean }
+  | { kind: "ambiguous"; requestedName: string; options: string[] }
+  | { kind: "not_found"; requestedName: string };
+
+export function resolveSkill(
+  requestedName: string,
+  skills: Skill[],
+  skillsByQualifiedName: Map<string, Skill>,
+): ResolvedSkill {
+  const byQualified = skillsByQualifiedName.get(requestedName);
+  if (byQualified) {
+    return {
+      kind: "found",
+      skill: byQualified,
+      usedShortnameFallback: false,
+    };
+  }
+
+  const matchingSkills = skills.filter((s) => s.name === requestedName);
+  if (matchingSkills.length === 1) {
+    return {
+      kind: "found",
+      skill: matchingSkills[0],
+      usedShortnameFallback: true,
+    };
+  }
+
+  if (matchingSkills.length > 1) {
+    return {
+      kind: "ambiguous",
+      requestedName,
+      options: matchingSkills.map((s) => s.qualifiedName).sort(),
+    };
+  }
+
+  return { kind: "not_found", requestedName };
+}
+
+export function readSkillResult(
+  requestedName: string,
+  skills: Skill[],
+  skillsByQualifiedName: Map<string, Skill>,
+) {
+  const resolved = resolveSkill(requestedName, skills, skillsByQualifiedName);
+
+  if (resolved.kind === "ambiguous") {
+    return {
+      ok: false as const,
+      error: {
+        content: [
+          {
+            type: "text" as const,
+            text:
+              `Ambiguous shortname \"${resolved.requestedName}\". ` +
+              `Use one of: ${resolved.options.join(", ")}`,
+          },
+        ],
+        details: resolved,
+        isError: true,
+      },
+    };
+  }
+
+  if (resolved.kind === "not_found") {
+    return {
+      ok: false as const,
+      error: {
+        content: [
+          {
+            type: "text" as const,
+            text: `Skill not found: ${resolved.requestedName}`,
+          },
+        ],
+        details: resolved,
+        isError: true,
+      },
+    };
+  }
+
+  const body = readSkillContent(resolved.skill);
+  const text = formatReadSkillOutput(resolved.skill, body);
+
+  return {
+    ok: true as const,
+    value: {
+      text,
+      body,
+      skill: resolved.skill,
+      usedShortnameFallback: resolved.usedShortnameFallback,
+    },
+  };
 }

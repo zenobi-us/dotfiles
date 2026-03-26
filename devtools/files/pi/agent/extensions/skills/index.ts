@@ -13,253 +13,37 @@
  */
 
 import type {
+  BeforeAgentStartEvent,
   ExtensionAPI,
   ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
 import { Type } from "@mariozechner/pi-ai";
-import { existsSync, readFileSync } from "node:fs";
-import { homedir } from "node:os";
-import { join, resolve } from "node:path";
+import { searchSkills } from "./cmds/find.js";
+import { buildSkillUserMessage } from "./cmds/read.js";
+export { formatReadSkillOutput, buildSkillUserMessage } from "./cmds/read.js";
+import { getRuntimeSettings } from "./service/config.js";
+import { readSkillResult, resolveSkill } from "./service/skill-registry.js";
 import {
-  loadSkills,
   formatSkillsForPrompt,
-  readSkillContent,
-  type Skill,
-} from "./skill-loader.js";
-
-type RuntimeSettings = {
-  enableSkillCommands: boolean;
-  lazySkills: boolean;
-};
-
-type ResolvedSkill =
-  | { kind: "found"; skill: Skill; usedShortnameFallback: boolean }
-  | { kind: "ambiguous"; requestedName: string; options: string[] }
-  | { kind: "not_found"; requestedName: string };
-
-function getAgentDir(): string {
-  const envCandidates = ["PI_CODING_AGENT_DIR", "TAU_CODING_AGENT_DIR"];
-
-  for (const key of envCandidates) {
-    const value = process.env[key];
-    if (value) return value;
-  }
-
-  for (const [key, value] of Object.entries(process.env)) {
-    if (key.endsWith("_CODING_AGENT_DIR") && value) {
-      return value;
-    }
-  }
-
-  return join(homedir(), ".pi", "agent");
-}
-
-function readJsonFile(filePath: string): Record<string, unknown> {
-  if (!existsSync(filePath)) return {};
-
-  try {
-    const raw = readFileSync(filePath, "utf-8");
-    const parsed = JSON.parse(raw);
-    return typeof parsed === "object" && parsed !== null
-      ? (parsed as Record<string, unknown>)
-      : {};
-  } catch {
-    return {};
-  }
-}
-
-function readBooleanSetting(
-  projectSettings: Record<string, unknown>,
-  agentSettings: Record<string, unknown>,
-  key: string,
-  fallback: boolean,
-): boolean {
-  if (typeof projectSettings[key] === "boolean")
-    return projectSettings[key] as boolean;
-  if (typeof agentSettings[key] === "boolean")
-    return agentSettings[key] as boolean;
-  return fallback;
-}
-
-function getRuntimeSettings(cwd: string): RuntimeSettings {
-  const agentSettingsPath = join(getAgentDir(), "settings.json");
-  const projectSettingsPath = resolve(cwd, ".pi", "settings.json");
-
-  const agentSettings = readJsonFile(agentSettingsPath);
-  const projectSettings = readJsonFile(projectSettingsPath);
-
-  return {
-    enableSkillCommands: readBooleanSetting(
-      projectSettings,
-      agentSettings,
-      "enableSkillCommands",
-      true,
-    ),
-    lazySkills: readBooleanSetting(
-      projectSettings,
-      agentSettings,
-      "lazySkills",
-      false,
-    ),
-  };
-}
-
-function parseSkillQuery(query: string | string[]): {
-  include: string[];
-  exclude: string[];
-  listAll: boolean;
-} {
-  const raw = (Array.isArray(query) ? query : [query]).join(" ").trim();
-
-  if (!raw || raw === "*") {
-    return { include: [], exclude: [], listAll: true };
-  }
-
-  const parts = raw
-    .split(/\s+/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-  const include: string[] = [];
-  const exclude: string[] = [];
-
-  for (const part of parts) {
-    if (part.startsWith("-") && part.length > 1) {
-      exclude.push(part.slice(1).toLowerCase());
-      continue;
-    }
-    include.push(part.toLowerCase());
-  }
-
-  return { include, exclude, listAll: include.length === 0 };
-}
-
-function searchSkills(skills: Skill[], query: string | string[]) {
-  const parsed = parseSkillQuery(query);
-  const visibleSkills = skills.filter((s) => !s.disableModelInvocation);
-
-  let matches = visibleSkills;
-
-  if (!parsed.listAll) {
-    matches = matches.filter((skill) => {
-      const haystack =
-        `${skill.qualifiedName} ${skill.name} ${skill.description}`.toLowerCase();
-      return parsed.include.every((term) => haystack.includes(term));
-    });
-  }
-
-  if (parsed.exclude.length > 0) {
-    matches = matches.filter((skill) => {
-      const haystack =
-        `${skill.qualifiedName} ${skill.name} ${skill.description}`.toLowerCase();
-      return !parsed.exclude.some((term) => haystack.includes(term));
-    });
-  }
-
-  return {
-    query,
-    skills: matches.map((skill) => ({
-      name: skill.qualifiedName,
-      shortname: skill.name,
-      description: skill.description,
-      location: skill.filePath,
-    })),
-    summary: {
-      total: visibleSkills.length,
-      matches: matches.length,
-      feedback:
-        matches.length === 0
-          ? "No skills matched. Try broader terms or query '*' to list all skills."
-          : parsed.listAll
-            ? `Listing all ${matches.length} skills`
-            : `Found ${matches.length} matching skill(s)`,
-    },
-  };
-}
-
-export function formatReadSkillOutput(skill: Skill, body: string): string {
-  return `---
-qualified_name: ${skill.qualifiedName}
-shortname: ${skill.name}
-location: ${skill.filePath}
-base_dir: ${skill.baseDir}
----
-
-> **Path Resolution**: Scripts, references, and assets use relative paths.
-> Resolve from: \`${skill.baseDir}\`
-> Example: \`./scripts/foo.sh\` → \`${skill.baseDir}/scripts/foo.sh\`
-${body}`;
-}
-
-export function buildSkillUserMessage(
-  skill: Skill,
-  body: string,
-  args?: string,
-): string {
-  const text = formatReadSkillOutput(skill, body);
-  return args ? `${text}\n\nUser: ${args}` : text;
-}
+  injectSkillsIntoSystemPrompt,
+} from "./service/systemprompt.js";
+import { loadSkills, type Skill } from "./service/skill-registry.js";
+import { CreateSkillSlashCommands, SkillCommand } from "./cmds/skill.js";
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
   let skills: Skill[] = [];
   let skillsByQualifiedName: Map<string, Skill> = new Map();
   let skillPromptBlock = "";
 
-  function readSkillResult(requestedName: string) {
-    const resolved = resolveSkill(requestedName);
-
-    if (resolved.kind === "ambiguous") {
-      return {
-        ok: false as const,
-        error: {
-          content: [
-            {
-              type: "text" as const,
-              text:
-                `Ambiguous shortname \"${resolved.requestedName}\". ` +
-                `Use one of: ${resolved.options.join(", ")}`,
-            },
-          ],
-          details: resolved,
-          isError: true,
-        },
-      };
-    }
-
-    if (resolved.kind === "not_found") {
-      return {
-        ok: false as const,
-        error: {
-          content: [
-            {
-              type: "text" as const,
-              text: `Skill not found: ${resolved.requestedName}`,
-            },
-          ],
-          details: resolved,
-          isError: true,
-        },
-      };
-    }
-
-    const body = readSkillContent(resolved.skill);
-    const text = formatReadSkillOutput(resolved.skill, body);
-
-    return {
-      ok: true as const,
-      value: {
-        text,
-        body,
-        skill: resolved.skill,
-        usedShortnameFallback: resolved.usedShortnameFallback,
-      },
-    };
-  }
-
   function sendSkillMessage(
     requestedName: string,
     args: string | undefined,
   ): void {
-    const result = readSkillResult(requestedName);
+    const result = readSkillResult(
+      requestedName,
+      skills,
+      skillsByQualifiedName,
+    );
     if (!result.ok) return;
 
     const message = buildSkillUserMessage(
@@ -270,42 +54,17 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     pi.sendUserMessage(message);
   }
 
-  function resolveSkill(requestedName: string): ResolvedSkill {
-    // Try qualified name first
-    const byQualified = skillsByQualifiedName.get(requestedName);
-    if (byQualified) {
-      return {
-        kind: "found",
-        skill: byQualified,
-        usedShortnameFallback: false,
-      };
-    }
-
-    // Fallback to shortname
-    const matchingSkills = skills.filter((s) => s.name === requestedName);
-    if (matchingSkills.length === 1) {
-      return {
-        kind: "found",
-        skill: matchingSkills[0],
-        usedShortnameFallback: true,
-      };
-    }
-
-    if (matchingSkills.length > 1) {
-      return {
-        kind: "ambiguous",
-        requestedName,
-        options: matchingSkills.map((s) => s.qualifiedName).sort(),
-      };
-    }
-
-    return { kind: "not_found", requestedName };
-  }
-
   // Load skills on session start
   pi.on("session_start", async (_event, ctx) => {
+    /**
+     * TODO: Wrap this settings call in `@zenobius/pi-extension-config`
+     * so we can make use of the lifecycle eventemitter it provides
+     */
     const runtimeSettings = getRuntimeSettings(ctx.cwd);
 
+    /**
+     * TODO: load and process skills with eventemitter is ready
+     */
     const result = loadSkills({
       cwd: ctx.cwd,
       includeDefaults: true,
@@ -332,6 +91,13 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         : "full catalog mode";
       ctx.ui.notify(`Loaded ${skills.length} skill(s) (${mode})`, "info");
     }
+
+    CreateSkillSlashCommands(pi, skills, runtimeSettings, sendSkillMessage);
+
+    /**
+     * TODO: end block for @zenobius/pi-extension-config
+     * this means below register* no longer need to live inside this session_start callback
+     */
 
     // Register lazy skill discovery/load tools
     pi.registerTool({
@@ -365,7 +131,11 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         name: Type.String({ description: "Skill qualified name or shortname" }),
       }),
       async execute(_toolCallId, params) {
-        const result = readSkillResult(params.name);
+        const result = readSkillResult(
+          params.name,
+          skills,
+          skillsByQualifiedName,
+        );
 
         if (!result.ok) {
           return result.error;
@@ -383,82 +153,36 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       },
     });
 
-    if (!runtimeSettings.enableSkillCommands) {
-      return;
-    }
-
-    // Register fully-qualified per-skill commands: /skill:<qualified-name>
-    for (const skill of skills) {
-      const commandName = `skill:${skill.qualifiedName}`;
-
-      pi.registerCommand(commandName, {
-        description: skill.description,
-        handler: async (args, _cmdCtx) => {
-          sendSkillMessage(skill.qualifiedName, args || undefined);
-        },
-      });
-    }
-
     // Register generic /skill command for qualified name + shortname fallback
     pi.registerCommand("skill", {
       description: "Load a skill by qualified name or shortname",
       handler: async (args, cmdCtx: ExtensionContext) => {
-        const trimmed = args.trim();
-        if (!trimmed) {
-          cmdCtx.ui.notify(
-            "Usage: /skill <qualified-name|shortname> [extra instructions]",
-            "warning",
-          );
-          return;
-        }
-
-        const [requestedName, ...rest] = trimmed.split(/\s+/);
-        const extraArgs = rest.length > 0 ? rest.join(" ") : undefined;
-
-        const resolved = resolveSkill(requestedName);
-        if (resolved.kind === "ambiguous") {
-          cmdCtx.ui.notify(
-            `Ambiguous shortname "${resolved.requestedName}". Use qualified name:\n${resolved.options.map((o) => `  /skill:${o}`).join("\n")}`,
-            "warning",
-          );
-          return;
-        }
-
-        if (resolved.kind === "not_found") {
-          cmdCtx.ui.notify(`Skill not found: ${requestedName}`, "error");
-          return;
-        }
-
-        if (resolved.usedShortnameFallback) {
-          cmdCtx.ui.notify(
-            `Using "${resolved.skill.qualifiedName}" for shortname "${requestedName}"`,
-            "info",
-          );
-        }
-
-        sendSkillMessage(requestedName, extraArgs);
+        SkillCommand(args, {
+          skills,
+          skillsByQualifiedName,
+          sendSkillMessage,
+          onInfoNotify(message) {
+            cmdCtx.ui.notify(message, "info");
+          },
+          onWarningNotify(message) {
+            cmdCtx.ui.notify(message, "warning");
+          },
+        });
       },
     });
-  });
 
-  // Inject skills into system prompt, replacing any existing <available_skills> block
-  pi.on("before_agent_start", async (event) => {
-    if (!skillPromptBlock) {
-      return;
-    }
+    // Inject skills into system prompt, replacing any existing <available_skills> block
+    pi.on("before_agent_start", async (event) => {
+      if (!skillPromptBlock) {
+        return;
+      }
 
-    const cleanedPrompt = event.systemPrompt
-      .replace(/\n?<available_skills>[\s\S]*?<\/available_skills>\n?/g, "\n")
-      .replace(/\n{3,}/g, "\n\n");
-    const promptWithSkillsBeforeDate = cleanedPrompt.replace(
-      /(\nCurrent date:\s*\d{4}-\d{2}-\d{2})/,
-      `${skillPromptBlock}$1`,
-    );
-    return {
-      systemPrompt:
-        promptWithSkillsBeforeDate === cleanedPrompt
-          ? cleanedPrompt + skillPromptBlock
-          : promptWithSkillsBeforeDate,
-    };
+      return {
+        systemPrompt: injectSkillsIntoSystemPrompt(
+          event.systemPrompt,
+          skillPromptBlock,
+        ),
+      };
+    });
   });
 }
