@@ -7,6 +7,9 @@
   "dependencies": {
     "fzf": "^0.5.2"
   },
+  "devDependencies": {
+    "vitest": "^0.34.0"
+  },
   "peerDependencies": {
     "@mariozechner/pi-coding-agent": "*",
     "@mariozechner/pi-tui": "*"
