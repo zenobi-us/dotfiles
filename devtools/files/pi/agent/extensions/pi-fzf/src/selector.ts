@@ -1,4 +1,4 @@
-import { editorKey } from "@mariozechner/pi-coding-agent";
+import { keyText } from "@mariozechner/pi-coding-agent";
 import type { Focusable } from "@mariozechner/pi-tui";
 import {
   Container,
@@ -266,10 +266,10 @@ export class FuzzySelector extends Container implements Focusable {
     }
 
     // Help line with configured keybindings
-    const upKey = prettyKey(editorKey("tui.select.up"));
-    const downKey = prettyKey(editorKey("tui.select.down"));
-    const confirmKey = prettyKey(editorKey("tui.select.confirm"));
-    const cancelKey = prettyKey(editorKey("tui.select.cancel"));
+    const upKey = prettyKey(keyText("tui.select.up"));
+    const downKey = prettyKey(keyText("tui.select.down"));
+    const confirmKey = prettyKey(keyText("tui.select.confirm"));
+    const cancelKey = prettyKey(keyText("tui.select.cancel"));
     lines.push(
       boxLine(
         t.dim(
