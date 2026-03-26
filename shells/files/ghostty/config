@@ -52,7 +52,7 @@ theme = Rose Pine Moon
 window-decoration = false
 
 # Font configuration
-font-family = "ProggyClean Nerd Font Mono"
+font-family = "CozetteVector"
 font-size = 13
 
 # URL clicking configuration
