@@ -19,8 +19,8 @@ describe("formatReadSkillOutput", () => {
     expect(result).toContain("qualified_name: superpowers-using-superpowers");
     expect(result).toContain("shortname: using-superpowers");
     expect(result).toContain("location: /tmp/skills/superpowers/using-superpowers/SKILL.md");
-    expect(result).toContain("references: relative to /tmp/skills/superpowers/using-superpowers");
-    expect(result).toContain("\n---\n\n# Skill Content\n\nUse this skill first.");
+    expect(result).toContain("> Resolve from: `/tmp/skills/superpowers/using-superpowers`");
+    expect(result).toContain("\n# Skill Content\n\nUse this skill first.");
     expect(result).not.toContain("<skill ");
     expect(result).not.toContain("</skill>");
   });
