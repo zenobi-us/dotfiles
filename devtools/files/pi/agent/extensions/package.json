@@ -11,6 +11,11 @@
     "dedent": "^1.7.0",
     "typebox": "^1.1.3"
   },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.9.3",
+    "vitest": "^0.34.0"
+  },
   "workspaces": [
     "*",
     "!node_modules"
