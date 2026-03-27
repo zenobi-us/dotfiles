@@ -9,6 +9,18 @@
         "zellij action go-to-tab-name {{name}}",
         "zellij action new-pane --name pi --cwd {{path}} -- pi"
       ]
+    },
+
+    "reckon-limited/reckon-frontend": {
+      "worktreeRoot": "{{mainWorktree}}.worktrees",
+      "onCreate": [
+        "ln -s ~/Projects/ai-memory.zeno/reckon-frontend .memory",
+        "mise trust --yes",
+        "mise setup",
+        "zellij action new-tab --name {{name}} -- nvim .",
+        "zellij action go-to-tab-name {{name}}",
+        "zellij action new-pane --name pi --cwd {{path}} -- pi"
+      ]
     }
   }
-}
+} 
