@@ -1,6 +1,6 @@
 import { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { resolveSkill, Skill } from "../service/skill-registry";
-import { getRuntimeSettings } from "../service/config";
+import type { RuntimeSettings } from "../service/config";
 
 export function LoadSkillCommand(
   args: string,
@@ -53,7 +53,7 @@ export function LoadSkillCommand(
 export function CreateSkillSlashCommands(
   pi: ExtensionAPI,
   skills: Skill[],
-  runtimeSettings: ReturnType<typeof getRuntimeSettings>,
+  runtimeSettings: RuntimeSettings,
   sendSkillMessage: (name: string, args?: string) => void,
 ) {
   if (!runtimeSettings.enableSkillCommands) {

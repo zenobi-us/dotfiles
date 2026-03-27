@@ -20,7 +20,12 @@ import { Type } from "@mariozechner/pi-ai";
 import { FindSkillsCmd } from "./cmds/find.js";
 import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
 export { formatReadSkillOutput, buildSkillUserMessage } from "./cmds/read.js";
-import { getRuntimeSettings } from "./service/config.js";
+import {
+  createRuntimeSettingsService,
+  DEFAULT_RUNTIME_SETTINGS,
+  type RuntimeSettings,
+  type RuntimeSettingsService,
+} from "./service/config.js";
 import {
   formatSkillsForPrompt,
   injectSkillsIntoSystemPrompt,
@@ -35,15 +40,18 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
 
   // Load skills on session start
   pi.on("session_start", async (_event, ctx) => {
-    /**
-     * TODO: Wrap this settings call in `@zenobius/pi-extension-config`
-     * so we can make use of the lifecycle eventemitter it provides
-     */
-    const runtimeSettings = getRuntimeSettings(ctx.cwd);
-
-    /**
-     * TODO: load and process skills with eventemitter is ready
-     */
+    let runtimeSettings: RuntimeSettings;
+    let runtimeSettingsService: RuntimeSettingsService | null = null;
+    try {
+      runtimeSettingsService = await createRuntimeSettingsService();
+      runtimeSettings = runtimeSettingsService.config;
+    } catch {
+      runtimeSettings = DEFAULT_RUNTIME_SETTINGS;
+      ctx.ui.notify(
+        "Failed to initialize skills config service; using built-in defaults",
+        "warning",
+      );
+    }
     const result = loadSkills({
       cwd: ctx.cwd,
       includeDefaults: true,
@@ -88,10 +96,41 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       },
     );
 
-    /**
-     * TODO: end block for @zenobius/pi-extension-config
-     * this means below register* no longer need to live inside this session_start callback
-     */
+    pi.registerCommand("skills:config:reload", {
+      description: "Reload runtime settings for the skills extension",
+      handler: async (_args, cmdCtx: ExtensionContext) => {
+        if (!runtimeSettingsService) {
+          cmdCtx.ui.notify(
+            "Config service is unavailable in this session; restart to retry initialization",
+            "warning",
+          );
+          return;
+        }
+
+        try {
+          await runtimeSettingsService.reload();
+          runtimeSettings = runtimeSettingsService.config;
+          skillPromptBlock = formatSkillsForPrompt(skills, {
+            lazySkills: runtimeSettings.lazySkills,
+          });
+
+          const mode = runtimeSettings.lazySkills ? "lazy mode" : "full catalog mode";
+          cmdCtx.ui.notify(
+            `Skills config reloaded (search=${runtimeSettings.searchStrategy}, mode=${mode}, commands=${runtimeSettings.enableSkillCommands ? "enabled" : "disabled"})`,
+            "info",
+          );
+
+          if (!runtimeSettings.enableSkillCommands) {
+            cmdCtx.ui.notify(
+              "Skill slash commands were already registered for this session and cannot be unregistered until restart",
+              "warning",
+            );
+          }
+        } catch {
+          cmdCtx.ui.notify("Failed to reload skills config", "error");
+        }
+      },
+    });
 
     // Register lazy skill discovery/load tools
     pi.registerTool({
@@ -116,14 +155,15 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       },
     });
 
-    pi.registerTool({
+    const ReadSkillToolParams = Type.Object({
+      name: Type.String({ description: "Skill qualified name or shortname" }),
+    });
+    pi.registerTool<typeof ReadSkillToolParams, unknown>({
       name: "read_skill",
       label: "Read Skill",
       description:
         "Load a skill by qualified name (or shortname when unambiguous) and return its SKILL.md content.",
-      parameters: Type.Object({
-        name: Type.String({ description: "Skill qualified name or shortname" }),
-      }),
+      parameters: ReadSkillToolParams,
       async execute(_toolCallId, params) {
         const result = ReadSkillCommand(
           params.name,
