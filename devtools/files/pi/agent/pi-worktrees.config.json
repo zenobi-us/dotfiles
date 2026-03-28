@@ -3,12 +3,11 @@
     "**": {
       "worktreeRoot": "{{mainWorktree}}.worktrees",
       "onCreate": [
-        "mise trust --yes",
-        "mise setup",
         "zellij action new-tab --name {{name}} -- nvim .",
         "zellij action go-to-tab-name {{name}}",
         "zellij action new-pane --name pi --cwd {{path}} -- pi"
-      ]
+      ],
+      "onSwitch": ["zellij action go-to-tab-name {{name}}"]
     },
 
     "reckon-limited/reckon-frontend": {
@@ -20,7 +19,8 @@
         "zellij action new-tab --name {{name}} -- nvim .",
         "zellij action go-to-tab-name {{name}}",
         "zellij action new-pane --name pi --cwd {{path}} -- pi"
-      ]
+      ],
+      "onSwitch": ["zellij action go-to-tab-name {{name}}"]
     }
   }
-} 
+}
