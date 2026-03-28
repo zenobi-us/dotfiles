@@ -31,6 +31,13 @@
         "chrome-devtools-mcp",
         "--browser-url=http://127.0.0.1:9222"
       ]
+    },
+    "firefox-devtools": {
+      "type": "local",
+      "command": ["mise", "x", "node@22", "--", "firefox-devtools-mcp"],
+      "env": {
+        "npm_config_loglevel": "error"
+      }
     }
   }
 }
