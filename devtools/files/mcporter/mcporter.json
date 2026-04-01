@@ -34,7 +34,14 @@
     },
     "firefox-devtools": {
       "type": "local",
-      "command": ["mise", "x", "node@22", "--", "firefox-devtools-mcp"],
+      "command": [
+        "mise",
+        "x",
+        "node@22",
+        "--",
+        "firefox-devtools-mcp",
+        "--connect-existing"
+      ],
       "env": {
         "npm_config_loglevel": "error"
       }
