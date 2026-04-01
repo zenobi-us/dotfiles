@@ -27,7 +27,7 @@ import {
   type RuntimeSettingsService,
 } from "./service/config.js";
 import { injectSkillsIntoSystemPrompt } from "./service/systemprompt.js";
-import { createSkillRegistry, type Skill } from "./service/skill-registry.js";
+import { createSkillRegistry } from "./service/skill-registry.js";
 import { CreateSkillSlashCommands, LoadSkillCommand } from "./cmds/skill.js";
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
@@ -226,5 +226,9 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         ),
       };
     });
+  });
+
+  pi.on("session_shutdown", () => {
+    registry.dispose();
   });
 }

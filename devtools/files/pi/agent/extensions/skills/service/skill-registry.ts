@@ -17,6 +17,7 @@ import {
 import { pathToKebabName } from "../core/strings.js";
 import { SettingsManager } from "@mariozechner/pi-coding-agent";
 import { formatSkillsForPrompt } from "./systemprompt.js";
+import { createSkillWatcher } from "./skill-watcher.js";
 
 export interface SkillFrontmatter {
   name?: string;
@@ -36,8 +37,6 @@ export interface Skill {
   filePath: string;
   /** Directory containing the skill */
   baseDir: string;
-  /** Source: "user", "project", or "path" */
-  source: string;
   /** If true, hidden from system prompt (only /skill:name works) */
   disableModelInvocation: boolean;
 }
@@ -142,11 +141,6 @@ function normalizePath(input: string): string {
   return trimmed;
 }
 
-function resolveSkillPath(p: string, cwd: string): string {
-  const normalized = normalizePath(p);
-  return isAbsolute(normalized) ? normalized : resolve(cwd, normalized);
-}
-
 function resolvePackageSkillPaths(agentDir: string): string[] {
   const skillPaths: string[] = [];
 
@@ -206,11 +200,10 @@ function resolvePackageSkillPaths(agentDir: string): string[] {
   return skillPaths;
 }
 
-function loadSkillFromFile(
-  filePath: string,
-  source: string,
-  skillsRoot: string,
-): { skill: Skill | null; diagnostics: SkillDiagnostic[] } {
+function loadSkillFromFile(filePath: string): {
+  skill: Skill | null;
+  diagnostics: SkillDiagnostic[];
+} {
   const diagnostics: SkillDiagnostic[] = [];
 
   try {
@@ -219,6 +212,12 @@ function loadSkillFromFile(
 
     const skillDir = dirname(filePath);
     const parentDirName = basename(skillDir);
+    // the path should contain the word "skills" to be considered a skill root, otherwise we treat the parent dir as the skill root for name validation and qualified name generation
+    const parentSkillRoot = skillDir.substring(
+      0,
+      skillDir.lastIndexOf("skills") + "skills".length,
+    );
+    const relativeToRoot = relative(parentSkillRoot, filePath);
 
     const descErrors = validateDescription(frontmatter.description);
     for (const error of descErrors) {
@@ -238,8 +237,6 @@ function loadSkillFromFile(
     ) {
       return { skill: null, diagnostics };
     }
-
-    const relativeToRoot = relative(skillsRoot, skillDir);
     const qualifiedName = pathToKebabName(relativeToRoot) || name;
 
     return {
@@ -249,7 +246,6 @@ function loadSkillFromFile(
         description: frontmatter.description as string,
         filePath,
         baseDir: skillDir,
-        source,
         disableModelInvocation:
           frontmatter["disable-model-invocation"] === true,
       },
@@ -263,12 +259,7 @@ function loadSkillFromFile(
   }
 }
 
-function loadSkillsFromDirInternal(
-  dir: string,
-  source: string,
-  skillsRoot: string,
-  includeRootFiles: boolean,
-) {
+function loadSkillsFromDirInternal(dir: string, includeRootFiles: boolean) {
   const skills: Skill[] = [];
   const diagnostics: SkillDiagnostic[] = [];
 
@@ -299,12 +290,7 @@ function loadSkillsFromDirInternal(
       }
 
       if (isDirectory) {
-        const subResult = loadSkillsFromDirInternal(
-          fullPath,
-          source,
-          skillsRoot,
-          false,
-        );
+        const subResult = loadSkillsFromDirInternal(fullPath, false);
         skills.push(...subResult.skills);
         diagnostics.push(...subResult.diagnostics);
         continue;
@@ -317,7 +303,7 @@ function loadSkillsFromDirInternal(
 
       if (!isRootMd && !isSkillMd) continue;
 
-      const result = loadSkillFromFile(fullPath, source, skillsRoot);
+      const result = loadSkillFromFile(fullPath);
       if (result.skill) {
         skills.push(result.skill);
       }
@@ -333,9 +319,30 @@ function loadSkillsFromDirInternal(
 export interface LoadSkillsOptions {
   cwd?: string;
   agentDir?: string;
-  skillPaths?: string[];
   includeDefaults?: boolean;
   lazySkills?: boolean;
+}
+
+export function resolveSkillRoots(
+  options: {
+    cwd?: string;
+    agentDir?: string;
+    includeDefaults?: boolean;
+  } = {},
+): string[] {
+  const {
+    cwd = process.cwd(),
+    agentDir = join(homedir(), CONFIG_DIR_NAME, "agent"),
+    includeDefaults = true,
+  } = options;
+
+  if (!includeDefaults) return [];
+
+  const userSkillsDir = join(agentDir, "skills");
+  const projectSkillsDir = resolve(cwd, CONFIG_DIR_NAME, "skills");
+  const packageSkillDirs = resolvePackageSkillPaths(agentDir);
+
+  return [...packageSkillDirs, userSkillsDir, projectSkillsDir];
 }
 
 type SkillRegistryInternal = {
@@ -355,144 +362,92 @@ export function createSkillRegistry() {
     skillPromptBlock: "",
   };
 
+  const watcher = createSkillWatcher({
+    onBatch(changes) {},
+  });
+
+  function addSkills(result: {
+    skills: Skill[];
+    diagnostics: SkillDiagnostic[];
+  }) {
+    registry.allDiagnostics.push(...result.diagnostics);
+
+    for (const skill of result.skills) {
+      let realPath: string;
+      try {
+        realPath = realpathSync(skill.filePath);
+      } catch {
+        realPath = skill.filePath;
+      }
+
+      if (registry.realPathSet.has(realPath)) continue;
+
+      const existing = registry.skills.get(skill.qualifiedName);
+      if (existing) {
+        registry.collisionDiagnostics.push({
+          type: "collision",
+          message: `qualified name "${skill.qualifiedName}" collision`,
+          path: skill.filePath,
+          collision: {
+            name: skill.name,
+            qualifiedName: skill.qualifiedName,
+            winnerPath: existing.filePath,
+            loserPath: skill.filePath,
+          },
+        });
+      } else {
+        registry.skills.set(skill.qualifiedName, skill);
+        registry.realPathSet.add(realPath);
+      }
+    }
+  }
+
   const load = (options: LoadSkillsOptions = {}) => {
     const {
       cwd = process.cwd(),
       agentDir = join(homedir(), CONFIG_DIR_NAME, "agent"),
-      skillPaths = [],
       includeDefaults = true,
     } = options;
 
-    function addSkills(result: {
-      skills: Skill[];
-      diagnostics: SkillDiagnostic[];
-    }) {
-      registry.allDiagnostics.push(...result.diagnostics);
+    registry.allDiagnostics = [];
+    registry.collisionDiagnostics = [];
+    registry.skills.clear();
+    registry.realPathSet.clear();
 
-      for (const skill of result.skills) {
-        let realPath: string;
-        try {
-          realPath = realpathSync(skill.filePath);
-        } catch {
-          realPath = skill.filePath;
-        }
+    const dirs = resolveSkillRoots({ cwd, agentDir, includeDefaults });
 
-        if (registry.realPathSet.has(realPath)) continue;
-
-        const existing = registry.skills.get(skill.qualifiedName);
-        if (existing) {
-          registry.collisionDiagnostics.push({
-            type: "collision",
-            message: `qualified name "${skill.qualifiedName}" collision`,
-            path: skill.filePath,
-            collision: {
-              name: skill.name,
-              qualifiedName: skill.qualifiedName,
-              winnerPath: existing.filePath,
-              loserPath: skill.filePath,
-            },
-          });
-        } else {
-          registry.skills.set(skill.qualifiedName, skill);
-          registry.realPathSet.add(realPath);
-        }
-      }
+    for (const packageSkillDir of dirs) {
+      addSkills(loadSkillsFromDirInternal(packageSkillDir, true));
     }
 
-    if (includeDefaults) {
-      const userSkillsDir = join(agentDir, "skills");
-      const projectSkillsDir = resolve(cwd, CONFIG_DIR_NAME, "skills");
-
-      const packageSkillDirs = resolvePackageSkillPaths(agentDir);
-
-      // local-package-first: load package skill roots before legacy default skill dirs.
-      for (const packageSkillDir of packageSkillDirs) {
-        addSkills(
-          loadSkillsFromDirInternal(
-            packageSkillDir,
-            "user",
-            packageSkillDir,
-            true,
-          ),
-        );
-      }
-      addSkills(
-        loadSkillsFromDirInternal(userSkillsDir, "user", userSkillsDir, true),
-      );
-      addSkills(
-        loadSkillsFromDirInternal(
-          projectSkillsDir,
-          "project",
-          projectSkillsDir,
-          true,
-        ),
-      );
-    }
-
-    for (const rawPath of skillPaths) {
-      const resolvedPath = resolveSkillPath(rawPath, cwd);
-
-      if (!existsSync(resolvedPath)) {
-        registry.allDiagnostics.push({
-          type: "warning",
-          message: "skill path does not exist",
-          path: resolvedPath,
-        });
-        continue;
-      }
-
-      try {
-        const stats = statSync(resolvedPath);
-
-        if (stats.isDirectory()) {
-          addSkills(
-            loadSkillsFromDirInternal(resolvedPath, "path", resolvedPath, true),
-          );
-        } else if (stats.isFile() && resolvedPath.endsWith(".md")) {
-          const result = loadSkillFromFile(
-            resolvedPath,
-            "path",
-            dirname(resolvedPath),
-          );
-          if (result.skill) {
-            addSkills({
-              skills: [result.skill],
-              diagnostics: result.diagnostics,
-            });
-          } else {
-            registry.allDiagnostics.push(...result.diagnostics);
-          }
-        } else {
-          registry.allDiagnostics.push({
-            type: "warning",
-            message: "skill path is not a markdown file",
-            path: resolvedPath,
-          });
-        }
-      } catch (error) {
-        const message =
-          error instanceof Error ? error.message : "failed to read skill path";
-        registry.allDiagnostics.push({
-          type: "warning",
-          message,
-          path: resolvedPath,
-        });
-      }
-    }
+    watcher.start(dirs);
 
     registry.skillPromptBlock = formatSkillsForPrompt(registry.skills, {
       lazySkills: options.lazySkills,
     });
   };
 
+  const dispose = () => {
+    registry.skills.clear();
+    registry.realPathSet.clear();
+    registry.allDiagnostics = [];
+    registry.collisionDiagnostics = [];
+    watcher.dispose();
+  };
+
   return {
     load,
+    dispose,
     get skills(): Skill[] {
       return Array.from(registry.skills.values());
     },
     skillMap: registry.skills,
-    systemPromptBlock: registry.skillPromptBlock,
-    diagnostics: [...registry.allDiagnostics, ...registry.collisionDiagnostics],
+    get systemPromptBlock(): string {
+      return registry.skillPromptBlock;
+    },
+    get diagnostics(): SkillDiagnostic[] {
+      return [...registry.allDiagnostics, ...registry.collisionDiagnostics];
+    },
   };
 }
 
