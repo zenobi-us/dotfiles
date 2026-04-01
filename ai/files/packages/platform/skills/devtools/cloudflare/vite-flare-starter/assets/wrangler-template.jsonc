@@ -1,0 +1,49 @@
+// Cloudflare Workers Configuration
+// Documentation: https://developers.cloudflare.com/workers/configuration/
+{
+  "name": "{{PROJECT_NAME}}",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Worker entry point (source file, NOT built file)
+  "main": "./src/server/index.ts",
+
+  // Static Assets Configuration (Workers with Static Assets)
+  "assets": {
+    "directory": "./dist/client",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+
+  // D1 Database (SQLite at edge)
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "{{PROJECT_NAME}}-db",
+      "database_id": "{{DATABASE_ID}}",
+      "migrations_dir": "drizzle"
+    }
+  ],
+
+  // R2 Storage (S3-compatible object storage)
+  "r2_buckets": [
+    {
+      "binding": "AVATARS",
+      "bucket_name": "{{PROJECT_NAME}}-avatars"
+    },
+    {
+      "binding": "FILES",
+      "bucket_name": "{{PROJECT_NAME}}-files"
+    }
+  ],
+
+  // Workers AI
+  "ai": {
+    "binding": "AI"
+  },
+
+  // Observability
+  "observability": {
+    "enabled": true
+  }
+}

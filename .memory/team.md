@@ -5,3 +5,6 @@
 
 ## Stale Locks
 - None.
+
+## Planned Ownership
+- Session `current-session` prepared epic `pkgmig01` for execution (Phase 1 ready). Ownership handoff pending after `pi611e01` closes.

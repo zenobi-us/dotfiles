@@ -25,3 +25,13 @@
 - Static verification:
   - zero legacy selector ids found across `./devtools/files/pi/agent/extensions/**`
   - zero `pi.on("tool_call", ...)` handlers found
+
+## Planned Next Epic
+- **Queued Epic**: [epic-pkgmig01-ai-files-pi-packages-migration](./epic-pkgmig01-ai-files-pi-packages-migration.md)
+- **Status**: planning
+- **Planned Phases**:
+  1. Package Skeleton
+  2. File Migration
+  3. Configuration
+  4. Skill Registry Extension
+  5. Validation

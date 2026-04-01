@@ -5,8 +5,7 @@ import type { RuntimeSettings } from "../service/config";
 export function LoadSkillCommand(
   args: string,
   options: {
-    skills: Skill[];
-    skillsByQualifiedName: Map<string, Skill>;
+    skills: Map<string, Skill>;
     sendSkillMessage: (name: string, args?: string) => void;
     onWarningNotify: (message: string) => void;
     onInfoNotify: (message: string) => void;
@@ -23,11 +22,7 @@ export function LoadSkillCommand(
   const [requestedName, ...rest] = trimmed.split(/\s+/);
   const extraArgs = rest.length > 0 ? rest.join(" ") : undefined;
 
-  const resolved = resolveSkill(
-    requestedName,
-    options.skills,
-    options.skillsByQualifiedName,
-  );
+  const resolved = resolveSkill(requestedName, options.skills);
 
   if (resolved.kind === "ambiguous") {
     options.onWarningNotify(
@@ -53,13 +48,8 @@ export function LoadSkillCommand(
 export function CreateSkillSlashCommands(
   pi: ExtensionAPI,
   skills: Skill[],
-  runtimeSettings: RuntimeSettings,
   sendSkillMessage: (name: string, args?: string) => void,
 ) {
-  if (!runtimeSettings.enableSkillCommands) {
-    return;
-  }
-
   // Register fully-qualified per-skill commands: /skill:<qualified-name>
   for (const skill of skills) {
     const commandName = `skill:${skill.qualifiedName}`;

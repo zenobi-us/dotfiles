@@ -1,0 +1,11 @@
+{
+  "name": "@zenobius/pi-researcher",
+  "version": "0.1.0",
+  "description": "Research methodology, deep analysis, and data/AI expert personas",
+  "private": true,
+  "keywords": ["pi-package"],
+  "pi": {
+    "prompts": ["./prompts"],
+    "skills": ["./skills"]
+  }
+}

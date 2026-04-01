@@ -60,4 +60,4 @@ link-url = true
 link-previews = true
 
 # Shader applied by ghostty-shaders
-custom-shader = /home/zenobius/.local/share/ghostty-shaders/sources/0xhckr_ghostty-shaders/in-game-crt-cursor.glsl
+# custom-shader = /home/zenobius/.local/share/ghostty-shaders/sources/0xhckr_ghostty-shaders/in-game-crt-cursor.glsl

@@ -1,7 +1,7 @@
 {
   "commands": {
     "file": {
-      "list": "fd --type f",
+      "list": "fd --type f --hidden --exclude '.git' --exclude '.DS_Store' --exclude '.env.local'",
       "action": "@{{selected}}",
       "shortcut": "@"
     }
