@@ -16,8 +16,6 @@ export type SearchStrategy = Static<typeof SearchStrategySchema>;
 
 export const RuntimeSettingsSchema = Type.Object(
   {
-    enableSkillCommands: Type.Boolean(),
-    lazySkills: Type.Boolean(),
     searchStrategy: SearchStrategySchema,
   },
   { additionalProperties: false },
@@ -25,8 +23,6 @@ export const RuntimeSettingsSchema = Type.Object(
 
 const RuntimeSettingsOverridesSchema = Type.Object(
   {
-    enableSkillCommands: Type.Optional(Type.Boolean()),
-    lazySkills: Type.Optional(Type.Boolean()),
     searchStrategy: Type.Optional(SearchStrategySchema),
   },
   { additionalProperties: false },
@@ -36,8 +32,6 @@ export type RuntimeSettings = Static<typeof RuntimeSettingsSchema>;
 export type RuntimeSettingsService = ConfigService<RuntimeSettings>;
 
 export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
-  enableSkillCommands: true,
-  lazySkills: false,
   searchStrategy: "lexical",
 };
 

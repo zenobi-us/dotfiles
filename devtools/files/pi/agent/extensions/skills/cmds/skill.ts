@@ -48,13 +48,8 @@ export function LoadSkillCommand(
 export function CreateSkillSlashCommands(
   pi: ExtensionAPI,
   skills: Skill[],
-  runtimeSettings: RuntimeSettings,
   sendSkillMessage: (name: string, args?: string) => void,
 ) {
-  if (!runtimeSettings.enableSkillCommands) {
-    return;
-  }
-
   // Register fully-qualified per-skill commands: /skill:<qualified-name>
   for (const skill of skills) {
     const commandName = `skill:${skill.qualifiedName}`;

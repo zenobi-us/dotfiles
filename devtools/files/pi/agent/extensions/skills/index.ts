@@ -12,12 +12,13 @@
  *   pi --no-skills   # Disable built-in skills, this extension takes over
  */
 
-import type {
-  ExtensionAPI,
-  ExtensionContext,
+import {
+  SettingsManager,
+  type ExtensionAPI,
+  type ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
 import { Type } from "@mariozechner/pi-ai";
-import { FindSkillsCmd } from "./cmds/find.js";
+import { bm25Search, FindSkillsCmd, lexicalScoreSearch } from "./cmds/find.js";
 import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
 export { formatReadSkillOutput, buildSkillUserMessage } from "./cmds/read.js";
 import {
@@ -32,6 +33,7 @@ import { CreateSkillSlashCommands, LoadSkillCommand } from "./cmds/skill.js";
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
   const registry = createSkillRegistry();
+  const piSettings = SettingsManager.create();
 
   // Load skills on session start
   pi.on("session_start", async (_event, ctx) => {
@@ -51,7 +53,6 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     await registry.load({
       cwd: ctx.cwd,
       includeDefaults: true,
-      lazySkills: runtimeSettings.lazySkills,
     });
 
     // Log diagnostics
@@ -64,20 +65,11 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     }
 
     if (registry.skills.length > 0) {
-      const mode = runtimeSettings.lazySkills
-        ? "lazy mode"
-        : "full catalog mode";
-      ctx.ui.notify(
-        `Loaded ${registry.skills.length} skill(s) (${mode})`,
-        "info",
-      );
+      ctx.ui.notify(`Found ${registry.skills.length} skill(s)`, "info");
     }
 
-    CreateSkillSlashCommands(
-      pi,
-      registry.skills,
-      runtimeSettings,
-      function (name, args) {
+    if (piSettings.getEnableSkillCommands()) {
+      CreateSkillSlashCommands(pi, registry.skills, function (name, args) {
         const result = ReadSkillCommand(name, registry.skillMap);
         if (!result.ok) return;
 
@@ -87,8 +79,12 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
           args,
         );
         pi.sendUserMessage(message);
-      },
-    );
+      });
+      ctx.ui.notify(
+        `Registered slash commands for ${registry.skills.length} skill(s)`,
+        "info",
+      );
+    }
 
     pi.registerCommand("skills:config:reload", {
       description: "Reload runtime settings for the skills extension",
@@ -107,24 +103,12 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
           await registry.load({
             cwd: cmdCtx.cwd,
             includeDefaults: true,
-            lazySkills: runtimeSettings.lazySkills,
           });
 
-          const mode = runtimeSettings.lazySkills
-            ? "lazy mode"
-            : "full catalog mode";
-
           cmdCtx.ui.notify(
-            `Skills config reloaded (search=${runtimeSettings.searchStrategy}, mode=${mode}, commands=${runtimeSettings.enableSkillCommands ? "enabled" : "disabled"}, known=${registry.skillMap.size})`,
+            `Skills config reloaded (search=${runtimeSettings.searchStrategy}, known=${registry.skillMap.size})`,
             "info",
           );
-
-          if (!runtimeSettings.enableSkillCommands) {
-            cmdCtx.ui.notify(
-              "Skill slash commands were already registered for this session and cannot be unregistered until restart",
-              "warning",
-            );
-          }
         } catch {
           cmdCtx.ui.notify("Failed to reload skills config", "error");
         }
@@ -189,6 +173,14 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     // Register generic /skill command for qualified name + shortname fallback
     pi.registerCommand("skill", {
       description: "Load a skill by qualified name or shortname",
+      getArgumentCompletions(argumentPrefix) {
+        return lexicalScoreSearch(argumentPrefix, registry.skills).skills.map(
+          (skill) => ({
+            label: `${skill.shortname} (${skill.description})`,
+            value: skill.name,
+          }),
+        );
+      },
       handler: async (args, cmdCtx: ExtensionContext) => {
         LoadSkillCommand(args, {
           skills: registry.skillMap,
