@@ -1,0 +1,10 @@
+{
+  "name": "@zenobius/pi-platform",
+  "version": "0.1.0",
+  "description": "Cloudflare, home automation, infra ops, and specialized deployment experts",
+  "private": true,
+  "keywords": ["pi-package"],
+  "pi": {
+    "skills": ["./skills"]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@zenobius/pi-developer",
+  "version": "0.1.0",
+  "description": "Code writing, git workflow, testing, and language/quality experts",
+  "private": true,
+  "keywords": ["pi-package"],
+  "pi": {
+    "prompts": ["./prompts"],
+    "skills": ["./skills"]
+  }
+}

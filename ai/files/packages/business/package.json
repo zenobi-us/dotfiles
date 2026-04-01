@@ -1,0 +1,11 @@
+{
+  "name": "@zenobius/pi-business",
+  "version": "0.1.0",
+  "description": "Product planning, stakeholder management, and organizational orchestration",
+  "private": true,
+  "keywords": ["pi-package"],
+  "pi": {
+    "prompts": ["./prompts"],
+    "skills": ["./skills"]
+  }
+}

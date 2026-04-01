@@ -1,0 +1,11 @@
+{
+  "name": "@zenobius/pi-agent-core",
+  "version": "0.1.0",
+  "description": "Superpowers, skill management, and shell environment for pi",
+  "private": true,
+  "keywords": ["pi-package"],
+  "pi": {
+    "prompts": ["./prompts"],
+    "skills": ["./skills"]
+  }
+}

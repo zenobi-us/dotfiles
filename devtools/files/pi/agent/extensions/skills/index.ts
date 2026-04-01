@@ -48,7 +48,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       );
     }
 
-    registry.load({
+    await registry.load({
       cwd: ctx.cwd,
       includeDefaults: true,
       lazySkills: runtimeSettings.lazySkills,
@@ -104,7 +104,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         try {
           await runtimeSettingsService.reload();
           runtimeSettings = runtimeSettingsService.config;
-          registry.load({
+          await registry.load({
             cwd: cmdCtx.cwd,
             includeDefaults: true,
             lazySkills: runtimeSettings.lazySkills,
@@ -115,7 +115,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
             : "full catalog mode";
 
           cmdCtx.ui.notify(
-            `Skills config reloaded (search=${runtimeSettings.searchStrategy}, mode=${mode}, commands=${runtimeSettings.enableSkillCommands ? "enabled" : "disabled"}, watch=${runtimeSettings.watchSkills ? "enabled" : "disabled"}, known=${registry.skillMap.size})`,
+            `Skills config reloaded (search=${runtimeSettings.searchStrategy}, mode=${mode}, commands=${runtimeSettings.enableSkillCommands ? "enabled" : "disabled"}, known=${registry.skillMap.size})`,
             "info",
           );
 
@@ -228,7 +228,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     });
   });
 
-  pi.on("session_shutdown", () => {
-    registry.dispose();
+  pi.on("session_shutdown", async () => {
+    await registry.dispose();
   });
 }

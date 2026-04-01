@@ -1,4 +1,7 @@
-import { createConfigService, type ConfigService } from "@zenobius/pi-extension-config";
+import {
+  createConfigService,
+  type ConfigService,
+} from "@zenobius/pi-extension-config";
 import { type Static, Type } from "typebox";
 import { Value } from "typebox/value";
 
@@ -16,7 +19,6 @@ export const RuntimeSettingsSchema = Type.Object(
     enableSkillCommands: Type.Boolean(),
     lazySkills: Type.Boolean(),
     searchStrategy: SearchStrategySchema,
-    watchSkills: Type.Boolean(),
   },
   { additionalProperties: false },
 );
@@ -26,7 +28,6 @@ const RuntimeSettingsOverridesSchema = Type.Object(
     enableSkillCommands: Type.Optional(Type.Boolean()),
     lazySkills: Type.Optional(Type.Boolean()),
     searchStrategy: Type.Optional(SearchStrategySchema),
-    watchSkills: Type.Optional(Type.Boolean()),
   },
   { additionalProperties: false },
 );
@@ -38,7 +39,6 @@ export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
   enableSkillCommands: true,
   lazySkills: false,
   searchStrategy: "lexical",
-  watchSkills: true,
 };
 
 function parseRuntimeSettings(raw: unknown): RuntimeSettings {
@@ -55,9 +55,7 @@ function parseRuntimeSettings(raw: unknown): RuntimeSettings {
   }
 }
 
-export async function createRuntimeSettingsService(): Promise<
-  RuntimeSettingsService
-> {
+export async function createRuntimeSettingsService(): Promise<RuntimeSettingsService> {
   return createConfigService<RuntimeSettings>("skills", {
     defaults: DEFAULT_RUNTIME_SETTINGS,
     parse: parseRuntimeSettings,

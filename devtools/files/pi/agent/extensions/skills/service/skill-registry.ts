@@ -362,8 +362,61 @@ export function createSkillRegistry() {
     skillPromptBlock: "",
   };
 
+  let currentLazySkills: boolean | undefined = false;
+
+  function removeSkillByPath(filePath: string) {
+    const existing = Array.from(registry.skills.entries()).find(
+      ([, skill]) => skill.filePath === filePath,
+    );
+    if (!existing) return;
+
+    const [qualifiedName, skill] = existing;
+    registry.skills.delete(qualifiedName);
+
+    try {
+      const realPath = realpathSync(skill.filePath);
+      registry.realPathSet.delete(realPath);
+    } catch {
+      registry.realPathSet.delete(skill.filePath);
+    }
+  }
+
+  function upsertSkillReplacing(skill: Skill) {
+    removeSkillByPath(skill.filePath);
+
+    const existingByQualified = registry.skills.get(skill.qualifiedName);
+    if (existingByQualified && existingByQualified.filePath !== skill.filePath) {
+      removeSkillByPath(existingByQualified.filePath);
+    }
+
+    registry.skills.set(skill.qualifiedName, skill);
+    try {
+      const realPath = realpathSync(skill.filePath);
+      registry.realPathSet.add(realPath);
+    } catch {
+      registry.realPathSet.add(skill.filePath);
+    }
+  }
+
   const watcher = createSkillWatcher({
-    onBatch(changes) {},
+    onBatch(changes) {
+      for (const change of changes) {
+        if (change.type === "unlink") {
+          removeSkillByPath(change.path);
+          continue;
+        }
+
+        removeSkillByPath(change.path);
+        const result = loadSkillFromFile(change.path);
+          registry.allDiagnostics.push(...result.diagnostics);
+        if (result.skill) {
+          upsertSkillReplacing(result.skill);
+        }
+      }
+      registry.skillPromptBlock = formatSkillsForPrompt(registry.skills, {
+        lazySkills: currentLazySkills,
+      });
+    },
   });
 
   function addSkills(result: {
@@ -402,37 +455,36 @@ export function createSkillRegistry() {
     }
   }
 
-  const load = (options: LoadSkillsOptions = {}) => {
+  const load = async (options: LoadSkillsOptions = {}) => {
+    await watcher.dispose();
     const {
       cwd = process.cwd(),
       agentDir = join(homedir(), CONFIG_DIR_NAME, "agent"),
       includeDefaults = true,
     } = options;
 
+    currentLazySkills = options.lazySkills;
     registry.allDiagnostics = [];
     registry.collisionDiagnostics = [];
     registry.skills.clear();
     registry.realPathSet.clear();
-
     const dirs = resolveSkillRoots({ cwd, agentDir, includeDefaults });
-
     for (const packageSkillDir of dirs) {
       addSkills(loadSkillsFromDirInternal(packageSkillDir, true));
     }
 
     watcher.start(dirs);
-
     registry.skillPromptBlock = formatSkillsForPrompt(registry.skills, {
-      lazySkills: options.lazySkills,
+      lazySkills: currentLazySkills,
     });
   };
 
-  const dispose = () => {
+  const dispose = async () => {
     registry.skills.clear();
     registry.realPathSet.clear();
     registry.allDiagnostics = [];
     registry.collisionDiagnostics = [];
-    watcher.dispose();
+    await watcher.dispose();
   };
 
   return {

@@ -1,0 +1,11 @@
+{
+  "name": "@zenobius/pi-creator",
+  "version": "0.1.0",
+  "description": "Design commands, UI/API building, and user-facing product experts",
+  "private": true,
+  "keywords": ["pi-package"],
+  "pi": {
+    "prompts": ["./prompts"],
+    "skills": ["./skills"]
+  }
+}

@@ -1,0 +1,28 @@
+# Local Development Environment Variables
+# DO NOT COMMIT THIS FILE TO GIT
+
+# Authentication (better-auth)
+BETTER_AUTH_SECRET={{BETTER_AUTH_SECRET}}
+BETTER_AUTH_URL=http://localhost:5173
+
+# Google OAuth (optional — get from https://console.cloud.google.com/)
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Email Auth Control (disabled by default — OAuth-only)
+# ENABLE_EMAIL_LOGIN=true
+# ENABLE_EMAIL_SIGNUP=true
+
+# Email Configuration (optional — for verification/password reset)
+# EMAIL_FROM=noreply@yourdomain.com
+# EMAIL_API_KEY=re_...
+
+# Application Configuration
+APP_NAME={{APP_DISPLAY_NAME}}
+VITE_APP_NAME={{APP_DISPLAY_NAME}}
+VITE_APP_ID={{APP_ID}}
+VITE_TOKEN_PREFIX={{APP_ID}}_
+VITE_GITHUB_URL=
+VITE_FOOTER_TEXT=
+
+NODE_ENV=development

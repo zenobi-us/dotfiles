@@ -13,7 +13,13 @@
     "npm:pi-subagents",
     "npm:pi-hashline-readmap",
     "npm:pi-token-burden",
-    "npm:claude-agent-sdk-pi"
+    "npm:claude-agent-sdk-pi",
+    "./packages/agent-core",
+    "./packages/developer",
+    "./packages/creator",
+    "./packages/researcher",
+    "./packages/business",
+    "./packages/platform"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": false,
