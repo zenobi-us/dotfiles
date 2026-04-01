@@ -9,3 +9,6 @@
 source "${DOTFILE_ROOT}/zinit.zsh"
 zinit_load_profile_modules
 zinit_load_interactive_modules
+
+# sentry
+fpath=("/home/zenobius/.local/share/zsh/site-functions" $fpath)
