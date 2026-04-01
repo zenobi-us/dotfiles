@@ -29,10 +29,9 @@ export function buildSkillUserMessage(
 
 export function ReadSkillCommand(
   requestedName: string,
-  skills: Skill[],
   skillsByQualifiedName: Map<string, Skill>,
 ) {
-  const resolved = resolveSkill(requestedName, skills, skillsByQualifiedName);
+  const resolved = resolveSkill(requestedName, skillsByQualifiedName);
 
   if (resolved.kind === "ambiguous") {
     return {

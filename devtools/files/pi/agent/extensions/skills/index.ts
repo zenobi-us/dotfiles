@@ -26,17 +26,12 @@ import {
   type RuntimeSettings,
   type RuntimeSettingsService,
 } from "./service/config.js";
-import {
-  formatSkillsForPrompt,
-  injectSkillsIntoSystemPrompt,
-} from "./service/systemprompt.js";
-import { loadSkills, type Skill } from "./service/skill-registry.js";
+import { injectSkillsIntoSystemPrompt } from "./service/systemprompt.js";
+import { createSkillRegistry, type Skill } from "./service/skill-registry.js";
 import { CreateSkillSlashCommands, LoadSkillCommand } from "./cmds/skill.js";
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
-  let skills: Skill[] = [];
-  let skillsByQualifiedName: Map<string, Skill> = new Map();
-  let skillPromptBlock = "";
+  const registry = createSkillRegistry();
 
   // Load skills on session start
   pi.on("session_start", async (_event, ctx) => {
@@ -52,19 +47,15 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         "warning",
       );
     }
-    const result = loadSkills({
+
+    registry.load({
       cwd: ctx.cwd,
       includeDefaults: true,
-    });
-
-    skills = result.skills;
-    skillsByQualifiedName = new Map(skills.map((s) => [s.qualifiedName, s]));
-    skillPromptBlock = formatSkillsForPrompt(skills, {
       lazySkills: runtimeSettings.lazySkills,
     });
 
     // Log diagnostics
-    for (const diag of result.diagnostics) {
+    for (const diag of registry.diagnostics) {
       if (diag.type === "collision") {
         console.warn(
           `[qualified-skills] Collision: ${diag.message} (${diag.path})`,
@@ -72,19 +63,22 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       }
     }
 
-    if (skills.length > 0) {
+    if (registry.skills.length > 0) {
       const mode = runtimeSettings.lazySkills
         ? "lazy mode"
         : "full catalog mode";
-      ctx.ui.notify(`Loaded ${skills.length} skill(s) (${mode})`, "info");
+      ctx.ui.notify(
+        `Loaded ${registry.skills.length} skill(s) (${mode})`,
+        "info",
+      );
     }
 
     CreateSkillSlashCommands(
       pi,
-      skills,
+      registry.skills,
       runtimeSettings,
       function (name, args) {
-        const result = ReadSkillCommand(name, skills, skillsByQualifiedName);
+        const result = ReadSkillCommand(name, registry.skillMap);
         if (!result.ok) return;
 
         const message = buildSkillUserMessage(
@@ -110,13 +104,18 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         try {
           await runtimeSettingsService.reload();
           runtimeSettings = runtimeSettingsService.config;
-          skillPromptBlock = formatSkillsForPrompt(skills, {
+          registry.load({
+            cwd: cmdCtx.cwd,
+            includeDefaults: true,
             lazySkills: runtimeSettings.lazySkills,
           });
 
-          const mode = runtimeSettings.lazySkills ? "lazy mode" : "full catalog mode";
+          const mode = runtimeSettings.lazySkills
+            ? "lazy mode"
+            : "full catalog mode";
+
           cmdCtx.ui.notify(
-            `Skills config reloaded (search=${runtimeSettings.searchStrategy}, mode=${mode}, commands=${runtimeSettings.enableSkillCommands ? "enabled" : "disabled"})`,
+            `Skills config reloaded (search=${runtimeSettings.searchStrategy}, mode=${mode}, commands=${runtimeSettings.enableSkillCommands ? "enabled" : "disabled"}, watch=${runtimeSettings.watchSkills ? "enabled" : "disabled"}, known=${registry.skillMap.size})`,
             "info",
           );
 
@@ -147,7 +146,11 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         ]),
       }),
       async execute(_toolCallId, params) {
-        const output = FindSkillsCmd(skills, params.query, runtimeSettings.searchStrategy);
+        const output = FindSkillsCmd(
+          registry.skills,
+          params.query,
+          runtimeSettings.searchStrategy,
+        );
         return {
           content: [{ type: "text", text: JSON.stringify(output, null, 2) }],
           details: output,
@@ -165,11 +168,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         "Load a skill by qualified name (or shortname when unambiguous) and return its SKILL.md content.",
       parameters: ReadSkillToolParams,
       async execute(_toolCallId, params) {
-        const result = ReadSkillCommand(
-          params.name,
-          skills,
-          skillsByQualifiedName,
-        );
+        const result = ReadSkillCommand(params.name, registry.skillMap);
 
         if (!result.ok) {
           return result.error;
@@ -192,14 +191,9 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       description: "Load a skill by qualified name or shortname",
       handler: async (args, cmdCtx: ExtensionContext) => {
         LoadSkillCommand(args, {
-          skills,
-          skillsByQualifiedName,
+          skills: registry.skillMap,
           sendSkillMessage(name, args) {
-            const result = ReadSkillCommand(
-              name,
-              skills,
-              skillsByQualifiedName,
-            );
+            const result = ReadSkillCommand(name, registry.skillMap);
             if (!result.ok) return;
 
             const message = buildSkillUserMessage(
@@ -221,14 +215,14 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
 
     // Inject skills into system prompt, replacing any existing <available_skills> block
     pi.on("before_agent_start", async (event) => {
-      if (!skillPromptBlock) {
+      if (!registry.systemPromptBlock) {
         return;
       }
 
       return {
         systemPrompt: injectSkillsIntoSystemPrompt(
           event.systemPrompt,
-          skillPromptBlock,
+          registry.systemPromptBlock,
         ),
       };
     });

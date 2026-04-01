@@ -15,6 +15,8 @@ import {
   resolve,
 } from "node:path";
 import { pathToKebabName } from "../core/strings.js";
+import { SettingsManager } from "@mariozechner/pi-coding-agent";
+import { formatSkillsForPrompt } from "./systemprompt.js";
 
 export interface SkillFrontmatter {
   name?: string;
@@ -50,11 +52,6 @@ export interface SkillDiagnostic {
     winnerPath: string;
     loserPath: string;
   };
-}
-
-export interface LoadSkillsResult {
-  skills: Skill[];
-  diagnostics: SkillDiagnostic[];
 }
 
 const CONFIG_DIR_NAME = ".pi";
@@ -150,6 +147,65 @@ function resolveSkillPath(p: string, cwd: string): string {
   return isAbsolute(normalized) ? normalized : resolve(cwd, normalized);
 }
 
+function resolvePackageSkillPaths(agentDir: string): string[] {
+  const skillPaths: string[] = [];
+
+  try {
+    const settingsManager = SettingsManager.create(undefined, agentDir);
+    const packageSources = settingsManager.getPackages();
+
+    for (const source of packageSources) {
+      if (!source || typeof source !== "string") continue;
+
+      // TODO: npm/git packages — pi install location is not exposed via SettingsManager.
+      // Research package resolution/install dirs and include these package skill roots later.
+      if (/^(npm:|git:|https?:\/\/|ssh:\/\/)/.test(source)) continue;
+
+      const normalizedSource = normalizePath(source);
+      const packageRoot = isAbsolute(normalizedSource)
+        ? normalizedSource
+        : resolve(agentDir, normalizedSource);
+
+      if (!existsSync(packageRoot)) continue;
+
+      const packageJsonPath = join(packageRoot, "package.json");
+      const candidateSkillPaths: string[] = [];
+
+      if (existsSync(packageJsonPath)) {
+        try {
+          const packageJson = JSON.parse(
+            readFileSync(packageJsonPath, "utf-8"),
+          );
+          const declaredSkills = packageJson?.pi?.skills;
+
+          if (Array.isArray(declaredSkills)) {
+            for (const declaredPath of declaredSkills) {
+              if (typeof declaredPath !== "string") continue;
+              candidateSkillPaths.push(resolve(packageRoot, declaredPath));
+            }
+          }
+        } catch {
+          // Ignore malformed package.json and try fallback.
+        }
+      }
+
+      if (candidateSkillPaths.length === 0) {
+        candidateSkillPaths.push(join(packageRoot, "skills"));
+      }
+
+      for (const candidate of candidateSkillPaths) {
+        if (existsSync(candidate)) {
+          skillPaths.push(candidate);
+        }
+      }
+    }
+  } catch {
+    // Ignore settings loading errors and keep existing default behavior.
+  }
+
+  return skillPaths;
+}
+
 function loadSkillFromFile(
   filePath: string,
   source: string,
@@ -212,7 +268,7 @@ function loadSkillsFromDirInternal(
   source: string,
   skillsRoot: string,
   includeRootFiles: boolean,
-): LoadSkillsResult {
+) {
   const skills: Skill[] = [];
   const diagnostics: SkillDiagnostic[] = [];
 
@@ -279,123 +335,167 @@ export interface LoadSkillsOptions {
   agentDir?: string;
   skillPaths?: string[];
   includeDefaults?: boolean;
+  lazySkills?: boolean;
 }
 
-export function loadSkills(options: LoadSkillsOptions = {}): LoadSkillsResult {
-  const {
-    cwd = process.cwd(),
-    agentDir = join(homedir(), CONFIG_DIR_NAME, "agent"),
-    skillPaths = [],
-    includeDefaults = true,
-  } = options;
+type SkillRegistryInternal = {
+  skills: Map<string, Skill>;
+  realPathSet: Set<string>;
+  allDiagnostics: SkillDiagnostic[];
+  collisionDiagnostics: SkillDiagnostic[];
+  skillPromptBlock: string;
+};
 
-  const skillMap = new Map<string, Skill>();
-  const realPathSet = new Set<string>();
-  const allDiagnostics: SkillDiagnostic[] = [];
-  const collisionDiagnostics: SkillDiagnostic[] = [];
+export function createSkillRegistry() {
+  const registry: SkillRegistryInternal = {
+    skills: new Map<string, Skill>(),
+    realPathSet: new Set<string>(),
+    allDiagnostics: [],
+    collisionDiagnostics: [],
+    skillPromptBlock: "",
+  };
 
-  function addSkills(result: LoadSkillsResult) {
-    allDiagnostics.push(...result.diagnostics);
+  const load = (options: LoadSkillsOptions = {}) => {
+    const {
+      cwd = process.cwd(),
+      agentDir = join(homedir(), CONFIG_DIR_NAME, "agent"),
+      skillPaths = [],
+      includeDefaults = true,
+    } = options;
 
-    for (const skill of result.skills) {
-      let realPath: string;
-      try {
-        realPath = realpathSync(skill.filePath);
-      } catch {
-        realPath = skill.filePath;
-      }
+    function addSkills(result: {
+      skills: Skill[];
+      diagnostics: SkillDiagnostic[];
+    }) {
+      registry.allDiagnostics.push(...result.diagnostics);
 
-      if (realPathSet.has(realPath)) continue;
+      for (const skill of result.skills) {
+        let realPath: string;
+        try {
+          realPath = realpathSync(skill.filePath);
+        } catch {
+          realPath = skill.filePath;
+        }
 
-      const existing = skillMap.get(skill.qualifiedName);
-      if (existing) {
-        collisionDiagnostics.push({
-          type: "collision",
-          message: `qualified name "${skill.qualifiedName}" collision`,
-          path: skill.filePath,
-          collision: {
-            name: skill.name,
-            qualifiedName: skill.qualifiedName,
-            winnerPath: existing.filePath,
-            loserPath: skill.filePath,
-          },
-        });
-      } else {
-        skillMap.set(skill.qualifiedName, skill);
-        realPathSet.add(realPath);
-      }
-    }
-  }
+        if (registry.realPathSet.has(realPath)) continue;
 
-  if (includeDefaults) {
-    const userSkillsDir = join(agentDir, "skills");
-    const projectSkillsDir = resolve(cwd, CONFIG_DIR_NAME, "skills");
-
-    addSkills(
-      loadSkillsFromDirInternal(userSkillsDir, "user", userSkillsDir, true),
-    );
-    addSkills(
-      loadSkillsFromDirInternal(
-        projectSkillsDir,
-        "project",
-        projectSkillsDir,
-        true,
-      ),
-    );
-  }
-
-  for (const rawPath of skillPaths) {
-    const resolvedPath = resolveSkillPath(rawPath, cwd);
-
-    if (!existsSync(resolvedPath)) {
-      allDiagnostics.push({
-        type: "warning",
-        message: "skill path does not exist",
-        path: resolvedPath,
-      });
-      continue;
-    }
-
-    try {
-      const stats = statSync(resolvedPath);
-
-      if (stats.isDirectory()) {
-        addSkills(
-          loadSkillsFromDirInternal(resolvedPath, "path", resolvedPath, true),
-        );
-      } else if (stats.isFile() && resolvedPath.endsWith(".md")) {
-        const result = loadSkillFromFile(
-          resolvedPath,
-          "path",
-          dirname(resolvedPath),
-        );
-        if (result.skill) {
-          addSkills({
-            skills: [result.skill],
-            diagnostics: result.diagnostics,
+        const existing = registry.skills.get(skill.qualifiedName);
+        if (existing) {
+          registry.collisionDiagnostics.push({
+            type: "collision",
+            message: `qualified name "${skill.qualifiedName}" collision`,
+            path: skill.filePath,
+            collision: {
+              name: skill.name,
+              qualifiedName: skill.qualifiedName,
+              winnerPath: existing.filePath,
+              loserPath: skill.filePath,
+            },
           });
         } else {
-          allDiagnostics.push(...result.diagnostics);
+          registry.skills.set(skill.qualifiedName, skill);
+          registry.realPathSet.add(realPath);
         }
-      } else {
-        allDiagnostics.push({
+      }
+    }
+
+    if (includeDefaults) {
+      const userSkillsDir = join(agentDir, "skills");
+      const projectSkillsDir = resolve(cwd, CONFIG_DIR_NAME, "skills");
+
+      const packageSkillDirs = resolvePackageSkillPaths(agentDir);
+
+      // local-package-first: load package skill roots before legacy default skill dirs.
+      for (const packageSkillDir of packageSkillDirs) {
+        addSkills(
+          loadSkillsFromDirInternal(
+            packageSkillDir,
+            "user",
+            packageSkillDir,
+            true,
+          ),
+        );
+      }
+      addSkills(
+        loadSkillsFromDirInternal(userSkillsDir, "user", userSkillsDir, true),
+      );
+      addSkills(
+        loadSkillsFromDirInternal(
+          projectSkillsDir,
+          "project",
+          projectSkillsDir,
+          true,
+        ),
+      );
+    }
+
+    for (const rawPath of skillPaths) {
+      const resolvedPath = resolveSkillPath(rawPath, cwd);
+
+      if (!existsSync(resolvedPath)) {
+        registry.allDiagnostics.push({
           type: "warning",
-          message: "skill path is not a markdown file",
+          message: "skill path does not exist",
+          path: resolvedPath,
+        });
+        continue;
+      }
+
+      try {
+        const stats = statSync(resolvedPath);
+
+        if (stats.isDirectory()) {
+          addSkills(
+            loadSkillsFromDirInternal(resolvedPath, "path", resolvedPath, true),
+          );
+        } else if (stats.isFile() && resolvedPath.endsWith(".md")) {
+          const result = loadSkillFromFile(
+            resolvedPath,
+            "path",
+            dirname(resolvedPath),
+          );
+          if (result.skill) {
+            addSkills({
+              skills: [result.skill],
+              diagnostics: result.diagnostics,
+            });
+          } else {
+            registry.allDiagnostics.push(...result.diagnostics);
+          }
+        } else {
+          registry.allDiagnostics.push({
+            type: "warning",
+            message: "skill path is not a markdown file",
+            path: resolvedPath,
+          });
+        }
+      } catch (error) {
+        const message =
+          error instanceof Error ? error.message : "failed to read skill path";
+        registry.allDiagnostics.push({
+          type: "warning",
+          message,
           path: resolvedPath,
         });
       }
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : "failed to read skill path";
-      allDiagnostics.push({ type: "warning", message, path: resolvedPath });
     }
-  }
+
+    registry.skillPromptBlock = formatSkillsForPrompt(registry.skills, {
+      lazySkills: options.lazySkills,
+    });
+  };
 
   return {
-    skills: Array.from(skillMap.values()),
-    diagnostics: [...allDiagnostics, ...collisionDiagnostics],
+    load,
+    get skills(): Skill[] {
+      return Array.from(registry.skills.values());
+    },
+    skillMap: registry.skills,
+    systemPromptBlock: registry.skillPromptBlock,
+    diagnostics: [...registry.allDiagnostics, ...registry.collisionDiagnostics],
   };
 }
+
 export function readSkillContent(skill: Skill): string {
   try {
     const content = readFileSync(skill.filePath, "utf-8");
@@ -413,10 +513,9 @@ export type ResolvedSkill =
 
 export function resolveSkill(
   requestedName: string,
-  skills: Skill[],
-  skillsByQualifiedName: Map<string, Skill>,
+  skills: Map<string, Skill>,
 ): ResolvedSkill {
-  const byQualified = skillsByQualifiedName.get(requestedName);
+  const byQualified = skills.get(requestedName);
   if (byQualified) {
     return {
       kind: "found",
@@ -425,7 +524,9 @@ export function resolveSkill(
     };
   }
 
-  const matchingSkills = skills.filter((s) => s.name === requestedName);
+  const matchingSkills = Array.from(skills.values()).filter(
+    (s) => s.name === requestedName,
+  );
   if (matchingSkills.length === 1) {
     return {
       kind: "found",

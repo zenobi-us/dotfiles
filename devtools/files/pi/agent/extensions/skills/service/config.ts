@@ -16,6 +16,7 @@ export const RuntimeSettingsSchema = Type.Object(
     enableSkillCommands: Type.Boolean(),
     lazySkills: Type.Boolean(),
     searchStrategy: SearchStrategySchema,
+    watchSkills: Type.Boolean(),
   },
   { additionalProperties: false },
 );
@@ -25,6 +26,7 @@ const RuntimeSettingsOverridesSchema = Type.Object(
     enableSkillCommands: Type.Optional(Type.Boolean()),
     lazySkills: Type.Optional(Type.Boolean()),
     searchStrategy: Type.Optional(SearchStrategySchema),
+    watchSkills: Type.Optional(Type.Boolean()),
   },
   { additionalProperties: false },
 );
@@ -36,6 +38,7 @@ export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
   enableSkillCommands: true,
   lazySkills: false,
   searchStrategy: "lexical",
+  watchSkills: true,
 };
 
 function parseRuntimeSettings(raw: unknown): RuntimeSettings {

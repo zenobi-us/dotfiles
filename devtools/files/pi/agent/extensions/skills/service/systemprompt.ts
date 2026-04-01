@@ -20,10 +20,12 @@ export function injectSkillsIntoSystemPrompt(
 }
 
 export function formatSkillsForPrompt(
-  skills: Skill[],
+  skills: Map<string, Skill>,
   options: { lazySkills?: boolean } = {},
 ): string {
-  const visibleSkills = skills.filter((s) => !s.disableModelInvocation);
+  const visibleSkills = Array.from(skills.values()).filter(
+    (s) => !s.disableModelInvocation,
+  );
 
   if (visibleSkills.length === 0) {
     return "";
