@@ -14,10 +14,11 @@ import {
   relative,
   resolve,
 } from "node:path";
-import { execSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
-import { pathToKebabName } from "../core/strings.js";
 import { SettingsManager } from "@mariozechner/pi-coding-agent";
+import { fileURLToPath } from "node:url";
+
+import { createRequire } from "node:module";
+import { pathToKebabName } from "../core/strings.js";
 import { formatSkillsForPrompt } from "./systemprompt.js";
 import { createSkillWatcher } from "./skill-watcher.js";
 
@@ -265,28 +266,29 @@ function resolveGitPackage(source: string, agentDir: string): string[] {
 function resolveNpmPackage(source: string, baseDir: string): string[] {
   const packageName = parsePackageNameFromSource(source);
   if (!packageName) return [];
-
   const candidateRoots = new Set<string>();
 
   try {
-    const resolvedPackageJsonUrl = import.meta.resolve(
-      `${packageName}/package.json`,
-    );
-    if (resolvedPackageJsonUrl.startsWith("file:")) {
-      candidateRoots.add(dirname(fileURLToPath(resolvedPackageJsonUrl)));
-    }
+    const req = createRequire(join(baseDir, "package.json"));
+    const resolvedPackageJsonPath = req.resolve(`${packageName}/package.json`);
+    candidateRoots.add(dirname(resolvedPackageJsonPath));
   } catch {
-    // continue with fallbacks
+    // continue with path fallbacks
   }
 
-  try {
-    const npmRoot = execSync("npm root -g", { encoding: "utf-8" }).trim();
-    if (npmRoot) {
-      candidateRoots.add(join(npmRoot, packageName));
-    }
-  } catch {
-    // global npm not available in this runtime environment
-  }
+  const nodeGlobalRoot = resolve(
+    dirname(process.execPath),
+    "..",
+    "lib",
+    "node_modules",
+  );
+  candidateRoots.add(join(nodeGlobalRoot, packageName));
+  candidateRoots.add(
+    join(homedir(), CONFIG_DIR_NAME, "agent", "npm", "node_modules", packageName),
+  );
+  candidateRoots.add(
+    join(process.cwd(), CONFIG_DIR_NAME, "npm", "node_modules", packageName),
+  );
 
   const output = new Set<string>();
   for (const packageRoot of candidateRoots) {
