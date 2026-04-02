@@ -14,6 +14,8 @@ import {
   relative,
   resolve,
 } from "node:path";
+import { execSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { pathToKebabName } from "../core/strings.js";
 import { SettingsManager } from "@mariozechner/pi-coding-agent";
 import { formatSkillsForPrompt } from "./systemprompt.js";
@@ -150,54 +152,190 @@ function resolvePackageSkillPaths(agentDir: string): string[] {
 
     for (const source of packageSources) {
       if (!source || typeof source !== "string") continue;
-
-      // TODO: npm/git packages — pi install location is not exposed via SettingsManager.
-      // Research package resolution/install dirs and include these package skill roots later.
-      if (/^(npm:|git:|https?:\/\/|ssh:\/\/)/.test(source)) continue;
-
-      const normalizedSource = normalizePath(source);
-      const packageRoot = isAbsolute(normalizedSource)
-        ? normalizedSource
-        : resolve(agentDir, normalizedSource);
-
-      if (!existsSync(packageRoot)) continue;
-
-      const packageJsonPath = join(packageRoot, "package.json");
-      const candidateSkillPaths: string[] = [];
-
-      if (existsSync(packageJsonPath)) {
-        try {
-          const packageJson = JSON.parse(
-            readFileSync(packageJsonPath, "utf-8"),
-          );
-          const declaredSkills = packageJson?.pi?.skills;
-
-          if (Array.isArray(declaredSkills)) {
-            for (const declaredPath of declaredSkills) {
-              if (typeof declaredPath !== "string") continue;
-              candidateSkillPaths.push(resolve(packageRoot, declaredPath));
-            }
-          }
-        } catch {
-          // Ignore malformed package.json and try fallback.
-        }
-      }
-
-      if (candidateSkillPaths.length === 0) {
-        candidateSkillPaths.push(join(packageRoot, "skills"));
-      }
-
-      for (const candidate of candidateSkillPaths) {
-        if (existsSync(candidate)) {
-          skillPaths.push(candidate);
-        }
-      }
+      skillPaths.push(...resolvePackage(source, agentDir));
     }
   } catch {
     // Ignore settings loading errors and keep existing default behavior.
   }
 
   return skillPaths;
+}
+
+function resolvePackage(source: string, agentDir: string): string[] {
+  const packageUri = new URL(source, `file://${agentDir}/`);
+  switch (packageUri.protocol) {
+    case "npm:":
+      return resolveNpmPackage(source, agentDir);
+    case "ssh:":
+    case "git:":
+    case "http:":
+    case "https:":
+      return resolveGitPackage(source, agentDir);
+    case "file:":
+      return resolveLocalPackage(fileURLToPath(packageUri), agentDir);
+    default:
+      return resolveLocalPackage(source, agentDir);
+  }
+}
+
+function parsePackageNameFromSource(source: string): string | null {
+  const trimmed = source.trim();
+  const spec = trimmed.startsWith("npm:") ? trimmed.slice(4) : trimmed;
+
+  if (!spec || /^(git:|ssh:|https?:)/.test(spec)) return null;
+
+  if (spec.startsWith("@")) {
+    const slash = spec.indexOf("/");
+    if (slash <= 1) return null;
+    const versionAt = spec.indexOf("@", slash + 1);
+    return versionAt === -1 ? spec : spec.slice(0, versionAt);
+  }
+
+  const versionAt = spec.indexOf("@");
+  return versionAt === -1 ? spec : spec.slice(0, versionAt);
+}
+
+function stripGitRef(spec: string): string {
+  const lastAt = spec.lastIndexOf("@");
+  const boundary = Math.max(spec.lastIndexOf("/"), spec.lastIndexOf(":"));
+  if (lastAt > boundary) return spec.slice(0, lastAt);
+  return spec;
+}
+
+function parseGitInstallKey(
+  source: string,
+): { host: string; path: string } | null {
+  const trimmed = source.trim();
+  const withoutPrefix = trimmed.startsWith("git:") ? trimmed.slice(4) : trimmed;
+  const withoutRef = stripGitRef(withoutPrefix);
+
+  let host = "";
+  let path = "";
+
+  if (/^(https?:|ssh:|git:\/\/)/.test(withoutRef)) {
+    try {
+      const parsed = new URL(withoutRef);
+      host = parsed.hostname;
+      path = parsed.pathname.replace(/^\/+/, "");
+    } catch {
+      return null;
+    }
+  } else if (/^[^@\s]+@[^:]+:.+/.test(withoutRef)) {
+    const at = withoutRef.indexOf("@");
+    const colon = withoutRef.indexOf(":", at + 1);
+    if (colon === -1) return null;
+    host = withoutRef.slice(at + 1, colon);
+    path = withoutRef.slice(colon + 1);
+  } else {
+    const firstSlash = withoutRef.indexOf("/");
+    if (firstSlash === -1) return null;
+    host = withoutRef.slice(0, firstSlash);
+    path = withoutRef.slice(firstSlash + 1);
+  }
+
+  const normalizedPath = path
+    .replace(/^\/+/, "")
+    .replace(/\/+$/, "")
+    .replace(/\.git$/, "");
+
+  if (!host || !normalizedPath) return null;
+  return { host, path: normalizedPath };
+}
+
+function resolveGitPackage(source: string, agentDir: string): string[] {
+  const key = parseGitInstallKey(source);
+  if (!key) return [];
+
+  const candidateRoots = new Set<string>([
+    join(agentDir, "git", key.host, key.path),
+    join(process.cwd(), CONFIG_DIR_NAME, "git", key.host, key.path),
+  ]);
+
+  const output = new Set<string>();
+  for (const packageRoot of candidateRoots) {
+    if (!existsSync(packageRoot)) continue;
+    for (const skillPath of resolveLocalPackage(packageRoot, agentDir)) {
+      output.add(skillPath);
+    }
+  }
+
+  return Array.from(output);
+}
+
+function resolveNpmPackage(source: string, baseDir: string): string[] {
+  const packageName = parsePackageNameFromSource(source);
+  if (!packageName) return [];
+
+  const candidateRoots = new Set<string>();
+
+  try {
+    const resolvedPackageJsonUrl = import.meta.resolve(
+      `${packageName}/package.json`,
+    );
+    if (resolvedPackageJsonUrl.startsWith("file:")) {
+      candidateRoots.add(dirname(fileURLToPath(resolvedPackageJsonUrl)));
+    }
+  } catch {
+    // continue with fallbacks
+  }
+
+  try {
+    const npmRoot = execSync("npm root -g", { encoding: "utf-8" }).trim();
+    if (npmRoot) {
+      candidateRoots.add(join(npmRoot, packageName));
+    }
+  } catch {
+    // global npm not available in this runtime environment
+  }
+
+  const output = new Set<string>();
+  for (const packageRoot of candidateRoots) {
+    if (!existsSync(packageRoot)) continue;
+    for (const skillPath of resolveLocalPackage(packageRoot, baseDir)) {
+      output.add(skillPath);
+    }
+  }
+
+  return Array.from(output);
+}
+
+function resolveLocalPackage(source: string, baseDir: string): string[] {
+  const output: string[] = [];
+
+  const normalizedSource = normalizePath(source);
+  const packageRoot = isAbsolute(normalizedSource)
+    ? normalizedSource
+    : resolve(baseDir, normalizedSource);
+
+  if (!existsSync(packageRoot)) return output;
+
+  const packageJsonPath = join(packageRoot, "package.json");
+
+  if (!existsSync(packageJsonPath)) {
+    return output;
+  }
+
+  try {
+    const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
+    const declaredSkills = packageJson?.pi?.skills;
+
+    if (!Array.isArray(declaredSkills)) {
+      output.push(join(packageRoot, "skills"));
+      return output;
+    }
+
+    for (const declaredPath of declaredSkills) {
+      if (typeof declaredPath !== "string") continue;
+      const candidate = resolve(packageRoot, declaredPath);
+      if (!existsSync(candidate)) continue;
+      output.push(candidate);
+    }
+  } catch {
+    // Ignore malformed package.json and try fallback.
+    return output;
+  }
+
+  return output;
 }
 
 function loadSkillFromFile(filePath: string): {
@@ -385,7 +523,10 @@ export function createSkillRegistry() {
     removeSkillByPath(skill.filePath);
 
     const existingByQualified = registry.skills.get(skill.qualifiedName);
-    if (existingByQualified && existingByQualified.filePath !== skill.filePath) {
+    if (
+      existingByQualified &&
+      existingByQualified.filePath !== skill.filePath
+    ) {
       removeSkillByPath(existingByQualified.filePath);
     }
 
@@ -408,7 +549,7 @@ export function createSkillRegistry() {
 
         removeSkillByPath(change.path);
         const result = loadSkillFromFile(change.path);
-          registry.allDiagnostics.push(...result.diagnostics);
+        registry.allDiagnostics.push(...result.diagnostics);
         if (result.skill) {
           upsertSkillReplacing(result.skill);
         }
