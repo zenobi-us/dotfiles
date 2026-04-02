@@ -19,7 +19,8 @@
     "./packages/creator",
     "./packages/researcher",
     "./packages/business",
-    "./packages/platform"
+    "./packages/platform",
+    "npm:@sherif-fanous/pi-rtk"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": false,
