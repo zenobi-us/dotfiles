@@ -1,0 +1,11 @@
+{
+  "name": "@zenobius/pi-writing",
+  "version": "0.1.0",
+  "description": "Business English writing styles and professional document writing skills",
+  "private": true,
+  "keywords": ["pi-package"],
+  "pi": {
+    "prompts": ["./prompts"],
+    "skills": ["./skills"]
+  }
+}
