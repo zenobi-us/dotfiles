@@ -111,3 +111,26 @@ Allowed values:
 - `bm25`
 - `vector`
 - `hybrid`
+
+## Package Skill Root Resolution
+
+The extension now resolves skill roots from package sources instead of skipping non-local entries.
+
+Supported source handling:
+
+- **`npm:` sources**
+  - Attempts `import.meta.resolve("<pkg>/package.json")` first.
+  - Falls back to `npm root -g` lookup.
+  - Reads skill roots from `pi.skills` in `package.json`, or `skills/` by convention.
+
+- **`git:` / `http(s):` / `ssh:` sources**
+  - Resolves repository identity to `<host>/<path>`.
+  - Checks global clone location: `~/.pi/agent/git/<host>/<path>`.
+  - Checks project clone location: `.pi/git/<host>/<path>`.
+  - Reads skill roots from `pi.skills` or `skills/`.
+
+- **`file:` and local paths**
+  - Resolved as local package paths.
+  - `file:` URLs are converted with `fileURLToPath` for safe path handling.
+
+This keeps behavior aligned with Pi package docs for npm vs git install locations and allows skills from installed package sources to be discovered.
