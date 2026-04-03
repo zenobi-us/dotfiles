@@ -1,5 +1,5 @@
 /**
- * Handoff hook - transfer context to a new focused session
+ * Handoff extension - transfer context to a new focused session
  *
  * Instead of compacting (which is lossy), handoff extracts what matters
  * for your next task and creates a new session with a generated prompt.
@@ -13,20 +13,8 @@
  */
 
 import { complete, type Message } from "@mariozechner/pi-ai";
-import type {
-  ExtensionFactory,
-  SessionEntry,
-} from "@mariozechner/pi-coding-agent";
-import {
-  BorderedLoader,
-  convertToLlm,
-  serializeConversation,
-} from "@mariozechner/pi-coding-agent";
-
-import type {
-  ExtensionAPI,
-  ExtensionCommandContext,
-} from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI, SessionEntry } from "@mariozechner/pi-coding-agent";
+import { BorderedLoader, convertToLlm, serializeConversation } from "@mariozechner/pi-coding-agent";
 
 const SYSTEM_PROMPT = `You are a context transfer assistant. Given a conversation history and the user's goal for a new thread, generate a focused prompt that:
 
@@ -50,7 +38,7 @@ Files involved:
 ## Task
 [Clear description of what to do next based on user's goal]`;
 
-const PiHandoffExtension: ExtensionFactory = (pi) => {
+export default function (pi: ExtensionAPI) {
   pi.registerCommand("handoff", {
     description: "Transfer context to a new focused session",
     handler: async (args, ctx) => {
@@ -73,10 +61,7 @@ const PiHandoffExtension: ExtensionFactory = (pi) => {
       // Gather conversation context from current branch
       const branch = ctx.sessionManager.getBranch();
       const messages = branch
-        .filter(
-          (entry): entry is SessionEntry & { type: "message" } =>
-            entry.type === "message",
-        )
+        .filter((entry): entry is SessionEntry & { type: "message" } => entry.type === "message")
         .map((entry) => entry.message);
 
       if (messages.length === 0) {
@@ -90,57 +75,62 @@ const PiHandoffExtension: ExtensionFactory = (pi) => {
       const currentSessionFile = ctx.sessionManager.getSessionFile();
 
       // Generate the handoff prompt with loader UI
-      const result = await ctx.ui.custom<string | null>(
-        (tui, theme, _kb, done) => {
-          const loader = new BorderedLoader(
-            tui,
-            theme,
-            `Generating handoff prompt...`,
-          );
-          loader.onAbort = () => done(null);
+      const result = await ctx.ui.custom<string | null>((tui, theme, _kb, done) => {
+        const loader = new BorderedLoader(tui, theme, `Generating handoff prompt...`);
+        loader.onAbort = () => done(null);
 
-          const doGenerate = async () => {
-            const apiKey = await ctx.modelRegistry.getApiKey(ctx.model!);
-
-            const userMessage: Message = {
-              role: "user",
-              content: [
-                {
-                  type: "text",
-                  text: `## Conversation History\n\n${conversationText}\n\n## User's Goal for New Thread\n\n${goal}`,
-                },
-              ],
-              timestamp: Date.now(),
-            };
-
-            const response = await complete(
-              ctx.model!,
-              { systemPrompt: SYSTEM_PROMPT, messages: [userMessage] },
-              { apiKey, signal: loader.signal },
-            );
-
-            if (response.stopReason === "aborted") {
-              return null;
-            }
-
-            return response.content
-              .filter(
-                (c): c is { type: "text"; text: string } => c.type === "text",
-              )
-              .map((c) => c.text)
-              .join("\n");
+        const doGenerate = async () => {
+          const modelRegistry = ctx.modelRegistry as typeof ctx.modelRegistry & {
+            getApiKeyAndHeaders: (model: NonNullable<typeof ctx.model>) => Promise<
+              | { ok: true; apiKey?: string; headers?: Record<string, string> }
+              | { ok: false; error: string }
+            >;
           };
 
-          doGenerate()
-            .then(done)
-            .catch((err) => {
-              console.error("Handoff generation failed:", err);
-              done(null);
-            });
+          const auth = await modelRegistry.getApiKeyAndHeaders(ctx.model!);
+          if (auth.ok === false) {
+            throw new Error(auth.error);
+          }
+          if (!auth.apiKey) {
+            throw new Error(`No API key for ${ctx.model!.provider}`);
+          }
 
-          return loader;
-        },
-      );
+          const userMessage: Message = {
+            role: "user",
+            content: [
+              {
+                type: "text",
+                text: `## Conversation History\n\n${conversationText}\n\n## User's Goal for New Thread\n\n${goal}`,
+              },
+            ],
+            timestamp: Date.now(),
+          };
+
+          const response = await complete(
+            ctx.model!,
+            { systemPrompt: SYSTEM_PROMPT, messages: [userMessage] },
+            { apiKey: auth.apiKey, headers: auth.headers, signal: loader.signal },
+          );
+
+          if (response.stopReason === "aborted") {
+            return null;
+          }
+
+          return response.content
+            .filter((c): c is { type: "text"; text: string } => c.type === "text")
+            .map((c) => c.text)
+            .join("\n");
+        };
+
+        doGenerate()
+          .then(done)
+          .catch((err) => {
+            console.error("Handoff generation failed:", err);
+            done(null);
+          });
+
+        return loader;
+      });
 
       if (result === null) {
         ctx.ui.notify("Cancelled", "info");
@@ -148,10 +138,7 @@ const PiHandoffExtension: ExtensionFactory = (pi) => {
       }
 
       // Let user edit the generated prompt
-      const editedPrompt = await ctx.ui.editor(
-        "Edit handoff prompt (ctrl+enter to submit, esc to cancel)",
-        result,
-      );
+      const editedPrompt = await ctx.ui.editor("Edit handoff prompt", result);
 
       if (editedPrompt === undefined) {
         ctx.ui.notify("Cancelled", "info");
@@ -173,6 +160,4 @@ const PiHandoffExtension: ExtensionFactory = (pi) => {
       ctx.ui.notify("Handoff ready. Submit when ready.", "info");
     },
   });
-};
-
-export default PiHandoffExtension;
+}
