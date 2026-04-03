@@ -129,7 +129,7 @@ theme "onedark"
 simplified_ui true
 pane_frames false
 default_layout "default"
-session_serialization false
+session_serialization true
 serialize_pane_viewport false
 show_startup_tips false
 show_release_notes false
