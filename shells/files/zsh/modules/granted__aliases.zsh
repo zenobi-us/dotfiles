@@ -1,1 +1,1 @@
-alias assume="source assume"
+alias assume=". assume"
