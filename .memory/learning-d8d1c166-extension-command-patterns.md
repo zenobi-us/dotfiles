@@ -5,7 +5,7 @@ title: extension-command-patterns
 created_at: "2026-04-04T10:55:19.507Z"
 updated_at: "2026-04-04T10:55:19.507Z"
 status: todo
-tags:
+tags: 
 ---
 # Learning: Pi Extension Command Patterns
 

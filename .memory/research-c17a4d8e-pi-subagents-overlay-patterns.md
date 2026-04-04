@@ -1,3 +1,12 @@
+---
+id: c17a4d8e
+type: research
+title: pi-subagents-overlay-patterns
+created_at: "2026-04-04T10:58:02.531Z"
+updated_at: "2026-04-04T10:58:02.531Z"
+status: todo
+epic_id: 
+---
 # Research: pi-subagents Overlay Modal Patterns
 
 **Date:** 2026-02-16

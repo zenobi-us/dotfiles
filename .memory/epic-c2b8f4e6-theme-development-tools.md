@@ -41,7 +41,7 @@ Create visual development tools that help Pi extension developers understand and
 Create a sidebar extension that displays Pi theme colors in an organized, visual format to help extension developers understand available theme colors and how they render in the TUI.
 
 **Key Deliverables:**
-- [x] Research Pi theme API access methods (research-theme-api-access.md)
+- [x] Research Pi theme API access methods (research-e39c6f0a-theme-api-access.md)
 - [x] Implement basic widget rendering (MVP) (theme-palette/index.ts)
 - [x] Add color grid and categorization (8 categories, 47 colors)
 - [x] Implement interactivity (keyboard shortcuts Ctrl+Shift+T, command /theme-palette)
@@ -54,9 +54,9 @@ Create a sidebar extension that displays Pi theme colors in an organized, visual
 Distill learnings from theme palette development into reusable knowledge. Capture patterns, best practices, and theme system understanding for future reference.
 
 **Key Deliverables:**
-- [x] Theme API access patterns documented (research-theme-api-access.md)
-- [x] Widget rendering patterns for visual displays (learning-extension-widget-rendering.md)
-- [x] Theme system integration guide (learning-theme-widget-patterns.md)
+- [x] Theme API access patterns documented (research-e39c6f0a-theme-api-access.md)
+- [x] Widget rendering patterns for visual displays (learning-a83f1c2d-extension-widget-rendering.md)
+- [x] Theme system integration guide (learning-b94d2e6f-theme-widget-patterns.md)
 - [x] Color palette development learnings (embedded in learning files)
 
 ### Phase 3: Component System Evolution ✅
@@ -184,9 +184,9 @@ Unlike the subagent enhancement epic (which focused on command-line agent manage
 - `devtools/files/pi/agent/extensions/theme-palette/components/flex-example.ts` (280 lines, 6 examples)
 
 *Learning:*
-- `.memory/research-theme-api-access.md` - Theme API research (269 lines)
-- `.memory/learning-extension-widget-rendering.md` - Widget patterns (530 lines)
-- `.memory/learning-theme-widget-patterns.md` - Theme integration (338 lines)
+- `.memory/research-e39c6f0a-theme-api-access.md` - Theme API research (269 lines)
+- `.memory/learning-a83f1c2d-extension-widget-rendering.md` - Widget patterns (530 lines)
+- `.memory/learning-b94d2e6f-theme-widget-patterns.md` - Theme integration (338 lines)
 - `.memory/learning-62c593ff-component-architecture-patterns.md` - Component patterns (15KB)
 - `.memory/learning-96aa4357-layout-systems.md` - Layout systems (19KB)
 

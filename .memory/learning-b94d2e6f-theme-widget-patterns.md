@@ -1,3 +1,12 @@
+---
+id: b94d2e6f
+type: learning
+title: theme-widget-patterns
+created_at: "2026-04-04T10:58:02.527Z"
+updated_at: "2026-04-04T10:58:02.527Z"
+status: todo
+tags:
+---
 # Learning: Theme Widget Development Patterns
 
 **Created:** 2026-01-11  

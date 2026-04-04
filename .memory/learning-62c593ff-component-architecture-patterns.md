@@ -5,7 +5,7 @@ title: component-architecture-patterns
 created_at: "2026-04-04T10:55:19.504Z"
 updated_at: "2026-04-04T10:55:19.504Z"
 status: todo
-tags:
+tags: 
 ---
 # Learning: Component Architecture Patterns for Pi TUI
 
@@ -554,8 +554,8 @@ class BorderedComponent extends Box {
 - `devtools/files/pi/agent/extensions/theme-palette/components/LAYOUT.md` (250 lines)
 
 **Related Learning:**
-- [Extension Widget Rendering](learning-extension-widget-rendering.md)
-- [Theme Widget Patterns](learning-theme-widget-patterns.md)
+- [Extension Widget Rendering](learning-a83f1c2d-extension-widget-rendering.md)
+- [Theme Widget Patterns](learning-b94d2e6f-theme-widget-patterns.md)
 - [Pi Extensions Guide](learning-76e583ca-pi-extensions-guide.md)
 
 ## Conclusion

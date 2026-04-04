@@ -6,7 +6,7 @@ created_at: "2026-02-16T23:58:00Z"
 updated_at: "2026-02-16T23:58:00Z"
 status: completed
 tags: [extensions, pi-extensions, commit-automation, model-selection, cli-design]
-learned_from: [epic-4dd87a16, research-pi-subagents-overlay-patterns.md]
+learned_from: [epic-4dd87a16, research-c17a4d8e-pi-subagents-overlay-patterns.md]
 ---
 
 # Generate Commit Message Extension - Model Selection & Configuration

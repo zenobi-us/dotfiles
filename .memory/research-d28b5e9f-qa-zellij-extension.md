@@ -1,11 +1,13 @@
 ---
-id: qa-zellij
+id: d28b5e9f
+type: research
 title: Zellij Extension Development Q&A
-created_at: 2026-01-23T12:51:00+10:30
-updated_at: 2026-01-23T12:51:00+10:30
+created_at: "2026-01-23T12:51:00+10:30"
+updated_at: "2026-01-23T12:51:00+10:30"
 status: in-progress
-related_epic: zellij-extension-development
+epic_id: 
 tags: [research, qa, zellij, extension]
+related_epic: zellij-extension-development
 ---
 
 # Zellij Extension Development Q&A

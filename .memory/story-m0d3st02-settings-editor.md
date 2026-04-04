@@ -9,7 +9,7 @@ epic_id: m0d3la1s
 phase_id: m0d3ph01
 priority: high
 test_coverage: none
-research: research-pi-subagents-overlay-patterns.md
+research: research-c17a4d8e-pi-subagents-overlay-patterns.md
 story_points: 8
 ---
 

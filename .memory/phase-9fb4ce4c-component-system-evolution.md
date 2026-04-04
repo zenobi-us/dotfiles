@@ -454,8 +454,8 @@ Palette (Box + Container)
 ### Learning Artifacts
 - [learning-62c593ff-component-architecture-patterns.md](learning-62c593ff-component-architecture-patterns.md)
 - [learning-96aa4357-layout-systems.md](learning-96aa4357-layout-systems.md)
-- [learning-extension-widget-rendering.md](learning-extension-widget-rendering.md)
-- [learning-theme-widget-patterns.md](learning-theme-widget-patterns.md)
+- [learning-a83f1c2d-extension-widget-rendering.md](learning-a83f1c2d-extension-widget-rendering.md)
+- [learning-b94d2e6f-theme-widget-patterns.md](learning-b94d2e6f-theme-widget-patterns.md)
 
 ### Previous Phase
 - [phase-e8f9a1b2-theme-palette-extension.md](phase-e8f9a1b2-theme-palette-extension.md) - MVP implementation

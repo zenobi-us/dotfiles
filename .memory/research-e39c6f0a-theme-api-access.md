@@ -1,3 +1,12 @@
+---
+id: e39c6f0a
+type: research
+title: theme-api-access
+created_at: "2026-04-04T10:58:02.532Z"
+updated_at: "2026-04-04T10:58:02.532Z"
+status: todo
+epic_id: 
+---
 # Research: Pi Theme API Access
 
 **Created:** 2026-01-11  

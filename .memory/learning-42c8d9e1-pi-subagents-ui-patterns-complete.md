@@ -6,7 +6,7 @@ created_at: 2026-02-17
 updated_at: 2026-02-17
 status: completed
 tags: [best-practices, ui-patterns, typescript, pi-extensions, reusable-code]
-learned_from: [research-pi-subagents-overlay-patterns.md, epic-m0d3la1s-model-alias-manager-extension.md]
+learned_from: [research-c17a4d8e-pi-subagents-overlay-patterns.md, epic-m0d3la1s-model-alias-manager-extension.md]
 ---
 
 # Learning: Pi-Subagents UI Patterns - Complete Reference
@@ -511,7 +511,7 @@ Common color names available in Pi theme system:
 
 - [learning-432b51be-subagent-extension-architecture.md](learning-432b51be-subagent-extension-architecture.md) - Component lifecycle
 - [learning-a9f4c2d1-subagent-management-patterns.md](learning-a9f4c2d1-subagent-management-patterns.md) - State management
-- [research-pi-subagents-overlay-patterns.md](research-pi-subagents-overlay-patterns.md) - Original research
+- [research-c17a4d8e-pi-subagents-overlay-patterns.md](research-c17a4d8e-pi-subagents-overlay-patterns.md) - Original research
 
 ---
 

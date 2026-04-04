@@ -31,13 +31,13 @@ Create a sidebar extension that displays Pi theme colours in an organized, visua
 
 - ✅ Epic created and project properly structured
 - ✅ Initial specification documented (task-e5466d3f)
-- ✅ Pi theme API access method researched (research-theme-api-access.md)
+- ✅ Pi theme API access method researched (research-e39c6f0a-theme-api-access.md)
 - ✅ Understanding of Pi TUI widget system (via research and implementation)
 
 ## Tasks
 
 ### Research Phase
-- [x] Research Pi theme API access (research-theme-api-access.md)
+- [x] Research Pi theme API access (research-e39c6f0a-theme-api-access.md)
   - ✅ Determined correct method to access theme colours (ExtensionUIContext)
   - ✅ Verified Theme type structure (Theme class with fg/bg methods)
   - ✅ Documented findings in research file
@@ -87,7 +87,7 @@ This task file contains:
 - [x] Documentation complete (README.md with usage guide)
 - [⚠️] Extension tested with multiple themes (requires manual testing)
 - [x] Code committed with conventional commit message (commit cb3e790d)
-- [x] Learnings distilled to knowledge base (learning-extension-widget-rendering.md, learning-theme-widget-patterns.md)
+- [x] Learnings distilled to knowledge base (learning-a83f1c2d-extension-widget-rendering.md, learning-b94d2e6f-theme-widget-patterns.md)
 
 ## Dependencies
 

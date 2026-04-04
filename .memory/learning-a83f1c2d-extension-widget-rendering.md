@@ -1,8 +1,17 @@
+---
+id: a83f1c2d
+type: learning
+title: extension-widget-rendering
+created_at: "2026-04-04T10:58:02.527Z"
+updated_at: "2026-04-04T10:58:02.527Z"
+status: todo
+tags:
+---
 # Learning: Pi Extension Widget Rendering
 
 **Created:** 2026-01-11  
 **Source:** Theme Palette Extension Development  
-**Related:** [learning-theme-widget-patterns.md](learning-theme-widget-patterns.md)
+**Related:** [learning-b94d2e6f-theme-widget-patterns.md](learning-b94d2e6f-theme-widget-patterns.md)
 
 ## Overview
 

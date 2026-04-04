@@ -5,7 +5,7 @@ title: layout-systems
 created_at: "2026-04-04T10:55:19.506Z"
 updated_at: "2026-04-04T10:55:19.506Z"
 status: todo
-tags:
+tags: 
 ---
 # Learning: Layout Systems for Pi TUI Components
 
@@ -749,7 +749,7 @@ interface FlexChild {
 
 **Related Learning:**
 - [Component Architecture Patterns](learning-62c593ff-component-architecture-patterns.md)
-- [Extension Widget Rendering](learning-extension-widget-rendering.md)
+- [Extension Widget Rendering](learning-a83f1c2d-extension-widget-rendering.md)
 
 ## Conclusion
 

@@ -172,8 +172,8 @@ This epic builds upon the completed Theme Development Tools epic. The current im
 - `devtools/files/pi/agent/extensions/theme-palette/components/*.ts` - Supporting components
 
 ### Learning (from previous work)
-- [learning-extension-widget-rendering.md](learning-extension-widget-rendering.md) - Widget rendering patterns
-- [learning-theme-widget-patterns.md](learning-theme-widget-patterns.md) - Theme integration patterns
+- [learning-a83f1c2d-extension-widget-rendering.md](learning-a83f1c2d-extension-widget-rendering.md) - Widget rendering patterns
+- [learning-b94d2e6f-theme-widget-patterns.md](learning-b94d2e6f-theme-widget-patterns.md) - Theme integration patterns
 - [learning-62c593ff-component-architecture-patterns.md](learning-62c593ff-component-architecture-patterns.md) - Component architecture
 - [learning-96aa4357-layout-systems.md](learning-96aa4357-layout-systems.md) - Layout systems
 

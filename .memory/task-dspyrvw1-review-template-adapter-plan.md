@@ -1,12 +1,13 @@
 ---
 id: dspyrvw1
+type: task
 title: Review TemplateAdapter phase plan
+created_at: "2026-02-21T21:12:00+10:30"
+updated_at: "2026-02-21T21:12:00+10:30"
+status: blocked
 epic_id: dspya1b2
 phase_id: dspya101
 story_id: null
-created_at: 2026-02-21T21:12:00+10:30
-updated_at: 2026-02-21T21:12:00+10:30
-status: blocked
 assigned_to: human-review
 ---
 

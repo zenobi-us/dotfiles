@@ -211,7 +211,7 @@ const modelPadded = modelPart + " ".repeat(Math.max(0, maxModelIdLen - modelVisi
 ## References
 
 - [learning-42c8d9e1-pi-subagents-ui-patterns-complete.md](learning-42c8d9e1-pi-subagents-ui-patterns-complete.md) - Complete UI patterns reference
-- [research-pi-subagents-overlay-patterns.md](research-pi-subagents-overlay-patterns.md) - Overlay modal patterns
+- [research-c17a4d8e-pi-subagents-overlay-patterns.md](research-c17a4d8e-pi-subagents-overlay-patterns.md) - Overlay modal patterns
 - Pi TUI documentation: `docs/tui.md`
 - Example: `examples/extensions/todo.ts` - Escape handling
 - Example: `examples/extensions/space-invaders.ts` - 'q' key handling

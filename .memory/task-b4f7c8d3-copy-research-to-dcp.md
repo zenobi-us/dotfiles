@@ -36,13 +36,13 @@ Based on the summary, these files are relevant to pi-mono extensions and TUI com
 - `learning-a9f4c2d1-subagent-management-patterns.md` (7KB) - Agent management
 
 ### Widget/TUI Components
-- `learning-extension-widget-rendering.md` (12KB) - Widget rendering patterns
-- `learning-theme-widget-patterns.md` (9KB) - Theme integration
+- `learning-a83f1c2d-extension-widget-rendering.md` (12KB) - Widget rendering patterns
+- `learning-b94d2e6f-theme-widget-patterns.md` (9KB) - Theme integration
 - `learning-62c593ff-component-architecture-patterns.md` (15KB) - Component architecture
 - `learning-96aa4357-layout-systems.md` (20KB) - Grid + Flex layout systems
 
 ### Research
-- `research-theme-api-access.md` (7KB) - Theme API patterns
+- `research-e39c6f0a-theme-api-access.md` (7KB) - Theme API patterns
 - `research-5231cb8a-pi-mono-ui-components.md` (23KB) - UI components guide
 - `research-6e3d737d-subagent-extension-structure.md` (4KB) - Extension structure
 - `research-30fe5140-command-specifications.md` (9KB) - Command specs
@@ -70,13 +70,13 @@ All pi-mono extensions and TUI component research/learnings are now available in
 - `learning-a9f4c2d1-subagent-management-patterns.md` (7KB)
 
 **Widget/TUI Components (56KB):**
-- `learning-extension-widget-rendering.md` (12KB)
-- `learning-theme-widget-patterns.md` (9KB)
+- `learning-a83f1c2d-extension-widget-rendering.md` (12KB)
+- `learning-b94d2e6f-theme-widget-patterns.md` (9KB)
 - `learning-62c593ff-component-architecture-patterns.md` (16KB)
 - `learning-96aa4357-layout-systems.md` (20KB)
 
 **Research (43KB):**
-- `research-theme-api-access.md` (7KB)
+- `research-e39c6f0a-theme-api-access.md` (7KB)
 - `research-5231cb8a-pi-mono-ui-components.md` (23KB)
 - `research-6e3d737d-subagent-extension-structure.md` (4KB)
 - `research-30fe5140-command-specifications.md` (9KB)
