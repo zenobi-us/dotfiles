@@ -1,12 +1,14 @@
 ---
 id: pkgmt006
+type: task
 title: Migrate Business Prompts and Skills
 created_at: 2026-04-01
 updated_at: 2026-04-01
-status: done
+status: todo
 epic_id: pkgmig01
 phase_id: Phase 2
 story_id: pkgms001
+assigned_to: 
 ---
 
 # Migrate Business Prompts and Skills

@@ -1,3 +1,12 @@
+---
+id: 30fe5140
+type: research
+title: command-specifications
+created_at: "2026-04-04T10:55:19.518Z"
+updated_at: "2026-04-04T10:55:19.518Z"
+status: todo
+epic_id: 
+---
 # Research: Command Specifications Design
 
 ## Summary

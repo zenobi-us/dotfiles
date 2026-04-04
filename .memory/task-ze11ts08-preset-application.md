@@ -1,8 +1,9 @@
 ---
 id: ze11ts08
+type: task
 title: Apply Presets to Tabs
-created_at: 2026-01-23T13:05:00+10:30
-updated_at: 2026-01-23T13:05:00+10:30
+created_at: "2026-01-23T13:05:00+10:30"
+updated_at: "2026-01-23T13:05:00+10:30"
 status: todo
 epic_id: ze11ij01
 phase_id: ze11ph03

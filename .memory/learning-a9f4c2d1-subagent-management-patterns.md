@@ -1,3 +1,12 @@
+---
+id: a9f4c2d1
+type: learning
+title: subagent-management-patterns
+created_at: "2026-04-04T10:55:19.507Z"
+updated_at: "2026-04-04T10:55:19.507Z"
+status: todo
+tags:
+---
 # Learning: Subagent Management Patterns
 
 **Epic:** [Subagent Extension Enhancement](epic-a7d3e9f1-subagent-extension-enhancement.md)  

@@ -1,12 +1,13 @@
 ---
 id: dpat1101
+type: task
 title: Audit Refactoring.Guru sources and derivative-content boundaries
+created_at: "2026-03-04T20:04:20+10:30"
+updated_at: "2026-03-04T20:27:00+10:30"
+status: completed
 epic_id: dpat2601
 phase_id: dpatp101
 story_id: null
-created_at: 2026-03-04T20:04:20+10:30
-updated_at: 2026-03-04T20:27:00+10:30
-status: completed
 assigned_to: session-20260304-2003
 ---
 

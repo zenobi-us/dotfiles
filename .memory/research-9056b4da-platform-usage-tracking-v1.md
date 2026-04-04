@@ -1,13 +1,14 @@
 ---
 id: 9056b4da
+type: research
 title: Platform Usage Tracking Research
-created_at: 2026-02-07T20:35:00+10:30
-updated_at: 2026-02-07T20:35:00+10:30
+created_at: "2026-02-07T20:35:00+10:30"
+updated_at: "2026-02-07T20:35:00+10:30"
 status: completed
 epic_id: fc52bd74
 phase_id: null
-related_task_id: null
 tags: [platform-limits, api-research, usage-tracking, anthropic, openai, github-copilot, google-antigravity, gemini]
+related_task_id: null
 ---
 
 # Platform Usage Tracking Research

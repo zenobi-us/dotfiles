@@ -1,10 +1,11 @@
 ---
 id: 9c7e21ab
+type: epic
 title: pi-interview pi-tui questionnaire UI
-description: Evaluate and design a pi-tui-native questionnaire interface equivalent to pi-interview core behavior.
-created_at: 2026-02-20T19:28:00+10:30
-updated_at: 2026-02-20T19:39:55+10:30
+created_at: "2026-02-20T19:28:00+10:30"
+updated_at: "2026-02-20T19:39:55+10:30"
 status: planning
+description: Evaluate and design a pi-tui-native questionnaire interface equivalent to pi-interview core behavior.
 ---
 
 # Epic: pi-interview pi-tui questionnaire UI

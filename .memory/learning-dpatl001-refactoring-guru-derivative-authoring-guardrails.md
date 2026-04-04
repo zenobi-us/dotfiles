@@ -1,8 +1,9 @@
 ---
 id: dpatl001
+type: learning
 title: Refactoring.Guru derivative authoring guardrails
-created_at: 2026-03-04T20:29:00+10:30
-updated_at: 2026-03-04T20:29:00+10:30
+created_at: "2026-03-04T20:29:00+10:30"
+updated_at: "2026-03-04T20:29:00+10:30"
 status: completed
 tags:
   - best-practices

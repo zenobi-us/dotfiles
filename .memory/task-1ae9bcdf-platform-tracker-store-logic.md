@@ -1,14 +1,15 @@
 ---
 id: 1ae9bcdf
+type: task
 title: Platform Tracker - Phase 3 - Store Update Logic
-created_at: 2026-02-08T01:45:00+10:30
-updated_at: 2026-02-08T01:45:00+10:30
+created_at: "2026-02-08T01:45:00+10:30"
+updated_at: "2026-02-08T01:45:00+10:30"
 status: completed
 epic_id: fc52bd74
 phase_id: null
-depends_on: [task-fcc4dbe3]
 assigned_to: null
 tags: [platform-tracker, store, critical-bug-fix]
+depends_on: [task-fcc4dbe3]
 ---
 
 # Task: Fix Store Update Logic for Per-Model Storage

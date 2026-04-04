@@ -1,3 +1,14 @@
+---
+id: 7f2e4c1a
+type: task
+title: architecture-document
+created_at: "2026-04-04T10:55:19.523Z"
+updated_at: "2026-04-04T10:55:19.523Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Create Extension Architecture Document
 
 **Phase:** [Architecture Design](phase-d0309796-architecture-design.md)

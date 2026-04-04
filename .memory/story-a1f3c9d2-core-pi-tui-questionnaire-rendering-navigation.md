@@ -1,12 +1,14 @@
 ---
 id: a1f3c9d2
+type: story
 title: Core pi-tui questionnaire rendering and navigation
-created_at: 2026-02-20T22:51:00+10:30
-updated_at: 2026-02-20T22:51:00+10:30
+created_at: "2026-02-20T22:51:00+10:30"
+updated_at: "2026-02-20T22:51:00+10:30"
 status: todo
 epic_id: 9c7e21ab
 phase_id: 8b1e4d2f
 priority: critical
+test_coverage: none
 story_points: 8
 ---
 

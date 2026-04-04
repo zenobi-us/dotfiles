@@ -1,8 +1,9 @@
 ---
 id: ze11ij01
+type: epic
 title: Zellij Preset-Based Tab Management Extension
-created_at: 2026-01-23T13:05:00+10:30
-updated_at: 2026-01-23T13:05:00+10:30
+created_at: "2026-01-23T13:05:00+10:30"
+updated_at: "2026-01-23T13:05:00+10:30"
 status: planning
 ---
 

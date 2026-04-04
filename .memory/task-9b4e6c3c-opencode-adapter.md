@@ -1,3 +1,14 @@
+---
+id: 9b4e6c3c
+type: task
+title: opencode-adapter
+created_at: "2026-04-04T10:55:19.524Z"
+updated_at: "2026-04-04T10:55:19.524Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Design OpenCode Adapter
 
 **Phase:** [Architecture Design](phase-d0309796-architecture-design.md)

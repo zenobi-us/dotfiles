@@ -1,8 +1,9 @@
 ---
 id: 1af8e04c
+type: research
 title: ACLI (Atlassian CLI) Capabilities Research
-created_at: 2026-01-29T11:30:00+10:30
-updated_at: 2026-01-29T11:30:00+10:30
+created_at: "2026-01-29T11:30:00+10:30"
+updated_at: "2026-01-29T11:30:00+10:30"
 status: completed
 epic_id: jiraf2a6
 phase_id: null

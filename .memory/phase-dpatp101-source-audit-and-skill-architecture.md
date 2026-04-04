@@ -1,10 +1,11 @@
 ---
 id: dpatp101
+type: phase
 title: Source audit and skill architecture
-epic_id: dpat2601
-created_at: 2026-03-04T16:46:07+10:30
-updated_at: 2026-03-05T09:58:00+10:30
+created_at: "2026-03-04T16:46:07+10:30"
+updated_at: "2026-03-05T09:58:00+10:30"
 status: completed
+epic_id: dpat2601
 start_criteria: Epic dpat2601 approved and scope constraints confirmed by human.
 end_criteria: Full 22-pattern scope, category descriptions, and per-pattern/batch execution plan are documented.
 ---

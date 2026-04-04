@@ -1,14 +1,16 @@
 ---
 id: m0d3st01
+type: story
 title: Full-Width Overlay with Alias List
-created_at: 2026-02-16T20:31:00+10:30
-updated_at: 2026-02-16T20:45:00+10:30
-status: cancelled
+created_at: "2026-02-16T20:31:00+10:30"
+updated_at: "2026-02-16T20:45:00+10:30"
+status: todo
 epic_id: m0d3la1s
 phase_id: m0d3ph01
 priority: high
-story_points: 5
+test_coverage: none
 research: research-pi-subagents-overlay-patterns.md
+story_points: 5
 ---
 
 # Full-Width Overlay with Alias List

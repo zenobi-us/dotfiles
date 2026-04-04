@@ -1,3 +1,14 @@
+---
+id: db140ba7
+type: task
+title: research-harness-formats
+created_at: "2026-04-04T10:55:19.525Z"
+updated_at: "2026-04-04T10:55:19.525Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Research AI Harness Agent Formats
 
 **Phase:** [Research & Discovery](phase-ab3b84bd-research-discovery.md)

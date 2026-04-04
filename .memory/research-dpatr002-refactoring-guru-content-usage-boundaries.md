@@ -1,8 +1,9 @@
 ---
 id: dpatr002
+type: research
 title: Refactoring.Guru content usage boundaries for derivative skill authoring
-created_at: 2026-03-04T20:27:00+10:30
-updated_at: 2026-03-04T20:27:00+10:30
+created_at: "2026-03-04T20:27:00+10:30"
+updated_at: "2026-03-04T20:27:00+10:30"
 status: completed
 epic_id: dpat2601
 phase_id: dpatp101

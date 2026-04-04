@@ -1,13 +1,14 @@
 ---
 id: pkgms002
+type: story
 title: Skill Auto-Discovery from Pi Packages
 created_at: 2026-04-01
 updated_at: 2026-04-01
 status: todo
 epic_id: pkgmig01
 priority: critical
-story_points: 3
 test_coverage: none
+story_points: 3
 ---
 
 # Skill Auto-Discovery from Pi Packages

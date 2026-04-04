@@ -1,13 +1,14 @@
 ---
 id: pkgms003
+type: story
 title: Comtrya Provisions Packages Symlink
 created_at: 2026-04-01
 updated_at: 2026-04-01
 status: todo
 epic_id: pkgmig01
 priority: high
-story_points: 1
 test_coverage: none
+story_points: 1
 ---
 
 # Comtrya Provisions Packages Symlink

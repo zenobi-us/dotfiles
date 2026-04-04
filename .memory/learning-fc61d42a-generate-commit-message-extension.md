@@ -1,8 +1,9 @@
 ---
 id: fc61d42a
+type: learning
 title: Generate Commit Message Extension - Model Selection & Configuration
-created_at: 2026-02-16T23:58:00Z
-updated_at: 2026-02-16T23:58:00Z
+created_at: "2026-02-16T23:58:00Z"
+updated_at: "2026-02-16T23:58:00Z"
 status: completed
 tags: [extensions, pi-extensions, commit-automation, model-selection, cli-design]
 learned_from: [epic-4dd87a16, research-pi-subagents-overlay-patterns.md]

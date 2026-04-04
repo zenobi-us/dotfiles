@@ -1,10 +1,11 @@
 ---
 id: dpatp102
+type: phase
 title: Creational pattern skills (5)
-epic_id: dpat2601
-created_at: 2026-03-05T10:00:00+10:30
-updated_at: 2026-03-05T20:43:00+10:30
+created_at: "2026-03-05T10:00:00+10:30"
+updated_at: "2026-03-05T20:43:00+10:30"
 status: completed
+epic_id: dpat2601
 start_criteria: dpatp101 completed with canonical 22-pattern scope.
 end_criteria: 5 creational pattern skills exist as separate artifacts and pass schema checks.
 ---

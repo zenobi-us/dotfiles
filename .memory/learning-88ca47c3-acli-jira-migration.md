@@ -1,10 +1,11 @@
 ---
 id: 88ca47c3
+type: learning
 title: ACLI Jira Migration Lessons Learned
-created_at: 2026-01-29T13:08:00+10:30
-updated_at: 2026-01-29T13:08:00+10:30
-tags: [jira, acli, atlassian, migration, best-practices, cli-tools]
+created_at: "2026-01-29T13:08:00+10:30"
+updated_at: "2026-01-29T13:08:00+10:30"
 status: completed
+tags: [jira, acli, atlassian, migration, best-practices, cli-tools]
 ---
 
 # ACLI Jira Migration Lessons Learned

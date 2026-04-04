@@ -1,12 +1,14 @@
 ---
 id: pkgmt011
+type: task
 title: Patch Skills Extension Registry for Package Discovery
 created_at: 2026-04-01
 updated_at: 2026-04-01
-status: done
+status: todo
 epic_id: pkgmig01
 phase_id: Phase 4
 story_id: pkgms002
+assigned_to: 
 ---
 
 # Patch Skills Extension Registry for Package Discovery

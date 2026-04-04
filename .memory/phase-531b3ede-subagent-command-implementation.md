@@ -1,3 +1,14 @@
+---
+id: 531b3ede
+type: phase
+title: subagent-command-implementation
+created_at: "2026-04-04T10:55:19.509Z"
+updated_at: "2026-04-04T10:55:19.509Z"
+status: todo
+epic_id: 
+start_criteria: 
+end_criteria: 
+---
 # Phase: Subagent Command Implementation
 
 **Epic:** [Subagent Extension Enhancement](epic-a7d3e9f1-subagent-extension-enhancement.md)  

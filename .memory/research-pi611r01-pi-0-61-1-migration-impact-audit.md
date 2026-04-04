@@ -1,8 +1,9 @@
 ---
 id: pi611r01
+type: research
 title: Pi 0.61.1 Migration Impact Audit for Local Extensions
-created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:02:06+10:30
+created_at: "2026-03-24T09:02:06+10:30"
+updated_at: "2026-03-24T09:02:06+10:30"
 status: completed
 epic_id: pi611e01
 ---

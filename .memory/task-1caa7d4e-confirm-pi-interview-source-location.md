@@ -1,11 +1,12 @@
 ---
 id: 1caa7d4e
+type: task
 title: Confirm authoritative pi-interview source location
+created_at: "2026-02-20T19:32:00+10:30"
+updated_at: "2026-02-20T19:39:55+10:30"
+status: completed
 epic_id: 9c7e21ab
 phase_id: 3a5f1c8d
-created_at: 2026-02-20T19:32:00+10:30
-updated_at: 2026-02-20T19:39:55+10:30
-status: completed
 assigned_to: session-20260220-1938
 ---
 

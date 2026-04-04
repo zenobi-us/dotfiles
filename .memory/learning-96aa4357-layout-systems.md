@@ -1,3 +1,12 @@
+---
+id: 96aa4357
+type: learning
+title: layout-systems
+created_at: "2026-04-04T10:55:19.506Z"
+updated_at: "2026-04-04T10:55:19.506Z"
+status: todo
+tags:
+---
 # Learning: Layout Systems for Pi TUI Components
 
 **Source:** Theme Palette Extension - Grid and Flex Components  

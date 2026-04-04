@@ -1,8 +1,9 @@
 ---
 id: dpatl002
+type: learning
 title: dpat1501 rollout guidance and maintenance policy for pattern skill pack
-created_at: 2026-03-05T21:05:30+10:30
-updated_at: 2026-03-05T21:05:30+10:30
+created_at: "2026-03-05T21:05:30+10:30"
+updated_at: "2026-03-05T21:05:30+10:30"
 status: completed
 tags:
   - design-patterns

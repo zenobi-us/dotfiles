@@ -1,3 +1,12 @@
+---
+id: 432b51be
+type: learning
+title: subagent-extension-architecture
+created_at: "2026-04-04T10:55:19.504Z"
+updated_at: "2026-04-04T10:55:19.504Z"
+status: todo
+tags:
+---
 # Learning: Subagent Extension Architecture
 
 **Created:** 2026-01-16  

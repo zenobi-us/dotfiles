@@ -1,3 +1,11 @@
+---
+id: 4dd87a16
+type: epic
+title: multi-harness-agent-loader
+created_at: "2026-04-04T10:55:19.500Z"
+updated_at: "2026-04-04T10:55:19.500Z"
+status: todo
+---
 # Epic: Multi-Harness Agent Loader Extension
 
 **Status:** Architecture Design Phase

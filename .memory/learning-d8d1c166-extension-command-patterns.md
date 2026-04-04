@@ -1,3 +1,12 @@
+---
+id: d8d1c166
+type: learning
+title: extension-command-patterns
+created_at: "2026-04-04T10:55:19.507Z"
+updated_at: "2026-04-04T10:55:19.507Z"
+status: todo
+tags:
+---
 # Learning: Pi Extension Command Patterns
 
 ## Key Insights

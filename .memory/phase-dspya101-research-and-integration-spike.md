@@ -1,10 +1,11 @@
 ---
 id: dspya101
+type: phase
 title: Research & Integration Spike
-epic_id: dspya1b2
-created_at: 2026-02-21T21:05:00+10:30
-updated_at: 2026-02-21T21:05:00+10:30
+created_at: "2026-02-21T21:05:00+10:30"
+updated_at: "2026-02-21T21:05:00+10:30"
 status: proposed
+epic_id: dspya1b2
 start_criteria: Epic dspya1b2 approved and TemplateAdapter repo review scheduled with Q.
 end_criteria: Integration brief describing runner contract, storage format, and UX journeys signed off by Q.
 ---

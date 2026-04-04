@@ -1,3 +1,14 @@
+---
+id: e8a7c4d2
+type: task
+title: zellij-leader-key-update
+created_at: "2026-04-04T10:55:19.526Z"
+updated_at: "2026-04-04T10:55:19.526Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Update Zellij Config with Ctrl+/ Leader Key
 
 **Status:** ✅ Complete  

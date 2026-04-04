@@ -1,3 +1,12 @@
+---
+id: 5231cb8a
+type: research
+title: pi-mono-ui-components
+created_at: "2026-04-04T10:55:19.518Z"
+updated_at: "2026-04-04T10:55:19.518Z"
+status: todo
+epic_id: 
+---
 # Research: Pi-Mono Custom UI Components
 
 **Status:** Complete  

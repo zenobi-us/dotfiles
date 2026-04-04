@@ -1,8 +1,9 @@
 ---
 id: ze11ph03
+type: phase
 title: Phase 3 - Tab Creation with Presets
-created_at: 2026-01-23T13:05:00+10:30
-updated_at: 2026-01-23T13:05:00+10:30
+created_at: "2026-01-23T13:05:00+10:30"
+updated_at: "2026-01-23T13:05:00+10:30"
 status: todo
 epic_id: ze11ij01
 start_criteria: Phase 2 complete - preset management functional

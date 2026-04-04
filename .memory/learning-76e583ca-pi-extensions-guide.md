@@ -1,3 +1,12 @@
+---
+id: 76e583ca
+type: learning
+title: pi-extensions-guide
+created_at: "2026-04-04T10:55:19.504Z"
+updated_at: "2026-04-04T10:55:19.504Z"
+status: todo
+tags:
+---
 # Learning: Pi Extensions Guide
 
 **Created:** 2026-01-11  

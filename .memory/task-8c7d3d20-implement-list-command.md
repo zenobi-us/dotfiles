@@ -1,3 +1,14 @@
+---
+id: 8c7d3d20
+type: task
+title: implement-list-command
+created_at: "2026-04-04T10:55:19.524Z"
+updated_at: "2026-04-04T10:55:19.524Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Implement `/subagent list` Command
 
 ## Status

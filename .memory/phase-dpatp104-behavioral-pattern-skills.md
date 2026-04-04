@@ -1,10 +1,11 @@
 ---
 id: dpatp104
+type: phase
 title: Behavioral pattern skills (10)
-epic_id: dpat2601
-created_at: 2026-03-05T10:02:00+10:30
-updated_at: 2026-03-05T20:52:38+10:30
+created_at: "2026-03-05T10:02:00+10:30"
+updated_at: "2026-03-05T20:52:38+10:30"
 status: completed
+epic_id: dpat2601
 start_criteria: dpatp103 completed with 7/7 structural skills.
 end_criteria: 10 behavioral pattern skills exist as separate artifacts and pass schema checks.
 ---

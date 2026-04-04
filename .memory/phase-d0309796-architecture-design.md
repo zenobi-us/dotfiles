@@ -1,3 +1,14 @@
+---
+id: d0309796
+type: phase
+title: architecture-design
+created_at: "2026-04-04T10:55:19.510Z"
+updated_at: "2026-04-04T10:55:19.510Z"
+status: todo
+epic_id: 
+start_criteria: 
+end_criteria: 
+---
 # Phase: Architecture Design
 
 **Epic:** [Multi-Harness Agent Loader Extension](epic-4dd87a16-multi-harness-agent-loader.md)

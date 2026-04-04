@@ -1,8 +1,9 @@
 ---
 id: ze11ts02
+type: task
 title: Create Zellij CLI Wrapper Utilities
-created_at: 2026-01-23T13:05:00+10:30
-updated_at: 2026-01-23T13:05:00+10:30
+created_at: "2026-01-23T13:05:00+10:30"
+updated_at: "2026-01-23T13:05:00+10:30"
 status: completed
 epic_id: ze11ij01
 phase_id: ze11ph01

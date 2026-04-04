@@ -1,12 +1,13 @@
 ---
 id: dpat1501
+type: task
 title: Validate package and rollout 22 pattern skills
+created_at: "2026-03-05T10:08:00+10:30"
+updated_at: "2026-03-05T21:06:30+10:30"
+status: completed
 epic_id: dpat2601
 phase_id: dpatp105
 story_id: null
-created_at: 2026-03-05T10:08:00+10:30
-updated_at: 2026-03-05T21:06:30+10:30
-status: completed
 assigned_to: session-20260304-2003
 ---
 

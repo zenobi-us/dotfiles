@@ -1,8 +1,9 @@
 ---
 id: dpatr006
+type: research
 title: dpat1501 pattern skill pack validation index
-created_at: 2026-03-05T21:05:00+10:30
-updated_at: 2026-03-05T21:05:00+10:30
+created_at: "2026-03-05T21:05:00+10:30"
+updated_at: "2026-03-05T21:05:00+10:30"
 status: completed
 epic_id: dpat2601
 phase_id: dpatp105

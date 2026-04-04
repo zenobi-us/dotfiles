@@ -1,10 +1,11 @@
 ---
 id: dspya103
+type: phase
 title: Execution Pipeline & Observability
-epic_id: dspya1b2
-created_at: 2026-02-21T21:07:00+10:30
-updated_at: 2026-02-21T21:07:00+10:30
+created_at: "2026-02-21T21:07:00+10:30"
+updated_at: "2026-02-21T21:07:00+10:30"
 status: proposed
+epic_id: dspya1b2
 start_criteria: Template management overlay functional and runner contract implemented.
 end_criteria: Extension can run TemplateAdapter predictions, stream LM transcripts, and capture telemetry/errors for later review.
 ---

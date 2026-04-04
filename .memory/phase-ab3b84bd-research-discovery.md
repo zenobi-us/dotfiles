@@ -1,3 +1,14 @@
+---
+id: ab3b84bd
+type: phase
+title: research-discovery
+created_at: "2026-04-04T10:55:19.509Z"
+updated_at: "2026-04-04T10:55:19.509Z"
+status: todo
+epic_id: 
+start_criteria: 
+end_criteria: 
+---
 # Phase: Research & Discovery
 
 **Epic:** [Multi-Harness Agent Loader Extension](epic-4dd87a16-multi-harness-agent-loader.md)

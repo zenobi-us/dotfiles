@@ -1,12 +1,13 @@
 ---
 id: dpat1301
+type: task
 title: Author structural pattern skills
+created_at: "2026-03-05T10:06:00+10:30"
+updated_at: "2026-03-05T20:45:23+10:30"
+status: completed
 epic_id: dpat2601
 phase_id: dpatp103
 story_id: null
-created_at: 2026-03-05T10:06:00+10:30
-updated_at: 2026-03-05T20:45:23+10:30
-status: completed
 assigned_to: session-20260304-2003
 ---
 

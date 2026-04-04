@@ -1,12 +1,13 @@
 ---
 id: c6f1b8e2
+type: task
 title: Enforce no-timeout and compatibility contract
+created_at: "2026-02-20T22:54:00+10:30"
+updated_at: "2026-02-20T22:54:00+10:30"
+status: todo
 epic_id: 9c7e21ab
 phase_id: 8b1e4d2f
 story_id: c93d7ab4
-created_at: 2026-02-20T22:54:00+10:30
-updated_at: 2026-02-20T22:54:00+10:30
-status: todo
 assigned_to: session-20260220-1938
 ---
 

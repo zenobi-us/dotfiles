@@ -1,12 +1,14 @@
 ---
 id: pkgmt001
+type: task
 title: Create Package Skeleton
 created_at: 2026-04-01
 updated_at: 2026-04-01
-status: done
+status: todo
 epic_id: pkgmig01
 phase_id: Phase 1
 story_id: pkgms001
+assigned_to: 
 ---
 
 # Create Package Skeleton

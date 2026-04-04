@@ -1,10 +1,11 @@
 ---
 id: 8b1e4d2f
+type: phase
 title: Local extension MVP planning
-epic_id: 9c7e21ab
-created_at: 2026-02-20T19:47:00+10:30
-updated_at: 2026-02-20T19:47:00+10:30
+created_at: "2026-02-20T19:47:00+10:30"
+updated_at: "2026-02-20T19:47:00+10:30"
 status: planning
+epic_id: 9c7e21ab
 start_criteria: Phase 1 feasibility complete and human decisions provided.
 end_criteria: MVP stories and tasks are defined for local extension implementation and reviewed by human.
 ---

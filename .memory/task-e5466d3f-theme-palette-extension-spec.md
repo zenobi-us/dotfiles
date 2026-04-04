@@ -1,3 +1,14 @@
+---
+id: e5466d3f
+type: task
+title: theme-palette-extension-spec
+created_at: "2026-04-04T10:55:19.525Z"
+updated_at: "2026-04-04T10:55:19.525Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Theme Colour Palette Extension Specification
 
 **Created:** 2026-01-11  

@@ -1,8 +1,9 @@
 ---
 id: dpatr001
+type: research
 title: Refactoring.Guru design-pattern catalog intake
-created_at: 2026-03-04T16:46:07+10:30
-updated_at: 2026-03-05T09:55:00+10:30
+created_at: "2026-03-04T16:46:07+10:30"
+updated_at: "2026-03-05T09:55:00+10:30"
 status: completed
 epic_id: dpat2601
 phase_id: dpatp101

@@ -1,12 +1,13 @@
 ---
 id: dpatr005
+type: research
 title: dpatp101 pilot shortlist + rubric review packet
+created_at: "2026-03-04T21:52:21+10:30"
+updated_at: "2026-03-04T21:52:21+10:30"
+status: completed
 epic_id: dpat2601
 phase_id: dpatp101
 related_task_id: dpat1103
-created_at: 2026-03-04T21:52:21+10:30
-updated_at: 2026-03-04T21:52:21+10:30
-status: completed
 ---
 
 # dpatp101 pilot shortlist + rubric review packet

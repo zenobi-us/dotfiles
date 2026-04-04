@@ -1,9 +1,10 @@
 ---
 id: m0d3ph01
+type: phase
 title: Research & Design
-created_at: 2026-02-16T20:31:00+10:30
-updated_at: 2026-02-16T20:31:00+10:30
-status: cancelled
+created_at: "2026-02-16T20:31:00+10:30"
+updated_at: "2026-02-16T20:31:00+10:30"
+status: todo
 epic_id: m0d3la1s
 start_criteria: Epic approved, ready to begin research
 end_criteria: Design document complete, UI mockups approved, API surface understood

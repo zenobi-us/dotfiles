@@ -1,8 +1,9 @@
 ---
 id: pi611t01
+type: task
 title: Migrate files extension keybinding IDs
-created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:44:00+10:30
+created_at: "2026-03-24T09:02:06+10:30"
+updated_at: "2026-03-24T09:44:00+10:30"
 status: completed
 epic_id: pi611e01
 phase_id: phase-2-keybinding-migration

@@ -1,3 +1,12 @@
+---
+id: 8c4d2b1f
+type: research
+title: ai-harness-formats
+created_at: "2026-04-04T10:55:19.519Z"
+updated_at: "2026-04-04T10:55:19.519Z"
+status: todo
+epic_id: 
+---
 # Research: AI Harness Agent/Command Formats
 
 **Type:** Research  

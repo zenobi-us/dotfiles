@@ -1,8 +1,9 @@
 ---
 id: ze11ts05
+type: task
 title: Implement Preset Listing
-created_at: 2026-01-23T13:05:00+10:30
-updated_at: 2026-01-23T13:05:00+10:30
+created_at: "2026-01-23T13:05:00+10:30"
+updated_at: "2026-01-23T13:05:00+10:30"
 status: todo
 epic_id: ze11ij01
 phase_id: ze11ph02

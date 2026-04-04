@@ -1,8 +1,9 @@
 ---
 id: ze11ph01
+type: phase
 title: Phase 1 - Core Infrastructure
-created_at: 2026-01-23T13:05:00+10:30
-updated_at: 2026-01-23T13:05:00+10:30
+created_at: "2026-01-23T13:05:00+10:30"
+updated_at: "2026-01-23T13:05:00+10:30"
 status: completed
 epic_id: ze11ij01
 start_criteria: Epic approved and requirements clear

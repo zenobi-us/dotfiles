@@ -1,10 +1,11 @@
 ---
 id: dspya104
+type: phase
 title: Validation, Packaging & Release Prep
-epic_id: dspya1b2
-created_at: 2026-02-21T21:08:00+10:30
-updated_at: 2026-02-21T21:08:00+10:30
+created_at: "2026-02-21T21:08:00+10:30"
+updated_at: "2026-02-21T21:08:00+10:30"
 status: proposed
+epic_id: dspya1b2
 start_criteria: Execution pipeline delivering stable runs with telemetry captured.
 end_criteria: Extension tested, documented, versioned, and ready for user validation.
 ---

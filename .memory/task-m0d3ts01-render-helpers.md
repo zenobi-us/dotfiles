@@ -1,9 +1,10 @@
 ---
 id: m0d3ts01
+type: task
 title: Create Full-Width Render Helpers
-created_at: 2026-02-16T20:50:00+10:30
-updated_at: 2026-02-16T20:50:00+10:30
-status: cancelled
+created_at: "2026-02-16T20:50:00+10:30"
+updated_at: "2026-02-16T20:50:00+10:30"
+status: todo
 epic_id: m0d3la1s
 phase_id: m0d3ph01
 story_id: m0d3st01

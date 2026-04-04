@@ -1,3 +1,11 @@
+---
+id: fc52bd74
+type: epic
+title: subagent-footer-customization
+created_at: "2026-04-04T10:55:19.503Z"
+updated_at: "2026-04-04T10:55:19.503Z"
+status: todo
+---
 # Epic: Subagent Footer Customization with pi-tui
 
 **Status:** Planned (Approved - Waiting for Epic 3 Completion)

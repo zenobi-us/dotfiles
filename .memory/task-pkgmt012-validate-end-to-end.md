@@ -1,12 +1,14 @@
 ---
 id: pkgmt012
+type: task
 title: Validate End-to-End Migration
 created_at: 2026-04-01
 updated_at: 2026-04-01
-status: in_progress
+status: todo
 epic_id: pkgmig01
 phase_id: Phase 5
 story_id: pkgms002
+assigned_to: 
 ---
 
 # Validate End-to-End Migration

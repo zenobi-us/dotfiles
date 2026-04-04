@@ -1,8 +1,9 @@
 ---
 id: dpat2601
+type: epic
 title: Design Pattern Skills from Refactoring.Guru
-created_at: 2026-03-04T16:46:07+10:30
-updated_at: 2026-03-05T21:07:30+10:30
+created_at: "2026-03-04T16:46:07+10:30"
+updated_at: "2026-03-05T21:07:30+10:30"
 status: in-progress
 ---
 

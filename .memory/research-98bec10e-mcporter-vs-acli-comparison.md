@@ -1,8 +1,9 @@
 ---
 id: 98bec10e
+type: research
 title: mcporter vs ACLI Comparison
-created_at: 2026-01-29T11:35:00+10:30
-updated_at: 2026-01-29T11:35:00+10:30
+created_at: "2026-01-29T11:35:00+10:30"
+updated_at: "2026-01-29T11:35:00+10:30"
 status: completed
 epic_id: jiraf2a6
 phase_id: null

@@ -1,3 +1,14 @@
+---
+id: b4f7c8d3
+type: task
+title: copy-research-to-dcp
+created_at: "2026-04-04T10:55:19.524Z"
+updated_at: "2026-04-04T10:55:19.524Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Copy Research and Learnings to DCP Memory
 
 **Status:** Complete ✅  

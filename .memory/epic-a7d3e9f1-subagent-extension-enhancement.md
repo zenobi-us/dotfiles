@@ -1,3 +1,11 @@
+---
+id: a7d3e9f1
+type: epic
+title: subagent-extension-enhancement
+created_at: "2026-04-04T10:55:19.501Z"
+updated_at: "2026-04-04T10:55:19.501Z"
+status: todo
+---
 # Epic: Subagent Extension Enhancement
 
 **Status:** Complete ✅  

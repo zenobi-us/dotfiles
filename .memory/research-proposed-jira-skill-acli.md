@@ -1,9 +1,10 @@
 ---
-id: proposed01
+id: proposed
+type: research
 title: Proposed ACLI-based Jira Skill
-created_at: 2026-01-29T11:40:00+10:30
-updated_at: 2026-01-29T11:40:00+10:30
-status: draft
+created_at: "2026-01-29T11:40:00+10:30"
+updated_at: "2026-01-29T11:40:00+10:30"
+status: todo
 epic_id: jiraf2a6
 ---
 

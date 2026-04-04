@@ -1,3 +1,11 @@
+---
+id: d4e7a2f9
+type: epic
+title: theme-palette-ergonomics
+created_at: "2026-04-04T10:55:19.501Z"
+updated_at: "2026-04-04T10:55:19.501Z"
+status: todo
+---
 # Epic: Theme Palette Tool Ergonomics Enhancement
 
 **Status:** Active 🔄  

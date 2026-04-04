@@ -1,9 +1,10 @@
 ---
 id: f1e37c82
+type: research
 title: Generate Commit Message Modal - Fix Analysis
 created_at: 2026-02-17
 updated_at: 2026-02-17
-status: done
+status: todo
 epic_id: null
 phase_id: null
 related_task_id: null

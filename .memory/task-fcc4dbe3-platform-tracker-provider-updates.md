@@ -1,14 +1,15 @@
 ---
 id: fcc4dbe3
+type: task
 title: Platform Tracker - Phase 2 - Provider Strategy Updates
-created_at: 2026-02-08T01:45:00+10:30
-updated_at: 2026-02-08T01:45:00+10:30
+created_at: "2026-02-08T01:45:00+10:30"
+updated_at: "2026-02-08T01:45:00+10:30"
 status: completed
 epic_id: fc52bd74
 phase_id: null
-depends_on: [task-845f3788]
 assigned_to: null
 tags: [platform-tracker, providers, per-model-storage]
+depends_on: [task-845f3788]
 ---
 
 # Task: Update Provider Strategies for Per-Model Storage

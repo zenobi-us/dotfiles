@@ -1,11 +1,12 @@
 ---
 id: 7e3f4a91
+type: task
 title: Analyze pi-interview-tool architecture and pi-tui migration approach
+created_at: "2026-02-20T19:39:55+10:30"
+updated_at: "2026-02-20T19:39:55+10:30"
+status: completed
 epic_id: 9c7e21ab
 phase_id: 3a5f1c8d
-created_at: 2026-02-20T19:39:55+10:30
-updated_at: 2026-02-20T19:39:55+10:30
-status: completed
 assigned_to: session-20260220-1938
 ---
 

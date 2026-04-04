@@ -1,3 +1,12 @@
+---
+id: 62c593ff
+type: learning
+title: component-architecture-patterns
+created_at: "2026-04-04T10:55:19.504Z"
+updated_at: "2026-04-04T10:55:19.504Z"
+status: todo
+tags:
+---
 # Learning: Component Architecture Patterns for Pi TUI
 
 **Source:** Theme Palette Extension Documentation Analysis  

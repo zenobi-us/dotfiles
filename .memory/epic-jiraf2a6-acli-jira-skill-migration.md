@@ -1,8 +1,9 @@
 ---
 id: jiraf2a6
+type: epic
 title: ACLI Jira Skill Migration
-created_at: 2026-01-29T11:25:00+10:30
-updated_at: 2026-01-29T13:08:00+10:30
+created_at: "2026-01-29T11:25:00+10:30"
+updated_at: "2026-01-29T13:08:00+10:30"
 status: completed
 ---
 

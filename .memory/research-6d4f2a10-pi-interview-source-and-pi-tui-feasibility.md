@@ -1,8 +1,9 @@
 ---
 id: 6d4f2a10
+type: research
 title: pi-interview source and pi-tui feasibility
-created_at: 2026-02-20T19:31:00+10:30
-updated_at: 2026-02-20T19:39:55+10:30
+created_at: "2026-02-20T19:31:00+10:30"
+updated_at: "2026-02-20T19:39:55+10:30"
 status: completed
 epic_id: 9c7e21ab
 phase_id: 3a5f1c8d

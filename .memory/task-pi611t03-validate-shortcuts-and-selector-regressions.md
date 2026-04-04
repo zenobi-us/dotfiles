@@ -1,8 +1,9 @@
 ---
 id: pi611t03
+type: task
 title: Validate shortcuts and selector regressions
-created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T11:06:00+10:30
+created_at: "2026-03-24T09:02:06+10:30"
+updated_at: "2026-03-24T11:06:00+10:30"
 status: in-progress
 epic_id: pi611e01
 phase_id: phase-3-validation-and-guardrails

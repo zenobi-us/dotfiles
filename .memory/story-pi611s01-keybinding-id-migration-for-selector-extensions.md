@@ -1,13 +1,14 @@
 ---
 id: pi611s01
+type: story
 title: Keybinding ID Migration for Selector Extensions
-created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:44:00+10:30
+created_at: "2026-03-24T09:02:06+10:30"
+updated_at: "2026-03-24T09:44:00+10:30"
 status: in-progress
 epic_id: pi611e01
 priority: critical
-story_points: 3
 test_coverage: partial
+story_points: 3
 ---
 
 # Keybinding ID Migration for Selector Extensions

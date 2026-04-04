@@ -1,12 +1,13 @@
 ---
 id: dpat1201
+type: task
 title: Author creational pattern skills
+created_at: "2026-03-05T10:05:00+10:30"
+updated_at: "2026-03-05T20:42:00+10:30"
+status: completed
 epic_id: dpat2601
 phase_id: dpatp102
 story_id: null
-created_at: 2026-03-05T10:05:00+10:30
-updated_at: 2026-03-05T20:42:00+10:30
-status: completed
 assigned_to: session-20260304-2003
 ---
 

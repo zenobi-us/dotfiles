@@ -1,3 +1,14 @@
+---
+id: 8a3d5b2b
+type: task
+title: claude-code-adapter
+created_at: "2026-04-04T10:55:19.524Z"
+updated_at: "2026-04-04T10:55:19.524Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Design Claude Code Adapter
 
 **Phase:** [Architecture Design](phase-d0309796-architecture-design.md)

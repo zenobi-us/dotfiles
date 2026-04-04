@@ -1,8 +1,9 @@
 ---
 id: dspya1b2
+type: epic
 title: TemplateAdapter Pi Extension
-created_at: 2026-02-21T21:02:05+10:30
-updated_at: 2026-02-21T21:02:05+10:30
+created_at: "2026-02-21T21:02:05+10:30"
+updated_at: "2026-02-21T21:02:05+10:30"
 status: planning
 ---
 

@@ -1,8 +1,9 @@
 ---
 id: d7b832c2
+type: learning
 title: Phases Group Tasks, Not Stories
-created_at: 2026-03-02T17:56:00+10:30
-updated_at: 2026-03-02T17:56:00+10:30
+created_at: "2026-03-02T17:56:00+10:30"
+updated_at: "2026-03-02T17:56:00+10:30"
 status: completed
 tags:
   - project-management

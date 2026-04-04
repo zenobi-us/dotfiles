@@ -1,13 +1,14 @@
 ---
 id: pkgms001
+type: story
 title: Domain-Scoped Package Structure for ai/files
 created_at: 2026-04-01
 updated_at: 2026-04-01
 status: todo
 epic_id: pkgmig01
 priority: critical
-story_points: 8
 test_coverage: none
+story_points: 8
 ---
 
 # Domain-Scoped Package Structure for ai/files

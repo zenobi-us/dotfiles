@@ -1,10 +1,11 @@
 ---
 id: 3a5f1c8d
+type: phase
 title: Source discovery and feasibility
-epic_id: 9c7e21ab
-created_at: 2026-02-20T19:29:00+10:30
-updated_at: 2026-02-20T19:39:55+10:30
+created_at: "2026-02-20T19:29:00+10:30"
+updated_at: "2026-02-20T19:39:55+10:30"
 status: completed
+epic_id: 9c7e21ab
 start_criteria: Epic 9c7e21ab created and scope constrained to IDEA-stage investigation.
 end_criteria: Evidence-backed findings captured and open questions documented for Q.
 ---

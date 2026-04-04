@@ -1,8 +1,9 @@
 ---
 id: d354b422
+type: task
 title: Worktree Extension Implementation
-created_at: 2026-01-21T14:28:00+10:30
-updated_at: 2026-01-21T14:50:00+10:30
+created_at: "2026-01-21T14:28:00+10:30"
+updated_at: "2026-01-21T14:50:00+10:30"
 status: completed
 epic_id: standalone
 phase_id: standalone

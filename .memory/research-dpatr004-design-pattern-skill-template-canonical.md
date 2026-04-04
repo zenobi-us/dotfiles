@@ -1,8 +1,9 @@
 ---
 id: dpatr004
+type: research
 title: Canonical template for design pattern skills
-created_at: 2026-03-04T20:56:30+10:30
-updated_at: 2026-03-04T20:56:30+10:30
+created_at: "2026-03-04T20:56:30+10:30"
+updated_at: "2026-03-04T20:56:30+10:30"
 status: completed
 epic_id: dpat2601
 phase_id: dpatp101

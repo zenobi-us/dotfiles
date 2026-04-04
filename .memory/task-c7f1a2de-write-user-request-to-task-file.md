@@ -1,8 +1,9 @@
 ---
 id: c7f1a2de
+type: task
 title: Write user request to a task file
-created_at: 2026-02-10T13:07:15+10:30
-updated_at: 2026-02-10T13:07:15+10:30
+created_at: "2026-02-10T13:07:15+10:30"
+updated_at: "2026-02-10T13:07:15+10:30"
 status: todo
 epic_id: 4dd87a16
 phase_id: ab3b84bd

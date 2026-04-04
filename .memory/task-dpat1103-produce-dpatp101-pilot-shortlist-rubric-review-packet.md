@@ -1,12 +1,13 @@
 ---
 id: dpat1103
+type: task
 title: Produce dpatp101 pilot shortlist + rubric review packet
+created_at: "2026-03-04T21:52:21+10:30"
+updated_at: "2026-03-04T21:52:21+10:30"
+status: completed
 epic_id: dpat2601
 phase_id: dpatp101
 story_id: null
-created_at: 2026-03-04T21:52:21+10:30
-updated_at: 2026-03-04T21:52:21+10:30
-status: completed
 assigned_to: session-20260304-2003
 ---
 

@@ -1,13 +1,14 @@
 ---
 id: pi611s02
+type: story
 title: Tool Call Typing Audit for 0.61.1
-created_at: 2026-03-24T09:02:06+10:30
-updated_at: 2026-03-24T09:44:00+10:30
+created_at: "2026-03-24T09:02:06+10:30"
+updated_at: "2026-03-24T09:44:00+10:30"
 status: completed
 epic_id: pi611e01
 priority: medium
-story_points: 1
 test_coverage: full
+story_points: 1
 ---
 
 # Tool Call Typing Audit for 0.61.1

@@ -1,3 +1,14 @@
+---
+id: 6c5f7d4d
+type: task
+title: transformation-pipeline
+created_at: "2026-04-04T10:55:19.523Z"
+updated_at: "2026-04-04T10:55:19.523Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Design Data Transformation Pipeline
 
 **Phase:** [Architecture Design](phase-d0309796-architecture-design.md)

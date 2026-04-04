@@ -1,8 +1,9 @@
 ---
 id: acli0001
+type: task
 title: Migrate Jira Skill from mcporter to ACLI
-created_at: 2026-01-28T13:22:00+10:30
-updated_at: 2026-01-28T13:22:00+10:30
+created_at: "2026-01-28T13:22:00+10:30"
+updated_at: "2026-01-28T13:22:00+10:30"
 status: completed
 epic_id: jiraf2a6
 phase_id: null

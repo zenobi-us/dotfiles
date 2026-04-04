@@ -1,10 +1,11 @@
 ---
 id: dspya102
+type: phase
 title: Extension Architecture & Template Management
-epic_id: dspya1b2
-created_at: 2026-02-21T21:06:00+10:30
-updated_at: 2026-02-21T21:06:00+10:30
+created_at: "2026-02-21T21:06:00+10:30"
+updated_at: "2026-02-21T21:06:00+10:30"
 status: proposed
+epic_id: dspya1b2
 start_criteria: Phase dspya101 deliverables approved and runner/storage specs baselined.
 end_criteria: Extension skeleton with storage adapters, schema validation, and overlay navigation merged into Dotfiles repo.
 ---

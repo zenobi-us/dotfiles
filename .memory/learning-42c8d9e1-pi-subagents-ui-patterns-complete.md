@@ -1,5 +1,6 @@
 ---
 id: 42c8d9e1
+type: learning
 title: Pi-Subagents UI Patterns - Complete Reference
 created_at: 2026-02-17
 updated_at: 2026-02-17

@@ -1,14 +1,16 @@
 ---
 id: m0d3st02
+type: story
 title: Settings Editor for Alias Fields
-created_at: 2026-02-16T20:31:00+10:30
-updated_at: 2026-02-16T20:45:00+10:30
-status: cancelled
+created_at: "2026-02-16T20:31:00+10:30"
+updated_at: "2026-02-16T20:45:00+10:30"
+status: todo
 epic_id: m0d3la1s
 phase_id: m0d3ph01
 priority: high
-story_points: 8
+test_coverage: none
 research: research-pi-subagents-overlay-patterns.md
+story_points: 8
 ---
 
 # Settings Editor for Alias Fields

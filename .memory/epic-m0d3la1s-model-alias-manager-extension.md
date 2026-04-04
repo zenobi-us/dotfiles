@@ -1,9 +1,10 @@
 ---
 id: m0d3la1s
+type: epic
 title: Model Alias Manager Extension
-created_at: 2026-02-16T20:31:00+10:30
-updated_at: 2026-02-16T20:31:00+10:30
-status: cancelled
+created_at: "2026-02-16T20:31:00+10:30"
+updated_at: "2026-02-16T20:31:00+10:30"
+status: todo
 ---
 
 # Model Alias Manager Extension

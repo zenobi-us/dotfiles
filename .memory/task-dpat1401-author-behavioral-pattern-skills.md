@@ -1,12 +1,13 @@
 ---
 id: dpat1401
+type: task
 title: Author behavioral pattern skills
+created_at: "2026-03-05T10:07:00+10:30"
+updated_at: "2026-03-05T20:52:38+10:30"
+status: completed
 epic_id: dpat2601
 phase_id: dpatp104
 story_id: null
-created_at: 2026-03-05T10:07:00+10:30
-updated_at: 2026-03-05T20:52:38+10:30
-status: completed
 assigned_to: session-20260304-2003
 ---
 

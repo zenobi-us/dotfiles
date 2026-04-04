@@ -1,3 +1,14 @@
+---
+id: 82937436
+type: task
+title: tests-and-docs
+created_at: "2026-04-04T10:55:19.523Z"
+updated_at: "2026-04-04T10:55:19.523Z"
+status: todo
+epic_id: 
+phase_id: 
+assigned_to: 
+---
 # Task: Add Tests and Documentation
 
 ## Status

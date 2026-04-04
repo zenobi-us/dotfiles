@@ -1,3 +1,14 @@
+---
+id: e8f9a1b2
+type: phase
+title: theme-palette-extension
+created_at: "2026-04-04T10:55:19.514Z"
+updated_at: "2026-04-04T10:55:19.514Z"
+status: todo
+epic_id: 
+start_criteria: 
+end_criteria: 
+---
 # Phase: Theme Palette Extension
 
 **Epic:** [Theme Development Tools](epic-c2b8f4e6-theme-development-tools.md)  

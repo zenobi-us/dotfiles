@@ -1,12 +1,14 @@
 ---
 id: pkgmt008
+type: task
 title: Add package.json to Each Package
 created_at: 2026-04-01
 updated_at: 2026-04-01
-status: done
+status: todo
 epic_id: pkgmig01
 phase_id: Phase 1
 story_id: pkgms001
+assigned_to: 
 ---
 
 # Add package.json to Each Package
