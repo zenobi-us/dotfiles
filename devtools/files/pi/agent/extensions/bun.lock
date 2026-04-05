@@ -6,8 +6,8 @@
       "name": "@zenobius/pi-agent-extensions",
       "dependencies": {
         "@mariozechner/pi-ai": "*",
-        "@mariozechner/pi-coding-agent": "^0.61.1",
-        "@mariozechner/pi-tui": "^0.61.1",
+        "@mariozechner/pi-coding-agent": "*",
+        "@mariozechner/pi-tui": "*",
         "@zenobius/pi-extension-config": "0.0.2",
         "dedent": "^1.7.0",
         "typebox": "^1.1.3",

@@ -17,6 +17,7 @@ actions:
     args:
       - -rf
       - "{{user.home_dir}}/.pi/agent/extensions"
+      - "{{user.home_dir}}/.pi/agent/agents"
       - "{{user.home_dir}}/.pi/agent/themes"
       - "{{user.home_dir}}/.pi/agent/settings.json"
       - "{{user.home_dir}}/.pi/agent/pi-worktrees.config.json"
@@ -39,6 +40,14 @@ actions:
     args:
       - -p
       - "{{user.home_dir}}/.pi/agent"
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/extensions"
+    from: pi/agent/extensions
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/agents"
+    from: pi/agent/agents
 
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/extensions"
