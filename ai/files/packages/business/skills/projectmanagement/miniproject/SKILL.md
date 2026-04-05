@@ -16,12 +16,12 @@ This is a simplified and concise project management AI memory framework.
 >    - This handles git worktrees automatically (finds `.memory/` in the main worktree)
 >    - Use `--create` flag to create the directory if it doesn't exist
 > 2. Ensure the following files exist in `.memory/`:
->   - read `.memory/todo.md`, `.memory/summary.md`, `.memory/knowledge.md` and `.memory/team.md` (use grep/ls, not the glob or list tool)
->   - if `.memory/` is missing these files, then create those three.
+>   - read `.memory/todo.md`, `.memory/summary.md`, `.memory/team.md`, and `.memory/roadmap.md` (use grep/ls, not the glob or list tool)
+>   - if `.memory/` is missing these files, then create them.
 > 3. Initialise the knowledge codemap if it does not exist:
 >   - create a file `.memory/knowledge-codemap.md` with an ascii statemachine diagram representing your understanding of the codebase.
 >   - this is critical for understanding the project structure and flow.
-> 4. Always read `.memory/summary.md`, `.memory/todo.md`, and `.memory/team.md` before starting any work.
+> 4. Always read `.memory/summary.md`, `.memory/todo.md`, `.memory/team.md`, and `.memory/roadmap.md` before starting any work.
 > 5. Always update `.memory/team.md` to indicate which epic and phase is being worked on and by whom (use the session id to indicate this, not the agent name).
 > 6. Always keep `.memory/todo.md` up to date at every step.
 > 7. Always commit changes after completing a task or phase. NEVER PUSH CHANGES WITHOUT HUMAN REVIEW.
@@ -77,48 +77,48 @@ Holding onto useless or misnamed files creates confusion and degrades the memory
 - [core] store findings in `.memory/` directory
 - [core] all notes in `.memory/` must be in markdown format
 - [core] Archived stories, tasks and epics get moved to the archive directory: `.memory/archive/`.
-- [core] `summary.md`, `todo.md`, `team.md`, `knowledge-*.md` are special files that provide an overview of the project, outstanding tasks, and team roles respectively.
+- [core] `summary.md`, `todo.md`, `team.md`, `roadmap.md`, `knowledge-*.md` are special files that provide project snapshot, outstanding tasks, ownership, future direction, and knowledge context respectively.
 - [core] `.memory/knowledge-codemap.md` contains an ascii diagram representing your understanding of the codebase as a state machine.
 - [core] `.memory/knowledge-data-flow.md` contains an ascii diagram representing data flow
 - [core] Other `.memory/knowledge-*.md` files can be created to document specific knowledge areas.
-- [core] except for `.memory/summary.md`, all notes in `.memory/` must follow the filename convention of `.memory/<type>-<8_char_hashid>-<title>.md`
-- [core] where `<type>` is one of: `research`, `epic`, `task`, `story`, and `learning`
+- [core] except for special files (`summary.md`, `todo.md`, `team.md`, `roadmap.md`, `knowledge-*.md`), notes in `.memory/` must follow `.memory/<type>-<8_char_hashid>-<title>.md`
+- [core] where `<type>` is one of: `idea`, `research`, `epic`, `task`, `story`, and `learning`
 - [core] `<8_char_hashid>` is a unique 8 character hash identifier for the file.
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
-- [core] every project MUST start with an epic definition before stories or tasks are created
-- [core] Always keep `.memory/summary.md` up to date with current epic, active phases, and next milestones. Prune incorrect or outdated information.
+- [core] every project MUST start with idea capture or epic definition before stories or tasks are created
+- [core] Always keep `.memory/summary.md` and `.memory/roadmap.md` up to date with current execution and future direction. Prune incorrect or outdated information.
 - [git] Always commit changes after completing a task or phase. 
 - [git] NEVER PUSH CHANGES WITHOUT HUMAN REVIEW.
 - [git] when committing changes, follow conventional commit guidelines.
 - [git] Use clear commit messages referencing relevant files for changes.
 
 
-## Conceptual Model: Stories, Phases, and Tasks
+## Conceptual Model: Ideas, Stories, Phases, and Tasks
 
 Understanding the relationship between these artifacts is critical:
 
 ```
-Epic (vision/goal)
- ├── Stories (WHAT - phase-agnostic requirements)
- │    └── Stories define what users need, independent of timeline
- │
- └── Phases (WHEN - inline sections in epic file)
-      └── Phases define when work happens
-           └── Tasks link to BOTH:
-                ├── story_id → the requirement being implemented (WHAT)
-                └── phase_id → the timeline slot (WHEN)
+Idea (future opportunity)
+ └── promotes to Epic when validated
+      ├── Stories (WHAT - phase-agnostic requirements)
+      │    └── Stories define what users need, independent of timeline
+      │
+      └── Phases (WHEN - inline sections in epic file)
+           └── Phases define when work happens
+                └── Tasks link to BOTH:
+                     ├── story_id → the requirement being implemented (WHAT)
+                     └── phase_id → the timeline slot (WHEN)
 ```
-
 | Artifact | Concern | Links To | Phase-Agnostic? |
 |----------|---------|----------|-----------------|
+| Idea     | Opportunity | - / Epic (when promoted) | Yes |
 | Epic     | Vision  | -        | Yes             |
 | Story    | WHAT    | Epic     | **Yes**         |
 | Phase    | WHEN    | Epic (inline) | No         |
 | Task     | HOW + WHEN | Story + Phase | No      |
-| Research | Discovery | Epic/Task | Yes          |
+| Research | Discovery | Idea/Epic/Task | Yes     |
 | Learning | Knowledge | -      | Yes             |
-
-**Key insight:** Stories are requirements that exist independently of when they'll be implemented. Phases group tasks (scheduled work), not stories (requirements). Tasks bridge both worlds by linking to their story (what they implement) and their phase (when they're scheduled).
+**Key insight:** Ideas are low-commitment future options. Epics are committed direction. Stories are requirements independent of schedule. Phases group scheduled tasks. Tasks bridge both worlds by linking to their story (what) and phase (when).
 
 
 ## Archiving 
@@ -160,11 +160,30 @@ Each type of markdown file in `.memory/` should include specific frontmatter fie
 - `title`: A concise title summarizing the content.
 - `created_at`: Timestamp of when the file was created.
 - `updated_at`: Timestamp of the last update to the file.
-- `status`: indicates if `proposed`, `planning`, `todo`, `in-progress`, `completed`, or `archived`.
+- `status`: indicates if `proposed`, `planning`, `todo`, `in-progress`, `blocked`, `completed`, `cancelled`, `archived`, `triaged`, `incubating`, `promoted`, or `rejected`.
 
 ### Common Sections
 
 - `# {Title}`: The main title of the document.
+
+### Template: Idea
+
+Ideas capture potential future direction before epic commitment.
+
+Frontmatter:
+
+- all common frontmatter fields.
+- `horizon`: One of `now`, `next`, `later`.
+- `promote_criteria`: Conditions that must be true before creating an epic.
+- `related_epic_id`: Populated when promoted. [optional]
+
+Sections:
+
+- all common sections.
+- `## Problem/Opportunity`: What problem or opportunity this idea targets.
+- `## Expected Impact`: Why this matters if pursued.
+- `## Unknowns`: What must be researched or validated.
+- `## Promotion Decision`: Outcome and rationale (`promoted` / `rejected` / `incubating`).
 
 ### Template: Task
 
@@ -363,7 +382,7 @@ So its detail will be solely an ascii diagram representing your understanding of
 **Workflow**
 
 0. `Initialise` > `Action` > Stop
-1. `Idea` > `Epic Definition` > `Research` > `Story Definition` (incl. Test Specification) > `Phase Planning` > Human Review > `Task Breakdown` > Stop
+1. `Idea` > `Idea Capture` > `Triage` > (`Epic Definition` OR `Incubate` OR `Reject`) > `Research` > `Story Definition` (incl. Test Specification) > `Phase Planning` > Human Review > `Task Breakdown` > Stop
 2. `Task Execution` (incl. Unit Tests) > `Learning Distillation` > repeat 
 3. `Story Completion` > verify acceptance criteria + test coverage gate > `Phase Completion` > `Learnings Distillation` > Human Review > Stop
 4. `Epic Completion` > `Epic Summary & Learnings` > Human Review > Stop
@@ -386,6 +405,7 @@ When the user asks for a `miniproject <action>`, correlate `<action>` (or `<ACTI
   - `team.md` (for team roles and assignments)
   - `knowledge-codemap.md` (for codebase understanding)
   - `knowledge-data-flow.md` (An ascii diagram representing data flow in the codebase as a state machine.)
+  - `roadmap.md` (derived dashboard for ideas + epic pipeline)
 - [core] if any of these files are missing, create them with appropriate headers and initial content
 - [core] ask the user if they want to define a `constitution.md` file to outline project rules and guidelines. If yes, create the file with a template structure.
 
@@ -395,8 +415,9 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 #### Action: Summarize Memory [SUMMARIZE-MEMORY]
 
-- [core] read all `.memory/` files and update `.memory/summary.md` to reflect current epic, active phases, and next milestones. Prune incorrect or outdated information.
+- [core] read all `.memory/` files and update `.memory/summary.md` and `.memory/roadmap.md` to reflect current epic, active phases, and future direction.
 - [core] ensure `.memory/summary.md` is concise and easy to understand at a glance.
+- [core] ensure `.memory/roadmap.md` surfaces active ideas (`idea-*.md`) and active/planned epics.
 
 
 #### Action: Clean Up [CLEAN-UP]
@@ -408,7 +429,7 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 #### Action: Validate Memory [VALIDATE-MEMORY]
 
-- [core] run the validation script to ensure all memory files comply with the frontmatter rules: `./scripts/validate.ts`
+- [core] run schema validation via helper: `./scripts/miniproject.sh validate-memory` (or `./scripts/miniproject.sh validate-memory --repair` to auto-fix).
 
 
 #### Action: Refine Constitution [REFINE-CONSTITUTION]
@@ -422,15 +443,19 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 
 - [core] provide a summary of the current epic, active phases, and next milestones based on `.memory/summary.md`.
 - [core] list outstanding tasks from `.memory/todo.md`.
+- [core] include roadmap alignment context from `.memory/roadmap.md`.
 - [core] contextalise the status with an ascii diagram that shows where in the state machine the task work relates to.
 
 ### Planning Stages
 
 #### Stage: Ideation [IDEA]
 
-- [core] every project MUST start with an epic definition before stories or tasks are created
+- [core] every project MUST start with idea capture or epic definition. If uncertainty is high, capture idea first.
 - [core] when initialising, create a codemap of exiting codebase, ensure there is a state machine ascii diagram representing your understanding of the codebase in `.memory/knowledge-codemap.md`.
-- [epic] Announcing an idea, leads directly to a q & a session with the user to flesh out the idea and determine if it is worth pursuing. If it is worth pursuing, then move directly to epic definition stage. If not, then document the idea and why it was rejected in a `.memory/learning-<8_char_hash_id>-<title>.md` file for future reference.
+- [idea] capture each non-trivial future direction in `.memory/idea-<8_char_hash_id>-<title>.md`.
+- [idea] run Q&A to evaluate value, risk, and feasibility, then set status to one of: `triaged`, `incubating`, `promoted`, `rejected`.
+- [idea] when promoted, create an epic and set `related_epic_id` in the idea file.
+- [idea] when rejected, document rationale in idea `## Promotion Decision` and optionally distill to learning.
 
 #### Stage: Epic Definition [EPIC]
 
@@ -573,7 +598,7 @@ Sometimes the `.memory/` directory needs maintenance. Use these actions as neede
 3. If there are any `[NEEDS-HUMAN]` tasks in `.memory/todo.md`, stop and wait for human intervention.
 4. follow the research guidelines above.
 5. when you are blocked by actions that require human intervention, create a task in `.memory/todo.md` listing what needs to be done by a human. tag it with `[NEEDS-HUMAN]` on the task line.
-6. after completing a phase, update `.memory/summary.md` and prune other files as necessary.
+6. after completing a phase, update `.memory/summary.md` and `.memory/roadmap.md`, and prune other files as necessary.
 7. after completing an epic, distill all learnings, update `.memory/summary.md`, and archive completed tasks/stories.
 8. commit changes with clear messages referencing relevant files.
 

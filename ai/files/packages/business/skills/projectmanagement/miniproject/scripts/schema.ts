@@ -17,16 +17,23 @@ interface NameMeta {
 type FrontmatterValue = string | string[];
 type FrontmatterMap = Record<string, FrontmatterValue>;
 
-const SPECIAL_FILES = ["summary.md", "todo.md", "team.md", "constitution.md"];
+const SPECIAL_FILES = ["summary.md", "todo.md", "team.md", "roadmap.md", "constitution.md"];
 const FLEXIBLE_PREFIX_FILES = ["knowledge-"];
 const VALID_STATUSES = [
   "proposed",
   "planning",
   "todo",
   "in-progress",
+  "blocked",
   "completed",
+  "cancelled",
   "archived",
+  "triaged",
+  "incubating",
+  "promoted",
+  "rejected",
 ];
+const VALID_IDEA_HORIZON = ["now", "next", "later"];
 const VALID_TEST_COVERAGE = ["none", "partial", "full"];
 const FILE_TYPES: Record<string, string[]> = {
   task: [
@@ -81,7 +88,17 @@ const FILE_TYPES: Record<string, string[]> = {
     "status",
     "tags",
   ],
-};
+  idea: [
+    "id",
+    "type",
+    "title",
+    "created_at",
+    "updated_at",
+    "status",
+    "horizon",
+    "promote_criteria",
+  ],
+  };
 
 const FILE_NAME_PATTERN =
   /^(?<type>\w+)-(?<hashId>[a-z0-9]{8})-(?<title>.+)\.md$/;
@@ -319,6 +336,18 @@ function frontmatterValidation(
     );
   }
 
+  const ideaHorizonValue = frontmatter.horizon;
+  if (
+    meta.type === "idea" &&
+    typeof ideaHorizonValue === "string" &&
+    ideaHorizonValue.length > 0 &&
+    !VALID_IDEA_HORIZON.includes(ideaHorizonValue)
+  ) {
+    warnings.push(
+      `Invalid idea horizon value: ${ideaHorizonValue}. Expected one of: ${VALID_IDEA_HORIZON.join(", ")}`,
+    );
+  }
+
   const idValue = frontmatter.id;
   if (typeof idValue === "string" && idValue !== meta.hashId) {
     errors.push(
@@ -360,6 +389,12 @@ function defaultValueForField(field: string, meta: NameMeta): FrontmatterValue {
   }
   if (field === "test_coverage") {
     return "none";
+  }
+  if (field === "horizon") {
+    return "later";
+  }
+  if (field === "promote_criteria") {
+    return "";
   }
   return "";
 }
@@ -418,6 +453,15 @@ function repairFrontmatter(
     changed = true;
   }
 
+  if (
+    meta.type === "idea" &&
+    typeof next.horizon === "string" &&
+    !VALID_IDEA_HORIZON.includes(next.horizon)
+  ) {
+    next.horizon = "later";
+    changed = true;
+  }
+
   return { repaired: next, changed };
 }
 
@@ -438,6 +482,9 @@ function serializeFrontmatter(map: FrontmatterMap): string {
     "end_criteria",
     "priority",
     "test_coverage",
+    "horizon",
+    "promote_criteria",
+    "related_epic_id",
     "tags",
     "related_task_id",
     "area",

@@ -40,7 +40,8 @@ set -euo pipefail
 # - cmd_takeover_task: claimed task + force+reason -> takeover metadata + claim overwrite -> commit(.memory/*)
 # - cmd_release_task: claimed task + owner -> release upserts -> derived refresh -> commit(.memory/*)
 # - cmd_stale_sweep: task files -> stale detection -> optional stale upsert -> commit(.memory/*)
-# - cmd_project: all epic/story/task files -> team.md/todo.md/summary.md -> commit(.memory/*)
+# - cmd_project: all epic/story/task/idea files -> team.md/todo.md/summary.md/roadmap.md -> commit(.memory/*)
+# - cmd_validate_memory: .memory markdown files -> schema validate/repair -> optional derived refresh -> commit(.memory/*)
 # - cmd_discover_locks: task files -> active/stale lock snapshot -> stdout
 # - cmd_list_by_owner: task files -> owner/workspace grouping -> stdout
 # - cmd_list_by_session: alias wrapper -> cmd_list_by_owner
@@ -105,8 +106,11 @@ Subcommands:
 
   stale-sweep [--apply]                 Detect stale locks; --apply marks claim_state=stale
 
-  project [--stdout]                    Compute derived views (team.md, todo.md, summary.md)
+  project [--stdout]                    Compute derived views (team.md, todo.md, summary.md, roadmap.md)
                                         default writes files; --stdout prints only
+
+  validate-memory [--repair] [--no-archive]
+                                       Validate .memory markdown schema (or repair with --repair)
 
   discover-locks                        List claimed tasks + derived story locks
   list-by-owner                         List claimed tasks grouped by owner_id
@@ -127,7 +131,7 @@ Environment defaults (optional):
 
 Notes:
   - Source of truth is task frontmatter in .memory/task-*.md.
-  - team.md / todo.md / summary.md should be treated as derived views.
+  - team.md / todo.md / summary.md / roadmap.md should be treated as derived views.
   - Mutating commands auto-commit changed .memory paths only; non-.memory paths are filtered out.
 EOF
 }
@@ -837,7 +841,7 @@ cmd_migrate_phases_to_inline() {
 		echo "This was a dry run. No changes were made."
 	else
 		lib_views_refresh_derived
-		lib_git_commit_memory_changes "migrate phases to inline" 			"${changed_files[@]}" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
+		lib_git_commit_memory_changes "migrate phases to inline" 			"${changed_files[@]}" "$mem/team.md" "$mem/todo.md" "$mem/summary.md" "$mem/roadmap.md"
 		echo
 		echo "Migration complete."
 	fi
@@ -1065,7 +1069,7 @@ cmd_lock_task() {
 	story_id="$(lib_frontmatter_get "$file" "story_id")"
 
 	lib_views_refresh_derived
-	lib_git_commit_memory_changes "lock task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
+	lib_git_commit_memory_changes "lock task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md" "$mem/roadmap.md"
 
 	echo "Locked task: $(basename "$file")"
 	echo "  owner_id: $owner"
@@ -1160,7 +1164,7 @@ cmd_heartbeat() {
 	lib_frontmatter_upsert "$file" "lease_expires_at" "$expires"
 
 	lib_views_refresh_derived
-	lib_git_commit_memory_changes "heartbeat task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
+	lib_git_commit_memory_changes "heartbeat task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md" "$mem/roadmap.md"
 
 	echo "Heartbeat updated: $(basename "$file")"
 	echo "  owner_id: $owner"
@@ -1272,7 +1276,7 @@ cmd_takeover_task() {
 	lib_frontmatter_upsert "$file" "lock_reason" "takeover: $reason"
 
 	lib_views_refresh_derived
-	lib_git_commit_memory_changes "takeover task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
+	lib_git_commit_memory_changes "takeover task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md" "$mem/roadmap.md"
 
 	echo "Took over task: $(basename "$file")"
 	echo "  from_owner: ${prev_owner:-none}"
@@ -1327,7 +1331,7 @@ cmd_stale_sweep() {
 		echo "No stale locks."
 	elif [[ "$apply" == "true" ]]; then
 		lib_views_refresh_derived
-		lib_git_commit_memory_changes "mark stale task locks" 			"${changed_files[@]}" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
+		lib_git_commit_memory_changes "mark stale task locks" 			"${changed_files[@]}" "$mem/team.md" "$mem/todo.md" "$mem/summary.md" "$mem/roadmap.md"
 		echo "Applied stale state to stale claims."
 	fi
 }
@@ -1393,7 +1397,7 @@ cmd_release_task() {
 	lib_frontmatter_upsert "$file" "last_heartbeat_at" "$(lib_time_now_iso)"
 
 	lib_views_refresh_derived
-	lib_git_commit_memory_changes "release task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md"
+	lib_git_commit_memory_changes "release task $(basename "$file")" 		"$file" "$mem/team.md" "$mem/todo.md" "$mem/summary.md" "$mem/roadmap.md"
 
 	echo "Released task: $(basename "$file")"
 }
@@ -1711,10 +1715,11 @@ cmd_project() {
 	t_open=0 t_completed=0 t_blocked=0 t_claimed=0 t_stale=0
 	s_open=0 s_completed=0 e_active=0
 
-	local team_tmp todo_tmp summary_tmp
+	local team_tmp todo_tmp summary_tmp roadmap_tmp
 	team_tmp="$(mktemp)"
 	todo_tmp="$(mktemp)"
 	summary_tmp="$(mktemp)"
+	roadmap_tmp="$(mktemp)"
 
 	{
 		echo "# Team Status"
@@ -1889,6 +1894,54 @@ cmd_project() {
 		fi
 	} >"$summary_tmp"
 
+	{
+		echo "# Roadmap Dashboard"
+		echo
+		echo "_AUTO-GENERATED by scripts/miniproject.sh project at $now. Do not edit manually._"
+		echo
+		echo "## Idea Backlog (future epic candidates)"
+		local idea_any
+		idea_any=0
+		shopt -s nullglob
+		for idf in "$mem"/idea-*.md; do
+			local is ih title
+			is="$(lib_frontmatter_get "$idf" "status")"
+			ih="$(lib_frontmatter_get "$idf" "horizon")"
+			title="$(lib_frontmatter_get "$idf" "title")"
+			case "$is" in
+			completed | archived | rejected | promoted) continue ;;
+			esac
+			idea_any=1
+			echo "- [$(basename "$idf")]($(basename "$idf")) status=\`${is:-captured}\`${ih:+ horizon=\`$ih\`} ${title:+- $title}"
+		done
+		shopt -u nullglob
+		if [[ "$idea_any" -eq 0 ]]; then
+			echo "- No active ideas captured."
+		fi
+		echo
+		echo "## Epic Pipeline"
+		local epic_any
+		epic_any=0
+		shopt -s nullglob
+		for ef in "$mem"/epic-*.md; do
+			local es et
+			es="$(lib_frontmatter_get "$ef" "status")"
+			et="$(lib_frontmatter_get "$ef" "title")"
+			if [[ "$es" == "completed" || "$es" == "archived" ]]; then
+				continue
+			fi
+			epic_any=1
+			echo "- [$(basename "$ef")]($(basename "$ef")) status=\`${es:-unknown}\` ${et:+- $et}"
+		done
+		shopt -u nullglob
+		if [[ "$epic_any" -eq 0 ]]; then
+			echo "- No active/planned epics."
+		fi
+		echo
+		echo "## Agent Alignment Rule"
+		echo "- When proposing direction changes, prefer ideas and epics listed above before creating net-new tracks."
+	} >"$roadmap_tmp"
+
 	if [[ "$stdout_only" == "true" ]]; then
 		echo "===== team.md ====="
 		cat "$team_tmp"
@@ -1898,20 +1951,93 @@ cmd_project() {
 		echo
 		echo "===== summary.md ====="
 		cat "$summary_tmp"
+		echo
+		echo "===== roadmap.md ====="
+		cat "$roadmap_tmp"
 	else
 		lib_file_write_atomic "$mem/team.md" <"$team_tmp"
 		lib_file_write_atomic "$mem/todo.md" <"$todo_tmp"
 		lib_file_write_atomic "$mem/summary.md" <"$summary_tmp"
+		lib_file_write_atomic "$mem/roadmap.md" <"$roadmap_tmp"
 		if [[ "${MP_PROJECT_NO_COMMIT:-0}" != "1" ]]; then
-			lib_git_commit_memory_changes "refresh derived project views" 				"$mem/team.md" "$mem/todo.md" "$mem/summary.md"
+			lib_git_commit_memory_changes "refresh derived project views" \
+				"$mem/team.md" "$mem/todo.md" "$mem/summary.md" "$mem/roadmap.md"
 		fi
 		echo "Updated derived views:"
 		echo "- $mem/team.md"
 		echo "- $mem/todo.md"
 		echo "- $mem/summary.md"
+		echo "- $mem/roadmap.md"
 	fi
 
-	rm -f "$team_tmp" "$todo_tmp" "$summary_tmp"
+	rm -f "$team_tmp" "$todo_tmp" "$summary_tmp" "$roadmap_tmp"
+}
+
+# Name: cmd_validate_memory
+# What: Validates or repairs markdown frontmatter schema for .memory files.
+# Why: Keep behavior explicit and maintainable for humans/LLMs editing this script.
+cmd_validate_memory() {
+	local mode include_archive
+	mode="validate"
+	include_archive="true"
+
+	while [[ $# -gt 0 ]]; do
+		case "$1" in
+		--repair)
+			mode="repair"
+			shift
+			;;
+		--no-archive)
+			include_archive="false"
+			shift
+			;;
+		*)
+			echo "ERROR: unknown option: $1" >&2
+			exit 1
+			;;
+		esac
+	done
+
+	if ! command -v bun >/dev/null 2>&1; then
+		echo "ERROR: bun is required for schema validation (scripts/schema.ts)" >&2
+		exit 1
+	fi
+
+	local mem script_dir schema
+	mem="$(lib_memory_dir)"
+	script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+	schema="$script_dir/schema.ts"
+
+	if [[ ! -f "$schema" ]]; then
+		echo "ERROR: schema script not found: $schema" >&2
+		exit 1
+	fi
+
+	local files
+	files=()
+	while IFS= read -r -d '' f; do
+		files+=("$f")
+	done < <(find "$mem" -maxdepth 1 -type f -name '*.md' -print0 | sort -z)
+
+	if [[ "$include_archive" == "true" && -d "$mem/archive" ]]; then
+		while IFS= read -r -d '' f; do
+			files+=("$f")
+		done < <(find "$mem/archive" -type f -name '*.md' -print0 | sort -z)
+	fi
+
+	if [[ "${#files[@]}" -eq 0 ]]; then
+		echo "No markdown files found under $mem"
+		return 0
+	fi
+
+	if [[ "$mode" == "validate" ]]; then
+		bun "$schema" validate "${files[@]}"
+		return $?
+	fi
+
+	bun "$schema" repair "${files[@]}"
+	lib_views_refresh_derived
+	lib_git_commit_memory_changes "repair memory schema" "$mem" "$mem/team.md" "$mem/todo.md" "$mem/summary.md" "$mem/roadmap.md"
 }
 
 # Name: main
@@ -1935,6 +2061,7 @@ main() {
 	release-task) cmd_release_task "$@" ;;
 	stale-sweep) cmd_stale_sweep "$@" ;;
 	project) cmd_project "$@" ;;
+	validate-memory) cmd_validate_memory "$@" ;;
 	discover-locks) cmd_discover_locks "$@" ;;
 	list-by-owner) cmd_list_by_owner "$@" ;;
 	list-by-session) cmd_list_by_session "$@" ;;
