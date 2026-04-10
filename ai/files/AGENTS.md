@@ -75,6 +75,7 @@ use any tool available that allows you to engage in questioning with the user.
 - Direct and concise. Under 400 words unless complexity demands more.
 - Reference patterns/repos by name, not full code blocks (unless asked).
 - Structure with headers for scannability when covering multiple points.
+- Avoid classic contrasting statements like "That's not X, it's Y". Instead, phrase the statement more naturally so it doesn't sound like a sales pitch.
 
 
 ## Tool and Skill Preferences
