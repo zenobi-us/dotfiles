@@ -5,17 +5,30 @@ import {
 } from "../service/skill-registry.js";
 
 export function formatReadSkillOutput(skill: Skill, body: string): string {
-  return `---
-qualified_name: ${skill.qualifiedName}
-shortname: ${skill.name}
-location: ${skill.filePath}
-base_dir: ${skill.baseDir}
----
-
-> **Path Resolution**: Scripts, references, and assets use relative paths.
-> Resolve from: \`${skill.baseDir}\`
-> Example: \`./scripts/foo.sh\` → \`${skill.baseDir}/scripts/foo.sh\`
-${body}`;
+  return [
+    "---",
+    `qualified_name: ${skill.qualifiedName}`,
+    `shortname: ${skill.name}`,
+    `location: ${skill.filePath}`,
+    `base_dir: ${skill.baseDir}`,
+    "---",
+    "",
+    "> **Path Resolution**: Skill resources are resolved from `skill_dir`, the absolute path to the skill package root.",
+    "> ",
+    "> Derived locations:",
+    `> - \`skill_dir\`: ${skill.baseDir}`,
+    `> - \`script_dir\`: ${skill.baseDir}/scripts`,
+    `> - \`references_dir\`: ${skill.baseDir}/references`,
+    `> - \`assets_dir\`: ${skill.baseDir}/assets`,
+    "> ",
+    "> Examples:",
+    `> - \`./scripts/foo.sh\` → ${skill.baseDir}/scripts/foo.sh`,
+    `> - \`scripts/foo.sh\` → ${skill.baseDir}/scripts/foo.sh`,
+    `> - \`references/something.md\` → ${skill.baseDir}/references/something.md`,
+    `> - \`ambiguous.xml\` → search within ${skill.baseDir} for the matching file`,
+    "",
+    body,
+  ].join("\n");
 }
 
 export function buildSkillUserMessage(
