@@ -6,6 +6,15 @@
       "api": "openai-completions",
       "models": [
         {
+          "id": "google/gemma-4-26b-a4b",
+          "name": "Gemma 4 26B A4B (Local LM Studio)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 60000,
+          "maxTokens": 35883
+        },
+        {
           "id": "qwen/qwen3-v1-30b",
           "name": "Qwen3 v1 30B (Local LM Studio)",
           "reasoning": true,
