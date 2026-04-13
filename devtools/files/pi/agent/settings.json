@@ -4,7 +4,6 @@
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
-    "npm:@zenobius/pi-worktrees",
     "npm:@marckrenn/pi-sub-bar",
     "npm:@marckrenn/pi-sub-core",
     "npm:@zenobius/pi-worktrees",
