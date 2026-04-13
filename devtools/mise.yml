@@ -6,11 +6,11 @@ depends:
   - commands.bin
 
 actions:
-  - action: file.remove
-    target: "{{user.home_dir}}/.config/mise"
-
-  - action: file.remove
-    target: "{{user.home_dir}}/.tool-versions"
+  - action: command.run
+    dir: "{{user.home_dir}}/"
+    command: rm
+    args:
+      - "{{user.home_dir}}/.config/mise"
 
   - action: file.link
     from: mise

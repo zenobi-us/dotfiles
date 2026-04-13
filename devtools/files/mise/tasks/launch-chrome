@@ -1,0 +1,292 @@
+#!/usr/bin/env -S mise x node@20 -- node
+// a modeline for typescript support in editors like vim and emacs
+// vim: set filetype=typescript:
+//MISE description="Launch Chrome with remote debugging and a stable debug profile"
+//USAGE arg "<subcmd>" choices=['show-path', 'launch'] default="launch" help="Command: show-path or launch"
+//USAGE flag "--extensions" help="Enable Chrome extensions"
+//USAGE flag "--no-extensions" help="Disable Chrome extensions"
+
+import { spawn } from "child_process";
+import * as fs from "fs";
+import * as os from "os";
+import * as path from "path";
+
+const isWsl2 =
+  process.platform === "linux" &&
+  os.release().toLowerCase().includes("microsoft");
+
+const execCaptureStdout = (cmd, args = [], options = {}) =>
+  new Promise((resolve, reject) => {
+    const child = spawn(cmd, args, {
+      stdio: ["ignore", "pipe", "inherit"],
+      ...options,
+    });
+
+    let stdout = "";
+    child.stdout.on("data", (chunk) => {
+      stdout += chunk.toString();
+    });
+
+    child.on("error", reject);
+    child.on("close", (code) => {
+      if (code === 0) resolve(stdout.trim());
+      else reject(new Error(`${cmd} exited with code ${code}`));
+    });
+  });
+
+const canAccess = (filePath) => {
+  if (!filePath) return false;
+  try {
+    fs.accessSync(filePath, fs.constants.X_OK);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const uniq = (items) => Array.from(new Set(items.filter(Boolean)));
+
+const resolveChromePathEnv = () => {
+  const envPath =
+    process.env.CHROME_PATH || process.env.LIGHTHOUSE_CHROMIUM_PATH;
+  return canAccess(envPath) ? envPath : undefined;
+};
+
+const getWslWindowsUsername = async () => {
+  const envUsername = process.env.USERNAME?.trim();
+  if (envUsername) return envUsername;
+
+  try {
+    const whoami = await execCaptureStdout("cmd.exe", ["/c", "whoami"], {
+      cwd: "/mnt/c",
+    });
+    return whoami.split("\\").pop()?.trim() || "unknown";
+  } catch {
+    return "unknown";
+  }
+};
+
+const toWindowsPath = async (linuxPath) => {
+  try {
+    return await execCaptureStdout("wslpath", ["-w", linuxPath]);
+  } catch {
+    return linuxPath
+      .replace(/^\/mnt\/c\//, "C:\\")
+      .replace(/^\/mnt\/([a-z])\//i, (_, d) => `${d.toUpperCase()}:\\`)
+      .replace(/\//g, "\\");
+  }
+};
+
+const findLinuxChrome = async () => {
+  const candidates = [];
+  const envPath = resolveChromePathEnv();
+  if (envPath) candidates.push(envPath);
+
+  for (const bin of [
+    "google-chrome-stable",
+    "google-chrome",
+    "chromium-browser",
+    "chromium",
+  ]) {
+    try {
+      const binPath = (await execCaptureStdout("which", [bin])).split(
+        /\r?\n/,
+      )[0];
+      if (canAccess(binPath)) candidates.push(binPath);
+    } catch {
+      // ignore missing executable
+    }
+  }
+
+  return uniq(candidates);
+};
+
+const findMacChrome = async () => {
+  const candidates = [
+    resolveChromePathEnv(),
+    "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  ].filter(Boolean);
+
+  return uniq(candidates.filter(canAccess));
+};
+
+const findWindowsChrome = async (wslUsername) => {
+  const candidates = [];
+  const envPath = resolveChromePathEnv();
+  if (envPath) candidates.push(envPath);
+
+  const prefixes = isWsl2
+    ? [
+        `/mnt/c/Users/${wslUsername}/AppData/Local`,
+        "/mnt/c/Program Files",
+        "/mnt/c/Program Files (x86)",
+      ]
+    : [
+        process.env.LOCALAPPDATA,
+        process.env.PROGRAMFILES,
+        process.env["PROGRAMFILES(X86)"],
+      ].filter(Boolean);
+
+  const suffixes = [
+    "Google/Chrome/Application/chrome.exe",
+    "Google/Chrome SxS/Application/chrome.exe",
+  ];
+
+  for (const prefix of prefixes) {
+    for (const suffix of suffixes) {
+      const candidate = path.join(prefix, suffix);
+      if (canAccess(candidate)) candidates.push(candidate);
+    }
+  }
+
+  return uniq(candidates);
+};
+
+const getChromeCandidates = async (wslUsername) => {
+  if (isWsl2 || process.platform === "win32")
+    return findWindowsChrome(wslUsername);
+  if (process.platform === "darwin") return findMacChrome();
+  return findLinuxChrome();
+};
+
+const launchDetached = (cmd, args, options = {}) => {
+  const child = spawn(cmd, args, {
+    detached: true,
+    stdio: "ignore",
+    ...options,
+  });
+  child.unref();
+};
+
+const resolveOptions = () => {
+  const usageSubcmd = process.env.usage_subcmd;
+  const usageExtensions = process.env.usage_extensions;
+  const usageNoExtensions = process.env.usage_no_extensions === "true";
+
+  const argv = process.argv.slice(2);
+  const argvSet = new Set(argv);
+  const argvSubcmd = argv.find((arg) => !arg.startsWith("-"));
+
+  const subcmd = usageSubcmd || argvSubcmd || "launch";
+
+  // default true; --no-extensions wins
+  let extensionsEnabled = true;
+  if (usageExtensions === "false") extensionsEnabled = false;
+  if (usageExtensions === "true") extensionsEnabled = true;
+  if (usageNoExtensions) extensionsEnabled = false;
+  if (argvSet.has("--extensions")) extensionsEnabled = true;
+  if (argvSet.has("--no-extensions")) extensionsEnabled = false;
+
+  return { subcmd, extensionsEnabled };
+};
+
+async function resolveLaunchContext() {
+  const wslUsername = isWsl2 ? await getWslWindowsUsername() : undefined;
+  const candidates = await getChromeCandidates(wslUsername);
+
+  if (!candidates.length) {
+    throw new Error(
+      "No Chrome installation found. Set CHROME_PATH explicitly.",
+    );
+  }
+
+  const chromePath = candidates[0];
+  const userDataDir = isWsl2
+    ? `/mnt/c/Users/${wslUsername}/chrome-debug-profile`
+    : path.join(os.homedir(), "chrome-debug-profile");
+  const startingUrl =
+    process.env.CHROME_STARTING_URL || "http://localhost:5173";
+  const devtoolsPort = process.env.CHROME_REMOTE_DEBUG_PORT || "9222";
+  const devtoolsAddress =
+    process.env.CHROME_REMOTE_DEBUG_ADDRESS ||
+    (isWsl2 ? "0.0.0.0" : "127.0.0.1");
+
+  return {
+    chromePath,
+    userDataDir,
+    startingUrl,
+    devtoolsPort,
+    devtoolsAddress,
+  };
+}
+
+async function runShowPath(context) {
+  console.log(context.chromePath);
+}
+
+async function runLaunch(context, extensionsEnabled) {
+  const {
+    chromePath,
+    userDataDir,
+    startingUrl,
+    devtoolsPort,
+    devtoolsAddress,
+  } = context;
+
+  fs.mkdirSync(userDataDir, { recursive: true });
+
+  const chromeFlags = [
+    `--remote-debugging-port=${devtoolsPort}`,
+    `--remote-debugging-address=${devtoolsAddress}`,
+    `--user-data-dir=${userDataDir}`,
+    "--new-window",
+    startingUrl,
+  ];
+
+  if (!extensionsEnabled) {
+    chromeFlags.splice(3, 0, "--disable-extensions");
+  }
+
+  if (isWsl2) {
+    const winChromePath = await toWindowsPath(chromePath);
+    const winUserDataDir = await toWindowsPath(userDataDir);
+
+    const winArgs = [
+      "/c",
+      "start",
+      "",
+      winChromePath,
+      `--remote-debugging-port=${devtoolsPort}`,
+      `--remote-debugging-address=${devtoolsAddress}`,
+      `--user-data-dir=${winUserDataDir}`,
+      "--new-window",
+    ];
+
+    if (!extensionsEnabled) {
+      winArgs.push("--disable-extensions");
+    }
+
+    winArgs.push(startingUrl);
+    launchDetached("cmd.exe", winArgs, { cwd: "/mnt/c" });
+  } else {
+    launchDetached(chromePath, chromeFlags);
+  }
+
+  console.log("Chrome path:", chromePath);
+  console.log("Extensions enabled:", extensionsEnabled);
+  console.log("Launched Chrome with user data directory at:", userDataDir);
+}
+
+async function main() {
+  const { subcmd, extensionsEnabled } = resolveOptions();
+  const context = await resolveLaunchContext();
+
+  switch (subcmd) {
+    case "show-path":
+      await runShowPath(context);
+      break;
+    case "launch":
+      await runLaunch(context, extensionsEnabled);
+      break;
+    default:
+      throw new Error(
+        `Unknown subcmd '${subcmd}'. Expected one of: show-path, launch`,
+      );
+  }
+}
+
+main().catch((err) => {
+  console.error("Failed to launch Chrome:", err.message || err);
+  process.exit(1);
+});
