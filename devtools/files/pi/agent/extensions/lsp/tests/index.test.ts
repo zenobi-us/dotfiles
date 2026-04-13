@@ -24,7 +24,7 @@ function assertEqual<T>(actual: T, expected: T, message?: string) {
 // Or we can extract and test the logic directly
 // ============================================================================
 
-import { uriToPath, findSymbolPosition, formatDiagnostic, filterDiagnosticsBySeverity } from "../lsp-core.js";
+import { uriToPath, findSymbolPosition, formatDiagnostic, filterDiagnosticsBySeverity, collectSymbols } from "../lsp-core.js";
 
 // ============================================================================
 // uriToPath tests
@@ -200,6 +200,80 @@ test("filterDiagnosticsBySeverity: info returns errors, warnings, and info", () 
   ];
   const result = filterDiagnosticsBySeverity(diags as any, "info");
   assertEqual(result.length, 3);
+});
+
+// ============================================================================
+// collectSymbols tests
+// ============================================================================
+
+test("collectSymbols: uses selectionRange start for reported position", () => {
+  // selectionRange.start (character 5) differs from range.start (character 0)
+  const symbols = [
+    { name: "foo", kind: 12, range: { start: { line: 0, character: 0 }, end: { line: 2, character: 0 } }, selectionRange: { start: { line: 0, character: 5 }, end: { line: 0, character: 8 } }, children: [] },
+  ];
+  const lines = collectSymbols(symbols as any);
+  assertEqual(lines[0], "foo (1:6)");
+});
+
+test("collectSymbols: falls back to range when selectionRange is absent", () => {
+  const symbols = [
+    { name: "foo", kind: 12, range: { start: { line: 0, character: 3 }, end: { line: 0, character: 6 } }, children: [] },
+  ];
+  const lines = collectSymbols(symbols as any);
+  assertEqual(lines[0], "foo (1:4)");
+});
+
+test("collectSymbols: converts 0-indexed positions to 1-indexed", () => {
+  const symbols = [
+    { name: "foo", kind: 12, range: { start: { line: 4, character: 0 }, end: { line: 4, character: 3 } }, selectionRange: { start: { line: 4, character: 0 }, end: { line: 4, character: 3 } }, children: [] },
+  ];
+  const lines = collectSymbols(symbols as any);
+  assertEqual(lines[0], "foo (5:1)");
+});
+
+test("collectSymbols: formats multiple symbols in order", () => {
+  const symbols = [
+    { name: "bar", kind: 12, range: { start: { line: 0, character: 0 }, end: { line: 0, character: 3 } }, selectionRange: { start: { line: 0, character: 0 }, end: { line: 0, character: 3 } }, children: [] },
+    { name: "baz", kind: 12, range: { start: { line: 5, character: 0 }, end: { line: 5, character: 3 } }, selectionRange: { start: { line: 5, character: 0 }, end: { line: 5, character: 3 } }, children: [] },
+  ];
+  const lines = collectSymbols(symbols as any);
+  assertEqual(lines.length, 2);
+  assertEqual(lines[0], "bar (1:1)");
+  assertEqual(lines[1], "baz (6:1)");
+});
+
+test("collectSymbols: filters by query (case-insensitive)", () => {
+  const symbols = [
+    { name: "foo", kind: 12, range: { start: { line: 0, character: 0 }, end: { line: 0, character: 3 } }, selectionRange: { start: { line: 0, character: 0 }, end: { line: 0, character: 3 } }, children: [] },
+    { name: "fooBar", kind: 12, range: { start: { line: 1, character: 0 }, end: { line: 1, character: 6 } }, selectionRange: { start: { line: 1, character: 0 }, end: { line: 1, character: 6 } }, children: [] },
+    { name: "baz", kind: 12, range: { start: { line: 2, character: 0 }, end: { line: 2, character: 3 } }, selectionRange: { start: { line: 2, character: 0 }, end: { line: 2, character: 3 } }, children: [] },
+  ];
+  const lines = collectSymbols(symbols as any, 0, [], "FOO");
+  assertEqual(lines.length, 2);
+  assertEqual(lines[0], "foo (1:1)");
+  assertEqual(lines[1], "fooBar (2:1)");
+});
+
+test("collectSymbols: recurses into children with indentation", () => {
+  const symbols = [
+    {
+      name: "MyStruct", kind: 23,
+      range: { start: { line: 0, character: 0 }, end: { line: 5, character: 0 } },
+      selectionRange: { start: { line: 0, character: 0 }, end: { line: 0, character: 8 } },
+      children: [
+        { name: "field", kind: 8, range: { start: { line: 1, character: 2 }, end: { line: 1, character: 7 } }, selectionRange: { start: { line: 1, character: 2 }, end: { line: 1, character: 7 } }, children: [] },
+      ],
+    },
+  ];
+  const lines = collectSymbols(symbols as any);
+  assertEqual(lines.length, 2);
+  assertEqual(lines[0], "MyStruct (1:1)");
+  assertEqual(lines[1], "  field (2:3)");
+});
+
+test("collectSymbols: returns empty array for no symbols", () => {
+  const lines = collectSymbols([] as any);
+  assertEqual(lines.length, 0);
 });
 
 // ============================================================================

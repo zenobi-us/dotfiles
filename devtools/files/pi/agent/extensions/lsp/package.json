@@ -1,13 +1,12 @@
 {
-  "name": "lsp",
-  "version": "0.37.2",
-  "description": "LSP extension for pi-coding-agent - provides language server tool and diagnostics feedback for Dart/Flutter, TypeScript, Vue, Svelte, Python, Go, Rust",
+  "name": "lsp-pi",
+  "version": "1.0.3",
+  "description": "LSP extension for pi-coding-agent - provides language server tool and diagnostics feedback for Dart/Flutter, TypeScript, Vue, Svelte, Python, Go, Kotlin, Swift, Rust",
   "scripts": {
     "test": "npx tsx tests/lsp.test.ts",
     "test:tool": "npx tsx tests/index.test.ts",
-    "test:tool:execute": "npx tsx tests/lsp-tool.test.ts",
     "test:integration": "npx tsx tests/lsp-integration.test.ts",
-    "test:all": "npm test && npm run test:tool && npm run test:tool:execute && npm run test:integration"
+    "test:all": "npm test && npm run test:tool && npm run test:integration"
   },
   "keywords": [
     "lsp",
@@ -19,9 +18,12 @@
     "svelte",
     "python",
     "go",
+    "kotlin",
+    "swift",
     "rust",
     "pi-coding-agent",
-    "extension"
+    "extension",
+    "pi-package"
   ],
   "author": "",
   "license": "MIT",
@@ -33,13 +35,18 @@
     ]
   },
   "dependencies": {
-    "@mariozechner/pi-ai": "*",
-    "@mariozechner/pi-coding-agent": "*",
-    "@mariozechner/pi-tui": "*",
     "@sinclair/typebox": "^0.34.33",
     "vscode-languageserver-protocol": "^3.17.5"
   },
+  "peerDependencies": {
+    "@mariozechner/pi-ai": "^0.50.0",
+    "@mariozechner/pi-coding-agent": "^0.50.0",
+    "@mariozechner/pi-tui": "^0.50.0"
+  },
   "devDependencies": {
+    "@mariozechner/pi-ai": "^0.50.0",
+    "@mariozechner/pi-coding-agent": "^0.50.0",
+    "@mariozechner/pi-tui": "^0.50.0",
     "@types/node": "^24.10.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"

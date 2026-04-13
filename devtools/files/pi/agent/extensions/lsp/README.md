@@ -4,11 +4,11 @@ Language Server Protocol integration for pi-coding-agent.
 
 ## Highlights
 
-- **Hook** (`lsp.ts`): Runs `write`/`edit` results through the matching LSP and appends diagnostics to tool output
+- **Hook** (`lsp.ts`): Auto-diagnostics (default at agent end; optional per `write`/`edit`)
 - **Tool** (`lsp-tool.ts`): On-demand LSP queries (definitions, references, hover, symbols, diagnostics, signatures)
 - Manages one LSP server per project root and reuses them across turns
 - **Efficient**: Bounded memory usage via LRU cache and idle file cleanup
-- Supports TypeScript/JavaScript, Vue, Svelte, Dart/Flutter, Python, Go, and Rust
+- Supports TypeScript/JavaScript, Vue, Svelte, Dart/Flutter, Python, Go, Kotlin, Swift, and Rust
 
 ## Supported Languages
 
@@ -20,6 +20,8 @@ Language Server Protocol integration for pi-coding-agent.
 | Dart/Flutter | `dart language-server` | `pubspec.yaml` |
 | Python | `pyright-langserver` | `pyproject.toml`, `requirements.txt` |
 | Go | `gopls` | `go.mod` |
+| Kotlin | `kotlin-ls` | `settings.gradle(.kts)`, `build.gradle(.kts)`, `pom.xml` |
+| Swift | `sourcekit-lsp` | `Package.swift`, Xcode (`*.xcodeproj` / `*.xcworkspace`) |
 | Rust | `rust-analyzer` | `Cargo.toml` |
 
 ### Known Limitations
@@ -30,33 +32,13 @@ Language Server Protocol integration for pi-coding-agent.
 
 ### Installation
 
-1. Copy to extensions directory:
-   ```bash
-   cp -r lsp ~/.pi/agent/extensions/
-   ```
-
-2. Install dependencies:
-   ```bash
-   cd ~/.pi/agent/extensions/lsp
-   npm install
-   ```
-
-Or add to global settings (`~/.pi/agent/settings.json`):
-```json
-{
-  "extensions": ["/absolute/path/to/lsp"]
-}
-```
-
-Or use CLI:
+Install the package and enable extensions:
 ```bash
-# Load both hook and tool (recommended)
-pi --extension ./lsp/
-
-# Load individually
-pi --extension ./lsp/lsp.ts        # Just auto-diagnostics hook
-pi --extension ./lsp/lsp-tool.ts   # Just the LSP tool
+pi install npm:lsp-pi
+pi config
 ```
+
+Dependencies are installed automatically during `pi install`.
 
 ### Prerequisites
 
@@ -78,6 +60,13 @@ npm i -g pyright
 # Go (install gopls via go install)
 go install golang.org/x/tools/gopls@latest
 
+# Kotlin (kotlin-ls)
+brew install JetBrains/utils/kotlin-lsp
+
+# Swift (sourcekit-lsp; macOS)
+# Usually available via Xcode / Command Line Tools
+xcrun sourcekit-lsp --help
+
 # Rust (install via rustup)
 rustup component add rust-analyzer
 ```
@@ -89,11 +78,12 @@ The extension spawns binaries from your PATH.
 ### Hook (auto-diagnostics)
 
 1. On `session_start`, warms up LSP for detected project type
-2. After each `write`/`edit`, sends file to LSP and waits for diagnostics
-3. Appends errors/warnings to tool result so agent can fix them
-4. Shows notification with diagnostic summary
-5. **Memory Management**: Keeps up to 30 files open per LSP server (LRU eviction) and automatically closes idle files (> 60s) to prevent memory bloat in long-running sessions.
-6. **Robustness**: Reuses cached diagnostics if a server doesn't re-publish them for unchanged files, avoiding false timeouts on re-analysis.
+2. Tracks files touched by `write`/`edit`
+3. Default (`agent_end`): at agent end, sends touched files to LSP and posts a diagnostics message
+4. Optional (`edit_write`): per `write`/`edit`, appends diagnostics to the tool result
+5. Shows notification with diagnostic summary
+6. **Memory Management**: Keeps up to 30 files open per LSP server (LRU eviction), automatically closes idle files (> 60s), and shuts down all LSP servers after 2 minutes of post-agent inactivity (servers restart lazily when files are read again).
+7. **Robustness**: Reuses cached diagnostics if a server doesn't re-publish them for unchanged files, avoiding false timeouts on re-analysis.
 
 ### Tool (on-demand queries)
 
@@ -140,11 +130,29 @@ Example questions the LLM can answer using this tool:
 - "Rename `oldFunction` to `newFunction`"
 - "What quick fixes are available at line 10?"
 
+## Settings
+
+Use `/lsp` to configure the auto diagnostics hook:
+- Mode: default at agent end; can run after each edit/write or be disabled
+- Scope: session-only or global (`~/.pi/agent/settings.json`)
+
+To disable auto diagnostics, choose "Disabled" in `/lsp` or set in `~/.pi/agent/settings.json`:
+```json
+{
+  "lsp": {
+    "hookMode": "disabled"
+  }
+}
+```
+Other values: `"agent_end"` (default) and `"edit_write"`.
+
+Agent-end mode analyzes files touched during the full agent response (after all tool calls complete) and posts a diagnostics message only once. Disabling the hook does not disable the `/lsp` tool.
+
 ## File Structure
 
 | File | Purpose |
 |------|---------|
-| `lsp.ts` | Hook extension (auto-diagnostics after write/edit) |
+| `lsp.ts` | Hook extension (auto-diagnostics; default at agent end) |
 | `lsp-tool.ts` | Tool extension (on-demand LSP queries) |
 | `lsp-core.ts` | LSPManager class, server configs, singleton manager |
 | `package.json` | Declares both extensions via "pi" field |
