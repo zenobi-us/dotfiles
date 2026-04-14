@@ -1,5 +1,5 @@
 ---
-name: design-pattern-abstract-factory
+name: abstract-factory
 description: Use when you must create compatible sets of related objects without binding client code to concrete classes.
 pattern: Abstract Factory
 family: creational

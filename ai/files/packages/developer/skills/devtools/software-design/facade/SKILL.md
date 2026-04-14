@@ -1,5 +1,5 @@
 ---
-name: design-pattern-facade
+name: facade
 description: Use when a subsystem is too complex for clients and you need a focused, stable entry point.
 pattern: Facade
 family: structural

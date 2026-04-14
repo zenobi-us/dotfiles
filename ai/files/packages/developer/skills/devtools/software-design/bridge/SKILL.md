@@ -1,5 +1,5 @@
 ---
-name: design-pattern-bridge
+name: bridge
 description: Use when abstractions and implementations need to evolve independently without creating subclass explosion.
 pattern: Bridge
 family: structural

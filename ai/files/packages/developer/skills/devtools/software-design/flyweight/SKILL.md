@@ -1,5 +1,5 @@
 ---
-name: design-pattern-flyweight
+name: flyweight
 description: Use when huge numbers of similar objects cause memory pressure and shared intrinsic state can be externalized.
 pattern: Flyweight
 family: structural

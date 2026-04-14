@@ -1,5 +1,5 @@
 ---
-name: design-pattern-chain-of-responsibility
+name: chain-of-responsibility
 description: Use when multiple handlers may process a request and you need flexible routing without hard-coding sender-to-receiver coupling.
 pattern: Chain of Responsibility
 family: behavioral

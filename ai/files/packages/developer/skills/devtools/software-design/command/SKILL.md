@@ -1,5 +1,5 @@
 ---
-name: design-pattern-command
+name: command
 description: Use when operations must be represented as objects so execution, scheduling, undo, and logging can vary independently from invokers.
 pattern: Command
 family: behavioral

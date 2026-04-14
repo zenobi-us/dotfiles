@@ -1,5 +1,5 @@
 ---
-name: design-pattern-prototype
+name: prototype
 description: Use when object creation is expensive or dynamic and cloning existing configured instances is safer than rebuilding from scratch.
 pattern: Prototype
 family: creational

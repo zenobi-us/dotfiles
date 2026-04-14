@@ -1,5 +1,5 @@
 ---
-name: design-pattern-strategy
+name: strategy
 description: Use when multiple interchangeable algorithms are needed and clients should switch behavior without branching on concrete implementations.
 pattern: Strategy
 family: behavioral

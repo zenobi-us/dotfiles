@@ -1,5 +1,5 @@
 ---
-name: design-pattern-builder
+name: builder
 description: Use when object construction requires many ordered or optional steps and constructor signatures are becoming brittle.
 pattern: Builder
 family: creational

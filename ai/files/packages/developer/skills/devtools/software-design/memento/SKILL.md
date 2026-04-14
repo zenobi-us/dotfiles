@@ -1,5 +1,5 @@
 ---
-name: design-pattern-memento
+name: memento
 description: Use when object state must be snapshotted and restored later without exposing internal representation details.
 pattern: Memento
 family: behavioral

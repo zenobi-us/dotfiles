@@ -1,5 +1,5 @@
 ---
-name: design-pattern-singleton
+name: singleton
 description: Use when exactly one coordinated instance is required and its lifecycle, access, and state boundaries can be strictly controlled.
 pattern: Singleton
 family: creational

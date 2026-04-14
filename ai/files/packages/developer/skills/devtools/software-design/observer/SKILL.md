@@ -1,5 +1,5 @@
 ---
-name: design-pattern-observer
+name: observer
 description: Use when state changes in one object must notify many dependents while keeping publishers decoupled from subscriber implementations.
 pattern: Observer
 family: behavioral

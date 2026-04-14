@@ -1,5 +1,5 @@
 ---
-name: design-pattern-template-method
+name: template-method
 description: Use when an algorithm skeleton is stable but specific steps must vary across implementations without duplicating workflow structure.
 pattern: Template Method
 family: behavioral

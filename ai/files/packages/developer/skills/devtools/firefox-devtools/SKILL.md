@@ -1,3 +1,8 @@
+---
+name: firefox-devtools
+description: Enables Firefox remote debugging workflows, when browser automation or protocol-level Firefox inspection is needed, resulting in configured Firefox RDP access and repeatable debugging steps.
+---
+
 # Firefox DevTools Integration Skill
 
 ## Purpose

@@ -1,5 +1,5 @@
 ---
-name: design-pattern-visitor
+name: visitor
 description: Use when stable object structures need new operations added frequently without modifying each element class.
 pattern: Visitor
 family: behavioral

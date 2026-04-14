@@ -1,5 +1,5 @@
 ---
-name: design-pattern-composite
+name: composite
 description: Use when clients must treat individual objects and nested object groups uniformly through one interface.
 pattern: Composite
 family: structural

@@ -1,5 +1,5 @@
 ---
-name: design-pattern-mediator
+name: mediator
 description: Use when many components communicate in tangled peer-to-peer paths and interactions should be coordinated through a central policy hub.
 pattern: Mediator
 family: behavioral

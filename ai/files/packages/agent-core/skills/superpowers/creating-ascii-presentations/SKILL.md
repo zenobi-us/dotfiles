@@ -1,5 +1,5 @@
 ---
-name: presenterm
+name: creating-ascii-presentations
 description: Use when creating, structuring, or refining terminal-native Presenterm slide decks and speaker notes.
 ---
 

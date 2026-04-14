@@ -1,5 +1,5 @@
 ---
-name: design-pattern-adapter
+name: adapter
 description: Use when an existing class has useful behavior but an incompatible interface blocks integration with client code.
 pattern: Adapter
 family: structural

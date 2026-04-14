@@ -1,5 +1,5 @@
 ---
-name: design-pattern-proxy
+name: proxy
 description: Use when access to an object must be controlled, deferred, secured, or monitored through a surrogate.
 pattern: Proxy
 family: structural

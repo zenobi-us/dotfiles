@@ -1,5 +1,5 @@
 ---
-name: design-pattern-state
+name: state
 description: Use when an object's behavior changes by internal mode and conditional branches are growing around state transitions.
 pattern: State
 family: behavioral

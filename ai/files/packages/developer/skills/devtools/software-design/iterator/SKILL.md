@@ -1,5 +1,5 @@
 ---
-name: design-pattern-iterator
+name: iterator
 description: Use when clients must traverse aggregate data uniformly without exposing internal collection representation.
 pattern: Iterator
 family: behavioral

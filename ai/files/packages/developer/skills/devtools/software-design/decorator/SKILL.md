@@ -1,5 +1,5 @@
 ---
-name: design-pattern-decorator
+name: decorator
 description: Use when responsibilities must be added dynamically to objects without subclass proliferation.
 pattern: Decorator
 family: structural

@@ -1,5 +1,5 @@
 ---
-name: design-pattern-factory-method
+name: factory-method
 description: Use when object creation varies by context and you need to extend product types without rewriting client orchestration code.
 pattern: Factory Method
 family: creational
