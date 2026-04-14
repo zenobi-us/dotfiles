@@ -17,6 +17,7 @@ export type SearchStrategy = Static<typeof SearchStrategySchema>;
 export const RuntimeSettingsSchema = Type.Object(
   {
     searchStrategy: SearchStrategySchema,
+    lexicalThreshold: Type.Number({ minimum: 0, maximum: 1 }),
   },
   { additionalProperties: false },
 );
@@ -24,6 +25,7 @@ export const RuntimeSettingsSchema = Type.Object(
 const RuntimeSettingsOverridesSchema = Type.Object(
   {
     searchStrategy: Type.Optional(SearchStrategySchema),
+    lexicalThreshold: Type.Optional(Type.Number({ minimum: 0, maximum: 1 })),
   },
   { additionalProperties: false },
 );
@@ -32,7 +34,8 @@ export type RuntimeSettings = Static<typeof RuntimeSettingsSchema>;
 export type RuntimeSettingsService = ConfigService<RuntimeSettings>;
 
 export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
-  searchStrategy: "lexical",
+  searchStrategy: "hybrid",
+  lexicalThreshold: 0.5,
 };
 
 function parseRuntimeSettings(raw: unknown): RuntimeSettings {

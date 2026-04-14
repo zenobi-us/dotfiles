@@ -19,6 +19,7 @@ import {
 export function lexicalScoreSearch(
   query: SearchQuery,
   skills: Skill[],
+  threshold = 0.5,
 ): SearchResults {
   const parsed = parseSkillQuery(query);
   const visible = visibleSkills(skills);
@@ -90,6 +91,8 @@ export function lexicalScoreSearch(
     },
   );
 
-  const matched = ranked.map((r) => r.item.skill);
+  const matched = ranked
+    .filter((r) => r.score >= threshold)
+    .map((r) => r.item.skill);
   return mapResult(query, visible, matched, `lexical (${intent})`);
 }

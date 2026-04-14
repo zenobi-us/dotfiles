@@ -19,7 +19,8 @@ describe("formatReadSkillOutput", () => {
     expect(result).toContain("qualified_name: superpowers-using-superpowers");
     expect(result).toContain("shortname: using-superpowers");
     expect(result).toContain("location: /tmp/skills/superpowers/using-superpowers/SKILL.md");
-    expect(result).toContain("> Resolve from: `/tmp/skills/superpowers/using-superpowers`");
+    expect(result).toContain("> **Path Resolution**: Skill resources are resolved from `skill_dir`, the absolute path to the skill package root.");
+    expect(result).toContain("- `skill_dir`: /tmp/skills/superpowers/using-superpowers");
     expect(result).toContain("\n# Skill Content\n\nUse this skill first.");
     expect(result).not.toContain("<skill ");
     expect(result).not.toContain("</skill>");

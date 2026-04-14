@@ -1,1 +1,3 @@
-{}
+{
+  "searchStrategy": "bm25"
+}

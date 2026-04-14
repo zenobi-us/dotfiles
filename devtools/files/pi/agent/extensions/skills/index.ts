@@ -121,19 +121,16 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       label: "Find Skills",
       description: "Search for available skills by natural language query.",
       parameters: Type.Object({
-        query: Type.Union([
-          Type.String({
-            description:
-              "Search query, e.g. 'debugging typescript' or '*' to list all",
-          }),
-          Type.Array(Type.String(), { description: "List of query terms" }),
-        ]),
+        query: Type.Array(Type.String(), {
+          description: "List of Search queries, e.g. 'debugging typescript' or no query items to list all"
+        }),
       }),
       async execute(_toolCallId, params) {
         const output = FindSkillsCmd(
           registry.skills,
           params.query,
           runtimeSettings.searchStrategy,
+          { lexicalThreshold: runtimeSettings.lexicalThreshold },
         );
         return {
           content: [{ type: "text", text: JSON.stringify(output, null, 2) }],
@@ -174,7 +171,11 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     pi.registerCommand("skill", {
       description: "Load a skill by qualified name or shortname",
       getArgumentCompletions(argumentPrefix) {
-        return lexicalScoreSearch(argumentPrefix, registry.skills).skills.map(
+        return lexicalScoreSearch(
+          argumentPrefix,
+          registry.skills,
+          runtimeSettings.lexicalThreshold,
+        ).skills.map(
           (skill) => ({
             label: `${skill.shortname} (${skill.description})`,
             value: skill.name,
