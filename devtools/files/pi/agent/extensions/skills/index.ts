@@ -18,7 +18,7 @@ import {
   type ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
 import { Type } from "@mariozechner/pi-ai";
-import { bm25Search, FindSkillsCmd, lexicalScoreSearch } from "./cmds/find.js";
+import { FindSkillsCmd, lexicalScoreSearch } from "./cmds/find.js";
 import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
 export { formatReadSkillOutput, buildSkillUserMessage } from "./cmds/read.js";
 import {
@@ -53,6 +53,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     await registry.load({
       cwd: ctx.cwd,
       includeDefaults: true,
+      lazySkills: runtimeSettings.lazySkills, // Don't read skill files until needed to save startup time
     });
 
     // Log diagnostics
@@ -86,6 +87,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       );
     }
 
+
     pi.registerCommand("skills:config:reload", {
       description: "Reload runtime settings for the skills extension",
       handler: async (_args, cmdCtx: ExtensionContext) => {
@@ -106,7 +108,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
           });
 
           cmdCtx.ui.notify(
-            `Skills config reloaded (search=${runtimeSettings.searchStrategy}, known=${registry.skillMap.size})`,
+            `Skills config reloaded: \n ${JSON.stringify(runtimeSettings, null, 2)}`,
             "info",
           );
         } catch {
@@ -121,14 +123,22 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       label: "Find Skills",
       description: "Search for available skills by natural language query.",
       parameters: Type.Object({
-        query: Type.Array(Type.String(), {
-          description: "List of Search queries, e.g. 'debugging typescript' or no query items to list all"
-        }),
+        query: Type.Union([
+          Type.String({
+            description:
+              "Search query string, e.g. 'debugging typescript'",
+          }),
+          Type.Array(Type.String(), {
+            description:
+              "List of search queries, e.g. ['debugging typescript'] or [] to list all",
+          }),
+        ]),
       }),
       async execute(_toolCallId, params) {
+        const query = Array.isArray(params.query) ? params.query : [params.query];
         const output = FindSkillsCmd(
           registry.skills,
-          params.query,
+          query,
           runtimeSettings.searchStrategy,
           { lexicalThreshold: runtimeSettings.lexicalThreshold },
         );
@@ -206,10 +216,22 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       },
     });
 
+  let systemPromptInjected = false;
     // Inject skills into system prompt, replacing any existing <available_skills> block
     pi.on("before_agent_start", async (event) => {
+      if (systemPromptInjected) { return }
+
+
       if (!registry.systemPromptBlock) {
+        ctx.ui.notify(
+          "No system prompt block defined for skills; skipping injection",
+          "warning",
+        );
         return;
+      }
+
+      if (!runtimeSettings.lazySkills) {
+        ctx.ui.notify(`Injecting ${registry.skills.length} skill(s) into system prompt`, "info");
       }
 
       return {
@@ -219,6 +241,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         ),
       };
     });
+
   });
 
   pi.on("session_shutdown", async () => {

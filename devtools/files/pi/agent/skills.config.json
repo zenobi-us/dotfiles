@@ -1,3 +1,4 @@
 {
-  "searchStrategy": "bm25"
+  "searchStrategy": "bm25",
+  "lazySkills": true
 }
