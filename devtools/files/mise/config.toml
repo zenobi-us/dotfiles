@@ -86,7 +86,7 @@ version = "1.4.5"
 
 
 [shell_alias]
-pi="pi --no-skills"
-piupdate="pi update"
-piinstall="pi install"
-signal-cli = "signal-cli-client"
+pi="mise x node@22 -- pi --no-skills"
+piupdate="mise x node@22 -- pi update"
+piinstall="mise x node@22 -- pi install"
+signal-cli = "mise x node@22 -- signal-cli-client"
