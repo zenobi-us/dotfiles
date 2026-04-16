@@ -21,7 +21,7 @@ function dedent(strings: TemplateStringsArray, ...values: string[]): string {
 }
 
 
-const createPathReplacer = (type: 'skills' | 'references' | 'assets', baseDir: string) => {
+const createPathReplacer = (type: 'scripts' | 'references' | 'assets', baseDir: string) => {
 
   // regexp pattern that covers: 
   //  skills/foo/bar.txt
