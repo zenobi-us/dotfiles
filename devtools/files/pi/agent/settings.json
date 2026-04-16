@@ -21,6 +21,9 @@
     "npm:@sherif-fanous/pi-rtk",
     "npm:pi-prompt-template-model"
   ],
+  "extensions": [
+    "/home/zenobius/.pi/extensions/s3-share.ts"
+  ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
   "defaultProvider": "openai-codex",
