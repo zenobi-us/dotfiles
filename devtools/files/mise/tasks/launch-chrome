@@ -1,4 +1,4 @@
-#!/usr/bin/env -S mise x node@20 -- node
+#!/usr/bin/env -S mise x bun -- bun
 // a modeline for typescript support in editors like vim and emacs
 // vim: set filetype=typescript:
 //MISE description="Launch Chrome with remote debugging and a stable debug profile"

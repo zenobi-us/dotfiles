@@ -80,6 +80,7 @@ zellij = "0.44.0"
 "github:AsamK/signal-cli" = "0.14.2"
 "cargo:tgt" = "1.0.0"
 lazydocker = "latest"
+tombi = "latest"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
