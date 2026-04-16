@@ -22,6 +22,19 @@ config.webgpu_power_preference = "HighPerformance"
 -- window
 config.window_decorations = "NONE"
 
+-- keyboard
+config.enable_kitty_keyboard = true
+config.disable_default_key_bindings = true
+config.debug_key_events = true
+config.enable_csi_u_key_encoding = true
+config.keys = {
+	{ key = "p", mods = "CTRL|SHIFT", action = wezterm.action({ SendString = "\x1b[80;6u" }) },
+	{ key = "P", mods = "CTRL|SHIFT", action = wezterm.action({ SendString = "\x1b[80;6u" }) },
+	{ key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+	{ key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("Clipboard") },
+	{ key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom("Clipboard") },
+}
+
 -- Tabs
 config.show_tabs_in_tab_bar = false
 config.use_fancy_tab_bar = false
