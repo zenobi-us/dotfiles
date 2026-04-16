@@ -58,6 +58,7 @@ zinit_load_interactive_modules() {
 	[[ "$OSTYPE" == linux* ]] && zinit_load_local_module "keybindings__config-linux.zsh"
 	zinit_load_local_module "mcfly__config.zsh"
 	zinit_load_local_module "mise__config.zsh"
+	zinit_load_local_module "pokemon__config.zsh"
 	zinit_load_local_module "dotfiles__aliases.zsh"
 	zinit_load_local_module "shellfont__aliases.zsh"
 
