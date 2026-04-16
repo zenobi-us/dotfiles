@@ -30,6 +30,7 @@ import {
 import { injectSkillsIntoSystemPrompt } from "./service/systemprompt.js";
 import { createSkillRegistry } from "./service/skill-registry.js";
 import { CreateSkillSlashCommands, LoadSkillCommand } from "./cmds/skill.js";
+import { renderFoldedToolText } from "./core/tool-render.js";
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
   const registry = createSkillRegistry();
@@ -183,6 +184,22 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         }
 
       },
+      renderResult(result, options, theme) {
+        return renderFoldedToolText(result, options, theme, {
+          loadingLabel: "Searching skills...",
+          previewLines: 16,
+          collapsedPrefix: (toolResult) => {
+            const details = toolResult.details as
+              | { meta?: { matches?: number; total?: number } }
+              | undefined;
+            const matches = details?.meta?.matches;
+            const total = details?.meta?.total;
+            return typeof matches === "number" && typeof total === "number"
+              ? `Found ${matches} of ${total} Skills`
+              : undefined;
+          },
+        });
+      },
     });
 
     const ReadSkillToolParams = Type.Object({
@@ -210,6 +227,12 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
             filePath: result.value.skill.filePath,
           },
         };
+      },
+      renderResult(result, options, theme) {
+        return renderFoldedToolText(result, options, theme, {
+          loadingLabel: "Reading skill...",
+          previewLines: 20,
+        });
       },
     });
 
