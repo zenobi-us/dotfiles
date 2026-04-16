@@ -53,4 +53,13 @@ describe("lexicalScoreSearch", () => {
       "tooling-engineer",
     ]);
   });
+
+  test("handles malformed query payloads without throwing", () => {
+    const malformedQueries: unknown[] = [() => "engineering", { query: "engineering" }];
+    for (const query of malformedQueries) {
+      expect(() => lexicalScoreSearch(query as string, skills)).not.toThrow();
+      const result = lexicalScoreSearch(query as string, skills);
+      expect(result.meta.total).toBe(3);
+    }
+  });
 });
