@@ -3,14 +3,14 @@ import type { Skill } from "./skill-registry.js";
 export type SearchQuery = string | string[];
 
 export type SearchResults = {
-  query: SearchQuery;
   skills: {
     name: string;
     shortname: string;
     description: string;
     location: string;
   }[];
-  summary: {
+  meta: {
+    query: SearchQuery;
     total: number;
     matches: number;
     feedback: string;
@@ -71,22 +71,38 @@ const STOPWORDS = new Set([
   "you",
 ]);
 
-export const SYNONYMS: Record<string, string[]> = {
-  debug: ["diagnose", "troubleshoot", "fix"],
-  diagnose: ["debug", "troubleshoot"],
-  troubleshoot: ["debug", "diagnose", "fix"],
-  test: ["testing", "spec", "assert"],
-  testing: ["test", "spec"],
-  refactor: ["cleanup", "restructure"],
-  plan: ["design", "architecture"],
-  perf: ["performance", "optimize"],
-  optimize: ["performance", "perf"],
-  docs: ["documentation", "readme"],
-  documentation: ["docs", "readme"],
-};
+export const SYNONYMS: Record<string, string[]> = Object.assign(
+  Object.create(null),
+  {
+    debug: ["diagnose", "troubleshoot", "fix"],
+    diagnose: ["debug", "troubleshoot"],
+    troubleshoot: ["debug", "diagnose", "fix"],
+    test: ["testing", "spec", "assert"],
+    testing: ["test", "spec"],
+    refactor: ["cleanup", "restructure"],
+    plan: ["design", "architecture"],
+    perf: ["performance", "optimize"],
+    optimize: ["performance", "perf"],
+    docs: ["documentation", "readme"],
+    documentation: ["docs", "readme"],
+  },
+);
+
+export function coerceSearchQuery(query: unknown): SearchQuery {
+  if (typeof query === "string") return query;
+  if (Array.isArray(query)) {
+    return query.filter((item): item is string => typeof item === "string");
+  }
+  return "";
+}
+
+export function queryToRawText(query: unknown): string {
+  const safe = coerceSearchQuery(query);
+  return (Array.isArray(safe) ? safe : [safe]).join(" ").trim();
+}
 
 export function parseSkillQuery(query: SearchQuery): ParsedSkillQuery {
-  const raw = (Array.isArray(query) ? query : [query]).join(" ").trim();
+  const raw = queryToRawText(query);
 
   if (!raw || raw === "*") {
     return { include: [], exclude: [], listAll: true };
@@ -145,14 +161,14 @@ export function mapResult(
   mode: string,
 ): SearchResults {
   return {
-    query,
     skills: matches.map((skill) => ({
       name: skill.qualifiedName,
       shortname: skill.name,
       description: skill.description,
       location: skill.filePath,
     })),
-    summary: {
+    meta: {
+      query,
       total: visibleSkills.length,
       matches: matches.length,
       feedback:
@@ -188,7 +204,7 @@ export function detectIntent(
   query: SearchQuery,
   parsed: ParsedSkillQuery,
 ): QueryIntent {
-  const raw = (Array.isArray(query) ? query : [query]).join(" ").trim();
+  const raw = queryToRawText(query);
   const terms = parsed.include.flatMap((t) => tokenize(t));
 
   if (terms.length === 0) return "mixed";

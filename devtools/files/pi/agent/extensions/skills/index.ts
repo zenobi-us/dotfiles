@@ -17,8 +17,8 @@ import {
   type ExtensionAPI,
   type ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
-import { Type } from "@mariozechner/pi-ai";
-import { FindSkillsCmd, lexicalScoreSearch } from "./cmds/find.js";
+import { Static, Type } from "@mariozechner/pi-ai";
+import { FindSkillsCmd, lexicalScoreSearch, SearchResults } from "./cmds/find.js";
 import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
 export { formatReadSkillOutput, buildSkillUserMessage } from "./cmds/read.js";
 import {
@@ -117,12 +117,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       },
     });
 
-    // Register lazy skill discovery/load tools
-    pi.registerTool({
-      name: "find_skills",
-      label: "Find Skills",
-      description: "Search for available skills by natural language query.",
-      parameters: Type.Object({
+    const findSKillsParamsSchema = Type.Object({
         query: Type.Union([
           Type.String({
             description:
@@ -133,19 +128,60 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
               "List of search queries, e.g. ['debugging typescript'] or [] to list all",
           }),
         ]),
-      }),
+      })
+
+    type SearchErrorStack = {
+      errorName: string;
+      errorMessage: string;
+      errorStack?: string;
+      query: string | string[];
+      strategy: RuntimeSettings["searchStrategy"];
+      lexicalThreshold: number;
+    }
+
+    // Register lazy skill discovery/load tools
+    pi.registerTool<typeof findSKillsParamsSchema, SearchErrorStack | SearchResults>({
+      name: "find_skills",
+      label: "Find Skills",
+      description: "Search for available skills by natural language query.",
+      parameters: findSKillsParamsSchema,
       async execute(_toolCallId, params) {
         const query = Array.isArray(params.query) ? params.query : [params.query];
-        const output = FindSkillsCmd(
-          registry.skills,
-          query,
-          runtimeSettings.searchStrategy,
-          { lexicalThreshold: runtimeSettings.lexicalThreshold },
-        );
-        return {
-          content: [{ type: "text", text: JSON.stringify(output, null, 2) }],
-          details: output,
-        };
+        
+        try {
+          ctx.ui.notify(`find_skills: ${runtimeSettings.searchStrategy} search for "${query.join(", ")}"`, "info");
+          
+          const output = FindSkillsCmd(
+            registry.skills,
+            query,
+            runtimeSettings.searchStrategy,
+            { lexicalThreshold: runtimeSettings.lexicalThreshold },
+          );
+          return {
+            content: [{ type: "text", text: JSON.stringify(output, null, 2) }],
+            details: output
+          };  
+        } catch (err) {
+          const error = err instanceof Error ? err : new Error(String(err));
+          return {
+            content: [{
+              type: "text",
+              text:
+                `Error executing cmds/find/FindSkillsCmd: ${error.message}` +
+                (error.stack ? `\n\nStack:\n${error.stack}` : ""),
+            }],
+            details: {
+              errorName: error.name,
+              errorMessage: error.message,
+              errorStack: error.stack,
+              query,
+              strategy: runtimeSettings.searchStrategy,
+              lexicalThreshold: runtimeSettings.lexicalThreshold,
+            },
+            isError: true,
+          };
+        }
+
       },
     });
 

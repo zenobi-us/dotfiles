@@ -3,6 +3,7 @@ import { bm25Search } from "../service/search-bm25.js";
 import { lexicalScoreSearch } from "../service/search-lexical.js";
 import type { SearchQuery, SearchResults } from "../service/search-shared.js";
 import { vectorSearch } from "../service/search-vector.js";
+import { Skill } from "../service/skill-registry.js";
 
 export type {
   SearchQuery,
@@ -48,9 +49,9 @@ function reciprocalRankFusion(
     .map((entry) => entry.item);
 
   return {
-    query,
     skills: merged,
-    summary: {
+    meta: {
+      query,
       total,
       matches: merged.length,
       feedback:
@@ -62,7 +63,7 @@ function reciprocalRankFusion(
 }
 
 export function FindSkillsCmd(
-  skills: import("../service/skill-registry.js").Skill[],
+  skills: Skill[],
   query: SearchQuery,
   strategy: SearchStrategy = "hybrid",
   options: Pick<RuntimeSettings, "lexicalThreshold"> = { lexicalThreshold: 0.5 },
@@ -76,5 +77,6 @@ export function FindSkillsCmd(
   const lexical = lexicalScoreSearch(query, skills, options.lexicalThreshold);
   const bm25 = bm25Search(query, skills);
   const vector = vectorSearch(query, skills);
-  return reciprocalRankFusion(query, lexical.summary.total, [lexical, bm25, vector]);
+
+  return reciprocalRankFusion(query, lexical.meta.total, [lexical, bm25, vector]);
 }

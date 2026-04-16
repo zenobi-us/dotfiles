@@ -6,6 +6,7 @@ import {
   mapResult,
   normalizeSkills,
   normalizeText,
+  queryToRawText,
   parseSkillQuery,
   tokenize,
   type NormalizedSkill,
@@ -45,9 +46,12 @@ function addTokenFeatures(
     }
   }
 
-  for (const synonym of SYNONYMS[token] ?? []) {
-    addVectorFeature(vector, `tok:${synonym}`, weight * 0.5);
-  }
+  const synonyms = SYNONYMS[token];
+  if (Array.isArray(synonyms)) {
+    for (const synonym of synonyms) {
+      addVectorFeature(vector, `tok:${synonym}`, weight * 0.5);
+    }
+}
 }
 
 function buildVectorFromText(text: string, dimensions = 384): Float64Array {
@@ -103,9 +107,7 @@ export function vectorSearch(query: SearchQuery, skills: Skill[]): SearchResults
   const docs = normalizeSkills(visible).filter(
     (doc) => !containsExcluded(parsed, doc),
   );
-  const rawQuery = normalizeText(
-    (Array.isArray(query) ? query.join(" ") : query).trim(),
-  );
+  const rawQuery = normalizeText(queryToRawText(query));
   const queryVector = buildVectorFromText(rawQuery);
 
   const ranked = docs

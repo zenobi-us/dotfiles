@@ -8,6 +8,7 @@ import {
   maxTokenSimilarity,
   normalizeSkills,
   normalizeText,
+  queryToRawText,
   parseSkillQuery,
   rankByScore,
   tokenize,
@@ -30,9 +31,7 @@ export function lexicalScoreSearch(
 
   const docs = normalizeSkills(visible);
   const intent = detectIntent(query, parsed);
-  const phrase = normalizeText(
-    (Array.isArray(query) ? query.join(" ") : query).trim(),
-  );
+  const phrase = normalizeText(queryToRawText(query));
 
   const ranked = rankByScore(
     docs.filter((doc) => !containsExcluded(parsed, doc)),

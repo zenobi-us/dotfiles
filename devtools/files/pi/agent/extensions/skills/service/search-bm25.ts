@@ -5,6 +5,7 @@ import {
   mapResult,
   normalizeSkills,
   normalizeText,
+  queryToRawText,
   parseSkillQuery,
   tokenize,
   type SearchQuery,
@@ -58,9 +59,7 @@ export function bm25Search(query: SearchQuery, skills: Skill[]): SearchResults {
     }
   }
 
-  const rawQuery = normalizeText(
-    (Array.isArray(query) ? query.join(" ") : query).trim(),
-  );
+  const rawQuery = normalizeText(queryToRawText(query));
 
   const ranked = docs
     .map((doc, idx) => {
