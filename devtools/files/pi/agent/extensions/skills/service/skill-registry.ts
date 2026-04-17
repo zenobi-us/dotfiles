@@ -656,10 +656,16 @@ export function readSkillContent(skill: Skill): string {
   }
 }
 
+type FindSkillOptions = {
+  requestedName: string;
+  usedShortnameFallback: boolean;
+  suggestedQualifiedNames?: string[];
+};
+
 export type ResolvedSkill =
-  | { kind: "found"; skill: Skill; usedShortnameFallback: boolean }
-  | { kind: "ambiguous"; requestedName: string; options: string[] }
-  | { kind: "not_found"; requestedName: string };
+  | { kind: "found"; skill: Skill; options?: FindSkillOptions }
+  | { kind: "ambiguous"; skill?: undefined; options?: FindSkillOptions }
+  | { kind: "not_found"; skill?: undefined; options?: FindSkillOptions };
 
 export function resolveSkill(
   requestedName: string,
@@ -670,7 +676,10 @@ export function resolveSkill(
     return {
       kind: "found",
       skill: byQualified,
-      usedShortnameFallback: false,
+      options: {
+        requestedName,
+        usedShortnameFallback: false,
+      }
     };
   }
 
@@ -681,17 +690,24 @@ export function resolveSkill(
     return {
       kind: "found",
       skill: matchingSkills[0],
-      usedShortnameFallback: true,
+      options: {
+        usedShortnameFallback: true,
+        requestedName,
+        suggestedQualifiedNames: [matchingSkills[0].qualifiedName],
+      }
     };
   }
 
   if (matchingSkills.length > 1) {
     return {
       kind: "ambiguous",
-      requestedName,
-      options: matchingSkills.map((s) => s.qualifiedName).sort(),
+      options: {
+        usedShortnameFallback: true,
+        requestedName,
+        suggestedQualifiedNames: matchingSkills.map((s) => s.qualifiedName).sort(),
+      }
     };
   }
 
-  return { kind: "not_found", requestedName };
+  return { kind: "not_found", options: { requestedName, suggestedQualifiedNames: [], usedShortnameFallback: false } };
 }
