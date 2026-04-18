@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { buildSkillUserMessage, formatReadSkillOutput } from "../index.js";
+import { buildReadSkillCollapsedSummary, buildSkillUserMessage, formatReadSkillOutput } from "../index.js";
 
 const skill = {
   qualifiedName: "superpowers-using-superpowers",
@@ -63,5 +63,22 @@ describe("buildSkillUserMessage", () => {
     expect(result).toContain("# Skill Content\n\nUse this skill first.");
     expect(result).toContain("\n\nUser: focus on tests");
     expect(result).not.toContain("<skill ");
+  });
+});
+
+describe("buildReadSkillCollapsedSummary", () => {
+  test("prefers resolved qualified skill name when available", () => {
+    const result = buildReadSkillCollapsedSummary(
+      { resolvedQualifiedName: "superpowers-using-superpowers-SKILL.md", requestedName: "using-superpowers" },
+      "ctrl+e",
+    );
+
+    expect(result).toBe("Loaded skill: superpowers-using-superpowers-SKILL.md - (show full output with ctrl+e)");
+  });
+
+  test("falls back to requested name and generic expand hint", () => {
+    const result = buildReadSkillCollapsedSummary({ requestedName: "using-superpowers" });
+
+    expect(result).toBe("Loaded skill: using-superpowers - (expand to show full output)");
   });
 });

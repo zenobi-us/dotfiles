@@ -17,10 +17,10 @@ import {
   type ExtensionAPI,
   type ExtensionContext,
 } from "@mariozechner/pi-coding-agent";
-import { Static, Type } from "@mariozechner/pi-ai";
+import { Type } from "@mariozechner/pi-ai";
+import { Text } from "@mariozechner/pi-tui";
+
 import { FindSkillsCmd, lexicalScoreSearch, SearchResults } from "./cmds/find.js";
-import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
-export { formatReadSkillOutput, buildSkillUserMessage } from "./cmds/read.js";
 import {
   createRuntimeSettingsService,
   DEFAULT_RUNTIME_SETTINGS,
@@ -31,6 +31,13 @@ import { injectSkillsIntoSystemPrompt } from "./service/systemprompt.js";
 import { createSkillRegistry } from "./service/skill-registry.js";
 import { CreateSkillSlashCommands, LoadSkillCommand } from "./cmds/skill.js";
 import { renderFoldedToolText } from "./core/tool-render.js";
+import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
+
+export {
+  formatReadSkillOutput,
+  buildSkillUserMessage,
+  buildReadSkillCollapsedSummary,
+} from "./cmds/read.js";
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
   const registry = createSkillRegistry();
@@ -188,8 +195,8 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         return renderFoldedToolText(result, options, theme, {
           loadingLabel: "Searching skills...",
           previewLines: 16,
-          collapsedPrefix: (toolResult) => {
-            const details = toolResult.details as
+          collapsedPrefix: (data) => {
+            const details = data.result.details as
               | { meta?: { matches?: number; total?: number } }
               | undefined;
             const matches = details?.meta?.matches;
@@ -205,7 +212,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     const ReadSkillToolParams = Type.Object({
       name: Type.String({ description: "Skill qualified name or shortname" }),
     });
-    pi.registerTool<typeof ReadSkillToolParams, unknown>({
+    pi.registerTool<typeof ReadSkillToolParams, ReturnType<typeof ReadSkillCommand>['error'] | ReturnType<typeof ReadSkillCommand>['value']>({
       name: "read_skill",
       label: "Read Skill",
       description:
@@ -215,25 +222,47 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         const result = ReadSkillCommand(params.name, registry.skillMap);
 
         if (!result.ok) {
-          return result.error;
+          return {
+            content: [{
+              type: "text",
+              text: "Unknown error",
+            }],
+            details: result.error,
+          }
         }
 
         return {
           content: [{ type: "text", text: result.value.text }],
-          details: {
-            requestedName: params.name,
-            resolvedQualifiedName: result.value.skill.qualifiedName,
-            usedShortnameFallback: result.value.usedShortnameFallback,
-            filePath: result.value.skill.filePath,
-          },
+          details: result.value
         };
       },
+
       renderResult(result, options, theme) {
+        if (options.isPartial) {
+          return new Text(theme.fg("toolOutput", "Reading skill..."), 0, 0);
+        }
+
+        if (options.expanded) {
+          return renderFoldedToolText(result, options, theme, {
+            loadingLabel: "Reading skill...",
+            previewLines: 20,
+          });
+        }
+
         return renderFoldedToolText(result, options, theme, {
           loadingLabel: "Reading skill...",
-          previewLines: 20,
-        });
-      },
+          previewLines: 0, // Don't show any preview lines in collapsed state since the prefix contains identifying info about the skill 
+          collapsedPrefix: (data) => {
+            if (!data.result.details || "isError" in data.result.details) {
+              return "unknown skill";
+            }
+            const name = data.result?.details?.skill.name
+
+            return `Loaded skill "${name ?? "unknown"}".` 
+          },
+        })
+
+      }
     });
 
     // Register generic /skill command for qualified name + shortname fallback

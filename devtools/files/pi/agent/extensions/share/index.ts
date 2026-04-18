@@ -55,13 +55,5 @@ export default function PiShareExtension(api: ExtensionAPI) {
       });
     });
   });
-
-  api.registerCommand("share", {
-    description: "Intercept /share before the built-in submit handler",
-    handler: async (_args, ctx) => {
-      ctx.ui.notify("Share Override", "info");
-      runShareOverride(api, "Handled /share via extension command override");
-    },
-  });
 }
 

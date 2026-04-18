@@ -21,12 +21,13 @@ function dedent(strings: TemplateStringsArray, ...values: string[]): string {
 }
 
 
-const createPathReplacer = (type: 'scripts' | 'references' | 'assets', baseDir: string) => {
+const createPathReplacer = (type: 'skills' | 'scripts' | 'references' | 'assets', baseDir: string) => {
 
-  // regexp pattern that covers: 
+  // regexp pattern that covers:
   //  skills/foo/bar.txt
   //  ./skills/foo/bar.txt
-  const pattern = new RegExp(`(?:\\.\\/)?${type}\\/([^\\s'"]+)`, 'g');
+  //  /any/prefix/skills/foo/bar.txt
+  const pattern = new RegExp(`(?<![A-Za-z0-9_-])(?:[^\\s'\"]*\/)?(?:\\.\/)?${type}\/([^\\s'\"]+)`, 'g');
 
 
   // replacer that turns the above paths into a string that points to the original file, e.g.
@@ -45,6 +46,7 @@ const createPathReplacer = (type: 'scripts' | 'references' | 'assets', baseDir: 
 export function formatReadSkillOutput(skill: Skill, body: string): string {
 
   const scriptsPathReplacer = createPathReplacer('scripts', skill.baseDir);
+  const skillsPathReplacer = createPathReplacer('skills', skill.baseDir);
   const referencePathReplacer = createPathReplacer('references', skill.baseDir);
   const assetPathReplacer = createPathReplacer('assets', skill.baseDir);
  
@@ -59,12 +61,25 @@ export function formatReadSkillOutput(skill: Skill, body: string): string {
      assets_dir: ${path.join(skill.baseDir, "assets")}
      ---
      ${body.trim()
+       .replace(skillsPathReplacer.pattern, skillsPathReplacer.replacer)
        .replace(scriptsPathReplacer.pattern, scriptsPathReplacer.replacer)
        .replace(referencePathReplacer.pattern, referencePathReplacer.replacer)
        .replace(assetPathReplacer.pattern, assetPathReplacer.replacer)
      }
   `;
  
+}
+
+export function buildReadSkillCollapsedSummary(details?: {
+  resolvedQualifiedName?: string;
+  requestedName?: string;
+}, expandShortcut?: string): string {
+  const skillName = details?.resolvedQualifiedName ?? details?.requestedName ?? "unknown";
+  const hint = expandShortcut
+    ? `show full output with ${expandShortcut}`
+    : "expand to show full output";
+
+  return `Loaded skill: ${skillName} - (${hint})`;
 }
 
 export function buildSkillUserMessage(
@@ -86,14 +101,6 @@ export function ReadSkillCommand(
     return {
       ok: false as const,
       error: {
-        content: [
-          {
-            type: "text" as const,
-            text:
-              `Ambiguous shortname \"${resolved.requestedName}\". ` +
-              `Use one of: ${resolved.options.join(", ")}`,
-          },
-        ],
         details: resolved,
         isError: true,
       },
@@ -104,12 +111,6 @@ export function ReadSkillCommand(
     return {
       ok: false as const,
       error: {
-        content: [
-          {
-            type: "text" as const,
-            text: `Skill not found: ${resolved.requestedName}`,
-          },
-        ],
         details: resolved,
         isError: true,
       },
@@ -124,8 +125,7 @@ export function ReadSkillCommand(
     value: {
       text,
       body,
-      skill: resolved.skill,
-      usedShortnameFallback: resolved.usedShortnameFallback,
+      ...resolved
     },
   };
 }

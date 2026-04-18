@@ -25,3 +25,9 @@ package-lock.json
 .ralph/
 .ralph
 .ralph
+
+# Share extension webapp: keep source tracked, ignore generated/local files
+devtools/files/pi/agent/extensions/share/webapp/dist/
+devtools/files/pi/agent/extensions/share/webapp/.tanstack/
+devtools/files/pi/agent/extensions/share/webapp/.cta.json
+devtools/files/pi/agent/extensions/share/webapp/.vscode/
