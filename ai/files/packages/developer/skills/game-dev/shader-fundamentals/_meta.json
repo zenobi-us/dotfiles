@@ -1,0 +1,18 @@
+{
+  "name": "shader-fundamentals",
+  "description": "GLSL shader fundamentals\u2014vertex and fragment shaders, uniforms, varyings, attributes, coordinate systems, built-in variables, and data types. Use when writing custom shaders, understanding the graphics pipeline, or debugging shader code. The foundational skill for all shader work.",
+  "tags": [
+    "shaders",
+    "glsl",
+    "code-generation"
+  ],
+  "sub_skills": [],
+  "source": "claude-user",
+  "type": "template",
+  "depends_on": [],
+  "enhances": [
+    "shader-noise",
+    "shader-sdf",
+    "shader-effects"
+  ]
+}

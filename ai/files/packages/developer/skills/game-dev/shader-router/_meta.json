@@ -1,0 +1,18 @@
+{
+  "name": "shader-router",
+  "description": "Decision framework for GLSL shader projects. Routes to specialized shader skills (fundamentals, noise, SDF, effects) based on task requirements. Use when starting a shader project or needing guidance on which shader techniques to combine.",
+  "tags": [
+    "shaders",
+    "routing"
+  ],
+  "sub_skills": [],
+  "source": "claude-user",
+  "type": "router",
+  "depends_on": [
+    "shader-fundamentals",
+    "shader-noise",
+    "shader-sdf",
+    "shader-effects"
+  ],
+  "enhances": []
+}

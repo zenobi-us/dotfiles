@@ -1,0 +1,19 @@
+{
+  "name": "shader-effects",
+  "description": "Visual shader effects\u2014glow/bloom, chromatic aberration, distortion, vignette, film grain, scanlines, glitch, dissolve, outline, and fresnel. Use when adding visual polish, post-processing effects, or stylized rendering to shaders.",
+  "tags": [
+    "shaders",
+    "glsl",
+    "code-generation"
+  ],
+  "sub_skills": [],
+  "source": "claude-user",
+  "type": "template",
+  "depends_on": [
+    "shader-fundamentals"
+  ],
+  "enhances": [
+    "postfx-effects",
+    "particles-gpu"
+  ]
+}
