@@ -1,0 +1,10 @@
+A portrait-oriented PPT presentation slide (or mobile document interface). The overall background is filled with a cream (off-white) color carrying a slight paper texture. The frame is divided vertically: roughly the top one-third is occupied by a horizontal panoramic illustration, while the lower two-thirds is a text-layout area.
+
+The illustration at the top is rendered in a Flat Vector Illustration style, exuding a toy-model-like cuteness. All objects—buildings, plants, clouds—are outlined with uniformly weighted, closed black monoline strokes with rounded endpoints. Colors are applied as solid flat fills with only minimal color-block shadows, devoid of any gradients or 3D effects. The viewing angle is a slightly top-down 2.5D isometric perspective, with depth conveyed through overlapping of objects; all layers share consistent clarity with no atmospheric perspective. At the center of the illustration is a cluster of city buildings simplified into geometric rectangular block forms, filled respectively in coral red, mustard yellow, and ochre, with neatly arranged small black square grids on building surfaces representing windows. Surrounding the buildings are geometric plants, including mint-green "lollipop"-shaped trees and dark-green isosceles-triangle firs. Pill-shaped rock-blue clouds float in the sky. Blank areas of the background are dotted with black monoline radiating lines, small dots, and four-pointed star motifs serving as decorative elements to balance visual density.
+
+The text-layout area below the illustration is clean and well-organized:
+At the very top is the main title, set in a large, bold black Retro Serif typeface, reading 'ECO-CITY HORIZON'.
+Below the main title is an ochre rectangular color block, with a cream-colored, all-caps sans-serif subtitle centered within it: 'SUSTAINABLE URBAN DEVELOPMENT 2030'.
+The body text below uses a clean geometric sans-serif font, arranged as three items listed vertically line by line, in black:
+Item one: '1. Green Infrastructure: Implementing rooftop gardens and street-level parks.'
+Item two: '2. Smart Transport: Expanding pedestrian zones and cyc
