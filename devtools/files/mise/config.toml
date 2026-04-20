@@ -81,6 +81,7 @@ zellij = "0.44.0"
 "cargo:tgt" = "1.0.0"
 lazydocker = "latest"
 tombi = "latest"
+"pipx:marker-pdf"= { version = "1.10.2", uvx_args = "--with psutil" }
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"
@@ -90,4 +91,3 @@ version = "1.4.5"
 pi="mise x node@22 -- pi --no-skills"
 piupdate="mise x node@22 -- pi update"
 piinstall="mise x node@22 -- pi install"
-signal-cli = "mise x node@22 -- signal-cli-client"
