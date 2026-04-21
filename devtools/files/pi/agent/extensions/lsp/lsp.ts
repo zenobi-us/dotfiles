@@ -60,6 +60,26 @@ const MODE_LABELS: Record<HookMode, string> = {
   disabled: "Disabled",
 };
 
+const COMMAND_SEARCH_PATHS = [
+  ...(process.env.PATH?.split(path.delimiter) ?? []),
+  "/usr/local/bin",
+  "/opt/homebrew/bin",
+];
+
+function commandExists(command: string): boolean {
+  const ext = process.platform === "win32" ? ".exe" : "";
+  for (const dir of COMMAND_SEARCH_PATHS) {
+    const candidate = path.join(dir, command + ext);
+    try {
+      if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) return true;
+    } catch {
+      // ignore
+    }
+  }
+
+  return false;
+}
+
 function normalizeHookMode(value: unknown): HookMode | undefined {
   if (value === "edit_write" || value === "agent_end" || value === "disabled") return value;
   if (value === "turn_end") return "agent_end";
@@ -360,14 +380,88 @@ export default function (pi: ExtensionAPI) {
     }
   }
 
+  type LspSubcommand = "settings" | "status";
+
+  function getAvailableServerHints(cwd: string): Map<string, string[]> {
+    const tsLocal = path.join(cwd, "node_modules", ".bin", "typescript-language-server");
+    const availabilityByServer: Record<string, string[]> = {
+      dart: commandExists("dart") ? ["dart"] : [],
+      typescript: [
+        ...(fs.existsSync(tsLocal) ? ["node_modules/.bin/typescript-language-server"] : []),
+        ...(commandExists("typescript-language-server") ? ["typescript-language-server"] : []),
+      ],
+      vue: commandExists("vue-language-server") ? ["vue-language-server"] : [],
+      svelte: commandExists("svelteserver") ? ["svelteserver"] : [],
+      pyright: commandExists("pyright-langserver") ? ["pyright-langserver"] : [],
+      gopls: commandExists("gopls") ? ["gopls"] : [],
+      kotlin: [
+        ...(commandExists("kotlin-lsp") ? ["kotlin-lsp"] : []),
+        ...(commandExists("kotlin-lsp.sh") ? ["kotlin-lsp.sh"] : []),
+        ...(commandExists("kotlin-lsp.cmd") ? ["kotlin-lsp.cmd"] : []),
+        ...(commandExists("kotlin-language-server") ? ["kotlin-language-server"] : []),
+      ],
+      swift: [
+        ...(commandExists("sourcekit-lsp") ? ["sourcekit-lsp"] : []),
+        ...(commandExists("xcrun") ? ["xcrun sourcekit-lsp"] : []),
+      ],
+      "rust-analyzer": commandExists("rust-analyzer") ? ["rust-analyzer"] : [],
+    };
+
+    return new Map(Object.entries(availabilityByServer));
+  }
+
+  function buildLspStatusLines(ctx: ExtensionContext): string[] {
+    const availableHints = getAvailableServerHints(ctx.cwd);
+    const availableCount = LSP_SERVERS.filter((server) => (availableHints.get(server.id) ?? []).length > 0).length;
+
+    const configuredServers = LSP_SERVERS.map((server) => {
+      const hints = availableHints.get(server.id) ?? [];
+      const status = hints.length > 0 ? "✓" : "✗";
+      const detail = hints.length > 0 ? hints.join(", ") : "not found";
+      return `${status} ${server.id} (${server.extensions.join(", ")}) — ${detail}`;
+    });
+
+    return [
+      `Hook mode: ${labelForMode(hookMode)} (${hookScope})`,
+      `Activity: ${activity}`,
+      `Active clients: ${activeClients.size > 0 ? [...activeClients].join(", ") : "none"}`,
+      `Configured servers: ${LSP_SERVERS.length}`,
+      `Available servers: ${availableCount}/${LSP_SERVERS.length}`,
+      "",
+      "Server availability:",
+      ...configuredServers,
+    ];
+  }
   pi.registerCommand("lsp", {
-    description: "LSP settings (auto diagnostics hook)",
-    handler: async (_args, ctx) => {
+    description: "LSP command: /lsp settings | /lsp status",
+    getArgumentCompletions(argumentPrefix) {
+      const input = argumentPrefix.trim().toLowerCase();
+      const commands: LspSubcommand[] = ["settings", "status"];
+      return commands
+        .filter((command) => command.startsWith(input))
+        .map((command) => ({ label: command, value: command }));
+    },
+    handler: async (args, ctx) => {
+      const raw = args.trim().toLowerCase();
+      const subcommand = (raw ? raw.split(/\s+/)[0] : "settings") as LspSubcommand;
+
+      if (subcommand === "status") {
+        const lines = buildLspStatusLines(ctx);
+        if (ctx.hasUI) ctx.ui.notify(lines.join("\n"), "info");
+        else console.log(lines.join("\n"));
+        return;
+      }
+
+      if (subcommand !== "settings") {
+        const usage = "Usage: /lsp settings | /lsp status";
+        if (ctx.hasUI) ctx.ui.notify(usage, "warning");
+        else console.warn(usage);
+        return;
+      }
       if (!ctx.hasUI) {
         ctx.ui.notify("LSP settings require UI", "warning");
         return;
       }
-
       const currentMark = " ✓";
       const modeOptions = ([
         "edit_write",
@@ -377,16 +471,13 @@ export default function (pi: ExtensionAPI) {
         mode,
         label: mode === hookMode ? `${labelForMode(mode)}${currentMark}` : labelForMode(mode),
       }));
-
       const modeChoice = await ctx.ui.select(
         "LSP auto diagnostics hook mode:",
         modeOptions.map((option) => option.label),
       );
       if (!modeChoice) return;
-
       const nextMode = modeOptions.find((option) => option.label === modeChoice)?.mode;
       if (!nextMode) return;
-
       const scopeOptions = [
         {
           scope: "session" as HookScope,
@@ -397,13 +488,11 @@ export default function (pi: ExtensionAPI) {
           label: "Global (all sessions)",
         },
       ];
-
       const scopeChoice = await ctx.ui.select(
         "Apply LSP auto diagnostics hook setting to:",
         scopeOptions.map((option) => option.label),
       );
       if (!scopeChoice) return;
-
       const scope = scopeOptions.find((option) => option.label === scopeChoice)?.scope;
       if (!scope) return;
       if (scope === "global") {
@@ -413,7 +502,6 @@ export default function (pi: ExtensionAPI) {
           return;
         }
       }
-
       hookMode = nextMode;
       hookScope = scope;
       touchedFiles.clear();

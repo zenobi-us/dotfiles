@@ -82,6 +82,8 @@ zellij = "0.44.0"
 lazydocker = "latest"
 tombi = "latest"
 "pipx:marker-pdf"= { version = "1.10.2", uvx_args = "--with psutil" }
+"npm:typescript-language-server" = "4.4.0"
+"go:golang.org/x/tools/gopls" = "0.20.0"
 
 [tools."github:aristocratos/btop"]
 version = "1.4.5"

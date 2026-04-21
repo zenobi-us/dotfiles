@@ -132,9 +132,9 @@ Example questions the LLM can answer using this tool:
 
 ## Settings
 
-Use `/lsp` to configure the auto diagnostics hook:
-- Mode: default at agent end; can run after each edit/write or be disabled
-- Scope: session-only or global (`~/.pi/agent/settings.json`)
+Use `/lsp <subcommand>`:
+- `/lsp settings`: configure the auto diagnostics hook mode/scope
+- `/lsp status`: show configured servers and which LSP binaries are currently available on this machine
 
 To disable auto diagnostics, choose "Disabled" in `/lsp` or set in `~/.pi/agent/settings.json`:
 ```json
