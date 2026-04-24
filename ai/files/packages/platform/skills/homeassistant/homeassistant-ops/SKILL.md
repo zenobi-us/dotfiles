@@ -1,6 +1,6 @@
 ---
 name: homeassistant-ops
-description: "Operate a Home Assistant instance via the official REST/WebSocket APIs and backups, with safe plan/apply workflows for bulk, reviewable changes."
+description: Run Home Assistant bulk operations with plan/apply/validate/rollback workflows, when changing many entities or registries via REST/WebSocket and backups, resulting in reviewable, safer high-impact execution.
 ---
 
 # Home Assistant Ops
@@ -9,6 +9,10 @@ Use this skill as the operator's playbook for making bulk, reviewable changes
 to a Home Assistant instance without SSHing into the host.
 
 **Requires Node.js 22+** (uses built-in `fetch` + `WebSocket`; no npm deps).
+
+If task scope is unclear, route first with: `homeassistant-router/SKILL.md`.
+For interactive terminal-only runtime operations, use: `home-assistant-cli-ops/SKILL.md`.
+For automation/YAML design and refactor safety, use: `home-assistant-best-practices/SKILL.md`.
 
 ## Default workflow (plan -> apply -> validate)
 

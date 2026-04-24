@@ -1,27 +1,15 @@
 ---
 name: home-assistant-best-practices
-description: >
-  Best practices for Home Assistant automations, helpers, scripts, and device controls.
-
-  TRIGGER THIS SKILL WHEN:
-  - Creating or editing HA automations, scripts, or scenes
-  - Choosing between template sensors and built-in helpers
-  - Writing or restructuring triggers, conditions, or automation modes
-  - Setting up Zigbee button/remote automations (ZHA or Zigbee2MQTT)
-  - Renaming entities or migrating device_id references to entity_id
-
-  SYMPTOMS THAT TRIGGER THIS SKILL:
-  - Agent uses Jinja2 templates where native conditions, triggers, or helpers exist
-  - Agent uses device_id instead of entity_id in triggers/actions
-  - Agent modifies entity IDs or config objects without checking all consumers
-  - Agent chooses wrong automation mode (e.g., single for motion lights)
-metadata:
-  version: "1.0.0"
+description: Design and refactor Home Assistant automations safely, when choosing native triggers/conditions/helpers, automation modes, Zigbee button patterns, or entity_id vs device_id targeting, resulting in validated, maintainable configs.
 ---
 
 # Home Assistant Best Practices
 
 **Core principle:** Use native Home Assistant constructs wherever possible. Templates bypass validation, fail silently at runtime, and make debugging opaque.
+
+If task scope is unclear, route first with: `homeassistant-router/SKILL.md`.
+For scripted bulk execution, use: `homeassistant-ops/SKILL.md`.
+For interactive runtime CLI execution, use: `home-assistant-cli-ops/SKILL.md`.
 
 ## Decision Workflow
 
