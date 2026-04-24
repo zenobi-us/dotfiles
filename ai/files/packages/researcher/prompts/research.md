@@ -4,7 +4,7 @@ description: Delegate structured research with verification methodology - breaks
 
 # Research Command
 
-<ResearchTopic>$ARGUMENTS</ResearchTopic>
+<ResearchTopic>$U</ResearchTopic>
 
 ## When to Use
 

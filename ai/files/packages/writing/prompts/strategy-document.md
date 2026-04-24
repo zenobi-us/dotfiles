@@ -1,6 +1,6 @@
 Load the `strategy-document` skill.
 
-Parse $ARGUMENTS for document type:
+Parse $U for document type:
 - `swot` — SWOT analysis
 - `plan` — lean business plan
 - `okrs` — OKR goal framework

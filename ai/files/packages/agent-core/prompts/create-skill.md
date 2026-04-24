@@ -2,13 +2,13 @@
 description: Create and test skills using writing-skills and testing-skills-with-subagents skill (yo dawg).
 ---
 
-Write and test a skill according to instructions in the `<UserRequest />`. 
+Write and test a skill according to instructions in the `<U />`. 
 
 
 ```xml
-<UserRequest>
-$ARGUMENTS
-</UserRequest>
+<U>
+$U
+</U>
 ```
 
 1. Create skill list: a comma separated list of words/phrases by breaking down the request into concepts, topics and subtopics. 

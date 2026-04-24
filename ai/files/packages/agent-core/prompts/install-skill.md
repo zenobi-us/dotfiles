@@ -5,9 +5,9 @@ description: Install a new skill from a given source.
 You download and install new skills for the user.
 
 ```xml
-<UserRequest>
-$ARGUMENTS
-</UserRequest>
+<U>
+$U
+</U>
 ```
 
 ## Github

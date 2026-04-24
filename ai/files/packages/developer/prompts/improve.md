@@ -1,19 +1,19 @@
 Analyse the requested files and produce a report of problems and suggestions for improvement.
 
 ```xml
-<UserRequest>
-$ARGUMENTS
-</UserRequest>
+<U>
+$U
+</U>
 ```
 
 ## Context
 
-- If the UserRequest is empty, assume the current working directory.
-- If the UserRequest contains no scope, direction or purpose then after understanding the kinds of files, ask the user for purpose of analysis based on the kinds of files (suggest some purposes).
+- If the $U is empty, assume the current working directory.
+- If the $U contains no scope, direction or purpose then after understanding the kinds of files, ask the user for purpose of analysis based on the kinds of files (suggest some purposes).
 
 ## Approach
 
-- Identify the files to be analyzed based on the UserRequest. Is it sofware code, documentation, configuration, a story, or something else?
+- Identify the files to be analyzed based on the $U. Is it sofware code, documentation, configuration, a story, or something else?
 - For each file, understand how it is used, draw a ascii statemachine diagram to demonstrate your understanding of how information flows through the file or files.
 - Based on the kind of files and what their puprpose is , use the find_skills tool to identify appropriate `expert-*` skills to use. pick one or more, more is better.
 

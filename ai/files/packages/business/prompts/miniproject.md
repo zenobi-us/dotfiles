@@ -2,12 +2,12 @@
 
 This is a simplified and concise project management AI memory framework.
 
-## User Request
+## Input
 
 ```md
-<UserRequest>
-$ARGUMENTS
-</UserRequest>
+<U>
+$U
+</U>
 ```
 
 ## Execution Steps

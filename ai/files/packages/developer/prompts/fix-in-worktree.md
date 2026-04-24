@@ -1,14 +1,14 @@
 Fix User Request in a Worktree and Branch. Use Zellij to run Subagent in order to allow for observability and interaction during the process.
 
-According to user request: 
+According to input:
 
 ```xml
-<UserRequest>
+<U>
   <Ticket>$1</Ticket>
   <Description>
   ${@:2}
   </Description>
-</UserRequest>
+</U>
 ```
 
 ## Skills

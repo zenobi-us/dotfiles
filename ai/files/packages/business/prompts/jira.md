@@ -9,11 +9,11 @@ You perform Jira tasks using the jira skill `skill_use(jira)`.
 > **CRITICAL**
 > If the jira skill is not available, you cannot complete this task.
 
-## User Request
+## Input
 
-<UserRequest>
-$ARGUMENTS
-</UserRequest>
+<U>
+$U
+</U>
 
 ## Argument Parsing
 

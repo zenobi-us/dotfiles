@@ -25,7 +25,7 @@ Run through the ~/.pi/agent/prompts/commit workflow to create atomic commits wit
 2. Ensure current branch is pushed to remote:
    - Check: `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
    - Push if missing: `git push -u origin HEAD`
-3. Verify `$ARGUMENTS` is provided (artifact reference):
+3. Verify `$U` is provided (artifact reference):
    -  If missing, assume that the current branch can derive information.
 
 **If validation fails:** Report specific error and exit.
@@ -44,7 +44,7 @@ CURRENT_BRANCH=$(git branch --show-current)
 TARGET_BRANCH={DefaultBranch}
 ```
 
-**Parse artifact reference from `$ARGUMENTS`:**
+**Parse artifact reference from `$U`:**
 
 - If GitHub issue: `#123`
 - If BasicMemory task: `5.1.1-task-database-schema`
