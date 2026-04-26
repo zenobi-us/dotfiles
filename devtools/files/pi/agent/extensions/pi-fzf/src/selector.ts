@@ -1,4 +1,4 @@
-import { keyText } from "@mariozechner/pi-coding-agent";
+import * as piCodingAgent from "@mariozechner/pi-coding-agent";
 import type { Focusable } from "@mariozechner/pi-tui";
 import {
   Container,
@@ -35,6 +35,14 @@ const matchesSelectAction = (
   if (kb.matches(data, action)) return true;
   const legacy = LEGACY_SELECT_ACTIONS[action];
   return legacy ? kb.matches(data, legacy) : false;
+};
+const keyTextCompat = (action: string, fallback: string): string => {
+  const maybeKeyText = (piCodingAgent as { keyText?: unknown }).keyText;
+  if (typeof maybeKeyText === "function") {
+    const value = (maybeKeyText as (a: string) => string)(action);
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+  return fallback;
 };
 
 export interface SelectorTheme {
@@ -266,10 +274,10 @@ export class FuzzySelector extends Container implements Focusable {
     }
 
     // Help line with configured keybindings
-    const upKey = prettyKey(keyText("tui.select.up"));
-    const downKey = prettyKey(keyText("tui.select.down"));
-    const confirmKey = prettyKey(keyText("tui.select.confirm"));
-    const cancelKey = prettyKey(keyText("tui.select.cancel"));
+    const upKey = prettyKey(keyTextCompat("tui.select.up", "up"));
+    const downKey = prettyKey(keyTextCompat("tui.select.down", "down"));
+    const confirmKey = prettyKey(keyTextCompat("tui.select.confirm", "enter"));
+    const cancelKey = prettyKey(keyTextCompat("tui.select.cancel", "escape"));
     lines.push(
       boxLine(
         t.dim(

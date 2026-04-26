@@ -35,13 +35,13 @@ class ShareInterceptEditor extends CustomEditor {
     super(tui, theme, keybindings);
   }
   override handleInput(data: string): void {
-    const isSubmitKey = getKeybindings().matches(data, "tui.input.submit");
-    if (shouldInterceptShareSubmit(this.getText(), isSubmitKey)) {
-      this.setText("");
-      this.onShareIntercept();
-      this.tui.requestRender();
-      return;
-    }
+    // const isSubmitKey = getKeybindings().matches(data, "tui.input.submit");
+    // if (shouldInterceptShareSubmit(this.getText(), isSubmitKey)) {
+    //   this.setText("");
+    //   this.onShareIntercept();
+    //   this.tui.requestRender();
+    //   return;
+    // }
     super.handleInput(data);
   }
 }
@@ -56,4 +56,3 @@ export default function PiShareExtension(api: ExtensionAPI) {
     });
   });
 }
-
