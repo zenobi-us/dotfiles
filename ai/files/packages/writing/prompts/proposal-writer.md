@@ -1,3 +1,9 @@
 Load the `proposal-writer` skill.
 
-If $U contains a client name, use it. Otherwise ask for project details.
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
+```
+
+If UserRequest contains a client name, use it. Otherwise ask for project details.

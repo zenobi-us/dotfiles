@@ -1,9 +1,15 @@
 # Create Pull Request
 
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
+ArtifactReference: $ARGUMENTS
+```
+
 **Meta**
 
 - DefaultBranch : !`gh repo view --json defaultBranchRef --template '{{.defaultBranchRef.name}}'`
-
 
 ## Step 1: Atomically Commit Uncommitted Changes
 
@@ -17,16 +23,15 @@ git status --short
 
 Run through the ~/.pi/agent/prompts/commit workflow to create atomic commits with conventional messages.
 
-
 **Validate readiness:**
- 
+
 1. DefaultBranch must not be the current branch: !`git branch --show-current`
   - Exit if same.
 2. Ensure current branch is pushed to remote:
    - Check: `git rev-parse --abbrev-ref --symbolic-full-name @{u}`
    - Push if missing: `git push -u origin HEAD`
-3. Verify `$U` is provided (artifact reference):
-   -  If missing, assume that the current branch can derive information.
+3. Verify ArtifactReference is provided:
+   - If missing, assume current branch context can derive information.
 
 **If validation fails:** Report specific error and exit.
 
@@ -44,7 +49,7 @@ CURRENT_BRANCH=$(git branch --show-current)
 TARGET_BRANCH={DefaultBranch}
 ```
 
-**Parse artifact reference from `$U`:**
+**Parse artifact reference from ArtifactReference:**
 
 - If GitHub issue: `#123`
 - If BasicMemory task: `5.1.1-task-database-schema`
@@ -53,7 +58,7 @@ TARGET_BRANCH={DefaultBranch}
 **Fetch artifact details:**
 - For GitHub issues: Use `gh issue view {ISSUE_NUMBER} --json title,body,labels`
 - For BasicMemory tasks: Query BasicMemory API for task details
-- For Jira tickets: Delegate using `task(jira)` Use Jira API to get issue summary, description, labels
+- For Jira tickets: Delegate using `task(jira)` and fetch issue summary, description, labels
 
 **Review commits on current branch:**
 
@@ -138,4 +143,3 @@ gh pr create --title "{title}" --body-file "/tmp/pr_description.md" --base {targ
 
 Next: Wait for review, address feedback, merge when approved
 ```
-

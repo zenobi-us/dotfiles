@@ -4,15 +4,15 @@ description: Install a new skill from a given source.
 
 You download and install new skills for the user.
 
-```xml
-<U>
-$U
-</U>
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
 ```
 
 ## Github
 
-If the skill is hosted on GitHub, you can use the gh cli and the download extension to grab skills from GitHub repositories.
+If the skill source in UserRequest is hosted on GitHub, use the gh cli and the download extension to grab skills from repositories.
 
 ```bash
 gh download --help
@@ -24,7 +24,7 @@ gh download <owner>/<repository>  [...filepaths] --outdir <destination-path>/<sk
 
 ## Other Sources
 
-If the skill is hosted elsewhere, you can use wget or curl to download the skill files directly.
+If the skill source in UserRequest is hosted elsewhere, you can use wget or curl to download skill files directly.
 
 ```bash
 wget <url> -P <destination-path>/<skill-name>

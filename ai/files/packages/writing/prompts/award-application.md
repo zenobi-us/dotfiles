@@ -1,3 +1,9 @@
 Load the `award-application` skill.
 
-If $U contains an award name, use it. Otherwise ask for award details and criteria.
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
+```
+
+If UserRequest contains an award name, use it. Otherwise ask for award details and criteria.

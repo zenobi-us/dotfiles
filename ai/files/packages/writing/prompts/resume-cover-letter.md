@@ -1,6 +1,12 @@
 Load the `resume-cover-letter` skill.
 
-Parse $U for mode:
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
+```
+
+Parse UserRequest for mode:
 - `resume` — resume/CV only
 - `cover-letter` — cover letter only
 - `both` — both documents

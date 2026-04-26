@@ -2,11 +2,13 @@
 description: Review supplied files for documentation quality and completeness.
 ---
 
-Assist with a comprehensive documentation review of the files or content indicated by the user request.
+Assist with a comprehensive documentation review of the files or content indicated by UserRequest.
 
-<U>
-  $U
-</U>
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
+```
 
 ## Initialisation
 
@@ -37,7 +39,7 @@ Conduct a thorough documentation review from BOTH perspectives. Analyze the READ
 
 ### Specific Focus Areas:
 
-This will largely depend on the content provided, so first identify what the documentation is for, who the target audience is and what key features or changes are being introduced. Then evaluate the following aspects:
+This will largely depend on the content provided, so first identify what the documentation is for, who the target audience is, and what key features or changes are being introduced. Then evaluate the following aspects:
 
 1. **Examples** - Does the documentation give a pragmatic example of how to use the plugin without overwhelming the user with information?
 2. **Configuration** - Are configuration options clearly explained with defaults and examples?
@@ -55,7 +57,6 @@ Provide a comprehensive review document that includes:
 5. **Recommendations** - Prioritized list of improvements (must-have, should-have, nice-to-have)
 6. **Specific Edits** - Exact text changes recommended with rationale
 
-
 Format your response clearly with sections for Documentation Engineer insights and Technical Writer insights.
 
 Be specific and actionable.
@@ -63,4 +64,3 @@ Be specific and actionable.
 Do not ask questions, instead list observations and recommendations.
 
 The output will be used by a main agent to implement and clarify with the user.
-

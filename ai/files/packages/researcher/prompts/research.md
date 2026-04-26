@@ -4,7 +4,12 @@ description: Delegate structured research with verification methodology - breaks
 
 # Research Command
 
-<ResearchTopic>$U</ResearchTopic>
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
+ResearchTopic: $ARGUMENTS
+```
 
 ## When to Use
 
@@ -26,7 +31,7 @@ Before delegating, validate that you have:
 
 3. **Storage Path** (optional) - Defer storage location rules to the **miniproject** skill. If provided, treat as a hint and still follow miniproject conventions.
 
-**STOP if the topic is missing.** Ask user for clarification before proceeding.
+**STOP if ResearchTopic is missing.** Ask user for clarification before proceeding.
 
 ## Research Methodology (5 Phases)
 
@@ -103,43 +108,43 @@ Inside that file, use these sections (not separate files):
 5. **Delegate subtopics to parallel subagents:**
    ```
    # Launch ALL subtopic researches in parallel (single message, multiple task calls)
-   
+
    task(
      description: "Research [Subtopic 1]",
      subagent_type: "deep-researcher-subagent",
      prompt: "Research subtopic: [Subtopic 1]
               Parent topic: [ResearchTopic]
               Avoid: [ThingsToAvoid]
-              
+
               CRITICAL: Use the miniproject skill and any other discovered skills before starting research.
               Load any applicable skills to enhance your research methodology.
               Use the required filename prefix: research-{hash}-{parent_topic}-{child_topic}.md
-              
+
               Produce findings with 3+ independent sources per major claim.
               Document all contradictions and confidence levels.
               Mark all biases with [BiasType] where applicable.
               Provide citations to verify claims. [URLs + access dates] [CRITICAL]
               "
    )
-   
+
    task(
      description: "Research [Subtopic 2]",
      subagent_type: "deep-researcher-subagent",
      prompt: "Research subtopic: [Subtopic 2]
               Parent topic: [ResearchTopic]
               Avoid: [ThingsToAvoid]
-              
+
               CRITICAL: Use the miniproject skill and any other discovered skills before starting research.
               Load any applicable skills to enhance your research methodology.
               Use the required filename prefix: research-{hash}-{parent_topic}-{child_topic}.md
-              
+
               Produce findings with 3+ independent sources per major claim.
               Document all contradictions and confidence levels.
               Mark all biases with [BiasType] where applicable.
               Provide citations to verify claims. [URLs + access dates] [CRITICAL]
               "
    )
-   
+
    # ... repeat for all subtopics in PARALLEL
    ```
 
@@ -239,5 +244,3 @@ Research suitable for:
 - Decision-making with full evidence trails
 
 **Time investment:** 10-20 hours saved vs. manual research
-
-

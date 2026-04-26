@@ -1,12 +1,16 @@
-Explore the current codebase and build an understanding using the codemap skill.
+Explore the current codebase and build understanding using the codemap skill.
 
-Follow any existing storage instructions for saving and retrieving files.
+## UserRequest
 
-## Process 
+```md
+UserRequest: $ARGUMENTS
+```
 
-1. gather stats.
-2. build codemap.
-3. generate an ascii state machine diagram of the data flow throuh out the codebase.
-4. generate a diagram of the user journies enabled by the codebase.
+Follow any existing storage instructions for saving and retrieving files relevant to UserRequest.
 
+## Process
 
+1. Gather stats.
+2. Build codemap.
+3. Generate an ASCII state machine diagram of the data flow throughout the codebase.
+4. Generate a diagram of user journeys enabled by the codebase.

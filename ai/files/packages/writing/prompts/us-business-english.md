@@ -1,3 +1,10 @@
 Load the `us-business-english` skill.
 
-Apply American business English conventions to the current writing task. EN-US spelling, direct action-oriented tone.
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
+WritingTask: $ARGUMENTS
+```
+
+Apply American business English conventions to WritingTask. EN-US spelling, direct action-oriented tone.

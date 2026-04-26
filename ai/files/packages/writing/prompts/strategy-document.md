@@ -1,6 +1,12 @@
 Load the `strategy-document` skill.
 
-Parse $U for document type:
+## UserRequest
+
+```md
+UserRequest: $ARGUMENTS
+```
+
+Parse UserRequest for document type:
 - `swot` — SWOT analysis
 - `plan` — lean business plan
 - `okrs` — OKR goal framework
