@@ -24,5 +24,6 @@
   "enableSkillCommands": false,
   "quietStartup": true,
   "collapseChangelog": true,
-  "autocompleteMaxVisible": 10
+  "autocompleteMaxVisible": 10,
+  "defaultModel": "gpt-5.3-codex"
 }
