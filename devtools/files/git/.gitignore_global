@@ -75,3 +75,8 @@ temp/
 .viminfo
 .memory/
 in-memoria.db
+
+
+# pi-project-workflow
+.project/
+.workflows/
