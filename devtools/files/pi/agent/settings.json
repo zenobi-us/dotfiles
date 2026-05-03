@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.70.5",
+  "lastChangelogVersion": "0.72.1",
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
@@ -23,7 +23,7 @@
   "hideThinkingBlock": true,
   "defaultProvider": "openai-codex",
   "enableSkillCommands": false,
-  "quietStartup": true,
+  "quietStartup": false,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 10,
   "defaultModel": "gpt-5.3-codex",
