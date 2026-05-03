@@ -165,16 +165,12 @@ function normalizePath(input: string): string {
 function resolvePackageSkillPaths(agentDir: string): string[] {
   const skillPaths: string[] = [];
 
-  try {
-    const settingsManager = SettingsManager.create(undefined, agentDir);
-    const packageSources = settingsManager.getPackages();
+  const settingsManager = SettingsManager.create(process.cwd(), agentDir);
+  const packageSources = settingsManager.getPackages();
 
-    for (const source of packageSources) {
-      if (!source || typeof source !== "string") continue;
-      skillPaths.push(...resolvePackage(source, agentDir));
-    }
-  } catch {
-    // Ignore settings loading errors and keep existing default behavior.
+  for (const source of packageSources) {
+    if (!source || typeof source !== "string") continue;
+    skillPaths.push(...resolvePackage(source, agentDir));
   }
 
   return skillPaths;
