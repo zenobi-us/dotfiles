@@ -20,7 +20,7 @@
     "./packages/platform"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "defaultProvider": "openai-codex",
   "enableSkillCommands": false,
   "quietStartup": false,
