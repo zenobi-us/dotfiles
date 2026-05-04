@@ -1,19 +1,20 @@
-# Markdown Driven Task Management
-
-This is a simplified and concise project management AI memory framework.
-
-## UserRequest
+---
+description: delegate miniproject task to an async subagent.
+---
 
 ```md
 UserRequest: $ARGUMENTS
 ```
 
-## Execution Steps
 
-1. Delegate the following steps to the `general` subagent.
-2. Load the `miniproject` skill and follow the instructions it describes to process UserRequest.
-3. Commit changes using any git commit skill you have and follow the [git commit instructions](#git-commit-instructions) below.
-4. After completing the task, provide a report that follows the [report format](#report-format) below.
+Using the above UserRequest, create a prompt and delegate the task to a async subagent.
+
+## Prompt Template
+
+```md
+1. Load the `miniproject` skill and follow the instructions it describes to process UserRequest.
+2. Commit changes using any git commit skill you have and follow the [git commit instructions](#git-commit-instructions) below.
+3. After completing the task, provide a report that follows the [report format](#report-format) below.
 
 ### Git Commit Instructions
 
@@ -43,3 +44,6 @@ After committing the `.memory/` changes, we can then stage and commit all other 
 - **Files Changed**: A list of files modified, created, or deleted, with a brief description of each change.
 - **Next Steps**: Recommendations for further actions, such as additional testing, documentation updates, or future improvements.
 - [CRITICAL] Avoid creating summarisation files; provide the summary directly in your response.
+
+```
+
