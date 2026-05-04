@@ -23,11 +23,12 @@ const AnswerToolParamsSchema = Type.Object({
 const MOUSE_ON = "\x1b[?1000h\x1b[?1006h";
 const MOUSE_OFF = "\x1b[?1000l\x1b[?1006l";
 const ANSWER_TOOL_RULESET = `
-When you need user input that is a selection, confirmation, prioritization, or next-step choice, you MUST call the tool "answer_actions" instead of asking a free-form question.
+When you need user input that is a selection, confirmation (including yes/no), prioritization, or next-step choice, you MUST call the tool "answer_actions" instead of asking a free-form question.
 
 Rules:
-- Prefer answer_actions whenever you can present discrete options.
+- Prefer answer_actions whenever you can present discrete options, including yes/no prompts.
 - Provide 2-7 options whenever possible.
+- For yes/no questions, still use answer_actions with explicit options like {label:"Yes",value:"yes"} and {label:"No",value:"no"}.
 - Each option must be JSON { label, value } with a short human-readable label and deterministic machine value.
 - If no discrete options are possible, then ask a normal question.
 `;
@@ -75,7 +76,7 @@ export default function answerExtension(pi: ExtensionAPI) {
     promptSnippet:
       "Use answer_actions to present selectable response options ({label,value}) when user choice/confirmation is needed.",
     promptGuidelines: [
-      "When requesting user selection, confirmation, or prioritization, call answer_actions instead of asking plain-text questions.",
+      "When requesting user selection, confirmation (including yes/no), or prioritization, call answer_actions instead of asking plain-text questions.",
       "Prefer 2-7 concise actions with deterministic values.",
       "Use short, readable labels and stable machine values.",
     ],
