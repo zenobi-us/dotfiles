@@ -316,6 +316,7 @@ export default function answerExtension(pi: ExtensionAPI) {
                 : null,
           freeText: selected?.kind === "free_text" ? selected.text : null,
           kind: selected?.kind ?? null,
+          actions,
         };
 
         return {
@@ -349,10 +350,35 @@ export default function answerExtension(pi: ExtensionAPI) {
     renderResult(result, options, theme) {
       if (options.isPartial)
         return new Text(theme.fg("dim", "waiting for selection..."), 0, 0);
-      const text =
-        (result.content?.find((c: any) => c.type === "text") as any)?.text ??
-        "{}";
-      return new Text(theme.fg("toolOutput", text), 0, 0);
-    },
+
+      const details = (result.details ?? {}) as {
+        selected?: { label?: string; value?: string } | null;
+        freeText?: string | null;
+        kind?: "action" | "free_text" | null;
+        actions?: Array<{ label: string; value: string }>;
+      };
+
+      const label = details.selected?.label?.trim() || "(no selection)";
+
+      if (!options.expanded) {
+        return new Text(theme.fg("toolOutput", label), 0, 0);
+      }
+
+      const possibleAnswers = (details.actions ?? [])
+        .map((a, i) => `  ${i + 1}. ${a.label} (${a.value})`)
+        .join("\n");
+
+      const verbose = [
+        theme.fg("toolOutput", "answer_actions result"),
+        theme.fg("toolOutput", `- kind: ${details.kind ?? "none"}`),
+        theme.fg("toolOutput", `- label: ${details.selected?.label ?? ""}`),
+        theme.fg("toolOutput", `- value: ${details.selected?.value ?? ""}`),
+        theme.fg("toolOutput", `- free_text: ${details.freeText ?? ""}`),
+        theme.fg("toolOutput", "- possible_answers:"),
+        theme.fg("toolOutput", possibleAnswers || "  (none)"),
+      ].join("\n");
+
+      return new Text(verbose, 0, 0);
+    }
   });
 }
