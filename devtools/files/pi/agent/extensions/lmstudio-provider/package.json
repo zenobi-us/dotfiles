@@ -1,0 +1,14 @@
+{
+  "name": "lmstudio-provider",
+  "version": "1.0.0",
+  "description": "LM Studio provider + model loader for pi",
+  "type": "module",
+  "main": "index.ts",
+  "pi": {
+    "extensions": ["index.ts"]
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*"
+  }
+}
