@@ -162,16 +162,18 @@ function normalizePath(input: string): string {
   return trimmed;
 }
 
-function resolvePackageSkillPaths(agentDir: string): string[] {
+function resolvePackageSkillPaths(cwd: string, agentDir: string): string[] {
   const skillPaths: string[] = [];
 
   try {
-    const settingsManager = SettingsManager.create(undefined, agentDir);
+    const settingsManager = SettingsManager.create(cwd, agentDir);
     const packageSources = settingsManager.getPackages();
 
     for (const source of packageSources) {
-      if (!source || typeof source !== "string") continue;
-      skillPaths.push(...resolvePackage(source, agentDir));
+      if (!source) continue;
+      const rawSource = typeof source === "string" ? source : source.source;
+      if (typeof rawSource !== "string" || rawSource.length === 0) continue;
+      skillPaths.push(...resolvePackage(rawSource, agentDir));
     }
   } catch {
     // Ignore settings loading errors and keep existing default behavior.
@@ -498,7 +500,7 @@ export function resolveSkillRoots(
 
   const userSkillsDir = join(agentDir, "skills");
   const projectSkillsDir = resolve(cwd, CONFIG_DIR_NAME, "skills");
-  const packageSkillDirs = resolvePackageSkillPaths(agentDir);
+  const packageSkillDirs = resolvePackageSkillPaths(cwd, agentDir);
 
   return [...packageSkillDirs, userSkillsDir, projectSkillsDir].filter(
     (dir): dir is string => typeof dir === "string" && dir.trim().length > 0,
