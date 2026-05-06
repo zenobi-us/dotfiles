@@ -20,6 +20,7 @@ import {
 import { Type } from "@mariozechner/pi-ai";
 import { Text } from "@mariozechner/pi-tui";
 
+import { existsSync } from "node:fs";
 import { FindSkillsCmd, lexicalScoreSearch, SearchResults } from "./cmds/find.js";
 import {
   createRuntimeSettingsService,
@@ -41,6 +42,12 @@ export {
 
 export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
   const registry = createSkillRegistry();
+
+  pi.registerFlag("skills-debug", {
+    description: "Show skills extension startup diagnostics",
+    type: "boolean",
+    default: false,
+  });
   // defer SettingsManager access until session_start to avoid load-time failures
 
   // Load skills on session start
@@ -58,11 +65,68 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       );
     }
 
+    const skillsDebug = pi.getFlag("skills-debug") === true;
+    const resolvedRoots = resolveSkillRoots({ cwd: ctx.cwd, includeDefaults: true });
+
+    const debugLog = (message: string) => {
+      // info notifications can be hidden when quietStartup is enabled
+      if (ctx.hasUI) ctx.ui.notify(message, "warning");
+    };
+
+    if (skillsDebug) {
+      let packageSources: string[] = [];
+      try {
+        const configured = SettingsManager.create(ctx.cwd).getPackages();
+        packageSources = configured
+          .map((pkg) => (typeof pkg === "string" ? pkg : pkg?.source))
+          .filter((value): value is string => typeof value === "string" && value.length > 0);
+      } catch {
+        packageSources = [];
+      }
+
+      const rootDetails = resolvedRoots.map((root) => ({
+        root,
+        exists: existsSync(root),
+      }));
+
+      debugLog(
+        `[skills-debug] package sources:\n${packageSources.map((s) => `- ${s}`).join("\n") || "- (none)"}`,
+      );
+      debugLog(
+        `[skills-debug] roots:\n${rootDetails
+          .map((r) => `- ${r.root} [${r.exists ? "exists" : "missing"}]`)
+          .join("\n") || "- (none)"}`,
+      );
+      debugLog(
+        `[skills-debug] resolved roots:\n${resolvedRoots.map((root) => `- ${root}`).join("\n") || "- (none)"}`,
+      );
+    }
+
     await registry.load({
       cwd: ctx.cwd,
       includeDefaults: true,
       lazySkills: runtimeSettings.lazySkills, // Don't read skill files until needed to save startup time
     });
+
+    if (skillsDebug) {
+      debugLog(`[skills-debug] loaded ${registry.skills.length} skill(s)`);
+    }
+
+    if (skillsDebug) {
+      const perRootCounts = resolvedRoots.map((root) => {
+        const normalizedRoot = root.endsWith("/") ? root : `${root}/`;
+        const count = registry.skills.filter((s) =>
+          s.filePath.startsWith(normalizedRoot) || s.filePath === root,
+        ).length;
+        return { root, count };
+      });
+
+      debugLog(
+        `[skills-debug] per-root skill counts:\n${perRootCounts
+          .map((r) => `- ${r.root}: ${r.count}`)
+          .join("\n") || "- (none)"}`,
+      );
+    }
 
     // Log diagnostics
     for (const diag of registry.diagnostics) {
