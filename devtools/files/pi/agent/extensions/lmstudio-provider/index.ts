@@ -6,7 +6,10 @@ import type { ExtensionAPI, ExtensionCommandContext } from "@mariozechner/pi-cod
 type LmModel = {
   type: "llm" | "embedding";
   key: string;
+  publisher?: string;
   display_name?: string;
+  params_string?: string;
+  quantization?: { name?: string | null; bits_per_weight?: number | null } | null;
   max_context_length?: number;
   loaded_instances?: Array<{ id: string }>;
 };
@@ -78,11 +81,27 @@ async function showModels(ctx: ExtensionCommandContext): Promise<void> {
     return;
   }
 
-  const lines = ["LM Studio Models", "─".repeat(40)];
+  const lines = [
+    "LM Studio Models",
+    "",
+    "| model | quant | params | max_ctx |",
+    "|---|---|---:|---:|",
+  ];
+
   for (const m of models) {
+    const modelName = `${m.publisher ?? "unknown"}/${m.display_name ?? m.key}`;
+    const quant = m.quantization?.name
+      ? m.quantization.bits_per_weight
+        ? `${m.quantization.name} (${m.quantization.bits_per_weight}-bit)`
+        : m.quantization.name
+      : "-";
+    const params = m.params_string ?? "-";
+    const maxCtx = m.max_context_length ?? "-";
     const loaded = (m.loaded_instances?.length ?? 0) > 0 ? " (loaded)" : "";
-    lines.push(`${m.key}${loaded}`);
+
+    lines.push(`| ${modelName}${loaded} | ${quant} | ${params} | ${maxCtx} |`);
   }
+
   ctx.ui.notify(lines.join("\n"), "info");
 }
 
