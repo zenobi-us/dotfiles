@@ -1,15 +1,92 @@
 {
-  "updatedAt": "2025-12-15T23:57:50.345Z",
+  "updatedAt": "2026-05-01T04:28:27.888Z",
   "tools": {
     "atlassian-user-info": {
       "type": "object",
       "properties": {},
-      "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
     "get-accessible-atlassian-resources": {
       "type": "object",
       "properties": {},
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "get-confluence-page": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "pageId": {
+          "type": "string",
+          "description": "Page or blog post ID, or a Confluence tiny link ID (the encoded part from /wiki/x/ URLs, e.g., Fc1bBw)"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "page",
+            "blog"
+          ],
+          "default": "page",
+          "description": "Type of content: page or blog post"
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
+        }
+      },
+      "required": [
+        "cloudId",
+        "pageId"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "search-confluence-using-cql": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "cql": {
+          "type": "string",
+          "description": "CQL query string (e.g., \"title ~ \"meeting\" AND type = page\")"
+        },
+        "cqlcontext": {
+          "type": "string",
+          "description": "CQL context"
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Pagination cursor"
+        },
+        "expand": {
+          "type": "string",
+          "description": "Properties to expand"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Max results (default: 25, max: 250)"
+        },
+        "prev": {
+          "type": "boolean",
+          "description": "Include previous page link"
+        },
+        "next": {
+          "type": "boolean",
+          "description": "Include next page link"
+        }
+      },
+      "required": [
+        "cloudId",
+        "cql"
+      ],
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
@@ -18,7 +95,7 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "ids": {
           "anyOf": [
@@ -32,7 +109,7 @@
               }
             }
           ],
-          "description": "Filter by specific numerical space IDs"
+          "description": "Space IDs"
         },
         "keys": {
           "anyOf": [
@@ -46,17 +123,15 @@
               }
             }
           ],
-          "description": "Filter by space keys (unique identifiers)"
+          "description": "Space keys"
         },
         "type": {
           "type": "string",
           "enum": [
             "global",
-            "collaboration",
-            "knowledge_base",
             "personal"
           ],
-          "description": "Filter by space type"
+          "description": "Space type"
         },
         "status": {
           "type": "string",
@@ -64,7 +139,7 @@
             "current",
             "archived"
           ],
-          "description": "Filter by space status"
+          "description": "Space status"
         },
         "labels": {
           "anyOf": [
@@ -78,79 +153,41 @@
               }
             }
           ],
-          "description": "Filter by space labels"
+          "description": "Space labels"
+        },
+        "favourite": {
+          "type": "boolean",
+          "description": "Favorite spaces only"
         },
         "favoritedBy": {
           "type": "string",
-          "description": "Filter spaces favorited by a specific user account ID"
+          "description": "User favorites"
         },
-        "notFavoritedBy": {
-          "type": "string",
-          "description": "Filter spaces not favorited by a specific user account ID"
-        },
-        "sort": {
-          "type": "string",
-          "enum": [
-            "id",
-            "-id",
-            "key",
-            "-key",
-            "name",
-            "-name"
+        "expand": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           ],
-          "description": "Sort order for results"
+          "description": "Properties to expand"
         },
-        "descriptionFormat": {
-          "type": "string",
-          "enum": [
-            "plain",
-            "view"
-          ],
-          "description": "Format for space descriptions"
-        },
-        "includeIcon": {
-          "type": "boolean",
-          "description": "Include space icon information in response"
-        },
-        "cursor": {
-          "type": "string",
-          "description": "Pagination cursor for retrieving next page of results"
+        "start": {
+          "type": "number",
+          "description": "Start index"
         },
         "limit": {
           "type": "number",
-          "description": "Maximum number of spaces to return (default: 25, max: 250)"
+          "description": "Max results (default: 25, max: 250)"
         }
       },
       "required": [
         "cloudId"
-      ],
-      "additionalProperties": false,
-      "$schema": "http://json-schema.org/draft-07/schema#"
-    },
-    "get-confluence-page": {
-      "type": "object",
-      "properties": {
-        "cloudId": {
-          "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
-        },
-        "pageId": {
-          "type": "string",
-          "description": "The unique identifier of the page to retrieve. Can be extracted from Confluence URLs (e.g., the numeric ID in the URL path)"
-        },
-        "contentFormat": {
-          "type": "string",
-          "enum": [
-            "markdown",
-            "adf"
-          ],
-          "default": "markdown",
-          "description": "Format for the page body content. One of \"markdown\" (default) or \"adf\" for Atlassian Document Format"
-        }
-      },
-      "required": [
-        "cloudId",
-        "pageId"
       ],
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
@@ -160,19 +197,28 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "spaceId": {
           "type": "string",
-          "description": "The unique numerical identifier of the space to search within"
+          "description": "Space ID"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "page",
+            "blog"
+          ],
+          "default": "page",
+          "description": "Type of content: page or blog post"
         },
         "limit": {
           "type": "number",
-          "description": "Maximum number of pages to return (default: 25, max: 250)"
+          "description": "Max results (default: 25, max: 250)"
         },
         "cursor": {
           "type": "string",
-          "description": "Opaque cursor for pagination"
+          "description": "Pagination cursor"
         },
         "status": {
           "type": "string",
@@ -182,11 +228,11 @@
             "deleted",
             "trashed"
           ],
-          "description": "Filter pages by status"
+          "description": "Page status"
         },
         "title": {
           "type": "string",
-          "description": "Filter pages by title"
+          "description": "Title filter"
         },
         "sort": {
           "type": "string",
@@ -200,23 +246,15 @@
             "title",
             "-title"
           ],
-          "description": "Sort pages by field(s)"
+          "description": "Sort order"
         },
-        "depth": {
+        "contentFormat": {
           "type": "string",
           "enum": [
-            "all",
-            "root"
+            "markdown",
+            "adf"
           ],
-          "description": "Filter pages by depth, default: all"
-        },
-        "subtype": {
-          "type": "string",
-          "enum": [
-            "live",
-            "page"
-          ],
-          "description": "Filter pages by subtype. Use \"live\" for live docs or \"page\" for regular pages"
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
@@ -231,19 +269,28 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "pageId": {
           "type": "string",
-          "description": "The unique identifier of the page whose footer comments to retrieve"
+          "description": "Page or blog post ID, or a Confluence tiny link ID (the encoded part from /wiki/x/ URLs, e.g., Fc1bBw)"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "page",
+            "blog"
+          ],
+          "default": "page",
+          "description": "Type of content: page or blog post"
         },
         "limit": {
           "type": "number",
-          "description": "Maximum number of comments to return"
+          "description": "Max comments"
         },
         "cursor": {
           "type": "string",
-          "description": "Pagination cursor for retrieving next page of results"
+          "description": "Pagination cursor"
         },
         "status": {
           "type": "string",
@@ -256,7 +303,7 @@
             "draft"
           ],
           "default": "current",
-          "description": "Filter comments by status"
+          "description": "Comment status"
         },
         "sort": {
           "type": "string",
@@ -266,7 +313,15 @@
             "created-date",
             "-created-date"
           ],
-          "description": "Sort order for comments"
+          "description": "Sort order"
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
@@ -281,19 +336,28 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "pageId": {
           "type": "string",
-          "description": "The unique identifier of the page whose inline comments to retrieve"
+          "description": "Page or blog post ID, or a Confluence tiny link ID (the encoded part from /wiki/x/ URLs, e.g., Fc1bBw)"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "page",
+            "blog"
+          ],
+          "default": "page",
+          "description": "Type of content: page or blog post"
         },
         "limit": {
           "type": "number",
-          "description": "Maximum number of comments to return"
+          "description": "Max comments"
         },
         "cursor": {
           "type": "string",
-          "description": "Pagination cursor for retrieving next page of results"
+          "description": "Pagination cursor"
         },
         "status": {
           "type": "string",
@@ -306,7 +370,7 @@
             "draft"
           ],
           "default": "current",
-          "description": "Filter comments by status"
+          "description": "Comment status"
         },
         "resolutionStatus": {
           "type": "string",
@@ -317,7 +381,7 @@
             "reopened"
           ],
           "default": "open",
-          "description": "Filter comments by resolution status"
+          "description": "Resolution status"
         },
         "sort": {
           "type": "string",
@@ -327,7 +391,15 @@
             "created-date",
             "-created-date"
           ],
-          "description": "Sort order for comments"
+          "description": "Sort order"
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
@@ -337,28 +409,82 @@
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
+    "get-confluence-comment-children": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "commentId": {
+          "type": "string",
+          "description": "Parent comment ID"
+        },
+        "commentType": {
+          "type": "string",
+          "enum": [
+            "footer",
+            "inline"
+          ],
+          "description": "Comment type"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Max replies"
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Pagination cursor"
+        },
+        "sort": {
+          "type": "string",
+          "enum": [
+            "id",
+            "-id",
+            "created-date",
+            "-created-date"
+          ],
+          "description": "Sort order"
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
+        }
+      },
+      "required": [
+        "cloudId",
+        "commentId",
+        "commentType"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
     "get-confluence-page-descendants": {
       "type": "object",
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "pageId": {
           "type": "string",
-          "description": "The unique identifier of the page whose descendants to retrieve"
+          "description": "Page or blog post ID, or a Confluence tiny link ID (the encoded part from /wiki/x/ URLs, e.g., Fc1bBw)"
         },
         "limit": {
           "type": "number",
-          "description": "Maximum number of descendants to return"
+          "description": "Max descendants"
         },
         "depth": {
           "type": "number",
-          "description": "Maximum depth to traverse in the page hierarchy"
+          "description": "Max depth"
         },
         "cursor": {
           "type": "string",
-          "description": "Pagination cursor for retrieving next page of results"
+          "description": "Pagination cursor"
         }
       },
       "required": [
@@ -373,23 +499,41 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "spaceId": {
           "type": "string",
-          "description": "The unique numerical identifier of the space where the page will be created"
+          "description": "Space ID"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "page",
+            "blog"
+          ],
+          "default": "page",
+          "description": "Type of content: page or blog post"
         },
         "title": {
           "type": "string",
-          "description": "The title of the new page"
+          "description": "Page or blog post title"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "current",
+            "draft"
+          ],
+          "default": "current",
+          "description": "Status (draft for unpublished)"
         },
         "parentId": {
           "type": "string",
-          "description": "The unique identifier of the parent page (if creating a child page)"
+          "description": "Parent page ID (pages only, ignored for blogs)"
         },
         "body": {
           "type": "string",
-          "description": "The content of the page in the specified format"
+          "description": "Page/comment body. When contentFormat is \"html\", use standard HTML for headings (<h1>-<h6>), paragraphs (<p>), bold (<strong>), italic (<em>), tables (<table>/<thead>/<tbody>/<tr>/<th>/<td>), links (<a href=\"URL\">), code (<pre><code class=\"language-python\">), and lists (<ul>/<ol>/<li>). For Confluence-specific elements use data-type attributes (not CSS classes): Panels: <div data-type=\"panel-info|warning|note|success|error\"><p>text</p></div>. Status lozenge: <span data-type=\"status\" data-color=\"green|red|yellow|blue|neutral|purple\">Label</span>. Task list: <ul data-type=\"task-list\"><li data-type=\"task-item\"><input type=\"checkbox\"> Item</li></ul>. Decision list: <ul data-type=\"decision-list\"><li data-type=\"decision-item\" data-state=\"DECIDED|UNDECIDED\">text</li></ul>. Expand/collapse: <details><summary>Title</summary><p>content</p></details>. User mention: <span data-type=\"mention\" data-user-id=\"ACCOUNT_ID\">@Name</span>. Two-column layout: <section data-type=\"layout-two-equal\"><div data-type=\"column\"><p>Left</p></div><div data-type=\"column\"><p>Right</p></div></section>. Smart link (inline preview): <a href=\"URL\" data-card-appearance=\"inline\">text</a>. Date: <time datetime=\"YYYY-MM-DD\">label</time>. Never wrap content in <html>, <head>, or <body> tags."
         },
         "contentFormat": {
           "type": "string",
@@ -397,19 +541,18 @@
             "markdown",
             "adf"
           ],
-          "default": "markdown",
-          "description": "Format of the page body content. One of \"markdown\" (default) or \"adf\" for Atlassian Document Format"
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         },
         "isPrivate": {
           "type": "boolean",
-          "description": "The page will be private. Only the user who creates this page will have permission to view and edit one."
+          "description": "Make private"
         },
         "subtype": {
           "type": "string",
           "enum": [
             "live"
           ],
-          "description": "The subtype of the page. Set to \"live\" to create a live doc, or omit to create a regular page."
+          "description": "Page subtype (pages only, ignored for blogs)"
         }
       },
       "required": [
@@ -425,15 +568,24 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "pageId": {
           "type": "string",
-          "description": "The unique identifier of the existing page to update"
+          "description": "Page or blog post ID, or a Confluence tiny link ID (the encoded part from /wiki/x/ URLs, e.g., Fc1bBw)"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "page",
+            "blog"
+          ],
+          "default": "page",
+          "description": "Type of content: page or blog post"
         },
         "title": {
           "type": "string",
-          "description": "The new title for the page (if not provided, retains the existing title)"
+          "description": "New title"
         },
         "status": {
           "type": "string",
@@ -442,19 +594,19 @@
             "draft"
           ],
           "default": "current",
-          "description": "The status of the page to update (defaults to current). If draft is specified, then the page's draft version will be updated."
+          "description": "Page status"
         },
         "spaceId": {
           "type": "string",
-          "description": "The unique numerical identifier of the space (if moving the page)"
+          "description": "Space ID"
         },
         "parentId": {
           "type": "string",
-          "description": "The unique identifier of the parent page (if changing hierarchy)"
+          "description": "Parent page ID (pages only, ignored for blogs)"
         },
         "body": {
           "type": "string",
-          "description": "The content of the page in the specified format"
+          "description": "Page/comment body. When contentFormat is \"html\", use standard HTML for headings (<h1>-<h6>), paragraphs (<p>), bold (<strong>), italic (<em>), tables (<table>/<thead>/<tbody>/<tr>/<th>/<td>), links (<a href=\"URL\">), code (<pre><code class=\"language-python\">), and lists (<ul>/<ol>/<li>). For Confluence-specific elements use data-type attributes (not CSS classes): Panels: <div data-type=\"panel-info|warning|note|success|error\"><p>text</p></div>. Status lozenge: <span data-type=\"status\" data-color=\"green|red|yellow|blue|neutral|purple\">Label</span>. Task list: <ul data-type=\"task-list\"><li data-type=\"task-item\"><input type=\"checkbox\"> Item</li></ul>. Decision list: <ul data-type=\"decision-list\"><li data-type=\"decision-item\" data-state=\"DECIDED|UNDECIDED\">text</li></ul>. Expand/collapse: <details><summary>Title</summary><p>content</p></details>. User mention: <span data-type=\"mention\" data-user-id=\"ACCOUNT_ID\">@Name</span>. Two-column layout: <section data-type=\"layout-two-equal\"><div data-type=\"column\"><p>Left</p></div><div data-type=\"column\"><p>Right</p></div></section>. Smart link (inline preview): <a href=\"URL\" data-card-appearance=\"inline\">text</a>. Date: <time datetime=\"YYYY-MM-DD\">label</time>. Never wrap content in <html>, <head>, or <body> tags."
         },
         "contentFormat": {
           "type": "string",
@@ -462,12 +614,16 @@
             "markdown",
             "adf"
           ],
-          "default": "markdown",
-          "description": "Format of the page body content. One of \"markdown\" (default) or \"adf\" for Atlassian Document Format"
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         },
         "versionMessage": {
           "type": "string",
-          "description": "Optional message describing the changes made in this version"
+          "description": "Version message"
+        },
+        "includeBody": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, include the page body in the response; if false, omit it to reduce payload size."
         }
       },
       "required": [
@@ -483,27 +639,44 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "pageId": {
           "type": "string",
-          "description": "The id of the page to add the comment to."
+          "description": "Page or blog post ID, or a Confluence tiny link ID (the encoded part from /wiki/x/ URLs, e.g., Fc1bBw)"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "page",
+            "blog"
+          ],
+          "default": "page",
+          "description": "Type of content: page or blog post"
         },
         "parentCommentId": {
           "type": "string",
-          "description": "The id of the parent comment to reply to."
+          "description": "Parent comment ID for replies"
         },
         "attachmentId": {
           "type": "string",
-          "description": "The id of the attachment to add to the comment."
+          "description": "Attachment ID to include"
         },
         "customContentId": {
           "type": "string",
-          "description": "The id of the custom content to add to the comment."
+          "description": "Custom content ID to include"
         },
         "body": {
           "type": "string",
-          "description": "The content of the comment in Markdown format."
+          "description": "Page/comment body. When contentFormat is \"html\", use standard HTML for headings (<h1>-<h6>), paragraphs (<p>), bold (<strong>), italic (<em>), tables (<table>/<thead>/<tbody>/<tr>/<th>/<td>), links (<a href=\"URL\">), code (<pre><code class=\"language-python\">), and lists (<ul>/<ol>/<li>). For Confluence-specific elements use data-type attributes (not CSS classes): Panels: <div data-type=\"panel-info|warning|note|success|error\"><p>text</p></div>. Status lozenge: <span data-type=\"status\" data-color=\"green|red|yellow|blue|neutral|purple\">Label</span>. Task list: <ul data-type=\"task-list\"><li data-type=\"task-item\"><input type=\"checkbox\"> Item</li></ul>. Decision list: <ul data-type=\"decision-list\"><li data-type=\"decision-item\" data-state=\"DECIDED|UNDECIDED\">text</li></ul>. Expand/collapse: <details><summary>Title</summary><p>content</p></details>. User mention: <span data-type=\"mention\" data-user-id=\"ACCOUNT_ID\">@Name</span>. Two-column layout: <section data-type=\"layout-two-equal\"><div data-type=\"column\"><p>Left</p></div><div data-type=\"column\"><p>Right</p></div></section>. Smart link (inline preview): <a href=\"URL\" data-card-appearance=\"inline\">text</a>. Date: <time datetime=\"YYYY-MM-DD\">label</time>. Never wrap content in <html>, <head>, or <body> tags."
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
@@ -518,34 +691,51 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "pageId": {
           "type": "string",
-          "description": "The id of the page to add the comment to."
+          "description": "Page or blog post ID, or a Confluence tiny link ID (the encoded part from /wiki/x/ URLs, e.g., Fc1bBw)"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "page",
+            "blog"
+          ],
+          "default": "page",
+          "description": "Type of content: page or blog post"
         },
         "parentCommentId": {
           "type": "string",
-          "description": "The id of the parent comment to reply to."
+          "description": "Parent comment ID for replies"
         },
         "body": {
           "type": "string",
-          "description": "The content of the comment in Markdown format."
+          "description": "Page/comment body. When contentFormat is \"html\", use standard HTML for headings (<h1>-<h6>), paragraphs (<p>), bold (<strong>), italic (<em>), tables (<table>/<thead>/<tbody>/<tr>/<th>/<td>), links (<a href=\"URL\">), code (<pre><code class=\"language-python\">), and lists (<ul>/<ol>/<li>). For Confluence-specific elements use data-type attributes (not CSS classes): Panels: <div data-type=\"panel-info|warning|note|success|error\"><p>text</p></div>. Status lozenge: <span data-type=\"status\" data-color=\"green|red|yellow|blue|neutral|purple\">Label</span>. Task list: <ul data-type=\"task-list\"><li data-type=\"task-item\"><input type=\"checkbox\"> Item</li></ul>. Decision list: <ul data-type=\"decision-list\"><li data-type=\"decision-item\" data-state=\"DECIDED|UNDECIDED\">text</li></ul>. Expand/collapse: <details><summary>Title</summary><p>content</p></details>. User mention: <span data-type=\"mention\" data-user-id=\"ACCOUNT_ID\">@Name</span>. Two-column layout: <section data-type=\"layout-two-equal\"><div data-type=\"column\"><p>Left</p></div><div data-type=\"column\"><p>Right</p></div></section>. Smart link (inline preview): <a href=\"URL\" data-card-appearance=\"inline\">text</a>. Date: <time datetime=\"YYYY-MM-DD\">label</time>. Never wrap content in <html>, <head>, or <body> tags."
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         },
         "inlineCommentProperties": {
           "type": "object",
           "properties": {
             "textSelection": {
               "type": "string",
-              "description": "The text to highlight"
+              "description": "Text to highlight"
             },
             "textSelectionMatchCount": {
               "type": "number",
-              "description": "The number of matches for the selected text on the page (should be strictly greater than textSelectionMatchIndex)"
+              "description": "Total matches on page"
             },
             "textSelectionMatchIndex": {
               "type": "number",
-              "description": "The match index to highlight. This is zero-based. E.g. if you have 3 occurrences of \"hello world\" on a page and you want to highlight the second occurrence, you should pass 1 for textSelectionMatchIndex and 3 for textSelectionMatchCount."
+              "description": "Which match to highlight (0-based)"
             }
           },
           "required": [
@@ -554,7 +744,7 @@
             "textSelectionMatchIndex"
           ],
           "additionalProperties": false,
-          "description": "Object describing the text to highlight on the page/blog post. Only applicable for top level inline comments (not replies) and required in that case."
+          "description": "Text selection properties for highlighting"
         }
       },
       "required": [
@@ -564,59 +754,16 @@
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
-    "search-confluence-using-cql": {
-      "type": "object",
-      "properties": {
-        "cloudId": {
-          "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
-        },
-        "cql": {
-          "type": "string",
-          "description": "The CQL query string (e.g., \"title ~ 'meeting' AND type = page\")"
-        },
-        "cqlcontext": {
-          "type": "string",
-          "description": "The context for the CQL query execution"
-        },
-        "cursor": {
-          "type": "string",
-          "description": "Pagination cursor for retrieving next page of results"
-        },
-        "expand": {
-          "type": "string",
-          "description": "Comma-separated list of properties to expand in the response"
-        },
-        "limit": {
-          "type": "number",
-          "description": "Maximum number of results to return (default: 25, max: 250)"
-        },
-        "prev": {
-          "type": "boolean",
-          "description": "Include previous page link in pagination"
-        },
-        "next": {
-          "type": "boolean",
-          "description": "Include next page link in pagination"
-        }
-      },
-      "required": [
-        "cloudId",
-        "cql"
-      ],
-      "additionalProperties": false,
-      "$schema": "http://json-schema.org/draft-07/schema#"
-    },
     "get-jira-issue": {
       "type": "object",
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "issueIdOrKey": {
           "type": "string",
-          "description": "Issue id or key can be used to uniquely identify an existing issue.\nIssue id is a numerical identifier. An example issue id is 10000.\nIssue key is formatted as a project key followed by a hyphen '-' character and then followed by a sequential number.\nAn example issue key is ISSUE-1."
+          "description": "Issue ID or key (e.g., PROJ-123 or 10000)"
         },
         "fields": {
           "type": "array",
@@ -641,6 +788,14 @@
         },
         "failFast": {
           "type": "boolean"
+        },
+        "responseContentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
@@ -655,15 +810,31 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "issueIdOrKey": {
           "type": "string",
-          "description": "Issue id or key can be used to uniquely identify an existing issue.\nIssue id is a numerical identifier. An example issue id is 10000.\nIssue key is formatted as a project key followed by a hyphen '-' character and then followed by a sequential number.\nAn example issue key is ISSUE-1."
+          "description": "Issue ID or key (e.g., PROJ-123 or 10000)"
         },
         "fields": {
           "type": "object",
           "additionalProperties": {}
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
+        },
+        "responseContentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
@@ -679,34 +850,65 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "projectKey": {
           "type": "string",
-          "description": "A project key in Jira is a unique identifier (a string of letters, numbers and sometimes underscores) of a project.\n      There is a tool \"getVisibleJiraProjects\" to look up which projects the user has create permission to create a new Jira issue."
+          "description": "Project key"
         },
         "issueTypeName": {
           "type": "string",
-          "description": "A Jira issue type categorizes and  distinguishes different kinds of work being tracked within a project.\n      It's a way to define what a specific piece of work represents.\n      For example, in a Jira Software project, there are \"Epic\", \"Story\", \"Task\", \"Bug\" or \"Subtask\" issue types by default.\n      Or in Jira Service Management, there are \"Change\", \"IT help\", \"Incident\", \"New feature\", \"Problem\", \"Service request\", \"Service request with approval\" or \"Support\" issue types by default.\n      User can remove those default ones and/or define their own issue types as well.\n      There is a tool \"getJiraProjectIssueTypesMetadata\" to get the available issue types in a given project."
+          "description": "Type (Task, Bug, Story)"
         },
         "summary": {
           "type": "string"
         },
         "description": {
           "type": "string",
-          "description": "The content of the issue's description in Markdown format."
+          "description": "Issue description"
         },
         "parent": {
           "type": "string",
-          "description": "The issue key or id of the parent issue for \"Subtask\" issue types."
+          "description": "Parent for subtasks"
         },
         "assignee_account_id": {
           "type": "string",
-          "description": "During issue creation, we can set an assignee for the new issue.\n      The input must be an account id of a valid user in the given cloud id.\n      There is a tool \"atlassianUserInfo\" to get the account id of the current user.\n      There is a tool \"lookupJiraAccountId\" to get the account ids of the existing users in Jira based on the user's display name or email address."
+          "description": "Assignee ID"
         },
         "additional_fields": {
           "type": "object",
-          "additionalProperties": {}
+          "additionalProperties": {},
+          "description": "REQUIRED for custom fields. This is the ONLY parameter to set priority, labels, custom fields, or any other Jira fields not listed above. Pass a JSON object with field names as keys. Example: {\"priority\": {\"name\": \"High\"}, \"labels\": [\"bug\"], \"customfield_10001\": \"value\"}."
+        },
+        "transition": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The workflow transition ID to apply during issue creation"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Optional workflow transition to apply during creation. Use getTransitionsForJiraIssue to find valid transition IDs. Placed at top level of Jira API request, not inside fields."
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
+        },
+        "responseContentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
@@ -723,11 +925,11 @@
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "issueIdOrKey": {
           "type": "string",
-          "description": "Issue id or key can be used to uniquely identify an existing issue.\nIssue id is a numerical identifier. An example issue id is 10000.\nIssue key is formatted as a project key followed by a hyphen '-' character and then followed by a sequential number.\nAn example issue key is ISSUE-1."
+          "description": "Issue ID or key (e.g., PROJ-123 or 10000)"
         },
         "expand": {
           "type": "string"
@@ -752,16 +954,193 @@
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
+    "get-jira-issue-remote-issue-links": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "issueIdOrKey": {
+          "type": "string",
+          "description": "Issue ID or key (e.g., PROJ-123 or 10000)"
+        },
+        "globalId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "cloudId",
+        "issueIdOrKey"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "get-visible-jira-projects": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "searchString": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "view",
+            "browse",
+            "edit",
+            "create"
+          ],
+          "default": "create"
+        },
+        "startAt": {
+          "type": "number",
+          "default": 0
+        },
+        "maxResults": {
+          "type": "number",
+          "maximum": 50,
+          "default": 50
+        },
+        "expandIssueTypes": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "required": [
+        "cloudId"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "get-jira-project-issue-types-metadata": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "projectIdOrKey": {
+          "type": "string"
+        },
+        "startAt": {
+          "type": "number",
+          "default": 0
+        },
+        "maxResults": {
+          "type": "number",
+          "maximum": 200,
+          "default": 50
+        }
+      },
+      "required": [
+        "cloudId",
+        "projectIdOrKey"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "get-jira-issue-type-meta-with-fields": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "projectIdOrKey": {
+          "type": "string"
+        },
+        "issueTypeId": {
+          "type": "string"
+        },
+        "startAt": {
+          "type": "number"
+        },
+        "maxResults": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "cloudId",
+        "projectIdOrKey",
+        "issueTypeId"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "add-comment-to-jira-issue": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "issueIdOrKey": {
+          "type": "string",
+          "description": "Issue ID or key (e.g., PROJ-123 or 10000)"
+        },
+        "commentBody": {
+          "type": "string",
+          "description": "Comment body"
+        },
+        "commentVisibility": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "group",
+                "role"
+              ]
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
+        },
+        "responseContentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
+        }
+      },
+      "required": [
+        "cloudId",
+        "issueIdOrKey",
+        "commentBody"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
     "transition-jira-issue": {
       "type": "object",
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "issueIdOrKey": {
           "type": "string",
-          "description": "Issue id or key can be used to uniquely identify an existing issue.\nIssue id is a numerical identifier. An example issue id is 10000.\nIssue key is formatted as a project key followed by a hyphen '-' character and then followed by a sequential number.\nAn example issue key is ISSUE-1."
+          "description": "Issue ID or key (e.g., PROJ-123 or 10000)"
         },
         "transition": {
           "type": "object",
@@ -785,11 +1164,8 @@
             "type": "array",
             "items": {
               "type": "object",
-              "additionalProperties": {
-                "description": "This is the field value. The actual value will depends on the field type."
-              }
-            },
-            "description": "List of operations"
+              "additionalProperties": {}
+            }
           }
         },
         "historyMetadata": {
@@ -897,40 +1273,22 @@
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
-    "lookup-jira-account-id": {
-      "type": "object",
-      "properties": {
-        "cloudId": {
-          "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
-        },
-        "searchString": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "cloudId",
-        "searchString"
-      ],
-      "additionalProperties": false,
-      "$schema": "http://json-schema.org/draft-07/schema#"
-    },
     "search-jira-issues-using-jql": {
       "type": "object",
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
         "jql": {
           "type": "string",
-          "description": "A Jira Query Language (JQL) expression to search Jira issues"
+          "description": "JQL query"
         },
         "maxResults": {
           "type": "number",
           "maximum": 100,
-          "default": 50,
-          "description": "A maximum number of issue to search per page. Default is 50, max is 100"
+          "default": 10,
+          "description": "Max (50-100)"
         },
         "fields": {
           "type": "array",
@@ -948,7 +1306,15 @@
         },
         "nextPageToken": {
           "type": "string",
-          "description": "This is used for pagination purpose to fetch more data if a JQL search has more issues in next pages"
+          "description": "Page token"
+        },
+        "responseContentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
@@ -958,22 +1324,52 @@
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
-    "add-comment-to-jira-issue": {
+    "lookup-jira-account-id": {
       "type": "object",
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
+        },
+        "searchString": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "cloudId",
+        "searchString"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    },
+    "add-worklog-to-jira-issue": {
+      "type": "object",
+      "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Cloud ID (UUID or site URL)"
         },
         "issueIdOrKey": {
           "type": "string",
-          "description": "Issue id or key can be used to uniquely identify an existing issue.\nIssue id is a numerical identifier. An example issue id is 10000.\nIssue key is formatted as a project key followed by a hyphen '-' character and then followed by a sequential number.\nAn example issue key is ISSUE-1."
+          "description": "Issue ID or key (e.g., PROJ-123 or 10000)"
+        },
+        "timeSpent": {
+          "type": "string",
+          "description": "Time spent (e.g. 2h, 30m, 4d). Required for new worklogs; use to set or change time when updating."
+        },
+        "worklogId": {
+          "type": "string",
+          "description": "ID of an existing worklog to update. If omitted, a new worklog is created."
         },
         "commentBody": {
           "type": "string",
-          "description": "The content of the comment in Markdown format."
+          "description": "Comment body"
         },
-        "commentVisibility": {
+        "started": {
+          "type": "string",
+          "description": "When the work was started (ISO 8601 date-time, e.g. 2026-03-09T09:00:00.000+0000). If omitted, the worklog is booked at the current date/time."
+        },
+        "visibility": {
           "type": "object",
           "properties": {
             "type": {
@@ -981,12 +1377,10 @@
               "enum": [
                 "group",
                 "role"
-              ],
-              "description": "Whether visibility of this comment is restricted to a group or role."
+              ]
             },
             "value": {
-              "type": "string",
-              "description": "The name of the group or role that visibility of this comment is restricted to."
+              "type": "string"
             }
           },
           "required": [
@@ -994,76 +1388,30 @@
             "value"
           ],
           "additionalProperties": false
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
         "cloudId",
         "issueIdOrKey",
-        "commentBody"
+        "timeSpent"
       ],
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
-    "get-jira-issue-remote-issue-links": {
+    "get-issue-link-types": {
       "type": "object",
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
-        },
-        "issueIdOrKey": {
-          "type": "string",
-          "description": "Issue id or key can be used to uniquely identify an existing issue.\nIssue id is a numerical identifier. An example issue id is 10000.\nIssue key is formatted as a project key followed by a hyphen '-' character and then followed by a sequential number.\nAn example issue key is ISSUE-1."
-        },
-        "globalId": {
-          "type": "string",
-          "description": "An identifier for the remote item in the remote system.\n          For example, the global ID for a remote item in Confluence would consist of the app ID and page ID, like this: appId=456&pageId=123.\n          When a global ID is provided, this tool returns only the remote issue link of the given Jira issue that has the provided global ID.\n          When no global ID is provided, this tool returns all the remote issue links of the given Jira issue."
-        }
-      },
-      "required": [
-        "cloudId",
-        "issueIdOrKey"
-      ],
-      "additionalProperties": false,
-      "$schema": "http://json-schema.org/draft-07/schema#"
-    },
-    "get-visible-jira-projects": {
-      "type": "object",
-      "properties": {
-        "cloudId": {
-          "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
-        },
-        "searchString": {
-          "type": "string",
-          "description": "Filter the results using a literal string. Projects with a matching key or name are returned (case insensitive)"
-        },
-        "action": {
-          "type": "string",
-          "enum": [
-            "view",
-            "browse",
-            "edit",
-            "create"
-          ],
-          "default": "create",
-          "description": "\n      Filter results by projects for which the user can:\n      * view the project\n      * browse the project\n      * edit the project\n      * create the project, meaning that they have the Create issues project permission for the project in which the issue is created.\n      "
-        },
-        "startAt": {
-          "type": "number",
-          "default": 0,
-          "description": "The index of the first item to return in a page of results (page offset)."
-        },
-        "maxResults": {
-          "type": "number",
-          "maximum": 50,
-          "default": 50,
-          "description": "The maximum number of items to return per page."
-        },
-        "expandIssueTypes": {
-          "type": "boolean",
-          "default": true,
-          "description": "To include additional information about the issue types associated with the project"
+          "description": "Cloud ID (UUID or site URL)"
         }
       },
       "required": [
@@ -1072,63 +1420,43 @@
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
     },
-    "get-jira-project-issue-types-metadata": {
+    "create-issue-link": {
       "type": "object",
       "properties": {
         "cloudId": {
           "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
+          "description": "Cloud ID (UUID or site URL)"
         },
-        "projectIdOrKey": {
-          "type": "string"
+        "inwardIssue": {
+          "type": "string",
+          "description": "Inward issue key (e.g. HSP-1)."
         },
-        "startAt": {
-          "type": "number",
-          "default": 0,
-          "description": "The index of the first item to return in a page of results (page offset)."
+        "outwardIssue": {
+          "type": "string",
+          "description": "Outward issue key (e.g. MKY-1)."
         },
-        "maxResults": {
-          "type": "number",
-          "maximum": 200,
-          "default": 50,
-          "description": "The maximum number of items to return per page."
+        "type": {
+          "type": "string",
+          "description": "Link type name (e.g. Duplicate, Blocks, Clones, Relates). Use getIssueLinkTypes to list available types."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional comment on the outward issue."
+        },
+        "contentFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "adf"
+          ],
+          "description": "Content format for page body. Use \"html\" to write or read Confluence content as structured HTML — supports headings, paragraphs, tables, task lists, panels (info/warning/note/success/error), two/three-column layouts, code blocks, and inline formatting. HTML is round-trip safe and preserves inline comments. Use \"markdown\" for simplified plain text. Use \"adf\" (Atlassian Document Format, JSON) for full programmatic fidelity. Defaults to ADF when omitted."
         }
       },
       "required": [
         "cloudId",
-        "projectIdOrKey"
-      ],
-      "additionalProperties": false,
-      "$schema": "http://json-schema.org/draft-07/schema#"
-    },
-    "get-jira-issue-type-meta-with-fields": {
-      "type": "object",
-      "properties": {
-        "cloudId": {
-          "type": "string",
-          "description": "Unique identifier for an Atlassian Cloud instance in the form of a UUID. Can also be a site URL or extracted from Atlassian URLs - for example, from https://yoursite.atlassian.net/wiki/.... If not working, use the 'getAccessibleAtlassianResources' tool to find accessible Cloud IDs."
-        },
-        "projectIdOrKey": {
-          "type": "string",
-          "description": "The ID or key of the project"
-        },
-        "issueTypeId": {
-          "type": "string",
-          "description": "The ID of the issue type"
-        },
-        "startAt": {
-          "type": "number",
-          "description": "The index of the first item to return (0-based)"
-        },
-        "maxResults": {
-          "type": "number",
-          "description": "The maximum number of items to return per page"
-        }
-      },
-      "required": [
-        "cloudId",
-        "projectIdOrKey",
-        "issueTypeId"
+        "inwardIssue",
+        "outwardIssue",
+        "type"
       ],
       "additionalProperties": false,
       "$schema": "http://json-schema.org/draft-07/schema#"
@@ -1136,6 +1464,10 @@
     "search": {
       "type": "object",
       "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Not needed for this tool — cloudId is derived from your access token automatically"
+        },
         "query": {
           "type": "string",
           "description": "The search query to use for Rovo Search"
@@ -1150,6 +1482,10 @@
     "fetch": {
       "type": "object",
       "properties": {
+        "cloudId": {
+          "type": "string",
+          "description": "Not needed for this tool — cloudId is extracted from the ARI automatically"
+        },
         "id": {
           "type": "string",
           "description": "Atlassian Resource Identifier (ARI) from search results, e.g., \"ari:cloud:jira:cloudId:issue/10107\" or \"ari:cloud:confluence:cloudId:page/123456789\""
