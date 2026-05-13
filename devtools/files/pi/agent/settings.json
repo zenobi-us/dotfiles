@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.72.1",
+  "lastChangelogVersion": "0.74.0",
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
@@ -27,5 +27,6 @@
   "collapseChangelog": true,
   "autocompleteMaxVisible": 10,
   "defaultModel": "gpt-5.3-codex",
-  "enableInstallTelemetry": false
+  "enableInstallTelemetry": false,
+  "doubleEscapeAction": "tree"
 }

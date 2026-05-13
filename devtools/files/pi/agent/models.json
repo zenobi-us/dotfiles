@@ -56,7 +56,13 @@
           "maxTokens": 32768
         },
         {
-        "id": "qwen/qwen3.6-35b-a3b"
+          "id": "qwen/qwen3.6-35b-a3b"
+        }, 
+        {
+          "id": "nemotron-3-nano-omni-30b-a3b-reasoning-apex"
+        },
+        {
+          "id": "unsloth/qwen3.6-35b-a3b"
         }
       ]
     }
