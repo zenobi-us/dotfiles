@@ -1,0 +1,91 @@
+# Claude Code Integration
+
+The worktrunk Claude Code plugin provides four features:
+
+1. **Configuration skill** — Documentation Claude Code can read, so it can help set up LLM commits, hooks, and troubleshoot issues
+2. **Worktree isolation** — When Claude Code agents create isolated worktrees, the plugin routes creation and removal through `wt` instead of raw `git`
+3. **Activity tracking** — Status markers in `wt list` showing which worktrees have active Claude sessions (🤖 working, 💬 waiting)
+4. **`/wt-switch-create` command** — Creates a worktrunk worktree and moves the current Claude session into it
+
+## Installation
+
+Recommended:
+
+```bash
+wt config plugins claude install
+```
+
+Manual equivalent:
+
+```bash
+claude plugin marketplace add max-sixty/worktrunk
+claude plugin install worktrunk@worktrunk
+```
+
+## Configuration skill
+
+The plugin includes a skill — documentation that Claude Code can read — covering worktrunk's configuration system. After installation, Claude Code can help with:
+
+- Setting up LLM-generated commit messages
+- Adding project hooks (pre-start, pre-merge, pre-commit)
+- Configuring worktree path templates
+- Fixing shell integration issues
+
+Claude Code is designed to load the skill automatically when it detects worktrunk-related questions.
+
+## Activity tracking
+
+The plugin tracks Claude sessions with status markers in `wt list`:
+
+```bash
+$ wt list
+  <b>Branch</b>       <b>Status</b>        <b>HEAD±</b>    <b>main↕</b>  <b>Remote⇅</b>  <b>Path</b>                 <b>Commit</b>    <b>Age</b>   <b>Message</b>
+@ main             <span class=d>^</span><span class=d>⇡</span>                         <span class=g>⇡1</span>      .                    <span class=d>33323bc1</span>  <span class=d>1d</span>    <span class=d>Initial commit</span>
++ feature-api      <span class=d>↑</span> 🤖              <span class=g>↑1</span>               ../repo.feature-api  <span class=d>70343f03</span>  <span class=d>1d</span>    <span class=d>Add REST API endpoints</span>
++ review-ui      <span class=c>?</span> <span class=d>↑</span> 💬              <span class=g>↑1</span>               ../repo.review-ui    <span class=d>a585d6ed</span>  <span class=d>1d</span>    <span class=d>Add dashboard component</span>
++ wip-docs       <span class=c>?</span> <span class=d>–</span>                                  ../repo.wip-docs     <span class=d>33323bc1</span>  <span class=d>1d</span>    <span class=d>Initial commit</span>
+
+<span class=d>○</span> <span class=d>Showing 4 worktrees, 2 with changes, 2 ahead</span>
+```
+
+- 🤖 — Claude is working
+- 💬 — Claude is waiting for input
+
+### Manual status markers
+
+Set status markers manually for any workflow:
+
+```bash
+$ wt config state marker set "🚧"                   # Current branch
+$ wt config state marker set "✅" --branch feature  # Specific branch
+$ git config worktrunk.state.feature.marker '{"marker":"💬","set_at":0}'  # Direct
+```
+
+## Worktree isolation
+
+Claude Code agents can run in isolated worktrees (`isolation: "worktree"`). By default, Claude Code creates these with `git worktree add`. The plugin's `WorktreeCreate` and `WorktreeRemove` hooks route this through `wt switch --create` and `wt remove` instead, so worktrees created by agents get worktrunk's naming conventions, hooks, and lifecycle management.
+
+## `/wt-switch-create` command
+
+`/wt-switch-create <branch> [<repo>] [-- <task>]` starts work in a fresh worktree without leaving the session. It creates (or re-enters) the named worktrunk worktree — sibling layout `<repo>.<branch>/`, not `.claude/worktrees/` — switches the session's working directory into it, then runs the task there. An optional second token names a different repository to create the worktree in; the task is whatever follows `--` (or, with no `--`, whatever follows the branch). The command rides the same `WorktreeCreate` hook as agent isolation, so the worktree gets worktrunk's naming, hooks, and lifecycle.
+
+On session exit the worktree is offered for removal via the `WorktreeRemove` hook; one with uncommitted changes is kept rather than removed.
+
+## Statusline
+
+`wt list statusline --format=claude-code` outputs a single-line status for the Claude Code statusline. When the CI status cache is stale, this fetches from the network — typically 1–2 seconds — making it suitable for async statuslines but too slow for synchronous shell prompts. If a faster version would be helpful, please [open an issue](https://github.com/max-sixty/worktrunk/issues).
+
+<code>~/w/myproject.feature-auth  !🤖  @<span style='color:#0a0'>+42</span> <span style='color:#a00'>-8</span>  <span style='color:#0a0'>↑3</span>  <span style='color:#0a0'>⇡1</span>  <span style='color:#0a0'>●</span>  | Opus 🌔 65%</code>
+
+When Claude Code provides context window usage via stdin JSON, a moon phase gauge appears (🌕→🌑 as context fills).
+
+Add to `~/.claude/settings.json`:
+
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "wt list statusline --format=claude-code"
+  }
+}
+```

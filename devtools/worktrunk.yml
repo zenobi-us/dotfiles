@@ -1,0 +1,22 @@
+---
+actions:
+  - action: command.run
+    where: os.name == "linux" || os.name == "macos"
+    command: rm
+    args:
+      - -rf
+      - "{{user.config_dir}}/worktrunk"
+
+  - action: file.link
+    where: os.name == "linux" || os.name == "macos"
+    from: worktrunk
+    to: "{{user.config_dir}}/worktrunk"
+
+  - action: command.run
+    where: os.name == "windows"
+    command: pwsh
+    args:
+      - -c
+      - |
+        remove-item -recurse -force -erroraction SilentlyContinue "$env:APPDATA/worktrunk"
+        new-item -path "$env:APPDATA/worktrunk" -itemtype symboliclink -value "$(pwd)/devtools/files/worktrunk"
