@@ -145,8 +145,9 @@ export default function (pi: ExtensionAPI) {
         return;
       }
 
-      // Create new session with parent tracking. After session replacement,
-      // the original ctx is stale; use withSession's ctx for post-switch UI work.
+      // Create new session with parent tracking. Use the replacement-session
+      // context for post-switch UI work; the original ctx is stale after a
+      // successful session replacement.
       const newSessionResult = await ctx.newSession({
         parentSession: currentSessionFile,
         withSession: async (replacementCtx) => {
@@ -157,7 +158,6 @@ export default function (pi: ExtensionAPI) {
 
       if (newSessionResult.cancelled) {
         ctx.ui.notify("New session cancelled", "info");
-        return;
       }
     },
   });

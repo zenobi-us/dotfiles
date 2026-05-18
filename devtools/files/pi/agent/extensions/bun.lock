@@ -43,6 +43,23 @@
         "@mariozechner/pi-tui": "^0.50.0",
       },
     },
+    "pi-behavior-monitors": {
+      "name": "@davidorex/pi-behavior-monitors",
+      "version": "0.3.0",
+      "dependencies": {
+        "nunjucks": "^3.2.4",
+      },
+      "devDependencies": {
+        "@types/nunjucks": "^3.2.6",
+        "vitest": "^3.2.4",
+      },
+      "peerDependencies": {
+        "@mariozechner/pi-ai": "*",
+        "@mariozechner/pi-coding-agent": "*",
+        "@mariozechner/pi-tui": "*",
+        "@sinclair/typebox": "*",
+      },
+    },
     "pi-ds": {
       "name": "pi-ds",
       "version": "0.0.1",

@@ -3,6 +3,9 @@ import type { ExtensionAPI, Theme } from "@mariozechner/pi-coding-agent";
 import { Text, matchesKey, visibleWidth } from "@mariozechner/pi-tui";
 
 type ActionItem = { label: string; value: string };
+type SelectedAnswer =
+  | { kind: "action"; action: ActionItem }
+  | { kind: "free_text"; text: string };
 
 type AnswerToolParams = {
   actions: ActionItem[];
@@ -72,9 +75,9 @@ export default function answerExtension(pi: ExtensionAPI) {
     name: "answer_actions",
     label: "Answer Actions",
     description:
-      "Present a list of response actions as JSON items { label, value }, then let user click or key-select one option.",
+      "Present a list of response actions as JSON items { label, value }, and always allow either selecting an option or typing a free-text answer.",
     promptSnippet:
-      "Use answer_actions to present selectable response options ({label,value}) when user choice/confirmation is needed.",
+      "Use answer_actions to present selectable response options ({label,value}) with free-text fallback.",
     promptGuidelines: [
       "When requesting user selection, confirmation (including yes/no), or prioritization, call answer_actions instead of asking plain-text questions.",
       "Prefer 2-7 concise actions with deterministic values.",
@@ -108,9 +111,11 @@ export default function answerExtension(pi: ExtensionAPI) {
       let mouseEnabled = false;
 
       try {
-        const selected = await ctx.ui.custom<ActionItem | null>(
+        const selected = await ctx.ui.custom<SelectedAnswer | null>(
           (tui, theme, _kb, done) => {
             let cursor = 0;
+            let freeText = "";
+            let hover: number | null = null;
             let lastWidth = 80;
             let lastHeight = 0;
 
@@ -144,20 +149,32 @@ export default function answerExtension(pi: ExtensionAPI) {
                 for (let i = 0; i < actions.length; i++) {
                   const action = actions[i];
                   const selected = i === cursor;
-                  const prefix = selected ? theme.fg("accent", "▸") : " ";
+                  const hovered = i === hover;
+                  const prefix = selected
+                    ? theme.fg("accent", "▸")
+                    : hovered
+                      ? theme.fg("toolTitle", "•")
+                      : " ";
                   const label = selected
                     ? theme.fg("accent", action.label)
-                    : action.label;
-                  lines.push(
-                    row(theme, ` ${prefix} ${i + 1}. ${label}`, innerW),
-                  );
+                    : hovered
+                      ? theme.bold(theme.fg("toolTitle", action.label))
+                      : action.label;
+                  lines.push(row(theme, ` ${prefix} ${i + 1}. ${label}`, innerW));
                 }
 
                 lines.push(row(theme, "", innerW));
                 lines.push(
                   row(
                     theme,
-                    ` ${theme.fg("dim", "Click an option • ↑↓ move • Enter choose • Esc cancel")}`,
+                    ` ${theme.fg("dim", "Free text:")} ${theme.fg("accent", freeText || "(type your answer)")}`,
+                    innerW,
+                  ),
+                );
+                lines.push(
+                  row(
+                    theme,
+                    ` ${theme.fg("dim", "Type to answer • Enter submit text/select • ↑↓ move • Esc cancel")}`,
                     innerW,
                   ),
                 );
@@ -188,7 +205,13 @@ export default function answerExtension(pi: ExtensionAPI) {
 
                 if (matchesKey(data, "return") || matchesKey(data, "enter")) {
                   disableMouse();
-                  done(actions[cursor] ?? null);
+                  const text = freeText.trim();
+                  if (text.length > 0) {
+                    done({ kind: "free_text", text });
+                    return;
+                  }
+                  const action = actions[cursor] ?? null;
+                  done(action ? { kind: "action", action } : null);
                   return;
                 }
 
@@ -196,9 +219,29 @@ export default function answerExtension(pi: ExtensionAPI) {
                   const idx = Number(data) - 1;
                   if (idx >= 0 && idx < actions.length) {
                     disableMouse();
-                    done(actions[idx]);
+                    done({ kind: "action", action: actions[idx] });
                     return;
                   }
+                }
+
+                if (matchesKey(data, "backspace")) {
+                  if (freeText.length > 0) {
+                    freeText = freeText.slice(0, -1);
+                    tui.requestRender();
+                  }
+                  return;
+                }
+
+                if (matchesKey(data, "ctrl+u")) {
+                  freeText = "";
+                  tui.requestRender();
+                  return;
+                }
+
+                if (data.length === 1 && data >= " " && data !== "\x7f") {
+                  freeText += data;
+                  tui.requestRender();
+                  return;
                 }
 
                 const mouse = parseMouseSgr(data);
@@ -216,16 +259,25 @@ export default function answerExtension(pi: ExtensionAPI) {
                 if (mouse.y >= actionStart && mouse.y <= actionEnd) {
                   const idx = mouse.y - actionStart;
                   if (idx >= 0 && idx < actions.length) {
-                    disableMouse();
-                    done(actions[idx]);
-                    return;
+                    if (hover !== idx) {
+                      hover = idx;
+                      tui.requestRender();
+                    }
+                    if (!mouse.released) {
+                      disableMouse();
+                      done({ kind: "action", action: actions[idx] });
+                      return;
+                    }
                   }
+                } else if (hover !== null) {
+                  hover = null;
+                  tui.requestRender();
                 }
 
                 // Click inside box but not on action row: move cursor if possible
                 const leftCol = 1;
                 const rightCol = lastWidth;
-                if (mouse.x >= leftCol && mouse.x <= rightCol) {
+                if (!mouse.released && mouse.x >= leftCol && mouse.x <= rightCol) {
                   if (mouse.y >= actionStart && mouse.y <= actionEnd) {
                     cursor = Math.max(
                       0,
@@ -256,7 +308,15 @@ export default function answerExtension(pi: ExtensionAPI) {
         );
 
         const payload = {
-          selected,
+          selected:
+            selected?.kind === "action"
+              ? selected.action
+              : selected?.kind === "free_text"
+                ? { label: selected.text, value: selected.text }
+                : null,
+          freeText: selected?.kind === "free_text" ? selected.text : null,
+          kind: selected?.kind ?? null,
+          actions,
         };
 
         return {
@@ -281,7 +341,7 @@ export default function answerExtension(pi: ExtensionAPI) {
       const p = args as AnswerToolParams;
       const count = Array.isArray(p.actions) ? p.actions.length : 0;
       return new Text(
-        `${theme.fg("toolTitle", theme.bold("answer_actions "))}${theme.fg("muted", `${count} option(s)`)}`,
+        `${theme.fg("toolTitle", theme.bold("answer_actions "))}${theme.fg("muted", `${count} option(s) + free-text`)}`,
         0,
         0,
       );
@@ -290,10 +350,35 @@ export default function answerExtension(pi: ExtensionAPI) {
     renderResult(result, options, theme) {
       if (options.isPartial)
         return new Text(theme.fg("dim", "waiting for selection..."), 0, 0);
-      const text =
-        (result.content?.find((c: any) => c.type === "text") as any)?.text ??
-        "{}";
-      return new Text(theme.fg("toolOutput", text), 0, 0);
-    },
+
+      const details = (result.details ?? {}) as {
+        selected?: { label?: string; value?: string } | null;
+        freeText?: string | null;
+        kind?: "action" | "free_text" | null;
+        actions?: Array<{ label: string; value: string }>;
+      };
+
+      const label = details.selected?.label?.trim() || "(no selection)";
+
+      if (!options.expanded) {
+        return new Text(theme.fg("toolOutput", label), 0, 0);
+      }
+
+      const possibleAnswers = (details.actions ?? [])
+        .map((a, i) => `  ${i + 1}. ${a.label} (${a.value})`)
+        .join("\n");
+
+      const verbose = [
+        theme.fg("toolOutput", "answer_actions result"),
+        theme.fg("toolOutput", `- kind: ${details.kind ?? "none"}`),
+        theme.fg("toolOutput", `- label: ${details.selected?.label ?? ""}`),
+        theme.fg("toolOutput", `- value: ${details.selected?.value ?? ""}`),
+        theme.fg("toolOutput", `- free_text: ${details.freeText ?? ""}`),
+        theme.fg("toolOutput", "- possible_answers:"),
+        theme.fg("toolOutput", possibleAnswers || "  (none)"),
+      ].join("\n");
+
+      return new Text(verbose, 0, 0);
+    }
   });
 }

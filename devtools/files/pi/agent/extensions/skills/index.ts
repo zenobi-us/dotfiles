@@ -304,21 +304,37 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
 
       },
       renderResult(result, options, theme) {
-        return renderFoldedToolText(result, options, theme, {
-          loadingLabel: "Searching skills...",
-          previewLines: 16,
-          collapsedPrefix: (data) => {
-            const details = data.result.details as
-              | { meta?: { matches?: number; total?: number } }
-              | undefined;
-            const matches = details?.meta?.matches;
-            const total = details?.meta?.total;
-            return typeof matches === "number" && typeof total === "number"
-              ? `Found ${matches} of ${total} Skills`
-              : undefined;
-          },
-        });
-      },
+        if (options.isPartial) {
+          return new Text(theme.fg("toolOutput", "Searching skills..."), 0, 0);
+        }
+
+        if (options.expanded) {
+          return renderFoldedToolText(result, options, theme, {
+            loadingLabel: "Searching skills...",
+            previewLines: 16,
+          });
+        }
+
+        const details = result.details as
+          | {
+              skills?: Array<{ shortname?: string; name?: string }>;
+              meta?: { matches?: number };
+            }
+          | undefined;
+
+        const sample = (details?.skills ?? [])
+          .slice(0, 3)
+          .map((s) => s.shortname ?? s.name)
+          .filter((v): v is string => Boolean(v));
+
+        const namesText = sample.length > 0 ? sample.join(", ") : "(no matches)";
+        const count = details?.meta?.matches ?? details?.skills?.length ?? 0;
+
+        const line1 = theme.fg("toolOutput", namesText);
+        const line2 = theme.fg("success", `Found: ${count} skills`);
+
+        return new Text(`${line1}\n${line2}`, 0, 0);
+      }
     });
 
     const ReadSkillToolParams = Type.Object({
