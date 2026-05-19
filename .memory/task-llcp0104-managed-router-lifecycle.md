@@ -56,7 +56,7 @@ Review hardening added child `error` handling for spawn failures, explicit persi
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: package-owned managed processes stop correctly and `stopOnQuit` gates shutdown.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: missing Configured Preset File blocks managed spawn.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: reload behavior leaves prior process alive and re-adopts reachability as External Router.
-- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: spawn `error` events, kill refusal, ignored SIGTERM stop timeout, start timeout state, persistent unref behavior, and invalid Server Base URL command reporting.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: spawn `error` events, preserved spawn diagnostics across probe failures, kill refusal, ignored SIGTERM stop timeout, start timeout state, persistent unref behavior, invalid Server Base URL command reporting, and log line-size bounds.
 
 ## Lessons Learned
 
@@ -66,3 +66,5 @@ Review hardening added child `error` handling for spawn failures, explicit persi
 - Child process lifecycle must handle `error` as a first-class terminal path; `try/catch` around `spawn()` is insufficient for ENOENT/EACCES.
 - Stop must retain ownership until actual `exit` or explicit timeout; dropping ownership before proof hides leaked managed processes.
 - Persistent managed routers need explicit `unref()` on process and pipes or Pi can be held open accidentally.
+- Spawn `error` diagnostics must be preserved separately from reachability probe failures; probe failures are secondary once process spawn has failed.
+- Command handlers that load settings must catch configuration parse errors and report Operational Status instead of leaking rejected promises.

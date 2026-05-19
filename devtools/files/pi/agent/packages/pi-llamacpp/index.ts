@@ -191,15 +191,18 @@ export class ManagedRouterProcess {
   private readonly spawnProcess: ProcessSpawner;
   private readonly sleep: (ms: number) => Promise<void>;
   private readonly maxLogLines: number;
+  private readonly maxLogLineChars: number;
 
   constructor(options: {
     spawn?: ProcessSpawner;
     sleep?: (ms: number) => Promise<void>;
     maxLogLines?: number;
+    maxLogLineChars?: number;
   } = {}) {
     this.spawnProcess = options.spawn ?? ((command, args) => spawnChildProcess(command, args));
     this.sleep = options.sleep ?? ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
     this.maxLogLines = options.maxLogLines ?? 50;
+    this.maxLogLineChars = options.maxLogLineChars ?? 4096;
   }
 
   async start(settings: LlamaCppSettings, probe: RouterProbe): Promise<ManagedRouterStartResult> {
@@ -226,6 +229,7 @@ export class ManagedRouterProcess {
     }
 
     let spawnFailed = false;
+    let spawnErrorMessage: string | undefined;
     const args = buildManagedRouterArgs(settings);
     this.ownership = "managed";
     this.processState = { state: "starting", stdoutTail: [], stderrTail: [] };
@@ -235,7 +239,8 @@ export class ManagedRouterProcess {
       this.attachLogs(this.process);
       this.process.on("error", (error) => {
         spawnFailed = true;
-        this.lastError = error instanceof Error ? error.message : String(error);
+        spawnErrorMessage = error instanceof Error ? error.message : String(error);
+        this.lastError = spawnErrorMessage;
         this.ownership = "none";
         this.processState = { ...this.processState, state: "exited", exitCode: null, signal: null };
       });
@@ -257,8 +262,15 @@ export class ManagedRouterProcess {
         this.processState.state = "running";
         return { ...this.status(), message: "Managed Llama Server Router started." };
       }
+      if (spawnFailed) {
+        this.lastError = spawnErrorMessage ?? this.lastError ?? "Managed Llama Server Router spawn failed.";
+        return { ...this.status(), message: this.lastError };
+      }
       await this.sleep(Math.min(settings.timeouts.pollMs, Math.max(0, deadline - Date.now())));
-      if (spawnFailed) return { ...this.status(), message: this.lastError ?? "Managed Llama Server Router spawn failed." };
+      if (spawnFailed) {
+        this.lastError = spawnErrorMessage ?? this.lastError ?? "Managed Llama Server Router spawn failed.";
+        return { ...this.status(), message: this.lastError };
+      }
     } while (Date.now() < deadline);
 
     this.lastError = `Timed out waiting ${settings.timeouts.startMs}ms for managed Llama Server Router.`;
@@ -325,7 +337,10 @@ export class ManagedRouterProcess {
   }
 
   private appendLog(target: "stdoutTail" | "stderrTail", chunk: unknown): void {
-    const lines = String(chunk).split(/\r?\n/).filter(Boolean);
+    const lines = String(chunk)
+      .split(/\r?\n/)
+      .filter(Boolean)
+      .map((line) => line.length > this.maxLogLineChars ? `${line.slice(0, this.maxLogLineChars)}…` : line);
     this.processState[target].push(...lines);
     if (this.processState[target].length > this.maxLogLines) {
       this.processState[target] = this.processState[target].slice(-this.maxLogLines);
@@ -371,6 +386,12 @@ export default async function llamacppProvider(
     await managedRouter.stopOnQuit(await loadSettings());
   });
 
+  const notifyOperationalError = (ctx: ExtensionCommandContext, error: unknown): void => {
+    const baseline = createBaselineOperationalStatus(parseLlamaCppSettings({}), errorToMessage(error));
+    const status = { ...withLifecycle(baseline), lastError: baseline.lastError };
+    ctx.ui.notify(formatOperationalStatus(status), "warning");
+  };
+
   pi.registerCommand("llamacpp", {
     description: "llama.cpp router status and operations",
     getArgumentCompletions: (prefix: string) => ["status", "list", "reload", "start", "stop"]
@@ -390,42 +411,62 @@ export default async function llamacppProvider(
         return;
       }
       if (action === "list") {
-        const settings = await loadSettings(ctx);
-        const client = clientFor(settings);
-        const result = await safeFetchRouterModels(client);
-        if (result.error) {
-          ctx.ui.notify(`llamacpp Router Model List\n\nRouter unreachable: ${result.error}`, "warning");
-          return;
+        try {
+          const settings = await loadSettings(ctx);
+          const client = clientFor(settings);
+          const result = await safeFetchRouterModels(client);
+          if (result.error) {
+            ctx.ui.notify(`llamacpp Router Model List\n\nRouter unreachable: ${result.error}`, "warning");
+            return;
+          }
+          cachedRouterModels = result.models;
+          ctx.ui.notify(formatRouterModelList(result.models), "info");
+        } catch (error) {
+          notifyOperationalError(ctx, error);
         }
-        cachedRouterModels = result.models;
-        ctx.ui.notify(formatRouterModelList(result.models), "info");
         return;
       }
       if (action === "reload") {
-        const status = await refresh(ctx);
-        ctx.ui.notify([
-          "llamacpp reload complete",
-          "",
-          `Router Reachable: ${status.routerReachable ? "yes" : "no"}`,
-          `Router Models: ${status.routerModelCount ?? cachedRouterModels.length}`,
-          `Provider Models: ${status.providerModelCount}`,
-          `Last Error: ${status.lastError ?? "none"}`,
-        ].join("\n"), status.routerReachable ? "info" : "warning");
+        try {
+          const status = await refresh(ctx);
+          ctx.ui.notify([
+            "llamacpp reload complete",
+            "",
+            `Router Reachable: ${status.routerReachable ? "yes" : "no"}`,
+            `Router Models: ${status.routerModelCount ?? cachedRouterModels.length}`,
+            `Provider Models: ${status.providerModelCount}`,
+            `Last Error: ${status.lastError ?? "none"}`,
+          ].join("\n"), status.routerReachable ? "info" : "warning");
+        } catch (error) {
+          notifyOperationalError(ctx, error);
+        }
         return;
       }
       if (action === "start") {
-        const settings = await loadSettings(ctx);
-        const client = clientFor(settings);
-        const result = await managedRouter.start(settings, () => client.fetchModelList());
-        const status = withLifecycle(await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error))));
-        ctx.ui.notify(["llamacpp start", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.ownership === "none" ? "warning" : "info");
+        try {
+          const settings = await loadSettings(ctx);
+          const client = clientFor(settings);
+          const result = await managedRouter.start(settings, () => client.fetchModelList());
+          const refreshed = await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error)));
+          const status = refreshed.lastError ? { ...withLifecycle(refreshed), lastError: refreshed.lastError } : withLifecycle(refreshed);
+          ctx.ui.notify(["llamacpp start", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.lastError || status.lastError ? "warning" : "info");
+        } catch (error) {
+          notifyOperationalError(ctx, error);
+        }
         return;
       }
       if (action === "stop") {
         const result = await managedRouter.stop();
-        const settings = await loadSettings(ctx);
-        const status = withLifecycle(await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error))));
-        ctx.ui.notify(["llamacpp stop", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.lastError ? "warning" : "info");
+        try {
+          const settings = await loadSettings(ctx);
+          const refreshed = await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error)));
+          const status = refreshed.lastError ? { ...withLifecycle(refreshed), lastError: refreshed.lastError } : withLifecycle(refreshed);
+          ctx.ui.notify(["llamacpp stop", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.lastError || status.lastError ? "warning" : "info");
+        } catch (error) {
+          const baseline = createBaselineOperationalStatus(parseLlamaCppSettings({}), errorToMessage(error));
+          const status = { ...withLifecycle(baseline), lastError: baseline.lastError };
+          ctx.ui.notify(["llamacpp stop", "", result.message, "", formatOperationalStatus(status)].join("\n"), "warning");
+        }
         return;
       }
 

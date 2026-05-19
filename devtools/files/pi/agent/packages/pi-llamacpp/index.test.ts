@@ -260,6 +260,67 @@ describe("pi-llamacpp status baseline", () => {
   });
 
 
+  it("list command reports invalid Server Base URL without throwing", async () => {
+    const commands = new Map();
+    const pi = { registerCommand(name, command) { commands.set(name, command); } };
+    await llamacppProvider(pi, { loadSettings: async () => parseLlamaCppSettings({ serverBaseUrl: "not a url" }) });
+    const notifications = [];
+
+    await commands.get("llamacpp").handler("list", {
+      ui: { notify: (message, level) => notifications.push({ message, level }) },
+    });
+
+    assert.equal(notifications[0].level, "warning");
+    assert.match(notifications[0].message, /llamacpp Operational Status/);
+    assert.match(notifications[0].message, /Last Error: Invalid Server Base URL/);
+  });
+
+  it("reload command reports invalid Server Base URL without throwing", async () => {
+    const commands = new Map();
+    const pi = { registerCommand(name, command) { commands.set(name, command); } };
+    await llamacppProvider(pi, { loadSettings: async () => parseLlamaCppSettings({ serverBaseUrl: "not a url" }) });
+    const notifications = [];
+
+    await commands.get("llamacpp").handler("reload", {
+      ui: { notify: (message, level) => notifications.push({ message, level }) },
+    });
+
+    assert.equal(notifications[0].level, "warning");
+    assert.match(notifications[0].message, /llamacpp Operational Status/);
+    assert.match(notifications[0].message, /Last Error: Invalid Server Base URL/);
+  });
+
+  it("start command reports invalid Server Base URL without throwing", async () => {
+    const commands = new Map();
+    const pi = { registerCommand(name, command) { commands.set(name, command); } };
+    await llamacppProvider(pi, { loadSettings: async () => parseLlamaCppSettings({ serverBaseUrl: "not a url" }) });
+    const notifications = [];
+
+    await commands.get("llamacpp").handler("start", {
+      ui: { notify: (message, level) => notifications.push({ message, level }) },
+    });
+
+    assert.equal(notifications[0].level, "warning");
+    assert.match(notifications[0].message, /llamacpp Operational Status/);
+    assert.match(notifications[0].message, /Last Error: Invalid Server Base URL/);
+  });
+
+  it("stop command reports invalid post-stop status load without throwing", async () => {
+    const commands = new Map();
+    const pi = { registerCommand(name, command) { commands.set(name, command); } };
+    await llamacppProvider(pi, { loadSettings: async () => parseLlamaCppSettings({ serverBaseUrl: "not a url" }) });
+    const notifications = [];
+
+    await commands.get("llamacpp").handler("stop", {
+      ui: { notify: (message, level) => notifications.push({ message, level }) },
+    });
+
+    assert.equal(notifications[0].level, "warning");
+    assert.match(notifications[0].message, /llamacpp Operational Status/);
+    assert.match(notifications[0].message, /Last Error: Invalid Server Base URL/);
+  });
+
+
   it("status command refreshes reachability instead of reusing stale reachable cache", async () => {
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
     const commands = new Map();
@@ -648,6 +709,27 @@ describe("ManagedRouterProcess lifecycle", () => {
   });
 
 
+  it("bounds log tail line size as well as line count", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-log-bytes-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {}, maxLogLines: 3 });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile });
+    let probes = 0;
+    await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+
+    fakeProcess.emitStdout(`${"x".repeat(10000)}\nsmall\n`);
+
+    const stdout = manager.status().process?.stdoutTail ?? [];
+    assert.equal(stdout.at(-1), "small");
+    assert.ok(stdout.every((line) => line.length <= 4097));
+  });
+
+
   it("adopts a reachable router as External Router and refuses to stop it", async () => {
     const manager = new ManagedRouterProcess({
       spawn: () => { throw new Error("must not spawn"); },
@@ -718,6 +800,29 @@ describe("ManagedRouterProcess lifecycle", () => {
     assert.equal(result.ownership, "none");
     assert.equal(result.process?.state, "exited");
     assert.match(result.lastError, /spawn ENOENT/);
+  });
+
+
+  it("preserves child spawn error diagnostics when a later reachability probe fails", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-spawn-preserve-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({
+      spawn: () => fakeProcess,
+      sleep: async () => {},
+    });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile, timeouts: { startMs: 1, pollMs: 1 } });
+
+    const result = await manager.start(settings, async () => {
+      fakeProcess.emitError(new Error("spawn EACCES"));
+      throw new Error("generic router unreachable");
+    });
+
+    assert.equal(result.ownership, "none");
+    assert.equal(result.process?.state, "exited");
+    assert.match(result.lastError, /spawn EACCES/);
+    assert.doesNotMatch(result.lastError ?? "", /generic router unreachable/);
   });
 
   it("retains managed ownership and reports failure when SIGTERM is not accepted", async () => {
