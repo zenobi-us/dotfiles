@@ -2,7 +2,7 @@
 
 ## Baseline
 
-This package exposes a loadable `llamacpp` Pi extension that can adopt a compatible External Router at `serverBaseUrl`, fetch `/models`, and refresh Pi `llamacpp` Provider Models from the Router Model List. This slice does not start `llama-server`, parse Preset Metadata, implement managed lifecycle, or gate chat requests.
+This package exposes a loadable `llamacpp` Pi extension that can adopt a compatible External Router at `serverBaseUrl`, fetch `/models`, refresh Pi `llamacpp` Provider Models from the Router Model List, validate the Configured Preset File for managed-start preparation, and enrich matching Provider Models with safe Preset Metadata. This slice does not start `llama-server`, implement managed lifecycle, or gate chat requests.
 
 ## Settings
 
@@ -22,12 +22,16 @@ The Provider Base URL is derived by safely appending `/v1` to `serverBaseUrl`.
 
 ## Commands
 
-- `/llamacpp status` - shows Operational Status: router reachability, provider registration state, Router/Provider Model counts, settings, timeout values, and last error.
+- `/llamacpp status` - shows Operational Status: router reachability, Configured Preset File state, provider registration state, Router/Provider Model counts, settings, timeout values, and last error.
 - `/llamacpp list` - fetches and displays the current Router Model List from `/models`.
 - `/llamacpp reload` - re-fetches the Router Model List and refreshes provider registration without a Pi restart. Refresh unregisters `llamacpp` before registering the current Provider Model set so stale models disappear.
+
+## Preset Metadata
+
+`PresetFileReader` parses INI sections as Model Presets and keeps runtime args intact. Only documented aliases for context size (`-c`, `--ctx-size`, `LLAMA_ARG_CTX_SIZE`), max prediction tokens (`-n`, `--n-predict`, `LLAMA_ARG_N_PREDICT`), and reasoning (`-r`, `--reasoning`, `LLAMA_ARG_REASONING`) are normalized into Provider Model metadata. Invalid metadata is reported as warnings and ignored for Provider Models; runtime args are not changed. Router Model List IDs remain the source of Provider Models, so unmatched INI sections never create dead Provider Models.
 
 ## Planned later slices
 
 - `/llamacpp start` - start a managed Llama Server Router.
 - `/llamacpp stop` - stop only a package-owned managed router.
-- Preset Metadata enrichment and Explicit Load Gate behavior.
+- Managed router lifecycle and Explicit Load Gate behavior.

@@ -42,6 +42,40 @@ export type RouterModelList = {
   raw: unknown;
 };
 
+export type PresetMetadata = {
+  contextWindow?: number;
+  maxTokens?: number;
+  reasoning?: boolean;
+};
+
+export type ModelPreset = {
+  id: string;
+  runtimeArgs: Record<string, string>;
+  metadata: PresetMetadata;
+};
+
+export type PresetFileReadResult = {
+  path: string;
+  exists: boolean;
+  presets: ModelPreset[];
+  warnings: string[];
+  error?: string;
+};
+
+export type PresetFileStatus = {
+  path: string;
+  exists: boolean;
+  presetCount: number;
+  warnings: string[];
+  error?: string;
+};
+
+export type ManagedServerStartPreparation = {
+  canStart: boolean;
+  presetFile: PresetFileStatus;
+  error?: string;
+};
+
 export type OperationalStatus = {
   settings: LlamaCppSettings;
   routerReachable: boolean;
@@ -50,6 +84,7 @@ export type OperationalStatus = {
   routerModelCount?: number;
   routerModels?: RouterModel[];
   lastError?: string;
+  presetFile?: PresetFileStatus;
 };
 
 type ProviderModel = {
@@ -193,6 +228,34 @@ export class RouterClient {
   }
 }
 
+
+export class PresetFileReader {
+  static read(path: string): PresetFileReadResult {
+    const resolvedPath = expandHomePath(path);
+    if (!existsSync(resolvedPath)) {
+      return {
+        path,
+        exists: false,
+        presets: [],
+        warnings: [],
+        error: `Configured Preset File not found: ${path}`,
+      };
+    }
+
+    const warnings: string[] = [];
+    const presets = parsePresetIni(readFileSync(resolvedPath, "utf8"), warnings);
+    return { path, exists: true, presets, warnings };
+  }
+}
+
+export function validateManagedServerStartPreparation(settings: LlamaCppSettings): ManagedServerStartPreparation {
+  const presetFile = toPresetFileStatus(PresetFileReader.read(settings.configuredPresetFilePath));
+  if (!presetFile.exists) {
+    return { canStart: false, presetFile, error: presetFile.error };
+  }
+  return { canStart: true, presetFile };
+}
+
 export async function refreshProviderModels(
   pi: Pick<LlamaCppPiApi, "registerProvider" | "unregisterProvider">,
   settings: LlamaCppSettings,
@@ -211,7 +274,9 @@ export async function refreshProviderModels(
 
   try {
     const routerModelList = await routerClient.fetchModelList();
-    const providerModels = routerModelList.models.map(toProviderModel);
+    const presetFile = PresetFileReader.read(settings.configuredPresetFilePath);
+    const presetMetadata = new Map(presetFile.presets.map((preset) => [preset.id, preset.metadata]));
+    const providerModels = routerModelList.models.map((model) => toProviderModel(model, presetMetadata.get(model.id)));
     await pi.registerProvider(PROVIDER_ID, {
       baseUrl: settings.providerBaseUrl,
       apiKey: resolvedProviderApiKeyValue(settings.providerApiKey) ?? DEFAULT_PROVIDER_API_KEY,
@@ -225,6 +290,7 @@ export async function refreshProviderModels(
       providerModelCount: providerModels.length,
       routerModelCount: routerModelList.models.length,
       routerModels: routerModelList.models,
+      presetFile: toPresetFileStatus(presetFile),
     };
   } catch (error) {
     return createBaselineOperationalStatus(settings, errorToMessage(error));
@@ -330,6 +396,7 @@ export function createBaselineOperationalStatus(
     providerRegistered: false,
     providerModelCount: 0,
     routerModelCount: 0,
+    presetFile: toPresetFileStatus(PresetFileReader.read(settings.configuredPresetFilePath)),
     lastError: apiKeyError ?? lastError ?? "Router model list retrieval has not succeeded.",
   };
 }
@@ -343,6 +410,7 @@ export function formatOperationalStatus(status: OperationalStatus): string {
     `Provider Base URL: ${status.settings.providerBaseUrl}`,
     `Server Binary Path: ${status.settings.serverBinaryPath}`,
     `Configured Preset File: ${status.settings.configuredPresetFilePath}`,
+    `Preset File: ${formatPresetFileStatus(status.presetFile)}`,
     `Provider API Key: ${apiKeyStatus}`,
     `loadOnSelect: ${status.settings.loadOnSelect ? "yes" : "no"}`,
     `stopOnQuit: ${status.settings.stopOnQuit ? "yes" : "no"}`,
@@ -374,15 +442,15 @@ export function formatRouterModelList(models: RouterModel[]): string {
   return lines.join("\n");
 }
 
-function toProviderModel(model: RouterModel): ProviderModel {
+function toProviderModel(model: RouterModel, metadata: PresetMetadata = {}): ProviderModel {
   return {
     id: model.id,
     name: model.name,
-    reasoning: false,
+    reasoning: metadata.reasoning ?? false,
     input: ["text"],
     cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
-    contextWindow: 128_000,
-    maxTokens: 16_384,
+    contextWindow: metadata.contextWindow ?? 128_000,
+    maxTokens: metadata.maxTokens ?? 16_384,
   };
 }
 
@@ -394,6 +462,99 @@ function readRouterModelRows(raw: unknown): Record<string, unknown>[] {
   const models = raw.models;
   if (Array.isArray(models)) return models.filter(isRecord);
   throw new Error("Router /models response is missing a data/models array.");
+}
+
+function parsePresetIni(text: string, warnings: string[]): ModelPreset[] {
+  const presets: ModelPreset[] = [];
+  let current: ModelPreset | undefined;
+
+  for (const rawLine of text.split(/\r?\n/u)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#") || line.startsWith(";")) continue;
+    const sectionMatch = /^\[([^\]]+)\]$/u.exec(line);
+    if (sectionMatch) {
+      current = { id: sectionMatch[1].trim(), runtimeArgs: {}, metadata: {} };
+      if (current.id) presets.push(current);
+      continue;
+    }
+    if (!current) continue;
+    const separatorIndex = line.indexOf("=");
+    if (separatorIndex < 0) continue;
+    const key = line.slice(0, separatorIndex).trim();
+    const value = stripIniValueComment(line.slice(separatorIndex + 1).trim());
+    if (!key) continue;
+    current.runtimeArgs[key] = value;
+    normalizePresetMetadataValue(current, key, value, warnings);
+  }
+
+  return presets;
+}
+
+function normalizePresetMetadataValue(preset: ModelPreset, key: string, value: string, warnings: string[]): void {
+  const canonicalKey = normalizePresetMetadataKey(key);
+  if (!canonicalKey) return;
+
+  if (canonicalKey === "reasoning") {
+    const parsed = parseMetadataBoolean(value);
+    if (parsed === undefined) {
+      warnings.push(`Invalid reasoning metadata for preset ${preset.id}: ${value}`);
+      return;
+    }
+    preset.metadata.reasoning = parsed;
+    return;
+  }
+
+  const parsed = parseMetadataPositiveInteger(value);
+  if (parsed === undefined) {
+    warnings.push(`Invalid ${canonicalKey} metadata for preset ${preset.id}: ${value}`);
+    return;
+  }
+  if (canonicalKey === "contextWindow") preset.metadata.contextWindow = parsed;
+  if (canonicalKey === "maxTokens") preset.metadata.maxTokens = parsed;
+}
+
+function normalizePresetMetadataKey(key: string): keyof PresetMetadata | undefined {
+  const normalized = key.trim();
+  if (["-c", "--ctx-size", "--context-size", "LLAMA_ARG_CTX_SIZE"].includes(normalized)) return "contextWindow";
+  if (["-n", "--n-predict", "--max-tokens", "LLAMA_ARG_N_PREDICT"].includes(normalized)) return "maxTokens";
+  if (["-r", "--reasoning", "--reasoning-format", "LLAMA_ARG_REASONING"].includes(normalized)) return "reasoning";
+  return undefined;
+}
+
+function parseMetadataPositiveInteger(value: string): number | undefined {
+  if (!/^\d+$/u.test(value)) return undefined;
+  const parsed = Number.parseInt(value, 10);
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : undefined;
+}
+
+function parseMetadataBoolean(value: string): boolean | undefined {
+  const normalized = value.trim().toLowerCase();
+  if (["1", "true", "yes", "on", "enabled"].includes(normalized)) return true;
+  if (["0", "false", "no", "off", "disabled", "none"].includes(normalized)) return false;
+  return undefined;
+}
+
+function stripIniValueComment(value: string): string {
+  return value.replace(/\s+[;#].*$/u, "").trim();
+}
+
+function toPresetFileStatus(result: PresetFileReadResult): PresetFileStatus {
+  const status: PresetFileStatus = {
+    path: result.path,
+    exists: result.exists,
+    presetCount: result.presets.length,
+    warnings: result.warnings,
+  };
+  if (result.error !== undefined) status.error = result.error;
+  return status;
+}
+
+function formatPresetFileStatus(status?: PresetFileStatus): string {
+  if (!status) return "unknown";
+  const state = status.exists ? `present (${status.presetCount} presets)` : "missing";
+  const warnings = status.warnings.length > 0 ? `; warnings=${status.warnings.length}` : "";
+  const error = status.error ? `; ${status.error}` : "";
+  return `${state}${warnings}${error}`;
 }
 
 async function safeFetchRouterModels(client: RouterClient): Promise<{ models: RouterModel[]; error?: string }> {
@@ -464,6 +625,12 @@ function formatProviderApiKeyStatus(resolution: ProviderApiKeyResolution): strin
 function normalizeBaseUrl(value: string): string {
   const trimmed = value.trim() || DEFAULT_SERVER_BASE_URL;
   return trimmed.replace(/\/+$/, "");
+}
+
+function expandHomePath(path: string): string {
+  if (path === "~") return homedir();
+  if (path.startsWith("~/")) return join(homedir(), path.slice(2));
+  return path;
 }
 
 function looksLikeShellCommand(value: string): boolean {
