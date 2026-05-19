@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "name": "@zenobius/pi-agent-extensions",
+  "private": true,
+  "packageManager": "bun@1.3.4",
+  "dependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "@zenobius/pi-extension-config": "0.0.2",
+    "dedent": "^1.7.0",
+    "typebox": "^1.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.9.3",
+    "vitest": "^0.34.0"
+  },
+  "workspaces": [
+    "extensions/*",
+    "packages/*",
+    "bundles/*",
+    "!node_modules"
+  ]
+}
