@@ -19,6 +19,7 @@ import llamacppProvider, {
   refreshProviderModels,
   validateManagedServerStartPreparation,
   ManagedRouterProcess,
+  LoadGate,
 } from "./index.ts";
 
 describe("pi-llamacpp settings baseline", () => {
@@ -1074,6 +1075,117 @@ describe("ManagedRouterProcess lifecycle", () => {
 
     assert.equal(firstProcess.killed, false);
     assert.equal(adopted.ownership, "external");
+  });
+});
+
+
+describe("pi-llamacpp Explicit Load Gate", () => {
+  it("passes loaded and sleeping models without redundant load calls", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    const fetchCalls = [];
+    const gate = new LoadGate(settings, new RouterClient(settings, {
+      fetch: async (url, init) => {
+        fetchCalls.push({ url: String(url), method: init?.method });
+        return jsonResponse({ data: [{ id: "loaded", status: "loaded" }, { id: "sleepy", status: "sleeping" }] });
+      },
+    }), { sleep: async () => {} });
+
+    await gate.ensureRequestReady("loaded");
+    await gate.ensureRequestReady("sleepy");
+
+    assert.deepEqual(fetchCalls.map((call) => [call.method, call.url]), [
+      ["GET", "http://router.test/models"],
+      ["GET", "http://router.test/models"],
+    ]);
+  });
+
+  it("loads an unloaded model before request and polls until loaded", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", timeouts: { loadMs: 1000, requestGateMs: 1000, pollMs: 1 } });
+    const calls = [];
+    const states = [
+      { data: [{ id: "cold", status: "available" }] },
+      { data: [{ id: "cold", status: "loading" }] },
+      { data: [{ id: "cold", status: "loaded" }] },
+    ];
+    const gate = new LoadGate(settings, new RouterClient(settings, {
+      fetch: async (url, init) => {
+        calls.push({ url: String(url), method: init?.method, body: init?.body });
+        if (String(url).endsWith("/models/load")) return jsonResponse({ ok: true });
+        return jsonResponse(states.shift());
+      },
+    }), { sleep: async () => {} });
+
+    await gate.ensureRequestReady("cold");
+
+    assert.deepEqual(calls.map((call) => [call.method, call.url]), [
+      ["GET", "http://router.test/models"],
+      ["POST", "http://router.test/models/load"],
+      ["GET", "http://router.test/models"],
+      ["GET", "http://router.test/models"],
+    ]);
+    assert.deepEqual(JSON.parse(calls[1].body), { model: "cold" });
+  });
+
+  it("fails distinctly for failed-load, unknown model, unreachable router, auth error, and timeout", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", timeouts: { loadMs: 1, requestGateMs: 1, pollMs: 1 } });
+
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, { fetch: async () => jsonResponse({ data: [{ id: "bad", status: "failed", error: "no gpu" }] }) }), { sleep: async () => {} }).ensureRequestReady("bad"),
+      /llamacpp load failed for model bad: no gpu/,
+    );
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, { fetch: async () => jsonResponse({ data: [{ id: "other", status: "loaded" }] }) }), { sleep: async () => {} }).ensureRequestReady("missing"),
+      /llamacpp unknown model id missing/,
+    );
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, { fetch: async () => { throw new Error("ECONNREFUSED"); } }), { sleep: async () => {} }).ensureRequestReady("any"),
+      /llamacpp router unreachable: ECONNREFUSED/,
+    );
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, { fetch: async () => jsonResponse({ error: "no" }, { status: 401 }) }), { sleep: async () => {} }).ensureRequestReady("any"),
+      /llamacpp router auth failed during model list: HTTP 401/,
+    );
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, { fetch: async (url) => String(url).endsWith("/models/load") ? jsonResponse({ error: "load denied" }, { status: 500 }) : jsonResponse({ data: [{ id: "denied", status: "available" }] }) }), { sleep: async () => {} }).ensureRequestReady("denied"),
+      /llamacpp load request failed for model denied: HTTP 500/,
+    );
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, { fetch: async (url) => String(url).endsWith("/models/load") ? jsonResponse({}) : jsonResponse({ data: [{ id: "slow", status: "loading" }] }) }), { sleep: async () => {} }).ensureRequestReady("slow"),
+      /llamacpp load gate timed out for model slow/,
+    );
+  });
+
+  it("registers request and optional selection load hooks for llamacpp Provider Models", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", loadOnSelect: true });
+    let provider;
+    const requests = [];
+    const modelListResponses = [
+      { data: [{ id: "select-me", status: "loaded" }] },
+      { data: [{ id: "select-me", status: "available" }] },
+      { data: [{ id: "select-me", status: "loaded" }] },
+      { data: [{ id: "select-me", status: "loaded" }] },
+    ];
+    await refreshProviderModels({ unregisterProvider() {}, registerProvider(_name, value) { provider = value; } }, settings, new RouterClient(settings, {
+      fetch: async (url, init) => {
+        requests.push([init?.method, String(url)]);
+        if (String(url).endsWith("/models/load")) return jsonResponse({});
+        return jsonResponse(modelListResponses.shift() ?? { data: [{ id: "select-me", status: "loaded" }] });
+      },
+    }));
+
+    await provider.onModelSelect({ id: "select-me", provider: "llamacpp" });
+    await provider.beforeRequest({ model: "select-me", provider: "llamacpp" });
+    await provider.beforeRequest({ model: "other", provider: "openai" });
+
+    assert.equal(typeof provider.beforeRequest, "function");
+    assert.equal(typeof provider.onModelSelect, "function");
+    assert.deepEqual(requests.map(([method, url]) => [method, url]), [
+      ["GET", "http://router.test/models"],
+      ["GET", "http://router.test/models"],
+      ["POST", "http://router.test/models/load"],
+      ["GET", "http://router.test/models"],
+      ["GET", "http://router.test/models"],
+    ]);
   });
 });
 

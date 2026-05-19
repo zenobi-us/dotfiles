@@ -2,7 +2,7 @@
 
 ## Baseline
 
-This package exposes a loadable `llamacpp` Pi extension that can adopt a compatible External Router at `serverBaseUrl`, fetch `/models`, refresh Pi `llamacpp` Provider Models from the Router Model List, validate the Configured Preset File, enrich matching Provider Models with safe Preset Metadata, and optionally start/stop a package-owned managed Llama Server Router. This slice does not implement the Explicit Load Gate.
+This package exposes a loadable `llamacpp` Pi extension that can adopt a compatible External Router at `serverBaseUrl`, fetch `/models`, refresh Pi `llamacpp` Provider Models from the Router Model List, validate the Configured Preset File, enrich matching Provider Models with safe Preset Metadata, optionally start/stop a package-owned managed Llama Server Router, and gate `llamacpp` chat requests through Explicit Load.
 
 ## Settings
 
@@ -15,7 +15,7 @@ Supported package settings:
 - `managedStart`: when `true`, `/llamacpp start` may spawn a package-owned managed router if no compatible router is reachable (default `false`).
 - `configuredPresetFilePath` / `modelPresetsFile`: Configured Preset File path (default `~/.config/llamacpp/model-presets.ini`).
 - `providerApiKey`: literal API key, bare all-uppercase environment variable name, or explicit `env:<name>` environment variable reference. Use `env:<name>` for lowercase/mixed-case env names and for missing-env diagnostics. Shell-command values such as `$(pass show ...)` are reported as unsupported.
-- `loadOnSelect`: whether future model selection should trigger Explicit Load (default `false`).
+- `loadOnSelect`: whether model selection should trigger Explicit Load for earlier feedback (default `false`).
 - `stopOnQuit`: whether future managed router ownership should stop on Pi quit (default `false`).
 - `timeouts.startMs`, `timeouts.loadMs`, `timeouts.pollMs`, `timeouts.requestGateMs`, `timeouts.statusMs`: separate timeout values.
 
@@ -39,6 +39,12 @@ Managed start invokes `serverBinaryPath` with host/port derived from `serverBase
 
 Extension/session reload does not kill a running `llama-server`; a fresh package instance treats any reachable compatible router as External Router unless it can prove package ownership. Pi quit stops the managed process only when `stopOnQuit` is enabled.
 
+## Explicit Load Gate
+
+Every `llamacpp` provider request runs a package-owned Load Gate before chat completion dispatch. The gate treats `loaded` and `sleeping` Router Model states as request-ready, calls `POST /models/load` for unloaded selected models, then polls `/models` until the model is loaded/sleeping or the configured `timeouts.loadMs` / `timeouts.requestGateMs` budget expires. Failed router models remain selectable when listed by the Router Model List, but request-time load failures report package-owned diagnostics for unknown model IDs, unreachable routers, auth failures, failed loads, and timeouts.
+
+When `loadOnSelect` is enabled, model selection uses the same Explicit Load path for earlier feedback. The package does not coordinate concurrent Pi instances with locks; llama-server routes by model id.
+
 ## Planned later slices
 
-- Explicit Load Gate behavior before chat requests.
+- End-to-end diagnostics cleanup and install validation.
