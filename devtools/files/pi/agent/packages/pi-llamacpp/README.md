@@ -23,8 +23,8 @@ The Provider Base URL is derived by safely appending `/v1` to `serverBaseUrl`.
 
 ## Commands
 
-- `/llamacpp status` - shows Operational Status: router reachability, managed/external ownership, managed process state, bounded recent stdout/stderr tails, Configured Preset File state, provider registration state, Router/Provider Model counts, settings, timeout values, and last error.
-- `/llamacpp list` - fetches and displays the current Router Model List from `/models`.
+- `/llamacpp status` - shows Operational Status: router reachability, managed/external ownership, managed process state, bounded recent stdout/stderr tails, Configured Preset File state, provider registration state, Router/Provider Model counts, model status counts, settings, timeout values, and sanitized last error.
+- `/llamacpp list` - fetches and displays the current Router Model List from `/models`, including raw availability and runtime status columns plus a clear success/failure outcome.
 - `/llamacpp reload` - re-fetches the Router Model List and refreshes provider registration without a Pi restart. Refresh unregisters `llamacpp` before registering the current Provider Model set so stale models disappear.
 - `/llamacpp start` - adopts a reachable compatible router as External Router, or starts a managed router when `managedStart` is enabled and the Configured Preset File is present.
 - `/llamacpp stop` - stops only the package-owned managed router process; External Routers are never terminated or unloaded.

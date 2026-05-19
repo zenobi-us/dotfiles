@@ -95,6 +95,7 @@ export type OperationalStatus = {
   providerModelCount: number;
   routerModelCount?: number;
   routerModels?: RouterModel[];
+  modelStatusCounts?: Record<string, number>;
   lastError?: string;
   presetFile?: PresetFileStatus;
   routerOwnership: RouterOwnership;
@@ -259,14 +260,14 @@ export class ManagedRouterProcess {
       this.process = this.spawnProcess(settings.serverBinaryPath, args);
       this.processState.pid = this.process.pid;
       this.attachLogs(this.process);
-      this.process.on("error", (error) => {
+      this.process.on("error", (error: Error) => {
         spawnFailed = true;
         spawnErrorMessage = error instanceof Error ? error.message : String(error);
         this.lastError = spawnErrorMessage;
         this.ownership = "none";
         this.processState = { ...this.processState, state: "exited", exitCode: null, signal: null };
       });
-      this.process.on("exit", (code, signal) => {
+      this.process.on("exit", (code: number | null, signal: string | null) => {
         this.processState = { ...this.processState, state: "exited", exitCode: code, signal };
         if (this.ownership === "managed") this.ownership = "none";
       });
@@ -466,7 +467,7 @@ export default async function llamacppProvider(
             return;
           }
           cachedRouterModels = result.models;
-          ctx.ui.notify(formatRouterModelList(result.models), "info");
+          ctx.ui.notify(formatRouterModelListCommandResult(result.models), "info");
         } catch (error) {
           notifyOperationalError(ctx, error);
         }
@@ -481,7 +482,7 @@ export default async function llamacppProvider(
             `Router Reachable: ${status.routerReachable ? "yes" : "no"}`,
             `Router Models: ${status.routerModelCount ?? cachedRouterModels.length}`,
             `Provider Models: ${status.providerModelCount}`,
-            `Last Error: ${status.lastError ?? "none"}`,
+            `Last Error: ${status.lastError ? sanitizeDiagnosticMessage(status.lastError) : "none"}`,
           ].join("\n"), status.routerReachable ? "info" : "warning");
         } catch (error) {
           notifyOperationalError(ctx, error);
@@ -618,7 +619,12 @@ export class RouterClient {
       fetchSignal.cleanup();
     }
     if (!response.ok) {
-      throw new Error(`Router /models returned HTTP ${response.status}`);
+      const detail = sanitizeDiagnosticMessage(normalizeHttpErrorBody(await response.text().catch(() => "")));
+      const suffix = detail ? `: ${detail}` : "";
+      if (response.status === 401 || response.status === 403) {
+        throw new Error(`llamacpp router auth failed during model list: HTTP ${response.status}${suffix}`);
+      }
+      throw new Error(`Router /models returned HTTP ${response.status}${suffix}`);
     }
     const raw = await response.json();
     return { raw, models: normalizeRouterModelList(raw) };
@@ -713,7 +719,7 @@ export async function refreshProviderModels(
       streamSimple: createLlamaCppStreamSimple(settings, routerClient),
       models: providerModels,
     });
-    return {
+    return withModelStatusCounts({
       settings,
       routerReachable: true,
       providerRegistered: true,
@@ -722,7 +728,7 @@ export async function refreshProviderModels(
       routerModels: routerModelList.models,
       presetFile: toPresetFileStatus(presetFile),
       routerOwnership: "external",
-    };
+    });
   } catch (error) {
     return createBaselineOperationalStatus(settings, errorToMessage(error));
   }
@@ -736,11 +742,15 @@ export function createLlamaCppStreamSimple(
     await new LoadGate(settings, routerClient, { signal: options?.signal }).ensureRequestReady(model.id);
     const delegate = options?.delegate ?? streamSimpleOpenAICompletions;
     const { delegate: _delegate, ...delegateOptions } = options ?? {};
-    return delegate(
-      { ...model, api: "openai-completions" } as Model<"openai-completions">,
-      context,
-      delegateOptions,
-    );
+    try {
+      return await delegate(
+        { ...model, api: "openai-completions" } as Model<"openai-completions">,
+        context,
+        delegateOptions,
+      );
+    } catch (error) {
+      throw new Error(`llamacpp provider chat failed after load gate for model ${model.id}: ${errorToMessage(error)}`);
+    }
   };
 }
 
@@ -869,6 +879,8 @@ export function formatOperationalStatus(status: OperationalStatus): string {
     `Router Models: ${status.routerModelCount ?? 0}`,
     `Provider Registered: ${status.providerRegistered ? "yes" : "no"}`,
     `Provider Models: ${status.providerModelCount}`,
+    "Model Status Counts:",
+    ...formatModelStatusCounts(status.modelStatusCounts),
     "Timeouts:",
     `  startMs: ${status.settings.timeouts.startMs}`,
     `  loadMs: ${status.settings.timeouts.loadMs}`,
@@ -884,20 +896,24 @@ export function formatOperationalStatus(status: OperationalStatus): string {
       `Managed stderr tail: ${status.managedLogTail?.stderr.length ? status.managedLogTail.stderr.join(" | ") : "(empty)"}`,
     );
   }
-  lines.push(`Last Error: ${status.lastError ?? "none"}`);
+  lines.push(`Last Error: ${status.lastError ? sanitizeDiagnosticMessage(status.lastError) : "none"}`);
   return lines.join("\n");
+}
+
+function formatRouterModelListCommandResult(models: RouterModel[]): string {
+  return `llamacpp list complete\n\nRouter Models: ${models.length}\n\n${formatRouterModelList(models)}`;
 }
 
 export function formatRouterModelList(models: RouterModel[]): string {
   const lines = [
     "llamacpp Router Model List",
     "",
-    "| id | name | status | loaded |",
-    "|---|---|---|---|",
+    "| id | name | availability | runtime status | loaded |",
+    "|---|---|---|---|---|",
   ];
-  if (models.length === 0) lines.push("| (none) | - | - | no |");
+  if (models.length === 0) lines.push("| (none) | - | - | - | no |");
   for (const model of models) {
-    lines.push(`| ${model.id} | ${model.name} | ${model.status ?? "unknown"} | ${model.loaded ? "yes" : "no"} |`);
+    lines.push(`| ${model.id} | ${model.name} | ${formatRouterModelAvailability(model)} | ${model.status ?? "unknown"} | ${model.loaded ? "yes" : "no"} |`);
   }
   return lines.join("\n");
 }
@@ -1044,6 +1060,43 @@ async function safeFetchRouterModels(client: RouterClient): Promise<{ models: Ro
   }
 }
 
+function withModelStatusCounts(status: OperationalStatus): OperationalStatus {
+  return {
+    ...status,
+    modelStatusCounts: countRouterModelStatuses(status.routerModels ?? []),
+  };
+}
+
+function countRouterModelStatuses(models: RouterModel[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const model of models) {
+    const key = model.status ?? (model.loaded ? "loaded" : "unknown");
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return counts;
+}
+
+function formatModelStatusCounts(counts?: Record<string, number>): string[] {
+  const preferredOrder = ["loaded", "failed", "not-loaded", "sleeping", "loading", "unknown"];
+  const entries = Object.entries(counts ?? {}).sort(([left], [right]) => {
+    const leftIndex = preferredOrder.indexOf(left);
+    const rightIndex = preferredOrder.indexOf(right);
+    if (leftIndex !== -1 || rightIndex !== -1) {
+      return (leftIndex === -1 ? Number.MAX_SAFE_INTEGER : leftIndex) - (rightIndex === -1 ? Number.MAX_SAFE_INTEGER : rightIndex);
+    }
+    return left.localeCompare(right);
+  });
+  if (entries.length === 0) return ["  (none)"];
+  return entries.map(([status, count]) => `  ${status}: ${count}`);
+}
+
+function formatRouterModelAvailability(model: RouterModel): string {
+  const availability = readFirstString(model.raw, ["availability", "available", "state"]);
+  if (availability !== undefined) return availability;
+  if (typeof model.raw.available === "boolean") return model.raw.available ? "available" : "unavailable";
+  return "unknown";
+}
+
 
 async function refreshUnsupportedProviderApiStatus(
   settings: LlamaCppSettings,
@@ -1058,7 +1111,7 @@ async function refreshUnsupportedProviderApiStatus(
 
   try {
     const routerModelList = await routerClient.fetchModelList();
-    return {
+    return withModelStatusCounts({
       settings,
       routerReachable: true,
       providerRegistered: false,
@@ -1067,7 +1120,7 @@ async function refreshUnsupportedProviderApiStatus(
       routerModels: routerModelList.models,
       lastError: apiError,
       routerOwnership: "external",
-    };
+    });
   } catch (error) {
     return createBaselineOperationalStatus(settings, `${apiError} ${errorToMessage(error)}`);
   }
@@ -1175,6 +1228,17 @@ function sanitizeDiagnosticMessage(message: string): string {
     .replace(/\b(?:authorization|bearer|api[_-]?key|token|password|secret)=\S+/giu, "[redacted]")
     .replace(/\bBearer\s+[A-Za-z0-9._~+/=-]+/gu, "Bearer [redacted]")
     .replace(/\b(sk-[A-Za-z0-9._~+/=-]+)/gu, "[redacted]");
+}
+
+function normalizeHttpErrorBody(body: string): string {
+  try {
+    const parsed = JSON.parse(body) as unknown;
+    if (typeof parsed === "string") return parsed;
+    if (isRecord(parsed)) return readFirstString(parsed, ["error", "message", "detail"]) ?? body;
+  } catch {
+    // Not JSON; keep original text.
+  }
+  return body;
 }
 
 function readFirstString(record: Record<string, unknown>, keys: string[]): string | undefined {

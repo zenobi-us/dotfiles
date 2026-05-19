@@ -479,8 +479,8 @@ describe("pi-llamacpp external router discovery", () => {
     const output = formatRouterModelList(models);
 
     assert.match(output, /llamacpp Router Model List/);
-    assert.match(output, /\| alpha \| alpha \| loaded \| yes \|/);
-    assert.match(output, /\| beta \| beta \| unknown \| no \|/);
+    assert.match(output, /\| alpha \| alpha \| unknown \| loaded \| yes \|/);
+    assert.match(output, /\| beta \| beta \| unknown \| unknown \| no \|/);
   });
 
   it("reload drops stale Provider Models by unregistering before registering the latest router list", async () => {
@@ -539,7 +539,7 @@ describe("pi-llamacpp external router discovery", () => {
 
     assert.equal(notifications[0].level, "info");
     assert.match(notifications[0].message, /llamacpp Router Model List/);
-    assert.match(notifications[0].message, /\| runtime \| runtime \| loaded \| yes \|/);
+    assert.match(notifications[0].message, /\| runtime \| runtime \| unknown \| loaded \| yes \|/);
     assert.doesNotMatch(notifications[0].message, /startup/);
   });
 });
@@ -1464,6 +1464,102 @@ describe("pi-llamacpp Explicit Load Gate", () => {
     await gate.ensureRequestReady("cold");
 
     assert.equal(loadHeaders[0].Authorization, "Bearer secret-token");
+  });
+});
+
+
+describe("pi-llamacpp end-to-end diagnostics", () => {
+  it("status/list/reload/start/stop expose diagnostic outcomes across fake router, process, and provider APIs", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-diagnostics-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[ready]\n[failed]\n[cold]\n");
+    const settings = parseLlamaCppSettings({
+      serverBaseUrl: "http://router.test",
+      managedStart: true,
+      modelPresetsFile: presetFile,
+      timeouts: { startMs: 5, pollMs: 1, statusMs: 50, loadMs: 50, requestGateMs: 50 },
+    });
+    const commands = new Map();
+    const notifications = [];
+    const providerCalls = [];
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const routerResponses = [
+      new Error("ECONNREFUSED"),
+      new Error("ECONNREFUSED"),
+      jsonResponse({ data: [{ id: "ready", status: "loaded" }, { id: "failed", status: "failed", error: "gpu unavailable" }, { id: "cold", availability: "available", status: "not-loaded" }] }),
+      jsonResponse({ data: [{ id: "ready", status: "loaded" }, { id: "failed", status: "failed", error: "gpu unavailable" }, { id: "cold", availability: "available", status: "not-loaded" }] }),
+      jsonResponse({ data: [{ id: "ready", status: "loaded" }, { id: "failed", status: "failed", error: "gpu unavailable" }, { id: "cold", availability: "available", status: "not-loaded" }] }),
+      jsonResponse({ data: [{ id: "ready", status: "loaded" }] }),
+      jsonResponse({ data: [{ id: "ready", status: "loaded" }] }),
+    ];
+
+    await llamacppProvider({
+      registerCommand(name, command) { commands.set(name, command); },
+      unregisterProvider(name) { providerCalls.push(["unregister", name]); },
+      registerProvider(name, provider) { providerCalls.push(["register", name, provider.models.map((model) => model.id)]); },
+    }, {
+      loadSettings: async () => settings,
+      managedRouter: manager,
+      fetch: async () => {
+        const next = routerResponses.shift();
+        if (next instanceof Error) throw next;
+        return next;
+      },
+    });
+    const ctx = { ui: { notify: (message, level) => notifications.push({ message, level }) } };
+
+    await commands.get("llamacpp").handler("start", ctx);
+    fakeProcess.emitStdout("router booted\n");
+    fakeProcess.emitStderr("warming model cache\n");
+    await commands.get("llamacpp").handler("status", ctx);
+    await commands.get("llamacpp").handler("list", ctx);
+    await commands.get("llamacpp").handler("reload", ctx);
+    await commands.get("llamacpp").handler("stop", ctx);
+
+    assert.match(notifications[0].message, /llamacpp start[\s\S]*Managed Llama Server Router started/);
+    assert.match(notifications[1].message, /Model Status Counts:[\s\S]*loaded: 1[\s\S]*failed: 1[\s\S]*not-loaded: 1/);
+    assert.match(notifications[1].message, /Managed stdout tail: router booted/);
+    assert.match(notifications[1].message, /Managed stderr tail: warming model cache/);
+    assert.match(notifications[2].message, /llamacpp list complete[\s\S]*Router Models: 1/);
+    assert.match(notifications[2].message, /\| ready \| ready \| unknown \| loaded \| yes \|/);
+    assert.match(notifications[3].message, /llamacpp reload complete[\s\S]*Provider Models: 1/);
+    assert.match(notifications[4].message, /llamacpp stop[\s\S]*Stopped package-owned managed router process/);
+    assert.ok(providerCalls.some((call) => JSON.stringify(call) === JSON.stringify(["register", "llamacpp", ["ready"]])));
+  });
+
+  it("normalizes auth, malformed model list, missing preset, timeout, load, and provider chat diagnostics without leaking resolved secrets", async () => {
+    const secretSettings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "LLAMACPP_SECRET" }, { LLAMACPP_SECRET: "sk-secret-token" });
+
+    await assert.rejects(
+      new RouterClient(secretSettings, { fetch: async () => jsonResponse("denied Bearer sk-secret-token", { status: 401 }) }).fetchModelList(),
+      /llamacpp router auth failed during model list: HTTP 401: denied Bearer \[redacted\]/,
+    );
+    await assert.rejects(
+      new RouterClient(secretSettings, { fetch: async () => jsonResponse({ bad: [] }) }).fetchModelList(),
+      /Router \/models response is missing a data\/models array/,
+    );
+    assert.doesNotMatch(formatOperationalStatus(createBaselineOperationalStatus(secretSettings, "Bearer sk-secret-token api_key=sk-secret-token")), /sk-secret-token/);
+
+    const missingPreset = await new ManagedRouterProcess({ spawn: () => new FakeManagedProcess(), sleep: async () => {} })
+      .start(parseLlamaCppSettings({ managedStart: true, modelPresetsFile: join(tmpdir(), "missing-diagnostics.ini") }), async () => { throw new Error("ECONNREFUSED"); });
+    assert.match(missingPreset.message, /Configured Preset File not found/);
+
+    const timeoutSettings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", timeouts: { loadMs: 1, requestGateMs: 1, pollMs: 1 } });
+    await assert.rejects(
+      new LoadGate(timeoutSettings, new RouterClient(timeoutSettings, { fetch: async (url) => String(url).endsWith("/models/load") ? jsonResponse({}) : jsonResponse({ data: [{ id: "slow", status: "loading" }] }) }), { sleep: async () => {} }).ensureRequestReady("slow"),
+      /llamacpp load gate timed out for model slow/,
+    );
+
+    let provider;
+    await llamacppProvider({ registerCommand() {}, unregisterProvider() {}, registerProvider(_name, config) { provider = config; } }, {
+      loadSettings: async () => secretSettings,
+      fetch: async () => jsonResponse({ data: [{ id: "ready", status: "loaded" }] }),
+    });
+    await assert.rejects(
+      provider.streamSimple({ provider: "llamacpp", id: "ready", api: "llamacpp-openai-completions" }, { messages: [] }, { delegate: () => { throw new Error("chat failed token=sk-secret-token"); } }),
+      /llamacpp provider chat failed after load gate for model ready: chat failed \[redacted\]/,
+    );
   });
 });
 
