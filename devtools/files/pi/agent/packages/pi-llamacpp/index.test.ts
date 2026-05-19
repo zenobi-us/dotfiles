@@ -708,6 +708,47 @@ describe("ManagedRouterProcess lifecycle", () => {
     assert.deepEqual(manager.status().process?.stderrTail, ["err2", "err3"]);
   });
 
+
+  it("expands home in Configured Preset File before spawning managed router", async () => {
+    const previousHome = process.env.HOME;
+    const home = mkdtempSync(join(tmpdir(), "pi-llamacpp-home-"));
+    const presetDir = join(home, ".config", "llamacpp");
+    const presetFile = join(presetDir, "model-presets.ini");
+    mkdirSync(presetDir, { recursive: true });
+    writeFileSync(presetFile, "[model-a]\n");
+
+    const spawned = [];
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({
+      spawn: (command, args) => {
+        spawned.push({ command, args });
+        return fakeProcess;
+      },
+      sleep: async () => {},
+    });
+
+    try {
+      process.env.HOME = home;
+      const settings = parseLlamaCppSettings({
+        managedStart: true,
+        configuredPresetFilePath: "~/.config/llamacpp/model-presets.ini",
+        timeouts: { startMs: 5, pollMs: 1 },
+      });
+      let probes = 0;
+
+      await manager.start(settings, async () => {
+        probes += 1;
+        if (probes < 2) throw new Error("not reachable yet");
+      });
+    } finally {
+      if (previousHome === undefined) delete process.env.HOME;
+      else process.env.HOME = previousHome;
+    }
+
+    assert.equal(spawned[0].args.includes("~/.config/llamacpp/model-presets.ini"), false);
+    assert.deepEqual(spawned[0].args.slice(-2), ["--model-presets", presetFile]);
+  });
+
   it("clears stale pre-spawn probe errors after successful managed start command", async () => {
     const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-stale-start-"));
     const presetFile = join(dir, "models.ini");

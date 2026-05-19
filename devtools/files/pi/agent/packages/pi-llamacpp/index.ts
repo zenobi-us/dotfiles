@@ -368,7 +368,7 @@ function buildManagedRouterArgs(settings: LlamaCppSettings): string[] {
   return [
     "--host", url.hostname,
     "--port", url.port || (url.protocol === "https:" ? "443" : "80"),
-    "--model-presets", settings.configuredPresetFilePath,
+    "--model-presets", normalizeConfiguredPresetFilePath(settings.configuredPresetFilePath),
   ];
 }
 
@@ -523,7 +523,7 @@ export class RouterClient {
 
 export class PresetFileReader {
   static read(path: string): PresetFileReadResult {
-    const resolvedPath = expandHomePath(path);
+    const resolvedPath = normalizeConfiguredPresetFilePath(path);
     if (!existsSync(resolvedPath)) {
       return {
         path,
@@ -959,9 +959,13 @@ function normalizeBaseUrl(value: string): string {
   return trimmed.replace(/\/+$/, "");
 }
 
-function expandHomePath(path: string): string {
-  if (path === "~") return homedir();
-  if (path.startsWith("~/")) return join(homedir(), path.slice(2));
+export function normalizeConfiguredPresetFilePath(
+  path: string,
+  env: Record<string, string | undefined> = process.env,
+): string {
+  const home = env.HOME || homedir();
+  if (path === "~") return home;
+  if (path.startsWith("~/")) return join(home, path.slice(2));
   return path;
 }
 
