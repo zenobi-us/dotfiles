@@ -192,17 +192,20 @@ export class ManagedRouterProcess {
   private readonly sleep: (ms: number) => Promise<void>;
   private readonly maxLogLines: number;
   private readonly maxLogLineChars: number;
+  private readonly maxLogChunkChars: number;
 
   constructor(options: {
     spawn?: ProcessSpawner;
     sleep?: (ms: number) => Promise<void>;
     maxLogLines?: number;
     maxLogLineChars?: number;
+    maxLogChunkChars?: number;
   } = {}) {
     this.spawnProcess = options.spawn ?? ((command, args) => spawnChildProcess(command, args));
     this.sleep = options.sleep ?? ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
     this.maxLogLines = options.maxLogLines ?? 50;
     this.maxLogLineChars = options.maxLogLineChars ?? 4096;
+    this.maxLogChunkChars = options.maxLogChunkChars ?? 64 * 1024;
   }
 
   async start(settings: LlamaCppSettings, probe: RouterProbe): Promise<ManagedRouterStartResult> {
@@ -259,6 +262,7 @@ export class ManagedRouterProcess {
     const deadline = Date.now() + settings.timeouts.startMs;
     do {
       if (await this.isReachable(probe)) {
+        this.lastError = undefined;
         this.processState.state = "running";
         return { ...this.status(), message: "Managed Llama Server Router started." };
       }
@@ -337,7 +341,8 @@ export class ManagedRouterProcess {
   }
 
   private appendLog(target: "stdoutTail" | "stderrTail", chunk: unknown): void {
-    const lines = String(chunk)
+    const text = this.truncateLogChunk(chunk);
+    const lines = text
       .split(/\r?\n/)
       .filter(Boolean)
       .map((line) => line.length > this.maxLogLineChars ? `${line.slice(0, this.maxLogLineChars)}…` : line);
@@ -345,6 +350,16 @@ export class ManagedRouterProcess {
     if (this.processState[target].length > this.maxLogLines) {
       this.processState[target] = this.processState[target].slice(-this.maxLogLines);
     }
+  }
+
+
+  private truncateLogChunk(chunk: unknown): string {
+    if (Buffer.isBuffer(chunk)) return chunk.subarray(0, this.maxLogChunkChars).toString();
+    if (typeof chunk === "string") return chunk.slice(0, this.maxLogChunkChars);
+    if (chunk instanceof Uint8Array) {
+      return Buffer.from(chunk.buffer, chunk.byteOffset, Math.min(chunk.byteLength, this.maxLogChunkChars)).toString();
+    }
+    return String(chunk).slice(0, this.maxLogChunkChars);
   }
 }
 

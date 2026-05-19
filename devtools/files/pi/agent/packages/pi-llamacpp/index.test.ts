@@ -708,6 +708,46 @@ describe("ManagedRouterProcess lifecycle", () => {
     assert.deepEqual(manager.status().process?.stderrTail, ["err2", "err3"]);
   });
 
+  it("clears stale pre-spawn probe errors after successful managed start command", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-stale-start-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const commands = new Map();
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile });
+    const fetchResults = [
+      new Error("startup unreachable"),
+      new Error("initial pre-spawn probe failed"),
+      jsonResponse({ data: [{ id: "model-a" }] }),
+      jsonResponse({ data: [{ id: "model-a" }] }),
+    ];
+    const pi = {
+      registerCommand(name, command) { commands.set(name, command); },
+      unregisterProvider() {},
+      registerProvider() {},
+    };
+
+    await llamacppProvider(pi, {
+      loadSettings: async () => settings,
+      managedRouter: manager,
+      fetch: async () => {
+        const next = fetchResults.shift();
+        if (next instanceof Error) throw next;
+        return next;
+      },
+    });
+    const notifications = [];
+
+    await commands.get("llamacpp").handler("start", {
+      ui: { notify: (message, level) => notifications.push({ message, level }) },
+    });
+
+    assert.equal(notifications[0].level, "info");
+    assert.match(notifications[0].message, /Managed Llama Server Router started/);
+    assert.match(notifications[0].message, /Last Error: none/);
+    assert.doesNotMatch(notifications[0].message, /initial pre-spawn probe failed/);
+  });
 
   it("bounds log tail line size as well as line count", async () => {
     const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-log-bytes-"));
@@ -727,6 +767,35 @@ describe("ManagedRouterProcess lifecycle", () => {
     const stdout = manager.status().process?.stdoutTail ?? [];
     assert.equal(stdout.at(-1), "small");
     assert.ok(stdout.every((line) => line.length <= 4097));
+  });
+
+
+  it("bounds log chunk processing before splitting huge chunks", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-log-chunk-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({
+      spawn: () => fakeProcess,
+      sleep: async () => {},
+      maxLogLines: 5,
+      maxLogLineChars: 1024,
+      maxLogChunkChars: 18,
+    });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile });
+    let probes = 0;
+    await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+
+    const hugeSuffix = Array.from({ length: 1000 }, (_, i) => `suffix-${i}`).join("\n");
+    fakeProcess.emitStdout(Buffer.from(`prefix-1\nprefix-2\n${hugeSuffix}\nSENTINEL\n`));
+
+    const stdout = manager.status().process?.stdoutTail ?? [];
+    assert.ok(stdout.length <= 5);
+    assert.deepEqual(stdout, ["prefix-1", "prefix-2"]);
+    assert.doesNotMatch(stdout.join("\n"), /SENTINEL|suffix-/);
   });
 
 

@@ -56,7 +56,7 @@ Review hardening added child `error` handling for spawn failures, explicit persi
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: package-owned managed processes stop correctly and `stopOnQuit` gates shutdown.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: missing Configured Preset File blocks managed spawn.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: reload behavior leaves prior process alive and re-adopts reachability as External Router.
-- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: spawn `error` events, preserved spawn diagnostics across probe failures, kill refusal, ignored SIGTERM stop timeout, start timeout state, persistent unref behavior, invalid Server Base URL command reporting, and log line-size bounds.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: spawn `error` events, preserved spawn diagnostics across probe failures, cleared stale pre-spawn probe errors after successful managed starts, kill refusal, ignored SIGTERM stop timeout, start timeout state, persistent unref behavior, invalid Server Base URL command reporting, log line-size bounds, and pre-split log chunk bounds.
 
 ## Lessons Learned
 
@@ -68,3 +68,5 @@ Review hardening added child `error` handling for spawn failures, explicit persi
 - Persistent managed routers need explicit `unref()` on process and pipes or Pi can be held open accidentally.
 - Spawn `error` diagnostics must be preserved separately from reachability probe failures; probe failures are secondary once process spawn has failed.
 - Command handlers that load settings must catch configuration parse errors and report Operational Status instead of leaking rejected promises.
+- Successful managed start must clear transient pre-spawn probe failures while preserving real spawn and timeout diagnostics.
+- Log capture needs chunk-size caps before newline splitting; tail-size caps alone still allow unbounded CPU/memory work per event.
