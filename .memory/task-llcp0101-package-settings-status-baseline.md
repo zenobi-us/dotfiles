@@ -45,14 +45,15 @@ None - can start immediately
 
 ## Actual Outcome
 
-Implemented a loadable `llamacpp` extension baseline with public settings parsing helpers, safe Provider Base URL derivation, literal/env Provider API Key resolution, shell-command credential rejection, and `/llamacpp status` Operational Status output. The extension intentionally registers no Provider Models before compatible router discovery.
+Implemented a loadable `llamacpp` extension baseline with public settings parsing helpers, safe Provider Base URL derivation, literal/env Provider API Key resolution, shell-command credential rejection, and `/llamacpp status` Operational Status output. Review follow-up wired the status command to package settings via Pi config-service conventions, so configured Server Base URL, binary/preset paths, Provider API Key, booleans, and timeouts appear in command output. The extension intentionally registers no Provider Models before compatible router discovery.
 
 ## Unit Tests
 
 - Added `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts` using `node:test`.
-- Covered settings parsing, default timeouts, base URL derivation, Provider API Key literal/env/missing-env/shell rejection, baseline Operational Status output, and no-provider-registration extension load behavior.
+- Covered settings parsing, default timeouts, base URL derivation, Provider API Key literal/env/missing-env/shell rejection, baseline Operational Status output, command-level configured settings flow from project config, missing env status diagnostics, and no-provider-registration extension load behavior.
 
 ## Lessons Learned
 
 - Node 25 can run and syntax-check this TypeScript baseline directly, but this repo does not currently have TypeScript installed for `npx tsc`.
 - Keep router discovery and provider registration out of this slice to preserve the no-router baseline contract.
+- Use `env:<name>` for lowercase/mixed-case or intentionally missing Provider API Key env references; bare env-name compatibility remains deterministic for all-uppercase names or names present in the environment.

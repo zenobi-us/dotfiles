@@ -1,4 +1,7 @@
 import type { ExtensionAPI, ExtensionCommandContext } from "@mariozechner/pi-coding-agent";
+import { existsSync, readFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { dirname, join, parse as parsePath } from "node:path";
 
 export type LlamaCppTimeouts = {
   startMs: number;
@@ -33,6 +36,11 @@ export type OperationalStatus = {
   lastError?: string;
 };
 
+
+type LlamaCppProviderOptions = {
+  loadSettings?: (ctx?: ExtensionCommandContext) => Promise<LlamaCppSettings> | LlamaCppSettings;
+};
+
 const DEFAULT_SERVER_BASE_URL = "http://localhost:8080";
 const DEFAULT_PROVIDER_API_KEY = "llamacpp";
 
@@ -55,7 +63,12 @@ export const DEFAULT_LLAMACPP_SETTINGS: LlamaCppSettings = {
   timeouts: DEFAULT_LLAMACPP_TIMEOUTS,
 };
 
-export default async function llamacppProvider(pi: Pick<ExtensionAPI, "registerCommand">): Promise<void> {
+export default async function llamacppProvider(
+  pi: Pick<ExtensionAPI, "registerCommand">,
+  options: LlamaCppProviderOptions = {},
+): Promise<void> {
+  const loadSettings = options.loadSettings ?? loadLlamaCppSettings;
+
   pi.registerCommand("llamacpp", {
     description: "llama.cpp router status and operations",
     getArgumentCompletions: (prefix: string) => ["status"]
@@ -68,7 +81,8 @@ export default async function llamacppProvider(pi: Pick<ExtensionAPI, "registerC
         return;
       }
 
-      ctx.ui.notify(formatOperationalStatus(createBaselineOperationalStatus()), "info");
+      const settings = await loadSettings(ctx);
+      ctx.ui.notify(formatOperationalStatus(createBaselineOperationalStatus(settings)), "info");
     },
   });
 }
@@ -127,25 +141,22 @@ export function resolveProviderApiKey(
     };
   }
 
-  if (isEnvVarName(value)) {
-    const envValue = env[value];
-    if (envValue !== undefined) {
-      return { kind: "env", envName: value, value: envValue };
-    }
+  if (value.startsWith("env:")) {
+    const envName = value.slice("env:".length).trim();
+    return resolveEnvProviderApiKey(envName, value, env);
+  }
 
-    return {
-      kind: "missing-env",
-      envName: value,
-      value,
-      error: `Provider API Key environment variable ${value} is not set.`,
-    };
+  if (isEnvVarName(value) && (env[value] !== undefined || isLegacyBareEnvVarName(value))) {
+    return resolveEnvProviderApiKey(value, value, env);
   }
 
   return { kind: "literal", value };
 }
 
 export function createBaselineOperationalStatus(settings = parseLlamaCppSettings({})): OperationalStatus {
-  const apiKeyError = settings.providerApiKey.kind === "unsupported" ? settings.providerApiKey.error : undefined;
+  const apiKeyError = settings.providerApiKey.kind === "unsupported" || settings.providerApiKey.kind === "missing-env"
+    ? settings.providerApiKey.error
+    : undefined;
   return {
     settings,
     routerReachable: false,
@@ -197,7 +208,37 @@ function looksLikeShellCommand(value: string): boolean {
 }
 
 function isEnvVarName(value: string): boolean {
-  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(value) && value.toUpperCase() === value;
+  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(value);
+}
+
+function isLegacyBareEnvVarName(value: string): boolean {
+  return /^[A-Z_][A-Z0-9_]*$/.test(value);
+}
+
+function resolveEnvProviderApiKey(
+  envName: string,
+  originalValue: string,
+  env: Record<string, string | undefined>,
+): ProviderApiKeyResolution {
+  if (!isEnvVarName(envName)) {
+    return {
+      kind: "unsupported",
+      value: originalValue,
+      error: "Provider API Key environment variable names must match /^[A-Za-z_][A-Za-z0-9_]*$/.",
+    };
+  }
+
+  const envValue = env[envName];
+  if (envValue !== undefined) {
+    return { kind: "env", envName, value: envValue };
+  }
+
+  return {
+    kind: "missing-env",
+    envName,
+    value: originalValue,
+    error: `Provider API Key environment variable ${envName} is not set.`,
+  };
 }
 
 function readString(record: Record<string, unknown>, keys: string[], fallback: string): string {
@@ -220,4 +261,72 @@ function readPositiveInteger(record: Record<string, unknown>, key: string, fallb
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+async function loadLlamaCppSettings(ctx?: ExtensionCommandContext): Promise<LlamaCppSettings> {
+  const fileConfig = readLayeredConfig(ctx?.cwd ?? process.cwd());
+  if (Object.keys(fileConfig).length > 0) return parseLlamaCppSettings(fileConfig);
+
+  const configModule = await importConfigModule();
+  if (configModule) {
+    try {
+      const service = await configModule.createConfigService<LlamaCppSettings>("llamacpp", {
+        defaults: DEFAULT_LLAMACPP_SETTINGS,
+        parse: (raw: unknown) => parseLlamaCppSettings(raw),
+      });
+      return service.config;
+    } catch {
+      // Fall through to defaults in lightweight package installs where
+      // pi-extension-config is absent or unavailable.
+    }
+  }
+
+  return parseLlamaCppSettings({});
+}
+
+type ConfigModule = {
+  createConfigService<T>(name: string, options: { defaults: T; parse: (raw: unknown) => T | Promise<T> }): Promise<{ config: T }>;
+};
+
+async function importConfigModule(): Promise<ConfigModule | null> {
+  try {
+    return await import("pi-extension-config") as ConfigModule;
+  } catch {
+    try {
+      return await import("@zenobius/pi-extension-config") as ConfigModule;
+    } catch {
+      return null;
+    }
+  }
+}
+
+
+function readLayeredConfig(cwd: string): Record<string, unknown> {
+  return mergeRecords(
+    readJsonObject(join(homedir(), ".pi", "agent", "llamacpp.config.json")),
+    readJsonObject(join(findGitRoot(cwd), ".pi", "llamacpp.config.json")),
+  );
+}
+
+function findGitRoot(cwd: string): string {
+  let current = cwd;
+  const root = parsePath(current).root;
+  while (current !== root) {
+    if (existsSync(join(current, ".git"))) return current;
+    current = dirname(current);
+  }
+  return cwd;
+}
+
+function readJsonObject(path: string): Record<string, unknown> {
+  try {
+    const parsed = JSON.parse(readFileSync(path, "utf8"));
+    return isRecord(parsed) ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function mergeRecords(...records: Record<string, unknown>[]): Record<string, unknown> {
+  return Object.assign({}, ...records);
 }
