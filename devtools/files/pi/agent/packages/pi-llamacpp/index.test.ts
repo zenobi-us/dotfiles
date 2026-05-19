@@ -492,42 +492,63 @@ describe("pi-llamacpp Preset Metadata", () => {
     assert.match(result.error, /Configured Preset File not found/);
   });
 
-  it("parses INI sections as Model Presets and normalizes metadata aliases without mutating runtime args", () => {
+  it("parses INI sections as Model Presets and normalizes documented metadata aliases without mutating runtime args", () => {
     const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-presets-"));
     const file = join(dir, "models.ini");
     writeFileSync(file, [
       "[short]",
       "-c=4096",
       "-n=512",
-      "-r=true",
+      "-rea=on",
       "--model=/models/short.gguf",
       "",
       "[long]",
       "--ctx-size=8192",
-      "--n-predict=1024",
-      "--reasoning=false",
+      "--predict=1024",
+      "--reasoning=auto",
+      "--reasoning-format=deepseek",
+      "",
+      "[n-predict]",
+      "--n-predict=1536",
+      "--reasoning-format=deepseek-legacy",
       "",
       "[env]",
       "LLAMA_ARG_CTX_SIZE=16384",
       "LLAMA_ARG_N_PREDICT=2048",
-      "LLAMA_ARG_REASONING=1",
+      "LLAMA_ARG_REASONING=off",
     ].join("\n"));
 
     const result = PresetFileReader.read(file);
 
     assert.equal(result.exists, true);
-    assert.deepEqual(result.presets.map((preset) => preset.id), ["short", "long", "env"]);
+    assert.deepEqual(result.presets.map((preset) => preset.id), ["short", "long", "n-predict", "env"]);
     assert.deepEqual(result.presets.map((preset) => preset.metadata), [
-      { contextWindow: 4096, maxTokens: 512, reasoning: true },
-      { contextWindow: 8192, maxTokens: 1024, reasoning: false },
-      { contextWindow: 16384, maxTokens: 2048, reasoning: true },
+      { contextWindow: 4096, maxTokens: 512, reasoning: true, reasoningMode: "on" },
+      { contextWindow: 8192, maxTokens: 1024, reasoning: true, reasoningMode: "auto", reasoningFormat: "deepseek" },
+      { maxTokens: 1536, reasoning: true, reasoningFormat: "deepseek-legacy" },
+      { contextWindow: 16384, maxTokens: 2048, reasoning: false, reasoningMode: "off" },
     ]);
     assert.deepEqual(result.presets[0].runtimeArgs, {
       "-c": "4096",
       "-n": "512",
-      "-r": "true",
+      "-rea": "on",
       "--model": "/models/short.gguf",
     });
+  });
+
+  it("does not treat undocumented -r as Preset Metadata reasoning", () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-presets-"));
+    const file = join(dir, "models.ini");
+    writeFileSync(file, "[not-reasoning]\n-r=true\n--reasoning=on\n");
+
+    const result = PresetFileReader.read(file);
+
+    assert.deepEqual(result.presets[0].metadata, { reasoning: true, reasoningMode: "on" });
+    assert.deepEqual(result.presets[0].runtimeArgs, {
+      "-r": "true",
+      "--reasoning": "on",
+    });
+    assert.equal(result.warnings.length, 0);
   });
 
   it("reports invalid Preset Metadata values without changing runtime args", () => {
@@ -549,7 +570,7 @@ describe("pi-llamacpp Preset Metadata", () => {
   it("enriches only Provider Models whose Router Model List IDs match Model Presets", async () => {
     const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-presets-"));
     const file = join(dir, "models.ini");
-    writeFileSync(file, "[match]\n--ctx-size=8192\n--n-predict=1024\n--reasoning=true\n\n[unmatched]\n--ctx-size=32768\n");
+    writeFileSync(file, "[match]\n--ctx-size=8192\n--n-predict=1024\n--reasoning=on\n\n[unmatched]\n--ctx-size=32768\n");
     const settings = parseLlamaCppSettings({ configuredPresetFilePath: file });
     let registeredModels = [];
 

@@ -46,6 +46,8 @@ export type PresetMetadata = {
   contextWindow?: number;
   maxTokens?: number;
   reasoning?: boolean;
+  reasoningMode?: "on" | "off" | "auto";
+  reasoningFormat?: string;
 };
 
 export type ModelPreset = {
@@ -494,13 +496,25 @@ function normalizePresetMetadataValue(preset: ModelPreset, key: string, value: s
   const canonicalKey = normalizePresetMetadataKey(key);
   if (!canonicalKey) return;
 
-  if (canonicalKey === "reasoning") {
-    const parsed = parseMetadataBoolean(value);
+  if (canonicalKey === "reasoningMode") {
+    const parsed = parseReasoningMode(value);
     if (parsed === undefined) {
       warnings.push(`Invalid reasoning metadata for preset ${preset.id}: ${value}`);
       return;
     }
-    preset.metadata.reasoning = parsed;
+    preset.metadata.reasoningMode = parsed;
+    preset.metadata.reasoning = parsed !== "off";
+    return;
+  }
+
+  if (canonicalKey === "reasoningFormat") {
+    const parsed = parseReasoningFormat(value);
+    if (parsed === undefined) {
+      warnings.push(`Invalid reasoning format metadata for preset ${preset.id}: ${value}`);
+      return;
+    }
+    preset.metadata.reasoningFormat = parsed;
+    preset.metadata.reasoning = parsed !== "none";
     return;
   }
 
@@ -515,9 +529,10 @@ function normalizePresetMetadataValue(preset: ModelPreset, key: string, value: s
 
 function normalizePresetMetadataKey(key: string): keyof PresetMetadata | undefined {
   const normalized = key.trim();
-  if (["-c", "--ctx-size", "--context-size", "LLAMA_ARG_CTX_SIZE"].includes(normalized)) return "contextWindow";
-  if (["-n", "--n-predict", "--max-tokens", "LLAMA_ARG_N_PREDICT"].includes(normalized)) return "maxTokens";
-  if (["-r", "--reasoning", "--reasoning-format", "LLAMA_ARG_REASONING"].includes(normalized)) return "reasoning";
+  if (["-c", "--ctx-size", "LLAMA_ARG_CTX_SIZE"].includes(normalized)) return "contextWindow";
+  if (["-n", "--predict", "--n-predict", "LLAMA_ARG_N_PREDICT"].includes(normalized)) return "maxTokens";
+  if (["-rea", "--reasoning", "LLAMA_ARG_REASONING"].includes(normalized)) return "reasoningMode";
+  if (["--reasoning-format"].includes(normalized)) return "reasoningFormat";
   return undefined;
 }
 
@@ -527,11 +542,16 @@ function parseMetadataPositiveInteger(value: string): number | undefined {
   return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : undefined;
 }
 
-function parseMetadataBoolean(value: string): boolean | undefined {
+function parseReasoningMode(value: string): "on" | "off" | "auto" | undefined {
   const normalized = value.trim().toLowerCase();
-  if (["1", "true", "yes", "on", "enabled"].includes(normalized)) return true;
-  if (["0", "false", "no", "off", "disabled", "none"].includes(normalized)) return false;
+  if (normalized === "on" || normalized === "off" || normalized === "auto") return normalized;
   return undefined;
+}
+
+function parseReasoningFormat(value: string): string | undefined {
+  const normalized = value.trim().toLowerCase();
+  if (!normalized || /\s/u.test(normalized)) return undefined;
+  return normalized;
 }
 
 function stripIniValueComment(value: string): string {

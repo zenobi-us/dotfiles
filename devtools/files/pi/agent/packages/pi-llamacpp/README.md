@@ -28,7 +28,7 @@ The Provider Base URL is derived by safely appending `/v1` to `serverBaseUrl`.
 
 ## Preset Metadata
 
-`PresetFileReader` parses INI sections as Model Presets and keeps runtime args intact. Only documented aliases for context size (`-c`, `--ctx-size`, `LLAMA_ARG_CTX_SIZE`), max prediction tokens (`-n`, `--n-predict`, `LLAMA_ARG_N_PREDICT`), and reasoning (`-r`, `--reasoning`, `LLAMA_ARG_REASONING`) are normalized into Provider Model metadata. Invalid metadata is reported as warnings and ignored for Provider Models; runtime args are not changed. Router Model List IDs remain the source of Provider Models, so unmatched INI sections never create dead Provider Models.
+`PresetFileReader` parses INI sections as Model Presets and keeps runtime args intact. It normalizes only the documented llama.cpp server aliases from `tools/server/README.md`: context size (`-c`, `--ctx-size`, `LLAMA_ARG_CTX_SIZE`), max prediction tokens (`-n`, `--predict`, `--n-predict`, `LLAMA_ARG_N_PREDICT`), reasoning mode (`-rea`, `--reasoning`, `LLAMA_ARG_REASONING` with `on`, `off`, or `auto`), and reasoning format (`--reasoning-format` values such as `none`, `deepseek`, or `deepseek-legacy`). Undocumented aliases such as `-r` are left as runtime args only and are not treated as Preset Metadata. Invalid metadata is reported as warnings and ignored for Provider Models; runtime args are not changed. Router Model List IDs remain the source of Provider Models, so unmatched INI sections never create dead Provider Models.
 
 ## Planned later slices
 

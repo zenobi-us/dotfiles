@@ -51,15 +51,17 @@ Read the Configured Preset File when present, validate missing-file behavior, an
 
 ## Actual Outcome
 
-Implemented `PresetFileReader` for Configured Preset File existence validation and INI Model Preset parsing. Operational Status now reports preset file state, managed-start preparation has explicit missing-file blocking state for llcp0104, and Provider Refresh enriches only Router Model List matches with safe Preset Metadata while preserving runtime args.
+Implemented `PresetFileReader` for Configured Preset File existence validation and INI Model Preset parsing. Operational Status now reports preset file state, managed-start preparation has explicit missing-file blocking state for llcp0104, and Provider Refresh enriches only Router Model List matches with safe Preset Metadata while preserving runtime args. Review fixes aligned alias normalization to current llama.cpp server documentation, including `--predict`, reasoning mode (`-rea`/`--reasoning`/`LLAMA_ARG_REASONING`), reasoning format, and rejecting undocumented `-r` as metadata.
 
 ## Unit Tests
 
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: present/missing Configured Preset File status and managed-start preparation blocking.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: INI Model Preset parsing, alias normalization, invalid value warnings, and runtime-arg separation.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: Provider Model enrichment for matching router IDs without creating models for unmatched INI sections.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: documented alias coverage for `--predict`, `--n-predict`, `-n`, `LLAMA_ARG_N_PREDICT`, `--reasoning`, `-rea`, `LLAMA_ARG_REASONING`, `--reasoning-format deepseek`, plus proof that `-r` is not reasoning metadata.
 
 ## Lessons Learned
 
 - Keeping runtime args untouched makes invalid metadata handling safe: warnings can inform users without altering llama.cpp behavior.
 - Enrichment belongs after Router Model List retrieval so the router remains the Provider Model source of truth.
+- Treat upstream llama.cpp server README aliases as the authority for Preset Metadata; unsupported convenience aliases risk exposing misleading Provider Model details.
