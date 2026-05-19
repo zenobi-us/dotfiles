@@ -1,26 +1,30 @@
 # LLamaCpp Provider for PI
 
-## Idea
+## Baseline
 
-Takes settings from pi SettingsManager. 
+This package exposes a loadable `llamacpp` Pi extension and a baseline `/llamacpp status` command. This slice does not discover an external router, start `llama-server`, parse Preset Metadata, or register Provider Models.
 
-`llamacpp#modelPresetsFile: string` - path to llama-server model preset file. (defaults to `~/.config/llamacpp/model-presets.ini`)
-`llamacpp#serverBinaryPath: string` - path to llama-server binary (defaults to `llama-server` in PATH).
+## Settings
 
-Auto behaviour:
+Supported package settings:
 
-- auto starts llama-server if not running, using the model presets file specified in settings.
-  this doesn't load a model yet.
-- registers a provider for llama-server, which lists available models in the `/models` 
-https://github.com/ggml-org/llama.cpp/blob/dd7cad7197f991b18ded6aca46ff095972b95318/tools/server/README.md#get-models-list-available-models
-- when a model is selected, it sends a request to load the model in llama-server, and waits for it to be ready.
-- when request is made check that the model is loaded, if not, wait for it to be loaded before sending the request to llama-server.
+- `serverBaseUrl`: Llama Server Router endpoint without `/v1` (default `http://localhost:8080`).
+- `serverBinaryPath`: path to `llama-server` binary (default `llama-server`).
+- `configuredPresetFilePath` / `modelPresetsFile`: Configured Preset File path (default `~/.config/llamacpp/model-presets.ini`).
+- `providerApiKey`: literal API key or environment variable name. Shell-command values such as `$(pass show ...)` are reported as unsupported.
+- `loadOnSelect`: whether future model selection should trigger Explicit Load (default `false`).
+- `stopOnQuit`: whether future managed router ownership should stop on Pi quit (default `false`).
+- `timeouts.startMs`, `timeouts.loadMs`, `timeouts.pollMs`, `timeouts.requestGateMs`, `timeouts.statusMs`: separate timeout values.
 
+The Provider Base URL is derived by safely appending `/v1` to `serverBaseUrl`.
 
-Commands: 
+## Commands
 
-- `/llamacpp reload` - reloads the model presets file and updates the list of available models. Useful if you add new models to the presets file while PI is running.
-- `/llamacpp start` - starts llama-server if it's not already running.
-- `/llamacpp stop` - stops llama-server if it's running.
-- `/llamacpp status` - shows the status of llama-server, including whether it's running, which model is currently loaded, and any errors if applicable.
-- `/llamacpp list` - lists the available models from the model presets file, along with their status (loaded/not loaded).
+- `/llamacpp status` - shows baseline Operational Status: router reachability, provider registration state, Provider Model count, settings, timeout values, and last error.
+
+## Planned later slices
+
+- `/llamacpp reload` - reload model presets and update Provider Models after compatible router discovery.
+- `/llamacpp start` - start a managed Llama Server Router.
+- `/llamacpp stop` - stop only a package-owned managed router.
+- `/llamacpp list` - list Router Model List entries from llama-server.
