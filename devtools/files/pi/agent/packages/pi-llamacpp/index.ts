@@ -144,16 +144,11 @@ type ProviderModel = {
 type LlamaCppPiApi = Pick<ExtensionAPI, "registerCommand"> & {
   registerProvider?: (name: string, provider: unknown) => void | Promise<void>;
   unregisterProvider?: (name: string) => void | Promise<void>;
-  on?: (event: "quit", handler: () => void | Promise<void>) => void;
+  on?: (event: string, handler: (event?: unknown, ctx?: unknown) => void | Promise<void>) => void;
 };
 
 type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
 
-type LoadGateHookPayload = {
-  provider?: string;
-  model?: string;
-  id?: string;
-};
 
 type LlamaCppProviderOptions = {
   loadSettings?: (ctx?: ExtensionCommandContext) => Promise<LlamaCppSettings> | LlamaCppSettings;
@@ -403,8 +398,25 @@ export default async function llamacppProvider(
     error instanceof Error ? error.message : String(error),
   ));
 
-  pi.on?.("quit", async () => {
+  pi.on?.("session_shutdown", async (event) => {
+    if (isRecord(event) && event.reason !== "quit") return;
     await managedRouter.stopOnQuit(await loadSettings());
+  });
+
+
+  pi.on?.("before_provider_request", async (_event, ctx) => {
+    const model = readHookContextModel(ctx);
+    if (!isLlamaCppSelectedModel(model)) return;
+    const settings = await loadSettings();
+    await new LoadGate(settings, clientFor(settings)).ensureRequestReady(model.id);
+  });
+
+  pi.on?.("model_select", async (event) => {
+    const model = readModelSelectEventModel(event);
+    if (!isLlamaCppSelectedModel(model)) return;
+    const settings = await loadSettings();
+    if (!settings.loadOnSelect) return;
+    await new LoadGate(settings, clientFor(settings)).ensureRequestReady(model.id);
   });
 
   const notifyOperationalError = (ctx: ExtensionCommandContext, error: unknown): void => {
@@ -515,35 +527,55 @@ export class LoadGate {
   }
 
   async ensureRequestReady(modelId: string): Promise<void> {
-    const deadline = this.now() + Math.min(this.settings.timeouts.loadMs, this.settings.timeouts.requestGateMs);
-    let model = await this.fetchModelForGate(modelId);
-    if (isRequestReadyRouterModel(model)) return;
+    const timeoutMs = Math.min(this.settings.timeouts.loadMs, this.settings.timeouts.requestGateMs);
+    const deadline = this.now() + timeoutMs;
+    let model = await this.fetchModelForGate(modelId, deadline);
+    this.assertWithinGate(modelId, deadline, timeoutMs);
     if (isFailedRouterModel(model)) throw loadFailedError(modelId, model);
+    if (isRequestReadyRouterModel(model)) return;
 
-    await this.routerClient.loadModel(modelId);
+    await this.loadModelForGate(modelId, deadline);
+    this.assertWithinGate(modelId, deadline, timeoutMs);
 
     do {
-      model = await this.fetchModelForGate(modelId);
-      if (isRequestReadyRouterModel(model)) return;
+      model = await this.fetchModelForGate(modelId, deadline);
+      this.assertWithinGate(modelId, deadline, timeoutMs);
       if (isFailedRouterModel(model)) throw loadFailedError(modelId, model);
+      if (isRequestReadyRouterModel(model)) return;
       const remaining = deadline - this.now();
       if (remaining <= 0) break;
       await this.sleep(Math.min(this.settings.timeouts.pollMs, remaining));
     } while (this.now() < deadline);
 
-    throw new Error(`llamacpp load gate timed out for model ${modelId} after ${Math.min(this.settings.timeouts.loadMs, this.settings.timeouts.requestGateMs)}ms.`);
+    throw loadGateTimeoutError(modelId, timeoutMs);
   }
 
-  private async fetchModelForGate(modelId: string): Promise<RouterModel> {
+  private async fetchModelForGate(modelId: string, deadline: number): Promise<RouterModel> {
     let list: RouterModelList;
     try {
-      list = await this.routerClient.fetchModelList();
+      list = await this.routerClient.fetchModelList(this.operationTimeout(this.settings.timeouts.statusMs, deadline));
     } catch (error) {
       throw normalizeLoadGateListError(error);
     }
     const model = list.models.find((candidate) => candidate.id === modelId);
     if (!model) throw new Error(`llamacpp unknown model id ${modelId}: model is not present in Router Model List.`);
     return model;
+  }
+
+  private async loadModelForGate(modelId: string, deadline: number): Promise<void> {
+    try {
+      await this.routerClient.loadModel(modelId, this.operationTimeout(this.settings.timeouts.loadMs, deadline));
+    } catch (error) {
+      throw normalizeLoadGateLoadError(modelId, error);
+    }
+  }
+
+  private operationTimeout(configuredMs: number, deadline: number): number {
+    return Math.max(1, Math.min(configuredMs, deadline - this.now()));
+  }
+
+  private assertWithinGate(modelId: string, deadline: number, timeoutMs: number): void {
+    if (this.now() > deadline) throw loadGateTimeoutError(modelId, timeoutMs);
   }
 }
 
@@ -556,12 +588,17 @@ export class RouterClient {
     this.fetchImpl = options.fetch ?? fetch;
   }
 
-  async fetchModelList(): Promise<RouterModelList> {
-    const response = await this.fetchImpl(`${this.settings.serverBaseUrl}/models`, {
-      method: "GET",
-      headers: this.headers(),
-      signal: AbortSignal.timeout(this.settings.timeouts.statusMs),
-    });
+  async fetchModelList(timeoutMs = this.settings.timeouts.statusMs): Promise<RouterModelList> {
+    let response: Response;
+    try {
+      response = await this.fetchImpl(`${this.settings.serverBaseUrl}/models`, {
+        method: "GET",
+        headers: this.headers(),
+        signal: AbortSignal.timeout(timeoutMs),
+      });
+    } catch (error) {
+      throw normalizeFetchTransportError("Router /models", error);
+    }
     if (!response.ok) {
       throw new Error(`Router /models returned HTTP ${response.status}`);
     }
@@ -569,15 +606,20 @@ export class RouterClient {
     return { raw, models: normalizeRouterModelList(raw) };
   }
 
-  async loadModel(modelId: string): Promise<void> {
-    const response = await this.fetchImpl(`${this.settings.serverBaseUrl}/models/load`, {
-      method: "POST",
-      headers: { ...this.headers(), "Content-Type": "application/json" },
-      body: JSON.stringify({ model: modelId }),
-      signal: AbortSignal.timeout(this.settings.timeouts.loadMs),
-    });
+  async loadModel(modelId: string, timeoutMs = this.settings.timeouts.loadMs): Promise<void> {
+    let response: Response;
+    try {
+      response = await this.fetchImpl(`${this.settings.serverBaseUrl}/models/load`, {
+        method: "POST",
+        headers: { ...this.headers(), "Content-Type": "application/json" },
+        body: JSON.stringify({ model: modelId }),
+        signal: AbortSignal.timeout(timeoutMs),
+      });
+    } catch (error) {
+      throw normalizeFetchTransportError(`Router /models/load for model ${modelId}`, error);
+    }
     if (!response.ok) {
-      const detail = await response.text().catch(() => "");
+      const detail = sanitizeDiagnosticMessage(await response.text().catch(() => ""));
       const suffix = detail ? `: ${detail}` : "";
       if (response.status === 401 || response.status === 403) {
         throw new Error(`llamacpp router auth failed during model load: HTTP ${response.status}${suffix}`);
@@ -643,20 +685,11 @@ export async function refreshProviderModels(
     const presetFile = PresetFileReader.read(settings.configuredPresetFilePath);
     const presetMetadata = new Map(presetFile.presets.map((preset) => [preset.id, preset.metadata]));
     const providerModels = routerModelList.models.map((model) => toProviderModel(model, presetMetadata.get(model.id)));
-    const loadGate = new LoadGate(settings, routerClient);
     await pi.registerProvider(PROVIDER_ID, {
       baseUrl: settings.providerBaseUrl,
       apiKey: resolvedProviderApiKeyValue(settings.providerApiKey) ?? DEFAULT_PROVIDER_API_KEY,
       api: "openai-completions",
       models: providerModels,
-      beforeRequest: async (payload: LoadGateHookPayload) => {
-        if (!isLlamaCppHookPayload(payload)) return;
-        await loadGate.ensureRequestReady(readHookModelId(payload));
-      },
-      onModelSelect: async (payload: LoadGateHookPayload) => {
-        if (!settings.loadOnSelect || !isLlamaCppHookPayload(payload)) return;
-        await loadGate.ensureRequestReady(readHookModelId(payload));
-      },
     });
     return {
       settings,
@@ -1016,6 +1049,7 @@ function isRouterModelLoaded(row: Record<string, unknown>, status?: string): boo
 }
 
 function isRequestReadyRouterModel(model: RouterModel): boolean {
+  if (isFailedRouterModel(model)) return false;
   return model.loaded || /^(loaded|running|ready|active|sleeping)$/i.test(model.status ?? "");
 }
 
@@ -1024,24 +1058,56 @@ function isFailedRouterModel(model: RouterModel): boolean {
 }
 
 function loadFailedError(modelId: string, model: RouterModel): Error {
-  const detail = readFirstString(model.raw, ["error", "message", "detail"]) ?? model.status ?? "router reported failed model state";
+  const detail = sanitizeDiagnosticMessage(readFirstString(model.raw, ["error", "message", "detail"]) ?? model.status ?? "router reported failed model state");
   return new Error(`llamacpp load failed for model ${modelId}: ${detail}`);
 }
 
+function loadGateTimeoutError(modelId: string, timeoutMs: number): Error {
+  return new Error(`llamacpp load gate timed out for model ${modelId} after ${timeoutMs}ms.`);
+}
+
 function normalizeLoadGateListError(error: unknown): Error {
-  const message = errorToMessage(error);
+  const message = sanitizeDiagnosticMessage(errorToMessage(error));
   if (/HTTP (401|403)/.test(message)) return new Error(`llamacpp router auth failed during model list: ${message.replace(/^Router \/models returned /, "")}`);
+  if (/timed out/i.test(message)) return new Error(`llamacpp router model list timed out: ${message}`);
   return new Error(`llamacpp router unreachable: ${message}`);
 }
 
-function isLlamaCppHookPayload(payload: LoadGateHookPayload): boolean {
-  return payload.provider === PROVIDER_ID || payload.provider === undefined;
+function normalizeLoadGateLoadError(modelId: string, error: unknown): Error {
+  const message = sanitizeDiagnosticMessage(errorToMessage(error));
+  if (/auth failed/.test(message)) return new Error(message);
+  if (/load request failed/.test(message)) return new Error(message);
+  if (/timed out/i.test(message)) return new Error(`llamacpp load request timed out for model ${modelId}: ${message}`);
+  if (/aborted/i.test(message)) return new Error(`llamacpp load request aborted for model ${modelId}: ${message}`);
+  return new Error(`llamacpp router unreachable during model load for model ${modelId}: ${message}`);
 }
 
-function readHookModelId(payload: LoadGateHookPayload): string {
-  const modelId = payload.model ?? payload.id;
-  if (!modelId) throw new Error("llamacpp load gate missing model id in provider request payload.");
-  return modelId;
+function normalizeFetchTransportError(label: string, error: unknown): Error {
+  const message = sanitizeDiagnosticMessage(errorToMessage(error));
+  const name = error instanceof Error ? error.name : "";
+  if (name === "TimeoutError") return new Error(`${label} timed out: ${message}`);
+  if (name === "AbortError") return new Error(`${label} aborted: ${message}`);
+  return new Error(message);
+}
+
+
+function isLlamaCppSelectedModel(model: unknown): model is { provider: string; id: string } {
+  return isRecord(model) && model.provider === PROVIDER_ID && typeof model.id === "string" && model.id.trim() !== "";
+}
+
+function readHookContextModel(ctx: unknown): unknown {
+  return isRecord(ctx) ? ctx.model : undefined;
+}
+
+function readModelSelectEventModel(event: unknown): unknown {
+  return isRecord(event) ? event.model : undefined;
+}
+
+function sanitizeDiagnosticMessage(message: string): string {
+  return message
+    .replace(/\b(?:authorization|bearer|api[_-]?key|token|password|secret)=\S+/giu, "[redacted]")
+    .replace(/\bBearer\s+[A-Za-z0-9._~+/=-]+/gu, "Bearer [redacted]")
+    .replace(/\b(sk-[A-Za-z0-9._~+/=-]+)/gu, "[redacted]");
 }
 
 function readFirstString(record: Record<string, unknown>, keys: string[]): string | undefined {
@@ -1120,7 +1186,7 @@ function resolveEnvProviderApiKey(
 }
 
 function errorToMessage(error: unknown): string {
-  return error instanceof Error ? error.message : String(error);
+  return sanitizeDiagnosticMessage(error instanceof Error ? error.message : String(error));
 }
 
 function addManagedRouterStatus(status: OperationalStatus, managed: ManagedRouterStatus): OperationalStatus {

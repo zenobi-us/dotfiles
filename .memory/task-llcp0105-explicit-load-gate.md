@@ -45,7 +45,7 @@ Protect every `llamacpp` Provider Model request with an Explicit Load Gate. Befo
 
 ## Actual Outcome
 
-Implemented `LoadGate` over `RouterClient` with request-time readiness checks, `POST /models/load`, polling against `/models`, configured timeout budgets, and distinct package-owned errors for unknown models, unreachable router, auth failures, failed loads, and timeouts. Provider Refresh now registers `beforeRequest` and `onModelSelect` hooks for `llamacpp` Provider Models; `loadOnSelect` gates selection feedback without adding package-level cross-process locks.
+Implemented `LoadGate` over `RouterClient` with request-time readiness checks, `POST /models/load`, polling against `/models`, and one whole-gate `requestGateMs` deadline layered over status/load operation timeouts. Errors are package-owned and distinct for unknown models, unreachable router, auth failures, load HTTP failures, load fetch failures, load timeouts, failed router model state, and gate timeouts, with secret-bearing diagnostics sanitized. Provider integration now uses documented Pi extension events `before_provider_request` and `model_select`; `loadOnSelect` gates selection feedback without adding package-level cross-process locks.
 
 ## Unit Tests
 
@@ -53,9 +53,15 @@ Implemented `LoadGate` over `RouterClient` with request-time readiness checks, `
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: unloaded models trigger `/models/load` and poll until loaded.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: failed Router Model state, failed `/models/load`, unknown-model, unreachable-router, auth-error, and timeout diagnostics are distinct.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: provider request and `loadOnSelect` hooks run only for `llamacpp` flow.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: `requestGateMs` bounds initial `/models`, `POST /models/load`, and polling even when `loadMs`/`statusMs` are larger.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: `POST /models/load` fetch rejection and timeout are normalized distinctly and sanitized.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: failed router state wins over `loaded: true` and raw secret-bearing errors are redacted.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: providerless/non-`llamacpp` request hook contexts do not gate; `loadOnSelect: false` is a no-op.
 
 ## Lessons Learned
 
 - Request gating can stay package-local and deterministic by treating Router Model List as source of truth immediately before provider dispatch.
 - Sleeping models need explicit ready-state handling; treating them as unloaded would add pointless load calls and false failures.
-- Pi provider hooks are kept as package-owned extension metadata in tests; future Pi core hook naming changes should stay isolated to Provider Refresh wiring.
+- Pi docs `docs/extensions.md` documents `before_provider_request` and `model_select`; `docs/custom-provider.md` documents `registerProvider()` config and does not document provider config fields named `beforeRequest` or `onModelSelect`. Tests now bind through `pi.on(...)`, matching docs and examples `examples/extensions/provider-payload.ts` and `examples/extensions/model-status.ts`.
+- `docs/models.md` and `docs/custom-provider.md` describe custom provider/model registration via `api: "openai-completions"`, `baseUrl`, `apiKey`, and `models`; Load Gate behavior stays extension-event-owned instead of hidden in provider config.
+- Hook scoping must use selected model/provider context. Payload-only `provider` is insufficient because `docs/extensions.md` shows `before_provider_request` payload is provider serialization data, while `ctx.model` carries active provider identity.

@@ -1155,9 +1155,132 @@ describe("pi-llamacpp Explicit Load Gate", () => {
     );
   });
 
-  it("registers request and optional selection load hooks for llamacpp Provider Models", async () => {
+
+  it("enforces requestGateMs across initial status, load, and polling calls", async () => {
+    const settings = parseLlamaCppSettings({
+      serverBaseUrl: "http://router.test",
+      timeouts: { loadMs: 1000, statusMs: 1000, requestGateMs: 5, pollMs: 1 },
+    });
+    let now = 0;
+    const calls = [];
+    const gate = new LoadGate(settings, new RouterClient(settings, {
+      fetch: async (url, init) => {
+        calls.push([init?.method, String(url)]);
+        now += 10;
+        return jsonResponse({ data: [{ id: "cold", status: "available" }] });
+      },
+    }), { sleep: async () => {}, now: () => now });
+
+    await assert.rejects(gate.ensureRequestReady("cold"), /llamacpp load gate timed out for model cold after 5ms/);
+    assert.deepEqual(calls, [["GET", "http://router.test/models"]]);
+  });
+
+  it("enforces requestGateMs when POST load consumes the remaining gate budget", async () => {
+    const settings = parseLlamaCppSettings({
+      serverBaseUrl: "http://router.test",
+      timeouts: { loadMs: 1000, statusMs: 1000, requestGateMs: 5, pollMs: 1 },
+    });
+    let now = 0;
+    const calls = [];
+    const gate = new LoadGate(settings, new RouterClient(settings, {
+      fetch: async (url, init) => {
+        calls.push([init?.method, String(url)]);
+        if (String(url).endsWith("/models/load")) {
+          now += 10;
+          return jsonResponse({ ok: true });
+        }
+        return jsonResponse({ data: [{ id: "cold", status: "available" }] });
+      },
+    }), { sleep: async () => {}, now: () => now });
+
+    await assert.rejects(gate.ensureRequestReady("cold"), /llamacpp load gate timed out for model cold after 5ms/);
+    assert.deepEqual(calls, [
+      ["GET", "http://router.test/models"],
+      ["POST", "http://router.test/models/load"],
+    ]);
+  });
+
+  it("normalizes POST /models/load unreachable and timeout errors distinctly", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", timeouts: { loadMs: 1000, requestGateMs: 1000, pollMs: 1 } });
+
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, {
+        fetch: async (url) => {
+          if (String(url).endsWith("/models/load")) throw new Error("connect ECONNREFUSED token=secret");
+          return jsonResponse({ data: [{ id: "cold", status: "available" }] });
+        },
+      }), { sleep: async () => {} }).ensureRequestReady("cold"),
+      /llamacpp router unreachable during model load for model cold: connect ECONNREFUSED \[redacted\]/,
+    );
+
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, {
+        fetch: async (url) => {
+          if (String(url).endsWith("/models/load")) throw new DOMException("The operation was aborted", "TimeoutError");
+          return jsonResponse({ data: [{ id: "cold", status: "available" }] });
+        },
+      }), { sleep: async () => {} }).ensureRequestReady("cold"),
+      /llamacpp load request timed out for model cold/,
+    );
+  });
+
+  it("fails failed router models before loaded or sleeping readiness", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, { fetch: async () => jsonResponse({ data: [{ id: "bad", status: "failed", loaded: true, error: "gpu token=secret" }] }) }), { sleep: async () => {} }).ensureRequestReady("bad"),
+      /llamacpp load failed for model bad: gpu \[redacted\]/,
+    );
+  });
+
+  it("does not gate providerless or non-llamacpp hook events", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    const calls = [];
+    const handlers = {};
+    await llamacppProvider({
+      registerCommand() {},
+      on(event, handler) { handlers[event] = handler; },
+      unregisterProvider() {},
+      registerProvider() {},
+    }, {
+      loadSettings: async () => settings,
+      fetch: async (url, init) => {
+        calls.push([init?.method, String(url)]);
+        return jsonResponse({ data: [{ id: "select-me", status: "loaded" }] });
+      },
+    });
+
+    await handlers.before_provider_request({ type: "before_provider_request", payload: { model: "select-me" } }, { model: undefined });
+    await handlers.before_provider_request({ type: "before_provider_request", payload: { model: "select-me" } }, { model: { provider: "openai", id: "select-me" } });
+
+    assert.deepEqual(calls, [["GET", "http://router.test/models"]]);
+  });
+
+  it("loadOnSelect false leaves model_select hook as a no-op", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", loadOnSelect: false });
+    const calls = [];
+    const handlers = {};
+    await llamacppProvider({
+      registerCommand() {},
+      on(event, handler) { handlers[event] = handler; },
+      unregisterProvider() {},
+      registerProvider() {},
+    }, {
+      loadSettings: async () => settings,
+      fetch: async (url, init) => {
+        calls.push([init?.method, String(url)]);
+        return jsonResponse({ data: [{ id: "select-me", status: "available" }] });
+      },
+    });
+
+    await handlers.model_select({ type: "model_select", model: { provider: "llamacpp", id: "select-me" }, previousModel: undefined, source: "set" }, {});
+
+    assert.deepEqual(calls, [["GET", "http://router.test/models"]]);
+  });
+
+  it("registers documented Pi event hooks for llamacpp Provider Models", async () => {
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", loadOnSelect: true });
-    let provider;
+    const handlers = {};
     const requests = [];
     const modelListResponses = [
       { data: [{ id: "select-me", status: "loaded" }] },
@@ -1165,20 +1288,26 @@ describe("pi-llamacpp Explicit Load Gate", () => {
       { data: [{ id: "select-me", status: "loaded" }] },
       { data: [{ id: "select-me", status: "loaded" }] },
     ];
-    await refreshProviderModels({ unregisterProvider() {}, registerProvider(_name, value) { provider = value; } }, settings, new RouterClient(settings, {
+    await llamacppProvider({
+      registerCommand() {},
+      on(event, handler) { handlers[event] = handler; },
+      unregisterProvider() {},
+      registerProvider() {},
+    }, {
+      loadSettings: async () => settings,
       fetch: async (url, init) => {
         requests.push([init?.method, String(url)]);
         if (String(url).endsWith("/models/load")) return jsonResponse({});
         return jsonResponse(modelListResponses.shift() ?? { data: [{ id: "select-me", status: "loaded" }] });
       },
-    }));
+    });
 
-    await provider.onModelSelect({ id: "select-me", provider: "llamacpp" });
-    await provider.beforeRequest({ model: "select-me", provider: "llamacpp" });
-    await provider.beforeRequest({ model: "other", provider: "openai" });
+    await handlers.model_select({ type: "model_select", model: { provider: "llamacpp", id: "select-me" }, previousModel: undefined, source: "set" }, {});
+    await handlers.before_provider_request({ type: "before_provider_request", payload: { model: "select-me" } }, { model: { provider: "llamacpp", id: "select-me" } });
+    await handlers.before_provider_request({ type: "before_provider_request", payload: { model: "other" } }, { model: { provider: "openai", id: "other" } });
 
-    assert.equal(typeof provider.beforeRequest, "function");
-    assert.equal(typeof provider.onModelSelect, "function");
+    assert.equal(typeof handlers.before_provider_request, "function");
+    assert.equal(typeof handlers.model_select, "function");
     assert.deepEqual(requests.map(([method, url]) => [method, url]), [
       ["GET", "http://router.test/models"],
       ["GET", "http://router.test/models"],
