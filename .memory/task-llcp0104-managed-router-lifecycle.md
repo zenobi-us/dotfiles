@@ -47,6 +47,8 @@ Implement managed llama-server start/stop/adoption behavior while preserving str
 
 Implemented `ManagedRouterProcess` with injectable spawner/probe, managed/external ownership state, start-time preset validation, bounded stdout/stderr log tails, stop-only-owned semantics, and `stopOnQuit`. `/llamacpp start`, `/llamacpp stop`, and Operational Status now include managed lifecycle details. Reload/new extension instances adopt reachable routers as External Router unless current instance owns the process.
 
+Review hardening added child `error` handling for spawn failures, explicit persistent-process `unref()` when `stopOnQuit` is false, non-dropping stop ownership on kill refusal/timeout, timed-out start state instead of stale `starting`, post-stop reachability refresh, info-level successful stop reporting, and invalid Server Base URL reporting through Operational Status `lastError`.
+
 ## Unit Tests
 
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: managed start uses configured binary, Configured Preset File, Server Base URL host/port, start polling, and bounded log tails.
@@ -54,9 +56,13 @@ Implemented `ManagedRouterProcess` with injectable spawner/probe, managed/extern
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: package-owned managed processes stop correctly and `stopOnQuit` gates shutdown.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: missing Configured Preset File blocks managed spawn.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: reload behavior leaves prior process alive and re-adopts reachability as External Router.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: spawn `error` events, kill refusal, ignored SIGTERM stop timeout, start timeout state, persistent unref behavior, and invalid Server Base URL command reporting.
 
 ## Lessons Learned
 
 - Ownership must be instance-local; safe reload behavior is external adoption, not attempting to recover ownership without proof.
 - Lifecycle status is only useful if process log tails are bounded and visible beside timeout/preset state.
 - Keeping spawn/probe injectable prevents accidental real `llama-server` execution in tests.
+- Child process lifecycle must handle `error` as a first-class terminal path; `try/catch` around `spawn()` is insufficient for ENOENT/EACCES.
+- Stop must retain ownership until actual `exit` or explicit timeout; dropping ownership before proof hides leaked managed processes.
+- Persistent managed routers need explicit `unref()` on process and pipes or Pi can be held open accidentally.

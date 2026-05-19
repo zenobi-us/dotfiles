@@ -245,6 +245,21 @@ describe("pi-llamacpp status baseline", () => {
   });
 
 
+  it("status command reports invalid Server Base URL as last error", async () => {
+    const commands = new Map();
+    const pi = { registerCommand(name, command) { commands.set(name, command); } };
+    await llamacppProvider(pi, { loadSettings: async () => parseLlamaCppSettings({ serverBaseUrl: "not a url" }) });
+    const notifications = [];
+
+    await commands.get("llamacpp").handler("status", {
+      ui: { notify: (message, level) => notifications.push({ message, level }) },
+    });
+
+    assert.equal(notifications[0].level, "warning");
+    assert.match(notifications[0].message, /Last Error: Invalid Server Base URL/);
+  });
+
+
   it("status command refreshes reachability instead of reusing stale reachable cache", async () => {
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
     const commands = new Map();
@@ -686,6 +701,68 @@ describe("ManagedRouterProcess lifecycle", () => {
     assert.equal(stopped.ownership, "none");
   });
 
+
+  it("records child spawn error events and clears managed ownership safely", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-spawn-error-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({
+      spawn: () => fakeProcess,
+      sleep: async () => fakeProcess.emitError(new Error("spawn ENOENT")),
+    });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile, timeouts: { startMs: 1, pollMs: 1 } });
+
+    const result = await manager.start(settings, async () => { throw new Error("not reachable"); });
+
+    assert.equal(result.ownership, "none");
+    assert.equal(result.process?.state, "exited");
+    assert.match(result.lastError, /spawn ENOENT/);
+  });
+
+  it("retains managed ownership and reports failure when SIGTERM is not accepted", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-kill-false-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    fakeProcess.killResult = false;
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile });
+    let probes = 0;
+    await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+
+    const stopped = await manager.stop(1);
+
+    assert.equal(fakeProcess.killed, true);
+    assert.equal(stopped.ownership, "managed");
+    assert.match(stopped.message, /failed to stop/i);
+  });
+
+
+  it("retains managed ownership when SIGTERM is ignored until stop timeout", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-kill-timeout-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    fakeProcess.emitExitOnKill = false;
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile });
+    let probes = 0;
+    await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+
+    const stopped = await manager.stop(1);
+
+    assert.equal(stopped.ownership, "managed");
+    assert.equal(stopped.process?.state, "running");
+    assert.match(stopped.message, /within 1ms/);
+  });
+
   it("honors stopOnQuit only for managed ownership", async () => {
     const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-quit-"));
     const presetFile = join(dir, "models.ini");
@@ -704,6 +781,43 @@ describe("ManagedRouterProcess lifecycle", () => {
 
     await manager.stopOnQuit(parseLlamaCppSettings({ managedStart: true, stopOnQuit: true, modelPresetsFile: presetFile }));
     assert.equal(fakeProcess.killed, true);
+  });
+
+
+  it("unrefs persistent managed process handles when stopOnQuit is false", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-unref-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const settings = parseLlamaCppSettings({ managedStart: true, stopOnQuit: false, modelPresetsFile: presetFile });
+    let probes = 0;
+
+    await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+    fakeProcess.emitStdout("still captured\n");
+
+    assert.equal(fakeProcess.unrefCalled, true);
+    assert.equal(fakeProcess.stdoutUnrefCalled, true);
+    assert.equal(fakeProcess.stderrUnrefCalled, true);
+    assert.deepEqual(manager.status().process.stdoutTail, ["still captured"]);
+  });
+
+  it("marks managed start timeout without leaving process state stale starting", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-timeout-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile, timeouts: { startMs: 1, pollMs: 1 } });
+
+    const result = await manager.start(settings, async () => { throw new Error("not reachable"); });
+
+    assert.equal(result.ownership, "managed");
+    assert.equal(result.process?.state, "timed-out");
+    assert.match(result.lastError, /Timed out/);
   });
 
   it("blocks managed start when Configured Preset File is missing", async () => {
@@ -752,20 +866,29 @@ class FakeManagedProcess {
   stdoutHandlers = [];
   stderrHandlers = [];
   exitHandlers = [];
+  errorHandlers = [];
   killed = false;
-  stdout = { on: (_event, handler) => this.stdoutHandlers.push(handler) };
-  stderr = { on: (_event, handler) => this.stderrHandlers.push(handler) };
+  killResult = true;
+  emitExitOnKill = true;
+  unrefCalled = false;
+  stdoutUnrefCalled = false;
+  stderrUnrefCalled = false;
+  stdout = { on: (_event, handler) => this.stdoutHandlers.push(handler), unref: () => { this.stdoutUnrefCalled = true; } };
+  stderr = { on: (_event, handler) => this.stderrHandlers.push(handler), unref: () => { this.stderrUnrefCalled = true; } };
   on(event, handler) {
     if (event === "exit") this.exitHandlers.push(handler);
+    if (event === "error") this.errorHandlers.push(handler);
     return this;
   }
   kill() {
     this.killed = true;
-    for (const handler of this.exitHandlers) handler(0, null);
-    return true;
+    if (this.killResult && this.emitExitOnKill) for (const handler of this.exitHandlers) handler(0, null);
+    return this.killResult;
   }
+  unref() { this.unrefCalled = true; }
   emitStdout(text) { for (const handler of this.stdoutHandlers) handler(Buffer.from(text)); }
   emitStderr(text) { for (const handler of this.stderrHandlers) handler(Buffer.from(text)); }
+  emitError(error) { for (const handler of this.errorHandlers) handler(error); }
 }
 
 function jsonResponse(body, init = {}) {

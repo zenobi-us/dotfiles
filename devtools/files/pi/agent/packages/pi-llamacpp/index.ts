@@ -97,7 +97,7 @@ export type OperationalStatus = {
 export type RouterOwnership = "none" | "external" | "managed";
 
 export type ManagedProcessStatus = {
-  state: "not-started" | "starting" | "running" | "exited";
+  state: "not-started" | "starting" | "running" | "timed-out" | "exited";
   pid?: number;
   exitCode?: number | null;
   signal?: string | null;
@@ -117,10 +117,14 @@ export type ManagedRouterStartResult = ManagedRouterStatus & {
 
 type ManagedProcessLike = {
   pid?: number;
-  stdout?: { on: (event: "data", handler: (chunk: unknown) => void) => void };
-  stderr?: { on: (event: "data", handler: (chunk: unknown) => void) => void };
-  on: (event: "exit", handler: (code: number | null, signal: string | null) => void) => unknown;
+  stdout?: { on: (event: "data", handler: (chunk: unknown) => void) => void; unref?: () => void };
+  stderr?: { on: (event: "data", handler: (chunk: unknown) => void) => void; unref?: () => void };
+  on: (
+    event: "exit" | "error",
+    handler: ((code: number | null, signal: string | null) => void) | ((error: Error) => void),
+  ) => unknown;
   kill: (signal?: NodeJS.Signals | number) => boolean;
+  unref?: () => void;
 };
 
 type ProcessSpawner = (command: string, args: string[]) => ManagedProcessLike;
@@ -221,6 +225,7 @@ export class ManagedRouterProcess {
       return { ...this.status(), message: this.lastError };
     }
 
+    let spawnFailed = false;
     const args = buildManagedRouterArgs(settings);
     this.ownership = "managed";
     this.processState = { state: "starting", stdoutTail: [], stderrTail: [] };
@@ -228,10 +233,17 @@ export class ManagedRouterProcess {
       this.process = this.spawnProcess(settings.serverBinaryPath, args);
       this.processState.pid = this.process.pid;
       this.attachLogs(this.process);
+      this.process.on("error", (error) => {
+        spawnFailed = true;
+        this.lastError = error instanceof Error ? error.message : String(error);
+        this.ownership = "none";
+        this.processState = { ...this.processState, state: "exited", exitCode: null, signal: null };
+      });
       this.process.on("exit", (code, signal) => {
         this.processState = { ...this.processState, state: "exited", exitCode: code, signal };
         if (this.ownership === "managed") this.ownership = "none";
       });
+      if (!settings.stopOnQuit) this.unrefPersistentProcess(this.process);
     } catch (error) {
       this.lastError = error instanceof Error ? error.message : String(error);
       this.ownership = "none";
@@ -246,19 +258,36 @@ export class ManagedRouterProcess {
         return { ...this.status(), message: "Managed Llama Server Router started." };
       }
       await this.sleep(Math.min(settings.timeouts.pollMs, Math.max(0, deadline - Date.now())));
+      if (spawnFailed) return { ...this.status(), message: this.lastError ?? "Managed Llama Server Router spawn failed." };
     } while (Date.now() < deadline);
 
     this.lastError = `Timed out waiting ${settings.timeouts.startMs}ms for managed Llama Server Router.`;
+    this.processState.state = "timed-out";
     return { ...this.status(), message: this.lastError };
   }
 
-  async stop(): Promise<ManagedRouterStartResult> {
+  async stop(timeoutMs = DEFAULT_LLAMACPP_TIMEOUTS.statusMs): Promise<ManagedRouterStartResult> {
     if (this.ownership !== "managed" || !this.process) {
       this.lastError = "No package-owned managed router process to stop.";
       return { ...this.status(), message: this.lastError };
     }
-    this.process.kill("SIGTERM");
-    this.ownership = "none";
+    const accepted = this.process.kill("SIGTERM");
+    if (!accepted) {
+      this.lastError = "Failed to stop package-owned managed router process: SIGTERM was not accepted.";
+      return { ...this.status(), message: this.lastError };
+    }
+
+    const deadline = Date.now() + timeoutMs;
+    while (this.ownership === "managed" && this.processState.state !== "exited" && Date.now() < deadline) {
+      await this.sleep(Math.min(25, Math.max(0, deadline - Date.now())));
+    }
+
+    if (this.ownership === "managed" && this.processState.state !== "exited") {
+      this.lastError = `Failed to stop package-owned managed router process within ${timeoutMs}ms.`;
+      return { ...this.status(), message: this.lastError };
+    }
+
+    this.lastError = undefined;
     return { ...this.status(), message: "Stopped package-owned managed router process." };
   }
 
@@ -287,6 +316,12 @@ export class ManagedRouterProcess {
   private attachLogs(process: ManagedProcessLike): void {
     process.stdout?.on("data", (chunk) => this.appendLog("stdoutTail", chunk));
     process.stderr?.on("data", (chunk) => this.appendLog("stderrTail", chunk));
+  }
+
+  private unrefPersistentProcess(process: ManagedProcessLike): void {
+    process.stdout?.unref?.();
+    process.stderr?.unref?.();
+    process.unref?.();
   }
 
   private appendLog(target: "stdoutTail" | "stderrTail", chunk: unknown): void {
@@ -344,9 +379,14 @@ export default async function llamacppProvider(
     handler: async (args: string, ctx: ExtensionCommandContext) => {
       const action = (args || "status").trim().toLowerCase() || "status";
       if (action === "status") {
-        const settings = await loadSettings(ctx);
-        const status = await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error)));
-        ctx.ui.notify(formatOperationalStatus(status), "info");
+        try {
+          const settings = await loadSettings(ctx);
+          const status = await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error)));
+          ctx.ui.notify(formatOperationalStatus(status), status.lastError?.startsWith("Invalid Server Base URL") ? "warning" : "info");
+        } catch (error) {
+          const status = withLifecycle(createBaselineOperationalStatus(parseLlamaCppSettings({}), errorToMessage(error)));
+          ctx.ui.notify(formatOperationalStatus(status), "warning");
+        }
         return;
       }
       if (action === "list") {
@@ -384,8 +424,8 @@ export default async function llamacppProvider(
       if (action === "stop") {
         const result = await managedRouter.stop();
         const settings = await loadSettings(ctx);
-        const status = withLifecycle(createBaselineOperationalStatus(settings, result.lastError));
-        ctx.ui.notify(["llamacpp stop", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.ownership === "none" ? "warning" : "info");
+        const status = withLifecycle(await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error))));
+        ctx.ui.notify(["llamacpp stop", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.lastError ? "warning" : "info");
         return;
       }
 
@@ -853,6 +893,13 @@ function formatProviderApiKeyStatus(resolution: ProviderApiKeyResolution): strin
 
 function normalizeBaseUrl(value: string): string {
   const trimmed = value.trim() || DEFAULT_SERVER_BASE_URL;
+  try {
+    const url = new URL(trimmed);
+    if (url.protocol !== "http:" && url.protocol !== "https:") throw new Error(`unsupported protocol ${url.protocol}`);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    throw new Error(`Invalid Server Base URL: ${trimmed} (${detail})`);
+  }
   return trimmed.replace(/\/+$/, "");
 }
 
