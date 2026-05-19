@@ -1,4 +1,5 @@
 import type { ExtensionAPI, ExtensionCommandContext } from "@mariozechner/pi-coding-agent";
+import { spawn as spawnChildProcess } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join, parse as parsePath } from "node:path";
@@ -25,6 +26,7 @@ export type LlamaCppSettings = {
   providerApiKey: ProviderApiKeyResolution;
   loadOnSelect: boolean;
   stopOnQuit: boolean;
+  managedStart: boolean;
   timeouts: LlamaCppTimeouts;
 };
 
@@ -87,7 +89,43 @@ export type OperationalStatus = {
   routerModels?: RouterModel[];
   lastError?: string;
   presetFile?: PresetFileStatus;
+  routerOwnership: RouterOwnership;
+  managedProcess?: ManagedProcessStatus;
+  managedLogTail?: { stdout: string[]; stderr: string[] };
 };
+
+export type RouterOwnership = "none" | "external" | "managed";
+
+export type ManagedProcessStatus = {
+  state: "not-started" | "starting" | "running" | "exited";
+  pid?: number;
+  exitCode?: number | null;
+  signal?: string | null;
+  stdoutTail: string[];
+  stderrTail: string[];
+};
+
+export type ManagedRouterStatus = {
+  ownership: RouterOwnership;
+  process?: ManagedProcessStatus;
+  lastError?: string;
+};
+
+export type ManagedRouterStartResult = ManagedRouterStatus & {
+  message: string;
+};
+
+type ManagedProcessLike = {
+  pid?: number;
+  stdout?: { on: (event: "data", handler: (chunk: unknown) => void) => void };
+  stderr?: { on: (event: "data", handler: (chunk: unknown) => void) => void };
+  on: (event: "exit", handler: (code: number | null, signal: string | null) => void) => unknown;
+  kill: (signal?: NodeJS.Signals | number) => boolean;
+};
+
+type ProcessSpawner = (command: string, args: string[]) => ManagedProcessLike;
+
+type RouterProbe = () => Promise<unknown>;
 
 type ProviderModel = {
   id: string;
@@ -102,6 +140,7 @@ type ProviderModel = {
 type LlamaCppPiApi = Pick<ExtensionAPI, "registerCommand"> & {
   registerProvider?: (name: string, provider: unknown) => void | Promise<void>;
   unregisterProvider?: (name: string) => void | Promise<void>;
+  on?: (event: "quit", handler: () => void | Promise<void>) => void;
 };
 
 type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
@@ -109,6 +148,7 @@ type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
 type LlamaCppProviderOptions = {
   loadSettings?: (ctx?: ExtensionCommandContext) => Promise<LlamaCppSettings> | LlamaCppSettings;
   fetch?: FetchLike;
+  managedRouter?: ManagedRouterProcess;
 };
 
 const DEFAULT_SERVER_BASE_URL = "http://localhost:8080";
@@ -131,8 +171,141 @@ export const DEFAULT_LLAMACPP_SETTINGS: LlamaCppSettings = {
   providerApiKey: { kind: "literal", value: DEFAULT_PROVIDER_API_KEY },
   loadOnSelect: false,
   stopOnQuit: false,
+  managedStart: false,
   timeouts: DEFAULT_LLAMACPP_TIMEOUTS,
 };
+
+export class ManagedRouterProcess {
+  private ownership: RouterOwnership = "none";
+  private processState: ManagedProcessStatus = {
+    state: "not-started",
+    stdoutTail: [],
+    stderrTail: [],
+  };
+  private process?: ManagedProcessLike;
+  private lastError?: string;
+  private readonly spawnProcess: ProcessSpawner;
+  private readonly sleep: (ms: number) => Promise<void>;
+  private readonly maxLogLines: number;
+
+  constructor(options: {
+    spawn?: ProcessSpawner;
+    sleep?: (ms: number) => Promise<void>;
+    maxLogLines?: number;
+  } = {}) {
+    this.spawnProcess = options.spawn ?? ((command, args) => spawnChildProcess(command, args));
+    this.sleep = options.sleep ?? ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
+    this.maxLogLines = options.maxLogLines ?? 50;
+  }
+
+  async start(settings: LlamaCppSettings, probe: RouterProbe): Promise<ManagedRouterStartResult> {
+    this.lastError = undefined;
+    if (this.ownership === "managed" && this.process && this.processState.state !== "exited") {
+      return { ...this.status(), message: "Managed Llama Server Router is already package-owned." };
+    }
+    if (await this.isReachable(probe)) {
+      this.ownership = "external";
+      this.process = undefined;
+      this.processState = { state: "not-started", stdoutTail: [], stderrTail: [] };
+      return { ...this.status(), message: "Adopted compatible External Router." };
+    }
+
+    if (!settings.managedStart) {
+      this.lastError = "Managed start is disabled.";
+      return { ...this.status(), message: this.lastError };
+    }
+
+    const presetState = await validateManagedServerStartPreparation(settings);
+    if (!presetState.canStart) {
+      this.lastError = presetState.error ?? "Configured Preset File blocks managed start.";
+      return { ...this.status(), message: this.lastError };
+    }
+
+    const args = buildManagedRouterArgs(settings);
+    this.ownership = "managed";
+    this.processState = { state: "starting", stdoutTail: [], stderrTail: [] };
+    try {
+      this.process = this.spawnProcess(settings.serverBinaryPath, args);
+      this.processState.pid = this.process.pid;
+      this.attachLogs(this.process);
+      this.process.on("exit", (code, signal) => {
+        this.processState = { ...this.processState, state: "exited", exitCode: code, signal };
+        if (this.ownership === "managed") this.ownership = "none";
+      });
+    } catch (error) {
+      this.lastError = error instanceof Error ? error.message : String(error);
+      this.ownership = "none";
+      this.processState.state = "exited";
+      return { ...this.status(), message: this.lastError };
+    }
+
+    const deadline = Date.now() + settings.timeouts.startMs;
+    do {
+      if (await this.isReachable(probe)) {
+        this.processState.state = "running";
+        return { ...this.status(), message: "Managed Llama Server Router started." };
+      }
+      await this.sleep(Math.min(settings.timeouts.pollMs, Math.max(0, deadline - Date.now())));
+    } while (Date.now() < deadline);
+
+    this.lastError = `Timed out waiting ${settings.timeouts.startMs}ms for managed Llama Server Router.`;
+    return { ...this.status(), message: this.lastError };
+  }
+
+  async stop(): Promise<ManagedRouterStartResult> {
+    if (this.ownership !== "managed" || !this.process) {
+      this.lastError = "No package-owned managed router process to stop.";
+      return { ...this.status(), message: this.lastError };
+    }
+    this.process.kill("SIGTERM");
+    this.ownership = "none";
+    return { ...this.status(), message: "Stopped package-owned managed router process." };
+  }
+
+  async stopOnQuit(settings: LlamaCppSettings): Promise<void> {
+    if (settings.stopOnQuit) await this.stop();
+  }
+
+  status(): ManagedRouterStatus {
+    return {
+      ownership: this.ownership,
+      process: { ...this.processState, stdoutTail: [...this.processState.stdoutTail], stderrTail: [...this.processState.stderrTail] },
+      lastError: this.lastError,
+    };
+  }
+
+  private async isReachable(probe: RouterProbe): Promise<boolean> {
+    try {
+      await probe();
+      return true;
+    } catch (error) {
+      this.lastError = error instanceof Error ? error.message : String(error);
+      return false;
+    }
+  }
+
+  private attachLogs(process: ManagedProcessLike): void {
+    process.stdout?.on("data", (chunk) => this.appendLog("stdoutTail", chunk));
+    process.stderr?.on("data", (chunk) => this.appendLog("stderrTail", chunk));
+  }
+
+  private appendLog(target: "stdoutTail" | "stderrTail", chunk: unknown): void {
+    const lines = String(chunk).split(/\r?\n/).filter(Boolean);
+    this.processState[target].push(...lines);
+    if (this.processState[target].length > this.maxLogLines) {
+      this.processState[target] = this.processState[target].slice(-this.maxLogLines);
+    }
+  }
+}
+
+function buildManagedRouterArgs(settings: LlamaCppSettings): string[] {
+  const url = new URL(settings.serverBaseUrl);
+  return [
+    "--host", url.hostname,
+    "--port", url.port || (url.protocol === "https:" ? "443" : "80"),
+    "--model-presets", settings.configuredPresetFilePath,
+  ];
+}
 
 export default async function llamacppProvider(
   pi: LlamaCppPiApi,
@@ -142,11 +315,13 @@ export default async function llamacppProvider(
   const clientFor = (settings: LlamaCppSettings) => new RouterClient(settings, { fetch: options.fetch });
   let cachedStatus: OperationalStatus | undefined;
   let cachedRouterModels: RouterModel[] = [];
+  const managedRouter = options.managedRouter ?? new ManagedRouterProcess();
+  const withLifecycle = (status: OperationalStatus): OperationalStatus => addManagedRouterStatus(status, managedRouter.status());
 
   const refresh = async (ctx?: ExtensionCommandContext): Promise<OperationalStatus> => {
     const settings = await loadSettings(ctx);
     const client = clientFor(settings);
-    const status = await refreshProviderModels(pi, settings, client);
+    const status = withLifecycle(await refreshProviderModels(pi, settings, client));
     cachedStatus = status;
     cachedRouterModels = status.routerReachable ? (status.routerModels ?? cachedRouterModels) : [];
     return status;
@@ -157,9 +332,13 @@ export default async function llamacppProvider(
     error instanceof Error ? error.message : String(error),
   ));
 
+  pi.on?.("quit", async () => {
+    await managedRouter.stopOnQuit(await loadSettings());
+  });
+
   pi.registerCommand("llamacpp", {
     description: "llama.cpp router status and operations",
-    getArgumentCompletions: (prefix: string) => ["status", "list", "reload"]
+    getArgumentCompletions: (prefix: string) => ["status", "list", "reload", "start", "stop"]
       .filter((value) => value.startsWith((prefix ?? "").trim().toLowerCase()))
       .map((value) => ({ value, label: value })),
     handler: async (args: string, ctx: ExtensionCommandContext) => {
@@ -194,8 +373,23 @@ export default async function llamacppProvider(
         ].join("\n"), status.routerReachable ? "info" : "warning");
         return;
       }
+      if (action === "start") {
+        const settings = await loadSettings(ctx);
+        const client = clientFor(settings);
+        const result = await managedRouter.start(settings, () => client.fetchModelList());
+        const status = withLifecycle(await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error))));
+        ctx.ui.notify(["llamacpp start", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.ownership === "none" ? "warning" : "info");
+        return;
+      }
+      if (action === "stop") {
+        const result = await managedRouter.stop();
+        const settings = await loadSettings(ctx);
+        const status = withLifecycle(createBaselineOperationalStatus(settings, result.lastError));
+        ctx.ui.notify(["llamacpp stop", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.ownership === "none" ? "warning" : "info");
+        return;
+      }
 
-      ctx.ui.notify("Usage: /llamacpp status | list | reload", "warning");
+      ctx.ui.notify("Usage: /llamacpp status | list | reload | start | stop", "warning");
     },
   });
 }
@@ -293,6 +487,7 @@ export async function refreshProviderModels(
       routerModelCount: routerModelList.models.length,
       routerModels: routerModelList.models,
       presetFile: toPresetFileStatus(presetFile),
+      routerOwnership: "external",
     };
   } catch (error) {
     return createBaselineOperationalStatus(settings, errorToMessage(error));
@@ -341,6 +536,7 @@ export function parseLlamaCppSettings(
     providerApiKey: resolveProviderApiKey(providerApiKeyRaw, env),
     loadOnSelect: readBoolean(record, "loadOnSelect", false),
     stopOnQuit: readBoolean(record, "stopOnQuit", false),
+    managedStart: readBoolean(record, "managedStart", false),
     timeouts: {
       startMs: readPositiveInteger(rawTimeouts, "startMs", readPositiveInteger(record, "startTimeoutMs", DEFAULT_LLAMACPP_TIMEOUTS.startMs)),
       loadMs: readPositiveInteger(rawTimeouts, "loadMs", readPositiveInteger(record, "loadTimeoutMs", DEFAULT_LLAMACPP_TIMEOUTS.loadMs)),
@@ -399,13 +595,14 @@ export function createBaselineOperationalStatus(
     providerModelCount: 0,
     routerModelCount: 0,
     presetFile: toPresetFileStatus(PresetFileReader.read(settings.configuredPresetFilePath)),
+    routerOwnership: "none",
     lastError: apiKeyError ?? lastError ?? "Router model list retrieval has not succeeded.",
   };
 }
 
 export function formatOperationalStatus(status: OperationalStatus): string {
   const apiKeyStatus = formatProviderApiKeyStatus(status.settings.providerApiKey);
-  return [
+  const lines = [
     "llamacpp Operational Status",
     "",
     `Server Base URL: ${status.settings.serverBaseUrl}`,
@@ -416,7 +613,9 @@ export function formatOperationalStatus(status: OperationalStatus): string {
     `Provider API Key: ${apiKeyStatus}`,
     `loadOnSelect: ${status.settings.loadOnSelect ? "yes" : "no"}`,
     `stopOnQuit: ${status.settings.stopOnQuit ? "yes" : "no"}`,
+    `managedStart: ${status.settings.managedStart ? "yes" : "no"}`,
     `Router Reachable: ${status.routerReachable ? "yes" : "no"}`,
+    `Router Ownership: ${status.routerOwnership}`,
     `Router Models: ${status.routerModelCount ?? 0}`,
     `Provider Registered: ${status.providerRegistered ? "yes" : "no"}`,
     `Provider Models: ${status.providerModelCount}`,
@@ -426,8 +625,17 @@ export function formatOperationalStatus(status: OperationalStatus): string {
     `  pollMs: ${status.settings.timeouts.pollMs}`,
     `  requestGateMs: ${status.settings.timeouts.requestGateMs}`,
     `  statusMs: ${status.settings.timeouts.statusMs}`,
-    `Last Error: ${status.lastError ?? "none"}`,
-  ].join("\n");
+  ];
+  if (status.managedProcess) {
+    lines.push(
+      `Managed Process State: ${status.managedProcess.state}`,
+      `Managed Process PID: ${status.managedProcess.pid ?? "n/a"}`,
+      `Managed stdout tail: ${status.managedLogTail?.stdout.length ? status.managedLogTail.stdout.join(" | ") : "(empty)"}`,
+      `Managed stderr tail: ${status.managedLogTail?.stderr.length ? status.managedLogTail.stderr.join(" | ") : "(empty)"}`,
+    );
+  }
+  lines.push(`Last Error: ${status.lastError ?? "none"}`);
+  return lines.join("\n");
 }
 
 export function formatRouterModelList(models: RouterModel[]): string {
@@ -608,6 +816,7 @@ async function refreshUnsupportedProviderApiStatus(
       routerModelCount: routerModelList.models.length,
       routerModels: routerModelList.models,
       lastError: apiError,
+      routerOwnership: "external",
     };
   } catch (error) {
     return createBaselineOperationalStatus(settings, `${apiError} ${errorToMessage(error)}`);
@@ -693,6 +902,16 @@ function resolveEnvProviderApiKey(
 
 function errorToMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
+}
+
+function addManagedRouterStatus(status: OperationalStatus, managed: ManagedRouterStatus): OperationalStatus {
+  return {
+    ...status,
+    routerOwnership: managed.ownership === "none" && status.routerReachable ? "external" : managed.ownership,
+    managedProcess: managed.process,
+    managedLogTail: managed.process ? { stdout: managed.process.stdoutTail, stderr: managed.process.stderrTail } : undefined,
+    lastError: managed.lastError ?? status.lastError,
+  };
 }
 
 function readString(record: Record<string, unknown>, keys: string[], fallback: string): string {

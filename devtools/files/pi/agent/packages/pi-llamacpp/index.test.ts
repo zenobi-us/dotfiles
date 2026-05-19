@@ -18,6 +18,7 @@ import llamacppProvider, {
   PresetFileReader,
   refreshProviderModels,
   validateManagedServerStartPreparation,
+  ManagedRouterProcess,
 } from "./index.ts";
 
 describe("pi-llamacpp settings baseline", () => {
@@ -588,6 +589,184 @@ describe("pi-llamacpp Preset Metadata", () => {
     assert.equal(registeredModels[1].contextWindow, 128000);
   });
 });
+
+describe("ManagedRouterProcess lifecycle", () => {
+  it("starts managed router with configured binary, preset file, base URL, and bounded logs", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-managed-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n--ctx-size=4096\n");
+    const spawned = [];
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({
+      spawn: (command, args) => {
+        spawned.push({ command, args });
+        return fakeProcess;
+      },
+      sleep: async () => {},
+      maxLogLines: 2,
+    });
+    const settings = parseLlamaCppSettings({
+      managedStart: true,
+      serverBinaryPath: "/opt/llama/llama-server",
+      modelPresetsFile: presetFile,
+      serverBaseUrl: "http://127.0.0.1:8099",
+      timeouts: { startMs: 5, pollMs: 1 },
+    });
+    let probes = 0;
+
+    const result = await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not reachable yet");
+    });
+    fakeProcess.emitStdout("one\ntwo\nthree\n");
+    fakeProcess.emitStderr("err1\nerr2\nerr3\n");
+
+    assert.equal(result.ownership, "managed");
+    assert.equal(spawned[0].command, "/opt/llama/llama-server");
+    assert.deepEqual(spawned[0].args, [
+      "--host", "127.0.0.1",
+      "--port", "8099",
+      "--model-presets", presetFile,
+    ]);
+    assert.deepEqual(manager.status().process?.stdoutTail, ["two", "three"]);
+    assert.deepEqual(manager.status().process?.stderrTail, ["err2", "err3"]);
+  });
+
+
+  it("adopts a reachable router as External Router and refuses to stop it", async () => {
+    const manager = new ManagedRouterProcess({
+      spawn: () => { throw new Error("must not spawn"); },
+      sleep: async () => {},
+    });
+    const settings = parseLlamaCppSettings({ managedStart: true });
+
+    const started = await manager.start(settings, async () => undefined);
+    const stopped = await manager.stop();
+
+    assert.equal(started.ownership, "external");
+    assert.equal(stopped.ownership, "external");
+    assert.match(stopped.message, /No package-owned managed router process/);
+  });
+
+  it("keeps safe ownership proof on repeated start in same instance", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-owned-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    let spawnCount = 0;
+    const manager = new ManagedRouterProcess({ spawn: () => { spawnCount += 1; return new FakeManagedProcess(); }, sleep: async () => {} });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile });
+    let probes = 0;
+    await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+
+    const repeated = await manager.start(settings, async () => undefined);
+
+    assert.equal(repeated.ownership, "managed");
+    assert.equal(spawnCount, 1);
+  });
+
+  it("stops only package-owned managed processes", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-stop-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile });
+    let probes = 0;
+    await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+
+    const stopped = await manager.stop();
+
+    assert.equal(fakeProcess.killed, true);
+    assert.equal(stopped.ownership, "none");
+  });
+
+  it("honors stopOnQuit only for managed ownership", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-quit-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const settings = parseLlamaCppSettings({ managedStart: true, stopOnQuit: false, modelPresetsFile: presetFile });
+    let probes = 0;
+    await manager.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+
+    await manager.stopOnQuit(settings);
+    assert.equal(fakeProcess.killed, false);
+
+    await manager.stopOnQuit(parseLlamaCppSettings({ managedStart: true, stopOnQuit: true, modelPresetsFile: presetFile }));
+    assert.equal(fakeProcess.killed, true);
+  });
+
+  it("blocks managed start when Configured Preset File is missing", async () => {
+    let spawned = false;
+    const manager = new ManagedRouterProcess({
+      spawn: () => { spawned = true; return new FakeManagedProcess(); },
+      sleep: async () => {},
+    });
+    const settings = parseLlamaCppSettings({
+      managedStart: true,
+      modelPresetsFile: join(tmpdir(), "missing-llamacpp-presets.ini"),
+    });
+
+    const result = await manager.start(settings, async () => { throw new Error("not reachable"); });
+
+    assert.equal(spawned, false);
+    assert.equal(result.ownership, "none");
+    assert.match(result.message, /Configured Preset File not found/);
+  });
+
+  it("treats session reload adoption as external when a router is reachable", async () => {
+    const firstProcess = new FakeManagedProcess();
+    const first = new ManagedRouterProcess({ spawn: () => firstProcess, sleep: async () => {} });
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-reload-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const settings = parseLlamaCppSettings({ managedStart: true, modelPresetsFile: presetFile });
+    let probes = 0;
+    await first.start(settings, async () => {
+      probes += 1;
+      if (probes < 2) throw new Error("not yet");
+    });
+
+    const reloaded = new ManagedRouterProcess({
+      spawn: () => { throw new Error("reload must not spawn"); },
+      sleep: async () => {},
+    });
+    const adopted = await reloaded.start(settings, async () => undefined);
+
+    assert.equal(firstProcess.killed, false);
+    assert.equal(adopted.ownership, "external");
+  });
+});
+
+class FakeManagedProcess {
+  stdoutHandlers = [];
+  stderrHandlers = [];
+  exitHandlers = [];
+  killed = false;
+  stdout = { on: (_event, handler) => this.stdoutHandlers.push(handler) };
+  stderr = { on: (_event, handler) => this.stderrHandlers.push(handler) };
+  on(event, handler) {
+    if (event === "exit") this.exitHandlers.push(handler);
+    return this;
+  }
+  kill() {
+    this.killed = true;
+    for (const handler of this.exitHandlers) handler(0, null);
+    return true;
+  }
+  emitStdout(text) { for (const handler of this.stdoutHandlers) handler(Buffer.from(text)); }
+  emitStderr(text) { for (const handler of this.stderrHandlers) handler(Buffer.from(text)); }
+}
 
 function jsonResponse(body, init = {}) {
   return new Response(JSON.stringify(body), {
