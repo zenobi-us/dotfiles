@@ -57,8 +57,8 @@ Implemented `LoadGate` over `RouterClient` with request-time readiness checks, `
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: `POST /models/load` fetch rejection and timeout are normalized distinctly and sanitized.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: failed router state wins over `loaded: true` and raw secret-bearing errors are redacted.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: providerless/non-`llamacpp` request hook contexts do not gate; `loadOnSelect: false` is a no-op.
-- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: swallowed extension hook errors are proven insufficient for blocking; provider `streamSimple` rejection is the enforced blocking path.
-- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: load `AbortSignal` propagation and bearer auth on `POST /models/load` are covered.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: no `before_provider_request` hook is registered; provider `streamSimple` rejection is the enforced blocking path.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: caller `AbortSignal` composition with status/load timeouts, caller abort normalization, and bearer auth on `POST /models/load` are covered.
 
 ## Lessons Learned
 
@@ -67,3 +67,4 @@ Implemented `LoadGate` over `RouterClient` with request-time readiness checks, `
 - Pi docs `docs/extensions.md` documents `before_provider_request` as payload inspection/replacement, while runner source `dist/core/extensions/runner.js` catches hook errors and returns the current payload. Therefore hook exceptions cannot enforce request blocking in real Pi execution.
 - `docs/custom-provider.md` and `dist/core/model-registry.js` support provider `streamSimple`; Load Gate behavior now lives in the provider stream path where rejection propagates through provider execution.
 - The stream wrapper delegates to `streamSimpleOpenAICompletions` from `@mariozechner/pi-ai/openai-completions` using a copied model with `api: "openai-completions"`, avoiding recursive dispatch through `llamacpp-openai-completions`.
+- Fetch-level timeout signals must be composed with caller abort signals; replacing the timeout with the caller signal silently drops status/load bounds and leaves only user abort or the whole-gate deadline.

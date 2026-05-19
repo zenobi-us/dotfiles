@@ -1200,6 +1200,53 @@ describe("pi-llamacpp Explicit Load Gate", () => {
     ]);
   });
 
+  it("times out initial /models even when caller signal is present", async () => {
+    const caller = new AbortController();
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", timeouts: { statusMs: 5, loadMs: 1000, requestGateMs: 1000, pollMs: 1 } });
+
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, {
+        fetch: async (_url, init) => {
+          await waitForAbort(init?.signal);
+        },
+      }), { sleep: async () => {}, signal: caller.signal }).ensureRequestReady("cold"),
+      /llamacpp router model list timed out/,
+    );
+    assert.equal(caller.signal.aborted, false);
+  });
+
+  it("times out POST /models/load even when caller signal is present", async () => {
+    const caller = new AbortController();
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", timeouts: { loadMs: 5, statusMs: 1000, requestGateMs: 1000, pollMs: 1 } });
+
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, {
+        fetch: async (url, init) => {
+          if (String(url).endsWith("/models/load")) {
+            await waitForAbort(init?.signal);
+          }
+          return jsonResponse({ data: [{ id: "cold", status: "available" }] });
+        },
+      }), { sleep: async () => {}, signal: caller.signal }).ensureRequestReady("cold"),
+      /llamacpp load request timed out for model cold/,
+    );
+    assert.equal(caller.signal.aborted, false);
+  });
+
+  it("normalizes caller aborts during /models as aborted rather than timeout", async () => {
+    const caller = new AbortController();
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", timeouts: { statusMs: 1000, loadMs: 1000, requestGateMs: 1000, pollMs: 1 } });
+
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, {
+        fetch: async (_url, init) => {
+          setTimeout(() => caller.abort(new DOMException("User cancelled", "AbortError")), 1);
+          await waitForAbort(init?.signal);
+        },
+      }), { sleep: async () => {}, signal: caller.signal }).ensureRequestReady("cold"),
+      /llamacpp router model list aborted/,
+    );
+  });
   it("normalizes POST /models/load unreachable and timeout errors distinctly", async () => {
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", timeouts: { loadMs: 1000, requestGateMs: 1000, pollMs: 1 } });
 
@@ -1361,30 +1408,30 @@ describe("pi-llamacpp Explicit Load Gate", () => {
     assert.deepEqual(delegated[0].context, { messages: [] });
   });
 
-  it("swallowed extension hook errors do not count as blocking but provider stream rejection does", async () => {
+  it("registers no before_provider_request hook and blocks via provider stream before delegate", async () => {
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
     let provider;
-    let swallowed = false;
+    const handlers = {};
+    let delegateCalls = 0;
     await llamacppProvider({
       registerCommand() {},
+      on(event, handler) { handlers[event] = handler; },
       unregisterProvider() {},
       registerProvider(_name, config) { provider = config; },
     }, {
       loadSettings: async () => settings,
       fetch: async () => jsonResponse({ data: [{ id: "missing-ready", status: "failed" }] }),
     });
-    const badHook = async () => { throw new Error("hook failure is logged and swallowed by Pi"); };
 
-    try { await badHook(); } catch { swallowed = true; }
-
-    assert.equal(swallowed, true);
+    assert.equal(handlers.before_provider_request, undefined);
     await assert.rejects(
-      provider.streamSimple({ provider: "llamacpp", id: "missing-ready", api: "llamacpp-openai-completions" }, { messages: [] }, { delegate: () => { throw new Error("must not delegate"); } }),
+      provider.streamSimple({ provider: "llamacpp", id: "missing-ready", api: "llamacpp-openai-completions" }, { messages: [] }, { delegate: () => { delegateCalls += 1; } }),
       /llamacpp load failed/,
     );
+    assert.equal(delegateCalls, 0);
   });
 
-  it("propagates abort signals to POST /models/load", async () => {
+  it("composes caller abort signals with POST /models/load timeout", async () => {
     const controller = new AbortController();
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
     const signals = [];
@@ -1398,7 +1445,8 @@ describe("pi-llamacpp Explicit Load Gate", () => {
 
     await gate.ensureRequestReady("cold");
 
-    assert.equal(signals[1], controller.signal);
+    assert.notEqual(signals[1], controller.signal);
+    assert.equal(signals[1].aborted, false);
   });
 
   it("sends bearer auth on POST /models/load", async () => {
@@ -1453,5 +1501,18 @@ function jsonResponse(body, init = {}) {
     status: 200,
     headers: { "Content-Type": "application/json" },
     ...init,
+  });
+}
+
+
+function waitForAbort(signal) {
+  if (!signal) throw new Error("missing abort signal");
+  if (signal.aborted) return Promise.reject(signal.reason ?? new DOMException("The operation was aborted", "AbortError"));
+  return new Promise((_, reject) => {
+    const timeout = setTimeout(() => reject(new Error("request was not aborted")), 50);
+    signal.addEventListener("abort", () => {
+      clearTimeout(timeout);
+      reject(signal.reason ?? new DOMException("The operation was aborted", "AbortError"));
+    }, { once: true });
   });
 }

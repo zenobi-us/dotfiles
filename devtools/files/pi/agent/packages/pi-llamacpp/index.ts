@@ -156,6 +156,7 @@ type LlamaCppPiApi = Pick<ExtensionAPI, "registerCommand"> & {
 };
 
 type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
+type FetchSignalLease = { signal: AbortSignal; cleanup: () => void };
 type StreamSimpleDelegate = (
   model: Model<"openai-completions">,
   context: Context,
@@ -604,14 +605,17 @@ export class RouterClient {
 
   async fetchModelList(timeoutMs = this.settings.timeouts.statusMs, signal?: AbortSignal): Promise<RouterModelList> {
     let response: Response;
+    const fetchSignal = composeFetchAbortSignal(signal, timeoutMs);
     try {
       response = await this.fetchImpl(`${this.settings.serverBaseUrl}/models`, {
         method: "GET",
         headers: this.headers(),
-        signal: signal ?? AbortSignal.timeout(timeoutMs),
+        signal: fetchSignal.signal,
       });
     } catch (error) {
       throw normalizeFetchTransportError("Router /models", error);
+    } finally {
+      fetchSignal.cleanup();
     }
     if (!response.ok) {
       throw new Error(`Router /models returned HTTP ${response.status}`);
@@ -622,15 +626,18 @@ export class RouterClient {
 
   async loadModel(modelId: string, timeoutMs = this.settings.timeouts.loadMs, signal?: AbortSignal): Promise<void> {
     let response: Response;
+    const fetchSignal = composeFetchAbortSignal(signal, timeoutMs);
     try {
       response = await this.fetchImpl(`${this.settings.serverBaseUrl}/models/load`, {
         method: "POST",
         headers: { ...this.headers(), "Content-Type": "application/json" },
         body: JSON.stringify({ model: modelId }),
-        signal: signal ?? AbortSignal.timeout(timeoutMs),
+        signal: fetchSignal.signal,
       });
     } catch (error) {
       throw normalizeFetchTransportError(`Router /models/load for model ${modelId}`, error);
+    } finally {
+      fetchSignal.cleanup();
     }
     if (!response.ok) {
       const detail = sanitizeDiagnosticMessage(await response.text().catch(() => ""));
@@ -1097,10 +1104,39 @@ function loadGateTimeoutError(modelId: string, timeoutMs: number): Error {
   return new Error(`llamacpp load gate timed out for model ${modelId} after ${timeoutMs}ms.`);
 }
 
+
+function composeFetchAbortSignal(callerSignal: AbortSignal | undefined, timeoutMs: number): FetchSignalLease {
+  const safeTimeoutMs = Math.max(1, timeoutMs);
+  const timeoutSignal = AbortSignal.timeout(safeTimeoutMs);
+  if (!callerSignal) return { signal: timeoutSignal, cleanup: noop };
+  if (callerSignal.aborted) return { signal: callerSignal, cleanup: noop };
+  if (typeof AbortSignal.any === "function") {
+    return { signal: AbortSignal.any([callerSignal, timeoutSignal]), cleanup: noop };
+  }
+
+  const controller = new AbortController();
+  const abortFromCaller = () => controller.abort(callerSignal.reason ?? new DOMException("The operation was aborted", "AbortError"));
+  const timeoutId = setTimeout(() => {
+    controller.abort(new DOMException(`The operation timed out after ${safeTimeoutMs}ms`, "TimeoutError"));
+  }, safeTimeoutMs);
+  callerSignal.addEventListener("abort", abortFromCaller, { once: true });
+
+  return {
+    signal: controller.signal,
+    cleanup: () => {
+      clearTimeout(timeoutId);
+      callerSignal.removeEventListener("abort", abortFromCaller);
+    },
+  };
+}
+
+function noop(): void {}
+
 function normalizeLoadGateListError(error: unknown): Error {
   const message = sanitizeDiagnosticMessage(errorToMessage(error));
   if (/HTTP (401|403)/.test(message)) return new Error(`llamacpp router auth failed during model list: ${message.replace(/^Router \/models returned /, "")}`);
   if (/timed out/i.test(message)) return new Error(`llamacpp router model list timed out: ${message}`);
+  if (/aborted/i.test(message)) return new Error(`llamacpp router model list aborted: ${message}`);
   return new Error(`llamacpp router unreachable: ${message}`);
 }
 
