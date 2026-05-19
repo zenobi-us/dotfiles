@@ -2,7 +2,7 @@
 
 ## Baseline
 
-This package exposes a loadable `llamacpp` Pi extension and a baseline `/llamacpp status` command. This slice does not discover an external router, start `llama-server`, parse Preset Metadata, or register Provider Models.
+This package exposes a loadable `llamacpp` Pi extension that can adopt a compatible External Router at `serverBaseUrl`, fetch `/models`, and refresh Pi `llamacpp` Provider Models from the Router Model List. This slice does not start `llama-server`, parse Preset Metadata, implement managed lifecycle, or gate chat requests.
 
 ## Settings
 
@@ -22,11 +22,12 @@ The Provider Base URL is derived by safely appending `/v1` to `serverBaseUrl`.
 
 ## Commands
 
-- `/llamacpp status` - shows baseline Operational Status: router reachability, provider registration state, Provider Model count, settings, timeout values, and last error.
+- `/llamacpp status` - shows Operational Status: router reachability, provider registration state, Router/Provider Model counts, settings, timeout values, and last error.
+- `/llamacpp list` - fetches and displays the current Router Model List from `/models`.
+- `/llamacpp reload` - re-fetches the Router Model List and refreshes provider registration without a Pi restart. Refresh unregisters `llamacpp` before registering the current Provider Model set so stale models disappear.
 
 ## Planned later slices
 
-- `/llamacpp reload` - reload model presets and update Provider Models after compatible router discovery.
 - `/llamacpp start` - start a managed Llama Server Router.
 - `/llamacpp stop` - stop only a package-owned managed router.
-- `/llamacpp list` - list Router Model List entries from llama-server.
+- Preset Metadata enrichment and Explicit Load Gate behavior.
