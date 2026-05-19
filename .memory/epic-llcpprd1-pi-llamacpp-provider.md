@@ -72,14 +72,14 @@ From the user's perspective:
 - Treat a Model Preset as runtime configuration owned by llama.cpp, not as Pi client model config.
 - Enrich Provider Models only with documented Preset Metadata aliases for context size, max prediction tokens, and reasoning capability.
 - Derive Provider Base URL by appending `/v1` to Server Base URL.
-- Send chat completions through Pi's OpenAI-compatible provider path using `openai-completions` unless llama.cpp compatibility forces explicit provider/model compat flags.
+- Send chat completions through a custom `llamacpp-openai-completions` provider `streamSimple` wrapper that runs the Load Gate, then delegates to the built-in OpenAI-compatible streaming implementation with a copied `api: "openai-completions"` model.
 - Keep Provider API Key resolution simple: literal value or environment variable name only. Do not support shell-command secrets for this package.
 - Use the same resolved Provider API Key for router management bearer auth when configured.
 - Implement `PresetFileReader` as a deep module that validates Configured Preset File presence and extracts safe metadata without changing runtime args.
 - Implement `RouterClient` as a deep module for `/models`, `/models/load`, reachability, auth, and normalized error handling.
 - Implement `ManagedRouterProcess` as a deep module for start, stop, adoption, ownership, `stopOnQuit`, and bounded log tails.
 - Implement `ProviderRegistrySync` as a deep module that unregisters `llamacpp` before re-registering current Provider Models.
-- Implement `LoadGate` as a deep module that runs before provider requests and blocks until the selected model is loaded, sleeping, or fails clearly.
+- Implement `LoadGate` as a deep module that runs inside provider `streamSimple` before provider requests and blocks until the selected model is loaded, sleeping, or fails clearly; do not rely on `before_provider_request` exceptions because Pi swallows hook errors.
 - Implement `LlamaCppCommands` as thin command handlers over the deep modules for `/llamacpp start`, `/llamacpp stop`, `/llamacpp reload`, `/llamacpp status`, and `/llamacpp list`.
 - Failed router models may remain registered if they came from the Router Model List, but the Load Gate must block requests with package-owned error details.
 - Missing Configured Preset File must block package-managed server start and report through `/llamacpp start` and `/llamacpp status`.
@@ -132,10 +132,10 @@ Architecture state machine:
    -> [Provider Refresh: unregister llamacpp -> register current Provider Models]
    -> [user selects model]
       -> optional loadOnSelect: [Explicit Load]
-   -> [before provider request]
+   -> [provider streamSimple wrapper]
       -> [Load Gate]
-         -> loaded/sleeping: [send OpenAI-compatible request]
-         -> load failed/timeout: [clear package-owned error]
+         -> loaded/sleeping: [delegate to OpenAI-compatible stream]
+         -> load failed/timeout: [reject provider stream with clear package-owned error]
 ```
 
 [bias: maintainability] The package should start slightly over-modular here. The bad version is a single extension file that mixes process spawning, HTTP calls, provider registration, and command rendering. That will rot fast because router lifecycle and request gating have different failure modes.

@@ -1250,9 +1250,7 @@ describe("pi-llamacpp Explicit Load Gate", () => {
       },
     });
 
-    await handlers.before_provider_request({ type: "before_provider_request", payload: { model: "select-me" } }, { model: undefined });
-    await handlers.before_provider_request({ type: "before_provider_request", payload: { model: "select-me" } }, { model: { provider: "openai", id: "select-me" } });
-
+    assert.equal(handlers.before_provider_request, undefined);
     assert.deepEqual(calls, [["GET", "http://router.test/models"]]);
   });
 
@@ -1278,7 +1276,7 @@ describe("pi-llamacpp Explicit Load Gate", () => {
     assert.deepEqual(calls, [["GET", "http://router.test/models"]]);
   });
 
-  it("registers documented Pi event hooks for llamacpp Provider Models", async () => {
+  it("keeps model_select early feedback optional and does not rely on before_provider_request for blocking", async () => {
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", loadOnSelect: true });
     const handlers = {};
     const requests = [];
@@ -1303,18 +1301,121 @@ describe("pi-llamacpp Explicit Load Gate", () => {
     });
 
     await handlers.model_select({ type: "model_select", model: { provider: "llamacpp", id: "select-me" }, previousModel: undefined, source: "set" }, {});
-    await handlers.before_provider_request({ type: "before_provider_request", payload: { model: "select-me" } }, { model: { provider: "llamacpp", id: "select-me" } });
-    await handlers.before_provider_request({ type: "before_provider_request", payload: { model: "other" } }, { model: { provider: "openai", id: "other" } });
 
-    assert.equal(typeof handlers.before_provider_request, "function");
+    assert.equal(handlers.before_provider_request, undefined);
     assert.equal(typeof handlers.model_select, "function");
     assert.deepEqual(requests.map(([method, url]) => [method, url]), [
       ["GET", "http://router.test/models"],
       ["GET", "http://router.test/models"],
       ["POST", "http://router.test/models/load"],
       ["GET", "http://router.test/models"],
-      ["GET", "http://router.test/models"],
     ]);
+  });
+
+  it("registers a custom provider stream wrapper that rejects before delegate when load gate fails", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    let provider;
+    let delegateCalls = 0;
+    await llamacppProvider({
+      registerCommand() {},
+      unregisterProvider() {},
+      registerProvider(_name, config) { provider = config; },
+    }, {
+      loadSettings: async () => settings,
+      fetch: async () => jsonResponse({ data: [{ id: "bad", status: "failed", error: "gpu unavailable" }] }),
+    });
+
+    assert.equal(provider.api, "llamacpp-openai-completions");
+    assert.equal(typeof provider.streamSimple, "function");
+    await assert.rejects(
+      provider.streamSimple({ provider: "llamacpp", id: "bad", api: "llamacpp-openai-completions" }, { messages: [] }, { delegate: () => { delegateCalls += 1; } }),
+      /llamacpp load failed for model bad: gpu unavailable/,
+    );
+    assert.equal(delegateCalls, 0);
+  });
+
+  it("provider stream wrapper delegates exactly once after loaded model passes the gate", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    let provider;
+    const delegated = [];
+    const delegateResult = { delegated: true };
+    await llamacppProvider({
+      registerCommand() {},
+      unregisterProvider() {},
+      registerProvider(_name, config) { provider = config; },
+    }, {
+      loadSettings: async () => settings,
+      fetch: async () => jsonResponse({ data: [{ id: "ready", status: "loaded" }] }),
+    });
+
+    const result = await provider.streamSimple(
+      { provider: "llamacpp", id: "ready", api: "llamacpp-openai-completions" },
+      { messages: [] },
+      { delegate: (model, context, options) => { delegated.push({ model, context, options }); return delegateResult; } },
+    );
+
+    assert.equal(result, delegateResult);
+    assert.equal(delegated.length, 1);
+    assert.equal(delegated[0].model.api, "openai-completions");
+    assert.equal(delegated[0].model.provider, "llamacpp");
+    assert.deepEqual(delegated[0].context, { messages: [] });
+  });
+
+  it("swallowed extension hook errors do not count as blocking but provider stream rejection does", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    let provider;
+    let swallowed = false;
+    await llamacppProvider({
+      registerCommand() {},
+      unregisterProvider() {},
+      registerProvider(_name, config) { provider = config; },
+    }, {
+      loadSettings: async () => settings,
+      fetch: async () => jsonResponse({ data: [{ id: "missing-ready", status: "failed" }] }),
+    });
+    const badHook = async () => { throw new Error("hook failure is logged and swallowed by Pi"); };
+
+    try { await badHook(); } catch { swallowed = true; }
+
+    assert.equal(swallowed, true);
+    await assert.rejects(
+      provider.streamSimple({ provider: "llamacpp", id: "missing-ready", api: "llamacpp-openai-completions" }, { messages: [] }, { delegate: () => { throw new Error("must not delegate"); } }),
+      /llamacpp load failed/,
+    );
+  });
+
+  it("propagates abort signals to POST /models/load", async () => {
+    const controller = new AbortController();
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    const signals = [];
+    const gate = new LoadGate(settings, new RouterClient(settings, {
+      fetch: async (url, init) => {
+        signals.push(init?.signal);
+        if (String(url).endsWith("/models/load")) return jsonResponse({ ok: true });
+        return jsonResponse({ data: [{ id: "cold", status: signals.length > 2 ? "loaded" : "available" }] });
+      },
+    }), { sleep: async () => {}, signal: controller.signal });
+
+    await gate.ensureRequestReady("cold");
+
+    assert.equal(signals[1], controller.signal);
+  });
+
+  it("sends bearer auth on POST /models/load", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "secret-token" });
+    const loadHeaders = [];
+    const gate = new LoadGate(settings, new RouterClient(settings, {
+      fetch: async (url, init) => {
+        if (String(url).endsWith("/models/load")) loadHeaders.push(init?.headers);
+        return String(url).endsWith("/models/load")
+          ? jsonResponse({ ok: true })
+          : jsonResponse({ data: [{ id: "cold", status: loadHeaders.length ? "loaded" : "available" }] });
+      },
+    }), { sleep: async () => {} });
+
+    await gate.ensureRequestReady("cold");
+
+    assert.equal(loadHeaders[0].Authorization, "Bearer secret-token");
   });
 });
 

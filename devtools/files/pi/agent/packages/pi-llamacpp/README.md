@@ -41,7 +41,7 @@ Extension/session reload does not kill a running `llama-server`; a fresh package
 
 ## Explicit Load Gate
 
-Every `llamacpp` provider request runs a package-owned Load Gate before chat completion dispatch. The gate treats `loaded` and `sleeping` Router Model states as request-ready, calls `POST /models/load` for unloaded selected models, then polls `/models` until the model is loaded/sleeping or the configured `timeouts.loadMs` / `timeouts.requestGateMs` budget expires. Failed router models remain selectable when listed by the Router Model List, but request-time load failures report package-owned diagnostics for unknown model IDs, unreachable routers, auth failures, failed loads, and timeouts.
+Every `llamacpp` provider request runs a package-owned Load Gate inside the registered provider `streamSimple` wrapper before OpenAI-compatible chat completion dispatch. Pi `before_provider_request` hook errors are logged and swallowed by the runner, so request blocking intentionally does not depend on extension hook exceptions. The gate treats `loaded` and `sleeping` Router Model states as request-ready, calls `POST /models/load` for unloaded selected models, then polls `/models` until the model is loaded/sleeping or the configured `timeouts.loadMs` / `timeouts.requestGateMs` budget expires. Failed router models remain selectable when listed by the Router Model List, but request-time load failures report package-owned diagnostics for unknown model IDs, unreachable routers, auth failures, failed loads, and timeouts.
 
 When `loadOnSelect` is enabled, model selection uses the same Explicit Load path for earlier feedback. The package does not coordinate concurrent Pi instances with locks; llama-server routes by model id.
 

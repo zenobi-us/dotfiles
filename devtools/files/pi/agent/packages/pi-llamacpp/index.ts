@@ -1,4 +1,12 @@
 import type { ExtensionAPI, ExtensionCommandContext } from "@mariozechner/pi-coding-agent";
+import type {
+  Api,
+  AssistantMessageEventStream,
+  Context,
+  Model,
+  SimpleStreamOptions,
+  } from "@mariozechner/pi-ai";
+import { streamSimpleOpenAICompletions } from "@mariozechner/pi-ai/openai-completions";
 import { spawn as spawnChildProcess } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
@@ -148,6 +156,15 @@ type LlamaCppPiApi = Pick<ExtensionAPI, "registerCommand"> & {
 };
 
 type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
+type StreamSimpleDelegate = (
+  model: Model<"openai-completions">,
+  context: Context,
+  options?: SimpleStreamOptions,
+) => AssistantMessageEventStream;
+
+type LlamaCppStreamSimpleOptions = SimpleStreamOptions & {
+  delegate?: StreamSimpleDelegate;
+};
 
 
 type LlamaCppProviderOptions = {
@@ -404,12 +421,7 @@ export default async function llamacppProvider(
   });
 
 
-  pi.on?.("before_provider_request", async (_event, ctx) => {
-    const model = readHookContextModel(ctx);
-    if (!isLlamaCppSelectedModel(model)) return;
-    const settings = await loadSettings();
-    await new LoadGate(settings, clientFor(settings)).ensureRequestReady(model.id);
-  });
+  // Do not gate in before_provider_request: Pi logs/swallow hook errors and continues requests.
 
   pi.on?.("model_select", async (event) => {
     const model = readModelSelectEventModel(event);
@@ -514,16 +526,18 @@ export class LoadGate {
   private readonly routerClient: RouterClient;
   private readonly sleep: (ms: number) => Promise<void>;
   private readonly now: () => number;
+  private readonly signal?: AbortSignal;
 
   constructor(
     settings: LlamaCppSettings,
     routerClient = new RouterClient(settings),
-    options: { sleep?: (ms: number) => Promise<void>; now?: () => number } = {},
+    options: { sleep?: (ms: number) => Promise<void>; now?: () => number; signal?: AbortSignal } = {},
   ) {
     this.settings = settings;
     this.routerClient = routerClient;
     this.sleep = options.sleep ?? ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
     this.now = options.now ?? (() => Date.now());
+    this.signal = options.signal;
   }
 
   async ensureRequestReady(modelId: string): Promise<void> {
@@ -553,7 +567,7 @@ export class LoadGate {
   private async fetchModelForGate(modelId: string, deadline: number): Promise<RouterModel> {
     let list: RouterModelList;
     try {
-      list = await this.routerClient.fetchModelList(this.operationTimeout(this.settings.timeouts.statusMs, deadline));
+      list = await this.routerClient.fetchModelList(this.operationTimeout(this.settings.timeouts.statusMs, deadline), this.signal);
     } catch (error) {
       throw normalizeLoadGateListError(error);
     }
@@ -564,7 +578,7 @@ export class LoadGate {
 
   private async loadModelForGate(modelId: string, deadline: number): Promise<void> {
     try {
-      await this.routerClient.loadModel(modelId, this.operationTimeout(this.settings.timeouts.loadMs, deadline));
+      await this.routerClient.loadModel(modelId, this.operationTimeout(this.settings.timeouts.loadMs, deadline), this.signal);
     } catch (error) {
       throw normalizeLoadGateLoadError(modelId, error);
     }
@@ -588,13 +602,13 @@ export class RouterClient {
     this.fetchImpl = options.fetch ?? fetch;
   }
 
-  async fetchModelList(timeoutMs = this.settings.timeouts.statusMs): Promise<RouterModelList> {
+  async fetchModelList(timeoutMs = this.settings.timeouts.statusMs, signal?: AbortSignal): Promise<RouterModelList> {
     let response: Response;
     try {
       response = await this.fetchImpl(`${this.settings.serverBaseUrl}/models`, {
         method: "GET",
         headers: this.headers(),
-        signal: AbortSignal.timeout(timeoutMs),
+        signal: signal ?? AbortSignal.timeout(timeoutMs),
       });
     } catch (error) {
       throw normalizeFetchTransportError("Router /models", error);
@@ -606,14 +620,14 @@ export class RouterClient {
     return { raw, models: normalizeRouterModelList(raw) };
   }
 
-  async loadModel(modelId: string, timeoutMs = this.settings.timeouts.loadMs): Promise<void> {
+  async loadModel(modelId: string, timeoutMs = this.settings.timeouts.loadMs, signal?: AbortSignal): Promise<void> {
     let response: Response;
     try {
       response = await this.fetchImpl(`${this.settings.serverBaseUrl}/models/load`, {
         method: "POST",
         headers: { ...this.headers(), "Content-Type": "application/json" },
         body: JSON.stringify({ model: modelId }),
-        signal: AbortSignal.timeout(timeoutMs),
+        signal: signal ?? AbortSignal.timeout(timeoutMs),
       });
     } catch (error) {
       throw normalizeFetchTransportError(`Router /models/load for model ${modelId}`, error);
@@ -688,7 +702,8 @@ export async function refreshProviderModels(
     await pi.registerProvider(PROVIDER_ID, {
       baseUrl: settings.providerBaseUrl,
       apiKey: resolvedProviderApiKeyValue(settings.providerApiKey) ?? DEFAULT_PROVIDER_API_KEY,
-      api: "openai-completions",
+      api: "llamacpp-openai-completions",
+      streamSimple: createLlamaCppStreamSimple(settings, routerClient),
       models: providerModels,
     });
     return {
@@ -704,6 +719,22 @@ export async function refreshProviderModels(
   } catch (error) {
     return createBaselineOperationalStatus(settings, errorToMessage(error));
   }
+}
+
+export function createLlamaCppStreamSimple(
+  settings: LlamaCppSettings,
+  routerClient = new RouterClient(settings),
+): (model: Model<Api>, context: Context, options?: LlamaCppStreamSimpleOptions) => Promise<AssistantMessageEventStream> {
+  return async (model, context, options) => {
+    await new LoadGate(settings, routerClient, { signal: options?.signal }).ensureRequestReady(model.id);
+    const delegate = options?.delegate ?? streamSimpleOpenAICompletions;
+    const { delegate: _delegate, ...delegateOptions } = options ?? {};
+    return delegate(
+      { ...model, api: "openai-completions" } as Model<"openai-completions">,
+      context,
+      delegateOptions,
+    );
+  };
 }
 
 export function normalizeRouterModelList(raw: unknown): RouterModel[] {
