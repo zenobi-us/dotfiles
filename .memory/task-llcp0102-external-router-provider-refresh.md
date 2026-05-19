@@ -4,12 +4,20 @@ type: task
 title: External Router discovery and Provider Refresh
 created_at: 2026-05-19
 updated_at: 2026-05-19
-status: todo
+status: completed
 triage: ready-for-agent
 epic_id: llcpprd1
 phase_id: Slice 2
 story_id: 
-assigned_to: 
+assigned_to: worker-llcp0102-20260519
+claimed_by_owner_id: worker-llcp0102-20260519
+claimed_by_workspace_id: ws-76c947008ec4
+claimed_by_run_id: llcp0102-impl
+claim_started_at: 2026-05-19T12:45:19Z
+last_heartbeat_at: 2026-05-19T12:51:13Z
+lease_expires_at: 
+claim_state: released
+lock_reason: completed
 ---
 
 # External Router discovery and Provider Refresh
@@ -24,15 +32,15 @@ Connect the package to a compatible External Router at Server Base URL, read the
 
 ## Acceptance criteria
 
-- [ ] RouterClient can fetch and normalize the raw `/models` Router Model List from Server Base URL.
-- [ ] Router management requests use Provider API Key bearer auth when configured.
-- [ ] Compatible External Router reachability is reflected in Operational Status.
-- [ ] Provider Models are registered only after compatible Router Model List retrieval succeeds.
-- [ ] Provider Refresh calls unregister for `llamacpp` before registering current Provider Models.
-- [ ] Stale Provider Models disappear after `/llamacpp reload` when the router model list changes.
-- [ ] `/llamacpp list` displays the Router Model List, not just Pi-registered models.
-- [ ] `/llamacpp reload` refreshes the router list and provider registration without requiring Pi restart.
-- [ ] Unit tests cover router response mapping, auth header behavior, registration ordering, stale model removal, empty list behavior, and command output shape.
+- [x] RouterClient can fetch and normalize the raw `/models` Router Model List from Server Base URL.
+- [x] Router management requests use Provider API Key bearer auth when configured.
+- [x] Compatible External Router reachability is reflected in Operational Status.
+- [x] Provider Models are registered only after compatible Router Model List retrieval succeeds.
+- [x] Provider Refresh calls unregister for `llamacpp` before registering current Provider Models.
+- [x] Stale Provider Models disappear after `/llamacpp reload` when the router model list changes.
+- [x] `/llamacpp list` displays the Router Model List, not just Pi-registered models.
+- [x] `/llamacpp reload` refreshes the router list and provider registration without requiring Pi restart.
+- [x] Unit tests cover router response mapping, auth header behavior, registration ordering, stale model removal, empty list behavior, and command output shape.
 
 ## Blocked by
 
@@ -41,3 +49,18 @@ Connect the package to a compatible External Router at Server Base URL, read the
 ## User stories covered
 
 1, 4, 7, 10, 11, 12, 18, 20, 27, 29
+
+## Actual Outcome
+
+Implemented External Router discovery for `/models`, Router Model List normalization, bearer auth for router management fetches, Provider Refresh unregister-before-register semantics, and `/llamacpp list` / `/llamacpp reload` command behavior. Compatible router discovery now registers current `llamacpp` Provider Models; incompatible or failed discovery leaves provider registration untouched and reports Operational Status errors.
+
+## Unit Tests
+
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: router response mapping and auth header behavior.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: provider refresh ordering, compatible gating, stale model removal on reload, and empty list registration.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: `/llamacpp list` and `/llamacpp reload` output shape with mocked router/provider APIs.
+
+## Lessons Learned
+
+- Treating the Router Model List as source of truth keeps Provider Refresh deterministic and makes stale removal a simple unregister-before-register flow.
+- Node's built-in test runner can exercise TypeScript package behavior directly here, while whole-workspace `tsc` remains noisy from unrelated packages and fixtures.
