@@ -240,6 +240,40 @@ describe("pi-llamacpp status baseline", () => {
     assert.match(message, /Configured Preset File: \/opt\/presets.ini/);
     assert.match(message, /statusMs: 777/);
   });
+
+
+  it("status command refreshes reachability instead of reusing stale reachable cache", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    const commands = new Map();
+    const fetchResults = [
+      jsonResponse({ data: [{ id: "alive" }] }),
+      new Error("router disappeared"),
+    ];
+    const pi = {
+      registerCommand(name, command) { commands.set(name, command); },
+      unregisterProvider() {},
+      registerProvider() {},
+    };
+
+    await llamacppProvider(pi, {
+      loadSettings: async () => settings,
+      fetch: async () => {
+        const next = fetchResults.shift();
+        if (next instanceof Error) throw next;
+        return next;
+      },
+    });
+
+    const notifications = [];
+    await commands.get("llamacpp").handler("status", {
+      ui: { notify: (message, level) => notifications.push({ message, level }) },
+    });
+
+    assert.equal(notifications[0].level, "info");
+    assert.match(notifications[0].message, /Router Reachable: no/);
+    assert.match(notifications[0].message, /Provider Registered: no/);
+    assert.match(notifications[0].message, /Last Error: router disappeared/);
+  });
 });
 
 
@@ -308,7 +342,38 @@ describe("pi-llamacpp external router discovery", () => {
     assert.equal(status.providerRegistered, false);
     assert.equal(status.providerModelCount, 0);
     assert.match(status.lastError, /missing a data\/models array/);
-    assert.deepEqual(calls, []);
+    assert.deepEqual(calls, [["unregister", "llamacpp"]]);
+  });
+
+
+  it("unregisters stale Provider Models before failed incompatible refresh", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    const calls = [];
+    const status = await refreshProviderModels({
+      unregisterProvider(name) { calls.push(["unregister", name]); },
+      registerProvider(name) { calls.push(["register", name]); },
+    }, settings, new RouterClient(settings, {
+      fetch: async () => jsonResponse({ bad: [] }),
+    }));
+
+    assert.equal(status.routerReachable, false);
+    assert.equal(status.providerRegistered, false);
+    assert.equal(status.providerModelCount, 0);
+    assert.match(status.lastError, /missing a data\/models array/);
+    assert.deepEqual(calls, [["unregister", "llamacpp"]]);
+  });
+
+  it("reports unsupported provider API instead of false registration success", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test" });
+    const status = await refreshProviderModels({}, settings, new RouterClient(settings, {
+      fetch: async () => jsonResponse({ data: [{ id: "a" }] }),
+    }));
+
+    assert.equal(status.routerReachable, true);
+    assert.equal(status.providerRegistered, false);
+    assert.equal(status.providerModelCount, 0);
+    assert.equal(status.routerModelCount, 1);
+    assert.match(status.lastError, /Provider API unsupported/);
   });
 
   it("registers an empty current Provider Model set after a compatible empty router list", async () => {

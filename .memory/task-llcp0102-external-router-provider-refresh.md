@@ -52,15 +52,17 @@ Connect the package to a compatible External Router at Server Base URL, read the
 
 ## Actual Outcome
 
-Implemented External Router discovery for `/models`, Router Model List normalization, bearer auth for router management fetches, Provider Refresh unregister-before-register semantics, and `/llamacpp list` / `/llamacpp reload` command behavior. Compatible router discovery now registers current `llamacpp` Provider Models; incompatible or failed discovery leaves provider registration untouched and reports Operational Status errors.
+Implemented External Router discovery for `/models`, Router Model List normalization, bearer auth for router management fetches, Provider Refresh unregister-before-register semantics, and `/llamacpp list` / `/llamacpp reload` command behavior. Compatible router discovery now registers current `llamacpp` Provider Models; incompatible or failed discovery unregisters `llamacpp` first so stale Provider Models cannot survive. `/llamacpp status` now refreshes router reachability instead of reusing stale reachable cache, and unsupported Pi provider APIs report a clear unsupported state.
 
 ## Unit Tests
 
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: router response mapping and auth header behavior.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: provider refresh ordering, compatible gating, stale model removal on reload, and empty list registration.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: `/llamacpp list` and `/llamacpp reload` output shape with mocked router/provider APIs.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: reload failure stale-provider removal, status reachability refresh, and unsupported provider API reporting.
 
 ## Lessons Learned
 
 - Treating the Router Model List as source of truth keeps Provider Refresh deterministic and makes stale removal a simple unregister-before-register flow.
+- Provider Refresh must clear old registration before any router fetch that may fail; unregister-after-success still leaves stale models selectable.
 - Node's built-in test runner can exercise TypeScript package behavior directly here, while whole-workspace `tsc` remains noisy from unrelated packages and fixtures.

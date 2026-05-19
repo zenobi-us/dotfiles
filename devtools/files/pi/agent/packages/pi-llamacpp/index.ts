@@ -48,6 +48,7 @@ export type OperationalStatus = {
   providerRegistered: boolean;
   providerModelCount: number;
   routerModelCount?: number;
+  routerModels?: RouterModel[];
   lastError?: string;
 };
 
@@ -110,7 +111,7 @@ export default async function llamacppProvider(
     const client = clientFor(settings);
     const status = await refreshProviderModels(pi, settings, client);
     cachedStatus = status;
-    cachedRouterModels = status.routerReachable ? cachedRouterModels : [];
+    cachedRouterModels = status.routerReachable ? (status.routerModels ?? cachedRouterModels) : [];
     return status;
   };
 
@@ -128,9 +129,7 @@ export default async function llamacppProvider(
       const action = (args || "status").trim().toLowerCase() || "status";
       if (action === "status") {
         const settings = await loadSettings(ctx);
-        const status = cachedStatus?.settings.serverBaseUrl === settings.serverBaseUrl
-          ? cachedStatus
-          : await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error)));
+        const status = await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error)));
         ctx.ui.notify(formatOperationalStatus(status), "info");
         return;
       }
@@ -200,14 +199,20 @@ export async function refreshProviderModels(
   routerClient = new RouterClient(settings),
 ): Promise<OperationalStatus> {
   if (settings.providerApiKey.kind === "unsupported" || settings.providerApiKey.kind === "missing-env") {
+    await pi.unregisterProvider?.(PROVIDER_ID);
     return createBaselineOperationalStatus(settings, settings.providerApiKey.error);
   }
+
+  if (typeof pi.unregisterProvider !== "function" || typeof pi.registerProvider !== "function") {
+    return refreshUnsupportedProviderApiStatus(settings, routerClient, pi);
+  }
+
+  await pi.unregisterProvider(PROVIDER_ID);
 
   try {
     const routerModelList = await routerClient.fetchModelList();
     const providerModels = routerModelList.models.map(toProviderModel);
-    await pi.unregisterProvider?.(PROVIDER_ID);
-    await pi.registerProvider?.(PROVIDER_ID, {
+    await pi.registerProvider(PROVIDER_ID, {
       baseUrl: settings.providerBaseUrl,
       apiKey: resolvedProviderApiKeyValue(settings.providerApiKey) ?? DEFAULT_PROVIDER_API_KEY,
       api: "openai-completions",
@@ -219,6 +224,7 @@ export async function refreshProviderModels(
       providerRegistered: true,
       providerModelCount: providerModels.length,
       routerModelCount: routerModelList.models.length,
+      routerModels: routerModelList.models,
     };
   } catch (error) {
     return createBaselineOperationalStatus(settings, errorToMessage(error));
@@ -396,6 +402,34 @@ async function safeFetchRouterModels(client: RouterClient): Promise<{ models: Ro
     return { models: result.models };
   } catch (error) {
     return { models: [], error: errorToMessage(error) };
+  }
+}
+
+
+async function refreshUnsupportedProviderApiStatus(
+  settings: LlamaCppSettings,
+  routerClient: RouterClient,
+  pi: Pick<LlamaCppPiApi, "registerProvider" | "unregisterProvider">,
+): Promise<OperationalStatus> {
+  const missing = [
+    typeof pi.unregisterProvider === "function" ? undefined : "unregisterProvider",
+    typeof pi.registerProvider === "function" ? undefined : "registerProvider",
+  ].filter((value): value is string => value !== undefined);
+  const apiError = `Provider API unsupported: Pi is missing ${missing.join(" and ")}.`;
+
+  try {
+    const routerModelList = await routerClient.fetchModelList();
+    return {
+      settings,
+      routerReachable: true,
+      providerRegistered: false,
+      providerModelCount: 0,
+      routerModelCount: routerModelList.models.length,
+      routerModels: routerModelList.models,
+      lastError: apiError,
+    };
+  } catch (error) {
+    return createBaselineOperationalStatus(settings, `${apiError} ${errorToMessage(error)}`);
   }
 }
 
