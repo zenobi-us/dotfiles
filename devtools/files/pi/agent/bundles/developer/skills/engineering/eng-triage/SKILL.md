@@ -1,5 +1,5 @@
 ---
-name: triage
+name: eng-triage
 description: Triage issues through a state machine driven by triage roles. Use when user wants to create an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow.
 ---
 
@@ -35,13 +35,13 @@ Five **state** roles:
 
 Every triaged issue should carry exactly one category role and one state role. If state roles conflict, flag it and ask the maintainer before doing anything else.
 
-These are canonical role names — the actual label strings used in the issue tracker may differ. The mapping should have been provided to you - run `/setup-engineering` if not.
+These are canonical role names — the actual label strings used in the issue tracker may differ. The mapping should have been provided to you - run `/eng-setup` if not.
 
 State transitions: an unlabeled issue normally goes to `needs-triage` first; from there it moves to `needs-info`, `ready-for-agent`, `ready-for-human`, or `wontfix`. `needs-info` returns to `needs-triage` once the reporter replies. The maintainer can override at any time — flag transitions that look unusual and ask before proceeding.
 
 ## Invocation
 
-The maintainer invokes `/triage` and describes what they want in natural language. Interpret the request and act. Examples:
+The maintainer invokes `/eng-triage` and describes what they want in natural language. Interpret the request and act. Examples:
 
 - "Show me anything that needs my attention"
 - "Let's look at #42"
@@ -66,7 +66,7 @@ Show counts and a one-line summary per issue. Let the maintainer pick.
 
 3. **Reproduce (bugs only).** Before any grilling, attempt reproduction: read the reporter's steps, trace the relevant code, run tests or commands. Report what happened — successful repro with code path, failed repro, or insufficient detail (a strong `needs-info` signal). A confirmed repro makes a much stronger agent brief.
 
-4. **Grill (if needed).** If the issue needs fleshing out, run a `/grill-with-docs` session.
+4. **Grill (if needed).** If the issue needs fleshing out, run a `/eng-grill-with-docs` session.
 
 5. **Apply the outcome:**
    - `ready-for-agent` — post an agent brief comment ([AGENT-BRIEF.md](AGENT-BRIEF.md)).
