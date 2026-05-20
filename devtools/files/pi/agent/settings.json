@@ -17,19 +17,18 @@
     "./packages/pi-answer",
     "./packages/pi-handoff",
     "./packages/pi-lazyskills",
-    "./packages/pi-llamacpp",
     "./packages/pi-worktrunk",
     "npm:@tintinweb/pi-subagents"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
-  "defaultProvider": "llamacpp",
+  "defaultProvider": "openai-codex",
   "enableSkillCommands": true,
   "quietStartup": true,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 10,
   "enableInstallTelemetry": false,
   "doubleEscapeAction": "tree",
-  "defaultModel": "qwen3.6-35b-a3b"
+  "defaultModel": "gpt-5.3-codex"
 }
 

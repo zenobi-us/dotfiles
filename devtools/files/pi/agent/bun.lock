@@ -34,10 +34,6 @@
       "name": "@zenobius/pi-developer",
       "version": "0.1.0",
     },
-    "bundles/mattpocock": {
-      "name": "@zenobius/pi-mattpocock",
-      "version": "0.1.0",
-    },
     "bundles/platform": {
       "name": "@zenobius/pi-platform",
       "version": "0.1.0",
@@ -410,8 +406,6 @@
     "@zenobius/pi-developer": ["@zenobius/pi-developer@workspace:bundles/developer"],
 
     "@zenobius/pi-extension-config": ["@zenobius/pi-extension-config@0.0.2", "", { "dependencies": { "@standard-schema/spec": "^1.1.0", "nconf": "^0.13.0" } }, "sha512-UhtydVAj44Kw9FJCa3JH381E5TGQHEJE/pMclzp16Nytc9AQMbC7MvCd2Q9l7F1cfzsD52cLwgX447+FHy7bfQ=="],
-
-    "@zenobius/pi-mattpocock": ["@zenobius/pi-mattpocock@workspace:bundles/mattpocock"],
 
     "@zenobius/pi-platform": ["@zenobius/pi-platform@workspace:bundles/platform"],
 
