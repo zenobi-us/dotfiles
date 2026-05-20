@@ -11,7 +11,7 @@ Before doing anything always load these skills:
 
 - [caveman](./bundles/mattpocock/skills/caveman/SKILL.md)
 - [using-superpowers](./bundles/agent-core/skills/superpowers/using-superpowers/SKILL.md)
-- [sop-authoring](./bundles/agent-core/skills/sop/*)
+- [sop-authoring](./bundles/agent-core/skills/sop/sop-rfc2119/SKILL.md)
 
 ## Behavioral Core
 
