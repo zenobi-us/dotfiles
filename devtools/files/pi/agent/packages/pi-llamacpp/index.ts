@@ -467,7 +467,7 @@ export default async function llamacppProvider(
             return;
           }
           cachedRouterModels = result.models;
-          ctx.ui.notify(formatRouterModelListCommandResult(result.models), "info");
+          ctx.ui.notify(formatRouterModelListCommandResult(result.models, settings), "info");
         } catch (error) {
           notifyOperationalError(ctx, error);
         }
@@ -507,7 +507,8 @@ export default async function llamacppProvider(
         try {
           const settings = await loadSettings(ctx);
           const refreshed = await refresh(ctx).catch((error: unknown) => createBaselineOperationalStatus(settings, errorToMessage(error, settings)));
-          const status = refreshed.lastError ? { ...withLifecycle(refreshed), lastError: refreshed.lastError } : withLifecycle(refreshed);
+          const postStopLastError = result.lastError ? refreshed.lastError : undefined;
+          const status = postStopLastError ? { ...withLifecycle(refreshed), lastError: postStopLastError } : { ...withLifecycle(refreshed), lastError: undefined };
           ctx.ui.notify(["llamacpp stop", "", result.message, "", formatOperationalStatus(status)].join("\n"), result.lastError ? "warning" : "info");
         } catch (error) {
           const baseline = createBaselineOperationalStatus(parseLlamaCppSettings({}), errorToMessage(error));
@@ -547,7 +548,7 @@ export class LoadGate {
     const deadline = this.now() + timeoutMs;
     let model = await this.fetchModelForGate(modelId, deadline);
     this.assertWithinGate(modelId, deadline, timeoutMs);
-    if (isFailedRouterModel(model)) throw loadFailedError(modelId, model);
+    if (isFailedRouterModel(model)) throw loadFailedError(modelId, model, this.settings);
     if (isRequestReadyRouterModel(model)) return;
 
     await this.loadModelForGate(modelId, deadline);
@@ -556,7 +557,7 @@ export class LoadGate {
     do {
       model = await this.fetchModelForGate(modelId, deadline);
       this.assertWithinGate(modelId, deadline, timeoutMs);
-      if (isFailedRouterModel(model)) throw loadFailedError(modelId, model);
+      if (isFailedRouterModel(model)) throw loadFailedError(modelId, model, this.settings);
       if (isRequestReadyRouterModel(model)) return;
       const remaining = deadline - this.now();
       if (remaining <= 0) break;
@@ -630,9 +631,10 @@ export class RouterClient {
     let responseText = "";
     try {
       responseText = await response.clone().text();
+      if (responseText.trim() === "") throw new Error("empty response body");
       raw = JSON.parse(responseText);
     } catch (error) {
-      const detail = responseText || errorToMessage(error, this.settings);
+      const detail = error instanceof Error && error.message === "empty response body" ? error.message : responseText;
       throw new Error(`Router /models malformed response: ${sanitizeDiagnosticMessage(detail, ...diagnosticSecretValues(this.settings))}`);
     }
     try {
@@ -901,22 +903,29 @@ export function formatOperationalStatus(status: OperationalStatus): string {
     `  statusMs: ${status.settings.timeouts.statusMs}`,
   ];
   if (status.managedProcess) {
+    const secrets = diagnosticSecretValues(status.settings);
+    const stdoutTail = status.managedLogTail?.stdout.length
+      ? status.managedLogTail.stdout.map((line) => sanitizeDiagnosticMessage(line, ...secrets)).join(" | ")
+      : "(empty)";
+    const stderrTail = status.managedLogTail?.stderr.length
+      ? status.managedLogTail.stderr.map((line) => sanitizeDiagnosticMessage(line, ...secrets)).join(" | ")
+      : "(empty)";
     lines.push(
       `Managed Process State: ${status.managedProcess.state}`,
       `Managed Process PID: ${status.managedProcess.pid ?? "n/a"}`,
-      `Managed stdout tail: ${status.managedLogTail?.stdout.length ? status.managedLogTail.stdout.join(" | ") : "(empty)"}`,
-      `Managed stderr tail: ${status.managedLogTail?.stderr.length ? status.managedLogTail.stderr.join(" | ") : "(empty)"}`,
+      `Managed stdout tail: ${stdoutTail}`,
+      `Managed stderr tail: ${stderrTail}`,
     );
   }
   lines.push(`Last Error: ${status.lastError ? sanitizeDiagnosticMessage(status.lastError, ...diagnosticSecretValues(status.settings)) : "none"}`);
   return lines.join("\n");
 }
 
-function formatRouterModelListCommandResult(models: RouterModel[]): string {
-  return `llamacpp list complete\n\nRouter Models: ${models.length}\n\n${formatRouterModelList(models)}`;
+function formatRouterModelListCommandResult(models: RouterModel[], settings?: LlamaCppSettings): string {
+  return `llamacpp list complete\n\nRouter Models: ${models.length}\n\n${formatRouterModelList(models, settings)}`;
 }
 
-export function formatRouterModelList(models: RouterModel[]): string {
+export function formatRouterModelList(models: RouterModel[], settings?: LlamaCppSettings): string {
   const lines = [
     "llamacpp Router Model List",
     "",
@@ -924,8 +933,10 @@ export function formatRouterModelList(models: RouterModel[]): string {
     "|---|---|---|---|---|",
   ];
   if (models.length === 0) lines.push("| (none) | - | - | - | no |");
+  const secrets = diagnosticSecretValues(settings);
   for (const model of models) {
-    lines.push(`| ${model.id} | ${model.name} | ${formatRouterModelAvailability(model)} | ${model.status ?? "unknown"} | ${model.loaded ? "yes" : "no"} |`);
+    const sanitize = (value: string) => sanitizeDiagnosticMessage(value, ...secrets);
+    lines.push(`| ${sanitize(model.id)} | ${sanitize(model.name)} | ${sanitize(formatRouterModelAvailability(model))} | ${sanitize(model.status ?? "unknown")} | ${model.loaded ? "yes" : "no"} |`);
   }
   return lines.join("\n");
 }
@@ -1160,8 +1171,8 @@ function isFailedRouterModel(model: RouterModel): boolean {
   return /^(failed|error|unavailable)$/i.test(model.status ?? "") || typeof model.raw.error === "string";
 }
 
-function loadFailedError(modelId: string, model: RouterModel): Error {
-  const detail = sanitizeDiagnosticMessage(readFirstString(model.raw, ["error", "message", "detail"]) ?? model.status ?? "router reported failed model state");
+function loadFailedError(modelId: string, model: RouterModel, settings?: LlamaCppSettings): Error {
+  const detail = sanitizeDiagnosticMessage(readFirstString(model.raw, ["error", "message", "detail"]) ?? model.status ?? "router reported failed model state", ...diagnosticSecretValues(settings));
   return new Error(`llamacpp load failed for model ${modelId}: ${detail}`);
 }
 
@@ -1248,7 +1259,9 @@ function sanitizeDiagnosticMessage(message: string, ...secretValues: Array<strin
 
 function diagnosticSecretValues(settings?: LlamaCppSettings): string[] {
   if (!settings || (settings.providerApiKey.kind !== "literal" && settings.providerApiKey.kind !== "env")) return [];
-  return settings.providerApiKey.value ? [settings.providerApiKey.value] : [];
+  const value = settings.providerApiKey.value;
+  if (!value || value === DEFAULT_PROVIDER_API_KEY || value.length < 8) return [];
+  return [value];
 }
 
 function normalizeHttpErrorBody(body: string): string {

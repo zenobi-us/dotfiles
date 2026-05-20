@@ -1562,7 +1562,6 @@ describe("pi-llamacpp end-to-end diagnostics", () => {
     );
   });
 
-
   it("redacts resolved non-pattern Provider API Key values across command and provider diagnostics", async () => {
     const secret = "local-secret-123";
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "LLAMACPP_SECRET" }, { LLAMACPP_SECRET: secret });
@@ -1611,6 +1610,123 @@ describe("pi-llamacpp end-to-end diagnostics", () => {
       new RouterClient(settings, { fetch: async () => invalidJsonResponse("{ bad json local-secret-123") }).fetchModelList(),
       /Router \/models malformed response: \{ bad json \[redacted\]/,
     );
+  });
+
+
+  it("redacts resolved non-pattern Provider API Key from failed load gate model diagnostics", async () => {
+    const secret = "local-secret-abc123";
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "LLAMACPP_SECRET" }, { LLAMACPP_SECRET: secret });
+
+    await assert.rejects(
+      new LoadGate(settings, new RouterClient(settings, {
+        fetch: async () => jsonResponse({ data: [{ id: "bad", status: "failed", error: `router echoed ${secret}` }] }),
+      }), { sleep: async () => {} }).ensureRequestReady("bad"),
+      /llamacpp load failed for model bad: router echoed \[redacted\]/,
+    );
+  });
+
+  it("redacts resolved non-pattern Provider API Key from managed process log tails in status", () => {
+    const secret = "local-secret-abc123";
+    const settings = parseLlamaCppSettings({ providerApiKey: "LLAMACPP_SECRET" }, { LLAMACPP_SECRET: secret });
+    const status = formatOperationalStatus({
+      settings,
+      routerReachable: false,
+      providerRegistered: false,
+      providerModelCount: 0,
+      routerOwnership: "managed",
+      managedProcess: { state: "running", pid: 123, stdoutTail: [], stderrTail: [] },
+      managedLogTail: { stdout: [`stdout ${secret}`], stderr: [`stderr ${secret}`] },
+    });
+
+    assert.doesNotMatch(status, /local-secret-abc123/);
+    assert.match(status, /Managed stdout tail: stdout \[redacted\]/);
+    assert.match(status, /Managed stderr tail: stderr \[redacted\]/);
+  });
+
+  it("redacts resolved non-pattern Provider API Key from router-supplied list fields", async () => {
+    const secret = "local-secret-abc123";
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "LLAMACPP_SECRET" }, { LLAMACPP_SECRET: secret });
+    const commands = new Map();
+    const notifications = [];
+    const responses = [
+      jsonResponse({ data: [{ id: "ready", status: "loaded" }] }),
+      jsonResponse({ data: [{ id: "model", name: `name ${secret}`, availability: `available ${secret}`, status: `failed ${secret}` }] }),
+    ];
+
+    await llamacppProvider({
+      registerCommand(name, command) { commands.set(name, command); },
+      unregisterProvider() {},
+      registerProvider() {},
+    }, {
+      loadSettings: async () => settings,
+      fetch: async () => responses.shift(),
+    });
+
+    await commands.get("llamacpp").handler("list", { ui: { notify: (message, level) => notifications.push({ message, level }) } });
+
+    assert.doesNotMatch(notifications[0].message, /local-secret-abc123/);
+    assert.match(notifications[0].message, /available \[redacted\]/);
+    assert.match(notifications[0].message, /failed \[redacted\]/);
+  });
+
+  it("does not report expected post-stop ECONNREFUSED as a failed stop", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "pi-llamacpp-post-stop-"));
+    const presetFile = join(dir, "models.ini");
+    writeFileSync(presetFile, "[model-a]\n");
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", managedStart: true, modelPresetsFile: presetFile });
+    const commands = new Map();
+    const notifications = [];
+    const fakeProcess = new FakeManagedProcess();
+    const manager = new ManagedRouterProcess({ spawn: () => fakeProcess, sleep: async () => {} });
+    const responses = [
+      jsonResponse({ data: [{ id: "ready", status: "loaded" }] }),
+      new Error("ECONNREFUSED"),
+    ];
+
+    await llamacppProvider({
+      registerCommand(name, command) { commands.set(name, command); },
+      unregisterProvider() {},
+      registerProvider() {},
+    }, {
+      loadSettings: async () => settings,
+      managedRouter: manager,
+      fetch: async () => {
+        const next = responses.shift();
+        if (next instanceof Error) throw next;
+        return next;
+      },
+    });
+    let startProbe = 0;
+    await manager.start(settings, async () => {
+      startProbe += 1;
+      if (startProbe === 1) throw new Error("ECONNREFUSED");
+      return jsonResponse({ data: [{ id: "ready", status: "loaded" }] });
+    });
+
+    await commands.get("llamacpp").handler("stop", { ui: { notify: (message, level) => notifications.push({ message, level }) } });
+
+    assert.equal(notifications[0].level, "info");
+    assert.match(notifications[0].message, /Stopped package-owned managed router process/);
+    assert.doesNotMatch(notifications[0].message, /Last Error: ECONNREFUSED/);
+  });
+
+  it("normalizes HTTP 200 empty invalid Router Model List JSON without parser internals", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "local-secret-123" });
+
+    await assert.rejects(
+      new RouterClient(settings, { fetch: async () => invalidJsonResponse("") }).fetchModelList(),
+      (error) => {
+        assert.match(error.message, /Router \/models malformed response: empty response body/);
+        assert.doesNotMatch(error.message, /Unexpected end of JSON input/);
+        return true;
+      },
+    );
+  });
+
+  it("does not value-redact the low-entropy default Provider API Key", () => {
+    const status = formatOperationalStatus(createBaselineOperationalStatus(DEFAULT_LLAMACPP_SETTINGS, "default llamacpp key is intentionally named llamacpp"));
+
+    assert.match(status, /default llamacpp key is intentionally named llamacpp/);
   });
 });
 
