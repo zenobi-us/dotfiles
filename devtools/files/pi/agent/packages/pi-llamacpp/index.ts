@@ -1260,7 +1260,7 @@ function sanitizeDiagnosticMessage(message: string, ...secretValues: Array<strin
 function diagnosticSecretValues(settings?: LlamaCppSettings): string[] {
   if (!settings || (settings.providerApiKey.kind !== "literal" && settings.providerApiKey.kind !== "env")) return [];
   const value = settings.providerApiKey.value;
-  if (!value || value === DEFAULT_PROVIDER_API_KEY || value.length < 8) return [];
+  if (!value || value === DEFAULT_PROVIDER_API_KEY) return [];
   return [value];
 }
 

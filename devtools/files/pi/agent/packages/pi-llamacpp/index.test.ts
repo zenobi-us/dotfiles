@@ -1563,7 +1563,7 @@ describe("pi-llamacpp end-to-end diagnostics", () => {
   });
 
   it("redacts resolved non-pattern Provider API Key values across command and provider diagnostics", async () => {
-    const secret = "local-secret-123";
+    const secret = "secret1";
     const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "LLAMACPP_SECRET" }, { LLAMACPP_SECRET: secret });
     const commands = new Map();
     const notifications = [];
@@ -1591,7 +1591,7 @@ describe("pi-llamacpp end-to-end diagnostics", () => {
     await commands.get("llamacpp").handler("start", ctx);
 
     const commandOutput = notifications.map((entry) => entry.message).join("\n---\n");
-    assert.doesNotMatch(commandOutput, /local-secret-123/);
+    assert.doesNotMatch(commandOutput, /secret1/);
     assert.match(commandOutput, /list said \[redacted\]/);
     assert.match(commandOutput, /reload said \[redacted\]/);
     assert.match(commandOutput, /start probe said \[redacted\]/);
