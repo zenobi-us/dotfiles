@@ -46,7 +46,53 @@
       "name": "@zenobius/pi-writing",
       "version": "0.1.0",
     },
-    "extensions/lsp": {
+    "extensions/sub-limits": {
+      "name": "sub-limits",
+      "version": "1.0.0",
+      "peerDependencies": {
+        "@mariozechner/pi-coding-agent": "*",
+        "@mariozechner/pi-tui": "*",
+      },
+    },
+    "packages/pi-fzf": {
+      "name": "pi-fzf",
+      "version": "0.5.0",
+      "dependencies": {
+        "fzf": "^0.5.2",
+      },
+      "devDependencies": {
+        "vitest": "^0.34.0",
+      },
+      "peerDependencies": {
+        "@mariozechner/pi-coding-agent": "*",
+        "@mariozechner/pi-tui": "*",
+      },
+    },
+    "packages/pi-handoff": {
+      "name": "handoff",
+      "version": "0.0.1",
+    },
+    "packages/pi-lazyskills": {
+      "name": "skills",
+      "version": "0.0.1",
+      "dependencies": {
+        "@zenobius/pi-extension-config": "*",
+        "chokidar": "^5.0.0",
+      },
+      "peerDependencies": {
+        "@earendil-works/pi-ai": "*",
+        "@earendil-works/pi-coding-agent": "*",
+        "@earendil-works/pi-tui": "*",
+      },
+    },
+    "packages/pi-lmstudio-provider": {
+      "name": "lmstudio-provider",
+      "version": "1.0.0",
+      "peerDependencies": {
+        "@mariozechner/pi-coding-agent": "*",
+      },
+    },
+    "packages/pi-lsp": {
       "name": "lsp-pi",
       "version": "1.0.3",
       "dependencies": {
@@ -65,50 +111,6 @@
         "@mariozechner/pi-ai": "^0.50.0",
         "@mariozechner/pi-coding-agent": "^0.50.0",
         "@mariozechner/pi-tui": "^0.50.0",
-      },
-    },
-    "extensions/pi-ds": {
-      "name": "pi-ds",
-      "version": "0.0.1",
-    },
-    "extensions/pi-fzf": {
-      "name": "pi-fzf",
-      "version": "0.5.0",
-      "dependencies": {
-        "fzf": "^0.5.2",
-      },
-      "devDependencies": {
-        "vitest": "^0.34.0",
-      },
-      "peerDependencies": {
-        "@mariozechner/pi-coding-agent": "*",
-        "@mariozechner/pi-tui": "*",
-      },
-    },
-    "extensions/sub-limits": {
-      "name": "sub-limits",
-      "version": "1.0.0",
-      "peerDependencies": {
-        "@mariozechner/pi-coding-agent": "*",
-        "@mariozechner/pi-tui": "*",
-      },
-    },
-    "packages/pi-handoff": {
-      "name": "handoff",
-      "version": "0.0.1",
-    },
-    "packages/pi-lazyskills": {
-      "name": "skills",
-      "version": "0.0.1",
-      "dependencies": {
-        "chokidar": "^5.0.0",
-      },
-    },
-    "packages/pi-lmstudio-provider": {
-      "name": "lmstudio-provider",
-      "version": "1.0.0",
-      "peerDependencies": {
-        "@mariozechner/pi-coding-agent": "*",
       },
     },
   },
@@ -603,7 +605,7 @@
 
     "lru-cache": ["lru-cache@11.3.6", "", {}, "sha512-Gf/KoL3C/MlI7Bt0PGI9I+TeTC/I6r/csU58N4BSNc4lppLBeKsOdFYkK+dX0ABDUMJNfCHTyPpzwwO21Awd3A=="],
 
-    "lsp-pi": ["lsp-pi@workspace:extensions/lsp"],
+    "lsp-pi": ["lsp-pi@workspace:packages/pi-lsp"],
 
     "magic-string": ["magic-string@0.30.21", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.5" } }, "sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ=="],
 
@@ -667,9 +669,7 @@
 
     "pend": ["pend@1.2.0", "", {}, "sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg=="],
 
-    "pi-ds": ["pi-ds@workspace:extensions/pi-ds"],
-
-    "pi-fzf": ["pi-fzf@workspace:extensions/pi-fzf"],
+    "pi-fzf": ["pi-fzf@workspace:packages/pi-fzf"],
 
     "picocolors": ["picocolors@1.1.1", "", {}, "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="],
 
