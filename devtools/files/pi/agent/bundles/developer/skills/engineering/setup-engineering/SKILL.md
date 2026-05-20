@@ -41,7 +41,7 @@ Default posture: if no issue tracker is specified, prefer **Local miniproject**.
 - **GitHub** — issues live in the repo's GitHub Issues (uses the `gh` CLI)
 - **GitLab** — issues live in the repo's GitLab Issues (uses the [`glab`](https://gitlab.com/gitlab-org/cli) CLI)
 - **Local miniproject** — issues live as files under `.memory/scratch/<feature>/` in this repo (default when unspecified)
-- **Local markdown** — same local-file model, without miniproject conventions
+- **Local markdown** — flat issue files in `.memory/scratch/issues/`, optional shared PRD at `.memory/scratch/PRD.md`
 - **Other** (Jira, Linear, etc.) — ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
 
 **Section B — Triage label vocabulary.**
