@@ -95,7 +95,7 @@ yq = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 zellij = "latest"
 zig= "latest"
-"github:max-sixty/worktrunk" = "0.50.0"
+"github:max-sixty/worktrunk" = "latest"
 lazydocker = "0.25.2"
 
 

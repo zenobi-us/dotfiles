@@ -1,5 +1,5 @@
 ---
-name: grill-with-docs
+name: eng-grill-with-docs
 description: Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when user wants to stress-test a plan against their project's language and documented decisions.
 ---
 
@@ -26,7 +26,7 @@ Most repos have a single context:
 ```
 /
 ├── CONTEXT.md
-├── docs/
+├── .memory/docs/
 │   └── adr/
 │       ├── 0001-event-sourced-orders.md
 │       └── 0002-postgres-for-write-model.md
@@ -38,18 +38,18 @@ If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The ma
 ```
 /
 ├── CONTEXT-MAP.md
-├── docs/
+├── .memory/docs/
 │   └── adr/                          ← system-wide decisions
 ├── src/
 │   ├── ordering/
 │   │   ├── CONTEXT.md
-│   │   └── docs/adr/                 ← context-specific decisions
+│   │   └── .memory/docs/adr/src/ordering/                 ← context-specific decisions
 │   └── billing/
 │       ├── CONTEXT.md
-│       └── docs/adr/
+│       └── .memory/docs/adr/src/billing/
 ```
 
-Create files lazily — only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
+Create files lazily — only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `.memory/docs/adr/` exists, create it when the first ADR is needed.
 
 ## During the session
 
