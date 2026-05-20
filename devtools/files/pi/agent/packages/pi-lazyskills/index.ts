@@ -16,9 +16,9 @@ import {
   SettingsManager,
   type ExtensionAPI,
   type ExtensionContext,
-} from "@mariozechner/pi-coding-agent";
-import { Type } from "@mariozechner/pi-ai";
-import { Text } from "@mariozechner/pi-tui";
+} from "@earendil-works/pi-coding-agent";
+import { Type } from "@earendil-works/pi-ai";
+import { Text } from "@earendil-works/pi-tui";
 
 import { existsSync } from "node:fs";
 import {
@@ -159,7 +159,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
 
     let enableSkillCommands = true;
     try {
-      enableSkillCommands = SettingsManager.create().getEnableSkillCommands();
+      enableSkillCommands = SettingsManager.create(ctx.cwd).getEnableSkillCommands();
     } catch {
       enableSkillCommands = true;
     }

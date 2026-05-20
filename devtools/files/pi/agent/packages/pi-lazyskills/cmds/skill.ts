@@ -1,6 +1,5 @@
-import { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { resolveSkill, Skill } from "../service/skill-registry";
-import type { RuntimeSettings } from "../service/config";
 
 export function LoadSkillCommand(
   args: string,
@@ -26,7 +25,7 @@ export function LoadSkillCommand(
 
   if (resolved.kind === "ambiguous") {
     options.onWarningNotify(
-      `Ambiguous shortname "${resolved.requestedName}". Use qualified name:\n${resolved.options.map((o) => `  /skill:${o}`).join("\n")}`,
+      `Ambiguous shortname "${requestedName}". Use qualified name:\n${(resolved.options?.suggestedQualifiedNames ?? []).map((o) => `  /skill:${o}`).join("\n")}`,
     );
     return;
   }
@@ -36,7 +35,7 @@ export function LoadSkillCommand(
     return;
   }
 
-  if (resolved.usedShortnameFallback) {
+  if (resolved.options?.usedShortnameFallback) {
     options.onInfoNotify(
       `Using "${resolved.skill.qualifiedName}" for shortname "${requestedName}"`,
     );

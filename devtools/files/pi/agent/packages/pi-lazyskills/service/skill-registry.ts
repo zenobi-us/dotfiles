@@ -14,7 +14,7 @@ import {
   relative,
   resolve,
 } from "node:path";
-import { SettingsManager } from "@mariozechner/pi-coding-agent";
+import { SettingsManager } from "@earendil-works/pi-coding-agent";
 import { fileURLToPath } from "node:url";
 
 import { createRequire } from "node:module";
