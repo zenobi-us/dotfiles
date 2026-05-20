@@ -8,6 +8,7 @@
     "npm:@marckrenn/pi-sub-core",
     "npm:pi-mermaid",
     "npm:pi-hashline-readmap",
+    "npm:@tintinweb/pi-subagents",
     "./bundles/agent-core",
     "./bundles/developer",
     "./bundles/creator",
@@ -18,7 +19,8 @@
     "./packages/pi-handoff",
     "./packages/pi-lazyskills",
     "./packages/pi-worktrunk",
-    "npm:@tintinweb/pi-subagents"
+    "./packages/pi-fzf",
+    "./packages/pi-lsp"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
@@ -31,4 +33,3 @@
   "doubleEscapeAction": "tree",
   "defaultModel": "gpt-5.3-codex"
 }
-
