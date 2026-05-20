@@ -2,25 +2,31 @@
 # https://worktrunk.dev/tips-patterns/#dev-server-per-worktree
 
 # Match Pi worktreeRoot: {{mainWorktree}}.worktrees
-worktree-path = "{{ repo_path }}/../{{ repo_path | dirname | basename }}.{{ branch | sanitize }}"
+worktree-path = "{{ repo_path }}/../{{ repo_path | dirname | basename }}.worktrees/{{ branch | sanitize }}"
 
 [[pre-start]]
 sync = ""
 
 [[post-start]]
 # Approximate Pi onCreate/onSwitch zellij behavior
-zellij-tab = "zellij action query-tab-names | grep -Fxq '{{ branch | sanitize }}' || zellij action new-tab --name '{{ branch | sanitize }}' -- nvim . 2>/dev/null || true"
+zellij-tab = """
+zellij action query-tab-names | grep -Fxq '{{ branch | sanitize }}' ||
+  zellij action new-tab --name '{{ branch | sanitize }}' -- nvim . 2>/dev/null || 
+  true
+"""
+
 [[post-start]]
 zellij-focus = "zellij action go-to-tab-name {{ branch | sanitize }} 2>/dev/null || true"
 
 [[projects."github.com/reckon-limited/reckon-frontend".post-start]]
 agent-memory = "[ -e .memory ] || ln -s ~/Projects/ai-memory.zeno/reckon-frontend .memory"
 repo-setup = "mise trust; mise setup;"
-[[projects."github.com/reckon-limited/reckon-frontend".post-start]]
-zellij-pi = "zellij action new-pane --name pi --cwd {{ worktree_path }} -- pi -p 'use jira skill to read ticket in branch name' 2>/dev/null || true"
 
-[switch]
-cd = true
+[[projects."github.com/reckon-limited/reckon-frontend".post-start]]
+zellij-pi = """
+zellij action new-pane --name pi --cwd {{ worktree_path }} \
+  -- pi -p 'use jira skill to read ticket in branch name' 2>/dev/null || true
+"""
 
 [pre-remove]
 # Stop per-worktree dev server port
