@@ -1,6 +1,6 @@
 // @ts-nocheck
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, it } from "node:test";
@@ -22,6 +22,19 @@ import llamacppProvider, {
   LoadGate,
 } from "./index.ts";
 
+describe("pi-llamacpp package manifest", () => {
+  it("declares the extension entrypoint and Pi peer dependencies", () => {
+    const manifest = JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf8"));
+
+    assert.equal(manifest.type, "module");
+    assert.equal(manifest.main, "index.ts");
+    assert.deepEqual(manifest.pi?.extensions, ["index.ts"]);
+    assert.match(manifest.keywords.join(" "), /pi-package/);
+    assert.equal(manifest.peerDependencies?.["@mariozechner/pi-coding-agent"], "*");
+    assert.equal(manifest.peerDependencies?.["@mariozechner/pi-ai"], "*");
+    assert.equal(manifest.dependencies && Object.keys(manifest.dependencies).length, 0);
+  });
+});
 describe("pi-llamacpp settings baseline", () => {
   it("parses package settings and derives provider base URL safely", () => {
     const settings = parseLlamaCppSettings({
