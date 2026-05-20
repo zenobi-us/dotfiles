@@ -143,7 +143,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
 
     let enableSkillCommands = true;
     try {
-      enableSkillCommands = SettingsManager.create().getEnableSkillCommands();
+      enableSkillCommands = SettingsManager.create(process.cwd()).getEnableSkillCommands();
     } catch {
       enableSkillCommands = true;
     }
