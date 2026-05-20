@@ -1561,6 +1561,57 @@ describe("pi-llamacpp end-to-end diagnostics", () => {
       /llamacpp provider chat failed after load gate for model ready: chat failed \[redacted\]/,
     );
   });
+
+
+  it("redacts resolved non-pattern Provider API Key values across command and provider diagnostics", async () => {
+    const secret = "local-secret-123";
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "LLAMACPP_SECRET" }, { LLAMACPP_SECRET: secret });
+    const commands = new Map();
+    const notifications = [];
+    let provider;
+    const routerErrors = [
+      jsonResponse(`router said ${secret}`, { status: 500 }),
+      jsonResponse(`list said ${secret}`, { status: 500 }),
+      jsonResponse(`reload said ${secret}`, { status: 500 }),
+      jsonResponse(`start probe said ${secret}`, { status: 500 }),
+    ];
+
+    await llamacppProvider({
+      registerCommand(name, command) { commands.set(name, command); },
+      unregisterProvider() {},
+      registerProvider(_name, config) { provider = config; },
+    }, {
+      loadSettings: async () => settings,
+      fetch: async () => routerErrors.shift() ?? jsonResponse({ data: [{ id: "ready", status: "loaded" }] }),
+    });
+    const ctx = { ui: { notify: (message, level) => notifications.push({ message, level }) } };
+
+    await commands.get("llamacpp").handler("status", ctx);
+    await commands.get("llamacpp").handler("list", ctx);
+    await commands.get("llamacpp").handler("reload", ctx);
+    await commands.get("llamacpp").handler("start", ctx);
+
+    const commandOutput = notifications.map((entry) => entry.message).join("\n---\n");
+    assert.doesNotMatch(commandOutput, /local-secret-123/);
+    assert.match(commandOutput, /list said \[redacted\]/);
+    assert.match(commandOutput, /reload said \[redacted\]/);
+    assert.match(commandOutput, /start probe said \[redacted\]/);
+    assert.doesNotMatch(commandOutput, /router said/);
+
+    await assert.rejects(
+      provider.streamSimple({ provider: "llamacpp", id: "ready", api: "llamacpp-openai-completions" }, { messages: [] }, { delegate: () => { throw new Error(`provider echoed ${secret}`); } }),
+      /llamacpp provider chat failed after load gate for model ready: provider echoed \[redacted\]/,
+    );
+  });
+
+  it("normalizes HTTP 200 invalid Router Model List JSON as package diagnostics", async () => {
+    const settings = parseLlamaCppSettings({ serverBaseUrl: "http://router.test", providerApiKey: "local-secret-123" });
+
+    await assert.rejects(
+      new RouterClient(settings, { fetch: async () => invalidJsonResponse("{ bad json local-secret-123") }).fetchModelList(),
+      /Router \/models malformed response: \{ bad json \[redacted\]/,
+    );
+  });
 });
 
 class FakeManagedProcess {
@@ -1594,6 +1645,14 @@ class FakeManagedProcess {
 
 function jsonResponse(body, init = {}) {
   return new Response(JSON.stringify(body), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+    ...init,
+  });
+}
+
+function invalidJsonResponse(body, init = {}) {
+  return new Response(body, {
     status: 200,
     headers: { "Content-Type": "application/json" },
     ...init,
