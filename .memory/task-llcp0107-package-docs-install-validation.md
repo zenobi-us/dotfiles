@@ -10,6 +10,14 @@ epic_id: llcpprd1
 phase_id: Slice 7
 story_id: 
 assigned_to: 
+claimed_by_owner_id: general-purpose-llcp0107-20260520
+claimed_by_workspace_id: ws-76c947008ec4
+claimed_by_run_id: run-llcp0107-20260520
+claim_started_at: 2026-05-20T06:36:46Z
+last_heartbeat_at: 2026-05-20T06:36:46Z
+lease_expires_at: 2026-05-20T08:06:46Z
+claim_state: claimed
+lock_reason: active work
 ---
 
 # Package docs install validation and test harness cleanup
