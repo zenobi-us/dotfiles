@@ -1,6 +1,6 @@
 {
   "lastChangelogVersion": "0.75.3",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
     "npm:@zenobius/pi-rose-pine",
@@ -14,7 +14,6 @@
     "./bundles/researcher",
     "./bundles/business",
     "./bundles/platform",
-    "./bundles/mattpocock",
     "./packages/pi-answer",
     "./packages/pi-handoff",
     "./packages/pi-lazyskills",
@@ -31,3 +30,4 @@
   "doubleEscapeAction": "tree",
   "defaultModel": "gpt-5.3-codex"
 }
+
