@@ -39,14 +39,14 @@
     "vscode-languageserver-protocol": "^3.17.5"
   },
   "peerDependencies": {
-    "@mariozechner/pi-ai": "^0.50.0",
-    "@mariozechner/pi-coding-agent": "^0.50.0",
-    "@mariozechner/pi-tui": "^0.50.0"
+    "@earendil-works/pi-ai": "^0.50.0",
+    "@earendil-works/pi-coding-agent": "^0.50.0",
+    "@earendil-works/pi-tui": "^0.50.0"
   },
   "devDependencies": {
-    "@mariozechner/pi-ai": "^0.50.0",
-    "@mariozechner/pi-coding-agent": "^0.50.0",
-    "@mariozechner/pi-tui": "^0.50.0",
+    "@earendil-works/pi-ai": "^0.50.0",
+    "@earendil-works/pi-coding-agent": "^0.50.0",
+    "@earendil-works/pi-tui": "^0.50.0",
     "@types/node": "^24.10.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"

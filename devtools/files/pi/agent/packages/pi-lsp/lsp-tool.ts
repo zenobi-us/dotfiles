@@ -25,9 +25,9 @@
 
 import * as path from "node:path";
 import { Type, type Static } from "@sinclair/typebox";
-import { StringEnum } from "@mariozechner/pi-ai";
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { Text } from "@mariozechner/pi-tui";
+
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
 import { getOrCreateManager, formatDiagnostic, filterDiagnosticsBySeverity, uriToPath, resolvePosition, collectSymbols, type SeverityFilter } from "./lsp-core.js";
 
 const PREVIEW_LINES = 10;
@@ -46,7 +46,7 @@ const ACTIONS = ["definition", "references", "hover", "symbols", "diagnostics", 
 const SEVERITY_FILTERS = ["all", "error", "warning", "info", "hint"] as const;
 
 const LspParams = Type.Object({
-  action: StringEnum(ACTIONS),
+  action: Type.Union(ACTIONS.map((x) => Type.Literal(x))),
   file: Type.Optional(Type.String({ description: "File path (required for most actions)" })),
   files: Type.Optional(Type.Array(Type.String(), { description: "File paths for workspace-diagnostics" })),
   line: Type.Optional(Type.Number({ description: "Line (1-indexed). Required for position-based actions unless query provided." })),
@@ -55,7 +55,7 @@ const LspParams = Type.Object({
   endColumn: Type.Optional(Type.Number({ description: "End column for range-based actions (codeAction)" })),
   query: Type.Optional(Type.String({ description: "Symbol name filter (for symbols) or to resolve position (for definition/references/hover/signature)" })),
   newName: Type.Optional(Type.String({ description: "New name for rename action" })),
-  severity: Type.Optional(StringEnum(SEVERITY_FILTERS, { description: 'Filter diagnostics: "all"|"error"|"warning"|"info"|"hint"' })),
+  severity: Type.Optional(Type.Union(SEVERITY_FILTERS.map((x) => Type.Literal(x)), { description: 'Filter diagnostics: "all"|"error"|"warning"|"info"|"hint"' })),
 });
 
 type LspParamsType = Static<typeof LspParams>;
@@ -219,11 +219,11 @@ Use bash to find files: find src -name "*.ts" -type f`,
     parameters: LspParams,
 
     async execute(_toolCallId, params, signalArg, onUpdateArg, ctxArg) {
-      const { signal, onUpdate, ctx } = normalizeExecuteArgs(onUpdateArg, ctxArg, signalArg);
+      const { signal, onUpdate: _onUpdate, ctx } = normalizeExecuteArgs(onUpdateArg, ctxArg, signalArg);
       if (signal?.aborted) return cancelledToolResult();
       const manager = getOrCreateManager(ctx.cwd);
       const { action, file, files, line, column, endLine, endColumn, query, newName, severity } = params as LspParamsType;
-      const sevFilter: SeverityFilter = severity || "all";
+      const sevFilter: SeverityFilter = (severity ?? "all") as SeverityFilter;
       const needsFile = action !== "workspace-diagnostics";
       const needsPos = ["definition", "references", "hover", "signature", "rename", "codeAction"].includes(action);
 
@@ -316,6 +316,8 @@ Use bash to find files: find src -name "*.ts" -type f`,
             const actions = formatCodeActions(result);
             return { content: [{ type: "text", text: `action: codeAction\n${qLine}${posLine}${actions.length ? actions.join("\n") : "No code actions available."}` }], details: result };
           }
+          default:
+            throw new Error(`Unsupported action: ${String(action)}`);
         }
       } catch (e) {
         if (signal?.aborted || isAbortedError(e)) return cancelledToolResult();

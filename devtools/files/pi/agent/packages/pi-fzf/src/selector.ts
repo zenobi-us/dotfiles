@@ -1,12 +1,12 @@
-import * as piCodingAgent from "@mariozechner/pi-coding-agent";
-import type { Focusable } from "@mariozechner/pi-tui";
+import * as piCodingAgent from "@earendil-works/pi-coding-agent";
+import type { Focusable } from "@earendil-works/pi-tui";
 import {
   Container,
   Input,
   truncateToWidth,
   visibleWidth,
-} from "@mariozechner/pi-tui";
-import * as piTuiModule from "@mariozechner/pi-tui";
+} from "@earendil-works/pi-tui";
+import * as piTuiModule from "@earendil-works/pi-tui";
 import { extendedMatch, Fzf, type FzfResultItem } from "fzf";
 
 const getCompatKeybindings = () => {

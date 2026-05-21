@@ -2,12 +2,12 @@ import {
   CustomEditor,
   type ExtensionAPI,
   type KeybindingsManager,
-} from "@mariozechner/pi-coding-agent";
+} from "@earendil-works/pi-coding-agent";
 import {
   getKeybindings,
   type EditorTheme,
   type TUI,
-} from "@mariozechner/pi-tui";
+} from "@earendil-works/pi-tui";
 export function shouldInterceptShareSubmit(
   text: string,
   isSubmitKey: boolean,

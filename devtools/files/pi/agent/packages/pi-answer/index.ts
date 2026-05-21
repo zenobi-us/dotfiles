@@ -1,6 +1,6 @@
-import { Type } from "@mariozechner/pi-ai";
-import type { ExtensionAPI, Theme } from "@mariozechner/pi-coding-agent";
-import { Text, matchesKey, visibleWidth } from "@mariozechner/pi-tui";
+import { Type } from "@earendil-works/pi-ai";
+import type { ExtensionAPI, Theme } from "@earendil-works/pi-coding-agent";
+import { Text, matchesKey, visibleWidth } from "@earendil-works/pi-tui";
 
 type ActionItem = { label: string; value: string };
 type SelectedAnswer =
