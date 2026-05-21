@@ -20,7 +20,8 @@
     "./packages/pi-lazyskills",
     "./packages/pi-worktrunk",
     "./packages/pi-fzf",
-    "./packages/pi-lsp"
+    "./packages/pi-lsp",
+    "./packages/pi-files"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
