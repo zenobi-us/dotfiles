@@ -59,6 +59,8 @@ Implemented normalized end-to-end diagnostics for `pi-llamacpp`: Operational Sta
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: integration-style diagnostics flow verifies fake settings, fake router responses, fake managed process logs, fake Pi provider registration, and `/llamacpp start/status/list/reload/stop` outcomes.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: failure normalization flow verifies auth failures, malformed `/models`, missing preset file, request-gate timeout, provider chat failure wrapping, and secret redaction.
 - `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: updated Router Model List assertions verify availability and runtime-status columns.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: added regression coverage for value-based Provider API Key redaction across status/list/reload/start/provider chat diagnostics and HTTP 200 invalid `/models` JSON normalization.
+- `devtools/files/pi/agent/packages/pi-llamacpp/index.test.ts`: added review-regression coverage for settings-aware redaction in load-gate failed model diagnostics, managed log tails, router list display fields, post-stop ECONNREFUSED suppression, empty `/models` JSON normalization, and default low-entropy API key non-redaction.
 
 ## Lessons Learned
 
@@ -66,3 +68,5 @@ Implemented normalized end-to-end diagnostics for `pi-llamacpp`: Operational Sta
 - Command success output needs an explicit outcome header for agents to distinguish successful empty/short lists from silent partial output.
 - Provider chat failures happen after Load Gate success and need a distinct wrapper; otherwise users cannot tell load failures from OpenAI-compatible chat dispatch failures.
 - Error-body normalization must handle plain text and JSON-string bodies before redaction, or diagnostics either leak formatting noise or hide the useful router detail.
+- Diagnostic redaction must include resolved secret values, not only token-shaped patterns; local literal/env credentials can be arbitrary strings echoed by routers/providers.
+- Value-based redaction must be settings-aware at every display boundary, but must ignore low-entropy defaults like `llamacpp` to avoid damaging normal diagnostics.

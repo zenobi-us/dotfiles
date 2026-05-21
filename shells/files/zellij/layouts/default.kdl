@@ -5,7 +5,7 @@ layout {
             plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
                 format_left   "{mode} #[fg=#9ccfd8,bold]{session}"
                 format_center "{tabs}"
-                format_right  "foo {command_git_branch} {datetime}"
+                format_right  "{command_emoji} {command_git_branch} {datetime}"
                 format_space  ""
 
                 border_enabled  true
@@ -37,6 +37,11 @@ layout {
                 command_git_branch_format      "#[fg=#9ccfd8] {stdout} "
                 command_git_branch_interval    "10"
                 command_git_branch_rendermode  "static"
+
+                command_emoji_command     "echo -n 1"
+                command_emoji_format      "#[fg=#eb6f92] {stdout} "
+                command_emoji_interval    "10"
+                command_emoji_rendermode  "static"
 
                 datetime        "#[fg=#6e6a86,bold] {format} "
                 datetime_format "%A, %d %b %Y %H:%M"
