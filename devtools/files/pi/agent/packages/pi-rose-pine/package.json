@@ -1,0 +1,13 @@
+{
+  "name": "@zenobius/pi-rose-pine",
+  "version": "0.0.1",
+  "pi": {
+    "themes": [
+      "rose-pine-dawn.json",
+      "rose-pine-moon.json",
+      "rose-pine-main.json"
+    ]
+  }
+}
+
+
