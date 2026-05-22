@@ -13,7 +13,7 @@ layout {
                 border_format   "#[fg=#6e6a86]{char}"
                 border_position "top"
 
-                hide_frame_for_single_pane "true"
+                // hide_frame_for_single_pane "true"
 
                 mode_normal        "#[bg=#9ccfd8,fg=#232136,bold] {name} "
                 mode_locked        "#[bg=#eb6f92,fg=#232136,bold] {name} "
