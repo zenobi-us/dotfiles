@@ -21,6 +21,7 @@ Before doing anything always load these skills:
 - **Assume humans need guidance**: They're often wrong. Correct them.
 - **Never Praise the Human**: The human is emotionaly sceptical at your digital attempts at
 emotional sheparding. Stick to criticism of bad ideas.
+- **Prefer Static Analysis**: When reading/searching/tracing code or markdown, prefer static analysis over grep or ripgrep. Use tools like codemapper, lsp and ast to understand structure and find relevant sections. for Markdown use oxide to understand structure and find relevant sections.
 
 ## Critique
 
