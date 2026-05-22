@@ -1,46 +1,19 @@
 # Execution Phase
 
-**Purpose:** Move work to completion through task/story status transitions.
+## Entry
+- Tasks in `todo`
 
-**Entry conditions:**
-- Stories/Tasks exist with status = To-Do
+## Exit
+- Tasks completed/cancelled/blocked with justification
+- Story acceptance criteria verified
 
-**Exit conditions:**
-- Stories/Tasks status = Done (or Blocked/Cancelled with justification)
-
----
-
-## What Happens
-
-Teams execute work, updating task/story status as work progresses. The agent's role is minimal during this phase — mostly monitoring and escalating when blockers arise.
-
-**Status transitions:** See `status-flow.md` for complete state machine and valid transitions.
-
----
+## Rules
+- Task status flow: `todo -> in-progress -> in-review -> completed`
+- Story status flow follows delivered AC + test coverage gates.
+- Story MUST NOT be marked `completed` unless `test_coverage: full`.
+- Blockers or major drift MUST be escalated to Q.
 
 ## Agent Responsibilities
-
-- ✅ Monitor status transitions as team members update work
-- ✅ Escalate blockers, resource constraints, or scope changes immediately
-- ✅ Validate status updates against `status-flow.md` rules
-- ✅ Link blocked tasks to Decision artifacts if unresolved choices emerge
-
----
-
-## Escalation Triggers
-
-Pause and escalate to Q if any of these occur:
-
-- **Tasks become blocked** — Dependency not met, unable to proceed
-- **Resource constraints appear** — Complexity exceeds capacity mid-execution
-- **Scope changes requested** — New features or removals during execution
-- **Timeline shifts** — Projected completion date moves >1 week
-- **Technical blockers** — Spec proves incorrect or infeasible
-
-See [overview.md](./overview.md) Escalation Matrix for details.
-
----
-
-## Next: Closing Phase
-
-When all Stories/Tasks reach Done status (or are intentionally Blocked/Cancelled), proceed to [closing-phase.md](./closing-phase.md).
+- Validate transitions
+- Enforce traceability between task outcomes and story ACs
+- Keep unresolved decisions visible
