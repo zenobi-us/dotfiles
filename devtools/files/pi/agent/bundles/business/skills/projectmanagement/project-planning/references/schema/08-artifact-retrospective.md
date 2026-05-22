@@ -9,6 +9,9 @@ status: { in-progress | complete }
 ---
 ```
 
+Frontmatter `id` MUST match the `<id>` segment in the filename.
+For full naming rules, see [Filename Conventions](../filename-conventions.md).
+
 **Links:**
 - to one [Epic] (or project-level closeout)
 - to unresolved [Decision] artifacts (MANDATORY when present)

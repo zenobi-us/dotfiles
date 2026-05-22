@@ -9,6 +9,9 @@ status: { planning | active | on-hold | completed | cancelled }
 ---
 ```
 
+Frontmatter `id` MUST match the `<id>` segment in the filename.
+For full naming rules, see [Filename Conventions](../filename-conventions.md).
+
 **Links:**
 - optionally from [Idea]
 - to one or more [Story]

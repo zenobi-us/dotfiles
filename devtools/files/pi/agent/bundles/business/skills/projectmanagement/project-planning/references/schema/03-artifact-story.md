@@ -13,6 +13,9 @@ test_coverage: { none | partial | full }
 ---
 ```
 
+Frontmatter `id` MUST match the `<id>` segment in the filename.
+For full naming rules, see [Filename Conventions](../filename-conventions.md).
+
 **Links:**
 - to exactly one [Epic]
 - to one or more [Task]

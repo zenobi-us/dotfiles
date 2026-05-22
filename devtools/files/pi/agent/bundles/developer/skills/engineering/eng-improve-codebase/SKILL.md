@@ -1,5 +1,5 @@
 ---
-name: improve-codebase-architecture
+name: eng-improve-codebase
 description: Find deepening opportunities in a codebase, informed by the domain language in CONTEXT.md and the decisions in .memory/docs/adr/. Use when the user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable.
 ---
 

@@ -1,0 +1,41 @@
+#!/usr/bin/env -S mise x -- bun
+// vim: set filetype=javascript:
+
+/**
+ * # BasicMemory Project Resolver
+ *
+ * This cli will help agents use the right basic-memory project based on a path query.
+ *
+ *
+ * ## Usage 
+ *
+ * Agent should query this cli with a contextual path.
+ * 
+ * Because basic-memory projects can be associated with any path on the filesystem, we should always request a path query to resolve the right project.
+ *
+ *
+ * ## Glossary 
+ *
+ * - **Basic Memory Project**:
+ *   A project that is associated with a specific path on the filesystem. information is stored as markdown in that path. 
+ *
+ * - **Context map**:
+ *   A mapping of basic-memory projects to associated contextual paths. This map is used to resolve which basic-memory project should be used for a given path query.
+ *
+ * - **Path Query**:
+ *   A query that specifies path(s) on the filesystem that the agent is working with. These might be typescript files, other markdown files, or any other files. The query path is not markdown files in a basic-memory project, but rather the files that an agent is working with. The cli will use the context map to resolve which basic-memory project is most relevant to the query path.
+ *
+ * If no query path is given, we assume the agents CWD.
+ **/
+
+/**
+ * TODO:: Create these services:
+ *
+ * - **Context Map Service**: A service that maintains the context map of basic-memory projects and their associated paths. This service should provide methods to add, remove, and query the context map. 
+ *   Its constructor should accept a propmap, where { path = xdg.config('basic-memory')/project-context.json } is the default.
+ *
+ *   - **Project Resolver Service**: A service that takes a path query and uses the context map to resolve which basic-memory project is most relevant to that query. This service should provide a method that accepts a path query and returns the associated basic-memory project.
+ *
+ *   - **CLI Interface**: A command-line interface that allows agents to interact with the Project Resolver Service. This CLI should accept a path query as an argument and output the resolved basic-memory project.
+ */
+

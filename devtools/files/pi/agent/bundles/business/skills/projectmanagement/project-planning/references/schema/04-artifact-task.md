@@ -14,6 +14,9 @@ assigned_to: { session-id or human }
 ---
 ```
 
+Frontmatter `id` MUST match the `<id>` segment in the filename.
+For full naming rules, see [Filename Conventions](../filename-conventions.md).
+
 **Links:**
 - to exactly one [Epic]
 - to exactly one phase section within Epic (via phase_id)

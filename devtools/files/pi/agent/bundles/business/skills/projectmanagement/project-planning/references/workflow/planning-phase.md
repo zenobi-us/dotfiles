@@ -22,6 +22,11 @@
 - Story MUST include acceptance criteria + test specification.
 - Task MUST include `phase_id`; `story_id` SHOULD exist unless infra/exploratory.
 - Unresolved strategic decisions MUST be escalated to Q.
+- Artifact filenames and artifact links MUST pass filename convention checks before planning exits.
+- More details: see [Filename Conventions](../filename-conventions.md).
+- Planning MUST stop for human review before execution begins.
+- Agent MUST print a clear review-request block containing: scope, planned phases, task list, unresolved decisions, and explicit approval question.
+- Agent MUST wait for explicit human confirmation before continuing to execution.
 
 ## Checklist
 - [ ] Epic exists and active
@@ -29,3 +34,9 @@
 - [ ] Epic has inline phase sections
 - [ ] Tasks linked to phase and (when applicable) story
 - [ ] No unresolved clarification blockers
+- [ ] Filenames and links conform to filename conventions
+
+## Human Review Gate
+- [ ] Review-request block printed
+- [ ] Human approval captured
+- [ ] Approval source recorded (message/reference)

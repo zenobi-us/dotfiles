@@ -9,6 +9,9 @@ status: { pending | decided | unresolved | superseded }
 ---
 ```
 
+Frontmatter `id` MUST match the `<id>` segment in the filename.
+For full naming rules, see [Filename Conventions](../filename-conventions.md).
+
 **Links:**
 - to one or more [Research]
 - to affected [Epic], [Story], [Task]

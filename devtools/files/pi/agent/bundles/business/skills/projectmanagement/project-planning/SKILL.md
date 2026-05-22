@@ -3,9 +3,13 @@ name: project-planning
 description: Planning artifact model and workflow for markdown-based project execution (miniproject-aligned).
 ---
 
+This skill defines the project planning artifact model and workflow for markdown-based project execution. It includes artifact types, workflow phases, escalation guidelines, estimation practices, relationship management, status transitions, and detailed artifact schemas. 
+
+Before using any concept here you MUST select a StorageSystem strategy from one of the available backend references for the project you are operating in.
+
 ## Planning Artifact Types
 
-Use these artifact types: [Idea], [Epic], [Story], [Task], [Research], [Decision], [Learning], [Retrospective].
+Every project planning file must be one of the following: 
 
 - [Idea]: low-commitment opportunity framing; may promote to Epic.
 - [Epic]: committed direction with phase planning sections.
@@ -19,15 +23,15 @@ Use these artifact types: [Idea], [Epic], [Story], [Task], [Research], [Decision
 ## Workflow Phases
 
 1. Planning — define artifacts and links
-   - See: skill_reference(`references/workflow/planning-phase.md`)
+   - See: [Planning Phase](./references/workflow/planning-phase.md)
 2. Execution — advance work through status transitions
-   - See: skill_reference(`references/workflow/execution-phase.md`)
+   - See: [Execution Phase](./references/workflow/execution-phase.md)
 3. Closing — reconcile artifacts and prepare closeout
-   - See: skill_reference(`references/workflow/closing-phase.md`)
+   - See: [Closing Phase](./references/workflow/closing-phase.md)
 4. Retrospective — capture lessons and follow-ups
-   - See: skill_reference(`references/workflow/retrospective-phase.md`)
+   - See: [Retrospective Phase](./references/workflow/retrospective-phase.md)
 
-See complete model: skill_reference(`references/workflow/overview.md`)
+See complete model: [Workflow Overview](./references/workflow/overview.md)
 
 ## Escalation
 
@@ -35,23 +39,36 @@ Escalate strategic decisions to Q: scope changes, timeline shifts, major refacto
 
 ## Estimation
 
-See: skill_reference(`references/estimations.md`)
+See: [Estimations](./references/estimations.md)
 
 ## Relationships
 
-See: skill_reference(`references/relationships.md`)
+See: [Relationships](./references/relationships.md)
 
+## Filename Conventions
+
+See: [Filename Conventions](./references/filename-conventions.md)
+
+## Storage System
+
+You MUST select one storage backend before execution:
+- [Basic Memory Storage](./references/storage-system/basic-memory.md)
+- [GitHub Issues Storage](./references/storage-system/github-issues.md)
+- [GitHub Projects Storage](./references/storage-system/github-projects.md)
+- [Jira Storage](./references/storage-system/jira.md)
+
+If the selected backend document is still a TODO/stub, the agent MUST escalate to Q and stop before execution.
 ## Status Transitions
 
-See: skill_reference(`references/status-flow.md`)
+See: [Status Flow](./references/status-flow.md)
 
 ## Artifact Schemas
 
-- Idea: skill_reference(`references/schema/01-artifact-idea.md`)
-- Epic: skill_reference(`references/schema/02-artifact-epic.md`)
-- Story: skill_reference(`references/schema/03-artifact-story.md`)
-- Task: skill_reference(`references/schema/04-artifact-task.md`)
-- Decision: skill_reference(`references/schema/05-artifact-decision.md`)
-- Research: skill_reference(`references/schema/06-artifact-research.md`)
-- Learning: skill_reference(`references/schema/07-artifact-learning.md`)
-- Retrospective: skill_reference(`references/schema/08-artifact-retrospective.md`)
+- Idea: [Idea Schema](./references/schema/01-artifact-idea.md)
+- Epic: [Epic Schema](./references/schema/02-artifact-epic.md)
+- Story: [Story Schema](./references/schema/03-artifact-story.md)
+- Task: [Task Schema](./references/schema/04-artifact-task.md)
+- Decision: [Decision Schema](./references/schema/05-artifact-decision.md)
+- Research: [Research Schema](./references/schema/06-artifact-research.md)
+- Learning: [Learning Schema](./references/schema/07-artifact-learning.md)
+- Retrospective: [Retrospective Schema](./references/schema/08-artifact-retrospective.md)

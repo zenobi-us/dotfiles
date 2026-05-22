@@ -12,6 +12,9 @@ related_epic_id: { epic-id, optional }
 ---
 ```
 
+Frontmatter `id` MUST match the `<id>` segment in the filename.
+For full naming rules, see [Filename Conventions](../filename-conventions.md).
+
 **Links:**
 - optionally to [Research]
 - when promoted: to exactly one [Epic]
