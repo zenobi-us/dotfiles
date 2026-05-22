@@ -97,6 +97,8 @@ zellij = "latest"
 zig= "latest"
 "github:max-sixty/worktrunk" = "latest"
 lazydocker = "0.25.2"
+"npm:portless" = "latest"
+"pipx:basic-memory" = "latest"
 
 
 [shell_alias]
