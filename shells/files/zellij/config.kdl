@@ -139,18 +139,9 @@ plugins {
     session-manager location="zellij:session-manager"
     status-bar location="zellij:status-bar"
     sequence location="zellij:sequence"
-
 }
 
-ui {
-    pane_frames {
-        hide_session_name false
-        rounded_corners false
-    }
-}
 theme "onedark"
-pane_frames false
-// Keep essential configuration options
 
 default_layout "default"
 session_serialization true
