@@ -5,7 +5,11 @@ description: Planning artifact model and workflow for markdown-based project exe
 
 This skill defines the project planning artifact model and workflow for markdown-based project execution. It includes artifact types, workflow phases, escalation guidelines, estimation practices, relationship management, status transitions, and detailed artifact schemas. 
 
-Before using any concept here you MUST select a StorageSystem strategy from one of the available backend references for the project you are operating in.
+1. Before using any concept here you MUST detect a StorageSystem strategy from one of the available backend references for the project you are operating in. If no strategy is detected, you MUST escalate to Q and stop before execution.
+2. You MUST follow the defined artifact types, workflow phases, and relationships when creating and managing planning artifacts.
+3. You MUST adhere to the filename conventions for all artifact files and links.
+4. You MUST use the provided schemas for each artifact type to ensure consistency and completeness of information
+5. You MUST escalate to Q for any strategic decisions, scope changes, timeline shifts, major refactors, or resource constraints that arise during planning.
 
 ## Planning Artifact Types
 
@@ -21,6 +25,8 @@ Every project planning file must be one of the following:
 - [Retrospective]: closeout review; MUST include unresolved decision review.
 
 ## Workflow Phases
+
+Depending on the artifact type you're working with, you may need to execute different workflow phases. The core workflow includes:
 
 1. Planning — define artifacts and links
    - See: [Planning Phase](./references/workflow/planning-phase.md)
