@@ -1,14 +1,15 @@
 Use the writing-git-commits skill to commit unstaged and staged changes and carry out additional instructions in the current repository.
 
-## UserRequest
+AdditionalInstructions: "$ARGUMENTS"
 
-```md
-UserRequest: $ARGUMENTS
-```
+
+## Stage 1
 
 - Unstage files before analysis
 - Plan atomic commit groupings
 - Confirm plan via table output
-- Execute commits in single bash script
 
-Carry out AdditionalInstructions after planning commit groups.
+## Stage 2
+
+- Execute commits in single bash script
+- Perform any additional instructions (e.g. push, open PR, etc.)
