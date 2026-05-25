@@ -8,18 +8,8 @@
 // https://yalter.github.io/niri/Configuration:-Input
 input {
     keyboard {
-        xkb {
-            // You can set rules, model, layout, variant and options.
-            // For more information, see xkeyboard-config(7).
+        xkb 
 
-            // For example:
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
-
-            // If this section is empty, niri will fetch xkb settings
-            // from org.freedesktop.locale1. You can control these using
-            // localectl set-x11-keymap.
-        }
 
         // Enable numlock on startup, omitting this setting disables it.
         numlock
@@ -42,24 +32,11 @@ input {
         // disabled-on-external-mouse
     }
 
-    mouse {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "no-scroll"
-    }
+    mouse 
 
-    trackpoint {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "on-button-down"
-        // scroll-button 273
-        // scroll-button-lock
-        // middle-emulation
-    }
+
+    trackpoint 
+
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
     // warp-mouse-to-focus
@@ -77,16 +54,16 @@ input {
 // Remember to uncomment the node by removing "/-"!
 output "DP-2" {
     mode "3440x1440@59.973"
-    position x=0 y=0
     scale 1
     transform "normal"
+    position x=0 y=0
 }
 
 output "DP-3" {
     mode "3440x1440@59.973"
-    position x=3440 y=0
     scale 1
     transform "normal"
+    position x=3440 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -138,6 +115,8 @@ layout {
 
     // You can change how the focus ring looks.
     focus-ring {
+        off
+
         // Uncomment this line to disable the focus ring.
         // off
 
@@ -238,12 +217,7 @@ layout {
     // Left and right struts will cause the next window to the side to always be visible.
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
-    struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
-    }
+    struts 
 }
 
 // Add lines like this to spawn processes at startup.
@@ -253,14 +227,12 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "vibepanel"
+spawn-at-startup "/usr/lib/xdg-desktop-portal-gtk"
+spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
 
-// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
-hotkey-overlay {
-    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
-}
+hotkey-overlay 
+
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -280,14 +252,11 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // Animation settings.
 // The wiki explains how to configure individual animations:
 // https://yalter.github.io/niri/Configuration:-Animations
-animations {
-    // Uncomment to turn off all animations.
-    // off
+animations { 
 
-    // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+
+    window-open { curve "cubic-bezier" 0.0 0.0 0.58 1.0; }
 }
-
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
@@ -298,8 +267,8 @@ window-rule {
     // This regular expression is intentionally made as specific as possible,
     // since this is the default config, and we want no false positives.
     // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    match app-id=r"^org\.wezfurlong\.wezterm$"
+    default-column-width 
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
@@ -307,15 +276,15 @@ window-rule {
     // This app-id regular expression will work for both:
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r"firefox$" title="^Picture-in-Picture$"
     open-floating true
 }
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match app-id=r"^org\.keepassxc\.KeePassXC$"
+    match app-id=r"^org\.gnome\.World\.Secrets$"
 
     block-out-from "screen-capture"
 
@@ -347,7 +316,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+R hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -361,15 +330,15 @@ binds {
     // "-l 1.0" limits the volume to 100%.
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
     // Example media keys mapping using playerctl.
     // This will work with any MPRIS-enabled media player.
-    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
-    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
-    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPlay allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext allow-when-locked=true { spawn-sh "playerctl next"; }
 
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
@@ -390,6 +359,9 @@ binds {
     Mod+Shift+Ctrl+Up       { move-window-up-or-to-workspace-up; }
     Mod+Shift+Ctrl+Left     { move-window-to-monitor-left; }
     Mod+Shift+Ctrl+Right    { move-window-to-monitor-right; }
+    // Scroll down+up to flip between columns
+    Mod+WheelScrollDown          { focus-column-left; }
+    Mod+WheelScrollUp            { focus-column-right; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -437,5 +409,11 @@ binds {
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
+}
 
+environment
+
+window-rule {
+    geometry-corner-radius 4
+    clip-to-geometry true
 }
