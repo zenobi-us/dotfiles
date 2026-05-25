@@ -3,11 +3,11 @@
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
-    "npm:@zenobius/pi-rose-pine",
     "npm:@marckrenn/pi-sub-bar",
     "npm:@marckrenn/pi-sub-core",
     "npm:pi-mermaid",
     "npm:pi-hashline-readmap",
+    "npm:pi-llama-server",
     "npm:@tintinweb/pi-subagents",
     "./bundles/agent-core",
     "./bundles/developer",
@@ -19,9 +19,7 @@
     "./packages/pi-handoff",
     "./packages/pi-lazyskills",
     "./packages/pi-worktrunk",
-    "./packages/pi-fzf",
-    "./packages/pi-lsp",
-    "./packages/pi-files"
+    "./packages/pi-rose-pine"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
