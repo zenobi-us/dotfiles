@@ -16,12 +16,16 @@ import {
   SettingsManager,
   type ExtensionAPI,
   type ExtensionContext,
-} from "@mariozechner/pi-coding-agent";
-import { Type } from "@mariozechner/pi-ai";
-import { Text } from "@mariozechner/pi-tui";
+} from "@earendil-works/pi-coding-agent";
+import { Type } from "@earendil-works/pi-ai";
+import { Text } from "@earendil-works/pi-tui";
 
 import { existsSync } from "node:fs";
-import { FindSkillsCmd, lexicalScoreSearch, SearchResults } from "./cmds/find.js";
+import {
+  FindSkillsCmd,
+  lexicalScoreSearch,
+  SearchResults,
+} from "./cmds/find.js";
 import {
   createRuntimeSettingsService,
   DEFAULT_RUNTIME_SETTINGS,
@@ -29,7 +33,10 @@ import {
   type RuntimeSettingsService,
 } from "./service/config.js";
 import { injectSkillsIntoSystemPrompt } from "./service/systemprompt.js";
-import { createSkillRegistry, resolveSkillRoots } from "./service/skill-registry.js";
+import {
+  createSkillRegistry,
+  resolveSkillRoots,
+} from "./service/skill-registry.js";
 import { CreateSkillSlashCommands, LoadSkillCommand } from "./cmds/skill.js";
 import { renderFoldedToolText } from "./core/tool-render.js";
 import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
@@ -66,7 +73,10 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     }
 
     const skillsDebug = pi.getFlag("skills-debug") === true;
-    const resolvedRoots = resolveSkillRoots({ cwd: ctx.cwd, includeDefaults: true });
+    const resolvedRoots = resolveSkillRoots({
+      cwd: ctx.cwd,
+      includeDefaults: true,
+    });
 
     const debugLog = (message: string) => {
       // info notifications can be hidden when quietStartup is enabled
@@ -79,7 +89,10 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         const configured = SettingsManager.create(ctx.cwd).getPackages();
         packageSources = configured
           .map((pkg) => (typeof pkg === "string" ? pkg : pkg?.source))
-          .filter((value): value is string => typeof value === "string" && value.length > 0);
+          .filter(
+            (value): value is string =>
+              typeof value === "string" && value.length > 0,
+          );
       } catch {
         packageSources = [];
       }
@@ -93,9 +106,11 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         `[skills-debug] package sources:\n${packageSources.map((s) => `- ${s}`).join("\n") || "- (none)"}`,
       );
       debugLog(
-        `[skills-debug] roots:\n${rootDetails
-          .map((r) => `- ${r.root} [${r.exists ? "exists" : "missing"}]`)
-          .join("\n") || "- (none)"}`,
+        `[skills-debug] roots:\n${
+          rootDetails
+            .map((r) => `- ${r.root} [${r.exists ? "exists" : "missing"}]`)
+            .join("\n") || "- (none)"
+        }`,
       );
       debugLog(
         `[skills-debug] resolved roots:\n${resolvedRoots.map((root) => `- ${root}`).join("\n") || "- (none)"}`,
@@ -115,16 +130,17 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     if (skillsDebug) {
       const perRootCounts = resolvedRoots.map((root) => {
         const normalizedRoot = root.endsWith("/") ? root : `${root}/`;
-        const count = registry.skills.filter((s) =>
-          s.filePath.startsWith(normalizedRoot) || s.filePath === root,
+        const count = registry.skills.filter(
+          (s) => s.filePath.startsWith(normalizedRoot) || s.filePath === root,
         ).length;
         return { root, count };
       });
 
       debugLog(
-        `[skills-debug] per-root skill counts:\n${perRootCounts
-          .map((r) => `- ${r.root}: ${r.count}`)
-          .join("\n") || "- (none)"}`,
+        `[skills-debug] per-root skill counts:\n${
+          perRootCounts.map((r) => `- ${r.root}: ${r.count}`).join("\n") ||
+          "- (none)"
+        }`,
       );
     }
 
@@ -143,7 +159,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
 
     let enableSkillCommands = true;
     try {
-      enableSkillCommands = SettingsManager.create(process.cwd()).getEnableSkillCommands();
+      enableSkillCommands = SettingsManager.create(ctx.cwd).getEnableSkillCommands();
     } catch {
       enableSkillCommands = true;
     }
@@ -164,7 +180,6 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         "info",
       );
     }
-
 
     pi.registerCommand("skills:config:reload", {
       description: "Reload runtime settings for the skills extension",
@@ -200,21 +215,33 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       handler: async (_args, cmdCtx: ExtensionContext) => {
         const skills = registry.skills;
         const diagnostics = registry.diagnostics;
-        const roots = resolveSkillRoots({ cwd: cmdCtx.cwd, includeDefaults: true });
+        const roots = resolveSkillRoots({
+          cwd: cmdCtx.cwd,
+          includeDefaults: true,
+        });
 
-        const disabledCount = skills.filter((s) => s.disableModelInvocation).length;
+        const disabledCount = skills.filter(
+          (s) => s.disableModelInvocation,
+        ).length;
         const qualifiedNames = new Set(skills.map((s) => s.qualifiedName));
         const shortnameCounts = new Map<string, number>();
         for (const skill of skills) {
-          shortnameCounts.set(skill.name, (shortnameCounts.get(skill.name) ?? 0) + 1);
+          shortnameCounts.set(
+            skill.name,
+            (shortnameCounts.get(skill.name) ?? 0) + 1,
+          );
         }
         const ambiguousShortnames = Array.from(shortnameCounts.entries())
           .filter(([, count]) => count > 1)
           .map(([name]) => name)
           .sort();
 
-        const warningCount = diagnostics.filter((d) => d.type === "warning").length;
-        const collisionCount = diagnostics.filter((d) => d.type === "collision").length;
+        const warningCount = diagnostics.filter(
+          (d) => d.type === "warning",
+        ).length;
+        const collisionCount = diagnostics.filter(
+          (d) => d.type === "collision",
+        ).length;
 
         const stats = {
           totals: {
@@ -233,22 +260,24 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
           },
         };
 
-        cmdCtx.ui.notify(`Skill registry stats:\n${JSON.stringify(stats, null, 2)}`, "info");
+        cmdCtx.ui.notify(
+          `Skill registry stats:\n${JSON.stringify(stats, null, 2)}`,
+          "info",
+        );
       },
     });
 
     const findSKillsParamsSchema = Type.Object({
-        query: Type.Union([
-          Type.String({
-            description:
-              "Search query string, e.g. 'debugging typescript'",
-          }),
-          Type.Array(Type.String(), {
-            description:
-              "List of search queries, e.g. ['debugging typescript'] or [] to list all",
-          }),
-        ]),
-      })
+      query: Type.Union([
+        Type.String({
+          description: "Search query string, e.g. 'debugging typescript'",
+        }),
+        Type.Array(Type.String(), {
+          description:
+            "List of search queries, e.g. ['debugging typescript'] or [] to list all",
+        }),
+      ]),
+    });
 
     type SearchErrorStack = {
       errorName: string;
@@ -257,19 +286,27 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       query: string | string[];
       strategy: RuntimeSettings["searchStrategy"];
       lexicalThreshold: number;
-    }
+    };
 
     // Register lazy skill discovery/load tools
-    pi.registerTool<typeof findSKillsParamsSchema, SearchErrorStack | SearchResults>({
+    pi.registerTool<
+      typeof findSKillsParamsSchema,
+      SearchErrorStack | SearchResults
+    >({
       name: "find_skills",
       label: "Find Skills",
       description: "Search for available skills by natural language query.",
       parameters: findSKillsParamsSchema,
       async execute(_toolCallId, params, _signal, _onUpdate, toolCtx) {
-        const query = Array.isArray(params.query) ? params.query : [params.query];
+        const query = Array.isArray(params.query)
+          ? params.query
+          : [params.query];
 
         try {
-          toolCtx.ui.notify(`find_skills: ${runtimeSettings.searchStrategy} search for "${query.join(", ")}"`, "info");
+          toolCtx.ui.notify(
+            `find_skills: ${runtimeSettings.searchStrategy} search for "${query.join(", ")}"`,
+            "info",
+          );
 
           const output = FindSkillsCmd(
             registry.skills,
@@ -279,17 +316,19 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
           );
           return {
             content: [{ type: "text", text: JSON.stringify(output, null, 2) }],
-            details: output
-          };  
+            details: output,
+          };
         } catch (err) {
           const error = err instanceof Error ? err : new Error(String(err));
           return {
-            content: [{
-              type: "text",
-              text:
-                `Error executing cmds/find/FindSkillsCmd: ${error.message}` +
-                (error.stack ? `\n\nStack:\n${error.stack}` : ""),
-            }],
+            content: [
+              {
+                type: "text",
+                text:
+                  `Error executing cmds/find/FindSkillsCmd: ${error.message}` +
+                  (error.stack ? `\n\nStack:\n${error.stack}` : ""),
+              },
+            ],
             details: {
               errorName: error.name,
               errorMessage: error.message,
@@ -301,7 +340,6 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
             isError: true,
           };
         }
-
       },
       renderResult(result, options, theme) {
         if (options.isPartial) {
@@ -327,20 +365,25 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
           .map((s) => s.shortname ?? s.name)
           .filter((v): v is string => Boolean(v));
 
-        const namesText = sample.length > 0 ? sample.join(", ") : "(no matches)";
+        const namesText =
+          sample.length > 0 ? sample.join(", ") : "(no matches)";
         const count = details?.meta?.matches ?? details?.skills?.length ?? 0;
 
         const line1 = theme.fg("toolOutput", namesText);
         const line2 = theme.fg("success", `Found: ${count} skills`);
 
         return new Text(`${line1}\n${line2}`, 0, 0);
-      }
+      },
     });
 
     const ReadSkillToolParams = Type.Object({
       name: Type.String({ description: "Skill qualified name or shortname" }),
     });
-    pi.registerTool<typeof ReadSkillToolParams, ReturnType<typeof ReadSkillCommand>['error'] | ReturnType<typeof ReadSkillCommand>['value']>({
+    pi.registerTool<
+      typeof ReadSkillToolParams,
+      | ReturnType<typeof ReadSkillCommand>["error"]
+      | ReturnType<typeof ReadSkillCommand>["value"]
+    >({
       name: "read_skill",
       label: "Read Skill",
       description:
@@ -351,17 +394,19 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
 
         if (!result.ok) {
           return {
-            content: [{
-              type: "text",
-              text: "Unknown error",
-            }],
+            content: [
+              {
+                type: "text",
+                text: "Unknown error",
+              },
+            ],
             details: result.error,
-          }
+          };
         }
 
         return {
           content: [{ type: "text", text: result.value.text }],
-          details: result.value
+          details: result.value,
         };
       },
 
@@ -379,18 +424,17 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
 
         return renderFoldedToolText(result, options, theme, {
           loadingLabel: "Reading skill...",
-          previewLines: 0, // Don't show any preview lines in collapsed state since the prefix contains identifying info about the skill 
+          previewLines: 0, // Don't show any preview lines in collapsed state since the prefix contains identifying info about the skill
           collapsedPrefix: (data) => {
             if (!data.result.details || "isError" in data.result.details) {
               return "unknown skill";
             }
-            const name = data.result?.details?.skill.name
+            const name = data.result?.details?.skill.name;
 
-            return `Loaded skill "${name ?? "unknown"}".` 
+            return `Loaded skill "${name ?? "unknown"}".`;
           },
-        })
-
-      }
+        });
+      },
     });
 
     // Register generic /skill command for qualified name + shortname fallback
@@ -401,12 +445,10 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
           argumentPrefix,
           registry.skills,
           runtimeSettings.lexicalThreshold,
-        ).skills.map(
-          (skill) => ({
-            label: `${skill.shortname} (${skill.description})`,
-            value: skill.name,
-          }),
-        );
+        ).skills.map((skill) => ({
+          label: `${skill.shortname} (${skill.description})`,
+          value: skill.name,
+        }));
       },
       handler: async (args, cmdCtx: ExtensionContext) => {
         LoadSkillCommand(args, {
@@ -432,7 +474,7 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       },
     });
 
-  let systemPromptInjected = false;
+    let systemPromptInjected = false;
     // Inject skills into system prompt, replacing any existing <available_skills> block
     pi.on("before_agent_start", async (event, eventCtx) => {
       if (systemPromptInjected) {
@@ -462,7 +504,6 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         ),
       };
     });
-
   });
 
   pi.on("session_shutdown", async () => {

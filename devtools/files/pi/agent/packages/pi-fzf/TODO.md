@@ -2,7 +2,7 @@
 
 ## Long candidates can overflow the box
 
-Items in the selector list aren't truncated to `innerWidth`, so a long candidate will render past the right border. Should use `truncateToWidth` (from `@mariozechner/pi-tui`) on each item line before passing it to `boxLine`.
+Items in the selector list aren't truncated to `innerWidth`, so a long candidate will render past the right border. Should use `truncateToWidth` (from `@earendil-works/pi-tui`) on each item line before passing it to `boxLine`.
 
 ## Support `selectPageUp` / `selectPageDown`
 

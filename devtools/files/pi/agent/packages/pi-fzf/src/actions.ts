@@ -1,7 +1,7 @@
 import type {
   ExtensionAPI,
-  ExtensionCommandContext,
-} from "@mariozechner/pi-coding-agent";
+  ExtensionContext,
+} from "@earendil-works/pi-coding-agent";
 import type { ResolvedAction } from "./config.js";
 import { renderTemplate } from "./config.js";
 
@@ -12,7 +12,7 @@ export async function executeAction(
   action: ResolvedAction,
   selected: string,
   pi: ExtensionAPI,
-  ctx: ExtensionCommandContext,
+  ctx: ExtensionContext,
 ): Promise<void> {
   const rendered = renderTemplate(action.template, selected);
 

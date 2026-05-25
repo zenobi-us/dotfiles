@@ -8,9 +8,9 @@
  * - current context window usage + session totals (tokens/cost)
  */
 
-import type { ExtensionAPI, ExtensionCommandContext, ExtensionContext, ToolResultEvent } from "@mariozechner/pi-coding-agent";
-import { DynamicBorder } from "@mariozechner/pi-coding-agent";
-import { Container, Key, Text, matchesKey, type Component, type TUI } from "@mariozechner/pi-tui";
+import type { ExtensionAPI, ExtensionCommandContext, ExtensionContext, ToolResultEvent } from "@earendil-works/pi-coding-agent";
+import { DynamicBorder } from "@earendil-works/pi-coding-agent";
+import { Container, Key, Text, matchesKey, type Component, type TUI } from "@earendil-works/pi-tui";
 import os from "node:os";
 import path from "node:path";
 import fs from "node:fs/promises";
@@ -119,12 +119,20 @@ type SkillIndexEntry = {
 	skillDir: string;
 };
 
+function getCommandPath(command: unknown): string {
+	if (!command || typeof command !== "object") return "";
+	const rec = command as Record<string, unknown>;
+	const raw = rec.path ?? rec.filePath ?? rec.file ?? rec.sourcePath;
+	return typeof raw === "string" ? raw : "";
+}
+
 function buildSkillIndex(pi: ExtensionAPI, cwd: string): SkillIndexEntry[] {
 	return pi
 		.getCommands()
 		.filter((c) => c.source === "skill")
 		.map((c) => {
-			const p = c.path ? normalizeReadPath(c.path, cwd) : "";
+			const rawPath = getCommandPath(c);
+			const p = rawPath ? normalizeReadPath(rawPath, cwd) : "";
 			return {
 				name: normalizeSkillName(c.name),
 				skillFilePath: p,
@@ -273,7 +281,6 @@ type ContextViewData = {
 };
 
 class ContextView implements Component {
-	private tui: TUI;
 	private theme: any;
 	private onDone: () => void;
 	private data: ContextViewData;
@@ -281,8 +288,7 @@ class ContextView implements Component {
 	private body: Text;
 	private cachedWidth?: number;
 
-	constructor(tui: TUI, theme: any, data: ContextViewData, onDone: () => void) {
-		this.tui = tui;
+	constructor(_tui: TUI, theme: any, data: ContextViewData, onDone: () => void) {
 		this.theme = theme;
 		this.data = data;
 		this.onDone = onDone;
@@ -479,7 +485,7 @@ export default function contextExtension(pi: ExtensionAPI) {
 
 			const extensionsByPath = new Map<string, string[]>();
 			for (const c of extensionCmds) {
-				const p = c.path ?? "<unknown>";
+				const p = getCommandPath(c) || "<unknown>";
 				const arr = extensionsByPath.get(p) ?? [];
 				arr.push(c.name);
 				extensionsByPath.set(p, arr);

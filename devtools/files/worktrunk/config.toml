@@ -17,11 +17,10 @@ zellij action query-tab-names | grep -Fxq '{{ branch | sanitize }}' ||
 [[post-start]]
 zellij-focus = "zellij action go-to-tab-name {{ branch | sanitize }} 2>/dev/null || true"
 
-[projects."reckon-frontend"]
-post-start = """
-mise trust; mise setup;
-[ -e .memory ] || ln -s ~/Projects/ai-memory.zeno/reckon-frontend .memory;
-zellij action new-pane --name pi --cwd {{ worktree_path }} \
+[[projects."github.com/zenobi-us/dotfiles".post-start]]
+mise-trust = "mise trust; mise setup;"
+link-agent-memory = "[ -e .memory ] || ln -s ~/Projects/ai-memory.zeno/dotfiles .memory;"
+run-pimono = """zellij action new-pane --name pi --cwd {{ worktree_path }} \
   -- pi -p 'use jira skill to read ticket in branch name' 2>/dev/null || true
 """
 

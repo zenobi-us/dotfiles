@@ -1,8 +1,8 @@
 import type {
   ExtensionAPI,
-  ExtensionCommandContext,
-} from "@mariozechner/pi-coding-agent";
-import type { TUI } from "@mariozechner/pi-tui";
+  ExtensionContext,
+} from "@earendil-works/pi-coding-agent";
+import type { TUI } from "@earendil-works/pi-tui";
 import { executeAction } from "./actions.js";
 import { loadFzfConfig, type ResolvedCommand } from "./config.js";
 import { FuzzySelector, type SelectorTheme } from "./selector.js";
@@ -33,7 +33,7 @@ export default function (pi: ExtensionAPI) {
 async function runFzfSelector(
   pi: ExtensionAPI,
   cmd: ResolvedCommand,
-  ctx: ExtensionCommandContext,
+  ctx: ExtensionContext,
 ): Promise<void> {
   if (!ctx.hasUI) {
     ctx.ui.notify("fzf commands require interactive mode", "error");
@@ -146,7 +146,7 @@ function registerFzfCommand(pi: ExtensionAPI, cmd: ResolvedCommand): void {
 function registerFzfShortcut(pi: ExtensionAPI, cmd: ResolvedCommand): void {
   if (!cmd.shortcut) return;
 
-  pi.registerShortcut(cmd.shortcut, {
+  pi.registerShortcut(cmd.shortcut as Parameters<ExtensionAPI["registerShortcut"]>[0], {
     description: `fzf:${cmd.name}`,
     handler: async (ctx) => {
       await runFzfSelector(pi, cmd, ctx);

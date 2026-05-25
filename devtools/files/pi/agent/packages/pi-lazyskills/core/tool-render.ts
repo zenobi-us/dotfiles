@@ -1,5 +1,5 @@
-import { keyText, Theme } from "@mariozechner/pi-coding-agent";
-import { Text } from "@mariozechner/pi-tui";
+import { keyText, Theme } from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
 
 type ToolResult<D = unknown> = {
   content?: Array<{ type?: string; text?: string }>;
