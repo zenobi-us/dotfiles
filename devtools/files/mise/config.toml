@@ -33,7 +33,7 @@ experimental = true
 "npm:firefox-devtools-mcp" = "latest"
 "npm:gh-actions-language-server" = "latest"
 "npm:gtop" = "latest"
-"npm:little-coder" = "1.4.3"
+"npm:little-coder" = "latest"
 "npm:mcporter" = "latest"
 "npm:release-please" = "latest"
 "npm:semver" = "latest"
@@ -63,7 +63,6 @@ dotnet= "latest"
 fzf= "latest"
 github-cli= "latest"
 glow = "latest"
-go = "latest"
 golang="1.18.3"
 golangci-lint = "latest"
 grype = "latest"
@@ -97,6 +96,9 @@ yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 zellij = "latest"
 zig= "latest"
 lazydocker = "0.25.2"
+pdm = "latest"
+go = "1.19"
+"pipx:StdioA/beancount-mcp" = "latest"
 
 
 [shell_alias]
