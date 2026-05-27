@@ -9,6 +9,7 @@
     "npm:pi-hashline-readmap",
     "npm:pi-llama-server",
     "npm:@tintinweb/pi-subagents",
+    "npm:pi-mcp-adapter",
     "./bundles/agent-core",
     "./bundles/developer",
     "./bundles/creator",

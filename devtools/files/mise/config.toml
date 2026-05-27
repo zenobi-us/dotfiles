@@ -98,7 +98,6 @@ zig= "latest"
 lazydocker = "0.25.2"
 pdm = "latest"
 go = "1.19"
-"pipx:StdioA/beancount-mcp" = "latest"
 "npm:portless" = "latest"
 "pipx:basic-memory" = "latest"
 
