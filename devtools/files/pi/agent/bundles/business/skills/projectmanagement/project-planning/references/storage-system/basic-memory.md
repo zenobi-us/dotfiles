@@ -91,5 +91,5 @@ Pass criteria: zero blocking validation errors for all affected artifacts.
 For Planning Workflow Phase `0. Initialization`, agent MUST perform exactly:
 
 ```sh
-./scripts/storage-system/basic-memory initialise-project --name "Project Name"`.
+./scripts/storage-system/basic-memory initialise --name "Project Name"`.
 ```

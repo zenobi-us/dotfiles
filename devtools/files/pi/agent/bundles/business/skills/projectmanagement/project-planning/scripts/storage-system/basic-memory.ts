@@ -81,9 +81,6 @@ type ContextMapProject = Type.Static<typeof ContextMapProjectSchema>;
 const ContextMapSchema = Type.Object({
   projects: Type.Array(ContextMapProjectSchema),
 });
-type I = Type.Static<typeof ContextMapSchema>;
-type K = keyof I;
-
 
 class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
   public schema: T = ContextMapSchema as T
@@ -126,31 +123,13 @@ class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
     return value;
   }
 
-  //TODO: implement 
-  matchProject(queryPath: string): ContextMapProject | null {
-    // 1. use matching logic
-    // 2. return this.getProject(project) if match found, else null
-
-
-    const entries = this.get("projects") || [];
-
-    const currentPath = normalizePath(queryPath);
-    let bestProject: ContextMapProject | null = null;
-    let bestLen = -1;
-
-    for (const entry of entries) {
-      for (const contextPath of entry.paths) {
-        const contextRoot = normalizePath(contextPath);
-        if (!matchesContextRoot(currentPath, contextRoot)) continue;
-        if (contextRoot.length > bestLen) {
-          bestLen = contextRoot.length;
-          bestProject = entry
-        }
+  private persist(): void {
+    this.save(super.get(), (err) => {
+      if (err) {
+        console.error("Failed to persist context map:", err);
+        process.exit(2);
       }
-    }
-
-    return bestProject;
-
+    });
   }
 
   addProjectContext(args: { project: string, contextPath: string }): void {
@@ -178,6 +157,9 @@ class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
         updatedEntry,
       ]);
     }
+
+
+    this.persist();
   }
 
   removeProjectContext(args: { project: string, contextPath: string }): void {
@@ -204,15 +186,13 @@ class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
       ]);
     }
 
-    this.save(
-      this.get()
-    )
+    this.persist();
   }
 
   getProject(project: string): ContextMapProject | null {
     // get project by name from config, return null if not found
     // return mutated, sort the context paths.
-    const entry = this.getProject(project);
+    const entry = this.get("projects")?.find(p => p.project === project) || null;
     if (!entry) return null;
 
     return {
@@ -223,11 +203,11 @@ class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
 
   printContextMap(options: { format: "text" | "json" }): void {
     if (options.format === "json") {
-      console.log(JSON.stringify(store.get("projects") || [], null, 2));
+      console.log(JSON.stringify(this.get("projects") || [], null, 2));
       return
     }
 
-    for (const entry of store.get("projects") || []) {
+    for (const entry of this.get("projects") || []) {
       console.log(`Project: ${entry.project}`);
       for (const path of entry.paths) {
         console.log(`  - ${path}`);
@@ -235,18 +215,44 @@ class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
     }
   }
 
+  matchProject(queryPath: string): ContextMapProject | null {
+    // 1. use matching logic
+    // 2. return this.getProject(project) if match found, else null
+
+
+    const entries = this.get("projects") || [];
+
+    const currentPath = normalizePath(queryPath);
+    let bestProject: ContextMapProject | null = null;
+    let bestLen = -1;
+
+    for (const entry of entries) {
+      for (const contextPath of entry.paths) {
+        const contextRoot = normalizePath(contextPath);
+        if (!matchesContextRoot(currentPath, contextRoot)) continue;
+        if (contextRoot.length > bestLen) {
+          bestLen = contextRoot.length;
+          bestProject = entry
+        }
+      }
+    }
+
+    return bestProject;
+
+  }
+
   /**
    * Resolve project using precedence: explicit arg > env var > context-map.
    */
-  resolveProject(explicitProjectArgPresent: boolean): string | null {
+  resolveProjectName(explicitProjectArgPresent: boolean): string | null {
     if (explicitProjectArgPresent) return null; // explicit wins; no injection
 
     const fromEnv = process.env.PROJECT_PLANNING_BM_PROJECT;
     if (fromEnv && fromEnv.trim()) return fromEnv.trim();
 
     const queryPath = process.env.PROJECT_PLANNING_BM_QUERY_PATH || process.cwd();
-    const project = store.matchProject(queryPath);
-    return project ? project.project : null;
+    const entry = this.matchProject(queryPath);
+    return entry?.project ?? null;
   }
 }
 
@@ -315,7 +321,7 @@ function getOptionalFlagValue(args: string[], flag: string): string | null {
 }
 
 /**
- * Handle `initialise-project --name <name> [--cwd <path>]`.
+ * Handle `initialise --name <name> [--cwd <path>]`.
  */
 function handleInitialiseProject(args: string[]): boolean {
 
@@ -366,7 +372,7 @@ function handleBasicMemoryCommand(argv: string[]) {
   }
 
   const bmBinary = "basic-memory";
-  const project = store.resolveProject(explicitProject.has);
+  const project = store.resolveProjectName(explicitProject.has);
 
   // If no explicit project in argv, we MUST resolve one unless this is help/version.
   if (!explicitProject.has && !project && !isMetaCommand(argv)) {
