@@ -1,12 +1,18 @@
 # Basic Memory Storage System
 
 ## Purpose
-Basic Memory (BM) is canonical planning storage backend for this project.
+
+Basic Memory (BM) is a CLI for managing project planning artifacts as BM notes. It provides a unified interface for persisting, retrieving, and linking planning data within the BM ecosystem.
+
 Scope covers all planning artifacts: Idea, Epic, Story, Task, Research, Decision, Learning, Retrospective.
-All storage operations MUST go through wrapper:
-`./scripts/storage-system/basic-memory`
-Wrapper is responsible for selecting the correct BM project context from query path/CWD.
-Direct `basic-memory` CLI usage for planning artifacts is prohibited.
+
+> [!WARNING]
+> All storage operations MUST go through wrapper:
+>  `./scripts/storage-system/basic-memory`.
+> 
+> Wrapper is responsible for selecting the correct BM project context from query path/CWD.
+> 
+> Direct `basic-memory` CLI usage for planning artifacts is prohibited.
 
 ## Artifact Mapping
 Artifacts map to BM notes via wrapper CLI (same interface as official `basic-memory tool ...`):
