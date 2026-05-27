@@ -141,9 +141,12 @@ plugins {
     sequence location="zellij:sequence"
 }
 
-theme "onedark"
 
-default_layout "default"
+theme "rose-pine"
+
+pane_frames false
+
+// default_layout "default"
 session_serialization true
 serialize_pane_viewport false
 show_startup_tips false

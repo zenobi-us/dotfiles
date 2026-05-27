@@ -1,16 +1,14 @@
 layout {
     default_tab_template {
         children
-        pane size=1 borderless=true split_direction="vertical" {
-   
-
+        pane size=1 split_direction="vertical" {
             plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
                 format_left   "{mode} #[fg=#9ccfd8,bold]{session}"
                 format_center "{tabs}"
                 format_right  "{command_git_branch} {datetime}"
                 format_space  ""
 
-                border_enabled  true
+                // border_enabled  true
                 border_char     "─"
                 border_format   "#[fg=#6e6a86]{char}"
                 border_position "top"
