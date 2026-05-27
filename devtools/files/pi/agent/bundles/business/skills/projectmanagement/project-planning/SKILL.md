@@ -3,7 +3,34 @@ name: project-planning
 description: Use to know about Planning Artifacts used in project management.
 ---
 
-## What are [Planning Artifact] Types?
+# Project Planning
+
+## Rule Zero
+
+This skill presents a router to the agent for following the project planning workflow. It provides guidance on artifact types, workflow phases, estimation techniques, relationships, and status transitions.
+
+The user will invoke the agent to use this skill in various scenarios, so there are two main steps to follow: 
+
+
+1. Detecting the storage system for the current CWD.
+2. Lazy loading only the relevant resources when needed based on the current workflow phase and artifact type.
+
+
+## Detecting Storage System
+
+When the agent is invoked, it should first determine the storage system in use for the current CWD or request.
+
+1. Look in these places for this information in order:
+   - There might be a `$PROJECT_PLANNING_STORAGE_SYSTEM` environment variable defined that indicates the storage system. If so, use that information.
+   - The `AGENTS.md` might have already described the storage system for this agent. If so, use that information.
+   - The user might have specified the storage system in their request or in the context of the conversation. If so, use that information.
+2. Qualify the storage system defined. It might not exist. Only valid storage systems defined in ./references/storage-systems are valid. If the storage system is invalid, respond with an error message indicating that the storage system is not supported and provide a list of valid storage systems.
+
+
+## Resources
+
+
+### What are [Planning Artifact] Types?
 
 Throughout the project-planning instructions you will see often refernces to types in the form of [Epic], [Spec], [Story], [Task], [Research], and [Decision].
 
@@ -18,13 +45,13 @@ This is to reinforce to you the reader or agent that these are distinct artifact
 - [Task]: A specific piece of work that needs to be completed as part of a [Story]. They are always linked to both a [Story] and an [Epic]. They can also be linked to other [Task] in interesting ways (e.g., blocking, dependent on, related to).
 - [Retrospective]: A reflective artifact created at the end of an epic or project phase to capture lessons learned, successes, and areas for improvement. It summarizes insights from the team and stakeholders to inform future projects. Each [Retrospective] is linked to its corresponding [Epic] and any unresolved [Decision] artifacts.
 
-## Workflow Phases
+### Workflow Phases
 
 Projects flow through five distinct phases. Understanding where artifacts belong is critical for agents executing this skill.
 
 **Agents make tactical decisions autonomously** (which artifact to create, when to move statuses, validating content) **but escalate strategic decisions to Q** (scope changes, timeline shifts, technical refactoring, resource constraints).
 
-### Phase Overview
+#### Phase Overview
 
 1. **Planning** — Create artifacts defining the work (PRD → Epic → Spec → Stories → Tasks)
    - → **See: skill_reference(`references/workflow/planning-phase.md`)** for detailed artifact creation sequence and validation gates
@@ -38,7 +65,7 @@ Projects flow through five distinct phases. Understanding where artifacts belong
 4. **Retrospective** — Capture learnings (can follow Epic or Project completion)
    - → **See: skill_reference(`references/workflow/retrospective-phase.md`)** for retrospective guidance
 
-### Escalation Matrix
+#### Escalation Matrix
 
 Pause and escalate to Q when encountering:
 - **Scope changes** — Feature additions/removals mid-Epic or mid-Planning
@@ -48,25 +75,25 @@ Pause and escalate to Q when encountering:
 
 → **See: skill_reference(`references/workflow/overview.md`)** for complete escalation matrix, artifact relationship diagram, and agent decision model.
 
-## Estimation 
+### Estimation 
 
 When estimation is required, read the resources: 
 
 - → **See: skill_reference(`references/estimation.md`)** for detailed estimation techniques and best practices.
 
-## Relationships
+### Relationships
 
 Artifacts maintain clear relationships to ensure traceability and context throughout the project lifecycle.
 
 - → **See: skill_reference(`references/relationships.md`)** for detailed relationship types and usage guidelines for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
 
-## Artifact Status Transitions
+### Artifact Status Transitions
 
 Each artifact type has valid status progressions that guide state management throughout the project lifecycle.
 
 - → **See: skill_reference(`references/status-flow.md`** for detailed status flow diagrams and descriptions for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
 
-## Artifact Schemas and Content Structure
+### Artifact Schemas and Content Structure
 
 All artifacts follow consistent schema patterns for organization and linking. 
 Each artifact type has specific frontmatter requirements and content sections.
