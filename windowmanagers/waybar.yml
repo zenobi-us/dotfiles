@@ -1,0 +1,13 @@
+---
+actions:
+  - action: command.run
+    where: os.name == "linux"
+    command: rm
+    args:
+      - -rf
+      - "{{user.home_dir}}/.config/waybar"
+
+  - action: file.link
+    where: os.name == "linux"
+    from: waybar
+    to: "{{user.home_dir}}/.config/waybar"

@@ -60,7 +60,7 @@ output "DP-2" {
 }
 
 output "DP-3" {
-    mode "3440x1440@59.973"
+
     scale 1
     transform "normal"
     position x=3440 y=0
@@ -70,6 +70,8 @@ output "DP-3" {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
+    background-color "transparent"
+
     // Set gaps around windows in logical pixels.
     gaps 16
 
@@ -220,31 +222,11 @@ layout {
     struts 
 }
 
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// See the binds section below for more spawn examples.
-
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "vibepanel"
-spawn-at-startup "/usr/lib/xdg-desktop-portal-gtk"
-spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
-
-
-hotkey-overlay 
-
-
-// Uncomment this line to ask the clients to omit their client-side decorations if possible.
-// If the client will specifically ask for CSD, the request will be honored.
-// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
-// This option will also fix border/focus ring drawing behind some semitransparent windows.
-// After enabling or disabling this, you need to restart the apps for this to take effect.
-// prefer-no-csd
-
-// You can change the path where screenshots are saved.
-// A ~ at the front will be expanded to the home directory.
-// The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+overview {
+    workspace-shadow {
+        off
+    }
+}
 
 // You can also set this to null to disable saving screenshots to disk.
 // screenshot-path null
@@ -252,11 +234,10 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // Animation settings.
 // The wiki explains how to configure individual animations:
 // https://yalter.github.io/niri/Configuration:-Animations
-animations { 
-
-
+animations {
     window-open { curve "cubic-bezier" 0.0 0.0 0.58 1.0; }
 }
+
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
@@ -282,7 +263,7 @@ window-rule {
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+window-rule {
     match app-id=r"^org\.keepassxc\.KeePassXC$"
     match app-id=r"^org\.gnome\.World\.Secrets$"
 
@@ -292,12 +273,82 @@ window-rule {
     // block-out-from "screencast"
 }
 
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
+window-rule {
+    match app-id="^Alacritty$"
+
+    background-effect {
+        blur true
+    }
+}
+
+
+window-rule {
+    geometry-corner-radius 4
     clip-to-geometry true
 }
+
+// Blur backdrop while fuzzel launcher is open.
+layer-rule {
+    match namespace="^(fuzzel|launcher)$"
+    place-within-backdrop true
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+layer-rule {
+    match namespace="^awww-daemonoverview$"
+    place-within-backdrop true
+}
+
+// Optional if you wish to enable blur for the shell.
+layer-rule {
+    match namespace="^fabric$"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+// Make the wallpaper stationary, rather than moving with workspaces.
+layer-rule {
+    // This is for swaybg; change for other wallpaper tools.
+    // Find the right namespace by running niri msg layers.
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+// Add lines like this to spawn processes at startup.
+// Note that running niri as a session supports xdg-desktop-autostart,
+// which may be more convenient to use.
+// See the binds section below for more spawn examples.
+
+// This line starts waybar, a commonly used bar for Wayland compositors.
+spawn-at-startup "vibepanel"
+spawn-at-startup "/usr/lib/xdg-desktop-portal-gtk"
+spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
+spawn-sh-at-startup "awww-daemon -n workspaces"
+spawn-sh-at-startup "awww-daemon -n overview"
+
+
+hotkey-overlay 
+
+
+// Uncomment this line to ask the clients to omit their client-side decorations if possible.
+// If the client will specifically ask for CSD, the request will be honored.
+// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
+// This option will also fix border/focus ring drawing behind some semitransparent windows.
+// After enabling or disabling this, you need to restart the apps for this to take effect.
+// prefer-no-csd
+
+// You can change the path where screenshots are saved.
+// A ~ at the front will be expanded to the home directory.
+// The path is formatted with strftime(3) to give you the screenshot date and time.
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+environment
 
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
@@ -318,7 +369,7 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+R hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-
+    
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
@@ -409,11 +460,4 @@ binds {
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
-}
-
-environment
-
-window-rule {
-    geometry-corner-radius 4
-    clip-to-geometry true
 }

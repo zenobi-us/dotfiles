@@ -1,0 +1,111 @@
+# =============================================================================
+# vibepanel Configuration
+# =============================================================================
+#
+# Minimal starter config. For all available options, see:
+# https://github.com/prankstr/vibepanel/blob/main/docs/configuration.md
+#
+# Commands:
+#   vibepanel --check-config         Validate configuration
+#   vibepanel --print-example-config Print this example config
+#
+# =============================================================================
+
+[bar]
+position = "top"         # "top" or "bottom"
+size = 32
+border_radius = 5
+background_opacity = 0.0 # 0.0 = transparent (islands), 1.0 = solid
+outline = false         # Override theme.outline for the bar (omit = inherit)
+
+[widgets]
+left = ["workspaces", "window_title"]
+center = ["media"]
+right = [
+  "tray",
+  "updates",
+  "cpu",
+  "custom-outputs",
+  "quick_settings",
+  "battery",
+  "clock",
+  "notifications",
+]
+border_radius = 40
+background_opacity = 1.0
+# popover_background_opacity = 0.9  # Override popover opacity (default: max of bar and widget opacity)
+# outline = true                    # Override theme.outline for widgets (omit = inherit)
+[widgets.custom-outputs]
+icon = "computer"  # Icon name from icon theme (e.g. "display",
+exec = "echo single"
+template = " {output}"  # Template for command output (placeholder: {output})
+label = "{internal} {external}"  # Template for output names (placeholders: {internal}, {external})
+tooltip = "Outputs: {internal} (internal), {external} (external)"
+on_click = "~/Applications/nirilayout"  # Command to run on left-click (e.g. "wlr-randr" or "hyprctl reload")
+
+# Per-widget options use [widgets.<name>] sections.
+# Example:
+#   [widgets.clock]
+#   format = "%H:%M"
+#   outline_color = "accent"  # Per-widget outline color: "subtle" | "accent" | "foreground" | "#rrggbb"
+#
+#   [widgets.battery]
+#   disabled = true
+#
+#   [widgets.media]
+#   visualizer = true  # Enable/disable cava audio visualizer (default: true)
+#
+# Custom widgets use the "custom-" prefix for user-defined buttons:
+#   right = ["custom-power", "custom-os", "tray", "clock"]
+#
+#   [widgets.custom-power]
+#   icon = "system-shutdown-symbolic"
+#   label = "Power"
+#   tooltip = "Power menu"
+#   on_click = "wlogout"
+#   on_click_right = "systemctl suspend"
+#
+#   [widgets.custom-os]
+#   image = "/usr/share/pixmaps/distro-logo.svg"  # file path (PNG, SVG, etc.)
+#   tooltip = "My Distro"
+#
+#   [widgets.custom-weather]
+#   exec = "curl -s 'wttr.in/?format=1'"
+#   template = " {output}"
+#   interval = 600
+#   on_click = "xdg-open https://wttr.in"
+#   tooltip = "Weather"
+#   max_chars = 30
+#
+# See documentation for all widget options.
+
+[theme]
+mode = "dark" # "auto", "dark", "light", "gtk"
+#               "auto" = wallpaper-adaptive theming
+#               (detects from hyprpaper, awww/swww, wpaperd, waypaper)
+#scheme = "dark"         # Material You polarity: "dark" or "light" (auto mode only)
+#               Omit to auto-derive from wallpaper luminance (bright → light, dark → dark)
+wallpaper = "/mnt/Store/Wallpaper/05.png"  # Explicit wallpaper for auto mode (default: auto-detect)
+#accent = "#adabe0" # "gtk", "none", or hex color (overrides wallpaper accent in auto mode)
+animations = true  # Enable/disable all CSS transitions and animations
+ripple = true      # Enable/disable Material Design ripple effect on click
+#blur = false       # Enable compositor blur via ext-background-effect-v1 (requires niri with blur)
+#outline = false             # Decorative outline on bar, widgets, and surfaces (CSS border)
+#outline_width = 1           # Outline width in pixels (0..=4; 0 disables visibly)
+#outline_color = "accent"    # "subtle" | "accent" | "foreground" | "#rrggbb"
+#outline_opacity = 1.0        # 0.0 = transparent, 1.0 = opaque
+
+[theme.icons]
+theme = "material" # "material" or "gtk"
+weight = 400       # Material icon stroke weight (100-700)
+
+[osd]
+enabled = true
+position = "bottom" # "bottom", "top", "left", "right"
+show_value = false  # Show current value after the bar
+
+[advanced]
+compositor = "niri"  # "auto", "hyprland", "niri", "mango"
+
+# Custom CSS: place style.css in same directory as this file.
+# See documentation for available CSS variables and classes.
