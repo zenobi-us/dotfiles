@@ -1,4 +1,3 @@
-
 ### [Retrospective] Content Structure
 
 **Frontmatter:**
@@ -6,24 +5,24 @@
 ---
 title: { Retrospective Title }
 projectId: { ProjectId }
-status: { In Progress | Complete }
+status: { in-progress | complete }
 ---
 ```
 
+Frontmatter `id` MUST match the `<id>` segment in the filename.
+For full naming rules, see [Filename Conventions](../filename-conventions.md).
+
 **Links:**
-- to a single [Epic] or [PRD] (the closed-out work package)
-- to all unresolved [Decision] artifacts from that epic (MANDATORY)
+- to one [Epic] (or project-level closeout)
+- to unresolved [Decision] artifacts (MANDATORY when present)
+- to related [Story], [Task], [Learning]
 
 **Sections:**
-- **Meeting Date & Attendees**: When and who participated
-- **Successes**: What went well? (team accomplishments, positive outcomes)
-- **Challenges**: What was difficult? (obstacles, surprises, pain points)
-- **Lessons Learned**: What should we remember for next time? (patterns, anti-patterns)
-- **Action Items**: What will we change/improve? (prioritized list)
-- **Unresolved Decisions Review**: Review of all unresolved [Decision] artifacts from this epic
-  - Status: Were they resolved? Still pending?
-  - Impact: What was the impact of uncertainty?
-  - Next Steps: Revisit during planning phase?
-- **Team Feedback**: Open feedback from team members
-- **Stakeholder Feedback**: Any feedback from product/business stakeholders
-
+- **Meeting Date & Attendees**
+- **Successes**
+- **Challenges**
+- **Lessons Learned**
+- **Action Items**
+- **Unresolved Decisions Review**
+- **Team Feedback**
+- **Stakeholder Feedback**

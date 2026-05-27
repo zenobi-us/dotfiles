@@ -5,22 +5,22 @@
 ---
 title: { Epic Title }
 projectId: { ProjectId }
-status: { Active | On Hold | Completed | Cancelled }
+status: { planning | active | on-hold | completed | cancelled }
 ---
 ```
 
+Frontmatter `id` MUST match the `<id>` segment in the filename.
+For full naming rules, see [Filename Conventions](../filename-conventions.md).
+
 **Links:**
-- to a single [Spec]
+- optionally from [Idea]
 - to one or more [Story]
-- to one or more [Task] via linked [Story]
-- optionally to [Research] and [Decision]
+- to phase task lists represented as inline phase sections
+- optionally to [Research], [Decision], [Learning]
 
 **Sections:**
-- **Preamble**: High-level description of the epic
-- **Objectives**: What the epic aims to achieve
-- **Scope**: What is included and excluded
-- **Success Criteria**: How we'll know the epic is complete
-- **Timeline**: Estimated duration or phase timeline
-- **Dependencies**: External dependencies or blockers
-
----
+- **Vision/Goal**
+- **Success Criteria**
+- **Stories** (phase-agnostic WHAT)
+- **Phases** (WHEN buckets with task checklists)
+- **Dependencies**

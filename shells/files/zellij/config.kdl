@@ -52,7 +52,6 @@ keybinds clear-defaults=true {
         bind "v" { 
             Run "zsh" {
                 direction "Right"
-                borderless true
                 close_on_exit true
             }
             SwitchToMode "normal";
@@ -60,7 +59,6 @@ keybinds clear-defaults=true {
         bind "h" { 
             Run "zsh" {
                 direction "Down"
-                borderless true
                 close_on_exit true
             }
             SwitchToMode "normal"; }

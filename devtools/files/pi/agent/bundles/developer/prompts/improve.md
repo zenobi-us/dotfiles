@@ -1,6 +1,5 @@
 Analyse the requested files and produce a report of problems and suggestions for improvement.
 
-## UserRequest
 
 ```md
 UserRequest: $ARGUMENTS
@@ -13,6 +12,7 @@ UserRequest: $ARGUMENTS
 
 ## Approach
 
+- load the `eng-improve-codebase` skill.
 - Identify files to analyze based on UserRequest. Determine whether the target is software code, documentation, configuration, a story, or something else.
 - For each file, understand how it is used; draw an ASCII state machine diagram showing information flow through the file(s).
 - Based on file type and purpose, use `find_skills` to identify appropriate `expert-*` skills to use. Pick one or more; more is better.

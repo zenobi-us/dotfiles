@@ -1,6 +1,6 @@
 ---
 name: project-planning
-description: Use to know about Planning Artifacts used in project management.
+description: Planning artifact model and workflow for markdown-based project execution (miniproject-aligned).
 ---
 
 # Project Planning
@@ -32,82 +32,76 @@ When the agent is invoked, it should first determine the storage system in use f
 
 ### What are [Planning Artifact] Types?
 
-Throughout the project-planning instructions you will see often refernces to types in the form of [Epic], [Spec], [Story], [Task], [Research], and [Decision].
+1. Before using any concept here you MUST detect a StorageSystem strategy from one of the available backend references for the project you are operating in. If no strategy is detected, you MUST escalate to Q and stop before execution.
+2. You MUST follow the defined artifact types, workflow phases, and relationships when creating and managing planning artifacts.
+3. You MUST adhere to the filename conventions for all artifact files and links.
+4. You MUST use the provided schemas for each artifact type to ensure consistency and completeness of information
+5. You MUST escalate to Q for any strategic decisions, scope changes, timeline shifts, major refactors, or resource constraints that arise during planning.
 
-This is to reinforce to you the reader or agent that these are distinct artifact types with specific roles.
+## Planning Artifact Types
 
-- [PRD]: Product Requirements Document, A high-level statement of what the product should achieve. They capture the needs and expectations of stakeholders. A [PRD] informs managers in the creation of one or more [Epic].
-- [Epic]: A large body of work that is described by Stories. An [Epic] is always accompanied by a [Spec], they have a 1:1 relationship.
-- [Spec]: A detailed description of the project's requirements and objectives. It leads to creation of one or more [Story].
-- [Research]: Information gathering and analysis conducted to inform project decisions. Primary phase: Planning/Initiation (during PRD/Epic/Spec creation). Secondary phase: ad-hoc during Execution when implementation raises unknowns. [Research] informs [Spec], [Decision], and project direction. Linked to [PRD], [Epic], [Spec], [Decision], [Story], or [Task].
-- [Decision]: A conclusion reached after evaluating options, often based on [Research]. [Decision] can influence [Spec] and project direction. Created during Initiation/Planning (for strategic decisions) or during Execution (for implementation decisions). Status must be "Decided" or "Unresolved". All [Decision] artifacts with status "Unresolved" MUST be linked to the [Retrospective] during the Closing phase.
-- [Story]: A scenario or use case, manageable piece of work derived from an [Epic]. [Story] always contain "user stories". [Story] are always implemented by [Task].
-- [Task]: A specific piece of work that needs to be completed as part of a [Story]. They are always linked to both a [Story] and an [Epic]. They can also be linked to other [Task] in interesting ways (e.g., blocking, dependent on, related to).
-- [Retrospective]: A reflective artifact created at the end of an epic or project phase to capture lessons learned, successes, and areas for improvement. It summarizes insights from the team and stakeholders to inform future projects. Each [Retrospective] is linked to its corresponding [Epic] and any unresolved [Decision] artifacts.
+Every project planning file must be one of the following: 
+
+- [Idea]: low-commitment opportunity framing; may promote to Epic.
+- [Epic]: committed direction with phase planning sections.
+- [Story]: phase-agnostic requirement (WHAT) with acceptance criteria and test spec.
+- [Task]: scheduled implementation work (WHEN) with required `phase_id`; links to story when applicable.
+- [Research]: structured discovery feeding decisions and scope.
+- [Decision]: explicit choice with rationale and trade-offs.
+- [Learning]: distilled reusable knowledge.
+- [Retrospective]: closeout review; MUST include unresolved decision review.
 
 ### Workflow Phases
 
-Projects flow through five distinct phases. Understanding where artifacts belong is critical for agents executing this skill.
+Depending on the artifact type you're working with, you may need to execute different workflow phases. The core workflow includes:
 
-**Agents make tactical decisions autonomously** (which artifact to create, when to move statuses, validating content) **but escalate strategic decisions to Q** (scope changes, timeline shifts, technical refactoring, resource constraints).
+1. Planning — define artifacts and links
+   - See: [Planning Phase](./references/workflow/planning-phase.md)
+2. Execution — advance work through status transitions
+   - See: [Execution Phase](./references/workflow/execution-phase.md)
+3. Closing — reconcile artifacts and prepare closeout
+   - See: [Closing Phase](./references/workflow/closing-phase.md)
+4. Retrospective — capture lessons and follow-ups
+   - See: [Retrospective Phase](./references/workflow/retrospective-phase.md)
 
-#### Phase Overview
+See complete model: [Workflow Overview](./references/workflow/overview.md)
 
-1. **Planning** — Create artifacts defining the work (PRD → Epic → Spec → Stories → Tasks)
-   - → **See: skill_reference(`references/workflow/planning-phase.md`)** for detailed artifact creation sequence and validation gates
+## Escalation
 
-2. **Execution** — Move work to completion through status transitions
-   - → **See: skill_reference(`references/workflow/execution-phase.md`)** for execution guidance
+Escalate strategic decisions to Q: scope changes, timeline shifts, major refactors, resource constraints.
 
-3. **Closing** — Archive completed work and formally close Epic/Project
-   - → **See: skill_reference(`references/workflow/closing-phase.md`)** for closing procedures
+## Estimation
 
-4. **Retrospective** — Capture learnings (can follow Epic or Project completion)
-   - → **See: skill_reference(`references/workflow/retrospective-phase.md`)** for retrospective guidance
-
-#### Escalation Matrix
-
-Pause and escalate to Q when encountering:
-- **Scope changes** — Feature additions/removals mid-Epic or mid-Planning
-- **Timeline shifts** — Projected delivery date moves >1 week
-- **Technical refactoring** — Discovered design changes during work
-- **Resource constraints** — Task/Story complexity exceeds capacity
-
-→ **See: skill_reference(`references/workflow/overview.md`)** for complete escalation matrix, artifact relationship diagram, and agent decision model.
-
-### Estimation 
-
-When estimation is required, read the resources: 
-
-- → **See: skill_reference(`references/estimation.md`)** for detailed estimation techniques and best practices.
+See: [Estimations](./references/estimations.md)
 
 ### Relationships
 
-Artifacts maintain clear relationships to ensure traceability and context throughout the project lifecycle.
+See: [Relationships](./references/relationships.md)
 
-- → **See: skill_reference(`references/relationships.md`)** for detailed relationship types and usage guidelines for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
+## Filename Conventions
 
-### Artifact Status Transitions
+See: [Filename Conventions](./references/filename-conventions.md)
 
-Each artifact type has valid status progressions that guide state management throughout the project lifecycle.
+## Storage System
 
-- → **See: skill_reference(`references/status-flow.md`** for detailed status flow diagrams and descriptions for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
+You MUST select one storage backend before execution:
+- [Basic Memory Storage](./references/storage-system/basic-memory.md)
+- [GitHub Issues Storage](./references/storage-system/github-issues.md)
+- [GitHub Projects Storage](./references/storage-system/github-projects.md)
+- [Jira Storage](./references/storage-system/jira.md)
 
-### Artifact Schemas and Content Structure
+If the selected backend document is still a TODO/stub, the agent MUST escalate to Q and stop before execution.
+## Status Transitions
 
-All artifacts follow consistent schema patterns for organization and linking. 
-Each artifact type has specific frontmatter requirements and content sections.
+See: [Status Flow](./references/status-flow.md)
 
-→ Use the linked skill resources for detailed schema definitions, artifact content structure, and link type definitions for all artifact types (PRD, Epic, Research, Story, Task, Retrospective, Decision).
+## Artifact Schemas
 
-**See below for specific artifact schemas:**
-
-- → **PRD** skill_reference(`schema/01-artifact-prd.md`)
-- → **Epic** skill_reference(`schema/02-artifact-epic.md`)
-- → **Spec** skill_reference(`schema/03-artifact-spec.md`)
-- → **Research** skill_reference(`schema/04-artifact-research.md`)
-- → **Decision** skill_reference(`schema/05-artifact-decision.md`)
-- → **Story** skill_reference(`schema/06-artifact-story.md`)
-- → **Task** skill_reference(`schema/07-artifact-task.md`)
-- → **Retrospective** skill_reference(`schema/08-artifact-retrospective.md`)
-
+- Idea: [Idea Schema](./references/schema/01-artifact-idea.md)
+- Epic: [Epic Schema](./references/schema/02-artifact-epic.md)
+- Story: [Story Schema](./references/schema/03-artifact-story.md)
+- Task: [Task Schema](./references/schema/04-artifact-task.md)
+- Decision: [Decision Schema](./references/schema/05-artifact-decision.md)
+- Research: [Research Schema](./references/schema/06-artifact-research.md)
+- Learning: [Learning Schema](./references/schema/07-artifact-learning.md)
+- Retrospective: [Retrospective Schema](./references/schema/08-artifact-retrospective.md)
