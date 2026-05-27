@@ -1,34 +1,33 @@
-### [Task] Content Structure
+### [Task] Picoschema Definition
 
-**Frontmatter:**
 ```yaml
 ---
-title: { Task Title }
-projectId: { ProjectId }
-epic_id: { Epic ID }
-story_id: { Story ID, optional for infra/exploratory }
-phase_id: { Phase ID, REQUIRED }
-status: { todo | in-progress | in-review | completed | blocked | cancelled }
-story_points: { 1 | 2 | 3 | 5 | 8, optional }
-assigned_to: { session-id or human }
+title: Task
+type: schema
+entity: Task
+version: 1
+schema:
+  id: string, artifact id matching filename id segment
+  project_id: string, planning project identifier
+  title: string, task title
+  epic: Epic, parent epic
+  story?: Story, related story when requirement work
+  phase_id: string, required phase id within epic
+  status(enum): [todo, in-progress, in-review, completed, blocked, cancelled], lifecycle status
+  story_points?(enum): [1, 2, 3, 5, 8], estimate
+  assigned_to?: string, owner session-id or human
+  depends_on?(array): Task, task dependencies
+settings:
+  validation: strict
 ---
 ```
 
-Frontmatter `id` MUST match the `<id>` segment in the filename.
-For full naming rules, see [Filename Conventions](../filename-conventions.md).
-
-**Links:**
-- to exactly one [Epic]
-- to exactly one phase section within Epic (via phase_id)
-- to [Story] when implementing requirement work
-- optionally to [Research], [Decision], other [Task]
-
-**Sections:**
-- **Objective**
-- **Related Story**
-- **Related Phase**
-- **Steps**
-- **Unit Tests**
-- **Expected Outcome**
-- **Actual Outcome**
-- **Lessons Learned**
+Required sections in note body:
+- Objective
+- Related Story
+- Related Phase
+- Steps
+- Unit Tests
+- Expected Outcome
+- Actual Outcome
+- Lessons Learned

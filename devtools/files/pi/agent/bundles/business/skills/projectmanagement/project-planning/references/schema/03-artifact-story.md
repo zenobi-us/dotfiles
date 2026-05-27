@@ -1,33 +1,31 @@
-### [Story] Content Structure
+### [Story] Picoschema Definition
 
-**Frontmatter:**
 ```yaml
 ---
-title: { Story Title }
-projectId: { ProjectId }
-epic_id: { Epic ID }
-status: { draft | approved | in-progress | in-review | completed | blocked | cancelled }
-priority: { critical | high | medium | low }
-story_points: { 1 | 2 | 3 | 5 | 8 | 13, optional }
-test_coverage: { none | partial | full }
+title: Story
+type: schema
+entity: Story
+version: 1
+schema:
+  id: string, artifact id matching filename id segment
+  project_id: string, planning project identifier
+  title: string, story title
+  epic: Epic, parent epic
+  status(enum): [draft, approved, in-progress, in-review, completed, blocked, cancelled], lifecycle status
+  priority(enum): [critical, high, medium, low], priority level
+  story_points?(enum): [1, 2, 3, 5, 8, 13], estimate
+  test_coverage(enum): [none, partial, full], coverage state
+  tasks?(array): Task, implementation tasks
+settings:
+  validation: strict
 ---
 ```
 
-Frontmatter `id` MUST match the `<id>` segment in the filename.
-For full naming rules, see [Filename Conventions](../filename-conventions.md).
-
-**Links:**
-- to exactly one [Epic]
-- to one or more [Task]
-- optionally to [Research], [Decision], [Learning]
-
-**Sections:**
-- **User Story**
-- **Acceptance Criteria**
-- **Context**
-- **Out of Scope**
-- **Tasks**
-- **Test Specification**
-  - **E2E Tests** (AC-to-test mapping)
-  - **Unit Test Coverage (via Tasks)**
-- **Notes**
+Required sections in note body:
+- User Story
+- Acceptance Criteria
+- Context
+- Out of Scope
+- Tasks
+- Test Specification
+- Notes

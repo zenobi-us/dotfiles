@@ -1,28 +1,32 @@
-### [Retrospective] Content Structure
+### [Retrospective] Picoschema Definition
 
-**Frontmatter:**
 ```yaml
 ---
-title: { Retrospective Title }
-projectId: { ProjectId }
-status: { in-progress | complete }
+title: Retrospective
+type: schema
+entity: Retrospective
+version: 1
+schema:
+  id: string, artifact id matching filename id segment
+  project_id: string, planning project identifier
+  title: string, retrospective title
+  status(enum): [in-progress, complete], lifecycle status
+  epic?: Epic, related epic or project-level closeout
+  unresolved_decisions?(array): Decision, unresolved decisions under review
+  stories?(array): Story, related stories
+  tasks?(array): Task, related tasks
+  learnings?(array): Learning, related learnings
+settings:
+  validation: strict
 ---
 ```
 
-Frontmatter `id` MUST match the `<id>` segment in the filename.
-For full naming rules, see [Filename Conventions](../filename-conventions.md).
-
-**Links:**
-- to one [Epic] (or project-level closeout)
-- to unresolved [Decision] artifacts (MANDATORY when present)
-- to related [Story], [Task], [Learning]
-
-**Sections:**
-- **Meeting Date & Attendees**
-- **Successes**
-- **Challenges**
-- **Lessons Learned**
-- **Action Items**
-- **Unresolved Decisions Review**
-- **Team Feedback**
-- **Stakeholder Feedback**
+Required sections in note body:
+- Meeting Date & Attendees
+- Successes
+- Challenges
+- Lessons Learned
+- Action Items
+- Unresolved Decisions Review
+- Team Feedback
+- Stakeholder Feedback

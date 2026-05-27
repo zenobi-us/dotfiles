@@ -1,27 +1,31 @@
-### [Decision] Content Structure
+### [Decision] Picoschema Definition
 
-**Frontmatter:**
 ```yaml
 ---
-title: { Decision Title }
-projectId: { ProjectId }
-status: { pending | decided | unresolved | superseded }
+title: Decision
+type: schema
+entity: Decision
+version: 1
+schema:
+  id: string, artifact id matching filename id segment
+  project_id: string, planning project identifier
+  title: string, decision title
+  status(enum): [pending, decided, unresolved, superseded], lifecycle status
+  research?(array): Research, supporting research links
+  epic?: Epic, affected epic
+  story?: Story, affected story
+  task?: Task, affected task
+  supersedes?: Decision, replaced decision
+settings:
+  validation: strict
 ---
 ```
 
-Frontmatter `id` MUST match the `<id>` segment in the filename.
-For full naming rules, see [Filename Conventions](../filename-conventions.md).
-
-**Links:**
-- to one or more [Research]
-- to affected [Epic], [Story], [Task]
-- if superseded: to replacement [Decision]
-
-**Sections:**
-- **Context**
-- **Options Considered**
-- **Decision**
-- **Rationale**
-- **Trade-offs**
-- **Implications**
-- **Review Schedule**
+Required sections in note body:
+- Context
+- Options Considered
+- Decision
+- Rationale
+- Trade-offs
+- Implications
+- Review Schedule

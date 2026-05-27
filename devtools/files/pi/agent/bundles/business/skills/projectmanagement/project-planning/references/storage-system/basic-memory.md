@@ -88,8 +88,14 @@ For schema-governed note types, agent SHOULD run schema validation via `memory-s
 Pass criteria: zero blocking validation errors for all affected artifacts.
 
 ## Initialization
-For Planning Workflow Phase `0. Initialization`, agent MUST perform exactly:
+For Planning Workflow Phase `0. Initialization`, agent MUST perform:
 
+1. Initialize BM project context:
 ```sh
-./scripts/storage-system/basic-memory initialise --name "Project Name"`.
+./scripts/storage-system/basic-memory initialise --name "Project Name"
 ```
+2. Seed or verify schema notes for all planning artifact entities in BM `schema/`:
+   - Idea, Epic, Story, Task, Decision, Research, Learning, Retrospective.
+3. Prefer Picoschema-based schema notes from `references/schema/*` as source templates.
+4. Run schema validation (`memory-schema`) for touched artifact types before first planning write.
+5. Task status naming MUST use project planning status names defined by this project (no wrapper remap).
