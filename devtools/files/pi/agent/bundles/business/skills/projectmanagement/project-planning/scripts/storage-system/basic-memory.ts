@@ -1,6 +1,8 @@
 #!/usr/bin/env -S mise x -- bun
-// vim: set filetype=javascript:
+// vim: set filetype=typescript:
 // deps: npm:typebox
+// deps: npm:nconf
+// deps: npm:@types/nconf
 
 /**
  * # BasicMemory Project Resolver
@@ -46,6 +48,8 @@ import { homedir } from "node:os";
 import { spawnSync } from "node:child_process";
 import Type from "typebox";
 import Value from "typebox/value";
+import nconf from "nconf";
+
 
 const FATAL_MESSAGE = "FATAL: Basic Memory unavailable. exit 1. get an adult.";
 
@@ -169,6 +173,65 @@ function getRequiredFlagValue(args: string[], flag: string): string {
 }
 
 /**
+ * Parse optional --flag value pair from argv.
+ */
+function getOptionalFlagValue(args: string[], flag: string): string | null {
+  const i = args.indexOf(flag);
+  if (i === -1) return null;
+  if (!args[i + 1] || args[i + 1].startsWith("-")) {
+    console.error(`Invalid ${flag} value.`);
+    process.exit(2);
+  }
+  return args[i + 1];
+}
+
+/**
+ * Handle `initialise-project --name <name> [--cwd <path>]`.
+ */
+function handleInitialiseProject(args: string[]): boolean {
+
+  const name = getRequiredFlagValue(args, "--name").trim();
+  if (!name) {
+    console.error("Missing required --name value.");
+    process.exit(2);
+  }
+
+  const cwd = normalizePath(getOptionalFlagValue(args, "--cwd") || process.cwd());
+  const existingProject = resolveProjectFromContextMap(cwd);
+  if (existingProject) {
+    console.error(`Context already mapped to project: ${existingProject}`);
+    process.exit(1);
+  }
+
+  const basePath = process.env.BASIC_MEMORY_PROJECT_PATH || join(homedir(), "Notes");
+  if (!basePath.trim()) {
+    fatal();
+  }
+
+  const localPath = join(resolve(basePath.trim()), name);
+  const bm = spawnSync("bm", ["project", "add", "research", "--local-path", localPath], {
+    stdio: "inherit",
+    env: process.env,
+  });
+
+  if (bm.error) fatal();
+  if (typeof bm.status === "number" && bm.status !== 0) {
+    process.exit(bm.status);
+  }
+
+  const projectKey = name;
+  const map = readContextMap();
+  const existing = map.projects.find((p) => p.project === projectKey);
+  if (existing) {
+    if (!existing.paths.includes(cwd)) existing.paths.push(cwd);
+  } else {
+    map.projects.push({ project: projectKey, paths: [cwd] });
+  }
+  writeContextMap(map);
+  return true;
+}
+
+/**
  * Handle `context-map list`.
  */
 function handleContextMapList(): boolean {
@@ -220,23 +283,6 @@ function handleContextMapRemoveProject(args: string[]): boolean {
   return true;
 }
 
-/**
- * Route wrapper-only context-map subcommands.
- */
-function handleContextMapSubcommand(argv: string[]): boolean {
-  if (argv[0] !== "context-map") return false;
-
-  const action = argv[1];
-  const args = argv.slice(2);
-
-  if (action === "list") return handleContextMapList();
-  if (action === "add") return handleContextMapAdd(args);
-  if (action === "remove") return handleContextMapRemove(args);
-  if (action === "remove-project") return handleContextMapRemoveProject(args);
-
-  console.error("Unknown context-map action. Use: list | add | remove | remove-project");
-  process.exit(2);
-}
 
 /**
  * Parse and validate context-map JSON into normalized entries.
@@ -317,18 +363,9 @@ function resolveProject(explicitProjectArgPresent: boolean): string | null {
   return resolveProjectFromContextMap(queryPath);
 }
 
-/**
- * Entry point: validate args, resolve project, forward to basic-memory, and propagate exit status.
- */
-
-function main() {
-  const argv = process.argv.slice(2);
-
-  if (handleContextMapSubcommand(argv)) {
-    return;
-  }
-
+function handleBasicMemoryCommand(argv: string[]) {
   const explicitProject = getExplicitProjectArg(argv);
+
   if (explicitProject.has && !explicitProject.valid) {
     console.error("Invalid --project argument. Provide a non-empty value.");
     process.exit(2);
@@ -355,6 +392,43 @@ function main() {
 
   if (typeof child.status === "number" && child.status !== 0) {
     process.exit(child.status);
+  }
+}
+
+/**
+ * Entry point: validate args, resolve project, forward to basic-memory, and propagate exit status.
+ */
+
+function main() {
+  const argv = process.argv.slice(2);
+
+  switch (argv[0]) {
+    case "initialise-project":
+      handleInitialiseProject(argv.slice(1)) && process.exit(0);
+      break;
+
+    case "context-map":
+        const action = argv[1];
+        const args = argv.slice(2);
+
+      switch (action) {
+        case "list":
+          handleContextMapList() && process.exit(0);
+          break;
+        case "add":
+          handleContextMapAdd(args) && process.exit(0);
+          break;
+        case "remove":
+          handleContextMapRemove(args) && process.exit(0);
+          break;
+        case "remove-project":
+          handleContextMapRemoveProject(args) && process.exit(0);
+          break;
+      }
+      break;
+
+    default:
+      handleBasicMemoryCommand(argv);
   }
 }
 

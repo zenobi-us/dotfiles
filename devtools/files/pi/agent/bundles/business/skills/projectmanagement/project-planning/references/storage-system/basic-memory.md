@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Basic Memory (BM) is a CLI for managing project planning artifacts as BM notes. It provides a unified interface for persisting, retrieving, and linking planning data within the BM ecosystem.
+Basic Memory (BM) tooling (MCP or CLI) manages project planning artifacts as BM notes. It provides a unified interface for persisting, retrieving, and linking planning data within the BM ecosystem.
 
 Scope covers all planning artifacts: Idea, Epic, Story, Task, Research, Decision, Learning, Retrospective.
 
@@ -12,10 +12,10 @@ Scope covers all planning artifacts: Idea, Epic, Story, Task, Research, Decision
 > 
 > Wrapper is responsible for selecting the correct BM project context from query path/CWD.
 > 
-> Direct `basic-memory` CLI usage for planning artifacts is prohibited.
+> Direct backend usage is prohibited. Agent MUST use wrapper, which may execute BM MCP or BM CLI under hood.
 
 ## Artifact Mapping
-Artifacts map to BM notes via wrapper CLI (same interface as official `basic-memory tool ...`):
+Artifacts map to BM notes via wrapper interface (compatible with official `basic-memory ...` subcommands, whether transport is MCP or CLI):
 - Idea
 - Epic
 - Story
@@ -64,13 +64,12 @@ Human approval is mandatory at:
 Approval evidence MUST be written into relevant BM notes and linked from summary/retrospective artifacts.
 
 ## Failure / Recovery
-If wrapper is missing, non-executable, misconfigured, or persistently failing:
+If wrapper is missing, non-executable, misconfigured, persistently failing, or neither BM MCP nor BM CLI backend is available:
 **FATAL** — stop immediately, emit exactly:
 `FATAL: Basic Memory unavailable. exit 1. get an adult.`
 Exit code MUST be `1`.
 
 No fallback storage path is permitted.
-
 If wrapper works but operation partially fails:
 1. Re-read affected notes via wrapper,
 2. Reconcile metadata/relations/status via wrapper edits,
@@ -88,8 +87,9 @@ Validation MUST check:
 For schema-governed note types, agent SHOULD run schema validation via `memory-schema`.
 Pass criteria: zero blocking validation errors for all affected artifacts.
 
-## TODO
-Define:
-- exact required metadata keys per artifact type,
-- canonical frontmatter linkage field names per artifact type,
-- canonical relation names for cross-artifact consistency.
+## Initialization
+For Planning Workflow Phase `0. Initialization`, agent MUST perform exactly:
+
+```sh
+./scripts/storage-system/basic-memory initialise-project --name "Project Name"`.
+```
