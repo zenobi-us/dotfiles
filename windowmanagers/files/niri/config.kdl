@@ -52,19 +52,7 @@ input {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "DP-2" {
-    mode "3440x1440@59.973"
-    scale 1
-    transform "normal"
-    position x=0 y=0
-}
-
-output "DP-3" {
-
-    scale 1
-    transform "normal"
-    position x=3440 y=0
-}
+include "nirilayout.kdl"
 
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
@@ -326,7 +314,7 @@ layer-rule {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+spawn-at-startup "vibepanel"
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gtk"
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
 spawn-sh-at-startup "awww-daemon -n workspaces"
