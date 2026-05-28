@@ -14,8 +14,8 @@
 [bar]
 position = "top"         # "top" or "bottom"
 size = 32
-border_radius = 5
-background_opacity = 0.0 # 0.0 = transparent (islands), 1.0 = solid
+border_radius = 0
+background_opacity = 1.0 # 0.0 = transparent (islands), 1.0 = solid
 outline = false         # Override theme.outline for the bar (omit = inherit)
 
 [widgets]
@@ -32,7 +32,7 @@ right = [
   "notifications",
 ]
 border_radius = 40
-background_opacity = 1.0
+background_opacity = 0.0
 # popover_background_opacity = 0.9  # Override popover opacity (default: max of bar and widget opacity)
 # outline = true                    # Override theme.outline for widgets (omit = inherit)
 [widgets.custom-outputs]
