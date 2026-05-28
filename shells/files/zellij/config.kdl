@@ -139,7 +139,6 @@ plugins {
     sequence location="zellij:sequence"
 }
 
-
 theme "rose-pine"
 
 pane_frames false

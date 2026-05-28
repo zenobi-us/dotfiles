@@ -1,120 +1,120 @@
 themes {
     rose-pine {
         text_unselected {
-            base 224 222 244
-            background 25 23 36
-            emphasis_0 246 193 119
-            emphasis_1 156 207 216
-            emphasis_2 49 116 143
-            emphasis_3 196 167 231
+            base "#E0DEF4"
+            background "#191724"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#9CCFD8"
+            emphasis_2 "#31748F"
+            emphasis_3 "#C4A7E7"
         }
         text_selected {
-            base 224 222 244
-            background 31 29 46
-            emphasis_0 246 193 119
-            emphasis_1 156 207 216
-            emphasis_2 49 116 143
-            emphasis_3 196 167 231
+            base "#E0DEF4"
+            background "#1F1D2E"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#9CCFD8"
+            emphasis_2 "#31748F"
+            emphasis_3 "#C4A7E7"
         }
         ribbon_selected {
-            base 25 23 36
-            background 196 167 231
-            emphasis_0 235 111 146
-            emphasis_1 246 193 119
-            emphasis_2 235 188 186
-            emphasis_3 82 79 103
+            base "#191724"
+            background "#C4A7E7"
+            emphasis_0 "#EB6F92"
+            emphasis_1 "#F6C177"
+            emphasis_2 "#EBBCBA"
+            emphasis_3 "#524F67"
         }
         ribbon_unselected {
-            base 25 23 36
-            background 156 207 216
-            emphasis_0 235 111 146
-            emphasis_1 224 222 244
-            emphasis_2 82 79 103
-            emphasis_3 196 167 231
+            base "#191724"
+            background "#9CCFD8"
+            emphasis_0 "#EB6F92"
+            emphasis_1 "#E0DEF4"
+            emphasis_2 "#524F67"
+            emphasis_3 "#C4A7E7"
         }
         table_title {
-            base 49 116 143
-            background 0
-            emphasis_0 246 193 119
-            emphasis_1 156 207 216
-            emphasis_2 49 116 143
-            emphasis_3 196 167 231
+            base "#31748F"
+            background "#000000"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#9CCFD8"
+            emphasis_2 "#31748F"
+            emphasis_3 "#C4A7E7"
         }
         table_cell_selected {
-            base 224 222 244
-            background 31 29 46
-            emphasis_0 246 193 119
-            emphasis_1 156 207 216
-            emphasis_2 49 116 143
-            emphasis_3 196 167 231
+            base "#E0DEF4"
+            background "#1F1D2E"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#9CCFD8"
+            emphasis_2 "#31748F"
+            emphasis_3 "#C4A7E7"
         }
         table_cell_unselected {
-            base 224 222 244
-            background 25 23 36
-            emphasis_0 246 193 119
-            emphasis_1 156 207 216
-            emphasis_2 49 116 143
-            emphasis_3 196 167 231
+            base "#E0DEF4"
+            background "#191724"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#9CCFD8"
+            emphasis_2 "#31748F"
+            emphasis_3 "#C4A7E7"
         }
         list_selected {
-            base 224 222 244
-            background 31 29 46
-            emphasis_0 246 193 119
-            emphasis_1 156 207 216
-            emphasis_2 49 116 143
-            emphasis_3 196 167 231
+            base "#E0DEF4"
+            background "#1F1D2E"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#9CCFD8"
+            emphasis_2 "#31748F"
+            emphasis_3 "#C4A7E7"
         }
         list_unselected {
-            base 224 222 244
-            background 25 23 36
-            emphasis_0 246 193 119
-            emphasis_1 156 207 216
-            emphasis_2 49 116 143
-            emphasis_3 196 167 231
+            base "#E0DEF4"
+            background "#191724"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#9CCFD8"
+            emphasis_2 "#31748F"
+            emphasis_3 "#C4A7E7"
         }
         frame_selected {
-            base 49 116 143
-            background 0
-            emphasis_0 246 193 119
-            emphasis_1 156 207 216
-            emphasis_2 196 167 231
-            emphasis_3 0
+            base "#31748F"
+            background "#000000"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#9CCFD8"
+            emphasis_2 "#C4A7E7"
+            emphasis_3 "#000000"
         }
         frame_highlight {
-            base 246 193 119
-            background 0
-            emphasis_0 235 111 146
-            emphasis_1 246 193 119
-            emphasis_2 246 193 119
-            emphasis_3 246 193 119
+            base "#F6C177"
+            background "#000000"
+            emphasis_0 "#EB6F92"
+            emphasis_1 "#F6C177"
+            emphasis_2 "#F6C177"
+            emphasis_3 "#F6C177"
         }
         exit_code_success {
-            base 49 116 143
-            background 0
-            emphasis_0 156 207 216
-            emphasis_1 25 23 36
-            emphasis_2 196 167 231
-            emphasis_3 82 79 103
+            base "#31748F"
+            background "#000000"
+            emphasis_0 "#9CCFD8"
+            emphasis_1 "#191724"
+            emphasis_2 "#C4A7E7"
+            emphasis_3 "#524F67"
         }
         exit_code_error {
-            base 235 111 146
-            background 0
-            emphasis_0 246 193 119
-            emphasis_1 0
-            emphasis_2 0
-            emphasis_3 0
+            base "#EB6F92"
+            background "#000000"
+            emphasis_0 "#F6C177"
+            emphasis_1 "#000000"
+            emphasis_2 "#000000"
+            emphasis_3 "#000000"
         }
         multiplayer_user_colors {
-            player_1 196 167 231
-            player_2 82 79 103
-            player_3 0
-            player_4 246 193 119
-            player_5 156 207 216
-            player_6 0
-            player_7 235 111 146
-            player_8 0
-            player_9 0
-            player_10 0
+            player_1 "#C4A7E7"
+            player_2 "#524F67"
+            player_3 "#000000"
+            player_4 "#F6C177"
+            player_5 "#9CCFD8"
+            player_6 "#000000"
+            player_7 "#EB6F92"
+            player_8 "#000000"
+            player_9 "#000000"
+            player_10 "#000000"
         }
     }
 }
