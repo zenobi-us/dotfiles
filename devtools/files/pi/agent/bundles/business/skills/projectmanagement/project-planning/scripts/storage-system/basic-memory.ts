@@ -3,7 +3,6 @@
 // deps: npm:typebox
 // deps: npm:nconf
 // deps: npm:@types/nconf
-
 /**
  * # BasicMemory Project Resolver
  *
@@ -42,14 +41,14 @@
  *   - **CLI Interface**: A command-line interface that allows agents to interact with the Project Resolver Service. This CLI should accept a path query as an argument and output the resolved basic-memory project.
  */
 
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve, sep } from "node:path";
+import { writeFileSync } from "node:fs";
+import { join, resolve, sep } from "node:path";
 import { homedir } from "node:os";
 import { spawnSync } from "node:child_process";
 import Type from "typebox";
-import type { TObject, TSchema } from "typebox";
+import type { TSchema } from "typebox";
 import Value from "typebox/value";
-import { Provider } from "nconf";
+import nconf, { Provider } from "nconf";
 
 
 
@@ -124,12 +123,9 @@ class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
   }
 
   private persist(): void {
-    this.save(super.get(), (err) => {
-      if (err) {
-        console.error("Failed to persist context map:", err);
-        process.exit(2);
-      }
-    });
+    const data = super.get();
+    const configPath = join(homedir(), ".basic-memory", "project-context.json");
+    writeFileSync(configPath, JSON.stringify(data, null, 2));
   }
 
   addProjectContext(args: { project: string, contextPath: string }): void {
@@ -244,9 +240,7 @@ class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
   /**
    * Resolve project using precedence: explicit arg > env var > context-map.
    */
-  resolveProjectName(explicitProjectArgPresent: boolean): string | null {
-    if (explicitProjectArgPresent) return null; // explicit wins; no injection
-
+  resolveProjectName(): string | null {
     const fromEnv = process.env.PROJECT_PLANNING_BM_PROJECT;
     if (fromEnv && fromEnv.trim()) return fromEnv.trim();
 
@@ -268,32 +262,6 @@ function fatal(): never {
   console.error(FATAL_MESSAGE);
   process.exit(1);
 }
-
-/**
- * Detect whether argv already contains a --project flag and whether its value is valid.
- */
-
-function getExplicitProjectArg(args: string[]): { has: boolean; valid: boolean } {
-  for (let i = 0; i < args.length; i++) {
-    const a = args[i];
-    if (a === "--project") {
-      return { has: true, valid: Boolean(args[i + 1] && !args[i + 1].startsWith("-")) };
-    }
-    if (a.startsWith("--project=")) {
-      return { has: true, valid: a.length > "--project=".length };
-    }
-  }
-  return { has: false, valid: false };
-}
-
-/**
- * Identify meta commands that should not require project resolution.
- */
-
-function isMetaCommand(args: string[]): boolean {
-  return args.includes("--help") || args.includes("-h") || args.includes("--version") || args.includes("-v");
-}
-
 
 /**
  * Parse a required --flag value pair from argv.
@@ -344,7 +312,7 @@ function handleInitialiseProject(args: string[]): boolean {
   }
 
   const localPath = join(resolve(basePath.trim()), name);
-  const bm = spawnSync("bm", ["project", "add", "research", "--local-path", localPath], {
+  const bm = spawnSync("bm", ["project", "add", "research", localPath], {
     stdio: "inherit",
     env: process.env,
   });
@@ -362,26 +330,53 @@ function handleInitialiseProject(args: string[]): boolean {
 }
 
 
-
-function handleBasicMemoryCommand(argv: string[]) {
-  const explicitProject = getExplicitProjectArg(argv);
-
-  if (explicitProject.has && !explicitProject.valid) {
-    console.error("Invalid --project argument. Provide a non-empty value.");
-    process.exit(2);
+function bmCommandNeedsInjectedArg(cmd: string): { project: boolean; local: boolean } {
+  switch (true) {
+    case cmd.startsWith("project"):
+    case cmd === 'status':
+    case cmd === 'reindex':
+      return { project: true, local: true };
+    case cmd === 'doctor':
+      return { project: false, local: true };
+    default:
+      return { project: false, local: false };
   }
+}
+
+function resolveArgs() {
+  const args = nconf.argv().get();
+  const originalArgs = process.argv.slice(2);
+  const requirements = bmCommandNeedsInjectedArg(args._.join(' '));
+
+  if (requirements.project) {
+    const project = args.project || store.resolveProjectName();
+    if (!project) {
+      console.error("Invalid --project argument. Provide a non-empty value.");
+      process.exit(2);
+    }
+
+    if (originalArgs.indexOf("--project") === -1) {
+      originalArgs.push("--project", project);
+    }
+  }
+
+  if (requirements.local && !originalArgs.includes("--local")) {
+    originalArgs.push("--local");
+  }
+
+  return originalArgs;
+}
+
+
+function handleBasicMemoryCommand() {
 
   const bmBinary = "basic-memory";
-  const project = store.resolveProjectName(explicitProject.has);
 
-  // If no explicit project in argv, we MUST resolve one unless this is help/version.
-  if (!explicitProject.has && !project && !isMetaCommand(argv)) {
-    fatal();
-  }
+  const resolvedArgs = resolveArgs();
 
-  const forwardedArgs = explicitProject.has || !project ? argv : [...argv, "--project", project];
+  console.log("Forwarding to basic-memory with args:", resolvedArgs);
 
-  const child = spawnSync(bmBinary, forwardedArgs, {
+  const child = spawnSync(bmBinary, resolvedArgs, {
     stdio: "inherit",
     env: process.env,
   });
@@ -400,40 +395,46 @@ function handleBasicMemoryCommand(argv: string[]) {
  */
 
 function main() {
-  const argv = process.argv.slice(2);
+  const args = nconf.argv().get()
+  const cmd = args._[0];
 
-  switch (argv[0]) {
+  console.log("Basic Memory Project Resolver CLI");
+  console.log("CWD:", process.cwd());
+  console.log("Received args:", args);
+  console.log('Cmd', cmd);
+
+  switch (cmd) {
     case "initialise":
-      handleInitialiseProject(argv.slice(1)) && process.exit(0);
+      handleInitialiseProject(args._) && process.exit(0);
       break;
 
     case "context":
-      const action = argv[1];
-      const args = argv.slice(2);
+      const subcmd = args._[1];
+      console.log('Subcmd', subcmd);
 
-      switch (action) {
+      switch (subcmd) {
         case "list":
           store.printContextMap({
-            format: getRequiredFlagValue(args, "--format") === "json" ? "json" : "text"
+            format: args.format === "json" ? "json" : "text",
           });
           break;
         case "add":
           store.addProjectContext({
-            project: getRequiredFlagValue(args, "--project").trim(),
-            contextPath: normalizePath(getRequiredFlagValue(args, "--path"))
+            project: args.project.trim(),
+            contextPath: normalizePath(args.path.trim()),
           });
           break;
         case "remove":
           store.removeProjectContext({
-            project: getRequiredFlagValue(args, "--project").trim(),
-            contextPath: normalizePath(getRequiredFlagValue(args, "--path"))
+            project: args.project.trim(),
+            contextPath: normalizePath(args.path.trim()),
           });
           break;
       }
       break;
 
     default:
-      handleBasicMemoryCommand(argv);
+      handleBasicMemoryCommand();
   }
 }
 

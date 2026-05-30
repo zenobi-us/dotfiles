@@ -7,8 +7,11 @@ Basic Memory (BM) tooling (MCP or CLI) manages project planning artifacts as BM 
 Scope covers all planning artifacts: Idea, Epic, Story, Task, Research, Decision, Learning, Retrospective.
 
 > [!WARNING]
-> All storage operations MUST go through wrapper:
->  `./scripts/storage-system/basic-memory`.
+> All storage operations MUST go through our wrapper cli.
+>
+> ```sh
+>  bun scripts/storage-system/basic-memory.ts
+> ```
 > 
 > Wrapper is responsible for selecting the correct BM project context from query path/CWD.
 > 
