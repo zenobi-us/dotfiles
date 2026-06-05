@@ -29,6 +29,12 @@ When the agent is invoked, it should first determine the storage system in use f
    - The user might have specified the storage system in their request or in the context of the conversation. If so, use that information.
 2. Qualify the storage system defined. It might not exist. Only valid storage systems defined in ./references/storage-systems are valid. If the storage system is invalid, respond with an error message indicating that the storage system is not supported and provide a list of valid storage systems.
 
+### Wrapper Path Resolution
+
+For this skill, any referenced `./scripts/storage-system/...` path is relative to this skill bundle, not the target project directory.
+
+Agents MUST NOT create project-local wrapper files unless a storage backend document explicitly requires project scaffolding.
+
 ## Planning Artifacts
 
 1. Before using any concept here you MUST detect a StorageSystem strategy from one of the available backend references for the project you are operating in. If no strategy is detected, you MUST escalate to Q and stop before execution.
@@ -41,6 +47,9 @@ When the agent is invoked, it should first determine the storage system in use f
 
 Every project planning file must be one of the following: 
 
+A project MUST have exactly one project-level constitution before planning exits. It is a singleton governing artifact, not an ID-bearing work item.
+
+- [Project Constitution](./references/schema/00-artifact-project-constitution.md): singleton project-level governing artifact defining overall goals, principles, constraints, guidelines, and decision authority. Exactly one MUST exist per project before planning exits.
 - [Idea](./references/schema/01-artifact-idea.md): low-commitment opportunity framing; may promote to Epic.
 - [Epic](./references/schema/02-artifact-epic.md): committed direction with phase planning sections.
 - [Story](./references/schema/03-artifact-story.md): phase-agnostic requirement (WHAT) with acceptance criteria and test spec.

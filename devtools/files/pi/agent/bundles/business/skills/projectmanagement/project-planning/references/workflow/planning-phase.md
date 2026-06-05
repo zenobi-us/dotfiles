@@ -11,14 +11,17 @@
 - Every task has `phase_id`
 
 ## Sequence
-1. Idea (optional but recommended under uncertainty)
-2. Epic (required)
-3. Story Definition (required, phase-agnostic)
-4. Phase Planning (phase sections in Epic, required)
-5. Task Breakdown (required)
-6. Research/Decision as needed
+1. Project Constitution (required singleton)
+2. Idea (optional but recommended under uncertainty)
+3. Epic (required)
+4. Story Definition (required, phase-agnostic)
+5. Phase Planning (phase sections in Epic, required)
+6. Task Breakdown (required)
+7. Research/Decision as needed
 
 ## Hard Gates
+- `constitution.md` MUST exist before planning exits.
+- Planned Epics/Stories/Tasks MUST be checked against `constitution.md` before planning exits.
 - Story MUST include acceptance criteria + test specification.
 - Task MUST include `phase_id`; `story_id` SHOULD exist unless infra/exploratory.
 - Unresolved strategic decisions MUST be escalated to Q.
@@ -29,6 +32,7 @@
 - Agent MUST wait for explicit human confirmation before continuing to execution.
 
 ## Checklist
+- [ ] Constitution exists and planned work conforms to it
 - [ ] Epic exists and active
 - [ ] Stories linked to Epic
 - [ ] Epic has inline phase sections

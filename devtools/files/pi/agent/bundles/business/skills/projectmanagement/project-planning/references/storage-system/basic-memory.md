@@ -7,14 +7,16 @@ Basic Memory (BM) tooling (MCP or CLI) manages project planning artifacts as BM 
 Scope covers all planning artifacts: Idea, Epic, Story, Task, Research, Decision, Learning, Retrospective.
 
 > [!WARNING]
-> All storage operations MUST go through our wrapper cli.
+> All storage operations MUST go through the skill-bundle wrapper CLI.
 >
 > ```sh
->  bun scripts/storage-system/basic-memory.ts
+> bun ./scripts/storage-system/basic-memory.ts
 > ```
-> 
+>
+> Path is relative to the `project-planning` skill bundle, not the target project directory.
+>
 > Wrapper is responsible for selecting the correct BM project context from query path/CWD.
-> 
+>
 > Direct backend usage is prohibited. Agent MUST use wrapper, which may execute BM MCP or BM CLI under hood.
 
 ## Artifact Mapping
@@ -95,10 +97,11 @@ For Planning Workflow Phase `0. Initialization`, agent MUST perform:
 
 1. Initialize BM project context:
 ```sh
-./scripts/storage-system/basic-memory initialise --name "Project Name"
+bun ./scripts/storage-system/basic-memory.ts initialise --name "Project Name"
 ```
+(relative to the `project-planning` skill bundle, not the target project directory).
 2. Seed or verify schema notes for all planning artifact entities in BM `schema/`:
-   - Idea, Epic, Story, Task, Decision, Research, Learning, Retrospective.
+   - Project Constitution, Idea, Epic, Story, Task, Decision, Research, Learning, Retrospective.
 3. Prefer Picoschema-based schema notes from `references/schema/*` as source templates.
 4. Run schema validation (`memory-schema`) for touched artifact types before first planning write.
 5. Task status naming MUST use project planning status names defined by this project (no wrapper remap).
