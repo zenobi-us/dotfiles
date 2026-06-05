@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.75.5",
+  "lastChangelogVersion": "0.78.0",
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
@@ -23,13 +23,13 @@
     "./packages/pi-rose-pine"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
-  "hideThinkingBlock": false,
-  "defaultProvider": "llamacpp",
+  "hideThinkingBlock": true,
+  "defaultProvider": "openai-codex",
   "enableSkillCommands": true,
   "quietStartup": true,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 10,
   "enableInstallTelemetry": false,
   "doubleEscapeAction": "tree",
-  "defaultModel": "unsloth/Qwen3.5-4B-GGUF:Q4_K_XL"
+  "defaultModel": "gpt-5.5"
 }
