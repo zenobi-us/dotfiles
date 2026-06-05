@@ -2,9 +2,9 @@
 
 ## Purpose
 
-Basic Memory (BM) tooling (MCP or CLI) manages project planning artifacts as BM notes. It provides a unified interface for persisting, retrieving, and linking planning data within the BM ecosystem.
+Basic Memory (BM) CLI manages project planning artifacts as BM notes. The project-planning skill MUST interact with BM only through the skill-bundle wrapper CLI.
 
-Scope covers all planning artifacts: Idea, Epic, Story, Task, Research, Decision, Learning, Retrospective.
+Scope covers all planning artifacts: Project Constitution, Idea, Epic, Story, Task, Research, Decision, Learning, Retrospective.
 
 > [!WARNING]
 > All storage operations MUST go through the skill-bundle wrapper CLI.
@@ -17,10 +17,11 @@ Scope covers all planning artifacts: Idea, Epic, Story, Task, Research, Decision
 >
 > Wrapper is responsible for selecting the correct BM project context from query path/CWD.
 >
-> Direct backend usage is prohibited. Agent MUST use wrapper, which may execute BM MCP or BM CLI under hood.
+> Direct BM CLI usage and BM MCP usage are prohibited. Agent MUST use the wrapper CLI only.
 
 ## Artifact Mapping
-Artifacts map to BM notes via wrapper interface (compatible with official `basic-memory ...` subcommands, whether transport is MCP or CLI):
+Artifacts map to BM notes via wrapper CLI commands:
+- Project Constitution
 - Idea
 - Epic
 - Story
@@ -31,18 +32,18 @@ Artifacts map to BM notes via wrapper interface (compatible with official `basic
 - Retrospective
 
 Each artifact MUST be persisted as a BM note with agreed `note_type` and metadata conventions.
-Wrapper MUST pass through normal read/write/search/build-context operations while resolving project automatically.
-For relevant actions, agent SHOULD load these skills by name:
+Wrapper MUST expose normal read/write/search/build-context operations while resolving project automatically through CLI execution.
+For relevant actions, agent MAY consult these skills for note-shape concepts only; their backend instructions MUST NOT override this wrapper-CLI-only contract:
 - note authoring/editing: `memory-notes`
-- task workflow: `memory-tasks`
-- lifecycle/archive/reactivate: `memory-lifecycle`
-- metadata filtering/query: `memory-metadata-search`
-- schema validation/drift: `memory-schema`
-- research ingestion: `memory-research`
-- raw transcript/doc ingestion: `memory-ingest`
-- reflection pass: `memory-reflect`
-- reorganization/cleanup: `memory-defrag`
-- literary corpus analysis: `memory-literary-analysis`
+- task workflow concepts: `memory-tasks`
+- lifecycle/archive/reactivate concepts: `memory-lifecycle`
+- metadata filtering/query concepts: `memory-metadata-search`
+- schema validation/drift concepts: `memory-schema`
+- research ingestion concepts: `memory-research`
+- raw transcript/doc ingestion concepts: `memory-ingest`
+- reflection concepts: `memory-reflect`
+- reorganization/cleanup concepts: `memory-defrag`
+- literary corpus analysis concepts: `memory-literary-analysis`
 
 ## Linking Strategy
 Link format is dual by location:
@@ -69,7 +70,7 @@ Human approval is mandatory at:
 Approval evidence MUST be written into relevant BM notes and linked from summary/retrospective artifacts.
 
 ## Failure / Recovery
-If wrapper is missing, non-executable, misconfigured, persistently failing, or neither BM MCP nor BM CLI backend is available:
+If wrapper is missing, non-executable, misconfigured, persistently failing, or the BM CLI is unavailable:
 **FATAL** — stop immediately, emit exactly:
 `FATAL: Basic Memory unavailable. exit 1. get an adult.`
 Exit code MUST be `1`.
@@ -81,7 +82,7 @@ If wrapper works but operation partially fails:
 3. Re-run validation before proceeding.
 
 ## Validation
-Validation MUST be executed via wrapper-backed BM operations.
+Validation MUST be executed via wrapper CLI operations.
 Validation MUST check:
 - all touched artifacts are resolvable through wrapper,
 - required metadata fields are present (`id`, `status`, linkage fields),
