@@ -31,3 +31,11 @@ devtools/files/pi/agent/extensions/share/webapp/dist/
 devtools/files/pi/agent/extensions/share/webapp/.tanstack/
 devtools/files/pi/agent/extensions/share/webapp/.cta.json
 devtools/files/pi/agent/extensions/share/webapp/.vscode/
+
+# Pi agent runtime/auth/cache files
+/devtools/files/pi/agent/auth.json
+/devtools/files/pi/agent/cache/
+/devtools/files/pi/agent/sessions/
+/devtools/files/pi/agent/mcp-oauth/
+/devtools/files/pi/agent/mcp-cache.json
+/devtools/files/pi/agent/bin/
