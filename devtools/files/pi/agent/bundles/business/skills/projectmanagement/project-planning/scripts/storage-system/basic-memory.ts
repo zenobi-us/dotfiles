@@ -123,9 +123,9 @@ class ContextMapConfig<T extends typeof ContextMapSchema> extends Provider {
   }
 
   private persist(): void {
-    const data = super.get();
-    const configPath = join(homedir(), ".basic-memory", "project-context.json");
-    writeFileSync(configPath, JSON.stringify(data, null, 2));
+    this.save(
+      this.get()
+    );
   }
 
   addProjectContext(args: { project: string, contextPath: string }): void {
@@ -451,6 +451,16 @@ function bmCommandNeedsInjectedArg(cmd: string): { project: boolean; local: bool
     default:
       return { project: false, local: false };
   }
+
+  if (projectOnly.some(matches)) {
+    return { project: true, local: false };
+  }
+
+  if (matches("doctor")) {
+    return { project: false, local: true };
+  }
+
+  return { project: false, local: false };
 }
 
 function resolveArgs() {
@@ -458,6 +468,7 @@ function resolveArgs() {
   const originalArgs = process.argv.slice(2);
   assertPlanningWriteNoteTitle(originalArgs);
   const requirements = bmCommandNeedsInjectedArg(args._.join(' '));
+  // NOTE: mapping mirrors `bm --help` command tree for --project/--local support.
 
   if (requirements.project) {
     const project = args.project || store.resolveProjectName();

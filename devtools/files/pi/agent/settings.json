@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.78.0",
+  "lastChangelogVersion": "0.79.0",
   "defaultThinkingLevel": "medium",
   "theme": "rose-pine-moon",
   "packages": [
@@ -24,13 +24,12 @@
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
-  "defaultProvider": "llama-server=http://brass.local:2000",
+  "defaultProvider": "openai-codex",
   "enableSkillCommands": true,
   "quietStartup": true,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 10,
   "enableInstallTelemetry": false,
   "doubleEscapeAction": "tree",
-  "defaultModel": "unsloth/Qwen3.6-27B-MTP-GGUF:Q4_K_M",
-  "llamaServerUrl": "http://brass.local:2000"
+  "defaultModel": "gpt-5.5"
 }
