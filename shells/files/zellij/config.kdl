@@ -49,30 +49,13 @@ keybinds clear-defaults=true {
 
     pane {
         // Pane operations
-        bind "v" { 
-            Run "zsh" {
-                direction "Right"
-                close_on_exit true
-            }
-            SwitchToMode "normal";
-        }
-        bind "h" { 
-            Run "zsh" {
-                direction "Down"
-                close_on_exit true
-            }
-            SwitchToMode "normal"; }
-        bind "s" { 
-            Run "zsh" {
-                stacked true
-                borderless true
-                close_on_exit true
-            }
-            SwitchToMode "normal"; }
+        bind "v" { NewPane; SwitchToMode "Normal"; }
+        bind "h" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "s" { NewPane "stacked"; SwitchToMode "Normal"; }
+
         bind "x" { CloseFocus; SwitchToMode "normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "resize"; }
-
 
         bind "Ctrl Left" { MovePane "left"; }
         bind "Ctrl Down" { MovePane "down"; }
@@ -84,13 +67,7 @@ keybinds clear-defaults=true {
 
     tab {
         // Tab operations
-        bind "c" {
-            NewTab {
-                cwd "~"
-                layout "default"
-            }; 
-            SwitchToMode "normal"; 
-        }
+        bind "c" { NewTab; SwitchToMode "Normal"; }
         bind "n" { GoToNextTab; SwitchToMode "normal"; }
         bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
         bind "x" { CloseTab; SwitchToMode "normal"; }
