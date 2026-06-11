@@ -288,6 +288,109 @@ function getOptionalFlagValue(args: string[], flag: string): string | null {
   return args[i + 1];
 }
 
+const PLANNING_ARTIFACT_TITLE_PATTERN = /^(constitution|(?:idea|epic|story|task|research|decision|learning|retrospective)-[a-f0-9]{8}-[a-z0-9]+(?:-[a-z0-9]+)*)$/;
+const HEX_ID_PATTERN = /^[a-f0-9]{8}$/;
+
+function isPlanningWriteNote(args: string[]): boolean {
+  return args[0] === "tool"
+    && args[1] === "write-note"
+    && getOptionalFlagValue(args, "--folder") === "planning";
+}
+
+function assertPlanningWriteNoteTitle(args: string[]): void {
+  if (!isPlanningWriteNote(args)) return;
+
+  const title = getOptionalFlagValue(args, "--title");
+  if (!title) return;
+  if (PLANNING_ARTIFACT_TITLE_PATTERN.test(title)) return;
+
+  console.error("Planning note title must match project-planning filename conventions because Basic Memory derives filename/permalink from title.");
+  console.error("Use: constitution or <type>-<8hex>-<kebab-title>, for example decision-b17c0de5-builtin-provider-conventions");
+  process.exit(2);
+}
+
+function kebabCase(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function planningArtifactTitle(type: string, id: string, humanTitle: string): string {
+  if (!HEX_ID_PATTERN.test(id)) {
+    console.error("Planning artifact id must be exactly 8 lowercase hex characters.");
+    process.exit(2);
+  }
+
+  const slug = kebabCase(humanTitle);
+  if (!slug) {
+    console.error("Planning artifact title must produce a non-empty kebab-case slug.");
+    process.exit(2);
+  }
+
+  return `${type}-${id}-${slug}`;
+}
+
+function spawnBasicMemory(args: string[]): void {
+  const child = spawnSync("basic-memory", args, {
+    stdio: "inherit",
+    env: process.env,
+  });
+
+  if (child.error) fatal();
+  if (typeof child.status === "number" && child.status !== 0) {
+    process.exit(child.status);
+  }
+}
+
+function requireProjectName(args: string[]): string {
+  const explicit = getOptionalFlagValue(args, "--project");
+  const project = explicit || store.resolveProjectName();
+  if (!project) {
+    console.error("Invalid --project argument. Provide a non-empty value.");
+    process.exit(2);
+  }
+
+  return project;
+}
+
+function handlePlanningWriteDecision(args: string[]): void {
+  const id = getRequiredFlagValue(args, "--id").trim();
+  const humanTitle = getRequiredFlagValue(args, "--title").trim();
+  const userContent = getOptionalFlagValue(args, "--content") ?? "";
+  const project = requireProjectName(args);
+  const canonicalTitle = planningArtifactTitle("decision", id, humanTitle);
+  const content = `# ${humanTitle}\n\n- [id] ${id}\n\n${userContent}`.trim();
+
+  spawnBasicMemory([
+    "tool",
+    "write-note",
+    "--title",
+    canonicalTitle,
+    "--folder",
+    "planning",
+    "--content",
+    content,
+    "--project",
+    project,
+    "--local",
+  ]);
+}
+
+function handlePlanningCommand(args: string[]): boolean {
+  const subcmd = args[1];
+
+  switch (subcmd) {
+    case "write-decision":
+      handlePlanningWriteDecision(args);
+      return true;
+    default:
+      console.error("Unknown planning command. Supported: planning write-decision");
+      process.exit(2);
+  }
+}
+
 /**
  * Handle `initialise --name <name> [--cwd <path>]`.
  */
@@ -312,7 +415,7 @@ function handleInitialiseProject(args: string[]): boolean {
   }
 
   const localPath = join(resolve(basePath.trim()), name);
-  const bm = spawnSync("bm", ["project", "add", "research", localPath], {
+  const bm = spawnSync("basic-memory", ["project", "add", name, localPath, "--local"], {
     stdio: "inherit",
     env: process.env,
   });
@@ -331,13 +434,20 @@ function handleInitialiseProject(args: string[]): boolean {
 
 
 function bmCommandNeedsInjectedArg(cmd: string): { project: boolean; local: boolean } {
-  switch (true) {
-    case cmd.startsWith("project"):
-    case cmd === 'status':
-    case cmd === 'reindex':
-      return { project: true, local: true };
-    case cmd === 'doctor':
+  const [root] = cmd.split(/\s+/).filter(Boolean);
+
+  switch (root) {
+    case "project":
       return { project: false, local: true };
+    case "doctor":
+      return { project: false, local: true };
+    case "status":
+      return { project: true, local: true };
+    case "reindex":
+      return { project: true, local: false };
+    case "tool":
+    case "schema":
+      return { project: true, local: true };
     default:
       return { project: false, local: false };
   }
@@ -346,6 +456,7 @@ function bmCommandNeedsInjectedArg(cmd: string): { project: boolean; local: bool
 function resolveArgs() {
   const args = nconf.argv().get();
   const originalArgs = process.argv.slice(2);
+  assertPlanningWriteNoteTitle(originalArgs);
   const requirements = bmCommandNeedsInjectedArg(args._.join(' '));
 
   if (requirements.project) {
@@ -370,24 +481,10 @@ function resolveArgs() {
 
 function handleBasicMemoryCommand() {
 
-  const bmBinary = "basic-memory";
-
   const resolvedArgs = resolveArgs();
 
   console.log("Forwarding to basic-memory with args:", resolvedArgs);
-
-  const child = spawnSync(bmBinary, resolvedArgs, {
-    stdio: "inherit",
-    env: process.env,
-  });
-
-  if (child.error) {
-    fatal();
-  }
-
-  if (typeof child.status === "number" && child.status !== 0) {
-    process.exit(child.status);
-  }
+  spawnBasicMemory(resolvedArgs);
 }
 
 /**
@@ -405,7 +502,11 @@ function main() {
 
   switch (cmd) {
     case "initialise":
-      handleInitialiseProject(args._) && process.exit(0);
+      handleInitialiseProject(process.argv.slice(2)) && process.exit(0);
+      break;
+
+    case "planning":
+      handlePlanningCommand(process.argv.slice(2)) && process.exit(0);
       break;
 
     case "context":
@@ -420,14 +521,14 @@ function main() {
           break;
         case "add":
           store.addProjectContext({
-            project: args.project.trim(),
-            contextPath: normalizePath(args.path.trim()),
+            project: getRequiredFlagValue(process.argv.slice(2), "--project").trim(),
+            contextPath: normalizePath(getRequiredFlagValue(process.argv.slice(2), "--path").trim()),
           });
           break;
         case "remove":
           store.removeProjectContext({
-            project: args.project.trim(),
-            contextPath: normalizePath(args.path.trim()),
+            project: getRequiredFlagValue(process.argv.slice(2), "--project").trim(),
+            contextPath: normalizePath(getRequiredFlagValue(process.argv.slice(2), "--path").trim()),
           });
           break;
       }

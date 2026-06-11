@@ -18,6 +18,7 @@ This is your primary skill router. Based on the action you are about to perform,
 
 - general internet search: use `lynx-web-search` skill.
 - exploring or tracing code: use `codemapper` skill. (Also use lsp and ast to understand structure and find relevant sections). 
+- understanding a code library or sdk, use the `code-library-docs` skill to find and understand documentation.
 
 ## Codebases
 

@@ -24,12 +24,13 @@
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
-  "defaultProvider": "openai-codex",
+  "defaultProvider": "llama-server=http://brass.local:2000",
   "enableSkillCommands": true,
   "quietStartup": true,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 10,
   "enableInstallTelemetry": false,
   "doubleEscapeAction": "tree",
-  "defaultModel": "gpt-5.5"
+  "defaultModel": "unsloth/Qwen3.6-27B-MTP-GGUF:Q4_K_M",
+  "llamaServerUrl": "http://brass.local:2000"
 }
