@@ -31,6 +31,7 @@ A validator SHOULD enforce:
 1. ID-bearing filename matches artifact type pattern.
 2. Singleton filename matches exact reserved filename.
 3. `id` in frontmatter matches `<id>` in filename for ID-bearing artifacts.
+   - In Basic Memory, schema validation only enforces this field if the artifact schema declares `settings.frontmatter.id`; filename-to-frontmatter equality still requires wrapper/custom validation.
 4. All artifact links use markdown link format.
 5. No duplicate `<id>` within active artifact set.
 6. Exactly one `constitution.md` exists per project before planning exits.

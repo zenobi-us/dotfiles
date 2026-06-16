@@ -38,11 +38,28 @@ bun ./scripts/storage-system/basic-memory.ts planning write-decision \
 
 The helper derives the BM note title `decision-b17c0de5-builtin-provider-conventions` so BM creates a compliant filename/permalink.
 
+BM note title/permalink SHOULD be the stable slug-like artifact identifier (`<type>-<id>-<kebab-title>`). Obsidian wiki-links SHOULD target that same title where possible, but filename conventions and BM canonical permalinks take priority over human-friendly display names.
+
 ```yaml
 ---
-note_type: research
+type: research
 ---
 ```
+
+## Schema Semantics
+
+Basic Memory Picoschema has two validation targets:
+
+- Top-level `schema:` fields validate note-body observations (`- [field] value`) and wiki-link relations (`- relation [[Target]]`).
+- `settings.frontmatter:` fields validate YAML frontmatter metadata.
+
+Machine-critical planning metadata MUST be declared under `settings.frontmatter`, including `id`, `project_id`, `status`, tags, and any frontmatter linkage fields. Top-level `schema:` MAY mirror those fields for graph/search usefulness, but it does not validate YAML frontmatter.
+
+Frontmatter linkage fields that store `memory://...` URLs SHOULD be typed as `string` or `field?(array, description): string` in `settings.frontmatter`; capitalized entity types in top-level `schema:` are for body wiki-link relations, not frontmatter URLs.
+
+Top-level relation fields such as `epic?: Epic` validate body wiki-link relations only. They do not validate `memory://...` frontmatter links. Canonical machine links MUST be declared as string fields under `settings.frontmatter`.
+
+Schema `entity` values MUST match BM note `type` values exactly and SHOULD use lowercase artifact types (`task`, `story`, `decision`, etc.).
 
 ## Tags
 
@@ -64,22 +81,35 @@ Agents MUST preserve this list form when creating or editing planning artifact n
 
 
 ## Linking Strategy
-Link format is dual by location:
+Link format is dual by location and purpose:
 - Frontmatter linkage fields MUST use canonical `memory://...` URLs.
-- Body text references MUST use wiki-links `[[...]]`.
+- Body text references MUST use wiki-links `[[...]]` for human reading, Obsidian graphing, and BM graph context.
+
+Caveat: Obsidian resolves `[[Note Title]]` by vault path/title. Basic Memory resolves wiki-links by note title/permalink. These are compatible for human navigation when titles stay stable, but they are not a safe machine identity layer.
 
 Rules:
 - Machine-critical relationships (parent/child/depends_on/etc.) MUST be stored in frontmatter as `memory://...`.
 - Narrative/context references in prose MUST use `[[...]]`.
+- Typed body relations MAY mirror canonical frontmatter links for graph semantics, for example `- part_of [[epic-b17c0de5-auth]]`.
 - If same relationship appears in both places, frontmatter `memory://` is source of truth.
+- Wiki-links MUST NOT be the source of truth for planning parent/child/dependency identity.
 - Wrapper CLI examples SHOULD identify notes by title (for example, `"Example Task"`) or canonical non-directory slug. Examples MUST NOT prefix identifiers with artifact-type directory segments.
+
+Example:
+```yaml
+epic: memory://planning/epic-b17c0de5-auth
+```
+
+```md
+## Relations
+- part_of [[epic-b17c0de5-auth]]
+```
 
 ## Status Sync Rules
 
 Status flow is backend-independent. Before changing any artifact status, agent MUST read [Status Flow](../status-flow.md) and verify the requested transition is legal for that artifact type.
 
-Artifact status MUST be stored in BM frontmatter metadata and treated as the source of truth. Body observations such as `- [status] ...` MAY mirror frontmatter for search/schema usefulness, but MUST NOT override frontmatter.
-
+Artifact status MUST be stored in BM frontmatter metadata and treated as the source of truth. The artifact schema MUST declare that status under `settings.frontmatter`. Body observations such as `- [status] ...` MAY mirror frontmatter for graph/schema-body usefulness, but MUST NOT override frontmatter.
 All status reads, edits, searches, and validations MUST use the skill-bundle wrapper CLI from the `project-planning` skill bundle directory:
 
 ```sh
@@ -178,14 +208,15 @@ If wrapper works but operation partially fails:
 Validation MUST be executed via wrapper CLI operations.
 Validation MUST check:
 - all touched artifacts are resolvable through wrapper,
-- required metadata fields are present (`id`, `status`, linkage fields),
+- required frontmatter fields are present through `settings.frontmatter` schema rules (`id`, `project_id`, `status`, linkage fields),
 - frontmatter linkage fields are valid `memory://...` URLs,
-- required relations resolve,
-- status/lifecycle consistency across touched artifacts.
+- frontmatter `memory://...` links remain canonical even when body wiki-link display text differs,
+- required body observations and wiki-link relations from top-level `schema:` resolve where used,
+- status/lifecycle consistency across touched artifacts,
+- filename `<id>` matches frontmatter `id` for ID-bearing artifacts.
 
-For schema-governed note types, agent SHOULD run schema validation via `memory-schema`.
+For schema-governed note types, agent SHOULD run schema validation via `memory-schema` / wrapper-backed `schema validate`.
 Pass criteria: zero blocking validation errors for all affected artifacts.
-
 ## Initialization
 For Planning Workflow Phase `0. Initialization`, agent MUST perform:
 

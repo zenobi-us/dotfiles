@@ -23,6 +23,31 @@ description: Relationship rules for miniproject-aligned planning artifacts.
 - `constitution.md` is a singleton artifact: exactly one MUST exist per project before planning exits, and a project MUST NOT contain more than one constitution file.
 - More details: see [Filename Conventions](./filename-conventions.md).
 
+## Basic Memory Dual-Link Policy
+
+When Basic Memory is the selected storage backend, relationships MUST be represented in two layers:
+
+1. Canonical machine relationship: frontmatter field containing `memory://...` URL.
+2. Human/graph relationship: body wiki-link `[[...]]`, preferably as a typed relation.
+
+Obsidian resolves `[[Note Title]]` by vault path/title. Basic Memory resolves wiki-links by note title/permalink. This is good for shared human graph navigation, but unsafe as the only machine identity layer.
+
+Rules:
+- Frontmatter `memory://...` links are source of truth for parent/child/dependency relationships.
+- Body wiki-links MAY mirror frontmatter links for Obsidian and BM graph context.
+- If frontmatter and body relation disagree, frontmatter wins and body MUST be corrected.
+- Planning validators MUST verify frontmatter `memory://...` links; they MUST NOT rely only on wiki-link resolution.
+
+Example:
+```yaml
+epic: memory://planning/epic-b17c0de5-auth
+```
+
+```md
+## Relations
+- part_of [[epic-b17c0de5-auth]]
+```
+
 ## Project Constitution Rules
 - `constitution.md` is the highest-priority planning artifact.
 - Epics, Stories, Tasks, Research, Decisions, Learning, and Retrospectives MUST NOT contradict the active constitution.
@@ -38,6 +63,7 @@ description: Relationship rules for miniproject-aligned planning artifacts.
 - `blocks`
 
 ## Link Format
-Use markdown links only.
-Link targets MUST follow filename conventions.
-More details: see [Filename Conventions](./filename-conventions.md).
+Use markdown links for human-readable documents and typed body relations.
+Link targets MUST follow filename conventions where file links are used.
+For Basic Memory-backed artifacts, canonical machine links MUST use frontmatter `memory://...` URLs; body `[[...]]` wiki-links are graph/human mirrors.
+More details: see [Filename Conventions](./filename-conventions.md) and [Basic Memory Storage](./storage-system/basic-memory.md).

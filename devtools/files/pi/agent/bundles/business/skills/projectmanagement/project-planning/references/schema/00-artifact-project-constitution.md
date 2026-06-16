@@ -17,12 +17,39 @@ This is a singleton governing artifact, not a normal ID-bearing work item.
 ```yaml
 ---
 title: Project Constitution
-projectId: { ProjectId }
+project_id: { ProjectId }
 status: { draft | active | superseded }
 version: { semver or integer }
 ratified_at: { date, optional }
 ---
 ```
+
+## Basic Memory Schema Note
+
+When Basic Memory is the selected storage backend, create or validate the constitution with a schema note equivalent to:
+
+```yaml
+---
+title: Project Constitution
+type: schema
+entity: constitution
+version: 1
+schema:
+  project_id?: string, optional body observation mirror of planning project identifier
+  status?(enum, optional body observation mirror of constitution lifecycle status): [draft, active, superseded]
+  version?: string, optional body observation mirror of constitution version
+settings:
+  validation: strict
+  frontmatter:
+    title: string, must be Project Constitution
+    project_id: string, planning project identifier
+    status(enum, constitution lifecycle status): [draft, active, superseded]
+    version: string, semver or integer-like version string
+    ratified_at?: string, optional ratification date
+---
+```
+
+New Basic Memory notes MUST use `project_id` so metadata keys stay snake_case across artifact types.
 
 ## Authority
 
