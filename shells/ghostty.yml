@@ -1,0 +1,13 @@
+---
+where: os.name == "linux" || os.name == "macos"
+
+actions:
+  - action: command.run
+    command: rm
+    args:
+      - -rf
+      - "{{user.config_dir}}/ghostty"
+
+  - action: file.link
+    from: ghostty
+    to: "{{user.config_dir}}/ghostty"

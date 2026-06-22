@@ -1,33 +1,41 @@
-### [Story] Content Structure
+### [Story] Picoschema Definition
 
-**Frontmatter:**
 ```yaml
 ---
-title: { Story Title }
-projectId: { ProjectId }
-epic_id: { Epic ID }
-status: { draft | approved | in-progress | in-review | completed | blocked | cancelled }
-priority: { critical | high | medium | low }
-story_points: { 1 | 2 | 3 | 5 | 8 | 13, optional }
-test_coverage: { none | partial | full }
+title: Story
+type: schema
+entity: story
+version: 1
+schema:
+  id?: string, optional body observation mirror of artifact id
+  project_id?: string, optional body observation mirror of planning project identifier
+  title?: string, optional body observation mirror of story title
+  epic?: Epic, optional parent epic wiki-link relation
+  status?(enum, optional body observation mirror of lifecycle status): [draft, approved, in-progress, in-review, completed, blocked, cancelled]
+  priority?(enum, optional body observation mirror of priority level): [critical, high, medium, low]
+  story_points?(enum, optional body observation mirror of estimate): [1, 2, 3, 5, 8, 13]
+  test_coverage?(enum, optional body observation mirror of coverage state): [none, partial, full]
+  tasks?(array, optional implementation task wiki-link relations): Task
+settings:
+  validation: strict
+  frontmatter:
+    id: string, artifact id matching filename id segment
+    project_id: string, planning project identifier
+    title: string, story title
+    epic: string, canonical memory:// machine link for parent epic
+    status(enum, lifecycle status): [draft, approved, in-progress, in-review, completed, blocked, cancelled]
+    priority(enum, priority level): [critical, high, medium, low]
+    story_points?(enum, estimate): [1, 2, 3, 5, 8, 13]
+    test_coverage(enum, coverage state): [none, partial, full]
+    tasks?(array, canonical memory:// machine links for implementation tasks): string
 ---
 ```
 
-Frontmatter `id` MUST match the `<id>` segment in the filename.
-For full naming rules, see [Filename Conventions](../filename-conventions.md).
-
-**Links:**
-- to exactly one [Epic]
-- to one or more [Task]
-- optionally to [Research], [Decision], [Learning]
-
-**Sections:**
-- **User Story**
-- **Acceptance Criteria**
-- **Context**
-- **Out of Scope**
-- **Tasks**
-- **Test Specification**
-  - **E2E Tests** (AC-to-test mapping)
-  - **Unit Test Coverage (via Tasks)**
-- **Notes**
+Required sections in note body:
+- User Story
+- Acceptance Criteria
+- Context
+- Out of Scope
+- Tasks
+- Test Specification
+- Notes

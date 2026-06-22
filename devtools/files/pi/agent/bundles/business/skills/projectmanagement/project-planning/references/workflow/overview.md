@@ -1,8 +1,9 @@
 # Project Planning Workflow Overview (Miniproject-Aligned)
 
 ## Artifact Model
-Idea → Epic → Story → Task
+Project Constitution → Idea → Epic → Story → Task
 
+Project Constitution is a required singleton governing artifact.
 Supporting artifacts: Research, Decision, Learning, Retrospective.
 
 ## Escalation Matrix (strategic)
@@ -16,6 +17,9 @@ Escalate to Q for: scope changes, timeline shifts >1 week, major refactors, reso
 
 ## Relationship Diagram
 ```text
+[Project Constitution]
+          |
+          v
 [Idea] -> [Epic] -> [Story] -> [Task]
                |         |         |
                v         v         v

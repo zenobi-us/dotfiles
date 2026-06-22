@@ -1,9 +1,4 @@
 ---
-depends:
-  - devtools.mise
-  - shells.mise
-  - shells.zsh
-
 actions:
   - action: command.run
     command: rm
