@@ -1,0 +1,131 @@
+{
+  "name": "@eko24ive/pi-ask",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Pi package that adds an interactive ask_user clarification tool.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eko24ive/pi-ask.git"
+  },
+  "homepage": "https://github.com/eko24ive/pi-ask#readme",
+  "bugs": {
+    "url": "https://github.com/eko24ive/pi-ask/issues"
+  },
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "ask_user",
+    "clarification",
+    "terminal-ui"
+  ],
+  "files": [
+    "src/",
+    "skills/",
+    "docs/configuration.md",
+    "docs/contract.md",
+    "docs/remote-events.md",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "dev": "sh -c 'ROOT=\"$PWD\"; TARGET=\"${1:-.}\"; if [ \"$TARGET\" = \"--\" ]; then TARGET=\"${2:-.}\"; fi; cd \"$TARGET\" && pi --no-extensions --no-skills --no-prompt-templates --no-themes --no-context-files -e \"$ROOT/src/index.ts\" --skill \"$ROOT/skills/ask-user\"' --",
+    "test": "node --test tests/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "format": "biome format --write .",
+    "lint": "biome lint --write .",
+    "check": "ultracite check",
+    "check:ci": "biome ci .",
+    "fix": "ultracite fix",
+    "commit": "cz",
+    "commitlint": "commitlint",
+    "release": "semantic-release"
+  },
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "release": {
+    "repositoryUrl": "https://github.com/eko24ive/pi-ask.git",
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*",
+    "@earendil-works/pi-ai": "*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.12",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@earendil-works/pi-ai": "0.79.9",
+    "@earendil-works/pi-coding-agent": "0.79.9",
+    "@earendil-works/pi-tui": "0.79.9",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.6",
+    "@semantic-release/npm": "^13.1.5",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "typebox": "1.1.38",
+    "@types/node": "25.6.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "lefthook": "^2.1.6",
+    "semantic-release": "^25.0.3",
+    "typescript": "6.0.2",
+    "ultracite": "7.6.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "pnpm": {
+    "overrides": {
+      "@earendil-works/pi-agent-core": "0.79.9",
+      "@earendil-works/pi-ai": "0.79.9",
+      "@earendil-works/pi-tui": "0.79.9",
+      "@earendil-works/pi-coding-agent": "0.79.9"
+    },
+    "ignoredBuiltDependencies": [
+      "lefthook"
+    ]
+  }
+}

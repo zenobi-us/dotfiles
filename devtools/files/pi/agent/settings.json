@@ -19,7 +19,7 @@
     "./packages/pi-files",
     "./packages/pi-fzf",
     "./packages/pi-lsp",
-    "./packages/pi-answer",
+    "./packages/pi-ask",
     "./packages/pi-handoff",
     "./packages/pi-lazyskills",
     "./packages/pi-worktrunk",

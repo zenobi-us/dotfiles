@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 5,
+  "answer": {
+    "extractionModels": [
+      {
+        "provider": "openai-codex",
+        "id": "gpt-5.4-mini"
+      },
+      {
+        "provider": "github-copilot",
+        "id": "gpt-5.4-mini"
+      },
+      {
+        "provider": "anthropic",
+        "id": "claude-haiku-4-5"
+      }
+    ],
+    "extractionRetries": 1,
+    "extractionTimeoutMs": 30000
+  },
+  "behaviour": {
+    "autoSubmitWhenAnsweredWithoutNotes": false,
+    "confirmDismissWhenDirty": true,
+    "doublePressReviewShortcuts": true,
+    "presentSingleAsMulti": false,
+    "showFooterHints": true
+  },
+  "keymaps": {
+    "global": {
+      "dismiss": [
+        "ctrl+c"
+      ],
+      "settings": [
+        "?"
+      ]
+    },
+    "main": {
+      "cancel": [
+        "esc"
+      ],
+      "changeQuestionType": [
+        "t"
+      ],
+      "confirm": [
+        "enter"
+      ],
+      "nextOption": [
+        "down"
+      ],
+      "nextTab": [
+        "tab",
+        "right"
+      ],
+      "optionNote": [
+        "n"
+      ],
+      "previousOption": [
+        "up"
+      ],
+      "previousTab": [
+        "shift+tab",
+        "left"
+      ],
+      "questionNote": [
+        "shift+n"
+      ],
+      "toggle": [
+        "space"
+      ]
+    },
+    "editor": {
+      "close": [
+        "esc"
+      ],
+      "nextOptionWhenEmpty": [
+        "down"
+      ],
+      "nextTabWhenEmpty": [
+        "tab",
+        "right"
+      ],
+      "previousOptionWhenEmpty": [
+        "up"
+      ],
+      "previousTabWhenEmpty": [
+        "shift+tab",
+        "left"
+      ],
+      "submit": [
+        "enter"
+      ]
+    },
+    "noteEditor": {
+      "close": [
+        "esc"
+      ],
+      "nextOptionWhenEmpty": [
+        "down"
+      ],
+      "nextTabWhenEmpty": [
+        "tab",
+        "right"
+      ],
+      "previousOptionWhenEmpty": [
+        "up"
+      ],
+      "previousTabWhenEmpty": [
+        "shift+tab",
+        "left"
+      ],
+      "save": [
+        "enter"
+      ]
+    },
+    "settingsModal": {
+      "close": [
+        "esc",
+        "ctrl+c",
+        "?"
+      ],
+      "nextOption": [
+        "down"
+      ],
+      "previousOption": [
+        "up"
+      ],
+      "toggle": [
+        "enter",
+        "space"
+      ]
+    }
+  },
+  "notifications": {
+    "channels": [
+      "bell"
+    ],
+    "enabled": true
+  }
+}
