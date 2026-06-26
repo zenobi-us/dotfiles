@@ -153,6 +153,11 @@ It is a score cutoff from `0` to `1`:
 
 Lower values show more results. Higher values show fewer, stricter results.
 
+## Todo / Ideas
+
+- Add a new `tags` strategy. Like `lexical`, but only searches a skill's `tags` field for stricter matching control.
+- Add a new `rag` strategy. Provide a basic local-only vector store, with an escape hatch for custom vector store services.
+
 
 ## Package Skill Root Resolution
 
