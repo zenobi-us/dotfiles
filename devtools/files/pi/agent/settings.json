@@ -9,6 +9,7 @@
     "npm:pi-hashline-readmap",
     "npm:pi-llama-server",
     "npm:@tintinweb/pi-subagents",
+    "git:github.com/DietrichGebert/ponytail",
     "./bundles/agent-core",
     "./bundles/developer",
     "./bundles/creator",
