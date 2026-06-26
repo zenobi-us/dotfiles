@@ -1,0 +1,21 @@
+import type { TreeTimestampMode } from "./types.ts";
+
+export const DEFAULT_MODE: TreeTimestampMode = "relative";
+export const SETTINGS_KEY = "treeTimestampMode";
+export const PREVIEW_SETTINGS_KEY = "treeSelectedPreview";
+export const MAX_VISIBLE_LINES_SETTINGS_KEY = "treeMaxVisibleLines";
+export const PREVIEW_FULL_HEIGHT_SETTINGS_KEY = "treePreviewFullHeight";
+export const MIN_VISIBLE_LINES = 5;
+export const PATCH_KEY = Symbol.for("zigai.pi.tree-timestamps.patched");
+export const TREE_HELP_PATCH_KEY = Symbol.for("zigai.pi.tree-timestamps.help-patched");
+export const TREE_TITLE_PATCH_KEY = Symbol.for("zigai.pi.tree-timestamps.title-patched");
+export const PREVIEW_TOGGLE_KEY = "P";
+export const PREVIEW_TOGGLE_HINT = "shift+p";
+export const TREE_TIMESTAMP_MODE_KEY = Symbol.for("zigai.pi.tree-timestamps.mode");
+export const TREE_PREVIEW_ENABLED_KEY = Symbol.for("zigai.pi.tree-timestamps.preview-enabled");
+export const MODE_SEQUENCE: TreeTimestampMode[] = ["off", "relative", "absolute"];
+export const MIN_PREVIEW_TOTAL_WIDTH = 80;
+export const MIN_PREVIEW_WIDTH = 24;
+export const MIN_TREE_WIDTH = 32;
+export const SETTINGS_LOCK_TIMEOUT_MS = 5_000;
+export const STALE_SETTINGS_LOCK_MS = 30_000;

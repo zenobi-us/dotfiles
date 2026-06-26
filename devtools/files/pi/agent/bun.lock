@@ -123,6 +123,17 @@
       "name": "@zenobius/pi-rose-pine",
       "version": "0.0.1",
     },
+    "packages/pi-tree": {
+      "name": "@zigai/pi-tree",
+      "version": "0.1.7",
+      "dependencies": {
+        "typebox": "^1.1.38",
+      },
+      "peerDependencies": {
+        "@earendil-works/pi-coding-agent": "*",
+        "@earendil-works/pi-tui": "*",
+      },
+    },
   },
   "packages": {
     "@anthropic-ai/sdk": ["@anthropic-ai/sdk@0.91.1", "", { "dependencies": { "json-schema-to-ts": "^3.1.1" }, "peerDependencies": { "zod": "^3.25.0 || ^4.0.0" }, "optionalPeers": ["zod"], "bin": { "anthropic-ai-sdk": "bin/cli" } }, "sha512-LAmu761tSN9r66ixvmciswUj/ZC+1Q4iAfpedTfSVLeswRwnY3n2Nb6Tsk+cLPP28aLOPWeMgIuTuCcMC6W/iw=="],
@@ -428,6 +439,8 @@
     "@zenobius/pi-rose-pine": ["@zenobius/pi-rose-pine@workspace:packages/pi-rose-pine"],
 
     "@zenobius/pi-writing": ["@zenobius/pi-writing@workspace:bundles/writing"],
+
+    "@zigai/pi-tree": ["@zigai/pi-tree@workspace:packages/pi-tree"],
 
     "accepts": ["accepts@2.0.0", "", { "dependencies": { "mime-types": "^3.0.0", "negotiator": "^1.0.0" } }, "sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng=="],
 
