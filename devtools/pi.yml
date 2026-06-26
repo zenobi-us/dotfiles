@@ -29,7 +29,6 @@ actions:
       - "{{user.home_dir}}/.pi/agent/pi-sub-bar-settings.json"
       - "{{user.home_dir}}/.pi/agent/pi-sub-core-settings.json"
       - "{{user.home_dir}}/.pi/agent/fzf.json"
-      - "{{user.home_dir}}/.pi/agent/mcp.json"
       - "{{user.home_dir}}/.pi/agent/skills.config.json"
       - "{{user.home_dir}}/.pi/agent/tsconfig.json"
 
@@ -84,10 +83,6 @@ actions:
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/fzf.json"
     from: pi/agent/fzf.json
-
-  - action: file.link
-    to: "{{user.home_dir}}/.pi/agent/mcp.json"
-    from: pi/agent/mcp.json
 
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/skills.config.json"
