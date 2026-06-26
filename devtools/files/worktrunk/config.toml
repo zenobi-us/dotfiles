@@ -8,14 +8,16 @@ worktree-path = "{{ repo_path }}/../{{repo}}.worktrees/{{ branch | sanitize }}"
 sync = ""
 
 [[post-start]]
+mise-trust = "mise trust -y"
+
+[[post-start]]
 zellij-tab = """
 zellij action query-tab-names | grep -Fxq '{{ branch | sanitize }}' ||
-  zellij action new-tab --name '{{ branch | sanitize }}' -- nvim . 2>/dev/null || 
-  true
+  zellij action new-tab --name '{{ branch | sanitize }}' -- nvim . 2>/dev/null
 """
 
 [[post-start]]
-zellij-focus = "zellij action go-to-tab-name {{ branch | sanitize }} 2>/dev/null || true"
+zellij-focus = "zellij action go-to-tab-name {{ branch | sanitize }} 2>/dev/null"
 
 [[projects."github.com/zenobi-us/dotfiles".post-start]]
 mise-trust = "mise trust; mise setup;"
