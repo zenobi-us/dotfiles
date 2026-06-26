@@ -157,6 +157,7 @@ Lower values show more results. Higher values show fewer, stricter results.
 
 - Add a new `tags` strategy. Like `lexical`, but only searches a skill's `tags` field for stricter matching control.
 - Add a new `rag` strategy. Provide a basic local-only vector store, with an escape hatch for custom vector store services.
+- Add a new `qmd` strategy. Use QMD-backed local markdown search as an optional index for skills and related docs.
 
 
 ## Package Skill Root Resolution
