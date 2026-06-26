@@ -95,22 +95,35 @@ What this means for you as a user:
 
 In short: you can type either **a sentence** or **a list of terms**, and the skill finder should feel more relevant and less brittle.
 
-### Configurable search behavior
+## Configuration
 
-Set this in `.pi/settings.json` (project or agent-level):
+`pi-lazyskills` reads layered config from:
+
+1. Environment variables: `SKILLS_<KEY>`
+2. Project config: `.pi/skills.config.json`
+3. Home config: `~/.pi/agent/skills.config.json`
+4. Built-in defaults
+
+Example:
 
 ```json
 {
-  "searchStrategy": "hybrid"
+  "lazySkills": true,
+  "searchStrategy": "hybrid",
+  "lexicalThreshold": 0.5
 }
 ```
 
-Allowed values:
+Valid settings:
 
-- `lexical`
-- `bm25`
-- `vector`
-- `hybrid`
+| Setting | Type | Values | Default |
+| --- | --- | --- | --- |
+| `lazySkills` | boolean | `true`, `false` | `true` |
+| `searchStrategy` | string | `lexical`, `bm25`, `vector`, `hybrid` | `hybrid` |
+| `lexicalThreshold` | number | `0` through `1` | `0.5` |
+
+Invalid config falls back to built-in defaults.
+
 
 ## Package Skill Root Resolution
 
