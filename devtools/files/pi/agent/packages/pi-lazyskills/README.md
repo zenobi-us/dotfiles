@@ -124,6 +124,35 @@ Valid settings:
 
 Invalid config falls back to built-in defaults.
 
+### Search strategy
+
+`searchStrategy` controls how `find_skills` ranks matches:
+
+| Strategy | What | Why use it |
+| --- | --- | --- |
+| `lexical` | Scores phrase, term, and fuzzy token matches across qualified name, shortname, and description. Uses `lexicalThreshold` to drop weak matches. | Best when you want strict, predictable matching and fewer noisy results. |
+| `bm25` | Uses BM25-style keyword ranking with boosted skill names and descriptions. | Best default for short keyword searches like `git commit` or `react form`. |
+| `vector` | Uses local hashed token vectors plus a small synonym map; no external embedding service. | Best when wording differs, such as `troubleshoot auth` matching debug/diagnose skills. |
+| `hybrid` | Runs `lexical`, `bm25`, and `vector`, then merges ranks with reciprocal rank fusion. | Best general-purpose mode when you do not know query shape. Costs more CPU, avoids choosing wrong. |
+
+Use `bm25` for speed and keyword precision. Use `hybrid` when recall matters more than minimal ranking work.
+
+### Lexical threshold
+
+`lexicalThreshold` only affects the `lexical` strategy and the lexical part of `hybrid`.
+
+It is a score cutoff from `0` to `1`:
+
+| Value | Effect | Why use it |
+| --- | --- | --- |
+| `0` | Keep every lexical match with any score. | Maximum recall; useful when you suspect relevant skills are being hidden. |
+| `0.3` | Keep weak fuzzy/partial matches. | Good for exploratory search, but noisier. |
+| `0.5` | Balanced cutoff. | Default; removes obvious junk without being too strict. |
+| `0.7` | Keep only strong matches. | Use when results are too noisy. |
+| `1` | Keep only perfect lexical matches. | Rarely useful; mostly for debugging exact-match behavior. |
+
+Lower values show more results. Higher values show fewer, stricter results.
+
 
 ## Package Skill Root Resolution
 
