@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>__AUTORESEARCH_TITLE__</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --line: #30363d;
+      --good: #3fb950;
+      --bad: #f85149;
+      --accent: #58a6ff;
+      --warn: #d29922;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .page { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .header {
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .title { margin: 0; font-size: 24px; color: #fff; }
+    .meta { margin-top: 6px; color: var(--muted); font-size: 13px; }
+
+    .cards {
+      margin-top: 16px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: minmax(240px, 2.2fr) minmax(220px, 1.8fr) minmax(90px, 0.7fr) minmax(90px, 0.7fr);
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .card-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .card-value { margin-top: 8px; font-size: 24px; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .card-value.good { color: var(--good); }
+
+    .chart-panel {
+      margin-top: 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+    }
+    .chart-wrap { height: 300px; position: relative; }
+    canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+
+    .chart-tooltip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      background: rgba(20,20,20,0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 10px 12px;
+      min-width: 180px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+      transform: translateY(4px);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      z-index: 4;
+    }
+    .chart-tooltip.visible { opacity: 1; transform: translateY(0); }
+    .chart-tooltip .tt-run {
+      font-size: 10px;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .chart-tooltip .tt-metric {
+      font-size: 18px;
+      color: #fff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 700;
+    }
+    .chart-tooltip .tt-delta {
+      margin-top: 2px;
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .chart-tooltip .tt-delta.good { color: var(--good); }
+    .chart-tooltip .tt-delta.bad { color: var(--bad); }
+    .chart-tooltip .tt-status {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .chart-tooltip .tt-status.keep { color: var(--good); background: rgba(63,185,80,0.15); }
+    .chart-tooltip .tt-status.discard { color: #ff9b95; background: rgba(248,81,73,0.15); }
+    .chart-tooltip .tt-status.crash { color: var(--bad); background: rgba(248,81,73,0.25); }
+    .chart-tooltip .tt-status.checks_failed { color: var(--warn); background: rgba(210,153,34,0.2); }
+    .chart-tooltip .tt-desc {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .chart-crosshair {
+      position: absolute;
+      top: 0;
+      width: 1px;
+      background: rgba(255,255,255,0.15);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.12s ease;
+      z-index: 3;
+    }
+
+    .table-panel {
+      margin-top: 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: auto;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    thead th {
+      position: sticky;
+      top: 0;
+      text-align: left;
+      background: #11161c;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    tbody td {
+      border-bottom: 1px solid #222a33;
+      padding: 10px;
+      vertical-align: top;
+    }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .status {
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .status.keep { color: var(--good); background: rgba(63,185,80,0.15); }
+    .status.discard { color: #ff9b95; background: rgba(248,81,73,0.15); }
+    .status.crash { color: var(--bad); background: rgba(248,81,73,0.25); }
+    .status.checks_failed { color: var(--warn); background: rgba(210,153,34,0.2); }
+    .delta.good { color: var(--good); }
+    .delta.bad { color: var(--bad); }
+    .muted { color: var(--muted); }
+
+    .best-row { background: rgba(63,185,80,0.08); }
+    .best-row td { border-bottom-color: rgba(63,185,80,0.22); }
+    .best-row .mono { color: #9be9a8; }
+
+    .share-btn {
+      background: #21262d;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+      margin-left: auto;
+    }
+    .share-btn:hover { background: #30363d; }
+
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div>
+        <h1 class="title" id="title">Autoresearch</h1>
+        <div class="meta" id="meta">Waiting for data…</div>
+      </div>
+      <button class="share-btn" id="share-btn" onclick="downloadShareCard()">Export as image ↓</button>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Baseline → Best</div>
+        <div class="card-value" id="baseline-best">—</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Improvement</div>
+        <div class="card-value good" id="improvement">—</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Runs</div>
+        <div class="card-value" id="run-count">0</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Kept</div>
+        <div class="card-value" id="kept-count">0/0</div>
+      </div>
+    </div>
+
+    <div class="chart-panel">
+      <div class="chart-wrap" id="chart-wrap">
+        <canvas id="chart"></canvas>
+        <div class="chart-tooltip" id="chart-tooltip"></div>
+        <div class="chart-crosshair" id="chart-crosshair"></div>
+      </div>
+    </div>
+
+    <div class="table-panel">
+      <table>
+        <thead>
+          <tr>
+            <th>Run</th>
+            <th>Status</th>
+            <th id="metric-header">Metric</th>
+            <th>Δ baseline</th>
+            <th>Confidence</th>
+            <th>Commit</th>
+            <th>Description</th>
+            <th>Hypothesis</th>
+            <th>Reason</th>
+            <th>Next</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+
+    const VALID_STATUSES = ['keep', 'discard', 'crash', 'checks_failed'];
+    const HOVER_DISTANCE_THRESHOLD = 36;
+    const TOOLTIP_WIDTH = 210;
+    const TOOLTIP_OFFSET = 14;
+    const CHART_PADDING_BELOW = 0.15;
+    const CHART_PADDING_ABOVE = 0.12;
+    const CHART_MARGINS = { left: 56, right: 18, top: 16, bottom: 30 };
+    const MONOTONE_HANDLE_RATIO = 0.33;
+    const MONO_FONT = '10px ui-monospace, SFMono-Regular, Menlo, monospace';
+    const POINT_RADIUS = 4;
+    const POINT_RADIUS_HIGHLIGHT = 6;
+    const POINT_GLOW_RADIUS = 12;
+    const DEFAULT_CONFIG = {
+      type: 'config',
+      name: 'Autoresearch',
+      metricName: 'metric',
+      metricUnit: '',
+      bestDirection: 'lower',
+    };
+
+    const COLORS = {
+      good: '#3fb950',
+      bad: '#f85149',
+      line: 'rgba(88,166,255,0.8)',
+      grid: 'rgba(255,255,255,0.08)',
+      label: '#8b949e',
+      goodGlow: 'rgba(63,185,80,0.15)',
+      badGlow: 'rgba(248,81,73,0.15)',
+      warningText: '#e3b341',
+    };
+
+    function pointColor(point) {
+      if (point.isCrash) return COLORS.bad;
+      return point.status === 'keep' ? COLORS.good : COLORS.bad;
+    }
+
+    function glowColor(point) {
+      return point.status === 'keep' ? COLORS.goodGlow : COLORS.badGlow;
+    }
+
+    const session = {
+      config: null,
+      runs: [],
+      metricUnit: '',
+      direction: 'lower',
+      baseline: null,
+      best: null,
+      bestRunIndex: -1,
+    };
+
+    const chartState = {
+      points: [],
+      geometry: null,
+      activeRunIndex: -1,
+    };
+
+    let lastDataText = '';
+    let liveEventSource = null;
+
+    initializePage();
+
+    function initializePage() {
+      wireChartHover();
+      if (isServedOverHttp()) {
+        refreshFromServer();
+        startLiveUpdates();
+      } else {
+        setMetaMessage('Run /autoresearch export to view live data.', true);
+      }
+      window.addEventListener('resize', renderChart);
+    }
+
+    function loadFromText(text) {
+      const parsed = parseAutoresearchText(text);
+      if (!parsed.ok) return setMetaMessage('Invalid embedded data: ' + parsed.error, true);
+
+      lastDataText = text;
+      applyParsedData(parsed.config, parsed.runs);
+      renderDashboard();
+    }
+
+    function isServedOverHttp() {
+      return location.protocol === 'http:' || location.protocol === 'https:';
+    }
+
+    function startLiveUpdates() {
+      if (!isServedOverHttp()) return;
+      if (typeof EventSource === 'undefined') return;
+
+      if (liveEventSource) {
+        liveEventSource.close();
+      }
+
+      liveEventSource = new EventSource('/events');
+      liveEventSource.addEventListener('jsonl-updated', () => refreshFromServer());
+      liveEventSource.onerror = () => {
+        if (liveEventSource) {
+          liveEventSource.close();
+          liveEventSource = null;
+        }
+        setTimeout(startLiveUpdates, 1000);
+      };
+    }
+
+    function refreshFromServer() {
+      fetch('autoresearch.jsonl', { cache: 'no-store' })
+        .then(resp => resp.ok ? resp.text() : null)
+        .then(text => {
+          if (!text) {
+            setMetaMessage('No session log found.', true);
+            return;
+          }
+          if (text !== lastDataText) loadFromText(text);
+        })
+        .catch(() => setMetaMessage('Failed to load session log.', true));
+    }
+
+    function parseAutoresearchText(text) {
+      const trimmed = text.trim();
+      if (!trimmed) return fail('File is empty.');
+      return looksLikeJsonLines(trimmed) ? parseJsonLines(trimmed) : parseJsonDocument(trimmed);
+    }
+
+    function looksLikeJsonLines(text) {
+      if (!text.includes('\n')) return false;
+      const firstLine = text.split('\n').find(line => line.trim());
+      return !!firstLine && firstLine.trim().startsWith('{');
+    }
+
+    function parseJsonLines(text) {
+      const lines = text.split('\n').map(line => line.trim()).filter(Boolean);
+      const objects = [];
+
+      for (const line of lines) {
+        try { objects.push(JSON.parse(line)); }
+        catch { return fail('One JSONL line is invalid JSON.'); }
+      }
+
+      return normalizePayload(
+        objects.find(item => item.type === 'config') || null,
+        objects.filter(item => item.run != null)
+      );
+    }
+
+    function parseJsonDocument(text) {
+      let doc;
+      try { doc = JSON.parse(text); }
+      catch { return fail('JSON parse failed.'); }
+
+      if (Array.isArray(doc)) {
+        return normalizePayload(
+          doc.find(item => item.type === 'config') || null,
+          doc.filter(item => item.run != null)
+        );
+      }
+
+      if (doc && typeof doc === 'object') {
+        return normalizePayload(extractConfig(doc), extractRuns(doc));
+      }
+
+      return fail('Unsupported JSON shape.');
+    }
+
+    function extractConfig(doc) {
+      if (doc.config) return doc.config;
+      if (doc.type === 'config') return doc;
+      return {
+        type: 'config',
+        name: doc.name,
+        metricName: doc.metricName,
+        metricUnit: doc.metricUnit,
+        bestDirection: doc.bestDirection,
+      };
+    }
+
+    function extractRuns(doc) {
+      if (Array.isArray(doc.runs)) return doc.runs;
+      if (Array.isArray(doc.entries)) return doc.entries;
+      return [];
+    }
+
+    function normalizePayload(config, runs) {
+      const cfg = config || DEFAULT_CONFIG;
+      if (!Array.isArray(runs) || runs.length === 0) return fail('No runs found.');
+
+      return {
+        ok: true,
+        config: {
+          name: cfg.name || 'Autoresearch',
+          metricName: cfg.metricName || 'metric',
+          metricUnit: cfg.metricUnit || '',
+          bestDirection: cfg.bestDirection === 'higher' ? 'higher' : 'lower',
+        },
+        runs: runs.map(normalizeRun),
+      };
+    }
+
+    function normalizeRun(run, index) {
+      return {
+        run: toNumber(run.run, index + 1),
+        metric: toNumber(run.metric, 0),
+        status: VALID_STATUSES.includes(run.status) ? run.status : 'discard',
+        commit: run.commit || '',
+        description: run.description || '',
+        confidence: run.confidence,
+        asi: run.asi || {},
+      };
+    }
+
+    function applyParsedData(config, runs) {
+      session.config = config;
+      session.runs = runs;
+      session.metricUnit = config.metricUnit || '';
+      session.direction = config.bestDirection || 'lower';
+      session.baseline = runs[0] ? runs[0].metric : null;
+      findBestRun(runs);
+    }
+
+    function findBestRun(runs) {
+      session.best = null;
+      session.bestRunIndex = -1;
+
+      runs.forEach((run, index) => {
+        if (run.metric <= 0) return;
+        if (session.best == null || isBetter(run.metric, session.best)) {
+          session.best = run.metric;
+          session.bestRunIndex = index;
+        }
+      });
+    }
+
+    function renderDashboard() {
+      hideChartTooltip();
+      renderHeader();
+      renderCards();
+      renderTable();
+      renderChart();
+    }
+
+    function renderHeader() {
+      setText('title', session.config.name);
+      setText('metric-header', session.config.metricName);
+      setMetaMessage('metric: ' + session.config.metricName + ' · ' + session.direction + ' is better', false);
+    }
+
+    function renderCards() {
+      setText('baseline-best', formatMetric(session.baseline) + ' → ' + formatBestMetric());
+      setText('improvement', formatImprovement());
+      setText('run-count', String(session.runs.length));
+      setText('kept-count', countKept() + '/' + session.runs.length);
+    }
+
+    function formatBestMetric() {
+      return session.best == null ? '—' : formatMetric(session.best);
+    }
+
+    function formatImprovement() {
+      const pct = computeImprovementPercent(session.baseline, session.best, session.direction);
+      return pct == null ? '—' : pct.toFixed(1) + '%';
+    }
+
+    function countKept() {
+      return session.runs.filter(run => run.status === 'keep').length;
+    }
+
+    function renderTable() {
+      const body = document.getElementById('table-body');
+      body.innerHTML = '';
+      session.runs.forEach((run, index) => body.appendChild(buildRow(run, index)));
+    }
+
+    function td(content, className) {
+      if (!className) return '<td>' + content + '</td>';
+      return '<td class="' + className + '">' + content + '</td>';
+    }
+
+    function runLabel(run, index) {
+      return '#' + (run.run || (index + 1));
+    }
+
+    function metricDisplay(run) {
+      if (isCrashRun(run)) return 'crash';
+      return formatMetric(run.metric);
+    }
+
+    function deltaDisplay(run) {
+      const delta = computeDeltaPercent(run.metric, session.baseline);
+      return { text: formatDelta(delta), className: 'mono delta ' + classifyDelta(delta, session.direction) };
+    }
+
+    function asiField(run, field) {
+      return escapeHtml(run.asi?.[field] || '');
+    }
+
+    function buildRow(run, index) {
+      const row = document.createElement('tr');
+      if (index === session.bestRunIndex) row.className = 'best-row';
+
+      const delta = deltaDisplay(run);
+
+      row.innerHTML = [
+        td(runLabel(run, index), 'mono'),
+        td(statusBadge(run.status)),
+        td(escapeHtml(metricDisplay(run)), 'mono'),
+        td(delta.text, delta.className),
+        td(formatConfidence(run.confidence), 'mono'),
+        td(escapeHtml(run.commit || ''), 'mono muted'),
+        td(escapeHtml(run.description || '')),
+        td(asiField(run, 'hypothesis')),
+        td(asiField(run, 'rollback_reason')),
+        td(asiField(run, 'next_action_hint')),
+      ].join('');
+
+      return row;
+    }
+
+    function computeMetricRange(runs) {
+      const metrics = runs.filter(run => run.metric > 0).map(run => run.metric);
+      if (metrics.length === 0) return null;
+
+      const rawMin = Math.min(...metrics);
+      const rawMax = Math.max(...metrics);
+      const spread = (rawMax - rawMin) || (rawMax * 0.1) || 1;
+
+      return {
+        min: Math.max(0, rawMin - spread * CHART_PADDING_BELOW),
+        max: rawMax + spread * CHART_PADDING_ABOVE,
+      };
+    }
+
+    function buildChartGeometry(canvasWidth, canvasHeight, metricRange) {
+      const plotWidth = canvasWidth - CHART_MARGINS.left - CHART_MARGINS.right;
+      const plotHeight = canvasHeight - CHART_MARGINS.top - CHART_MARGINS.bottom;
+      const range = Math.max(1, metricRange.max - metricRange.min);
+
+      return {
+        canvasWidth,
+        canvasHeight,
+        plotWidth,
+        plotHeight,
+        metricMin: metricRange.min,
+        metricMax: metricRange.max,
+        metricRange: range,
+
+        runToX(index, count) {
+          if (count <= 1) return CHART_MARGINS.left + plotWidth / 2;
+          return CHART_MARGINS.left + (index / (count - 1)) * plotWidth;
+        },
+
+        metricToY(metric) {
+          return CHART_MARGINS.top + plotHeight - ((metric - metricRange.min) / range) * plotHeight;
+        },
+
+        crashY() {
+          return CHART_MARGINS.top + plotHeight;
+        },
+      };
+    }
+
+    function isCrashRun(run) {
+      return run.metric === 0 && run.status === 'crash';
+    }
+
+    function isDrawableRun(run) {
+      return run.metric > 0 || isCrashRun(run);
+    }
+
+    function computeChartPoints(geo) {
+      const count = session.runs.length;
+      return session.runs
+        .map((run, index) => {
+          if (!isDrawableRun(run)) return null;
+          const crash = isCrashRun(run);
+          return {
+            x: geo.runToX(index, count),
+            y: crash ? geo.crashY() : geo.metricToY(run.metric),
+            status: run.status,
+            runIndex: index,
+            isCrash: crash,
+          };
+        })
+        .filter(Boolean);
+    }
+
+    function prepareCanvas(canvas) {
+      const ctx = canvas.getContext('2d');
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      const ratio = window.devicePixelRatio || 1;
+
+      canvas.width = Math.floor(width * ratio);
+      canvas.height = Math.floor(height * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+
+      return { ctx, width, height };
+    }
+
+    function withLabelStyle(ctx, callback) {
+      ctx.fillStyle = COLORS.label;
+      ctx.font = MONO_FONT;
+      callback(ctx);
+    }
+
+    function renderChart(highlightRunIndex = -1) {
+      const canvas = document.getElementById('chart');
+      const { ctx, width, height } = prepareCanvas(canvas);
+
+      const metricRange = computeMetricRange(session.runs);
+      chartState.points = [];
+      if (!metricRange) return;
+
+      const geo = buildChartGeometry(width, height, metricRange);
+      chartState.geometry = geo;
+      chartState.points = computeChartPoints(geo);
+
+      drawGrid(ctx, geo);
+      drawCurve(ctx, chartState.points);
+      drawDots(ctx, chartState.points, highlightRunIndex);
+      drawXLabels(ctx, geo);
+    }
+
+    function drawGrid(ctx, geo) {
+      const step = chooseTickStep(geo.metricRange);
+      let tick = Math.ceil(geo.metricMin / step) * step;
+
+      while (tick <= geo.metricMax) {
+        const y = geo.metricToY(tick);
+
+        ctx.strokeStyle = COLORS.grid;
+        ctx.beginPath();
+        ctx.moveTo(CHART_MARGINS.left, y);
+        ctx.lineTo(geo.canvasWidth - CHART_MARGINS.right, y);
+        ctx.stroke();
+
+        withLabelStyle(ctx, (c) => {
+          c.textAlign = 'right';
+          c.fillText(formatMetric(tick), CHART_MARGINS.left - 8, y + 3);
+        });
+
+        tick += step;
+      }
+    }
+
+    function drawCurve(ctx, points) {
+      const linePoints = points.filter(p => !p.isCrash);
+      if (linePoints.length < 2) return;
+
+      ctx.strokeStyle = COLORS.line;
+      ctx.lineWidth = 2;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(linePoints[0].x, linePoints[0].y);
+
+      if (linePoints.length === 2) {
+        ctx.lineTo(linePoints[1].x, linePoints[1].y);
+      } else {
+        drawMonotoneSegments(ctx, linePoints);
+      }
+
+      ctx.stroke();
+    }
+
+    function drawMonotoneSegments(ctx, points) {
+      const tangents = monotoneTangents(points);
+      for (let i = 0; i < points.length - 1; i += 1) {
+        const curr = points[i];
+        const next = points[i + 1];
+        const spanX = next.x - curr.x;
+
+        const handleX = spanX * MONOTONE_HANDLE_RATIO;
+        ctx.bezierCurveTo(
+          curr.x + handleX,
+          curr.y + tangents[i] * handleX,
+          next.x - handleX,
+          next.y - tangents[i + 1] * handleX,
+          next.x,
+          next.y
+        );
+      }
+    }
+
+    function monotoneTangents(points) {
+      const spanX = [];
+      const slopes = [];
+      const tangents = new Array(points.length).fill(0);
+
+      for (let i = 0; i < points.length - 1; i += 1) {
+        const dx = Math.max(1e-6, points[i + 1].x - points[i].x);
+        spanX.push(dx);
+        slopes.push((points[i + 1].y - points[i].y) / dx);
+      }
+
+      tangents[0] = endpointTangent(spanX[0], spanX[1], slopes[0], slopes[1]);
+      for (let i = 1; i < points.length - 1; i += 1) {
+        if (slopes[i - 1] * slopes[i] <= 0) {
+          tangents[i] = 0;
+          continue;
+        }
+        const w1 = 2 * spanX[i] + spanX[i - 1];
+        const w2 = spanX[i] + 2 * spanX[i - 1];
+        tangents[i] = (w1 + w2) / ((w1 / slopes[i - 1]) + (w2 / slopes[i]));
+      }
+      tangents[points.length - 1] = endpointTangent(
+        spanX[points.length - 2],
+        spanX[points.length - 3],
+        slopes[points.length - 2],
+        slopes[points.length - 3]
+      );
+
+      return tangents;
+    }
+
+    function endpointTangent(h0, h1, d0, d1) {
+      const neighborSpan = h1 == null ? h0 : h1;
+      const neighborSlope = d1 == null ? d0 : d1;
+      let tangent = ((2 * h0 + neighborSpan) * d0 - h0 * neighborSlope) / (h0 + neighborSpan);
+
+      if (Math.sign(tangent) !== Math.sign(d0)) return 0;
+      if (Math.sign(d0) !== Math.sign(neighborSlope) && Math.abs(tangent) > Math.abs(3 * d0)) {
+        return 3 * d0;
+      }
+      return tangent;
+    }
+
+    function drawDots(ctx, points, highlightRunIndex) {
+      points.forEach(point => {
+        const isHighlight = point.runIndex === highlightRunIndex;
+        if (isHighlight) drawGlow(ctx, point);
+        drawDot(ctx, point, isHighlight ? POINT_RADIUS_HIGHLIGHT : POINT_RADIUS);
+      });
+    }
+
+    function drawGlow(ctx, point) {
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, POINT_GLOW_RADIUS, 0, Math.PI * 2);
+      ctx.fillStyle = glowColor(point);
+      ctx.fill();
+    }
+
+    function drawDot(ctx, point, radius) {
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = pointColor(point);
+      ctx.fill();
+    }
+
+    function drawXLabels(ctx, geo) {
+      withLabelStyle(ctx, (c) => {
+        c.textAlign = 'center';
+        session.runs.forEach((run, index) => {
+          c.fillText(runLabel(run, index), geo.runToX(index, session.runs.length), geo.canvasHeight - 8);
+        });
+      });
+    }
+
+    function wireChartHover() {
+      const canvas = document.getElementById('chart');
+      canvas.addEventListener('mousemove', handleChartHover);
+      canvas.addEventListener('mouseleave', hideChartTooltip);
+    }
+
+    function handleChartHover(event) {
+      if (!chartState.points.length) return;
+
+      const rect = event.target.getBoundingClientRect();
+      const nearest = findNearestPoint(event.clientX - rect.left, event.clientY - rect.top);
+      if (!nearest || nearest.distance > HOVER_DISTANCE_THRESHOLD) return hideChartTooltip();
+
+      chartState.activeRunIndex = nearest.point.runIndex;
+      renderChart(chartState.activeRunIndex);
+      showChartTooltip(nearest.point);
+    }
+
+    function findNearestPoint(mouseX, mouseY) {
+      let best = null;
+      chartState.points.forEach(point => {
+        const distance = Math.hypot(point.x - mouseX, point.y - mouseY);
+        if (!best || distance < best.distance) best = { point, distance };
+      });
+      return best;
+    }
+
+    function showChartTooltip(point) {
+      if (!chartState.geometry) return;
+
+      const run = session.runs[point.runIndex];
+      if (!run) return;
+
+      positionTooltip(point);
+      positionCrosshair(point);
+      document.getElementById('chart-tooltip').innerHTML = tooltipHtml(run, point.runIndex);
+      document.getElementById('chart-tooltip').classList.add('visible');
+      document.getElementById('chart-wrap').setAttribute('aria-live', 'polite');
+    }
+
+    function hideChartTooltip() {
+      if (chartState.activeRunIndex !== -1) {
+        chartState.activeRunIndex = -1;
+        renderChart();
+      }
+      document.getElementById('chart-tooltip').classList.remove('visible');
+      document.getElementById('chart-crosshair').style.opacity = '0';
+    }
+
+    function positionTooltip(point) {
+      const tooltip = document.getElementById('chart-tooltip');
+      let left = point.x + TOOLTIP_OFFSET;
+      if (left + TOOLTIP_WIDTH > chartState.geometry.canvasWidth - CHART_MARGINS.right) {
+        left = point.x - TOOLTIP_WIDTH - TOOLTIP_OFFSET;
+      }
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = Math.max(8, point.y - 18) + 'px';
+    }
+
+    function positionCrosshair(point) {
+      const crosshair = document.getElementById('chart-crosshair');
+      crosshair.style.left = point.x + 'px';
+      crosshair.style.top = CHART_MARGINS.top + 'px';
+      crosshair.style.height = chartState.geometry.plotHeight + 'px';
+      crosshair.style.opacity = '1';
+    }
+
+    function tooltipHtml(run, runIndex) {
+      return [
+        tooltipHeader(run, runIndex),
+        tooltipBaselineDelta(run),
+        tooltipBestDelta(run, runIndex),
+        tooltipStatus(run),
+        tooltipDescription(run),
+      ].join('');
+    }
+
+    function tooltipHeader(run, runIndex) {
+      return '<div class="tt-run">Run ' + runLabel(run, runIndex) + '</div>'
+           + '<div class="tt-metric">' + escapeHtml(metricDisplay(run)) + '</div>';
+    }
+
+    function tooltipBaselineDelta(run) {
+      const delta = computeDeltaPercent(run.metric, session.baseline);
+      if (delta == null) return '';
+      return tooltipDeltaLine(delta, 'vs baseline');
+    }
+
+    function tooltipBestDelta(run, runIndex) {
+      const bestBefore = findBestBeforeRun(runIndex);
+      if (bestBefore == null || run.metric <= 0 || run.metric === bestBefore) return '';
+      return tooltipDeltaLine(computeDeltaPercent(run.metric, bestBefore), 'vs best so far');
+    }
+
+    function tooltipDeltaLine(delta, label) {
+      if (delta == null) return '';
+      const cls = classifyDelta(delta, session.direction);
+      return '<div class="tt-delta ' + cls + '">' + formatDelta(delta) + ' ' + label + '</div>';
+    }
+
+    function tooltipStatus(run) {
+      return '<span class="tt-status ' + run.status + '">' + escapeHtml(run.status) + '</span>';
+    }
+
+    function tooltipDescription(run) {
+      if (!run.description) return '';
+      return '<div class="tt-desc">' + escapeHtml(run.description) + '</div>';
+    }
+
+    function findBestBeforeRun(runIndex) {
+      let best = null;
+      for (let i = 0; i < runIndex; i += 1) {
+        const metric = session.runs[i]?.metric;
+        if (!metric || metric <= 0) continue;
+        if (best == null || isBetter(metric, best)) best = metric;
+      }
+      return best;
+    }
+
+    function chooseTickStep(range) {
+      const rough = range / 6;
+      const magnitude = Math.pow(10, Math.floor(Math.log10(Math.max(rough, 1e-9))));
+      const normalized = rough / magnitude;
+      if (normalized <= 1) return magnitude;
+      if (normalized <= 2) return 2 * magnitude;
+      if (normalized <= 5) return 5 * magnitude;
+      return 10 * magnitude;
+    }
+
+    function statusBadge(status) {
+      return '<span class="status ' + status + '">' + escapeHtml(status) + '</span>';
+    }
+
+    function computeImprovementPercent(baseline, best, direction) {
+      if (baseline == null || baseline === 0 || best == null) return null;
+      if (direction === 'lower') return ((baseline - best) / baseline) * 100;
+      return ((best - baseline) / baseline) * 100;
+    }
+
+    function computeDeltaPercent(value, baseline) {
+      if (!baseline || value <= 0) return null;
+      return ((value - baseline) / baseline) * 100;
+    }
+
+    function classifyDelta(delta, direction) {
+      if (delta == null) return 'muted';
+      if (Math.abs(delta) < 0.05) return 'muted';
+      if (direction === 'lower') return delta < 0 ? 'good' : 'bad';
+      return delta > 0 ? 'good' : 'bad';
+    }
+
+    function formatDelta(delta) {
+      if (delta == null) return '—';
+      if (Math.abs(delta) < 0.05) return '0%';
+      return (delta > 0 ? '+' : '') + delta.toFixed(1) + '%';
+    }
+
+    function formatMetric(value) {
+      if (value == null || Number.isNaN(value)) return '—';
+      return Number(value).toFixed(2) + session.metricUnit;
+    }
+
+    function formatConfidence(confidence) {
+      if (confidence == null || confidence === false) return '—';
+      if (typeof confidence === 'number') return confidence.toFixed(1) + '×';
+      return String(confidence);
+    }
+
+    function isBetter(nextValue, currentValue) {
+      if (session.direction === 'higher') return nextValue > currentValue;
+      return nextValue < currentValue;
+    }
+
+    function toNumber(value, fallback) {
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : fallback;
+    }
+
+    function setText(id, text) {
+      document.getElementById(id).textContent = text;
+    }
+
+    function setMetaMessage(message, isWarning) {
+      const meta = document.getElementById('meta');
+      meta.textContent = message;
+      meta.style.color = isWarning ? COLORS.warningText : COLORS.label;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function fail(error) {
+      return { ok: false, error };
+    }
+
+    const SHARE_W = 1200;
+    const SHARE_H = 675;
+    const SHARE_SCALE = 2;
+    const SHARE_MONO = '"SFMono-Regular", "Cascadia Code", Menlo, monospace';
+    const SHARE_SANS = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    const SHARE_LOGO_URL = '__AUTORESEARCH_LOGO__';
+
+    const shareSettings = {
+      padLeft: 50,
+      padRight: 60,
+      padTop: 50,
+      padBottom: 56,
+      logoHeight: 58,
+      brandFont: 31,
+      titleSize: 38,
+      subtitleSize: 28,
+      metricSize: 69,
+      arrowSize: 60,
+      deltaSize: 47,
+      chartTop: 400,
+      chartBottomOffset: 142,
+      lineWidth: 7.5,
+      dotSize: 14,
+      dotBestSize: 12,
+      statsLabelSize: 19,
+      statsValueSize: 42,
+    };
+
+    let shareLogoImage = null;
+
+    function sharePad() {
+      return {
+        left: shareSettings.padLeft,
+        right: shareSettings.padRight,
+        top: shareSettings.padTop,
+        bottom: shareSettings.padBottom,
+      };
+    }
+
+    function loadShareLogo() {
+      return new Promise(resolve => {
+        if (!SHARE_LOGO_URL || SHARE_LOGO_URL.startsWith('__')) return resolve();
+        const img = new Image();
+        img.onload = () => { shareLogoImage = img; resolve(); };
+        img.onerror = () => resolve();
+        img.src = SHARE_LOGO_URL;
+      });
+    }
+
+    async function downloadShareCard() {
+      await loadShareLogo();
+      const canvas = createShareCanvas();
+      renderShareCard(canvas);
+
+      const link = document.createElement('a');
+      link.download = 'autoresearch-' + (session.config?.metricName || 'result') + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    function createShareCanvas() {
+      const canvas = document.createElement('canvas');
+      canvas.width = SHARE_W * SHARE_SCALE;
+      canvas.height = SHARE_H * SHARE_SCALE;
+      return canvas;
+    }
+
+    function shareImprovementPct() {
+      return computeImprovementPercent(session.baseline, session.best, session.direction);
+    }
+
+    function renderShareCard(canvas) {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.scale(SHARE_SCALE, SHARE_SCALE);
+
+      shareDrawBg(ctx);
+      shareDrawBrand(ctx);
+      shareDrawMetric(ctx);
+      shareDrawChart(ctx);
+      shareDrawStats(ctx);
+      shareDrawBorder(ctx);
+
+      ctx.restore();
+    }
+
+    function shareDrawBg(ctx) {
+      const grad = ctx.createLinearGradient(0, 0, SHARE_W, SHARE_H);
+      grad.addColorStop(0, '#1b232c');
+      grad.addColorStop(1, '#0d1117');
+      ctx.fillStyle = grad;
+      shareRoundRect(ctx, 0, 0, SHARE_W, SHARE_H, 20);
+      ctx.fill();
+
+      const glow = ctx.createRadialGradient(SHARE_W - 80, 40, 0, SHARE_W - 80, 40, 350);
+      glow.addColorStop(0, 'rgba(63,185,80,0.06)');
+      glow.addColorStop(1, 'transparent');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, SHARE_W, SHARE_H);
+    }
+
+    function shareDrawBrand(ctx) {
+      const pad = sharePad();
+      const x = pad.left;
+      const y = pad.top;
+      const logoH = shareSettings.logoHeight;
+
+      if (shareLogoImage) {
+        const logoW = shareLogoImage.width * (logoH / shareLogoImage.height);
+        ctx.drawImage(shareLogoImage, x, y - 8, logoW, logoH);
+        ctx.font = '800 ' + shareSettings.brandFont + 'px ' + SHARE_SANS;
+        ctx.fillStyle = '#fff';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('pi-autoresearch', x + logoW + 14, y + logoH / 2 - 8);
+      } else {
+        ctx.font = '800 ' + shareSettings.brandFont + 'px ' + SHARE_SANS;
+        ctx.fillStyle = '#fff';
+        ctx.textBaseline = 'top';
+        ctx.fillText('pi-autoresearch', x, y);
+      }
+    }
+
+    function shareDrawMetric(ctx) {
+      const anchor = shareMetricAnchor();
+      let y = shareDrawSessionName(ctx, anchor);
+      y = shareDrawMetricName(ctx, anchor, y);
+
+      const metricLayout = shareDrawMetricValues(ctx, anchor, y);
+      shareDrawMetricDelta(ctx, metricLayout);
+      ctx.textBaseline = 'top';
+    }
+
+    function shareMetricAnchor() {
+      const pad = sharePad();
+      return { x: pad.left, y: pad.top + 68 };
+    }
+
+    function shareDrawSessionName(ctx, anchor) {
+      ctx.font = '600 ' + shareSettings.titleSize + 'px ' + SHARE_SANS;
+      ctx.fillStyle = '#8b949e';
+      ctx.textBaseline = 'top';
+      ctx.fillText(session.config?.name || '', anchor.x, anchor.y);
+      return anchor.y + 60;
+    }
+
+    function shareDrawMetricName(ctx, anchor, y) {
+      ctx.font = '700 ' + shareSettings.subtitleSize + 'px ' + SHARE_SANS;
+      ctx.fillStyle = '#58a6ff';
+      ctx.fillText('\u2605 ' + (session.config?.metricName || 'metric').toUpperCase(), anchor.x, y);
+      return y + 50;
+    }
+
+    function shareDrawMetricValues(ctx, anchor, y) {
+      const baselineText = formatMetric(session.baseline);
+      const bestText = formatMetric(session.best);
+      const baselineY = y + shareSettings.metricSize;
+
+      shareDrawBaselineMetric(ctx, anchor.x, baselineY, baselineText);
+      const bestX = shareDrawMetricArrow(ctx, anchor.x, baselineY, baselineText);
+      const bestWidth = shareDrawBestMetric(ctx, bestX, baselineY, bestText);
+      return { bestX, bestWidth, baselineY };
+    }
+
+    function shareDrawBaselineMetric(ctx, x, y, text) {
+      ctx.textBaseline = 'alphabetic';
+      ctx.font = '800 ' + shareSettings.metricSize + 'px ' + SHARE_MONO;
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText(text, x, y);
+    }
+
+    function shareDrawMetricArrow(ctx, x, y, baselineText) {
+      const baselineWidth = ctx.measureText(baselineText).width;
+      const arrowX = x + baselineWidth + 20;
+      ctx.font = '700 ' + shareSettings.arrowSize + 'px ' + SHARE_SANS;
+      ctx.fillStyle = '#8b949e';
+      ctx.fillText('\u2192', arrowX, y);
+      return arrowX + ctx.measureText('\u2192').width + 20;
+    }
+
+    function shareDrawBestMetric(ctx, x, y, text) {
+      ctx.font = '800 ' + shareSettings.metricSize + 'px ' + SHARE_MONO;
+      ctx.fillStyle = '#fff';
+      const bestWidth = ctx.measureText(text).width;
+      ctx.fillText(text, x, y);
+      return bestWidth;
+    }
+
+    function shareDrawMetricDelta(ctx, layout) {
+      const percent = shareImprovementPct();
+      if (percent == null) return;
+
+      const directionArrow = session.direction === 'lower' ? '\u2193' : '\u2191';
+      ctx.font = '800 ' + shareSettings.deltaSize + 'px ' + SHARE_MONO;
+      ctx.fillStyle = percent > 0 ? '#3fb950' : '#f85149';
+      ctx.fillText(
+        directionArrow + Math.abs(percent).toFixed(1) + '%',
+        layout.bestX + layout.bestWidth + 24,
+        layout.baselineY
+      );
+    }
+
+    function shareDrawChart(ctx) {
+      const drawable = session.runs.filter(r => r.metric > 0);
+      if (drawable.length === 0) return;
+
+      const pad = sharePad();
+      const cL = pad.left, cR = SHARE_W - pad.right;
+      const cT = shareSettings.chartTop, cB = SHARE_H - shareSettings.chartBottomOffset;
+      const cW = cR - cL, cH = cB - cT;
+
+      const vals = drawable.map(r => r.metric);
+      const lo = Math.min(...vals), hi = Math.max(...vals);
+      const sp = (hi - lo) || (hi * 0.1) || 1;
+      const minV = Math.max(0, lo - sp * 0.2), maxV = hi + sp * 0.15;
+      const range = Math.max(1, maxV - minV);
+
+      function toX(i) { return drawable.length <= 1 ? cL + cW / 2 : cL + (i / (drawable.length - 1)) * cW; }
+      function toY(v) { return cT + cH - ((v - minV) / range) * cH; }
+
+      const dotPts = drawable.map((r, i) => ({ x: toX(i), y: toY(r.metric) }));
+      const { indices, bestIdx } = shareVisibleDots(drawable);
+      const lineIndices = Array.from(indices).sort((a, b) => a - b);
+      const linePts = lineIndices.map(i => ({ x: toX(i), y: toY(drawable[i].metric) }));
+
+      shareDrawCurve(ctx, linePts);
+      shareDrawDots(ctx, drawable, dotPts, indices, bestIdx);
+    }
+
+    function shareDrawCurve(ctx, pts) {
+      if (pts.length < 2) return;
+
+      ctx.lineWidth = shareSettings.lineWidth;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = 'rgba(88,166,255,0.9)';
+
+      if (pts.length === 2) {
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        ctx.lineTo(pts[1].x, pts[1].y);
+        ctx.stroke();
+        return;
+      }
+
+      const tangents = shareMonotoneTangents(pts);
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 0; i < pts.length - 1; i++) {
+        const from = pts[i];
+        const to = pts[i + 1];
+        const stepX = to.x - from.x;
+
+        const handleX = stepX * MONOTONE_HANDLE_RATIO;
+        ctx.bezierCurveTo(
+          from.x + handleX,
+          from.y + tangents[i] * handleX,
+          to.x - handleX,
+          to.y - tangents[i + 1] * handleX,
+          to.x,
+          to.y
+        );
+      }
+      ctx.stroke();
+    }
+
+    function shareMonotoneTangents(pts) {
+      const count = pts.length;
+      const spanX = [];
+      const slopes = [];
+      const tangents = new Array(count).fill(0);
+
+      for (let i = 0; i < count - 1; i++) {
+        const dx = Math.max(1e-6, pts[i + 1].x - pts[i].x);
+        spanX.push(dx);
+        slopes.push((pts[i + 1].y - pts[i].y) / dx);
+      }
+
+      tangents[0] = shareEndpointTangent(spanX[0], spanX[1], slopes[0], slopes[1]);
+      for (let i = 1; i < count - 1; i++) {
+        if (slopes[i - 1] * slopes[i] <= 0) {
+          tangents[i] = 0;
+          continue;
+        }
+        const weightA = 2 * spanX[i] + spanX[i - 1];
+        const weightB = spanX[i] + 2 * spanX[i - 1];
+        tangents[i] = (weightA + weightB) / ((weightA / slopes[i - 1]) + (weightB / slopes[i]));
+      }
+      tangents[count - 1] = shareEndpointTangent(
+        spanX[count - 2],
+        spanX[count - 3],
+        slopes[count - 2],
+        slopes[count - 3]
+      );
+
+      return tangents;
+    }
+
+    function shareEndpointTangent(h0, h1, d0, d1) {
+      const fallbackH1 = h1 == null ? h0 : h1;
+      const fallbackD1 = d1 == null ? d0 : d1;
+      let tangent = ((2 * h0 + fallbackH1) * d0 - h0 * fallbackD1) / (h0 + fallbackH1);
+
+      if (Math.sign(tangent) !== Math.sign(d0)) return 0;
+      if (Math.sign(d0) !== Math.sign(fallbackD1) && Math.abs(tangent) > Math.abs(3 * d0)) {
+        return 3 * d0;
+      }
+      return tangent;
+    }
+
+    function shareVisibleDots(runs) {
+      let bestIdx = -1, bestVal = null;
+      runs.forEach((r, i) => {
+        if (r.metric > 0 && (bestVal == null || isBetter(r.metric, bestVal))) {
+          bestVal = r.metric;
+          bestIdx = i;
+        }
+      });
+
+      const allIndices = new Set(runs.map((_, i) => i));
+      if (runs.length <= shareMaxVisibleDots(runs.length)) {
+        return { indices: allIndices, bestIdx };
+      }
+
+      const must = new Set([0, runs.length - 1]);
+      if (bestIdx >= 0) must.add(bestIdx);
+
+      const targetCount = shareMaxVisibleDots(runs.length);
+      const remainingSlots = Math.max(0, targetCount - must.size);
+      const step = (runs.length - 1) / (remainingSlots + 1);
+      for (let n = 1; n <= remainingSlots; n++) {
+        must.add(Math.round(step * n));
+      }
+
+      return { indices: must, bestIdx };
+    }
+
+    function shareMaxVisibleDots(runCount) {
+      if (runCount <= 2) return runCount;
+
+      const pad = sharePad();
+      const chartWidth = SHARE_W - pad.left - pad.right;
+      const minGap = shareSettings.dotSize * 2 + 8;
+      const collisionSafeCount = Math.floor(chartWidth / minGap) + 1;
+      return Math.max(3, Math.min(runCount, collisionSafeCount));
+    }
+
+    function shareDrawDots(ctx, runs, pts, indices, bestIdx) {
+      runs.forEach((r, i) => {
+        if (!indices.has(i)) return;
+        const isBest = i === bestIdx;
+        const color = r.status === 'keep' ? '#3fb950' : 'rgba(248,81,73,0.6)';
+        const rad = isBest ? shareSettings.dotBestSize : shareSettings.dotSize;
+
+        if (isBest) {
+          ctx.beginPath();
+          ctx.arc(pts[i].x, pts[i].y, rad + 8, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(63,185,80,0.3)';
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(pts[i].x, pts[i].y, rad, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        if (isBest) {
+          ctx.beginPath();
+          ctx.arc(pts[i].x, pts[i].y, rad, 0, Math.PI * 2);
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 3;
+          ctx.stroke();
+        }
+      });
+    }
+
+    function shareDrawStats(ctx) {
+      const pad = sharePad();
+      const y = SHARE_H - pad.bottom - 36;
+      ctx.strokeStyle = '#30363d';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(pad.left, y - 22);
+      ctx.lineTo(SHARE_W - pad.right, y - 22);
+      ctx.stroke();
+
+      const kept = session.runs.filter(r => r.status === 'keep').length;
+      const stats = [
+        { label: 'RUNS', value: String(session.runs.length), color: '#c9d1d9' },
+        { label: 'KEPT', value: String(kept), color: '#3fb950' },
+        { label: 'DIRECTION', value: session.direction, color: '#c9d1d9' },
+      ];
+      const spacing = (SHARE_W - pad.left - pad.right) / stats.length;
+      let x = pad.left;
+      stats.forEach(s => {
+        ctx.font = '700 ' + shareSettings.statsLabelSize + 'px ' + SHARE_SANS;
+        ctx.fillStyle = '#8b949e';
+        ctx.textBaseline = 'top';
+        ctx.fillText(s.label, x, y);
+        ctx.font = '800 ' + shareSettings.statsValueSize + 'px ' + SHARE_MONO;
+        ctx.fillStyle = s.color;
+        ctx.fillText(s.value, x, y + 28);
+        x += spacing;
+      });
+    }
+
+    function shareDrawBorder(ctx) {
+      ctx.strokeStyle = '#30363d';
+      ctx.lineWidth = 1;
+      shareRoundRect(ctx, 0.5, 0.5, SHARE_W - 1, SHARE_H - 1, 20);
+      ctx.stroke();
+    }
+
+    function shareRoundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.arcTo(x + w, y, x + w, y + r, r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+      ctx.lineTo(x + r, y + h);
+      ctx.arcTo(x, y + h, x, y + h - r, r);
+      ctx.lineTo(x, y + r);
+      ctx.arcTo(x, y, x + r, y, r);
+      ctx.closePath();
+    }
+  </script>
+</body>
+</html>
