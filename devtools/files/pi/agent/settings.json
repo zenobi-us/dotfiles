@@ -20,6 +20,7 @@
     "./packages/pi-fzf",
     "./packages/pi-lsp",
     "./packages/pi-ask",
+    "./packages/pi-tree",
     "./packages/pi-handoff",
     "./packages/pi-lazyskills",
     "./packages/pi-worktrunk",
