@@ -1,0 +1,7 @@
+# Swap this file in only while checking /hooks-validate and structured diagnostics.
+# The command: action is intentionally invalid on PI and must be reported as a load error.
+hooks:
+  - id: smoke-invalid-command-action
+    event: session.idle
+    actions:
+      - command: "/not-supported-on-pi"

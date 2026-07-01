@@ -125,6 +125,17 @@
         "bun-types": "*",
       },
     },
+    "packages/pi-hooks": {
+      "name": "pi-hooks",
+      "version": "2026.6.14",
+      "dependencies": {
+        "yaml": "^2.9.0",
+      },
+      "peerDependencies": {
+        "@earendil-works/pi-coding-agent": "*",
+        "@earendil-works/pi-tui": "*",
+      },
+    },
     "packages/pi-lazyskills": {
       "name": "skills",
       "version": "0.0.1",
@@ -1434,6 +1445,8 @@
     "pi-autoresearch": ["pi-autoresearch@workspace:packages/pi-autoresearch"],
 
     "pi-fzf": ["pi-fzf@workspace:packages/pi-fzf"],
+
+    "pi-hooks": ["pi-hooks@workspace:packages/pi-hooks"],
 
     "pi-ralph-wiggum": ["pi-ralph-wiggum@workspace:packages/pi-ralph-wiggum"],
 

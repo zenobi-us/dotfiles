@@ -1,0 +1,65 @@
+# Copy this file to <smoke-project>/.pi/hook/hooks.yaml for the runtime PI smoke.
+# It only writes under .pi/hooks-smoke in the current smoke project.
+hooks:
+  - id: smoke-session-created
+    event: session.created
+    actions:
+      - setStatus: "pi-hooks smoke: session created"
+      - notify:
+          text: "pi-hooks smoke session started"
+          level: info
+      - bash: |
+          mkdir -p .pi/hooks-smoke
+          printf '{"event":"session.created","session":"%s","project":"%s"}\n' "$PI_SESSION_ID" "$PI_PROJECT_DIR" >> .pi/hooks-smoke/events.ndjson
+
+  - id: smoke-before-bash
+    event: tool.before.bash
+    actions:
+      - confirm:
+          title: "pi-hooks smoke"
+          message: "Allow this bash command during the smoke run?"
+      - bash: |
+          mkdir -p .pi/hooks-smoke
+          node -e 'const fs=require("fs"); let input=""; process.stdin.on("data", d => input += d); process.stdin.on("end", () => { const ctx=JSON.parse(input || "{}"); fs.appendFileSync(".pi/hooks-smoke/events.ndjson", JSON.stringify({ event: "tool.before.bash", tool_args: ctx.tool_args || null }) + "\n"); });'
+
+  - id: smoke-after-read
+    event: tool.after.read
+    actions:
+      - bash: |
+          mkdir -p .pi/hooks-smoke
+          printf '{"event":"tool.after.read","session":"%s"}\n' "$PI_SESSION_ID" >> .pi/hooks-smoke/events.ndjson
+      - tool:
+          name: read
+          args:
+            path: .pi/hooks-smoke/events.ndjson
+
+  - id: smoke-after-write
+    event: tool.after.write
+    actions:
+      - bash: |
+          mkdir -p .pi/hooks-smoke
+          node -e 'const fs=require("fs"); let input=""; process.stdin.on("data", d => input += d); process.stdin.on("end", () => { const ctx=JSON.parse(input || "{}"); fs.appendFileSync(".pi/hooks-smoke/events.ndjson", JSON.stringify({ event: "tool.after.write", changes: ctx.changes || [], files: ctx.files || [] }) + "\n"); });'
+
+  - id: smoke-file-changed
+    event: file.changed
+    conditions:
+      - matchesAnyPath: ".pi/hooks-smoke/**"
+    actions:
+      - bash: |
+          mkdir -p .pi/hooks-smoke
+          printf '{"event":"file.changed","session":"%s"}\n' "$PI_SESSION_ID" >> .pi/hooks-smoke/events.ndjson
+
+  - id: smoke-session-idle
+    event: session.idle
+    actions:
+      - setStatus: "pi-hooks smoke: idle observed"
+      - bash: |
+          mkdir -p .pi/hooks-smoke
+          printf '{"event":"session.idle","session":"%s"}\n' "$PI_SESSION_ID" >> .pi/hooks-smoke/events.ndjson
+
+  - id: smoke-session-deleted
+    event: session.deleted
+    actions:
+      - bash: |
+          mkdir -p .pi/hooks-smoke
+          printf '{"event":"session.deleted","session":"%s"}\n' "$PI_SESSION_ID" >> .pi/hooks-smoke/events.ndjson

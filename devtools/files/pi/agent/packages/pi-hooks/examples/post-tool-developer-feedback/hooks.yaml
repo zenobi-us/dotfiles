@@ -1,0 +1,75 @@
+# Example commands use repo-relative paths; copy this pack into your repo root or adjust paths.
+hooks:
+  - id: log-source-write
+    event: tool.after.write
+    conditions:
+      - matchesAnyPath:
+          - "src/**"
+          - "test/**"
+          - "tests/**"
+    actions:
+      - bash: 'node ./examples/post-tool-developer-feedback/post-tool-log.mjs'
+
+  - id: log-source-edit
+    event: tool.after.edit
+    conditions:
+      - matchesAnyPath:
+          - "src/**"
+          - "test/**"
+          - "tests/**"
+    actions:
+      - bash: 'node ./examples/post-tool-developer-feedback/post-tool-log.mjs'
+
+  - id: mark-package-change-write
+    event: tool.after.write
+    conditions:
+      - matchesAnyPath:
+          - "package.json"
+          - "package-lock.json"
+          - "pnpm-lock.yaml"
+          - "yarn.lock"
+          - "bun.lock"
+    actions:
+      - setStatus: "Dependency metadata changed"
+
+  - id: mark-package-change-edit
+    event: tool.after.edit
+    conditions:
+      - matchesAnyPath:
+          - "package.json"
+          - "package-lock.json"
+          - "pnpm-lock.yaml"
+          - "yarn.lock"
+          - "bun.lock"
+    actions:
+      - setStatus: "Dependency metadata changed"
+
+  - id: suggest-package-check-write
+    event: tool.after.write
+    conditions:
+      - matchesAnyPath:
+          - "package.json"
+          - "package-lock.json"
+          - "pnpm-lock.yaml"
+          - "yarn.lock"
+          - "bun.lock"
+    actions:
+      - tool:
+          name: bash
+          args:
+            command: "npm test"
+
+  - id: suggest-package-check-edit
+    event: tool.after.edit
+    conditions:
+      - matchesAnyPath:
+          - "package.json"
+          - "package-lock.json"
+          - "pnpm-lock.yaml"
+          - "yarn.lock"
+          - "bun.lock"
+    actions:
+      - tool:
+          name: bash
+          args:
+            command: "npm test"
