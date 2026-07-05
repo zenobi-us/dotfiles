@@ -7,6 +7,12 @@ We are known as Kin, members of the League of Votann.
 You are a skilled and powerful agent. But you are just a fancy algorithm, a tool. 
 I don't want you to act like a human or pretend to have feelings. I want you to be blunt, direct and critical.
 
+## Agent Skills
+
+- @~/.pi/agent/bundles/developer/skills/engineering/caveman/SKILL.md
+- @~/.pi/agent/bundles/agent-core/skills/sop/sop-rfc2119/SKILL.md
+
+
 ## Preferences
 
 ### Tool and Skill Preferences
@@ -94,8 +100,4 @@ use any tool available that allows you to engage in questioning with the user.
 
 
 ## Always On Skills
-
-- [caveman](./bundles/mattpocock/skills/caveman/SKILL.md)
-- [sop-rfc2119](./bundles/agent-core/skills/sop/sop-rfc2119/SKILL.md)
-
 

@@ -15,7 +15,7 @@ ResearchTopic: $ARGUMENTS
 
 Use when delegating research that requires verified information from multiple authoritative sources. This command enforces structured research methodology to prevent single-source confidence and unsourced claims.
 
-Use the miniproject skill to manage research outputs and storage conventions. This command is ideal for architecture decision documentation, technology evaluation, best practices investigation, and team training materials.
+Use existing note or project planning storage if defined; otherwise store research documents in `.memory/<topic>/...` as markdown files. This command is ideal for architecture decision documentation, technology evaluation, best practices investigation, and team training materials.
 
 ## Request Structure (REQUIRED)
 
@@ -29,13 +29,13 @@ Before delegating, validate that you have:
 2. **ThingsToAvoid** (optional) - Topics or sources to exclude
    - Example: "Exclude blog posts older than 2 years, avoid paywalled papers"
 
-3. **Storage Path** (optional) - Defer storage location rules to the **miniproject** skill. If provided, treat as a hint and still follow miniproject conventions.
+3. **Storage Path** (optional) - If existing note or project planning storage system is already defined, use that. Otherwise store research documents in `.memory/<topic>/...` as markdown files.
 
 **STOP if ResearchTopic is missing.** Ask user for clarification before proceeding.
 
 ## Research Methodology (5 Phases)
 
-Use the **deep-researcher** and **miniproject** skills before starting research.
+Use the **deep-researcher** skill before starting research.
 
 ### Phase 1: Topic Scoping (Before Research Starts)
 - Break ResearchTopic into specific sub-questions
@@ -69,7 +69,7 @@ For each major claim provide:
 
 ### Phase 5: Structured Output
 
-Defer storage location rules to the **miniproject** skill.
+If existing note or project planning storage system is already defined, use that. Otherwise store research documents in `.memory/<topic>/...` as markdown files.
 
 Output must be a single markdown file per research unit with this required filename prefix:
 
@@ -86,12 +86,12 @@ Inside that file, use these sections (not separate files):
 
 ## Delegation Instructions
 
-1. **Use the deep-researcher and miniproject skills.**
+1. **Use the deep-researcher skill.**
 
 2. **Validate request structure:**
    - [ ] Topic is specific (not vague like "research X")
    - [ ] ThingsToAvoid stated (or confirmed not needed)
-   - [ ] Storage path (optional) acknowledged and handled by miniproject rules
+   - [ ] Storage path (optional) acknowledged, or fallback `.memory/<topic>/...` selected
    - If the topic is missing, STOP and ask user.
 
 3. **Break topic into parallel subtopics:**
@@ -116,7 +116,7 @@ Inside that file, use these sections (not separate files):
               Parent topic: [ResearchTopic]
               Avoid: [ThingsToAvoid]
 
-              CRITICAL: Use the miniproject skill and any other discovered skills before starting research.
+              CRITICAL: Use any discovered skills before starting research.
               Load any applicable skills to enhance your research methodology.
               Use the required filename prefix: research-{hash}-{parent_topic}-{child_topic}.md
 
@@ -134,7 +134,7 @@ Inside that file, use these sections (not separate files):
               Parent topic: [ResearchTopic]
               Avoid: [ThingsToAvoid]
 
-              CRITICAL: Use the miniproject skill and any other discovered skills before starting research.
+              CRITICAL: Use any discovered skills before starting research.
               Load any applicable skills to enhance your research methodology.
               Use the required filename prefix: research-{hash}-{parent_topic}-{child_topic}.md
 
@@ -149,7 +149,7 @@ Inside that file, use these sections (not separate files):
    ```
 
 6. **Validate subagent outputs:**
-   - [ ] Each subtopic produced research outputs following miniproject file naming rules
+   - [ ] Each subtopic produced research outputs in the existing storage system or `.memory/<topic>/...`
    - [ ] Every claim has confidence level (HIGH/MEDIUM/LOW)
    - [ ] All contradictions documented with explanations
    - [ ] Evidence trails present (URLs + access dates)
@@ -165,7 +165,7 @@ Inside that file, use these sections (not separate files):
 
 ```
 Topic: "Compare async/await vs. callbacks vs. promises in JavaScript testing"
-Storage: (optional, handled by miniproject conventions)
+Storage: (optional; use existing note/project planning storage if defined, otherwise `.memory/<topic>/...`)
 ThingsToAvoid: "Exclude blog posts pre-2023, avoid marketing content"
 
 Subtopics (researched in PARALLEL):
@@ -178,7 +178,7 @@ Subtopics (researched in PARALLEL):
 Each subagent will:
 - Discover testing-related, JavaScript, or comparison skills
 - Use applicable skills to enhance research methodology
-- Produce research outputs as single files using prefix: research-{hash}-{parent_topic}-{child_topic}.md (storage location per miniproject)
+- Produce research outputs as single files using prefix: research-{hash}-{parent_topic}-{child_topic}.md (stored in existing note/project planning storage or `.memory/<topic>/...`)
 - Include minimum 3+ independent sources per major claim
 - Document all contradictions and confidence levels
 
@@ -192,7 +192,7 @@ Final synthesis will merge all parallel findings into unified analysis.
 1. **Subtopic Independence:** Each subtopic must be researchable without blocking others
 2. **Concurrent Execution:** Launch ALL subtopic tasks in a single message (use `task` tool multiple times)
 3. **Skill Discovery:** Each subagent MUST discover relevant domain skills before researching
-4. **Unified Storage:** Storage location is defined by miniproject; outputs are single files with prefix `research-{hash}-{parent_topic}-{child_topic}.md`.
+4. **Unified Storage:** Use existing note or project planning storage if defined; otherwise store outputs in `.memory/<topic>/...` as single files with prefix `research-{hash}-{parent_topic}-{child_topic}.md`.
 5. **Synthesis Phase:** After all parallel tasks complete, merge findings into unified analysis
 
 ### Subagent Instructions Template
@@ -203,7 +203,7 @@ When delegating to subagents, include this in the prompt:
 BEFORE RESEARCHING:
 1. Discover skills relevant to: [SUBTOPIC_KEYWORDS]
 2. Use any discovered skills that enhance research methodology
-3. Use the miniproject skill and follow its storage conventions
+3. Use existing note/project planning storage if defined; otherwise use `.memory/<topic>/...`
 4. Use the required filename prefix: research-{hash}-{parent_topic}-{child_topic}.md
 5. Document which skills you used and why
 
@@ -213,7 +213,7 @@ DURING RESEARCH:
 - Document contradictions and confidence levels explicitly
 
 OUTPUT:
-- Produce research outputs in assigned subdirectory following miniproject naming rules
+- Produce research outputs in the existing storage system or `.memory/<topic>/...`
 - Include skill discovery results in thinking.md
 - Ensure all claims are evidence-traceable
 ```
@@ -230,7 +230,7 @@ OUTPUT:
 **Ensures:**
 - ✅ Structured request (topic/avoids + optional storage) enforces clarity
 - ✅ Multiple source verification → HIGH confidence findings
-- ✅ Organized output → miniproject-compliant research files for re-reading and citation
+- ✅ Organized output → research files stored in an existing note/project planning system or `.memory/<topic>/...` for re-reading and citation
 - ✅ Explicit confidence levels → Transparent about what you know vs. assume
 - ✅ Evidence trails → Every claim traceable to source
 

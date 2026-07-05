@@ -29,11 +29,16 @@
     "./packages/pi-lmstudio-provider"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
-  "hideThinkingBlock": false,
-  "enableSkillCommands": false,
+  "hideThinkingBlock": true,
+  "enableSkillCommands": true,
   "quietStartup": true,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 10,
   "enableInstallTelemetry": false,
-  "doubleEscapeAction": "tree"
+  "doubleEscapeAction": "tree",
+  "terminal": {
+    "showTerminalProgress": true,
+    "clearOnShrink": false
+  },
+  "showHardwareCursor": false
 }
