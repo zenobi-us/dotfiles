@@ -217,6 +217,7 @@ class SessionSummaryService {
     const stored = this.read(ctx);
     if (stored) this.pi.setLabel(stored.entryId, this.config.stateLabel);
     if (this.config.setSessionName) this.pi.setSessionName(summary);
+    if (ctx.hasUI) ctx.ui.notify(`Saved title summary: ${summary}`, "info");
   }
 }
 
