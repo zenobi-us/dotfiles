@@ -114,6 +114,7 @@ plugins {
     session-manager location="zellij:session-manager"
     status-bar location="zellij:status-bar"
     sequence location="zellij:sequence"
+    agent-threads location="file:~/.config/zellij/plugins/zellij-plugin-agent-threads.wasm"
 }
 
 theme "rose-pine"
