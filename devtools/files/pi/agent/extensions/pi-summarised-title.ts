@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { basename, join } from "node:path";
 import { CONFIG_DIR_NAME, type ExtensionAPI, type ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { pipeline } from "@huggingface/transformers";
 import { type Static, Type } from "typebox";
@@ -8,7 +8,16 @@ import { Value } from "typebox/value";
 
 const CONFIG_NAME = "pi-summarised-title";
 const CUSTOM_TYPE = "pi-summarised-title:state";
-
+/**
+ * Transformers. Is title model options:
+ *
+ * - pipelineTask: "text2text-generation", model: "Xenova/flan-t5-small" 
+ *   (small, default, can return empty titles)
+ * - pipelineTask: "text-generation", model: "onnx-community/gemma-3-270m-it-ONNX" 
+ *   (valid, slow first load)
+ * - pipelineTask: "text-generation", model: "onnx-community/LFM2-350M-ONNX" 
+ *   (valid; no 230M LFM2 found)
+ */
 const ConfigSchema = Type.Object(
   {
     enabled: Type.Boolean({
@@ -17,7 +26,11 @@ const ConfigSchema = Type.Object(
     }),
     model: Type.String({
       default: "Xenova/flan-t5-small",
-      description: "Transformers.js model id. Use an ONNX-ready text2text model.",
+      description: "Transformers.js model id. See model options comment above.",
+    }),
+    pipelineTask: Type.Union([Type.Literal("text2text-generation"), Type.Literal("text-generation")], {
+      default: "text2text-generation",
+      description: "Transformers.js pipeline task. Use text-generation for Gemma/LFM2 ONNX models.",
     }),
     dtype: Type.String({
       default: "q8",
@@ -43,6 +56,10 @@ const ConfigSchema = Type.Object(
       default: true,
       description: "Set pi's session display name from the generated summary.",
     }),
+    titleTemplate: Type.String({
+      default: "π - {summary}",
+      description: "Template for the session title. Use {summary} to insert the generated summary.",
+    }),
     prompt: Type.String({
       default: [
         "Create a short title for this terminal thread from the first user message.",
@@ -52,10 +69,6 @@ const ConfigSchema = Type.Object(
         "- Title Case or concise sentence case",
         "- No quotes, emoji, punctuation, prefixes, or explanations",
         "- Prefer the user's actual task over generic words like Help or Chat",
-        "",
-        "<user_message>",
-        "{message}",
-        "</user_message>",
       ].join("\n"),
       description: "Prompt template. Use {message} where the first user message should be inserted.",
     }),
@@ -81,6 +94,11 @@ type StoredSummary = {
   state: SummaryState;
 };
 
+type ConfigReadResult = {
+  data: Record<string, unknown>;
+  error?: string;
+};
+
 const SourceMessageSchema = Type.Object({
   id: Type.String(),
   text: Type.String(),
@@ -93,24 +111,46 @@ type SourceMessage = Static<typeof SourceMessageSchema>;
  */
 class ConfigService {
   config: TitleConfig = Value.Parse(ConfigSchema, Value.Default(ConfigSchema, {}));
+  private warned = new Set<string>();
 
   async reload(ctx: ExtensionContext): Promise<TitleConfig> {
-    const home = await this.readJson(join(homedir(), CONFIG_DIR_NAME, "agent", `${CONFIG_NAME}.json`));
-    const project = ctx.isProjectTrusted()
-      ? await this.readJson(join(ctx.cwd, CONFIG_DIR_NAME, `${CONFIG_NAME}.json`))
-      : {};
+    const homePath = join(homedir(), CONFIG_DIR_NAME, "agent", `${CONFIG_NAME}.json`);
+    const projectPath = join(ctx.cwd, CONFIG_DIR_NAME, `${CONFIG_NAME}.json`);
+    const home = await this.readJson(homePath);
+    const project = ctx.isProjectTrusted() ? await this.readJson(projectPath) : { data: {} };
 
-    this.config = Value.Parse(ConfigSchema, Value.Default(ConfigSchema, { ...home, ...project }));
+    this.warn(ctx, homePath, home.error);
+    this.warn(ctx, projectPath, project.error);
+
+    try {
+      this.config = Value.Parse(ConfigSchema, Value.Default(ConfigSchema, { ...home.data, ...project.data }));
+    } catch (error) {
+      this.warn(ctx, `${homePath} + ${projectPath}`, this.errorMessage(error));
+      this.config = Value.Parse(ConfigSchema, Value.Default(ConfigSchema, {}));
+    }
     return this.config;
   }
 
-  private async readJson(path: string): Promise<Record<string, unknown>> {
+  private async readJson(path: string): Promise<ConfigReadResult> {
     try {
       const value = JSON.parse(await readFile(path, "utf8"));
-      return value && typeof value === "object" && !Array.isArray(value) ? value : {};
-    } catch {
-      return {};
+      return { data: value && typeof value === "object" && !Array.isArray(value) ? value : {} };
+    } catch (error: any) {
+      if (error?.code === "ENOENT") return { data: {} };
+      return { data: {}, error: this.errorMessage(error) };
     }
+  }
+
+  private warn(ctx: ExtensionContext, path: string, error?: string): void {
+    if (!error || !ctx.hasUI) return;
+    const key = `${path}:${error}`;
+    if (this.warned.has(key)) return;
+    this.warned.add(key);
+    ctx.ui.notify(`${CONFIG_NAME}: ignored invalid config ${path}: ${error}`, "error");
+  }
+
+  private errorMessage(error: unknown): string {
+    return error instanceof Error ? error.message : String(error);
   }
 }
 
@@ -152,12 +192,51 @@ class SessionSummaryService {
     return text
       .replace(/^[\s"“”'`]+|[\s"“”'`.!?]+$/g, "")
       .replace(/^title:\s*/i, "")
+      .replace(/\s+/g, " ")
       .trim();
   }
 
-  private async summarise(text: string): Promise<string> {
-    this.titleer ??= await pipeline("text2text-generation", this.config.model, { dtype: this.config.dtype as any });
-    const prompt = this.config.prompt.replace("{message}", text.slice(0, 4_000));
+  private fallbackTitle(text: string): string {
+    const cleaned = this.cleanTitle(text
+      .replace(/@\S+/g, (match) => basename(match.slice(1)).replace(/\.[^.]+$/, ""))
+      .replace(/[-_/\\]+/g, " ")
+      .replace(/[`*_#>\[\](){}]/g, " ")
+      .replace(/\s+/g, " "));
+
+    return cleaned.split(" ").filter(Boolean).slice(0, 7).join(" ");
+  }
+
+  private buildPrompt(text: string): string {
+    const source = text.slice(0, 4_000);
+    if (this.config.prompt.includes("{message}")) {
+      return this.config.prompt.replaceAll("{message}", source);
+    }
+    return [this.config.prompt, "```", source, "```"].join("\n");
+  }
+
+  private async summarise(ctx: ExtensionContext, text: string): Promise<string> {
+    if (!this.titleer) {
+      try {
+        if (ctx.hasUI) ctx.ui.setStatus(CONFIG_NAME, `Loading ${this.config.model}`);
+        this.titleer = await pipeline(this.config.pipelineTask, this.config.model, {
+          dtype: this.config.dtype as any,
+          progress_callback: (event: any) => {
+            if (!ctx.hasUI) return;
+            if (event.status === "progress") {
+              const pct = event.total ? ` ${Math.round((event.loaded / event.total) * 100)}%` : "";
+              ctx.ui.setStatus(CONFIG_NAME, `Downloading ${event.file ?? this.config.model}${pct}`);
+              return;
+            }
+            if (event.status === "initiate" || event.status === "download") {
+              ctx.ui.setStatus(CONFIG_NAME, `Downloading ${event.file ?? this.config.model}`);
+            }
+          },
+        } as any);
+      } finally {
+        if (ctx.hasUI) ctx.ui.setStatus(CONFIG_NAME, undefined);
+      }
+    }
+    const prompt = this.buildPrompt(text);
     const out = await this.titleer(prompt, {
       max_new_tokens: this.config.maxNewTokens,
       num_beams: this.config.numBeams,
@@ -165,21 +244,32 @@ class SessionSummaryService {
       early_stopping: true,
     });
 
-    return this.cleanTitle(out[0]?.generated_text ?? "");
+    const generated = this.cleanTitle((out[0]?.generated_text ?? "").replace(prompt, ""));
+    return generated || this.fallbackTitle(text);
   }
 
   updateConfig(config: TitleConfig): void {
-    if (config.model !== this.config.model || config.dtype !== this.config.dtype) {
+    if (
+      config.model !== this.config.model ||
+      config.dtype !== this.config.dtype ||
+      config.pipelineTask !== this.config.pipelineTask
+    ) {
       this.titleer = undefined;
     }
     this.config = config;
+  }
+
+  private applyTitle(ctx: ExtensionContext, summary: string): void {
+    const title = this.config.titleTemplate.replaceAll("{summary}", summary);
+    if (this.config.setSessionName) this.pi.setSessionName(summary);
+    if (ctx.hasUI) ctx.ui.setTitle(title);
   }
 
   async process(ctx: ExtensionContext, message?: SourceMessage): Promise<void> {
     const stored = this.read(ctx);
 
     if (stored) {
-      if (this.config.setSessionName) this.pi.setSessionName(stored.state.summary);
+      this.applyTitle(ctx, stored.state.summary);
       return;
     }
 
@@ -201,7 +291,7 @@ class SessionSummaryService {
   }
 
   private async save(source: SourceMessage, ctx: ExtensionContext): Promise<void> {
-    const summary = await this.summarise(source.text);
+    const summary = await this.summarise(ctx, source.text);
     if (!summary) return;
 
     const state: SummaryState = {
@@ -216,8 +306,8 @@ class SessionSummaryService {
     this.pi.appendEntry(CUSTOM_TYPE, state);
     const stored = this.read(ctx);
     if (stored) this.pi.setLabel(stored.entryId, this.config.stateLabel);
-    if (this.config.setSessionName) this.pi.setSessionName(summary);
-    if (ctx.hasUI) ctx.ui.notify(`Saved title summary: ${summary}`, "info");
+    this.applyTitle(ctx, summary);
+    if (ctx.hasUI) ctx.ui.notify(`pi-summarised-title: saved summary "${summary}"`, "info");
   }
 }
 
