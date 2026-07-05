@@ -8,7 +8,10 @@
     "npm:pi-mermaid",
     "npm:pi-hashline-readmap",
     "npm:pi-llama-server",
-    "npm:@tintinweb/pi-subagents",
+    "npm:pi-subagentura",
+    "npm:pi-web-access",
+    "npm:pi-updater",
+    "npm:pi-tps-meter",
     "git:github.com/DietrichGebert/ponytail",
     "./bundles/agent-core",
     "./bundles/developer",
@@ -39,4 +42,9 @@
   "autocompleteMaxVisible": 10,
   "enableInstallTelemetry": false,
   "doubleEscapeAction": "tree",
-  "defaultModel": "gpt-5.5"
+  "defaultModel": "gpt-5.5",
+  "terminal": {
+    "showTerminalProgress": true,
+    "clearOnShrink": false
+  },
+  "showHardwareCursor": false
