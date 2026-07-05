@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "esnext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "types": ["node"],
-    "lib": ["ES2022"],
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "ESNEXT"
+    ],
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
