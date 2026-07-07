@@ -90,6 +90,9 @@ pdm = "latest"
 "npm:portless" = "latest"
 "pipx:basic-memory" = "latest"
 "github:ggml-org/llama.cpp" = "b9555"
+traefik = "latest"
+"npm:neofetch" = "latest"
+"npm:kandev" = "latest"
 
 
 [shell_alias]
