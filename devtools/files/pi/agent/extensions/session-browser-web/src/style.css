@@ -1,0 +1,123 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font: 14px system-ui, sans-serif;
+	color: #ddd;
+	background: #111;
+}
+
+#app {
+	display: grid;
+	grid-template-columns: 340px 1fr;
+	height: 100vh;
+}
+
+aside {
+	overflow: auto;
+	padding: 12px;
+	border-right: 1px solid #333;
+}
+
+main {
+	min-width: 0;
+	display: grid;
+	grid-template-rows: auto 1fr;
+}
+
+input {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 12px;
+	color: #eee;
+	background: #1b1b1b;
+	border: 1px solid #444;
+}
+
+details {
+	margin-bottom: 8px;
+}
+
+summary {
+	cursor: pointer;
+	color: #9cdcfe;
+	font-weight: 600;
+}
+
+button {
+	display: block;
+	width: 100%;
+	margin: 3px 0;
+	padding: 6px 8px;
+	text-align: left;
+	color: #ddd;
+	background: transparent;
+	border: 0;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover,
+button.active {
+	background: #2a2a2a;
+}
+
+.meta {
+	color: #888;
+	font-size: 12px;
+}
+
+#detail-header {
+	padding: 14px 16px;
+	border-bottom: 1px solid #333;
+	background: #151515;
+}
+
+#detail-header h2 {
+	margin: 0 0 10px;
+	font-size: 18px;
+	color: #eee;
+}
+
+#command-row {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 8px;
+	align-items: stretch;
+	margin-bottom: 10px;
+}
+
+#session-command {
+	margin: 0;
+	padding: 8px;
+	overflow: auto;
+	color: #c3e88d;
+	background: #0b0b0b;
+	border: 1px solid #333;
+	border-radius: 4px;
+}
+
+#copy-command {
+	width: auto;
+	padding: 0 12px;
+	border: 1px solid #444;
+	background: #222;
+}
+
+#header-info {
+	color: #aaa;
+}
+
+iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	background: white;
+}
+
+.empty {
+	padding: 16px;
+	color: #888;
+}
