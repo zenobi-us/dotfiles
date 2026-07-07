@@ -117,6 +117,7 @@ plugins {
 }
 
 theme "rose-pine"
+scrollback_editor "nvim"
 
 pane_frames false
 
