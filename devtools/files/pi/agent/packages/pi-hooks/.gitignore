@@ -1,0 +1,26 @@
+# Trekoon
+/.trekoon/
+
+# Build output
+/dist/
+*.tsbuildinfo
+
+# Dependencies
+/node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Tool caches
+/.superset/
+
+# Editor
+.DS_Store
+
+# Agents
+.claude
+
+# Local secrets / env
+.env
+.env.local
+.env.*.local

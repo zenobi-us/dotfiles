@@ -28,11 +28,11 @@
     "./packages/pi-handoff",
     "./packages/pi-lazyskills",
     "./packages/pi-worktrunk",
-    "./packages/pi-rose-pine"
+    "./packages/pi-rose-pine",
+    "./packages/pi-lmstudio-provider"
   ],
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "hideThinkingBlock": true,
-  "defaultProvider": "openai-codex",
   "enableSkillCommands": true,
   "quietStartup": true,
   "collapseChangelog": true,
@@ -40,4 +40,3 @@
   "enableInstallTelemetry": false,
   "doubleEscapeAction": "tree",
   "defaultModel": "gpt-5.5"
-}

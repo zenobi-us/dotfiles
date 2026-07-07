@@ -7,6 +7,8 @@ import { executeAction } from "./actions.js";
 import { loadFzfConfig, type ResolvedCommand } from "./config.js";
 import { FuzzySelector, type SelectorTheme } from "./selector.js";
 
+const withAgentBinPath = (command: string) =>
+  `export PATH="$HOME/.pi/agent/bin:$PATH"; ${command}`;
 export default function (pi: ExtensionAPI) {
   let commands: ResolvedCommand[] = [];
 
@@ -41,7 +43,7 @@ async function runFzfSelector(
   }
 
   // 1. Run the list command to get candidates
-  const result = await pi.exec("bash", ["-c", cmd.list], {
+  const result = await pi.exec("bash", ["-c", withAgentBinPath(cmd.list)], {
     timeout: 10000,
   });
 

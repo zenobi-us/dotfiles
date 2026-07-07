@@ -11,3 +11,4 @@ if [[ "$SSH_TTY" && "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprof
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
+. "$HOME/.cargo/env"
