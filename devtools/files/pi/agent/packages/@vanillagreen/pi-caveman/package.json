@@ -1,0 +1,162 @@
+{
+  "name": "@vanillagreen/pi-caveman",
+  "version": "1.2.4",
+  "description": "Native Pi caveman communication mode with session persistence, slash command control, status badge, and settings-manager integration.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "caveman",
+    "prompt"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/caveman.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-caveman/assets/command-autocomplete.png"
+  },
+  "scripts": {
+    "test": "npm run test:unit",
+    "test:unit": "node --import tsx --test tests/unit-*.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "tsx": "^4.21.0"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Caveman",
+      "settings": [
+        {
+          "key": "mode",
+          "label": "Mode",
+          "description": "Default caveman mode. Off disables caveman; lite/full/ultra/micro enable the matching style. Session /caveman overrides win until session ends.",
+          "type": "enum",
+          "enumValues": [
+            "off",
+            "lite",
+            "full",
+            "ultra",
+            "micro"
+          ],
+          "default": "off",
+          "category": "Mode",
+          "apply": "live"
+        },
+        {
+          "key": "showStatusBadge",
+          "label": "Show status badge",
+          "description": "Show CAVEMAN status while active.",
+          "type": "boolean",
+          "default": true,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "autoClarityEscape",
+          "label": "Auto clarity escape",
+          "description": "Inject a full plain-prose system block when the user prompt names an explicit irreversible destructive operation (force-push, drop table, rm -rf, hard reset, etc.). Soft signals like 'confused' or 'security' no longer trigger this — the inline auto-clarity rule still lets the model self-elect plain prose for genuine destructive confirmations.",
+          "type": "boolean",
+          "default": true,
+          "category": "Safety",
+          "apply": "live"
+        },
+        {
+          "key": "resumeAfterClarityEscape",
+          "label": "Resume after clarity escape",
+          "description": "Keep caveman mode active after a temporary clarity escape.",
+          "type": "boolean",
+          "default": true,
+          "category": "Safety",
+          "apply": "live"
+        },
+        {
+          "key": "sessionOverrideAllowed",
+          "label": "Allow session override",
+          "description": "Allow /caveman to override manager defaults in the current session.",
+          "type": "boolean",
+          "default": true,
+          "category": "Mode",
+          "apply": "live"
+        },
+        {
+          "key": "boundaryNormalForCode",
+          "label": "Normal code output",
+          "description": "Tell the model to keep code and code blocks normal.",
+          "type": "boolean",
+          "default": true,
+          "category": "Boundaries",
+          "apply": "live"
+        },
+        {
+          "key": "boundaryNormalForCommits",
+          "label": "Normal commits",
+          "description": "Tell the model to keep commit messages normal unless explicitly asked otherwise.",
+          "type": "boolean",
+          "default": true,
+          "category": "Boundaries",
+          "apply": "live"
+        },
+        {
+          "key": "boundaryNormalForReviews",
+          "label": "Normal reviews",
+          "description": "Tell the model to keep formal reviews/PR text normal unless explicitly asked otherwise.",
+          "type": "boolean",
+          "default": true,
+          "category": "Boundaries",
+          "apply": "live"
+        },
+        {
+          "key": "boundaryNormalForExternalWrites",
+          "label": "Normal external writes",
+          "description": "Tell the model to keep text destined for external systems normal: Linear/Jira/GitHub issue bodies and comments, PR/code-review comments, and chat messages (Slack/Discord/Teams/email). Caveman remains for in-chat replies only.",
+          "type": "boolean",
+          "default": true,
+          "category": "Boundaries",
+          "apply": "live"
+        },
+        {
+          "key": "customPromptSuffix",
+          "label": "Custom prompt suffix",
+          "description": "Extra instruction appended after the imperative caveman directives. Useful for project-specific guidance, but a contradicting suffix can weaken the directive — keep it consistent with the active mode.",
+          "type": "string",
+          "default": "",
+          "category": "Advanced",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "tests/",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-caveman"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-caveman",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  }
+}

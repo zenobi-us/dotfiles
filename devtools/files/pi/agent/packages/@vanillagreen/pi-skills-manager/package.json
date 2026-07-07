@@ -1,0 +1,150 @@
+{
+  "name": "@vanillagreen/pi-skills-manager",
+  "version": "1.1.2",
+  "description": "Polished Pi skills manager with a dedicated /skill menu for browsing, previewing, inserting, creating, editing, renaming, deleting, and toggling skills while preserving native /skill:name invocation.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "skills",
+    "manager"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/skills-manager.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-skills-manager/assets/skills-manager.png"
+  },
+  "scripts": {
+    "test": "bun test ./tests"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Skills Manager",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable skills manager",
+          "description": "Register the /skill manager view, startup skill-list hiding, and skills management UI. If disabled, /skill enable remains available as a recovery command. Native /skill:name commands stay controlled by Pi's Skill commands setting.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "hideStartupSkillsBlock",
+          "label": "Hide startup skills block",
+          "description": "Hide Pi's built-in startup [Skills] list so skills are managed through the dedicated menu instead.",
+          "type": "boolean",
+          "default": true,
+          "category": "Integration",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "aiGenerationEnabled",
+          "label": "AI skill generation",
+          "description": "Use the currently selected model/thinking level to draft new SKILL.md files. If unavailable or disabled, a deterministic fallback template is used.",
+          "type": "boolean",
+          "default": true,
+          "category": "Creation",
+          "apply": "live"
+        },
+        {
+          "key": "defaultCreateLocation",
+          "label": "Default create location",
+          "description": "Initial visibility choice when creating a skill.",
+          "type": "enum",
+          "enumValues": [
+            "project",
+            "global"
+          ],
+          "default": "project",
+          "category": "Creation",
+          "apply": "live"
+        },
+        {
+          "key": "popupWidth",
+          "label": "Popup width",
+          "description": "Preferred overlay width. Accepts a number of columns or a percentage string such as 82%.",
+          "type": "string",
+          "default": "82%",
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "popupMaxHeight",
+          "label": "Popup max height",
+          "description": "Maximum overlay height. Accepts a number of rows or a percentage string.",
+          "type": "string",
+          "default": "86%",
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "listRows",
+          "label": "Visible list rows",
+          "description": "Maximum list rows shown before scrolling in browse mode. Short terminals shrink this to keep popup controls visible.",
+          "type": "number",
+          "default": 14,
+          "category": "UI",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-skills-manager"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-skills-manager",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

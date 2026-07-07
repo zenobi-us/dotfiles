@@ -1,0 +1,193 @@
+{
+  "name": "@vanillagreen/pi-task-panel",
+  "version": "1.3.1",
+  "description": "Persistent Claude-style tasks panel for Pi with slash commands and a structured tasks_write tool.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "tasks"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/task-panel.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-task-panel/assets/panel-expanded.png",
+    "appendSystem": "./instructions.md"
+  },
+  "scripts": {
+    "postinstall": "node scripts/append-system.mjs install",
+    "preuninstall": "node scripts/append-system.mjs remove"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Task Panel",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable task panel",
+          "description": "Register tasks_write, /tasks, task panel widgets, reminders, and shortcuts.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "panelDefaultState",
+          "label": "Default panel state",
+          "description": "Panel state when tasks first appear. User-hidden state is respected for the rest of the session.",
+          "type": "enum",
+          "enumValues": [
+            "hidden",
+            "compact",
+            "expanded"
+          ],
+          "default": "compact",
+          "category": "Panel",
+          "apply": "live"
+        },
+        {
+          "key": "takeoverCtrlT",
+          "label": "Use ctrl+t for tasks",
+          "description": "Register ctrl+t for task panel visibility. Pi normally uses ctrl+t for thinking visibility, so this requires reload and explicit opt-in.",
+          "type": "boolean",
+          "default": false,
+          "category": "Keyboard",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "alternateShortcut",
+          "label": "Alternate shortcut",
+          "description": "Always-available task panel shortcut when ctrl+t is not taken over. Restores the last visible mode when toggling in and keeps user-hidden state latched until then.",
+          "type": "string",
+          "default": "alt+t",
+          "category": "Keyboard",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "managerShortcut",
+          "label": "Manager popup shortcut",
+          "description": "Keyboard shortcut that opens the interactive task manager popup. Use none to disable.",
+          "type": "string",
+          "default": "alt+shift+t",
+          "category": "Keyboard",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "maxCompactTasks",
+          "label": "Compact task count",
+          "description": "Maximum tasks shown in compact mode.",
+          "type": "number",
+          "default": 4,
+          "category": "Panel",
+          "apply": "live"
+        },
+        {
+          "key": "showNotesInExpanded",
+          "label": "Show active notes",
+          "description": "Show notes for the active task in expanded panel mode.",
+          "type": "boolean",
+          "default": true,
+          "category": "Panel",
+          "apply": "live"
+        },
+        {
+          "key": "autoShowOnFirstTask",
+          "label": "Auto-show on first task",
+          "description": "Show the panel automatically only for the first non-empty task state in a session; user-hidden panels stay hidden until explicit show/toggle.",
+          "type": "boolean",
+          "default": true,
+          "category": "Panel",
+          "apply": "live"
+        },
+        {
+          "key": "compactToolOutput",
+          "label": "Compact tasks_write output",
+          "description": "Render tasks_write results as a single inline status row instead of Pi's padded tool box.",
+          "type": "boolean",
+          "default": true,
+          "category": "Tool Output",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "showWorkflowReminder",
+          "label": "Task workflow reminders",
+          "description": "Inject task workflow reminders and hidden current task context so the agent reconciles active/done/dropped/follow-up tasks before final replies.",
+          "type": "boolean",
+          "default": true,
+          "category": "Reminder",
+          "apply": "live"
+        },
+        {
+          "key": "showIncompleteReminder",
+          "label": "Incomplete-task reminders",
+          "description": "Show a subtle reminder when an agent turn ends with incomplete tasks.",
+          "type": "boolean",
+          "default": true,
+          "category": "Reminder",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "scripts/",
+    "instructions.md",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-task-panel"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-task-panel",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

@@ -1,0 +1,1007 @@
+{
+  "name": "@vanillagreen/pi-qol",
+  "version": "1.7.2",
+  "description": "Pi quality-of-life extension: compact statusline/π prompt, reliable multiline input, styled pasted-image chips, session naming/search/context import, scheduled prompts, handoff, permission prompts, notifications, custom compaction, and a collapsed-thinking timer.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "qol",
+    "editor"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/qol.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-qol/assets/settings-panel.png"
+  },
+  "scripts": {
+    "test": "bun test ./tests"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "QOL",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable QOL editor helpers",
+          "description": "Install the QOL editor component and /qol helper command. Disable and reload to leave Pi editor behavior unchanged.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "statusline.enabled",
+          "label": "Show compact statusline",
+          "description": "Render the QOL statusline row with repo, branch, model, thinking level, and context percentage. Disable when another statusline/footer extension owns this UI.",
+          "type": "boolean",
+          "default": true,
+          "category": "Statusline",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "replaceFooter",
+          "label": "Replace built-in footer",
+          "description": "Hide Pi default footer while the compact QOL statusline is enabled.",
+          "type": "boolean",
+          "default": true,
+          "category": "Statusline",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "compactPrompt",
+          "label": "Use π prompt editor",
+          "description": "Replace the main editor with the compact π prompt editor. Disable to use QOL newline/image helpers with Pi default editor chrome.",
+          "type": "boolean",
+          "default": true,
+          "category": "Statusline",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "showSessionNameTitle",
+          "label": "Show session name title",
+          "description": "Show the named session above the prompt. In tmux, update the current pane title to \"π <session>\" and enable a pane border title padded with non-breaking spaces so tmux does not trim it.",
+          "type": "boolean",
+          "default": true,
+          "category": "Statusline",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "showSessionNameWindow",
+          "label": "Sync session name to tmux window name",
+          "description": "Also rename the current tmux window to \"π <session>\" so the session name shows in the tmux status line. Disables tmux automatic-rename for this window while active and restores the original window name and automatic-rename setting on shutdown.",
+          "type": "boolean",
+          "default": true,
+          "category": "Statusline",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "inputBottomPaddingLines",
+          "label": "Input bottom padding",
+          "description": "Blank lines below the compact prompt. Default is 0 for no extra space.",
+          "type": "number",
+          "default": 0,
+          "category": "Statusline",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "gitRefreshTimeoutMs",
+          "label": "Git refresh timeout",
+          "description": "Timeout for each git metadata command used by the statusline.",
+          "type": "number",
+          "default": 1500,
+          "category": "Statusline Git",
+          "apply": "live"
+        },
+        {
+          "key": "showDirtyMarker",
+          "label": "Show dirty marker",
+          "description": "Append * to the branch badge when the worktree is dirty.",
+          "type": "boolean",
+          "default": true,
+          "category": "Statusline Git",
+          "apply": "live"
+        },
+        {
+          "key": "permissionGate.enabled",
+          "label": "Prompt before risky bash commands",
+          "description": "Ask for confirmation before bash tool calls matching the configured command list. Off by default; enable explicitly if you want this extra prompt.",
+          "type": "boolean",
+          "default": false,
+          "category": "Permission Gate",
+          "apply": "live"
+        },
+        {
+          "key": "permissionGate.commands",
+          "label": "Commands to prompt for",
+          "description": "Comma-separated command fragments to confirm before running. Literal entries are case-insensitive and whitespace-tolerant; regex entries may use /pattern/flags. Default prompts only for rm -Rf.",
+          "type": "string",
+          "default": "rm -Rf",
+          "category": "Permission Gate",
+          "apply": "live"
+        },
+        {
+          "key": "permissionGate.previewLines",
+          "label": "Approval preview lines",
+          "description": "Maximum command lines rendered in the permission approval prompt. Longer commands show a head/tail preview with an omitted-line marker.",
+          "type": "number",
+          "default": 12,
+          "category": "Permission Gate",
+          "apply": "live"
+        },
+        {
+          "key": "permissionGate.previewChars",
+          "label": "Approval preview characters",
+          "description": "Maximum command preview characters rendered in the permission approval prompt to avoid flooding or flickering the terminal.",
+          "type": "number",
+          "default": 1200,
+          "category": "Permission Gate",
+          "apply": "live"
+        },
+        {
+          "key": "newlineOnShiftEnter",
+          "label": "shift+enter inserts newline",
+          "description": "Intercept distinguishable shift+enter/shift+return in the prompt editor and insert a newline instead of submitting.",
+          "type": "boolean",
+          "default": true,
+          "category": "Input",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "newlineFallbackKey",
+          "label": "Fallback newline key",
+          "description": "Alternate newline key for terminals that cannot distinguish shift+enter. alt+enter is reserved for Pi follow-up messages.",
+          "type": "enum",
+          "enumValues": [
+            "ctrl+j",
+            "none"
+          ],
+          "default": "ctrl+j",
+          "category": "Input",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "pendingQueue.asciiGreen",
+          "label": "Style pending queue preview",
+          "description": "Render Pi's built-in steering/follow-up queue preview in ANSI green with a heavy left queue bar, while keeping the alt+up restore hint in the theme hint color with a two-space indent.",
+          "type": "boolean",
+          "default": true,
+          "category": "Input",
+          "apply": "live"
+        },
+        {
+          "key": "showImageChips",
+          "label": "Style image chips",
+          "description": "Render [Image #N] placeholders and existing pasted image paths in the editor as visually distinct chips. Pi still owns attachment state.",
+          "type": "boolean",
+          "default": true,
+          "category": "Images",
+          "apply": "live"
+        },
+        {
+          "key": "showAttachmentCountInStatus",
+          "label": "Show attachment count",
+          "description": "Show a lightweight status badge when the draft contains image placeholders.",
+          "type": "boolean",
+          "default": true,
+          "category": "Images",
+          "apply": "live"
+        },
+        {
+          "key": "enableSessionNameCommand",
+          "label": "Enable /rename command",
+          "description": "Register the /rename command for setting or viewing the current session's friendly name in Pi's session selector.",
+          "type": "boolean",
+          "default": true,
+          "category": "Session",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "sessionAutoRename.enabled",
+          "label": "Auto-name new sessions",
+          "description": "Automatically generate a friendly session name from the first user prompt when the session does not already have a name.",
+          "type": "boolean",
+          "default": true,
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.model",
+          "label": "Auto-rename model",
+          "description": "Model used for title generation. Use provider/model, current, or cheapest. Default is a fast OpenAI Codex model that supports ChatGPT OAuth via /login openai-codex.",
+          "type": "string",
+          "default": "openai-codex/gpt-5.4-mini",
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.fallbackModel",
+          "label": "Auto-rename fallback model",
+          "description": "Model to try if the primary model is unavailable. Use current, provider/model, cheapest, none, or off.",
+          "type": "string",
+          "default": "current",
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.fallback",
+          "label": "Deterministic fallback",
+          "description": "Fallback naming strategy if all model calls fail: title-case words from the first prompt, a truncated prompt, or none.",
+          "type": "enum",
+          "enumValues": [
+            "words",
+            "truncate",
+            "none"
+          ],
+          "default": "words",
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.prefix",
+          "label": "Auto-rename prefix",
+          "description": "Optional static prefix added before generated names, e.g. a project label. Leave empty for no prefix.",
+          "type": "string",
+          "default": "",
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.maxInputChars",
+          "label": "Auto-rename input cap",
+          "description": "Maximum first-prompt characters sent to the naming model. Long prompts keep the beginning and end.",
+          "type": "number",
+          "default": 2000,
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.maxNameChars",
+          "label": "Auto-rename title length",
+          "description": "Maximum characters for generated session names, including any prefix.",
+          "type": "number",
+          "default": 80,
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.maxTokens",
+          "label": "Auto-rename output tokens",
+          "description": "Maximum output tokens requested from the naming model.",
+          "type": "number",
+          "default": 96,
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.timeoutMs",
+          "label": "Auto-rename timeout",
+          "description": "Per-model timeout in milliseconds before falling back to the next model or deterministic title.",
+          "type": "number",
+          "default": 12000,
+          "category": "Session Auto-Rename",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.prompt",
+          "label": "Auto-rename prompt override",
+          "description": "Optional prompt template. Use {{message}} for the first user prompt; when empty, QOL uses its built-in concise title prompt.",
+          "type": "string",
+          "default": "",
+          "category": "Session Auto-Rename Advanced",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.notify",
+          "label": "Notify on auto-rename",
+          "description": "Show a Pi UI notification when QOL auto-generates a session name. Manual /qol rename always notifies.",
+          "type": "boolean",
+          "default": false,
+          "category": "Session Auto-Rename Advanced",
+          "apply": "live"
+        },
+        {
+          "key": "sessionAutoRename.debug",
+          "label": "Debug auto-rename",
+          "description": "Show model/auth/fallback diagnostics for automatic session naming.",
+          "type": "boolean",
+          "default": false,
+          "category": "Session Auto-Rename Advanced",
+          "apply": "live"
+        },
+        {
+          "key": "enableHandoffCommand",
+          "label": "Enable /handoff command",
+          "description": "Register the handoff command to generate a focused prompt and create a new session with the prompt as a draft.",
+          "type": "boolean",
+          "default": true,
+          "category": "Session",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "enableScheduleCommand",
+          "label": "Enable /schedule command",
+          "description": "Register /schedule for timer-based user messages, e.g. /schedule 20m retry after rate reset. The timer runs in the extension without invoking the model immediately.",
+          "type": "boolean",
+          "default": true,
+          "category": "Session",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "rateLimitAutoResume.enabled",
+          "label": "Auto-resume after rate limits",
+          "description": "When Pi detects a rate-limit stop with a reset time, schedule a follow-up user message at the reset time so the agent can continue if nothing else has continued since.",
+          "type": "boolean",
+          "default": false,
+          "category": "Rate Limit Recovery",
+          "apply": "live"
+        },
+        {
+          "key": "rateLimitAutoResume.message",
+          "label": "Auto-resume message",
+          "description": "User message sent after a detected rate limit resets.",
+          "type": "string",
+          "default": "Hit API rate limit. It has been reset. Continue",
+          "category": "Rate Limit Recovery",
+          "apply": "live"
+        },
+        {
+          "key": "rateLimitAutoResume.bufferSeconds",
+          "label": "Reset buffer seconds",
+          "description": "Seconds to wait after the reported reset time before sending the auto-resume message.",
+          "type": "number",
+          "default": 10,
+          "category": "Rate Limit Recovery",
+          "apply": "live"
+        },
+        {
+          "key": "rateLimitAutoResume.maxDelayMinutes",
+          "label": "Maximum auto-resume delay",
+          "description": "Ignore detected reset times farther away than this many minutes, to avoid stale or malformed schedules.",
+          "type": "number",
+          "default": 1440,
+          "category": "Rate Limit Recovery",
+          "apply": "live"
+        },
+        {
+          "key": "rateLimitAutoResume.notify",
+          "label": "Notify on auto-resume",
+          "description": "Show Pi UI notices when rate-limit auto-resume is scheduled, sent, or fails.",
+          "type": "boolean",
+          "default": true,
+          "category": "Rate Limit Recovery",
+          "apply": "live"
+        },
+        {
+          "key": "handoffReviewPrompt",
+          "label": "Review handoff prompt",
+          "description": "Open an editor to review or edit the generated handoff prompt before creating the new session.",
+          "type": "boolean",
+          "default": true,
+          "category": "Session",
+          "apply": "live"
+        },
+        {
+          "key": "enableContextCommand",
+          "label": "Enable /context command",
+          "description": "Register the /context command to show inline context-window usage with estimated Pi/model category breakdowns.",
+          "type": "boolean",
+          "default": true,
+          "category": "Context",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "sessionSearch.enabled",
+          "label": "Enable session search",
+          "description": "Register the previous-session search palette, preview, resume, and context-import actions.",
+          "type": "boolean",
+          "default": true,
+          "category": "Session Search",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "sessionSearch.shortcutKey",
+          "label": "Session search shortcut",
+          "description": "Keyboard shortcut to open the session search overlay. Default f2 avoids Pi's built-in ctrl+f and alt+f editor bindings. Set to none to disable.",
+          "type": "string",
+          "default": "f2",
+          "category": "Session Search",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "sessionSearch.resultLimit",
+          "label": "Session search result limit",
+          "description": "Maximum number of matching prompts returned by the search palette.",
+          "type": "number",
+          "default": 40,
+          "category": "Session Search",
+          "apply": "live"
+        },
+        {
+          "key": "sessionSearch.maxVisible",
+          "label": "Visible session rows",
+          "description": "Maximum number of sessions shown at once in the overlay before scrolling.",
+          "type": "number",
+          "default": 10,
+          "category": "Session Search",
+          "apply": "live"
+        },
+        {
+          "key": "sessionSearch.previewSnippets",
+          "label": "Preview snippets",
+          "description": "Maximum matching snippets shown on the selected session preview screen.",
+          "type": "number",
+          "default": 6,
+          "category": "Session Search",
+          "apply": "live"
+        },
+        {
+          "key": "sessionSearch.overlayWidth",
+          "label": "Overlay width",
+          "description": "Preferred session search overlay width in terminal columns.",
+          "type": "number",
+          "default": 104,
+          "category": "Session Search",
+          "apply": "live"
+        },
+        {
+          "key": "sessionSearch.messageMaxVisible",
+          "label": "Visible user prompt rows",
+          "description": "Maximum number of one-line user prompts shown at once in the session prompt browser before scrolling.",
+          "type": "number",
+          "default": 12,
+          "category": "Session Search",
+          "apply": "live"
+        },
+        {
+          "key": "sessionSearch.cacheTtlSeconds",
+          "label": "Session cache TTL",
+          "description": "Seconds before the in-memory session list is refreshed. Default 0 keeps the cache until you explicitly run /search refresh.",
+          "type": "number",
+          "default": 0,
+          "category": "Session Search",
+          "apply": "live"
+        },
+        {
+          "key": "sessionSearch.summaryModel",
+          "label": "Session summary model",
+          "description": "Model used to summarize an imported previous session. Use current, provider/model, or a bare model id. Defaults to current so no extra provider setup is required.",
+          "type": "string",
+          "default": "current",
+          "category": "Session Search Summary",
+          "apply": "live"
+        },
+        {
+          "key": "sessionSearch.summaryMaxTokens",
+          "label": "Session summary max output tokens",
+          "description": "Maximum tokens requested from the session-search summarizer.",
+          "type": "number",
+          "default": 4096,
+          "category": "Session Search Summary",
+          "apply": "live"
+        },
+        {
+          "key": "sessionSearch.summaryInputMaxChars",
+          "label": "Summary input character cap",
+          "description": "Maximum previous-session transcript characters sent to the summarizer; long sessions keep the beginning and end.",
+          "type": "number",
+          "default": 180000,
+          "category": "Session Search Summary",
+          "apply": "live"
+        },
+        {
+          "key": "notification.enabled",
+          "label": "Enable notifications",
+          "description": "Send terminal/tmux notifications for ready/input-needed, questions, completed task lists, and critical information.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications",
+          "apply": "live"
+        },
+        {
+          "key": "notification.onAgentReady",
+          "label": "Notify when ready",
+          "description": "Notify when an agent turn finishes and Pi is ready for input.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Triggers",
+          "apply": "live"
+        },
+        {
+          "key": "notification.onDirectionNeeded",
+          "label": "Notify when direction needed",
+          "description": "Use stronger notification wording when the last assistant message appears to ask for direction, confirmation, or a choice.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Triggers",
+          "apply": "live"
+        },
+        {
+          "key": "notification.onQuestion",
+          "label": "Notify for question popups",
+          "description": "Notify when pi-questions opens a structured question that requires user input.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Triggers",
+          "apply": "live"
+        },
+        {
+          "key": "notification.onTaskComplete",
+          "label": "Notify when all tasks complete",
+          "description": "Notify after the agent turn ends when tasks_write completes the task panel.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Triggers",
+          "apply": "live"
+        },
+        {
+          "key": "notification.onCritical",
+          "label": "Notify critical info",
+          "description": "Notify for assistant messages containing critical, blocked, security, rate-limit, or cannot-proceed signals. Tool failures are intentionally ignored.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Triggers",
+          "apply": "live"
+        },
+        {
+          "key": "notification.bell",
+          "label": "Terminal bell",
+          "description": "Emit BEL (\\u0007) for standard terminal/tmux audible or visual bell behavior.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.muteBellSound",
+          "label": "Mute bell sound",
+          "description": "Keep notifications enabled while suppressing QOL-emitted BEL bytes; OSC terminal notifications use ST terminators where supported.",
+          "type": "boolean",
+          "default": false,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.bellWhenActive",
+          "label": "Bell when tmux window active",
+          "description": "Also emit BEL when the source tmux window is already active. Disabled by default to avoid noisy bells while you are looking at the Pi window; native terminal notifications still run so Ghostty can decide based on app focus.",
+          "type": "boolean",
+          "default": false,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.native",
+          "label": "Native terminal notification",
+          "description": "Send OSC 777/OSC 99 terminal notifications, or Windows toast in Windows Terminal/WSL.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.tmux",
+          "label": "tmux display-message",
+          "description": "When running inside tmux, also show a transient tmux status-line message. Disabled by default because tmux displays it on the active client, not necessarily as a source-window mark.",
+          "type": "boolean",
+          "default": false,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.tmuxWindowMark",
+          "label": "Mark tmux window",
+          "description": "Optionally prefix the source tmux window name when notifying. Disabled by default because BEL should let tmux apply your normal bell styling.",
+          "type": "boolean",
+          "default": false,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.tmuxWindowMarkText",
+          "label": "tmux window mark text",
+          "description": "Prefix used when marking the source tmux window.",
+          "type": "string",
+          "default": "!",
+          "category": "Notifications Tuning",
+          "apply": "live"
+        },
+        {
+          "key": "notification.tmuxWindowMarkDurationMs",
+          "label": "tmux window mark duration",
+          "description": "Milliseconds before automatically clearing the tmux window mark. 0 keeps it until next input/agent start/reset.",
+          "type": "number",
+          "default": 0,
+          "category": "Notifications Tuning",
+          "apply": "live"
+        },
+        {
+          "key": "notification.tmuxNativeClientTty",
+          "label": "tmux native via client TTY",
+          "description": "When inside tmux, send OSC terminal notifications directly to attached tmux client TTYs so Ghostty/system notifications still appear for inactive source windows.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.tmuxPassthrough",
+          "label": "tmux OSC passthrough",
+          "description": "Wrap OSC terminal notifications in tmux passthrough sequences so supported terminals outside tmux can receive them.",
+          "type": "boolean",
+          "default": true,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.piUi",
+          "label": "Also show Pi UI notice",
+          "description": "Also call ctx.ui.notify for QOL external notifications. Disabled by default to avoid duplicate in-session noise.",
+          "type": "boolean",
+          "default": false,
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.oscProtocol",
+          "label": "Terminal notification protocol",
+          "description": "OSC notification protocol. auto uses Kitty OSC 99 when KITTY_WINDOW_ID is present, otherwise OSC 777.",
+          "type": "enum",
+          "enumValues": [
+            "auto",
+            "osc777",
+            "osc99",
+            "off"
+          ],
+          "default": "auto",
+          "category": "Notifications Channels",
+          "apply": "live"
+        },
+        {
+          "key": "notification.cooldownSeconds",
+          "label": "Notification cooldown",
+          "description": "Minimum seconds between duplicate notifications of the same kind.",
+          "type": "number",
+          "default": 8,
+          "category": "Notifications Tuning",
+          "apply": "live"
+        },
+        {
+          "key": "notification.title",
+          "label": "Notification title",
+          "description": "Title used for external terminal notifications.",
+          "type": "string",
+          "default": "Pi",
+          "category": "Notifications Tuning",
+          "apply": "live"
+        },
+        {
+          "key": "notification.readyMessage",
+          "label": "Ready message",
+          "description": "Body text for normal agent-done notifications.",
+          "type": "string",
+          "default": "Ready for input",
+          "category": "Notifications Tuning",
+          "apply": "live"
+        },
+        {
+          "key": "notification.bodyMaxChars",
+          "label": "Notification body length",
+          "description": "Maximum body characters for external notifications.",
+          "type": "number",
+          "default": 240,
+          "category": "Notifications Tuning",
+          "apply": "live"
+        },
+        {
+          "key": "notification.tmuxMessageDurationMs",
+          "label": "tmux message duration",
+          "description": "Milliseconds to display tmux status-line notification messages.",
+          "type": "number",
+          "default": 5000,
+          "category": "Notifications Tuning",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.customEnabled",
+          "label": "Custom compaction summaries",
+          "description": "Use QOL's custom compaction hook instead of Pi's default summary generation. Manual/auto compaction still uses Pi's normal trigger settings.",
+          "type": "boolean",
+          "default": false,
+          "category": "Compaction",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.model",
+          "label": "Compaction model",
+          "description": "Summarizer model as provider/model, a bare model id, or current. Default uses Pi's active model.",
+          "type": "string",
+          "default": "current",
+          "category": "Compaction",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.profile",
+          "label": "Compaction detail profile",
+          "description": "Summary detail level for custom compaction and branch summaries.",
+          "type": "enum",
+          "enumValues": [
+            "concise",
+            "balanced",
+            "exhaustive"
+          ],
+          "default": "balanced",
+          "category": "Compaction",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.maxTokens",
+          "label": "Compaction max output tokens",
+          "description": "Maximum tokens requested from the custom compaction summarizer.",
+          "type": "number",
+          "default": 8192,
+          "category": "Compaction",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.includePreviousSummary",
+          "label": "Include previous summary",
+          "description": "Pass the previous compaction summary to the custom summarizer for iterative continuity.",
+          "type": "boolean",
+          "default": true,
+          "category": "Compaction",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.fallbackToDefault",
+          "label": "Fallback to Pi default compaction",
+          "description": "If custom compaction fails, let Pi run its default compaction instead of cancelling the compaction.",
+          "type": "boolean",
+          "default": true,
+          "category": "Compaction",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.notify",
+          "label": "Show compaction notifications",
+          "description": "Show QOL notifications when custom, remote, branch, or idle compaction starts/fails/completes.",
+          "type": "boolean",
+          "default": true,
+          "category": "Compaction",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.remoteEnabled",
+          "label": "Remote compaction endpoint",
+          "description": "Use a remote HTTP summarization endpoint before falling back to the configured model. Endpoint receives { systemPrompt, prompt, maxTokens } and returns { summary }.",
+          "type": "boolean",
+          "default": false,
+          "category": "Compaction Remote",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.remoteEndpoint",
+          "label": "Remote endpoint URL",
+          "description": "HTTP endpoint for remote compaction summaries. Leave empty to use the configured compaction model.",
+          "type": "string",
+          "default": "",
+          "category": "Compaction Remote",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.branchSummaryEnabled",
+          "label": "Custom branch summaries",
+          "description": "When /tree navigation requests a branch summary, generate it through QOL's custom summarizer.",
+          "type": "boolean",
+          "default": false,
+          "category": "Compaction Branching",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.idleEnabled",
+          "label": "Idle compaction trigger",
+          "description": "Trigger Pi compaction after the session sits idle above the configured token threshold. Inspired by oh-my-pi idle compaction.",
+          "type": "boolean",
+          "default": false,
+          "category": "Compaction Idle",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.idleThresholdTokens",
+          "label": "Idle token threshold",
+          "description": "Token count above which QOL idle compaction can trigger when thresholdTokens and thresholdPercent are unset.",
+          "type": "number",
+          "default": 200000,
+          "category": "Compaction Idle",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.idleTimeoutSeconds",
+          "label": "Idle compaction delay",
+          "description": "Seconds to wait idle before triggering QOL idle compaction.",
+          "type": "number",
+          "default": 300,
+          "category": "Compaction Idle",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.thresholdTokens",
+          "label": "QOL compaction token limit",
+          "description": "Optional fixed token limit for QOL idle compaction. Set -1 to use percentage or idle token threshold.",
+          "type": "number",
+          "default": -1,
+          "category": "Compaction Threshold",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.thresholdPercent",
+          "label": "QOL compaction percent limit",
+          "description": "Optional context-window percentage for QOL idle compaction. Set -1 to use idle token threshold.",
+          "type": "number",
+          "default": -1,
+          "category": "Compaction Threshold",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.budgetGuardEnabled",
+          "label": "Long-session budget guard",
+          "description": "Trigger compaction on agent_end (no idle wait) when context usage crosses budgetPercent or budgetTokens. Designed for long autonomous runs so transcript growth cannot silently hit provider/buffer limits. Fires once per threshold crossing, not in a loop.",
+          "type": "boolean",
+          "default": true,
+          "category": "Compaction Budget Guard",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.budgetPercent",
+          "label": "Budget guard percent",
+          "description": "Context-window percentage that fires the budget guard at agent_end. Set -1 to disable percent-based firing and rely on absolute tokens instead.",
+          "type": "number",
+          "default": 85,
+          "category": "Compaction Budget Guard",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.budgetTokens",
+          "label": "Budget guard token limit",
+          "description": "Absolute token count above which the budget guard fires at agent_end. Set -1 to use only budgetPercent.",
+          "type": "number",
+          "default": -1,
+          "category": "Compaction Budget Guard",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.maxInputChars",
+          "label": "Chunked compaction input cap",
+          "description": "Maximum serialized characters sent to the summarizer in a single request. Inputs larger than this are split into chunks, summarized chunk-by-chunk, then merged via a summary-of-summaries pass so the compaction request payload itself cannot blow past provider buffer limits. Set 0 to disable chunking.",
+          "type": "number",
+          "default": 240000,
+          "category": "Compaction Budget Guard",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.handoffArtifactEnabled",
+          "label": "Write pre-compaction handoff artifact",
+          "description": "Before compaction, write a JSON handoff artifact under ~/.pi/agent/vstack/sessions/<session>/pi-qol/handoff/ containing the previous summary, last task state, and recently-referenced file/artifact paths. Always writes a stamped file and a latest.json pointer. Runs whenever the QOL bounded compaction handler runs — that is, on every budget-guard-triggered compaction (regardless of compaction.customEnabled), and on manual/idle compactions only when compaction.customEnabled is on. Write failures surface a QOL warning and a handoffArtifactError field in the compaction details.",
+          "type": "boolean",
+          "default": true,
+          "category": "Compaction Budget Guard",
+          "apply": "live"
+        },
+        {
+          "key": "compaction.transcriptRiskWarnChars",
+          "label": "Transcript-risk warn budget (chars)",
+          "description": "Show a transcript-risk warning in /context when the serialized payload of the messages-to-send exceeds this many characters, even if the token count is still below the model context window. Set 0 to disable the warning.",
+          "type": "number",
+          "default": 600000,
+          "category": "Compaction Budget Guard",
+          "apply": "live"
+        },
+        {
+          "key": "thinkingLabel.text",
+          "label": "Hidden thinking label",
+          "description": "Label shown when thinking blocks are hidden. Defaults to a Nerd Font brain icon.",
+          "type": "string",
+          "default": " ",
+          "category": "Thinking",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "thinkingTimer.enabled",
+          "label": "Show thinking timer",
+          "description": "Show live elapsed time next to collapsed hidden-thinking labels and leave the final duration after thinking ends. Uses a defensive internal renderer patch and fails back to Pi's default label if Pi internals change.",
+          "type": "boolean",
+          "default": true,
+          "category": "Thinking",
+          "apply": "live"
+        },
+        {
+          "key": "workingIndicator.mode",
+          "label": "Working indicator mode",
+          "description": "Control Pi's built-in streaming spinner. The default animated spinner ticks every 80ms; in terminals where rendered content overflows the viewport (chat scrolled past the top, /tree open, etc.) each tick can trigger a pi-tui full-screen redraw and visible flash. Use 'static' for a single non-animating dot that keeps the working row visible without the 80ms timer.",
+          "type": "enum",
+          "enumValues": [
+            "animated",
+            "static"
+          ],
+          "default": "animated",
+          "category": "Thinking",
+          "apply": "reload",
+          "requiresReload": true
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-agent-core": "*",
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-qol"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-qol",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-agent-core": {
+      "optional": true
+    },
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

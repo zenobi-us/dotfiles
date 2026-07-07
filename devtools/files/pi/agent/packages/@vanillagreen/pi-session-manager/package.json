@@ -1,0 +1,147 @@
+{
+  "name": "@vanillagreen/pi-session-manager",
+  "version": "1.5.2",
+  "description": "Polished Pi session manager overlay for browsing, searching, resuming, renaming, and safely deleting sessions.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "sessions",
+    "session-manager"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/session-manager.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-session-manager/assets/session-manager.png"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Session Manager",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable session manager",
+          "description": "Register the /sessions overlay and optional shortcut. Disable and reload to leave Pi's built-in /resume unchanged.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "shortcutKey",
+          "label": "Manager shortcut",
+          "description": "Keyboard shortcut that opens the session manager popup. Set to none to disable.",
+          "type": "string",
+          "default": "f1",
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "defaultScope",
+          "label": "Default scope",
+          "description": "Initial Current/All tab when opening /sessions.",
+          "type": "enum",
+          "enumValues": [
+            "current",
+            "all"
+          ],
+          "default": "current",
+          "category": "Browse",
+          "apply": "live"
+        },
+        {
+          "key": "defaultSort",
+          "label": "Default sort",
+          "description": "Initial sort mode: threaded follows Pi /resume lineage, recent sorts by activity, relevance sorts search matches by score.",
+          "type": "enum",
+          "enumValues": [
+            "threaded",
+            "recent",
+            "relevance"
+          ],
+          "default": "threaded",
+          "category": "Browse",
+          "apply": "live"
+        },
+        {
+          "key": "visibleRows",
+          "label": "Visible rows",
+          "description": "Maximum session rows shown before scrolling.",
+          "type": "number",
+          "default": 12,
+          "category": "Browse",
+          "apply": "live"
+        },
+        {
+          "key": "overlayWidth",
+          "label": "Overlay width",
+          "description": "Preferred session manager overlay width in terminal columns.",
+          "type": "number",
+          "default": 112,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "deleteUsesTrash",
+          "label": "Use trash for delete",
+          "description": "Try the trash CLI before permanently unlinking a deleted session file.",
+          "type": "boolean",
+          "default": true,
+          "category": "Safety",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-session-manager"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-session-manager",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

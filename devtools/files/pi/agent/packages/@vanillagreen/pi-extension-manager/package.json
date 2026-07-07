@@ -1,0 +1,105 @@
+{
+  "name": "@vanillagreen/pi-extension-manager",
+  "version": "1.3.2",
+  "description": "Pi package manager with update/uninstall actions plus a separate schema-driven settings editor for vstack packages.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "extensions",
+    "settings"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/extension-manager.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-extension-manager/assets/extension-manager-popup.png"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Extension Manager",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable manager UI",
+          "description": "Expose /extensions and the manager UI. If disabled, /extensions enable remains available as a recovery command.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "defaultSaveScope",
+          "label": "Default save scope",
+          "description": "Where manager setting edits are written when the selected item scope is ambiguous.",
+          "type": "enum",
+          "enumValues": [
+            "project",
+            "user"
+          ],
+          "default": "project",
+          "category": "Persistence",
+          "apply": "live"
+        },
+        {
+          "key": "notifyOnUpdates",
+          "label": "Notify on extension updates",
+          "description": "At session start, post a one-line notification listing extensions with newer versions available from their vstack source repo or npm registry.",
+          "type": "boolean",
+          "default": true,
+          "category": "Updates",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "files": [
+    "assets/",
+    "extensions/",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-extension-manager"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-extension-manager",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

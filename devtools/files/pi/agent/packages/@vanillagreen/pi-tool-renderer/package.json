@@ -1,0 +1,574 @@
+{
+  "name": "@vanillagreen/pi-tool-renderer",
+  "version": "1.6.3",
+  "description": "Compact Claude/opencode-style renderers for Pi tools with rich diffs, apply_patch, generic/MCP rendering, and optional global chrome.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "tools",
+    "renderer",
+    "shiki",
+    "diff",
+    "mcp",
+    "apply-patch"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/tool-renderer.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-tool-renderer/assets/tool-batch.png"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Tool Renderer",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable compact renderers",
+          "description": "Override built-in read/bash/search renderers while delegating execution to Pi originals. Edit/write renderers remain disabled unless enabled separately.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "stackToolCalls",
+          "label": "Stack separate native tool calls",
+          "description": "Legacy renderer for consecutive native read/bash/search tool calls. Disabled by default because Pi still reserves hidden sibling layout space; prefer tool_batch for clean combined output.",
+          "type": "boolean",
+          "default": false,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "globalGlyphStyleOverride",
+          "label": "Global glyph style override",
+          "description": "Force glyph style for vstack-owned Pi extension UI chrome only. inherit leaves each extension's local glyphStyle/treeStyle setting in control.",
+          "type": "enum",
+          "enumValues": [
+            "inherit",
+            "unicode",
+            "ascii"
+          ],
+          "default": "inherit",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "treeStyle",
+          "label": "Legacy tree connector style",
+          "description": "Legacy fallback for tree connectors when glyphStyle is unset and pi-tool-renderer globalGlyphStyleOverride is inherit. Prefer Glyph style for all UI chrome.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "General",
+          "apply": "live"
+        },
+        {
+          "key": "stackChildDisplay",
+          "label": "Stack child display",
+          "description": "How stacked child tool rows are displayed: rows = separate compact rows; headline = hidden rows until ctrl+o to expand; anchor-list = list shown in the headline row by default.",
+          "type": "enum",
+          "enumValues": [
+            "rows",
+            "headline",
+            "anchor-list"
+          ],
+          "default": "rows",
+          "category": "General",
+          "apply": "live"
+        },
+        {
+          "key": "hideStackChildRows",
+          "label": "Hide stacked child rows",
+          "description": "Legacy boolean. If stackChildDisplay is unset, true maps to headline and false maps to rows.",
+          "type": "boolean",
+          "default": false,
+          "category": "General",
+          "apply": "live"
+        },
+        {
+          "key": "registerBatchTool",
+          "label": "Register tool_batch",
+          "description": "Add a composite tool that runs multiple independent read/grep/find/ls/bash calls as one compact renderable unit.",
+          "type": "boolean",
+          "default": true,
+          "category": "Batch Tool",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "batchMaxCalls",
+          "label": "Batch max calls",
+          "description": "Maximum calls accepted by tool_batch.",
+          "type": "number",
+          "default": 8,
+          "category": "Batch Tool",
+          "apply": "live"
+        },
+        {
+          "key": "batchCallTimeoutMs",
+          "label": "Batch per-call timeout (ms)",
+          "description": "Maximum time tool_batch waits for any single inner tool call before timing it out as an error item. Prevents a never-resolving inner from hanging the whole batch. Minimum 1000ms.",
+          "type": "number",
+          "default": 120000,
+          "category": "Batch Tool",
+          "apply": "live"
+        },
+        {
+          "key": "compactUserMessages",
+          "label": "Compact user messages",
+          "description": "Remove top/bottom padding from user message cards and render an ANSI green border with a red π marker near the top-left instead of a filled background. Disable to restore Pi defaults.",
+          "type": "boolean",
+          "default": true,
+          "category": "Messages",
+          "apply": "live"
+        },
+        {
+          "key": "userMessageTrailingBlankLine",
+          "label": "User message trailing blank line",
+          "description": "Add one blank line after rendered user messages so the next assistant/tool output has breathing room.",
+          "type": "boolean",
+          "default": true,
+          "category": "Messages",
+          "apply": "live"
+        },
+        {
+          "key": "compactCompactionMessages",
+          "label": "Compact compaction summaries",
+          "description": "Render compaction summary rows with the same compact bullet/chrome style as tool output instead of Pi's padded message box.",
+          "type": "boolean",
+          "default": true,
+          "category": "Messages",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "compactSkillMessages",
+          "label": "Compact skill invocation messages",
+          "description": "Render native /skill:name invocation rows with the same compact bullet/chrome style as tool output instead of Pi's padded skill box.",
+          "type": "boolean",
+          "default": true,
+          "category": "Messages",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "alignAssistantMessages",
+          "label": "Align assistant messages",
+          "description": "Remove Pi's default one-column left padding from assistant text and hidden Thinking labels so they line up with tool output.",
+          "type": "boolean",
+          "default": true,
+          "category": "Messages",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "styledCodeBlocks",
+          "label": "Styled markdown code blocks",
+          "description": "Render fenced markdown code blocks with syntax highlighting and a subtle background, flush-left with no copy gutter/prefix instead of literal ``` fences.",
+          "type": "boolean",
+          "default": true,
+          "category": "Messages",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "renderMutationTools",
+          "label": "Render edits/writes compactly",
+          "description": "Override Pi's built-in edit/write renderers with compact rich diff summaries/previews. Disabled by default so standard diff/edit rendering is preserved.",
+          "type": "boolean",
+          "default": false,
+          "category": "Mutation",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "splitDiffs",
+          "label": "Split diff view",
+          "description": "Use side-by-side rich diff previews on wide terminals when compact edit/write rendering is enabled.",
+          "type": "boolean",
+          "default": true,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "diffPreviewLines",
+          "label": "Collapsed diff preview lines",
+          "description": "Maximum rich diff lines rendered by default in collapsed edit/write rows.",
+          "type": "number",
+          "default": 24,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "diffExpandedLines",
+          "label": "Expanded diff preview lines",
+          "description": "Maximum rich diff lines rendered when edit/write output is expanded. Set to 0 for no extension cap.",
+          "type": "number",
+          "default": 4000,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "commandPreviewChars",
+          "label": "Command preview characters",
+          "description": "Maximum command characters in collapsed bash rows.",
+          "type": "number",
+          "default": 96,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "renderBashDiffs",
+          "label": "Render bash diffs",
+          "description": "Detect unified/git diff output from read-only bash commands and render it with the rich split diff view. Disabled by default so only tools that actually mutate files show diff UI automatically.",
+          "type": "boolean",
+          "default": false,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "renderGitDiffCommandDiffs",
+          "label": "Render git diff command diffs",
+          "description": "Show rich Shiki diff UI for explicit git diff bash commands. Disabled by default so git diff commands render only the compact bash summary line and are not mistaken for edits.",
+          "type": "boolean",
+          "default": false,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "bashPreviewLines",
+          "label": "Expanded bash preview lines",
+          "description": "Tail lines shown when bash output is expanded.",
+          "type": "number",
+          "default": 80,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "readPreviewLines",
+          "label": "Expanded read preview lines",
+          "description": "Head lines shown when read output is expanded.",
+          "type": "number",
+          "default": 80,
+          "category": "Read",
+          "apply": "live"
+        },
+        {
+          "key": "searchPreviewLines",
+          "label": "Expanded search/list preview lines",
+          "description": "Head lines shown for grep/find/ls when expanded.",
+          "type": "number",
+          "default": 80,
+          "category": "Search",
+          "apply": "live"
+        },
+        {
+          "key": "writePreviewLines",
+          "label": "Expanded write preview lines",
+          "description": "Written content lines shown when the optional compact write renderer is enabled and expanded.",
+          "type": "number",
+          "default": 80,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "maxLineWidth",
+          "label": "Max renderer line width",
+          "description": "Hard cap for single rendered lines when compact renderers are enabled.",
+          "type": "number",
+          "default": 1000,
+          "category": "Safety",
+          "apply": "live"
+        },
+        {
+          "key": "readOutputMode",
+          "label": "Read output mode",
+          "description": "Read renderer output: preview shows expanded file heads, summary hides previews, hidden hides read result rows.",
+          "type": "enum",
+          "enumValues": [
+            "hidden",
+            "summary",
+            "preview"
+          ],
+          "default": "preview",
+          "category": "Read",
+          "apply": "live"
+        },
+        {
+          "key": "searchOutputMode",
+          "label": "Search output mode",
+          "description": "Search/list renderer output: preview shows expanded details, count keeps summaries only, hidden hides result rows.",
+          "type": "enum",
+          "enumValues": [
+            "hidden",
+            "count",
+            "preview"
+          ],
+          "default": "preview",
+          "category": "Search",
+          "apply": "live"
+        },
+        {
+          "key": "bashOutputMode",
+          "label": "Bash output mode",
+          "description": "Bash renderer output: opencode preserves compact summaries plus expanded output/diff previews, preview also shows a collapsed tail, summary hides output, hidden hides result rows.",
+          "type": "enum",
+          "enumValues": [
+            "hidden",
+            "summary",
+            "opencode",
+            "preview"
+          ],
+          "default": "opencode",
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "bashLiveOutputDelayMs",
+          "label": "Live bash output delay (ms)",
+          "description": "Milliseconds a running bash call must stay active before compact renderers show a live output tail. Prevents fast commands from flashing output rows.",
+          "type": "number",
+          "default": 1000,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "bashLiveTailLines",
+          "label": "Live bash tail lines",
+          "description": "Last lines shown while a long-running bash command streams output, and preserved after completion when the live tail was shown.",
+          "type": "number",
+          "default": 4,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "bashCollapsedLines",
+          "label": "Collapsed bash preview lines",
+          "description": "Tail lines shown in collapsed bash rows when bashOutputMode=preview.",
+          "type": "number",
+          "default": 10,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "mcpOutputMode",
+          "label": "MCP output mode",
+          "description": "Generic MCP renderer output: preview shows expanded text, summary shows only counts/status, hidden hides result rows.",
+          "type": "enum",
+          "enumValues": [
+            "hidden",
+            "summary",
+            "preview"
+          ],
+          "default": "preview",
+          "category": "Generic Tools",
+          "apply": "live"
+        },
+        {
+          "key": "mcpPreviewLines",
+          "label": "MCP preview lines",
+          "description": "Lines shown for expanded MCP/generic tool previews.",
+          "type": "number",
+          "default": 80,
+          "category": "Generic Tools",
+          "apply": "live"
+        },
+        {
+          "key": "genericToolRenderers",
+          "label": "Generic external tool renderers",
+          "description": "Render common OpenAI-style tools such as web_search, webfetch, Agent, and Task* without overriding known vstack custom renderers.",
+          "type": "boolean",
+          "default": true,
+          "category": "Generic Tools",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "applyPatchRenderer",
+          "label": "Render apply_patch",
+          "description": "Install call/result renderers for a tool named apply_patch when present, without changing execution.",
+          "type": "boolean",
+          "default": true,
+          "category": "Generic Tools",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "applyPatchPreview",
+          "label": "apply_patch call preview",
+          "description": "Parse apply_patch arguments and render file diff previews during the call phase.",
+          "type": "boolean",
+          "default": true,
+          "category": "Generic Tools",
+          "apply": "live"
+        },
+        {
+          "key": "applyPatchPreviewLines",
+          "label": "apply_patch preview lines",
+          "description": "Collapsed apply_patch diff preview line budget.",
+          "type": "number",
+          "default": 18,
+          "category": "Generic Tools",
+          "apply": "live"
+        },
+        {
+          "key": "shikiDiffs",
+          "label": "Syntax-highlight diffs",
+          "description": "Use Pi's Shiki-backed highlighter for rich edit/write/bash/apply_patch diff bodies when a language can be detected.",
+          "type": "boolean",
+          "default": true,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "wordDiffHighlights",
+          "label": "Inline word diff highlights",
+          "description": "Highlight changed words inside paired removed/added diff lines.",
+          "type": "boolean",
+          "default": true,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "diffBackgrounds",
+          "label": "Diff line backgrounds",
+          "description": "Fill added/removed diff lines with tool success/error backgrounds. Enabled by default together with syntax highlighting and inline word-diff backgrounds.",
+          "type": "boolean",
+          "default": true,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "showDiffHunkMeta",
+          "label": "Show diff hunk metadata",
+          "description": "Include hunk counts in rich diff summaries and progressive truncation hints.",
+          "type": "boolean",
+          "default": true,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "mutationCallPreview",
+          "label": "Edit/write call preview",
+          "description": "Show safe call-phase diff previews for edit/write arguments before execution completes.",
+          "type": "boolean",
+          "default": true,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "mutationCallPreviewLines",
+          "label": "Edit/write call preview lines",
+          "description": "Collapsed line budget for edit/write call-phase diff previews.",
+          "type": "number",
+          "default": 16,
+          "category": "Mutation",
+          "apply": "live"
+        },
+        {
+          "key": "toolChrome",
+          "label": "Global tool chrome",
+          "description": "Global chrome for tool rows. outlines adds muted horizontal rules above and below tool output; transparent removes default tool backgrounds without rules; off preserves Pi defaults.",
+          "type": "enum",
+          "enumValues": [
+            "off",
+            "transparent",
+            "outlines"
+          ],
+          "default": "outlines",
+          "category": "Chrome",
+          "apply": "live"
+        },
+        {
+          "key": "rightMarginGuard",
+          "label": "Guard terminal right margin",
+          "description": "Render compact tool chrome, wrapped lines, diffs, and compact user-message borders one column short to avoid right-margin auto-wrap flashes in tmux and some terminals.",
+          "type": "boolean",
+          "default": true,
+          "category": "Chrome",
+          "apply": "live"
+        },
+        {
+          "key": "pendingStatusAnimation",
+          "label": "Animate pending tool status",
+          "description": "Blink pending compact tool bullets. Disabled by default for more stable streaming output at the bottom of terminal panes.",
+          "type": "boolean",
+          "default": false,
+          "category": "Chrome",
+          "apply": "live"
+        },
+        {
+          "key": "workingIndicator",
+          "label": "Working indicator",
+          "description": "Optional streaming working indicator customization. default leaves Pi/QoL behavior untouched; pulse uses a compact pulsing dot; hidden removes it.",
+          "type": "enum",
+          "enumValues": [
+            "default",
+            "pulse",
+            "hidden"
+          ],
+          "default": "default",
+          "category": "Chrome",
+          "apply": "reload",
+          "requiresReload": true
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-tool-renderer"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-tool-renderer",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}
