@@ -157,24 +157,22 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       ctx.ui.notify(`Found ${registry.skills.length} skill(s)`, "info");
     }
 
-    let enableSkillCommands = true;
-    try {
-      enableSkillCommands = SettingsManager.create(ctx.cwd).getEnableSkillCommands();
-    } catch {
-      enableSkillCommands = true;
-    }
-
-    if (enableSkillCommands) {
-      CreateSkillSlashCommands(pi, registry.skills, function (name, args) {
-        const result = ReadSkillCommand(name, registry.skillMap);
-        if (!result.ok) return;
-        const message = buildSkillUserMessage(
-          result.value.skill,
-          result.value.body,
-          args,
-        );
-        pi.sendUserMessage(message);
-      });
+    if (runtimeSettings.enableSkillCommands) {
+      CreateSkillSlashCommands(
+        pi,
+        registry.skills,
+        runtimeSettings.skillCommandTemplates,
+        function (name, args) {
+          const result = ReadSkillCommand(name, registry.skillMap);
+          if (!result.ok) return;
+          const message = buildSkillUserMessage(
+            result.value.skill,
+            result.value.body,
+            args,
+          );
+          pi.sendUserMessage(message);
+        },
+      );
       ctx.ui.notify(
         `Registered slash commands for ${registry.skills.length} skill(s)`,
         "info",

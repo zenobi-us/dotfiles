@@ -25,7 +25,7 @@ export function LoadSkillCommand(
 
   if (resolved.kind === "ambiguous") {
     options.onWarningNotify(
-      `Ambiguous shortname "${requestedName}". Use qualified name:\n${(resolved.options?.suggestedQualifiedNames ?? []).map((o) => `  /skill:${o}`).join("\n")}`,
+      `Ambiguous shortname "${requestedName}". Use qualified name:\n${(resolved.options?.suggestedQualifiedNames ?? []).map((o) => `  /skill ${o}`).join("\n")}`,
     );
     return;
   }
@@ -44,20 +44,37 @@ export function LoadSkillCommand(
   options.sendSkillMessage(requestedName, extraArgs);
 }
 
+export function formatSkillCommandName(
+  template: string,
+  skill: Pick<Skill, "name" | "qualifiedName">,
+): string {
+  return template
+    .replaceAll("{shortname}", skill.name)
+    .replaceAll("{qualified_name}", skill.qualifiedName)
+    .trim()
+    .replace(/^\/+/, "");
+}
+
 export function CreateSkillSlashCommands(
   pi: ExtensionAPI,
   skills: Skill[],
+  commandTemplates: string[],
   sendSkillMessage: (name: string, args?: string) => void,
 ) {
-  // Register fully-qualified per-skill commands: /skill:<qualified-name>
-  for (const skill of skills) {
-    const commandName = `skill:${skill.qualifiedName}`;
+  const registered = new Set<string>();
 
-    pi.registerCommand(commandName, {
-      description: skill.description,
-      handler: async (args, _cmdCtx) => {
-        sendSkillMessage(skill.qualifiedName, args || undefined);
-      },
-    });
+  for (const skill of skills) {
+    for (const template of commandTemplates) {
+      const commandName = formatSkillCommandName(template, skill);
+      if (!commandName || registered.has(commandName)) continue;
+      registered.add(commandName);
+
+      pi.registerCommand(commandName, {
+        description: skill.description,
+        handler: async (args, _cmdCtx) => {
+          sendSkillMessage(skill.qualifiedName, args || undefined);
+        },
+      });
+    }
   }
 }

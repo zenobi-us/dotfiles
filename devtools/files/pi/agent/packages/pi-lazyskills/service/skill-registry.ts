@@ -372,12 +372,17 @@ function loadSkillFromFile(filePath: string): {
 
     const skillDir = dirname(filePath);
     const parentDirName = basename(skillDir);
-    // the path should contain the word "skills" to be considered a skill root, otherwise we treat the parent dir as the skill root for name validation and qualified name generation
-    const parentSkillRoot = skillDir.substring(
-      0,
-      skillDir.lastIndexOf("skills") + "skills".length,
+    // The path should contain "skills" to be considered a skill root. SKILL.md
+    // itself is metadata, not part of the command/qualified name.
+    const skillRootIdx = skillDir.lastIndexOf("skills");
+    const parentSkillRoot =
+      skillRootIdx === -1
+        ? dirname(skillDir)
+        : skillDir.substring(0, skillRootIdx + "skills".length);
+    const relativeToRoot = relative(
+      parentSkillRoot,
+      basename(filePath) === "SKILL.md" ? skillDir : filePath,
     );
-    const relativeToRoot = relative(parentSkillRoot, filePath);
 
     const descErrors = validateDescription(frontmatter.description);
     for (const error of descErrors) {

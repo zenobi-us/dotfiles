@@ -109,6 +109,8 @@ Example:
 ```json
 {
   "lazySkills": true,
+  "enableSkillCommands": true,
+  "skillCommandTemplates": ["skill:{qualified_name}"],
   "searchStrategy": "hybrid",
   "lexicalThreshold": 0.5
 }
@@ -119,9 +121,12 @@ Valid settings:
 | Setting | Type | Values | Default |
 | --- | --- | --- | --- |
 | `lazySkills` | boolean | `true`, `false` | `true` |
+| `enableSkillCommands` | boolean | `true`, `false` | `true` |
+| `skillCommandTemplates` | string[] | templates using `{shortname}` and `{qualified_name}` | `["skill:{qualified_name}"]` |
 | `searchStrategy` | string | `lexical`, `bm25`, `vector`, `hybrid` | `hybrid` |
 | `lexicalThreshold` | number | `0` through `1` | `0.5` |
 
+`enableSkillCommands` is separate from Pi's native skill-command option, so this extension does not mirror Pi's command registration and create duplicate slash commands. Use `skillCommandTemplates` to choose command shapes, for example `["{shortname}", "{qualified_name}"]`.
 Invalid config falls back to built-in defaults.
 
 ### Search strategy

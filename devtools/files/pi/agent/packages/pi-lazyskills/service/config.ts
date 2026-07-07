@@ -19,6 +19,8 @@ export const RuntimeSettingsSchema = Type.Object(
     searchStrategy: SearchStrategySchema,
     lexicalThreshold: Type.Number({ minimum: 0, maximum: 1 }),
     lazySkills: Type.Boolean(),
+    enableSkillCommands: Type.Boolean(),
+    skillCommandTemplates: Type.Array(Type.String()),
   },
   { additionalProperties: false },
 );
@@ -28,6 +30,8 @@ const RuntimeSettingsOverridesSchema = Type.Object(
     searchStrategy: Type.Optional(SearchStrategySchema),
     lexicalThreshold: Type.Optional(Type.Number({ minimum: 0, maximum: 1 })),
     lazySkills: Type.Optional(Type.Boolean()),
+    enableSkillCommands: Type.Optional(Type.Boolean()),
+    skillCommandTemplates: Type.Optional(Type.Array(Type.String())),
   },
   { additionalProperties: false },
 );
@@ -39,6 +43,8 @@ export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
   searchStrategy: "hybrid",
   lexicalThreshold: 0.5,
   lazySkills: true,
+  enableSkillCommands: true,
+  skillCommandTemplates: ["skill:{qualified_name}"],
 };
 
 function parseRuntimeSettings(raw: unknown): RuntimeSettings {
