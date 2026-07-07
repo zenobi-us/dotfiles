@@ -1,13 +1,22 @@
 import { readFile } from "node:fs/promises";
 import { homedir } from "node:os";
 import { basename, join } from "node:path";
-import { CONFIG_DIR_NAME, type ExtensionAPI, type ExtensionContext } from "@earendil-works/pi-coding-agent";
+import { CONFIG_DIR_NAME, DynamicBorder, getSelectListTheme, type ExtensionAPI, type ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { pipeline } from "@huggingface/transformers";
+import { Container, SelectList, type SelectItem } from "@earendil-works/pi-tui";
 import { type Static, Type } from "typebox";
 import { Value } from "typebox/value";
 
 const CONFIG_NAME = "pi-summarised-title";
 const CUSTOM_TYPE = "pi-summarised-title:state";
+const STATUS = {
+  downloading: "↓ dl",
+  download_fail: "! dl",
+  downloaded: "✓ dl",
+  generating: "… gen",
+  writing: "✎ write",
+  ok: "✓",
+} as const;
 /**
  * Transformers. Is title model options:
  *
@@ -102,7 +111,50 @@ type ConfigReadResult = {
 type SourceMessage = {
   id: string;
   text: string;
+  label?: string;
 };
+
+function selectMessage(ctx: ExtensionContext, messages: SourceMessage[]): Promise<SourceMessage | undefined> {
+  if (ctx.mode !== "tui") {
+    const labels = messages.map((message) => message.label ?? message.id);
+    return ctx.ui.select("Pick message to summarise", labels)
+      .then((choice) => messages.find((message) => (message.label ?? message.id) === choice));
+  }
+
+  const byId = new Map(messages.map((message) => [message.id, message]));
+  const items: SelectItem[] = messages.map((message) => ({
+    value: message.id,
+    label: message.label ?? message.id,
+    description: message.text.replace(/\s+/g, " ").trim().slice(0, 160),
+  }));
+
+  return ctx.ui.custom<string | undefined>((tui, theme, _kb, done) => {
+    const container = new Container();
+    container.addChild(new DynamicBorder((text) => theme.fg("accent", text)));
+    container.addChild({
+      render: () => [theme.fg("accent", theme.bold("Pick message to summarise")), ""],
+      invalidate() { },
+    });
+
+    const list = new SelectList(items, Math.min(items.length, 12), getSelectListTheme(), {
+      minPrimaryColumnWidth: 12,
+      maxPrimaryColumnWidth: 32,
+    });
+    list.onSelect = (item) => done(item.value);
+    list.onCancel = () => done(undefined);
+    container.addChild(list);
+    container.addChild(new DynamicBorder((text) => theme.fg("accent", text)));
+
+    return {
+      render: (width: number) => container.render(width),
+      invalidate: () => container.invalidate(),
+      handleInput: (data: string) => {
+        list.handleInput(data);
+        tui.requestRender();
+      },
+    };
+  }).then((id) => id ? byId.get(id) : undefined);
+}
 
 class ConfigService {
   config: TitleConfig = Value.Parse(ConfigSchema, Value.Default(ConfigSchema, {}));
@@ -151,6 +203,7 @@ class ConfigService {
 
 class SessionSummaryService {
   private titleer: any;
+  private unavailableModelKey?: string;
 
   constructor(
     private readonly pi: ExtensionAPI,
@@ -180,6 +233,26 @@ class SessionSummaryService {
     return undefined;
   }
 
+  branchTextMessages(ctx: ExtensionContext): SourceMessage[] {
+    return ctx.sessionManager.getBranch()
+      .filter((entry: any) => entry.type === "message")
+      .map((entry: any) => {
+        const text = this.messageText(entry.message).trim();
+        if (!text) return undefined;
+        const role = entry.message?.role ?? "message";
+        return {
+          id: entry.id,
+          text,
+          label: `${role} ${entry.id.slice(0, 8)}`,
+        };
+      })
+      .filter(Boolean) as SourceMessage[];
+  }
+
+  private preview(text: string): string {
+    return text.replace(/\s+/g, " ").trim().slice(0, 120);
+  }
+
   private cleanTitle(text: string): string {
     return text
       .replace(/^[\s"“”'`]+|[\s"“”'`.!?]+$/g, "")
@@ -206,38 +279,63 @@ class SessionSummaryService {
     return [this.config.prompt, "```", source, "```"].join("\n");
   }
 
+  private setStatus(ctx: ExtensionContext, status?: string): void {
+    if (!ctx.hasUI) return;
+    ctx.ui.setStatus(CONFIG_NAME, status ? `[ t: ${status} ]` : undefined);
+  }
+
   private async summarise(ctx: ExtensionContext, text: string): Promise<string> {
+    const modelKey = `${this.config.pipelineTask}:${this.config.model}:${this.config.dtype}`;
+
+    if (this.unavailableModelKey === modelKey) return this.fallbackTitle(text);
+
     if (!this.titleer) {
       try {
-        if (ctx.hasUI) ctx.ui.setStatus(CONFIG_NAME, `Loading ${this.config.model}`);
+        this.setStatus(ctx, `${STATUS.downloading} load`);
         this.titleer = await pipeline(this.config.pipelineTask, this.config.model, {
           dtype: this.config.dtype as any,
           progress_callback: (event: any) => {
             if (!ctx.hasUI) return;
             if (event.status === "progress") {
               const pct = event.total ? ` ${Math.round((event.loaded / event.total) * 100)}%` : "";
-              ctx.ui.setStatus(CONFIG_NAME, `Downloading ${event.file ?? this.config.model}${pct}`);
+              this.setStatus(ctx, `${STATUS.downloading}${pct}`);
               return;
             }
             if (event.status === "initiate" || event.status === "download") {
-              ctx.ui.setStatus(CONFIG_NAME, `Downloading ${event.file ?? this.config.model}`);
+              this.setStatus(ctx, STATUS.downloading);
             }
           },
         } as any);
+        this.setStatus(ctx, STATUS.downloaded);
+      } catch (error) {
+        this.unavailableModelKey = modelKey;
+        this.setStatus(ctx, STATUS.download_fail);
+        if (ctx.hasUI) ctx.ui.notify(`${CONFIG_NAME}: model unavailable, using fallback title: ${this.errorMessage(error)}`, "warning");
+        return this.fallbackTitle(text);
       } finally {
-        if (ctx.hasUI) ctx.ui.setStatus(CONFIG_NAME, undefined);
+        // Status intentionally persists until next stage replaces it.
       }
     }
     const prompt = this.buildPrompt(text);
-    const out = await this.titleer(prompt, {
-      max_new_tokens: this.config.maxNewTokens,
-      num_beams: this.config.numBeams,
-      do_sample: false,
-      early_stopping: true,
-    });
+    this.setStatus(ctx, STATUS.generating);
+    try {
+      const out = await this.titleer(prompt, {
+        max_new_tokens: this.config.maxNewTokens,
+        num_beams: this.config.numBeams,
+        do_sample: false,
+        early_stopping: true,
+      });
 
-    const generated = this.cleanTitle((out[0]?.generated_text ?? "").replace(prompt, ""));
-    return generated || this.fallbackTitle(text);
+      const generated = this.cleanTitle((out[0]?.generated_text ?? "").replace(prompt, ""));
+      return generated || this.fallbackTitle(text);
+    } catch (error) {
+      if (ctx.hasUI) ctx.ui.notify(`${CONFIG_NAME}: generation failed, using fallback title: ${this.errorMessage(error)}`, "warning");
+      return this.fallbackTitle(text);
+    }
+  }
+
+  private errorMessage(error: unknown): string {
+    return error instanceof Error ? error.message : String(error);
   }
 
   updateConfig(config: TitleConfig): void {
@@ -247,6 +345,7 @@ class SessionSummaryService {
       config.pipelineTask !== this.config.pipelineTask
     ) {
       this.titleer = undefined;
+      this.unavailableModelKey = undefined;
     }
     this.config = config;
   }
@@ -270,6 +369,10 @@ class SessionSummaryService {
     await this.save(message, ctx);
   }
 
+  async resummarise(ctx: ExtensionContext, source: SourceMessage): Promise<string | undefined> {
+    return this.save(source, ctx);
+  }
+
   read(ctx: ExtensionContext): StoredSummary | undefined {
     for (const entry of ctx.sessionManager.getBranch().toReversed()) {
       if (entry.type !== "custom" || entry.customType !== CUSTOM_TYPE) continue;
@@ -282,9 +385,10 @@ class SessionSummaryService {
     return undefined;
   }
 
-  private async save(source: SourceMessage, ctx: ExtensionContext): Promise<void> {
+  private async save(source: SourceMessage, ctx: ExtensionContext): Promise<string | undefined> {
     const summary = await this.summarise(ctx, source.text);
-    if (!summary) return;
+    this.setStatus(ctx, STATUS.writing);
+    if (!summary) return undefined;
 
     const state: SummaryState = {
       label: this.config.stateLabel,
@@ -299,7 +403,9 @@ class SessionSummaryService {
     const stored = this.read(ctx);
     if (stored) this.pi.setLabel(stored.entryId, this.config.stateLabel);
     this.applyTitle(ctx, summary);
+    this.setStatus(ctx, STATUS.ok);
     if (ctx.hasUI) ctx.ui.notify(`pi-summarised-title: saved summary "${summary}"`, "info");
+    return summary;
   }
 }
 
@@ -307,17 +413,64 @@ export default function piSummarisedTitle(pi: ExtensionAPI) {
   const configService = new ConfigService();
   const summaries = new SessionSummaryService(pi, configService.config);
 
-  pi.on("session_start", async (event, ctx) => {
+  const reload = async (ctx: ExtensionContext) => {
     const config = await configService.reload(ctx);
     summaries.updateConfig(config);
+    return config;
+  };
+
+  pi.registerCommand("summarised-title", {
+    description: "Manage pi session title summary: force | pick",
+    getArgumentCompletions: (prefix: string) => {
+      const items = ["force", "pick"].map((value) => ({ value, label: value }));
+      const filtered = items.filter((item) => item.value.startsWith(prefix.trim()));
+      return filtered.length ? filtered : null;
+    },
+    handler: async (args, ctx) => {
+      const action = args?.trim().split(/\s+/)[0] ?? "";
+      const config = await reload(ctx);
+      if (!config.enabled) {
+        ctx.ui.notify("pi-summarised-title: disabled", "warning");
+        return;
+      }
+
+      await ctx.waitForIdle();
+
+      if (action === "force") {
+        const source = summaries.firstUserMessage(ctx);
+        if (!source) {
+          ctx.ui.notify("pi-summarised-title: no user message to summarise", "warning");
+          return;
+        }
+        await summaries.resummarise(ctx, source);
+        return;
+      }
+
+      if (action === "pick") {
+        const messages = summaries.branchTextMessages(ctx);
+        if (!messages.length) {
+          ctx.ui.notify("pi-summarised-title: no text messages to summarise", "warning");
+          return;
+        }
+        const source = await selectMessage(ctx, messages);
+        if (!source) return;
+        await summaries.resummarise(ctx, source);
+        return;
+      }
+
+      ctx.ui.notify("Usage: /summarised-title force | pick", "info");
+    },
+  });
+
+  pi.on("session_start", async (event, ctx) => {
+    const config = await reload(ctx);
     if (!config.enabled) return;
     const message = summaries.firstUserMessage(ctx);
     await summaries.process(ctx, message);
   });
 
   pi.on("before_agent_start", async (event, ctx) => {
-    const config = await configService.reload(ctx);
-    summaries.updateConfig(config);
+    const config = await reload(ctx);
 
     if (!config.enabled) return;
 
