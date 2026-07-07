@@ -99,16 +99,11 @@ type ConfigReadResult = {
   error?: string;
 };
 
-const SourceMessageSchema = Type.Object({
-  id: Type.String(),
-  text: Type.String(),
-})
+type SourceMessage = {
+  id: string;
+  text: string;
+};
 
-type SourceMessage = Static<typeof SourceMessageSchema>;
-
-/**
- *
- */
 class ConfigService {
   config: TitleConfig = Value.Parse(ConfigSchema, Value.Default(ConfigSchema, {}));
   private warned = new Set<string>();
@@ -154,9 +149,6 @@ class ConfigService {
   }
 }
 
-/**
- *
- */
 class SessionSummaryService {
   private titleer: any;
 
@@ -315,9 +307,6 @@ export default function piSummarisedTitle(pi: ExtensionAPI) {
   const configService = new ConfigService();
   const summaries = new SessionSummaryService(pi, configService.config);
 
-  /**
-   * On session start, check if we already have a summary. If not, summarise the first user message and save it.
-   */
   pi.on("session_start", async (event, ctx) => {
     const config = await configService.reload(ctx);
     summaries.updateConfig(config);
@@ -326,17 +315,12 @@ export default function piSummarisedTitle(pi: ExtensionAPI) {
     await summaries.process(ctx, message);
   });
 
-  /**
-   * On agent start, check if we already have a summary. If not, summarise the first user message and save it.
-   */
   pi.on("before_agent_start", async (event, ctx) => {
     const config = await configService.reload(ctx);
     summaries.updateConfig(config);
 
-    // if disabled or already has a summary, skip
-    if (!config.enabled || summaries.read(ctx)) return;
+    if (!config.enabled) return;
 
-    // otherwise, summarise the first user message and save it
     await summaries.process(ctx, {
       text: event.prompt,
       id: 'first'
