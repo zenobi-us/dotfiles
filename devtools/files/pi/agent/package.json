@@ -8,10 +8,14 @@
     "@earendil-works/pi-coding-agent": "^0.80.2",
     "@earendil-works/pi-tui": "^0.80.2",
     "@huggingface/transformers": "^4.2.0",
+    "@vitejs/plugin-react": "^5.1.2",
     "@zenobius/pi-extension-config": "0.0.2",
     "dedent": "^1.7.0",
     "nconf": "^0.12.1",
-    "typebox": "^1.1.3"
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "typebox": "^1.1.3",
+    "vite": "^7.3.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

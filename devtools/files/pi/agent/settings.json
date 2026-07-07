@@ -6,7 +6,6 @@
     "npm:@marckrenn/pi-sub-bar",
     "npm:@marckrenn/pi-sub-core",
     "npm:pi-mermaid",
-    "npm:pi-hashline-readmap",
     "npm:pi-llama-server",
     "npm:pi-subagentura",
     "npm:pi-web-access",
@@ -48,3 +47,4 @@
     "clearOnShrink": false
   },
   "showHardwareCursor": false
+}
