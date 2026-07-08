@@ -1,0 +1,207 @@
+{
+  "name": "@vanillagreen/pi-output-policy",
+  "version": "1.1.1",
+  "description": "OMP-style large-output policy for Pi tool results: minimization, bounded truncation, and spill-file preservation.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "truncation",
+    "output"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/output-policy.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-output-policy/assets/settings-panel.png"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Output Policy",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable output policy",
+          "description": "Apply minimization, spill, truncation, and UI safety caps to tool results.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "live"
+        },
+        {
+          "key": "policyMode",
+          "label": "Policy mode",
+          "description": "Budget profile for inline truncation. balanced (default) caps non-read/non-mutation tool results at ~24 KB inline so long sessions stay under provider request buffers. compact halves those caps for very long runs. compat restores pre-1.1 UI-safety-only defaults (200 KB inline) when you need full output and aren't worried about transcript size. Explicit per-knob values override the mode default.",
+          "type": "enum",
+          "default": "balanced",
+          "enumValues": [
+            "balanced",
+            "compact",
+            "compat"
+          ],
+          "category": "General",
+          "apply": "live"
+        },
+        {
+          "key": "truncateReadOutputs",
+          "label": "Truncate file reads",
+          "description": "Apply output-policy spill/truncation to read tool file contents. Disabled by default so file reads are returned unmodified.",
+          "type": "boolean",
+          "default": false,
+          "category": "Truncation",
+          "apply": "live"
+        },
+        {
+          "key": "truncateMutationOutputs",
+          "label": "Truncate edits/writes",
+          "description": "Apply output-policy spill/truncation and detail sanitization to edit/write tool results. Disabled by default so Pi's standard edit diffs are preserved unmodified.",
+          "type": "boolean",
+          "default": false,
+          "category": "Truncation",
+          "apply": "live"
+        },
+        {
+          "key": "spillThresholdKb",
+          "label": "Output spill threshold (KB)",
+          "description": "Preserve full output externally when text exceeds this size. When unset, policyMode picks: balanced 48, compact 16, compat 200.",
+          "type": "number",
+          "category": "Truncation",
+          "apply": "live"
+        },
+        {
+          "key": "inlineTailKb",
+          "label": "Inline tail size (KB)",
+          "description": "Bytes retained inline for tail-truncated command/log output after spill. When unset, policyMode picks: balanced 16, compact 6, compat 100.",
+          "type": "number",
+          "category": "Truncation",
+          "apply": "live"
+        },
+        {
+          "key": "inlineTailLines",
+          "label": "Inline tail lines",
+          "description": "Lines retained inline for tail-truncated command/log output after spill. When unset, policyMode picks: balanced 400, compact 200, compat 2000.",
+          "type": "number",
+          "category": "Truncation",
+          "apply": "live"
+        },
+        {
+          "key": "maxTextBlockKb",
+          "label": "Max UI-safe text block (KB)",
+          "description": "Hard cap for text blocks even when spill is disabled or fails. When unset, policyMode picks: balanced 24, compact 8, compat 200.",
+          "type": "number",
+          "category": "UI Safety",
+          "apply": "live"
+        },
+        {
+          "key": "maxLineCount",
+          "label": "Max UI-safe line count",
+          "description": "Hard line cap for rendered/result text. When unset, policyMode picks: balanced 400, compact 200, compat 8000.",
+          "type": "number",
+          "category": "UI Safety",
+          "apply": "live"
+        },
+        {
+          "key": "maxLineWidth",
+          "label": "Max UI-safe line width",
+          "description": "Truncate individual pathological lines to this character width. When unset, policyMode picks: balanced 3000, compact 2000, compat 20000.",
+          "type": "number",
+          "category": "UI Safety",
+          "apply": "live"
+        },
+        {
+          "key": "preserveFullOutput",
+          "label": "Preserve full output externally",
+          "description": "Write oversized full output to an extension-managed artifact file when possible.",
+          "type": "boolean",
+          "default": true,
+          "category": "Storage",
+          "apply": "live"
+        },
+        {
+          "key": "sanitizeDetails",
+          "label": "Sanitize details payloads",
+          "description": "Cap nested tool-result details. When unset, policyMode picks: balanced/compact on, compat off. State-bearing tools listed in 'Sanitize details allowlist' bypass this and pass through untouched.",
+          "type": "boolean",
+          "category": "UI Safety",
+          "apply": "live"
+        },
+        {
+          "key": "sanitizeDetails.exceptTools",
+          "label": "Sanitize details allowlist",
+          "description": "Comma-separated tool names whose details bypass sanitization (their inline details point at sidecars/state files that must not be capped). Empty means the built-in list: tasks_write, tasks_read, bg_task, bg_status, subagent, subagent_run, stop_subagent, steer_subagent, get_subagent_result.",
+          "type": "string",
+          "default": "",
+          "category": "UI Safety",
+          "apply": "live"
+        },
+        {
+          "key": "shellMinimizer.enabled",
+          "label": "Reduce verbose shell output",
+          "description": "Compress repetitive git/npm/cargo/test output before truncation. Keeps first/last lines plus warnings, errors, and test summaries so successful validation does not waste context.",
+          "type": "boolean",
+          "default": true,
+          "category": "Shell Minimizer",
+          "apply": "live"
+        },
+        {
+          "key": "shellMinimizer.only",
+          "label": "Shell minimizer allowlist",
+          "description": "Comma-separated command families to minimize. Empty means built-in defaults.",
+          "type": "string",
+          "default": "",
+          "category": "Shell Minimizer",
+          "apply": "live"
+        },
+        {
+          "key": "shellMinimizer.except",
+          "label": "Shell minimizer denylist",
+          "description": "Comma-separated command families that should never be minimized.",
+          "type": "string",
+          "default": "",
+          "category": "Shell Minimizer",
+          "apply": "live"
+        },
+        {
+          "key": "shellMinimizer.maxCaptureBytes",
+          "label": "Shell minimizer max capture bytes",
+          "description": "Do not run minimizer on shell output larger than this byte count; truncate directly instead.",
+          "type": "number",
+          "default": 1048576,
+          "category": "Shell Minimizer",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-output-policy"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-output-policy",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  }
+}

@@ -1,0 +1,420 @@
+{
+  "name": "@vanillagreen/pi-background-tasks",
+  "version": "1.6.1",
+  "description": "Pi extension for explicit non-blocking background shell tasks, log tails, and completion wakeups.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "background-tasks",
+    "shell"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/background-tasks.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-background-tasks/assets/spawn-tasks.png",
+    "appendSystem": "./instructions.md"
+  },
+  "scripts": {
+    "postinstall": "node scripts/append-system.mjs install",
+    "preuninstall": "node scripts/append-system.mjs remove"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "scripts/",
+    "instructions.md",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md",
+    "package.json"
+  ],
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Background Tasks",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable background tasks",
+          "description": "Register bg_task/bg_status, /bg, dashboard shortcut, and task widgets. Disable and reload to remove the feature.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "defaultTimeoutSeconds",
+          "label": "Default timeout",
+          "description": "Default timeout for spawned background tasks. Default 0 disables timeouts so long-running work is not killed unexpectedly.",
+          "type": "number",
+          "default": 0,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "autoBackgroundBash",
+          "label": "Auto-background blocking bash monitors",
+          "description": "Automatically divert clearly long-running bash monitors (watch, tail -f, pi-bridge/tmux polling loops) into bg_task before they can block the turn.",
+          "type": "boolean",
+          "default": true,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "autoBackgroundPatterns",
+          "label": "Extra auto-background patterns",
+          "description": "Optional newline-separated regular expressions for additional bash commands that should be auto-backgrounded before execution. Lines starting with # are ignored.",
+          "type": "string",
+          "default": "",
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "forcedBackgroundNotifyOnOutput",
+          "label": "Shortcut output wakeups",
+          "description": "When alt+. or /bg next forces the next bash into the background, also wake the agent on new output. Exit wakeups are always enabled for forced background tasks.",
+          "type": "boolean",
+          "default": false,
+          "category": "Wakeups",
+          "apply": "live"
+        },
+        {
+          "key": "forcedBackgroundWindowSeconds",
+          "label": "Shortcut arming window",
+          "description": "Seconds after alt+. or /bg next during which the next bash command is forced into the background.",
+          "type": "number",
+          "default": 300,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "outputSettleMs",
+          "label": "Output settle delay",
+          "description": "Debounce delay before output wakeups are sent.",
+          "type": "number",
+          "default": 1500,
+          "category": "Wakeups",
+          "apply": "live"
+        },
+        {
+          "key": "forceKillGraceMs",
+          "label": "Force-kill grace",
+          "description": "Milliseconds to wait after SIGTERM before SIGKILL.",
+          "type": "number",
+          "default": 5000,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlEnabled",
+          "label": "Resource controls",
+          "description": "Opt in to lower-priority execution for background tasks. Disabled by default; when off, spawn and stop behavior is unchanged.",
+          "type": "boolean",
+          "default": false,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlMode",
+          "label": "Resource control mode",
+          "description": "auto prefers a probed systemd-run --user transient service on Linux, then nice/ionice when available. off disables controls even if the master toggle is on.",
+          "type": "enum",
+          "enumValues": [
+            "auto",
+            "systemd-run",
+            "nice-ionice",
+            "off"
+          ],
+          "default": "auto",
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlApplyToBgTask",
+          "label": "Apply controls to bg_task",
+          "description": "Apply resource controls to explicit bg_task and /bg:run spawns.",
+          "type": "boolean",
+          "default": true,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlApplyToAutoBackground",
+          "label": "Apply controls to auto-backgrounded bash",
+          "description": "Apply resource controls to bash commands diverted by auto-backgrounding, /bg next, or the arm-next-bash shortcut.",
+          "type": "boolean",
+          "default": true,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlCpuWeight",
+          "label": "CPU weight",
+          "description": "systemd-run CPUWeight value (1-10000). Lower values yield CPU to other work. Default 100 matches systemd's normal weight.",
+          "type": "number",
+          "default": 100,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlIoWeight",
+          "label": "I/O weight",
+          "description": "systemd-run IOWeight value (1-10000). Lower values yield I/O bandwidth on cgroup-v2 systems. Default 100 matches systemd's normal weight.",
+          "type": "number",
+          "default": 100,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlNice",
+          "label": "Nice value",
+          "description": "CPU niceness for systemd-run Nice= and nice fallback (-20 to 19). Higher values are lower priority.",
+          "type": "number",
+          "default": 10,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlIoniceClass",
+          "label": "ionice class",
+          "description": "I/O scheduling class for systemd-run IOSchedulingClass= and ionice fallback.",
+          "type": "enum",
+          "enumValues": [
+            "realtime",
+            "best-effort",
+            "idle"
+          ],
+          "default": "best-effort",
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlIoniceLevel",
+          "label": "ionice level",
+          "description": "I/O scheduling priority for realtime/best-effort classes (0 highest, 7 lowest).",
+          "type": "number",
+          "default": 7,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "resourceControlWarnOnFallback",
+          "label": "Warn on resource-control fallback",
+          "description": "Show at most one warning/diagnostic when controls fall back or no-op because helpers are unavailable.",
+          "type": "boolean",
+          "default": true,
+          "category": "Execution",
+          "apply": "live"
+        },
+        {
+          "key": "outputBufferMaxChars",
+          "label": "In-memory output buffer",
+          "description": "Maximum characters retained in memory per task; logs still keep full output.",
+          "type": "number",
+          "default": 1000000,
+          "category": "Output",
+          "apply": "live"
+        },
+        {
+          "key": "outputAlertMaxChars",
+          "label": "Wakeup output tail",
+          "description": "Characters included in output/exit wakeup messages. Wakes are custom steer messages that bypass pi-output-policy, so this is the per-wake transcript budget. Default 2000 keeps a single wake comfortably under 4KB; raise only for monitors whose verbose inline tail is genuinely useful.",
+          "type": "number",
+          "default": 2000,
+          "category": "Output",
+          "apply": "live"
+        },
+        {
+          "key": "logTailMaxChars",
+          "label": "Dashboard/log tail",
+          "description": "Characters shown by dashboard and log actions. Log tool output includes the full log path when truncated.",
+          "type": "number",
+          "default": 10000,
+          "category": "Output",
+          "apply": "live"
+        },
+        {
+          "key": "outputWakeBudgetMaxWakes",
+          "label": "Output wake budget (count)",
+          "description": "Maximum output wakes per task before further output wakes are suppressed and a single 'wake budget exhausted; inspect log' notice is emitted. Exit wakes are unaffected. Set 0 to disable the count cap.",
+          "type": "number",
+          "default": 20,
+          "category": "Output",
+          "apply": "live"
+        },
+        {
+          "key": "outputWakeBudgetMaxBytes",
+          "label": "Output wake budget (bytes)",
+          "description": "Cumulative inline output-tail bytes per task before further output wakes are suppressed. Set 0 to disable the byte cap.",
+          "type": "number",
+          "default": 20000,
+          "category": "Output",
+          "apply": "live"
+        },
+        {
+          "key": "showWidget",
+          "label": "Show task widget",
+          "description": "Show the compact background-task widget while tasks are tracked. Manual hide remains latched across lifecycle refreshes until explicit toggle-in.",
+          "type": "boolean",
+          "default": true,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "widgetPlacement",
+          "label": "Widget placement",
+          "description": "Where the compact widget appears.",
+          "type": "enum",
+          "enumValues": [
+            "aboveEditor",
+            "belowEditor"
+          ],
+          "default": "aboveEditor",
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "toolRenderMode",
+          "label": "Tool output style",
+          "description": "Compact keeps bg_task results to one status line; stacked adds short task/log rows and ctrl+o to expand details.",
+          "type": "enum",
+          "enumValues": [
+            "compact",
+            "stacked"
+          ],
+          "default": "stacked",
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "toolExpandedLogLines",
+          "label": "Expanded tool log lines",
+          "description": "Maximum log lines shown after ctrl+o to expand bg_task log output.",
+          "type": "number",
+          "default": 80,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "dashboardOutputMaxLines",
+          "label": "Dashboard output line cap",
+          "description": "Maximum output lines kept in the interactive dashboard viewport. Full logs remain on disk.",
+          "type": "number",
+          "default": 800,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "backgroundBashShortcut",
+          "label": "Background next bash shortcut",
+          "description": "Keyboard shortcut that arms a one-shot diversion: the next not-yet-started bash command becomes a bg_task. Already-running bash cannot be detached safely. Use \"none\" to disable. Requires restart because shortcuts register at extension load.",
+          "type": "string",
+          "default": "alt+.",
+          "category": "UI",
+          "apply": "restart",
+          "requiresReload": true
+        },
+        {
+          "key": "widgetToggleShortcut",
+          "label": "Mini-dashboard toggle shortcut",
+          "description": "Keyboard shortcut to show/hide the inline mini-dashboard and restore the last visible mode when toggled back in. Requires restart because shortcuts register at extension load.",
+          "type": "string",
+          "default": "alt+h",
+          "category": "UI",
+          "apply": "restart",
+          "requiresReload": true
+        },
+        {
+          "key": "widgetDefaultMode",
+          "label": "Mini-dashboard default mode",
+          "description": "Initial inline mini-dashboard mode at session start; runtime hide/show state is controlled by the toggle.",
+          "type": "enum",
+          "enumValues": [
+            "compact",
+            "expanded",
+            "hidden"
+          ],
+          "default": "compact",
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "widgetFinishedRetentionSeconds",
+          "label": "Mini-dashboard finished retention",
+          "description": "Seconds to keep finished tasks visible in the inline mini-dashboard. Full dashboard entries persist until session end or manual clear.",
+          "type": "number",
+          "default": 15,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "dashboardShortcut",
+          "label": "Dashboard shortcut",
+          "description": "Keyboard shortcut registered for the dashboard. Requires restart because shortcuts register at extension load.",
+          "type": "string",
+          "default": "alt+shift+h",
+          "category": "UI",
+          "apply": "restart",
+          "requiresReload": true
+        },
+        {
+          "key": "taskDir",
+          "label": "Task log directory",
+          "description": "Directory for task log files. PI_BG_TASK_DIR still overrides this setting.",
+          "type": "path",
+          "default": "",
+          "category": "Storage",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-background-tasks"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-background-tasks",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

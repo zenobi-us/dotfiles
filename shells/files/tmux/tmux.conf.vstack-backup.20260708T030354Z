@@ -11,8 +11,3 @@ source-file ~/.config/tmux/conf.d/*.conf
 
 run '~/.config/tmux/plugins/tpm/tpm
 
-
-# vstack:begin vanillagreen-themes
-# Managed by vstack. Edit source extras or remove this block to opt out.
-source-file -q "/home/zenobius/.config/tmux/vstack-active-theme.conf"
-# vstack:end vanillagreen-themes

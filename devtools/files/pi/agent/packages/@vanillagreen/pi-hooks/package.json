@@ -1,0 +1,112 @@
+{
+  "name": "@vanillagreen/pi-hooks",
+  "version": "0.1.5",
+  "description": "First-class Pi port of the vstack safety hooks: bare-cd blocking, pre-commit fmt+clippy, post-edit clippy, end-of-turn lint. Per-hook toggles via pi-extension-manager.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "hooks",
+    "safety",
+    "lint"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/hooks.ts"
+    ]
+  },
+  "scripts": {
+    "test": "bun test ./tests"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Hooks",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable hooks",
+          "description": "Master toggle for all pi-hooks safety checks. Disable to make the extension inert without uninstalling.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "live"
+        },
+        {
+          "key": "blockBareCd",
+          "label": "Block bare cd",
+          "description": "Block bash commands consisting of a bare `cd /path` (no subshell, no `&&` chain). A bare cd permanently changes the agent's working directory across tool calls, which leaks state between unrelated tools. Use `(cd /path && command)` instead.",
+          "type": "boolean",
+          "default": true,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "preCommitCheck",
+          "label": "Pre-commit fmt + clippy",
+          "description": "When the agent runs `git commit` in the project repo, run `cargo fmt --check` and `cargo clippy --workspace --all-targets -- -D warnings` first using async child processes. Block the commit if either fails. Skips commits targeting other repos and only fires when staged or modified .rs files exist; if the bash command contains `git add`, untracked .rs files are treated conservatively as possibly staged by that command. Cost: only paid at commit time.",
+          "type": "boolean",
+          "default": true,
+          "category": "Bash",
+          "apply": "live"
+        },
+        {
+          "key": "postEditLint",
+          "label": "Post-edit clippy",
+          "description": "After every edit/write of a .rs file, run `cargo clippy --workspace --all-targets -- -D warnings` and append any issues that mention the edited file to the tool result. Advisory only — does not undo the edit. Cost: full workspace clippy on every Rust edit.",
+          "type": "boolean",
+          "default": true,
+          "category": "Rust",
+          "apply": "live"
+        },
+        {
+          "key": "taskCompletedCheck",
+          "label": "End-of-turn clippy",
+          "description": "At turn end, if any .rs files were touched during the turn, run a final `cargo clippy --workspace --all-targets -- -D warnings` and surface workspace errors via a UI notification. Pi has no equivalent of Claude Code's `TaskCompleted` block semantics, so this is advisory.",
+          "type": "boolean",
+          "default": true,
+          "category": "Rust",
+          "apply": "live"
+        },
+        {
+          "key": "clippyTimeoutMs",
+          "label": "Clippy timeout",
+          "description": "Maximum milliseconds any single cargo clippy invocation is allowed to run. Advisory post-edit/end-of-turn clippy timeouts are abandoned so the tool/turn can continue; blocking pre-commit fmt/clippy timeouts block the commit with a timeout reason. Matches the `timeout: 30` declared in hooks/post-edit-lint.sh. Raise for slow workspaces.",
+          "type": "number",
+          "default": 30000,
+          "category": "Rust",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "files": [
+    "extensions/",
+    "README.md",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-hooks"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-hooks",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  }
+}

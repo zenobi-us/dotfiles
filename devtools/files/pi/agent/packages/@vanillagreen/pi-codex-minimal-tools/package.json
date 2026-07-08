@@ -1,0 +1,224 @@
+{
+  "name": "@vanillagreen/pi-codex-minimal-tools",
+  "version": "1.2.4",
+  "description": "Minimal Codex/OpenAI native tools for Pi: Codex image_generation, view_image, apply_patch",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "codex",
+    "openai",
+    "image-generation",
+    "apply-patch"
+  ],
+  "license": "MIT",
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-codex-minimal-tools/assets/apply-patch-rendering.png"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Codex Minimal Tools",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable Codex minimal tools",
+          "description": "Register image_generation, view_image, and apply_patch. Tools only activate on OpenAI/Codex-like models — they stay hidden on Anthropic/Claude-bridge sessions.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "autoEnable",
+          "label": "Auto-add tools to active set",
+          "description": "When a supported OpenAI/Codex model is selected, add this package's enabled tools to the model's active tool list. Off = activate manually.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "live"
+        },
+        {
+          "key": "nativeProviderTools",
+          "label": "Native image_generation on Codex",
+          "description": "Rewrite this package's image_generation function to OpenAI's Responses-API native tool when the model is openai-codex. Codex-specific; coexists with Pi 0.75's general image APIs. Does not affect view_image or apply_patch.",
+          "type": "boolean",
+          "default": true,
+          "category": "Provider",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "imageGeneration",
+          "label": "Enable image_generation",
+          "description": "Expose image_generation on supported OpenAI Codex image-capable models.",
+          "type": "boolean",
+          "default": true,
+          "category": "Images",
+          "apply": "live"
+        },
+        {
+          "key": "imageOutputDir",
+          "label": "Image output directory",
+          "description": "Directory for generated images, relative to the workspace/repo root unless absolute.",
+          "type": "string",
+          "default": ".pi/openai-codex-images",
+          "category": "Images",
+          "apply": "live"
+        },
+        {
+          "key": "imageModel",
+          "label": "Direct image API model",
+          "description": "Image model for optional direct OpenAI Images API fallback.",
+          "type": "enum",
+          "enumValues": [
+            "gpt-image-2",
+            "gpt-image-1.5",
+            "gpt-image-1"
+          ],
+          "default": "gpt-image-2",
+          "category": "Images",
+          "apply": "live"
+        },
+        {
+          "key": "directImageApiFallback",
+          "label": "Direct Images API fallback",
+          "description": "Allow direct OpenAI Images API generation with OPENAI_API_KEY when native Codex image_generation is unavailable.",
+          "type": "boolean",
+          "default": false,
+          "category": "Images",
+          "apply": "live"
+        },
+        {
+          "key": "viewImage",
+          "label": "Enable view_image",
+          "description": "Expose local image viewing on image-capable models. Off by default; Pi's read tool already returns images, so view_image is mainly for prompt parity with the Codex CLI.",
+          "type": "boolean",
+          "default": false,
+          "category": "Images",
+          "apply": "live"
+        },
+        {
+          "key": "viewImageWorkspaceOnly",
+          "label": "Restrict view_image to workspace",
+          "description": "Reject view_image paths outside ctx.cwd. Off by default so clipboard paste from /tmp keeps working.",
+          "type": "boolean",
+          "default": false,
+          "category": "Images",
+          "apply": "live"
+        },
+        {
+          "key": "applyPatchEnabled",
+          "label": "Enable apply_patch",
+          "description": "Expose the apply_patch tool while preserving Pi edit/write unless strict patch mode is enabled.",
+          "type": "boolean",
+          "default": true,
+          "category": "Patch",
+          "apply": "live"
+        },
+        {
+          "key": "strictPatchMode",
+          "label": "Strict patch mode",
+          "description": "Block edit/write on supported models so edits must use apply_patch. Off by default.",
+          "type": "boolean",
+          "default": false,
+          "category": "Patch",
+          "apply": "live"
+        },
+        {
+          "key": "allowAbsolutePatchPaths",
+          "label": "Allow absolute patch paths",
+          "description": "Permit absolute paths in apply_patch. Off by default; relative paths stay anchored to ctx.cwd.",
+          "type": "boolean",
+          "default": false,
+          "category": "Patch",
+          "apply": "live"
+        },
+        {
+          "key": "deferApplyPatchRendering",
+          "label": "Defer apply_patch rendering",
+          "description": "Do not define apply_patch renderers; let pi-tool-renderer or Pi's fallback renderer handle display to avoid duplicate formatting.",
+          "type": "boolean",
+          "default": true,
+          "category": "Patch",
+          "apply": "reload",
+          "requiresReload": true
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "dependencies": {
+    "undici": "^7.25.0"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "^0.75.0",
+    "@earendil-works/pi-coding-agent": "^0.75.0",
+    "@earendil-works/pi-tui": "^0.75.0",
+    "@types/node": "^24.10.1",
+    "tsx": "^4.20.6",
+    "typebox": "^1.1.24",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test tests/**/*.test.ts",
+    "check": "npm run typecheck && npm test"
+  },
+  "files": [
+    "src/",
+    "tests/",
+    "README.md",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-codex-minimal-tools"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-codex-minimal-tools",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

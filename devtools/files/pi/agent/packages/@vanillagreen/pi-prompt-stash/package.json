@@ -1,0 +1,139 @@
+{
+  "name": "@vanillagreen/pi-prompt-stash",
+  "version": "1.1.1",
+  "description": "Pi package for per-session prompt stash history with alt+s stash/restore workflow.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "prompt",
+    "stash",
+    "editor"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/prompt-stash.ts"
+    ],
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-prompt-stash/assets/stash-popup.png"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "files": [
+    "extensions/",
+    "assets/",
+    "README.md",
+    "package.json"
+  ],
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Prompt Stash",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable prompt stash",
+          "description": "Register /prompt-stash and the stash/restore shortcut.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "storeFile",
+          "label": "Store file",
+          "description": "File name under the per-session global stash directory.",
+          "type": "path",
+          "default": "prompt-stash.json",
+          "category": "Storage",
+          "apply": "live"
+        },
+        {
+          "key": "shortcut",
+          "label": "Stash shortcut",
+          "description": "Shortcut for stash/restore. Requires reload because shortcuts are handled by the editor at load.",
+          "type": "string",
+          "default": "alt+s",
+          "category": "Input",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "popupWidth",
+          "label": "Popup width",
+          "description": "Preferred stash popup width.",
+          "type": "number",
+          "default": 92,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "popupMaxHeight",
+          "label": "Popup max height",
+          "description": "Maximum overlay height.",
+          "type": "string",
+          "default": "80%",
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "listRows",
+          "label": "Visible stash rows",
+          "description": "Number of stash rows shown before scrolling.",
+          "type": "number",
+          "default": 10,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "deduplicate",
+          "label": "Deduplicate prompts",
+          "description": "When stashing, remove older entries with identical text.",
+          "type": "boolean",
+          "default": true,
+          "category": "Storage",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-prompt-stash"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-prompt-stash",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}

@@ -1,7 +1,0 @@
-# Exclude test files from published tarball
-*.test.ts
-*.test.js
-*.test.d.ts
-
-# Exclude TypeScript build info files
-*.tsbuildinfo

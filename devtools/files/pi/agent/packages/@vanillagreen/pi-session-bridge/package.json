@@ -1,0 +1,191 @@
+{
+  "name": "@vanillagreen/pi-session-bridge",
+  "version": "1.3.1",
+  "description": "Pi extension and CLI for controlling visible interactive Pi sessions over a structured Unix-socket side channel.",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "coding-agent",
+    "session",
+    "bridge"
+  ],
+  "bin": {
+    "pi-bridge": "./bin/pi-bridge.js"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/session-bridge.ts"
+    ],
+    "appendSystem": "./instructions.md",
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-session-bridge/assets/session-bridge-cli.png"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "scripts": {
+    "test": "bun test tests/*.test.ts extensions/__tests__/*.test.ts",
+    "check": "node --check bin/pi-bridge.js && bun test tests/*.test.ts extensions/__tests__/*.test.ts",
+    "postinstall": "node scripts/append-system.mjs install",
+    "preuninstall": "node scripts/append-system.mjs remove"
+  },
+  "files": [
+    "bin/",
+    "extensions/",
+    "tests/",
+    "assets/",
+    "scripts/",
+    "instructions.md",
+    "README.md",
+    "package.json"
+  ],
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Session Bridge",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable session bridge",
+          "description": "Start the Unix-socket bridge, registry, event stream, and bridge commands.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "bridgeDir",
+          "label": "Bridge directory",
+          "description": "Directory for sockets and instance registry. PI_BRIDGE_DIR still overrides this.",
+          "type": "path",
+          "default": "",
+          "category": "Storage",
+          "apply": "restart"
+        },
+        {
+          "key": "historyLimit",
+          "label": "Event history limit",
+          "description": "Number of bridge events retained for history clients. PI_BRIDGE_HISTORY overrides this.",
+          "type": "number",
+          "default": 500,
+          "category": "Protocol",
+          "apply": "restart",
+          "requiresReload": true
+        },
+        {
+          "key": "maxEventBytes",
+          "label": "Max bytes per event",
+          "description": "Cap on each compact event envelope. Payloads larger than this collapse to a small descriptor and (when enabled) spill to the per-session raw JSONL.",
+          "type": "number",
+          "default": 8192,
+          "category": "Protocol",
+          "apply": "live"
+        },
+        {
+          "key": "maxHistoryBytes",
+          "label": "Max history bytes",
+          "description": "Total bytes retained across the in-memory history. Older envelopes drop once this is exceeded.",
+          "type": "number",
+          "default": 4194304,
+          "category": "Protocol",
+          "apply": "live"
+        },
+        {
+          "key": "maxHistoryResponseBytes",
+          "label": "Max history response bytes",
+          "description": "Maximum bytes returned by a single history request before older envelopes are trimmed.",
+          "type": "number",
+          "default": 1048576,
+          "category": "Protocol",
+          "apply": "live"
+        },
+        {
+          "key": "eventPreviewBytes",
+          "label": "Event preview bytes",
+          "description": "Bytes of delta/result/output retained as *Preview strings inside compact events.",
+          "type": "number",
+          "default": 256,
+          "category": "Protocol",
+          "apply": "live"
+        },
+        {
+          "key": "spillRawEvents",
+          "label": "Spill raw events",
+          "description": "Write oversized event payloads to a per-session JSONL sidecar so history --raw can rehydrate them.",
+          "type": "boolean",
+          "default": true,
+          "category": "Protocol",
+          "apply": "live"
+        },
+        {
+          "key": "maxRawSpillBytes",
+          "label": "Max raw spill bytes",
+          "description": "Cap on the on-disk size of the per-session raw sidecar JSONL. Each spill compares against statSync; if appending would exceed the cap the file is rewritten with only live slots, and the spill is refused (rawError) when even the compacted file plus the new line would not fit.",
+          "type": "number",
+          "default": 16777216,
+          "category": "Protocol",
+          "apply": "live"
+        },
+        {
+          "key": "maxLineBytes",
+          "label": "Max request line bytes",
+          "description": "Maximum JSONL request size accepted from a bridge client.",
+          "type": "number",
+          "default": 1048576,
+          "category": "Protocol",
+          "apply": "restart",
+          "requiresReload": true
+        },
+        {
+          "key": "heartbeatMs",
+          "label": "Registry heartbeat",
+          "description": "Milliseconds between registry file updates.",
+          "type": "number",
+          "default": 15000,
+          "category": "Protocol",
+          "apply": "restart",
+          "requiresReload": true
+        },
+        {
+          "key": "notifyOnStart",
+          "label": "Notify on start",
+          "description": "Show an in-TUI notification when the bridge starts.",
+          "type": "boolean",
+          "default": false,
+          "category": "UI",
+          "apply": "live"
+        },
+        {
+          "key": "showStatus",
+          "label": "Show status badge",
+          "description": "Show bridge:<pid> in the Pi footer/status area.",
+          "type": "boolean",
+          "default": true,
+          "category": "UI",
+          "apply": "live"
+        }
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-session-bridge"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-session-bridge",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  }
+}

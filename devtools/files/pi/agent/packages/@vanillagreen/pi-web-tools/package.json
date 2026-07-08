@@ -1,0 +1,252 @@
+{
+  "name": "@vanillagreen/pi-web-tools",
+  "version": "1.3.1",
+  "description": "First-party Pi web tools: provider-toggled web search, Exa deep research, content retrieval, and OpenAI native web_search integration.",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "web-search",
+    "exa",
+    "deep-research",
+    "perplexity",
+    "gemini"
+  ],
+  "license": "MIT",
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ],
+    "appendSystem": "./instructions.md",
+    "image": "https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-web-tools/assets/settings-panel.png"
+  },
+  "vstack": {
+    "extensionManager": {
+      "displayName": "Web Tools",
+      "settings": [
+        {
+          "key": "enabled",
+          "label": "Enable web tools",
+          "description": "Register web_search, web_fetch, web_research, answer/similar/code search, commands, and native web-search rewrites.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "glyphStyle",
+          "label": "Glyph style",
+          "description": "Glyphs for vstack-owned UI chrome. Unicode is the default; ASCII uses plain box/status/separator characters for terminal compatibility. pi-tool-renderer's global override wins when set.",
+          "type": "enum",
+          "enumValues": [
+            "unicode",
+            "ascii"
+          ],
+          "default": "unicode",
+          "category": "Rendering",
+          "apply": "live"
+        },
+        {
+          "key": "autoEnable",
+          "label": "Auto-enable web tools",
+          "description": "Add supported web tools to the active tool set while preserving Pi native tools.",
+          "type": "boolean",
+          "default": true,
+          "category": "General",
+          "apply": "live"
+        },
+        {
+          "key": "defaultProvider",
+          "label": "Default provider",
+          "description": "Provider used by web_search unless the tool call overrides it.",
+          "type": "enum",
+          "enumValues": [
+            "auto",
+            "exa",
+            "perplexity",
+            "gemini",
+            "exa-mcp",
+            "duckduckgo",
+            "openai-native"
+          ],
+          "default": "auto",
+          "category": "Providers",
+          "apply": "live"
+        },
+        {
+          "key": "enabledProviders",
+          "label": "Enabled providers",
+          "description": "Comma-separated provider allow-list: exa,perplexity,gemini,exa-mcp,duckduckgo,openai-native.",
+          "type": "string",
+          "default": "exa,perplexity,gemini,exa-mcp,duckduckgo,openai-native",
+          "category": "Providers",
+          "apply": "live"
+        },
+        {
+          "key": "nativeOpenAiWebSearch",
+          "label": "OpenAI native web_search",
+          "description": "Rewrite the function web_search tool to native OpenAI/Codex Responses web_search when supported.",
+          "type": "boolean",
+          "default": true,
+          "category": "OpenAI Native",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "openAiExternalWebAccess",
+          "label": "OpenAI external web access",
+          "description": "Set external_web_access on native OpenAI web_search tools.",
+          "type": "boolean",
+          "default": true,
+          "category": "OpenAI Native",
+          "apply": "live"
+        },
+        {
+          "key": "exaDeepResearchEnabled",
+          "label": "Exa deep research",
+          "description": "Register and enable web_research for Exa Deep Search.",
+          "type": "boolean",
+          "default": true,
+          "category": "Exa",
+          "apply": "live"
+        },
+        {
+          "key": "exaResearchModes",
+          "label": "Exa research mode overrides",
+          "description": "Optional JSON object keyed by lite/standard/full. Supports type, numResults, textMaxCharacters, timeoutSeconds, highlightsMaxCharacters, highlightNumSentences, highlightsPerUrl, summaryQuery, maxAgeHours, category, and outputSchema.",
+          "type": "string",
+          "default": "{}",
+          "category": "Exa",
+          "apply": "live"
+        },
+        {
+          "key": "exaAdvancedEnabled",
+          "label": "Exa advanced tools",
+          "description": "Enable advanced Exa answer, find-similar, and code search tools.",
+          "type": "boolean",
+          "default": false,
+          "category": "Exa",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "compatibilityTools",
+          "label": "Compatibility aliases",
+          "description": "Register legacy aliases such as fetch_content and web_search_exa. Off by default to avoid duplicate tool names.",
+          "type": "boolean",
+          "default": false,
+          "category": "Compatibility",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "browserCookieAccess",
+          "label": "Browser cookie access",
+          "description": "Opt-in browser cookie extraction for Gemini Web fallback. Requires reload because it may trigger credential prompts.",
+          "type": "boolean",
+          "default": false,
+          "category": "Content",
+          "apply": "reload",
+          "requiresReload": true
+        },
+        {
+          "key": "htmlExtraction.jinaFallback",
+          "label": "Jina Reader fallback",
+          "description": "Fall back to https://r.jina.ai when HTML extraction returns blocked or low-content output, or when origin returns 403/429/5xx.",
+          "type": "boolean",
+          "default": true,
+          "category": "Content",
+          "apply": "live"
+        },
+        {
+          "key": "githubClone.enabled",
+          "label": "GitHub clone extraction",
+          "description": "Enable GitHub clone/cache extraction for repository URLs.",
+          "type": "boolean",
+          "default": true,
+          "category": "Content",
+          "apply": "live"
+        },
+        {
+          "key": "githubClone.maxRepoSizeMB",
+          "label": "GitHub clone max size",
+          "description": "Large repository fallback threshold in MB.",
+          "type": "number",
+          "default": 350,
+          "category": "Content",
+          "apply": "live"
+        },
+        {
+          "key": "video.enabled",
+          "label": "Video extraction",
+          "description": "Enable YouTube and local video understanding via Gemini API/Web when available.",
+          "type": "boolean",
+          "default": true,
+          "category": "Content",
+          "apply": "reload",
+          "requiresReload": true
+        }
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@earendil-works/pi-ai": "^0.75.0",
+    "@earendil-works/pi-coding-agent": "^0.75.0",
+    "@earendil-works/pi-tui": "^0.75.0",
+    "tsx": "^4.20.6",
+    "typebox": "^1.1.24",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test tests/**/*.test.ts",
+    "check": "npm run typecheck && npm test",
+    "postinstall": "node scripts/append-system.mjs install",
+    "preuninstall": "node scripts/append-system.mjs remove"
+  },
+  "files": [
+    "src/",
+    "tests/",
+    "scripts/",
+    "instructions.md",
+    "README.md",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanillagreencom/vstack.git",
+    "directory": "pi-extensions/pi-web-tools"
+  },
+  "homepage": "https://github.com/vanillagreencom/vstack/tree/main/pi-extensions/pi-web-tools",
+  "bugs": {
+    "url": "https://github.com/vanillagreencom/vstack/issues"
+  },
+  "author": "vanillagreen",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  }
+}
