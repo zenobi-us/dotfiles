@@ -74,12 +74,14 @@ function formatWindow(tokens: number | undefined): string {
 	return `${tokens}`;
 }
 
-function statuslineContextInfo(ctx: ExtensionContext): { label: string; percent: number | null } {
+function statuslineContextInfo(ctx: ExtensionContext): { contextWindow?: number; label: string; percent: number | null; tokens?: number } {
 	const usage = ctx.getContextUsage();
 	const contextWindow = usage?.contextWindow ?? ctx.model?.contextWindow ?? 0;
-	if (typeof usage?.percent !== "number") return { label: formatWindow(contextWindow), percent: null };
+	const tokens = typeof usage?.tokens === "number" && Number.isFinite(usage.tokens) ? usage.tokens : undefined;
+	const windowTokens = typeof contextWindow === "number" && Number.isFinite(contextWindow) && contextWindow > 0 ? contextWindow : undefined;
+	if (typeof usage?.percent !== "number") return { contextWindow: windowTokens, label: formatWindow(contextWindow), percent: null, tokens };
 	const usedPercent = Math.max(0, Math.min(100, Math.round(usage.percent)));
-	return { label: formatWindow(contextWindow), percent: 100 - usedPercent };
+	return { contextWindow: windowTokens, label: formatWindow(contextWindow), percent: 100 - usedPercent, tokens };
 }
 
 function gitBadge(state: GitState, showDirtyMarker: boolean): string {
@@ -187,7 +189,7 @@ function cavemanIconTone(mode: string, active: boolean): "muted" | "text" | "suc
 }
 
 export function renderStatusLine(width: number, ctx: ExtensionContext, git: GitState, pi: ExtensionAPI, theme: Pick<Theme, "fg">): string {
-	const { label: contextLabel, percent } = statuslineContextInfo(ctx);
+	const { contextWindow, label: contextLabel, percent, tokens } = statuslineContextInfo(ctx);
 	const projectChunk = `${git.projectName}${gitBadge(git, settingBoolean("showDirtyMarker", true, ctx.cwd))} ${formatModelName(ctx)}`;
 	const statusSeparator = " / ";
 	const thinkingLevel = normalizeThinkingLevel(pi.getThinkingLevel());
@@ -215,6 +217,13 @@ export function renderStatusLine(width: number, ctx: ExtensionContext, git: GitS
 	const gapWidth = Math.max(minimumGap, width - visibleWidth(leftPlain) - visibleWidth(rightPlain) - 2);
 	const filled = percent === null ? 0 : Math.round(gapWidth * (percent / 100));
 	const empty = Math.max(0, gapWidth - filled);
-	const bar = " ".repeat(empty) + theme.fg("warning", glyphs(ctx.cwd).line.repeat(filled));
+	const contextOverlay = tokens !== undefined && contextWindow !== undefined ? `${formatWindow(tokens)}/${formatWindow(contextWindow)}` : "";
+	const overlayWidth = visibleWidth(contextOverlay);
+	const plainBar = `${" ".repeat(empty)}${glyphs(ctx.cwd).line.repeat(filled)}`;
+	const overlayStart = Math.max(0, Math.floor((gapWidth - overlayWidth) / 2));
+	const barText = contextOverlay && overlayWidth < gapWidth
+		? `${plainBar.slice(0, overlayStart)}${contextOverlay}${plainBar.slice(overlayStart + overlayWidth)}`
+		: plainBar;
+	const bar = theme.fg("warning", barText);
 	return truncateToWidth(`${leftColored} ${bar} ${right}`, width, "");
 }
