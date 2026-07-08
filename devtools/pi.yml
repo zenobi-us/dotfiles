@@ -18,6 +18,7 @@ actions:
       - -rf
       - "{{user.home_dir}}/.pi/agent/AGENTS.md"
       - "{{user.home_dir}}/.pi/agent/AGENT.md"
+      - "{{user.home_dir}}/.pi/agent/APPEND_SYSTEM.md"
       - "{{user.home_dir}}/.pi/agent/bun.lock"
       - "{{user.home_dir}}/.pi/agent/package.json"
       - "{{user.home_dir}}/.pi/agent/extensions"
@@ -51,6 +52,10 @@ actions:
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/AGENTS.md"
     from: pi/agent/AGENTS.md
+
+  - action: file.link
+    to: "{{user.home_dir}}/.pi/agent/APPEND_SYSTEM.md"
+    from: pi/agent/APPEND_SYSTEM.md
 
   - action: file.link
     to: "{{user.home_dir}}/.pi/agent/packages"
