@@ -1,0 +1,10 @@
+{
+  "name": "@zenobius/pi-session-browser",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "keywords": ["pi-package"],
+  "pi": {
+    "extensions": ["./index.ts"]
+  }
+}

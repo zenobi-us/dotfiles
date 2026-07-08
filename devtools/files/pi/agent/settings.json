@@ -25,6 +25,7 @@
     "./bundles/business",
     "./bundles/platform",
     "./packages/pi-context-report",
+    "./packages/pi-session-browser",
     "./packages/pi-fzf",
     "./packages/pi-lsp",
     "./packages/pi-ask",
