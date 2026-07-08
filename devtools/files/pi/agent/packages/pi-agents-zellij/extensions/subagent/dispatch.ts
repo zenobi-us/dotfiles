@@ -1,0 +1,568 @@
+import type { AgentToolResult, ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import type { AgentConfig, AgentScope } from "./agents.js";
+import { COMPLETION_SUMMARY_UNAVAILABLE, getFinalOutput, normalizeSummaryText } from "./format.js";
+import { runPersistentPaneAgent } from "./pane.js";
+import {
+	cloneMessagesForDetails,
+	detailsWithTruncation,
+	prepareSingleResultForReturn,
+	runSingleAgent,
+	truncateForDetails,
+	type OnUpdateCallback,
+} from "./runner.js";
+import { createOneShotSessionKey } from "./sessions.js";
+import { settingNumber } from "./settings.js";
+import { readTaskRegistry } from "./tasks.js";
+import {
+	DEFAULT_RESULT_MAX_BYTES,
+	DEFAULT_RESULT_MAX_LINES,
+	MAX_CONCURRENCY,
+	type SingleResult,
+	type SubagentDashboardItem,
+	type SubagentDetails,
+} from "./types.js";
+
+export interface DispatchItem {
+	agent: string;
+	cwd?: string;
+	sessionKey?: string;
+	task?: string;
+}
+
+export interface DispatchTask extends DispatchItem {
+	task: string;
+}
+
+type ToolTextResult = {
+	content: Array<{ type: "text"; text: string }>;
+	details: SubagentDetails;
+	isError?: boolean;
+};
+
+interface DispatchFlowContext {
+	agents: AgentConfig[];
+	cwd: string;
+	forceSpawn?: boolean;
+	makeDetails: (mode: "single" | "parallel" | "chain") => (results: SingleResult[]) => SubagentDetails;
+	onUpdate?: OnUpdateCallback;
+	parentModel?: string;
+	parentSessionId: string;
+	parentThinkingLevel?: string;
+	pi: ExtensionAPI;
+	removeDashboardAgent: (agentName: string) => void;
+	resumeSession?: string;
+	runtimeRoot: string;
+	signal?: AbortSignal;
+	updateDashboard: (item: SubagentDashboardItem) => void;
+}
+
+export interface AgentInventory {
+	allowed: AgentConfig[];
+	project: AgentConfig[];
+	user: AgentConfig[];
+}
+
+export interface InventoryValidationResult {
+	available: {
+		allowed: string[];
+		project: string[];
+		user: string[];
+	};
+	missing: string[];
+	scope: AgentScope;
+}
+
+export function assignEphemeralSessionKeys<T extends DispatchItem>(items: readonly T[]): Array<T & { sessionKey: string }> {
+	return items.map((item) => {
+		if (item.sessionKey?.trim()) return { ...item, sessionKey: item.sessionKey.trim() };
+		return { ...item, sessionKey: createOneShotSessionKey() };
+	});
+}
+
+export async function mapWithConcurrencyLimit<TIn, TOut>(
+	items: readonly TIn[],
+	concurrency: number,
+	fn: (item: TIn, index: number) => Promise<TOut>,
+): Promise<TOut[]> {
+	if (items.length === 0) return [];
+	const limit = Math.max(1, Math.min(Math.floor(concurrency), items.length));
+	const results: TOut[] = new Array(items.length);
+	let nextIndex = 0;
+	const workers = new Array(limit).fill(null).map(async () => {
+		while (true) {
+			const i = nextIndex++;
+			if (i >= items.length) return;
+			results[i] = await fn(items[i], i);
+		}
+	});
+	await Promise.all(workers);
+	return results;
+}
+
+export function validateAgentInventory(
+	requestedNames: Iterable<string>,
+	inventory: AgentInventory,
+	scope: AgentScope,
+): InventoryValidationResult | undefined {
+	const allowed = new Set(inventory.allowed.map((agent) => agent.name));
+	const missing = [...new Set(Array.from(requestedNames).filter((name) => !allowed.has(name)))].sort((a, b) => a.localeCompare(b));
+	if (missing.length === 0) return undefined;
+	return {
+		available: {
+			allowed: [...allowed].sort((a, b) => a.localeCompare(b)),
+			project: inventory.project.map((agent) => agent.name).sort((a, b) => a.localeCompare(b)),
+			user: inventory.user.map((agent) => agent.name).sort((a, b) => a.localeCompare(b)),
+		},
+		missing,
+		scope,
+	};
+}
+
+export function formatInventoryValidationError(validation: InventoryValidationResult): string {
+	const availableAllowed = validation.available.allowed.length > 0 ? validation.available.allowed.join(", ") : "none";
+	const availableProject = validation.available.project.length > 0 ? validation.available.project.join(", ") : "none";
+	const availableUser = validation.available.user.length > 0 ? validation.available.user.join(", ") : "none";
+	return [
+		`Unknown subagent(s) for agentScope=${validation.scope}: ${validation.missing.join(", ")}.`,
+		`Available in selected scope: ${availableAllowed}.`,
+		`Project agents: ${availableProject}.`,
+		`User agents: ${availableUser}.`,
+	].join("\n");
+}
+
+function singleResultStatus(result: SingleResult): "running" | "completed" | "failed" | "needs_completion" {
+	if (result.status === "needs_completion") return "needs_completion";
+	if (result.exitCode === -1) return "running";
+	if (result.exitCode === 0) return "completed";
+	return "failed";
+}
+
+function singleResultIsError(result: SingleResult): boolean {
+	return singleResultStatus(result) === "failed" || result.stopReason === "error" || result.stopReason === "aborted";
+}
+
+function singleResultNeedsCompletion(result: SingleResult): boolean {
+	return singleResultStatus(result) === "needs_completion";
+}
+
+function dashboardMessageForOneShotResult(result: SingleResult, persistedSummary?: string): string {
+	const persisted = normalizeSummaryText(persistedSummary);
+	if (persisted) return persisted;
+	const finalOutput = getFinalOutput(result.messages);
+	if (finalOutput.trim()) return finalOutput;
+	return singleResultStatus(result) === "running" ? result.task : COMPLETION_SUMMARY_UNAVAILABLE;
+}
+
+function dashboardMessageProvenanceForOneShotResult(result: SingleResult, persistedSummary?: string): SubagentDashboardItem["messageProvenance"] {
+	if (normalizeSummaryText(persistedSummary) || getFinalOutput(result.messages).trim()) return "persisted";
+	return singleResultStatus(result) === "running" ? "task-echo-fallback" : "placeholder";
+}
+
+async function persistedSummaryForOneShotResult(runtimeRoot: string, result: SingleResult): Promise<string | undefined> {
+	if (!result.taskId) return undefined;
+	try {
+		return (await readTaskRegistry(runtimeRoot))[result.taskId]?.summary;
+	} catch {
+		return undefined;
+	}
+}
+
+async function dashboardMessageForCompletedOneShotResult(runtimeRoot: string, result: SingleResult): Promise<string> {
+	return dashboardMessageForOneShotResult(result, await persistedSummaryForOneShotResult(runtimeRoot, result));
+}
+
+function needsCompletionMessage(result: SingleResult): string {
+	const reason = result.needsCompletionReason ? ` (${result.needsCompletionReason})` : "";
+	return result.errorMessage || `Agent needs completion${reason}; inspect result details and worker cwd state.`;
+}
+
+export async function runChainDispatch(
+	flow: DispatchFlowContext & { chain: DispatchTask[] },
+): Promise<ToolTextResult> {
+	const chainSteps = assignEphemeralSessionKeys(flow.chain);
+	const results: SingleResult[] = [];
+	let previousOutput = "";
+
+	for (let i = 0; i < chainSteps.length; i++) {
+		const step = chainSteps[i];
+		const taskWithContext = step.task.replace(/\{previous\}/g, previousOutput);
+
+		const chainUpdate: OnUpdateCallback | undefined = flow.onUpdate
+			? (partial: AgentToolResult<SubagentDetails>) => {
+					const currentResult = partial.details?.results[0];
+					if (currentResult) {
+						const allResults = [...results, currentResult].map((result) => {
+							const rawOutput = getFinalOutput(result.messages);
+							return {
+								...result,
+								messages: cloneMessagesForDetails(
+									result.messages,
+									rawOutput ? truncateForDetails(rawOutput, flow.cwd) : undefined,
+									flow.cwd,
+								),
+							};
+						});
+						flow.onUpdate?.({
+							content: partial.content,
+							details: flow.makeDetails("chain")(allResults),
+						});
+					}
+				}
+			: undefined;
+
+		const stepAgent = flow.agents.find((agent) => agent.name === step.agent);
+		const result = stepAgent?.pane
+			? await runPersistentPaneAgent(
+					flow.cwd,
+					flow.runtimeRoot,
+					flow.parentSessionId,
+					flow.agents,
+					step.agent,
+					taskWithContext,
+					step.cwd,
+					flow.parentModel,
+					flow.parentThinkingLevel,
+					i + 1,
+					flow.pi,
+					flow.forceSpawn ?? false,
+					flow.resumeSession,
+					flow.removeDashboardAgent,
+				)
+			: await runSingleAgent(
+					flow.cwd,
+					flow.runtimeRoot,
+					flow.agents,
+					step.agent,
+					taskWithContext,
+					step.cwd,
+					flow.parentModel,
+					flow.parentThinkingLevel,
+					i + 1,
+					flow.pi,
+					flow.signal,
+					chainUpdate,
+					flow.makeDetails("chain"),
+					step.sessionKey,
+				);
+		results.push(result);
+		if (!stepAgent?.pane) {
+			flow.updateDashboard({
+				agent: result.agent,
+				kind: "oneshot",
+				message: await dashboardMessageForCompletedOneShotResult(flow.runtimeRoot, result),
+				messageProvenance: dashboardMessageProvenanceForOneShotResult(result, await persistedSummaryForOneShotResult(flow.runtimeRoot, result)),
+				model: result.model,
+				effort: result.effort,
+				sessionMode: result.sessionMode,
+				sessionKey: result.sessionKeyExplicit ? result.sessionKey : undefined,
+				status: singleResultStatus(result),
+				task: result.task,
+				taskId: result.taskId ?? `${result.agent}-step-${i + 1}`,
+				transcriptPath: result.transcriptPath,
+				updatedAt: new Date().toISOString(),
+				usage: result.usage,
+			});
+		}
+
+		if (singleResultNeedsCompletion(result)) {
+			const message = needsCompletionMessage(result);
+			const preparedResults = await Promise.all(
+				results.map((candidate, index) =>
+					prepareSingleResultForReturn(
+						candidate,
+						flow.runtimeRoot,
+						flow.cwd,
+						`chain-step-${candidate.step ?? index + 1}`,
+						candidate === result ? message : undefined,
+					),
+				),
+			);
+			const blocked = preparedResults[preparedResults.length - 1];
+			const details = flow.makeDetails("chain")(preparedResults.map((prepared) => prepared.result));
+			return {
+				content: [{ type: "text", text: `Chain stopped at step ${i + 1} (${step.agent} needs completion): ${blocked.text || message}` }],
+				details: detailsWithTruncation(details, blocked),
+			};
+		}
+
+		const isError = singleResultIsError(result);
+		if (isError) {
+			const errorMsg = result.errorMessage || result.stderr || getFinalOutput(result.messages) || "(no output)";
+			const preparedResults = await Promise.all(
+				results.map((candidate, index) =>
+					prepareSingleResultForReturn(
+						candidate,
+						flow.runtimeRoot,
+						flow.cwd,
+						`chain-step-${candidate.step ?? index + 1}`,
+						candidate === result ? errorMsg : undefined,
+					),
+				),
+			);
+			const failed = preparedResults[preparedResults.length - 1];
+			failed.result.errorMessage = failed.text || errorMsg;
+			const details = flow.makeDetails("chain")(preparedResults.map((prepared) => prepared.result));
+			return {
+				content: [{ type: "text", text: `Chain stopped at step ${i + 1} (${step.agent}): ${failed.text || "(no output)"}` }],
+				details: detailsWithTruncation(details, failed),
+				isError: true,
+			};
+		}
+		previousOutput = getFinalOutput(result.messages);
+	}
+	const preparedResults = await Promise.all(
+		results.map((result, index) =>
+			prepareSingleResultForReturn(result, flow.runtimeRoot, flow.cwd, `chain-step-${result.step ?? index + 1}`),
+		),
+	);
+	const last = preparedResults[preparedResults.length - 1];
+	const details = flow.makeDetails("chain")(preparedResults.map((prepared) => prepared.result));
+	return {
+		content: [{ type: "text", text: last.text || "(no output)" }],
+		details: detailsWithTruncation(details, last),
+	};
+}
+
+export async function runParallelDispatch(
+	flow: DispatchFlowContext & { tasks: DispatchTask[] },
+): Promise<ToolTextResult> {
+	const parallelTasks = assignEphemeralSessionKeys(flow.tasks);
+
+	const allResults: SingleResult[] = new Array(flow.tasks.length);
+	for (let i = 0; i < flow.tasks.length; i++) {
+		allResults[i] = {
+			agent: parallelTasks[i].agent,
+			agentSource: "unknown",
+			task: parallelTasks[i].task,
+			exitCode: -1,
+			messages: [],
+			stderr: "",
+			usage: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, cost: 0, contextTokens: 0, turns: 0 },
+		};
+	}
+
+	const emitParallelUpdate = () => {
+		if (flow.onUpdate) {
+			const running = allResults.filter((r) => r.exitCode === -1).length;
+			const done = allResults.filter((r) => r.exitCode !== -1).length;
+			const updateResults = allResults.map((result) => {
+				const rawOutput = getFinalOutput(result.messages);
+				return {
+					...result,
+					messages: cloneMessagesForDetails(
+						result.messages,
+						rawOutput ? truncateForDetails(rawOutput, flow.cwd) : undefined,
+						flow.cwd,
+					),
+				};
+			});
+			flow.onUpdate({
+				content: [{ type: "text", text: `Parallel: ${done}/${allResults.length} done, ${running} running...` }],
+				details: flow.makeDetails("parallel")(updateResults),
+			});
+		}
+	};
+
+	const maxConcurrency = Math.max(1, Math.floor(settingNumber("maxConcurrency", MAX_CONCURRENCY, flow.cwd)));
+	const results = await mapWithConcurrencyLimit(parallelTasks, maxConcurrency, async (t, index) => {
+		const updateOneshotDashboard = async (item: SingleResult, usePersistedSummary = false) => {
+			const persistedSummary = usePersistedSummary ? await persistedSummaryForOneShotResult(flow.runtimeRoot, item) : undefined;
+			flow.updateDashboard({
+				agent: item.agent,
+				kind: "oneshot",
+				message: dashboardMessageForOneShotResult(item, persistedSummary),
+				messageProvenance: dashboardMessageProvenanceForOneShotResult(item, persistedSummary),
+				model: item.model,
+				effort: item.effort,
+				sessionMode: item.sessionMode,
+				sessionKey: item.sessionKeyExplicit ? item.sessionKey : undefined,
+				status: singleResultStatus(item),
+				task: item.task,
+				taskId: item.taskId ?? `${item.agent}-${index}`,
+				transcriptPath: item.transcriptPath,
+				updatedAt: new Date().toISOString(),
+				usage: item.usage,
+			});
+		};
+		const taskAgent = flow.agents.find((agent) => agent.name === t.agent);
+		try {
+			const result = taskAgent?.pane
+				? await runPersistentPaneAgent(
+						flow.cwd,
+						flow.runtimeRoot,
+						flow.parentSessionId,
+						flow.agents,
+						t.agent,
+						t.task,
+						t.cwd,
+						flow.parentModel,
+						flow.parentThinkingLevel,
+						undefined,
+						flow.pi,
+						flow.forceSpawn ?? false,
+						flow.resumeSession,
+						flow.removeDashboardAgent,
+					)
+				: await runSingleAgent(
+						flow.cwd,
+						flow.runtimeRoot,
+						flow.agents,
+						t.agent,
+						t.task,
+						t.cwd,
+						flow.parentModel,
+						flow.parentThinkingLevel,
+						undefined,
+						flow.pi,
+						flow.signal,
+						(partial) => {
+							if (partial.details?.results[0]) {
+								allResults[index] = partial.details.results[0];
+								void updateOneshotDashboard(partial.details.results[0]);
+								emitParallelUpdate();
+							}
+						},
+						flow.makeDetails("parallel"),
+						t.sessionKey,
+					);
+			allResults[index] = result;
+			if (!taskAgent?.pane) await updateOneshotDashboard(result, true);
+			emitParallelUpdate();
+			return result;
+		} catch (error) {
+			const errorMessage = error instanceof Error ? error.message : String(error);
+			const failed: SingleResult = {
+				...allResults[index],
+				exitCode: 1,
+				stderr: errorMessage,
+				stopReason: "error",
+				errorMessage,
+			};
+			allResults[index] = failed;
+			if (!taskAgent?.pane) {
+				try {
+					await updateOneshotDashboard(failed, false);
+				} catch {
+					// Dashboard update failure must not abort the pool.
+				}
+			}
+			emitParallelUpdate();
+			return failed;
+		}
+	});
+
+	const successCount = results.filter((r) => singleResultStatus(r) === "completed").length;
+	const needsCompletionCount = results.filter(singleResultNeedsCompletion).length;
+	const perResultLimits = (() => {
+		const total = { maxBytes: Math.max(1, Math.floor(settingNumber("resultMaxBytes", DEFAULT_RESULT_MAX_BYTES, flow.cwd))), maxLines: Math.max(1, Math.floor(settingNumber("resultMaxLines", DEFAULT_RESULT_MAX_LINES, flow.cwd))) };
+		const count = Math.max(1, results.length);
+		return { maxBytes: Math.max(1024, Math.floor(total.maxBytes / count)), maxLines: Math.max(40, Math.floor(total.maxLines / count)) };
+	})();
+	const preparedResults = await Promise.all(
+		results.map((result, index) =>
+			prepareSingleResultForReturn(
+				result,
+				flow.runtimeRoot,
+				flow.cwd,
+				`parallel-${index + 1}-${result.agent}`,
+				undefined,
+				perResultLimits,
+			),
+		),
+	);
+	const sections = preparedResults.map((prepared) => {
+		const r = prepared.result;
+		const status = singleResultStatus(r);
+		const text = singleResultNeedsCompletion(r) ? prepared.text || needsCompletionMessage(r) : prepared.text || "(no output)";
+		return `## ${r.agent} (${status})\n${text}`;
+	});
+	const needsCompletionSuffix = needsCompletionCount > 0 ? `, ${needsCompletionCount} needs completion` : "";
+	return {
+		content: [{ type: "text", text: `Parallel: ${successCount}/${results.length} succeeded${needsCompletionSuffix}\n\n${sections.join("\n\n")}` }],
+		details: flow.makeDetails("parallel")(preparedResults.map((prepared) => prepared.result)),
+	};
+}
+
+export async function runSingleDispatch(
+	flow: DispatchFlowContext & { agent: string; task: string; cwdOverride?: string; sessionKey?: string },
+): Promise<ToolTextResult> {
+	const agent = flow.agents.find((candidate) => candidate.name === flow.agent);
+	const result = agent?.pane
+		? await runPersistentPaneAgent(
+				flow.cwd,
+				flow.runtimeRoot,
+				flow.parentSessionId,
+				flow.agents,
+				flow.agent,
+				flow.task,
+				flow.cwdOverride,
+				flow.parentModel,
+				flow.parentThinkingLevel,
+				undefined,
+				flow.pi,
+				flow.forceSpawn ?? false,
+				flow.resumeSession,
+				flow.removeDashboardAgent,
+			)
+		: await runSingleAgent(
+				flow.cwd,
+				flow.runtimeRoot,
+				flow.agents,
+				flow.agent,
+				flow.task,
+				flow.cwdOverride,
+				flow.parentModel,
+				flow.parentThinkingLevel,
+				undefined,
+				flow.pi,
+				flow.signal,
+				flow.onUpdate,
+				flow.makeDetails("single"),
+				flow.sessionKey,
+			);
+	if (!agent?.pane) {
+		flow.updateDashboard({
+			agent: result.agent,
+			kind: "oneshot",
+			message: await dashboardMessageForCompletedOneShotResult(flow.runtimeRoot, result),
+			messageProvenance: dashboardMessageProvenanceForOneShotResult(result, await persistedSummaryForOneShotResult(flow.runtimeRoot, result)),
+			model: result.model,
+			effort: result.effort,
+			sessionMode: result.sessionMode,
+			sessionKey: result.sessionKeyExplicit ? result.sessionKey : undefined,
+			status: singleResultStatus(result),
+			task: result.task,
+			taskId: result.taskId ?? result.agent,
+			transcriptPath: result.transcriptPath,
+			updatedAt: new Date().toISOString(),
+			usage: result.usage,
+		});
+	}
+	if (singleResultNeedsCompletion(result)) {
+		const message = needsCompletionMessage(result);
+		const prepared = await prepareSingleResultForReturn(result, flow.runtimeRoot, flow.cwd, "single-needs-completion", message);
+		const details = flow.makeDetails("single")([prepared.result]);
+		return {
+			content: [{ type: "text", text: prepared.text || message }],
+			details: detailsWithTruncation(details, prepared),
+		};
+	}
+	const isError = singleResultIsError(result);
+	if (isError) {
+		const errorMsg = result.errorMessage || result.stderr || getFinalOutput(result.messages) || "(no output)";
+		const prepared = await prepareSingleResultForReturn(result, flow.runtimeRoot, flow.cwd, "single-error", errorMsg);
+		prepared.result.errorMessage = prepared.text || errorMsg;
+		const details = flow.makeDetails("single")([prepared.result]);
+		return {
+			content: [{ type: "text", text: `Agent ${result.stopReason || "failed"}: ${prepared.text || "(no output)"}` }],
+			details: detailsWithTruncation(details, prepared),
+			isError: true,
+		};
+	}
+	const prepared = await prepareSingleResultForReturn(result, flow.runtimeRoot, flow.cwd, "single");
+	const details = flow.makeDetails("single")([prepared.result]);
+	return {
+		content: [{ type: "text", text: prepared.text || "(no output)" }],
+		details: detailsWithTruncation(details, prepared),
+	};
+}
