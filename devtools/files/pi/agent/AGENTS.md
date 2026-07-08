@@ -23,6 +23,35 @@ This is your primary skill router. Based on the action you are about to perform,
 - exploring or tracing code: use `codemapper` skill. (Also use lsp and ast to understand structure and find relevant sections). 
 - understanding a code library or sdk, use the `code-library-docs` skill to find and understand documentation.
 
+### Subagents
+
+When delegating exploratory, review, research, or parallel coding work to another agent, prefer `subagent_interactive` over in-process subagents if the work benefits from observability or follow-up steering.
+
+Default interactive subagent launch shape:
+
+- Use `mux: "zellij"` when running inside Zellij.
+- Use `background: false` so the subagent opens as a visible stacked pane instead of a hidden background window.
+- Use `notifyOnComplete: "inject"` unless the user only wants a notification.
+- Use `includeContext: false` by default; pass only the needed task context to avoid context bloat.
+- Set `cwd` to the current project/worktree.
+- Give the subagent a short descriptive `name`.
+
+Example preference:
+
+```json
+{
+  "name": "review-auth-flow",
+  "task": "<focused task>",
+  "cwd": "<current cwd>",
+  "background": false,
+  "mux": "zellij",
+  "notifyOnComplete": "inject",
+  "includeContext": false
+}
+```
+
+Use in-process `subagent_isolated` only for cheap, non-interactive second opinions. Use `subagent_with_context` only when full parent context is necessary.
+
 ### Codebases
 
 When analyzing codebases, you should:
