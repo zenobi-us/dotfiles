@@ -61,6 +61,6 @@
     "clearOnShrink": false,
     "showTerminalProgress": true
   },
-  "theme": "rose-pine-moon"
+  "theme": "rose-pine-moon",
+  "transport": "sse"
 }
-
