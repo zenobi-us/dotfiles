@@ -22,7 +22,7 @@ const DEFAULT_PORT = 38741;
 const SESSIONS_DIR = resolve(homedir(), ".pi", "agent", "sessions");
 const EXPORT_DIR = join(tmpdir(), "pi-session-browser", "public");
 const SELECTED_HTML = join(EXPORT_DIR, "selected.html");
-const WEB_ROOT = join(dirname(fileURLToPath(import.meta.url)), "session-browser-web");
+const WEB_ROOT = join(dirname(fileURLToPath(import.meta.url)), "web");
 
 let server: ReturnType<typeof createServer> | undefined;
 let vite: ViteDevServer | undefined;
