@@ -11,6 +11,7 @@
   "lastChangelogVersion": "0.80.6",
   "packages": [
     "npm:pi-mermaid",
+    "npm:pi-llama-server",
     "npm:pi-updater",
     "git:github.com/DietrichGebert/ponytail",
     "./bundles/agent-core",
@@ -29,6 +30,7 @@
     "./packages/pi-lazyskills",
     "./packages/pi-worktrunk",
     "./packages/pi-rose-pine",
+    "./packages/pi-lmstudio-provider",
     "./packages/pi-agents-zellij",
     "./packages/@vanillagreen/pi-background-tasks",
     "./packages/@vanillagreen/pi-caveman",
