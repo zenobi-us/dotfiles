@@ -65,6 +65,7 @@ zinit_load_interactive_modules() {
 	zinit_load_local_module "dotfiles__aliases.zsh"
 	zinit_load_local_module "shellfont__aliases.zsh"
 	zinit_load_local_module "worktrunk__config.zsh"
+	zinit_load_local_module "zellij__aliases.zsh"
 
 	# zinit_load_local_module "pass__config.zsh"
 	# zinit_load_local_module "pinentry__config.zsh"
