@@ -10,9 +10,9 @@ TaskDescription: ${@:2}
 
 ## Skills
 
-- miniproject
 - jira
 - using-git-worktrees
+- worktrunk
 - zellij
 - codemapper
 - systematic-debugging
