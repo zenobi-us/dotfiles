@@ -13,7 +13,7 @@ autoload -Uz _zinit
 zinit_load_local_module() {
 	local module_path="$DOTFILE_ROOT/modules/$1"
 	if [[ -f "$module_path" ]]; then
-		zinit snippet "$module_path"
+		source "$module_path"
 	fi
 }
 
