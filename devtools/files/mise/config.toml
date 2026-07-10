@@ -93,6 +93,7 @@ pdm = "latest"
 traefik = "latest"
 "npm:neofetch" = "latest"
 "npm:kandev" = "latest"
+lua = "latest"
 
 
 [shell_alias]
