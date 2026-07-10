@@ -12,6 +12,7 @@
   "packages": [
     "npm:pi-mermaid",
     "npm:pi-llama-server",
+    "npm:pi-tps-meter",
     "npm:pi-updater",
     "git:github.com/DietrichGebert/ponytail",
     "./bundles/agent-core",
@@ -46,8 +47,7 @@
     "./packages/@vanillagreen/pi-skills-manager",
     "./packages/@vanillagreen/pi-task-panel",
     "./packages/@vanillagreen/pi-tool-renderer",
-    "./packages/@vanillagreen/pi-web-tools",
-    "./packages/pi-tps"
+    "./packages/@vanillagreen/pi-web-tools"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
@@ -64,6 +64,9 @@
       "config": {
         "@vanillagreen/pi-qol": {
           "replaceFooter": false
+        },
+        "@vanillagreen/pi-caveman": {
+          "mode": "full"
         }
       }
     }
