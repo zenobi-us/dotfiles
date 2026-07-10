@@ -61,6 +61,21 @@
         "@mariozechner/pi-tui": "*",
       },
     },
+    "packages/pi-agents-zellij": {
+      "name": "@vanillagreen/pi-agents-zellij",
+      "version": "2.6.6",
+      "peerDependencies": {
+        "@earendil-works/pi-ai": "*",
+        "@earendil-works/pi-coding-agent": "*",
+        "@earendil-works/pi-tui": "*",
+        "typebox": "*",
+      },
+      "optionalPeers": [
+        "@earendil-works/pi-ai",
+        "@earendil-works/pi-coding-agent",
+        "@earendil-works/pi-tui",
+      ],
+    },
     "packages/pi-ask": {
       "name": "@eko24ive/pi-ask",
       "version": "1.1.0",
@@ -183,6 +198,10 @@
     },
     "packages/pi-rose-pine": {
       "name": "@zenobius/pi-rose-pine",
+      "version": "0.0.1",
+    },
+    "packages/pi-session-browser": {
+      "name": "@zenobius/pi-session-browser",
       "version": "0.0.1",
     },
     "packages/pi-slopchop": {
@@ -766,6 +785,8 @@
 
     "@ungap/structured-clone": ["@ungap/structured-clone@1.3.2", "", {}, "sha512-5jsZFwgR5rTdKwidH9Qmat75RKwqfpKlWWB1frDkljN127mwqBu8K0PYo7/hFpF03IEJpfVPpCQDY/eDx3iHvA=="],
 
+    "@vanillagreen/pi-agents-zellij": ["@vanillagreen/pi-agents-zellij@workspace:packages/pi-agents-zellij"],
+
     "@vitejs/plugin-react": ["@vitejs/plugin-react@5.2.0", "", { "dependencies": { "@babel/core": "^7.29.0", "@babel/plugin-transform-react-jsx-self": "^7.27.1", "@babel/plugin-transform-react-jsx-source": "^7.27.1", "@rolldown/pluginutils": "1.0.0-rc.3", "@types/babel__core": "^7.20.5", "react-refresh": "^0.18.0" }, "peerDependencies": { "vite": "^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0" } }, "sha512-YmKkfhOAi3wsB1PhJq5Scj3GXMn3WvtQ/JC0xoopuHoXSdmtdStOpFrYaT1kie2YgFBcIe64ROzMYRjCrYOdYw=="],
 
     "@vitest/expect": ["@vitest/expect@0.34.6", "", { "dependencies": { "@vitest/spy": "0.34.6", "@vitest/utils": "0.34.6", "chai": "^4.3.10" } }, "sha512-QUzKpUQRc1qC7qdGo7rMK3AkETI7w18gTCUrsNnyjjJKYiuUB9+TQK3QnR1unhCnWRC0AbKv2omLGQDF/mIjOw=="],
@@ -797,6 +818,8 @@
     "@zenobius/pi-researcher": ["@zenobius/pi-researcher@workspace:bundles/researcher"],
 
     "@zenobius/pi-rose-pine": ["@zenobius/pi-rose-pine@workspace:packages/pi-rose-pine"],
+
+    "@zenobius/pi-session-browser": ["@zenobius/pi-session-browser@workspace:packages/pi-session-browser"],
 
     "@zenobius/pi-writing": ["@zenobius/pi-writing@workspace:bundles/writing"],
 

@@ -1,22 +1,17 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "gpt-5.5",
+  "defaultModel": "gpt-5.6-sol",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "medium",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
   "enableSkillCommands": true,
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "0.80.3",
+  "lastChangelogVersion": "0.80.6",
   "packages": [
-    "npm:@marckrenn/pi-sub-bar",
-    "npm:@marckrenn/pi-sub-core",
     "npm:pi-mermaid",
-    "npm:pi-llama-server",
-    "npm:pi-subagentura",
     "npm:pi-updater",
-    "npm:pi-tps-meter",
     "git:github.com/DietrichGebert/ponytail",
     "./bundles/agent-core",
     "./bundles/developer",
@@ -24,20 +19,17 @@
     "./bundles/researcher",
     "./bundles/business",
     "./bundles/platform",
-    "./packages/pi-context-report",
     "./packages/pi-session-browser",
     "./packages/pi-fzf",
     "./packages/pi-lsp",
-    "./packages/pi-ask",
     "./packages/pi-tree",
     "./packages/pi-slopchop",
     "./packages/pi-autoresearch",
     "./packages/pi-ralph-wiggum",
-    "./packages/pi-handoff",
     "./packages/pi-lazyskills",
     "./packages/pi-worktrunk",
     "./packages/pi-rose-pine",
-    "./packages/pi-lmstudio-provider",
+    "./packages/pi-agents-zellij",
     "./packages/@vanillagreen/pi-background-tasks",
     "./packages/@vanillagreen/pi-caveman",
     "./packages/@vanillagreen/pi-codex-minimal-tools",
@@ -52,7 +44,8 @@
     "./packages/@vanillagreen/pi-skills-manager",
     "./packages/@vanillagreen/pi-task-panel",
     "./packages/@vanillagreen/pi-tool-renderer",
-    "./packages/@vanillagreen/pi-web-tools"
+    "./packages/@vanillagreen/pi-web-tools",
+    "./packages/pi-tps"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
@@ -62,5 +55,15 @@
     "showTerminalProgress": true
   },
   "theme": "rose-pine-moon",
-  "transport": "sse"
+  "transport": "sse",
+  "vstack": {
+    "extensionManager": {
+      "disabledItems": [],
+      "config": {
+        "@vanillagreen/pi-qol": {
+          "replaceFooter": false
+        }
+      }
+    }
+  }
 }
