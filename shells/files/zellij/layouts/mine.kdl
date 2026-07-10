@@ -1,0 +1,28 @@
+layout {
+    
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="tab-bar"
+        }
+        pane {
+            children
+        }
+        pane size=1 borderless=true {
+            plugin location="status-bar"
+        }
+    }
+
+    new_tab_template {
+        pane size=1 borderless=true {
+            plugin location="tab-bar"
+        }
+        pane {
+            children
+        }
+        pane size=1 borderless=true {
+            plugin location="status-bar"
+        }
+    }
+
+}
+

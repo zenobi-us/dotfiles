@@ -1,6 +1,6 @@
 keybinds clear-defaults=true {
     normal {
-        bind "Ctrl /" { 
+    bind "Ctrl /" { 
             SwitchToMode "tmux"; 
         }
     }
@@ -117,12 +117,14 @@ plugins {
     agent-threads location="file:~/.config/zellij/plugins/zellij-plugin-agent-threads.wasm"
 }
 
+default_layout "mine"
 theme "rose-pine"
 scrollback_editor "nvim"
 
 pane_frames false
 
-// default_layout "default"
+simplified_ui true
+
 session_serialization true
 serialize_pane_viewport false
 show_startup_tips false

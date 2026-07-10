@@ -1,3 +1,5 @@
+alias zellij='zellij options --theme-dir ~/.config/zellij/themes/'
+
 zellij-attach() {
 	local session
 
