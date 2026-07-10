@@ -94,6 +94,7 @@ traefik = "latest"
 "npm:neofetch" = "latest"
 "npm:kandev" = "latest"
 lua = "latest"
+"github:finefindus/artem" = "latest"
 
 
 [shell_alias]
