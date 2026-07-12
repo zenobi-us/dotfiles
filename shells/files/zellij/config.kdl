@@ -115,11 +115,13 @@ plugins {
     status-bar location="zellij:status-bar"
     sequence location="zellij:sequence"
     agent-threads location="file:~/.config/zellij/plugins/zellij-plugin-agent-threads.wasm"
+    tab-bar location="https://github.com/airtonix/zellij-tabbar/releases/download/v0.1.0-alpha.1/zellij-tabbar.wasm"
 }
 
 default_layout "mine"
 theme "rose-pine"
 scrollback_editor "nvim"
+default_shell "zsh"
 
 pane_frames false
 
