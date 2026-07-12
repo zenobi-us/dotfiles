@@ -59,7 +59,7 @@
         {
           "key": "replaceFooter",
           "label": "Replace built-in footer",
-          "description": "Hide Pi default footer while the compact QOL statusline is enabled.",
+          "description": "Replace Pi's default footer with extension status widgets while the compact QOL statusline is enabled.",
           "type": "boolean",
           "default": true,
           "category": "Statusline",

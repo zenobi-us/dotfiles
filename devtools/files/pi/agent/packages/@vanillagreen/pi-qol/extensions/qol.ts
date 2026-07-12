@@ -612,7 +612,17 @@ export default function qol(pi: ExtensionAPI): void {
 							void refreshStatusline(ctx);
 							requestRender();
 						});
-						return { dispose: unsubscribe, invalidate() {}, render: () => [] };
+						return {
+							dispose: unsubscribe,
+							invalidate() {},
+							render(width: number): string[] {
+								const status = [...footerData.getExtensionStatuses()]
+									.sort(([left], [right]) => left.localeCompare(right))
+									.map(([, text]) => text.replace(/[\r\n]+/g, " "))
+									.join(" ");
+								return status ? [truncateToWidth(status, width, "")] : [];
+							},
+						};
 					});
 				}
 			}

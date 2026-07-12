@@ -130,6 +130,27 @@ test("session_start installs the QOL statusline by default", async () => {
 	fake.handlers.session_shutdown?.({ reason: "quit" }, ctx);
 });
 
+test("replacement footer renders only sorted extension statuses", async () => {
+	writeQolConfig({ "sessionSearch.enabled": false, "sessionAutoRename.enabled": false });
+	const fake = makeFakeApi();
+	qolDefault(fake.api);
+	const ctx = makeCtx();
+
+	fake.handlers.session_start?.({ reason: "startup" }, ctx);
+	const factory = ctx.ui.setFooter.mock.calls[0]?.[0];
+	const footer = factory(
+		{ requestRender() {} },
+		makeTheme(),
+		{
+			getExtensionStatuses: () => new Map([["zeta", "second\nline"], ["alpha", "first"]]),
+			onBranchChange: () => () => {},
+		},
+	);
+
+	expect(footer.render(80)).toEqual(["first second line"]);
+	fake.handlers.session_shutdown?.({ reason: "quit" }, ctx);
+});
+
 test("statusline.enabled=false keeps QOL editor helpers but skips statusline/footer replacement", async () => {
 	writeQolConfig({ "enableScheduleCommand": false, "statusline.enabled": false, "sessionSearch.enabled": false, "sessionAutoRename.enabled": false });
 	const fake = makeFakeApi();
