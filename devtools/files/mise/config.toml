@@ -95,6 +95,7 @@ traefik = "latest"
 "npm:kandev" = "latest"
 lua = "latest"
 "github:finefindus/artem" = "latest"
+"npm:takumi-js" = "latest"
 
 
 [shell_alias]
