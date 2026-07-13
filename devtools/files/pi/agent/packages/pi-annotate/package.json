@@ -1,0 +1,42 @@
+{
+  "name": "@diegopetrucci/pi-annotate-last-message",
+  "version": "0.1.3",
+  "description": "A standalone pi extension that opens a local browser UI for annotating the latest assistant reply.",
+  "keywords": [
+    "pi-package",
+    "pi",
+    "annotate",
+    "feedback",
+    "assistant-message"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegopetrucci/pi-extensions.git",
+    "directory": "extensions/annotate-last-message"
+  },
+  "files": [
+    "index.ts",
+    "prompt.ts",
+    "web-server.ts",
+    "session.ts",
+    "types.ts",
+    "ui.ts",
+    "web",
+
+    "README.md",
+    ".pi-fleet-tested-version"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "pi": {
+    "extensions": [
+      "index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "type": "module"
+}
