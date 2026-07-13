@@ -1,0 +1,7 @@
+---
+where: os.name == "linux"
+
+actions:
+  - action: file.copy
+    from: wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf
+    to: "{{ user.home_dir }}/.config/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf"
