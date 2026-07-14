@@ -1,0 +1,33 @@
+#!/bin/sh
+set -eu
+
+plugin_url='file:~/.config/zellij/plugins/zellij-agent-threads.wasm'
+existing_pane="$(
+    zellij action list-panes --json --all |
+        jq -r --arg plugin_url "$plugin_url" '
+            first(
+                .[]
+                | select(.is_plugin and .is_floating and .plugin_url == $plugin_url)
+                | [.id, .tab_id, .is_suppressed]
+                | @tsv
+            ) // empty
+        '
+)"
+
+if [ -n "$existing_pane" ]; then
+    set -- $existing_pane
+    pane_id=$1
+    tab_id=$2
+    is_suppressed=$3
+    zellij action go-to-tab-by-id "$tab_id"
+    if [ "$is_suppressed" = true ]; then
+        zellij action show-floating-panes --tab-id "$tab_id" || [ "$?" -eq 2 ]
+    fi
+    zellij action focus-pane-id "plugin_$pane_id"
+    exit
+fi
+
+pane_id="$(zellij action launch-plugin --floating "$plugin_url")"
+zellij action change-floating-pane-coordinates \
+    --pane-id "$pane_id" \
+    --x 0 --y 0 --width 100 --height '100%'

@@ -8,19 +8,11 @@ keybinds clear-defaults=true {
     tmux {
         // Session and global operations
         bind "a" {
-            LaunchOrFocusPlugin "agent-threads" {
+            Run "bash" "-c" "/home/zenobius/.config/zellij/cmds/agent-threads-panel" {
                 floating true
                 move_to_focused_tab true
             }
-            Run "zellij" {
-                args [
-                  "action", "change-floating-pane-coordinates",
-                  "-x", "0",
-                  "-y", "0",
-                  "--width", "100",
-                  "--height", "100%"
-                ]
-            }
+            SwitchToMode "normal";
         }
         bind "d" { Detach; }
         bind "s" { 
