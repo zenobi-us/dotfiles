@@ -10,10 +10,6 @@
   "hideThinkingBlock": true,
   "lastChangelogVersion": "0.80.6",
   "packages": [
-    "npm:pi-mermaid",
-    "npm:pi-llama-server",
-    "npm:pi-tps-meter",
-    "npm:pi-updater",
     "npm:@marckrenn/pi-sub-core",
     "git:github.com/DietrichGebert/ponytail",
     "./bundles/agent-core",
