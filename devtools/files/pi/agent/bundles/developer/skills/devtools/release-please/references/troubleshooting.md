@@ -37,6 +37,23 @@ Symptoms: wrong component bumps or missing bumps.
 - `packages` keys in config do not match real directories.
 - manifest key missing/stale after path rename/move.
 
+## Component or tag-prefix mismatch
+
+Symptoms: Release Please cannot find prior releases, proposes an unexpected version, or searches for the wrong tag.
+
+- Package path and `component` are different identities. Keep `packages` keys as real directories.
+- Check whether existing tags use `<old-component>-v<version>` while config now declares a new component.
+- Check `include-component-in-tag`; disabling it changes lookup to `v<version>`.
+- Check custom tag separators before assuming release history is absent.
+
+A component rename is a release migration. Choose one explicit strategy:
+
+1. Keep old component until next planned major transition.
+2. Create/migrate an equivalent stable baseline tag using the new component.
+3. Add temporary old-prefix lookup only in custom downstream metadata tooling, then remove it after a new component-named stable release.
+
+Do not rename manifest path keys merely to obtain prettier tags. Set `component` instead.
+
 ## Permission/token failure
 
 Typical symptom: `Resource not accessible by integration`.
