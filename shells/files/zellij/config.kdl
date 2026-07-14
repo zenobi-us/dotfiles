@@ -6,14 +6,7 @@ keybinds clear-defaults=true {
     }
 
     tmux {
-        // Session and global operations
-        bind "a" {
-            Run "bash" "-c" "/home/zenobius/.config/zellij/cmds/agent-threads-panel" {
-                floating true
-                move_to_focused_tab true
-            }
-            SwitchToMode "normal";
-        }
+
         bind "d" { Detach; }
         bind "s" { 
             LaunchOrFocusPlugin "session-manager" {
@@ -122,7 +115,7 @@ plugins {
     status-bar location="zellij:status-bar"
     sequence location="zellij:sequence"
     agent-threads location="file:~/.config/zellij/plugins/zellij-agent-threads.wasm"
-    tab-bar location="https://github.com/airtonix/zellij-tabbar/releases/download/v0.1.0-alpha.1/zellij-tabbar.wasm"
+    tab-bar location="file:~/.config/zellij/plugins/zellij-tabbar.wasm"
 }
 
 default_layout "mine"

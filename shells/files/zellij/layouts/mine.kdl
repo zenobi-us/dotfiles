@@ -1,7 +1,7 @@
 layout {
     default_tab_template {
-        pane size=1 borderless=true {
-            plugin location="file:/home/zenobius/.config/zellij/plugins/zellij-tabbar.wasm"
+        pane size=1 borderless=true  {
+            plugin location="tab-bar"
         }
         pane {
             children
@@ -13,7 +13,7 @@ layout {
 
     new_tab_template {
         pane size=1 borderless=true {
-            plugin location="file:/home/zenobius/.config/zellij/plugins/zellij-tabbar.wasm"
+            plugin location="tab-bar"
         }
         pane {
             children
@@ -22,4 +22,4 @@ layout {
             plugin location="status-bar"
         }
     }
-}
+} 
