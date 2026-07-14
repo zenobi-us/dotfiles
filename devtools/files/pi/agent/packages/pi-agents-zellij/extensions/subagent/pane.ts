@@ -553,7 +553,7 @@ export async function ensurePersistentPane(
 		const selectedEffort = selectedEffortForAgent(agent, selectedModel, selectedThinking);
 		const paths = await writeLauncher(runtimeRoot, parentSessionId, cwd, agent, selectedModel, selectedThinking, activeTools);
 		const windowName = `agent:${agent.name}`;
-		const args = ["action", "new-pane", "--cwd", cwd, "--name", windowName];
+		const args = ["action", "new-pane", "--near-current-pane", "--cwd", cwd, "--name", windowName];
 		if (settingBoolean("stackedPanes", true, cwd)) args.push("--stacked");
 		else args.push("--direction", "down");
 		args.push("--", "bash", paths.launcherFile);
