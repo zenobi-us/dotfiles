@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+target="${1:-}"
+channel="${2:-}"
+source_branch="${3:-}"
+run_attempt="${4:-}"
+
+fail() {
+  echo "ERROR: $*" >&2
+  exit 1
+}
+
+[[ -n "${target}" ]] || fail "usage: $0 <target> <latest|next> <source-branch> <run-attempt>"
+[[ "${channel}" == "latest" || "${channel}" == "next" ]] || fail "unsupported channel '${channel}'"
+[[ "${source_branch}" == "main" || "${source_branch}" == release/* ]] || fail "unsupported source branch '${source_branch}'"
+[[ "${run_attempt}" =~ ^[1-9][0-9]*$ ]] || fail "run-attempt must be a positive integer"
+
+projects_json="$(moon query projects)"
+project_json="$(jq -ce --arg target "${target}" '
+  [.projects[] | select(.id == $target)]
+  | if length == 1 then .[0] else empty end
+' <<<"${projects_json}")" || fail "unknown Moon target '${target}'"
+
+jq -e '(.tasks // {}) | has("publish")' >/dev/null <<<"${project_json}" \
+  || fail "Moon target '${target}' has no publish task"
+
+source="$(jq -r '.source // empty' <<<"${project_json}")"
+[[ -n "${source}" ]] || source="."
+source="${source%/}"
+[[ -d "${source}" ]] || fail "Moon source does not exist: ${source}"
+
+if [[ -f "${source}/package.json" ]]; then
+  current_version="$(jq -er '.version | strings | select(length > 0)' "${source}/package.json")" \
+    || fail "package version missing in ${source}/package.json"
+elif [[ -f "${source}/Cargo.toml" ]]; then
+  manifest_path="$(cd "${source}" && pwd -P)/Cargo.toml"
+  current_version="$(cargo metadata --no-deps --format-version 1 --manifest-path "${manifest_path}" \
+    | jq -er --arg manifest "${manifest_path}" '.packages[] | select(.manifest_path == $manifest) | .version')" \
+    || fail "package version missing in ${source}/Cargo.toml"
+else
+  fail "unsupported version source for Moon target '${target}'"
+fi
+
+semver='^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)([-+][0-9A-Za-z.-]+)?$'
+[[ "${current_version}" =~ ${semver} ]] || fail "malformed semantic version '${current_version}'"
+major="${BASH_REMATCH[1]}"
+minor="${BASH_REMATCH[2]}"
+patch="${BASH_REMATCH[3]}"
+
+if [[ "${source}" == "." ]]; then
+  tag_prefix="v"
+else
+  tag_prefix="${source#./}-v"
+fi
+
+stable_tag=""
+while IFS= read -r candidate; do
+  candidate_version="${candidate#"${tag_prefix}"}"
+  if [[ "${candidate_version}" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+    stable_tag="${candidate}"
+    break
+  fi
+done < <(git tag --merged HEAD --list "${tag_prefix}*" --sort=-v:refname)
+
+if [[ -n "${stable_tag}" ]]; then
+  commit_distance="$(git rev-list --first-parent --count "${stable_tag}..HEAD")"
+else
+  commit_distance="$(git rev-list --first-parent --count HEAD)"
+fi
+
+version="${current_version}"
+if [[ "${channel}" == "next" ]]; then
+  if [[ "${source_branch}" == "main" ]]; then
+    base_version="${major}.$((minor + 1)).0"
+  else
+    base_version="${major}.${minor}.$((patch + 1))"
+  fi
+  version="${base_version}-next.${commit_distance}.${run_attempt}"
+fi
+
+release_tag="${tag_prefix}${version}"
+
+jq -n \
+  --arg target "${target}" \
+  --arg source "${source}" \
+  --arg current_version "${current_version}" \
+  --arg stable_tag "${stable_tag}" \
+  --argjson commit_distance "${commit_distance}" \
+  --arg version "${version}" \
+  --arg release_tag "${release_tag}" \
+  '{
+    target: $target,
+    source: $source,
+    current_version: $current_version,
+    stable_tag: $stable_tag,
+    commit_distance: $commit_distance,
+    version: $version,
+    release_tag: $release_tag
+  }'

@@ -1,0 +1,217 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+log() {
+  printf '\033[36m[deploy-github-pages]\033[0m %s\n' "$*" >&2
+}
+
+warn() {
+  printf '\033[33m[deploy-github-pages:warn]\033[0m %s\n' "$*" >&2
+}
+
+fail() {
+  local message="${1:-unknown failure}"
+  local exit_code="${2:-1}"
+  printf '\033[31m[deploy-github-pages:fail]\033[0m %s\n' "${message}" >&2
+  exit "${exit_code}"
+}
+
+usage() {
+  cat <<'EOF'
+Usage: deploy-github-pages --source <dir> --repo <repo> [options]
+
+Options:
+  --source <dir>        Static build output dir
+  --repo <repo>         Target repo name or owner/repo
+  --branch <branch>     Target branch, default main
+  --pages-path <path>   GitHub Pages source path, default /
+  --message <message>   Commit message, default "publish docs"
+  --description <text>  Repo description when creating repo
+EOF
+}
+
+arg_value() {
+  local name="$1"
+  shift
+  while [ "$#" -gt 0 ]; do
+    if [ "$1" = "${name}" ]; then
+      printf '%s\n' "${2:-}"
+      return 0
+    fi
+    shift
+  done
+}
+
+repo_slug() {
+  local repo_name="$1"
+  local owner="${GITHUB_REPOSITORY_OWNER:-}"
+
+  if [[ "${repo_name}" == */* ]]; then
+    printf '%s\n' "${repo_name}"
+    return 0
+  fi
+
+  if [ -z "${owner}" ]; then
+    owner="$(gh repo view --json owner --jq .owner.login)"
+  fi
+
+  printf '%s/%s\n' "${owner}" "${repo_name}"
+}
+
+normalize_github_repo() {
+  local url="${1%.git}"
+
+  case "${url}" in
+    git@github.com:*) printf '%s\n' "${url#git@github.com:}" ;;
+    ssh://git@github.com/*) printf '%s\n' "${url#ssh://git@github.com/}" ;;
+    https://github.com/*) printf '%s\n' "${url#https://github.com/}" ;;
+    http://github.com/*) printf '%s\n' "${url#http://github.com/}" ;;
+    */*) printf '%s\n' "${url}" ;;
+  esac
+}
+
+current_repo_slug() {
+  if [ -n "${GITHUB_REPOSITORY:-}" ]; then
+    printf '%s\n' "${GITHUB_REPOSITORY}"
+    return 0
+  fi
+
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    local origin
+    origin="$(git config --get remote.origin.url || true)"
+    [ -n "${origin}" ] && normalize_github_repo "${origin}"
+  fi
+}
+
+repo_equal() {
+  [ "${1,,}" = "${2,,}" ]
+}
+
+default_branch_for() {
+  local remote_url="$1"
+  local line target
+
+  line="$(git ls-remote --symref "${remote_url}" HEAD 2>/dev/null | while IFS= read -r row; do
+    case "${row}" in
+      ref:\ refs/heads/*) printf '%s\n' "${row}"; break ;;
+    esac
+  done)"
+  target="${line#ref: refs/heads/}"
+  target="${target%%[[:space:]]HEAD*}"
+  [ "${target}" != "${line}" ] && printf '%s\n' "${target}"
+}
+
+if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
+  usage
+  exit 0
+fi
+
+source_dir="$(arg_value --source "$@")"
+repo_name="$(arg_value --repo "$@")"
+branch="$(arg_value --branch "$@")"
+pages_path="$(arg_value --pages-path "$@")"
+message="$(arg_value --message "$@")"
+description="$(arg_value --description "$@")"
+
+[ -n "${source_dir}" ] || fail "missing --source"
+[ -n "${repo_name}" ] || fail "missing --repo"
+
+branch="${branch:-main}"
+pages_path="${pages_path:-/}"
+message="${message:-publish docs}"
+description="${description:-GitHub Pages site}"
+
+token="${PAGES_PUBLISH_TOKEN:-${DOCS_PUBLISH_TOKEN:-${GH_TOKEN:-${GITHUB_TOKEN:-}}}}"
+ssh_key="${PAGES_PUBLISH_SSH_KEY:-${DOCS_PUBLISH_SSH_KEY:-}}"
+ssh_auth_sock="${SSH_AUTH_SOCK:-/tmp/deploy_github_pages_ssh_agent.sock}"
+git_name="${GIT_AUTHOR_NAME:-github-actions[bot]}"
+git_email="${GIT_AUTHOR_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
+
+[ -d "${source_dir}" ] || fail "source dir missing: ${source_dir}"
+
+if [ -n "${token}" ]; then
+  export GH_TOKEN="${token}"
+fi
+
+repo="$(repo_slug "${repo_name}")"
+clone_url="https://github.com/${repo}.git"
+tmp="$(mktemp -d)"
+clone_dir="${tmp}/repo"
+
+cleanup() {
+  rm -rf "${tmp}"
+}
+trap cleanup EXIT
+
+if [ -n "${ssh_key}" ]; then
+  log "configuring SSH auth"
+  mkdir -p "${HOME}/.ssh"
+  chmod 700 "${HOME}/.ssh"
+  ssh-keyscan github.com >>"${HOME}/.ssh/known_hosts"
+  key_file="${tmp}/pages_publish_key"
+  printf '%s\n' "${ssh_key}" >"${key_file}"
+  chmod 600 "${key_file}"
+  ssh-agent -a "${ssh_auth_sock}" >/dev/null
+  SSH_AUTH_SOCK="${ssh_auth_sock}" ssh-add "${key_file}"
+  export SSH_AUTH_SOCK="${ssh_auth_sock}"
+  clone_url="git@github.com:${repo}.git"
+elif [ -n "${token}" ]; then
+  clone_url="https://x-access-token:${token}@github.com/${repo}.git"
+fi
+
+log "publishing ${source_dir} to ${repo}:${branch}"
+
+if git ls-remote "${clone_url}" >/dev/null 2>&1; then
+  log "target repo exists"
+elif [ -n "${token}" ]; then
+  log "target repo missing; creating ${repo}"
+  gh repo create "${repo}" --public --description "${description}"
+else
+  fail "target repo missing or inaccessible: ${repo}. Create it first, add deploy key, or set token."
+fi
+
+current_repo="$(current_repo_slug || true)"
+if [ -n "${current_repo}" ] && repo_equal "${repo}" "${current_repo}"; then
+  default_branch="$(default_branch_for "${clone_url}" || true)"
+  [ -n "${default_branch}" ] || fail "could not determine default branch for ${repo}; refusing same-repo publish"
+
+  if [ "${branch}" = "${default_branch}" ]; then
+    fail "refusing to publish ${repo}:${branch}; target is current repo default branch"
+  fi
+fi
+
+git clone "${clone_url}" "${clone_dir}"
+git -C "${clone_dir}" config user.name "${git_name}"
+git -C "${clone_dir}" config user.email "${git_email}"
+
+if git -C "${clone_dir}" rev-parse --verify HEAD >/dev/null 2>&1; then
+  git -C "${clone_dir}" switch "${branch}" 2>/dev/null || git -C "${clone_dir}" switch -C "${branch}"
+else
+  git -C "${clone_dir}" switch --orphan "${branch}"
+fi
+
+find "${clone_dir}" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+cp -R "${source_dir}"/. "${clone_dir}"/
+touch "${clone_dir}/.nojekyll"
+
+git -C "${clone_dir}" add -A
+if git -C "${clone_dir}" diff --cached --quiet; then
+  log "no changes to publish"
+else
+  git -C "${clone_dir}" commit -m "${message}"
+  git -C "${clone_dir}" push origin "HEAD:${branch}"
+fi
+
+if [ -n "${token}" ]; then
+  if gh api "repos/${repo}/pages" >/dev/null 2>&1; then
+    gh api --method PUT "repos/${repo}/pages" -f "source[branch]=${branch}" -f "source[path]=${pages_path}" >/dev/null \
+      || warn "GitHub Pages API config failed; published branch anyway"
+  else
+    gh api --method POST "repos/${repo}/pages" -f "source[branch]=${branch}" -f "source[path]=${pages_path}" >/dev/null \
+      || warn "GitHub Pages API config failed; published branch anyway"
+  fi
+else
+  warn "skipping GitHub Pages API config; set token if Pages is not already configured"
+fi
+
+log "publish complete"

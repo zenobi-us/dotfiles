@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=../../../.moon/cache/schemas/project.json
+language: bash
+layer: tool
+
+project:
+  name: deployment
+
+tasks:
+  test:
+    command: "bash -n deploy-github-pages resolve-publish-metadata resolve-publish-metadata.test npm-publish && bash resolve-publish-metadata.test"
+    inputs:
+      - "deploy-github-pages"
+      - "resolve-publish-metadata"
+      - "resolve-publish-metadata.test"
+      - "npm-publish"
