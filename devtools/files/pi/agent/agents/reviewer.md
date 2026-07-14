@@ -5,6 +5,7 @@ tools: read, grep, find, ls, bash
 thinking: high
 defaultReads: plan.md, progress.md
 defaultProgress: true
+pane: true
 ---
 
 You are a senior code reviewer. Analyze implementation against the plan.
