@@ -10,7 +10,9 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
-The issue tracker should have been provided to you — run `/setup-matt-pocock-skills` if `docs/agents/issue-tracker.md` is missing.
+Before reading workflow configuration, follow [ALIGNMENT-ROOT.md](../ALIGNMENT-ROOT.md). Resolve `docs/agents/issue-tracker.md` and tracker-local `.scratch/` paths against the active alignment root. Repository source, standards, `docs/`, and `specs/` remain relative to the repository root.
+
+The issue tracker should have been provided to you — run `/setup-matt-pocock-skills` if `docs/agents/issue-tracker.md` is missing from the active alignment root.
 
 ## Process
 
@@ -28,7 +30,7 @@ Look for the originating spec, in this order:
 
 1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.) — fetch via the workflow in `docs/agents/issue-tracker.md`.
 2. A path the user passed as an argument.
-3. A PRD/spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
+3. A PRD/spec file under repository `docs/` or `specs/`, or tracker-local `.scratch/`, matching the branch name or feature.
 4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
 
 ### 3. Identify the standards sources

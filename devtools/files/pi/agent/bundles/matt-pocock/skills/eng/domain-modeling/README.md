@@ -24,7 +24,7 @@ Reach for it when the *words* are the problem: two people mean different things 
 
 ## Prerequisites
 
-The skill writes into two places, both created lazily — only once there is something to record. Resolved terms go into `CONTEXT.md` at the root (or, in a multi-context repo flagged by a `CONTEXT-MAP.md`, into the per-context `CONTEXT.md`). Decisions go into `docs/adr/`. Nothing needs to exist up front; the first resolved term creates the glossary, the first real trade-off creates the ADR.
+The skill writes into two places beneath the active Matt Pocock alignment root, both created lazily — only once there is something to record. Resolved terms go into `CONTEXT.md` at that root (or, in a multi-context project flagged by `CONTEXT-MAP.md`, into the per-context `CONTEXT.md`). Decisions go into `docs/adr/`. The alignment root may be the repository or an origin-keyed shared directory outside it.
 
 ## Glossary vs. ADR
 

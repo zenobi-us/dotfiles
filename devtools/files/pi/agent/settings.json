@@ -18,6 +18,7 @@
     "git:github.com/DietrichGebert/ponytail",
     "./bundles/agent-core",
     "./bundles/developer",
+    "./bundles/matt-pocock",
     "./bundles/creator",
     "./bundles/researcher",
     "./bundles/business",

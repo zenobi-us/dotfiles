@@ -24,7 +24,7 @@ Reach for it at the very start of a change, when the plan is still fuzzy and the
 
 ## Prerequisites
 
-This skill is stateful — it writes into your repo as it grills. Resolved terms land in a `CONTEXT.md` glossary at the root (or the relevant context's `CONTEXT.md` if a `CONTEXT-MAP.md` marks a multi-context repo), and genuinely hard-to-reverse decisions land as ADRs under `docs/adr/`. Both are created lazily — nothing exists until the first term or decision crystallises — so you don't need to scaffold anything up front, but you do need to be somewhere it's safe to write these files.
+This skill is stateful — it writes into the active Matt Pocock alignment root as it grills. That root may be the repository or an origin-keyed shared directory outside it. Resolved terms land in `CONTEXT.md` (or the relevant context glossary from `CONTEXT-MAP.md`), and genuinely hard-to-reverse decisions land under `docs/adr/`. Both are created lazily.
 
 ## The grill
 
