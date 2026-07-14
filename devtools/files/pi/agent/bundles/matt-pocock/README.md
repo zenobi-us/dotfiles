@@ -10,7 +10,14 @@ The bundled extension resolves the current Git repository's `origin`, canonicali
 ~/.pi/shared-context/<slugified-origin>--<hash>/
 ```
 
-Run `/matt-context` to inspect resolution. In repository mode it also shows the external shared-context candidate. Run `/matt-context init` to create `AGENTS.md` at that candidate; shared storage activates on the next agent turn.
+Use `/eng-context` subcommands:
+
+- `/eng-context report` shows current storage, roots, origin, and slug.
+- `/eng-context init` creates shared `AGENTS.md` and activates shared storage.
+- `/eng-context list` lists every origin-keyed shared context.
+- `/eng-context migrate` copies alignment files to the opposite storage, verifies existing files match, and activates the destination. Source files remain intact.
+
+Subcommands support Pi command argument autocomplete. Running `/eng-context` without a subcommand defaults to `report`.
 
 When shared `AGENTS.md` exists, the extension appends:
 
@@ -44,7 +51,7 @@ Without shared `AGENTS.md`, repository behavior remains active:
 </matt-pocock-context>
 ```
 
-`root` and `shared-root` both identify the active alignment storage. They point to the repository in repository mode and the origin-keyed external directory in shared mode. The external candidate is intentionally omitted from XML while repository storage is active.
+`root` and `shared-root` both identify the active alignment storage. They point to the repository in repository mode and the origin-keyed external directory in shared mode. A `.storage` marker in the external directory records the selected mode, allowing migration back to repository storage without deleting the shared copy. The external candidate is intentionally omitted from XML while repository storage is active.
 
 ## Alignment files
 
@@ -60,5 +67,7 @@ CONTEXT-MAP.md
 docs/adr/
 .scratch/
 ```
+
+Migration covers `AGENTS.md` (or the active repository instruction file), `docs/agents/`, `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, and context-scoped `src/**/docs/adr/`. It copies `.scratch/` only when `docs/agents/issue-tracker.md` declares `backend: local-markdown`; external trackers leave `.scratch/` behind. Missing backend metadata with an existing `.scratch/` aborts migration. Differing destination files also abort before anything is copied.
 
 Repository source code always remains in the Git working tree.

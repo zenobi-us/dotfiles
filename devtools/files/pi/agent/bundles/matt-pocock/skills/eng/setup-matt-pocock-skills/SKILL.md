@@ -9,7 +9,7 @@ disable-model-invocation: true
 Configure the shared substrate used by the engineering skills:
 
 - **Alignment storage** — repository-local or shared outside the repository
-- **Issue tracker** — GitHub, GitLab, local Markdown, local shared context, or another workflow
+- **Issue tracker** — GitHub, GitLab, local Markdown, or another workflow, independent of alignment storage
 - **Triage labels** — actual tracker strings for the canonical workflow roles
 - **Domain docs** — where `CONTEXT.md`, `CONTEXT-MAP.md`, and ADRs live
 
@@ -37,8 +37,10 @@ Present the findings, explain each choice briefly, then collect these decisions 
 
 **Alignment storage:**
 
-- **Repository** — configuration, domain documents, ADRs, and local issue files live in the repository. Existing behavior.
-- **Shared context** — those files live beneath the injected `shared-root`, outside the repository. Requires the Matt Pocock context extension.
+- **Repository** — engineering configuration and domain documentation live in the repository.
+- **Shared context** — engineering configuration and domain documentation live beneath the injected `shared-root`, outside the repository. Requires the Matt Pocock context extension.
+
+This choice controls only where engineering configuration is stored. It MUST NOT constrain the issue tracker backend.
 
 Default to the currently active storage. If no `<matt-pocock-context>` exists, repository storage is the only valid choice; do not invent a shared path.
 
@@ -47,9 +49,9 @@ Default to the currently active storage. If no `<matt-pocock-context>` exists, r
 - **GitHub** — use `gh`; propose when `origin` points at GitHub
 - **GitLab** — use `glab`; propose when `origin` points at GitLab
 - **Local Markdown** — issues live beneath `.scratch/` in the selected alignment root
-- **Other** — record the user-described workflow as prose
+- **Other** — Jira, Linear, or another user-described workflow
 
-When shared storage and Local Markdown are selected, the tracker method is **local-shared-context**. When repository storage is selected, it remains **local markdown**.
+Every tracker backend is valid with either alignment-storage mode. Storage controls the location of `docs/agents/issue-tracker.md`; its `backend` metadata controls how issues are tracked.
 
 For GitHub or GitLab, also ask whether external pull requests are a triage request surface. Default: no.
 
@@ -120,18 +122,19 @@ For shared storage:
 
 If `## Agent skills` already exists, update it in place rather than adding a duplicate.
 
+Every generated `docs/agents/issue-tracker.md` MUST begin with YAML frontmatter naming the actual backend, such as `backend: github`, `backend: gitlab`, `backend: jira`, or `backend: local-markdown`. Local Markdown MUST also declare `issue-root: .scratch`. Migration uses this metadata and MUST NOT infer the backend from prose.
+
 Write the three configuration files using these seeds:
 
 - [issue-tracker-github.md](./issue-tracker-github.md)
 - [issue-tracker-gitlab.md](./issue-tracker-gitlab.md)
-- [issue-tracker-local.md](./issue-tracker-local.md) for repository-local Markdown
-- [issue-tracker-local-shared-context.md](./issue-tracker-local-shared-context.md) for shared local Markdown
+- [issue-tracker-local.md](./issue-tracker-local.md) for local Markdown in either storage mode
 - [triage-labels.md](./triage-labels.md)
 - [domain.md](./domain.md)
 
-For another tracker, write `docs/agents/issue-tracker.md` from the user's description.
+For another tracker, write `docs/agents/issue-tracker.md` from the user's description and set `backend` to the actual service identifier, such as `jira` or `linear`.
 
-Configuration, domain documents, ADRs, and local issue files created by this workflow MUST stay beneath the selected alignment root. Source code remains in the repository.
+Configuration and domain documents created by this workflow MUST stay beneath the selected alignment root. Only the Local Markdown backend stores issue data there, beneath `.scratch/`; external tracker data remains in its external service. Source code remains in the repository.
 
 ### 6. Finish
 

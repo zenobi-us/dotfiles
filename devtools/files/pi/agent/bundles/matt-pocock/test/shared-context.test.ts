@@ -2,9 +2,11 @@ import { afterEach, describe, expect, test } from "bun:test";
 import { promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import {
+import mattPocockSharedContext, {
   canonicalizeGitRemote,
   initializeSharedContext,
+  listSharedContexts,
+  migrateAlignmentContext,
   renderMattPocockContext,
   resolveMattPocockContext,
   slugifyGitRemote,
@@ -113,7 +115,75 @@ describe("context resolution", () => {
     expect(result.created).toBe(true);
     expect(result.agents).toBe(path.join(context!.candidateSharedRoot!, "AGENTS.md"));
     expect(await fs.readFile(result.agents, "utf8")).toContain("# Matt Pocock shared context");
+    expect(await fs.readFile(path.join(context!.candidateSharedRoot!, ".storage"), "utf8")).toBe("shared\n");
     await expect(fs.stat(path.join(repositoryRoot, "AGENTS.md"))).rejects.toMatchObject({ code: "ENOENT" });
+  });
+
+  test("copies alignment files in both directions and toggles active storage", async () => {
+    const repositoryRoot = await temporaryDirectory();
+    const sharedBase = await temporaryDirectory();
+    const origin = "https://github.com/Owner/Repo.git";
+    await fs.mkdir(path.join(repositoryRoot, "docs", "agents"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, "src", "billing", "docs", "adr"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, ".scratch", "feature"), { recursive: true });
+    await fs.writeFile(path.join(repositoryRoot, "AGENTS.md"), "repo instructions");
+    await fs.writeFile(path.join(repositoryRoot, "CONTEXT.md"), "domain glossary");
+    await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "domain.md"), "domain config");
+    await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "issue-tracker.md"), "---\nbackend: local-markdown\n---\n");
+    await fs.writeFile(path.join(repositoryRoot, ".scratch", "feature", "PRD.md"), "local issue");
+    await fs.writeFile(path.join(repositoryRoot, "src", "billing", "docs", "adr", "0001.md"), "decision");
+
+    const repository = await resolveMattPocockContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
+    const toShared = await migrateAlignmentContext(repository!);
+    expect(toShared.storage).toBe("shared");
+    expect(toShared.copied).toContain("CONTEXT.md");
+    expect(toShared.copied).toContain("src/billing/docs/adr");
+    expect(toShared.copied).toContain(".scratch");
+
+    const shared = await resolveMattPocockContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
+    expect(shared?.storage).toBe("shared");
+    const toRepository = await migrateAlignmentContext(shared!);
+    expect(toRepository.storage).toBe("repository");
+
+    const restored = await resolveMattPocockContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
+    expect(restored?.storage).toBe("repository");
+    expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "CONTEXT.md"), "utf8")).toBe("domain glossary");
+  });
+
+  test("skips scratch data for an external tracker backend", async () => {
+    const repositoryRoot = await temporaryDirectory();
+    const sharedBase = await temporaryDirectory();
+    await fs.mkdir(path.join(repositoryRoot, "docs", "agents"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, ".scratch"), { recursive: true });
+    await fs.writeFile(path.join(repositoryRoot, "AGENTS.md"), "repo instructions");
+    await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "issue-tracker.md"), "---\nbackend: github\n---\n");
+    await fs.writeFile(path.join(repositoryRoot, ".scratch", "orphan.md"), "not tracker data");
+
+    const context = await resolveMattPocockContext(
+      gitExec(repositoryRoot, "https://github.com/Owner/Repo.git"),
+      repositoryRoot,
+      sharedBase,
+    );
+    const result = await migrateAlignmentContext(context!);
+
+    expect(result.copied).not.toContain(".scratch");
+    await expect(fs.stat(path.join(context!.candidateSharedRoot!, ".scratch"))).rejects.toMatchObject({ code: "ENOENT" });
+  });
+
+  test("refuses ambiguous scratch migration without tracker metadata", async () => {
+    const repositoryRoot = await temporaryDirectory();
+    const sharedBase = await temporaryDirectory();
+    await fs.mkdir(path.join(repositoryRoot, ".scratch"), { recursive: true });
+    await fs.writeFile(path.join(repositoryRoot, "AGENTS.md"), "repo instructions");
+    await fs.writeFile(path.join(repositoryRoot, ".scratch", "issue.md"), "unknown backend");
+
+    const context = await resolveMattPocockContext(
+      gitExec(repositoryRoot, "https://github.com/Owner/Repo.git"),
+      repositoryRoot,
+      sharedBase,
+    );
+
+    await expect(migrateAlignmentContext(context!)).rejects.toThrow("Cannot migrate .scratch without backend metadata");
   });
 
   test("returns no context when origin is missing", async () => {
@@ -125,6 +195,39 @@ describe("context resolution", () => {
 
     expect(context).toBeUndefined();
   });
+});
+
+test("registers eng-context with subcommand autocomplete", () => {
+  let registeredName = "";
+  let registeredOptions: any;
+  mattPocockSharedContext({
+    exec: async () => ({ stdout: "", stderr: "", code: 0, killed: false }),
+    on: () => {},
+    registerCommand: (name: string, options: any) => {
+      registeredName = name;
+      registeredOptions = options;
+    },
+  } as any);
+
+  expect(registeredName).toBe("eng-context");
+  expect(registeredOptions.getArgumentCompletions("r")).toEqual([{ value: "report", label: "report" }]);
+  expect(registeredOptions.getArgumentCompletions("").map((item: any) => item.value)).toEqual([
+    "report", "init", "list", "migrate",
+  ]);
+});
+
+test("lists shared contexts alphabetically with storage preferences", async () => {
+  const sharedBase = await temporaryDirectory();
+  await fs.mkdir(path.join(sharedBase, "z-repo"));
+  await fs.mkdir(path.join(sharedBase, "a-repo"));
+  await fs.writeFile(path.join(sharedBase, "z-repo", ".storage"), "repository\n");
+  await fs.writeFile(path.join(sharedBase, "a-repo", ".storage"), "shared\n");
+
+  const contexts = await listSharedContexts(sharedBase);
+  expect(contexts.map((context) => [context.slug, context.storage])).toEqual([
+    ["a-repo", "shared"],
+    ["z-repo", "repository"],
+  ]);
 });
 
 test("repository XML points root and shared-root at the repository", () => {

@@ -1,3 +1,7 @@
+---
+backend: gitlab
+---
+
 # Issue tracker: GitLab
 
 Issues and PRDs for this repo live as GitLab issues. Use the [`glab`](https://gitlab.com/gitlab-org/cli) CLI for all operations.

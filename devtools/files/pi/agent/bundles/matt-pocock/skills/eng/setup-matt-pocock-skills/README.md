@@ -27,7 +27,7 @@ Reach for it **once per Git origin, before the first use of any other engineerin
 Setup collects four related choices:
 
 - **Alignment storage** — repository-local or origin-keyed shared context outside the repository.
-- **Issue tracker** — GitHub, GitLab, local Markdown beneath the alignment root, or another documented workflow.
+- **Issue tracker** — GitHub, GitLab, local Markdown beneath the alignment root, or another documented workflow. Every backend works with either storage mode.
 - **Triage labels** — tracker strings behind the five canonical workflow roles.
 - **Domain docs** — single-context or multi-context layout beneath the alignment root.
 
@@ -37,7 +37,7 @@ The output is three files — `docs/agents/issue-tracker.md`, `docs/agents/triag
 
 - Three files land under `<alignment-root>/docs/agents/`.
 - Repository mode updates repository `CLAUDE.md` or `AGENTS.md`; shared mode updates shared `AGENTS.md` and leaves repository instructions untouched.
-- `/matt-context` reports the expected origin, slug, root, and storage.
+- `/eng-context report` reports the expected origin, slug, root, and storage.
 - `triage` and `to-issues` act on the configured tracker without guessing.
 
 ## Where it fits

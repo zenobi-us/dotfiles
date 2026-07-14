@@ -1,6 +1,11 @@
+---
+backend: local-markdown
+issue-root: .scratch
+---
+
 # Issue tracker: Local Markdown
 
-Issues and PRDs for this repo live as Markdown files in `.scratch/` beneath the repository alignment root.
+Issues and PRDs for this repository live as Markdown files in `.scratch/` beneath the active alignment root, whether that root uses repository or shared storage.
 
 ## Conventions
 
