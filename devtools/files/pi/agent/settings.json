@@ -3,7 +3,7 @@
   "collapseChangelog": true,
   "defaultModel": "gpt-5.6-sol",
   "defaultProvider": "openai-codex",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "off",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
   "enableSkillCommands": true,
