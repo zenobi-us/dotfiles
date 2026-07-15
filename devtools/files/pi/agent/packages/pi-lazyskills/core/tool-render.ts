@@ -1,70 +1,117 @@
-import { keyText, Theme } from "@earendil-works/pi-coding-agent";
-import { Text } from "@earendil-works/pi-tui";
+import { keyText, type Theme } from "@earendil-works/pi-coding-agent";
+import {
+  Markdown,
+  Text,
+  type Component,
+  type MarkdownTheme,
+} from "@earendil-works/pi-tui";
 
-type ToolResult<D = unknown> = {
-  content?: Array<{ type?: string; text?: string }>;
-  details?: D;
+type ToolStatusTone = "error" | "muted" | "success" | "warning";
+
+type ToolStatusLineOptions = {
+  tool: string;
+  item: string;
+  status: string;
+  context?: string;
+  expandable?: boolean;
+  tone?: ToolStatusTone;
 };
 
-type RenderOptions = {
-  expanded?: boolean;
-  isPartial?: boolean;
+type SkillSearchRow = {
+  shortname: string;
+  description: string;
 };
 
-type FoldedRenderConfig<T extends ToolResult> = {
-  loadingLabel?: string;
-  previewLines?: number;
-  collapsedPrefix?: (data: {
-    result: T;
-    expandShortcut: string | undefined;
-  }) => string | undefined;
-};
-
-function getTextContent<T extends ToolResult>(result: T): string {
-  const textPart = result.content?.find((item) => item?.type === "text");
-  return typeof textPart?.text === "string" ? textPart.text : "";
+function isSkillSearchRow(value: unknown): value is SkillSearchRow {
+  if (!value || typeof value !== "object") return false;
+  const row = value as Partial<SkillSearchRow>;
+  return typeof row.shortname === "string" && typeof row.description === "string";
 }
 
-export function renderFoldedToolText<T extends ToolResult>(
-  result: T,
-  options: RenderOptions,
+export function renderToolStatusLine(
   theme: Theme,
-  config: FoldedRenderConfig<T>,
+  options: ToolStatusLineOptions,
 ): Text {
-  const loadingLabel = config.loadingLabel ?? "Loading...";
-  const previewLines = Math.max(1, config.previewLines ?? 12);
+  const separator = theme.fg("dim", " · ");
+  const subject =
+    theme.fg("toolTitle", theme.bold(`• ${options.tool}`)) +
+    " " +
+    theme.fg("accent", `\`${options.item}\``);
+  const parts = [
+    subject,
+    theme.fg(options.tone ?? "muted", options.status),
+  ];
 
-  if (options.isPartial) {
-    return new Text(theme.fg("warning", loadingLabel), 0, 0);
+  if (options.context) {
+    parts.push(theme.fg("muted", options.context));
   }
 
-
-  const fullText = getTextContent(result);
-  if (!fullText) {
-    return new Text(theme.fg("muted", "no text output"), 0, 0);
+  if (options.expandable) {
+    const shortcut = keyText("app.tools.expand").trim();
+    parts.push(theme.fg("muted", shortcut ? `${shortcut} expand` : "expand"));
   }
 
-  const lines = fullText.split("\n");
-  const hidden = Math.max(0, lines.length - previewLines);
+  return new Text(parts.join(separator), 0, 0);
+}
 
-  let output = "";
+export function renderMarkdownSafely(
+  text: string,
+  markdownTheme: MarkdownTheme,
+): Component {
+  const fallback = new Text(text, 0, 0);
+  let markdown: Markdown | undefined;
 
-  const visible = options.expanded ? lines : lines.slice(0, previewLines);
-  output += visible.map((line) => theme.fg("toolOutput", line)).join("\n");
-
-  if (!options.expanded && hidden > 0) {
-
-    const shown = Math.min(previewLines, lines.length);
-    const expandShortcut = keyText("app.tools.expand").trim();
-
-    const expandHint = expandShortcut
-      ? `${expandShortcut} to view full output`
-      : "expand to view full output";
-    
-    const summary = config.collapsedPrefix?.({ result, expandShortcut }) ?? `showing ${shown} of ${lines.length} lines. ${expandHint}`;
-
-    output += theme.fg("toolOutput", summary);
+  try {
+    markdown = new Markdown(text, 0, 0, markdownTheme);
+  } catch {
+    return fallback;
   }
 
-  return new Text(output, 0, 0);
+  return {
+    render(width) {
+      try {
+        return markdown.render(width);
+      } catch {
+        return fallback.render(width);
+      }
+    },
+    invalidate() {
+      markdown.invalidate();
+      fallback.invalidate();
+    },
+  };
+}
+
+function escapeMarkdownTableCell(value: string): string {
+  return value.replace(/\r?\n/g, " ").replace(/\|/g, "\\|").trim();
+}
+
+export function buildCollapsedSkillSearchMarkdown(
+  skills: readonly unknown[],
+  totalMatches?: number,
+): string {
+  const validSkills = skills.filter(isSkillSearchRow);
+  const shown = validSkills.slice(0, 3);
+  const hidden = Math.max(0, (totalMatches ?? validSkills.length) - shown.length);
+
+  return [
+    ...shown.map((skill) => `- \`${skill.shortname}\``),
+    ...(hidden > 0 ? ["", `... ${hidden} more`] : []),
+  ].join("\n");
+}
+
+export function buildSkillSearchMarkdown(
+  skills: readonly unknown[],
+  totalMatches?: number,
+): string {
+  const validSkills = skills.filter(isSkillSearchRow);
+  const rows = validSkills.map(
+    (skill) =>
+      `| ${escapeMarkdownTableCell(skill.shortname)} | ${escapeMarkdownTableCell(skill.description)} |`,
+  );
+  const omitted = Math.max(0, (totalMatches ?? validSkills.length) - validSkills.length);
+
+  if (omitted > 0) rows.push(`| … | ${omitted} more results omitted from renderer details |`);
+
+  return ["| Name | Summary |", "| --- | --- |", ...rows].join("\n");
 }

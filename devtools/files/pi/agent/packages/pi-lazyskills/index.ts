@@ -13,12 +13,13 @@
  */
 
 import {
+  getMarkdownTheme,
   SettingsManager,
   type ExtensionAPI,
   type ExtensionContext,
 } from "@earendil-works/pi-coding-agent";
 import { Type } from "@earendil-works/pi-ai";
-import { Text } from "@earendil-works/pi-tui";
+import { Container, Markdown, Spacer } from "@earendil-works/pi-tui";
 
 import { existsSync } from "node:fs";
 import {
@@ -38,7 +39,12 @@ import {
   resolveSkillRoots,
 } from "./service/skill-registry.js";
 import { CreateSkillSlashCommands, LoadSkillCommand } from "./cmds/skill.js";
-import { renderFoldedToolText } from "./core/tool-render.js";
+import {
+  buildCollapsedSkillSearchMarkdown,
+  buildSkillSearchMarkdown,
+  renderMarkdownSafely,
+  renderToolStatusLine,
+} from "./core/tool-render.js";
 import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
 
 export {
@@ -339,38 +345,67 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
           };
         }
       },
-      renderResult(result, options, theme) {
-        if (options.isPartial) {
-          return new Text(theme.fg("toolOutput", "Searching skills..."), 0, 0);
-        }
+      renderCall(args, theme, context) {
+        if (!context.isPartial) return new Container();
 
-        if (options.expanded) {
-          return renderFoldedToolText(result, options, theme, {
-            loadingLabel: "Searching skills...",
-            previewLines: 16,
+        const query = Array.isArray(args.query)
+          ? args.query.join(", ") || "all"
+          : args.query || "all";
+
+        return renderToolStatusLine(theme, {
+          tool: "Find Skill",
+          item: query,
+          status: "Searching ⠋",
+          tone: "warning",
+        });
+      },
+      renderResult(result, options, theme, context) {
+        if (options.isPartial) return new Container();
+
+        const query = Array.isArray(context.args.query)
+          ? context.args.query.join(", ") || "all"
+          : context.args.query || "all";
+        const details = result.details;
+
+        if (!details || !("skills" in details)) {
+          return renderToolStatusLine(theme, {
+            tool: "Find Skill",
+            item: query,
+            status: "Registry Unavailable",
+            tone: "error",
           });
         }
 
-        const details = result.details as
-          | {
-              skills?: Array<{ shortname?: string; name?: string }>;
-              meta?: { matches?: number };
-            }
-          | undefined;
+        if (details.skills.length === 0) {
+          return renderToolStatusLine(theme, {
+            tool: "Find Skill",
+            item: query,
+            status: "No Matches",
+          });
+        }
 
-        const sample = (details?.skills ?? [])
-          .slice(0, 3)
-          .map((s) => s.shortname ?? s.name)
-          .filter((v): v is string => Boolean(v));
+        const expanded = options.expanded === true;
+        const container = new Container();
+        container.addChild(
+          renderToolStatusLine(theme, {
+            tool: "Find Skill",
+            item: query,
+            status: `Found ${details.meta.matches}`,
+            expandable: !expanded,
+            tone: "success",
+          }),
+        );
+        container.addChild(new Spacer(1));
+        container.addChild(
+          renderMarkdownSafely(
+            expanded
+              ? buildSkillSearchMarkdown(details.skills, details.meta.matches)
+              : buildCollapsedSkillSearchMarkdown(details.skills, details.meta.matches),
+            getMarkdownTheme(),
+          ),
+        );
 
-        const namesText =
-          sample.length > 0 ? sample.join(", ") : "(no matches)";
-        const count = details?.meta?.matches ?? details?.skills?.length ?? 0;
-
-        const line1 = theme.fg("toolOutput", namesText);
-        const line2 = theme.fg("success", `Found: ${count} skills`);
-
-        return new Text(`${line1}\n${line2}`, 0, 0);
+        return container;
       },
     });
 
@@ -408,30 +443,58 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         };
       },
 
-      renderResult(result, options, theme) {
-        if (options.isPartial) {
-          return new Text(theme.fg("toolOutput", "Reading skill..."), 0, 0);
-        }
+      renderCall(args, theme, context) {
+        if (!context.isPartial) return new Container();
 
-        if (options.expanded) {
-          return renderFoldedToolText(result, options, theme, {
-            loadingLabel: "Reading skill...",
-            previewLines: 20,
+        return renderToolStatusLine(theme, {
+          tool: "Skill",
+          item: args.name,
+          status: "Reading ⠋",
+          tone: "warning",
+        });
+      },
+      renderResult(result, options, theme, context) {
+        if (options.isPartial) return new Container();
+
+        const details = result.details;
+        if (!details || "isError" in details) {
+          const status =
+            details?.details.kind === "ambiguous"
+              ? "Ambiguous Skill"
+              : "Unknown Skill";
+
+          return renderToolStatusLine(theme, {
+            tool: "Skill",
+            item: context.args.name,
+            status,
+            tone: "error",
           });
         }
 
-        return renderFoldedToolText(result, options, theme, {
-          loadingLabel: "Reading skill...",
-          previewLines: 0, // Don't show any preview lines in collapsed state since the prefix contains identifying info about the skill
-          collapsedPrefix: (data) => {
-            if (!data.result.details || "isError" in data.result.details) {
-              return "unknown skill";
-            }
-            const name = data.result?.details?.skill.name;
+        const expanded = options.expanded === true;
+        const lineCount = details.body.trimEnd()
+          ? details.body.trimEnd().split(/\r?\n/).length
+          : 0;
+        const container = new Container();
+        container.addChild(
+          renderToolStatusLine(theme, {
+            tool: "Skill",
+            item: details.skill.name,
+            status: "Loaded",
+            context: `${lineCount} lines`,
+            expandable: !expanded,
+            tone: "success",
+          }),
+        );
 
-            return `Loaded skill "${name ?? "unknown"}".`;
-          },
-        });
+        if (expanded && details.body.trim()) {
+          container.addChild(new Spacer(1));
+          container.addChild(
+            new Markdown(details.body, 0, 0, getMarkdownTheme()),
+          );
+        }
+
+        return container;
       },
     });
 
