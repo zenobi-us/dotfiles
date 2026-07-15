@@ -47,15 +47,4 @@ shell-integration-features = cursor,sudo,title,no-cursor
 
 # Rando stuff
 gtk-single-instance = true
-
-# Dank color generation
-theme = dankcolors
-
-
-# vstack:begin vanillagreen-themes
-# Managed by vstack. Edit source extras or remove this block to opt out.
-config-file = themes/vstack/anthropic
-alpha-blending = linear-corrected
-custom-shader = shaders/vstack/anthropic-ambient.glsl
-custom-shader-animation = always
-# vstack:end vanillagreen-themes
+theme = Rose Pine
