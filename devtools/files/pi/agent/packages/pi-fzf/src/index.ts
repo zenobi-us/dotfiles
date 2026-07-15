@@ -44,6 +44,7 @@ async function runFzfSelector(
 
   // 1. Run the list command to get candidates
   const result = await pi.exec("bash", ["-c", withAgentBinPath(cmd.list)], {
+    cwd: ctx.cwd,
     timeout: 10000,
   });
 

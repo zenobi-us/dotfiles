@@ -4,6 +4,11 @@
       "list": "fd --type f --hidden --exclude '.git' --exclude '.DS_Store' --exclude '.env.local'",
       "action": "@{{selected}}",
       "shortcut": "@"
+    },
+    "shared-context": {
+      "list": "bun \"$HOME/.pi/agent/bundles/matt-pocock/scripts/shared-context-files.ts\"",
+      "action": "@{{selected}}",
+      "shortcut": "#"
     }
   }
 }
