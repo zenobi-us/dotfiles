@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+channel="${PUBLISH_CHANNEL:-}"
+version="${PUBLISH_VERSION:-}"
+
+case "${channel}" in
+  latest|next) ;;
+  *)
+    echo "ERROR: PUBLISH_CHANNEL is required (expected: latest or next)." >&2
+    exit 1
+    ;;
+esac
+
+if [[ "${channel}" == "next" ]]; then
+  if [[ -z "${version}" ]]; then
+    echo "ERROR: PUBLISH_VERSION is required for next publication." >&2
+    exit 1
+  fi
+
+  node -e '
+    const fs = require("node:fs");
+    const pkgPath = "package.json";
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+    pkg.version = process.argv[1];
+    fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`);
+  ' "${version}"
+fi
+
+args=(--access public --tag "${channel}")
+echo "> npm publish ${args[*]}"
+npm publish "${args[@]}"

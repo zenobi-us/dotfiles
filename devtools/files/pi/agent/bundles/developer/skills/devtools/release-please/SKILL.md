@@ -26,6 +26,26 @@ Use this skill when you need:
 
 If you have more than one independently-versioned package, use manifest mode.
 
+## Manifest Identity Model
+
+Keep these fields separate:
+
+- `packages` object key: repository-relative package path used for file discovery, manifest versions, and action output prefixes.
+- `component`: stable human-facing release identity and default tag prefix.
+- `package-name`: release-strategy package identity; many strategies discover it from `package.json`, `Cargo.toml`, or equivalent.
+- `include-component-in-tag`: whether tags include the component prefix; keep enabled for independently-versioned monorepo packages.
+
+Example:
+
+```json
+"packages/my-module": {
+  "component": "my-module",
+  "release-type": "node"
+}
+```
+
+The package key stays `packages/my-module`; the default tag becomes `my-module-v1.2.3`.
+
 ## Prerequisites (Quick)
 
 - Conventional Commits in default branch history (`fix:`, `feat:`, `!`/BREAKING)
@@ -64,6 +84,8 @@ Add:
 
 - Stop manual changelog/tag edits on release-managed branch.
 - Seed manifest versions to currently released versions (manifest mode).
+- Choose stable component names before first managed release.
+- If changing an existing component name, plan tag-history migration; Release Please searches tags using the configured component.
 - Merge first Release PR and validate output shape usage in downstream workflow steps.
 
 ## Common Failure Patterns (Summary)
@@ -72,13 +94,15 @@ Add:
 - **Wrong bump**: commit semantics mismatch with Conventional Commit expectations
 - **Missing changelog entries**: non-conventional squash titles/commit history
 - **Manifest mismatch**: package path keys don’t match actual directories
+- **Release history not found**: `component` changed but existing tags still use the old prefix
 - **Workflow chain not firing**: using `GITHUB_TOKEN` when downstream workflows require PAT/App token behavior
 
 ## Guardrails
 
 - Enforce Conventional Commit linting in CI.
 - Keep release ownership explicit (who merges release PRs).
-- In monorepos, add package paths incrementally and verify each.
+- In monorepos, add package paths incrementally and assign stable, unique components.
+- Treat component renames as release migrations, not cosmetic config edits.
 - Avoid manual tags/changelog edits in release-managed paths.
 - Keep release PRs small and predictable.
 
@@ -87,8 +111,9 @@ Add:
 - [ ] Workflow triggers on push to tracked branch
 - [ ] Permissions are explicitly set
 - [ ] Release PR appears after releasable commit
-- [ ] Merge creates tag and GitHub release
-- [ ] Downstream steps using action outputs parse expected keys safely
+- [ ] Merge creates expected component-prefixed tag and GitHub release
+- [ ] Manifest keys remain real repository paths
+- [ ] Downstream steps use path-prefixed action outputs, not component-prefixed output keys
 
 ## References
 

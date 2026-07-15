@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+tmp="$(mktemp -d)"
+trap 'rm -rf "${tmp}"' EXIT
+
+mkdir -p "${tmp}/bin" "${tmp}/repo/pkg"
+cat >"${tmp}/bin/moon" <<'EOF'
+#!/usr/bin/env bash
+printf '%s\n' '{"projects":[{"id":"demo","source":"pkg","tasks":{"publish":{}}}]}'
+EOF
+chmod +x "${tmp}/bin/moon"
+
+cat >"${tmp}/repo/pkg/package.json" <<'EOF'
+{"name":"demo","version":"1.2.3"}
+EOF
+
+git -C "${tmp}/repo" init -q -b main
+git -C "${tmp}/repo" config user.name test
+git -C "${tmp}/repo" config user.email test@example.invalid
+git -C "${tmp}/repo" add pkg/package.json
+git -C "${tmp}/repo" commit -qm initial
+git -C "${tmp}/repo" tag pkg-v1.2.3
+printf '%s\n' changed >"${tmp}/repo/pkg/change.txt"
+git -C "${tmp}/repo" add pkg/change.txt
+git -C "${tmp}/repo" commit -qm changed
+git -C "${tmp}/repo" tag pkg-v9.9.9-next.1.1
+
+run_resolver() {
+  (cd "${tmp}/repo" && PATH="${tmp}/bin:${PATH}" "${script_dir}/resolve-publish-metadata" "$@")
+}
+
+main_json="$(run_resolver demo next main 2)"
+jq -e '.version == "1.3.0-next.1.2" and .release_tag == "pkg-v1.3.0-next.1.2" and .stable_tag == "pkg-v1.2.3"' >/dev/null <<<"${main_json}"
+
+hotfix_json="$(run_resolver demo next release/1.2 3)"
+jq -e '.version == "1.2.4-next.1.3"' >/dev/null <<<"${hotfix_json}"
+
+latest_json="$(run_resolver demo latest main 1)"
+jq -e '.version == "1.2.3" and .release_tag == "pkg-v1.2.3"' >/dev/null <<<"${latest_json}"
+
+echo "resolve-publish-metadata self-check passed"

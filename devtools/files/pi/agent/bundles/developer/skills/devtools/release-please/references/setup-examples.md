@@ -64,8 +64,14 @@ jobs:
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "release-type": "node",
   "packages": {
-    ".": { "release-type": "node" },
-    "packages/pkg-a": { "release-type": "node" }
+    ".": {
+      "component": "app",
+      "release-type": "node"
+    },
+    "packages/pkg-a": {
+      "component": "pkg-a",
+      "release-type": "node"
+    }
   }
 }
 ```
@@ -79,8 +85,23 @@ jobs:
 }
 ```
 
+## Identity rules
+
+| Field | Purpose | Example |
+|---|---|---|
+| Package key | Repository path, manifest key, action output prefix | `packages/pkg-a` |
+| `component` | Stable release identity and default tag prefix | `pkg-a` |
+| `package-name` | Strategy-specific package identity; often discovered from package metadata | `@scope/pkg-a` |
+| `include-component-in-tag` | Controls component prefix in tags | `true` |
+
+Default tags above are `app-v<version>` and `pkg-a-v<version>`. Package and manifest keys remain `.` and `packages/pkg-a`.
+
+Use `include-component-in-tag: false` only when one release stream intentionally owns plain `v<version>` tags. Multiple independent packages cannot safely share that tag namespace.
+
 ## Notes
 
 - Package keys must exactly match repository paths.
+- Components should be unique, stable, and independent of directory layout.
 - Seed manifest versions to currently-released versions during migration.
+- Component renames require a tag-history migration plan because stable-tag lookup uses the component prefix.
 - Use PAT/App token when downstream workflows must trigger on release-please-created artifacts.

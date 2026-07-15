@@ -38,6 +38,8 @@ Available when root component (`.`/unset) is released.
 
 ## Path-prefixed outputs (manifest / monorepo)
 
+Output prefixes use the configured package path, not `component`, `package-name`, or release tag.
+
 Per released path, outputs are emitted as:
 
 `<path>--release_created`, `<path>--tag_name`, `<path>--version`, etc.
@@ -58,6 +60,14 @@ Supported suffixes:
 If path contains `/`, use bracket syntax in expressions:
 
 - `steps.release.outputs['packages/my-module--release_created']`
+
+For this config:
+
+```json
+"packages/my-module": { "component": "my-module" }
+```
+
+Release tag may be `my-module-v1.2.3`, but output remains `packages/my-module--tag_name`. Do not derive output keys from component names.
 
 ## Safe usage patterns
 
