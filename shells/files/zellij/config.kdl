@@ -53,6 +53,15 @@ keybinds clear-defaults=true {
         bind "h" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "s" { NewPane "stacked"; SwitchToMode "Normal"; }
 
+        // Special Panes
+        bind "p" {
+            Run "pi" {
+                direction "Down"
+                stacked true
+            }
+            SwitchToMode "Normal";
+        }
+
         bind "x" { CloseFocus; SwitchToMode "normal"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "resize"; }
