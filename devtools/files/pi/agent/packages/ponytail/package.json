@@ -1,0 +1,13 @@
+{
+  "name": "@dietrichgebert/ponytail",
+  "version": "4.8.4",
+  "description": "Lazy senior dev mode for AI agents. The best code is the code you never wrote.",
+  "pi": {
+    "extensions": [
+      "./pi-extension/index.js"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  }
+}
