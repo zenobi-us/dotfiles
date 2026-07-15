@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import { createServer, type Server } from "node:http";
 import { randomBytes } from "node:crypto";
+import { release } from "node:os";
 
 import type { AnnotateLastMessageWindowMessage, LastAssistantMessageData } from "./types.js";
 import { buildAnnotateLastMessageHtml } from "./ui.js";
@@ -10,12 +11,21 @@ export interface AnnotationWebServer {
 	close(): void;
 }
 
+export function browserCommand(
+	url: string,
+	platform = process.platform,
+	osRelease = release(),
+	env = process.env,
+): { file: string; args: string[] } {
+	if (platform === "darwin") return { file: "open", args: [url] };
+	if (platform === "win32" || env.WSL_INTEROP != null || /microsoft/i.test(osRelease)) {
+		return { file: "cmd.exe", args: ["/c", "start", "", url] };
+	}
+	return { file: "xdg-open", args: [url] };
+}
+
 function openBrowser(url: string): Promise<void> {
-	const command = process.platform === "darwin"
-		? { file: "open", args: [url] }
-		: process.platform === "win32"
-			? { file: "cmd", args: ["/c", "start", "", url] }
-			: { file: "xdg-open", args: [url] };
+	const command = browserCommand(url);
 	const child = spawn(command.file, command.args, { detached: true, stdio: "ignore" });
 	return new Promise((resolve, reject) => {
 		child.once("spawn", () => {

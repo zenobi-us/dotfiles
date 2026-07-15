@@ -196,6 +196,7 @@ async function sendPayload(payload) {
 	});
 	if (!response.ok) throw new Error(`Submission failed (${response.status})`);
 	document.body.innerHTML = '<main style="padding:2rem;font:16px system-ui;color:#f0f6fc;background:#0d1117">Feedback sent. You may close this tab.</main>';
+	window.close();
 }
 
 async function submit() {
