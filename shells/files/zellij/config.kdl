@@ -67,7 +67,12 @@ keybinds clear-defaults=true {
 
     tab {
         // Tab operations
-        bind "c" { NewTab; SwitchToMode "Normal"; }
+        bind "c" {
+            NewTab {
+                layout "mine"
+            }
+            SwitchToMode "Normal";
+        }
         bind "n" { GoToNextTab; SwitchToMode "normal"; }
         bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
         bind "x" { CloseTab; SwitchToMode "normal"; }
@@ -94,14 +99,6 @@ keybinds clear-defaults=true {
     renametab {
         bind "enter" { SwitchToMode "normal"; }
         bind "esc" { UndoRenameTab; SwitchToMode "normal"; }
-    }
-
-    shared_except "locked" {
-        bind "Ctrl y" {
-            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij_forgot.wasm" {
-                floating true
-            }
-        }
     }
 }
 

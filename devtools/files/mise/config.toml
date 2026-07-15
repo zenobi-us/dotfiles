@@ -83,7 +83,7 @@ watchexec = "latest"
 yarn= "latest"
 yq = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
-zellij = "latest"
+zellij = "0.44.1"
 zig= "latest"
 lazydocker = "0.25.2"
 pdm = "latest"
