@@ -1,5 +1,3 @@
-alias zellij='zellij options --theme-dir ~/.config/zellij/themes/'
-
 zellij-attach() {
 	local session
 
@@ -29,5 +27,3 @@ zellij-agent-threads-reload() {
 
 	command zellij action start-or-reload-plugin "$plugin"
 }
-
-alias zat-reload='zellij-agent-threads-reload'
