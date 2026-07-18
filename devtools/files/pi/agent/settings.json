@@ -8,10 +8,11 @@
   "enableInstallTelemetry": false,
   "enableSkillCommands": true,
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "0.80.7",
+  "lastChangelogVersion": "0.80.10",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
     "git:github.com/edxeth/pi-subagents",
+    "./packages/pi-poster",
     "./bundles/agent-core",
     "./bundles/developer",
     "./bundles/matt-pocock",
