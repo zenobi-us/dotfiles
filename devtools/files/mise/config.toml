@@ -96,9 +96,11 @@ traefik = "latest"
 lua = "latest"
 "github:finefindus/artem" = "latest"
 "npm:takumi-js" = "latest"
+"npm:serve" = "latest"
+"npm:poster-ai" = "0.5.0"
 
 
 [shell_alias]
-pi="mise x node@22 -- pi --no-skills"
+pi="mise x node@22 -- PI_SUBAGENT_MUX=zellij PI_SUBAGENT_ZELLIJ_PLACEMENT=right-stack pi --no-skills"
 piupdate="mise x node@22 -- pi update"
 piinstall="mise x node@22 -- pi install"
