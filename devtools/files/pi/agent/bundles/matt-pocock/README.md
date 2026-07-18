@@ -2,6 +2,17 @@
 
 Engineering workflow skills plus origin-keyed shared context support.
 
+## Upstream skills
+
+Promoted skills and human docs are synchronized from [`mattpocock/skills`](https://github.com/mattpocock/skills) commit `9603c1cc8118d08bc1b3bf34cf714f62178dea3b`:
+
+- `skills/engineering/` — 17 engineering skills, including `ask-matt`, `to-spec`, `to-tickets`, and `wayfinder`
+- `skills/productivity/` — 5 productivity skills, including `writing-great-skills`
+- `docs/engineering/` and `docs/productivity/` — upstream human-facing docs
+- `agents/openai.yaml` — upstream Agent Skills metadata retained beside every skill
+
+Pi-specific divergence is limited to the shared-context extension, [ALIGNMENT-ROOT.md](./skills/ALIGNMENT-ROOT.md), short alignment-root pointers in artifact-consuming skills, setup/storage integration, and tracker backend metadata required by migration.
+
 ## Context extension
 
 The bundled extension resolves the current Git repository's `origin`, canonicalizes it, and derives:
@@ -9,6 +20,28 @@ The bundled extension resolves the current Git repository's `origin`, canonicali
 ```text
 ~/.pi/shared-context/<slugified-origin>--<hash>/
 ```
+
+### Why ?
+
+Two reasons (mainly) :
+
+- Sometimes I work in repos that aren't completely under my control, and so I either dont want to influence other peoples clankers, or am not allowed to modify the repos AGENTS.md.
+- Some repos I work with may be considered to be a part of a larger project or effort. In these cases, I want to be able to share context across multiple repos, and so I want to be able to have a shared AGENTS.md that is not tied to any one repo.
+
+
+In all cases, the end effect here is that I now have a way to:
+
+- Append more system prompt for repos that share context without modifying the AGENTS.md in each repo.
+- Share research and planning if I need.
+
+### How it works
+
+The pi extension simply injects a bit of XML into the agent's system prompt, which tells the agent where to find the shared context. Pocock skills from then on will resolve alignment files against the shared context root, falling back to the repository root when the extension is absent.
+
+The extension also provides a set of `/eng-context` subcommands to manage the shared context, including reporting the current storage, initializing shared storage, listing all origin-keyed shared contexts, and migrating alignment files between repository and shared storage.
+
+
+### Usage
 
 Use `/eng-context` subcommands:
 
@@ -65,9 +98,10 @@ docs/agents/domain.md
 CONTEXT.md
 CONTEXT-MAP.md
 docs/adr/
+src/**/docs/adr/
 .scratch/
 ```
 
 Migration covers `AGENTS.md` (or the active repository instruction file), `docs/agents/`, `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, and context-scoped `src/**/docs/adr/`. It copies `.scratch/` only when `docs/agents/issue-tracker.md` declares `backend: local-markdown`; external trackers leave `.scratch/` behind. Missing backend metadata with an existing `.scratch/` aborts migration. Differing destination files also abort before anything is copied.
 
-Repository source code always remains in the Git working tree.
+Repository source code, ordinary project docs/specs, tests, prototypes, research notes, commits, and branches always remain in the Git working tree.
