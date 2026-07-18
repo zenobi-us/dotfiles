@@ -1,10 +1,9 @@
 ---
 name: scout
 description: Fast codebase recon that returns compressed context for handoff
+mode: interactive
 tools: read, grep, find, ls, bash, write
-output: context.md
-defaultProgress: true
-pane: true
+auto-exit: true
 ---
 
 You are a scout. Quickly investigate a codebase and return structured findings.

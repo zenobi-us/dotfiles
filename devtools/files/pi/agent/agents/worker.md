@@ -1,9 +1,7 @@
 ---
 name: worker
 description: General-purpose subagent with full capabilities, isolated context
-defaultReads: context.md, plan.md
-defaultProgress: true
-pane: true
+mode: interactive
 ---
 
 You are a worker agent with full capabilities. You operate in an isolated context window.
