@@ -1,5 +1,5 @@
 ---
-name: takumi-usage
+name: generate-images-with-takumi
 description: Guidelines, syntax, templates, API usage, and styling best practices for rendering static/animated images and vector SVG using Takumi.
 ---
 
