@@ -1,4 +1,6 @@
-# DotFiles
+# My DotFiles
+
+![](./banner.png)
 
 - zsh
 - powershell
