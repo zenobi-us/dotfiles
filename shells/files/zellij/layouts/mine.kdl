@@ -3,7 +3,10 @@ layout {
         pane size=1 borderless=true {
             plugin location="tab-bar"
         }
-        pane {
+        pane split_direction="horizontal" {
+            pane size=32 borderless=true {
+                plugin location="agent-threads"
+            }
             children
         }
         pane size=1 borderless=true {
@@ -15,7 +18,10 @@ layout {
         pane size=1 borderless=true {
             plugin location="tab-bar"
         }
-        pane {
+        pane split_direction="horizontal" {
+            pane size=32 borderless=true {
+                plugin location="agent-threads"
+            }
             children
         }
         pane size=1 borderless=true {
