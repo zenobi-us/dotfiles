@@ -129,7 +129,7 @@ theme "rose-pine"
 scrollback_editor "nvim"
 default_shell "zsh"
 
-pane_frames false
+pane_frames true
 
 simplified_ui true
 
