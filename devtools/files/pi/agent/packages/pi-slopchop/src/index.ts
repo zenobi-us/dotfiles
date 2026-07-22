@@ -6,7 +6,6 @@ import { hasExactSubmoduleRange } from "./types.js";
 import { runReviewApp } from "./ui/review-app.js";
 
 export default function slopReviewExtension(pi: ExtensionAPI) {
-  const initialShortcutConfig = loadCommentShortcuts();
   let activeReview = false;
 
   function notifyShortcutWarnings(ctx: ExtensionContext, warnings: string[]): void {
@@ -70,22 +69,6 @@ export default function slopReviewExtension(pi: ExtensionAPI) {
 
   pi.registerCommand("slopchop", reviewCommand);
   pi.registerCommand("diff", reviewCommand);
-
-  pi.registerShortcut(initialShortcutConfig.globalShortcut, {
-    description: "Open review UI",
-    handler: async (ctx) => {
-      await openReview(ctx);
-    },
-  });
-
-  // The global shortcut is registered once at load and cannot be re-bound for the
-  // rest of the session, so surface any config problems up front rather than
-  // waiting for the first review to open.
-  pi.on("session_start", async (event, ctx) => {
-    if (event.reason === "startup" || event.reason === "reload") {
-      notifyShortcutWarnings(ctx, initialShortcutConfig.warnings);
-    }
-  });
 
   pi.on("session_shutdown", async () => {
     activeReview = false;

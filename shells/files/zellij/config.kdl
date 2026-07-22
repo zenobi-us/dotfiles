@@ -120,7 +120,7 @@ plugins {
     session-manager location="zellij:session-manager"
     status-bar location="zellij:status-bar"
     sequence location="zellij:sequence"
-    agent-threads location="file:~/.config/zellij/plugins/zellij-agent-threads.wasm"
+    agent-threads location="file:~/.config/zellij/plugins/agent-threads.wasm"
     tab-bar location="file:~/.config/zellij/plugins/zellij-tabbar.wasm"
 }
 
@@ -129,7 +129,7 @@ theme "rose-pine"
 scrollback_editor "nvim"
 default_shell "zsh"
 
-pane_frames false
+pane_frames true
 
 simplified_ui true
 
