@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@crustjs/core": "^0.0.19",
+    "@crustjs/plugins": "^0.1.2"
+  }
+}

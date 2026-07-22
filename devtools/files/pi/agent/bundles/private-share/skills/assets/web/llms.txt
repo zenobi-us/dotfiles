@@ -1,0 +1,68 @@
+# Agent instructions for this branch
+
+This branch publishes a static index of Pi session exports.
+
+## Branch purpose
+
+- Branch: `gh-pages`
+- App entrypoint: `index.html`
+- Session exports live under: `sessions/`
+- Session index file: `sessions.jsonl`
+
+## Required commit behavior
+
+Agents MUST keep commits small and direct.
+
+When adding a new session export, agents MUST:
+
+1. Add the exported HTML file under `sessions/`.
+2. Name the file `<isodate>-<snake-case-description>.html`.
+3. Add one JSONL record to `sessions.jsonl` with `date`, `path`, and `title` fields.
+4. Keep each `sessions.jsonl` line valid JSON.
+5. Use relative paths from repository root.
+6. Verify `index.html` can read the new entry.
+
+Filename requirements:
+
+- `<isodate>` SHOULD be `YYYY-MM-DD` unless multiple exports from the same day need ordering.
+- If ordering is needed, use full ISO timestamp without characters unsafe for filenames, e.g. `2026-06-23T14-30-00Z`.
+- `<snake-case-description>` MUST use lowercase letters, numbers, and underscores.
+- Example: `sessions/2026-06-23-build_session_index.html`
+
+Required JSONL format:
+
+```jsonl
+{"date":"2026-06-23","path":"sessions/2026-06-23-build_session_index.html","title":"Build session index"}
+```
+
+Rules:
+
+- `date` MUST match the filename date prefix.
+- `path` MUST point at the exported HTML file.
+- `title` MUST be human-readable.
+
+## Commit message format
+
+Use terse commit messages:
+
+- `add session export: <short-name>`
+- `update session index`
+- `fix session index app`
+
+## Do not
+
+Agents MUST NOT use the GitHub API to discover session files at runtime.
+Agents MUST NOT rewrite existing session export files unless fixing a known broken export.
+Agents MUST NOT remove entries from `sessions.jsonl` unless deleting or renaming the matching file.
+Agents MUST NOT commit unrelated project files to this branch.
+
+## Validation
+
+Before committing, agents SHOULD check:
+
+- `sessions.jsonl` exists
+- Every non-empty, non-comment line in `sessions.jsonl` parses as JSON object with `date`, `path`, and `title`
+- Every listed `.html` path exists
+- Every listed session filename matches `<isodate>-<snake-case-description>.html` and starts with the `date` field
+
+If validation cannot be completed, agents MUST say what was not verified in commit notes or handoff.

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pi Session Exports</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f1115;
+      --panel: #171a21;
+      --text: #e8eaf0;
+      --muted: #9aa3b2;
+      --border: #2a2f3a;
+      --accent: #78a6ff;
+      --danger: #ff7a7a;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f7fb;
+        --panel: #ffffff;
+        --text: #111827;
+        --muted: #5b6472;
+        --border: #d9dee8;
+        --accent: #255cc7;
+        --danger: #b42318;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font: 16px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 48px auto;
+    }
+
+    header {
+      display: flex;
+      gap: 16px;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .meta {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgb(0 0 0 / 14%);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    input[type="search"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+    }
+
+    button {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    button:hover, a:hover { border-color: var(--accent); }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li + li { border-top: 1px solid var(--border); }
+
+    a.session {
+      display: block;
+      padding: 14px 16px;
+      color: var(--text);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+    }
+
+    a.session:hover {
+      color: var(--accent);
+      border-left-color: var(--accent);
+    }
+
+    .file-name { font-weight: 650; }
+
+    .file-path {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      overflow-wrap: anywhere;
+    }
+
+    .state {
+      padding: 24px 16px;
+      color: var(--muted);
+    }
+
+    .error { color: var(--danger); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Pi Session Exports</h1>
+        <div id="meta" class="meta">Loading ./sessions.jsonl</div>
+      </div>
+      <button id="reload" type="button">Reload</button>
+    </header>
+
+    <section class="panel" aria-label="Session export index">
+      <div class="toolbar">
+        <input id="filter" type="search" placeholder="Filter sessions" autocomplete="off">
+      </div>
+      <div id="status" class="state">Loading sessions…</div>
+      <ul id="sessions" hidden></ul>
+    </section>
+  </main>
+
+  <script>
+    const INDEX_FILE = 'sessions.jsonl';
+
+    const els = {
+      filter: document.querySelector('#filter'),
+      list: document.querySelector('#sessions'),
+      meta: document.querySelector('#meta'),
+      reload: document.querySelector('#reload'),
+      status: document.querySelector('#status'),
+    };
+
+    let sessions = [];
+
+    function normalizeSession(entry, lineNumber) {
+      if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+        throw new Error(`Line ${lineNumber}: expected object with date, path, title`);
+      }
+
+      const { date, path, title } = entry;
+      if (!date || typeof date !== 'string') {
+        throw new Error(`Line ${lineNumber}: missing date`);
+      }
+
+      if (!path || typeof path !== 'string') {
+        throw new Error(`Line ${lineNumber}: missing path`);
+      }
+
+      if (!title || typeof title !== 'string') {
+        throw new Error(`Line ${lineNumber}: missing title`);
+      }
+
+      return {
+        date,
+        path,
+        name: title,
+        title,
+      };
+    }
+
+    function parseJsonl(text) {
+      return text
+        .split(/\r?\n/)
+        .map((line, index) => ({ line: line.trim(), lineNumber: index + 1 }))
+        .filter(({ line }) => line && !line.startsWith('#'))
+        .map(({ line, lineNumber }) => normalizeSession(JSON.parse(line), lineNumber));
+    }
+
+    function sessionTitle(file) {
+      return (file.title || file.name)
+        .replace(/\.html$/i, '')
+        .replace(/[-_]+/g, ' ')
+        .trim() || file.name;
+    }
+
+    function sessionHref(file) {
+      return encodeURI(file.path).replace(/#/g, '%23');
+    }
+
+    function render() {
+      const needle = els.filter.value.trim().toLowerCase();
+      const visible = sessions.filter((file) => {
+        return file.title.toLowerCase().includes(needle) || file.date.toLowerCase().includes(needle) || file.path.toLowerCase().includes(needle);
+      });
+
+      els.list.replaceChildren(...visible.map((file) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        const name = document.createElement('span');
+        const path = document.createElement('span');
+
+        link.className = 'session';
+        link.href = sessionHref(file);
+        name.className = 'file-name';
+        name.textContent = sessionTitle(file);
+        path.className = 'file-path';
+        path.textContent = `${file.date} · ${file.path}`;
+
+        link.append(name, path);
+        item.append(link);
+        return item;
+      }));
+
+      els.status.hidden = visible.length > 0;
+      els.list.hidden = visible.length === 0;
+
+      if (sessions.length === 0) {
+        els.status.textContent = 'No HTML session exports listed in ./sessions.jsonl.';
+      } else if (visible.length === 0) {
+        els.status.textContent = 'No sessions match filter.';
+      }
+    }
+
+    async function loadSessions() {
+      els.status.hidden = false;
+      els.status.classList.remove('error');
+      els.status.textContent = 'Loading sessions…';
+      els.list.hidden = true;
+      els.meta.textContent = `./${INDEX_FILE}`;
+
+      try {
+        const response = await fetch(`${INDEX_FILE}?v=${Date.now()}`, {
+          headers: { 'Accept': 'application/x-ndjson, application/jsonl, text/plain, */*' },
+          cache: 'no-store',
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        sessions = parseJsonl(await response.text())
+          .filter((file) => /\.html$/i.test(file.path))
+          .sort((a, b) => b.date.localeCompare(a.date, undefined, { numeric: true, sensitivity: 'base' }) || b.path.localeCompare(a.path, undefined, { numeric: true, sensitivity: 'base' }));
+
+        render();
+      } catch (error) {
+        sessions = [];
+        els.list.hidden = true;
+        els.status.hidden = false;
+        els.status.classList.add('error');
+        els.status.textContent = `Failed to load sessions.jsonl. ${error.message}`;
+      }
+    }
+
+    els.filter.addEventListener('input', render);
+    els.reload.addEventListener('click', loadSessions);
+    loadSessions();
+  </script>
+</body>
+</html>
