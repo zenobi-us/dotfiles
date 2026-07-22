@@ -1,0 +1,31 @@
+{%- macro indicator(focused) -%}{{ " " | bg("index:4") | fg("index:0") if focused else " " }}{%- endmacro -%}
+{%- macro t(text, focused) -%}{{ text | bold if focused else text | dim }}{%- endmacro -%}
+{%- if sessions | length > 0 -%}
+  {%- for group in groups -%}
+    {%- set tab_label = " %s " | format(group.tab_name) -%}
+    {%- if group.tab_id is not none -%}
+      {%- call Button(on_click=actions.switch_tab(group.tab_id), focused=false) -%}
+      {{- tab_label | bg("index:6") | fg("index:0") if group.active else tab_label | bg("index:8") | dim -}}
+      {%- endcall -%}
+    {%- else -%}
+      {%- call Flex(shrink=0) -%}
+      {{- tab_label | bg("index:6") | fg("index:0") if group.active else tab_label | bg("index:8") | dim -}}
+      {%- endcall -%}
+    {%- endif -%}
+
+    {%- for session in group.sessions -%}
+      {%- call Button(on_click=actions.focus_pane(session.pane), focused=session.focused) -%}
+      {%- set icon = "󱉺" if session.state == "running" else "󰏧" -%}
+      {%- set agent = "%s %s %s@%s" | format(session.pane, icon, session.harness, session.model) -%}
+      {{ indicator(session.focused) }} {{ t(agent | bold, session.focused) }}
+      {{ indicator(session.focused) }}     󰆈 {{ session.title | bold if session.focused else session.title | dim }}
+      {{ indicator(session.focused) }}      {{ session.cwd | bold if session.focused else session.cwd | dim }}
+      {%- if session.state == "running" %}
+        {{ indicator(session.focused) }}  {{ session.current_task | bold if session.focused else session.current_task | dim }}
+      {%- endif -%}
+      {%- endcall -%}
+    {%- endfor -%}
+
+  {%- endfor -%}
+{%- endif -%}
+

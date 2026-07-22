@@ -1,0 +1,10 @@
+{%- if sessions | length > 0 -%}
+  {%- call Flex(direction="column", shrink=0) -%}
+    {%- if has_error -%}{{ " pipe error " | bg("index:1") | fg("index:7") }} {{ last_error | dim }}{%- endif -%}
+    {{ " Events " | bg("index:3") | fg("index:0") }}
+    {%- for event in events %}
+      {{ " " | bg("index:3") }}  {{ " %s " | format(event) | fg("index:3") }}
+    {%- endfor -%}
+  {%- endcall -%}
+{%- endif -%}
+

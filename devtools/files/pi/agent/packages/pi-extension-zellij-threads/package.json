@@ -1,0 +1,12 @@
+{
+  "name": "@zellij-agent-threads/pi-extension",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.80.3",
+    "@types/node": "^26.0.1",
+    "typescript": "^6.0.3"
+  }
+}

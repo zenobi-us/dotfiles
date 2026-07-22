@@ -3,11 +3,13 @@ layout {
         pane size=1 borderless=true {
             plugin location="tab-bar"
         }
-        pane split_direction="horizontal" {
+        pane split_direction="Vertical" {
             pane size=32 borderless=true {
-                plugin location="agent-threads"
+                plugin location="agent-threads" {
+                    // template_file "~/.config/zellij/plugins/agent-threads/main.jinja"
+                }
             }
-            children
+            pane
         }
         pane size=1 borderless=true {
             plugin location="status-bar"
@@ -18,11 +20,15 @@ layout {
         pane size=1 borderless=true {
             plugin location="tab-bar"
         }
-        pane split_direction="horizontal" {
+        pane split_direction="Vertical" {
             pane size=32 borderless=true {
-                plugin location="agent-threads"
+                plugin location="agent-threads" {
+                    // TODO: fix zellij-agent-threads or zellij-template-render so it 
+                    // properly supports loading templates files.
+                    // template_file "~/.config/zellij/plugins/agent-threads/main.jinja"
+                }
             }
-            children
+            pane
         }
         pane size=1 borderless=true {
             plugin location="status-bar"
