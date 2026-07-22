@@ -1,6 +1,8 @@
 ---
-description: "Private Share is a feature that allows you to share your files with specific individuals or groups while keeping them private from others. This prompt provides guidance on how to use Private Share effectively."
+description: Privately share a session export through the configured GitHub Pages repository
+argument-hint: "<path> [owner/repo]"
 ---
 
-Use the scripts/private-share.mjs cli to initialise or share a file or folder to a private gh-pages enabled repo.
+Load and follow the `share-artifacts-privately` skill.
 
+User request: $ARGUMENTS
