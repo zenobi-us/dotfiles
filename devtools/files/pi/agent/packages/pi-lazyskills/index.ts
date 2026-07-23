@@ -46,6 +46,10 @@ import {
   renderToolStatusLine,
 } from "./core/tool-render.js";
 import { buildSkillUserMessage, ReadSkillCommand } from "./cmds/read.js";
+import {
+  resolveRepositoryContext,
+  skillMatchesPatterns,
+} from "./service/repository.js";
 
 export {
   formatReadSkillOutput,
@@ -79,8 +83,15 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
     }
 
     const skillsDebug = pi.getFlag("skills-debug") === true;
+    const repository = await resolveRepositoryContext(
+      (args, cwd) => pi.exec("git", args, { cwd, timeout: 5000 }),
+      ctx.cwd,
+    );
+    const projectTrusted = ctx.isProjectTrusted();
     const resolvedRoots = resolveSkillRoots({
       cwd: ctx.cwd,
+      projectRoot: repository?.root,
+      includeProjectAgentSkills: projectTrusted,
       includeDefaults: true,
     });
 
@@ -121,12 +132,25 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
       debugLog(
         `[skills-debug] resolved roots:\n${resolvedRoots.map((root) => `- ${root}`).join("\n") || "- (none)"}`,
       );
+      debugLog(
+        `[skills-debug] repository slug: ${repository?.slug ?? "(none)"}`,
+      );
     }
 
+    const enabledPatterns = repository?.slug
+      ? (runtimeSettings.enabled[repository.slug] ?? [])
+      : [];
     await registry.load({
       cwd: ctx.cwd,
+      projectRoot: repository?.root,
+      includeProjectAgentSkills: projectTrusted,
       includeDefaults: true,
       lazySkills: runtimeSettings.lazySkills, // Don't read skill files until needed to save startup time
+      indexSkill:
+        projectTrusted && repository && enabledPatterns.length > 0
+          ? (skill) =>
+              skillMatchesPatterns(skill, repository.root, enabledPatterns)
+          : undefined,
     });
 
     if (skillsDebug) {
@@ -199,9 +223,26 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         try {
           await runtimeSettingsService.reload();
           runtimeSettings = runtimeSettingsService.config;
+          const reloadedPatterns = repository?.slug
+            ? (runtimeSettings.enabled[repository.slug] ?? [])
+            : [];
           await registry.load({
             cwd: cmdCtx.cwd,
+            projectRoot: repository?.root,
+            includeProjectAgentSkills: cmdCtx.isProjectTrusted(),
             includeDefaults: true,
+            lazySkills: runtimeSettings.lazySkills,
+            indexSkill:
+              cmdCtx.isProjectTrusted() &&
+              repository &&
+              reloadedPatterns.length > 0
+                ? (skill) =>
+                    skillMatchesPatterns(
+                      skill,
+                      repository.root,
+                      reloadedPatterns,
+                    )
+                : undefined,
           });
 
           cmdCtx.ui.notify(
@@ -221,6 +262,8 @@ export default function qualifiedSkillsExtension(pi: ExtensionAPI) {
         const diagnostics = registry.diagnostics;
         const roots = resolveSkillRoots({
           cwd: cmdCtx.cwd,
+          projectRoot: repository?.root,
+          includeProjectAgentSkills: cmdCtx.isProjectTrusted(),
           includeDefaults: true,
         });
 

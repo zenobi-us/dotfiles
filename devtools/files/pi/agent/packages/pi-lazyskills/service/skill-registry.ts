@@ -11,6 +11,7 @@ import {
   dirname,
   isAbsolute,
   join,
+  parse,
   relative,
   resolve,
 } from "node:path";
@@ -484,30 +485,61 @@ function loadSkillsFromDirInternal(dir: string, includeRootFiles: boolean) {
 export interface LoadSkillsOptions {
   cwd?: string;
   agentDir?: string;
+  projectRoot?: string;
+  includeProjectAgentSkills?: boolean;
   includeDefaults?: boolean;
   lazySkills?: boolean;
+  indexSkill?: (skill: Skill) => boolean;
 }
 
 export function resolveSkillRoots(
   options: {
     cwd?: string;
     agentDir?: string;
+    projectRoot?: string;
+    includeProjectAgentSkills?: boolean;
     includeDefaults?: boolean;
   } = {},
 ): string[] {
   const {
     cwd = process.cwd(),
     agentDir = join(getSafeHomeDir(), CONFIG_DIR_NAME, "agent"),
+    projectRoot,
+    includeProjectAgentSkills = true,
     includeDefaults = true,
   } = options;
 
   if (!includeDefaults) return [];
 
   const userSkillsDir = join(agentDir, "skills");
+  const userAgentSkillsDir = join(getSafeHomeDir(), ".agents", "skills");
   const projectSkillsDir = resolve(cwd, CONFIG_DIR_NAME, "skills");
   const packageSkillDirs = resolvePackageSkillPaths(cwd, agentDir);
+  const projectAgentSkillDirs: string[] = [];
+  let current = resolve(cwd);
+  const boundary = projectRoot ? resolve(projectRoot) : parse(current).root;
+  const relativeToBoundary = relative(boundary, current);
+  const isWithinBoundary =
+    current === boundary ||
+    (!relativeToBoundary.startsWith("..") &&
+      !isAbsolute(relativeToBoundary));
+  if (includeProjectAgentSkills && isWithinBoundary) {
+    while (true) {
+      projectAgentSkillDirs.push(join(current, ".agents", "skills"));
+      if (current === boundary) break;
+      const parent = dirname(current);
+      if (parent === current) break;
+      current = parent;
+    }
+  }
 
-  return [...packageSkillDirs, userSkillsDir, projectSkillsDir].filter(
+  return [
+    ...packageSkillDirs,
+    userSkillsDir,
+    userAgentSkillsDir,
+    projectSkillsDir,
+    ...projectAgentSkillDirs,
+  ].filter(
     (dir): dir is string => typeof dir === "string" && dir.trim().length > 0,
   );
 }
@@ -530,6 +562,7 @@ export function createSkillRegistry() {
   };
 
   let currentLazySkills: boolean | undefined = false;
+  let currentIndexSkill: ((skill: Skill) => boolean) | undefined;
 
   function removeSkillByPath(filePath: string) {
     const existing = Array.from(registry.skills.entries()).find(
@@ -585,6 +618,7 @@ export function createSkillRegistry() {
       }
       registry.skillPromptBlock = formatSkillsForPrompt(registry.skills, {
         lazySkills: currentLazySkills,
+        indexSkill: currentIndexSkill,
       });
     },
   });
@@ -630,15 +664,24 @@ export function createSkillRegistry() {
     const {
       cwd = process.cwd(),
       agentDir = join(getSafeHomeDir(), CONFIG_DIR_NAME, "agent"),
+      projectRoot,
+      includeProjectAgentSkills = true,
       includeDefaults = true,
     } = options;
 
     currentLazySkills = options.lazySkills;
+    currentIndexSkill = options.indexSkill;
     registry.allDiagnostics = [];
     registry.collisionDiagnostics = [];
     registry.skills.clear();
     registry.realPathSet.clear();
-    const dirs = resolveSkillRoots({ cwd, agentDir, includeDefaults });
+    const dirs = resolveSkillRoots({
+      cwd,
+      agentDir,
+      projectRoot,
+      includeProjectAgentSkills,
+      includeDefaults,
+    });
     for (const packageSkillDir of dirs) {
       addSkills(loadSkillsFromDirInternal(packageSkillDir, true));
     }
@@ -646,6 +689,7 @@ export function createSkillRegistry() {
     watcher.start(dirs);
     registry.skillPromptBlock = formatSkillsForPrompt(registry.skills, {
       lazySkills: currentLazySkills,
+      indexSkill: currentIndexSkill,
     });
   };
 

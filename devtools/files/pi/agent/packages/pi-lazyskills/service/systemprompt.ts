@@ -21,7 +21,10 @@ export function injectSkillsIntoSystemPrompt(
 
 export function formatSkillsForPrompt(
   skills: Map<string, Skill>,
-  options: { lazySkills?: boolean } = {},
+  options: {
+    lazySkills?: boolean;
+    indexSkill?: (skill: Skill) => boolean;
+  } = {},
 ): string {
   const visibleSkills = Array.from(skills.values()).filter(
     (s) => !s.disableModelInvocation,
@@ -32,14 +35,24 @@ export function formatSkillsForPrompt(
   }
 
   if (options.lazySkills) {
-    return `\n\n${dedent`
+    const lazyInstructions = `\n\n${dedent`
       ## Skills
 
-      - Skills are available, but lazySkills=true so the full catalog is omitted from this prompt.
+      - Skills are available, but lazySkills=true so the full catalog is omitted from this prompt. A configured project skill index may follow.
             - Use the find_skills tool to discover relevant skills and the read_skill tool to load one by name.
                 `}`;
+    const indexedSkills = options.indexSkill
+      ? visibleSkills.filter(options.indexSkill)
+      : [];
+    return indexedSkills.length === 0
+      ? lazyInstructions
+      : `${lazyInstructions}${formatSkillCatalog(indexedSkills)}`;
   }
 
+  return formatSkillCatalog(visibleSkills);
+}
+
+function formatSkillCatalog(skills: Skill[]): string {
   const lines = [
     "\n\nThe following skills provide specialized instructions for specific tasks.",
     "Use the read tool to load a skill's file when the task matches its description.",
@@ -48,7 +61,7 @@ export function formatSkillsForPrompt(
     "<available_skills>",
   ];
 
-  for (const skill of visibleSkills) {
+  for (const skill of skills) {
     lines.push("  <skill>");
     lines.push(`    <name>${escapeXml(skill.qualifiedName)}</name>`);
     lines.push(`    <shortname>${escapeXml(skill.name)}</shortname>`);

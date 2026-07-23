@@ -109,6 +109,11 @@ Example:
 ```json
 {
   "lazySkills": true,
+  "enabled": {
+    "github-com-owner-repository": [
+      ".agents/skills/reckon*"
+    ]
+  },
   "enableSkillCommands": true,
   "skillCommandTemplates": ["skill:{qualified_name}"],
   "searchStrategy": "hybrid",
@@ -121,6 +126,7 @@ Valid settings:
 | Setting | Type | Values | Default |
 | --- | --- | --- | --- |
 | `lazySkills` | boolean | `true`, `false` | `true` |
+| `enabled` | record of string arrays | repository slug to repo-relative skill globs | `{}` |
 | `enableSkillCommands` | boolean | `true`, `false` | `true` |
 | `skillCommandTemplates` | string[] | templates using `{shortname}` and `{qualified_name}` | `["skill:{qualified_name}"]` |
 | `searchStrategy` | string | `lexical`, `bm25`, `vector`, `hybrid` | `hybrid` |
@@ -128,6 +134,13 @@ Valid settings:
 
 `enableSkillCommands` is separate from Pi's native skill-command option, so this extension does not mirror Pi's command registration and create duplicate slash commands. Use `skillCommandTemplates` to choose command shapes, for example `["{shortname}", "{qualified_name}"]`.
 Invalid config falls back to built-in defaults.
+
+When `lazySkills` is enabled, matching entries in `enabled` restore Pi's normal
+`<available_skills>` index for that subset. Repository keys use the canonical
+git remote slug shown by `--skills-debug` startup diagnostics, for example
+`github-com-zenobi-us-dotfiles`. Patterns match repository-relative
+skill directories or skill files. Project `.agents/skills` directories are
+discovered from the current directory through the repository root.
 
 ### Search strategy
 

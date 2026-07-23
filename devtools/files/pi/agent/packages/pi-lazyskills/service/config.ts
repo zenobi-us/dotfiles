@@ -12,6 +12,11 @@ const SearchStrategySchema = Type.Union([
   Type.Literal("hybrid"),
 ]);
 
+const EnabledSkillsSchema = Type.Record(
+  Type.String(),
+  Type.Array(Type.String()),
+);
+
 export type SearchStrategy = Static<typeof SearchStrategySchema>;
 
 export const RuntimeSettingsSchema = Type.Object(
@@ -19,6 +24,7 @@ export const RuntimeSettingsSchema = Type.Object(
     searchStrategy: SearchStrategySchema,
     lexicalThreshold: Type.Number({ minimum: 0, maximum: 1 }),
     lazySkills: Type.Boolean(),
+    enabled: EnabledSkillsSchema,
     enableSkillCommands: Type.Boolean(),
     skillCommandTemplates: Type.Array(Type.String()),
   },
@@ -30,6 +36,7 @@ const RuntimeSettingsOverridesSchema = Type.Object(
     searchStrategy: Type.Optional(SearchStrategySchema),
     lexicalThreshold: Type.Optional(Type.Number({ minimum: 0, maximum: 1 })),
     lazySkills: Type.Optional(Type.Boolean()),
+    enabled: Type.Optional(EnabledSkillsSchema),
     enableSkillCommands: Type.Optional(Type.Boolean()),
     skillCommandTemplates: Type.Optional(Type.Array(Type.String())),
   },
@@ -43,11 +50,12 @@ export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
   searchStrategy: "hybrid",
   lexicalThreshold: 0.5,
   lazySkills: true,
+  enabled: {},
   enableSkillCommands: true,
   skillCommandTemplates: ["skill:{qualified_name}"],
 };
 
-function parseRuntimeSettings(raw: unknown): RuntimeSettings {
+export function parseRuntimeSettings(raw: unknown): RuntimeSettings {
   try {
     const overrides = Value.Parse(RuntimeSettingsOverridesSchema, raw ?? {});
     const merged = {
@@ -62,8 +70,10 @@ function parseRuntimeSettings(raw: unknown): RuntimeSettings {
 }
 
 export async function createRuntimeSettingsService(): Promise<RuntimeSettingsService> {
-  return createConfigService<RuntimeSettings>("skills", {
+  const service = await createConfigService<RuntimeSettings>("skills", {
     defaults: DEFAULT_RUNTIME_SETTINGS,
     parse: parseRuntimeSettings,
   });
+  await service.ready;
+  return service;
 }
