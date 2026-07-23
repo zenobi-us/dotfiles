@@ -19,7 +19,7 @@
     "extractionTimeoutMs": 30000
   },
   "behaviour": {
-    "autoSubmitWhenAnsweredWithoutNotes": false,
+    "autoSubmitWhenAnsweredWithoutNotes": true,
     "confirmDismissWhenDirty": true,
     "doublePressReviewShortcuts": true,
     "presentSingleAsMulti": false,
