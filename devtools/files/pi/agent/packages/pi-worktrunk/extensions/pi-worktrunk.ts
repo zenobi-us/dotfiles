@@ -1,10 +1,23 @@
+/**
+ * Keeps the current Worktrunk branch marker aligned with Pi's lifecycle.
+ *
+ * The marker makes each worktree's agent state visible from `wt list`, including
+ * when Pi runs in another terminal or pane. Worktrunk owns the shared state so
+ * this extension does not need its own process, file, or UI synchronization.
+ */
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
+/** Short symbols keep Worktrunk's shared status column readable across many branches. */
 export const MARKERS = {
   working: "🤖",
   waiting: "💬",
 } as const;
 
+/**
+ * Builds argv instead of a shell command so marker text never needs quoting or
+ * escaping. An omitted marker means removal, which prevents stale status after
+ * Pi shuts down.
+ */
 export function markerArgs(marker?: string): string[] {
   return marker === undefined
     ? ["config", "state", "marker", "clear"]
@@ -17,6 +30,11 @@ type WtResult = {
 
 type RunWt = (args: string[]) => Promise<WtResult>;
 
+/**
+ * Creates a best-effort updater that stops invoking Worktrunk after its first
+ * failure. Markers are informational; a missing or incompatible `wt` binary
+ * must not break Pi or repeatedly add failing subprocesses to every turn.
+ */
 export function createMarkerUpdater(runWt: RunWt) {
   let enabled = true;
 
@@ -44,6 +62,11 @@ export function createMarkerUpdater(runWt: RunWt) {
   };
 }
 
+/**
+ * Maps Pi lifecycle events to coarse Worktrunk states. Start/end hooks avoid
+ * polling Pi's internal state; a later retry or follow-up naturally switches
+ * the marker back to working when the next agent run starts.
+ */
 export default function (pi: ExtensionAPI) {
   const tracker = createMarkerUpdater((args) => pi.exec("wt", args));
 

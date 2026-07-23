@@ -1,0 +1,16 @@
+{
+  "name": "@zenobi-us/pi-worktrunk",
+  "version": "0.0.1",
+  "keywords": [
+    "pi-package",
+    "worktrunk"
+  ],
+  "pi": {
+    "prompts": [
+      "./prompts"
+    ],
+    "extensions": [
+      "./extensions/pi-worktrunk.ts"
+    ]
+  }
+}
