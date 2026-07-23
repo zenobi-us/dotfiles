@@ -1,3 +1,6 @@
 {
-  "searchStrategy": "bm25"
+  "searchStrategy": "bm25",
+  "enabled": {
+    "github-com-reckon-limited-reckon-frontend": [".agents/skills/**/*"]
+  }
 }
