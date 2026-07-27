@@ -1,6 +1,6 @@
 {
   "name": "@vanillagreen/pi-tool-renderer",
-  "version": "1.6.3",
+  "version": "1.7.0",
   "description": "Compact Claude/opencode-style renderers for Pi tools with rich diffs, apply_patch, generic/MCP rendering, and optional global chrome.",
   "license": "MIT",
   "keywords": [
@@ -272,6 +272,20 @@
           "description": "Head lines shown when read output is expanded.",
           "type": "number",
           "default": 80,
+          "category": "Read",
+          "apply": "live"
+        },
+        {
+          "key": "showReadImages",
+          "label": "Read image display",
+          "description": "Image results when Pi terminal.showImages is false: off hides them, always shows them in read output, and on shows them only while tools are expanded. Changes apply immediately. Floating overlays temporarily hide images while preserving their layout space.",
+          "type": "enum",
+          "enumValues": [
+            "off",
+            "always",
+            "on"
+          ],
+          "default": "off",
           "category": "Read",
           "apply": "live"
         },

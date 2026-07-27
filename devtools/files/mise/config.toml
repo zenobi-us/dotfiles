@@ -100,6 +100,11 @@ lua = "latest"
 "npm:poster-ai" = "0.5.0"
 "npm:@tobilu/qmd" = "latest"
 "github:can1357/oh-my-pi" = "latest"
+"github:sockheadrps/llmctl" = "0.2.2"
+"github:AlexsJones/llmfit" = "latest"
+"github:AlexsJones/llmserve" = "latest"
+"github:kurama/dealve-tui" = "latest"
+youtube-dl = "latest"
 
 [env]
 PI_SUBAGENT_MUX = "zellij"

@@ -1,0 +1,195 @@
+#!/usr/bin/env bash
+# Deterministically validate a reviewer's on-disk JSON artifact for review-pr
+# acceptance. A reviewer completion is only real when
+# [WORKTREE]/tmp/review-[AGENT]-*.json exists, is newer than the delegation
+# timestamp, and satisfies `jq -e '.verdict'` — return-message prose alone
+# never counts.
+
+set -euo pipefail
+
+usage() {
+  cat >&2 << 'EOF'
+Usage:
+  review-artifact-check <worktree_path> <agent_name> <delegated_at_epoch>
+  review-artifact-check --file <json_path> [delegated_at_epoch]
+
+Glob mode: checks [WORKTREE]/tmp/review-[AGENT]-*.json newest-first.
+File mode (--file): checks one explicit JSON file, for artifacts written to a
+known path such as the external review output. Validates existence + verdict;
+when the optional delegated_at_epoch is supplied it ALSO applies glob mode's
+freshness gate against filesystem mtime.
+
+Both modes print JSON:
+  {ok: bool, path: string|null,
+   reason: "valid"|"missing"|"stale"|"invalid"|"no_review"|"incomplete"}
+
+reason meanings when ok=false:
+  missing    no matching artifact found (glob) / file does not exist (--file)
+  stale      artifact mtime < delegated_at_epoch (glob mode, or --file when the
+             optional boundary is supplied)
+  invalid    artifact fails `jq -e '.verdict'`
+  no_review  artifact self-reports that no review was performed
+             (qa_metadata.review_performed == false, or qa_metadata.reason is a
+             no-scope/no-review admission) — rejected regardless of verdict.
+             Artifacts without qa_metadata are unaffected.
+  incomplete artifact declares the qa/second-opinion shape (a qa_metadata
+             object is present) but blockers[]/suggestions[] are missing or
+             not arrays — the finding arrays were lost in the write, so the
+             verdict cannot be trusted. Artifacts without qa_metadata are
+             unaffected.
+
+Exit 0 when a valid artifact was found, 1 otherwise, 2 on usage error.
+EOF
+}
+
+emit() {
+  local ok="$1" path="$2" reason="$3"
+  jq -n --argjson ok "$ok" --arg path "$path" --arg reason "$reason" \
+    '{ok: $ok, path: (if $path == "" then null else $path end), reason: $reason}'
+}
+
+file_mtime() {
+  stat -c %Y "$1" 2>/dev/null || stat -f %m "$1"
+}
+
+# vstack#652: a schema-valid artifact can carry verdict "pass" while its
+# qa_metadata admits no review happened (external second-opinion invoked with
+# no scope). Such a self-reported no-review is rejected regardless of verdict.
+# Artifacts without qa_metadata (internal reviewers) are unaffected.
+self_reports_no_review() {
+  jq -e '
+    (.qa_metadata? // {}) as $qa
+    | (($qa | type) == "object")
+      and (($qa.review_performed == false)
+           or ((($qa.reason // "") | tostring)
+               | test("no[ _-]?(scope|review)|not[ _-]?reviewed"; "i")))
+  ' "$1" >/dev/null 2>&1
+}
+
+# vstack#678: a truncated write can produce an artifact whose verdict/summary
+# survived while the finding arrays were silently lost — schema-valid on the
+# `.verdict` gate, but the actual blockers/suggestions are gone. Artifacts
+# that DECLARE the qa/second-opinion shape (a qa_metadata object — the
+# second-opinion producer always emits one, and QA reviewers are contractually
+# required to per reviewer qa-review.md) must therefore also carry blockers[]
+# and suggestions[]. Artifacts WITHOUT qa_metadata (internal reviewers,
+# pre-existing tolerance documented in reviewer review-finding.md) validate as
+# before. questions[] is not required here: it is PR-comment-triage-only and
+# the QA standard fields omit it.
+qa_shaped_incomplete() {
+  jq -e '
+    ((.qa_metadata? | type) == "object")
+      and (((.blockers? | type) != "array")
+           or ((.suggestions? | type) != "array"))
+  ' "$1" >/dev/null 2>&1
+}
+
+# --- File mode: validate one explicit JSON path deterministically ---
+if [[ "${1:-}" == "--file" ]]; then
+  # Accept an OPTIONAL trailing delegated_at_epoch. When present, apply the same
+  # freshness gate as glob mode (artifact mtime < delegated_at → stale); when
+  # omitted, keep the existence + verdict behavior so existing callers do not
+  # break.
+  if [[ $# -lt 2 || $# -gt 3 ]]; then
+    usage
+    exit 2
+  fi
+  file="$2"
+  delegated_at="${3:-}"
+  if [[ -z "$file" ]]; then
+    echo "Error: --file requires a non-empty path" >&2
+    exit 2
+  fi
+  if [[ -n "$delegated_at" ]] && ! [[ "$delegated_at" =~ ^[0-9]+$ ]]; then
+    echo "Error: delegated_at_epoch must be epoch seconds, got '$delegated_at'" >&2
+    exit 2
+  fi
+  if [[ ! -f "$file" ]]; then
+    emit false "" "missing"
+    exit 1
+  fi
+  if [[ -n "$delegated_at" ]]; then
+    mtime="$(file_mtime "$file")"
+    if (( mtime < delegated_at )); then
+      emit false "$file" "stale"
+      exit 1
+    fi
+  fi
+  if ! jq -e '.verdict' "$file" >/dev/null 2>&1; then
+    emit false "$file" "invalid"
+    exit 1
+  fi
+  if self_reports_no_review "$file"; then
+    emit false "$file" "no_review"
+    exit 1
+  fi
+  if qa_shaped_incomplete "$file"; then
+    emit false "$file" "incomplete"
+    exit 1
+  fi
+  emit true "$file" "valid"
+  exit 0
+fi
+
+if [[ $# -ne 3 ]]; then
+  usage
+  exit 2
+fi
+
+worktree="$1"
+agent="$2"
+delegated_at="$3"
+
+if [[ ! -d "$worktree" ]]; then
+  echo "Error: worktree path '$worktree' is not a directory" >&2
+  exit 2
+fi
+if [[ -z "$agent" ]]; then
+  echo "Error: agent_name must be non-empty" >&2
+  exit 2
+fi
+if ! [[ "$delegated_at" =~ ^[0-9]+$ ]]; then
+  echo "Error: delegated_at_epoch must be epoch seconds, got '$delegated_at'" >&2
+  exit 2
+fi
+
+reason="missing"
+fail_path=""
+
+while IFS= read -r file; do
+  [[ -n "$file" ]] || continue
+  mtime="$(file_mtime "$file")"
+  if (( mtime < delegated_at )); then
+    if [[ -z "$fail_path" ]]; then
+      fail_path="$file"
+      reason="stale"
+    fi
+    continue
+  fi
+  if ! jq -e '.verdict' "$file" >/dev/null 2>&1; then
+    if [[ -z "$fail_path" ]]; then
+      fail_path="$file"
+      reason="invalid"
+    fi
+    continue
+  fi
+  if self_reports_no_review "$file"; then
+    if [[ -z "$fail_path" ]]; then
+      fail_path="$file"
+      reason="no_review"
+    fi
+    continue
+  fi
+  if qa_shaped_incomplete "$file"; then
+    if [[ -z "$fail_path" ]]; then
+      fail_path="$file"
+      reason="incomplete"
+    fi
+    continue
+  fi
+  emit true "$file" "valid"
+  exit 0
+done < <(ls -1t "$worktree/tmp/review-$agent-"*.json 2>/dev/null)
+
+emit false "$fail_path" "$reason"
+exit 1

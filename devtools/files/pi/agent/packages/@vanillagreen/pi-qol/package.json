@@ -1,6 +1,6 @@
 {
   "name": "@vanillagreen/pi-qol",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "Pi quality-of-life extension: compact statusline/π prompt, reliable multiline input, styled pasted-image chips, session naming/search/context import, scheduled prompts, handoff, permission prompts, notifications, custom compaction, and a collapsed-thinking timer.",
   "license": "MIT",
   "keywords": [
@@ -59,7 +59,7 @@
         {
           "key": "replaceFooter",
           "label": "Replace built-in footer",
-          "description": "Replace Pi's default footer with extension status widgets while the compact QOL statusline is enabled.",
+          "description": "Hide Pi default footer while the compact QOL statusline is enabled.",
           "type": "boolean",
           "default": true,
           "category": "Statusline",

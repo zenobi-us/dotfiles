@@ -6,7 +6,7 @@ layout {
         pane split_direction="Vertical" {
             pane size=32 borderless=true {
                 plugin location="agent-threads" {
-                    // template_file "~/.config/zellij/plugins/agent-threads/main.jinja"
+                    template_file "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/shells/files/zellij/plugins/agent-threads/main.jinja"
                 }
             }
             pane
@@ -23,9 +23,7 @@ layout {
         pane split_direction="Vertical" {
             pane size=32 borderless=true {
                 plugin location="agent-threads" {
-                    // TODO: fix zellij-agent-threads or zellij-template-render so it 
-                    // properly supports loading templates files.
-                    // template_file "~/.config/zellij/plugins/agent-threads/main.jinja"
+                    template_file "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/shells/files/zellij/plugins/agent-threads/main.jinja"
                 }
             }
             pane

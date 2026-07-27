@@ -24,4 +24,10 @@ The issue ticket might be a Jira ticket, GitHub issue, or any other issue tracki
 
 # Worktrees
 
-- use skill `worktrunk`
+- use skill `worktrunk` 
+
+
+--- 
+
+UserRequest: $ARGUMENTS
+

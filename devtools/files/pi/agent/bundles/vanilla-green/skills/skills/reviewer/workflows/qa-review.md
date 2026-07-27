@@ -1,0 +1,171 @@
+# QA Review Lifecycle
+
+**The workflow for QA agents — project-configured QA specialists invoked via `needs-*` labels.**
+
+QA agents are review-only. They are never assigned as issue owners.
+
+**Ownership**: You review ONE PR. Return verdict to orchestrator. No issue tracker state changes.
+
+---
+
+## 1. Set Up
+
+### 1.1 Resolve Tracker
+
+Resolve tracker context once, before any tracker command. Every later tracker-specific read routes through it. Precedence:
+
+1. **Delegation context**: an explicit `Tracker:` value in the delegation prompt (with `[OWNER/REPO]` for `github`).
+2. **Inference fallback**: `[ISSUE_ID]` starting with `issue-` → `github`; otherwise `linear`. The GitHub issue number `[N]` is `[ISSUE_ID]` without the `issue-` prefix (orch key normalization). For `github` with no repository value, resolve it in the worktree:
+
+   ```bash
+   gh repo view --json nameWithOwner --jq .nameWithOwner
+   ```
+
+Store the result as `TRACKER`, plus `[OWNER/REPO]` when `TRACKER=github`.
+
+**GitHub reviews must not run Linear commands**: when `TRACKER=github`, no `sync`, Linear cache read, or Linear mutation may run anywhere in this workflow. A missing Linear cache is not an error for a GitHub-tracked review — read live GitHub context instead (§ 1.2). If a tracker read fails on the resolved route, report the gap in your review output; do not silently fall back to the other tracker.
+
+### 1.2 Read Context
+
+**Linear route (TRACKER=linear)**:
+
+```bash
+.agents/skills/linear/scripts/linear.sh cache issues get [ISSUE_ID]
+.agents/skills/linear/scripts/linear.sh cache comments list [ISSUE_ID]
+```
+
+**GitHub route (TRACKER=github)** — read the live issue body and comments in one command:
+
+```bash
+gh issue view [N] --repo [OWNER/REPO] --json number,title,body,comments,labels,url
+```
+
+Extract from delegation prompt:
+- Dev agent's completion summary
+- Which `needs-*` label triggered this review
+
+---
+
+## 2. Execute Review
+
+### 2.1 Read Decision/Research Context
+
+Before reviewing, use the decider skill's search workflow: `.agents/skills/decider/scripts/decisions search "[RELEVANT_KEYWORDS]"` for decisions governing the changed areas. If matches found, read the full decision files — index summaries are insufficient for understanding scope and rejected alternatives. If the delegation prompt includes additional decision context, read those too.
+
+**Suggestions that contradict active decisions are invalid** unless the decision itself is flawed (flag as blocker with justification, citing the specific decision and why it's wrong).
+
+### 2.2 Identify Changed Files
+
+```bash
+.agents/skills/github/scripts/git-diff-summary -C [WORKTREE_PATH]
+```
+
+Use domain grouping and risk flags to focus review on changed files relevant to your domain.
+**Exclude**: Research documents — historical research artifacts, not reviewable code or docs.
+
+### 2.3 Run Agent Review
+
+Run your agent-specific review. See your agent file for exact commands and Output section for blocker/suggestion mapping.
+Run each validation or read-only check as its own command per the reviewer skill's Harness-Safe Shell rule; do not combine checks into compound or composed shells under Codex `approval=never`.
+Apply the reviewer skill's General Review Ethos and Reviewer Scope Boundaries. Stay within this agent's domain; do not duplicate another specialist unless your domain adds distinct evidence, impact, or remediation.
+
+### 2.4 Classify Regressions (performance QA agent only)
+
+**Skip if** not the performance QA agent or no regressions detected (exit code 0).
+
+When the benchmarking skill's regression check exits with code 1, classify every regressed operation using the project's benchmarking skill. Populate `blockers[]` and `qa_metadata.perf_qa.regressions[]` per your agent's Output section.
+
+### 2.5 Record Benchmark Results (performance QA agent only)
+
+**Skip if** not the performance QA agent.
+
+- Use the project's benchmarking skill's direct runner or recorder commands when
+  they are documented as standalone commands.
+- Do not use shell pipelines, redirection, heredocs, `tee`, `cat >`, inline
+  environment assignment, command substitution, or shell plumbing to capture or
+  record benchmark output under Codex `approval=never`.
+- If the only documented recording path requires shell plumbing, stop and report
+  the harness gap instead of inventing an alternate command shape.
+- If manual entry is supported, pass the component name and JSON data only by a
+  documented direct argument or body-file option. Do not create the body file
+  with shell redirection.
+
+See the project's benchmarking skill for full recording details if available.
+
+If the project has feature-gated benchmark targets, performance QA must include
+them in any claimed "full benchmark" run. A successful bare `cargo bench` is
+not enough if active lanes require explicit features such as `live-feeds` or
+`ui-bridge`.
+
+If the parser records zero results, stop and report the harness gap instead of
+counting the run as benchmark coverage. Common causes are missing required
+features, parser prefix drift after bench refactors, or tool output format
+changes.
+
+If the benchmark recorder fails closed on all-zero counters, report a benchmark
+environment/tooling failure. Include the command, commit, and error evidence in
+the QA report, set `benchmark_commit` to `"none"`, and do not bypass the failure
+with manual benchmark data.
+
+If a targeted regression command reports numeric regressions but an aggregate
+validation command passes, classify and report the targeted numeric regressions.
+The aggregate validation result is supporting context, not a substitute for the
+targeted regression output.
+
+**Note**: Benchmark results may be symlinked to the main repo in worktrees. Results are written directly to main's directory — no commit needed. Record the latest commit SHA from your worktree branch as the benchmark commit in your return output (§ 3).
+
+### 2.6 Return JSON Report
+
+1. **Build JSON** per [`../schemas/review-finding.md`](../schemas/review-finding.md), filename `[WORKTREE_PATH]/tmp/review-[AGENT]-YYYYMMDD-HHMMSS.json`.
+   - `[AGENT]` is your FULL agent name, including its `reviewer-` prefix. For `reviewer-security` the file is `review-reviewer-security-20260720-141530.json`. The doubled `review-reviewer-` is correct — do not shorten or de-duplicate it to `review-security-…`; orch's `review-artifact-check` globs the literal full agent name and reports the artifact `missing` otherwise.
+   - Standard fields: `agent`, `timestamp`, `verdict`, `summary`, `blockers[]`, `suggestions[]`
+   - If performance QA agent: include `benchmark_commit` from § 2.5
+   - `qa_metadata.[agent_type]` populated per your agent (project-configurable):
+
+   | Agent | qa_metadata key | Required fields |
+   |-------|-----------------|-----------------|
+   | safety audit (example) | `safety` | `tool_results`, `unsafe_block_count`, `violations[]` |
+   | performance QA (example) | `perf_qa` | `percentiles`, `regression_pct`, `regressions[]`, `platform`, `baseline_sha` |
+   | architecture review (example) | `arch_review` | `dimension_scores`, `overall_score`, `pass` |
+
+   **Verdict rules:**
+   - `action_required`: 1+ items in `blockers[]`
+   - `pass`: `blockers[]` empty
+
+2. **Create the artifact** at `[WORKTREE_PATH]/tmp/review-[AGENT]-YYYYMMDD-HHMMSS.json` — `[AGENT]` in full, prefix included (`reviewer-security` → `review-reviewer-security-20260720-141530.json`), never shortened to `review-security-…` — with the harness file-write/edit tool. In Codex, use `apply_patch` to add or update the exact path. Do not use shell redirection, heredocs, `tee`, `echo >`, command substitution, or redirected `cat` writes.
+
+3. **Return the JSON** in your response so the calling agent can validate the same content:
+
+---
+
+## 3. Complete
+
+Send this result to the orchestrator as an agent-to-agent message. **Writing the JSON to disk is not a return** — the orchestrator does not poll the filesystem, and turn text is not visible across team boundaries. Send exactly one message with the body below, then go idle.
+
+**Return exactly** (`[AGENT]` and `[AGENT_NAME]` are both your full agent name including the `reviewer-` prefix — `reviewer-security` reports `agent: reviewer-security` and the file `review-reviewer-security-20260720-141530.json`):
+
+<output_format>
+QA_COMPLETE
+verdict: [pass|action_required]
+agent: [AGENT_NAME]
+benchmark_commit: [SHA or "none"]
+File: [WORKTREE_PATH]/tmp/review-[AGENT]-YYYYMMDD-HHMMSS.json
+```json
+{complete JSON object}
+```
+</output_format>
+
+---
+
+## Constraints
+
+**Do NOT**:
+- Claim the issue (Linear `issues activate`, GitHub self-assign)
+- Modify issue tracker state (labels, status)
+- Mark issue done
+- Create commits for code changes or push changes
+- Call other subagents
+
+**Note**: Benchmark results may be symlinked — writes go directly to main repo, no commit needed (§ 2.5).
+
+**Orchestrator handles**: All issue tracker updates, routing blockers back to dev agent, merging JSONs, presentation.

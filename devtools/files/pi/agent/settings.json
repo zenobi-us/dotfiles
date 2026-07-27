@@ -30,9 +30,7 @@
     "./packages/pi-rose-pine",
     "./packages/pi-ask",
     "./packages/pi-annotate",
-    "./packages/pi-handoff",
     "./packages/pi-worktrunk",
-    "./packages/pi-slopchop",
     "./packages/ponytail",
     "./packages/@vanillagreen/pi-caveman",
     "./packages/@vanillagreen/pi-codex-minimal-tools",
@@ -41,7 +39,11 @@
     "./packages/@vanillagreen/pi-qol",
     "./packages/@vanillagreen/pi-task-panel",
     "./packages/@vanillagreen/pi-tool-renderer",
-    "./packages/@vanillagreen/pi-web-tools"
+    "./packages/@vanillagreen/pi-web-tools",
+    "./packages/@vanillagreen/pi-session-manager",
+    "./packages/@vanillagreen/pi-skills-manager",
+    "./packages/@vanillagreen/pi-session-bridge",
+    "./packages/@vanillagreen/pi-extension-manager"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
@@ -54,15 +56,20 @@
   "transport": "sse",
   "vstack": {
     "extensionManager": {
-      "disabledItems": [],
       "config": {
-        "@vanillagreen/pi-qol": {
-          "replaceFooter": false
-        },
         "@vanillagreen/pi-caveman": {
           "mode": "full"
+        },
+        "@vanillagreen/pi-qol": {
+          "glyphStyle": "unicode",
+          "statusline.enabled": true,
+          "compactPrompt": false,
+          "permissionGate.enabled": false,
+          "newlineOnShiftEnter": true,
+          "sessionAutoRename.model": "openai-codex/gpt-5.4-mini"
         }
-      }
+      },
+      "disabledItems": []
     }
   }
 }
