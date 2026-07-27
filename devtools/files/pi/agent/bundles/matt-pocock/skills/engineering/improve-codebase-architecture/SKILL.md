@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Surface architectural friction and propose **deepening opportunities** — refactors that turn shallow modules into deep ones. The aim is testability and AI-navigability.
 
-Before resolving domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+Before resolving domain artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md).
 
 This command is _informed_ by the project's domain model and built on a shared design vocabulary:
 

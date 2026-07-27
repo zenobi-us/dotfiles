@@ -11,7 +11,7 @@ Promoted skills and human docs are synchronized from [`mattpocock/skills`](https
 - `docs/engineering/` and `docs/productivity/` — upstream human-facing docs
 - `agents/openai.yaml` — upstream Agent Skills metadata retained beside every skill
 
-Pi-specific divergence is limited to the shared-context extension, [ALIGNMENT-ROOT.md](./skills/ALIGNMENT-ROOT.md), short alignment-root pointers in artifact-consuming skills, setup/storage integration, and tracker backend metadata required by migration.
+Pi-specific divergence is limited to the shared-context extension, [ALIGNMENT-ROOT.md](./ALIGNMENT-ROOT.md), short alignment-root pointers in artifact-consuming skills, setup/storage integration, and tracker backend metadata required by migration.
 
 ## Context extension
 

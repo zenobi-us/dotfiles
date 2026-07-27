@@ -6,7 +6,7 @@
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
-  "enableSkillCommands": true,
+  "enableSkillCommands": false,
   "hideThinkingBlock": false,
   "lastChangelogVersion": "0.80.10",
   "packages": [
