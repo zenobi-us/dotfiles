@@ -8,7 +8,7 @@
   "enableInstallTelemetry": false,
   "enableSkillCommands": false,
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "0.80.10",
+  "lastChangelogVersion": "0.81.1",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
     "./packages/pi-subagents",
