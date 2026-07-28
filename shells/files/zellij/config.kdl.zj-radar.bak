@@ -122,11 +122,6 @@ plugins {
     sequence location="zellij:sequence"
     agent-threads location="file:~/.config/zellij/plugins/agent-threads.wasm"
     tab-bar location="file:~/.config/zellij/plugins/zellij-tabbar.wasm"
-    // zj-radar: managed plugin alias begin
-    radar location="file:~/.config/zellij/plugins/zj_radar.wasm" {
-        naming "managed"
-    }
-    // zj-radar: managed plugin alias end
 }
 
 default_layout "mine"
