@@ -5,7 +5,7 @@
     {%- set tab_label = "%s " | format(group.tab_name) -%}
     {%- if group.tab_id is not none -%}
       {%- call Button(on_click=actions.switch_tab(group.tab_id), focused=false) -%}
-      {{- tab_label | fg("index:1") if group.active else tab_label | bg("index:2") | dim -}}
+      {{- tab_label | fg(theme.text) | bold if group.active else tab_label  | dim -}}
       {%- endcall -%}
     {%- else -%}
       {%- call Flex(shrink=0) -%}
