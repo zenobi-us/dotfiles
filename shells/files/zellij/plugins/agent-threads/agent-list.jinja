@@ -1,4 +1,7 @@
 {%- from "tree-link.jinja" import tree_link_line -%}
+{%- set spinner_frames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"] -%}
+{%- macro spinner(fps=16) -%}{{ spinner_frames[AnimationFrame(fps=fps) % (spinner_frames | length)] }}{%- endmacro -%}
+
 {%- macro t(text, focused) -%}{{ text | bold if focused else text | dim }}{%- endmacro -%}
 {%- if sessions | length > 0 -%}
   {%- for group in groups -%}
@@ -14,8 +17,9 @@
     {%- endif -%}
 
     {%- for session in group.sessions -%}
+      {%- set icon = spinner() if session.state == "running" else "󰏧" -%}
       {%- call Button(on_click=actions.focus_pane(session.pane), focused=session.focused) -%}
-      {{ " " }} {{ tree_link_line(loop.index0, group.sessions | length) | dim }} {{ t(session.title, session.focused) }}
+      {{ " " }} {{ tree_link_line(loop.index0, group.sessions | length) | dim }} {{ icon }} {{ t(session.title, session.focused) }}
       {%- endcall -%}
     {%- endfor -%}
 
