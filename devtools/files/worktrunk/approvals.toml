@@ -1,0 +1,5 @@
+[projects."github.com/zenobi-us/agentboard"]
+approved-commands = [
+    "bun install",
+    "moon run repo:typecheck",
+]
