@@ -1,0 +1,6 @@
+{%- call Flex(direction="row", grow=1, shrink=1, overflow="scroll") -%}
+{%- for tab in session.tabs -%}
+{%- call Button(on_click=actions.switch_tab(tab.index), focused=tab.active) -%}{{ tab.name }}{%- endcall -%}
+{%- endfor -%}
+{%- call OnOverflow() -%} ⬇️  {%- endcall -%}
+{%- endcall -%}

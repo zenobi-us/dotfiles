@@ -1,0 +1,12 @@
+{%- call Flex(direction="row", gap=1, grow=1) -%}
+{%- include "session.jinja" -%}
+{%- include "tabs.jinja" -%}
+{%- call Flex(shrink=0) -%}
+{%- call Button(on_click=actions.new_tab()) -%}+{%- endcall -%}
+{%- endcall -%}
+{%- call Flex(shrink=0) -%}
+{{- system.time | format_time(" HH:MM ") -}}
+{%- endcall -%}
+{%- include "clock.jinja" -%}
+{%- endcall -%}
+
