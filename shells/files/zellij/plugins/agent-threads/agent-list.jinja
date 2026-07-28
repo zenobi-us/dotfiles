@@ -1,0 +1,24 @@
+{%- from "tree-link.jinja" import tree_link_line -%}
+{%- macro t(text, focused) -%}{{ text | bold if focused else text | dim }}{%- endmacro -%}
+{%- if sessions | length > 0 -%}
+  {%- for group in groups -%}
+    {%- set tab_label = "%s " | format(group.tab_name) -%}
+    {%- if group.tab_id is not none -%}
+      {%- call Button(on_click=actions.switch_tab(group.tab_id), focused=false) -%}
+      {{- tab_label | fg("index:1") if group.active else tab_label | bg("index:2") | dim -}}
+      {%- endcall -%}
+    {%- else -%}
+      {%- call Flex(shrink=0) -%}
+      {{- tab_label | bg("index:6") | fg("index:0") if group.active else tab_label | bg("index:8") | dim -}}
+      {%- endcall -%}
+    {%- endif -%}
+
+    {%- for session in group.sessions -%}
+      {%- call Button(on_click=actions.focus_pane(session.pane), focused=session.focused) -%}
+      {{ " " }} {{ tree_link_line(loop.index0, group.sessions | length) | dim }} {{ t(session.title, session.focused) }}
+      {%- endcall -%}
+    {%- endfor -%}
+
+  {%- endfor -%}
+{%- endif -%}
+

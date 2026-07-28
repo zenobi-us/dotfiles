@@ -1,8 +1,5 @@
 {%- call Flex(direction="column", grow=1) -%}
   {%- call Flex(direction="column", grow=1, shrink=0, overflow="scroll") -%}
-    {% include "sessions_list.jinja" %}
+    {% include "agent-list.jinja" %}
   {%- endcall -%}
-
-
-  {% include "events.jinja" %}
 {%- endcall -%}
