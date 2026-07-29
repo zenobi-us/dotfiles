@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+#MISE description="Build servitor for Windows and install it in the Windows user bin directory"
+
+set -euo pipefail
+
+if ! grep -qi microsoft /proc/version; then
+  echo "install-servitor: run this task inside WSL" >&2
+  exit 1
+fi
+
+task_path="$(readlink -f "$0")"
+repo_root="$(cd "$(dirname "$task_path")/../../../.." && pwd)"
+source_dir="$repo_root/devtools/files/servitor"
+windows_user="$(cd /mnt/c && cmd.exe /d /c 'echo %USERNAME%' | tr -d '\r')"
+destination="/mnt/c/Users/$windows_user/bin"
+temporary="$(mktemp --suffix=.exe)"
+trap 'rm -f "$temporary"' EXIT
+
+version="$(git -C "$repo_root" describe --always --dirty 2>/dev/null || printf dev)"
+mkdir -p "$destination"
+
+(cd /mnt/c && taskkill.exe /F /IM servitor.exe >/dev/null 2>&1) || true
+
+(
+  cd "$source_dir"
+  CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build \
+    -trimpath \
+    -ldflags "-s -w -H=windowsgui -X main.version=$version" \
+    -o "$temporary" .
+)
+
+cp "$temporary" "$destination/servitor.exe"
+windows_executable="$(wslpath -w "$destination/servitor.exe")"
+(
+  cd /mnt/c
+  # shellcheck disable=SC2016
+  powershell.exe -NoProfile -NonInteractive -Command '
+    $target = $args[0]
+    $startup = [Environment]::GetFolderPath("Startup")
+    $shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut((Join-Path $startup "Servitor.lnk"))
+    $shortcut.TargetPath = $target
+    $shortcut.WorkingDirectory = Split-Path $target
+    $shortcut.Description = "Keep the display awake after input inactivity"
+    $shortcut.Save()
+    Start-Process -FilePath $target
+  ' "$windows_executable"
+)
+
+printf 'Installed %s\n' "$destination/servitor.exe"
+printf 'Installed and started Windows Startup shortcut: Servitor.lnk\n'
+
