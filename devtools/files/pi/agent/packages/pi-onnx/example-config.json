@@ -1,0 +1,47 @@
+{
+  "cacheDir": null,
+  "device": "cpu",
+  "defaultDtype": "q4",
+  "preloadDefaultModel": false,
+  "discovery": {
+    "enabled": true,
+    "limit": 50,
+    "pipelineTags": ["text-generation"]
+  },
+  "models": [
+    {
+      "id": "onnx-community/Qwen2.5-Coder-0.5B-Instruct",
+      "name": "Qwen2.5-Coder-0.5B (ONNX, q4)",
+      "contextWindow": 32768,
+      "maxTokens": 2048,
+      "dtype": "q4"
+    },
+    {
+      "id": "onnx-community/Qwen3-0.6B-ONNX",
+      "name": "Qwen3-0.6B (ONNX, q4)",
+      "contextWindow": 32768,
+      "maxTokens": 2048,
+      "dtype": "q4"
+    }
+  ],
+  "tools": {
+    "embed": {
+      "enabled": true,
+      "model": "onnx-community/all-MiniLM-L6-v2",
+      "pooling": "mean",
+      "normalize": true
+    },
+    "classify": {
+      "enabled": false,
+      "model": "onnx-community/distilbert-base-uncased-finetuned-sst-2-english",
+      "topK": 5
+    },
+    "transcribe": {
+      "enabled": false,
+      "model": "onnx-community/whisper-tiny",
+      "language": null,
+      "task": "transcribe",
+      "maxDecodedBytes": 268435456
+    }
+  }
+}

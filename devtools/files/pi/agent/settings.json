@@ -58,7 +58,7 @@
     "extensionManager": {
       "config": {
         "@vanillagreen/pi-caveman": {
-          "mode": "full"
+          "mode": "off"
         },
         "@vanillagreen/pi-qol": {
           "glyphStyle": "unicode",
@@ -67,6 +67,17 @@
           "permissionGate.enabled": false,
           "newlineOnShiftEnter": true,
           "sessionAutoRename.model": "openai-codex/gpt-5.4-mini"
+        },
+        "@vanillagreen/pi-tool-renderer": {
+          "renderMutationTools": true
+        },
+        "@vanillagreen/pi-web-tools": {
+          "exaDeepResearchEnabled": false,
+          "exaResearchModes": "{}",
+          "exaAdvancedEnabled": true
+        },
+        "@vanillagreen/pi-codex-minimal-tools": {
+          "imageModel": "gpt-image-2"
         }
       },
       "disabledItems": []
