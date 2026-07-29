@@ -106,6 +106,7 @@ lua = "latest"
 "github:kurama/dealve-tui" = "latest"
 youtube-dl = "latest"
 "github:marktoda/zj-radar" = "latest"
+"github:mexirica/aptui" = "latest"
 
 [env]
 PI_SUBAGENT_MUX = "zellij"

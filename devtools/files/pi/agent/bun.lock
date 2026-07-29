@@ -29,10 +29,6 @@
       "name": "@zenobius/pi-agent-core",
       "version": "0.1.0",
     },
-    "bundles/business": {
-      "name": "@zenobius/pi-business",
-      "version": "0.1.0",
-    },
     "bundles/creator": {
       "name": "@zenobius/pi-creator",
       "version": "0.1.0",
@@ -51,6 +47,13 @@
     "bundles/platform": {
       "name": "@zenobius/pi-platform",
       "version": "0.1.0",
+    },
+    "bundles/private-share": {
+      "name": "@zenobius/private-share",
+      "dependencies": {
+        "@crustjs/core": "^0.0.19",
+        "@crustjs/plugins": "^0.1.2",
+      },
     },
     "bundles/researcher": {
       "name": "@zenobius/pi-researcher",
@@ -121,6 +124,15 @@
         "@earendil-works/pi-coding-agent": "*",
         "@earendil-works/pi-tui": "*",
         "@sinclair/typebox": "*",
+      },
+    },
+    "packages/pi-extension-zellij-threads": {
+      "name": "@zellij-agent-threads/pi-extension",
+      "version": "0.0.1",
+      "devDependencies": {
+        "@earendil-works/pi-coding-agent": "^0.80.3",
+        "@types/node": "^26.0.1",
+        "typescript": "^6.0.3",
       },
     },
     "packages/pi-fzf": {
@@ -247,6 +259,10 @@
         "@earendil-works/pi-coding-agent": "*",
         "@earendil-works/pi-tui": "*",
       },
+    },
+    "packages/pi-worktrunk": {
+      "name": "@zenobi-us/pi-worktrunk",
+      "version": "0.0.1",
     },
     "packages/ponytail": {
       "name": "@dietrichgebert/ponytail",
@@ -413,6 +429,14 @@
     "@commitlint/top-level": ["@commitlint/top-level@19.8.1", "", { "dependencies": { "find-up": "^7.0.0" } }, "sha512-Ph8IN1IOHPSDhURCSXBz44+CIu+60duFwRsg6HqaISFHQHbmBtxVw4ZrFNIYUzEP7WwrNPxa2/5qJ//NK1FGcw=="],
 
     "@commitlint/types": ["@commitlint/types@19.8.1", "", { "dependencies": { "@types/conventional-commits-parser": "^5.0.0", "chalk": "^5.3.0" } }, "sha512-/yCrWGCoA1SVKOks25EGadP9Pnj0oAIHGpl2wH2M2Y46dPM2ueb8wyCVOD7O3WCTkaJ0IkKvzhl1JY7+uCT2Dw=="],
+
+    "@crustjs/core": ["@crustjs/core@0.0.19", "", { "dependencies": { "@crustjs/utils": "0.0.3" }, "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-RV/1TDJ+RZ9DFSbIHXPIyZV7bvJjf9RaElly2BvNGor1HxuEfiu6BdR8SBWzAa+PyvXQk2hkXuSjmaNIE+jbCQ=="],
+
+    "@crustjs/plugins": ["@crustjs/plugins@0.1.2", "", { "dependencies": { "@crustjs/style": "0.2.0" }, "peerDependencies": { "@crustjs/core": "0.0.19", "typescript": "^6.0.3" } }, "sha512-sX9eaN1c30T2PEel6RZZpSfBp/vOAWoIAV2/a+mbi7OxvLBLMJy3+WGxx5OlTDCXe/MJ6c8KWLIzFY2Cg71idA=="],
+
+    "@crustjs/style": ["@crustjs/style@0.2.0", "", { "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-WPJ/l630OSb9aaZEVpZhs8myBf6ItlXivABnx3jzyl4SUYr0Ztrky6D2Xw+rRUp7i7m26KsJHkvi7YiOmsr0BQ=="],
+
+    "@crustjs/utils": ["@crustjs/utils@0.0.3", "", { "peerDependencies": { "@standard-schema/spec": "^1.1.0", "typescript": "^6.0.3" }, "optionalPeers": ["@standard-schema/spec"] }, "sha512-5J/CeFpUTDX6F8EHc62blJQEQmr+tcH9Ojc26QTkQ08LoGZBT56kxL+XjHzp9m2QAg8T69omjwL25bmB3AWZig=="],
 
     "@diegopetrucci/pi-annotate-last-message": ["@diegopetrucci/pi-annotate-last-message@workspace:packages/pi-annotate"],
 
@@ -852,9 +876,11 @@
 
     "@vitest/utils": ["@vitest/utils@0.34.6", "", { "dependencies": { "diff-sequences": "^29.4.3", "loupe": "^2.3.6", "pretty-format": "^29.5.0" } }, "sha512-IG5aDD8S6zlvloDsnzHw0Ut5xczlF+kv2BOTo+iXfPr54Yhi5qbVOgGB1hZaVq4iJ4C/MZ2J0y15IlsV/ZcI0A=="],
 
-    "@zenobius/pi-agent-core": ["@zenobius/pi-agent-core@workspace:bundles/agent-core"],
+    "@zellij-agent-threads/pi-extension": ["@zellij-agent-threads/pi-extension@workspace:packages/pi-extension-zellij-threads"],
 
-    "@zenobius/pi-business": ["@zenobius/pi-business@workspace:bundles/business"],
+    "@zenobi-us/pi-worktrunk": ["@zenobi-us/pi-worktrunk@workspace:packages/pi-worktrunk"],
+
+    "@zenobius/pi-agent-core": ["@zenobius/pi-agent-core@workspace:bundles/agent-core"],
 
     "@zenobius/pi-creator": ["@zenobius/pi-creator@workspace:bundles/creator"],
 
@@ -873,6 +899,8 @@
     "@zenobius/pi-session-browser": ["@zenobius/pi-session-browser@workspace:packages/pi-session-browser"],
 
     "@zenobius/pi-writing": ["@zenobius/pi-writing@workspace:bundles/writing"],
+
+    "@zenobius/private-share": ["@zenobius/private-share@workspace:bundles/private-share"],
 
     "@zigai/pi-tree": ["@zigai/pi-tree@workspace:packages/pi-tree"],
 
@@ -2230,6 +2258,10 @@
 
     "@vitest/mocker/@vitest/spy": ["@vitest/spy@3.2.6", "", { "dependencies": { "tinyspy": "^4.0.3" } }, "sha512-oq6BbH68WzcWmwtBrU9nqLeaXTR4XwJF7FSLkKEZo4i6eoXcrxjcwSuTvWBIRUTC6VC72nXYunzqgZA+IKdtxg=="],
 
+    "@zellij-agent-threads/pi-extension/@types/node": ["@types/node@26.1.2", "", { "dependencies": { "undici-types": "~8.3.0" } }, "sha512-Vu4a5UFA9rIIFJ7rB/Vaafh9lrCQszopTCx6KjFboXTGQbPNasehVR5TEiithSDGyd1DEiUByggTZsg8jukeIg=="],
+
+    "@zellij-agent-threads/pi-extension/typescript": ["typescript@6.0.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw=="],
+
     "@zenobius/pi-extension-config/nconf": ["nconf@0.13.0", "", { "dependencies": { "async": "^3.0.0", "ini": "^2.0.0", "secure-keys": "^1.0.0", "yargs": "^16.1.1" } }, "sha512-hJ/u2xCpA663h6xyOiztx3y+lg9eU0rdkwJ+c4FtiHo2g/gB0sjXtW31yTdMLWLOIj1gL2FcJMwfOqouuUK/Wg=="],
 
     "ansi-escapes/type-fest": ["type-fest@0.21.3", "", {}, "sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w=="],
@@ -2773,6 +2805,8 @@
     "@types/yauzl/@types/node/undici-types": ["undici-types@7.16.0", "", {}, "sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw=="],
 
     "@vitest/mocker/@vitest/spy/tinyspy": ["tinyspy@4.0.4", "", {}, "sha512-azl+t0z7pw/z958Gy9svOTuzqIk6xq+NSheJzn5MMWtWTFywIacg2wUlzKFGtt3cthx0r2SxMK0yzJOR0IES7Q=="],
+
+    "@zellij-agent-threads/pi-extension/@types/node/undici-types": ["undici-types@8.3.0", "", {}, "sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ=="],
 
     "bun-types/@types/node/undici-types": ["undici-types@7.16.0", "", {}, "sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw=="],
 
