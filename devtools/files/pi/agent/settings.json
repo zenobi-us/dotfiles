@@ -1,14 +1,14 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "gpt-5.6-sol",
+  "defaultModel": "gpt-5.5",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
   "enableSkillCommands": true,
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "0.82.1",
+  "lastChangelogVersion": "0.83.0",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
     "./packages/pi-subagents",
@@ -43,7 +43,8 @@
     "./packages/@vanillagreen/pi-session-manager",
     "./packages/@vanillagreen/pi-skills-manager",
     "./packages/@vanillagreen/pi-session-bridge",
-    "./packages/@vanillagreen/pi-extension-manager"
+    "./packages/@vanillagreen/pi-extension-manager",
+    "npm:pi-add-dir"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
