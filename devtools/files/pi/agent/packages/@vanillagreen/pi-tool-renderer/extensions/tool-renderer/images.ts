@@ -10,8 +10,10 @@ function ignoreConversionError(): void {}
 
 class OverlayAwareImage {
 	private context: any;
+	private readonly image: Image;
 
-	constructor(private readonly image: Image, context: any) {
+	constructor(image: Image, context: any) {
+		this.image = image;
 		this.context = context;
 	}
 

@@ -28,9 +28,11 @@ import { borderMuted, stackPrefix, toolLabel, treeConnector } from "./theme.js";
 import {
 	makeEmpty,
 	makeTruncatedLines,
+	normalizeTerminalText,
 	isGitDiffCommand,
 	pendingStatusPrefix,
 	renderToolPathText,
+	splitTerminalLines,
 	type TruncatedLines,
 } from "./text.js";
 
@@ -70,7 +72,7 @@ export interface StructuredDiff {
 const themeDiffBgParts = new WeakMap<object, Map<string, AnsiParts>>();
 
 function diffDisplayContent(content: string): string {
-	return content.replace(/\t/g, "  ");
+	return normalizeTerminalText(content);
 }
 
 function languageForPath(path?: string): string | undefined {
@@ -947,7 +949,7 @@ export function renderBashDiffOutput(output: string, theme: any, expanded: boole
 		// Keep the actual split/unified table flush with the Bash diff block. Prefixing
 		// every table row with a tree stem made git diff tables look oddly indented
 		// and could overflow by the stem width on wide terminals.
-		rendered.push(...diffText.split(/\r?\n/));
+		rendered.push(...splitTerminalLines(diffText));
 		renderedFiles++;
 		if (remainingRows !== null) remainingRows -= Math.min(file.diff.lines.length, fileLimit ?? file.diff.lines.length);
 	}

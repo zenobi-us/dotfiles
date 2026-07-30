@@ -19,6 +19,7 @@ import {
 	bashCallText,
 	readOnlyCallText,
 	resultTruncated,
+	splitTerminalLines,
 	textContent,
 	type TruncatedLines,
 } from "./text.js";
@@ -137,7 +138,7 @@ export function renderStackItemText(item: StackItem, theme: any, expanded: boole
 		const previewText = stackItemPreview(item, theme, expanded, cwd);
 		if (previewText) {
 			const stem = item.toolName === "bash" ? treeConnector(theme, "│", cwd) : treeStem(theme, typedBranch, cwd);
-			const lines = previewText.split(/\r?\n/).map((line) => item.toolName === "bash" ? theme.fg("dim", line) : `${stem}${theme.fg("dim", line)}`);
+			const lines = splitTerminalLines(previewText).map((line) => item.toolName === "bash" ? theme.fg("dim", line) : `${stem}${theme.fg("dim", line)}`);
 			text += `\n${lines.join("\n")}`;
 		}
 	}

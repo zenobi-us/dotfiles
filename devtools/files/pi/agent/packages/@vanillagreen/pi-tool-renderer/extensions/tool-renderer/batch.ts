@@ -14,6 +14,7 @@ import {
 	makeEmpty,
 	makeTruncatedLines,
 	resultTruncated,
+	splitTerminalLines,
 	textContent,
 } from "./text.js";
 import { contextCwd, getBuiltInTool } from "./tools.js";
@@ -78,7 +79,7 @@ function capBatchItemText(text: string, maxBytes: number, maxLines: number): { t
 	const marker = `[...tool_batch item truncated: showing head and tail within ${maxLines} lines / ${Math.round(maxBytes / 1024)}KB. Original: ${originalLines} lines / ${Math.round(originalBytes / 1024)}KB...]`;
 	const markerBytes = utf8Length(`\n${marker}\n`);
 	if (maxBytes <= markerBytes + 128 || maxLines <= 3) return { text: fitPrefix(marker, maxBytes), truncated: true };
-	const lines = text.split(/\r?\n/);
+	const lines = splitTerminalLines(text);
 	let working: string;
 	if (lines.length > maxLines) {
 		const bodyLines = Math.max(2, maxLines - 1);

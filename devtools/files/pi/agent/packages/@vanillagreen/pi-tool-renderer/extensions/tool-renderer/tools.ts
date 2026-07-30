@@ -43,6 +43,7 @@ import {
 	renderPendingCall,
 	renderPendingDetail,
 	resultTruncated,
+	splitTerminalLines,
 	textContent,
 } from "./text.js";
 import { renderStackedToolResult, type StackableToolName } from "./stack.js";
@@ -126,7 +127,7 @@ function scheduleBashLiveTailRerender(state: BashLiveTailState, context: any, de
 function renderBashTail(output: string, limit: number, theme: any, cwd?: string): string {
 	const trimmed = output.replace(/(?:\r?\n)+$/, "");
 	if (!trimmed) return "";
-	const tailLines = preview(trimmed, limit, "tail", cwd).split(/\r?\n/);
+	const tailLines = splitTerminalLines(preview(trimmed, limit, "tail", cwd));
 	return tailLines.map((line) => theme.fg("dim", line)).join("\n");
 }
 
@@ -159,8 +160,7 @@ export function registerRead(pi: ExtensionAPI, agent: any, cwd: string): void {
 			let text = `${stackPrefix(theme)}${call}${theme.fg("dim", " · ")}${summary}`;
 			if (mode === "preview" && expanded && content) {
 				const limit = Math.max(1, Math.floor(settingNumber("readPreviewLines", 80, context?.cwd)));
-				text += `\n${preview(content, limit, "head", context?.cwd)
-					.split(/\r?\n/)
+				text += `\n${splitTerminalLines(preview(content, limit, "head", context?.cwd))
 					.map((line) => `${treeConnector(theme, "│")}${theme.fg("dim", line)}`)
 					.join("\n")}`;
 				if (count > limit) text += `\n${treeConnector(theme, "│")}${theme.fg("muted", `… ${count - limit} more line(s)`)}`;
@@ -227,15 +227,13 @@ export function registerBash(pi: ExtensionAPI, agent: any, cwd: string): void {
 				text += `\n${diffPreview}`;
 			} else if (!suppressDiffOutput && mode === "preview" && output) {
 				const limit = Math.max(1, Math.floor(settingNumber(expanded ? "bashPreviewLines" : "bashCollapsedLines", expanded ? 80 : 10, effectiveCwd)));
-				text += `\n${preview(output, limit, "tail", effectiveCwd)
-					.split(/\r?\n/)
+				text += `\n${splitTerminalLines(preview(output, limit, "tail", effectiveCwd))
 					.map((line) => theme.fg("dim", line))
 					.join("\n")}`;
 				if (count > limit) text += `\n${theme.fg("muted", `… ${count - limit} older line(s)`)}`;
 			} else if (!suppressDiffOutput && mode === "opencode" && expanded && output) {
 				const limit = Math.max(1, Math.floor(settingNumber("bashPreviewLines", 80, effectiveCwd)));
-				text += `\n${preview(output, limit, "tail", effectiveCwd)
-					.split(/\r?\n/)
+				text += `\n${splitTerminalLines(preview(output, limit, "tail", effectiveCwd))
 					.map((line) => theme.fg("dim", line))
 					.join("\n")}`;
 				if (count > limit) text += `\n${theme.fg("muted", `… ${count - limit} older line(s)`)}`;
@@ -283,7 +281,7 @@ export function registerEdit(pi: ExtensionAPI, agent: any, cwd: string): void {
 			clearBlink(context);
 			const structured = result?.details?.vstackDiff as StructuredDiff | undefined;
 			if (context?.isError || result?.isError) {
-				const errorText = textContent(result).split(/\r?\n/)[0] || "edit failed";
+				const errorText = splitTerminalLines(textContent(result))[0] || "edit failed";
 				return makeTruncatedLines(`${stackPrefix(theme)}${call}${theme.fg("dim", " · ")}${theme.fg("error", errorText)}`);
 			}
 			const summary = structured ? diffSummary(structured, theme, context?.cwd ?? cwd) : theme.fg("success", "applied");
@@ -334,7 +332,7 @@ export function registerWrite(pi: ExtensionAPI, agent: any, cwd: string): void {
 			clearBlink(context);
 			const structured = result?.details?.vstackDiff as StructuredDiff | undefined;
 			if (context?.isError || result?.isError) {
-				const errorText = textContent(result).split(/\r?\n/)[0] || "write failed";
+				const errorText = splitTerminalLines(textContent(result))[0] || "write failed";
 				return makeTruncatedLines(`${stackPrefix(theme)}${call}${theme.fg("dim", " · ")}${theme.fg("error", errorText)}`);
 			}
 			const summary = structured ? diffSummary(structured, theme, context?.cwd ?? cwd) : theme.fg("success", "written");
@@ -383,8 +381,7 @@ export function registerReadOnly(pi: ExtensionAPI, agent: any, cwd: string, tool
 					text += `\n${renderPathListPreview(output, toolName, theme, expanded, context?.cwd)}`;
 				} else {
 					const limit = Math.max(1, Math.floor(settingNumber("searchPreviewLines", 80, context?.cwd)));
-					text += `\n${preview(output, limit, "head", context?.cwd)
-						.split(/\r?\n/)
+					text += `\n${splitTerminalLines(preview(output, limit, "head", context?.cwd))
 						.map((line) => `${treeConnector(theme, "│")}${theme.fg("dim", line)}`)
 						.join("\n")}`;
 					if (count > limit) text += `\n${treeConnector(theme, "│")}${theme.fg("muted", `… ${count - limit} more result line(s)`)}`;

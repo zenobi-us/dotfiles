@@ -19,6 +19,7 @@ import {
 	makeTruncatedLines,
 	pendingStatusPrefix,
 	renderPendingDetail,
+	splitTerminalLines,
 	textContent,
 	type TruncatedLines,
 } from "./text.js";
@@ -304,7 +305,7 @@ export function renderApplyPatchResult(result: any, { expanded, isPartial }: any
 	const target = applyPatchSummaryTarget(changes, theme);
 	const call = `${toolLabel(theme, applyPatchKindLabel(changes))}${target}`;
 	if (context?.isError) {
-		const first = textContent(result).split(/\r?\n/)[0] || "apply_patch failed";
+		const first = splitTerminalLines(textContent(result))[0] || "apply_patch failed";
 		return makeTruncatedLines(`${stackPrefix(theme)}${call}${theme.fg("dim", " · ")}${theme.fg("error", first)}`);
 	}
 	if (changes.length === 0) return makeTruncatedLines(`${stackPrefix(theme)}${call}${theme.fg("dim", " · ")}${theme.fg("success", "applied")}`);
@@ -405,11 +406,11 @@ export function renderUnknownToolResult(name: string, result: any, { expanded, i
 	const status = unknownToolStatus(name, raw, Boolean(context?.isError), theme);
 	let text = `${stackPrefix(theme)}${toolLabel(theme, `${humanizeToolName(name)} `)}${summarizeUnknownToolCall(name, args, theme)}${theme.fg("dim", " · ")}${status}`;
 	if (!expanded) return makeTruncatedLines(`${text}${theme.fg("dim", " · ctrl+o to expand")}`);
-	const json = JSON.stringify(args, null, 2).split(/\r?\n/);
+	const json = splitTerminalLines(JSON.stringify(args, null, 2));
 	text += `\n${treeConnector(theme, raw ? "├" : "└", context?.cwd)}${theme.fg("muted", "args")}`;
 	text += `\n${json.map((line) => `${treeStem(theme, raw ? "├" : "└", context?.cwd)}${theme.fg("dim", clipLine(line, context?.cwd))}`).join("\n")}`;
 	if (raw) {
-		const lines = raw.split(/\r?\n/);
+		const lines = splitTerminalLines(raw);
 		text += `\n${treeConnector(theme, "└", context?.cwd)}${theme.fg(context?.isError ? "error" : "muted", clipLine(lines[0] ?? raw, context?.cwd))}`;
 		for (const line of lines.slice(1, 8)) text += `\n${treeStem(theme, "└", context?.cwd)}${theme.fg("dim", clipLine(line, context?.cwd))}`;
 		if (lines.length > 8) text += `\n${treeStem(theme, "└", context?.cwd)}${theme.fg("muted", `… ${lines.length - 8} more line(s)`)}`;
@@ -429,7 +430,7 @@ export function renderGenericToolResult(name: string, result: any, { expanded, i
 	if (isPartial) return renderPendingDetail(`${humanizeToolName(name)}…`, theme);
 	clearBlink(context);
 	const raw = textContent(result).trim();
-	const lines = raw ? raw.split(/\r?\n/) : [];
+	const lines = raw ? splitTerminalLines(raw) : [];
 	const mode = isMcpToolName(name) ? mcpOutputMode(context?.cwd) : "preview";
 	if (mode === "hidden") return makeEmpty();
 	if (context?.isError) {

@@ -1,4 +1,5 @@
 import { getCapabilities, hyperlink, wrapTextWithAnsi } from "@earendil-works/pi-tui";
+import * as PiTui from "@earendil-works/pi-tui";
 import * as os from "node:os";
 import { basename, extname, resolve as resolvePath } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -14,7 +15,7 @@ export class TruncatedLines {
 	private readonly lines: string[];
 
 	constructor(text: string) {
-		this.lines = text ? text.split(/\r?\n/) : [];
+		this.lines = text ? splitTerminalLines(text) : [];
 	}
 
 	invalidate(): void {
@@ -57,11 +58,23 @@ export function componentHasVisibleLines(component: unknown): boolean {
 	}
 }
 
+export function normalizeTerminalText(text: string): string {
+	const normalizedNewlines = text.replace(/\r\n|\r/g, "\n");
+	const normalizeTerminalOutput = (PiTui as any).normalizeTerminalOutput;
+	return typeof normalizeTerminalOutput === "function"
+		? normalizeTerminalOutput(normalizedNewlines)
+		: normalizedNewlines.replace(/\t/g, "   ");
+}
+
+export function splitTerminalLines(text: string): string[] {
+	return normalizeTerminalText(text).split("\n");
+}
+
 export function lineCount(text: string): number {
 	if (!text) return 0;
-	const normalized = text.replace(/\r?\n$/, "");
+	const normalized = normalizeTerminalText(text).replace(/\n$/, "");
 	if (!normalized) return 0;
-	return normalized.split(/\r?\n/).length;
+	return normalized.split("\n").length;
 }
 
 export function textContent(result: any): string {
@@ -75,7 +88,7 @@ export function clipLine(line: string, cwd?: string): string {
 }
 
 export function preview(text: string, count: number, direction: "head" | "tail", cwd?: string): string {
-	const lines = text.split(/\r?\n/);
+	const lines = splitTerminalLines(text);
 	const selected = direction === "head" ? lines.slice(0, count) : lines.slice(-count);
 	return selected.map((line) => clipLine(line, cwd)).join("\n");
 }
@@ -88,7 +101,7 @@ export function commandExit(text: string): number | null {
 export function diffStats(diff: string): { additions: number; removals: number } {
 	let additions = 0;
 	let removals = 0;
-	for (const line of diff.split(/\r?\n/)) {
+	for (const line of splitTerminalLines(diff)) {
 		if (line.startsWith("+") && !line.startsWith("+++")) additions += 1;
 		if (line.startsWith("-") && !line.startsWith("---")) removals += 1;
 	}
@@ -248,7 +261,7 @@ export function nerdIcon(pathText: string, isDirectory = false, theme?: any, cwd
 }
 
 export function renderPathListPreview(output: string, toolName: "find" | "ls", theme: any, expanded: boolean, cwd?: string): string {
-	const rawItems = output.split(/\r?\n/).filter((line) => line.trim().length > 0);
+	const rawItems = splitTerminalLines(output).filter((line) => line.trim().length > 0);
 	if (rawItems.length === 0) return theme.fg("muted", toolName === "ls" ? "empty directory" : "no files found");
 	const limit = Math.max(1, Math.floor(settingNumber("searchPreviewLines", 80, cwd)));
 	const shown = rawItems.slice(0, expanded ? limit : Math.min(limit, 12));
@@ -298,7 +311,7 @@ export function bashCallText(args: any, theme: any, cwd?: string): string {
 	const max = Math.max(20, Math.floor(settingNumber("commandPreviewChars", 96, cwd)));
 	const rawCommand = typeof args?.command === "string" ? args.command : "";
 	const command = truncateText(rawCommand, max, cwd);
-	const commandLines = command.split(/\r?\n/);
+	const commandLines = splitTerminalLines(command);
 	const [firstLine = "", ...continuationLines] = commandLines;
 	const styledFirstLine = theme.fg("accent", firstLine);
 	const styledContinuation = continuationLines.map((line) => theme.fg("accent", line)).join("\n");
