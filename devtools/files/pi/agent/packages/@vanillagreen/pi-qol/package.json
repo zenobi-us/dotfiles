@@ -1,6 +1,6 @@
 {
   "name": "@vanillagreen/pi-qol",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "description": "Pi quality-of-life extension: compact statusline/π prompt, reliable multiline input, styled pasted-image chips, session naming/search/context import, scheduled prompts, handoff, permission prompts, notifications, custom compaction, and a collapsed-thinking timer.",
   "license": "MIT",
   "keywords": [
@@ -79,7 +79,7 @@
         {
           "key": "showSessionNameTitle",
           "label": "Show session name title",
-          "description": "Show the named session above the prompt. In tmux, update the current pane title to \"π <session>\" and enable a pane border title padded with non-breaking spaces so tmux does not trim it.",
+          "description": "Show the named session above the prompt. In tmux, update the current pane title to \"π <session>\" and enable a pane border title padded with non-breaking spaces so tmux does not trim it. The title refreshes as soon as Pi reports a session metadata change.",
           "type": "boolean",
           "default": true,
           "category": "Statusline",
@@ -452,7 +452,7 @@
           "label": "Visible session rows",
           "description": "Maximum number of sessions shown at once in the overlay before scrolling.",
           "type": "number",
-          "default": 10,
+          "default": 8,
           "category": "Session Search",
           "apply": "live"
         },

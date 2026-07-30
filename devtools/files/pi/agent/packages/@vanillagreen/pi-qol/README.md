@@ -76,7 +76,7 @@ Glyph style: each package exposes `glyphStyle` (`unicode` default, `ascii` for t
 | Show compact statusline | Render or disable the QOL statusline row. |
 | Replace built-in footer | Hide Pi's default footer while the QOL statusline is enabled. |
 | Use π prompt editor | Use the compact prompt editor. |
-| Show session name title | Show the session name above the prompt and in the tmux pane title. |
+| Show session name title | Show the session name above the prompt and in the tmux pane title; refreshes as soon as Pi reports a session metadata change. |
 | Sync session name to tmux window name | Rename the tmux window to `π <session>`. |
 | Input bottom padding | Blank lines below the prompt. |
 | Show dirty marker | Append `*` to the branch when the worktree is dirty. |
@@ -129,7 +129,7 @@ Advanced: input cap, title length, output tokens, timeout, custom prompt templat
 | Enable session search | Register `/search` and the overlay. |
 | Session search shortcut | Configurable; set to `none` to disable. |
 | Result limit | Max matching prompts returned. |
-| Visible session rows | Rows shown before scrolling. |
+| Visible session rows | Rows shown before scrolling; defaults to `8`. |
 | Preview snippets | Matching snippets shown on the preview screen. |
 | Session cache TTL | Seconds before the session list refreshes; `0` keeps it until you run `/search:refresh`. |
 
@@ -169,8 +169,8 @@ Off by default. When enabled, non-interactive matches are blocked.
 
 | Setting | What it does |
 | --- | --- |
-| Custom compaction summaries | Use QOL summaries instead of Pi's default. |
-| Compaction model | Summarizer model. Defaults to `current`, meaning Pi's active model; set a provider/model when you want a dedicated larger-context summarizer. |
+| Custom compaction summaries | Use QOL summaries instead of Pi's default, with Pi-standard transient provider retries when available. |
+| Compaction model | Summarizer model. Defaults to `current`, meaning Pi's active model; set a provider/model when you want a dedicated larger-context summarizer. Thinking suffixes through `:max` are accepted, and Pi-resolved header/environment authentication is forwarded. |
 | Compaction detail profile | `concise`, `balanced`, or `exhaustive`. |
 | Include previous summary | Pass the previous summary for iterative continuity. |
 | Fallback to Pi default compaction | Run Pi's default compaction if QOL's fails. |

@@ -21,6 +21,7 @@ type AutoRenameFallbackMode = "none" | "truncate" | "words";
 
 interface AutoRenameAuth {
 	apiKey?: string;
+	env?: Record<string, string>;
 	headers?: Record<string, string>;
 	label: string;
 	model: any;
@@ -263,7 +264,7 @@ async function cheapestAvailableAutoRenameModel(ctx: ExtensionContext): Promise<
 		try {
 			const auth = await ctx.modelRegistry.getApiKeyAndHeaders(model);
 			const headers = headerRecord(auth.headers);
-			if (auth.ok && (auth.apiKey || headers)) return { apiKey: auth.apiKey, headers, label: modelLabel(model), model, source: "cheapest" };
+			if (auth.ok) return { apiKey: auth.apiKey, env: auth.env, headers, label: modelLabel(model), model, source: "cheapest" };
 		} catch (error) {
 			if (isStaleCtxError(error)) return undefined;
 			// Try the next available model.
@@ -287,11 +288,7 @@ async function resolveAutoRenameModel(ctx: ExtensionContext, configured: string)
 				autoRenameDebug(ctx, `auth unavailable for ${modelLabel(model)}: ${auth.error}`, "warning");
 				return undefined;
 			}
-			if (!auth.apiKey && !headers) {
-				autoRenameDebug(ctx, `no auth for ${modelLabel(model)}; use /login or models.json`, "warning");
-				return undefined;
-			}
-			return { apiKey: auth.apiKey, headers, label: modelLabel(model), model, source: configured };
+			return { apiKey: auth.apiKey, env: auth.env, headers, label: modelLabel(model), model, source: configured };
 		} catch (error) {
 			if (isStaleCtxError(error)) return undefined;
 			autoRenameDebug(ctx, `auth failed for ${modelLabel(model)}: ${stringifyError(error)}`, "warning");
@@ -331,7 +328,7 @@ export async function generateAutoRenameName(query: string, ctx: ExtensionContex
 				const response = await complete(
 					resolved.model,
 					{ messages: [message], systemPrompt: AUTO_RENAME_SYSTEM_PROMPT },
-					{ apiKey: resolved.apiKey, headers: resolved.headers, maxTokens, signal: controller.signal },
+					{ apiKey: resolved.apiKey, env: resolved.env, headers: resolved.headers, maxTokens, signal: controller.signal },
 				);
 				if (response.stopReason === "error") {
 					autoRenameDebug(ctx, `${resolved.label} failed: ${response.errorMessage ?? "unknown error"}`, "warning");

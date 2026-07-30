@@ -1,6 +1,6 @@
 import type { AgentMessage } from "@earendil-works/pi-agent-core";
 import type { Message } from "@earendil-works/pi-ai";
-import { complete } from "./pi-ai-compat.js";
+import { complete, retryAssistantCallCompat } from "./pi-ai-compat.js";
 import { convertToLlm, serializeConversation, type ExtensionContext } from "@earendil-works/pi-coding-agent";
 import {
 	DEFAULT_BUDGET_GUARD_PERCENT,
@@ -116,7 +116,7 @@ async function summarizeWithRemote(endpoint: string, systemPrompt: string, promp
 
 export function resolveConfiguredModel(ctx: ExtensionContext, configured: string): any | undefined {
 	if (!configured || configured.trim().toLowerCase() === "current") return ctx.model;
-	const withoutThinking = configured.replace(/:(off|minimal|low|medium|high|xhigh)$/i, "");
+	const withoutThinking = configured.replace(/:(off|minimal|low|medium|high|xhigh|max)$/i, "");
 	const slash = withoutThinking.indexOf("/");
 	if (slash > 0) return ctx.modelRegistry.find(withoutThinking.slice(0, slash), withoutThinking.slice(slash + 1));
 	const providers = [ctx.model?.provider, "google", "openai", "anthropic", "mistral", "moonshot", "cloudflare-ai-gateway", "cloudflare-workers-ai"].filter((value): value is string => typeof value === "string");
@@ -164,23 +164,34 @@ async function singleShotSummary(ctx: ExtensionContext, request: SummarizeReques
 	if (!model) throw new Error(`Summary model not found: ${configuredModel}`);
 	const auth = await ctx.modelRegistry.getApiKeyAndHeaders(model);
 	if (!auth.ok) throw new Error(auth.error);
-	if (!auth.apiKey) throw new Error(`No API key for ${model.provider}`);
 
 	const message: Message = {
 		content: [{ text: promptText, type: "text" }],
 		role: "user",
 		timestamp: Date.now(),
 	};
-	const response = await complete(
-		model,
-		{ messages: [message], systemPrompt: QOL_COMPACTION_SYSTEM_PROMPT },
-		{ apiKey: auth.apiKey, headers: auth.headers, maxTokens: options.maxTokens, signal: options.signal },
+	const response = await retryAssistantCallCompat(
+		() => complete(
+			model,
+			{ messages: [message], systemPrompt: QOL_COMPACTION_SYSTEM_PROMPT },
+			{ apiKey: auth.apiKey, env: auth.env, headers: auth.headers, maxTokens: options.maxTokens, signal: options.signal },
+		),
+		options.signal,
+		{
+			onRetryScheduled: (attempt, maxAttempts, delayMs, errorMessage) => {
+				compactionNotify(ctx, `QOL compaction retry ${attempt}/${maxAttempts} in ${Math.ceil(delayMs / 1000)}s: ${errorMessage}`, "warning");
+			},
+		},
 	);
+	if (response.stopReason === "error" || response.stopReason === "aborted") {
+		throw new Error(response.errorMessage || `Summary request stopped: ${response.stopReason}`);
+	}
 	const summary = response.content
 		.filter((content): content is { type: "text"; text: string } => content.type === "text")
 		.map((content) => content.text)
 		.join("\n")
 		.trim();
+	if (!summary) throw new Error("Summary model returned no text");
 	return { model: modelLabel(model), summary, via: "model" };
 }
 

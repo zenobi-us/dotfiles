@@ -50,9 +50,7 @@ export async function runHandoff(args: string, ctx: ExtensionCommandContext): Pr
 
 			const doGenerate = async () => {
 				const auth = await ctx.modelRegistry.getApiKeyAndHeaders(ctx.model!);
-				if (!auth.ok || !auth.apiKey) {
-					throw new Error(auth.ok ? `No API key for ${ctx.model!.provider}` : auth.error);
-				}
+				if (!auth.ok) throw new Error(auth.error);
 
 				const userMessage: Message = {
 					role: "user",
@@ -68,7 +66,7 @@ export async function runHandoff(args: string, ctx: ExtensionCommandContext): Pr
 				const response = await complete(
 					ctx.model!,
 					{ systemPrompt: HANDOFF_SYSTEM_PROMPT, messages: [userMessage] },
-					{ apiKey: auth.apiKey, headers: auth.headers, signal: loader.signal },
+					{ apiKey: auth.apiKey, env: auth.env, headers: auth.headers, signal: loader.signal },
 				);
 
 				if (response.stopReason === "aborted") return null;
