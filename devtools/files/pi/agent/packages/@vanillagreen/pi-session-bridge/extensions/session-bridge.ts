@@ -45,6 +45,37 @@ const DEFAULT_HISTORY_LIMIT = 500;
 const DEFAULT_MAX_LINE_BYTES = 1024 * 1024;
 const MAX_SKILL_EXPANSION_CACHE_SESSIONS = 100;
 
+/** Pi events the bridge republishes (after sanitizing) to subscribed clients. */
+export const BRIDGE_STREAM_EVENT_NAMES = [
+	"agent_start",
+	"agent_end",
+	"turn_start",
+	"turn_end",
+	"message_start",
+	"message_update",
+	"message_end",
+	"tool_execution_start",
+	"tool_execution_update",
+	"tool_execution_end",
+	"model_select",
+	"thinking_level_select",
+	"session_info_changed",
+	"session_compact",
+	"session_tree",
+] as const;
+
+/**
+ * Subset of {@link BRIDGE_STREAM_EVENT_NAMES} that changes the metadata written
+ * into the discovery registry (agent state, model, thinking level, session name).
+ */
+export const REGISTRY_REFRESH_EVENT_NAMES = new Set<string>([
+	"agent_start",
+	"agent_end",
+	"model_select",
+	"thinking_level_select",
+	"session_info_changed",
+]);
+
 type JsonObject = Record<string, unknown>;
 type VstackConfig = Record<string, unknown>;
 type Delivery = "auto" | "steer" | "followUp" | "now";
@@ -714,25 +745,10 @@ export default function sessionBridge(pi: ExtensionAPI) {
 		return { action: "continue" as const };
 	});
 
-	for (const eventName of [
-		"agent_start",
-		"agent_end",
-		"turn_start",
-		"turn_end",
-		"message_start",
-		"message_update",
-		"message_end",
-		"tool_execution_start",
-		"tool_execution_update",
-		"tool_execution_end",
-		"model_select",
-		"thinking_level_select",
-		"session_compact",
-		"session_tree",
-	] as const) {
+	for (const eventName of BRIDGE_STREAM_EVENT_NAMES) {
 		pi.on(eventName as never, async (event: unknown, ctx: ExtensionContext) => {
 			currentCtx = ctx;
-			if (eventName === "agent_start" || eventName === "agent_end" || eventName === "model_select" || eventName === "thinking_level_select") {
+			if (REGISTRY_REFRESH_EVENT_NAMES.has(eventName)) {
 				writeRegistrySoon(eventName);
 			}
 			publish(eventName, event);
@@ -907,9 +923,11 @@ export function parseCommandArgs(argsString: string): string[] {
 
 export function substitutePromptArgs(content: string, args: string[]): string {
 	const allArgs = args.join(" ");
-	return content.replace(/\$\{(\d+):-([^}]*)\}|\$\{@:(\d+)(?::(\d+))?\}|\$(ARGUMENTS|@|\d+)/g, (_match, defaultNum: string | undefined, defaultValue: string | undefined, sliceStart: string | undefined, sliceLength: string | undefined, simple: string | undefined) => {
-		if (defaultNum) {
-			const value = args[Number.parseInt(defaultNum, 10) - 1];
+	return content.replace(/\$\{(\d+|ARGUMENTS|@):-([^}]*)\}|\$\{@:(\d+)(?::(\d+))?\}|\$(ARGUMENTS|@|\d+)/g, (_match, defaultTarget: string | undefined, defaultValue: string | undefined, sliceStart: string | undefined, sliceLength: string | undefined, simple: string | undefined) => {
+		if (defaultTarget) {
+			const value = defaultTarget === "@" || defaultTarget === "ARGUMENTS"
+				? allArgs
+				: args[Number.parseInt(defaultTarget, 10) - 1];
 			return value ? value : (defaultValue ?? "");
 		}
 		if (sliceStart) {

@@ -7,7 +7,7 @@ Control a running Pi session from outside the TUI. The interactive Pi terminal s
 ## Highlights
 
 - External clients send prompts, steering, follow-ups, and aborts through the bridge.
-- Subscribe to live Pi events (messages, tool calls, agent end) without scraping panes.
+- Subscribe to live Pi events (messages, tool calls, session metadata changes, agent end) without scraping panes.
 - Local extensions can publish activity updates to bridge clients without adding chat messages.
 - Discover active Pi sessions through registry files; target by pid, cwd, session, or name.
 - `pi-bridge` CLI handles common operations; contributor-facing protocol notes live in [`DEVELOPMENT.md`](./DEVELOPMENT.md).
@@ -85,7 +85,7 @@ Local Pi extensions can publish activity updates that `pi-bridge stream` exposes
 `pi-bridge send` uses a hybrid slash dispatch path:
 
 - Plain text sends a normal user message.
-- `/skill:<name> ...` and prompt templates expand before being sent, matching Pi's editor behavior.
+- `/skill:<name> ...` and prompt templates expand before being sent, matching Pi's editor behavior, including positional and all-argument defaults (`${N:-default}`, `${@:-default}`, `${ARGUMENTS:-default}`).
 - Repeated skill sends in the same Pi session use a short reminder instead of resending the entire skill body.
 - Extension/TUI commands, such as `/bridge:ping` and `/tasks:add`, are delivered to Pi's own editor so they behave like typed commands.
 - If command delivery fails, the bridge falls back to sending the text as a normal message.

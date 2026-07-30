@@ -146,13 +146,15 @@ describe("slash expansion", () => {
 		expect(parseCommandArgs("one 'two words' \"three words\" four")).toEqual(["one", "two words", "three words", "four"]);
 		expect(parseCommandArgs("one\ntwo 'three\nfour'\tfive")).toEqual(["one", "two", "three\nfour", "five"]);
 		const promptPath = p("template.md");
-		writeFileSync(promptPath, "---\ndescription: Demo\n---\n$1|$2|$@|$ARGUMENTS|${@:2}|${@:2:2}|${4:-fallback}|${2:-unused}|${5:-$1}");
+		writeFileSync(promptPath, "---\ndescription: Demo\n---\n$1|$2|$@|$ARGUMENTS|${@:2}|${@:2:2}|${4:-fallback}|${2:-unused}|${5:-$1}|${@:-all-fallback}|${ARGUMENTS:-arguments-fallback}");
 		const commands = [{ name: "template", source: "prompt", sourceInfo: { path: promptPath } }] as SlashCommandInfoLike[];
 		const result = expandLoadedSlashContent('/template alpha "beta gamma" delta', commands);
-		expect(result.text).toBe("alpha|beta gamma|alpha beta gamma delta|alpha beta gamma delta|beta gamma delta|beta gamma delta|fallback|beta gamma|$1");
+		expect(result.text).toBe("alpha|beta gamma|alpha beta gamma delta|alpha beta gamma delta|beta gamma delta|beta gamma delta|fallback|beta gamma|$1|alpha beta gamma delta|alpha beta gamma delta");
 		const multiline = expandLoadedSlashContent("/template\nalpha beta", commands);
 		expect(multiline.expanded).toBe(true);
-		expect(multiline.text).toBe("alpha|beta|alpha beta|alpha beta|beta|beta|fallback|beta|$1");
+		expect(multiline.text).toBe("alpha|beta|alpha beta|alpha beta|beta|beta|fallback|beta|$1|alpha beta|alpha beta");
+		const defaults = expandLoadedSlashContent("/template", commands);
+		expect(defaults.text).toBe("||||||fallback|unused|$1|all-fallback|arguments-fallback");
 	});
 
 	test("dedups repeated skill expansion within the same session", () => {

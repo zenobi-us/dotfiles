@@ -61,5 +61,5 @@ interface PiActivityBroker {
 - Plain text keeps the normal `sendUserMessage` path.
 - `/skill:<name> ...` expands client-side from the loaded skill's `sourceInfo.path`.
 - Repeated skill sends in the same Pi session skip the `SKILL.md` body until the skill content hash changes, the session shuts down, or the bridge restarts.
-- Prompt templates expand client-side with Pi-compatible `$1`, `$@`, `$ARGUMENTS`, `${@:N[:L]}`, and `${N:-default}` substitution.
+- Prompt templates expand client-side with Pi-compatible `$1`, `$@`, `$ARGUMENTS`, `${@:N[:L]}`, `${N:-default}`, `${@:-default}`, and `${ARGUMENTS:-default}` substitution.
 - Extension/TUI commands are pasted into Pi's own tmux pane with `send-keys -l` after resolving the pane by walking parent processes from `process.pid`.
