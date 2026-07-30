@@ -1,4 +1,5 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { homedir } from "node:os";
 import { basename, join } from "node:path";
 
@@ -39,17 +40,72 @@ export interface AgentDefaults {
 export interface ResolvedAgentDefinition extends AgentDefaults {
 	name: string;
 	description?: string;
-	source: "project" | "global";
+	source: "project" | "global" | "override";
 	path: string;
 }
+
+type AgentDefinitionSource = ResolvedAgentDefinition["source"];
 
 export function getAgentConfigDir(): string {
 	return process.env.PI_CODING_AGENT_DIR ?? join(homedir(), ".pi", "agent");
 }
 
+export function slugifyProjectKey(input: string): string {
+	return input
+		.trim()
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-+|-+$/g, "") || "default";
+}
+
+function gitOrigin(cwd: string): string | undefined {
+	try {
+		return execFileSync("git", ["-C", cwd, "config", "--get", "remote.origin.url"], {
+			encoding: "utf8",
+			stdio: ["ignore", "pipe", "ignore"],
+			timeout: 1000,
+		}).trim() || undefined;
+	} catch {
+		return undefined;
+	}
+}
+
+export function getProjectOverrideRoot(
+	baseCwd: string,
+	home = homedir(),
+	origin = gitOrigin(baseCwd),
+): string {
+	return join(home, ".pi", "overrides", slugifyProjectKey(origin ?? baseCwd));
+}
+
+export function getAgentDefinitionDirs(
+	baseCwd: string,
+	configDir = getAgentConfigDir(),
+	home = homedir(),
+	origin = gitOrigin(baseCwd),
+): Array<{ path: string; source: AgentDefinitionSource; cwdBase: string }> {
+	return [
+		{
+			path: join(configDir, "agents"),
+			source: "global",
+			cwdBase: configDir,
+		},
+		{
+			path: join(baseCwd, ".pi", "agents"),
+			source: "project",
+			cwdBase: baseCwd,
+		},
+		{
+			path: join(getProjectOverrideRoot(baseCwd, home, origin), "agents"),
+			source: "override",
+			cwdBase: baseCwd,
+		},
+	];
+}
+
 function parseAgentDefinition(
 	path: string,
-	source: "project" | "global",
+	source: AgentDefinitionSource,
 	cwdBase: string,
 ): ResolvedAgentDefinition | null {
 	const content = readFileSync(path, "utf8");
@@ -161,20 +217,8 @@ export type ResolveAgentCwd = (cwdHint: string | null, baseCwd: string) => strin
 export function getEffectiveAgentDefinitions(
 	baseCwd = process.cwd(),
 ): ResolvedAgentDefinition[] {
-	const configDir = getAgentConfigDir();
 	const agents = new Map<string, ResolvedAgentDefinition>();
-	const dirs = [
-		{
-			path: join(configDir, "agents"),
-			source: "global" as const,
-			cwdBase: configDir,
-		},
-		{
-			path: join(baseCwd, ".pi", "agents"),
-			source: "project" as const,
-			cwdBase: baseCwd,
-		},
-	];
+	const dirs = getAgentDefinitionDirs(baseCwd);
 	for (const { path: dir, source, cwdBase } of dirs) {
 		if (!existsSync(dir)) continue;
 		for (const file of readdirSync(dir)

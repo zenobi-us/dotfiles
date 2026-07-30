@@ -6,7 +6,7 @@ type SubagentSessionMode = "standalone" | "lineage-only" | "fork";
 
 export interface AgentListEntry {
 	name: string;
-	source: "project" | "global";
+	source: "project" | "global" | "override";
 	mode?: "interactive" | "background";
 	sessionMode: SubagentSessionMode;
 	async?: boolean;
