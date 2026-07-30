@@ -8,7 +8,8 @@ import { frontmatterToRaw, getTargetDir, normalizeSkillName, parseSkillDocument 
 import { isDeletableSkill } from "./registry.js";
 import { settingBoolean } from "./settings.js";
 import type { ParsedSkillDocument, SkillCreationAnswers, SkillEntry, SkillGenerationOptions } from "./types.js";
-import { completeSimple } from "./pi-ai-compat.js";
+import { completeSimple, retrySkillGenerationCompat } from "./pi-ai-compat.js";
+import { resolveSkillDraft } from "./creation-fallback.js";
 
 function buildFallbackSkill(answers: SkillCreationAnswers): string {
 	const frontmatter: Record<string, unknown> = { name: answers.name, description: answers.description };
@@ -32,18 +33,16 @@ function getEffectiveReasoningLevel(ctx: ExtensionContext, thinkingLevel?: Think
 	return thinkingLevel;
 }
 
-function isAbortError(error: unknown): boolean {
-	if (!error || typeof error !== "object") return false;
-	const name = "name" in error ? String((error as { name?: unknown }).name) : "";
-	const message = "message" in error ? String((error as { message?: unknown }).message) : "";
-	return name === "AbortError" || message.toLowerCase().includes("aborted");
+export interface SkillCreationDeps {
+	completeSimple?: typeof completeSimple;
+	retrySkillGeneration?: typeof retrySkillGenerationCompat;
 }
 
-async function generateSkillDraft(ctx: ExtensionContext, answers: SkillCreationAnswers, options?: SkillGenerationOptions): Promise<string> {
+export async function generateSkillDraft(ctx: ExtensionContext, answers: SkillCreationAnswers, options?: SkillGenerationOptions, deps: SkillCreationDeps = {}): Promise<string> {
 	if (options?.signal?.aborted) throw new Error("Generation aborted");
 	if (!settingBoolean("aiGenerationEnabled", true, ctx.cwd) || !ctx.model) return buildFallbackSkill(answers);
 	const auth = await ctx.modelRegistry.getApiKeyAndHeaders(ctx.model);
-	if (!auth.ok || !auth.apiKey) return buildFallbackSkill(answers);
+	if (!auth.ok) return buildFallbackSkill(answers);
 
 	const userMessage: UserMessage = {
 		role: "user",
@@ -66,20 +65,23 @@ async function generateSkillDraft(ctx: ExtensionContext, answers: SkillCreationA
 		timestamp: Date.now(),
 	};
 	const reasoning = getEffectiveReasoningLevel(ctx, options?.thinkingLevel);
-	const response = await completeSimple(
-		ctx.model,
-		{ systemPrompt: GENERATE_SKILL_SYSTEM_PROMPT, messages: [userMessage] },
-		{ apiKey: auth.apiKey, headers: auth.headers, ...(reasoning ? { reasoning } : {}), ...(options?.signal ? { signal: options.signal } : {}) },
+	const response = await (deps.retrySkillGeneration ?? retrySkillGenerationCompat)(
+		() => (deps.completeSimple ?? completeSimple)(
+			ctx.model,
+			{ systemPrompt: GENERATE_SKILL_SYSTEM_PROMPT, messages: [userMessage] },
+			{ apiKey: auth.apiKey, env: auth.env, headers: auth.headers, ...(reasoning ? { reasoning } : {}), ...(options?.signal ? { signal: options.signal } : {}) },
+		),
+		options?.signal,
+		(attempt, maxAttempts, delayMs, errorMessage) => {
+			ctx.ui.notify(`Skill generation retry ${attempt}/${maxAttempts} in ${Math.ceil(delayMs / 1000)}s: ${errorMessage}`, "warning");
+		},
 	);
 	if (options?.signal?.aborted) throw new Error("Generation aborted");
+	if (response.stopReason === "error" || response.stopReason === "aborted") throw new Error(response.errorMessage || `Generation stopped: ${response.stopReason}`);
 	const generated = response.content.filter((c): c is { type: "text"; text: string } => c.type === "text").map((c) => c.text).join("\n").trim();
-	if (!generated) return buildFallbackSkill(answers);
-	try {
-		parseSkillDocument(generated, answers.name);
-		return generated;
-	} catch {
-		return buildFallbackSkill(answers);
-	}
+	if (!generated) throw new Error("Skill generation returned no text");
+	parseSkillDocument(generated, answers.name);
+	return generated;
 }
 
 async function saveCreatedSkill(ctx: ExtensionContext, answers: SkillCreationAnswers, draft: string): Promise<SkillEntry | null> {
@@ -109,20 +111,19 @@ async function saveCreatedSkill(ctx: ExtensionContext, answers: SkillCreationAns
 	};
 }
 
-export async function createSkillFromAnswers(ctx: ExtensionContext, answers: SkillCreationAnswers, options?: SkillGenerationOptions): Promise<SkillEntry | null> {
+export async function createSkillFromAnswers(ctx: ExtensionContext, answers: SkillCreationAnswers, options?: SkillGenerationOptions, deps: SkillCreationDeps = {}): Promise<SkillEntry | null> {
 	const targetPath = join(getTargetDir(ctx, answers.location, answers.name), "SKILL.md");
 	if (existsSync(targetPath)) {
 		ctx.ui.notify(`Skill already exists: ${targetPath}`, "error");
 		return null;
 	}
-	let draft: string;
-	try {
-		draft = await generateSkillDraft(ctx, answers, options);
-	} catch (error) {
-		if (isAbortError(error) || options?.signal?.aborted) return null;
-		draft = buildFallbackSkill(answers);
-	}
-	if (options?.signal?.aborted) return null;
+	const draft = await resolveSkillDraft(
+		() => generateSkillDraft(ctx, answers, options, deps),
+		() => buildFallbackSkill(answers),
+		options?.signal,
+		(error) => ctx.ui.notify(`AI skill generation failed; using fallback template: ${error instanceof Error ? error.message : String(error)}`, "warning"),
+	);
+	if (draft === null) return null;
 	return await saveCreatedSkill(ctx, answers, draft);
 }
 

@@ -10,7 +10,7 @@ Dedicated skills manager. Browse, preview, create, edit, rename, delete, and tog
 - Search by name, description, source, scope, and path.
 - enter inserts the enabled skill as a native `/skill:<name>` command into the editor.
 - tab previews frontmatter and rendered content.
-- Create new project or global skills using the current model. Falls back to a deterministic template when the model is unavailable.
+- Create new project or global skills using the current model, including providers authenticated through headers or ambient environment settings. Falls back to a deterministic template when the model is unavailable.
 - Edit, rename, and delete your own top-level skills. Package skills stay preview/toggle/insert only.
 - Hides Pi's startup `[Skills]` block so skill discovery lives in the manager.
 
@@ -53,7 +53,7 @@ Project settings in `.pi/settings.json` apply only after Pi marks the workspace 
 | Setting | What it does |
 | --- | --- |
 | Hide startup skills block | Hide Pi's built-in startup `[Skills]` list. |
-| AI skill generation | Use the current model to draft new `SKILL.md` files. Falls back to a deterministic template. |
+| AI skill generation | Use the current model to draft new `SKILL.md` files with Pi-standard transient retries when available. Provider or validation failures show a warning before saving the deterministic fallback template. |
 | Default create location | `project` or `global`. |
 | Popup width | Number of columns or `82%`-style percentage. |
 | Popup max height | Number of rows or percentage. |
