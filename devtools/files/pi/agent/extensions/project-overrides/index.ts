@@ -1,18 +1,22 @@
-import { existsSync, mkdirSync, readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, ExtensionCommandContext } from "@earendil-works/pi-coding-agent";
 
 export interface ProjectOverrideInfo {
   key: string;
   root: string;
-  source: "git-origin" | "cwd";
+  source: "git-origin" | "cwd" | "context";
+  baseKey: string;
+  contextPath: string;
 }
+
+export type ProjectOverrideContext = Record<string, string[]>;
 
 // Keep this deliberately dumb: Q asked for the raw `git config --get remote.origin.url`
 // string slug, not canonical host/owner/repo normalization. SSH and HTTPS remotes will
-// produce different override roots.
+// produce different base keys unless `context.json` links them together.
 export function slugifyProjectKey(input: string): string {
   return input
     .trim()
@@ -33,15 +37,78 @@ function gitOrigin(cwd: string): string | undefined {
   }
 }
 
-export function getProjectOverrideInfo(cwd: string, home = homedir()): ProjectOverrideInfo {
+export function getOverridesBase(home = homedir()): string {
+  return path.join(home, ".pi", "overrides");
+}
+
+export function getContextPath(home = homedir()): string {
+  return path.join(getOverridesBase(home), "context.json");
+}
+
+export function readOverrideContext(home = homedir()): ProjectOverrideContext {
+  const file = getContextPath(home);
+  if (!existsSync(file)) return {};
+  try {
+    const parsed = JSON.parse(readFileSync(file, "utf8")) as unknown;
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
+
+    const context: ProjectOverrideContext = {};
+    for (const [key, value] of Object.entries(parsed)) {
+      if (Array.isArray(value)) context[key] = value.filter((entry): entry is string => typeof entry === "string");
+    }
+    return context;
+  } catch {
+    return {};
+  }
+}
+
+function writeOverrideContext(context: ProjectOverrideContext, home = homedir()): void {
+  mkdirSync(getOverridesBase(home), { recursive: true });
+  writeFileSync(getContextPath(home), `${JSON.stringify(context, null, 2)}\n`);
+}
+
+function normalizeDir(input: string): string {
+  return path.resolve(input);
+}
+
+function isSameOrChild(cwd: string, linkedDir: string): boolean {
+  const dir = normalizeDir(linkedDir);
+  return cwd === dir || cwd.startsWith(`${dir}${path.sep}`);
+}
+
+export function findContextKey(cwd: string, context: ProjectOverrideContext): string | undefined {
+  const normalizedCwd = normalizeDir(cwd);
+  let best: { key: string; length: number } | undefined;
+  for (const [key, dirs] of Object.entries(context)) {
+    for (const dir of dirs) {
+      if (!isSameOrChild(normalizedCwd, dir)) continue;
+      const length = normalizeDir(dir).length;
+      if (!best || length > best.length) best = { key, length };
+    }
+  }
+  return best?.key;
+}
+
+export function getBaseOverrideKey(cwd: string): { key: string; source: "git-origin" | "cwd" } {
   // Fallback to cwd slug when no origin exists. This is intentionally machine-local;
-  // same repo in another path gets another override root.
+  // same repo in another path gets another base key unless context.json links it.
   const origin = gitOrigin(cwd);
-  const key = slugifyProjectKey(origin ?? cwd);
+  return {
+    key: slugifyProjectKey(origin ?? cwd),
+    source: origin ? "git-origin" : "cwd",
+  };
+}
+
+export function getProjectOverrideInfo(cwd: string, home = homedir(), context = readOverrideContext(home)): ProjectOverrideInfo {
+  const base = getBaseOverrideKey(cwd);
+  const linkedKey = findContextKey(cwd, context);
+  const key = linkedKey ?? base.key;
   return {
     key,
-    root: path.join(home, ".pi", "overrides", key),
-    source: origin ? "git-origin" : "cwd",
+    root: path.join(getOverridesBase(home), key),
+    source: linkedKey ? "context" : base.source,
+    baseKey: base.key,
+    contextPath: getContextPath(home),
   };
 }
 
@@ -55,8 +122,10 @@ function statusLines(info: ProjectOverrideInfo): string[] {
   const has = (name: string) => existsSync(path.join(info.root, name)) ? "yes" : "no";
   return [
     `Project override: ${info.key}`,
+    `Base key: ${info.baseKey}`,
     `Source: ${info.source}`,
     `Root: ${info.root}`,
+    `Context: ${info.contextPath}`,
     `skills: ${has("skills")}`,
     `prompts: ${has("prompts")}`,
     `AGENTS.md: ${has("AGENTS.md")}`,
@@ -69,6 +138,31 @@ function ensureTree(root: string): void {
   mkdirSync(path.join(root, "skills"), { recursive: true });
   mkdirSync(path.join(root, "prompts"), { recursive: true });
   mkdirSync(path.join(root, "agents"), { recursive: true });
+}
+
+function existingOverrideKeys(home = homedir()): string[] {
+  const base = getOverridesBase(home);
+  if (!existsSync(base)) return [];
+  return readdirSync(base, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort((a, b) => a.localeCompare(b));
+}
+
+async function linkCurrentCwd(ctx: ExtensionCommandContext): Promise<void> {
+  const context = readOverrideContext();
+  const baseKey = getBaseOverrideKey(ctx.cwd).key;
+  const choices = [...new Set([baseKey, ...Object.keys(context), ...existingOverrideKeys()])].sort((a, b) => a.localeCompare(b));
+  const key = await ctx.ui.select("Link current cwd to override", choices.length ? choices : [baseKey]);
+  if (!key) return;
+
+  const cwd = normalizeDir(ctx.cwd);
+  const entries = context[key] ?? [];
+  if (!entries.some((entry) => normalizeDir(entry) === cwd)) entries.push(cwd);
+  context[key] = entries.sort((a, b) => a.localeCompare(b));
+  writeOverrideContext(context);
+  ensureTree(path.join(getOverridesBase(), key));
+  ctx.ui.notify(`Linked ${cwd}\n→ ${key}`, "info");
 }
 
 export default function projectOverrides(pi: ExtensionAPI): void {
@@ -92,12 +186,20 @@ export default function projectOverrides(pi: ExtensionAPI): void {
   });
 
   pi.registerCommand("overrides", {
-    description: "Show or create remote/cwd-keyed project override resources",
+    description: "Show, create, or link project override resources",
     handler: async (args, ctx) => {
+      const command = args.trim();
+      if (command === "link") {
+        await linkCurrentCwd(ctx);
+        return;
+      }
+
       const info = getProjectOverrideInfo(ctx.cwd);
-      if (args.trim() === "init") ensureTree(info.root);
+      if (command === "init") ensureTree(info.root);
       ctx.ui.notify(statusLines(info).join("\n"), "info");
     },
-    getArgumentCompletions: (prefix) => "init".startsWith(prefix) ? [{ value: "init", label: "init" }] : [],
+    getArgumentCompletions: (prefix) => ["init", "link"]
+      .filter((value) => value.startsWith(prefix))
+      .map((value) => ({ value, label: value })),
   });
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getProjectOverrideInfo, slugifyProjectKey } from "./index.ts";
+import { findContextKey, getProjectOverrideInfo, slugifyProjectKey } from "./index.ts";
 
 describe("project override paths", () => {
   it("slugifies remote urls into override keys", () => {
@@ -8,10 +8,24 @@ describe("project override paths", () => {
   });
 
   it("falls back to cwd when no git origin exists", () => {
-    const info = getProjectOverrideInfo("/work/no-remote", "/home/q");
+    const info = getProjectOverrideInfo("/work/no-remote", "/home/q", {});
 
     expect(info.source).toBe("cwd");
     expect(info.key).toBe("work-no-remote");
     expect(info.root).toBe("/home/q/.pi/overrides/work-no-remote");
+  });
+
+  it("uses longest context match over base slug", () => {
+    const context = {
+      shared: ["/work"],
+      specific: ["/work/app"],
+    };
+
+    expect(findContextKey("/work/app/packages/ui", context)).toBe("specific");
+    expect(getProjectOverrideInfo("/work/app/packages/ui", "/home/q", context)).toMatchObject({
+      key: "specific",
+      source: "context",
+      root: "/home/q/.pi/overrides/specific",
+    });
   });
 });

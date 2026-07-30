@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { homedir } from "node:os";
-import { basename, join } from "node:path";
+import { basename, join, resolve, sep } from "node:path";
 
 export interface AgentDefaults {
 	enabled?: boolean;
@@ -58,6 +58,8 @@ export function slugifyProjectKey(input: string): string {
 		.replace(/^-+|-+$/g, "") || "default";
 }
 
+export type ProjectOverrideContext = Record<string, string[]>;
+
 function gitOrigin(cwd: string): string | undefined {
 	try {
 		return execFileSync("git", ["-C", cwd, "config", "--get", "remote.origin.url"], {
@@ -70,12 +72,60 @@ function gitOrigin(cwd: string): string | undefined {
 	}
 }
 
+export function getOverridesBase(home = homedir()): string {
+	return join(home, ".pi", "overrides");
+}
+
+export function getContextPath(home = homedir()): string {
+	return join(getOverridesBase(home), "context.json");
+}
+
+export function readOverrideContext(home = homedir()): ProjectOverrideContext {
+	const file = getContextPath(home);
+	if (!existsSync(file)) return {};
+	try {
+		const parsed = JSON.parse(readFileSync(file, "utf8")) as unknown;
+		if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
+
+		const context: ProjectOverrideContext = {};
+		for (const [key, value] of Object.entries(parsed)) {
+			if (Array.isArray(value)) context[key] = value.filter((entry): entry is string => typeof entry === "string");
+		}
+		return context;
+	} catch {
+		return {};
+	}
+}
+
+function normalizeDir(input: string): string {
+	return resolve(input);
+}
+
+function isSameOrChild(cwd: string, linkedDir: string): boolean {
+	const dir = normalizeDir(linkedDir);
+	return cwd === dir || cwd.startsWith(`${dir}${sep}`);
+}
+
+export function findContextKey(cwd: string, context: ProjectOverrideContext): string | undefined {
+	const normalizedCwd = normalizeDir(cwd);
+	let best: { key: string; length: number } | undefined;
+	for (const [key, dirs] of Object.entries(context)) {
+		for (const dir of dirs) {
+			if (!isSameOrChild(normalizedCwd, dir)) continue;
+			const length = normalizeDir(dir).length;
+			if (!best || length > best.length) best = { key, length };
+		}
+	}
+	return best?.key;
+}
+
 export function getProjectOverrideRoot(
 	baseCwd: string,
 	home = homedir(),
 	origin = gitOrigin(baseCwd),
+	context = readOverrideContext(home),
 ): string {
-	return join(home, ".pi", "overrides", slugifyProjectKey(origin ?? baseCwd));
+	return join(getOverridesBase(home), findContextKey(baseCwd, context) ?? slugifyProjectKey(origin ?? baseCwd));
 }
 
 export function getAgentDefinitionDirs(
@@ -83,6 +133,7 @@ export function getAgentDefinitionDirs(
 	configDir = getAgentConfigDir(),
 	home = homedir(),
 	origin = gitOrigin(baseCwd),
+	context = readOverrideContext(home),
 ): Array<{ path: string; source: AgentDefinitionSource; cwdBase: string }> {
 	return [
 		{
@@ -96,7 +147,7 @@ export function getAgentDefinitionDirs(
 			cwdBase: baseCwd,
 		},
 		{
-			path: join(getProjectOverrideRoot(baseCwd, home, origin), "agents"),
+			path: join(getProjectOverrideRoot(baseCwd, home, origin, context), "agents"),
 			source: "override",
 			cwdBase: baseCwd,
 		},

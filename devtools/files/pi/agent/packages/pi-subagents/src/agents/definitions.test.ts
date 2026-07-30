@@ -9,6 +9,7 @@ describe("agent override discovery", () => {
       "/home/q/.pi/agent",
       "/home/q",
       "git@github.com:Zenobi-US/dotfiles.git",
+      {},
     );
 
     expect(dirs.map((dir) => dir.source)).toEqual(["global", "project", "override"]);
@@ -21,8 +22,14 @@ describe("agent override discovery", () => {
   });
 
   it("uses cwd slug when origin is absent", () => {
-    expect(getProjectOverrideRoot("/repo/worktree", "/home/q", undefined)).toBe(
+    expect(getProjectOverrideRoot("/repo/worktree", "/home/q", undefined, {})).toBe(
       "/home/q/.pi/overrides/repo-worktree",
     );
+  });
+
+  it("uses context links for override agents", () => {
+    expect(getProjectOverrideRoot("/mnt/something/else/project", "/home/q", undefined, {
+      shared: ["/mnt/something/else"],
+    })).toBe("/home/q/.pi/overrides/shared");
   });
 });

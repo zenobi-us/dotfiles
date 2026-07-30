@@ -2,9 +2,9 @@
 
 Loads private Pi resources from a per-project override root outside the repo.
 
-## Key
+## Default key
 
-The override key is:
+The default override key is:
 
 ```sh
 git config --get remote.origin.url
@@ -14,14 +14,45 @@ slugified by lowercasing and replacing non-alphanumeric runs with `-`.
 
 If no `remote.origin.url` exists, the extension falls back to a slug of the current working directory.
 
+## Context links
+
+`~/.pi/overrides/context.json` can map arbitrary directories to an override key:
+
+```json
+{
+  "shared-work": [
+    "/mnt/something/else"
+  ],
+  "other-work": []
+}
+```
+
+When the current cwd is the same as a listed directory, or inside it, that key wins over the default key. Longest matching directory wins.
+
+Run:
+
+```text
+/overrides link
+```
+
+to choose an override key from:
+
+- the current default key
+- existing `context.json` keys
+- existing `~/.pi/overrides/<key>/` directories
+
+The command adds the current cwd to `context.json`. If the selected key has no entry, it creates one.
+
 ## Layout
 
 ```text
-~/.pi/overrides/<key>/
-├── AGENTS.md
-├── agents/
-├── prompts/
-└── skills/
+~/.pi/overrides/
+├── context.json
+└── <key>/
+    ├── AGENTS.md
+    ├── agents/
+    ├── prompts/
+    └── skills/
 ```
 
 Run:
@@ -30,7 +61,7 @@ Run:
 /overrides init
 ```
 
-to create `agents/`, `prompts/`, and `skills/`.
+to create `agents/`, `prompts/`, and `skills/` for the active key.
 
 Run:
 
@@ -38,7 +69,7 @@ Run:
 /overrides
 ```
 
-to show the current key, root, and detected resources.
+to show the current key, base key, root, context file, and detected resources.
 
 ## Behavior
 
