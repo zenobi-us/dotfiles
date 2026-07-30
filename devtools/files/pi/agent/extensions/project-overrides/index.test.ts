@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getProjectOverrideInfo, slugifyProjectKey } from "./project-overrides.ts";
+import { getProjectOverrideInfo, slugifyProjectKey } from "./index.ts";
 
 describe("project override paths", () => {
   it("slugifies remote urls into override keys", () => {

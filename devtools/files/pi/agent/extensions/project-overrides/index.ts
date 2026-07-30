@@ -10,6 +10,9 @@ export interface ProjectOverrideInfo {
   source: "git-origin" | "cwd";
 }
 
+// Keep this deliberately dumb: Q asked for the raw `git config --get remote.origin.url`
+// string slug, not canonical host/owner/repo normalization. SSH and HTTPS remotes will
+// produce different override roots.
 export function slugifyProjectKey(input: string): string {
   return input
     .trim()
@@ -31,6 +34,8 @@ function gitOrigin(cwd: string): string | undefined {
 }
 
 export function getProjectOverrideInfo(cwd: string, home = homedir()): ProjectOverrideInfo {
+  // Fallback to cwd slug when no origin exists. This is intentionally machine-local;
+  // same repo in another path gets another override root.
   const origin = gitOrigin(cwd);
   const key = slugifyProjectKey(origin ?? cwd);
   return {
@@ -41,6 +46,8 @@ export function getProjectOverrideInfo(cwd: string, home = homedir()): ProjectOv
 }
 
 function existingDir(dir: string): string[] {
+  // `resources_discover` should not create directories during normal startup.
+  // Missing override dirs mean no override resources for this project.
   return existsSync(dir) ? [dir] : [];
 }
 
@@ -74,6 +81,8 @@ export default function projectOverrides(pi: ExtensionAPI): void {
   });
 
   pi.on("before_agent_start", (event, ctx) => {
+    // Pi does not let extensions add native AGENTS.md files after context loading.
+    // Append override instructions at turn start instead; startup header will not list it.
     const agentsPath = path.join(getProjectOverrideInfo(ctx.cwd).root, "AGENTS.md");
     if (!existsSync(agentsPath)) return;
     const content = readFileSync(agentsPath, "utf8");
