@@ -6,7 +6,7 @@
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
-  "enableSkillCommands": false,
+  "enableSkillCommands": true,
   "hideThinkingBlock": false,
   "lastChangelogVersion": "0.82.1",
   "packages": [
@@ -60,27 +60,29 @@
         "@vanillagreen/pi-caveman": {
           "mode": "off"
         },
+        "@vanillagreen/pi-codex-minimal-tools": {
+          "imageModel": "gpt-image-2"
+        },
         "@vanillagreen/pi-qol": {
-          "glyphStyle": "unicode",
-          "statusline.enabled": true,
           "compactPrompt": false,
-          "permissionGate.enabled": false,
+          "glyphStyle": "unicode",
           "newlineOnShiftEnter": true,
-          "sessionAutoRename.model": "openai-codex/gpt-5.4-mini"
+          "permissionGate.enabled": false,
+          "sessionAutoRename.model": "openai-codex/gpt-5.4-mini",
+          "statusline.enabled": true
         },
         "@vanillagreen/pi-tool-renderer": {
           "renderMutationTools": true
         },
         "@vanillagreen/pi-web-tools": {
+          "exaAdvancedEnabled": true,
           "exaDeepResearchEnabled": false,
-          "exaResearchModes": "{}",
-          "exaAdvancedEnabled": true
-        },
-        "@vanillagreen/pi-codex-minimal-tools": {
-          "imageModel": "gpt-image-2"
+          "exaResearchModes": "{}"
         }
       },
-      "disabledItems": []
+      "disabledItems": [
+        "package:@vanillagreen/pi-qol"
+      ]
     }
   }
 }
