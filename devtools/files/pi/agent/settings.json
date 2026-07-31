@@ -7,7 +7,7 @@
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
   "enableSkillCommands": true,
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "lastChangelogVersion": "0.83.0",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
