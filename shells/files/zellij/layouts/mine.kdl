@@ -6,7 +6,7 @@ layout {
             }
         }
         pane split_direction="Vertical" {
-            pane size=32 borderless=true {
+            pane  {
                 plugin location="agent-threads" {
                     template_file "~/.config/zellij/plugins/agent-threads/main.jinja"
                 }
@@ -25,7 +25,7 @@ layout {
             }
         }
         pane split_direction="Vertical" {
-            pane size=32 borderless=true {
+            pane {
                 plugin location="agent-threads" {
                     template_file "~/.config/zellij/plugins/agent-threads/main.jinja"
                 }
