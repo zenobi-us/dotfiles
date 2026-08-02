@@ -1,0 +1,40 @@
+---
+$schema: "file://../../../.moon/cache/schemas/project.json"
+
+language: typescript
+layer: library
+
+toolchains:
+  default: ["javascript", "bun"]
+
+tasks:
+  typecheck:
+    command: "bunx tsc --noEmit"
+    inputs:
+      - "package.json"
+      - "tsconfig.json"
+      - "src/**/*.ts"
+
+  build:
+    deps:
+      - "~:typecheck"
+    command: "noop"
+
+  lint:
+    deps:
+      - "~:typecheck"
+    command: "noop"
+
+  test:
+    command: "bun test"
+
+  install:
+    script: |
+      set -euo pipefail
+      dest="$HOME/.pi/agent/extensions/pi-agenthread"
+      rm -rf "$dest"
+      mkdir -p "$dest"
+      tar --exclude node_modules --exclude .moon -C "$PWD" -cf - . | tar -C "$dest" -xf -
+    options:
+      cache: false
+      runInCI: false

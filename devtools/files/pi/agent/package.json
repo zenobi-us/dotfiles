@@ -24,8 +24,8 @@
     "vitest": "^0.34.0"
   },
   "workspaces": [
-    "extensions/*",
-    "packages/*",
+    "extensions/@vanillagreen/*",
+    "extensions/@zenobius/*",
     "bundles/*",
     "!node_modules"
   ]

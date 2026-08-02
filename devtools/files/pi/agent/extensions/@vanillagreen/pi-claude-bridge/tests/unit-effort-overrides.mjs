@@ -1,0 +1,36 @@
+import { describe, it } from "node:test";
+import assert from "node:assert/strict";
+import { resolveConfiguredEffort } from "../src/index.ts";
+
+describe("Claude bridge effort overrides", () => {
+	it("keeps mapped Pi effort when no override is configured", () => {
+		assert.equal(resolveConfiguredEffort("claude-opus-4-8", "xhigh", {}), "xhigh");
+	});
+
+	it("uses a global forceEffort override", () => {
+		assert.equal(resolveConfiguredEffort("claude-opus-4-8", "xhigh", { forceEffort: "max" }), "max");
+	});
+
+	it("uses a model-specific override before global forceEffort", () => {
+		assert.equal(resolveConfiguredEffort("claude-opus-4-8", "xhigh", {
+			forceEffort: "high",
+			modelEffortOverrides: { "claude-opus-4-8": "max" },
+		}), "max");
+	});
+
+	it("accepts claude-bridge/<id> model override keys and wildcard keys", () => {
+		assert.equal(resolveConfiguredEffort("claude-opus-4-8", "xhigh", {
+			modelEffortOverrides: { "claude-bridge/claude-opus-4-8": "max" },
+		}), "max");
+		assert.equal(resolveConfiguredEffort("claude-haiku-4-5", "medium", {
+			modelEffortOverrides: { "*": "low" },
+		}), "low");
+	});
+
+	it("ignores invalid override values defensively", () => {
+		assert.equal(resolveConfiguredEffort("claude-opus-4-8", "xhigh", {
+			forceEffort: "ultracode",
+			modelEffortOverrides: { "claude-opus-4-8": "turbo" },
+		}), "xhigh");
+	});
+});
