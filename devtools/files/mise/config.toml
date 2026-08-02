@@ -107,6 +107,7 @@ lua = "latest"
 youtube-dl = "latest"
 "github:marktoda/zj-radar" = "latest"
 "github:mexirica/aptui" = "latest"
+"github:vercel-labs/agent-browser" = "latest"
 
 [env]
 PI_SUBAGENT_MUX = "zellij"
