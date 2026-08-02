@@ -1,8 +1,10 @@
 
-# Use emacs keybindings even if our EDITOR is set to vi
-# bindkey -e /
-# bindkey "^[[1;5C" forward-word
-# bindkey "^[[1;5D" backward-word
+# Use emacs keybindings even if EDITOR is vi.
+bindkey -e
+
+# Ghostty Alt+Left / Alt+Right.
+bindkey "^[[1;3D" backward-word
+bindkey "^[[1;3C" forward-word
 
 r-delregion() {
   if ((REGION_ACTIVE)) then
