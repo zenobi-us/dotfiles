@@ -1,48 +1,37 @@
-# Personal Agent Session Shares
+# Personal Agent Shares
 
-A simple way to share your personal agent sessions with others.
+This branch publishes private-share artifacts through GitHub Pages.
 
-## Why
+## Layout
 
-For those in a github org that can use private repos and github pages, this allows you to limit access to your personal agent sessions to only those in your org, and share them via github pages.
-
-## How
-
-1. `Use this template` to create a new repository for your personal agent session shares.
-2. In the repository settings, enable github pages and set the source to the `main` branch and the folder to `/`. 
-   This will allow you to share your personal agent sessions via github pages.
-   (take note of the github pages url, you will need it later to access your shared sessions)
-3. Then follow below instructions to add your personal agent session shares to the repository.
-
-
-### Pi 
-
-Install the extension
-
-```bash
-pi install github:GITHUB_REPO_YOU_JUST_CREATED
+```text
+index.html
+sessions.jsonl
+scripts/validate-sessions-index.mjs
+s/<hash>/index.html
+s/<hash>.zip
 ```
 
+Only directory shares create `s/<hash>.zip`.
 
-Then you can share your personal agent sessions using the `pi share` command. For example:
+## Share records
 
-```bash
-/share-session 
-/share-session --session-id 1234
-/share-session --session-id 1234 --name "My Personal Agent Session"
+Each share has one line in `sessions.jsonl`.
+
+```jsonl
+{"hash":"abc123def456","date":"2026-06-23T14-30-00Z","path":"s/abc123def456/","title":"Build session index","kind":"html"}
 ```
 
-### Others
+Directory shares also have `zipPath`.
 
-If you can your current session as a HTML file or an MD file, then: 
-
-
-```bash
-# Save your session as a HTML file or an MD
-mv ./session-export.md ~/Projects/my-agent-sessions/sessions/
-cd ~/Projects/my-agent-sessions
-git commit -am "Add new personal agent session share"
-git push
+```jsonl
+{"hash":"abc123def456","date":"2026-06-23T14-30-00Z","path":"s/abc123def456/","zipPath":"s/abc123def456.zip","title":"Build session index","kind":"directory"}
 ```
 
-Then your sessions will be available at the url above.
+## Validate
+
+Run this command from the branch root before you push:
+
+```bash
+node scripts/validate-sessions-index.mjs
+```

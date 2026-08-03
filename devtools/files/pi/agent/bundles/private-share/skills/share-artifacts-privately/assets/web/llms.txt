@@ -1,68 +1,80 @@
 # Agent instructions for this branch
 
-This branch publishes a static index of Pi session exports.
+This branch publishes private-share artifacts through GitHub Pages.
 
 ## Branch purpose
 
 - Branch: `gh-pages`
-- App entrypoint: `index.html`
-- Session exports live under: `sessions/`
-- Session index file: `sessions.jsonl`
+- App entry point: `index.html`
+- Share paths live under: `s/<hash>/`
+- Directory archives live at: `s/<hash>.zip`
+- Share index file: `sessions.jsonl`
 
 ## Required commit behavior
 
 Agents MUST keep commits small and direct.
 
-When adding a new session export, agents MUST:
+When adding a share, agents MUST:
 
-1. Add the exported HTML file under `sessions/`.
-2. Name the file `<isodate>-<snake-case-description>.html`.
-3. Add one JSONL record to `sessions.jsonl` with `date`, `path`, and `title` fields.
-4. Keep each `sessions.jsonl` line valid JSON.
-5. Use relative paths from repository root.
-6. Verify `index.html` can read the new entry.
-
-Filename requirements:
-
-- `<isodate>` SHOULD be `YYYY-MM-DD` unless multiple exports from the same day need ordering.
-- If ordering is needed, use full ISO timestamp without characters unsafe for filenames, e.g. `2026-06-23T14-30-00Z`.
-- `<snake-case-description>` MUST use lowercase letters, numbers, and underscores.
-- Example: `sessions/2026-06-23-build_session_index.html`
+1. Add the share entry point at `s/<hash>/index.html`.
+2. Put related share files under `s/<hash>/`.
+3. Add `s/<hash>.zip` only for a directory share.
+4. Add one JSONL record to `sessions.jsonl`.
+5. Keep each `sessions.jsonl` line valid JSON.
+6. Use relative paths from the repository root.
+7. Verify that `index.html` can read the new entry.
 
 Required JSONL format:
 
 ```jsonl
-{"date":"2026-06-23","path":"sessions/2026-06-23-build_session_index.html","title":"Build session index"}
+{"hash":"abc123def456","date":"2026-06-23T14-30-00Z","path":"s/abc123def456/","title":"Build session index","kind":"html"}
+```
+
+Directory shares MUST include `zipPath`:
+
+```jsonl
+{"hash":"abc123def456","date":"2026-06-23T14-30-00Z","path":"s/abc123def456/","zipPath":"s/abc123def456.zip","title":"Build session index","kind":"directory"}
 ```
 
 Rules:
 
-- `date` MUST match the filename date prefix.
-- `path` MUST point at the exported HTML file.
+- `hash` MUST contain 12 to 64 lowercase hexadecimal characters.
+- `path` MUST equal `s/<hash>/`.
+- `zipPath` MUST equal `s/<hash>.zip` when present.
+- `date` MUST use `YYYY-MM-DDTHH-MM-SSZ`.
 - `title` MUST be human-readable.
+- `kind` MUST be `html`, `file`, or `directory`.
 
 ## Commit message format
 
 Use terse commit messages:
 
-- `add session export: <short-name>`
-- `update session index`
-- `fix session index app`
+- `add share: <short-name>`
+- `update share index`
+- `fix share index app`
 
 ## Do not
 
-Agents MUST NOT use the GitHub API to discover session files at runtime.
-Agents MUST NOT rewrite existing session export files unless fixing a known broken export.
-Agents MUST NOT remove entries from `sessions.jsonl` unless deleting or renaming the matching file.
+Agents MUST NOT rewrite existing share files unless fixing a known broken share.
+Agents MUST NOT remove entries from `sessions.jsonl` unless deleting the matching share.
 Agents MUST NOT commit unrelated project files to this branch.
+Agents MUST NOT force-push.
 
 ## Validation
 
-Before committing, agents SHOULD check:
+Before committing, agents MUST run:
 
-- `sessions.jsonl` exists
-- Every non-empty, non-comment line in `sessions.jsonl` parses as JSON object with `date`, `path`, and `title`
-- Every listed `.html` path exists
-- Every listed session filename matches `<isodate>-<snake-case-description>.html` and starts with the `date` field
+```bash
+node scripts/validate-sessions-index.mjs
+```
 
-If validation cannot be completed, agents MUST say what was not verified in commit notes or handoff.
+The validator checks:
+
+- `sessions.jsonl` exists.
+- Every non-empty, non-comment line is valid JSON.
+- Every record has `hash`, `date`, `path`, `title`, and `kind`.
+- Every record points to `s/<hash>/index.html`.
+- Every directory record points to `s/<hash>.zip`.
+- No hash appears more than once.
+
+If validation cannot be completed, agents MUST say what was not verified.

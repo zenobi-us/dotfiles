@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pi Session Exports</title>
+  <title>Private Shares</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -86,7 +86,7 @@
       font: inherit;
     }
 
-    button {
+    button, .zip {
       padding: 10px 14px;
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -95,6 +95,7 @@
       font: inherit;
       cursor: pointer;
       white-space: nowrap;
+      text-decoration: none;
     }
 
     button:hover, a:hover { border-color: var(--accent); }
@@ -107,15 +108,22 @@
 
     li + li { border-top: 1px solid var(--border); }
 
-    a.session {
-      display: block;
+    .share-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
       padding: 14px 16px;
+    }
+
+    a.share {
       color: var(--text);
       text-decoration: none;
       border-left: 3px solid transparent;
+      padding-left: 10px;
     }
 
-    a.session:hover {
+    a.share:hover {
       color: var(--accent);
       border-left-color: var(--accent);
     }
@@ -142,17 +150,17 @@
   <main>
     <header>
       <div>
-        <h1>Pi Session Exports</h1>
+        <h1>Private Shares</h1>
         <div id="meta" class="meta">Loading ./sessions.jsonl</div>
       </div>
       <button id="reload" type="button">Reload</button>
     </header>
 
-    <section class="panel" aria-label="Session export index">
+    <section class="panel" aria-label="Share index">
       <div class="toolbar">
-        <input id="filter" type="search" placeholder="Filter sessions" autocomplete="off">
+        <input id="filter" type="search" placeholder="Filter shares" autocomplete="off">
       </div>
-      <div id="status" class="state">Loading sessions…</div>
+      <div id="status" class="state">Loading shares…</div>
       <ul id="sessions" hidden></ul>
     </section>
   </main>
@@ -172,28 +180,17 @@
 
     function normalizeSession(entry, lineNumber) {
       if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
-        throw new Error(`Line ${lineNumber}: expected object with date, path, title`);
+        throw new Error(`Line ${lineNumber}: expected object`);
       }
 
-      const { date, path, title } = entry;
-      if (!date || typeof date !== 'string') {
-        throw new Error(`Line ${lineNumber}: missing date`);
-      }
+      const { hash, date, path, title, kind, zipPath } = entry;
+      if (!hash || typeof hash !== 'string') throw new Error(`Line ${lineNumber}: missing hash`);
+      if (!date || typeof date !== 'string') throw new Error(`Line ${lineNumber}: missing date`);
+      if (!path || typeof path !== 'string') throw new Error(`Line ${lineNumber}: missing path`);
+      if (!title || typeof title !== 'string') throw new Error(`Line ${lineNumber}: missing title`);
+      if (!kind || typeof kind !== 'string') throw new Error(`Line ${lineNumber}: missing kind`);
 
-      if (!path || typeof path !== 'string') {
-        throw new Error(`Line ${lineNumber}: missing path`);
-      }
-
-      if (!title || typeof title !== 'string') {
-        throw new Error(`Line ${lineNumber}: missing title`);
-      }
-
-      return {
-        date,
-        path,
-        name: title,
-        title,
-      };
+      return { hash, date, path, title, kind, zipPath };
     }
 
     function parseJsonl(text) {
@@ -204,38 +201,43 @@
         .map(({ line, lineNumber }) => normalizeSession(JSON.parse(line), lineNumber));
     }
 
-    function sessionTitle(file) {
-      return (file.title || file.name)
-        .replace(/\.html$/i, '')
-        .replace(/[-_]+/g, ' ')
-        .trim() || file.name;
-    }
-
-    function sessionHref(file) {
-      return encodeURI(file.path).replace(/#/g, '%23');
+    function href(path) {
+      return encodeURI(path).replace(/#/g, '%23');
     }
 
     function render() {
       const needle = els.filter.value.trim().toLowerCase();
       const visible = sessions.filter((file) => {
-        return file.title.toLowerCase().includes(needle) || file.date.toLowerCase().includes(needle) || file.path.toLowerCase().includes(needle);
+        return [file.title, file.date, file.path, file.hash, file.kind].some((value) => value.toLowerCase().includes(needle));
       });
 
       els.list.replaceChildren(...visible.map((file) => {
         const item = document.createElement('li');
+        const row = document.createElement('div');
         const link = document.createElement('a');
         const name = document.createElement('span');
         const path = document.createElement('span');
 
-        link.className = 'session';
-        link.href = sessionHref(file);
+        row.className = 'share-row';
+        link.className = 'share';
+        link.href = href(file.path);
         name.className = 'file-name';
-        name.textContent = sessionTitle(file);
+        name.textContent = file.title;
         path.className = 'file-path';
-        path.textContent = `${file.date} · ${file.path}`;
+        path.textContent = `${file.date} · ${file.kind} · ${file.path} · ${file.hash}`;
 
         link.append(name, path);
-        item.append(link);
+        row.append(link);
+
+        if (file.zipPath) {
+          const zip = document.createElement('a');
+          zip.className = 'zip';
+          zip.href = href(file.zipPath);
+          zip.textContent = 'Zip';
+          row.append(zip);
+        }
+
+        item.append(row);
         return item;
       }));
 
@@ -243,46 +245,39 @@
       els.list.hidden = visible.length === 0;
 
       if (sessions.length === 0) {
-        els.status.textContent = 'No HTML session exports listed in ./sessions.jsonl.';
+        els.status.textContent = 'No shares listed in ./sessions.jsonl.';
       } else if (visible.length === 0) {
-        els.status.textContent = 'No sessions match filter.';
+        els.status.textContent = 'No shares match filter.';
       }
     }
 
-    async function loadSessions() {
+    async function load() {
       els.status.hidden = false;
       els.status.classList.remove('error');
-      els.status.textContent = 'Loading sessions…';
+      els.status.textContent = 'Loading shares…';
       els.list.hidden = true;
-      els.meta.textContent = `./${INDEX_FILE}`;
 
       try {
-        const response = await fetch(`${INDEX_FILE}?v=${Date.now()}`, {
-          headers: { 'Accept': 'application/x-ndjson, application/jsonl, text/plain, */*' },
-          cache: 'no-store',
-        });
+        const response = await fetch(`${INDEX_FILE}?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        sessions = parseJsonl(await response.text())
-          .filter((file) => /\.html$/i.test(file.path))
-          .sort((a, b) => b.date.localeCompare(a.date, undefined, { numeric: true, sensitivity: 'base' }) || b.path.localeCompare(a.path, undefined, { numeric: true, sensitivity: 'base' }));
-
+        sessions = parseJsonl(await response.text());
+        sessions.sort((a, b) => b.date.localeCompare(a.date));
+        els.meta.textContent = `${sessions.length} shares from ./${INDEX_FILE}`;
         render();
       } catch (error) {
         sessions = [];
-        els.list.hidden = true;
+        els.meta.textContent = `Could not load ./${INDEX_FILE}`;
         els.status.hidden = false;
         els.status.classList.add('error');
-        els.status.textContent = `Failed to load sessions.jsonl. ${error.message}`;
+        els.status.textContent = error.message;
+        els.list.hidden = true;
       }
     }
 
     els.filter.addEventListener('input', render);
-    els.reload.addEventListener('click', loadSessions);
-    loadSessions();
+    els.reload.addEventListener('click', load);
+    load();
   </script>
 </body>
 </html>
