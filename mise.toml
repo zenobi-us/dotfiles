@@ -141,7 +141,7 @@ fi
 [tasks.bootstrap]
 description = "Finish machine setup after declarative bootstrap phases"
 run = """
-set -euo pipefail
+set -eu
 git submodule update --init --recursive
 git config --global core.excludesFile "$HOME/.gitignore_global"
 if [ -d devtools/files/pi/agent ]; then
@@ -162,7 +162,7 @@ run_windows = [
 [tasks."bootstrap:linux"]
 description = "Linux-only bootstrap leftovers"
 run = """
-set -euo pipefail
+set -eu
 font-install -fromFile assets/files/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
@@ -173,7 +173,7 @@ fi
 [tasks."bootstrap:macos"]
 description = "macOS-only bootstrap leftovers"
 run = """
-set -euo pipefail
+set -eu
 font-install -fromFile assets/files/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 """
