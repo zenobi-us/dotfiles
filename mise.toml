@@ -122,6 +122,14 @@ piinstall="mise x node@lts -- pi install"
 [bootstrap.repos]
 "~/Projects/dotfiles" = { url = "git@github.com:zenobi-us/dotfiles.git", ref = "master" }
 
+[bootstrap.hooks]
+pre-dotfiles = """
+if [ -L "$HOME/.config/mise" ] && [ "$(readlink "$HOME/.config/mise")" = "$PWD/devtools/files/mise" ]; then
+  rm "$HOME/.config/mise"
+  mkdir -p "$HOME/.config/mise"
+fi
+"""
+
 [dotfiles]
 "~/.bunfig.toml" = { source = "devtools/files/bun/bunfig.toml", mode = "symlink" }
 "~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
@@ -173,6 +181,7 @@ chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || tr
 [tasks."bootstrap:windows"]
 description = "Windows setup that mise bootstrap cannot model natively yet"
 run_windows = [
+  "if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) { irm get.scoop.sh | iex }",
   "winget install -e --id Git.Git --accept-source-agreements --accept-package-agreements",
   "winget install -e --id Microsoft.PowerShell --accept-source-agreements --accept-package-agreements",
   "winget install -e --id jdx.mise --accept-source-agreements --accept-package-agreements",
@@ -181,6 +190,14 @@ run_windows = [
   "winget install -e --id GnuPG.Gpg4win --accept-source-agreements --accept-package-agreements",
   "winget install -e --id Starship.Starship --accept-source-agreements --accept-package-agreements",
   "winget install -e --id AutoHotkey.AutoHotkey --accept-source-agreements --accept-package-agreements",
-  "scoop install sudo fzf psfzf uni llvm 7zip tar",
-  "powershell -NoProfile -Command \"Get-Service ssh-agent | Set-Service -StartupType Automatic -PassThru | Start-Service\"",
+  "winget install -e --id jstarks.npiperelay --accept-source-agreements --accept-package-agreements",
+  "scoop bucket add younger-1_scoop-it https://github.com/younger-1/scoop-it",
+  "scoop install sudo fzf psfzf uni llvm 7zip tar git-credential-gopass",
+  "Install-Module -Name Emojis -Scope CurrentUser -Force -AcceptLicense",
+  "Get-AppxPackage Microsoft.XboxGamingOverlay | Remove-AppxPackage",
+  "Get-Service ssh-agent | Set-Service -StartupType Automatic -PassThru | Start-Service",
+  "if (-not (wsl -l -q | Select-String '^Ubuntu$')) { wsl --install -d Ubuntu --no-launch }",
+  "wsl --set-default-version 2",
+  "wsl -d Ubuntu --user root -- apt update -y",
+  "wsl -d Ubuntu --user root -- apt install -y wslu socat",
 ]

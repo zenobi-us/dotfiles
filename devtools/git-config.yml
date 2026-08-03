@@ -1,7 +1,0 @@
----
-
-actions:
-  - action: file.copy
-    from: git/.gitconfig
-    to: '{{user.home_dir}}/.gitconfig'
-    template: true

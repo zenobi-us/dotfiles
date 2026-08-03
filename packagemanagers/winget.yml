@@ -1,8 +1,0 @@
----
-where: os.name == "windows"
-
-actions:
-
-  - action: file.copy
-    from: winget.json
-    to: '{{ user.home_dir}}\AppData\Local\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json'

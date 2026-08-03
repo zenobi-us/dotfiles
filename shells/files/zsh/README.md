@@ -165,36 +165,34 @@ tolowercase "HELLO"   # hello
 
 ## The `dotfiles` Command
 
-The `dotfiles__aliases.zsh` module provides a smart wrapper around [comtrya](https://github.com/comtrya/comtrya).
+The `dotfiles__aliases.zsh` module wraps `mise bootstrap`.
 
 ### Usage
 
 ```zsh
-# Interactive fzf selector (TAB=multi-select, ENTER=confirm, ESC=apply all)
+# Apply full bootstrap
 dotfiles
 
-# Apply specific manifest(s)
-dotfiles shells
-dotfiles shells,git,vim
+# Apply one bootstrap phase
+dotfiles --only dotfiles
+dotfiles --only tools
 
-# Tab completion works!
-dotfiles sh<TAB>   # → shells, shells.zsh, etc.
+# Preview changes
+dotfiles --dry-run
 ```
 
 ### How It Works
 
 1. **Root Detection** (`_dotfiles_repo_root`)
    - Uses `$DOTFILE_REPO_ROOT` if set
-   - Falls back to `git rev-parse --show-toplevel` from `$DOTFILE_ROOT`
+   - Falls back to `git rev-parse --show-toplevel`
 
-2. **Manifest Discovery** (`_dotfiles_manifest_list`)
-   - Finds all `.yml`/`.yaml` files in repo
-   - Excludes `.git/`, `node_modules/`, `files/`, `ai/`, `.old_*/`
-   - Transforms paths to dot-notation: `shells/zsh.yml` → `shells.zsh`
+2. **Apply** (`dotfiles`)
+   - Runs `mise -C "$repo_root" bootstrap --yes "$@"`
 
 3. **Completion** (`_dotfiles_completion`)
+   - Completes known `mise bootstrap` part names
    - Supports multiple completion systems (compdef, _comps, zicompdef, zpcompdef)
-   - Handles comma-separated multi-manifest input
 
 ---
 

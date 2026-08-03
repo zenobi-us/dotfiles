@@ -1,8 +1,0 @@
----
-where: os.name == "linux"
-
-actions:
-
-  - action: directory.copy
-    from: applications
-    to: '{{user.home_dir}}/.local/share/'
