@@ -1,26 +1,58 @@
 ---
-description: Checkout PR or Branch in worktree and review by inferring related ticket and switch or create worktree and handoff to new coding agent session.
+description: Review completed work in an existing worktree, then route to finish or fix.
 ---
 
-PullRequestOrBranch: $ARGUMENTS
+Scope: $ARGUMENTS
 
-Download and work on issue ticket in a worktree. This prompt will fetch the ticket and switch or create a worktree for the ticket, then handoff to a new coding agent session.
+Review completed work for `Scope` in the current or inferred worktree. This prompt is for a separate review chat after `worktree-start` finished the implementation.
 
-The issue ticket might be a Jira ticket, GitHub issue, or any other issue tracking system. The prompt will attempt to fetch the ticket details and create a worktree for it.
+# Exit early
+
+Exit if you cannot identify all of these items:
+
+1. The worktree.
+2. The branch or pull request.
+3. The issue, ticket, or requested scope.
+
+Do not change code during review.
 
 # Process
 
-1. Determine the issue tracker, e.g., Jira, GitHub, etc.
-2. use appropriate skill to fetch the ticket details.
-3. use worktrunk to create and switch to a worktree for the ticket. This should create a zellij tab for you.
-4. create a handoff prompt in /tmp/{ticket-id}-handoff.md with the ticket details and instructions for the new coding agent session.
-5. Spawn pi with the handoff prompt in the new worktree and zellij tab.
+1. Infer the worktree and ticket from chat context, branch name, pull request, or `Scope`.
+2. Use skill `code-review`.
+3. Review the work against:
+   - the ticket requirements,
+   - repository standards,
+   - validation output,
+   - the actual diff against the base branch.
+4. Write a review verdict:
+   - `SUCCESS`: no blocking findings remain.
+   - `FAILURE`: blocking findings remain.
+5. Include the exact scope that the verdict covers.
+6. If the verdict is `SUCCESS`, ask the user whether to run `worktree-finish`.
+7. If the verdict is `FAILURE`, ask the user whether to fix the findings in a subagent.
+8. If the user chooses a fix, spawn a subagent in the same worktree with only:
+   - the blocking findings,
+   - the exact files,
+   - the expected validation command.
 
-# Issue Trackers
+# Output
 
-- Jira Issues: use skill `reading-and-writing-jira-tickets`
-- Github: use the gh cli to fetch the issue details
+Use this format:
 
-# Worktrees
+```md
+## Verdict
+SUCCESS or FAILURE
 
-- use skill `worktrunk`
+## Scope
+{issue, branch, pull request, or user request reviewed}
+
+## Findings
+- {blocking finding, or "None"}
+
+## Validation
+- {command}: {result}
+
+## Next step
+{Ask for worktree-finish or subagent fix.}
+```
