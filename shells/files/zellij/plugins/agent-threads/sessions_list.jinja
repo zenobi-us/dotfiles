@@ -3,9 +3,9 @@
   {%- set session_label=session.name | bold -%}
   {{- tree.prefix_line(index, total) | dim }}
   {%- if session.current -%}
-    {{- session_label -}} {{ session.id | dim }}
+    {{ session_label }} {{ session.running_agents }}
   {%- else -%}
-    {{- session_label | dim -}} {{ session.id | dim }}
+    {{ session_label | dim }} {{ session.running_agents | dim }}
   {%- endif -%}
 {%- endmacro %}
 {%- if sessions | length > 0 -%}
