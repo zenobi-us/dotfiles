@@ -5,6 +5,7 @@ import { isBareCd, runPreCommitCheck } from "./bash-guards.js";
 import { invalidateClippyCache } from "./cargo.js";
 import { getBool, getNumber, readConfig, recordProjectTrust } from "./config.js";
 import { clippyIssuesForFile, workspaceClippyErrors } from "./lint-hooks.js";
+import { installShellHooks } from "./shell-hooks.js";
 
 const INSTALL_SYMBOL = Symbol.for("vstack.pi-hooks.installed");
 
@@ -22,6 +23,8 @@ export default function piHooks(pi: ExtensionAPI): void {
 	guard[INSTALL_SYMBOL] = true;
 
 	let turn = freshTurnState();
+
+	installShellHooks(pi);
 
 	pi.on("turn_start", () => {
 		turn = freshTurnState();

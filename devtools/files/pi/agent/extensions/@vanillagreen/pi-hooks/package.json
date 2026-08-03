@@ -1,7 +1,7 @@
 {
   "name": "@vanillagreen/pi-hooks",
   "version": "0.1.6",
-  "description": "First-class Pi port of the vstack safety hooks: bare-cd blocking, pre-commit fmt+clippy, post-edit clippy, end-of-turn lint. Per-hook toggles via pi-extension-manager.",
+  "description": "First-class Pi port of the vstack safety hooks plus shell scripts for Pi lifecycle events. Per-hook toggles via pi-extension-manager.",
   "license": "MIT",
   "keywords": [
     "pi-package",
@@ -66,6 +66,24 @@
           "type": "boolean",
           "default": true,
           "category": "Rust",
+          "apply": "live"
+        },
+        {
+          "key": "shellHooks",
+          "label": "Shell event hooks",
+          "description": "Run shell scripts from `~/.pi/agent/hooks/<event>/` and trusted project `.pi/hooks/<event>/` for every Pi event. Hook scripts receive event JSON on stdin and PI_HOOK_* environment variables.",
+          "type": "boolean",
+          "default": true,
+          "category": "Shell",
+          "apply": "live"
+        },
+        {
+          "key": "shellHookTimeoutMs",
+          "label": "Shell hook timeout",
+          "description": "Maximum milliseconds for each shell event hook script before pi-hooks terminates it.",
+          "type": "number",
+          "default": 30000,
+          "category": "Shell",
           "apply": "live"
         },
         {

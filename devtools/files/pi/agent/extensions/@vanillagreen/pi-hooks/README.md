@@ -2,7 +2,7 @@
 
 ![pi-hooks settings panel](https://raw.githubusercontent.com/vanillagreencom/vstack/main/pi-extensions/pi-hooks/assets/hooks-settings.png)
 
-First-class Pi port of the vstack safety hooks. Each hook is independently toggleable.
+First-class Pi port of the vstack safety hooks. It also runs shell scripts for Pi events. Each hook is independently toggleable.
 
 ## Hooks
 
@@ -12,8 +12,27 @@ First-class Pi port of the vstack safety hooks. Each hook is independently toggl
 | Pre-commit fmt + clippy | `tool_call` (bash) | When `git commit` targets the active project repo, runs `cargo fmt --check` then `cargo clippy` in async child processes so Pi stays responsive. Blocks on failure. Skips commits targeting other repos and only fires when `.rs` files are staged or modified; if the bash command contains `git add`, untracked `.rs` files are treated conservatively as possibly staged by that command. |
 | Post-edit clippy | `tool_result` (edit/write of `.rs`) | Runs workspace clippy after `.rs` edits and appends issues mentioning the edited file. Advisory only — doesn't undo the edit. |
 | End-of-turn clippy | `turn_end` | If `.rs` files were touched during the turn, runs workspace clippy and surfaces errors via UI notification. Advisory only. |
+| Shell event hooks | all Pi events | Runs scripts from `~/.pi/agent/hooks/<event>/` and trusted project `.pi/hooks/<event>/`. Scripts receive event JSON on stdin. |
 
 These implement the same safety goals as the bash hooks in `vstack/hooks/`, with Pi-specific mechanics where the in-process event loop needs different handling: the pre-commit hook runs cargo checks via async child processes and first proves the commit targets the active project repo, so unrelated fixture commits do not freeze the session.
+
+## Shell event hooks
+
+Put scripts in one of these directories:
+
+```text
+~/.pi/agent/hooks/<eventname>/<scriptname>
+.pi/hooks/<eventname>/<scriptname>
+```
+
+Global scripts run first. Project scripts run only after Pi trusts the project. Scripts run with `bash`, the Pi working directory, event JSON on stdin, and these environment variables:
+
+- `PI_HOOK_EVENT`
+- `PI_HOOK_SCOPE`
+- `PI_HOOK_SCRIPT`
+- `PI_HOOK_CWD`
+
+If a `tool_call` script exits non-zero, Pi blocks the tool call. If a `session_before_*` script exits non-zero, Pi cancels that session action. Other failures show a warning.
 
 ## Install
 
@@ -43,3 +62,5 @@ Project settings in `.pi/settings.json` apply only after Pi marks the workspace 
 | Post-edit clippy | Toggle the post-edit advisory hook. |
 | End-of-turn clippy | Toggle the end-of-turn advisory hook. |
 | Clippy timeout | Max ms per clippy invocation. Advisory post-edit/end-of-turn clippy timeouts are abandoned so work can continue; blocking pre-commit fmt/clippy timeouts block the commit with a timeout reason. Pre-commit checks run asynchronously, so long checks may delay the commit gate without freezing the Pi TUI or bridge. |
+| Shell event hooks | Enables scripts under `~/.pi/agent/hooks/<event>/` and trusted project `.pi/hooks/<event>/`. |
+| Shell hook timeout | Max ms per shell event script. |

@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 
 import piHooks from "../extensions/hooks.ts";
+import { runEventScripts } from "../extensions/shell-hooks.ts";
 
 const CONFIG_ID = "@vanillagreen/pi-hooks";
 
@@ -122,6 +123,44 @@ async function withFakeCargo<T>(run: (paths: { bin: string; log: string }) => Pr
 		rmSync(root, { recursive: true, force: true });
 	}
 }
+
+describe("pi-hooks shell event hooks", () => {
+	test("runs trusted project scripts with event JSON on stdin", async () => {
+		const project = mkdtempSync(join(tmpdir(), "pi-hooks-shell-"));
+		const hookDir = join(project, ".pi", "hooks", "tool_call");
+		mkdirSync(hookDir, { recursive: true });
+		writePiConfig(project);
+		const out = join(project, "hook.json");
+		const envOut = join(project, "hook.env");
+		const script = join(hookDir, "010-log.sh");
+		writeFileSync(script, `#!/usr/bin/env bash
+set -euo pipefail
+cat > "$HOOK_OUT"
+printf '%s|%s|%s\n' "$PI_HOOK_EVENT" "$PI_HOOK_SCOPE" "$PI_HOOK_CWD" > "$HOOK_ENV_OUT"
+`);
+		const oldHookOut = process.env.HOOK_OUT;
+		const oldHookEnvOut = process.env.HOOK_ENV_OUT;
+		process.env.HOOK_OUT = out;
+		process.env.HOOK_ENV_OUT = envOut;
+		try {
+			const failure = await runEventScripts(
+				"tool_call",
+				{ type: "tool_call", toolName: "read", input: { path: "README.md" } },
+				{ cwd: project, hasUI: false, isProjectTrusted: () => true },
+				{ globalHookRoot: join(project, "no-global"), timeoutMs: 1000 },
+			);
+			expect(failure).toBeUndefined();
+			expect(JSON.parse(readFileSync(out, "utf8"))).toMatchObject({ eventName: "tool_call", event: { toolName: "read" } });
+			expect(readFileSync(envOut, "utf8").trim()).toBe(`tool_call|project|${project}`);
+		} finally {
+			if (oldHookOut === undefined) delete process.env.HOOK_OUT;
+			else process.env.HOOK_OUT = oldHookOut;
+			if (oldHookEnvOut === undefined) delete process.env.HOOK_ENV_OUT;
+			else process.env.HOOK_ENV_OUT = oldHookEnvOut;
+			rmSync(project, { recursive: true, force: true });
+		}
+	});
+});
 
 describe("pi-hooks pre-commit tool_call", () => {
 	test("blocks when async cargo fmt fails", async () => {
