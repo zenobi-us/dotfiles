@@ -38,3 +38,27 @@ tasks:
     options:
       cache: false
       runInCI: false
+
+  publish:
+    type: run
+    deps:
+      - "~:typecheck"
+    inputs:
+      - "package.json"
+      - "src/**/*.ts"
+    outputs:
+      - "dist/pi-agenthread.tar.gz"
+    options:
+      cache: false
+      runInCI: true
+    script: |
+      set -euo pipefail
+
+      asset_name="pi-agenthread.tar.gz"
+      repo="${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required}"
+      tag="${PUBLISH_RELEASE_TAG:?PUBLISH_RELEASE_TAG is required}"
+
+      mkdir -p dist
+      tar --exclude node_modules --exclude .moon --exclude dist -czf "dist/${asset_name}" -C "$PWD" .
+      gh release view "$tag" --repo "$repo" >/dev/null
+      gh release upload "$tag" "dist/${asset_name}#${asset_name}" --repo "$repo" --clobber
