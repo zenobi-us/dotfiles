@@ -1,0 +1,186 @@
+[settings]
+experimental = true
+dotfiles.default_mode = "symlink"
+
+[tools]
+"cargo:p1rallels/codemapper" = "latest"
+"cargo:tgt" = "latest"
+"github:Feel-ix-343/markdown-oxide" = "latest"
+"github:aristocratos/btop"= "latest"
+"github:asciinema/asciinema" = "latest"
+"github:cantino/mcfly" = "latest"
+"github:d-kuro/gwq" = "latest"
+"github:hmarr/codeowners" = "latest"
+"github:home-assistant/cli" = "latest"
+"github:mfontanini/presenterm" = "latest"
+"github:moonrepo/moon" = "latest"
+"github:moonrepo/proto" = "latest"
+"github:scottmckendry/pokemon-go-colorscripts" = "latest"
+"github:terrastruct/d2" = "latest"
+"github:max-sixty/worktrunk" = "0.52.0"
+"go:github.com/Crosse/font-install" = "latest"
+"npm:@earendil-works/gondolin" = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:agent-browser" = "latest"
+"npm:chrome-devtools-mcp" = "latest"
+"npm:firefox-devtools-mcp" = "latest"
+"npm:gh-actions-language-server" = "latest"
+"npm:gtop" = "latest"
+"npm:mcporter" = "latest"
+"npm:release-please" = "latest"
+"npm:semver" = "latest"
+"npm:surf-cli" = "latest"
+"npm:typescript-language-server" = "latest"
+"pipx:huggingface_hub" = "latest"
+"ubi:mfontanini/presenterm" = "latest"
+"ubi:trufflesecurity/trufflehog" = "latest"
+act= "latest"
+action-validator = "latest"
+actionlint= "latest"
+age= "latest"
+ansible = { version = "latest", pipx_args = "--include-deps", uvx = "false" }
+ast-grep = "latest"
+awscli= { version = "latest", symlink_bins = "true" }
+bat= "latest"
+bats = "latest"
+bottom = "latest"
+btop = "latest"
+bun = "latest"
+cloudflared = "latest"
+cmake= "latest"
+deno= "latest"
+dotnet= "latest"
+fzf= "latest"
+github-cli= "latest"
+glow = "latest"
+golang="1.18.3"
+grype = "latest"
+hk = "latest"
+java= "latest"
+jq= "latest"
+lazygit= "latest"
+mc = "latest"
+neovim = "0.11.7"
+node = "latest"
+npm = "latest"
+pipx = "latest"
+pitchfork = "latest"
+pkl = "latest"
+pnpm = "latest"
+python = "latest"
+ripgrep= "latest"
+rust= "latest"
+semver = "latest"
+shellcheck= "latest"
+shfmt= "latest"
+starship = "latest"
+terraform= "latest"
+tombi = "latest"
+trufflehog = "latest"
+usage = "latest"
+uv = "latest"
+watchexec = "latest"
+yarn= "latest"
+yq = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+zellij = "0.44.1"
+zig= "latest"
+lazydocker = "0.25.2"
+pdm = "latest"
+"npm:portless" = "latest"
+"pipx:basic-memory" = "latest"
+"github:ggml-org/llama.cpp" = "b9555"
+traefik = "latest"
+"npm:neofetch" = "latest"
+"npm:kandev" = "latest"
+lua = "latest"
+"github:finefindus/artem" = "latest"
+"npm:takumi-js" = "latest"
+"npm:serve" = "latest"
+"npm:poster-ai" = "0.5.0"
+"npm:@tobilu/qmd" = "latest"
+"github:can1357/oh-my-pi" = "latest"
+"github:sockheadrps/llmctl" = "0.2.2"
+"github:AlexsJones/llmfit" = "latest"
+"github:AlexsJones/llmserve" = "latest"
+"github:kurama/dealve-tui" = "latest"
+youtube-dl = "latest"
+"github:marktoda/zj-radar" = "latest"
+"github:mexirica/aptui" = "latest"
+"github:vercel-labs/agent-browser" = "latest"
+
+[env]
+PI_SUBAGENT_MUX = "zellij"
+PI_SUBAGENT_ZELLIJ_PLACEMENT = "right-stack"
+
+[shell_alias]
+pi="mise x node@lts -- pi --no-skills"
+piupdate="mise x node@lts -- pi update"
+piinstall="mise x node@lts -- pi install"
+
+[bootstrap.repos]
+"~/Projects/dotfiles" = { url = "git@github.com:zenobi-us/dotfiles.git", ref = "master" }
+
+[dotfiles]
+"~/.bunfig.toml" = { source = "devtools/files/bun/bunfig.toml", mode = "symlink" }
+"~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
+"~/.config/mise/tasks" = { source = "devtools/files/mise/tasks", mode = "symlink" }
+"~/.gitconfig" = { source = "devtools/files/git/.gitconfig", mode = "copy" }
+"~/.gitignore_global" = { source = "devtools/files/git/.gitignore_global", mode = "copy" }
+"~/.config/starship.toml" = { source = "shells/files/starship/starship.toml", mode = "copy" }
+
+[tasks.bootstrap]
+description = "Finish machine setup after declarative bootstrap phases"
+run = """
+set -euo pipefail
+git submodule update --init --recursive
+git config --global core.excludesFile "$HOME/.gitignore_global"
+if [ -d devtools/files/pi/agent ]; then
+  (cd devtools/files/pi/agent && bun install)
+fi
+case "$(uname -s)" in
+  Linux) mise run bootstrap:linux ;;
+  Darwin) mise run bootstrap:macos ;;
+esac
+"""
+run_windows = [
+  "git submodule update --init --recursive",
+  "git config --global core.excludesFile $HOME/.gitignore_global",
+  "if (Test-Path devtools/files/pi/agent) { Push-Location devtools/files/pi/agent; bun install; Pop-Location }",
+  "mise run bootstrap:windows",
+]
+
+[tasks."bootstrap:linux"]
+description = "Linux-only bootstrap leftovers"
+run = """
+set -euo pipefail
+font-install -fromFile assets/files/fonts.txt
+chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
+if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
+  xrdb -merge "$HOME/.Xresources"
+fi
+"""
+
+[tasks."bootstrap:macos"]
+description = "macOS-only bootstrap leftovers"
+run = """
+set -euo pipefail
+font-install -fromFile assets/files/fonts.txt
+chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
+"""
+
+[tasks."bootstrap:windows"]
+description = "Windows setup that mise bootstrap cannot model natively yet"
+run_windows = [
+  "winget install -e --id Git.Git --accept-source-agreements --accept-package-agreements",
+  "winget install -e --id Microsoft.PowerShell --accept-source-agreements --accept-package-agreements",
+  "winget install -e --id jdx.mise --accept-source-agreements --accept-package-agreements",
+  "winget install -e --id Microsoft.OpenSSH.Beta --accept-source-agreements --accept-package-agreements",
+  "winget install -e --id ShareX.ShareX --accept-source-agreements --accept-package-agreements",
+  "winget install -e --id GnuPG.Gpg4win --accept-source-agreements --accept-package-agreements",
+  "winget install -e --id Starship.Starship --accept-source-agreements --accept-package-agreements",
+  "winget install -e --id AutoHotkey.AutoHotkey --accept-source-agreements --accept-package-agreements",
+  "scoop install sudo fzf psfzf uni llvm 7zip tar",
+  "powershell -NoProfile -Command \"Get-Service ssh-agent | Set-Service -StartupType Automatic -PassThru | Start-Service\"",
+]

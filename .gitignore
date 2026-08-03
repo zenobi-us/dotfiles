@@ -2,7 +2,6 @@
 !.zsh*
 !/shells/zsh/files/config.d/enabled/README.md
 /shells/zsh/files/config.d/enabled/*
-mise.toml
 devtools/files/opencode/bin
 in-memoria*
 !.memory/

@@ -1,0 +1,19 @@
+[bootstrap.repos]
+"~/AppData/Local/nvim" = { url = "https://github.com/zenobi-us/astronvim.profile" }
+
+[dotfiles]
+"~/.bunfig.toml" = { source = "devtools/files/bun/bunfig.toml", mode = "symlink" }
+"~/.gitconfig" = { source = "devtools/files/git/.gitconfig", mode = "copy" }
+"~/.gitignore_global" = { source = "devtools/files/git/.gitignore_global", mode = "copy" }
+"~/AppData/Local/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
+"~/AppData/Local/mise/tasks" = { source = "devtools/files/mise/tasks", mode = "symlink" }
+"~/.ssh/ssh-agent-pipe.sh" = { source = "devtools/files/wsl2/ssh-agent-pipe.sh", mode = "copy" }
+"~/AppData/Local/mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
+"~/AppData/Local/Packages/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe/LocalState/settings.json" = { source = "packagemanagers/files/winget.json", mode = "copy" }
+"~/AppData/Local/pi" = { source = "devtools/files/pi", mode = "symlink" }
+"~/AppData/Roaming/alacritty" = { source = "shells/files/alacritty", mode = "symlink" }
+"~/AppData/Roaming/deskflow" = { source = "windowmanagers/files/deskflow", mode = "symlink" }
+"~/AppData/Roaming/worktrunk" = { source = "devtools/files/worktrunk", mode = "symlink" }
+"~/AppData/Roaming/starship.toml" = { source = "shells/files/starship/starship.toml", mode = "copy" }
+"~/AppData/Roaming/zellij" = { source = "shells/files/zellij", mode = "symlink" }
+"~/Documents/PowerShell" = { source = "shells/files/powershell", mode = "copy" }
