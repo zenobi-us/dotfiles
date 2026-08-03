@@ -24,7 +24,7 @@ Use skills by circumstance:
 | Codebase exploration or flow tracing | `codemapper` |
 | Library or SDK documentation | `code-library-docs` |
 | Pi agent, extensions, themes, sessions | `pi-mono` |
-| Comtrya manifests and dotfiles | `comtrya-dotfile-manager` |
+| Dotfiles and mise bootstrap | `pi-mono` |
 | SOP writing | `sop-authoring`, `sop-structure`, `sop-rfc2119` |
 | Clear technical docs, runbooks, READMEs, error messages | `simple-english` |
 | Skill creation, editing, or validation | `writing-skills` |

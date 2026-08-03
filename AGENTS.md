@@ -1,8 +1,8 @@
 ## Agent skills
 
-Working with comtrya manifests
+Working with dotfiles and machine bootstrap
 
-- use the [comtrya-dotfiles-manager](./devtools/files/pi/agent/bundles/platform/skills/dotfiles/comtrya-dotfile-manager/) skill.
+- use the [pi-mono](./devtools/files/pi/agent/bundles/platform/skills/devtools/pi-mono/) skill for mise bootstrap questions.
 
 Working with Pi-Coding-Agent
 
