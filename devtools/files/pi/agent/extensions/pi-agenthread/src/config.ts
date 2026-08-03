@@ -21,11 +21,6 @@ export const ZellijAgentConfigSchema = Type.Partial(
             - {title} for the current Zellij pane title.
         `
       }),
-      pluginAlias: Type.String({
-        minLength: 1,
-        default: "agent-threads",
-        description: "Zellij plugin alias used by `zellij pipe --plugin`.",
-      }),
     },
     { additionalProperties: false },
   ),
