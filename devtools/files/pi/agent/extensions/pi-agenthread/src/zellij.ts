@@ -92,6 +92,14 @@ export class ZellijPublisher {
     try {
       this.publishCount += 1;
       if (updateStatus) this.statusWidget.update(ctx, "");
+      const zellijSession = process.env.ZELLIJ_SESSION_NAME;
+      const paneId = process.env.ZELLIJ_PANE_ID;
+      if (!zellijSession || !paneId) {
+        this.lastError = undefined;
+        if (updateStatus) this.statusWidget.update(ctx, "󰄬");
+        await this.log.trace("store skipped outside zellij");
+        return;
+      }
       const tab = await this.paneTabInfo();
       const paneTitle = tab?.title ?? tab?.name ?? tab?.tab_name;
       state.title = paneTitle;
@@ -103,8 +111,8 @@ export class ZellijPublisher {
         agent_id: agentId,
         session_name: sessionName,
         cwd: ctx.cwd,
-        zellij_session: process.env.ZELLIJ_SESSION_NAME,
-        pane_id: process.env.ZELLIJ_PANE_ID,
+        zellij_session: zellijSession,
+        pane_id: paneId,
         tab_id: tab?.tab_id,
         tab_name: tab?.tab_name,
         state: state.state,
@@ -114,7 +122,7 @@ export class ZellijPublisher {
         updated_at: Date.now(),
       });
 
-      await this.log.trace(`publish agent=${agentId} session_name=${sessionName ?? "?"} zellij=${process.env.ZELLIJ_SESSION_NAME ?? "?"} pane=${process.env.ZELLIJ_PANE_ID ?? "?"} state=${state.state} plugin=${this.pluginAlias} bytes=${payload.length}`);
+      await this.log.trace(`publish agent=${agentId} session_name=${sessionName ?? "?"} zellij=${zellijSession} pane=${paneId} state=${state.state} plugin=${this.pluginAlias} bytes=${payload.length}`);
       await this.writeToStore(payload, agentId, state.state);
       await this.wakePlugin();
       this.lastError = undefined;

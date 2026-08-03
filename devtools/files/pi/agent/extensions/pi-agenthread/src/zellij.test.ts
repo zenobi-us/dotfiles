@@ -30,35 +30,76 @@ test("parsePaneTabInfo returns matching terminal pane", () => {
 });
 
 test("publisher serializes publish snapshots", async () => {
-  const payloads: string[] = [];
-  const gates: Array<() => void> = [];
-  const publisher = new ZellijPublisher(
-    { update() {} } as unknown as StatusWidget,
-    { trace: async () => {} } as unknown as LogService,
-  );
-  publisher.paneTabInfo = async () => new Promise((resolve) => {
-    gates.push(() => resolve(undefined));
-  });
-  publisher.writeToStore = async (value) => { payloads.push(value); };
-  publisher.wakePlugin = async () => {};
-  const ctx = {
-    cwd: "/tmp/project",
-    sessionManager: { getSessionFile: () => "/tmp/session.jsonl" },
-  } as ExtensionContext;
+  const previousPaneId = process.env.ZELLIJ_PANE_ID;
+  const previousSession = process.env.ZELLIJ_SESSION_NAME;
+  try {
+    process.env.ZELLIJ_PANE_ID = "42";
+    process.env.ZELLIJ_SESSION_NAME = "work";
+    const payloads: string[] = [];
+    const gates: Array<() => void> = [];
+    const publisher = new ZellijPublisher(
+      { update() {} } as unknown as StatusWidget,
+      { trace: async () => {} } as unknown as LogService,
+    );
+    publisher.paneTabInfo = async () => new Promise((resolve) => {
+      gates.push(() => resolve(undefined));
+    });
+    publisher.writeToStore = async (value) => { payloads.push(value); };
+    publisher.wakePlugin = async () => {};
+    const ctx = {
+      cwd: "/tmp/project",
+      sessionManager: { getSessionFile: () => "/tmp/session.jsonl" },
+    } as ExtensionContext;
 
-  const first = publisher.publish(ctx, "running");
-  const second = publisher.publish(ctx, "idle");
+    const first = publisher.publish(ctx, "running");
+    const second = publisher.publish(ctx, "idle");
 
-  await Promise.resolve();
-  expect(gates).toHaveLength(1);
-  gates[0]!();
-  await first;
-  await Promise.resolve();
-  expect(gates).toHaveLength(2);
-  gates[1]!();
-  await second;
+    await Promise.resolve();
+    expect(gates).toHaveLength(1);
+    gates[0]!();
+    await first;
+    await Promise.resolve();
+    expect(gates).toHaveLength(2);
+    gates[1]!();
+    await second;
 
-  expect(payloads.map((payload) => JSON.parse(payload).state)).toEqual(["running", "idle"]);
+    expect(payloads.map((payload) => JSON.parse(payload).state)).toEqual(["running", "idle"]);
+  } finally {
+    if (previousPaneId === undefined) delete process.env.ZELLIJ_PANE_ID;
+    else process.env.ZELLIJ_PANE_ID = previousPaneId;
+    if (previousSession === undefined) delete process.env.ZELLIJ_SESSION_NAME;
+    else process.env.ZELLIJ_SESSION_NAME = previousSession;
+  }
+});
+
+test("publisher skips store writes outside zellij", async () => {
+  let wrote = false;
+  let woke = false;
+  const previousPaneId = process.env.ZELLIJ_PANE_ID;
+  const previousSession = process.env.ZELLIJ_SESSION_NAME;
+  try {
+    delete process.env.ZELLIJ_PANE_ID;
+    delete process.env.ZELLIJ_SESSION_NAME;
+    const publisher = new ZellijPublisher(
+      { update() {} } as unknown as StatusWidget,
+      { trace: async () => {} } as unknown as LogService,
+    );
+    publisher.writeToStore = async () => { wrote = true; };
+    publisher.wakePlugin = async () => { woke = true; };
+
+    await publisher.publish({
+      cwd: "/tmp/project",
+      sessionManager: { getSessionFile: () => "/tmp/session.jsonl" },
+    } as ExtensionContext, "running");
+
+    expect(wrote).toBe(false);
+    expect(woke).toBe(false);
+  } finally {
+    if (previousPaneId === undefined) delete process.env.ZELLIJ_PANE_ID;
+    else process.env.ZELLIJ_PANE_ID = previousPaneId;
+    if (previousSession === undefined) delete process.env.ZELLIJ_SESSION_NAME;
+    else process.env.ZELLIJ_SESSION_NAME = previousSession;
+  }
 });
 
 test("publisher deletes store row on shutdown", async () => {
