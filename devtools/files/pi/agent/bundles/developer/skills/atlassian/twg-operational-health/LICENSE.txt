@@ -1,0 +1,28 @@
+© 2026 Atlassian. All rights reserved.
+
+LICENSE: Use of this Skill (including all code, prompts, assets, files, and
+other components of this Skill) is governed by the Atlassian Customer Agreement
+and the Atlassian Privacy Policy:
+ - https://www.atlassian.com/legal/atlassian-customer-agreement
+ - https://www.atlassian.com/legal/privacy-policy
+
+The Teamwork Graph CLI releases installed from the beta update channel and all
+Skills are "Free or Beta Products" as defined in the Atlassian Customer
+Agreement. Free or Beta Products do not constitute "Software Products" or
+"Products" under the Atlassian Customer Agreement.
+
+ADDITIONAL RESTRICTIONS: Notwithstanding anything in the Atlassian Customer Agreement to the contrary, users may not:
+
+- Extract these materials from the Services or retain copies of these materials outside the Services
+- Reproduce or copy these materials, except for temporary copies created automatically during authorized use of the Services
+- Create derivative works based on these materials
+- Distribute, sublicense, or transfer these materials to any third party
+- Make, offer to sell, sell, or import any inventions embodied in these materials
+- Reverse engineer, decompile, or disassemble these materials
+
+The receipt, viewing, or possession of these materials does not convey or imply
+any license or right beyond those expressly granted above.
+
+
+Atlassian retains all right, title, and interest in these materials, including
+all copyrights, patents, and other intellectual property rights.

@@ -1,0 +1,113 @@
+{
+  "contractName": "twg-bench-lite",
+  "contractVersion": "0.1.0",
+  "defaultArms": {
+    "control": {
+      "context": "Free Atlassian tools plus user-local MCP/connectors exposed to the agent runtime.",
+      "id": "control",
+      "label": "Free Atlassian with Local MCPs Context",
+      "mustNotUse": [
+        "twg CLI",
+        "TWG skills",
+        "paid Atlassian graph tools",
+        "shell or filesystem discovery as evidence",
+        "prior benchmark artifacts or cached answers"
+      ],
+      "mustRecord": [
+        "observed MCP/tool surface",
+        "missing auth or missing tool limitations"
+      ]
+    },
+    "test": {
+      "context": "TWG CLI full graph context with bundled TWG skill guidance.",
+      "id": "test",
+      "label": "Paid Atlassian Teamwork Graph Context",
+      "mustRecord": [
+        "TWG commands",
+        "TWG guidance resources",
+        "TWG version when available"
+      ],
+      "mustUse": [
+        "twg CLI"
+      ]
+    }
+  },
+  "description": "Portable single-prompt A/B comparison between free context and TWG CLI graph context.",
+  "displayName": "TWG Bench Lite",
+  "integrityChecks": [
+    "samePrompt",
+    "sameParentSession",
+    "sameAgentRuntime",
+    "sameModelWhenObservable",
+    "sameReasoningWhenObservable",
+    "controlDidNotUseTwg",
+    "controlDidNotUsePaidGraphTools",
+    "testUsedTwg",
+    "noParentTaskSolving",
+    "noCrossArmContext"
+  ],
+  "progressFields": [
+    "status",
+    "elapsedMs",
+    "toolCalls",
+    "tokens",
+    "lastActivity"
+  ],
+  "publicSafety": {
+    "noInternalTenantsOrCloudIds": true,
+    "noInternalUrls": true,
+    "noPublishCommand": true,
+    "noRawSecrets": true
+  },
+  "qualityClassifications": [
+    "equivalent",
+    "twg-better",
+    "control-better",
+    "capability-gain",
+    "not-comparable"
+  ],
+  "qualityDimensionWinners": [
+    "control",
+    "test",
+    "tie",
+    "not-comparable"
+  ],
+  "qualityJudge": {
+    "codexModel": "gpt-5.5",
+    "codexReasoningEffort": "xhigh",
+    "defaultAgent": "selected-agent",
+    "defaultEnabled": true,
+    "disableFlag": "--no-judge",
+    "overrideFlag": "--judge-agent",
+    "supportedAgents": [
+      "codex",
+      "rovo"
+    ]
+  },
+  "report": {
+    "defaultLocalOnly": true,
+    "includeRawTraceByDefault": false,
+    "sections": [
+      "summary",
+      "progress",
+      "integrity",
+      "tokenAndCost",
+      "quality",
+      "toolSurface",
+      "toolCallSequence",
+      "armOutputs",
+      "limitations"
+    ]
+  },
+  "runtimeSupport": {
+    "unsupportedBehavior": "Report unsupported runtimes before launching either arm.",
+    "v1": [
+      "codex",
+      "rovo"
+    ],
+    "v2Planned": [
+      "claude"
+    ]
+  },
+  "schemaVersion": 1
+}

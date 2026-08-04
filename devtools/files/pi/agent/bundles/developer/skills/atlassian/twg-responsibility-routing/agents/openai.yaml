@@ -1,0 +1,4 @@
+interface:
+  display_name: "TWG Responsibility Routing"
+  short_description: "Find owners, SMEs, approvers, and escalation paths"
+  default_prompt: "Find who owns, knows, can approve, or should receive this ask, with role-specific TWG evidence."

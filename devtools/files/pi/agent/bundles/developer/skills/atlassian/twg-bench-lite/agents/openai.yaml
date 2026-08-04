@@ -1,0 +1,7 @@
+interface:
+  display_name: "TWG Bench Lite"
+  short_description: "Single-prompt TWG benchmark-lite A/B comparison"
+  default_prompt: "Use $twg-bench-lite to compare this read-only task with and without TWG: "
+
+policy:
+  allow_implicit_invocation: false

@@ -39,3 +39,4 @@ devtools/files/pi/agent/extensions/share/webapp/.vscode/
 /devtools/files/pi/agent/mcp-oauth/
 /devtools/files/pi/agent/mcp-cache.json
 /devtools/files/pi/agent/bin/
+devtools/files/pi/agent/bundles/developer/skills/atlassian/twg/.twg-install.json
