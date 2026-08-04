@@ -82,8 +82,10 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "Normal";
         }
-        bind "n" { GoToNextTab; SwitchToMode "normal"; }
-        bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
+        bind "n" { GoToNextTab;  }
+        bind "Right" { GoToNextTab; }
+        bind "p" { GoToPreviousTab;  }
+        bind "Left" { GoToPreviousTab; }
         bind "x" { CloseTab; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "renametab"; TabNameInput 0; }
 

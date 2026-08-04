@@ -7,7 +7,7 @@
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
   "enableSkillCommands": true,
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "lastChangelogVersion": "0.83.0",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
@@ -53,7 +53,8 @@
     "./extensions/@zenobius/ponytail",
     "./extensions/@zenobius/project-overrides",
     "./extensions/@zenobius/sub-limits",
-    "npm:pi-add-dir"
+    "npm:pi-add-dir",
+    "npm:pi-claude-marketplace"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
