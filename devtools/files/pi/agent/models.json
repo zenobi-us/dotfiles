@@ -1,0 +1,14 @@
+{
+  "providers": {
+    "amazon-bedrock": {
+      "modelOverrides": {
+        "qwen.qwen3-235b-a22b-2507-v1:0": {
+          "maxTokens": 65536
+        },
+        "qwen.qwen3-next-80b-a3b": {
+          "maxTokens": 65536
+        }
+      }
+    }
+  }
+}

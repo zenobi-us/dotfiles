@@ -1,8 +1,8 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "gpt-5.5",
-  "defaultProvider": "openai-codex",
+  "defaultModel": "qwen.qwen3-next-80b-a3b",
+  "defaultProvider": "amazon-bedrock",
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
