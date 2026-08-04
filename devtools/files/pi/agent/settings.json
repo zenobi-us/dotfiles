@@ -41,7 +41,10 @@
     "./extensions/@zenobius/pi-context-report",
     "./extensions/@zenobius/pi-fzf",
     "./extensions/@zenobius/pi-handoff",
-    "./extensions/@zenobius/pi-lazyskills",
+    {
+      "source": "./extensions/@zenobius/pi-lazyskills",
+      "extensions": []
+    },
     "./extensions/@zenobius/pi-lmstudio-provider",
     "./extensions/@zenobius/pi-lsp",
     "./extensions/@zenobius/pi-onnx",
@@ -92,7 +95,8 @@
         }
       },
       "disabledItems": [
-        "package:@vanillagreen/pi-qol"
+        "package:@vanillagreen/pi-qol",
+        "package:skills"
       ]
     }
   }
