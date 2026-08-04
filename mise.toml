@@ -164,6 +164,7 @@ run_windows = [
 description = "Linux-only bootstrap leftovers"
 run = """
 set -eu
+pwd
 cd "$MISE_CONFIG_ROOT"
 font-install -fromFile assets/files/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true

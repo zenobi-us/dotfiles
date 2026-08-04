@@ -15,9 +15,7 @@
 "~/.config/firefox-extensions/load-extensions.sh" = { source = "browsers/files/firefox/load-extensions.sh", mode = "copy" }
 "~/.config/ghostty" = { source = "shells/files/ghostty", mode = "symlink" }
 "~/.config/mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
-"~/.config/niri" = { source = "windowmanagers/files/niri", mode = "symlink" }
 "~/.config/tmux" = { source = "shells/files/tmux", mode = "symlink" }
-"~/.config/vibepanel" = { source = "windowmanagers/files/vibepanel", mode = "symlink" }
 "~/.config/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf" = { source = "windowmanagers/files/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf", mode = "copy" }
 "~/.config/worktrunk" = { source = "devtools/files/worktrunk", mode = "symlink" }
 "~/.config/zellij" = { source = "shells/files/zellij", mode = "symlink" }
