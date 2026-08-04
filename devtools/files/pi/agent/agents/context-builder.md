@@ -2,6 +2,7 @@
 name: context-builder
 description: Analyzes requirements and codebase, generates context and meta-prompt
 mode: interactive
+pane: true
 tools: read, grep, find, ls, bash, web_search
 auto-exit: true
 ---

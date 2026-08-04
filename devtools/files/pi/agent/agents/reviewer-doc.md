@@ -3,7 +3,10 @@ name: reviewer-doc
 description: "Documentation accuracy reviewer. Verifies docs match implementation, detects stale API docs, and audits architecture documentation drift."
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, delegate_subagent, question, tasks_write
 color: yellow
+pane: true
 ---
+
+
 
 > **Never edit this file directly.** To make additions or modifications, edit the appropriate section in `./vstack.toml`. Then run `vstack refresh`.
 
