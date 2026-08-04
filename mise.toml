@@ -142,6 +142,7 @@ fi
 description = "Finish machine setup after declarative bootstrap phases"
 run = """
 set -eu
+cd "$MISE_CONFIG_ROOT"
 git submodule update --init --recursive
 git config --global core.excludesFile "$HOME/.gitignore_global"
 if [ -d devtools/files/pi/agent ]; then
@@ -153,9 +154,9 @@ case "$(uname -s)" in
 esac
 """
 run_windows = [
-  "git submodule update --init --recursive",
+  "Set-Location $env:MISE_CONFIG_ROOT; git submodule update --init --recursive",
   "git config --global core.excludesFile $HOME/.gitignore_global",
-  "if (Test-Path devtools/files/pi/agent) { Push-Location devtools/files/pi/agent; bun install; Pop-Location }",
+  "Set-Location $env:MISE_CONFIG_ROOT; if (Test-Path devtools/files/pi/agent) { Push-Location devtools/files/pi/agent; bun install; Pop-Location }",
   "mise run bootstrap:windows",
 ]
 
@@ -163,6 +164,7 @@ run_windows = [
 description = "Linux-only bootstrap leftovers"
 run = """
 set -eu
+cd "$MISE_CONFIG_ROOT"
 font-install -fromFile assets/files/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
@@ -174,6 +176,7 @@ fi
 description = "macOS-only bootstrap leftovers"
 run = """
 set -eu
+cd "$MISE_CONFIG_ROOT"
 font-install -fromFile assets/files/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 """
