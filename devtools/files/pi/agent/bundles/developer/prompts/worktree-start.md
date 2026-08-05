@@ -1,30 +1,33 @@
 ---
-description: Fetch ticket and switch or create worktree and handoff to new coding agent session
+description: Fetch a ticket, create a Worktrunk worktree, and start a Pi agent in Herdr.
 ---
 
-Download and work on issue ticket in a worktree. This prompt will fetch the ticket and switch or create a worktree for the ticket, then handoff to a new coding agent session.
+Fetch the ticket from `UserRequest`, create its Worktrunk worktree, and start a new Pi agent in the Herdr worktree workspace.
 
-The issue ticket might be a Jira ticket, GitHub issue, or any other issue tracking system. The prompt will attempt to fetch the ticket details and create a worktree for it.
+# Preconditions
+
+- Require `HERDR_ENV=1`. If Herdr is not active, stop.
+- Use the `worktrunk` skill. Worktrunk is required for worktree creation and hooks.
+- Use Herdr commands for workspaces, panes, and agents. Do not use Zellij commands.
 
 # Process
 
-1. Determine the issue tracker, e.g., Jira, GitHub, etc.
-2. use appropriate skill to fetch the ticket details.
-3. create a handoff prompt in /tmp/{ticket-id}-handoff.md with the ticket details and instructions for the new coding agent session.
-4. use worktrunk to create and switch to a worktree for the ticket. Remember the zellij tab it creates.
-5. In the created zellij tab, Spawn pi with the handoff prompt. Do not create a duplicate zellij tab.
+1. Determine the issue tracker from `UserRequest`.
+2. Fetch the ticket details.
+   - Jira: use `reading-and-writing-jira-tickets`.
+   - GitHub: use `gh issue view`.
+3. Choose a safe branch name and the base branch from the repository.
+4. Resolve the repository root Herdr workspace with `herdr worktree list --cwd "$PWD" --json`.
+5. Use Worktrunk to create or switch to the branch with hooks enabled. Use `--no-cd` and JSON output because the parent Pi process cannot consume shell directory changes.
+6. Register the resulting worktree with Herdr by using `herdr worktree open` and the returned worktree path. Do not use native Herdr worktree creation instead of Worktrunk.
+7. Write `/tmp/{ticket-id}-handoff.md` with the ticket details, branch, worktree path, requirements, and validation commands.
+8. Read the root pane ID from the Herdr worktree-open response.
+9. Start Pi in that pane with `herdr agent start <name> --kind pi --pane <pane-id> -- @/tmp/{ticket-id}-handoff.md`.
+10. Do not create a duplicate tab or pane after Herdr opens the worktree.
+11. Write a persistent workflow record with the ticket, source branch, base branch, worktree path, Herdr workspace ID, agent name, and handoff path.
 
-# Issue Trackers
+# Output
 
-- Jira Issues: use skill `reading-and-writing-jira-tickets`
-- Github: use the gh cli to fetch the issue details
-
-# Worktrees
-
-- use skill `worktrunk` 
-
-
---- 
+Report the ticket, branch, worktree path, Herdr workspace, agent name, and handoff path.
 
 UserRequest: $ARGUMENTS
-

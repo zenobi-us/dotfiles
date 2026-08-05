@@ -1,53 +1,45 @@
 ---
-description: Commit reviewed work from a worktree and open a pull request.
+description: Commit successfully reviewed Worktrunk work and open a pull request through Herdr.
 ---
 
-Scope: $ARGUMENTS
+Submit the reviewed work for `UserRequest` as a pull request.
 
-Submit reviewed work as a pull request. Use this when the team wants pull requests instead of direct squash merges.
+# Preconditions
 
-# Exit early
+- Require `HERDR_ENV=1`. If Herdr is not active, stop.
+- Use the `worktrunk` skill. Worktrunk is required for worktree and branch operations.
+- Require a matching persisted `SUCCESS` verdict from `worktree-review`.
+- Do not push directly to the base branch.
 
-Exit if this chat has no work context for `Scope`.
+Exit if the review artifact scope does not match `UserRequest` or if you cannot identify:
 
-Exit if this chat has no successful `worktree-review` verdict for `Scope`.
-
-Exit if the review verdict scope does not match `Scope`.
-
-Exit if you cannot identify all of these items:
-
-1. The worktree.
+1. The source worktree.
 2. The source branch.
 3. The base branch.
 4. The issue or ticket.
 
 # Process
 
-1. Use skill `worktrunk` for worktree operations.
-2. Switch to the reviewed worktree.
-3. Make sure the worktree has no unintended changes.
-4. Run the smallest validation command that proves the reviewed work still passes.
-5. Use skill `writing-and-creating-git-commits`.
-6. Commit the intended changes.
-7. Push the source branch.
-8. Use the pull request creation skill if available.
-9. If no pull request creation skill exists, use the `pr-creator` prompt or `gh pr create`.
-10. Add these items to the pull request body:
-    - the ticket link,
-    - the successful review verdict,
-    - validation output,
-    - a concise summary of changes.
-11. Report the pull request URL.
+1. Resolve the current or reviewed Herdr worktree with `herdr worktree list --cwd "$PWD" --json`.
+2. Use Worktrunk to verify the source branch and worktree state.
+3. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-git-commits` skill.
+4. Run the smallest validation command recorded by the successful review.
+5. Push the source branch.
+6. Use the pull request creation skill if available. Otherwise use `gh pr create`.
+7. Add these items to the pull request body:
+   - the ticket link,
+   - the successful review artifact path,
+   - validation output,
+   - a concise summary of changes.
+8. Leave the source worktree open. Do not remove it after submitting the pull request.
 
 # Safety rules
 
-- Do not create a pull request without a matching successful review verdict in chat context.
+- Do not create a pull request without the matching persisted `SUCCESS` review artifact.
 - Do not include unrelated changes in the commit.
 - Do not push directly to the base branch.
 
 # Output
-
-Use this format:
 
 ```md
 ## Submitted
@@ -63,3 +55,5 @@ Use this format:
 - Verdict: SUCCESS
 - Scope: {reviewed scope}
 ```
+
+UserRequest: $ARGUMENTS

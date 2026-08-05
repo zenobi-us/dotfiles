@@ -1,27 +1,29 @@
 ---
-description: Checkout PR or Branch in worktree and review by inferring related ticket and switch or create worktree and handoff to new coding agent session to fix.
+description: Start a Herdr Pi agent to fix blocking review findings in an existing Worktrunk worktree.
 ---
 
-PullRequestOrBranch: $1
-UserRequest: "${@:2}"
+Fix the blocking findings for `UserRequest` in the existing reviewed worktree.
 
-Download and work on issue ticket in a worktree. This prompt will fetch the ticket and switch or create a worktree for the ticket, then handoff to a new coding agent session.
+# Preconditions
 
-The issue ticket might be a Jira ticket, GitHub issue, or any other issue tracking system. The prompt will attempt to fetch the ticket details and create a worktree for it.
+- Require `HERDR_ENV=1`. If Herdr is not active, stop.
+- Use the `worktrunk` skill. Worktrunk is required for worktree inspection and operations.
+- Use Herdr commands for panes and agents. Do not use Zellij commands.
+- Require a matching persisted `FAILURE` verdict from `worktree-review`.
+- Do not create a second worktree for the same source branch.
 
 # Process
 
-1. Determine the issue tracker, e.g., Jira, GitHub, etc.
-2. use appropriate skill to fetch the ticket details.
-3. use worktrunk to create and switch to a worktree for the ticket. This should create a zellij tab for you.
-4. create a handoff prompt in /tmp/{ticket-id}-handoff.md with the ticket details and instructions for the new coding agent session.
-5. Spawn pi with the handoff prompt in the new worktree and zellij tab.
+1. Identify the source branch, worktree path, review artifact, and blocking findings from `UserRequest` or the persisted workflow record.
+2. Use Worktrunk to verify that the source worktree exists and that the branch is correct.
+3. Write `/tmp/{ticket-id}-fix-handoff.md` with only the blocking findings, exact files, source worktree path, and expected validation command.
+4. Create a sibling Herdr pane in the existing worktree workspace with `herdr pane split --current --cwd <worktree-path> --no-focus`.
+5. Start a named Pi agent in the returned pane with `herdr agent start <name> --kind pi --pane <pane-id> -- @/tmp/{ticket-id}-fix-handoff.md`.
+6. Do not create a tab or worktree. Herdr already owns the layout, and Worktrunk already owns the checkout.
+7. Record the fixer agent name and pane ID in the workflow record.
 
-# Issue Trackers
+# Output
 
-- Jira Issues: use skill `reading-and-writing-jira-tickets`
-- Github: use the gh cli to fetch the issue details
+Report the source branch, worktree path, fixer agent, pane ID, handoff path, and validation command.
 
-# Worktrees
-
-- use skill `worktrunk`
+UserRequest: $ARGUMENTS
