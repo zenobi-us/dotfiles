@@ -1,10 +1,91 @@
 onboarding = false
 
 [theme]
+
 name = "terminal"
+auto_switch = false
 
-[experimental]
-switch_ascii_input_source_in_prefix = true
+[ui.toast]
+delivery = "herdr"
 
-[ui]
-agent_panel_scope = "all"
+[ui.sound]
+enabled = false
+
+[keys]
+prefix="ctrl+/"
+
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", { token = "workspace", bold = true }],
+  [
+    { token = "branch", dim = true },
+    "git_status",
+    { token = "$active_tab", dim = true },
+  ],
+]
+
+#
+# Cli: lazygit
+# 
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "lazygit"
+description = "run lazygit"
+width = "80%"
+height = "80%"
+
+
+#
+# Plugin: worktrunk
+#
+#
+
+[[keys.command]]
+key = "prefix+w"
+type = "popup"
+command = "wt switch"
+description = "Worktree: switch / create from default branch"
+width = "80%"
+height = "80%"
+
+
+[[keys.command]]
+key = "prefix+shift+g"
+type = "plugin_action"
+command = "worktrunk.open"
+description = "Worktree: switch / create from default branch"
+
+# Optional: bind current-branch creation separately.
+[[keys.command]]
+key = "prefix+shift+c"
+type = "plugin_action"
+command = "worktrunk.open-current"
+description = "Worktree: switch / create from current branch"
+
+[[keys.command]]
+key = "prefix+shift+d"
+type = "plugin_action"
+command = "worktrunk.remove"
+description = "Worktree: remove"
+
+
+#
+# Plugin: Command Palette
+#
+#
+[[keys.command]]
+key = "prefix+p"
+type = "plugin_action"
+command = "jt.command-palette.open"
+description = "Command palette"
+
+
+#
+# Plugin: herdr-bar
+[[keys.command]]
+key = "prefix+k"
+type = "plugin_action"
+command = "herdr-bar.open"
+description = "command bar"
+
