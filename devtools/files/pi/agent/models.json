@@ -3,9 +3,27 @@
     "amazon-bedrock": {
       "modelOverrides": {
         "qwen.qwen3-235b-a22b-2507-v1:0": {
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "minimal",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh"
+          },
           "maxTokens": 65536
         },
         "qwen.qwen3-next-80b-a3b": {
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "minimal",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh"
+          },
           "maxTokens": 65536
         }
       }
