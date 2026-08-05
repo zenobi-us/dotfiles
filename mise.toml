@@ -39,7 +39,6 @@ act= "latest"
 action-validator = "latest"
 actionlint= "latest"
 age= "latest"
-ansible = { version = "latest", pipx_args = "--include-deps", uvx = "false" }
 ast-grep = "latest"
 awscli= { version = "latest", symlink_bins = "true" }
 bat= "latest"
@@ -142,8 +141,8 @@ fi
 description = "Finish machine setup after declarative bootstrap phases"
 run = """
 set -eu
-cd "$MISE_CONFIG_ROOT"
-git submodule update --init --recursive
+cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
+git submodule update --init --recursive -- $(git config --file .gitmodules --get-regexp '\\.path$' | cut -d' ' -f2- | while read -r path; do git ls-files --stage -- "$path" | awk '$1 == 160000 { print $4 }'; done)
 git config --global core.excludesFile "$HOME/.gitignore_global"
 if [ -d devtools/files/pi/agent ]; then
   (cd devtools/files/pi/agent && bun install)
@@ -164,8 +163,7 @@ run_windows = [
 description = "Linux-only bootstrap leftovers"
 run = """
 set -eu
-pwd
-cd "$MISE_CONFIG_ROOT"
+cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
 font-install -fromFile assets/files/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
@@ -177,7 +175,7 @@ fi
 description = "macOS-only bootstrap leftovers"
 run = """
 set -eu
-cd "$MISE_CONFIG_ROOT"
+cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
 font-install -fromFile assets/files/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 """

@@ -39,7 +39,6 @@ act= "latest"
 action-validator = "latest"
 actionlint= "latest"
 age= "latest"
-ansible = { version = "latest", pipx_args = "--include-deps", uvx = "false" }
 ast-grep = "latest"
 awscli= { version = "latest", symlink_bins = "true" }
 bat= "latest"
