@@ -38,8 +38,10 @@ export function formatSkillsForPrompt(
     const lazyInstructions = `\n\n${dedent`
       ## Skills
 
-      - Skills are available, but lazySkills=true so the full catalog is omitted from this prompt. A configured project skill index may follow.
-            - Use the find_skills tool to discover relevant skills and the read_skill tool to load one by name.
+      - Skills are available, but this prompt does not list all skills because lazySkills=true.
+      - If the user asks for a skill that is not listed, use find_skills to find it.
+      - Use read_skill to load the selected skill by name before you follow it.
+      - A configured project skill index may follow.
                 `}`;
     const indexedSkills = options.indexSkill
       ? visibleSkills.filter(options.indexSkill)
