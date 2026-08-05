@@ -1,0 +1,122 @@
+[
+  {
+    "plugin_id": "mergr",
+    "name": "mergr",
+    "version": "0.3.2",
+    "min_herdr_version": "0.7.5",
+    "description": "GitHub pull request status for Herdr Space sidebar rows.",
+    "manifest_path": "/home/zenobius/.config/herdr/plugins/github/mergr-1138fd285fd2/herdr-plugin.toml",
+    "plugin_root": "/home/zenobius/.config/herdr/plugins/github/mergr-1138fd285fd2",
+    "enabled": true,
+    "platforms": ["linux", "macos"],
+    "build": [
+      {
+        "platforms": ["macos"],
+        "command": ["sh", "scripts/install-binary.sh"]
+      },
+      {
+        "platforms": ["linux"],
+        "command": ["cargo", "build", "--release", "--locked"]
+      }
+    ],
+    "startup": [
+      {
+        "command": ["target/release/mergr", "daemon"]
+      }
+    ],
+    "actions": [
+      {
+        "id": "filter-cycle",
+        "title": "Cycle PR filter",
+        "command": ["target/release/mergr", "filter-cycle"]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "jsmenzies",
+      "repo": "mergr",
+      "resolved_commit": "528e7bab549e5132b48393b7dcb39b5c059f2eff",
+      "managed_path": "/home/zenobius/.config/herdr/plugins/github/mergr-1138fd285fd2",
+      "installed_unix_ms": 1785905448100
+    }
+  },
+  {
+    "plugin_id": "worktrunk",
+    "name": "Worktrunk",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "Switch, create, or remove git worktrees via worktrunk",
+    "manifest_path": "/home/zenobius/.config/herdr/plugins/github/worktrunk-7fb519583f31/herdr-plugin.toml",
+    "plugin_root": "/home/zenobius/.config/herdr/plugins/github/worktrunk-7fb519583f31",
+    "enabled": true,
+    "platforms": ["macos", "linux"],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Worktree: switch / create from default branch",
+        "contexts": ["workspace"],
+        "command": [
+          "bash",
+          "-c",
+          "cwd=$(jq -r '.workspace_cwd // .focused_pane_cwd' <<<\"$HERDR_PLUGIN_CONTEXT_JSON\"); exec \"$HERDR_BIN_PATH\" plugin pane open --plugin \"$HERDR_PLUGIN_ID\" --entrypoint picker-default --placement split --direction down --cwd \"$cwd\" --focus"
+        ]
+      },
+      {
+        "id": "open-current",
+        "title": "Worktree: switch / create from current branch",
+        "contexts": ["workspace"],
+        "command": [
+          "bash",
+          "-c",
+          "cwd=$(jq -r '.workspace_cwd // .focused_pane_cwd' <<<\"$HERDR_PLUGIN_CONTEXT_JSON\"); exec \"$HERDR_BIN_PATH\" plugin pane open --plugin \"$HERDR_PLUGIN_ID\" --entrypoint picker-current --placement split --direction down --cwd \"$cwd\" --focus"
+        ]
+      },
+      {
+        "id": "remove",
+        "title": "Worktree: remove",
+        "contexts": ["workspace"],
+        "command": [
+          "bash",
+          "-c",
+          "cwd=$(jq -r '.workspace_cwd // .focused_pane_cwd' <<<\"$HERDR_PLUGIN_CONTEXT_JSON\"); exec \"$HERDR_BIN_PATH\" plugin pane open --plugin \"$HERDR_PLUGIN_ID\" --entrypoint remover --placement split --direction down --cwd \"$cwd\" --focus"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "picker-current",
+        "title": "Worktrunk — current branch",
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/picker.sh\" --create-base=current"
+        ]
+      },
+      {
+        "id": "picker-default",
+        "title": "Worktrunk — default branch",
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/picker.sh\" --create-base=default"
+        ]
+      },
+      {
+        "id": "remover",
+        "title": "Worktrunk — remove",
+        "placement": "split",
+        "command": ["bash", "-c", "exec bash \"$HERDR_PLUGIN_ROOT/remove.sh\""]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "devashish2203",
+      "repo": "herdr-worktrunk",
+      "resolved_commit": "a3107ca566bafcd463bc138007a0c01051970784",
+      "managed_path": "/home/zenobius/.config/herdr/plugins/github/worktrunk-7fb519583f31",
+      "installed_unix_ms": 1785905015944
+    }
+  }
+]

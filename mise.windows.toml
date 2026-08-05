@@ -15,5 +15,7 @@
 "~/AppData/Roaming/deskflow" = { source = "windowmanagers/files/deskflow", mode = "symlink" }
 "~/AppData/Roaming/worktrunk" = { source = "devtools/files/worktrunk", mode = "symlink" }
 "~/AppData/Roaming/starship.toml" = { source = "shells/files/starship/starship.toml", mode = "copy" }
+"~/AppData/Roaming/herdr/config.toml" = { source = "shells/files/herdr/config.toml", mode = "symlink" }
+"~/AppData/Roaming/herdr/plugins" = { source = "shells/files/herdr/plugins", mode = "symlink" }
 "~/AppData/Roaming/zellij" = { source = "shells/files/zellij", mode = "symlink" }
 "~/Documents/PowerShell" = { source = "shells/files/powershell", mode = "copy" }

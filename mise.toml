@@ -110,6 +110,7 @@ youtube-dl = "latest"
 "github:mexirica/aptui" = "latest"
 "github:vercel-labs/agent-browser" = "latest"
 granted = "latest"
+herdr = "latest"
 
 [env]
 PI_SUBAGENT_MUX = "zellij"
@@ -120,8 +121,6 @@ pi="mise x node@lts -- pi --no-skills"
 piupdate="mise x node@lts -- pi update"
 piinstall="mise x node@lts -- pi install"
 
-[bootstrap.repos]
-"~/Projects/dotfiles" = { url = "git@github.com:zenobi-us/dotfiles.git", ref = "master" }
 
 [bootstrap.hooks]
 pre-dotfiles = """

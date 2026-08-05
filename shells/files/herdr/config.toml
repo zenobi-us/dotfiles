@@ -1,0 +1,10 @@
+onboarding = false
+
+[theme]
+name = "terminal"
+
+[experimental]
+switch_ascii_input_source_in_prefix = true
+
+[ui]
+agent_panel_scope = "all"

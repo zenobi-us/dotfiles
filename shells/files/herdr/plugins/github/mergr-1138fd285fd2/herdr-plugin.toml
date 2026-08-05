@@ -1,0 +1,22 @@
+id = "mergr"
+name = "mergr"
+version = "0.3.2"
+min_herdr_version = "0.7.5"
+description = "GitHub pull request status for Herdr Space sidebar rows."
+platforms = ["linux", "macos"]
+
+[[build]]
+platforms = ["macos"]
+command = ["sh", "scripts/install-binary.sh"]
+
+[[build]]
+platforms = ["linux"]
+command = ["cargo", "build", "--release", "--locked"]
+
+[[startup]]
+command = ["target/release/mergr", "daemon"]
+
+[[actions]]
+id = "filter-cycle"
+title = "Cycle PR filter"
+command = ["target/release/mergr", "filter-cycle"]

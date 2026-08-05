@@ -1,0 +1,22 @@
+[package]
+name = "mergr"
+version = "0.3.2"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT"
+description = "GitHub pull request status for the Herdr Space sidebar"
+repository = "https://github.com/jsmenzies/mergr"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+time = { version = "0.3", features = ["parsing"] }
+tokio = { version = "1.48", features = ["io-util", "macros", "net", "rt-multi-thread", "signal", "sync", "time"] }
+unicode-segmentation = "1.12"
+unicode-width = "0.2"
+wait-timeout = "0.2"
+
+[profile.release]
+lto = "thin"
+strip = true

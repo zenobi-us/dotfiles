@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/jsmenzies/mergr/main/config.schema.json",
+  "title": "mergr configuration",
+  "description": "Configuration for the mergr Herdr plugin.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "maxRows": {
+      "type": "integer",
+      "description": "Maximum pull request rows displayed per Space.",
+      "minimum": 1,
+      "maximum": 5,
+      "default": 3
+    },
+    "refreshIntervalSeconds": {
+      "type": "integer",
+      "description": "Seconds between automatic refreshes.",
+      "minimum": 1,
+      "maximum": 86400,
+      "default": 60
+    },
+    "filters": {
+      "$ref": "#/$defs/filters"
+    }
+  },
+  "$defs": {
+    "author": {
+      "type": "string",
+      "anyOf": [
+        { "enum": ["any", "@me"] },
+        { "pattern": "^[A-Za-z0-9][A-Za-z0-9-]{0,38}$" }
+      ]
+    },
+    "branch": {
+      "enum": ["all", "current"]
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "author": { "$ref": "#/$defs/author", "default": "@me" },
+        "branch": { "$ref": "#/$defs/branch", "default": "all" }
+      }
+    }
+  }
+}

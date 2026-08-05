@@ -1,0 +1,127 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: macos-15
+    steps:
+      - name: Check out the tagged source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install the minimum supported Rust toolchain
+        run: rustup toolchain install 1.88.0 --profile minimal --component clippy,rustfmt
+
+      - name: Verify release versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected_version="${GITHUB_REF_NAME#v}"
+          cargo_version="$(awk -F '"' '/^version = "/ { print $2; exit }' Cargo.toml)"
+          plugin_version="$(awk -F '"' '/^version = "/ { print $2; exit }' herdr-plugin.toml)"
+          lock_version="$(awk '/^name = "mergr"$/ { getline; gsub(/"/, "", $3); print $3; exit }' Cargo.lock)"
+          test "$GITHUB_REF_NAME" = "v$expected_version"
+          test "$cargo_version" = "$expected_version"
+          test "$plugin_version" = "$expected_version"
+          test "$lock_version" = "$expected_version"
+
+      - run: cargo +1.88.0 fmt --all -- --check
+      - run: cargo +1.88.0 test --locked
+      - run: cargo +1.88.0 clippy --locked -- -D warnings
+
+  build:
+    needs: validate
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            target: aarch64-apple-darwin
+            asset_architecture: aarch64
+          - runner: macos-15-intel
+            target: x86_64-apple-darwin
+            asset_architecture: x86_64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Check out the tagged source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install the minimum supported Rust toolchain
+        run: |
+          rustup toolchain install 1.88.0 --profile minimal
+          rustup target add --toolchain 1.88.0 "${{ matrix.target }}"
+
+      - name: Build the release binary
+        run: cargo +1.88.0 build --release --locked --target "${{ matrix.target }}"
+
+      - name: Sign and checksum the release asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          asset="mergr-${GITHUB_REF_NAME}-macos-${{ matrix.asset_architecture }}"
+          mkdir -p dist
+          cp "target/${{ matrix.target }}/release/mergr" "dist/$asset"
+          codesign --force --sign - "dist/$asset"
+          codesign --verify --verbose=2 "dist/$asset"
+          (
+            cd dist
+            shasum -a 256 "$asset" > "$asset.sha256"
+          )
+          file "dist/$asset"
+
+      - name: Upload the signed binary
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: mergr-macos-${{ matrix.asset_architecture }}
+          path: dist/*
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download release assets
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Publish the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "dist/mergr-${GITHUB_REF_NAME}-macos-aarch64"
+          test -f "dist/mergr-${GITHUB_REF_NAME}-macos-aarch64.sha256"
+          test -f "dist/mergr-${GITHUB_REF_NAME}-macos-x86_64"
+          test -f "dist/mergr-${GITHUB_REF_NAME}-macos-x86_64.sha256"
+          (
+            cd dist
+            sha256sum --check ./*.sha256
+          )
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" \
+              dist/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" \
+              dist/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --verify-tag \
+              --generate-notes \
+              --title "mergr $GITHUB_REF_NAME"
+          fi
