@@ -52,7 +52,9 @@
     "./extensions/@zenobius/project-overrides",
     "./extensions/@zenobius/sub-limits",
     "npm:pi-add-dir",
-    "npm:pi-claude-marketplace"
+    "npm:pi-claude-marketplace",
+    "git:github.com/edxeth/pi-subagents",
+    "npm:@mrclrchtr/supi-ask-user"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
