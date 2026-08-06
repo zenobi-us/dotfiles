@@ -1,43 +1,195 @@
 [
   {
-    "plugin_id": "mergr",
-    "name": "mergr",
-    "version": "0.3.2",
-    "min_herdr_version": "0.7.5",
-    "description": "GitHub pull request status for Herdr Space sidebar rows.",
-    "manifest_path": "/home/zenobius/.config/herdr/plugins/github/mergr-1138fd285fd2/herdr-plugin.toml",
-    "plugin_root": "/home/zenobius/.config/herdr/plugins/github/mergr-1138fd285fd2",
+    "plugin_id": "herdr-bar",
+    "name": "Bar",
+    "version": "0.2.0",
+    "min_herdr_version": "0.7.4",
+    "description": "Cmd+K command bar: fuzzy-jump to any tab or agent",
+    "manifest_path": "/home/zenobius/Projects/dotfiles/shells/files/herdr/plugins/github/herdr-bar-96eebe452a9c/herdr-plugin.toml",
+    "plugin_root": "/home/zenobius/Projects/dotfiles/shells/files/herdr/plugins/github/herdr-bar-96eebe452a9c",
     "enabled": true,
-    "platforms": ["linux", "macos"],
-    "build": [
-      {
-        "platforms": ["macos"],
-        "command": ["sh", "scripts/install-binary.sh"]
-      },
-      {
-        "platforms": ["linux"],
-        "command": ["cargo", "build", "--release", "--locked"]
-      }
-    ],
-    "startup": [
-      {
-        "command": ["target/release/mergr", "daemon"]
-      }
+    "platforms": [
+      "linux",
+      "macos"
     ],
     "actions": [
       {
-        "id": "filter-cycle",
-        "title": "Cycle PR filter",
-        "command": ["target/release/mergr", "filter-cycle"]
+        "id": "open",
+        "title": "Open bar",
+        "description": "Fuzzy-jump to any tab or agent",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "sh",
+          "-c",
+          "herdr_bin=\"${HERDR_BIN_PATH:-herdr}\"; [ -x \"$herdr_bin\" ] || herdr_bin=herdr; exec \"$herdr_bin\" plugin pane open --plugin herdr-bar --entrypoint bar --placement popup"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "bar",
+        "title": "Bar",
+        "description": "Fuzzy-jump to any tab or agent",
+        "placement": "popup",
+        "width": "74%",
+        "height": "62%",
+        "command": [
+          "python3",
+          "run.py"
+        ]
       }
     ],
     "source": {
       "kind": "github",
-      "owner": "jsmenzies",
-      "repo": "mergr",
-      "resolved_commit": "528e7bab549e5132b48393b7dcb39b5c059f2eff",
-      "managed_path": "/home/zenobius/.config/herdr/plugins/github/mergr-1138fd285fd2",
-      "installed_unix_ms": 1785905448100
+      "owner": "jeffarese",
+      "repo": "herdr-bar",
+      "resolved_commit": "a10d06386838438b16deb36fd9355c073ed365f8",
+      "managed_path": "/home/zenobius/.config/herdr/plugins/github/herdr-bar-96eebe452a9c",
+      "installed_unix_ms": 1785907769861
+    }
+  },
+  {
+    "plugin_id": "herdr-space-tab-metadata",
+    "name": "Space Tab Metadata",
+    "version": "0.1.0",
+    "min_herdr_version": "0.8.0",
+    "description": "Expose each Space's active Tab and Tab count as sidebar metadata.",
+    "manifest_path": "/home/zenobius/Projects/dotfiles/shells/files/herdr/plugins/github/herdr-space-tab-metadata-2daccdc17b1f/herdr-plugin.toml",
+    "plugin_root": "/home/zenobius/Projects/dotfiles/shells/files/herdr/plugins/github/herdr-space-tab-metadata-2daccdc17b1f",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "command": [
+          "python3",
+          "-m",
+          "py_compile",
+          "sync_tabs.py"
+        ]
+      }
+    ],
+    "startup": [
+      {
+        "command": [
+          "python3",
+          "sync_tabs.py"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "refresh",
+        "title": "Refresh Space Tab metadata",
+        "description": "Refresh active_tab and tab_count metadata for every Space.",
+        "command": [
+          "python3",
+          "sync_tabs.py"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "on": "tab.closed",
+        "command": [
+          "python3",
+          "sync_tabs.py"
+        ]
+      },
+      {
+        "on": "tab.created",
+        "command": [
+          "python3",
+          "sync_tabs.py"
+        ]
+      },
+      {
+        "on": "tab.focused",
+        "command": [
+          "python3",
+          "sync_tabs.py"
+        ]
+      },
+      {
+        "on": "tab.moved",
+        "command": [
+          "python3",
+          "sync_tabs.py"
+        ]
+      },
+      {
+        "on": "tab.renamed",
+        "command": [
+          "python3",
+          "sync_tabs.py"
+        ]
+      },
+      {
+        "on": "workspace.created",
+        "command": [
+          "python3",
+          "sync_tabs.py"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "szrenwei",
+      "repo": "herdr-space-tab-metadata",
+      "resolved_commit": "c696c36256eddc6ee1983ab9f202848b84460e06",
+      "managed_path": "/home/zenobius/.config/herdr/plugins/github/herdr-space-tab-metadata-2daccdc17b1f",
+      "installed_unix_ms": 1785908052989
+    }
+  },
+  {
+    "plugin_id": "jt.command-palette",
+    "name": "Command Palette (fzf)",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.0",
+    "description": "An fzf command palette for herdr: pops up a fuzzy-searchable list of every action exposed by every installed plugin (via `herdr plugin action list`) and invokes the one you pick. The picker runs in an overlay pane so fzf gets a real TTY; the origin workspace's cwd is forwarded so context-aware actions resolve the right repo.",
+    "manifest_path": "/home/zenobius/Projects/dotfiles/shells/files/herdr/plugins/github/jt.command-palette-24905dca5f16/herdr-plugin.toml",
+    "plugin_root": "/home/zenobius/Projects/dotfiles/shells/files/herdr/plugins/github/jt.command-palette-24905dca5f16",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Command palette (all plugin actions)",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "open.sh"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "palette",
+        "title": "Command palette",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/palette.sh\""
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "JanTvrdik",
+      "repo": "herdr-command-palette",
+      "resolved_commit": "eab940018c2135ac23718efa11e23e9dddcd2a75",
+      "managed_path": "/home/zenobius/.config/herdr/plugins/github/jt.command-palette-24905dca5f16",
+      "installed_unix_ms": 1785907399449
     }
   },
   {
@@ -46,15 +198,20 @@
     "version": "0.1.0",
     "min_herdr_version": "0.7.0",
     "description": "Switch, create, or remove git worktrees via worktrunk",
-    "manifest_path": "/home/zenobius/.config/herdr/plugins/github/worktrunk-7fb519583f31/herdr-plugin.toml",
-    "plugin_root": "/home/zenobius/.config/herdr/plugins/github/worktrunk-7fb519583f31",
+    "manifest_path": "/home/zenobius/Projects/dotfiles/shells/files/herdr/plugins/github/worktrunk-7fb519583f31/herdr-plugin.toml",
+    "plugin_root": "/home/zenobius/Projects/dotfiles/shells/files/herdr/plugins/github/worktrunk-7fb519583f31",
     "enabled": true,
-    "platforms": ["macos", "linux"],
+    "platforms": [
+      "macos",
+      "linux"
+    ],
     "actions": [
       {
         "id": "open",
         "title": "Worktree: switch / create from default branch",
-        "contexts": ["workspace"],
+        "contexts": [
+          "workspace"
+        ],
         "command": [
           "bash",
           "-c",
@@ -64,7 +221,9 @@
       {
         "id": "open-current",
         "title": "Worktree: switch / create from current branch",
-        "contexts": ["workspace"],
+        "contexts": [
+          "workspace"
+        ],
         "command": [
           "bash",
           "-c",
@@ -74,7 +233,9 @@
       {
         "id": "remove",
         "title": "Worktree: remove",
-        "contexts": ["workspace"],
+        "contexts": [
+          "workspace"
+        ],
         "command": [
           "bash",
           "-c",
@@ -107,7 +268,11 @@
         "id": "remover",
         "title": "Worktrunk — remove",
         "placement": "split",
-        "command": ["bash", "-c", "exec bash \"$HERDR_PLUGIN_ROOT/remove.sh\""]
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/remove.sh\""
+        ]
       }
     ],
     "source": {
@@ -116,7 +281,7 @@
       "repo": "herdr-worktrunk",
       "resolved_commit": "a3107ca566bafcd463bc138007a0c01051970784",
       "managed_path": "/home/zenobius/.config/herdr/plugins/github/worktrunk-7fb519583f31",
-      "installed_unix_ms": 1785905015944
+      "installed_unix_ms": 1785908759467
     }
   }
 ]
