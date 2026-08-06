@@ -116,7 +116,7 @@ PI_SUBAGENT_MUX = "zellij"
 PI_SUBAGENT_ZELLIJ_PLACEMENT = "right-stack"
 
 [shell_alias]
-pi="mise x node@lts -- pi --no-skills"
+pi="mise x node@lts -- pi "
 piupdate="mise x node@lts -- pi update"
 piinstall="mise x node@lts -- pi install"
 
@@ -131,11 +131,8 @@ fi
 
 [dotfiles]
 "~/.bunfig.toml" = { source = "devtools/files/bun/bunfig.toml", mode = "symlink" }
-"~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
-"~/.config/mise/tasks" = { source = "devtools/files/mise/tasks", mode = "symlink" }
 "~/.gitconfig" = { source = "devtools/files/git/.gitconfig", mode = "copy" }
 "~/.gitignore_global" = { source = "devtools/files/git/.gitignore_global", mode = "copy" }
-"~/.config/starship.toml" = { source = "shells/files/starship/starship.toml", mode = "copy" }
 
 [tasks.bootstrap]
 description = "Finish machine setup after declarative bootstrap phases"
@@ -164,6 +161,11 @@ description = "Linux-only bootstrap leftovers"
 run = """
 set -eu
 cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
+if command -v rpm-ostree >/dev/null && ! command -v xrdb >/dev/null; then
+  sudo rpm-ostree install -yA xrdb
+  echo "rpm-ostree created a pending deployment; reboot before rerunning bootstrap"
+  exit 0
+fi
 font-install -fromFile assets/files/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then

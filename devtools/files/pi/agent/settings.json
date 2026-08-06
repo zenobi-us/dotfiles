@@ -6,7 +6,6 @@
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
-  "enableSkillCommands": true,
   "hideThinkingBlock": false,
   "lastChangelogVersion": "0.83.0",
   "packages": [
@@ -41,10 +40,6 @@
     "./extensions/@zenobius/pi-context-report",
     "./extensions/@zenobius/pi-fzf",
     "./extensions/@zenobius/pi-handoff",
-    {
-      "source": "./extensions/@zenobius/pi-lazyskills",
-      "extensions": []
-    },
     "./extensions/@zenobius/pi-lmstudio-provider",
     "./extensions/@zenobius/pi-lsp",
     "./extensions/@zenobius/pi-onnx",
@@ -93,11 +88,8 @@
           "exaDeepResearchEnabled": false,
           "exaResearchModes": "{}"
         }
-      },
-      "disabledItems": [
-        "package:@vanillagreen/pi-qol",
-        "package:skills"
-      ]
+      }
     }
-  }
+  },
+  "enableSkillCommands": true
 }
