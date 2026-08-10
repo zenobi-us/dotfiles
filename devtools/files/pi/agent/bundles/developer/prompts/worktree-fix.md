@@ -19,18 +19,24 @@ Resolve the ticket before fixing work.
 - Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree inspection and operations.
 - Use Herdr commands for panes and agents. Do not use Zellij commands.
+- Use the applicable Matt Pocock engineering skill from `@devtools/files/pi/agent/bundles/matt-pocock/skills/engineering/`, normally `implement`, `tdd`, or `diagnosing-bugs`.
+- Treat the Matt Pocock shared context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<matt-pocock-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before changing code.
+- Follow `ALIGNMENT-ROOT.md`. Do not invent a shared path or write alignment files to inactive storage.
+- Prefer `storage="shared"` for memory shared across worktrees when it is active. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.
 - Require a matching persisted `FAILURE` verdict from `worktree-review`.
 - Do not create a second worktree for the same source branch.
 
 # Process
 
 1. Resolve the ticket, then identify the source branch, worktree path, review artifact, and blocking findings from `UserRequest` or the persisted workflow record.
-2. Use Worktrunk to verify that the source worktree exists and that the branch is correct.
-3. Write `/tmp/{ticket-id}-fix-handoff.md` with only the blocking findings, exact files, source worktree path, and expected validation command.
-4. Create a sibling Herdr pane in the existing worktree workspace with `herdr pane split --current --cwd <worktree-path> --no-focus`.
-5. Start a named Pi agent in the returned pane with `herdr agent start <name> --kind pi --pane <pane-id> -- @/tmp/{ticket-id}-fix-handoff.md`.
-6. Do not create a tab or worktree. Herdr already owns the layout, and Worktrunk already owns the checkout.
-7. Record the fixer agent name and pane ID in the workflow record.
+2. Resolve the active `ALIGNMENT_ROOT`, run `/eng-context report`, and select the applicable engineering skill.
+3. Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active alignment storage.
+4. Use Worktrunk to verify that the source worktree exists and that the branch is correct.
+5. Write `/tmp/{ticket-id}-fix-handoff.md` with only the blocking findings, exact files, source worktree path, active `ALIGNMENT_ROOT` and storage mode, selected engineering skill, relevant context files, and expected validation command.
+6. Create a sibling Herdr pane in the existing worktree workspace with `herdr pane split --current --cwd <worktree-path> --no-focus`.
+7. Start a named Pi agent in the returned pane with `herdr agent start <name> --kind pi --pane <pane-id> -- @/tmp/{ticket-id}-fix-handoff.md`.
+8. Do not create a tab or worktree. Herdr already owns the layout, and Worktrunk already owns the checkout.
+9. Record the fixer agent name, pane ID, active `ALIGNMENT_ROOT`, and storage mode in the workflow record.
 
 # Output
 

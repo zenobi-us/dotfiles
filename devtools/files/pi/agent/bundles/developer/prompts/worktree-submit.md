@@ -18,6 +18,9 @@ Resolve the ticket before submitting work.
 
 - Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree and branch operations.
+- Use the applicable Matt Pocock engineering skills from `@devtools/files/pi/agent/bundles/matt-pocock/skills/engineering/`, especially `code-review` and `implement`.
+- Treat the Matt Pocock shared context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<matt-pocock-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before submitting.
+- Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and pull requests in the worktree repository.
 - Require a matching persisted `SUCCESS` verdict from `worktree-review`.
 - Do not push directly to the base branch.
 
@@ -30,18 +33,19 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 
 # Process
 
-1. Resolve the current or reviewed Herdr worktree with `herdr worktree list --cwd "$PWD" --json`.
-2. Use Worktrunk to verify the source branch and worktree state.
-3. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-git-commits` skill.
-4. Run the smallest validation command recorded by the successful review.
-5. Push the source branch.
-6. Use the pull request creation skill if available. Otherwise use `gh pr create`.
-7. Add these items to the pull request body:
+1. Resolve the active `ALIGNMENT_ROOT` and run `/eng-context report`.
+2. Resolve the current or reviewed Herdr worktree with `herdr worktree list --cwd "$PWD" --json`.
+3. Use Worktrunk to verify the source branch and worktree state.
+4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-git-commits` skill.
+5. Run the smallest validation command recorded by the successful review.
+6. Push the source branch.
+7. Use the pull request creation skill if available. Otherwise use `gh pr create`.
+8. Add these items to the pull request body:
    - the ticket link,
    - the successful review artifact path,
    - validation output,
    - a concise summary of changes.
-8. Leave the source worktree open. Do not remove it after submitting the pull request.
+9. Leave the source worktree open. Do not remove it after submitting the pull request.
 
 # Safety rules
 
