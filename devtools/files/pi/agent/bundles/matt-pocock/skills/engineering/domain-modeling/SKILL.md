@@ -3,6 +3,17 @@ name: domain-modeling
 description: Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record an architectural decision, or when another skill needs to maintain the domain model.
 ---
 
+## Language
+
+All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**. Apply it to questions, explanations, recommendations, issue text, reports, handoffs, and procedures.
+
+- Use short, complete sentences and active voice.
+- Use one term for one meaning.
+- Put conditions before commands.
+- Use imperative sentences for procedures.
+- Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
+- Use the `simple-english` skill for the full rule set.
+
 # Domain Modeling
 
 Before reading or writing domain artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md). Every structure below is rooted at the active alignment root.

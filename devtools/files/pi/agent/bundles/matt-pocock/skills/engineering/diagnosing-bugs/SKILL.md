@@ -3,6 +3,17 @@ name: diagnosing-bugs
 description: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
 ---
 
+## Language
+
+All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**. Apply it to questions, explanations, recommendations, issue text, reports, handoffs, and procedures.
+
+- Use short, complete sentences and active voice.
+- Use one term for one meaning.
+- Put conditions before commands.
+- Use imperative sentences for procedures.
+- Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
+- Use the `simple-english` skill for the full rule set.
+
 # Diagnosing Bugs
 
 A discipline for hard bugs. Skip phases only when explicitly justified.

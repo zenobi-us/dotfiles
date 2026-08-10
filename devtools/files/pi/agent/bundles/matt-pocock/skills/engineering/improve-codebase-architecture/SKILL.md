@@ -4,6 +4,17 @@ description: Scan a codebase for deepening opportunities, present them as a visu
 disable-model-invocation: true
 ---
 
+## Language
+
+All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**. Apply it to questions, explanations, recommendations, issue text, reports, handoffs, and procedures.
+
+- Use short, complete sentences and active voice.
+- Use one term for one meaning.
+- Put conditions before commands.
+- Use imperative sentences for procedures.
+- Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
+- Use the `simple-english` skill for the full rule set.
+
 # Improve Codebase Architecture
 
 Surface architectural friction and propose **deepening opportunities** — refactors that turn shallow modules into deep ones. The aim is testability and AI-navigability.

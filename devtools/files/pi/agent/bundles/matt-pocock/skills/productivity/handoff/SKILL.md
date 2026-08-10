@@ -5,6 +5,17 @@ argument-hint: "What will the next session be used for?"
 disable-model-invocation: true
 ---
 
+## Language
+
+All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**. Apply it to questions, explanations, recommendations, issue text, reports, handoffs, and procedures.
+
+- Use short, complete sentences and active voice.
+- Use one term for one meaning.
+- Put conditions before commands.
+- Use imperative sentences for procedures.
+- Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
+- Use the `simple-english` skill for the full rule set.
+
 Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
 
 Include a "suggested skills" section in the document, which suggests skills that the agent should invoke.

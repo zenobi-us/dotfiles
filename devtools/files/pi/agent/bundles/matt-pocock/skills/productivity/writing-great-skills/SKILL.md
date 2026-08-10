@@ -4,6 +4,17 @@ description: Reference for writing and editing skills well — the vocabulary an
 disable-model-invocation: true
 ---
 
+## Language
+
+All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**. Apply it to questions, explanations, recommendations, issue text, reports, handoffs, and procedures.
+
+- Use short, complete sentences and active voice.
+- Use one term for one meaning.
+- Put conditions before commands.
+- Use imperative sentences for procedures.
+- Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
+- Use the `simple-english` skill for the full rule set.
+
 A skill exists to wrangle determinism out of a stochastic system. **Predictability** — the agent taking the same _process_ every run, not producing the same output — is the root virtue; every lever below serves it.
 
 **Bold terms** are defined in [`GLOSSARY.md`](GLOSSARY.md); look them up there for the full meaning.
