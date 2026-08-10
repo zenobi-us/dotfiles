@@ -13,9 +13,78 @@ The architectural review is rendered as a single self-contained HTML file in the
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-      mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+
+      const dark = document.documentElement.classList.contains("dark") ||
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base",
+        securityLevel: "loose",
+        themeVariables: dark ? {
+          background: "#0f172a",
+          primaryColor: "#1e293b",
+          primaryTextColor: "#f8fafc",
+          primaryBorderColor: "#94a3b8",
+          lineColor: "#cbd5e1",
+          secondaryColor: "#172554",
+          tertiaryColor: "#1e293b",
+          clusterBkg: "#111827",
+          clusterBorder: "#64748b",
+          edgeLabelBackground: "#0f172a"
+        } : {
+          background: "#ffffff",
+          primaryColor: "#ffffff",
+          primaryTextColor: "#0f172a",
+          primaryBorderColor: "#475569",
+          lineColor: "#475569",
+          secondaryColor: "#eff6ff",
+          tertiaryColor: "#f8fafc",
+          clusterBkg: "#f8fafc",
+          clusterBorder: "#94a3b8",
+          edgeLabelBackground: "#ffffff"
+        }
+      });
     </script>
     <style>
+      :root {
+        color-scheme: light dark;
+        --report-bg: #fafaf9;
+        --report-fg: #0f172a;
+        --diagram-bg: #ffffff;
+        --diagram-fg: #0f172a;
+        --diagram-border: #e2e8f0;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --report-bg: #0c1220;
+          --report-fg: #e2e8f0;
+          --diagram-bg: #111827;
+          --diagram-fg: #f8fafc;
+          --diagram-border: #334155;
+        }
+      }
+
+      html.dark {
+        --report-bg: #0c1220;
+        --report-fg: #e2e8f0;
+        --diagram-bg: #111827;
+        --diagram-fg: #f8fafc;
+        --diagram-border: #334155;
+      }
+
+      body {
+        background: var(--report-bg);
+        color: var(--report-fg);
+      }
+
+      .diagram-card {
+        background: var(--diagram-bg);
+        border-color: var(--diagram-border);
+        color: var(--diagram-fg);
+      }
+
       /* small custom layer for things Tailwind doesn't cover cleanly:
          dashed seam lines, hand-drawn-feeling arrow heads, etc. */
       .seam { stroke-dasharray: 4 4; }
@@ -23,7 +92,7 @@ The architectural review is rendered as a single self-contained HTML file in the
       .deep { background: linear-gradient(135deg, #0f172a, #1e293b); }
     </style>
   </head>
-  <body class="bg-stone-50 text-slate-900 font-sans">
+  <body class="font-sans">
     <main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
       <header>...</header>
       <section id="candidates" class="space-y-10">...</section>
@@ -60,10 +129,10 @@ Pick the pattern that fits the candidate. Mix them. Don't make every diagram loo
 
 ### Mermaid graph (the workhorse for dependencies / call flow)
 
-Use a Mermaid `flowchart` or `graph` when the point is "X calls Y calls Z, and look at the mess." Wrap it in a Tailwind-styled card so it doesn't feel parachuted in. Style with classDef to colour leakage edges red and the deep module dark. Sequence diagrams work well for "before: 6 round-trips; after: 1."
+Use a Mermaid `flowchart` or `graph` when the point is "X calls Y calls Z, and look at the mess." Wrap it in a `.diagram-card` so the card follows the active color scheme. Use Mermaid `theme: "base"` with explicit light and dark `themeVariables`; do not use `theme: "neutral"` or hardcoded light node colors. Style with `classDef` to colour leakage edges red and the deep module dark. Sequence diagrams work well for "before: 6 round-trips; after: 1."
 
 ```html
-<div class="rounded-lg border border-slate-200 bg-white p-4">
+<div class="diagram-card rounded-lg border p-4">
   <pre class="mermaid">
     flowchart LR
       A[OrderHandler] --> B[OrderValidator]
@@ -95,6 +164,8 @@ Before: a tree of function calls rendered as nested boxes. After: the same tree 
 
 - Lean editorial, not corporate-dashboard. Generous whitespace. Serif optional for headings (`font-serif` works well with stone/slate).
 - Colour sparingly: one accent (emerald or indigo) plus red for leakage and amber for warnings.
+- Use CSS variables for report and diagram surfaces. Mermaid node text, borders, lines, labels, and fills must have readable light and dark values.
+- Keep the Mermaid theme and surrounding HTML card in the same color scheme. Test the report with both `prefers-color-scheme: light` and `prefers-color-scheme: dark`.
 - Keep diagrams ~320px tall so before/after sits comfortably side by side without scrolling.
 - Use `text-xs uppercase tracking-wider` for module labels inside diagrams — they should read as schematic, not as UI.
 - The only scripts are the Tailwind CDN and the Mermaid ESM import. The report is otherwise static — no app code, no interactivity beyond Mermaid's own rendering.
