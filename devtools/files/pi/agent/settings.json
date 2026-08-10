@@ -6,7 +6,7 @@
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
   "enableInstallTelemetry": false,
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "lastChangelogVersion": "0.83.0",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
@@ -23,18 +23,14 @@
     "./extensions/@vanillagreen/pi-codex-minimal-tools",
     "./extensions/@vanillagreen/pi-tool-renderer",
     "./extensions/@vanillagreen/pi-caveman",
-    "./extensions/@vanillagreen/pi-background-tasks",
     "./extensions/@vanillagreen/pi-hooks",
-    "./extensions/@vanillagreen/pi-questions",
     "./extensions/@vanillagreen/pi-session-bridge",
-    "./extensions/@vanillagreen/pi-agents-tmux",
     "./extensions/@vanillagreen/pi-output-policy",
     "./extensions/@vanillagreen/pi-prompt-stash",
     "./extensions/@vanillagreen/pi-session-manager",
     "./extensions/@vanillagreen/pi-skills-manager",
     "./extensions/@vanillagreen/pi-task-panel",
     "./extensions/@zenobius/at-include.ts",
-    "./extensions/@zenobius/pi-agentthreads",
     "./extensions/@zenobius/pi-annotate",
     "./extensions/@zenobius/pi-autoresearch",
     "./extensions/@zenobius/pi-context-report",
@@ -54,7 +50,7 @@
     "npm:pi-add-dir",
     "npm:pi-claude-marketplace",
     "npm:@mrclrchtr/supi-ask-user",
-    "npm:pi-herdr-subagents"
+    "npm:pi-herdr-agents"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
@@ -90,9 +86,9 @@
           "exaDeepResearchEnabled": false,
           "exaResearchModes": "{}"
         }
-      }
+      },
+      "disabledItems": []
     }
   },
   "enableSkillCommands": true
 }
-

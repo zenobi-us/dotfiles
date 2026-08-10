@@ -2,7 +2,19 @@
 description: Review completed Worktrunk work in Herdr and persist a verdict.
 ---
 
-Review completed work for `UserRequest` in the current or inferred Worktrunk worktree.
+Review completed work for the resolved ticket scope in the current or inferred Worktrunk worktree.
+
+## Ticket resolution
+
+Resolve the ticket before reviewing work.
+
+1. Use an explicit issue or ticket identifier in `UserRequest`.
+2. If `UserRequest` has no identifier, use the most recent unambiguous ticket mention in the conversation.
+3. Cross-check the inferred ticket against the current worktree and persisted workflow or review records.
+4. If no unique ticket matches, or candidates conflict, ask the user which ticket to review.
+5. Do not guess or silently choose a ticket.
+
+Use conversation context only to identify the scope. Do not use it as evidence that the review passed.
 
 # Preconditions
 
@@ -13,7 +25,9 @@ Review completed work for `UserRequest` in the current or inferred Worktrunk wor
 
 # Exit early
 
-Exit if you cannot identify all of these items:
+Ask the user for the missing ticket before continuing. Exit only if the ticket remains unresolved.
+
+You must identify all of these items:
 
 1. The Worktrunk worktree.
 2. The source branch or pull request.

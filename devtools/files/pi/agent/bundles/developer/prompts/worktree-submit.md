@@ -2,7 +2,17 @@
 description: Commit successfully reviewed Worktrunk work and open a pull request through Herdr.
 ---
 
-Submit the reviewed work for `UserRequest` as a pull request.
+Submit the reviewed work for the resolved ticket as a pull request.
+
+## Ticket resolution
+
+Resolve the ticket before submitting work.
+
+1. Use an explicit issue or ticket identifier in `UserRequest`.
+2. If `UserRequest` has no identifier, use the most recent unambiguous ticket mention in the conversation.
+3. Cross-check the inferred ticket against the current worktree and persisted workflow or review records.
+4. If no unique ticket matches, or candidates conflict, ask the user which ticket to submit.
+5. Do not guess or silently choose a ticket.
 
 # Preconditions
 
@@ -11,7 +21,7 @@ Submit the reviewed work for `UserRequest` as a pull request.
 - Require a matching persisted `SUCCESS` verdict from `worktree-review`.
 - Do not push directly to the base branch.
 
-Exit if the review artifact scope does not match `UserRequest` or if you cannot identify:
+Ask the user for the missing ticket before continuing. Exit if the review artifact scope does not match the resolved ticket or if you cannot identify:
 
 1. The source worktree.
 2. The source branch.

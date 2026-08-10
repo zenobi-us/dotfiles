@@ -2,7 +2,17 @@
 description: Squash merge a successfully reviewed Worktrunk worktree through Herdr and close the ticket.
 ---
 
-Finish the reviewed work for `UserRequest`.
+Finish the reviewed work for the resolved ticket.
+
+## Ticket resolution
+
+Resolve the ticket before finishing work.
+
+1. Use an explicit issue or ticket identifier in `UserRequest`.
+2. If `UserRequest` has no identifier, use the most recent unambiguous ticket mention in the conversation.
+3. Cross-check the inferred ticket against the current worktree and persisted workflow or review records.
+4. If no unique ticket matches, or candidates conflict, ask the user which ticket to finish.
+5. Do not guess or silently choose a ticket.
 
 # Preconditions
 
@@ -11,7 +21,7 @@ Finish the reviewed work for `UserRequest`.
 - Require a matching persisted `SUCCESS` verdict from `worktree-review`.
 - Do not remove a worktree while an agent still runs inside it.
 
-Exit if the review artifact scope does not match `UserRequest` or if you cannot identify:
+Ask the user for the missing ticket before continuing. Exit if the review artifact scope does not match the resolved ticket or if you cannot identify:
 
 1. The source worktree.
 2. The source branch.
