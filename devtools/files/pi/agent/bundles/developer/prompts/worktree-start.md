@@ -46,7 +46,7 @@ Resolve the ticket or tickets before starting work.
    - Expand ranges inclusively.
    - Remove duplicate ticket numbers.
 3. Resolve the active engineering context and select the applicable engineering skill for the ticket jobs.
-   - Run `/eng-context report`.
+   - If `<matt-pocock-context />` isn't in context, run the pi slash cmd `/eng-context report` to understand where we store information.
    - Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active `ALIGNMENT_ROOT`.
 4. Determine the issue tracker from the explicit or inferred ticket source.
 5. Fetch every ticket's details.
