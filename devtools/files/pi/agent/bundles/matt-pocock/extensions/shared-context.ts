@@ -355,6 +355,7 @@ export default function mattPocockSharedContext(pi: ExtensionAPI): void {
     return { systemPrompt: event.systemPrompt + renderMattPocockContext(context) };
   });
 
+
   pi.registerCommand("eng-context", {
     description: "Report, initialize, list, or migrate engineering context storage",
     getArgumentCompletions: (prefix) => {
