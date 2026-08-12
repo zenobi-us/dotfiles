@@ -1,10 +1,11 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "gpt-5.6-luna",
+  "defaultModel": "gpt-5.6-sol",
   "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
+  "defaultProjectTrust": "always",
   "enableInstallTelemetry": false,
   "hideThinkingBlock": true,
   "lastChangelogVersion": "0.83.0",
@@ -50,7 +51,10 @@
     "npm:pi-add-dir",
     "npm:pi-claude-marketplace",
     "npm:@mrclrchtr/supi-ask-user",
-    "npm:pi-herdr-agents"
+    "npm:pi-herdr-agents",
+    "npm:@hypabolic/crossbar",
+    "npm:pi-localllm-provider",
+    "npm:@maheidem/model-discovery"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
