@@ -1,0 +1,9 @@
+git:
+  autoFetch: true
+  autoForwardBranches: onlyMainBranches
+  mainBranches:
+    - main
+    - master
+
+refresher:
+  fetchInterval: 380

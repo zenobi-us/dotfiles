@@ -133,6 +133,7 @@ fi
 "~/.bunfig.toml" = { source = "devtools/files/bun/bunfig.toml", mode = "symlink" }
 "~/.gitconfig" = { source = "devtools/files/git/.gitconfig", mode = "copy" }
 "~/.gitignore_global" = { source = "devtools/files/git/.gitignore_global", mode = "copy" }
+"~/.config/lazygit" = { source = "devtools/files/lazygit", mode = "symlink-each" }
 
 [tasks.bootstrap]
 description = "Finish machine setup after declarative bootstrap phases"
