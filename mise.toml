@@ -83,7 +83,6 @@ watchexec = "latest"
 yarn= "latest"
 yq = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
-zellij = "0.44.1"
 zig= "latest"
 lazydocker = "0.25.2"
 pdm = "latest"
@@ -110,10 +109,6 @@ youtube-dl = "latest"
 "github:vercel-labs/agent-browser" = "latest"
 granted = "latest"
 herdr = "latest"
-
-[env]
-PI_SUBAGENT_MUX = "zellij"
-PI_SUBAGENT_ZELLIJ_PLACEMENT = "right-stack"
 
 [shell_alias]
 pi="mise x node@lts -- pi "

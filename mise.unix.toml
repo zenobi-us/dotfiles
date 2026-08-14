@@ -12,9 +12,7 @@
 "~/.config/herdr/config.toml" = { source = "shells/files/herdr/config.toml", mode = "symlink" }
 "~/.config/herdr/plugins" = { source = "shells/files/herdr/plugins", mode = "symlink" }
 "~/.config/mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
-"~/.config/tmux" = { source = "shells/files/tmux", mode = "symlink" }
 "~/.config/worktrunk" = { source = "devtools/files/worktrunk", mode = "symlink" }
-"~/.config/zellij" = { source = "shells/files/zellij", mode = "symlink" }
 "~/.local/bin" = { source = "commands/files/bin", mode = "symlink-each" }
 "~/.mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
 "~/.pi/agent/AGENTS.md" = { source = "devtools/files/pi/agent/AGENTS.md", mode = "symlink" }

@@ -1,5 +1,5 @@
 [bootstrap.repos]
-"~/AppData/Local/nvim" = { url = "https://github.com/zenobi-us/astronvim.profile" }
+"~/AppData/Local/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }
 
 [dotfiles]
 "~/.bunfig.toml" = { source = "devtools/files/bun/bunfig.toml", mode = "symlink" }

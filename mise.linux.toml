@@ -3,7 +3,7 @@
 "dnf:xrdb" = "latest"
 
 [bootstrap.repos]
-"~/.config/nvim" = { url = "https://github.com/zenobi-us/astronvim.profile" }
+"~/.config/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }
 
 [dotfiles]
 "~/.config/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf" = { source = "windowmanagers/files/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf", mode = "copy" }

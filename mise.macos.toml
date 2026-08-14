@@ -1,2 +1,2 @@
 [bootstrap.repos]
-"~/.config/nvim" = { url = "https://github.com/zenobi-us/astronvim.profile" }
+"~/.config/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }
