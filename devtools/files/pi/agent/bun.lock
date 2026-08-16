@@ -63,36 +63,6 @@
       "name": "@zenobius/pi-writing",
       "version": "0.1.0",
     },
-    "extensions/@vanillagreen/pi-agents-tmux": {
-      "name": "@vanillagreen/pi-agents-tmux",
-      "version": "2.7.0",
-      "peerDependencies": {
-        "@earendil-works/pi-ai": "*",
-        "@earendil-works/pi-coding-agent": "*",
-        "@earendil-works/pi-tui": "*",
-        "typebox": "*",
-      },
-      "optionalPeers": [
-        "@earendil-works/pi-ai",
-        "@earendil-works/pi-coding-agent",
-        "@earendil-works/pi-tui",
-      ],
-    },
-    "extensions/@vanillagreen/pi-background-tasks": {
-      "name": "@vanillagreen/pi-background-tasks",
-      "version": "1.6.2",
-      "peerDependencies": {
-        "@earendil-works/pi-ai": "*",
-        "@earendil-works/pi-coding-agent": "*",
-        "@earendil-works/pi-tui": "*",
-        "typebox": "*",
-      },
-      "optionalPeers": [
-        "@earendil-works/pi-ai",
-        "@earendil-works/pi-coding-agent",
-        "@earendil-works/pi-tui",
-      ],
-    },
     "extensions/@vanillagreen/pi-caveman": {
       "name": "@vanillagreen/pi-caveman",
       "version": "1.2.4",
@@ -216,18 +186,6 @@
       "optionalPeers": [
         "@earendil-works/pi-agent-core",
         "@earendil-works/pi-ai",
-        "@earendil-works/pi-coding-agent",
-        "@earendil-works/pi-tui",
-      ],
-    },
-    "extensions/@vanillagreen/pi-questions": {
-      "name": "@vanillagreen/pi-questions",
-      "version": "1.5.0",
-      "peerDependencies": {
-        "@earendil-works/pi-coding-agent": "*",
-        "@earendil-works/pi-tui": "*",
-      },
-      "optionalPeers": [
         "@earendil-works/pi-coding-agent",
         "@earendil-works/pi-tui",
       ],
@@ -910,10 +868,6 @@
 
     "@types/yauzl": ["@types/yauzl@2.10.3", "", { "dependencies": { "@types/node": "*" } }, "sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q=="],
 
-    "@vanillagreen/pi-agents-tmux": ["@vanillagreen/pi-agents-tmux@workspace:extensions/@vanillagreen/pi-agents-tmux"],
-
-    "@vanillagreen/pi-background-tasks": ["@vanillagreen/pi-background-tasks@workspace:extensions/@vanillagreen/pi-background-tasks"],
-
     "@vanillagreen/pi-caveman": ["@vanillagreen/pi-caveman@workspace:extensions/@vanillagreen/pi-caveman"],
 
     "@vanillagreen/pi-claude-bridge": ["@vanillagreen/pi-claude-bridge@workspace:extensions/@vanillagreen/pi-claude-bridge"],
@@ -929,8 +883,6 @@
     "@vanillagreen/pi-prompt-stash": ["@vanillagreen/pi-prompt-stash@workspace:extensions/@vanillagreen/pi-prompt-stash"],
 
     "@vanillagreen/pi-qol": ["@vanillagreen/pi-qol@workspace:extensions/@vanillagreen/pi-qol"],
-
-    "@vanillagreen/pi-questions": ["@vanillagreen/pi-questions@workspace:extensions/@vanillagreen/pi-questions"],
 
     "@vanillagreen/pi-session-bridge": ["@vanillagreen/pi-session-bridge@workspace:extensions/@vanillagreen/pi-session-bridge"],
 

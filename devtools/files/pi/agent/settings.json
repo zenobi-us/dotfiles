@@ -1,13 +1,13 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "gpt-5.6-sol",
-  "defaultProvider": "openai-codex",
-  "defaultThinkingLevel": "high",
+  "defaultModel": "qwen3.6-27b",
+  "defaultProvider": "localllm-club3090-vllm",
+  "defaultThinkingLevel": "medium",
   "doubleEscapeAction": "tree",
   "defaultProjectTrust": "always",
   "enableInstallTelemetry": false,
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "lastChangelogVersion": "0.83.0",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
@@ -52,9 +52,7 @@
     "npm:pi-claude-marketplace",
     "npm:@mrclrchtr/supi-ask-user",
     "npm:pi-herdr-agents",
-    "npm:@hypabolic/crossbar",
-    "npm:pi-localllm-provider",
-    "npm:@maheidem/model-discovery"
+    "npm:pi-localllm-provider"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
@@ -94,5 +92,38 @@
       "disabledItems": []
     }
   },
-  "enableSkillCommands": true
+  "enableSkillCommands": true,
+  "localllm": {
+    "servers": [
+      {
+        "id": "8u4krl",
+        "name": "Club3090-vLLM",
+        "baseUrl": "http://192.168.86.35:8020/v1",
+        "apiKey": "",
+        "apiType": "vllm",
+        "models": [
+          {
+            "id": "qwen3.6-27b",
+            "name": "qwen3.6-27b",
+            "contextWindow": 32768,
+            "maxTokens": 8192,
+            "reasoning": false,
+            "input": [
+              "text"
+            ]
+          },
+          {
+            "id": "qwen3.6-27b-autoround",
+            "name": "qwen3.6-27b-autoround",
+            "contextWindow": 32768,
+            "maxTokens": 8192,
+            "reasoning": false,
+            "input": [
+              "text"
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

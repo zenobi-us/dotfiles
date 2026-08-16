@@ -4,8 +4,4 @@ approved-commands = [
     "moon run repo:typecheck",
 ]
 
-[projects."github.com/zenobi-us/zellij-agent-threads"]
-approved-commands = [
-    "bun install",
-    "moon run repo:typecheck",
-]
+
