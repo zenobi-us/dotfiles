@@ -48,12 +48,20 @@ You must identify all of these items:
    - the ticket requirements,
    - repository standards,
    - recorded validation output,
-   - the actual diff against the base branch.
-7. Run the smallest validation command that proves the reviewed work passes.
-8. Write the review artifact to `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`, overwriting any prior review artifact for the same ticket. Include the exact scope, source branch, base branch, commit, active `ALIGNMENT_ROOT`, findings, validation command, validation result, verdict, and timestamp.
-9. Use `SUCCESS` when no blocking findings remain. Use `FAILURE` when blocking findings remain.
-10. If the verdict is `FAILURE`, ask whether to run `worktree-fix`. Pass only the blocking findings, exact files, and validation command.
-11. If the verdict is `SUCCESS`, ask whether to run `worktree-finish` or `worktree-submit`.
+   - the actual diff against the base branch,
+   - every relevant ADR in the active alignment root.
+7. For every blocking finding, identify the violated ADR. Record each finding in this format:
+   ```md
+   {ADR id} {ADR name} : {violation description}
+
+     - [filename:lineno] {specific finding}
+   ```
+   Use the exact ADR ID and name. Include one file and line reference for each affected location. If no ADR applies, write `NO ADR` and state why the finding is blocking.
+8. Run the smallest validation command that proves the reviewed work passes.
+9. Write the review artifact to `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`, overwriting any prior review artifact for the same ticket. Include the exact scope, source branch, base branch, commit, active `ALIGNMENT_ROOT`, findings, validation command, validation result, verdict, and timestamp.
+10. Use `SUCCESS` when no blocking findings remain. Use `FAILURE` when blocking findings remain.
+11. If the verdict is `FAILURE`, ask whether to run `worktree-fix`. Pass only the blocking findings, ADR references, exact files, and validation command.
+12. If the verdict is `SUCCESS`, ask whether to run `worktree-finish` or `worktree-submit`.
 
 # Output
 
@@ -68,6 +76,16 @@ SUCCESS or FAILURE
 
 ## Findings
 - {blocking finding, or "None"}
+
+For each blocking finding, use:
+
+```md
+{ADR id} {ADR name} : {violation description}
+
+  - [filename:lineno] {specific finding}
+```
+
+Use `NO ADR` when no ADR applies. State why the finding is blocking.
 
 ## Validation
 - {command}: {result}
