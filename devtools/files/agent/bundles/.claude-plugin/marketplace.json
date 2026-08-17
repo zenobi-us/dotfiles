@@ -32,7 +32,7 @@
       "name": "shared-agent-context",
       "source": "./shared-agent-context",
       "description": "Origin-keyed shared agent context: resolve/init/list/migrate a shared AGENTS.md store outside any single repo clone",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "platform",
