@@ -1,8 +1,8 @@
 ---
-description: Fetch one or more tickets, create isolated Worktrunk worktrees, and start Pi agents in parallel in Herdr.
+description: Fetch one or more tickets, create isolated Worktrunk worktrees, and start agents of the current harness in parallel in Herdr.
 ---
 
-Fetch the tickets from `UserRequest`. Create one isolated Worktrunk worktree per ticket. Start one Pi agent per worktree.
+Fetch the tickets from `UserRequest`. Create one isolated Worktrunk worktree per ticket. Start one agent per worktree, matching the harness this command is running in.
 
 ## Input format
 
@@ -34,6 +34,16 @@ Resolve the ticket or tickets before starting work.
 - Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree creation and hooks.
 - Use Herdr commands for workspaces, panes, and agents. Do not use Zellij commands.
+- Detect the current harness kind for Herdr's `--kind` flag. Never hardcode `claude` or `pi`. Run:
+  ```bash
+  if [[ -n "${CLAUDE_CODE:-}" || -n "${CLAUDE_PROJECT_DIR:-}" ]]; then echo claude
+  elif [[ -n "${CODEX_SANDBOX:-}" ]]; then echo codex
+  elif [[ -n "${PI_CODING_AGENT_DIR:-}" ]]; then echo pi
+  elif [[ -n "${OPENCODE:-}" ]]; then echo opencode
+  else echo claude
+  fi
+  ```
+  This mirrors `detect_current_harness` in the `second-opinion` skill script. Use the result everywhere below as `<harness-kind>`.
 - Use the applicable Matt Pocock engineering skill. Use `/ask-matt` when the right skill is unclear.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Follow `ALIGNMENT-ROOT.md` before reading or writing `CONTEXT.md`, `CONTEXT-MAP.md`, ADRs, or `docs/agents/`.
 - Run `/eng-context report` before using alignment files. Read relevant context and ADRs from the active `ALIGNMENT_ROOT`; do not invent a shared path or write to an inactive storage location.
@@ -46,7 +56,7 @@ Resolve the ticket or tickets before starting work.
    - Expand ranges inclusively.
    - Remove duplicate ticket numbers.
 3. Resolve the active engineering context and select the applicable engineering skill for the ticket jobs.
-   - If `<shared-agent-context />` isn't in context, run the pi slash cmd `/eng-context report` to understand where we store information.
+   - If `<shared-agent-context />` isn't in context, run the slash cmd `/eng-context report` to understand where we store information.
    - Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active `ALIGNMENT_ROOT`.
 4. Determine the issue tracker from the explicit or inferred ticket source.
 5. Fetch every ticket's details.
@@ -62,12 +72,12 @@ Resolve the ticket or tickets before starting work.
    - Choose a unique safe branch name that includes the ticket ID.
    - Resolve the base branch from the repository.
    - Use Worktrunk to create or switch to the branch with hooks enabled.
-   - Use `--no-cd` and JSON output because the parent Pi process cannot consume shell directory changes.
+   - Use `--no-cd` and JSON output because the parent process cannot consume shell directory changes.
    - Register the resulting worktree with Herdr by using `herdr worktree open` and the returned worktree path.
    - Do not use native Herdr worktree creation instead of Worktrunk.
    - Write `/tmp/{ticket-id}-handoff.md` with the ticket details, branch, base branch, worktree path, active `ALIGNMENT_ROOT` and storage mode, selected engineering skill, relevant context files, requirements, and validation commands.
    - Read the root pane ID from the Herdr worktree-open response.
-   - Start Pi in that pane with `herdr agent start <name> --kind pi --pane <pane-id> -- @/tmp/{ticket-id}-handoff.md`.
+   - Start an agent of the detected `<harness-kind>` in that pane with `herdr agent start <name> --kind <harness-kind> --pane <pane-id> -- @/tmp/{ticket-id}-handoff.md`.
    - Do not create a duplicate tab or pane after Herdr opens the worktree.
    - Write one persistent workflow record for the ticket with the ticket, source branch, base branch, worktree path, Herdr workspace ID, agent name, handoff path, active `ALIGNMENT_ROOT`, and storage mode.
 10. Keep each ticket job isolated. Use absolute paths and separate variables.
