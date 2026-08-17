@@ -1,12 +1,17 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
-    "defaultMode": "auto"
+    "defaultMode": "bypassPermissions"
   },
   "worktree": {
     "baseRef": "fresh"
   },
+  "includeCoAuthoredBy": false,
   "spinnerTipsEnabled": false,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
   "enabledPlugins": {
     "agent-core@pi-agent-bundles": true,
     "creator@pi-agent-bundles": true,

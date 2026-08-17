@@ -12,6 +12,7 @@
 "~/.config/herdr/config.toml" = { source = "shells/files/herdr/config.toml", mode = "symlink" } 
 "~/.config/herdr/plugins" = { source = "shells/files/herdr/plugins", mode = "symlink" }
 "~/.claude/settings.json" = { source = "devtools/files/claude/settings.json", mode = "symlink" }
+"~/.claude/statusline.sh" = { source = "devtools/files/claude/statusline.sh", mode = "symlink" }
 "~/.claude/themes/" = { source = "devtools/files/claude/themes/", mode = "symlink-each" }
 "~/.claude/CLAUDE.md" = { source = "devtools/files/agent/AGENTS.md", mode = "symlink" }
 "~/.config/mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
