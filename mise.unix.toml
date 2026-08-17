@@ -34,3 +34,7 @@
 "~/.XresourceThemes" = { source = "shells/files/xresources/.XresourceThemes", mode = "symlink" }
 "~/.Xresources" = { source = "shells/files/xresources/.Xresources", mode = "symlink" }
 "~/.local/bin/llama-router" = { source = "devtools/files/llama-router/llama-router.sh", mode = "symlink" }
+
+[env]
+VISUAL="nvim"
+EDITOR="nvim" 
