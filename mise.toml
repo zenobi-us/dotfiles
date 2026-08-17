@@ -88,7 +88,6 @@ lazydocker = "0.25.2"
 pdm = "latest"
 "npm:portless" = "latest"
 "pipx:basic-memory" = "latest"
-"github:ggml-org/llama.cpp" = "b9555"
 traefik = "latest"
 "npm:neofetch" = "latest"
 "npm:kandev" = "latest"
@@ -109,6 +108,7 @@ youtube-dl = "latest"
 "github:vercel-labs/agent-browser" = "latest"
 granted = "latest"
 herdr = "latest"
+"llama.cpp" = { version = "latest", version_prefix = "b" }
 
 [shell_alias]
 pi="mise x node@lts -- pi "
