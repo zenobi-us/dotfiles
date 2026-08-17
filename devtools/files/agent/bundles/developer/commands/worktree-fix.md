@@ -33,12 +33,12 @@ Resolve the ticket before fixing work.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before changing code.
 - Follow `ALIGNMENT-ROOT.md`. Do not invent a shared path or write alignment files to inactive storage.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.
-- Require a matching persisted `FAILURE` verdict from `worktree-review`.
+- Require a matching persisted `FAILURE` verdict from `worktree-review`, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
 - Do not create a second worktree for the same source branch.
 
 # Process
 
-1. Resolve the ticket, then identify the source branch, worktree path, review artifact, and blocking findings from `UserRequest` or the persisted workflow record.
+1. Resolve the ticket, then identify the source branch, worktree path, and blocking findings from `UserRequest` or the review artifact at `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`.
 2. Resolve the active `ALIGNMENT_ROOT`, run `/eng-context report`, and select the applicable engineering skill.
 3. Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active alignment storage.
 4. Use Worktrunk to verify that the source worktree exists and that the branch is correct.

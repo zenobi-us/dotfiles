@@ -21,7 +21,7 @@ Resolve the ticket before finishing work.
 - Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before merging.
 - Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and branches in the repository worktree.
-- Require a matching persisted `SUCCESS` verdict from `worktree-review`.
+- Require a matching persisted `SUCCESS` verdict from `worktree-review`, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
 - Do not remove a worktree while an agent still runs inside it.
 
 Ask the user for the missing ticket before continuing. Exit if the review artifact scope does not match the resolved ticket or if you cannot identify:
