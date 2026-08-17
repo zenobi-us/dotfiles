@@ -1,8 +1,8 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "qwen3.6-27b",
-  "defaultProvider": "localllm-club3090-vllm",
+  "defaultModel": "gpt-5.6-luna",
+  "defaultProvider": "openai-codex",
   "defaultThinkingLevel": "medium",
   "doubleEscapeAction": "tree",
   "defaultProjectTrust": "always",
@@ -53,7 +53,8 @@
     "npm:pi-claude-marketplace",
     "npm:@mrclrchtr/supi-ask-user",
     "npm:pi-herdr-agents",
-    "npm:pi-localllm-provider"
+    "npm:pi-localllm-provider",
+    "npm:pi-dont-change-my-defaults"
   ],
   "quietStartup": true,
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
