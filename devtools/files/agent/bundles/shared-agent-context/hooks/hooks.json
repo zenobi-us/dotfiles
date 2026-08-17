@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun run \"${HOME}/Projects/dotfiles/devtools/files/pi/agent/bundles/shared-agent-context/cli.ts\" inject"
+            "command": "bun run \"${CLAUDE_PLUGIN_ROOT}/cli.ts\" inject"
           }
         ]
       }
