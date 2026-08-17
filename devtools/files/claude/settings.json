@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "enabledPlugins": {
+    "agent-core@pi-agent-bundles": true,
+    "creator@pi-agent-bundles": true,
+    "developer@pi-agent-bundles": true,
+    "matt-pocock@pi-agent-bundles": true,
+    "platform@pi-agent-bundles": true,
+    "private-share@pi-agent-bundles": true,
+    "researcher@pi-agent-bundles": true,
+    "shared-agent-context@pi-agent-bundles": true,
+    "vanilla-green@pi-agent-bundles": true,
+    "writing@pi-agent-bundles": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "pi-agent-bundles": {
+      "source": {
+        "source": "directory",
+        "path": "/home/zenobius/Projects/dotfiles/devtools/files/agent/bundles"
+      }
+    }
+  },
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "custom:rose-pine-moon"
+}

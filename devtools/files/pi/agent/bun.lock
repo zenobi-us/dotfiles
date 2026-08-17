@@ -25,74 +25,6 @@
         "vitest": "^0.34.0",
       },
     },
-    "bundles/agent-core": {
-      "name": "@zenobius/pi-agent-core",
-      "version": "0.1.0",
-    },
-    "bundles/creator": {
-      "name": "@zenobius/pi-creator",
-      "version": "0.1.0",
-    },
-    "bundles/developer": {
-      "name": "@zenobius/pi-developer",
-      "version": "0.1.0",
-    },
-    "bundles/matt-pocock": {
-      "name": "@zenobius/pi-matt-pocock",
-      "version": "0.1.0",
-      "peerDependencies": {
-        "@earendil-works/pi-coding-agent": "*",
-      },
-    },
-    "bundles/platform": {
-      "name": "@zenobius/pi-platform",
-      "version": "0.1.0",
-    },
-    "bundles/private-share": {
-      "name": "@zenobius/private-share",
-      "dependencies": {
-        "@crustjs/core": "^0.0.19",
-        "@crustjs/plugins": "^0.1.2",
-      },
-    },
-    "bundles/researcher": {
-      "name": "@zenobius/pi-researcher",
-      "version": "0.1.0",
-    },
-    "bundles/writing": {
-      "name": "@zenobius/pi-writing",
-      "version": "0.1.0",
-    },
-    "extensions/@vanillagreen/pi-agents-tmux": {
-      "name": "@vanillagreen/pi-agents-tmux",
-      "version": "2.7.0",
-      "peerDependencies": {
-        "@earendil-works/pi-ai": "*",
-        "@earendil-works/pi-coding-agent": "*",
-        "@earendil-works/pi-tui": "*",
-        "typebox": "*",
-      },
-      "optionalPeers": [
-        "@earendil-works/pi-ai",
-        "@earendil-works/pi-coding-agent",
-        "@earendil-works/pi-tui",
-      ],
-    },
-    "extensions/@vanillagreen/pi-background-tasks": {
-      "name": "@vanillagreen/pi-background-tasks",
-      "version": "1.6.2",
-      "peerDependencies": {
-        "@earendil-works/pi-ai": "*",
-        "@earendil-works/pi-coding-agent": "*",
-        "@earendil-works/pi-tui": "*",
-        "typebox": "*",
-      },
-      "optionalPeers": [
-        "@earendil-works/pi-ai",
-        "@earendil-works/pi-coding-agent",
-        "@earendil-works/pi-tui",
-      ],
-    },
     "extensions/@vanillagreen/pi-caveman": {
       "name": "@vanillagreen/pi-caveman",
       "version": "1.2.4",
@@ -216,18 +148,6 @@
       "optionalPeers": [
         "@earendil-works/pi-agent-core",
         "@earendil-works/pi-ai",
-        "@earendil-works/pi-coding-agent",
-        "@earendil-works/pi-tui",
-      ],
-    },
-    "extensions/@vanillagreen/pi-questions": {
-      "name": "@vanillagreen/pi-questions",
-      "version": "1.5.0",
-      "peerDependencies": {
-        "@earendil-works/pi-coding-agent": "*",
-        "@earendil-works/pi-tui": "*",
-      },
-      "optionalPeers": [
         "@earendil-works/pi-coding-agent",
         "@earendil-works/pi-tui",
       ],
@@ -572,14 +492,6 @@
 
     "@borewit/text-codec": ["@borewit/text-codec@0.2.2", "", {}, "sha512-DDaRehssg1aNrH4+2hnj1B7vnUGEjU6OIlyRdkMd0aUdIUvKXrJfXsy8LVtXAy7DRvYVluWbMspsRhz2lcW0mQ=="],
 
-    "@crustjs/core": ["@crustjs/core@0.0.19", "", { "dependencies": { "@crustjs/utils": "0.0.3" }, "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-RV/1TDJ+RZ9DFSbIHXPIyZV7bvJjf9RaElly2BvNGor1HxuEfiu6BdR8SBWzAa+PyvXQk2hkXuSjmaNIE+jbCQ=="],
-
-    "@crustjs/plugins": ["@crustjs/plugins@0.1.2", "", { "dependencies": { "@crustjs/style": "0.2.0" }, "peerDependencies": { "@crustjs/core": "0.0.19", "typescript": "^6.0.3" } }, "sha512-sX9eaN1c30T2PEel6RZZpSfBp/vOAWoIAV2/a+mbi7OxvLBLMJy3+WGxx5OlTDCXe/MJ6c8KWLIzFY2Cg71idA=="],
-
-    "@crustjs/style": ["@crustjs/style@0.2.0", "", { "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-WPJ/l630OSb9aaZEVpZhs8myBf6ItlXivABnx3jzyl4SUYr0Ztrky6D2Xw+rRUp7i7m26KsJHkvi7YiOmsr0BQ=="],
-
-    "@crustjs/utils": ["@crustjs/utils@0.0.3", "", { "peerDependencies": { "@standard-schema/spec": "^1.1.0", "typescript": "^6.0.3" }, "optionalPeers": ["@standard-schema/spec"] }, "sha512-5J/CeFpUTDX6F8EHc62blJQEQmr+tcH9Ojc26QTkQ08LoGZBT56kxL+XjHzp9m2QAg8T69omjwL25bmB3AWZig=="],
-
     "@diegopetrucci/pi-annotate-last-message": ["@diegopetrucci/pi-annotate-last-message@workspace:extensions/@zenobius/pi-annotate"],
 
     "@dietrichgebert/ponytail": ["@dietrichgebert/ponytail@workspace:extensions/@zenobius/ponytail"],
@@ -910,10 +822,6 @@
 
     "@types/yauzl": ["@types/yauzl@2.10.3", "", { "dependencies": { "@types/node": "*" } }, "sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q=="],
 
-    "@vanillagreen/pi-agents-tmux": ["@vanillagreen/pi-agents-tmux@workspace:extensions/@vanillagreen/pi-agents-tmux"],
-
-    "@vanillagreen/pi-background-tasks": ["@vanillagreen/pi-background-tasks@workspace:extensions/@vanillagreen/pi-background-tasks"],
-
     "@vanillagreen/pi-caveman": ["@vanillagreen/pi-caveman@workspace:extensions/@vanillagreen/pi-caveman"],
 
     "@vanillagreen/pi-claude-bridge": ["@vanillagreen/pi-claude-bridge@workspace:extensions/@vanillagreen/pi-claude-bridge"],
@@ -929,8 +837,6 @@
     "@vanillagreen/pi-prompt-stash": ["@vanillagreen/pi-prompt-stash@workspace:extensions/@vanillagreen/pi-prompt-stash"],
 
     "@vanillagreen/pi-qol": ["@vanillagreen/pi-qol@workspace:extensions/@vanillagreen/pi-qol"],
-
-    "@vanillagreen/pi-questions": ["@vanillagreen/pi-questions@workspace:extensions/@vanillagreen/pi-questions"],
 
     "@vanillagreen/pi-session-bridge": ["@vanillagreen/pi-session-bridge@workspace:extensions/@vanillagreen/pi-session-bridge"],
 
@@ -958,29 +864,13 @@
 
     "@zenobi-us/pi-worktrunk": ["@zenobi-us/pi-worktrunk@workspace:extensions/@zenobius/pi-worktrunk"],
 
-    "@zenobius/pi-agent-core": ["@zenobius/pi-agent-core@workspace:bundles/agent-core"],
-
-    "@zenobius/pi-creator": ["@zenobius/pi-creator@workspace:bundles/creator"],
-
-    "@zenobius/pi-developer": ["@zenobius/pi-developer@workspace:bundles/developer"],
-
     "@zenobius/pi-extension-config": ["@zenobius/pi-extension-config@0.0.2", "", { "dependencies": { "@standard-schema/spec": "^1.1.0", "nconf": "^0.13.0" } }, "sha512-UhtydVAj44Kw9FJCa3JH381E5TGQHEJE/pMclzp16Nytc9AQMbC7MvCd2Q9l7F1cfzsD52cLwgX447+FHy7bfQ=="],
 
-    "@zenobius/pi-matt-pocock": ["@zenobius/pi-matt-pocock@workspace:bundles/matt-pocock"],
-
     "@zenobius/pi-onnx": ["@zenobius/pi-onnx@workspace:extensions/@zenobius/pi-onnx"],
-
-    "@zenobius/pi-platform": ["@zenobius/pi-platform@workspace:bundles/platform"],
-
-    "@zenobius/pi-researcher": ["@zenobius/pi-researcher@workspace:bundles/researcher"],
 
     "@zenobius/pi-rose-pine": ["@zenobius/pi-rose-pine@workspace:extensions/@zenobius/pi-rose-pine"],
 
     "@zenobius/pi-session-browser": ["@zenobius/pi-session-browser@workspace:extensions/@zenobius/pi-session-browser"],
-
-    "@zenobius/pi-writing": ["@zenobius/pi-writing@workspace:bundles/writing"],
-
-    "@zenobius/private-share": ["@zenobius/private-share@workspace:bundles/private-share"],
 
     "@zigai/pi-tree": ["@zigai/pi-tree@workspace:extensions/@zenobius/pi-tree"],
 

@@ -1,0 +1,11 @@
+{
+  "skillName": "twg",
+  "target": "global",
+  "installPath": "/home/zenobius/.agents/skills/twg",
+  "binaryPath": "/home/zenobius/.local/bin/twg",
+  "installedAt": "2026-08-04T05:03:28.858Z",
+  "installedVersion": "1.1.1",
+  "buildProfile": "external",
+  "buildCommit": "81e4dcc86958",
+  "builtAt": "2026-07-24T10:17:20.604Z"
+}

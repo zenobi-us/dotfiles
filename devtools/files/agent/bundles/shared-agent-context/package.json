@@ -1,0 +1,14 @@
+{
+  "name": "@zenobius/pi-shared-agent-context",
+  "version": "0.1.0",
+  "description": "Origin-keyed shared agent context: resolves, initializes, migrates, and injects a shared AGENTS.md store that lives outside any single repository clone",
+  "private": true,
+  "keywords": ["pi-package"],
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "pi": {
+    "extensions": ["./extensions"],
+    "prompts": ["./commands"]
+  }
+}

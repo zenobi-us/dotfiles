@@ -140,6 +140,9 @@ git config --global core.excludesFile "$HOME/.gitignore_global"
 if [ -d devtools/files/pi/agent ]; then
   (cd devtools/files/pi/agent && bun install)
 fi
+if [ -x devtools/files/claude/sync-pi-skills.sh ]; then
+  devtools/files/claude/sync-pi-skills.sh
+fi
 case "$(uname -s)" in
   Linux) mise run bootstrap:linux ;;
   Darwin) mise run bootstrap:macos ;;

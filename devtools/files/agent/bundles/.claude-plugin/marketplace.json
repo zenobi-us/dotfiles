@@ -1,0 +1,68 @@
+{
+  "name": "pi-agent-bundles",
+  "owner": {
+    "name": "Zeno Jiricek"
+  },
+  "plugins": [
+    {
+      "name": "agent-core",
+      "source": "./agent-core",
+      "description": "Superpowers, skill management, and shell environment for pi",
+      "version": "0.1.0"
+    },
+    {
+      "name": "creator",
+      "source": "./creator",
+      "description": "Design commands, UI/API building, and user-facing product experts",
+      "version": "0.1.0"
+    },
+    {
+      "name": "developer",
+      "source": "./developer",
+      "description": "Code writing, git workflow, testing, and language/quality experts",
+      "version": "0.1.0"
+    },
+    {
+      "name": "matt-pocock",
+      "source": "./matt-pocock",
+      "description": "Matt Pocock engineering workflow skills",
+      "version": "0.1.0"
+    },
+    {
+      "name": "shared-agent-context",
+      "source": "./shared-agent-context",
+      "description": "Origin-keyed shared agent context: resolve/init/list/migrate a shared AGENTS.md store outside any single repo clone",
+      "version": "0.1.0"
+    },
+    {
+      "name": "platform",
+      "source": "./platform",
+      "description": "Cloudflare, home automation, infra ops, and specialized deployment experts",
+      "version": "0.1.0"
+    },
+    {
+      "name": "private-share",
+      "source": "./private-share",
+      "description": "Private GitHub Pages artifact sharing skill",
+      "version": "0.1.0"
+    },
+    {
+      "name": "researcher",
+      "source": "./researcher",
+      "description": "Research methodology, deep analysis, and data/AI expert personas",
+      "version": "0.1.0"
+    },
+    {
+      "name": "vanilla-green",
+      "source": "./vanilla-green",
+      "description": "VStack-managed skills: orchestration, review, and project-management workflows",
+      "version": "0.1.0"
+    },
+    {
+      "name": "writing",
+      "source": "./writing",
+      "description": "Business English writing styles and professional document writing skills",
+      "version": "0.1.0"
+    }
+  ]
+}

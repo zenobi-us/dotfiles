@@ -14,6 +14,7 @@
     "./bundles/agent-core",
     "./bundles/developer",
     "./bundles/matt-pocock",
+    "./bundles/shared-agent-context",
     "./bundles/creator",
     "./bundles/researcher",
     "./bundles/platform",
