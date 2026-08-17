@@ -1,0 +1,80 @@
+[env]
+
+# ORCH — PR review gate, CI waits, and reviewer fan-out.
+# Project-scope `vstack add` / `vstack refresh` merge these defaults into
+# <project>/vstack.settings.toml (never overwriting existing keys). Full key
+# reference: orch README.md / DEVELOPMENT.md.
+
+# Reviewer merge gate mode: "approval" requires a GitHub-native review
+# approval before merge (orch submit-pr/merge-pr); "review" requires a formal
+# review of the current head from a non-author reviewer plus zero unresolved
+# threads — the right mode for review bots that comment but never approve.
+# Set "off" ONLY for repos with no review bots and no reviewer policy — the
+# review wait is skipped entirely. Legacy PR_APPROVAL_GATE ("on"/"off") is
+# still honored when this key is unset.
+PR_REVIEW_GATE = "approval"
+
+# Used by: orch (`approval-wait`). Seconds without the gate's signal (for the
+# current head) before nudging the reviewer, once per head; a push resets the
+# clock. "0" disables nudging.
+PR_REVIEW_NUDGE_SECS = "600"
+
+# Used by: orch (`approval-wait`). Comment body posted as the nudge — set it
+# to whatever summons this repo's review bot (e.g. "@devin review"). Empty =
+# fall back to a GitHub-native re-review request to the PR's reviewers.
+PR_REVIEW_NUDGE = ""
+
+# Used by: orch (`approval-wait`, review mode). Name/context of the trusted
+# reviewer's check-run OR commit status: a success for that exact name on the
+# current head counts as review-received when a clean re-analysis submits no
+# review object (e.g. "Devin Review"). Empty = review objects only. SECURITY:
+# match by name means any app could publish it — name only the trusted bot's
+# check on repos where all publishers are trusted.
+PR_REVIEW_CHECK = ""
+
+# Used by: orch (`approval-wait`, `submit-pr` / `merge-pr` / `ci-fix`).
+# Deadline behavior when the review gate signal never arrives — the reviewer
+# posted nothing (e.g. its credits are exhausted). "block" (default) reports a
+# "timeout" and the caller prompts or keeps waiting. "proceed" instead reports
+# a distinct "proceeded" verdict and records a reviewer-down override, moving
+# to CI/merge — but ONLY when zero threads are unresolved, so an open thread
+# always blocks (it returns "comments" first) and a real comment is never
+# bypassed. CI and the comment-hygiene gate still apply. On multi-reviewer
+# repos this only fires when EVERY reviewer is silent; a single live reviewer
+# already satisfies the gate on its own.
+PR_REVIEW_ON_TIMEOUT = "block"
+
+# Used by: orch (`approval-wait`, review mode). Makes PR_REVIEW_ON_TIMEOUT=proceed
+# end-to-end on repos whose CI/branch-protection gate independently blocks
+# merges on review evidence (that gate runs on events, not on orch's wait
+# deadline, so the orch-side "proceeded" alone cannot unblock it). When this
+# names a commit-status context, a review-mode proceed posts that context as `success` on
+# the proceeded head; the repo's CI gate can accept it as an extra
+# review-evidence surface, and its status re-fire bridge re-runs the gate on
+# the event. Empty (default) = post nothing (orch-side-only opt-in — the
+# repo-side gate is untouched). SECURITY: this is a branch-protection
+# relaxation — the status lets a merge proceed with no review. It is bounded by
+# the same genuine-silence predicate as the proceed and by bot-only status
+# trust, and matched by context, so name it ONLY where every status publisher
+# is trusted (same trust model as PR_REVIEW_CHECK). See orch DEVELOPMENT.md
+# "Reviewer-outage recognition" for the repo-side gate/bridge pattern.
+PR_REVIEW_OUTAGE_CONTEXT = ""
+
+# Used by: orch (`ci-wait`). Seconds to keep polling before failing when no CI
+# checks have registered yet. Raise for repos whose CI dispatches only after a
+# review approval (approval-gated jobs / merge queue) with slow dispatch.
+CI_WAIT_NO_CHECKS_GRACE = "180"
+
+# Used by: orch (`submit-pr` / `merge-pr`). Max automated ci-fix cycles per PR
+# submission or merge recovery before reporting the persistent CI failure back
+# to the user.
+CI_FIX_MAX_CYCLES = "6"
+
+# Used by: orch (`review-pr` / `review` / `review-codebase`). Total concurrent
+# agent-session budget of the harness runtime, counting the primary session.
+# "0" = unlimited: every reviewer launches up front and persists through
+# fix/re-review cycles. When the reviewer set exceeds the available slots,
+# review workflows run reviewers in bounded sequential waves, retiring each
+# completed session to release its slot. Codex collaboration runtime: four
+# total threads -> set "4".
+REVIEWER_SLOT_BUDGET = "0"

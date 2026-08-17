@@ -1,0 +1,755 @@
+#!/usr/bin/env bash
+# Cross-model second opinion — detect current harness, call the opposite CLI.
+#
+# Usage:
+#   second-opinion review  [--range <ref..ref>] [--cwd <path>] [--output <path>]
+#   second-opinion challenge --prompt <file>    [--cwd <path>]
+#   second-opinion audit     --prompt <file>    [--cwd <path>] [--output <path>]
+#   second-opinion quick     --prompt <file>    [--cwd <path>]
+#   second-opinion detect
+#
+# Environment:
+#   SECOND_OPINION_TARGET        Force target CLI (claude|codex)
+#   SECOND_OPINION_TIMEOUT       Timeout in seconds (default: 300)
+#   SECOND_OPINION_CLAUDE_CMD    Full claude command
+#   SECOND_OPINION_CODEX_CMD     Full codex command
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Resolve project root for .env sourcing (works in worktrees and main repos)
+PROJECT_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)"
+
+# Save caller-set env vars before .env sourcing can overwrite them
+_CALLER_TARGET="${SECOND_OPINION_TARGET:-}"
+_CALLER_TIMEOUT="${SECOND_OPINION_TIMEOUT:-}"
+_CALLER_CLAUDE_CMD="${SECOND_OPINION_CLAUDE_CMD:-}"
+_CALLER_CODEX_CMD="${SECOND_OPINION_CODEX_CMD:-}"
+
+# Source project config/secrets. .env.local overrides public settings.
+# shellcheck source=lib/vstack-env.sh
+source "$SCRIPT_DIR/lib/vstack-env.sh"
+vstack_load_project_env "$PROJECT_ROOT"
+
+# Restore caller-set env vars — inline overrides beat .env files
+[[ -n "$_CALLER_TARGET" ]] && SECOND_OPINION_TARGET="$_CALLER_TARGET"
+[[ -n "$_CALLER_TIMEOUT" ]] && SECOND_OPINION_TIMEOUT="$_CALLER_TIMEOUT"
+[[ -n "$_CALLER_CLAUDE_CMD" ]] && SECOND_OPINION_CLAUDE_CMD="$_CALLER_CLAUDE_CMD"
+[[ -n "$_CALLER_CODEX_CMD" ]] && SECOND_OPINION_CODEX_CMD="$_CALLER_CODEX_CMD"
+
+# Dependency check
+command -v jq >/dev/null 2>&1 || { echo "Error: jq is required but not found" >&2; exit 1; }
+
+# Portability: macOS lacks timeout, try gtimeout fallback
+if ! command -v timeout >/dev/null 2>&1; then
+  if command -v gtimeout >/dev/null 2>&1; then
+    timeout() { gtimeout "$@"; }
+  else
+    # No timeout available — run without time limit
+    timeout() { shift; "$@"; }
+  fi
+fi
+
+# --- Defaults -----------------------------------------------------------------
+
+MODE=""
+PROMPT_FILE=""
+INLINE_PROMPT=""
+OUTPUT_PATH=""
+TARGET=""
+TIMEOUT="${SECOND_OPINION_TIMEOUT:-300}"
+CWD="."
+RANGE=""
+
+# Distinct exit codes (vstack#652) so callers can tell "there was nothing to
+# review" and "the model reported it performed no review" apart from generic
+# failures (1). A response missing the required qa_metadata object (vstack#672)
+# or still structurally incomplete after the one-shot retry (vstack#678) is
+# rejected the same way. None of these paths writes the --output artifact.
+EXIT_NO_SCOPE=3
+EXIT_NO_REVIEW=4
+
+# --- Help ---------------------------------------------------------------------
+
+show_help() {
+  cat <<'HELP'
+Cross-model second opinion via external AI CLI.
+
+Usage:
+  second-opinion review    [--range <ref..ref>] [--cwd <path>] [--output <path>]
+  second-opinion challenge [--prompt <file> | "text"]  [--cwd <path>]
+  second-opinion audit     [--prompt <file> | "text"]  [--cwd <path>] [--output <path>]
+  second-opinion quick     [--prompt <file> | "text"]  [--cwd <path>]
+  second-opinion detect
+
+Modes:
+  review     Code review of pending changes — outputs review-finding JSON
+  challenge  Adversarial analysis — accepts prompt, returns text critique
+  audit      Deep code examination — accepts prompt, returns review-finding JSON
+  quick      Question to alternate model — accepts prompt, returns text
+  detect     Print auto-detected target CLI name and exit
+
+Options:
+  --prompt <file>   Prompt file (or pass text as positional arg, or pipe stdin)
+  --output <path>   Write result to file (default: stdout)
+  --target <name>   Override target: claude | codex
+  --range <ref>     Git diff range for review (default: origin/BASE...HEAD)
+  --cwd <path>      Working directory for external CLI (default: .)
+  --timeout <secs>  CLI timeout (default: 300, env: SECOND_OPINION_TIMEOUT)
+  -h, --help        Show this help
+
+Environment (set in vstack.settings.toml [env] or .env.local):
+  SECOND_OPINION_TARGET      Force target CLI
+  SECOND_OPINION_TIMEOUT     Timeout in seconds (default: 300)
+  SECOND_OPINION_CLAUDE_CMD  Full claude command (default below)
+  SECOND_OPINION_CODEX_CMD   Full codex command (default below)
+
+Default commands:
+  claude: claude -p --no-session-persistence --model opus --effort max
+            --allowedTools Bash(read-only:true),Read,Glob,Grep
+  codex:  codex exec -m gpt-5.6-sol -s read-only -c model_reasoning_effort=xhigh
+            --ephemeral
+
+Exit codes:
+  0  success
+  1  CLI/config failure, timeout, or unrecoverable non-JSON response
+  3  review: derived diff scope is empty or invalid — nothing to review
+  4  review/audit: model self-reported no review was performed
+     (qa_metadata.review_performed=false) or omitted the required qa_metadata
+     object entirely (response kept as <output>.noreview.json); or the response
+     was still structurally incomplete after the one-shot retry — missing
+     verdict or the blockers/suggestions/questions arrays (response kept as
+     <output>.incomplete.json)
+HELP
+}
+
+# --- Argument parsing ---------------------------------------------------------
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    review|challenge|audit|quick|detect)
+      MODE="$1"; shift ;;
+    --prompt)    [[ $# -ge 2 ]] || { echo "Error: --prompt requires a value" >&2; exit 1; }; PROMPT_FILE="$2"; shift 2 ;;
+    --prompt=*)  PROMPT_FILE="${1#--prompt=}"; shift ;;
+    --output)    [[ $# -ge 2 ]] || { echo "Error: --output requires a value" >&2; exit 1; }; OUTPUT_PATH="$2"; shift 2 ;;
+    --output=*)  OUTPUT_PATH="${1#--output=}"; shift ;;
+    --target|--provider)  [[ $# -ge 2 ]] || { echo "Error: $1 requires a value" >&2; exit 1; }; TARGET="$2"; shift 2 ;;
+    --target=*)  TARGET="${1#--target=}"; shift ;;
+    --provider=*) TARGET="${1#--provider=}"; shift ;;
+    --range)     [[ $# -ge 2 ]] || { echo "Error: --range requires a value" >&2; exit 1; }; RANGE="$2"; shift 2 ;;
+    --range=*)   RANGE="${1#--range=}"; shift ;;
+    --cwd)       [[ $# -ge 2 ]] || { echo "Error: --cwd requires a value" >&2; exit 1; }; CWD="$2"; shift 2 ;;
+    --cwd=*)     CWD="${1#--cwd=}"; shift ;;
+    --timeout)   [[ $# -ge 2 ]] || { echo "Error: --timeout requires a value" >&2; exit 1; }; TIMEOUT="$2"; shift 2 ;;
+    --timeout=*) TIMEOUT="${1#--timeout=}"; shift ;;
+    -h|--help)   show_help; exit 0 ;;
+    --*)
+      echo "Error: unknown flag: $1" >&2; exit 1 ;;
+    *)
+      # Non-flag arg after mode → treat as inline prompt text
+      if [[ -n "$MODE" && -z "$PROMPT_FILE" ]]; then
+        INLINE_PROMPT="$1"; shift
+      else
+        echo "Error: unknown argument: $1" >&2; exit 1
+      fi
+      ;;
+  esac
+done
+
+[[ -n "$MODE" ]] || { echo "Error: mode required (review|challenge|audit|quick|detect)" >&2; exit 1; }
+[[ "$TIMEOUT" =~ ^[0-9]+$ ]] || { echo "Error: --timeout must be a positive integer" >&2; exit 1; }
+
+# --- Harness detection --------------------------------------------------------
+
+detect_current_harness() {
+  # Claude Code sets these env vars
+  if [[ -n "${CLAUDE_CODE:-}" ]] || [[ -n "${CLAUDE_PROJECT_DIR:-}" ]]; then
+    echo "claude"
+    return
+  fi
+  # Codex sandbox detection
+  if [[ -n "${CODEX_SANDBOX:-}" ]]; then
+    echo "codex"
+    return
+  fi
+  # Pi coding agent
+  if [[ -n "${PI_CODING_AGENT_DIR:-}" ]]; then
+    echo "pi"
+    return
+  fi
+  # OpenCode uses GPT models, so treat as codex for cross-model pairing
+  if [[ -n "${OPENCODE:-}" ]]; then
+    echo "codex"
+    return
+  fi
+  # Process-tree fallback: walk ancestors (Bash tool PPID is the shell, not the harness)
+  local pid=$$
+  local ancestor_cmd
+  while pid=$(ps -o ppid= -p "$pid" 2>/dev/null | tr -d ' ') && [[ -n "$pid" && "$pid" != "0" && "$pid" != "1" ]]; do
+    ancestor_cmd=$(ps -o comm= -p "$pid" 2>/dev/null || echo "")
+    case "$ancestor_cmd" in
+      claude*) echo "claude"; return ;;
+      codex*)  echo "codex"; return ;;
+      pi|pi-*) echo "pi"; return ;;
+      opencode*) echo "codex"; return ;;
+    esac
+  done
+  echo "unknown"
+}
+
+resolve_target() {
+  # Explicit flag
+  if [[ -n "$TARGET" ]]; then echo "$TARGET"; return; fi
+  # Env var override
+  if [[ -n "${SECOND_OPINION_TARGET:-}" ]]; then echo "$SECOND_OPINION_TARGET"; return; fi
+
+  # Auto-detect: call the opposite of current harness
+  local current
+  current=$(detect_current_harness)
+  case "$current" in
+    claude) echo "codex" ;;
+    codex)  echo "claude" ;;
+    pi)     echo "claude" ;;
+    *)
+      # Unknown harness (OpenCode, Cursor, etc.) — prefer claude since
+      # non-Claude harnesses typically use GPT models already
+      if command -v claude >/dev/null 2>&1; then echo "claude"
+      elif command -v codex >/dev/null 2>&1; then echo "codex"
+      else echo ""; fi
+      ;;
+  esac
+}
+
+TARGET_CLI=$(resolve_target)
+
+# Handle detect mode
+if [[ "$MODE" == "detect" ]]; then
+  if [[ -n "$TARGET_CLI" ]] && command -v "$TARGET_CLI" >/dev/null 2>&1; then
+    echo "$TARGET_CLI"
+    exit 0
+  else
+    echo "none"
+    exit 1
+  fi
+fi
+
+# Validate target
+if [[ -z "$TARGET_CLI" ]]; then
+  echo '{"error": "No external CLI found. Install claude or codex CLI."}' >&2
+  exit 1
+fi
+if ! command -v "$TARGET_CLI" >/dev/null 2>&1; then
+  echo "{\"error\": \"CLI not found: $TARGET_CLI. Install it or set SECOND_OPINION_TARGET.\"}" >&2
+  exit 1
+fi
+
+# Validate CWD
+[[ -d "$CWD" ]] || { echo "Error: --cwd directory not found: $CWD" >&2; exit 1; }
+
+echo "→ second-opinion: target=$TARGET_CLI mode=$MODE cwd=$CWD timeout=${TIMEOUT}s" >&2
+
+# --- Review scope derivation (review mode) ------------------------------------
+# vstack#652: the external model must never be asked to guess its own scope. A
+# no-scope session can answer with a schema-valid `verdict: "pass"` while
+# admitting it reviewed nothing. Derive branch + diff range + changed-file list
+# from the worktree BEFORE invoking the CLI, embed them in the prompt, and fail
+# loudly when the range yields no diff — an empty-scope review is an error, not
+# a pass.
+
+REVIEW_BRANCH=""
+REVIEW_RANGE=""
+REVIEW_CHANGED_FILES=""
+REVIEW_DIFFSTAT=""
+
+derive_review_scope() {
+  local cwd="$1"
+  local range="$2"
+
+  if [[ -z "$range" ]]; then
+    local base_branch
+    base_branch=${WORKTREE_DEFAULT_BRANCH:-$(git -C "$cwd" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || true)}
+    [[ -n "$base_branch" ]] || base_branch=main
+    range="origin/${base_branch}...HEAD"
+  fi
+  REVIEW_RANGE="$range"
+
+  REVIEW_BRANCH=$(git -C "$cwd" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")
+
+  local git_err diff_files
+  git_err=$(mktemp)
+  # shellcheck disable=SC2086
+  if ! diff_files=$(git -C "$cwd" diff --name-only $range 2>"$git_err"); then
+    jq -n --arg range "$range" --arg cwd "$cwd" --arg detail "$(head -5 "$git_err")" \
+      '{error: "Cannot derive review scope: git diff failed for range \($range)", cwd: $cwd, detail: $detail}' >&2
+    rm -f "$git_err"
+    exit "$EXIT_NO_SCOPE"
+  fi
+  rm -f "$git_err"
+
+  if [[ -z "$diff_files" ]]; then
+    jq -n --arg range "$range" --arg cwd "$cwd" --arg branch "$REVIEW_BRANCH" \
+      '{error: "No review scope: git diff \($range) is empty — nothing to review", cwd: $cwd, branch: $branch}' >&2
+    exit "$EXIT_NO_SCOPE"
+  fi
+
+  REVIEW_CHANGED_FILES="$diff_files"
+  # shellcheck disable=SC2086
+  REVIEW_DIFFSTAT=$(git -C "$cwd" diff --shortstat $range 2>/dev/null || echo "")
+}
+
+# --- Prompt construction (review mode) ----------------------------------------
+
+build_review_prompt() {
+  local diff_cmd="git diff $REVIEW_RANGE"
+
+  # Read the schema from the sibling schemas/ directory
+  local schema_file="$SCRIPT_DIR/../schemas/review-finding-prompt.md"
+  local schema
+  if [[ -f "$schema_file" ]]; then
+    # Replace placeholder tokens with runtime values
+    schema=$(sed "s/external-TARGET/external-${TARGET_CLI}/g; s/ISO_8601/$(date -u +%Y-%m-%dT%H:%M:%SZ)/g" "$schema_file")
+  else
+    echo "Error: schema file not found: $schema_file" >&2
+    exit 1
+  fi
+
+  cat <<PROMPT
+You are a code reviewer providing a cross-model second opinion. Find real bugs, errors, security issues, and logic problems in the code changes.
+
+Review scope (derived from the worktree by the calling wrapper — this is authoritative; do not ask for scope):
+- Branch: ${REVIEW_BRANCH:-unknown}
+- Diff range: $REVIEW_RANGE
+- Diffstat: ${REVIEW_DIFFSTAT:-n/a}
+- Changed files:
+$REVIEW_CHANGED_FILES
+
+Run this command to see the changes:
+  $diff_cmd
+
+Then read changed files that need more context to understand the diff.
+
+Focus on:
+- Bugs and logic errors
+- Security vulnerabilities (injection, auth bypass, data exposure)
+- Race conditions and concurrency issues
+- Resource leaks (file handles, connections, memory)
+- Error handling gaps (silent failures, swallowed errors)
+- Performance problems in hot paths
+- API contract violations
+
+Skip:
+- Style and formatting preferences
+- Minor naming opinions
+- Documentation gaps (unless API docs are factually wrong)
+- Test coverage suggestions (unless a critical code path is completely untested)
+
+${schema}
+PROMPT
+}
+
+# --- Read prompt (challenge/audit/quick modes) --------------------------------
+
+read_prompt() {
+  if [[ -n "$PROMPT_FILE" ]]; then
+    [[ -f "$PROMPT_FILE" ]] || { echo "Error: prompt file not found: $PROMPT_FILE" >&2; exit 1; }
+    cat "$PROMPT_FILE"
+  elif [[ -n "$INLINE_PROMPT" ]]; then
+    printf '%s\n' "$INLINE_PROMPT"
+  elif [[ ! -t 0 ]]; then
+    cat
+  else
+    echo "Error: $MODE mode requires --prompt <file>, inline text, or piped stdin" >&2
+    exit 1
+  fi
+}
+
+# --- Build final prompt -------------------------------------------------------
+
+PROMPT=""
+case "$MODE" in
+  review)
+    # Derive scope at top level (not in the $() subshell) so its exit
+    # EXIT_NO_SCOPE aborts the run instead of being captured.
+    derive_review_scope "$CWD" "$RANGE"
+    PROMPT=$(build_review_prompt)
+    ;;
+  challenge) PROMPT=$(read_prompt) ;;
+  audit)     PROMPT=$(read_prompt) ;;
+  quick)     PROMPT=$(read_prompt) ;;
+esac
+
+# Guard: empty prompt (stdin was closed with no data)
+if [[ -z "$PROMPT" ]]; then
+  echo "Error: empty prompt — provide --prompt <file> or pipe content via stdin" >&2
+  exit 1
+fi
+
+# Write prompt to temp file — use printf to avoid echo interpreting leading dashes
+PROMPT_TMP=$(mktemp)
+trap 'rm -f "$PROMPT_TMP"' EXIT
+printf '%s\n' "$PROMPT" > "$PROMPT_TMP"
+
+STDERR_TMP=$(mktemp)
+# RETRY_PROMPT_TMP is created only when extraction fails and a retry runs; keep
+# it in the cleanup trap. Sidecar files written by preserve_raw_and_fail are
+# deliberately NOT tracked here — they are the durable record of a lost response.
+RETRY_PROMPT_TMP=""
+trap 'rm -f "$PROMPT_TMP" "$STDERR_TMP" "$RETRY_PROMPT_TMP"' EXIT
+
+# --- Invoke external CLI ------------------------------------------------------
+
+RESULT=""
+EXIT_CODE=0
+
+# Full command templates — override the entire command via project config
+CLAUDE_CMD="${SECOND_OPINION_CLAUDE_CMD:-claude -p --no-session-persistence --model opus --effort max --allowedTools Bash(read-only:true),Read,Glob,Grep}"
+CODEX_CMD="${SECOND_OPINION_CODEX_CMD:-codex exec -m gpt-5.6-sol -s read-only -c model_reasoning_effort=xhigh --ephemeral}"
+
+# Invoke the resolved target CLI with a prompt file on stdin. Echoes the CLI's
+# stdout on our stdout and returns its exit code (124 on timeout). Reused for
+# the retry on JSON-extraction failure, so it stays side-effect-free beyond
+# writing the CLI's stderr to STDERR_TMP.
+run_target_cli() {
+  local prompt_file="$1"
+  local rc=0
+  case "$TARGET_CLI" in
+    claude)
+      echo "→ cmd: timeout ${TIMEOUT}s $CLAUDE_CMD" >&2
+      # shellcheck disable=SC2086
+      (cd "$CWD" && timeout "$TIMEOUT" $CLAUDE_CMD < "$prompt_file" 2>"$STDERR_TMP") || rc=$?
+      ;;
+    codex)
+      echo "→ cmd: timeout ${TIMEOUT}s $CODEX_CMD" >&2
+      # shellcheck disable=SC2086
+      (cd "$CWD" && timeout "$TIMEOUT" $CODEX_CMD < "$prompt_file" 2>"$STDERR_TMP") || rc=$?
+      ;;
+    *)
+      echo "{\"error\": \"Unknown target: $TARGET_CLI\"}" >&2
+      rc=2
+      ;;
+  esac
+  return "$rc"
+}
+
+RESULT=$(run_target_cli "$PROMPT_TMP") || EXIT_CODE=$?
+
+if [[ $EXIT_CODE -eq 124 ]]; then
+  echo "{\"error\": \"Timeout after ${TIMEOUT}s\", \"target\": \"$TARGET_CLI\"}" >&2
+  exit 1
+elif [[ $EXIT_CODE -ne 0 ]]; then
+  echo "{\"error\": \"$TARGET_CLI exited with code $EXIT_CODE\", \"target\": \"$TARGET_CLI\"}" >&2
+  if [[ -s "$STDERR_TMP" ]]; then
+    echo "--- stderr ---" >&2
+    head -20 "$STDERR_TMP" >&2
+  fi
+  exit 1
+fi
+
+echo "→ Response received (${#RESULT} bytes)" >&2
+
+if [[ ${#RESULT} -eq 0 ]]; then
+  echo "{\"error\": \"$TARGET_CLI returned empty response — check CLI auth and configuration\", \"target\": \"$TARGET_CLI\"}" >&2
+  if [[ -s "$STDERR_TMP" ]]; then
+    echo "--- stderr ---" >&2
+    head -20 "$STDERR_TMP" >&2
+  fi
+  exit 1
+fi
+
+# --- Extract JSON (review/audit modes) ----------------------------------------
+
+extract_json() {
+  local input="$1"
+
+  # Whole output is valid JSON
+  if printf '%s' "$input" | jq -e . >/dev/null 2>&1; then
+    printf '%s' "$input" | jq .
+    return 0
+  fi
+
+  # Extract from first ```json ... ``` code fence (stop at first closing fence)
+  local fenced
+  fenced=$(printf '%s' "$input" | sed -n '/^```json/{n; :a; /^```$/q; p; n; ba}')
+  if [[ -n "$fenced" ]] && printf '%s' "$fenced" | jq -e . >/dev/null 2>&1; then
+    printf '%s' "$fenced" | jq .
+    return 0
+  fi
+
+  # Extract from first ``` ... ``` fence (no language tag)
+  fenced=$(printf '%s' "$input" | sed -n '/^```$/{n; :a; /^```$/q; p; n; ba}')
+  if [[ -n "$fenced" ]] && printf '%s' "$fenced" | jq -e . >/dev/null 2>&1; then
+    printf '%s' "$fenced" | jq .
+    return 0
+  fi
+
+  # Last resort: extract from first { to last } (trim trailing prose)
+  local from_brace
+  from_brace=$(printf '%s' "$input" | sed -n '/^{/,$ p')
+  if [[ -n "$from_brace" ]]; then
+    # Single-line JSON (common): try first line alone
+    local first_line
+    first_line=$(printf '%s\n' "$from_brace" | head -1)
+    if printf '%s' "$first_line" | jq -e . >/dev/null 2>&1; then
+      printf '%s' "$first_line" | jq .
+      return 0
+    fi
+    # Multiline JSON: truncate at last line starting with }
+    local last_brace_line trimmed
+    last_brace_line=$(printf '%s\n' "$from_brace" | grep -n '^}' | tail -1 | cut -d: -f1)
+    if [[ -n "$last_brace_line" ]]; then
+      trimmed=$(printf '%s\n' "$from_brace" | head -n "$last_brace_line")
+      if printf '%s' "$trimmed" | jq -e . >/dev/null 2>&1; then
+        printf '%s' "$trimmed" | jq .
+        return 0
+      fi
+    fi
+  fi
+
+  return 1
+}
+
+# --- Retry + raw-preservation helpers (review/audit) --------------------------
+
+# Build the follow-up prompt for the one-shot retry: the FULL original request,
+# the raw first response, and the canonical JSON schema with an instruction to
+# serialize now. The retry runs in a fresh session (--no-session-persistence /
+# --ephemeral), so it must carry the complete original prompt — scope block
+# included — or the model has nothing to review and can only produce a
+# context-free verdict (vstack#672). The schema file is the shared source of
+# the JSON structure for both review and audit, so re-reading it here works
+# regardless of which mode produced the first response. The optional second
+# arg names the defect in the first response (default: no parseable JSON) so
+# an incomplete-schema retry (vstack#678) tells the model exactly what was
+# missing instead of claiming the JSON did not parse.
+build_retry_prompt() {
+  local raw="$1"
+  local problem="${2:-did not contain a parseable JSON object}"
+  local schema_file="$SCRIPT_DIR/../schemas/review-finding-prompt.md"
+  local schema=""
+  if [[ -f "$schema_file" ]]; then
+    schema=$(sed "s/external-TARGET/external-${TARGET_CLI}/g; s/ISO_8601/$(date -u +%Y-%m-%dT%H:%M:%SZ)/g" "$schema_file")
+  fi
+  cat <<RETRY
+Your previous response to the request below ${problem}. This is a single fresh session with no prior turns and no session history — there is no earlier message and nothing was "delivered above" or "previously". Complete the request below and output the COMPLETE JSON object in THIS response. If your previous response already contains your findings, serialize them without changing them; otherwise perform the request now using the scope it specifies. Output ONLY the JSON object — no prose before or after.
+
+--- Original request ---
+${PROMPT}
+--- End of original request ---
+
+--- Your previous response ---
+${raw}
+--- End of your previous response ---
+
+Emit exactly this JSON structure:
+${schema}
+RETRY
+}
+
+# Persist the raw (and optional retry) response so a lost review is auditable,
+# emit an error JSON that carries the sidecar path(s), then exit 1.
+preserve_raw_and_fail() {
+  local raw="$1"
+  local retry="${2:-}"
+  local raw_path retry_path=""
+
+  if [[ -n "$OUTPUT_PATH" ]]; then
+    mkdir -p "$(dirname "$OUTPUT_PATH")"
+    raw_path="${OUTPUT_PATH}.raw.txt"
+    printf '%s\n' "$raw" > "$raw_path"
+    if [[ -n "$retry" ]]; then
+      retry_path="${OUTPUT_PATH}.retry.txt"
+      printf '%s\n' "$retry" > "$retry_path"
+    fi
+  else
+    raw_path=$(mktemp)
+    printf '%s\n' "$raw" > "$raw_path"
+    if [[ -n "$retry" ]]; then
+      retry_path=$(mktemp)
+      printf '%s\n' "$retry" > "$retry_path"
+    fi
+  fi
+
+  if [[ -n "$retry_path" ]]; then
+    jq -n --arg target "$TARGET_CLI" --argjson len "${#raw}" \
+      --arg rawpath "$raw_path" --arg retrypath "$retry_path" \
+      '{error: "Failed to extract JSON from \($target) response after retry", raw_length: $len, raw_response: $rawpath, retry_response: $retrypath}' >&2
+    echo "→ retry response preserved: $retry_path" >&2
+  else
+    jq -n --arg target "$TARGET_CLI" --argjson len "${#raw}" --arg rawpath "$raw_path" \
+      '{error: "Failed to extract JSON from \($target) response after retry", raw_length: $len, raw_response: $rawpath}' >&2
+  fi
+  echo "→ raw response preserved: $raw_path" >&2
+  echo "--- First 30 lines of raw response ---" >&2
+  printf '%s\n' "$raw" | head -30 >&2
+  exit 1
+}
+
+# --- No-review self-report gate (review/audit) --------------------------------
+# vstack#652: a schema-valid response whose qa_metadata admits no review
+# happened (review_performed=false or a no-scope/no-review reason) must never
+# become the --output artifact, regardless of its verdict.
+
+response_reports_no_review() {
+  printf '%s' "$1" | jq -e '
+    (.qa_metadata? // {}) as $qa
+    | (($qa | type) == "object")
+      and (($qa.review_performed == false)
+           or ((($qa.reason // "") | tostring)
+               | test("no[ _-]?(scope|review)|not[ _-]?reviewed"; "i")))
+  ' >/dev/null 2>&1
+}
+
+# vstack#672: the schema REQUIRES a qa_metadata object ({} for a performed
+# review), so a response with no qa_metadata key cannot attest that any review
+# happened — non-conforming, structurally detected, no prose parsing. Catches
+# in particular a retried response that dropped the field along with the rest
+# of its context. (orch review-artifact-check stays tolerant of absent
+# qa_metadata for internal reviewers; this gate is producer-side only.)
+response_missing_qa_metadata() {
+  ! printf '%s' "$1" | jq -e '(.qa_metadata? | type) == "object"' >/dev/null 2>&1
+}
+
+# vstack#678: extraction can yield truncated-but-valid JSON — verdict and
+# summary survive while the finding arrays are silently dropped, so the
+# artifact looks reviewable but the actual blockers/suggestions are lost. The
+# schema requires verdict plus all three arrays (empty [] is fine), so anything
+# less is structurally incomplete: an incomplete FIRST response goes through
+# the one-shot retry (full original context, vstack#672); a still-incomplete
+# retried response is rejected. qa_metadata is deliberately NOT part of this
+# predicate — its absence rejects without a retry (vstack#672 contract).
+response_incomplete_schema() {
+  ! printf '%s' "$1" | jq -e '
+    ((.verdict? | type) == "string")
+    and ((.blockers? | type) == "array")
+    and ((.suggestions? | type) == "array")
+    and ((.questions? | type) == "array")
+  ' >/dev/null 2>&1
+}
+
+# Persist the rejected response as a sidecar (durable record), emit an error
+# JSON carrying its path, and exit EXIT_NO_REVIEW. OUTPUT_PATH itself is never
+# written, so no pass artifact can exist for a review that did not verifiably
+# happen. The optional second arg overrides the error message (default: the
+# qa_metadata self-report); the optional third arg overrides the sidecar
+# suffix (default "noreview" — "incomplete" for the vstack#678 schema gate).
+preserve_no_review_and_fail() {
+  local json="$1"
+  local errmsg="${2:-}"
+  local suffix="${3:-noreview}"
+  local sidecar reason
+
+  if [[ -z "$errmsg" ]]; then
+    reason=$(printf '%s' "$json" | jq -r '.qa_metadata.reason? // "review_performed=false"' 2>/dev/null) || reason="review_performed=false"
+    errmsg="self-reported that no review was performed ($reason)"
+  fi
+
+  if [[ -n "$OUTPUT_PATH" ]]; then
+    mkdir -p "$(dirname "$OUTPUT_PATH")"
+    sidecar="${OUTPUT_PATH}.${suffix}.json"
+  else
+    sidecar=$(mktemp)
+  fi
+  printf '%s\n' "$json" > "$sidecar"
+
+  jq -n --arg target "$TARGET_CLI" --arg errmsg "$errmsg" --arg sidecar "$sidecar" \
+    '{error: "\($target) \($errmsg) — refusing to write a review artifact", response: $sidecar}' >&2
+  echo "→ rejected response preserved: $sidecar" >&2
+  exit "$EXIT_NO_REVIEW"
+}
+
+if [[ "$MODE" == "review" || "$MODE" == "audit" ]]; then
+  # Two retryable defects in the first response share the one-shot retry: no
+  # parseable JSON at all (vstack#509 — prose claiming the JSON was "already
+  # delivered above", impossible with --no-session-persistence / --ephemeral),
+  # and parseable-but-truncated JSON that lost the required finding arrays
+  # (vstack#678). The retry resends the full original request (vstack#672), so
+  # a truncated extraction gets one chance to re-serialize completely instead
+  # of being written as a findings-less artifact.
+  RETRY_WHY=""
+  RETRY_PROBLEM=""
+  if JSON=$(extract_json "$RESULT"); then
+    if response_incomplete_schema "$JSON"; then
+      RETRY_WHY="first response JSON is structurally incomplete"
+      RETRY_PROBLEM="contained a JSON object that is missing required schema fields — verdict and the blockers, suggestions, and questions arrays are all mandatory (use [] for an empty array)"
+    else
+      RESULT="$JSON"
+    fi
+  else
+    RETRY_WHY="extract_json failed on first response"
+  fi
+
+  if [[ -n "$RETRY_WHY" ]]; then
+    echo "→ $RETRY_WHY; retrying once with captured response" >&2
+    RETRY_PROMPT_TMP=$(mktemp)
+    if [[ -n "$RETRY_PROBLEM" ]]; then
+      build_retry_prompt "$RESULT" "$RETRY_PROBLEM" > "$RETRY_PROMPT_TMP"
+    else
+      build_retry_prompt "$RESULT" > "$RETRY_PROMPT_TMP"
+    fi
+
+    RETRY_RESULT=""
+    RETRY_EXIT=0
+    RETRY_RESULT=$(run_target_cli "$RETRY_PROMPT_TMP") || RETRY_EXIT=$?
+
+    if [[ $RETRY_EXIT -eq 124 ]]; then
+      echo "→ retry timed out after ${TIMEOUT}s" >&2
+      preserve_raw_and_fail "$RESULT" "$RETRY_RESULT"
+    elif [[ $RETRY_EXIT -ne 0 ]]; then
+      echo "→ retry exited with code $RETRY_EXIT" >&2
+      preserve_raw_and_fail "$RESULT" "$RETRY_RESULT"
+    elif [[ ${#RETRY_RESULT} -eq 0 ]]; then
+      echo "→ retry returned an empty response" >&2
+      preserve_raw_and_fail "$RESULT" "$RETRY_RESULT"
+    elif JSON=$(extract_json "$RETRY_RESULT"); then
+      # Same completeness discipline on the retried response: a retry that is
+      # still missing the required arrays must not become the artifact either
+      # (vstack#678) — preserve it and fail with the distinct no-review code.
+      if response_incomplete_schema "$JSON"; then
+        echo "→ retry response JSON is still structurally incomplete" >&2
+        preserve_no_review_and_fail "$JSON" \
+          "returned structurally incomplete JSON after retry — verdict and the blockers/suggestions/questions arrays are required (incomplete_schema)" \
+          incomplete
+      fi
+      echo "→ retry recovered valid JSON (${#JSON} bytes)" >&2
+      RESULT="$JSON"
+    else
+      echo "→ retry response still not parseable" >&2
+      preserve_raw_and_fail "$RESULT" "$RETRY_RESULT"
+    fi
+  fi
+
+  # Reject a self-reported no-review before the artifact can be written — a
+  # "pass" from a model that admits it reviewed nothing is a false pass. These
+  # gates run on whichever response became RESULT: first or retried.
+  if response_reports_no_review "$RESULT"; then
+    preserve_no_review_and_fail "$RESULT"
+  fi
+  if response_missing_qa_metadata "$RESULT"; then
+    preserve_no_review_and_fail "$RESULT" \
+      "returned non-conforming JSON with no qa_metadata object (missing_qa_metadata)"
+  fi
+
+  # Stamp the authoritative timestamp ourselves. The reviewing model serializes
+  # a `timestamp` field, but a model-supplied value is unverifiable — it can emit
+  # a stale or fabricated time (vstack#629). Overwrite it with the wrapper's own
+  # UTC wall clock so the artifact's content timestamp is trustworthy and matches
+  # its filesystem mtime. The schema keeps ISO_8601 as a hint; this is the
+  # authoritative value. RESULT is already jq-validated JSON here, so the rewrite
+  # succeeds; if jq unexpectedly fails, keep the extracted JSON unchanged.
+  STAMP="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  if STAMPED=$(printf '%s' "$RESULT" | jq --arg ts "$STAMP" '.timestamp = $ts' 2>/dev/null); then
+    RESULT="$STAMPED"
+  fi
+fi
+
+# --- Output -------------------------------------------------------------------
+
+if [[ -n "$OUTPUT_PATH" ]]; then
+  mkdir -p "$(dirname "$OUTPUT_PATH")"
+  printf '%s\n' "$RESULT" > "$OUTPUT_PATH"
+  echo "→ Written: $OUTPUT_PATH" >&2
+  echo "$OUTPUT_PATH"
+else
+  printf '%s\n' "$RESULT"
+fi

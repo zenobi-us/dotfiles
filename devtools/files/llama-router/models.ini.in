@@ -1,0 +1,3221 @@
+; Shared defaults applied to every profile (overridden per profile when set).
+[*]
+; llama-root = /var/run/media/zenobius/Backup/LLMModels
+t = 12
+b = 2048
+flash-attn = on
+cache-type-k = q8_0
+cache-type-v = q8_0
+mlock = true
+jinja = true
+host = 0.0.0.0
+port = 8080
+seed = 42
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b]
+; model = {llama-root}/models/gemma-4-12b-it-IQ4_NL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q8]
+; model = {llama-root}/models/gemma-4-12b-it-UD-Q8_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q4_k_m]
+; model = {llama-root}/models/gemma-4-12b-it-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-qat]
+; model = {llama-root}/models/gemma-4-12B-it-qat-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-qat-q4_0]
+; model = {llama-root}/models/gemma-4-12b-it-qat-q4_0.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-bf16]
+; model = {llama-root}/models/gemma-4-12b-it-BF16.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; BF16 weights ~24GB exceed 16GB VRAM - let --fit split layers across VRAM/RAM.
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+
+; Gemma4-12B-Coder — Composer 2.5 × Fable 5 distillation on verifiable Python coding (v2).
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-coder-fable5-v2]
+; model = {llama-root}/models/gemma4-coder-fable5-composer2.5-v2-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b]
+; model = {llama-root}/models/gemma-4-26B-A4B-it-UD-IQ4_NL.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-q4_k_xl]
+; model = {llama-root}/models/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-qat]
+; model = {llama-root}/models/gemma-4-26B_q4_0-it.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 65536
+; 14GB weights + ~1.3GB mmproj won't fit with ngl=999 on 16GB VRAM — let --fit split layers.
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+
+; NVIDIA Nemotron 3.5 Lightning 30B-A3B — hybrid MoE (Mamba-2 + MoE + Attention), 3B active.
+; UD-Q4_K_XL ~25.3GB; ctx up to 1M (256k typical single-GPU). Reasoning via chat template (enable_thinking).
+; Vendor recommends temp=1.0 / top-p=0.95.
+; ~25GB weights need full expert CPU offload on 16GB VRAM (n-cpu-moe=16 still OOMs).
+; Disabled: model file is not present under {llama-root}.
+; [nemotron-3.5-lightning-30b]
+; model = {llama-root}/models/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-UD-Q4_K_XL.gguf
+; c = 65536
+; MoE offload: all experts on CPU; dense/attn/mamba layers on GPU.
+; ngl = 99
+; cpu-moe = true
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+
+; Muse Glimmer-30B — Meta multimodal agentic model (trained ctx 131k+).
+; Q4_K_XL ~16GB + ~1.4GB mmproj-kquant — target 24GB VRAM; use --fit on 16GB GPUs.
+; Vendor recommends temp=1.0 / top-p=0.95 / top-k=64; reasoning strength via system prompt.
+; Disabled: model file is not present under {llama-root}.
+; [muse-glimmer-30b]
+; model = {llama-root}/models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf
+; mmproj only needed for vision — omit for text-only agency/perf tests.
+; mmproj = {llama-root}/models/mmproj-kquant.gguf
+; c = 65536
+; Q4_K_XL ~15GB won't fit fully on 16GB VRAM with ngl=999 — let --fit split layers.
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+
+; DiffusionGemma — block-diffusion model; needs llama-diffusion-cli (PR #24423), not llama-server.
+; Run: python3 ~/lukes-dev-lab/llama-switch/scripts/start-llama-diffusion.py diffusiongemma-26b-q4_k_m
+; Smoke test: cd ~/lukes-dev-lab/tests/diffusion && python src/run.py --profile diffusiongemma-26b-q4_k_m
+; Disabled: model file is not present under {llama-root}.
+; [diffusiongemma-26b-q4_k_m]
+; runner = diffusion
+; model = {llama-root}/models/diffusiongemma-26B-A4B-it-Q4_K_M.gguf
+; Q4_K_M ~16GB — stop llama-server first. ngl=25 fits 16GB VRAM (99 OOMs).
+; ngl = 25
+; n = 2048
+; cnv = on
+; mlock = false
+
+; CPU/RAM-only — no GPU offload at all (--device none). For benchmarking pure CPU
+; throughput. ngl default is auto (-1), so GPU layers must be disabled explicitly;
+; --device none does that (note: ngl=0 alone is dropped by the launcher's 0-skip).
+; Q4_K_M ~16.8GB lives entirely in system RAM - needs ~18GB+ free. Flip mlock=true
+; to pin weights in RAM (no swap) once you confirm the RAM headroom. Expect slow tok/s.
+; Disabled: model file is not present under {llama-root}.
+; [diffusiongemma-26b-q4_k_m-cpu]
+; runner = diffusion
+; model = {llama-root}/models/diffusiongemma-26B-A4B-it-Q4_K_M.gguf
+; dev = none
+; n = 2048
+; cnv = on
+; mlock = false
+
+; Qwen3.5-9B — dense multimodal base (text-only GGUF here; trained ctx 262k).
+; Thinking model: thinks by default before responding.
+; Vendor recommends temp=1.0 / top-p=0.95 / top-k=20 / presence-penalty=1.5 for general thinking mode.
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b]
+; model = {llama-root}/models/Qwen3.5-9B-Q8_0.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-q4_k_m]
+; model = {llama-root}/models/Qwen3.5-9B-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+
+; Simulate ~8GB VRAM on a 16GB GPU for performance benchmarking (--fit leaves 8192 MiB free).
+; On 16GB: fit-target=8192 caps GPU use to ~8GB and spills the rest to CPU/RAM.
+; On native 8GB hardware use q4_k_m (fit-target=1024) instead.
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-q4_k_m-8g]
+; model = {llama-root}/models/Qwen3.5-9B-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 8192
+; np = 1
+; b = 512
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+
+; Qwen3.5-9B MTP — Unsloth GGUF with nextn draft layers for speculative decoding (~1.5–2× faster).
+; Vendor recommends temp=1.0 / top-p=0.95 / top-k=20 / presence-penalty=1.5 for thinking mode.
+; np=1 required — MTP does not support np>1 or mmproj yet.
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-mtp]
+; model = {llama-root}/models/Qwen3.5-9B-MTP-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-35b]
+; model = {llama-root}/models/Qwen3.6-35B-A3B-UD-IQ4_NL.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 2
+
+; Qwen3.6-35B-A3B MTP — same MoE weights + nextn draft layers for speculative decoding.
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-35b-mtp]
+; model = {llama-root}/models/Qwen3.6-35B-A3B-MTP-UD-IQ4_NL.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+
+; Qwen3.6-35B-A3B UD-Q4_K_M — same weights as qwen3.6-35b, Unsloth dynamic quant.
+[qwen3.6-35b-q4_k_m]
+model = {llama-root}/lmstudio-community/Qwen3.6-35B-A3B-GGUF/Qwen3.6-35B-A3B-Q4_K_M.gguf
+c = 65536
+fit = on
+fit-target = 256
+np = 2
+
+; grug-35b QAT — Qwen3.6-35B-A3B MoE token-efficient reasoning finetune (ProCreations grug dialect).
+; QAT Q4_K_M ~21GB — let --fit split layers across VRAM/RAM on 16GB GPUs.
+; Vendor recommends temp=0.6-1.0 / top-p=0.95 / top-k=20; thinking mode on by default.
+; Disabled: model file is not present under {llama-root}.
+; [grug-35b-qat-q4_k_m]
+; model = {llama-root}/models/grug-35b-qat-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 2
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Qwen-AgentWorld-35B-A3B — language world model for agentic environment simulation (trained ctx 262k).
+; Vendor recommends temp=0.6 / top-p=0.95 / top-k=20 and ≥128k context for multi-turn simulation.
+; Disabled: model file is not present under {llama-root}.
+; [qwen-agentworld-35b]
+; model = {llama-root}/models/Qwen-AgentWorld-35B-A3B-UD-IQ4_NL.gguf
+; c = 65536
+; ~18GB UD-IQ4_NL MoE weights exceed 16GB VRAM — let --fit split layers across VRAM/RAM.
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-35b]
+; model = {llama-root}/models/Qwopus3.6-35B-A3B-v1-IQ4_XS.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 2
+
+; Tess-4-27B — Qwen3.6-27B agentic reasoning finetune (trained ctx 64K; base arch 262K).
+; Qwen3.5-family chat template with redacted_thinking blocks — jinja on (default).
+; Q4_K_M ~16.5GB + separate mtp-Tess-4-27B-Q8_0.gguf head (~3.2GB) for speculative decoding.
+; MTP ~1.5–2× decode speedup, lossless (main model verifies every token).
+; Inherits Qwen3.6-27B sampling: temp=1.0 / top-p=0.95 / top-k=20 / min-p=0.0.
+; np=1 required — external MTP head does not support np>1.
+; Disabled: model file is not present under {llama-root}.
+; [tess-4-27b-q4_k_m-mtp]
+; model = {llama-root}/models/Tess-4-27B-Q4_K_M.gguf
+; spec-draft-model = {llama-root}/models/mtp-Tess-4-27B-Q8_0.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; ThinkingCap-Qwen3.6-27B — Qwen3.6-27B finetune with ~50% fewer thinking tokens (MTP).
+; Vendor recommends temp=1.0 / top-p=0.95 / top-k=20 / min-p=0.0 (same as Qwen3.6-27B base).
+; Q4_K_M ~15.7GB — let --fit split layers across VRAM/RAM on 16GB GPUs.
+; MTP self-speculative decoding (~1.4–1.7× decode speed-up per model card).
+; np=1 required — MTP does not support np>1 or mmproj yet.
+; Disabled: model file is not present under {llama-root}.
+; [thinkingcap-qwen3.6-27b-q4_k_m-mtp]
+; model = {llama-root}/models/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; grug-27b QAT — Qwen3.6-27B token-efficient reasoning finetune (ProCreations grug dialect).
+; QAT Q4_K_M ~16.5GB — let --fit split layers across VRAM/RAM on 16GB GPUs.
+; Vendor recommends temp=0.6-1.0 / top-p=0.95 / top-k=20; thinking mode on by default.
+; Disabled: model file is not present under {llama-root}.
+; [grug-27b-qat-q4_k_m]
+; model = {llama-root}/models/grug-27b-qat-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Fable-Fusion-711-27B — DavidAU Qwen3.6-27B multi-stage Fable/Heretic/NEO-MAX MTP finetune (trained ctx 262K).
+; NEO IMATRIX IQ4_NL ~15GB — MTP self-speculative decoding; np=1 required.
+; Vendor recommends temp=1.0 / top-p=0.95 / top-k=20 / min-p=0.0 (thinking mode).
+; Vision: reuse unsloth Qwen3.6-27B mmproj-BF16 (~888MB).
+; Disabled: model file is not present under {llama-root}.
+; [fable-fusion-711-27b-iq4_nl-mtp]
+; model = {llama-root}/models/Qwen3.6-27B-Fable-Fus-711-UnHeretic-NM-DAU-NEO-MAX-NEO-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Qwable-3.6-27b — Qwen3.6-27B dense fine-tune (Fable-style reasoning, no MTP).
+; Disabled: model file is not present under {llama-root}.
+; [qwable-3.6-27b]
+; model = {llama-root}/models/Qwable-3.6-27b-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+
+; FableVibes-14B — Qwen3.6-14B-A3B MoE reasoning distill (Fable 5 CoT traces, pruned from 35B).
+; Thinking model: produces reasoning tokens before responding — budget extra generation tokens.
+; Q4_K_M ~8.4GB fits 16GB VRAM; Q8_0 ~14.7GB needs --fit on 16GB GPUs.
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q4_k_m]
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q8_0]
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q8_0.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+
+; Laguna XS 2.1 — Poolside 33B/3B MoE agentic coding model (trained ctx 262k).
+; Reasoning model: interleaved thinking between tool calls — jinja on (default).
+; Vendor recommends temp=1.0 / top-k=20; benchmark harness uses top-p=1.0 with thinking on.
+; ~20.3GB Q4_K_M weights exceed 16GB VRAM — let --fit split layers across VRAM/RAM.
+; Uses ~/llama.cpp.laguna (PR #25165 worktree) for llama-server; weights stay in {llama-root}/models/.
+; Disabled: model file is not present under {llama-root}.
+; [laguna-xs-2.1]
+; llama-cpp-root = /home/user/llama.cpp.laguna
+; model = {llama-root}/models/Laguna-XS-2.1-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; reasoning-preserve = on
+
+; North Mini Code — Cohere 30B-A3B MoE agentic coding model (trained ctx 256k).
+; Vendor recommends temp=1.0 / top-p=0.95 for all uses (see model card).
+; ~15.5GB UD-IQ4_NL weights exceed 16GB VRAM — let --fit split layers across VRAM/RAM.
+; Disabled: model file is not present under {llama-root}.
+; [north-mini-code]
+; model = {llama-root}/models/North-Mini-Code-1.0-UD-IQ4_NL.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+
+; Nex-N2-mini — Qwen3.5-35B-A3B MoE reasoning/agentic-coding model (trained ctx 256k).
+; Vendor recommends one sampling config (temp 0.7 / top-p 0.95 / top-k 40) for all uses,
+; so no separate -coding variant — this profile covers coding too.
+; Disabled: model file is not present under {llama-root}.
+; [nex-n2-mini]
+; model = {llama-root}/models/Nex-N2-mini-UD-Q4_K_XL.gguf
+; c = 65536
+; ~21GB Q4_K_XL weights exceed 16GB VRAM — let --fit split layers across VRAM/RAM.
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 0.7
+; top-p = 0.95
+; top-k = 40
+
+; Ornith-1.0-9B — Qwen3.5-9B dense agentic coding model (trained ctx 262k).
+; Reasoning model: assistant turns open with a thinking block before the answer.
+; Vendor recommends temp=0.6 / top-p=0.95 / top-k=20 for general chat and agent use.
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b]
+; model = {llama-root}/models/ornith-1.0-9b-Q8_0.gguf
+; c = 65536
+; ngl = 999
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-q4_k_m]
+; model = {llama-root}/models/ornith-1.0-9b-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+
+; Simulate ~8GB VRAM on a 16GB GPU for performance benchmarking (--fit leaves 8192 MiB free).
+; On 16GB: fit-target=8192 caps GPU use to ~8GB and spills the rest to CPU/RAM.
+; On native 8GB hardware use q4_k_m (fit-target=1024) instead.
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-q4_k_m-8g]
+; model = {llama-root}/models/ornith-1.0-9b-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 8192
+; np = 1
+; b = 512
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+
+; Ornith-1.0-35B — Qwen3.5-35B MoE agentic coding model (trained ctx 262k).
+; Reasoning model: assistant turns open with a thinking block before the answer.
+; Vendor recommends temp=0.6 / top-p=0.95 / top-k=20 for general chat and agent use.
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-35b]
+; model = {llama-root}/models/ornith-1.0-35b-Q4_K_M.gguf
+; c = 65536
+; ~21GB Q4_K_M MoE weights exceed 16GB VRAM — let --fit split layers across VRAM/RAM.
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+
+; Qwythos-9B — Qwen3.5-9B Claude Mythos reasoning model (1M YaRN ctx; MTP Q4_K_M).
+; Reasoning model: every response opens with a thinking block before the answer.
+; Vendor recommends temp=0.6 / top-p=0.95 / top-k=20 / repeat-penalty=1.05.
+; Disabled: model file is not present under {llama-root}.
+; [qwythos-9b]
+; model = {llama-root}/models/Qwythos-9B-Claude-Mythos-5-1M-MTP-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Agents-A1 — Qwen3.5-35B-A3B MoE agentic model (trained ctx 262k).
+; Vendor recommends temp=0.85 / top-p=0.95 / top-k=20 / presence-penalty=1.1 for general agent use.
+; Disabled: model file is not present under {llama-root}.
+; [agents-a1]
+; model = {llama-root}/models/Agents-A1-Q4_K_M.gguf
+; c = 65536
+; ~21GB Q4_K_M MoE weights exceed 16GB VRAM — let --fit split layers across VRAM/RAM.
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 0.85
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.1
+
+; 27B dense IQ4_NL — non-MTP vs MTP comparison pair. MTP build carries nextn layers
+; and uses np=1 + draft-mtp speculative decoding (see Unsloth Qwen3.6 MTP guide).
+; Vision: unsloth/Qwen3.6-27B-MTP-GGUF mmproj-BF16 (~888MB) — np=1 required with MTP.
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-27b]
+; model = {llama-root}/models/Qwen3.6-27B-IQ4_NL.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-27b-mtp]
+; model = {llama-root}/models/Qwen3.6-27B-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+
+; Qwen3.6-27B Q4_K_M — Unsloth GGUF with built-in nextn/MTP layers (filename omits "MTP").
+[qwen3.6-27b-q4_k_m-mtp]
+model = {llama-root}/unsloth/Qwen3.6-27B-MTP-GGUF/Qwen3.6-27B-Q4_K_M.gguf
+; Disabled: file is not present under {llama-root}.
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+c = 65536
+fit = on
+fit-target = 256
+np = 1
+spec-type = draft-mtp
+spec-draft-n-max = 2
+
+; Qwen3.8-27B — dense VLM base (text-only GGUF here; trained ctx 262k, extensible to 1M).
+; Unsloth UD-Q4_K_XL ~17.9GB. Thinking mode on by default.
+; Vendor: temp=1.0 / top-p=0.95 / top-k=20 / min-p=0.0 / presence-penalty=0.0.
+[qwen3.8-27b]
+model = {llama-root}/lmstudio-community/Qwen3.8-27B-GGUF/Qwen3.8-27B-Q4_K_M.gguf
+c = 65536
+fit = on
+fit-target = 256
+np = 1
+temp = 1.0
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-27b-v2]
+; model = {llama-root}/models/Qwopus3.6-27B-v2-MTP-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+
+; Ternary Bonsai 27B — Qwen3.6-27B-derived ternary Q2_0 (~7.2GB) + DSpark Q4_1 drafter.
+; Vendor recommends temp=0.7 / top-p=0.95 / top-k=20 (thinking mode). Trained ctx 262K.
+; Requires PrismML llama.cpp fork for Q2_0_g128 kernels (https://github.com/PrismML-Eng/llama.cpp).
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-Q4_1.gguf
+; c = 65536
+; ngl = 999
+; np = 1
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+
+; Same Q2_0 target, DSpark bf16 drafter (~7.3GB) — reference quality, needs --fit on 16GB VRAM.
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-dspark-bf16]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-bf16.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+
+; 1-bit Bonsai 27B — Qwen3.6-27B-derived binary Q1_0 (~3.8GB), no DSpark drafter.
+; Vendor recommends temp=0.7 / top-p=0.95 / top-k=20 (thinking mode). Trained ctx 262K.
+; Requires PrismML llama.cpp fork for Q1_0_g128 kernels (https://github.com/PrismML-Eng/llama.cpp).
+; Disabled: model file is not present under {llama-root}.
+; [bonsai-27b]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Bonsai-27B-Q1_0.gguf
+; c = 65536
+; ngl = 999
+; np = 1
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+
+; Coding variants — model-specific sampling (see each vendor's inference guide).
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-coding]
+; model = {llama-root}/models/gemma-4-26B-A4B-it-UD-IQ4_NL.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-q4_k_xl-coding]
+; model = {llama-root}/models/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-qat-coding]
+; model = {llama-root}/models/gemma-4-26B_q4_0-it.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [nemotron-3.5-lightning-30b-coding]
+; model = {llama-root}/models/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-UD-Q4_K_XL.gguf
+; c = 65536
+; MoE offload: all experts on CPU; dense/attn/mamba layers on GPU.
+; ngl = 99
+; cpu-moe = true
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+
+; Disabled: model file is not present under {llama-root}.
+; [muse-glimmer-30b-coding]
+; model = {llama-root}/models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/mmproj-kquant.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [diffusiongemma-26b-q4_k_m-coding]
+; runner = diffusion
+; model = {llama-root}/models/diffusiongemma-26B-A4B-it-Q4_K_M.gguf
+; ngl = 25
+; n = 2048
+; cnv = on
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q4-coding]
+; model = {llama-root}/models/gemma-4-12b-it-IQ4_NL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q8-coding]
+; model = {llama-root}/models/gemma-4-12b-it-UD-Q8_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q4_k_m-coding]
+; model = {llama-root}/models/gemma-4-12b-it-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-qat-coding]
+; model = {llama-root}/models/gemma-4-12B-it-qat-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-qat-q4_0-coding]
+; model = {llama-root}/models/gemma-4-12b-it-qat-q4_0.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-bf16-coding]
+; model = {llama-root}/models/gemma-4-12b-it-BF16.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-coder-fable5-v2-coding]
+; model = {llama-root}/models/gemma4-coder-fable5-composer2.5-v2-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Qwen3.5 coding — thinking mode for precise coding / WebDev (temp=0.6 / top-p=0.95 / presence-penalty=0.0).
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-coding]
+; model = {llama-root}/models/Qwen3.5-9B-Q8_0.gguf
+; c = 65536
+; ngl = 999
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-q4_k_m-coding]
+; model = {llama-root}/models/Qwen3.5-9B-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Qwen3.5-9B MTP coding — thinking mode for precise coding / WebDev (temp=0.6 / presence-penalty=0.0).
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-mtp-coding]
+; model = {llama-root}/models/Qwen3.5-9B-MTP-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-35b-coding]
+; model = {llama-root}/models/Qwen3.6-35B-A3B-UD-IQ4_NL.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+[qwen3.6-35b-q4_k_m-coding]
+model = {llama-root}/lmstudio-community/Qwen3.6-35B-A3B-GGUF/Qwen3.6-35B-A3B-Q4_K_M.gguf
+c = 65536
+fit = on
+fit-target = 256
+np = 2
+temp = 0.6
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [grug-35b-qat-q4_k_m-coding]
+; model = {llama-root}/models/grug-35b-qat-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-35b-mtp-coding]
+; model = {llama-root}/models/Qwen3.6-35B-A3B-MTP-UD-IQ4_NL.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen-agentworld-35b-coding]
+; model = {llama-root}/models/Qwen-AgentWorld-35B-A3B-UD-IQ4_NL.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-35b-coding]
+; model = {llama-root}/models/Qwopus3.6-35B-A3B-v1-IQ4_XS.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Ornith coding — SWE-bench / terminal-agent harness settings (temp=1.0 / top-p=0.95).
+; Laguna XS 2.1 coding — SWE-bench / agent harness settings (vendor temp=1.0 / top-p=1.0 / top-k=20).
+; Disabled: model file is not present under {llama-root}.
+; [laguna-xs-2.1-coding]
+; llama-cpp-root = /home/user/llama.cpp.laguna
+; model = {llama-root}/models/Laguna-XS-2.1-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 1.0
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+; reasoning-preserve = on
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-coding]
+; model = {llama-root}/models/ornith-1.0-9b-Q8_0.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-q4_k_m-coding]
+; model = {llama-root}/models/ornith-1.0-9b-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-35b-coding]
+; model = {llama-root}/models/ornith-1.0-35b-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Qwythos coding — agentic / tool-use harness settings (vendor temp=0.6 / top-p=0.95 / top-k=20).
+; Disabled: model file is not present under {llama-root}.
+; [qwythos-9b-coding]
+; model = {llama-root}/models/Qwythos-9B-Claude-Mythos-5-1M-MTP-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Agents-A1 coding — agentic tool-use / SWE settings (vendor temp=0.85 / top-p=0.95 / top-k=20).
+; Disabled: model file is not present under {llama-root}.
+; [agents-a1-coding]
+; model = {llama-root}/models/Agents-A1-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 0.85
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwable-3.6-27b-coding]
+; model = {llama-root}/models/Qwable-3.6-27b-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q4_k_m-coding]
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q4_K_M.gguf
+; c = 65536
+; ngl = 999
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q8_0-coding]
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q8_0.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [tess-4-27b-q4_k_m-mtp-coding]
+; model = {llama-root}/models/Tess-4-27B-Q4_K_M.gguf
+; spec-draft-model = {llama-root}/models/mtp-Tess-4-27B-Q8_0.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [thinkingcap-qwen3.6-27b-q4_k_m-mtp-coding]
+; model = {llama-root}/models/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [grug-27b-qat-q4_k_m-coding]
+; model = {llama-root}/models/grug-27b-qat-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [fable-fusion-711-27b-iq4_nl-mtp-coding]
+; model = {llama-root}/models/Qwen3.6-27B-Fable-Fus-711-UnHeretic-NM-DAU-NEO-MAX-NEO-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-27b-coding]
+; model = {llama-root}/models/Qwen3.6-27B-IQ4_NL.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-27b-mtp-coding]
+; model = {llama-root}/models/Qwen3.6-27B-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+[qwen3.6-27b-q4_k_m-mtp-coding]
+model = {llama-root}/unsloth/Qwen3.6-27B-MTP-GGUF/Qwen3.6-27B-Q4_K_M.gguf
+; Disabled: file is not present under {llama-root}.
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+c = 65536
+fit = on
+fit-target = 256
+np = 1
+spec-type = draft-mtp
+spec-draft-n-max = 2
+temp = 0.6
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+
+; Qwen3.8-27B coding — thinking mode for precise coding / WebDev (temp=0.6 / presence-penalty=0.0).
+[qwen3.8-27b-coding]
+model = {llama-root}/lmstudio-community/Qwen3.8-27B-GGUF/Qwen3.8-27B-Q4_K_M.gguf
+c = 65536
+fit = on
+fit-target = 256
+np = 1
+temp = 0.6
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-27b-v2-coding]
+; model = {llama-root}/models/Qwopus3.6-27B-v2-MTP-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-coding]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-Q4_1.gguf
+; c = 65536
+; ngl = 999
+; np = 1
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-dspark-bf16-coding]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-bf16.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; b = 1024
+; mlock = false
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [bonsai-27b-coding]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Bonsai-27B-Q1_0.gguf
+; c = 65536
+; ngl = 999
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Coder-tuned 27B MTP Q4_K_M — coding-only model, so only the -coding variant exists.
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-27b-coder-coding]
+; model = {llama-root}/models/Qwopus3.6-27B-Coder-MTP-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; 128k coding variants — same sampling as -coding, 128k context/fit from -128k base profiles.
+
+; Disabled: model file is not present under {llama-root}.
+; [nemotron-3.5-lightning-30b-coding-128k]
+; model = {llama-root}/models/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-UD-Q4_K_XL.gguf
+; c = 131072
+; MoE offload: all experts on CPU; dense/attn/mamba layers on GPU.
+; ngl = 99
+; cpu-moe = true
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+
+; Disabled: model file is not present under {llama-root}.
+; [muse-glimmer-30b-coding-128k]
+; model = {llama-root}/models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/mmproj-kquant.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-coding-128k]
+; model = {llama-root}/models/gemma-4-26B-A4B-it-UD-IQ4_NL.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-q4_k_xl-coding-128k]
+; model = {llama-root}/models/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-qat-coding-128k]
+; model = {llama-root}/models/gemma-4-26B_q4_0-it.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 131072
+; fit-ctx = 131072
+; fit = on
+; fit-target = 4096
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [diffusiongemma-26b-q4_k_m-coding-128k]
+; runner = diffusion
+; model = {llama-root}/models/diffusiongemma-26B-A4B-it-Q4_K_M.gguf
+; ngl = 25
+; n = 4096
+; cnv = on
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+; c = 131072
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q4-coding-128k]
+; model = {llama-root}/models/gemma-4-12b-it-IQ4_NL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q8-coding-128k]
+; model = {llama-root}/models/gemma-4-12b-it-UD-Q8_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 512
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q4_k_m-coding-128k]
+; model = {llama-root}/models/gemma-4-12b-it-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-qat-coding-128k]
+; model = {llama-root}/models/gemma-4-12B-it-qat-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-qat-q4_0-coding-128k]
+; model = {llama-root}/models/gemma-4-12b-it-qat-q4_0.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-bf16-coding-128k]
+; model = {llama-root}/models/gemma-4-12b-it-BF16.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit-ctx = 131072
+; fit = on
+; fit-target = 6144
+; np = 1
+; b = 512
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-coder-fable5-v2-coding-128k]
+; model = {llama-root}/models/gemma4-coder-fable5-composer2.5-v2-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Qwen3.5 coding — thinking mode for precise coding / WebDev (temp=0.6 / top-p=0.95 / presence-penalty=0.0).
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-coding-128k]
+; model = {llama-root}/models/Qwen3.5-9B-Q8_0.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; ngl = 999
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-q4_k_m-coding-128k]
+; model = {llama-root}/models/Qwen3.5-9B-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; ngl = 999
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Qwen3.5-9B MTP coding — thinking mode for precise coding / WebDev (temp=0.6 / presence-penalty=0.0).
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-mtp-coding-128k]
+; model = {llama-root}/models/Qwen3.5-9B-MTP-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; ngl = 999
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-35b-coding-128k]
+; model = {llama-root}/models/Qwen3.6-35B-A3B-UD-IQ4_NL.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+[qwen3.6-35b-q4_k_m-coding-128k]
+model = {llama-root}/lmstudio-community/Qwen3.6-35B-A3B-GGUF/Qwen3.6-35B-A3B-Q4_K_M.gguf
+c = 131072
+fit-ctx = 131072
+b = 256
+mlock = false
+fit = on
+fit-target = 6144
+np = 1
+temp = 0.6
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [grug-35b-qat-q4_k_m-coding-128k]
+; model = {llama-root}/models/grug-35b-qat-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-35b-mtp-coding-128k]
+; model = {llama-root}/models/Qwen3.6-35B-A3B-MTP-UD-IQ4_NL.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen-agentworld-35b-coding-128k]
+; model = {llama-root}/models/Qwen-AgentWorld-35B-A3B-UD-IQ4_NL.gguf
+; c = 131072
+; fit-ctx = 131072
+; fit = on
+; fit-target = 6144
+; np = 1
+; b = 256
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-35b-coding-128k]
+; model = {llama-root}/models/Qwopus3.6-35B-A3B-v1-IQ4_XS.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Ornith coding — SWE-bench / terminal-agent harness settings (temp=1.0 / top-p=0.95).
+; Laguna XS 2.1 coding — SWE-bench / agent harness settings (vendor temp=1.0 / top-p=1.0 / top-k=20).
+
+; Disabled: model file is not present under {llama-root}.
+; [laguna-xs-2.1-coding-128k]
+; llama-cpp-root = /home/user/llama.cpp.laguna
+; model = {llama-root}/models/Laguna-XS-2.1-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; fit = on
+; fit-target = 6144
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 1.0
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+; reasoning-preserve = on
+
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-coding-128k]
+; model = {llama-root}/models/ornith-1.0-9b-Q8_0.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-q4_k_m-coding-128k]
+; model = {llama-root}/models/ornith-1.0-9b-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; ngl = 999
+; temp = 1.0
+; top-p = 0.95
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-35b-coding-128k]
+; model = {llama-root}/models/ornith-1.0-35b-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; fit = on
+; fit-target = 6144
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Qwythos coding — agentic / tool-use harness settings (vendor temp=0.6 / top-p=0.95 / top-k=20).
+
+; Disabled: model file is not present under {llama-root}.
+; [qwythos-9b-coding-128k]
+; model = {llama-root}/models/Qwythos-9B-Claude-Mythos-5-1M-MTP-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; ngl = 999
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Agents-A1 coding — agentic tool-use / SWE settings (vendor temp=0.85 / top-p=0.95 / top-k=20).
+
+; Disabled: model file is not present under {llama-root}.
+; [agents-a1-coding-128k]
+; model = {llama-root}/models/Agents-A1-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; fit = on
+; fit-target = 6144
+; np = 1
+; b = 256
+; mlock = false
+; temp = 0.85
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [qwable-3.6-27b-coding-128k]
+; model = {llama-root}/models/Qwable-3.6-27b-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q4_k_m-coding-128k]
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; ngl = 999
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q8_0-coding-128k]
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q8_0.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [tess-4-27b-q4_k_m-mtp-coding-128k]
+; model = {llama-root}/models/Tess-4-27B-Q4_K_M.gguf
+; spec-draft-model = {llama-root}/models/mtp-Tess-4-27B-Q8_0.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [thinkingcap-qwen3.6-27b-q4_k_m-mtp-coding-128k]
+; model = {llama-root}/models/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [grug-27b-qat-q4_k_m-coding-128k]
+; model = {llama-root}/models/grug-27b-qat-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [fable-fusion-711-27b-iq4_nl-mtp-coding-128k]
+; model = {llama-root}/models/Qwen3.6-27B-Fable-Fus-711-UnHeretic-NM-DAU-NEO-MAX-NEO-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-27b-coding-128k]
+; model = {llama-root}/models/Qwen3.6-27B-IQ4_NL.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-27b-mtp-coding-128k]
+; model = {llama-root}/models/Qwen3.6-27B-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+[qwen3.6-27b-q4_k_m-mtp-coding-128k]
+model = {llama-root}/unsloth/Qwen3.6-27B-MTP-GGUF/Qwen3.6-27B-Q4_K_M.gguf
+; Disabled: file is not present under {llama-root}.
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+c = 131072
+fit-ctx = 131072
+b = 256
+mlock = false
+fit = on
+fit-target = 6144
+np = 1
+spec-type = draft-mtp
+spec-draft-n-max = 2
+temp = 0.6
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+
+[qwen3.8-27b-coding-128k]
+model = {llama-root}/lmstudio-community/Qwen3.8-27B-GGUF/Qwen3.8-27B-Q4_K_M.gguf
+c = 131072
+fit-ctx = 131072
+b = 256
+mlock = false
+fit = on
+fit-target = 6144
+np = 1
+temp = 0.6
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-27b-v2-coding-128k]
+; model = {llama-root}/models/Qwopus3.6-27B-v2-MTP-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-coding-128k]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-Q4_1.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; b = 512
+; mlock = false
+; ngl = 999
+; np = 1
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-dspark-bf16-coding-128k]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-bf16.gguf
+; c = 131072
+; fit-ctx = 131072
+; fit = on
+; fit-target = 6144
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [bonsai-27b-coding-128k]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Bonsai-27B-Q1_0.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; b = 512
+; mlock = false
+; ngl = 999
+; np = 1
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-27b-coder-coding-128k]
+; model = {llama-root}/models/Qwopus3.6-27B-Coder-MTP-Q4_K_M.gguf
+; c = 131072
+; fit-ctx = 131072
+; b = 256
+; mlock = false
+; fit = on
+; fit-target = 6144
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+
+; Same weights as qwopus3.6-27b-coder-coding, but with server-side thinking disabled.
+; Matches the model card's recommended fast-agent / SWE-bench no-thinking setup.
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-27b-coder-no-thinking]
+; model = {llama-root}/models/Qwopus3.6-27B-Coder-MTP-Q4_K_M.gguf
+; c = 65536
+; fit = on
+; fit-target = 256
+; np = 1
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 0.0
+; reasoning = off
+
+; 128k variants — tuned for 16GB VRAM + ~32GB system RAM.
+; KV is q8_0, single slot, fit won't shrink below 128k. Expect most KV in system RAM.
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-128k]
+; model = {llama-root}/models/gemma-4-12b-it-IQ4_NL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q8-128k]
+; model = {llama-root}/models/gemma-4-12b-it-UD-Q8_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; Q8 weights ~13GB — leave more headroom than the 4bit 128k profile.
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 512
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q4_k_m-128k]
+; model = {llama-root}/models/gemma-4-12b-it-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-qat-128k]
+; model = {llama-root}/models/gemma-4-12B-it-qat-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-qat-q4_0-128k]
+; model = {llama-root}/models/gemma-4-12b-it-qat-q4_0.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-bf16-128k]
+; model = {llama-root}/models/gemma-4-12b-it-BF16.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; BF16 weights ~24GB - most layers spill to system RAM; leave VRAM headroom for KV.
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 512
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-coder-fable5-v2-128k]
+; model = {llama-root}/models/gemma4-coder-fable5-composer2.5-v2-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-128k-coding]
+; model = {llama-root}/models/gemma-4-12b-it-IQ4_NL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-coder-fable5-v2-128k-coding]
+; model = {llama-root}/models/gemma4-coder-fable5-composer2.5-v2-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q8-128k-coding]
+; model = {llama-root}/models/gemma-4-12b-it-UD-Q8_K_XL.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 512
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-12b-q4_k_m-128k-coding]
+; model = {llama-root}/models/gemma-4-12b-it-Q4_K_M.gguf
+; mmproj = {llama-root}/models/gemma-4-12b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-128k]
+; model = {llama-root}/models/gemma-4-26B-A4B-it-UD-IQ4_NL.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-q4_k_xl-128k]
+; model = {llama-root}/models/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [gemma4-26b-qat-128k]
+; model = {llama-root}/models/gemma-4-26B_q4_0-it.gguf
+; mmproj = {llama-root}/models/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [diffusiongemma-26b-q4_k_m-128k]
+; runner = diffusion
+; model = {llama-root}/models/diffusiongemma-26B-A4B-it-Q4_K_M.gguf
+; ngl = 25
+; n = 4096
+; c = 131072
+; cnv = on
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [nemotron-3.5-lightning-30b-128k]
+; model = {llama-root}/models/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-UD-Q4_K_XL.gguf
+; c = 131072
+; MoE offload: all experts on CPU; dense/attn/mamba layers on GPU.
+; ~25GB UD-Q4_K_XL + heavy 128k KV — keep experts on CPU for 16GB VRAM.
+; ngl = 99
+; cpu-moe = true
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+
+; Disabled: model file is not present under {llama-root}.
+; [muse-glimmer-30b-128k]
+; model = {llama-root}/models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/mmproj-kquant.gguf
+; c = 131072
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 1024
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-128k]
+; model = {llama-root}/models/Qwen3.5-9B-Q8_0.gguf
+; c = 131072
+; ~9.5GB Q8_0 weights + heavy 128k KV — leave headroom for prefill spikes.
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-q4_k_m-128k]
+; model = {llama-root}/models/Qwen3.5-9B-Q4_K_M.gguf
+; c = 131072
+; ~5.3GB Q4_K_M weights + heavy 128k KV — leave headroom for prefill spikes.
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-mtp-128k]
+; model = {llama-root}/models/Qwen3.5-9B-MTP-Q4_K_M.gguf
+; c = 131072
+; ~6GB MTP Q4_K_M weights + heavy 128k KV — leave headroom for prefill spikes.
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-35b-128k]
+; model = {llama-root}/models/Qwen3.6-35B-A3B-UD-IQ4_NL.gguf
+; c = 131072
+; fit-target=256 packed to ~15.6GB idle — OOM on 125k prefill. Target ~10GB idle (~6GB headroom for q8_0 KV).
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+
+[qwen3.6-35b-q4_k_m-128k]
+model = {llama-root}/lmstudio-community/Qwen3.6-35B-A3B-GGUF/Qwen3.6-35B-A3B-Q4_K_M.gguf
+c = 131072
+; fit-target=256 packed to ~15.6GB idle — OOM on 125k prefill. Target ~10GB idle (~6GB headroom for q8_0 KV).
+fit = on
+fit-target = 6144
+fit-ctx = 131072
+np = 1
+b = 256
+mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [grug-35b-qat-q4_k_m-128k]
+; model = {llama-root}/models/grug-35b-qat-Q4_K_M.gguf
+; c = 131072
+; ~21GB QAT Q4_K_M MoE weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-35b-mtp-128k]
+; model = {llama-root}/models/Qwen3.6-35B-A3B-MTP-UD-IQ4_NL.gguf
+; c = 131072
+; ~17GB MoE weights + MTP draft layers/KV — 8GB margin for 125k prefill spikes (q8_0 KV).
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-256k]
+; model = {llama-root}/models/Qwen3.5-9B-Q8_0.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-q4_k_m-256k]
+; model = {llama-root}/models/Qwen3.5-9B-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.5-9b-mtp-256k]
+; model = {llama-root}/models/Qwen3.5-9B-MTP-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.5
+; timeout = 7200
+; request_timeout_s = 7200
+
+[qwen3.6-35b-q4_k_m-256k]
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+model = {llama-root}/lmstudio-community/Qwen3.6-35B-A3B-GGUF/Qwen3.6-35B-A3B-Q4_K_M.gguf
+c = 262144
+cache-type-k = q4_0
+cache-type-v = q4_0
+fit = on
+fit-target = 8192
+fit-ctx = 262144
+np = 1
+b = 128
+mlock = false
+timeout = 7200
+; Disabled: not a llama.cpp preset option.
+; request_timeout_s = 7200
+
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; Disabled: model file is not present under {llama-root}.
+; [grug-35b-qat-q4_k_m-256k]
+; model = {llama-root}/models/grug-35b-qat-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Experimental — native ctx up to 1M (256k typical single-GPU). 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; Disabled: model file is not present under {llama-root}.
+; [nemotron-3.5-lightning-30b-256k]
+; model = {llama-root}/models/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-UD-Q4_K_XL.gguf
+; c = 262144
+; MoE offload: all experts on CPU; dense/attn/mamba layers on GPU.
+; ngl = 99
+; cpu-moe = true
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; np = 1
+; b = 128
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Experimental — native ctx 131k; 256k may degrade. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; Disabled: model file is not present under {llama-root}.
+; [muse-glimmer-30b-256k]
+; model = {llama-root}/models/Muse-Glimmer-30B-UD-Q4_K_XL.gguf
+; mmproj = {llama-root}/models/mmproj-kquant.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 64
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen-agentworld-35b-128k]
+; model = {llama-root}/models/Qwen-AgentWorld-35B-A3B-UD-IQ4_NL.gguf
+; c = 131072
+; ~18GB MoE weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; Disabled: model file is not present under {llama-root}.
+; [qwen-agentworld-35b-256k]
+; model = {llama-root}/models/Qwen-AgentWorld-35B-A3B-UD-IQ4_NL.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [north-mini-code-128k]
+; model = {llama-root}/models/North-Mini-Code-1.0-UD-IQ4_NL.gguf
+; c = 131072
+; ~15.5GB UD-IQ4_NL weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+
+; Disabled: model file is not present under {llama-root}.
+; [laguna-xs-2.1-128k]
+; llama-cpp-root = /home/user/llama.cpp.laguna
+; model = {llama-root}/models/Laguna-XS-2.1-Q4_K_M.gguf
+; c = 131072
+; ~20.3GB Q4_K_M MoE weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; reasoning-preserve = on
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-128k]
+; model = {llama-root}/models/ornith-1.0-9b-Q8_0.gguf
+; c = 131072
+; ~9.5GB Q8_0 weights + heavy 128k KV — leave headroom for prefill spikes.
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-q4_k_m-128k]
+; model = {llama-root}/models/ornith-1.0-9b-Q4_K_M.gguf
+; c = 131072
+; ~5.3GB Q4_K_M weights + heavy 128k KV — leave headroom for prefill spikes.
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-35b-128k]
+; model = {llama-root}/models/ornith-1.0-35b-Q4_K_M.gguf
+; c = 131072
+; ~21GB Q4_K_M MoE weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+
+; Disabled: model file is not present under {llama-root}.
+; [qwythos-9b-128k]
+; model = {llama-root}/models/Qwythos-9B-Claude-Mythos-5-1M-MTP-Q4_K_M.gguf
+; c = 131072
+; ~5.9GB MTP Q4_K_M weights + heavy 128k KV — leave headroom for prefill spikes.
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [agents-a1-128k]
+; model = {llama-root}/models/Agents-A1-Q4_K_M.gguf
+; c = 131072
+; ~21GB Q4_K_M MoE weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 0.85
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.1
+
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-256k]
+; model = {llama-root}/models/ornith-1.0-9b-Q8_0.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-9b-q4_k_m-256k]
+; model = {llama-root}/models/ornith-1.0-9b-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [ornith-1.0-35b-256k]
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; model = {llama-root}/models/ornith-1.0-35b-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q4_k_m-256k]
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q8_0-256k]
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q8_0.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [qwythos-9b-256k]
+; Experimental — 1M YaRN ctx baked in; 256k is practical on 16GB VRAM + ~32GB RAM.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; model = {llama-root}/models/Qwythos-9B-Claude-Mythos-5-1M-MTP-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 6
+; temp = 0.6
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [agents-a1-256k]
+; model = {llama-root}/models/Agents-A1-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 0.85
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; presence-penalty = 1.1
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [north-mini-code-256k]
+; Experimental — for memory benchmark only. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; model = {llama-root}/models/North-Mini-Code-1.0-UD-IQ4_NL.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [laguna-xs-2.1-256k]
+; llama-cpp-root = /home/user/llama.cpp.laguna
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; model = {llama-root}/models/Laguna-XS-2.1-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; reasoning-preserve = on
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [qwopus3.6-35b-128k]
+; model = {llama-root}/models/Qwopus3.6-35B-A3B-v1-IQ4_XS.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [qwable-3.6-27b-128k]
+; model = {llama-root}/models/Qwable-3.6-27b-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; ~16.5GB Q4_K_M weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [grug-27b-qat-q4_k_m-128k]
+; model = {llama-root}/models/grug-27b-qat-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; ~16.5GB QAT Q4_K_M weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q4_k_m-128k]
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [fablevibes-14b-q8_0-128k]
+; model = {llama-root}/models/Qwen3.6-14B-A3B-FableVibes-Q8_0.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-27b-128k]
+; model = {llama-root}/models/Qwen3.6-27B-IQ4_NL.gguf
+; c = 131072
+; fit = on
+; 15GB dense weights + heavy 128k KV - 8GB margin keeps as many layers on GPU as fit (q8_0 KV)
+; safely allows (smaller margin = more on GPU = faster; 4GB clears the 125k prefill spike).
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+
+[qwen3.8-27b-128k]
+model = {llama-root}/lmstudio-community/Qwen3.8-27B-GGUF/Qwen3.8-27B-Q4_K_M.gguf
+c = 131072
+fit = on
+; ~18GB UD-Q4_K_XL weights + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+fit-target = 6144
+fit-ctx = 131072
+np = 1
+b = 256
+mlock = false
+temp = 1.0
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-128k]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-Q4_1.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 512
+; mlock = false
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-dspark-bf16-128k]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-bf16.gguf
+; c = 131072
+; fit = on
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+
+; Disabled: model file is not present under {llama-root}.
+; [bonsai-27b-128k]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Bonsai-27B-Q1_0.gguf
+; c = 131072
+; ngl = 999
+; fit = on
+; fit-target = 4096
+; fit-ctx = 131072
+; np = 1
+; b = 512
+; mlock = false
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+
+; Disabled: model file is not present under {llama-root}.
+; [qwen3.6-27b-mtp-128k]
+; model = {llama-root}/models/Qwen3.6-27B-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; 16GB weights + MTP draft layers/KV - 8GB margin (q8_0 KV); raise if OOM.
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+
+; Disabled: model file is not present under {llama-root}.
+; [fable-fusion-711-27b-iq4_nl-mtp-128k]
+; model = {llama-root}/models/Qwen3.6-27B-Fable-Fus-711-UnHeretic-NM-DAU-NEO-MAX-NEO-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 131072
+; fit = on
+; ~15GB IQ4_NL weights + MTP draft layers/KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+[qwen3.6-27b-q4_k_m-mtp-128k]
+model = {llama-root}/unsloth/Qwen3.6-27B-MTP-GGUF/Qwen3.6-27B-Q4_K_M.gguf
+; Disabled: file is not present under {llama-root}.
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+c = 131072
+fit = on
+; ~16GB Q4_K_M weights + MTP draft layers/KV — 8GB margin for prefill spikes (q8_0 KV).
+fit-target = 6144
+fit-ctx = 131072
+np = 1
+b = 256
+mlock = false
+spec-type = draft-mtp
+spec-draft-n-max = 2
+
+[qwen3.6-27b-q4_k_m-mtp-256k]
+model = {llama-root}/unsloth/Qwen3.6-27B-MTP-GGUF/Qwen3.6-27B-Q4_K_M.gguf
+; Disabled: file is not present under {llama-root}.
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+c = 262144
+cache-type-k = q4_0
+cache-type-v = q4_0
+fit = on
+fit-target = 8192
+fit-ctx = 262144
+np = 1
+b = 128
+mlock = false
+spec-type = draft-mtp
+spec-draft-n-max = 2
+timeout = 7200
+; Disabled: not a llama.cpp preset option.
+; request_timeout_s = 7200
+
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+[qwen3.8-27b-256k]
+model = {llama-root}/lmstudio-community/Qwen3.8-27B-GGUF/Qwen3.8-27B-Q4_K_M.gguf
+c = 262144
+cache-type-k = q4_0
+cache-type-v = q4_0
+fit = on
+fit-target = 8192
+fit-ctx = 262144
+np = 1
+b = 128
+mlock = false
+temp = 1.0
+top-p = 0.95
+top-k = 20
+min-p = 0.0
+presence-penalty = 0.0
+timeout = 7200
+; Disabled: not a llama.cpp preset option.
+; request_timeout_s = 7200
+
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; Disabled: model file is not present under {llama-root}.
+; [fable-fusion-711-27b-iq4_nl-mtp-256k]
+; model = {llama-root}/models/Qwen3.6-27B-Fable-Fus-711-UnHeretic-NM-DAU-NEO-MAX-NEO-MTP-IQ4_NL.gguf
+; mmproj = {llama-root}/models/qwen3.6-27b-mmproj/mmproj-BF16.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 2
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-256k]
+; Experimental — 262K trained ctx. ~7.2GB ternary weights + q4_0 KV fits more easily than dense 27B.
+; No ngl=999 — let --fit place layers; ngl+fit blocks fit and OOMs 262k KV on 16GB VRAM.
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-Q4_1.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 4096
+; fit-ctx = 262144
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [ternary-bonsai-27b-dspark-bf16-256k]
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Ternary-Bonsai-27B-Q2_0.gguf
+; spec-draft-model = {llama-root}/models/Ternary-Bonsai-27B-dspark-bf16.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; spec-type = draft-simple
+; spec-draft-n-max = 4
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [bonsai-27b-256k]
+; Experimental — 262K trained ctx. ~3.8GB 1-bit weights + q4_0 KV fits easily on 16GB VRAM.
+; No ngl=999 — let --fit place layers; ngl+fit blocks fit and OOMs 262k KV on 16GB VRAM.
+; llama-cpp-root = /home/user/llama.cpp.prismml
+; model = {llama-root}/models/Bonsai-27B-Q1_0.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 4096
+; fit-ctx = 262144
+; np = 1
+; b = 256
+; mlock = false
+; temp = 0.7
+; top-p = 0.95
+; top-k = 20
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [tess-4-27b-q4_k_m-mtp-128k]
+; model = {llama-root}/models/Tess-4-27B-Q4_K_M.gguf
+; spec-draft-model = {llama-root}/models/mtp-Tess-4-27B-Q8_0.gguf
+; c = 131072
+; fit = on
+; ~16.5GB Q4_K_M weights + Q8 MTP head + heavy 128k KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Experimental — trained ctx 64K; base arch supports 262K. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; Disabled: model file is not present under {llama-root}.
+; [tess-4-27b-q4_k_m-mtp-256k]
+; model = {llama-root}/models/Tess-4-27B-Q4_K_M.gguf
+; spec-draft-model = {llama-root}/models/mtp-Tess-4-27B-Q8_0.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; Disabled: model file is not present under {llama-root}.
+; [grug-27b-qat-q4_k_m-256k]
+; model = {llama-root}/models/grug-27b-qat-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; timeout = 7200
+; request_timeout_s = 7200
+
+; Disabled: model file is not present under {llama-root}.
+; [thinkingcap-qwen3.6-27b-q4_k_m-mtp-128k]
+; model = {llama-root}/models/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
+; c = 131072
+; fit = on
+; ~16GB Q4_K_M weights + MTP draft layers/KV — 8GB margin for prefill spikes (q8_0 KV).
+; fit-target = 6144
+; fit-ctx = 131072
+; np = 1
+; b = 256
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+
+; Experimental — trained ctx 262k. 32GB RAM + 16GB VRAM may OOM on long prefills.
+; 256k prefill on this hardware can exceed 30 min — raise HTTP timeouts for benchmark + server.
+; Disabled: model file is not present under {llama-root}.
+; [thinkingcap-qwen3.6-27b-q4_k_m-mtp-256k]
+; model = {llama-root}/models/ThinkingCap-Qwen3.6-27B-Q4_K_M.gguf
+; c = 262144
+; cache-type-k = q4_0
+; cache-type-v = q4_0
+; fit = on
+; fit-target = 8192
+; fit-ctx = 262144
+; np = 1
+; b = 128
+; mlock = false
+; spec-type = draft-mtp
+; spec-draft-n-max = 4
+; temp = 1.0
+; top-p = 0.95
+; top-k = 20
+; min-p = 0.0
+; timeout = 7200
+; request_timeout_s = 7200
