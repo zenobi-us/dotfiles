@@ -1,10 +1,12 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "defaultMode": "auto"
   },
   "worktree": {
     "baseRef": "fresh"
   },
+  "spinnerTipsEnabled": false,
   "enabledPlugins": {
     "agent-core@pi-agent-bundles": true,
     "creator@pi-agent-bundles": true,
