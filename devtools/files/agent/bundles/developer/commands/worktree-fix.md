@@ -19,7 +19,7 @@ Resolve the ticket before fixing work.
 - Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree inspection and operations.
 - Use Herdr commands for panes and agents. Do not use Zellij commands.
-- Use the applicable Matt Pocock engineering skill from `@devtools/files/pi/agent/bundles/matt-pocock/skills/engineering/`, normally `implement`, `tdd`, or `diagnosing-bugs`.
+- Use the applicable Matt Pocock engineering skill, normally `implement`, `tdd`, or `diagnosing-bugs`.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before changing code.
 - Follow `ALIGNMENT-ROOT.md`. Do not invent a shared path or write alignment files to inactive storage.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.

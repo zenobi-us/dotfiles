@@ -18,7 +18,7 @@ Resolve the ticket before finishing work.
 
 - Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree operations.
-- Use the applicable Matt Pocock engineering skills from `@devtools/files/pi/agent/bundles/matt-pocock/skills/engineering/`, especially `code-review` and `implement`.
+- Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before merging.
 - Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and branches in the repository worktree.
 - Require a matching persisted `SUCCESS` verdict from `worktree-review`.

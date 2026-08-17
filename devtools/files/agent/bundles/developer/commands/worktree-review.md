@@ -20,7 +20,7 @@ Use conversation context only to identify the scope. Do not use it as evidence t
 
 - Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree and branch inspection.
-- Use the Matt Pocock `code-review` skill from `@devtools/files/pi/agent/bundles/matt-pocock/skills/engineering/`.
+- Use the Matt Pocock `code-review` skill.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Follow `ALIGNMENT-ROOT.md` before reading alignment files.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. Record any durable domain or architecture decision with `domain-modeling` or `codebase-design` in the active alignment storage.
 - Do not change source code during review.
