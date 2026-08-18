@@ -24,6 +24,7 @@ Use conversation context only to identify the scope. Do not use it as evidence t
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Follow `ALIGNMENT-ROOT.md` before reading alignment files.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. Record any durable domain or architecture decision with `domain-modeling` or `codebase-design` in the active alignment storage.
 - Store review artifacts under `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`, inside the active shared agent context root. Never write review artifacts to `/tmp` or leave them only in chat.
+- Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`. `worktree-finish`, `worktree-fix`, and `worktree-submit` read the review artifact from there and will not see an uncommitted or unpushed copy.
 - Do not change source code during review.
 - Do not rely on chat context as the review gate.
 
@@ -59,6 +60,7 @@ You must identify all of these items:
    Use the exact ADR ID and name. Include one file and line reference for each affected location. If no ADR applies, write `NO ADR` and state why the finding is blocking.
 8. Run the smallest validation command that proves the reviewed work passes.
 9. Write the review artifact to `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`, overwriting any prior review artifact for the same ticket. Include the exact scope, source branch, base branch, commit, active `ALIGNMENT_ROOT`, findings, validation command, validation result, verdict, and timestamp.
+   - If `storage="shared"`, follow `SHARED-CONTEXT-LINKS.md`'s write rule for the review artifact before reporting the verdict.
 10. Use `SUCCESS` when no blocking findings remain. Use `FAILURE` when blocking findings remain.
 11. If the verdict is `FAILURE`, ask whether to run `worktree-fix`. Pass only the blocking findings, ADR references, exact files, and validation command.
 12. If the verdict is `SUCCESS`, ask whether to run `worktree-finish` or `worktree-submit`.

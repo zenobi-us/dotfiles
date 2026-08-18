@@ -21,6 +21,7 @@ Resolve the ticket before finishing work.
 - Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before merging.
 - Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and branches in the repository worktree.
+- Follow `SHARED-CONTEXT-LINKS.md` for the write rule (any shared-context file created or updated while closing this ticket) and the reference rule (linking ADRs, tasks, or the review artifact in the final commit message).
 - Require a matching persisted `SUCCESS` verdict from `worktree-review`, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
 - Do not remove a worktree while an agent still runs inside it.
 
@@ -43,7 +44,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 8. Update the base branch from its remote.
 9. Squash merge the source branch into the base branch.
 10. Use the `writing-git-commits` skill for the final commit message.
-11. Include the ticket ID in the commit message.
+11. Include the ticket ID and a link to the ticket in the commit message. Include a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to every ADR the review verdict relied on and to the persisted review artifact itself.
 12. Push the base branch.
 13. Close the matching GitHub issue or ticket using the correct tracker workflow.
 14. Remove the source worktree with Worktrunk only after the push and ticket update succeed.

@@ -21,6 +21,7 @@ Resolve the ticket before submitting work.
 - Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before submitting.
 - Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and pull requests in the worktree repository.
+- Follow `SHARED-CONTEXT-LINKS.md` for the write rule (any shared-context file created or updated while submitting this ticket) and the reference rule (linking ADRs, tasks, or the review artifact in the commit message and pull request body).
 - Require a matching persisted `SUCCESS` verdict from `worktree-review`, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
 - Do not push directly to the base branch.
 
@@ -36,13 +37,14 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 1. Resolve the active `ALIGNMENT_ROOT` and run `/eng-context report`.
 2. Resolve the current or reviewed Herdr worktree with `herdr worktree list --cwd "$PWD" --json`.
 3. Use Worktrunk to verify the source branch and worktree state.
-4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-git-commits` skill.
+4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-git-commits` skill, including the ticket link and a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to every ADR the review verdict relied on.
 5. Run the smallest validation command recorded by the successful review.
 6. Push the source branch.
 7. Use the pull request creation skill if available. Otherwise use `gh pr create`.
 8. Add these items to the pull request body:
    - the ticket link,
-   - the successful review artifact path,
+   - a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to the successful review artifact,
+   - a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to every ADR the review verdict relied on,
    - validation output,
    - a concise summary of changes.
 9. Leave the source worktree open. Do not remove it after submitting the pull request.
