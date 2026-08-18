@@ -1,6 +1,6 @@
 {
   "name": "@zenobius/pi-developer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Code writing, git workflow, testing, and language/quality experts",
   "private": true,
   "keywords": ["pi-package"],
