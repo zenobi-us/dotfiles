@@ -18,7 +18,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 
 A discipline for hard bugs. Skip phases only when explicitly justified.
 
-Before resolving domain artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md).
+Before resolving domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
 
 When exploring the codebase, read `CONTEXT.md` (if it exists) to get a clear mental model of the relevant modules, and check ADRs in the area you're touching.
 

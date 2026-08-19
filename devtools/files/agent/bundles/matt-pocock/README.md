@@ -6,9 +6,8 @@ Engineering workflow skills plus origin-keyed shared context support.
 
 Promoted skills and human docs are synchronized from [`mattpocock/skills`](https://github.com/mattpocock/skills) commit `9603c1cc8118d08bc1b3bf34cf714f62178dea3b`:
 
-- `skills/engineering/` — 17 engineering skills, including `ask-matt`, `to-spec`, `to-tickets`, and `wayfinder`
-- `skills/productivity/` — 5 productivity skills, including `writing-great-skills`
-- `docs/engineering/` and `docs/productivity/` — upstream human-facing docs
+- `skills/` — 22 skills flat (Claude Code only discovers skills one level under a plugin's `skills/` dir, so the upstream `engineering/`/`productivity/` category split lives in `skills/README.md` instead of the directory tree): 17 engineering skills including `ask-matt`, `to-spec`, `to-tickets`, and `wayfinder`; 5 productivity skills including `writing-great-skills`
+- `docs/` — upstream human-facing docs, flat (same reasoning: was `docs/engineering/`/`docs/productivity/`)
 - `agents/openai.yaml` — upstream Agent Skills metadata retained beside every skill
 
 Pi-specific divergence is limited to [ALIGNMENT-ROOT.md](./ALIGNMENT-ROOT.md), short alignment-root pointers in artifact-consuming skills, and tracker backend metadata required by migration. The shared-context extension these skills depend on now lives in the sibling [`shared-agent-context`](../shared-agent-context) bundle, so it isn't vendor-tied to Matt Pocock's skills and can be reused (as a Claude Code plugin, too) by anything that wants origin-keyed shared context.

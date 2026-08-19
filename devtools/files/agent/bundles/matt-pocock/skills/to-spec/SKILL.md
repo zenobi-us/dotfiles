@@ -17,7 +17,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 
 This skill takes the current conversation context and codebase understanding and produces a spec (you may know this document as a PRD). Do NOT interview the user — just synthesize what you already know.
 
-Before resolving workflow or domain artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md).
+Before resolving workflow or domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
 
 The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.
 

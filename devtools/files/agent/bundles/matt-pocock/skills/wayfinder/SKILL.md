@@ -17,7 +17,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 
 A loose idea has arrived — too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. Wayfinding is about finding that way, not charging at the destination. This skill charts the way as a **shared map** on the repo's issue tracker, then works its **decision tickets** — questions whose resolution is a decision, not slices of a build to execute — one at a time until the route is clear.
 
-Before resolving tracker or domain artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md). Git branches, prototypes, research notes, and source code remain in the repository.
+Before resolving tracker or domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). Git branches, prototypes, research notes, and source code remain in the repository.
 
 The destination varies per effort, and naming it is the first act of charting — it shapes every ticket. It might be a spec to hand off and iterate on, a decision to lock before planning starts, or a change made in place like a data-structure migration. The map is domain-agnostic — engineering work, course content, whatever fits the shape.
 

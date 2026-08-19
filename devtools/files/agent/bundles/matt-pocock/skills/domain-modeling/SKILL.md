@@ -16,7 +16,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 
 # Domain Modeling
 
-Before reading or writing domain artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md). Every structure below is rooted at the active alignment root.
+Before reading or writing domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). Every structure below is rooted at the active alignment root.
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline — challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `CONTEXT.md` for vocabulary is not this skill — that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)
 

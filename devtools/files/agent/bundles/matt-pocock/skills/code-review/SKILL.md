@@ -21,7 +21,7 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
-Before resolving workflow artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md). Repository source, ordinary `docs/` and `specs/`, and Git history remain repository-root relative; tracker-local `.scratch/` and `docs/agents/` use the active alignment root.
+Before resolving workflow artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). Repository source, ordinary `docs/` and `specs/`, and Git history remain repository-root relative; tracker-local `.scratch/` and `docs/agents/` use the active alignment root.
 
 The issue tracker should have been provided to you — run `/setup-matt-pocock-skills` if `docs/agents/issue-tracker.md` is missing.
 

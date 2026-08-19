@@ -18,7 +18,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 
 TDD is the red → green loop. This skill is the reference that makes that loop produce tests worth keeping: what a good test is, where tests go, the anti-patterns, and the rules of the loop. Every section applies on every cycle — consult them before and during the loop, not after.
 
-Before resolving domain artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md).
+Before resolving domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
 
 When exploring the codebase, read `CONTEXT.md` (if it exists) so test names and interface vocabulary match the project's domain language, and respect ADRs in the area you're touching.
 

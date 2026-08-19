@@ -24,7 +24,7 @@ Scaffold the configuration that the engineering skills assume:
 - **Triage labels** — the strings used for the five canonical triage roles
 - **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
 
-Before reading or writing these artifacts, follow [ALIGNMENT-ROOT.md](../../../ALIGNMENT-ROOT.md). This is a prompt-driven skill: explore, present what you found, confirm with the user, then write.
+Before reading or writing these artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). This is a prompt-driven skill: explore, present what you found, confirm with the user, then write.
 
 ## Process
 
