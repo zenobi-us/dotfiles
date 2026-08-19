@@ -24,6 +24,7 @@ Resolve the ticket before fixing work.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before changing code.
 - Follow `ALIGNMENT-ROOT.md`. Do not invent a shared path or write alignment files to inactive storage.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.
+- Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`.
 - Require a matching persisted `FAILURE` verdict from `worktree-review`, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
 - Do not create a second worktree for the same source branch.
 
@@ -48,6 +49,7 @@ Resolve the ticket before fixing work.
 13. After the fixer pane closes, run `/worktree-review {ticket-id}` from the spawning agent.
 14. Do not create a second worktree for the same source branch. Worktrunk owns the checkout.
 15. Record the fixer agent name, pane ID, active `ALIGNMENT_ROOT`, and storage mode in the workflow record.
+16. If the active `ALIGNMENT_ROOT` has `storage="shared"`, follow `SHARED-CONTEXT-LINKS.md`'s write rule for the workflow record.
 
 # Output
 

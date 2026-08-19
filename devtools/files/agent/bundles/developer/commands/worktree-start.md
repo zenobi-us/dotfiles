@@ -39,6 +39,7 @@ Resolve the ticket or tickets before starting work.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Follow `ALIGNMENT-ROOT.md` before reading or writing `CONTEXT.md`, `CONTEXT-MAP.md`, ADRs, or `docs/agents/`.
 - Run `/eng-context report` before using alignment files. Read relevant context and ADRs from the active `ALIGNMENT_ROOT`; do not invent a shared path or write to an inactive storage location.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. If a durable domain or architecture decision emerges, record it with `domain-modeling` or `codebase-design` in the active alignment storage instead of leaving it only in chat.
+- Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`.
 
 # Process
 
@@ -71,6 +72,7 @@ Resolve the ticket or tickets before starting work.
    - Follow the `herdr` skill to run `herdr agent start <name> --kind $(scripts/identify-harness.sh) --pane <pane-id> -- @/tmp/{ticket-id}-handoff.md`.
    - Do not create a duplicate tab or pane after Herdr opens the worktree space.
    - Write one persistent workflow record for the ticket with the ticket, source branch, base branch, worktree path, Herdr workspace ID, agent name, handoff path, active `ALIGNMENT_ROOT`, and storage mode.
+   - If the active `ALIGNMENT_ROOT` has `storage="shared"`, follow `SHARED-CONTEXT-LINKS.md`'s write rule for the workflow record before starting the ticket agent.
 10. Keep each ticket job isolated. Use absolute paths and separate variables.
 11. If one ticket job fails, record the failure and continue the other jobs.
 
