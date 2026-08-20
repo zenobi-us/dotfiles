@@ -14,10 +14,22 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 - Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
 - Use the `simple-english` skill for the full rule set.
 
+## Local repository rules
+
+Before reading or writing workflow or domain artifacts:
+
+1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+2. Resolve alignment paths against `ALIGNMENT_ROOT`.
+3. Keep source code and ordinary project files relative to `repository-root`.
+4. Do not silently mix alignment roots.
+5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.
+
+
+
 Spin up a **background agent** to do the research, so you keep working while it reads.
 
 Its job:
 
-1. Investigate the question against **primary sources** — official docs, source code, specs, first-party APIs — not a secondary write-up of them. Follow every claim back to the source that owns it.
+1. Investigate the question against **primary sources** (official docs, source code, specs, first-party APIs), not a secondary write-up of them. Follow every claim back to the source that owns it.
 2. Write the findings to a single Markdown file, citing each claim's source.
 3. Save it where the repo already keeps such notes; match the existing convention, and if there is none, put it somewhere sensible and say where.

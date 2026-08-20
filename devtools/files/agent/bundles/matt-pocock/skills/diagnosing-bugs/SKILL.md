@@ -57,6 +57,10 @@ A 30-second flaky loop is barely better than no loop; a 2-second deterministic o
 
 The goal is not a clean repro but a **higher reproduction rate**. Loop the trigger 100×, parallelise, add stress, narrow timing windows, inject sleeps. A 50%-flake bug is debuggable; 1% is not — keep raising the rate until it's debuggable.
 
+### Protect captured artifacts
+
+Before saving or sharing a log, HAR file, crash dump, trace, request payload, or screen recording, inspect it for secrets. Redact tokens, cookies, credentials, personal data, and private URLs. Keep the original artifact outside the repository unless the user explicitly approves its storage.
+
 ### When you genuinely cannot build a loop
 
 Stop and say so explicitly. List what you tried. Ask the user for: (a) access to whatever environment reproduces it, (b) a captured artifact (HAR file, log dump, core dump, screen recording with timestamps), or (c) permission to add temporary production instrumentation. Do **not** proceed to hypothesise without a loop.
@@ -145,3 +149,13 @@ Required before declaring done:
 - [ ] The hypothesis that turned out correct is stated in the commit / PR message — so the next debugger learns
 
 **Then ask: what would have prevented this bug?** If the answer involves architectural change (no good test seam, tangled callers, hidden coupling) hand off to the `/improve-codebase-architecture` skill with the specifics. Make the recommendation **after** the fix is in, not before — you have more information now than when you started.
+
+## Local repository rules
+
+Before reading or writing workflow or domain artifacts:
+
+1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+2. Resolve alignment paths against `ALIGNMENT_ROOT`.
+3. Keep source code and ordinary project files relative to `repository-root`.
+4. Do not silently mix alignment roots.
+5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.

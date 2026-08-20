@@ -15,7 +15,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 - Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
 - Use the `simple-english` skill for the full rule set.
 
-This skill takes the current conversation context and codebase understanding and produces a spec (you may know this document as a PRD). Do NOT interview the user — just synthesize what you already know.
+This skill takes the current conversation context and codebase understanding and produces a spec (you may know this document as a PRD). Use it for work that spans multiple sessions. Skip it for small work that `/implement` can complete in one session. Do NOT interview the user — just synthesize what you already know.
 
 Before resolving workflow or domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
 
@@ -86,3 +86,13 @@ A description of the things that are out of scope for this spec.
 Any further notes about the feature.
 
 </spec-template>
+
+## Local repository rules
+
+Before reading or writing workflow or domain artifacts:
+
+1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+2. Resolve alignment paths against `ALIGNMENT_ROOT`.
+3. Keep source code and ordinary project files relative to `repository-root`.
+4. Do not silently mix alignment roots.
+5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.

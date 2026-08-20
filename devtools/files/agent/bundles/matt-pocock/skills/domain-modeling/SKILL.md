@@ -20,6 +20,8 @@ Before reading or writing domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALI
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline — challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `CONTEXT.md` for vocabulary is not this skill — that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)
 
+Inspect source code and committed domain artifacts when you check the model. Treat issue tracker content as planning input, not as codebase truth.
+
 ## File structure
 
 Most repos have a single context:
@@ -85,3 +87,13 @@ Only offer to create an ADR when all three are true:
 3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons
 
 If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md).
+
+## Local repository rules
+
+Before reading or writing workflow or domain artifacts:
+
+1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+2. Resolve alignment paths against `ALIGNMENT_ROOT`.
+3. Keep source code and ordinary project files relative to `repository-root`.
+4. Do not silently mix alignment roots.
+5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.

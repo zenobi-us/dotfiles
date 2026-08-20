@@ -82,8 +82,22 @@ Off the main flow entirely.
 - **`/prototype`** — a small, throwaway program that answers one design question: does this state model feel right, or what should this UI look like. Throwaway from day one — keep the answer, delete the code. It's the detour in step 2 of the main flow, but reach for it any time a design question is hard to settle on paper.
 - **`/research`** — delegate reading legwork to a **background agent**: it investigates a question against **primary sources**, then leaves a cited Markdown file in the repo. Keep working while it reads. The file it produces is something to take *into* the main flow at `/grill-with-docs` — research feeds the thinking, it doesn't replace it.
 - **`/teach`** — learn a concept over multiple sessions, using the current directory as a stateful workspace.
-- **`/writing-great-skills`** — reference for writing and editing skills well.
+- **`/writing-for-agents`** — reference for writing and editing skills well. This is the upstream name.
+- **`/writing-great-skills`** — compatibility alias for `/writing-for-agents`.
+- **`/wizard`** — scaffold an interactive skill when the task needs guided setup.
+- **`/wait-what`** — stop and resolve an unclear request before acting.
+- **`/to-questionnaire`** — turn a topic into a structured questionnaire.
 
 ## Precondition
 
 **`/setup-matt-pocock-skills`** — run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work.
+
+## Local repository rules
+
+Before reading or writing workflow or domain artifacts:
+
+1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+2. Resolve alignment paths against `ALIGNMENT_ROOT`.
+3. Keep source code and ordinary project files relative to `repository-root`.
+4. Do not silently mix alignment roots.
+5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.

@@ -16,9 +16,21 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 - Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
 - Use the `simple-english` skill for the full rule set.
 
+## Local repository rules
+
+Before reading or writing workflow or domain artifacts:
+
+1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+2. Resolve alignment paths against `ALIGNMENT_ROOT`.
+3. Keep source code and ordinary project files relative to `repository-root`.
+4. Do not silently mix alignment roots.
+5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.
+
+
+
 Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
 
-Include a "suggested skills" section in the document, which suggests skills that the agent should invoke.
+Include a "suggested skills" section in the document, naming which skills the next agent should call the Skill tool for.
 
 Do not duplicate content already captured in other artifacts (specs, plans, ADRs, issues, commits, diffs). Reference them by path or URL instead.
 

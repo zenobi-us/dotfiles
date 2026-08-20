@@ -137,3 +137,13 @@ Only local markdown stores issue data beneath `ALIGNMENT_ROOT`; external tracker
 ### 5. Done
 
 Report active storage, absolute `ALIGNMENT_ROOT`, and files written. Mention that `docs/agents/*.md` can be edited directly later. A storage change activates on the next agent turn.
+
+## Local repository rules
+
+Before reading or writing workflow or domain artifacts:
+
+1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+2. Resolve alignment paths against `ALIGNMENT_ROOT`.
+3. Keep source code and ordinary project files relative to `repository-root`.
+4. Do not silently mix alignment roots.
+5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.
