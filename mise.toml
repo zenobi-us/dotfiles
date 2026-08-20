@@ -109,6 +109,7 @@ youtube-dl = "latest"
 granted = "latest"
 herdr = "latest"
 "llama.cpp" = { version = "latest", version_prefix = "b" }
+"github:JustVugg/colibri" = "latest"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
