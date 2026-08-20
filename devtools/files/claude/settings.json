@@ -35,5 +35,6 @@
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:rose-pine-moon"
+  "theme": "custom:rose-pine-moon",
+  "outputStyle": "simple-english-sop"
 }

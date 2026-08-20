@@ -14,6 +14,7 @@
 "~/.claude/settings.json" = { source = "devtools/files/claude/settings.json", mode = "symlink" }
 "~/.claude/statusline.sh" = { source = "devtools/files/claude/statusline.sh", mode = "symlink" }
 "~/.claude/themes/" = { source = "devtools/files/claude/themes/", mode = "symlink-each" }
+"~/.claude/output-styles/" = { source = "devtools/files/claude/output-styles/", mode = "symlink-each" }
 "~/.claude/CLAUDE.md" = { source = "devtools/files/agent/AGENTS.md", mode = "symlink" }
 "~/.config/mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
 "~/.config/worktrunk" = { source = "devtools/files/worktrunk", mode = "symlink" }
