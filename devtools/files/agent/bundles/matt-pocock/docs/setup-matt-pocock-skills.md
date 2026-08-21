@@ -20,7 +20,7 @@ It writes config, it does not hard-code behaviour. The engineering chain assumes
 
 You invoke this by typing `/setup-matt-pocock-skills` — the agent won't reach for it on its own.
 
-Reach for it **once per repo, before the first use of any other engineering skill**. If [triage](https://aihero.dev/skills-triage), [to-spec](https://aihero.dev/skills-to-spec), or [to-tickets](https://aihero.dev/skills-to-tickets) start guessing where your issues live or applying labels that don't exist, they haven't been set up here yet. Re-run it only to switch issue trackers or start over — day-to-day tweaks are just edits to `docs/agents/*.md`.
+Reach for it **once per repo, before the first use of any other engineering skill**. If use skill triage, use skill to-spec, or use skill to-tickets start guessing where your issues live or applying labels that don't exist, they haven't been set up here yet. Re-run it only to switch issue trackers or start over — day-to-day tweaks are just edits to `docs/agents/*.md`.
 
 ## The three decisions
 
@@ -40,4 +40,4 @@ The output is a set of files under `docs/agents/` — `issue-tracker.md`, `domai
 
 ## Where it fits
 
-`setup-matt-pocock-skills` is a **run-once setup** — the foundation the whole engineering set stands on, not a step you repeat. Its neighbours are the skills that read what it writes: [triage](https://aihero.dev/skills-triage), because it applies the label vocabulary configured here, and [to-spec](https://aihero.dev/skills-to-spec) / [to-tickets](https://aihero.dev/skills-to-tickets), because they publish into the issue tracker configured here. Run it first; everything downstream assumes it has. When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+`setup-matt-pocock-skills` is a **run-once setup** — the foundation the whole engineering set stands on, not a step you repeat. Its neighbours are the skills that read what it writes: use skill triage, because it applies the label vocabulary configured here, and use skill to-spec / use skill to-tickets, because they publish into the issue tracker configured here. Run it first; everything downstream assumes it has. When you're unsure which skill or flow fits, use skill ask-matt routes you.

@@ -20,7 +20,7 @@ The grilling **leaves a paper trail**. A plain interview sharpens your thinking 
 
 You invoke this by typing `/grill-with-docs` — the agent won't reach for it on its own.
 
-Reach for it at the very start of a change, when the plan is still fuzzy and the domain language isn't settled, and you want to stress-test both before any code exists. If you only want the interview and don't need the artifacts, use [grilling](https://aihero.dev/skills-grilling); if the plan is already clear and you just need to pin down or record terminology, use [domain-modeling](https://aihero.dev/skills-domain-modeling). And if the change is too big to hold in one session and its route is still foggy — a greenfield project, a huge feature build — start upstream with [wayfinder](https://aihero.dev/skills-wayfinder): it charts the effort as a map of decisions, then hands back to this main flow once the way is clear.
+Reach for it at the very start of a change, when the plan is still fuzzy and the domain language isn't settled, and you want to stress-test both before any code exists. If you only want the interview and don't need the artifacts, use skill grilling; if the plan is already clear and you just need to pin down or record terminology, use skill domain-modeling. And if the change is too big to hold in one session and its route is still foggy — a greenfield project, a huge feature build — start upstream with use skill wayfinder: it charts the effort as a map of decisions, then hands back to this main flow once the way is clear.
 
 ## Prerequisites
 
@@ -47,4 +47,4 @@ What makes this variant its own skill is where the answers go. As the grill runs
 grill-with-docs → to-spec → to-tickets → implement → code-review
 ```
 
-It comes first, before anything is written down as a spec: it produces the shared understanding and settled vocabulary that [to-spec](https://aihero.dev/skills-to-spec) then synthesises into a spec without re-interviewing you. Its close neighbours are [grilling](https://aihero.dev/skills-grilling), the same interview without the docs, and [domain-modeling](https://aihero.dev/skills-domain-modeling), the glossary-and-ADR discipline it drives. When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+It comes first, before anything is written down as a spec: it produces the shared understanding and settled vocabulary that use skill to-spec then synthesises into a spec without re-interviewing you. Its close neighbours: use skill grilling, the same interview without the docs, and use skill domain-modeling, the glossary-and-ADR discipline it drives. When you're unsure which skill or flow fits, use skill ask-matt routes you.

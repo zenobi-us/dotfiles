@@ -20,11 +20,11 @@ It never labels blind. Every triaged item carries exactly one **category** role 
 
 You invoke this by typing `/triage` and describing what you want in natural language — the agent won't reach for it on its own. "Show me anything that needs my attention", "let's look at #42", "move #42 to ready-for-agent".
 
-Reach for it when your issue tracker has raw, unevaluated reports and you want them sorted, verified, and turned into work an agent or human can pick up. To turn a settled conversation into a fresh spec instead, use [to-spec](https://aihero.dev/skills-to-spec); to split an existing spec into tickets, use [to-tickets](https://aihero.dev/skills-to-tickets). `triage` is the reverse direction — it processes what's *already* landed in the tracker.
+Reach for it when your issue tracker has raw, unevaluated reports and you want them sorted, verified, and turned into work an agent or human can pick up. To turn a settled conversation into a fresh spec instead, use skill to-spec; to split an existing spec into tickets, use skill to-tickets. `triage` is the reverse direction — it processes what's *already* landed in the tracker.
 
 ## Prerequisites
 
-`triage` reads and writes your issue tracker, so [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must have configured the tracker and the label mapping first. The role names above are **canonical** — the actual label strings in your tracker may differ, and that mapping is what setup provides. The config also decides whether external PRs count as a request surface, and who counts as external.
+`triage` reads and writes your issue tracker, so use skill setup-matt-pocock-skills must have configured the tracker and the label mapping first. The role names above are **canonical** — the actual label strings in your tracker may differ, and that mapping is what setup provides. The config also decides whether external PRs count as a request surface, and who counts as external.
 
 ## A PR is an issue with attached code
 
@@ -43,4 +43,4 @@ The step that separates `triage` from ad-hoc labelling is verification. It repro
 
 ## Where it fits
 
-`triage` is the **periodic maintenance** pass over your issue tracker — run it whenever reports pile up, to keep the queue sorted and the `ready-for-agent` column trustworthy. It sits at the front of the tracker, upstream of the build chain: the briefs it writes are what [tdd](https://aihero.dev/skills-tdd) later picks up to implement. When a request needs sharpening it leans on [grilling](https://aihero.dev/skills-grilling) and [domain-modeling](https://aihero.dev/skills-domain-modeling) to grill it into shape one question at a time. Its close neighbour is [to-spec](https://aihero.dev/skills-to-spec), which populates the tracker from a fresh conversation where `triage` processes what's already there. When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+`triage` is the **periodic maintenance** pass over your issue tracker — run it whenever reports pile up, to keep the queue sorted and the `ready-for-agent` column trustworthy. It sits at the front of the tracker, upstream of the build chain: the briefs it writes are what use skill tdd later picks up to implement. When a request needs sharpening it leans on use skill grilling and use skill domain-modeling to grill it into shape one question at a time. Its close neighbour: use skill to-spec, which populates the tracker from a fresh conversation where `triage` processes what's already there. When you're unsure which skill or flow fits, use skill ask-matt routes you.

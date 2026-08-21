@@ -20,7 +20,7 @@ The code is **throwaway from day one**, and marked as such. It carries no tests,
 
 Type `/prototype`, or the agent reaches for it automatically when a task fits.
 
-Reach for it when you have a design question that's hard to settle on paper — a state machine with cases you can't hold in your head, or a screen you can't picture until you see a few versions side by side. If instead something already built is misbehaving and you need to find out why, use [diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs); prototyping explores what to build, not why the built thing is broken.
+Reach for it when you have a design question that's hard to settle on paper — a state machine with cases you can't hold in your head, or a screen you can't picture until you see a few versions side by side. If instead something already built is misbehaving and you need to find out why, use skill diagnosing-bugs; prototyping explores what to build, not why the built thing is broken.
 
 ## Two branches
 
@@ -39,4 +39,4 @@ The prototype doesn't belong in the main branch: no tests, no error handling, no
 
 ## Where it fits
 
-`prototype` is a reach-for-it-anytime standalone: you drop into it to resolve a design question, then drop back out. Its answer often feeds the next step — a validated state model or UI direction becomes settled input for [to-spec](https://aihero.dev/skills-to-spec) to write up, or an architectural decision worth recording via [domain-modeling](https://aihero.dev/skills-domain-modeling). When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+`prototype` is a reach-for-it-anytime standalone: you drop into it to resolve a design question, then drop back out. Its answer often feeds the next step — a validated state model or UI direction becomes settled input for use skill to-spec to write up, or an architectural decision worth recording via use skill domain-modeling. When you're unsure which skill or flow fits, use skill ask-matt routes you.

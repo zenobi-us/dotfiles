@@ -20,7 +20,7 @@ It asks **one question at a time** and waits for your answer before the next —
 
 Type `/grilling`, or the agent reaches for it automatically when a task fits — this is the underlying primitive, not a user-only entry point.
 
-Reach for it when a plan or design still has soft spots and you want them surfaced before code is written. In practice you usually invoke it through one of its two wrappers rather than by name: for a plain grilling session use [grill-me](https://aihero.dev/skills-grill-me); to have the session also write ADRs and a glossary as it goes, use [grill-with-docs](https://aihero.dev/skills-grill-with-docs).
+Reach for it when a plan or design still has soft spots and you want them surfaced before code is written. In practice you usually invoke it through one of its two wrappers rather than by name: for a plain grilling session use skill grill-me; to have the session also write ADRs and a glossary as it goes, use skill grill-with-docs.
 
 ## The decision tree
 
@@ -28,10 +28,10 @@ The mental model is a **decision tree**: every plan branches into decisions, and
 
 ## Pulled out on purpose
 
-`grilling` is the **single source of truth** for the interview technique, split out as a model-invoked **primitive** so every skill that needs an interview can reach it instead of reinventing one. [grill-me](https://aihero.dev/skills-grill-me) and [grill-with-docs](https://aihero.dev/skills-grill-with-docs) are its two user-invoked front doors, but [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) and [triage](https://aihero.dev/skills-triage) also lean on it to pressure-test their own decisions.
+`grilling` is the **single source of truth** for the interview technique, split out as a model-invoked **primitive** so every skill that needs an interview can reach it instead of reinventing one. use skill grill-me and use skill grill-with-docs are its two user-invoked front doors, but use skill improve-codebase-architecture and use skill triage also lean on it to pressure-test their own decisions.
 
 Keeping the technique in one place means you can also reach for it directly when you just want the interview — without the ADR-writing or ticket-shaping that its wrappers add on top.
 
 ## Where it fits
 
-`grilling` is the interview **primitive** under the main build chain: [grill-with-docs](https://aihero.dev/skills-grill-with-docs) runs it to sharpen context before [to-spec](https://aihero.dev/skills-to-spec) writes the spec. When you're unsure which entry point fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+`grilling` is the interview **primitive** under the main build chain: use skill grill-with-docs runs it to sharpen context before use skill to-spec writes the spec. When you're unsure which entry point fits, use skill ask-matt routes you.

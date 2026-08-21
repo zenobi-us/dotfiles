@@ -22,7 +22,7 @@ Unless you point it at a specific area, it also scopes itself to where developme
 
 You invoke this by typing `/improve-codebase-architecture` — the agent won't reach for it on its own.
 
-Reach for it as a periodic health check: every few days, or whenever a codebase has started to feel like it takes too much bouncing between small modules to understand one concept. It reads the existing architecture and proposes where to deepen it. If you already know the module you want to redesign and just need the vocabulary to think it through, use [codebase-design](https://aihero.dev/skills-codebase-design) instead — this skill is the survey that finds the candidates; that one is the design bench.
+Reach for it as a periodic health check: every few days, or whenever a codebase has started to feel like it takes too much bouncing between small modules to understand one concept. It reads the existing architecture and proposes where to deepen it. If you already know the module you want to redesign and just need the vocabulary to think it through, use skill codebase-design instead — this skill is the survey that finds the candidates; that one is the design bench.
 
 ## Deepening opportunities
 
@@ -34,8 +34,8 @@ It speaks in the shared design vocabulary (**module**, **interface**, **depth**,
 
 The output is a browser-ready HTML file written to your OS temp directory — nothing lands in the repo. Each candidate is a card with the files involved, the friction, a plain-English solution, the benefit in terms of locality and leverage, a before/after diagram, and a `Strong` / `Worth exploring` / `Speculative` badge. It closes with the one it would tackle first.
 
-Then it stops and asks which one you want to explore. Pick one and it runs the [grilling](https://aihero.dev/skills-grilling) loop over that design — constraints, what sits behind the seam, which tests survive — updating the domain model inline as decisions crystallise.
+Then it stops and asks which one you want to explore. Pick one and it runs the use skill grilling loop over that design — constraints, what sits behind the seam, which tests survive — updating the domain model inline as decisions crystallise.
 
 ## Where it fits
 
-`improve-codebase-architecture` is **periodic maintenance** — run it every few days, not as a step in a chain. Its neighbours are [codebase-design](https://aihero.dev/skills-codebase-design), which owns the depth-and-seam vocabulary every candidate is written in, [grilling](https://aihero.dev/skills-grilling), which walks the decision tree once you've chosen a candidate, and [domain-modeling](https://aihero.dev/skills-domain-modeling), which keeps `CONTEXT.md` and the ADRs current as the redesign settles. When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+`improve-codebase-architecture` is **periodic maintenance** — run it every few days, not as a step in a chain. Its neighbours: use skill codebase-design, which owns the depth-and-seam vocabulary every candidate is written in, use skill grilling, which walks the decision tree once you've chosen a candidate, and use skill domain-modeling, which keeps `CONTEXT.md` and the ADRs current as the redesign settles. When you're unsure which skill or flow fits, use skill ask-matt routes you.

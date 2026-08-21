@@ -20,7 +20,7 @@ It is a **language, not a procedure**. It doesn't restructure your code or hand 
 
 Type `/codebase-design`, or the agent reaches for it automatically when a task fits.
 
-Reach for it when you're designing or improving a module's interface, hunting for deepening opportunities, deciding where a seam goes, or making code more testable and AI-navigable. Other skills pull it in whenever they need the deep-module vocabulary. If you want to sharpen the project's *domain* terms rather than its module design, use [domain-modeling](https://aihero.dev/skills-domain-modeling) instead; to run a whole architecture pass over an existing codebase, use [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture).
+Reach for it when you're designing or improving a module's interface, hunting for deepening opportunities, deciding where a seam goes, or making code more testable and AI-navigable. Other skills pull it in whenever they need the deep-module vocabulary. If you want to sharpen the project's *domain* terms rather than its module design, use skill domain-modeling instead; to run a whole architecture pass over an existing codebase, use skill improve-codebase-architecture.
 
 ## Deep, not shallow
 
@@ -34,10 +34,10 @@ Callers and tests cross the same seam, so a well-placed interface gives tests so
 
 ## Pulled out on purpose
 
-`codebase-design` is the **single source of truth** for the deep-module vocabulary, split out as its own model-invoked skill so anything can reach it. Other skills point at it rather than restating the words: [tdd](https://aihero.dev/skills-tdd) borrows it to place a seam before writing the test, [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) leans on it while restructuring existing code, and [to-spec](https://aihero.dev/skills-to-spec) speaks it when it sketches seams and deepening opportunities before writing a spec.
+`codebase-design` is the **single source of truth** for the deep-module vocabulary, split out as its own model-invoked skill so anything can reach it. Other skills point at it rather than restating the words: use skill tdd borrows it to place a seam before writing the test, use skill improve-codebase-architecture leans on it while restructuring existing code, and use skill to-spec speaks it when it sketches seams and deepening opportunities before writing a spec.
 
 The point of keeping it standalone is that you can also reach for it on its own — as a **reference** for how to think about module design — without triggering the larger process any of those skills mandate. Fix the words once, in one place, and every design conversation inherits them.
 
 ## Where it fits
 
-`codebase-design` is a **reach-for-it-anytime standalone** — the shared vocabulary layer under the engineering skills. Its closest neighbour is [domain-modeling](https://aihero.dev/skills-domain-modeling), the parallel vocabulary skill for the problem domain rather than the module structure. When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+`codebase-design` is a **reach-for-it-anytime standalone** — the shared vocabulary layer under the engineering skills. Its closest neighbour: use skill domain-modeling, the parallel vocabulary skill for the problem domain rather than the module structure. When you're unsure which skill or flow fits, use skill ask-matt routes you.
