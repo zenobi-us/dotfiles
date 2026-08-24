@@ -8,7 +8,7 @@
     "fzf": "^0.5.2"
   },
   "devDependencies": {
-    "vitest": "^0.34.0"
+    "vitest": "^3.2.6"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",

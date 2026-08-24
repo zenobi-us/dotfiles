@@ -21,7 +21,7 @@
     "@types/node": "^20.11.0",
     "@types/nconf": "^0.10.6",
     "typescript": "^5.9.3",
-    "vitest": "^0.34.0"
+    "vitest": "^3.2.6"
   },
   "workspaces": [
     "extensions/@vanillagreen/*",
