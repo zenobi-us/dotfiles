@@ -12,6 +12,11 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [" "]
+  },
+
   "enabledPlugins": {
     "agent-core@pi-agent-bundles": true,
     "creator@pi-agent-bundles": true,
