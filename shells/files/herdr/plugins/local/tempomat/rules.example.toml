@@ -1,0 +1,32 @@
+# Copy this file to the path printed by:
+#   herdr plugin config-dir tempomat
+# as rules.toml, then edit it there. Herdr does not read this example file.
+
+# Set to true to make the plugin call the real `tempo tracker:*` commands.
+# While false, every action is appended to dry-run.log in the plugin state
+# directory instead of touching Tempo. Confirm the log looks right before
+# flipping this on.
+live = false
+
+# Seconds a tracker stays paused after focus leaves a match before it is
+# finalized (tempo tracker:stop, worklog written). Returning to the same
+# match before this expires resumes the same tracker instead.
+grace_period_seconds = 300
+
+# Rules are checked top to bottom. The first match wins.
+
+[[rules]]
+type = "ticket_pattern"
+# Matched, in order, against the focused pane's title, its tab label, its
+# cwd, and its foreground_cwd. The whole regex match becomes the issue key,
+# unless the pattern defines a named group `issue`, e.g. (?P<issue>...).
+pattern = '[A-Z][A-Z0-9]+-\d+'
+description = "Any Jira-style ticket key visible in the tab or pane"
+
+[[rules]]
+type = "path_glob"
+# Matched against the focused pane's cwd and foreground_cwd.
+# Unlike ticket_pattern, a glob carries no ticket key, so `issue` is required.
+glob = "~/Projects/reckon-*/**"
+issue = "PROJ-100"
+description = "Default bucket for reckon-* repos with no ticket in the branch/path"

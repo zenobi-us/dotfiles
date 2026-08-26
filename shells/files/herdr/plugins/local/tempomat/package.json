@@ -1,0 +1,12 @@
+{
+  "name": "herdr-plugin-tempomat",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@crustjs/core": "^0.0.19",
+    "@crustjs/plugins": "^0.1.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.0"
+  }
+}

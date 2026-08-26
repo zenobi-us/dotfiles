@@ -1,0 +1,40 @@
+id = "tempomat"
+name = "Tempomat Tracker"
+version = "0.1.0"
+min_herdr_version = "0.8.0"
+description = "Auto start/pause/resume/stop Tempo.io time trackers from focused pane patterns."
+platforms = ["linux", "macos"]
+
+[[build]]
+command = ["bun", "install"]
+
+[[startup]]
+command = ["bun", "track.ts", "--startup"]
+
+[[events]]
+on = "pane.focused"
+command = ["bun", "track.ts"]
+
+[[events]]
+on = "pane.exited"
+command = ["bun", "track.ts"]
+
+[[events]]
+on = "tab.closed"
+command = ["bun", "track.ts"]
+
+[[events]]
+on = "workspace.closed"
+command = ["bun", "track.ts"]
+
+[[actions]]
+id = "status"
+title = "Tempomat: show tracker status"
+description = "Print the auto-tracked issue, running/paused state, and live/dry-run mode."
+command = ["bun", "track.ts", "--status"]
+
+[[actions]]
+id = "stop"
+title = "Tempomat: stop current tracker now"
+description = "Finalize and log the active tracker immediately, ignoring the grace period."
+command = ["bun", "track.ts", "--force-stop"]
