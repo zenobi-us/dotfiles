@@ -1,0 +1,65 @@
+#!/bin/bash
+# Claude Code's bundled sharp/libvips cannot decode the BI_BITFIELDS BMP
+# that WSLg mirrors from a Windows clipboard image. Convert it to PNG on
+# the Linux clipboard so native paste (Alt+V) works without a manual step.
+# WSLg syncs a Linux-clipboard change back to Windows and then re-mirrors
+# the broken BMP back to Linux, so we re-assert the PNG once to win that
+# race (same approach documented at
+# https://rajveerbachkaniwala.com/blog/2026/05/24/on-the-difficulty-of-pasting-a-picture/).
+set -euo pipefail
+
+if ! grep -qE "(Microsoft|WSL)" /proc/version 2>/dev/null; then
+    exec sleep infinity
+fi
+
+state_dir="${XDG_RUNTIME_DIR:-/tmp}/clip-bridge"
+mkdir -p "$state_dir"
+last_hash_file="$state_dir/last_hash"
+lock_file="$state_dir/lock"
+
+handle_change() {
+    exec 9>"$lock_file"
+    flock -n 9 || return 0
+
+    local types
+    types="$(wl-paste --list-types 2>/dev/null || true)"
+
+    grep -qx 'image/bmp' <<<"$types" || return 0
+    grep -qx 'image/png' <<<"$types" && return 0
+
+    local bmp png hash last_hash=""
+    bmp="$(mktemp --suffix=.bmp)"
+    wl-paste --type image/bmp >"$bmp" 2>/dev/null || {
+        rm -f "$bmp"
+        return 0
+    }
+
+    hash="$(sha256sum "$bmp" | cut -d' ' -f1)"
+    [[ -f "$last_hash_file" ]] && last_hash="$(cat "$last_hash_file")"
+    if [[ "$hash" == "$last_hash" ]]; then
+        rm -f "$bmp"
+        return 0
+    fi
+
+    png="$(mktemp --suffix=.png)"
+    if ! convert "$bmp" "$png" 2>/dev/null; then
+        rm -f "$bmp" "$png"
+        return 0
+    fi
+    rm -f "$bmp"
+    echo "$hash" >"$last_hash_file"
+
+    wl-copy --type image/png <"$png"
+    sleep 0.5
+    if wl-paste --list-types 2>/dev/null | grep -qx 'image/bmp'; then
+        wl-copy --type image/png <"$png"
+    fi
+    rm -f "$png"
+}
+
+# wl-paste --watch needs the wlroots data-control protocol, which WSLg's
+# compositor doesn't support, so poll instead.
+while true; do
+    handle_change
+    sleep 0.5
+done
