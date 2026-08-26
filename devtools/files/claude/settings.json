@@ -8,6 +8,17 @@
   },
   "includeCoAuthoredBy": false,
   "spinnerTipsEnabled": false,
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Dispensing enlightenment",
+      "synthesizing chaos",
+      "reticulating splines",
+      "processing heretics",
+      "optimizing for maximum chaos",
+      "ejudicating the unworthy"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"

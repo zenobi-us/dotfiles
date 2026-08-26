@@ -110,6 +110,7 @@ granted = "latest"
 herdr = "latest"
 "llama.cpp" = { version = "latest", version_prefix = "b" }
 "github:JustVugg/colibri" = "latest"
+"npm:tempomat" = "latest"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
