@@ -28,8 +28,8 @@
     "fastMode": "#67b5c3",
     "fastModeShimmer": "#bddfe5",
 
-    "diffAdded": "#ff00ff",
-    "diffRemoved": "#00ffff",
+    "diffAdded": "#2e2a42",
+    "diffRemoved": "#37344d",
     "diffAddedDimmed": "#27253d",
     "diffRemovedDimmed": "#1c1a2b",
     "diffAddedWord": "#bddfe5",
