@@ -216,6 +216,13 @@
         "@earendil-works/pi-tui",
       ],
     },
+    "extensions/@zenobius/markdown-preview": {
+      "name": "@zenobius/markdown-preview",
+      "version": "0.0.1",
+      "bin": {
+        "md-preview": "./bin/md-preview.js",
+      },
+    },
     "extensions/@zenobius/pi-annotate": {
       "name": "@diegopetrucci/pi-annotate-last-message",
       "version": "0.1.3",
@@ -817,6 +824,8 @@
     "@vitest/utils": ["@vitest/utils@3.2.7", "", { "dependencies": { "@vitest/pretty-format": "3.2.7", "loupe": "^3.1.4", "tinyrainbow": "^2.0.0" } }, "sha512-x6BDOd7dyo3PFLY3I9/HJ25X/6OurhGXk2/B9gOZNPF7XDVjeBK4k01lQE5uvDpbuheErh91qYuE1E2OEjK3Rw=="],
 
     "@zenobi-us/pi-worktrunk": ["@zenobi-us/pi-worktrunk@workspace:extensions/@zenobius/pi-worktrunk"],
+
+    "@zenobius/markdown-preview": ["@zenobius/markdown-preview@workspace:extensions/@zenobius/markdown-preview"],
 
     "@zenobius/pi-extension-config": ["@zenobius/pi-extension-config@0.0.2", "", { "dependencies": { "@standard-schema/spec": "^1.1.0", "nconf": "^0.13.0" } }, "sha512-UhtydVAj44Kw9FJCa3JH381E5TGQHEJE/pMclzp16Nytc9AQMbC7MvCd2Q9l7F1cfzsD52cLwgX447+FHy7bfQ=="],
 
