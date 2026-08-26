@@ -1,0 +1,10 @@
+{
+  "name": "@zenobius/markdown-preview",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "md-preview": "./bin/md-preview.js"
+  },
+  "files": ["bin", "src", "skills"]
+}
