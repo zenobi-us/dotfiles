@@ -1,11 +1,19 @@
 #!/bin/bash
-# Claude Code's bundled sharp/libvips cannot decode the BI_BITFIELDS BMP
-# that WSLg mirrors from a Windows clipboard image. Convert it to PNG on
-# the Linux clipboard so native paste (Alt+V) works without a manual step.
-# WSLg syncs a Linux-clipboard change back to Windows and then re-mirrors
-# the broken BMP back to Linux, so we re-assert the PNG once to win that
-# race (same approach documented at
-# https://rajveerbachkaniwala.com/blog/2026/05/24/on-the-difficulty-of-pasting-a-picture/).
+# WSLg keeps a Wayland compositor running at all times, not only when a
+# GUI window is open. wl-copy/wl-paste talk to it directly, so any WSL2
+# process can read the Windows clipboard this way, independent of the
+# terminal emulator in use.
+#
+# WSLg mirrors an image from the Windows clipboard as image/bmp
+# (BI_BITFIELDS variant). Claude Code's bundled sharp/libvips cannot
+# decode this variant, so native paste (Alt+V) fails silently.
+#
+# Fix: convert the BMP to PNG and write it back to the Wayland clipboard.
+# That write also triggers a Linux-to-Windows sync, and Windows echoes
+# the same BMP-only clipboard back down, overwriting the fix. Re-assert
+# the PNG once, after a short delay, to win that race.
+#
+# Background: https://rajveerbachkaniwala.com/blog/2026/05/24/on-the-difficulty-of-pasting-a-picture/
 set -euo pipefail
 
 if ! grep -qE "(Microsoft|WSL)" /proc/version 2>/dev/null; then
