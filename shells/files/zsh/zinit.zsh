@@ -38,6 +38,7 @@ zinit_load_env_modules() {
 	zinit_load_local_module "global__env.zsh"
 	zinit_load_local_module "granted__env.zsh"
 	zinit_load_local_module "cli-history__env.zsh"
+	zinit_load_local_module "wsl__env.zsh"
 	zinit_load_local_module "mise__env.zsh"
 	zinit_load_local_module "wslview__env.zsh"
 	[[ -n "$WSL_DISTRO_NAME" ]] && zinit_load_local_module "wsl__aliases.zsh"

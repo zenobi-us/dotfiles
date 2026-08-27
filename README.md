@@ -69,6 +69,7 @@ Use the legacy wrapper only as a shortcut:
 | --- | --- |
 | `mise.toml` | Common tools, bootstrap tasks, and shared dotfiles |
 | `mise.linux.toml` | Linux packages, dotfiles, and systemd user units |
+| `mise.wsl2.toml` | WSL2-only systemd user units. Loads only when `MISE_ENV=wsl2` (set by `shells/files/zsh/modules/wsl__env.zsh`) |
 | `mise.macos.toml` | macOS packages and dotfiles |
 | `mise.windows.toml` | Windows dotfiles and setup tasks |
 | `devtools/files/mise/tasks/` | File tasks for mise |
