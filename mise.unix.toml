@@ -41,4 +41,5 @@
 
 [env]
 VISUAL="nvim"
-EDITOR="nvim" 
+EDITOR="nvim"
+AGENT_BUNDLE_STORAGE_PATH_PATTERN="$DOTFILE_REPO_ROOT/devtools/files/agent/bundles/{domain}/"
