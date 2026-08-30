@@ -111,6 +111,8 @@ herdr = "latest"
 "llama.cpp" = { version = "latest", version_prefix = "b" }
 "github:JustVugg/colibri" = "latest"
 "npm:tempomat" = "latest"
+"github:colonyops/hive" = "latest"
+"github:patriceckhart/hrdx" = "latest"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
