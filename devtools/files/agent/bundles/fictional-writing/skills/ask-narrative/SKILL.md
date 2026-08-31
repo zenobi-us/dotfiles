@@ -59,6 +59,19 @@ Do not run the full writing workflow for a single facet. Treat `continuity-keepe
 
 Use `arc-cartographer` when the linked material has enough structure to map.
 
+## Reference Routing
+
+Route to the smallest reference when the task needs focused guidance:
+
+- Causal backstory or flat character → `character-designer/references/causal-backstory.md`.
+- Dialogue, voice, or character agenda → `character-designer/references/dialogue-as-action.md`.
+- Flat or predictable arc → `story-architect/references/dramatic-tension.md`.
+- Lore dump or unused setting detail → `world-builder/references/showing-lore-through-pressure.md`.
+- Faction status, agenda, or negotiation problem → `faction-designer/references/social-status-and-agenda.md`.
+- Unearned reveal or unclear secret → `continuity-keeper/references/promise-and-reveal-tracking.md`.
+- Licensed character or setting fact → `canon-steward/references/source-use-for-character-and-lore.md`.
+- Flat prose or dialogue rhythm → `narrative-style-editor/references/rhythm-and-revision.md`.
+
 ## Decision Rules
 
 - If the repository lacks narrative anchors, use `narrative-repo-setup` first.

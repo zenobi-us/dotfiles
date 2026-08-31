@@ -15,6 +15,10 @@ Use it before `character-designer`, `world-builder`, `faction-designer`, or `sto
 
 Do not use it to write a story, design original setting material, or decide an unresolved conflict without evidence.
 
+## References
+
+Read `references/source-use-for-character-and-lore.md` when source facts affect a character, faction, place, event, or story.
+
 ## Repository Anchors
 
 Read these files before you write:

@@ -21,6 +21,10 @@ Use `character-designer` when a leader, contact, or member needs an independent 
 
 Do not use this skill to design a whole city, write a story arc, or create a faction with no story or setting connection.
 
+## References
+
+Read `references/social-status-and-agenda.md` when faction members need distinct agendas, status behavior, or negotiation pressure.
+
 ## Repository Anchors
 
 Read these files before you write:

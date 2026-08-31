@@ -21,6 +21,10 @@ Use `canon-steward` when the conflict depends on official RED, 2077, or other li
 
 Do not use this skill to rewrite prose, choose a canon answer without evidence, or hide a conflict to make a story work.
 
+## References
+
+Read `references/promise-and-reveal-tracking.md` when a secret, twist, reveal, or reader expectation needs review.
+
 ## Repository Anchors
 
 Read these files before you review:

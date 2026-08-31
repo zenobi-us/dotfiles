@@ -23,6 +23,10 @@ Use `canon-steward` first when the story depends on official RED, 2077, or other
 
 Do not use this skill to draft finished prose, build a whole setting, or resolve unsupported canon conflicts.
 
+## References
+
+Read `references/dramatic-tension.md` when the arc feels flat, predictable, or low-stakes.
+
 ## Repository Anchors
 
 Read these files before you write:

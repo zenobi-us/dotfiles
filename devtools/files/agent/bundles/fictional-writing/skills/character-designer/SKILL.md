@@ -25,6 +25,12 @@ Use `continuity-keeper` after a major character change affects existing stories,
 
 Do not use this skill to write finished prose, create a complete setting, or invent a detailed biography that does not affect story choices.
 
+## References
+
+Read `references/causal-backstory.md` for formative events, beliefs, coping behavior, and personal arcs.
+
+Read `references/dialogue-as-action.md` for agenda, confrontation, voice, and speech behavior.
+
 ## Repository Anchors
 
 Read these files before you write:

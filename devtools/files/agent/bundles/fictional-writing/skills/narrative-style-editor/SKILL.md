@@ -7,6 +7,8 @@ description: Edit stories for tone, voice, pacing, clarity, dialogue, sensory de
 
 TODO: Write this skill before use.
 
+Read `references/rhythm-and-revision.md` when the story structure works but the prose or dialogue sounds flat.
+
 ## Overview
 
 TODO.

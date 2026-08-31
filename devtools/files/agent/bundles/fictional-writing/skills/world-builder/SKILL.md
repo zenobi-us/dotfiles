@@ -21,6 +21,10 @@ Use `character-designer` when a place, history, institution, or social condition
 
 Do not use this skill to design a complete faction, outline a story arc, or settle an unsupported canon conflict.
 
+## References
+
+Read `references/showing-lore-through-pressure.md` when setting details need to enter through action, choice, or consequence.
+
 ## Repository Anchors
 
 Read these files before you write:
