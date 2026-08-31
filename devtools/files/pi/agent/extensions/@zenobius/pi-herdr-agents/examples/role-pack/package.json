@@ -1,0 +1,16 @@
+{
+  "name": "@example/pi-herdr-roles",
+  "version": "1.0.0",
+  "keywords": [
+    "pi-package"
+  ],
+  "type": "module",
+  "pi": {
+    "extensions": [
+      "./extension.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  }
+}
