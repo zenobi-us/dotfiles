@@ -1,0 +1,16 @@
+{
+  "name": "rose-pine-moon",
+  "description": "Rose Pine Moon: iris accent, pine alt, moon-dark bars. Matches the Claude Code and pi rose-pine-moon themes.",
+  "colors": {
+    "accent": "#c4a7e7",
+    "alt": "#3e8fb0",
+    "muted": "#908caa",
+    "faint": "#393552",
+    "good": "#9ccfd8",
+    "busy": "#f6c177",
+    "bad": "#eb6f92",
+    "bar_bg": "#2a273f",
+    "bar_fg": "#e0def4",
+    "ink": "#232136"
+  }
+}

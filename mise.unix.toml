@@ -11,6 +11,7 @@
 "~/.config/ghostty" = { source = "shells/files/ghostty", mode = "symlink" }
 "~/.config/herdr/config.toml" = { source = "shells/files/herdr/config.toml", mode = "symlink" } 
 "~/.config/herdr/plugins" = { source = "shells/files/herdr/plugins", mode = "symlink" }
+"~/.config/hrdx/themes" = { source = "shells/files/hrdx/themes", mode = "symlink" }
 "~/.claude/settings.json" = { source = "devtools/files/claude/settings.json", mode = "symlink" }
 "~/.claude/statusline.sh" = { source = "devtools/files/claude/statusline.sh", mode = "symlink" }
 "~/.claude/themes/" = { source = "devtools/files/claude/themes/", mode = "symlink-each" }
