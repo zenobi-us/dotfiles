@@ -8,7 +8,7 @@
   "defaultProjectTrust": "always",
   "enableInstallTelemetry": false,
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.84.4",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
     "./bundles/agent-core",
@@ -40,19 +40,18 @@
     "./extensions/@zenobius/pi-handoff",
     "./extensions/@zenobius/pi-lmstudio-provider",
     "./extensions/@zenobius/pi-lsp",
-    "./extensions/@zenobius/pi-onnx",
     "./extensions/@zenobius/pi-poster",
     "./extensions/@zenobius/pi-rose-pine",
     "./extensions/@zenobius/pi-session-browser",
     "./extensions/@zenobius/pi-tree",
     "./extensions/@zenobius/pi-worktrunk",
+    "./extensions/@zenobius/pi-herdr-agents",
     "./extensions/@zenobius/ponytail",
     "./extensions/@zenobius/project-overrides",
     "./extensions/@zenobius/sub-limits",
     "npm:pi-add-dir",
     "npm:pi-claude-marketplace",
     "npm:@mrclrchtr/supi-ask-user",
-    "npm:pi-herdr-agents",
     "npm:pi-localllm-provider",
     "npm:pi-dont-change-my-defaults"
   ],
@@ -94,38 +93,5 @@
       "disabledItems": []
     }
   },
-  "enableSkillCommands": true,
-  "localllm": {
-    "servers": [
-      {
-        "id": "8u4krl",
-        "name": "Club3090-vLLM",
-        "baseUrl": "http://192.168.86.35:8020/v1",
-        "apiKey": "",
-        "apiType": "vllm",
-        "models": [
-          {
-            "id": "qwen3.6-27b",
-            "name": "qwen3.6-27b",
-            "contextWindow": 32768,
-            "maxTokens": 8192,
-            "reasoning": false,
-            "input": [
-              "text"
-            ]
-          },
-          {
-            "id": "qwen3.6-27b-autoround",
-            "name": "qwen3.6-27b-autoround",
-            "contextWindow": 32768,
-            "maxTokens": 8192,
-            "reasoning": false,
-            "input": [
-              "text"
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  "enableSkillCommands": true
 }

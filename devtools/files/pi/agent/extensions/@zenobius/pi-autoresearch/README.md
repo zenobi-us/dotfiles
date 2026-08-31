@@ -43,31 +43,11 @@ Inspired by [karpathy/autoresearch](https://github.com/karpathy/autoresearch). W
 /autoresearch clear
 ```
 
-### Keyboard shortcuts
-
-| Shortcut     | Description |
-|--------------|-------------|
-| `Ctrl+Shift+F` | Open fullscreen scrollable dashboard overlay. Navigate with `↑`/`↓`/`j`/`k`, `PageUp`/`PageDown`/`u`/`d`, `g`/`G` for top/bottom, `Escape` or `q` to close. |
-
-To avoid conflicts with other pi extensions, override or disable these shortcuts in
-`<agent-dir>/extensions/pi-autoresearch.json`. `<agent-dir>` is the active pi profile
-config directory (usually `~/.pi/agent`, or `PI_CODING_AGENT_DIR` when set):
-
-```json
-{
-  "shortcuts": {
-    "fullscreenDashboard": "ctrl+shift+y"
-  }
-}
-```
-
-Use `null` to skip registering a shortcut. Omitted shortcuts keep their defaults.
-
 ### UI
 
 - **Dashboard widget** — always visible above the editor: a full results table with columns for commit, metric, status, and description.
 - **Confidence score** — after 3+ runs, shows how the best improvement compares to the session noise floor. ≥2.0× (green) = likely real, 1.0–2.0× (yellow) = above noise but marginal, <1.0× (red) = within noise.
-- **Fullscreen overlay** — `Ctrl+Shift+F` opens a scrollable full-terminal dashboard. Shows a live spinner with elapsed time for running experiments.
+
 
 ### Skills
 
@@ -141,7 +121,6 @@ The agent reads `.auto/log.jsonl`, groups kept experiments into logical changese
 ### 4. Monitor progress
 
 - **Widget** — full results table, always visible above the editor
-- **`Ctrl+Shift+F`** — fullscreen scrollable dashboard overlay (config key: `shortcuts.fullscreenDashboard`)
 - **`/autoresearch export`** — open a live browser dashboard with chart and share card
 - **`Escape`** — interrupt anytime and ask for a summary
 
@@ -215,7 +194,7 @@ After 3+ experiments in a session, pi-autoresearch computes a **confidence score
 
 - Uses [Median Absolute Deviation (MAD)](https://en.wikipedia.org/wiki/Median_absolute_deviation) of all metric values in the current segment as a robust noise estimator.
 - Confidence = `|best_improvement| / MAD`. A score of 2.0× means the best improvement is twice the noise floor.
-- Shown in the widget, fullscreen dashboard, and `log_experiment` output.
+- Shown in the widget and `log_experiment` output.
 - Persisted to `.auto/log.jsonl` on each result for post-hoc analysis.
 - **Advisory only** — never auto-discards. The agent is guided to re-run experiments when confidence is low, but the final keep/discard decision stays with the agent.
 

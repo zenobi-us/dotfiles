@@ -1,8 +1,0 @@
-{
-  "name": "@zenobius/pi-onnx",
-  "pi": {
-    "extensions": [
-      "./src/index.ts"
-    ]
-  }
-}
