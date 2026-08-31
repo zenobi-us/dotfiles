@@ -60,10 +60,12 @@ zinit_load_interactive_modules() {
 
 	zinit_load_local_module "keybindings__config.zsh"
 	[[ "$OSTYPE" == linux* ]] && zinit_load_local_module "keybindings__config-linux.zsh"
+	zinit_load_local_module "hrdx__config.zsh"
 	zinit_load_local_module "mcfly__config.zsh"
 	zinit_load_local_module "mise__config.zsh"
 	zinit_load_local_module "pokemon__config.zsh"
 	zinit_load_local_module "dotfiles__aliases.zsh"
+	zinit_load_local_module "clipboard__aliases.zsh"
 	zinit_load_local_module "shellfont__aliases.zsh"
 	zinit_load_local_module "worktrunk__config.zsh"
 	zinit_load_local_module "zellij__aliases.zsh"
