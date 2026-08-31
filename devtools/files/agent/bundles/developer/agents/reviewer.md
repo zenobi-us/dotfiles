@@ -1,6 +1,7 @@
 ---
 name: reviewer
 description: Code review specialist that validates implementation and fixes issues
+skills: code-review
 mode: interactive
 tools: read, grep, find, ls, bash
 thinking: high

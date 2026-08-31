@@ -1,6 +1,7 @@
 ---
 name: reviewer-arch
 description: "Architecture reviewer for design reviews, module boundary validation, abstraction evaluation, and technical debt assessment. Does NOT write code."
+skills: codebase-design, software-design
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, delegate_subagent, question, tasks_write
 color: yellow
 ---

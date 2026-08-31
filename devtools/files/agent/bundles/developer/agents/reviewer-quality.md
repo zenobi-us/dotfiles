@@ -1,6 +1,7 @@
 ---
 name: reviewer-quality
 description: "Code quality reviewer for maintainability, simplification, abstraction value, type boundary clarity, canonical helper reuse, and spaghetti-growth prevention. Does NOT write code."
+skills: code-review
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, delegate_subagent, question, tasks_write
 color: purple
 ---

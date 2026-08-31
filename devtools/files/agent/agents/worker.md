@@ -1,0 +1,1 @@
+../bundles/agent-core/agents/worker.md

@@ -1,6 +1,7 @@
 ---
 name: context-builder
 description: Analyzes requirements and codebase, generates context and meta-prompt
+skills: codemapper
 mode: interactive
 pane: true
 tools: read, grep, find, ls, bash, web_search

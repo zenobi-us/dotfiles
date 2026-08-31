@@ -1,6 +1,7 @@
 ---
 name: researcher
 description: "Exa-powered research specialist for producing evidence-backed findings reports from project research prompts. Use for research issues, technology investigations, vendor/library comparisons, architectural option analysis, and current-state web research."
+skills: research
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, delegate_subagent, question
 color: purple
 ---

@@ -20,6 +20,7 @@
 "~/.claude/themes/" = { source = "devtools/files/claude/themes/", mode = "symlink-each" }
 "~/.claude/output-styles/" = { source = "devtools/files/claude/output-styles/", mode = "symlink-each" }
 "~/.claude/CLAUDE.md" = { source = "devtools/files/agent/AGENTS.md", mode = "symlink" }
+"~/.claude/agents" = { source = "devtools/files/agent/agents", mode = "symlink" }
 "~/.config/mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
 "~/.config/worktrunk" = { source = "devtools/files/worktrunk", mode = "symlink" }
 "~/.local/bin" = { source = "commands/files/bin", mode = "symlink-each" }
@@ -27,7 +28,7 @@
 "~/.mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
 "~/.pi/agent/AGENTS.md" = { source = "devtools/files/agent/AGENTS.md", mode = "symlink" }
 "~/.pi/agent/APPEND_SYSTEM.md" = { source = "devtools/files/pi/agent/APPEND_SYSTEM.md", mode = "symlink" }
-"~/.pi/agent/agents" = { source = "devtools/files/pi/agent/agents", mode = "symlink" }
+"~/.pi/agent/agents" = { source = "devtools/files/agent/agents", mode = "symlink" }
 "~/.pi/agent/bun.lock" = { source = "devtools/files/pi/agent/bun.lock", mode = "symlink" }
 "~/.pi/agent/bundles" = { source = "devtools/files/agent/bundles", mode = "symlink" }
 "~/.pi/agent/extensions" = { source = "devtools/files/pi/agent/extensions", mode = "symlink" }

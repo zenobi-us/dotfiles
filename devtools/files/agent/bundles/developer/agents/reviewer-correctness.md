@@ -1,6 +1,7 @@
 ---
 name: reviewer-correctness
 description: "Broad correctness and regression reviewer for behavior breakage, API/CLI/devex regressions, feature-gate leaks, migrations, state semantics, and cross-module side effects. Does NOT write code."
+skills: code-review, diagnosing-bugs
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, delegate_subagent, question, tasks_write
 color: red
 ---

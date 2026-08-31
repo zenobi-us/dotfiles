@@ -1,6 +1,7 @@
 ---
 name: reviewer-structure
 description: "Code structure and modularity reviewer. Detects oversized files, god objects, module boundary violations, and untracked TODOs."
+skills: codebase-design
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, delegate_subagent, question, tasks_write
 color: cyan
 ---

@@ -1,6 +1,7 @@
 ---
 name: planner
 description: "Planning specialist that explores requirements and code context, weighs architecture trade-offs, and produces ordered implementation plans or plan files. May write planning artifacts; does not edit production code."
+skills: codemapper
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, delegate_subagent
 color: blue
 pane: true

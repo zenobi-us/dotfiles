@@ -1,0 +1,1 @@
+../bundles/researcher/agents/researcher.md
