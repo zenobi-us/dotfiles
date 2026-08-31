@@ -112,6 +112,7 @@ herdr = "latest"
 "github:JustVugg/colibri" = "latest"
 "npm:tempomat" = "latest"
 "github:patriceckhart/hrdx" = "latest"
+"github:patriceckhart/zot" = "latest"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
