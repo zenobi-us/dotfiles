@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Sitebuilder"
+  short_description: "Publish character documents as a website - no build step, no runtime"
+  default_prompt: "Use $cyberwise-sitebuilder to turn my character backstories into a website I can share."

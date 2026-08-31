@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Wiki"
+  short_description: "Store knowledge as an OKF bundle, and keep the user bundle out of the shipped one"
+  default_prompt: "Use $cyberwise-wiki before writing down anything a later session would look up, and when a skill file grows a section that is really reference material."

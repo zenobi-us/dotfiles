@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Hotkeys"
+  short_description: "What every key is really bound to, across all five stores"
+  default_prompt: "Use $cyberwise-hotkeys to find what this key is bound to, or build a hotkey cheatsheet."

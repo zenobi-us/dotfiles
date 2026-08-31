@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Backstory"
+  short_description: "Interview-driven help building your V's history and character"
+  default_prompt: "Use $cyberwise-backstory to help me build my V's backstory by interviewing me."

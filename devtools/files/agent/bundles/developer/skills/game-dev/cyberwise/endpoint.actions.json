@@ -1,0 +1,32 @@
+{
+  "_comment": [
+    "THE HARDWIRED ACTION INVENTORY. A request names an id from this file and",
+    "nothing else - no command, no path, no arguments. That is the whole safety",
+    "property: there is no request field that can reach a shell, so there is",
+    "nothing to inject into. Adding a capability means editing this file and",
+    "shipping it, which is a review, not a runtime decision.",
+    "",
+    "'requires' gates against the listener's mode: prompt < tool < agent.",
+    "'prompt' is what the ? lightbox shows and what Prompt Only hands back. It",
+    "must describe the SAME work 'run' performs, because a user who inspects the",
+    "prompt and then presses the button is trusting that they match.",
+    "",
+    "Placeholders in args are resolved by the LISTENER from its own startup",
+    "configuration - never from the request. Known: {sheet} {gameRoot} {records}"
+  ],
+  "actions": [
+    {
+      "id": "refresh-hotkeys",
+      "title": "Update this sheet",
+      "requires": "tool",
+      "summary": "Re-reads every binding store on disk and regenerates this page.",
+      "cooldownSec": 20,
+      "prompt": "Regenerate the Cyberpunk 2077 hotkey cheatsheet from the bindings currently on disk. Read all five binding stores plus the Corsair mouse profile, and write the sheet back to the same path it was opened from. Do not guess at a binding that is not in a store - leave it unlisted instead.",
+      "run": {
+        "skill": "cyberwise-hotkeys",
+        "script": "New-HotkeySheet.ps1",
+        "args": ["-Out", "{sheet}"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Recommends"
+  short_description: "Say a mod is missing only when it blocks the task, and never twice"
+  default_prompt: "Use $cyberwise-recommends before mentioning a mod nobody asked about, or when a task needs a tool this install lacks."

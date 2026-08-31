@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: NetSec"
+  short_description: "Turn NetSec's GAP log into CETMonkey teleport waypoints"
+  default_prompt: "Use $cyberwise-netsec to find where NetSec logged coverage gaps and make waypoints for them."

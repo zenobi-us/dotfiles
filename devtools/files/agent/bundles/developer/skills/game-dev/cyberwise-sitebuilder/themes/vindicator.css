@@ -1,0 +1,160 @@
+/* vindicator.css -- a legend told at a fire, by someone who wants you to leave.
+ *
+ * This document is a nomad talking to a journalist he does not respect, at
+ * night, in the Badlands, for money. Everything about it is dust, heat and
+ * distance: no chrome, no neon, no institution. The city's whole visual
+ * language is absent, which is the point - this is the part of the world that
+ * the city cannot reach.
+ *
+ * The jaggedness is physical. Torn edges, sun-bleached bands, type set like a
+ * hand-painted sign on the side of a truck.
+ */
+
+:root {
+  --ink: #efe3cd;
+  --dust: #c9b28c;
+  --rust: #b5502a;
+  --ember: #ff7a2f;
+  --bone: #f5ecd9;
+  --bg: #0b0906;
+  --face: "Arial Black", "Franklin Gothic Heavy", Impact, sans-serif;
+  --body: "Iowan Old Style", "Book Antiqua", "Palatino Linotype", Georgia, serif;
+  --stamp: "Consolas", "Courier New", monospace;
+}
+
+body {
+  background:
+    radial-gradient(70% 46% at 50% 128%, rgba(255,122,47,.36) 0%, rgba(181,80,42,.12) 42%, transparent 72%),
+    linear-gradient(180deg, #0b0906 0%, #14100b 58%, #1b1208 100%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font: 400 21px/1.72 var(--body);
+  position: relative;
+}
+
+/* Heavy grain: this is a story about dirt. */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 2; pointer-events: none;
+  opacity: .34; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+
+/* The fire, low and unsteady at the bottom of the frame. */
+body::after {
+  content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 40vh; z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(60% 100% at 50% 140%, rgba(255,122,47,.34), transparent 70%);
+  animation: flicker 5.5s ease-in-out infinite;
+}
+@keyframes flicker {
+  0%, 100% { opacity: .8; }
+  38%      { opacity: 1; }
+  61%      { opacity: .68; }
+  74%      { opacity: .93; }
+}
+
+/* ---- the band ------------------------------------------------------------ */
+
+.top {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: baseline; gap: 18px;
+  padding: 12px clamp(16px, 4vw, 44px);
+  background: #150f09;
+  border-bottom: 2px solid var(--rust);
+  font: 700 11px/1 var(--stamp); letter-spacing: .3em; text-transform: uppercase;
+  color: var(--dust);
+  clip-path: polygon(0 0, 100% 0, 100% 76%, 96% 100%, 71% 78%, 38% 100%, 12% 80%, 0 96%);
+  padding-bottom: 20px;
+}
+.top a.home { text-decoration: none; color: var(--ember); }
+.top .spacer { flex: 1; }
+.top input { display: none; }
+
+/* ---- the head ------------------------------------------------------------ */
+
+.doc { max-width: 1060px; margin: 0 auto; padding-top: clamp(46px, 9vw, 110px); padding-bottom: 190px; position: relative; z-index: 3; }
+
+.eyebrow {
+  font: 700 12px/1 var(--stamp); letter-spacing: .48em; text-transform: uppercase;
+  color: var(--rust); margin: 0 0 20px;
+}
+
+h1 {
+  font: 900 clamp(52px, 13vw, 150px)/.82 var(--face);
+  text-transform: uppercase; letter-spacing: -.045em;
+  color: var(--bone); margin: 0 0 10px;
+  /* Sun-bleached: the top of the letters has taken more light than the base. */
+  background: linear-gradient(178deg, #fff8ea 8%, var(--dust) 54%, #8a6a45 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 8px 0 rgba(0,0,0,.55);
+}
+
+.subhead {
+  font: 700 13px/1.8 var(--stamp); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--dust); opacity: .75;
+  border-top: 3px solid var(--rust); padding-top: 14px; margin: 28px 0 58px;
+  max-width: 60ch;
+}
+
+/* ---- the telling --------------------------------------------------------- */
+
+.content { max-width: 68ch; }
+.content p { margin: 0 0 26px; }
+
+/* The old man stops, spits, and starts again. Short beats sit apart and loud. */
+.content p.brief {
+  font: 900 clamp(24px, 4vw, 40px)/1.15 var(--face);
+  text-transform: uppercase; letter-spacing: -.02em;
+  color: var(--ember); margin: 54px 0; max-width: 22ch;
+  text-shadow: 0 4px 0 rgba(0,0,0,.5);
+}
+
+.content h2 {
+  font: 900 clamp(24px, 3.4vw, 40px)/1.05 var(--face);
+  text-transform: uppercase; letter-spacing: -.03em; color: var(--bone);
+  margin: 82px 0 20px; padding-bottom: 12px;
+  border-bottom: 6px solid var(--rust);
+  /* torn along the bottom */
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 88% 100%, 62% 86%, 34% 100%, 9% 88%, 0 100%);
+}
+.content h3 { font: 900 22px/1.25 var(--face); text-transform: uppercase; color: var(--ember); margin: 44px 0 10px; letter-spacing: -.01em; }
+.content h4 { font: 700 12px/1.5 var(--stamp); letter-spacing: .28em; text-transform: uppercase; color: var(--dust); margin: 30px 0 8px; }
+
+.content strong { color: #fff; }
+.content em { color: var(--ember); font-style: italic; }
+.content code { font: .85em var(--stamp); color: var(--ember); }
+
+.content ul { margin: 0 0 26px; padding-left: 0; list-style: none; }
+.content li { position: relative; padding-left: 28px; margin: 0 0 10px; }
+.content li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 13px; height: 4px; background: var(--rust); transform: skewX(-22deg); }
+
+.content blockquote {
+  margin: 0 0 26px; padding: 6px 0 6px 24px; border-left: 5px solid var(--ember);
+  color: var(--dust); font-style: italic;
+}
+
+.content hr { border: none; height: 4px; margin: 56px 0; background: linear-gradient(90deg, var(--rust) 0 22%, transparent 22% 30%, var(--rust) 30% 61%, transparent 61% 68%, var(--rust) 68% 100%); opacity: .7; }
+
+.content table { margin: 0 0 26px; font: 16px/1.5 var(--stamp); }
+.content th { text-align: left; padding: 9px 12px; background: var(--rust); color: #150f09; font: 700 11px/1 var(--stamp); letter-spacing: .16em; text-transform: uppercase; }
+.content td { padding: 9px 12px; border-bottom: 1px solid rgba(201,178,140,.22); vertical-align: top; }
+
+.cls { font: 11px var(--stamp); color: var(--dust); letter-spacing: .1em; opacity: .8; }
+.redact { background: #1b1208; color: #3a2a18; padding: 0 5px; }
+.redact:hover { color: var(--dust); }
+.allcaps { font: 700 13px/1.7 var(--stamp); letter-spacing: .3em; color: var(--rust); margin: 44px 0 18px; }
+
+.meta { margin-top: 110px; border-top: 4px solid var(--rust); padding-top: 14px; }
+
+.gallery { margin: 0 0 46px; gap: 6px; }
+.gallery img { border: 2px solid #241a10; filter: sepia(.35) saturate(.85) contrast(1.06); }
+.lightbox { background: rgba(11,9,6,.97); }
+
+footer {
+  margin-top: 110px; padding-top: 16px; border-top: 2px dashed rgba(201,178,140,.3);
+  font: 11px/2 var(--stamp); letter-spacing: .26em; text-transform: uppercase;
+  color: rgba(201,178,140,.45); position: relative; z-index: 3;
+}
+footer::after { content: " \00a0 drive safe"; color: var(--ember); opacity: .7; }
+
+::selection { background: var(--rust); color: var(--bone); }

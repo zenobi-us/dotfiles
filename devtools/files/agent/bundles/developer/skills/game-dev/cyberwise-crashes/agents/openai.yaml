@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Crashes"
+  short_description: "Crashes, hangs, log triage, and bisecting a big load order"
+  default_prompt: "Use $cyberwise-crashes to find out why Cyberpunk 2077 crashed and which log actually says so."

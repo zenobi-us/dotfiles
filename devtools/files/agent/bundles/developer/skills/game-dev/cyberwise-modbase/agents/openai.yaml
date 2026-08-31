@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Mod Base"
+  short_description: "Document every deployed mod from the deployment manifest and its own config files"
+  default_prompt: "Use $cyberwise-modbase when asked what a mod does, when auditing a load order, or to run a documentation pass."

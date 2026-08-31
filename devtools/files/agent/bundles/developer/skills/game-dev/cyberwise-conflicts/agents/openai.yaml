@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Conflicts"
+  short_description: "Load order, mod conflicts, and archives that do nothing"
+  default_prompt: "Use $cyberwise-conflicts to work out why this mod is losing, or which file actually supplies it."

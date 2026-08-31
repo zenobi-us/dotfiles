@@ -1,0 +1,171 @@
+/* vanish.css -- a machine being interrogated about a person.
+ *
+ * The document is a transcript: an AI answering questions about someone it has
+ * records on, being cut off mid-sentence whenever it says too much. There is no
+ * author in it and no warmth - the only voice is a system that says CONSIDERING
+ * and then continues.
+ *
+ * So there is no "design" here in the sense the other themes have one. It is a
+ * terminal. The discomfort is that it is a terminal talking about a human being,
+ * and the interface does not distinguish between that and any other query.
+ *
+ * WHICH SIDE OF THE BLACKWALL ARE WE ON RIGHT NOW: this is the page where that
+ * question is supposed to occur to the reader.
+ */
+
+:root {
+  --p: #d8fff0;            /* phosphor */
+  --p-dim: #4f8f78;
+  --p-hot: #7dffcf;
+  --alert: #ff4d4d;
+  --bg: #030605;
+  --mono: "Consolas", "Cascadia Mono", "Courier New", monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--p);
+  font: 400 17px/1.72 var(--mono);
+  position: relative;
+}
+
+/* Scanlines. Fixed, so the text moves through them rather than with them. */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 3; pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.42) 2px 4px);
+  opacity: .55;
+}
+/* Phosphor bloom + the sweep of a refresh that never quite finishes. */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    radial-gradient(96% 74% at 50% 44%, rgba(125,255,207,.07), transparent 72%),
+    linear-gradient(180deg, transparent 0 46%, rgba(125,255,207,.05) 47%, transparent 48% 100%);
+  animation: sweep 7.5s linear infinite;
+}
+@keyframes sweep {
+  0%   { background-position: 0 0, 0 -120vh; }
+  100% { background-position: 0 0, 0 120vh; }
+}
+
+/* ---- the band ------------------------------------------------------------ */
+
+.top {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: baseline; gap: 16px;
+  padding: 10px clamp(16px, 4vw, 40px);
+  background: #061410; border-bottom: 1px solid rgba(125,255,207,.28);
+  font: 400 11px/1 var(--mono); letter-spacing: .28em; text-transform: uppercase;
+  color: var(--p-dim);
+}
+.top a.home { text-decoration: none; color: var(--p-hot); }
+.top a.home::before { content: "< "; }
+.top .crumb::after { content: " \00a0 SESSION ACTIVE"; color: var(--alert); }
+.top .spacer { flex: 1; }
+.top input { display: none; }
+
+/* ---- the head ------------------------------------------------------------ */
+
+.doc { max-width: 940px; margin: 0 auto; padding-top: clamp(40px, 7vw, 84px); padding-bottom: 160px; position: relative; z-index: 4; }
+
+.eyebrow { font: 400 11px/1 var(--mono); letter-spacing: .5em; text-transform: uppercase; color: var(--p-dim); margin: 0 0 16px; }
+.eyebrow::before { content: "SUBJECT \00a0 "; opacity: .55; }
+
+h1 {
+  font: 700 clamp(22px, 3.4vw, 40px)/1.22 var(--mono);
+  letter-spacing: -.01em; color: var(--p-hot); margin: 0 0 8px;
+  text-shadow: 0 0 22px rgba(125,255,207,.34);
+  word-break: break-word;
+  position: relative;
+}
+/* Chromatic split - the tube is out of alignment.
+ *
+ * Done with a shadow rather than a duplicated attr(data-title) layer: an
+ * absolutely-positioned copy re-wraps on its own and printed the whole headline
+ * a second time, half a line lower. A shadow cannot desynchronise from the text
+ * it is splitting. */
+h1 {
+  text-shadow:
+    -2px 0 rgba(255,77,77,.55),
+     2px 0 rgba(125,255,207,.3),
+     0 0 22px rgba(125,255,207,.3);
+}
+
+.subhead {
+  font: 400 12px/1.9 var(--mono); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--p-dim); border-top: 1px solid rgba(125,255,207,.2);
+  border-bottom: 1px solid rgba(125,255,207,.2); padding: 10px 0; margin: 24px 0 44px;
+}
+
+/* ---- the transcript ------------------------------------------------------ */
+
+.content { max-width: 82ch; }
+.content p { margin: 0 0 20px; }
+
+/* The machine's own state lines: QUERYING..., CONSIDERING..., RESPONSE STOPPED.
+ * They are not prose and must not read as prose - they are the interface
+ * interrupting a person's file.
+ *
+ * Keyed on .allcaps, NOT on .brief. A short paragraph here is usually the AI
+ * ANSWERING - "Yes. I have all the data. Still." - and dressing that as a
+ * system state would put words in the machine's mouth, which is the one
+ * editorial liberty this theme must not take. */
+.allcaps {
+  font: 700 13px/1.6 var(--mono); letter-spacing: .34em; text-transform: uppercase;
+  color: var(--bg); background: var(--p-dim); display: inline-block;
+  padding: 5px 14px 4px; margin: 34px 0 24px;
+}
+.allcaps:hover { background: var(--alert); color: #fff; }
+
+/* A short answer gets air around it instead. It reads as a pause. */
+.content p.brief { color: var(--p-hot); margin: 30px 0; padding-left: 16px; border-left: 1px solid rgba(125,255,207,.35); }
+
+.content h2 {
+  font: 700 13px/1.5 var(--mono); letter-spacing: .32em; text-transform: uppercase;
+  color: var(--p-hot); margin: 60px 0 18px; padding-left: 14px;
+  border-left: 4px solid var(--p-hot);
+}
+.content h3 { font: 700 16px/1.4 var(--mono); color: var(--p); margin: 36px 0 10px; letter-spacing: .06em; }
+.content h4 { font: 400 12px/1.5 var(--mono); letter-spacing: .26em; text-transform: uppercase; color: var(--p-dim); margin: 26px 0 8px; }
+
+.content strong { color: #fff; }
+.content em { color: var(--p-hot); font-style: normal; text-decoration: underline; text-underline-offset: 3px; }
+.content code { color: var(--p-hot); }
+
+.content ul { margin: 0 0 22px; padding-left: 0; list-style: none; }
+.content li { position: relative; padding-left: 26px; margin: 0 0 8px; }
+.content li::before { content: ">"; position: absolute; left: 4px; color: var(--p-dim); }
+
+.content blockquote { margin: 0 0 22px; padding-left: 20px; border-left: 1px dashed var(--p-dim); color: var(--p-dim); }
+
+.content hr { border: none; height: 1px; margin: 44px 0; background: repeating-linear-gradient(90deg, var(--p-dim) 0 8px, transparent 8px 16px); opacity: .55; }
+
+.content table { margin: 0 0 24px; font: 14px/1.5 var(--mono); }
+.content th { text-align: left; padding: 8px 12px; background: var(--p-dim); color: var(--bg); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.content td { padding: 8px 12px; border-bottom: 1px solid rgba(125,255,207,.16); vertical-align: top; }
+
+.cls { font-size: 11px; color: var(--p-dim); letter-spacing: .14em; border: 1px solid rgba(125,255,207,.3); padding: 2px 5px; }
+.redact { background: var(--p-dim); color: var(--p-dim); padding: 0 5px; }
+.redact:hover { color: var(--bg); }
+
+/* The session never closed. */
+.content > :last-child::after {
+  content: "\2588"; color: var(--p-hot); margin-left: 6px;
+  animation: cursor 1.05s steps(1) infinite;
+}
+@keyframes cursor { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+.meta { margin-top: 90px; border-top: 1px solid rgba(125,255,207,.2); padding-top: 12px; }
+
+.gallery { margin: 0 0 40px; gap: 6px; }
+.gallery img { border: 1px solid rgba(125,255,207,.3); filter: grayscale(1) contrast(1.2) sepia(.4) hue-rotate(105deg); }
+.lightbox { background: rgba(3,6,5,.97); }
+
+footer {
+  margin-top: 90px; padding-top: 14px; border-top: 1px solid rgba(125,255,207,.2);
+  font: 11px/2 var(--mono); letter-spacing: .24em; text-transform: uppercase; color: var(--p-dim);
+  position: relative; z-index: 4;
+}
+footer::after { content: " \00a0 QUANTIFIED SATORI RETAINS THIS RECORD"; color: var(--alert); opacity: .75; }
+
+::selection { background: var(--p-hot); color: var(--bg); }

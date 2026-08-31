@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Reports"
+  short_description: "Mod inventory, system profile, and readable deliverables"
+  default_prompt: "Use $cyberwise-reports to inventory this install or profile the machine behind the problem."

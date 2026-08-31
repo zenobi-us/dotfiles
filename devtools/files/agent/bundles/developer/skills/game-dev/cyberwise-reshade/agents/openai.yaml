@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: ReShade"
+  short_description: "ReShade add-on builds and shader pack collisions"
+  default_prompt: "Use $cyberwise-reshade to sort out why these ReShade shaders will not load."

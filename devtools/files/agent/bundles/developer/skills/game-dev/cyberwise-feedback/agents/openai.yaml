@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Feedback"
+  short_description: "Report a Cyberwise bug or wrong note, with the facts already gathered"
+  default_prompt: "Use $cyberwise-feedback to help me report this problem to the author."

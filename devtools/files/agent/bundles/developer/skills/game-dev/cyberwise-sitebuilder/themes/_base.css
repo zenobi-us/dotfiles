@@ -1,0 +1,70 @@
+/* _base.css -- structure only. Deliberately almost styleless.
+ *
+ * This is the Zen Garden split: every character page ships the SAME semantic
+ * markup, and the theme stylesheet loaded after this one owns everything about
+ * how it looks. If a rule here decides a colour, a face or a size, it is in the
+ * wrong file - because the next theme will have to fight it.
+ *
+ * What belongs here: the reset, the reading flow, and the handful of behaviours
+ * a theme must not break (images not overflowing, the skip link, print).
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* Themes set: background, color, font. Nothing here. */
+}
+
+img, video { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; }
+
+/* The document body. A theme sets the measure; this only guarantees the
+ * content never runs edge to edge on a phone. */
+.doc, .hub { padding-left: max(18px, env(safe-area-inset-left)); padding-right: max(18px, env(safe-area-inset-right)); }
+
+.content > :first-child { margin-top: 0; }
+
+/* Tables are the one thing that must never break the page: a dossier table on
+ * a phone scrolls inside itself rather than forcing the body sideways. */
+.content table { width: 100%; border-collapse: collapse; }
+.tablewrap { overflow-x: auto; }
+
+/* Set by the builder on every page so a theme can react to the document and to
+ * the character without any extra markup. */
+[hidden] { display: none !important; }
+.subhead:empty { display: none; }
+
+.skip {
+  position: absolute; left: -9999px; top: 0; padding: 10px 14px; z-index: 99;
+}
+.skip:focus { left: 0; }
+
+/* Media, when there is any. Themes restyle freely; this stops a missing image
+ * from collapsing the grid. */
+.gallery { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.gallery img { width: 100%; cursor: zoom-in; }
+
+.lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 60; padding: 4vmin; }
+.lightbox.on { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; }
+
+/* Motion is part of the mood in these themes, so it is opt-out rather than
+ * absent - but it does have to be opt-out. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media print {
+  .top, .gallery, .lightbox, .grain, .scan { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .doc { max-width: none; }
+}

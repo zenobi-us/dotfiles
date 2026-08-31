@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Saves"
+  short_description: "Read save files and character appearance data"
+  default_prompt: "Use $cyberwise-saves to read this save or decode an appearance preset."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise"
+  short_description: "Diagnose a modded Cyberpunk 2077 install"
+  default_prompt: "Use $cyberwise to diagnose this Cyberpunk 2077 modding problem and route to the right part."

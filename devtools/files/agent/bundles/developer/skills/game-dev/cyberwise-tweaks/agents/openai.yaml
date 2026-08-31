@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cyberwise: Tweaks"
+  short_description: "TweakXL edits, CET Lua, and finding the game text"
+  default_prompt: "Use $cyberwise-tweaks to write or repair this TweakXL edit with the real record id."
