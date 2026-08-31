@@ -20,5 +20,6 @@
 "~/AppData/Roaming/hrdx/themes" = { source = "shells/files/hrdx/themes", mode = "symlink" }
 "~/AppData/Roaming/hrdx/keys.json" = { source = "shells/files/hrdx/keys.json", mode = "symlink" }
 "~/AppData/Roaming/hrdx/harness.json" = { source = "shells/files/hrdx/harness.json", mode = "symlink" }
+"~/AppData/Roaming/hrdx/sounds.json" = { source = "shells/files/hrdx/sounds.json", mode = "symlink" }
 "~/AppData/Roaming/zellij" = { source = "shells/files/zellij", mode = "symlink" }
 "~/Documents/PowerShell" = { source = "shells/files/powershell", mode = "copy" }

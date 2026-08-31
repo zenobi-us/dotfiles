@@ -14,6 +14,7 @@
 "~/.config/hrdx/themes" = { source = "shells/files/hrdx/themes", mode = "symlink" }
 "~/.config/hrdx/keys.json" = { source = "shells/files/hrdx/keys.json", mode = "symlink" }
 "~/.config/hrdx/harness.json" = { source = "shells/files/hrdx/harness.json", mode = "symlink" }
+"~/.config/hrdx/sounds.json" = { source = "shells/files/hrdx/sounds.json", mode = "symlink" }
 "~/.claude/settings.json" = { source = "devtools/files/claude/settings.json", mode = "symlink" }
 "~/.claude/statusline.sh" = { source = "devtools/files/claude/statusline.sh", mode = "symlink" }
 "~/.claude/themes/" = { source = "devtools/files/claude/themes/", mode = "symlink-each" }
