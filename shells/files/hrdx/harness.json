@@ -1,0 +1,10 @@
+[
+  {
+    "kind": "lazygit",
+    "binary": "lazygit"
+  },
+  {
+    "kind": "nvim",
+    "binary": "nvim"
+  }
+]
