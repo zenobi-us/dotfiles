@@ -113,6 +113,7 @@ herdr = "latest"
 "npm:tempomat" = "latest"
 "github:patriceckhart/hrdx" = "latest"
 "github:patriceckhart/zot" = "latest"
+"github:pg83/shitty" = "latest"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
