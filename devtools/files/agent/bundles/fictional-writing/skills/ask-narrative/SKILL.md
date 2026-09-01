@@ -92,9 +92,9 @@ Route to the smallest reference when the task needs focused guidance:
 - Add `narrative-style-editor` only when prose, dialogue, rhythm, or sensory detail needs revision.
 - Add `narrative-publishing-manager` only when the user requests review or publication preparation.
 
-## Cyberpunk Routing
+## Licensed-Setting Routing
 
-When the request names `Cyberpunk RED`, `Cyberpunk 2077`, or another licensed setting:
+When the request names a licensed setting or depends on external canon:
 
 1. Use `canon-steward` when the request needs source facts.
 2. Mark each fact as official, secondary, original, or unverified.

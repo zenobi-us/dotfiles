@@ -17,7 +17,7 @@ Use it before marking a story complete, adding a major death or injury, changing
 
 Use it after `story-architect`, `character-designer`, `world-builder`, `faction-designer`, or a manual edit changes shared material.
 
-Use `canon-steward` when the conflict depends on official RED, 2077, or other licensed setting facts.
+Use `canon-steward` when the conflict depends on official or licensed setting facts.
 
 Do not use this skill to rewrite prose, choose a canon answer without evidence, or hide a conflict to make a story work.
 

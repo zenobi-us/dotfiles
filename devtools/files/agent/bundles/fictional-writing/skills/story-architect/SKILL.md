@@ -19,7 +19,7 @@ Use `world-builder` when the story lacks a required place, technology, instituti
 
 Use `faction-designer` when an opposing or supporting group needs its own goals, resources, leadership, relationships, or internal conflict.
 
-Use `canon-steward` first when the story depends on official RED, 2077, or other licensed setting facts.
+Use `canon-steward` first when the story depends on official or licensed setting facts.
 
 Do not use this skill to draft finished prose, build a whole setting, or resolve unsupported canon conflicts.
 
@@ -144,7 +144,7 @@ Do not promise that a broadcast, public proof, or heroic victory changes the wor
 
 Design the smallest arc that answers the request.
 
-Do not invent exact dates, quantities, prices, technical procedures, RED mechanics, named canon characters, or political outcomes without a source or a project decision.
+Do not invent exact dates, quantities, prices, technical procedures, setting-specific mechanics, named canon characters, or political outcomes without a source or a project decision.
 
 Record useful but unsupported details as open questions. Record omitted mechanics or production details when they are outside the current scope.
 

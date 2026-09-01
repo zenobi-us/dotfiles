@@ -24,4 +24,4 @@ For character material, separate:
 
 ## Router trigger
 
-Use this reference when a character, faction, place, event, or story uses official Cyberpunk RED, Cyberpunk 2077, or other licensed material.
+Use this reference when a character, faction, place, event, or story uses official or licensed setting material.
