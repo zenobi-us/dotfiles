@@ -36,9 +36,9 @@ Use these labels consistently:
 
 | Label | Meaning |
 |---|---|
-| `official-red` | Official material for Cyberpunk RED or its stated timeline. |
-| `official-2077` | Official material for Cyberpunk 2077 or its stated timeline. |
-| `official-other` | Official material from another named Cyberpunk product. |
+| `official-primary` | Official material from the primary rights-holder. |
+| `official-secondary` | Official material from an approved secondary product or edition. |
+| `official-other` | Official material from another licensed source. |
 | `original` | Material created for this repository. |
 | `secondary` | A guide, discussion, or summary that is not the primary source. |
 | `unverified` | A claim with no reliable source or unresolved evidence. |
@@ -51,9 +51,9 @@ Create one Markdown source record in `docs/sources/` for each external source th
 
 ```markdown
 ---
-id: source.cyberpunk-red-example
+id: source.official-example
 kind: source
-canon: official-red
+canon: official-primary
 title: Example Source
 publisher: Example Publisher
 url: https://example.com/source
@@ -100,7 +100,7 @@ When two sources conflict, preserve both claims first.
 Record a reconciliation note in `docs/canon/<slug>-reconciliation.md`:
 
 ```markdown
-# Cyberpunk RED and Cyberpunk 2077 Reconciliation
+# Canon Reconciliation
 
 ## Conflict
 

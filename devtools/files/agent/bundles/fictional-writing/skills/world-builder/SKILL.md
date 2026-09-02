@@ -13,7 +13,7 @@ Do not create a catalogue of disconnected details. Do not use world-building to 
 
 Use this skill when a story needs a new district, location, region, institution, technology, historical layer, social condition, or local conflict.
 
-Use `canon-steward` first when the request needs official setting facts, source research, or a RED and 2077 reconciliation.
+Use `canon-steward` first when the request needs official setting facts, source research, or a canon reconciliation.
 
 Use `faction-designer` when an institution or group needs its own leadership, resources, agenda, relationships, or internal conflict.
 
@@ -91,7 +91,7 @@ Institutions with independent goals are `faction` facets. Infrastructure, custom
 
 Mark each facet with its canon label:
 
-- Use `official-red`, `official-2077`, or `official-other` for sourced official material.
+- Use `official-primary`, `official-secondary`, or `official-other` for sourced official material.
 - Use `secondary` for non-primary sources.
 - Use `original` for new project material.
 - Use `unverified` when evidence is weak or missing.
@@ -223,7 +223,7 @@ Report:
 | Add details with no story use | Connect each detail to pressure, choice, cost, or consequence. |
 | Create a new faction inside every place file | Link an existing faction or hand off faction design. |
 | Use official facts without source records | Run `canon-steward` and record each sourced claim. |
-| Resolve RED and 2077 conflicts silently | Preserve both claims and link a reconciliation note. |
+| Resolve canon conflicts silently | Preserve both claims and link a reconciliation note. |
 | Make technology solve every problem | Give technology access limits, failure modes, and costs. |
 | Add history without present effects | Record the current consequence of each important event. |
 | Invent an exact date when none exists | Mark the date unknown or use a bounded date range. |

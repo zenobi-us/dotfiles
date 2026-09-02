@@ -1,0 +1,46 @@
+{
+  "name": "rose-pine-moon",
+  "description": "Rosé Pine Moon for zot — darker, cooler variant.",
+  "colors": {
+    "dark": {
+      "fg": 189,
+      "muted": 60,
+      "accent": 174,
+      "user": 216,
+      "user_bubble_bg": { "mode": "rgb", "r": 57, "g": 53, "b": 82 },
+      "user_bubble_fg": 189,
+      "assistant": 182,
+      "tool": 152,
+      "tool_out": 60,
+      "error": 168,
+      "warning": 216,
+      "spinner": 182,
+      "selection_bg": 59,
+      "selection_fg": 189,
+      "spinner_frames": ["◐", "◓", "◑", "◒"],
+      "spinner_messages": ["reading moonlight", "tending the rose", "charting tides"],
+      "spinner_interval_ms": 120,
+      "syntax_base_style": "monokai",
+      "syntax": {
+        "keyword": "#c4a7e7 bold",
+        "keyword_constant": "#ea9a97",
+        "keyword_declaration": "#c4a7e7",
+        "keyword_namespace": "#c4a7e7",
+        "keyword_reserved": "#c4a7e7 bold",
+        "keyword_type": "#9ccfd8",
+        "name_builtin": "#3e8fb0",
+        "name_function": "#ea9a97",
+        "name_class": "#f6c177 bold",
+        "name_decorator": "#eb6f92",
+        "literal_string": "#9ccfd8",
+        "literal_string_escape": "#eb6f92",
+        "literal_number": "#f6c177",
+        "comment": "#6e6a86 italic",
+        "comment_preproc": "#c4a7e7",
+        "operator": "#e0def4",
+        "punctuation": "#908caa",
+        "text": "#e0def4"
+      }
+    }
+  }
+}

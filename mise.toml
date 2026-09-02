@@ -113,6 +113,7 @@ herdr = "latest"
 "npm:tempomat" = "latest"
 "github:patriceckhart/hrdx" = "latest"
 "github:patriceckhart/zot" = "latest"
+"github:pg83/shitty" = "latest"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
@@ -132,6 +133,7 @@ fi
 "~/.bunfig.toml" = { source = "devtools/files/bun/bunfig.toml", mode = "symlink" }
 "~/.gitconfig" = { source = "devtools/files/git/.gitconfig", mode = "copy" }
 "~/.gitignore_global" = { source = "devtools/files/git/.gitignore_global", mode = "copy" }
+"~/.local/state/zot/themes" = { source = "devtools/files/zot/themes", mode = "symlink" }
 "~/.config/lazygit" = { source = "devtools/files/lazygit", mode = "symlink-each" }
 
 [tasks.bootstrap]

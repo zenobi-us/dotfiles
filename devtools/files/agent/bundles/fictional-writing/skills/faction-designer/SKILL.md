@@ -15,7 +15,7 @@ Use this skill when a place, story, or character needs a faction with independen
 
 Use it after `world-builder` creates a faction placeholder or identifies an institution with independent agency.
 
-Use `canon-steward` first when the faction uses official RED, 2077, or other licensed setting facts.
+Use `canon-steward` first when the faction uses official or licensed setting facts.
 
 Use `character-designer` when a leader, contact, or member needs an independent character facet.
 
@@ -89,12 +89,12 @@ Create a separate character facet for a leader only when that leader has an inde
 
 Mark each faction with the repository's canon label:
 
-- Use the project's labels for official RED, 2077, and other licensed material.
+- Use the project's labels for official and other licensed material.
 - Use the project's label for secondary material.
 - Use the project's label for original material.
 - Use the project's label for weak or missing evidence.
 
-If the repository has no canon labels, use `official-red`, `official-2077`, `official-other`, `secondary`, `original`, and `unverified`.
+If the repository has no canon labels, use `official-primary`, `official-secondary`, `official-other`, `secondary`, `original`, and `unverified`.
 
 Add a source ID and locator beside each sourced fact. Use the source format defined by the repository. If no format exists, use `[source-id: locator]` after the fact and record the source in `docs/sources/` when that path exists. Keep official faction facts separate from project additions.
 
