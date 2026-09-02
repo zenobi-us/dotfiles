@@ -1,21 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "includeCoAuthoredBy": false,
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
   "worktree": {
     "baseRef": "fresh"
   },
-  "includeCoAuthoredBy": false,
-  "spinnerTipsEnabled": false,
-
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
-  },
-  "spinnerVerbs": {
-    "mode": "replace",
-    "verbs": [" "]
   },
   "enabledPlugins": {
     "agent-core@pi-agent-bundles": true,
@@ -28,7 +22,8 @@
     "shared-agent-context@pi-agent-bundles": true,
     "vanilla-green@pi-agent-bundles": true,
     "writing@pi-agent-bundles": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "pi-agent-bundles": {
@@ -38,8 +33,16 @@
       }
     }
   },
+  "outputStyle": "simple-english-sop",
+  "spinnerTipsEnabled": false,
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      " "
+    ]
+  },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "custom:rose-pine-moon",
-  "outputStyle": "simple-english-sop"
+  "feedbackDrafts": "off"
 }
