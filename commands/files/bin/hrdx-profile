@@ -1,0 +1,171 @@
+#!/bin/bash
+
+# Manage hrdx workspace-state files as named profiles.
+# hrdx reads/writes its workspace layout to a "-state <file>" path.
+# A profile is just one of these state files, kept under PROFILES_DIR.
+
+set -euo pipefail
+
+PROFILES_DIR="${HOME}/.config/hrdx/profiles"
+
+usage() {
+  cat <<'EOF'
+Usage: hrdx-profile <command> [args]
+
+Commands:
+  list                    List saved profiles.
+  show <name>             Show the workspaces in a profile.
+  attach <name> [args]    Launch hrdx with a profile's state file.
+  create <name> <cwd>     Create a profile seeded with one workspace.
+  delete <name> [--force] Delete a profile. --force skips the prompt.
+EOF
+}
+
+profile_path() {
+  echo "${PROFILES_DIR}/$1.json"
+}
+
+require_name() {
+  if [[ -z "${1:-}" ]]; then
+    echo "Error: a profile name is required." >&2
+    exit 2
+  fi
+}
+
+require_profile_exists() {
+  local path
+  path="$(profile_path "$1")"
+  if [[ ! -f "$path" ]]; then
+    echo "Error: profile '$1' does not exist." >&2
+    exit 1
+  fi
+}
+
+cmd_list() {
+  mkdir -p "$PROFILES_DIR"
+  local found=0
+  for f in "$PROFILES_DIR"/*.json; do
+    [[ -e "$f" ]] || continue
+    found=1
+    basename "$f" .json
+  done
+  if [[ "$found" -eq 0 ]]; then
+    echo "No profiles found. Create one with: hrdx-profile create <name> <cwd>"
+  fi
+}
+
+cmd_show() {
+  local name="${1:-}"
+  require_name "$name"
+  require_profile_exists "$name"
+  local path
+  path="$(profile_path "$name")"
+  jq -r '
+    if (.workspaces | length) == 0 then
+      "Profile has no workspaces yet."
+    else
+      .workspaces[] |
+      "\(.name)  \(.cwd)  (\(.tabs | length) tab(s))"
+    end
+  ' "$path"
+}
+
+cmd_attach() {
+  local name="${1:-}"
+  require_name "$name"
+  require_profile_exists "$name"
+  shift
+  local path
+  path="$(profile_path "$name")"
+  exec hrdx -state "$path" "$@"
+}
+
+cmd_create() {
+  local name="${1:-}"
+  local cwd="${2:-}"
+  require_name "$name"
+  if [[ -z "$cwd" ]]; then
+    echo "Error: a project directory is required." >&2
+    exit 2
+  fi
+  if [[ ! -d "$cwd" ]]; then
+    echo "Error: directory '$cwd' does not exist." >&2
+    exit 1
+  fi
+  cwd="$(cd "$cwd" && pwd)"
+  mkdir -p "$PROFILES_DIR"
+  local path
+  path="$(profile_path "$name")"
+  if [[ -f "$path" ]]; then
+    echo "Error: profile '$name' already exists." >&2
+    exit 1
+  fi
+  jq -n --arg name "$name" --arg cwd "$cwd" '
+    {
+      workspaces: [
+        {
+          name: $name,
+          cwd: $cwd,
+          tabs: [
+            {
+              panes: [ { kind: "shell", name: "shell 1" } ],
+              layout: { pane: 0 },
+              selected: 0
+            }
+          ],
+          active: 0
+        }
+      ]
+    }
+  ' > "$path"
+  echo "Created profile '$name' -> $cwd"
+}
+
+cmd_delete() {
+  local name=""
+  local force=0
+  for arg in "$@"; do
+    case "$arg" in
+      --force) force=1 ;;
+      *) name="$arg" ;;
+    esac
+  done
+  require_name "$name"
+  require_profile_exists "$name"
+  local path
+  path="$(profile_path "$name")"
+
+  if [[ "$force" -ne 1 ]]; then
+    if [[ ! -t 0 ]]; then
+      echo "Error: refusing to delete '$name' without a terminal. Pass --force." >&2
+      exit 2
+    fi
+    read -r -p "Delete profile '$name'? [y/N] " confirm
+    if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
+      echo "Cancelled."
+      exit 0
+    fi
+  fi
+
+  rm "$path"
+  echo "Deleted profile '$name'."
+}
+
+main() {
+  local cmd="${1:-}"
+  case "$cmd" in
+    list) cmd_list ;;
+    show) shift; cmd_show "$@" ;;
+    attach) shift; cmd_attach "$@" ;;
+    create) shift; cmd_create "$@" ;;
+    delete) shift; cmd_delete "$@" ;;
+    -h|--help|help|"") usage ;;
+    *)
+      echo "Error: unknown command '$cmd'" >&2
+      usage
+      exit 2
+      ;;
+  esac
+}
+
+main "$@"
