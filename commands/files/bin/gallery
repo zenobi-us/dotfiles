@@ -1,0 +1,80 @@
+#!/usr/bin/env bun
+
+import { readdirSync, statSync } from "node:fs";
+import { extname, join, relative, resolve, sep } from "node:path";
+
+const root = process.cwd();
+const port = Number(process.env.PORT ?? Bun.argv[2] ?? 3000);
+const imageExtensions = new Set([
+  ".apng", ".avif", ".bmp", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp",
+]);
+
+const escapeHtml = (value: string) => value
+  .replaceAll("&", "&amp;")
+  .replaceAll("<", "&lt;")
+  .replaceAll(">", "&gt;")
+  .replaceAll('"', "&quot;")
+  .replaceAll("'", "&#39;");
+
+const files = () => readdirSync(root)
+  .map((name) => join(root, name))
+  .filter((path) => statSync(path).isFile())
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+const filePath = (pathname: string) => {
+  const path = resolve(root, `.${decodeURIComponent(pathname)}`);
+  if (path !== root && !path.startsWith(`${root}${sep}`)) return null;
+  return path;
+};
+
+const page = () => {
+  const items = files().map((path) => {
+    const name = relative(root, path);
+    const url = `/${name.split(sep).map(encodeURIComponent).join("/")}`;
+    const extension = extname(name).slice(1).toUpperCase() || "FILE";
+    const isImage = imageExtensions.has(extname(name).toLowerCase());
+    return `<a class="card" href="${url}"${isImage ? ' target="_blank"' : ""}>
+  <div class="preview">${isImage ? `<img src="${url}" alt="${escapeHtml(name)}" loading="lazy">` : `<span>.${escapeHtml(extension.toLowerCase())}</span>`}</div>
+  <div class="name" title="${escapeHtml(name)}">${escapeHtml(name)}</div>
+</a>`;
+  }).join("\n");
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gallery · ${escapeHtml(root)}</title>
+<style>
+:root { color-scheme: dark; font-family: system-ui, sans-serif; background: #111; color: #eee; }
+body { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 1.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+.card { color: inherit; text-decoration: none; min-width: 0; }
+.preview { aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; border: 1px solid #2b2b2b; border-radius: .75rem; background: #1b1b1b; }
+.preview img { width: 100%; height: 100%; object-fit: contain; }
+.preview span { color: #888; font: 700 1.5rem ui-monospace, monospace; }
+.name { padding: .6rem .25rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .9rem; }
+.card:hover .preview { border-color: #777; }
+</style>
+</head>
+<body>
+<h1>${escapeHtml(root)}</h1>
+<div class="grid">${items || "<p>No files found.</p>"}</div>
+</body>
+</html>`;
+};
+
+Bun.serve({
+  port,
+  async fetch(request) {
+    const url = new URL(request.url);
+    if (url.pathname === "/") return new Response(page(), { headers: { "content-type": "text/html; charset=utf-8" } });
+    const path = filePath(url.pathname);
+    if (!path) return new Response("Not found", { status: 404 });
+    const file = Bun.file(path);
+    return await file.exists() ? new Response(file) : new Response("Not found", { status: 404 });
+  },
+});
+
+console.log(`Gallery serving ${root} at http://localhost:${port}`);
