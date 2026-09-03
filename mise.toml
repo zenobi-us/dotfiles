@@ -114,6 +114,9 @@ herdr = "latest"
 "github:patriceckhart/hrdx" = "latest"
 "github:patriceckhart/zot" = "latest"
 "github:pg83/shitty" = "latest"
+"github:margin-lab/evals" = "latest"
+glab = "latest"
+"gitlab:gitlab-org/cli" = "latest"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
