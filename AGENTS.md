@@ -27,3 +27,7 @@ Project management
 - Use short sentences, active voice, and one term for each concept.
 - Use plain technical terms. Do not use elitist, decorative, or needlessly complex terminology.
 - Keep commands, code, identifiers, file paths, product names, and quoted errors unchanged.
+
+## Subagents
+
+Spawn subagents as new panes,tabs or workspaces with the hrdx-subagent skill.

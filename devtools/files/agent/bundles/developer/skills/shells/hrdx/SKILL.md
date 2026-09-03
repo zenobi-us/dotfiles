@@ -14,7 +14,7 @@ hrdx is a terminal multiplexer built for AI agent workflows — like tmux, but e
 - Tool install: `mise.toml` has `"github:patriceckhart/hrdx" = "latest"`.
 - Real hrdx config directory (holds `state.json` and every file below): Linux `~/.config/hrdx/`, Windows `%AppData%\hrdx\`, macOS `~/Library/Application Support/hrdx/`.
 - This repo's managed files: `shells/files/hrdx/themes/*.json`, `shells/files/hrdx/keys.json`, and `shells/files/hrdx/harness.json`, each symlinked from `mise.unix.toml` (`~/.config/hrdx/...`) and `mise.windows.toml` (`%AppData%\hrdx\...`). Examples in this repo: `shells/files/hrdx/themes/rose-pine-moon.json`, `shells/files/hrdx/harness.json` (registers `lazygit` and `nvim` as quick-launch harnesses, no `busy` detection needed for either).
-- `sounds.json` is **not yet wired into mise**. To manage it from this repo, put it under `shells/files/hrdx/sounds.json` and add a matching symlink line to `mise.unix.toml` and `mise.windows.toml`, next to the keys/harness lines.
+- `sounds.json` is managed by mise. It is symlinked from `shells/files/hrdx/sounds.json` in `mise.unix.toml` and `mise.windows.toml`.
 
 ## Config Files
 
@@ -142,4 +142,4 @@ After editing a theme, key, harness, or sound file, restart hrdx (or reopen its 
 | Writing `harness.json` as a single object | It must be a JSON array, even for one harness. |
 | Mapping `keys.json` as `{"key": "action"}` | Wrong direction. It is `{"action": "key"}`. |
 | Registering a harness `kind` of `shell`, `zot`, `pi`, `claude`, or `codex` | These are built in and reserved. Pick a different `kind`. |
-| Assuming `sounds.json` is already repo-managed | Only `themes/`, `keys.json`, and `harness.json` are symlinked via mise today. Wire `sounds.json` yourself if needed. |
+| Assuming an hrdx config file is repo-managed | Check `mise.unix.toml` or `mise.windows.toml` before editing the live config. |
