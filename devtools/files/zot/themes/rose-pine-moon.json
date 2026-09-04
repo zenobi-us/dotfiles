@@ -17,9 +17,9 @@
       "spinner": 182,
       "selection_bg": 59,
       "selection_fg": 189,
-      "spinner_frames": ["◐", "◓", "◑", "◒"],
-      "spinner_messages": ["reading moonlight", "tending the rose", "charting tides"],
-      "spinner_interval_ms": 120,
+      "spinner_frames": ["⠁", "⠂", "⠄", "⡀", "⢀", "⠠", "⠐", "⠈"],
+      "spinner_messages": [],
+      "spinner_interval_ms": 70,
       "syntax_base_style": "monokai",
       "syntax": {
         "keyword": "#c4a7e7 bold",

@@ -9,6 +9,6 @@
   },
   "pi": {
     "extensions": ["./extensions"],
-    "prompts": ["./commands"]
+    "skills": ["./skills"]
   }
 }

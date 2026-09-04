@@ -1,0 +1,7 @@
+{
+  "name": "writing",
+  "version": "0.1.0",
+  "description": "Business English writing styles and professional document writing skills",
+  "skills": ["./skills"],
+  "enabled": true
+}

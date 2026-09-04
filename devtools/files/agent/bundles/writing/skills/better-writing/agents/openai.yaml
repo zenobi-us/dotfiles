@@ -1,0 +1,7 @@
+interface:
+  display_name: "Better Writing"
+  short_description: "Make prose direct, human, and specific"
+  default_prompt: "Use $better-writing to rewrite this draft so it sounds clear, specific, and natural."
+
+policy:
+  allow_implicit_invocation: true

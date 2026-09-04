@@ -5,7 +5,6 @@
     "@crustjs/plugins": "^0.1.2"
   },
   "pi": {
-    "prompts": ["./commands"],
     "skills": ["./skills"]
   }
 }

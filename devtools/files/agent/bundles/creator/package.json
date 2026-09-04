@@ -5,7 +5,6 @@
   "private": true,
   "keywords": ["pi-package"],
   "pi": {
-    "prompts": ["./prompts"],
     "skills": ["./skills"]
   }
 }

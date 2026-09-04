@@ -17,9 +17,9 @@
       "spinner": 103,
       "selection_bg": 252,
       "selection_fg": 60,
-      "spinner_frames": ["◐", "◓", "◑", "◒"],
-      "spinner_messages": ["catching dawn", "tending the rose", "warming tea"],
-      "spinner_interval_ms": 120,
+      "spinner_frames": ["⠁", "⠂", "⠄", "⡀", "⢀", "⠠", "⠐", "⠈"],
+      "spinner_messages": [],
+      "spinner_interval_ms": 70,
       "syntax_base_style": "github",
       "syntax": {
         "keyword": "#907aa9 bold",

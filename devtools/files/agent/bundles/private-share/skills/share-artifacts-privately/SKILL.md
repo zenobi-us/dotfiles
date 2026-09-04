@@ -5,6 +5,8 @@ description: Use when an agent must publish an artifact through the private-shar
 
 # Share Artifacts Privately
 
+**Explicit-only:** Publish or set up sharing only when the user explicitly requests that action. Treat `setup` and `share` as mutating operations. Read-only checks such as `--help`, `self-test`, and validation may run during an explicitly requested share workflow.
+
 ## Overview
 
 Use the bundled `scripts/private-share.mjs` CLI as the only mutation path. The published `gh-pages` branch MUST obey [the branch contract](assets/web/llms.txt): shares live under `s/<hash>/`, directory archives live at `s/<hash>.zip`, and each share has one `sessions.jsonl` record.

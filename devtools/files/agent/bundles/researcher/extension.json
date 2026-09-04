@@ -1,0 +1,7 @@
+{
+  "name": "researcher",
+  "version": "0.1.0",
+  "description": "Research methodology, deep analysis, and data/AI expert personas",
+  "skills": ["./skills"],
+  "enabled": true
+}
