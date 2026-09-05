@@ -108,14 +108,14 @@ youtube-dl = "latest"
 "github:vercel-labs/agent-browser" = "latest"
 granted = "latest"
 herdr = "latest"
-"llama.cpp" = { version = "latest", version_prefix = "b" }
 "github:JustVugg/colibri" = "latest"
 "npm:tempomat" = "latest"
-"github:patriceckhart/hrdx" = "latest"
+"github:patriceckhart/hrdx" = "0.0.42"
 "github:pg83/shitty" = "latest"
 "github:margin-lab/evals" = "latest"
 glab = "latest"
 "gitlab:gitlab-org/cli" = "latest"
+"github:patriceckhart/zot" = "latest"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
