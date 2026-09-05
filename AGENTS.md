@@ -2,11 +2,11 @@
 
 Working with dotfiles and machine bootstrap
 
-- Use the [pi-mono](./devtools/files/pi/agent/bundles/platform/skills/devtools/pi-mono/) skill for mise bootstrap questions.
+- Use the mise skill for mise bootstrap questions.
 
 Working with Pi-Coding-Agent
 
-- Use the [pi-mono](./devtools/files/pi/agent/bundles/platform/skills/devtools/pi-mono/) skill.
+- Use the [pi-mono](./devtools/files/agent/bundles/platform/skills/devtools/pi-mono/) skill.
 
 Reading or converting documents
 
@@ -14,7 +14,15 @@ Reading or converting documents
 
 Project management
 
-- Use the [project-planning](./devtools/files/pi/agent/bundles/business/skills/projectmanagement/project-planning/) skill.
+- Use the [project-planning](./devtools/files/agent/bundles/business/skills/projectmanagement/project-planning/) skill.
+
+### Issue tracker
+
+GitHub Issues in `zenobi-us/dotfiles` are the source of truth. Use `gh` for issue operations. See `docs/agents/issue-tracker.md` relative to the active Matt Pocock alignment root.
+
+### Domain docs
+
+This is a single-context repository. Read `CONTEXT.md` and relevant `docs/adr/` files when they exist. See `docs/agents/domain.md` relative to the active Matt Pocock alignment root.
 
 ## Container tools
 

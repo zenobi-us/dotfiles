@@ -220,3 +220,7 @@ run_windows = [
   "wsl -d Ubuntu --user root -- apt update -y",
   "wsl -d Ubuntu --user root -- apt install -y wslu socat",
 ]
+
+[tool_alias]
+zot = "github:patriceckhart/zot"
+hrdx = "github:patriceckhart/hrdx"
