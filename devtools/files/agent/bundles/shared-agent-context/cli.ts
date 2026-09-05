@@ -2,6 +2,7 @@
 import { spawnSync } from "node:child_process";
 import {
   initializeSharedContext,
+  listSharedContextFiles,
   listSharedContexts,
   migrateAlignmentContext,
   renderSharedContext,
@@ -34,17 +35,11 @@ async function runInject(): Promise<void> {
 
   const context = await resolveSharedContext(exec, cwd);
   if (!context || context.storage !== "shared" || !context.instructions) {
-    process.stdout.write(JSON.stringify({ continue: true }));
+    process.stdout.write("null\n");
     return;
   }
 
-  process.stdout.write(JSON.stringify({
-    continue: true,
-    hookSpecificOutput: {
-      hookEventName: "SessionStart",
-      additionalContext: renderSharedContext(context),
-    },
-  }));
+  process.stdout.write(`${JSON.stringify(renderSharedContext(context))}\n`);
 }
 
 async function main(): Promise<void> {
@@ -52,6 +47,13 @@ async function main(): Promise<void> {
   const cwd = process.cwd();
 
   if (command === "inject") return runInject();
+
+  if (command === "files") {
+    const result = await listSharedContextFiles(exec, cwd);
+    process.stdout.write(result.stdout);
+    process.exitCode = result.code;
+    return;
+  }
 
   if (command === "list") {
     const contexts = await listSharedContexts();

@@ -8,7 +8,7 @@
     "@earendil-works/pi-coding-agent": "*"
   },
   "pi": {
-    "extensions": ["./extensions"],
+    "extensions": ["./extensions/pi-shared-context.ts"],
     "skills": ["./skills"]
   }
 }

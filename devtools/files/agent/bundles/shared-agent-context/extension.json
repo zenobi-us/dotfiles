@@ -2,6 +2,8 @@
   "name": "shared-agent-context",
   "version": "0.1.1",
   "description": "Shared engineering context skill",
+  "exec": "./extensions/zot-shared-context.ts",
+  "language": "typescript",
   "skills": ["./skills"],
   "enabled": true
 }

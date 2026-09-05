@@ -298,6 +298,26 @@ export async function migrateAlignmentContext(context: SharedAgentContext): Prom
   return { from, to, storage, copied: entries.map((entry) => entry.relative) };
 }
 
+export async function listSharedContextFiles(
+  exec: Exec,
+  cwd: string,
+  sharedContextBase?: string,
+): Promise<{ stdout: string; code: number }> {
+  const context = await resolveSharedContext(exec, cwd, sharedContextBase);
+  if (!context) return { stdout: "", code: 0 };
+
+  return exec("fd", [
+    "--type", "f",
+    "--hidden",
+    "--absolute-path",
+    "--exclude", ".git",
+    "--exclude", ".DS_Store",
+    "--exclude", ".env.local",
+    ".",
+    context.root,
+  ]);
+}
+
 export async function listSharedContexts(
   sharedContextBase?: string,
 ): Promise<Array<{ slug: string; root: string; storage?: "shared" | "repository" }>> {

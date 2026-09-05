@@ -11,7 +11,7 @@ import sharedAgentContextExtension, {
   resolveSharedContext,
   slugifyGitRemote,
   type SharedAgentContext,
-} from "../extensions/shared-context";
+} from "../extensions/pi-shared-context";
 
 const temporaryDirectories: string[] = [];
 

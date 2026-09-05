@@ -6,7 +6,7 @@
       "shortcut": "@"
     },
     "shared-context": {
-      "list": "bun \"$HOME/.pi/agent/bundles/matt-pocock/scripts/shared-context-files.ts\"",
+      "list": "shared-context-cli files",
       "action": "@{{selected}}",
       "shortcut": "#"
     }
