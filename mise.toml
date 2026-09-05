@@ -115,7 +115,7 @@ herdr = "latest"
 "github:margin-lab/evals" = "latest"
 glab = "latest"
 "gitlab:gitlab-org/cli" = "latest"
-"github:patriceckhart/zot" = "latest"
+zot = "0.3.64"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
