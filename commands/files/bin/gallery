@@ -1,0 +1,214 @@
+#!/usr/bin/env bun
+
+import { readdirSync, statSync } from "node:fs";
+import { extname, join, relative, resolve, sep } from "node:path";
+
+const HTML_HEAD = String.raw`<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<title>Gallery · __ROOT__</title>
+</head>
+<body class="min-h-screen bg-slate-100 px-4 py-8 text-slate-900 sm:px-8">
+`;
+
+const HTML_APP_TEMPLATE = String.raw`<div class="mx-auto max-w-7xl">
+  <h1 class="mb-6 truncate text-xl font-semibold" title="__ROOT__">__ROOT__</h1>
+  <div @keydown="handleKeydown" class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-4">
+    <file-card v-for="(file, index) in files" :key="file.url" :file="file" :index="index" @preview="openLightbox"></file-card>
+    <p v-if="files.length === 0" class="col-span-full text-slate-500">No files found.</p>
+  </div>
+  <image-lightbox :file="selectedFile" :open="lightboxOpen" :index="selectedIndex" :total="imageFiles.length" @previous="previousImage" @next="nextImage" @close="closeLightbox"></image-lightbox>
+</div>
+`;
+
+const HTML_FILE_CARD_TEMPLATE = String.raw`<button v-if="file.image" type="button" @click="$emit('preview', file, index)" :data-gallery-index="index" data-gallery-card class="group min-w-0 cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500">
+  <span class="flex aspect-square items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition group-hover:border-slate-400 group-hover:shadow-md">
+    <img class="h-full w-full object-contain" :src="file.url" :alt="file.name" loading="lazy">
+  </span>
+  <span class="block truncate px-1 py-2 text-sm" :title="file.name">{{ file.name }}</span>
+</button>
+<a v-else class="group min-w-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500" :data-gallery-index="index" data-gallery-card :href="file.url">
+  <span class="flex aspect-square items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition group-hover:border-slate-400 group-hover:shadow-md">
+    <span class="font-mono text-2xl font-bold text-slate-400">.{{ file.extension }}</span>
+  </span>
+  <span class="block truncate px-1 py-2 text-sm" :title="file.name">{{ file.name }}</span>
+</a>
+`;
+
+const HTML_LIGHTBOX_TEMPLATE = String.raw`<div v-if="open && file" @click.self="$emit('close')" @keydown.left="$emit('previous')" @keydown.right="$emit('next')" tabindex="-1" data-lightbox-dialog class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-4 focus:outline-none" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button v-if="total > 1" @click="$emit('previous')" type="button" class="absolute left-4 rounded-full bg-white/10 px-4 py-2 text-3xl text-white hover:bg-white/20" aria-label="Previous image">‹</button>
+  <img class="max-h-[90vh] max-w-[80vw] object-contain" :src="file.url" :alt="file.name">
+  <button v-if="total > 1" @click="$emit('next')" type="button" class="absolute right-4 rounded-full bg-white/10 px-4 py-2 text-3xl text-white hover:bg-white/20" aria-label="Next image">›</button>
+  <button @click="$emit('close')" type="button" class="absolute right-4 top-4 rounded-full bg-white/10 px-4 py-2 text-2xl text-white hover:bg-white/20" aria-label="Close image preview">×</button>
+</div>
+`;
+
+const HTML_SCRIPT = String.raw`<script>
+const FILES = __FILES__;
+
+const FileCard = {
+  props: {
+    file: { type: Object, required: true },
+    index: { type: Number, required: true },
+  },
+  emits: ['preview'],
+  template: '#file-card-template',
+};
+
+const ImageLightbox = {
+  props: {
+    file: { type: Object, default: null },
+    open: { type: Boolean, default: false },
+    index: { type: Number, default: -1 },
+    total: { type: Number, default: 0 },
+  },
+  emits: ['previous', 'next', 'close'],
+  template: '#lightbox-template',
+};
+
+const app = Vue.createApp({
+  components: { FileCard, ImageLightbox },
+  data: () => ({
+    files: FILES,
+    lightboxOpen: false,
+    selectedFile: null,
+    selectedIndex: -1,
+    selectedGridIndex: -1,
+  }),
+  computed: {
+    imageFiles() {
+      return this.files.filter((file) => file.image);
+    },
+  },
+  methods: {
+    galleryCards() {
+      return [...document.querySelectorAll('[data-gallery-card]')];
+    },
+    focusGrid(index) {
+      const cards = this.galleryCards();
+      const card = cards[index];
+      if (card) card.focus();
+    },
+    openLightbox(file, index) {
+      this.selectedFile = file;
+      this.selectedIndex = this.imageFiles.findIndex((item) => item.url === file.url);
+      this.selectedGridIndex = index;
+      this.lightboxOpen = true;
+      this.$nextTick(() => document.querySelector('[data-lightbox-dialog]')?.focus());
+    },
+    closeLightbox() {
+      const index = this.selectedGridIndex;
+      this.lightboxOpen = false;
+      this.selectedFile = null;
+      this.selectedIndex = -1;
+      this.selectedGridIndex = -1;
+      this.$nextTick(() => this.focusGrid(index));
+    },
+    previousImage() {
+      if (!this.imageFiles.length) return;
+      this.selectedIndex = (this.selectedIndex - 1 + this.imageFiles.length) % this.imageFiles.length;
+      this.selectedFile = this.imageFiles[this.selectedIndex];
+    },
+    nextImage() {
+      if (!this.imageFiles.length) return;
+      this.selectedIndex = (this.selectedIndex + 1) % this.imageFiles.length;
+      this.selectedFile = this.imageFiles[this.selectedIndex];
+    },
+    handleKeydown(event) {
+      const card = event.target.closest?.('[data-gallery-card]');
+      if (!card) return;
+      const cards = this.galleryCards();
+      const index = Number(card.dataset.galleryIndex);
+      const columns = cards.findIndex((item) => item.offsetTop !== cards[0]?.offsetTop);
+      const step = columns > 0 ? columns : 1;
+      const moves = { ArrowLeft: index - 1, ArrowRight: index + 1, ArrowUp: index - step, ArrowDown: index + step };
+      if (!(event.key in moves)) return;
+      event.preventDefault();
+      this.focusGrid(Math.max(0, Math.min(cards.length - 1, moves[event.key] )));
+    },
+    closeOnEscape(event) {
+      if (event.key === 'Escape' && this.lightboxOpen) this.closeLightbox();
+    },
+  },
+  mounted() {
+    window.addEventListener('keydown', this.closeOnEscape);
+  },
+  unmounted() {
+    window.removeEventListener('keydown', this.closeOnEscape);
+  },
+  template: '#app-template',
+});
+
+app.mount('#app');
+</script>
+</body>
+</html>
+`;
+
+const root = process.cwd();
+const port = Number(process.env.PORT ?? Bun.argv[2] ?? 3000);
+const imageExtensions = new Set([
+  ".apng", ".avif", ".bmp", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp",
+]);
+
+const escapeHtml = (value: string) => value
+  .replaceAll("&", "&amp;")
+  .replaceAll("<", "&lt;")
+  .replaceAll(">", "&gt;")
+  .replaceAll('"', "&quot;")
+  .replaceAll("'", "&#39;");
+
+const files = () => readdirSync(root)
+  .map((name) => join(root, name))
+  .filter((path) => statSync(path).isFile())
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+const filePath = (pathname: string) => {
+  try {
+    const path = resolve(root, `.${decodeURIComponent(pathname)}`);
+    if (path !== root && !path.startsWith(`${root}${sep}`)) return null;
+    return path;
+  } catch {
+    return null;
+  }
+};
+
+const replace = (template: string, values: Record<string, string>) => Object.entries(values)
+  .reduce((html, [key, value]) => html.replaceAll(`__${key}__`, value), template);
+
+const page = () => {
+  const galleryFiles = files().map((path) => {
+    const name = relative(root, path);
+    const extension = extname(name).slice(1).toLowerCase() || "file";
+    return {
+      name,
+      url: `/${name.split(sep).map(encodeURIComponent).join("/")}`,
+      extension,
+      image: imageExtensions.has(extname(name).toLowerCase()),
+    };
+  });
+  const json = JSON.stringify(galleryFiles).replaceAll("<", "\\u003c");
+  const templates = `<div id="app"></div>
+<template id="app-template">${replace(HTML_APP_TEMPLATE, { ROOT: escapeHtml(root) })}</template>
+<template id="file-card-template">${HTML_FILE_CARD_TEMPLATE}</template>
+<template id="lightbox-template">${HTML_LIGHTBOX_TEMPLATE}</template>`;
+  return `${replace(HTML_HEAD, { ROOT: escapeHtml(root) })}${templates}${replace(HTML_SCRIPT, { FILES: json })}`;
+};
+
+Bun.serve({
+  port,
+  async fetch(request) {
+    const url = new URL(request.url);
+    if (url.pathname === "/") return new Response(page(), { headers: { "content-type": "text/html; charset=utf-8" } });
+    const path = filePath(url.pathname);
+    if (!path) return new Response("Not found", { status: 404 });
+    const file = Bun.file(path);
+    return await file.exists() ? new Response(file) : new Response("Not found", { status: 404 });
+  },
+});
+
+console.log(`Gallery serving ${root} at http://localhost:${port}`);

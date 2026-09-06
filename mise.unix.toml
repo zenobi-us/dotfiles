@@ -25,6 +25,7 @@
 "~/.config/worktrunk" = { source = "devtools/files/worktrunk", mode = "symlink" }
 "~/.local/bin" = { source = "commands/files/bin", mode = "symlink-each" }
 "~/.local/bin/clip-bridge" = { source = "devtools/files/claude/clip-bridge", mode = "symlink" }
+"~/.local/bin/shared-context-cli" = { source = "devtools/files/agent/bundles/shared-agent-context/cli.ts", mode = "symlink" }
 "~/.mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
 "~/.pi/agent/AGENTS.md" = { source = "devtools/files/agent/AGENTS.md", mode = "symlink" }
 "~/.pi/agent/APPEND_SYSTEM.md" = { source = "devtools/files/pi/agent/APPEND_SYSTEM.md", mode = "symlink" }

@@ -7,7 +7,12 @@
       "muted": 60,
       "accent": 181,
       "user": 216,
-      "user_bubble_bg": { "mode": "rgb", "r": 38, "g": 35, "b": 58 },
+      "user_bubble_bg": {
+        "mode": "rgb",
+        "r": 38,
+        "g": 35,
+        "b": 58
+      },
       "user_bubble_fg": 189,
       "assistant": 182,
       "tool": 152,
@@ -17,9 +22,18 @@
       "spinner": 182,
       "selection_bg": 240,
       "selection_fg": 189,
-      "spinner_frames": ["◐", "◓", "◑", "◒"],
-      "spinner_messages": ["tending the rose", "polishing pine", "brewing tea"],
-      "spinner_interval_ms": 120,
+      "spinner_frames": [
+        "⠁",
+        "⠂",
+        "⠄",
+        "⡀",
+        "⢀",
+        "⠠",
+        "⠐",
+        "⠈"
+      ],
+      "spinner_messages": [],
+      "spinner_interval_ms": 70,
       "syntax_base_style": "monokai",
       "syntax": {
         "keyword": "#c4a7e7 bold",
@@ -47,7 +61,12 @@
       "muted": 60,
       "accent": 181,
       "user": 216,
-      "user_bubble_bg": { "mode": "rgb", "r": 38, "g": 35, "b": 58 },
+      "user_bubble_bg": {
+        "mode": "rgb",
+        "r": 38,
+        "g": 35,
+        "b": 58
+      },
       "user_bubble_fg": 189,
       "assistant": 182,
       "tool": 152,
@@ -57,9 +76,18 @@
       "spinner": 182,
       "selection_bg": 240,
       "selection_fg": 189,
-      "spinner_frames": ["◐", "◓", "◑", "◒"],
-      "spinner_messages": ["tending the rose", "polishing pine", "brewing tea"],
-      "spinner_interval_ms": 120,
+      "spinner_frames": [
+        "⠁",
+        "⠂",
+        "⠄",
+        "⡀",
+        "⢀",
+        "⠠",
+        "⠐",
+        "⠈"
+      ],
+      "spinner_messages": [],
+      "spinner_interval_ms": 70,
       "syntax_base_style": "monokai",
       "syntax": {
         "keyword": "#c4a7e7 bold",

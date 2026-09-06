@@ -1,0 +1,7 @@
+{
+  "name": "private-share",
+  "version": "0.1.0",
+  "description": "Private GitHub Pages artifact sharing skill",
+  "skills": ["./skills"],
+  "enabled": true
+}

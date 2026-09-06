@@ -1,0 +1,7 @@
+{
+  "name": "vanilla-green",
+  "version": "0.1.0",
+  "description": "VStack-managed skills: orchestration, review, and project-management workflows",
+  "skills": ["./skills"],
+  "enabled": true
+}

@@ -33,13 +33,16 @@ Skills that understand this block (e.g. matt-pocock's engineering skills, via
 [`../matt-pocock/ALIGNMENT-ROOT.md`](../matt-pocock/ALIGNMENT-ROOT.md)) resolve
 alignment files against it, falling back to the repository root when absent.
 
-- **pi**: `extensions/shared-context.ts` wires this into `before_agent_start`
-  and registers `/eng-context`.
-- **Claude Code**: ships as the `shared-agent-context` plugin — `hooks/hooks.json`
-  runs `cli.ts inject` on `SessionStart`, and `commands/eng-context.md` exposes
-  `/shared-agent-context:eng-context`.
+- **pi**: `extensions/pi-shared-context.ts` wires this into
+  `before_agent_start` and registers `/eng-context`.
+- **Zot**: `extensions/zot-shared-context.ts` uses Zot's extension protocol,
+  including the `before_agent_start` prompt hook, and registers `/eng-context`.
+- **Claude Code**: ships as the `shared-agent-context` plugin —
+  `hooks/hooks.json` runs `cli.ts inject` on `SessionStart`; the hook wraps
+  the generic CLI output in Claude's response shape.
 
-Both call the same `lib.ts`/`config.ts` — no duplicated logic between tools.
+All hosts call the same `lib.ts`/`config.ts` — no duplicated context logic
+between tools.
 
 ## Usage
 

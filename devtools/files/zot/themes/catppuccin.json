@@ -1,0 +1,36 @@
+{
+  "name": "catppuccin",
+  "description": "Soft Catppuccin Mocha pastels on deep plum.",
+  "colors": {
+    "dark": {
+      "fg": 189,
+      "muted": 103,
+      "accent": 183,
+      "user": 183,
+      "user_bubble_bg": "#313244",
+      "user_bubble_fg": 189,
+      "assistant": 116,
+      "tool": 151,
+      "tool_out": 245,
+      "error": 211,
+      "warning": 223,
+      "thinking_max": 207,
+      "spinner": 116,
+      "selection_bg": 183,
+      "selection_fg": 16,
+      "syntax_base_style": "monokai",
+      "syntax": {
+        "keyword": "#cba6f7",
+        "keyword_reserved": "#cba6f7 bold",
+        "keyword_type": "#89b4fa",
+        "name_builtin": "#89b4fa",
+        "literal_string": "#a6e3a1",
+        "literal_number": "#fab387",
+        "comment": "#6c7086 italic",
+        "operator": "#bac2de",
+        "punctuation": "#bac2de",
+        "text": "#cdd6f4"
+      }
+    }
+  }
+}

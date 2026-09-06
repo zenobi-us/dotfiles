@@ -22,6 +22,7 @@ Use skills by circumstance:
 |---|---|
 | General internet search | `lynx-web-search` |
 | Codebase exploration or flow tracing | `codemapper` |
+| Parallel agent work | `hrdx-subagents` |
 | Library or SDK documentation | `code-library-docs` |
 | Pi agent, extensions, themes, sessions | `pi-mono` |
 | Dotfiles and mise bootstrap | `pi-mono` |
@@ -66,6 +67,7 @@ Use skills by circumstance:
 
 ## Subagents
 
+- Use the `hrdx-subagents` skill for parallel agent work, independent reviews, and isolated worktree work.
 - Use visible subagents for broad exploration, review, research, or parallel work.
 - Give each subagent a focused task, minimal context, and expected output.
 - Do not delegate tiny reads or edits.

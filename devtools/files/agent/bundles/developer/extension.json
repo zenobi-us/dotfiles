@@ -1,0 +1,7 @@
+{
+  "name": "developer",
+  "version": "0.1.1",
+  "description": "Code writing, git workflow, testing, and language/quality experts",
+  "skills": ["./skills"],
+  "enabled": true
+}

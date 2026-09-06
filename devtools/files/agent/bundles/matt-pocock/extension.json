@@ -1,0 +1,7 @@
+{
+  "name": "matt-pocock",
+  "version": "0.1.0",
+  "description": "Matt Pocock engineering workflow skills",
+  "skills": ["./skills"],
+  "enabled": true
+}

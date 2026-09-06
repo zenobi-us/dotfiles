@@ -45,7 +45,6 @@
     "./extensions/@zenobius/pi-session-browser",
     "./extensions/@zenobius/pi-tree",
     "./extensions/@zenobius/pi-worktrunk",
-    "./extensions/@zenobius/pi-herdr-agents",
     "./extensions/@zenobius/ponytail",
     "./extensions/@zenobius/project-overrides",
     "./extensions/@zenobius/sub-limits",
@@ -90,7 +89,9 @@
           "exaResearchModes": "{}"
         }
       },
-      "disabledItems": []
+      "disabledItems": [
+        "package:@dietrichgebert/ponytail"
+      ]
     }
   },
   "enableSkillCommands": true

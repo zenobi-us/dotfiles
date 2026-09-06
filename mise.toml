@@ -53,7 +53,7 @@ dotnet= "latest"
 fzf= "latest"
 github-cli= "latest"
 glow = "latest"
-golang="1.18.3"
+golang="1.25.0"
 grype = "latest"
 hk = "latest"
 java= "latest"
@@ -108,12 +108,14 @@ youtube-dl = "latest"
 "github:vercel-labs/agent-browser" = "latest"
 granted = "latest"
 herdr = "latest"
-"llama.cpp" = { version = "latest", version_prefix = "b" }
 "github:JustVugg/colibri" = "latest"
 "npm:tempomat" = "latest"
-"github:patriceckhart/hrdx" = "latest"
-"github:patriceckhart/zot" = "latest"
+"github:patriceckhart/hrdx" = "0.0.42"
 "github:pg83/shitty" = "latest"
+"github:margin-lab/evals" = "latest"
+glab = "latest"
+"gitlab:gitlab-org/cli" = "latest"
+zot = "0.3.64"
 
 [shell_alias]
 pi="mise x node@lts -- pi "
@@ -133,7 +135,18 @@ fi
 "~/.bunfig.toml" = { source = "devtools/files/bun/bunfig.toml", mode = "symlink" }
 "~/.gitconfig" = { source = "devtools/files/git/.gitconfig", mode = "copy" }
 "~/.gitignore_global" = { source = "devtools/files/git/.gitignore_global", mode = "copy" }
+"~/.local/state/zot/config.json" = { source = "devtools/files/zot/config.json", mode = "symlink" }
 "~/.local/state/zot/themes" = { source = "devtools/files/zot/themes", mode = "symlink" }
+"~/.local/state/zot/extensions/agent-core" = { source = "devtools/files/agent/bundles/agent-core", mode = "symlink" }
+"~/.local/state/zot/extensions/creator" = { source = "devtools/files/agent/bundles/creator", mode = "symlink" }
+"~/.local/state/zot/extensions/developer" = { source = "devtools/files/agent/bundles/developer", mode = "symlink" }
+"~/.local/state/zot/extensions/matt-pocock" = { source = "devtools/files/agent/bundles/matt-pocock", mode = "symlink" }
+"~/.local/state/zot/extensions/platform" = { source = "devtools/files/agent/bundles/platform", mode = "symlink" }
+"~/.local/state/zot/extensions/private-share" = { source = "devtools/files/agent/bundles/private-share", mode = "symlink" }
+"~/.local/state/zot/extensions/researcher" = { source = "devtools/files/agent/bundles/researcher", mode = "symlink" }
+"~/.local/state/zot/extensions/shared-agent-context" = { source = "devtools/files/agent/bundles/shared-agent-context", mode = "symlink" }
+"~/.local/state/zot/extensions/vanilla-green" = { source = "devtools/files/agent/bundles/vanilla-green", mode = "symlink" }
+"~/.local/state/zot/extensions/writing" = { source = "devtools/files/agent/bundles/writing", mode = "symlink" }
 "~/.config/lazygit" = { source = "devtools/files/lazygit", mode = "symlink-each" }
 
 [tasks.bootstrap]
@@ -207,3 +220,7 @@ run_windows = [
   "wsl -d Ubuntu --user root -- apt update -y",
   "wsl -d Ubuntu --user root -- apt install -y wslu socat",
 ]
+
+[tool_alias]
+zot = "github:patriceckhart/zot"
+hrdx = "github:patriceckhart/hrdx"
