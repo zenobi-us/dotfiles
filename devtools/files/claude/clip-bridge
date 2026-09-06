@@ -30,14 +30,14 @@ handle_change() {
     flock -n 9 || return 0
 
     local types
-    types="$(wl-paste --list-types 2>/dev/null || true)"
+    types="$(timeout -k 1 3 wl-paste --list-types 2>/dev/null || true)"
 
     grep -qx 'image/bmp' <<<"$types" || return 0
     grep -qx 'image/png' <<<"$types" && return 0
 
     local bmp png hash last_hash=""
     bmp="$(mktemp --suffix=.bmp)"
-    wl-paste --type image/bmp >"$bmp" 2>/dev/null || {
+    timeout -k 1 3 wl-paste --type image/bmp >"$bmp" 2>/dev/null || {
         rm -f "$bmp"
         return 0
     }

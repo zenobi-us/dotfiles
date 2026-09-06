@@ -23,7 +23,8 @@
     "vanilla-green@pi-agent-bundles": true,
     "writing@pi-agent-bundles": true,
     "typescript-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "figma@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "pi-agent-bundles": {
@@ -34,6 +35,7 @@
     }
   },
   "outputStyle": "simple-english-sop",
+  "feedbackDrafts": "off",
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
     "mode": "replace",
@@ -44,5 +46,5 @@
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "custom:rose-pine-moon",
-  "feedbackDrafts": "off"
+  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '/home/zenobius/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
 }
