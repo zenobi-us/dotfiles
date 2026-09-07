@@ -1,0 +1,59 @@
+#!/usr/bin/env bun
+
+const usage = () => {
+  console.error(`Usage: zerotier-join <network-id>\n\nJoin a ZeroTier network and configure systemd-resolved for its DNS domain.`);
+  process.exit(2);
+};
+
+if (Bun.argv[3]) usage();
+
+let networkId = Bun.argv[2]?.trim();
+if (!networkId) {
+  networkId = prompt("ZeroTier network ID: ")?.trim() ?? "";
+}
+if (!/^[a-f0-9]{16}$/i.test(networkId)) usage();
+
+const run = (command: string[]) => {
+  const result = Bun.spawnSync({ cmd: command, stdout: "pipe", stderr: "pipe" });
+  const stdout = new TextDecoder().decode(result.stdout).trim();
+  const stderr = new TextDecoder().decode(result.stderr).trim();
+
+  if (result.exitCode !== 0) {
+    if (stderr) console.error(stderr);
+    if (stdout) console.error(stdout);
+    process.exit(result.exitCode || 1);
+  }
+
+  return stdout;
+};
+
+const sudo = (command: string[]) => run(["sudo", ...command]);
+
+console.log(`Joining ZeroTier network ${networkId}...`);
+sudo(["zerotier-cli", "join", networkId]);
+sudo(["zerotier-cli", "set", networkId, "allowDNS=true"]);
+
+const interfaceName = sudo(["zerotier-cli", "get", networkId, "portDeviceName"]);
+const dnsConfigText = sudo(["zerotier-cli", "get", networkId, "dns"]);
+
+let dnsConfig: { domain?: string; servers?: string[] };
+try {
+  dnsConfig = JSON.parse(dnsConfigText);
+} catch {
+  console.error(`Could not parse ZeroTier DNS configuration:\n${dnsConfigText}`);
+  process.exit(1);
+}
+
+const domain = dnsConfig.domain?.trim();
+const servers = dnsConfig.servers?.filter((server) => server.trim().length > 0) ?? [];
+if (!interfaceName || !domain || servers.length === 0) {
+  console.error("The network does not provide a DNS domain and server.");
+  process.exit(1);
+}
+
+console.log(`Configuring ${interfaceName} to use ${servers.join(", ")} for ~${domain}...`);
+sudo(["resolvectl", "dns", interfaceName, ...servers]);
+sudo(["resolvectl", "domain", interfaceName, `~${domain}`]);
+
+console.log(`DNS configured: ~${domain} -> ${servers.join(", ")} on ${interfaceName}`);
+console.log(`Test with: resolvectl query <hostname>.${domain}`);
