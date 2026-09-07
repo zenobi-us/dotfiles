@@ -1,0 +1,97 @@
+{
+  "autocompleteMaxVisible": 10,
+  "collapseChangelog": true,
+  "defaultModel": "gpt-5.6-luna",
+  "defaultProvider": "openai-codex",
+  "defaultThinkingLevel": "medium",
+  "doubleEscapeAction": "tree",
+  "defaultProjectTrust": "always",
+  "enableInstallTelemetry": false,
+  "hideThinkingBlock": false,
+  "lastChangelogVersion": "0.84.4",
+  "packages": [
+    "npm:@marckrenn/pi-sub-core",
+    "./bundles/agent-core",
+    "./bundles/developer",
+    "./bundles/matt-pocock",
+    "./bundles/creator",
+    "./bundles/researcher",
+    "./bundles/platform",
+    "./bundles/writing",
+    "./extensions/@vanillagreen/pi-extension-manager",
+    "./extensions/@vanillagreen/pi-qol",
+    "./extensions/@vanillagreen/pi-web-tools",
+    "./extensions/@vanillagreen/pi-codex-minimal-tools",
+    "./extensions/@vanillagreen/pi-tool-renderer",
+    "./extensions/@vanillagreen/pi-caveman",
+    "./extensions/@vanillagreen/pi-hooks",
+    "./extensions/@vanillagreen/pi-session-bridge",
+    "./extensions/@vanillagreen/pi-output-policy",
+    "./extensions/@vanillagreen/pi-prompt-stash",
+    "./extensions/@vanillagreen/pi-session-manager",
+    "./extensions/@vanillagreen/pi-skills-manager",
+    "./extensions/@vanillagreen/pi-task-panel",
+    "./extensions/@zenobius/at-include.ts",
+    "./extensions/@zenobius/pi-annotate",
+    "./extensions/@zenobius/pi-autoresearch",
+    "./extensions/@zenobius/pi-context-report",
+    "./extensions/@zenobius/pi-fzf",
+    "./extensions/@zenobius/pi-handoff",
+    "./extensions/@zenobius/pi-lmstudio-provider",
+    "./extensions/@zenobius/pi-lsp",
+    "./extensions/@zenobius/pi-poster",
+    "./extensions/@zenobius/pi-rose-pine",
+    "./extensions/@zenobius/pi-session-browser",
+    "./extensions/@zenobius/pi-tree",
+    "./extensions/@zenobius/pi-worktrunk",
+    "./extensions/@zenobius/ponytail",
+    "./extensions/@zenobius/project-overrides",
+    "./extensions/@zenobius/sub-limits",
+    "npm:pi-add-dir",
+    "npm:pi-claude-marketplace",
+    "npm:@mrclrchtr/supi-ask-user",
+    "npm:pi-localllm-provider",
+    "npm:pi-dont-change-my-defaults"
+  ],
+  "quietStartup": true,
+  "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
+  "showHardwareCursor": false,
+  "terminal": {
+    "clearOnShrink": false,
+    "showTerminalProgress": true
+  },
+  "theme": "rose-pine-moon",
+  "transport": "sse",
+  "vstack": {
+    "extensionManager": {
+      "config": {
+        "@vanillagreen/pi-caveman": {
+          "mode": "off"
+        },
+        "@vanillagreen/pi-codex-minimal-tools": {
+          "imageModel": "gpt-image-2"
+        },
+        "@vanillagreen/pi-qol": {
+          "compactPrompt": false,
+          "glyphStyle": "unicode",
+          "newlineOnShiftEnter": true,
+          "permissionGate.enabled": false,
+          "sessionAutoRename.model": "openai-codex/gpt-5.4-mini",
+          "statusline.enabled": true
+        },
+        "@vanillagreen/pi-tool-renderer": {
+          "renderMutationTools": true
+        },
+        "@vanillagreen/pi-web-tools": {
+          "exaAdvancedEnabled": true,
+          "exaDeepResearchEnabled": false,
+          "exaResearchModes": "{}"
+        }
+      },
+      "disabledItems": [
+        "package:@dietrichgebert/ponytail"
+      ]
+    }
+  },
+  "enableSkillCommands": true
+}

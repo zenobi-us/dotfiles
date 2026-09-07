@@ -6,7 +6,7 @@ Working with dotfiles and machine bootstrap
 
 Working with Pi-Coding-Agent
 
-- Use the [pi-mono](./devtools/files/agent/bundles/platform/skills/devtools/pi-mono/) skill.
+- Use the [pi-mono](./devtools/agent/bundles/platform/skills/devtools/pi-mono/) skill.
 
 Reading or converting documents
 
@@ -14,7 +14,7 @@ Reading or converting documents
 
 Project management
 
-- Use the [project-planning](./devtools/files/agent/bundles/business/skills/projectmanagement/project-planning/) skill.
+- Use the [project-planning](./devtools/agent/bundles/business/skills/projectmanagement/project-planning/) skill.
 
 ### Issue tracker
 

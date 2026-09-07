@@ -1,50 +1,50 @@
 [dotfiles]
 "~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
-"~/.config/mise/tasks" = { source = "devtools/files/mise/tasks", mode = "symlink" }
-"~/.config/starship.toml" = { source = "shells/files/starship/starship.toml", mode = "copy" }
-"~/.zshrc" = { source = "shells/files/zsh/.zshrc", mode = "symlink" }
-"~/.zprofile" = { source = "shells/files/zsh/.zprofile", mode = "symlink" }
-"~/.zshenv" = { source = "shells/files/zsh/.zshenv", mode = "symlink" }
-"~/.config/deskflow" = { source = "windowmanagers/files/deskflow", mode = "symlink" }
-"~/.config/firefox-extensions/qr-code" = { source = "browsers/files/firefox/extensions/qr-code", mode = "copy" }
-"~/.config/firefox-extensions/load-extensions.sh" = { source = "browsers/files/firefox/load-extensions.sh", mode = "copy" }
-"~/.config/ghostty" = { source = "shells/files/ghostty", mode = "symlink" }
-"~/.config/herdr/config.toml" = { source = "shells/files/herdr/config.toml", mode = "symlink" } 
-"~/.config/herdr/plugins" = { source = "shells/files/herdr/plugins", mode = "symlink" }
-"~/.config/hrdx/themes" = { source = "shells/files/hrdx/themes", mode = "symlink" }
-"~/.config/hrdx/keys.json" = { source = "shells/files/hrdx/keys.json", mode = "symlink" }
-"~/.config/hrdx/harness.json" = { source = "shells/files/hrdx/harness.json", mode = "symlink" }
-"~/.config/hrdx/sounds.json" = { source = "shells/files/hrdx/sounds.json", mode = "symlink" }
-"~/.claude/settings.json" = { source = "devtools/files/claude/settings.json", mode = "symlink" }
-"~/.claude/statusline.sh" = { source = "devtools/files/claude/statusline.sh", mode = "symlink" }
-"~/.claude/themes/" = { source = "devtools/files/claude/themes/", mode = "symlink-each" }
-"~/.claude/output-styles/" = { source = "devtools/files/claude/output-styles/", mode = "symlink-each" }
-"~/.claude/CLAUDE.md" = { source = "devtools/files/agent/AGENTS.md", mode = "symlink" }
-"~/.claude/agents" = { source = "devtools/files/agent/agents", mode = "symlink" }
-"~/.config/mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
-"~/.config/worktrunk" = { source = "devtools/files/worktrunk", mode = "symlink" }
-"~/.local/bin" = { source = "commands/files/bin", mode = "symlink-each" }
-"~/.local/bin/clip-bridge" = { source = "devtools/files/claude/clip-bridge", mode = "symlink" }
-"~/.local/bin/shared-context-cli" = { source = "devtools/files/agent/bundles/shared-agent-context/cli.ts", mode = "symlink" }
-"~/.mcporter" = { source = "devtools/files/mcporter", mode = "symlink" }
-"~/.pi/agent/AGENTS.md" = { source = "devtools/files/agent/AGENTS.md", mode = "symlink" }
-"~/.pi/agent/APPEND_SYSTEM.md" = { source = "devtools/files/pi/agent/APPEND_SYSTEM.md", mode = "symlink" }
-"~/.pi/agent/agents" = { source = "devtools/files/agent/agents", mode = "symlink" }
-"~/.pi/agent/bun.lock" = { source = "devtools/files/pi/agent/bun.lock", mode = "symlink" }
-"~/.pi/agent/bundles" = { source = "devtools/files/agent/bundles", mode = "symlink" }
-"~/.pi/agent/extensions" = { source = "devtools/files/pi/agent/extensions", mode = "symlink" }
-"~/.pi/agent/fzf.json" = { source = "devtools/files/pi/agent/fzf.json", mode = "symlink" }
-"~/.pi/agent/package.json" = { source = "devtools/files/pi/agent/package.json", mode = "symlink" }
-"~/.pi/agent/packages" = { source = "devtools/files/pi/agent/packages", mode = "symlink" }
-"~/.pi/agent/pi-sub-bar-settings.json" = { source = "devtools/files/pi/agent/pi-sub-bar-settings.json", mode = "symlink" }
-"~/.pi/agent/pi-sub-core-settings.json" = { source = "devtools/files/pi/agent/pi-sub-core-settings.json", mode = "symlink" }
-"~/.pi/agent/settings.json" = { source = "devtools/files/pi/agent/settings.json", mode = "symlink" }
-"~/.pi/agent/tsconfig.json" = { source = "devtools/files/pi/agent/tsconfig.json", mode = "symlink" }
-"~/.XresourceThemes" = { source = "shells/files/xresources/.XresourceThemes", mode = "symlink" }
-"~/.Xresources" = { source = "shells/files/xresources/.Xresources", mode = "symlink" }
-"~/.local/bin/llama-router" = { source = "devtools/files/llama-router/llama-router.sh", mode = "symlink" }
+"~/.config/mise/tasks" = { source = "devtools/mise/tasks", mode = "symlink" }
+"~/.config/starship.toml" = { source = "shells/starship/starship.toml", mode = "copy" }
+"~/.zshrc" = { source = "shells/zsh/.zshrc", mode = "symlink" }
+"~/.zprofile" = { source = "shells/zsh/.zprofile", mode = "symlink" }
+"~/.zshenv" = { source = "shells/zsh/.zshenv", mode = "symlink" }
+"~/.config/deskflow" = { source = "windowmanagers/deskflow", mode = "symlink" }
+"~/.config/firefox-extensions/qr-code" = { source = "browsers/firefox/extensions/qr-code", mode = "copy" }
+"~/.config/firefox-extensions/load-extensions.sh" = { source = "browsers/firefox/load-extensions.sh", mode = "copy" }
+"~/.config/ghostty" = { source = "shells/ghostty", mode = "symlink" }
+"~/.config/herdr/config.toml" = { source = "shells/herdr/config.toml", mode = "symlink" }
+"~/.config/herdr/plugins" = { source = "shells/herdr/plugins", mode = "symlink" }
+"~/.config/hrdx/themes" = { source = "shells/hrdx/themes", mode = "symlink" }
+"~/.config/hrdx/keys.json" = { source = "shells/hrdx/keys.json", mode = "symlink" }
+"~/.config/hrdx/harness.json" = { source = "shells/hrdx/harness.json", mode = "symlink" }
+"~/.config/hrdx/sounds.json" = { source = "shells/hrdx/sounds.json", mode = "symlink" }
+"~/.claude/settings.json" = { source = "devtools/claude/settings.json", mode = "symlink" }
+"~/.claude/statusline.sh" = { source = "devtools/claude/statusline.sh", mode = "symlink" }
+"~/.claude/themes/" = { source = "devtools/claude/themes/", mode = "symlink-each" }
+"~/.claude/output-styles/" = { source = "devtools/claude/output-styles/", mode = "symlink-each" }
+"~/.claude/CLAUDE.md" = { source = "devtools/agent/AGENTS.md", mode = "symlink" }
+"~/.claude/agents" = { source = "devtools/agent/agents", mode = "symlink" }
+"~/.config/mcporter" = { source = "devtools/mcporter", mode = "symlink" }
+"~/.config/worktrunk" = { source = "devtools/worktrunk", mode = "symlink" }
+"~/.local/bin" = { source = "commands/bin", mode = "symlink-each" }
+"~/.local/bin/clip-bridge" = { source = "devtools/claude/clip-bridge", mode = "symlink" }
+"~/.local/bin/agent-core" = { source = "devtools/zot/extensions/agent-core/cli.ts", mode = "symlink" }
+"~/.mcporter" = { source = "devtools/mcporter", mode = "symlink" }
+"~/.pi/agent/AGENTS.md" = { source = "devtools/agent/AGENTS.md", mode = "symlink" }
+"~/.pi/agent/APPEND_SYSTEM.md" = { source = "devtools/pi/agent/APPEND_SYSTEM.md", mode = "symlink" }
+"~/.pi/agent/agents" = { source = "devtools/agent/agents", mode = "symlink" }
+"~/.pi/agent/bun.lock" = { source = "devtools/pi/agent/bun.lock", mode = "symlink" }
+"~/.pi/agent/bundles" = { source = "devtools/agent/bundles", mode = "symlink" }
+"~/.pi/agent/extensions" = { source = "devtools/pi/agent/extensions", mode = "symlink" }
+"~/.pi/agent/fzf.json" = { source = "devtools/pi/agent/fzf.json", mode = "symlink" }
+"~/.pi/agent/package.json" = { source = "devtools/pi/agent/package.json", mode = "symlink" }
+"~/.pi/agent/packages" = { source = "devtools/pi/agent/packages", mode = "symlink" }
+"~/.pi/agent/pi-sub-bar-settings.json" = { source = "devtools/pi/agent/pi-sub-bar-settings.json", mode = "symlink" }
+"~/.pi/agent/pi-sub-core-settings.json" = { source = "devtools/pi/agent/pi-sub-core-settings.json", mode = "symlink" }
+"~/.pi/agent/settings.json" = { source = "devtools/pi/agent/settings.json", mode = "symlink" }
+"~/.pi/agent/tsconfig.json" = { source = "devtools/pi/agent/tsconfig.json", mode = "symlink" }
+"~/.XresourceThemes" = { source = "shells/xresources/.XresourceThemes", mode = "symlink" }
+"~/.Xresources" = { source = "shells/xresources/.Xresources", mode = "symlink" }
+"~/.local/bin/llama-router" = { source = "devtools/llama-router/llama-router.sh", mode = "symlink" }
 
 [env]
-VISUAL="nvim"
-EDITOR="nvim"
-AGENT_BUNDLE_STORAGE_PATH_PATTERN="$DOTFILE_REPO_ROOT/devtools/files/agent/bundles/{domain}/"
+VISUAL = "nvim"
+EDITOR = "nvim"
+AGENT_BUNDLE_STORAGE_PATH_PATTERN = "$DOTFILE_REPO_ROOT/devtools/agent/bundles/{domain}/"

@@ -1,0 +1,14 @@
+{
+  "commands": {
+    "file": {
+      "list": "fd --type f --hidden --exclude '.git' --exclude '.DS_Store' --exclude '.env.local'",
+      "action": "@{{selected}}",
+      "shortcut": "@"
+    },
+    "shared-context": {
+      "list": "agent-core context files",
+      "action": "@{{selected}}",
+      "shortcut": "#"
+    }
+  }
+}

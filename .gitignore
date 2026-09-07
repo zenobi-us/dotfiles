@@ -2,22 +2,22 @@
 !.zsh*
 !/shells/zsh/files/config.d/enabled/README.md
 /shells/zsh/files/config.d/enabled/*
-devtools/files/opencode/bin
+devtools/opencode/bin
 in-memoria*
 !.memory/
 # In Memoria
 in-memoria.db
 .in-memoria/cache/
 .in-memoria/.env
-devtools/files/mcporter/credentials.json
-devtools/files/opencode/plugin/subtask2/logs/debug.log
-devtools/files/opencode/plugin/subtask2/logs/debug.log
-devtools/files/opencode/AGENTS.md
-devtools/files/opencode/agent
-devtools/files/opencode/command
-devtools/files/opencode/skills
-devtools/files/opencode/AGENT.md
-devtools/files/pi/agent/extensions/tools/node_modules
+devtools/mcporter/credentials.json
+devtools/opencode/plugin/subtask2/logs/debug.log
+devtools/opencode/plugin/subtask2/logs/debug.log
+devtools/opencode/AGENTS.md
+devtools/opencode/agent
+devtools/opencode/command
+devtools/opencode/skills
+devtools/opencode/AGENT.md
+devtools/pi/agent/extensions/tools/node_modules
 # Node modules everywhere
 node_modules/
 package-lock.json
@@ -26,17 +26,17 @@ package-lock.json
 .ralph
 
 # Share extension webapp: keep source tracked, ignore generated/local files
-devtools/files/pi/agent/extensions/share/webapp/dist/
-devtools/files/pi/agent/extensions/share/webapp/.tanstack/
-devtools/files/pi/agent/extensions/share/webapp/.cta.json
-devtools/files/pi/agent/extensions/share/webapp/.vscode/
+devtools/pi/agent/extensions/share/webapp/dist/
+devtools/pi/agent/extensions/share/webapp/.tanstack/
+devtools/pi/agent/extensions/share/webapp/.cta.json
+devtools/pi/agent/extensions/share/webapp/.vscode/
 
 # Pi agent runtime/auth/cache files
-/devtools/files/pi/agent/auth.json
-/devtools/files/pi/agent/.pi/agent/auth.json
-/devtools/files/pi/agent/cache/
-/devtools/files/pi/agent/sessions/
-/devtools/files/pi/agent/mcp-oauth/
-/devtools/files/pi/agent/mcp-cache.json
-/devtools/files/pi/agent/bin/
-devtools/files/pi/agent/bundles/developer/skills/atlassian/twg/.twg-install.json
+/devtools/pi/agent/auth.json
+/devtools/pi/agent/.pi/agent/auth.json
+/devtools/pi/agent/cache/
+/devtools/pi/agent/sessions/
+/devtools/pi/agent/mcp-oauth/
+/devtools/pi/agent/mcp-cache.json
+/devtools/pi/agent/bin/
+devtools/pi/agent/bundles/developer/skills/atlassian/twg/.twg-install.json

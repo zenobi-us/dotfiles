@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "agent-core@pi-agent-bundles": true,
+    "creator@pi-agent-bundles": true,
+    "developer@pi-agent-bundles": true,
+    "matt-pocock@pi-agent-bundles": true,
+    "platform@pi-agent-bundles": true,
+    "private-share@pi-agent-bundles": true,
+    "researcher@pi-agent-bundles": true,
+    "vanilla-green@pi-agent-bundles": true,
+    "writing@pi-agent-bundles": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "figma@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "pi-agent-bundles": {
+      "source": {
+        "source": "directory",
+        "path": "/home/zenobius/Projects/dotfiles/devtools/agent/bundles"
+      }
+    }
+  },
+  "outputStyle": "simple-english-sop",
+  "feedbackDrafts": "off",
+  "spinnerTipsEnabled": false,
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      " "
+    ]
+  },
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "custom:rose-pine-moon",
+  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '/home/zenobius/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
+}
