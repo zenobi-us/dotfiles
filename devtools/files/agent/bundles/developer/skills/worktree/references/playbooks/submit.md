@@ -1,10 +1,8 @@
----
-name: worktree-submit
-description: Submit reviewed Worktrunk work as a pull request through Herdr.
-disable-model-invocation: true
----
+# Playbook: submit
 
 Submit the reviewed work for the resolved ticket as a pull request.
+
+Submit commits, pushes, and opens a pull request from the current worktree — it does not open a new pane or launch a fresh agent. The muxer and agent contracts do not apply to this playbook.
 
 ## Ticket resolution
 
@@ -18,13 +16,12 @@ Resolve the ticket before submitting work.
 
 # Preconditions
 
-- Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree and branch operations.
 - Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before submitting.
 - Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and pull requests in the worktree repository.
 - Follow `SHARED-CONTEXT-LINKS.md` for the write rule (any shared-context file created or updated while submitting this ticket) and the reference rule (linking ADRs, tasks, or the review artifact in the commit message and pull request body).
-- Require a matching persisted `SUCCESS` verdict from `worktree-review`, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
+- Require a matching persisted `SUCCESS` verdict from the `review` playbook, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
 - Do not push directly to the base branch.
 
 Ask the user for the missing ticket before continuing. Exit if the review artifact scope does not match the resolved ticket or if you cannot identify:
@@ -37,7 +34,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 # Process
 
 1. Resolve the active `ALIGNMENT_ROOT` and run `/eng-context report`.
-2. Resolve the current or reviewed Herdr worktree with `herdr worktree list --cwd "$PWD" --json`.
+2. Resolve the current worktree (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
 3. Use Worktrunk to verify the source branch and worktree state.
 4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-git-commits` skill, including the ticket link and a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to every ADR the review verdict relied on.
 5. Run the smallest validation command recorded by the successful review.
@@ -73,5 +70,3 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 - Verdict: SUCCESS
 - Scope: {reviewed scope}
 ```
-
-UserRequest: $ARGUMENTS

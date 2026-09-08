@@ -1,10 +1,8 @@
----
-name: worktree-review
-description: Review completed Worktrunk work and persist a verdict for its ticket.
-disable-model-invocation: true
----
+# Playbook: review
 
 Review completed work for the resolved ticket scope in the current or inferred Worktrunk worktree.
+
+Review never opens a new pane or launches a fresh agent — it only inspects the current worktree. The muxer and agent contracts do not apply to this playbook.
 
 ## Ticket resolution
 
@@ -20,13 +18,12 @@ Use conversation context only to identify the scope. Do not use it as evidence t
 
 # Preconditions
 
-- Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree and branch inspection.
 - Use the Matt Pocock `code-review` skill.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Follow `ALIGNMENT-ROOT.md` before reading alignment files.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. Record any durable domain or architecture decision with `domain-modeling` or `codebase-design` in the active alignment storage.
 - Store review artifacts under `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`, inside the active shared agent context root. Never write review artifacts to `/tmp` or leave them only in chat.
-- Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`. `worktree-finish`, `worktree-fix`, and `worktree-submit` read the review artifact from there and will not see an uncommitted or unpushed copy.
+- Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`. The `fix`, `finish`, and `submit` playbooks read the review artifact from there and will not see an uncommitted or unpushed copy.
 - Do not change source code during review.
 - Do not rely on chat context as the review gate.
 
@@ -44,7 +41,7 @@ You must identify all of these items:
 
 1. Resolve the active `ALIGNMENT_ROOT` and run `/eng-context report`.
 2. Read the relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active alignment root.
-3. Resolve the current Herdr worktree with `herdr worktree list --cwd "$PWD" --json`.
+3. Resolve the current worktree (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
 4. Use Worktrunk and Git to identify the source branch, base branch, and actual diff.
 5. Use the `code-review` skill, and use `domain-modeling` or `codebase-design` when the findings concern domain terms or module boundaries.
 6. Review the work against:
@@ -64,8 +61,8 @@ You must identify all of these items:
 9. Write the review artifact to `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`, overwriting any prior review artifact for the same ticket. Include the exact scope, source branch, base branch, commit, active `ALIGNMENT_ROOT`, findings, validation command, validation result, verdict, and timestamp.
    - If `storage="shared"`, follow `SHARED-CONTEXT-LINKS.md`'s write rule for the review artifact before reporting the verdict.
 10. Use `SUCCESS` when no blocking findings remain. Use `FAILURE` when blocking findings remain.
-11. If the verdict is `FAILURE`, ask whether to run `worktree-fix`. Pass only the blocking findings, ADR references, exact files, and validation command.
-12. If the verdict is `SUCCESS`, ask whether to run `worktree-finish` or `worktree-submit`.
+11. If the verdict is `FAILURE`, ask whether to run this skill again with `fix {ticket-id}`. Pass only the blocking findings, ADR references, exact files, and validation command.
+12. If the verdict is `SUCCESS`, ask whether to run this skill again with `finish {ticket-id}` or `submit {ticket-id}`.
 
 # Output
 
@@ -98,7 +95,5 @@ Use `NO ADR` when no ADR applies. State why the finding is blocking.
 {path}
 
 ## Next step
-{Ask for worktree-finish/worktree-submit or worktree-fix.}
+{Ask for finish/submit or fix.}
 ```
-
-UserRequest: $ARGUMENTS

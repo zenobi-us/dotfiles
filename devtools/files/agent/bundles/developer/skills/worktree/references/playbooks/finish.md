@@ -1,10 +1,8 @@
----
-name: worktree-finish
-description: Squash merge reviewed Worktrunk work and close its ticket through Herdr.
-disable-model-invocation: true
----
+# Playbook: finish
 
-Finish the reviewed work for the resolved ticket.
+Squash merge reviewed work and close its ticket.
+
+Finish merges and removes the worktree. It does not open a new pane or launch a fresh agent for the ticket work itself, but it does need to release any pane or session left running from `start`/`fix` — use `references/muxers/<muxer>.md` for that release step only.
 
 ## Ticket resolution
 
@@ -18,13 +16,12 @@ Resolve the ticket before finishing work.
 
 # Preconditions
 
-- Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree operations.
 - Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before merging.
 - Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and branches in the repository worktree.
 - Follow `SHARED-CONTEXT-LINKS.md` for the write rule (any shared-context file created or updated while closing this ticket) and the reference rule (linking ADRs, tasks, or the review artifact in the final commit message).
-- Require a matching persisted `SUCCESS` verdict from `worktree-review`, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
+- Require a matching persisted `SUCCESS` verdict from the `review` playbook, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
 - Do not remove a worktree while an agent still runs inside it.
 
 Ask the user for the missing ticket before continuing. Exit if the review artifact scope does not match the resolved ticket or if you cannot identify:
@@ -37,12 +34,12 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 # Process
 
 1. Resolve the active `ALIGNMENT_ROOT` and run `/eng-context report`.
-2. Resolve the source and base worktrees with `herdr worktree list --cwd "$PWD" --json`.
+2. Resolve the source and base worktrees (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
 3. Use Worktrunk to verify the source branch and worktree state.
 4. Make sure that the source worktree has no unintended changes.
 5. Run the smallest validation command recorded by the successful review.
-6. Stop or release the source agent before removing its worktree.
-7. Use Herdr to open or focus the base worktree workspace. Do not run merge operations from an active source-agent pane.
+6. Stop or release the source agent's pane or session before removing its worktree, following `references/muxers/<muxer>.md`'s release/close procedure. Under `unknown-muxer` there is no pane to release.
+7. Switch to or focus the base worktree. Do not run merge operations from an active source-agent pane or session.
 8. Update the base branch from its remote.
 9. Squash merge the source branch into the base branch.
 10. Use the `writing-git-commits` skill for the final commit message.
@@ -76,5 +73,3 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 ## Worktree
 - {removed or kept, with reason}
 ```
-
-UserRequest: $ARGUMENTS

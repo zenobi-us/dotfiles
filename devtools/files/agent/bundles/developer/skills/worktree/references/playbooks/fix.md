@@ -1,10 +1,8 @@
----
-name: worktree-fix
-description: Start a Herdr agent to fix blocking review findings in an existing Worktrunk worktree.
-disable-model-invocation: true
----
+# Playbook: fix
 
-Fix the blocking findings for the resolved ticket in the existing reviewed worktree.
+Start an agent to fix blocking review findings in an existing Worktrunk worktree.
+
+This playbook receives `muxer` and `agent` already resolved by the `worktree` skill's rule 0 and rule 1.
 
 ## Ticket resolution
 
@@ -18,16 +16,15 @@ Resolve the ticket before fixing work.
 
 # Preconditions
 
-- Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree inspection and operations.
-- Use Herdr commands for panes and agents. Do not use Zellij commands.
-- Follow the `herdr` skill to detect the harness and launch agents.
+- Use `references/muxers/<muxer>.md` for pane and agent commands. Do not use commands from a different muxer's contract.
+- Use `references/agents/<agent>.md` for the launch command. If `agent` is `unknown-agent` and no override was given, ask the user before proceeding.
 - Use the applicable Matt Pocock engineering skill, normally `implement`, `tdd`, or `diagnosing-bugs`.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/eng-context report` and read relevant context and ADRs before changing code.
 - Follow `ALIGNMENT-ROOT.md`. Do not invent a shared path or write alignment files to inactive storage.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.
 - Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`.
-- Require a matching persisted `FAILURE` verdict from `worktree-review`, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
+- Require a matching persisted `FAILURE` verdict from the `review` playbook, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
 - Do not create a second worktree for the same source branch.
 
 # Process
@@ -41,20 +38,14 @@ Resolve the ticket before fixing work.
    - Run the expected validation command.
    - End the final response with the exact marker `WORKTREE_FIX_DONE` when the fix and validation pass.
    - Do not use the marker when the fix is blocked or validation fails.
-6. If the current Herdr space is not the source worktree space, open the source worktree with `herdr worktree open`. Start the fixer in the returned worktree space and root pane.
-7. If the current Herdr space is the source worktree space, create a new tab with `herdr tab create --workspace "$HERDR_WORKSPACE_ID" --cwd <worktree-path> --no-focus`. Start the fixer in the returned tab's root pane.
-8. Follow the `herdr` skill to run `herdr agent start <name> --kind $(scripts/identify-harness.sh) --pane <pane-id> -- @/tmp/{ticket-id}-fix-handoff.md`.
-9. Wait for the fixer with `herdr agent wait <agent-name> --until done --until blocked --timeout 120000`.
-10. Read the fixer response with `herdr agent read <agent-name> --source recent-unwrapped --lines 120`.
-11. If the fixer reaches `blocked`, fails validation, or does not include `WORKTREE_FIX_DONE`, report the failure and do not start a review.
-12. If the fixer includes `WORKTREE_FIX_DONE`, close the fixer pane with `herdr pane close <pane-id>`.
-13. After the fixer pane closes, run `/worktree-review {ticket-id}` from the spawning agent.
-14. Do not create a second worktree for the same source branch. Worktrunk owns the checkout.
-15. Record the fixer agent name, pane ID, active `ALIGNMENT_ROOT`, and storage mode in the workflow record.
-16. If the active `ALIGNMENT_ROOT` has `storage="shared"`, follow `SHARED-CONTEXT-LINKS.md`'s write rule for the workflow record.
+6. Open a pane or session for the fixer following `references/muxers/<muxer>.md`'s "Opening a pane for an agent" procedure, using `references/agents/<agent>.md`'s launch command with `@/tmp/{ticket-id}-fix-handoff.md` as the task input, in the existing source worktree path.
+7. Wait for the fixer to finish. Under `herdr`, `zellij`, `tmux`, or `hrdx`, follow the active muxer contract's wait/read commands. Under `unknown-muxer`, the fixer already ran to completion in the foreground — read its final output directly.
+8. If the fixer reaches `blocked`, fails validation, or does not include `WORKTREE_FIX_DONE`, report the failure and do not start a review. See `references/troubleshooting/fixer-agent-blocked.md`.
+9. If the fixer includes `WORKTREE_FIX_DONE`, close its pane or session per the active muxer contract, then run this skill again with `review {ticket-id}`.
+10. Do not create a second worktree for the same source branch. Worktrunk owns the checkout.
+11. Record the fixer agent name, pane/session identifier, active `ALIGNMENT_ROOT`, and storage mode in the workflow record.
+12. If the active `ALIGNMENT_ROOT` has `storage="shared"`, follow `SHARED-CONTEXT-LINKS.md`'s write rule for the workflow record.
 
 # Output
 
-Report the source branch, worktree path, fixer agent, pane ID, handoff path, validation command, fixer completion marker, pane close result, and review command result.
-
-UserRequest: $ARGUMENTS
+Report the source branch, worktree path, fixer agent, pane/session identifier, handoff path, validation command, fixer completion marker, pane/session close result, and review command result.

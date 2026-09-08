@@ -4,6 +4,10 @@
   "description": "Code writing, git workflow, testing, and language/quality experts",
   "private": true,
   "keywords": ["pi-package"],
+  "dependencies": {
+    "@crustjs/core": "^0.0.19",
+    "@crustjs/plugins": "^0.1.2"
+  },
   "pi": {
     "skills": ["./skills"]
   }

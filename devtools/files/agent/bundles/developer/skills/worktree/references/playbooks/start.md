@@ -1,10 +1,8 @@
----
-name: worktree-start
-description: Create isolated Worktrunk worktrees and start Herdr agents for tickets.
-disable-model-invocation: true
----
+# Playbook: start
 
-Fetch the tickets from `UserRequest`. Create one isolated Worktrunk worktree per ticket. Start one agent per worktree, matching the harness this command is running in.
+Create isolated Worktrunk worktrees and start agents for tickets.
+
+This playbook receives `muxer` and `agent` already resolved by the `worktree` skill's rule 0 (muxer) and rule 1 (agent) — it does not detect either itself.
 
 ## Input format
 
@@ -33,10 +31,9 @@ Resolve the ticket or tickets before starting work.
 
 # Preconditions
 
-- Require `HERDR_ENV=1`. If Herdr is not active, stop.
 - Use the `worktrunk` skill. Worktrunk is required for worktree creation and hooks.
-- Use Herdr commands for workspaces, panes, and agents. Do not use Zellij commands.
-- Follow the `herdr` skill to detect the harness and launch agents.
+- Use `references/muxers/<muxer>.md` for workspace, pane, and agent commands. Do not use commands from a different muxer's contract.
+- Use `references/agents/<agent>.md` for the launch command. If `agent` is `unknown-agent` and no override was given, ask the user before proceeding.
 - Use the applicable Matt Pocock engineering skill. Use `/ask-matt` when the right skill is unclear.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Follow `ALIGNMENT-ROOT.md` before reading or writing `CONTEXT.md`, `CONTEXT-MAP.md`, ADRs, or `docs/agents/`.
 - Run `/eng-context report` before using alignment files. Read relevant context and ADRs from the active `ALIGNMENT_ROOT`; do not invent a shared path or write to an inactive storage location.
@@ -58,22 +55,19 @@ Resolve the ticket or tickets before starting work.
    - GitHub: use `gh issue view`.
 6. Validate every ticket before changing any ticket state.
 7. Mark every ticket as in progress and assign it to me, depending on the tracker:
-  - with a status change or,
-  - add a label or, 
-  - comment indicating that the ticket is being worked on.
-8. Resolve the repository root Herdr workspace once with `herdr worktree list --cwd "$PWD" --json`.
+   - with a status change or,
+   - add a label or,
+   - comment indicating that the ticket is being worked on.
+8. Resolve the current workspace or session state for the active `muxer` (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — skip this step for them).
 9. Start one independent job for each ticket. Run these jobs in parallel.
    - Choose a unique safe branch name that includes the ticket ID.
    - Resolve the base branch from the repository.
-   - Use Worktrunk to create or switch to the branch with hooks enabled.
-   - Use `--no-cd` and JSON output because the parent process cannot consume shell directory changes.
-   - If the current Herdr space is not the target worktree space, register the resulting worktree with Herdr by using `herdr worktree open` and the returned worktree path. Start the agent in the returned worktree space and root pane.
-   - If the current Herdr space is the target worktree space, create a new tab with `herdr tab create --workspace "$HERDR_WORKSPACE_ID" --cwd <worktree-path> --no-focus`. Start the agent in the returned tab's root pane.
-   - Do not use native Herdr worktree creation instead of Worktrunk.
+   - Use Worktrunk to create or switch to the branch with hooks enabled: `wt switch --create <branch> --no-cd --no-hooks` or with hooks, per the ticket's needs.
+   - Use `--no-cd` and JSON output where supported, because the parent process cannot consume shell directory changes.
    - Write `/tmp/{ticket-id}-handoff.md` with the ticket details, branch, base branch, worktree path, active `ALIGNMENT_ROOT` and storage mode, selected engineering skill, relevant context files, requirements, and validation commands.
-   - Follow the `herdr` skill to run `herdr agent start <name> --kind $(scripts/identify-harness.sh) --pane <pane-id> -- @/tmp/{ticket-id}-handoff.md`.
-   - Do not create a duplicate tab or pane after Herdr opens the worktree space.
-   - Write one persistent workflow record for the ticket with the ticket, source branch, base branch, worktree path, Herdr workspace ID, agent name, handoff path, active `ALIGNMENT_ROOT`, and storage mode.
+   - Open a pane or session for the agent following `references/muxers/<muxer>.md`'s "Opening a pane for an agent" procedure, using `references/agents/<agent>.md`'s launch command with `@/tmp/{ticket-id}-handoff.md` as the task input.
+   - Do not open a second pane or session for the same worktree once one is running.
+   - Write one persistent workflow record for the ticket with the ticket, source branch, base branch, worktree path, muxer, agent, pane/session identifier (when the muxer has one), agent name, handoff path, active `ALIGNMENT_ROOT`, and storage mode.
    - If the active `ALIGNMENT_ROOT` has `storage="shared"`, follow `SHARED-CONTEXT-LINKS.md`'s write rule for the workflow record before starting the ticket agent.
 10. Keep each ticket job isolated. Use absolute paths and separate variables.
 11. If one ticket job fails, record the failure and continue the other jobs.
@@ -86,9 +80,7 @@ Report one result per ticket:
 - status
 - branch
 - worktree path
-- Herdr workspace
+- muxer and pane/session identifier
 - agent name
 - handoff path
 - failure reason, if applicable
-
-UserRequest: $ARGUMENTS
