@@ -13,7 +13,7 @@ hrdx has no `worktree` subcommand. It opens workspaces and panes against a `--cw
 1. Create the worktree first with Worktrunk: `wt switch --create <branch> --no-cd --no-hooks` (or with hooks, per the playbook).
 2. Open hrdx against that path: `hrdx --cwd <worktree-path> --agent <harness-kind>` for a new session, or use the socket API (`workspace.create`, `pane.create`) from an already-running hrdx to add a pane without a new top-level session.
 3. `<harness-kind>` is one of hrdx's built-in kinds (`claude`, `codex`, `pi`, `zot`, `shell`) or a custom entry in `harness.json`. Match it to `references/agents/*.md`.
-4. Read pane output and pane state through the socket API (`pane.read`, `pane.busy`) rather than guessing from a screen scrape.
+4. Read pane output and pane state through the socket API (`pane.read`, `pane.wait`) rather than guessing from a screen scrape.
 
 ## Do not
 
