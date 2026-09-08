@@ -4,6 +4,3 @@ config_roots = ["manifests/common/*", "manifests/unix/*", "manifests/linux/*"]
 [bootstrap.packages]
 "apt:x11-xserver-utils" = "latest"
 "dnf:xrdb" = "latest"
-
-[bootstrap.repos]
-"~/.config/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }

@@ -4,18 +4,12 @@ dotfiles.default_mode = "symlink"
 
 [tools]
 "cargo:p1rallels/codemapper" = "latest"
-"cargo:tgt" = "latest"
 "github:Feel-ix-343/markdown-oxide" = "latest"
 "github:aristocratos/btop" = "latest"
-"github:asciinema/asciinema" = "latest"
 "github:cantino/mcfly" = "latest"
-"github:d-kuro/gwq" = "latest"
 "github:hmarr/codeowners" = "latest"
-"github:home-assistant/cli" = "latest"
-"github:mfontanini/presenterm" = "latest"
 "github:moonrepo/moon" = "latest"
 "github:moonrepo/proto" = "latest"
-"github:scottmckendry/pokemon-go-colorscripts" = "latest"
 "github:terrastruct/d2" = "latest"
 "github:max-sixty/worktrunk" = "0.52.0"
 "go:github.com/Crosse/font-install" = "latest"
@@ -26,25 +20,19 @@ dotfiles.default_mode = "symlink"
 "npm:chrome-devtools-mcp" = "latest"
 "npm:firefox-devtools-mcp" = "latest"
 "npm:gh-actions-language-server" = "latest"
-"npm:gtop" = "latest"
 "npm:mcporter" = "latest"
 "npm:release-please" = "latest"
 "npm:semver" = "latest"
 "npm:surf-cli" = "latest"
 "npm:typescript-language-server" = "latest"
 "pipx:huggingface_hub" = "latest"
-"ubi:mfontanini/presenterm" = "latest"
-"ubi:trufflesecurity/trufflehog" = "latest"
 act = "latest"
 action-validator = "latest"
 actionlint = "latest"
 age = "latest"
 ast-grep = "latest"
 awscli = { version = "latest", symlink_bins = "true" }
-bat = "latest"
 bats = "latest"
-bottom = "latest"
-btop = "latest"
 bun = "latest"
 cloudflared = "latest"
 cmake = "latest"
@@ -96,14 +84,12 @@ lua = "latest"
 "npm:takumi-js" = "latest"
 "npm:serve" = "latest"
 "npm:poster-ai" = "0.5.0"
-"npm:@tobilu/qmd" = "latest"
 "github:can1357/oh-my-pi" = "latest"
 "github:sockheadrps/llmctl" = "0.2.2"
 "github:AlexsJones/llmfit" = "latest"
 "github:AlexsJones/llmserve" = "latest"
 "github:kurama/dealve-tui" = "latest"
 youtube-dl = "latest"
-"github:marktoda/zj-radar" = "latest"
 "github:mexirica/aptui" = "latest"
 "github:vercel-labs/agent-browser" = "latest"
 granted = "latest"
@@ -111,63 +97,32 @@ herdr = "latest"
 "github:JustVugg/colibri" = "latest"
 "npm:tempomat" = "latest"
 "github:patriceckhart/hrdx" = "0.0.42"
-"github:pg83/shitty" = "latest"
 "github:margin-lab/evals" = "latest"
 glab = "latest"
-"gitlab:gitlab-org/cli" = "latest"
 zot = "0.3.64"
-
-[bootstrap]
-config_roots = ["manifests/common/*"]
 
 [shell_alias]
 pi = "mise x node@lts -- pi "
 piupdate = "mise x node@lts -- pi update"
 piinstall = "mise x node@lts -- pi install"
 
-
-[bootstrap.hooks]
-pre-dotfiles = """
-if [ -L "$HOME/.config/mise" ] && [ "$(readlink "$HOME/.config/mise")" = "$PWD/files/devtools/mise" ]; then
-  rm "$HOME/.config/mise"
-  mkdir -p "$HOME/.config/mise"
-fi
-"""
-
 [tasks.bootstrap]
 description = "Finish machine setup after declarative bootstrap phases"
 run = """
-set -eu
-cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
-git submodule update --init --recursive -- $(git config --file .gitmodules --get-regexp '\\.path$' | cut -d' ' -f2- | while read -r path; do git ls-files --stage -- "$path" | awk '$1 == 160000 { print $4 }'; done)
-git config --global core.excludesFile "$HOME/.gitignore_global"
-if [ -d files/devtools/pi/agent ]; then
-  (cd files/devtools/pi/agent && bun install)
-fi
 case "$(uname -s)" in
   Linux) mise run bootstrap:linux ;;
   Darwin) mise run bootstrap:macos ;;
 esac
 """
+
 run_windows = [
-  "Set-Location $env:MISE_CONFIG_ROOT; git submodule update --init --recursive",
-  "git config --global core.excludesFile $HOME/.gitignore_global",
-  "Set-Location $env:MISE_CONFIG_ROOT; if (Test-Path files/devtools/pi/agent) { Push-Location files/devtools/pi/agent; bun install; Pop-Location }",
   "mise run bootstrap:windows",
 ]
 
 [tasks."bootstrap:linux"]
 description = "Linux-only bootstrap leftovers"
 run = """
-set -eu
-cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
-if command -v rpm-ostree >/dev/null && ! command -v xrdb >/dev/null; then
-  sudo rpm-ostree install -yA xrdb
-  echo "rpm-ostree created a pending deployment; reboot before rerunning bootstrap"
-  exit 0
-fi
 font-install -fromFile files/assets/fonts.txt
-chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
   xrdb -merge "$HOME/.Xresources"
 fi
@@ -176,35 +131,12 @@ fi
 [tasks."bootstrap:macos"]
 description = "macOS-only bootstrap leftovers"
 run = """
-set -eu
-cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
-font-install -fromFile files/assets/fonts.txt
-chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
+echo "No macOS-specific bootstrap tasks defined yet."
 """
 
 [tasks."bootstrap:windows"]
 description = "Windows setup that mise bootstrap cannot model natively yet"
-run_windows = [
-  "if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) { irm get.scoop.sh | iex }",
-  "winget install -e --id Git.Git --accept-source-agreements --accept-package-agreements",
-  "winget install -e --id Microsoft.PowerShell --accept-source-agreements --accept-package-agreements",
-  "winget install -e --id jdx.mise --accept-source-agreements --accept-package-agreements",
-  "winget install -e --id Microsoft.OpenSSH.Beta --accept-source-agreements --accept-package-agreements",
-  "winget install -e --id ShareX.ShareX --accept-source-agreements --accept-package-agreements",
-  "winget install -e --id GnuPG.Gpg4win --accept-source-agreements --accept-package-agreements",
-  "winget install -e --id Starship.Starship --accept-source-agreements --accept-package-agreements",
-  "winget install -e --id AutoHotkey.AutoHotkey --accept-source-agreements --accept-package-agreements",
-  "winget install -e --id jstarks.npiperelay --accept-source-agreements --accept-package-agreements",
-  "scoop bucket add younger-1_scoop-it https://github.com/younger-1/scoop-it",
-  "scoop install sudo fzf psfzf uni llvm 7zip tar git-credential-gopass",
-  "Install-Module -Name Emojis -Scope CurrentUser -Force -AcceptLicense",
-  "Get-AppxPackage Microsoft.XboxGamingOverlay | Remove-AppxPackage",
-  "Get-Service ssh-agent | Set-Service -StartupType Automatic -PassThru | Start-Service",
-  "if (-not (wsl -l -q | Select-String '^Ubuntu$')) { wsl --install -d Ubuntu --no-launch }",
-  "wsl --set-default-version 2",
-  "wsl -d Ubuntu --user root -- apt update -y",
-  "wsl -d Ubuntu --user root -- apt install -y wslu socat",
-]
+run_windows = []
 
 [tool_alias]
 zot = "github:patriceckhart/zot"
