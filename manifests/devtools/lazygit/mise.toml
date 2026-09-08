@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.config/lazygit" = { source = "../../../files/devtools/lazygit", mode = "symlink-each" }

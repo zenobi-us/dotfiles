@@ -1,0 +1,2 @@
+[dotfiles]
+"~/AppData/Roaming/deskflow" = { source = "../../../files/windowmanagers/deskflow", mode = "symlink" }

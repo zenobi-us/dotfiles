@@ -106,38 +106,6 @@ pi = "mise x node@lts -- pi "
 piupdate = "mise x node@lts -- pi update"
 piinstall = "mise x node@lts -- pi install"
 
-[tasks.bootstrap]
-description = "Finish machine setup after declarative bootstrap phases"
-run = """
-case "$(uname -s)" in
-  Linux) mise run bootstrap:linux ;;
-  Darwin) mise run bootstrap:macos ;;
-esac
-"""
-
-run_windows = [
-  "mise run bootstrap:windows",
-]
-
-[tasks."bootstrap:linux"]
-description = "Linux-only bootstrap leftovers"
-run = """
-font-install -fromFile files/assets/fonts.txt
-if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
-  xrdb -merge "$HOME/.Xresources"
-fi
-"""
-
-[tasks."bootstrap:macos"]
-description = "macOS-only bootstrap leftovers"
-run = """
-echo "No macOS-specific bootstrap tasks defined yet."
-"""
-
-[tasks."bootstrap:windows"]
-description = "Windows setup that mise bootstrap cannot model natively yet"
-run_windows = []
-
 [tool_alias]
 zot = "github:patriceckhart/zot"
 hrdx = "github:patriceckhart/hrdx"

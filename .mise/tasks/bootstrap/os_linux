@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#MISE description "Bootstrap Linux system"
+
+pwd {{ config_root }}
+
+font-install -fromFile ./files/assets/fonts.txt
+if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
+  xrdb -merge "$HOME/.Xresources"
+fi

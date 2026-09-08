@@ -1,12 +1,8 @@
 [bootstrap]
-config_roots = ["manifests/common/*", "manifests/unix/*"]
+config_roots = ["manifests/*/*"]
 
 [bootstrap.repos]
 "~/.config/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }
-
-[dotfiles]
-"~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
-"~/.config/mise/tasks" = { source = "files/devtools/mise/tasks", mode = "symlink" }
 
 [env]
 VISUAL = "nvim"

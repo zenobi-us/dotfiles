@@ -1,5 +1,5 @@
 [bootstrap]
-config_roots = ["manifests/common/*", "manifests/unix/*", "manifests/linux/*"]
+config_roots = ["manifests/*/*"]
 
 [bootstrap.packages]
 "apt:x11-xserver-utils" = "latest"
