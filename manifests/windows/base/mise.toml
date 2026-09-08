@@ -1,0 +1,15 @@
+[dotfiles]
+"~/AppData/Local/mcporter" = { source = "../../../files/devtools/mcporter", mode = "symlink" }
+"~/AppData/Local/Packages/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe/LocalState/settings.json" = { source = "../../../files/packagemanagers/winget.json", mode = "copy" }
+"~/AppData/Local/pi" = { source = "../../../files/devtools/pi", mode = "symlink" }
+"~/AppData/Roaming/alacritty" = { source = "../../../files/shells/alacritty", mode = "symlink" }
+"~/AppData/Roaming/deskflow" = { source = "../../../files/windowmanagers/deskflow", mode = "symlink" }
+"~/AppData/Roaming/worktrunk" = { source = "../../../files/devtools/worktrunk", mode = "symlink" }
+"~/AppData/Roaming/starship.toml" = { source = "../../../files/shells/starship/starship.toml", mode = "copy" }
+"~/AppData/Roaming/herdr/config.toml" = { source = "../../../files/shells/herdr/config.toml", mode = "symlink" }
+"~/AppData/Roaming/herdr/plugins" = { source = "../../../files/shells/herdr/plugins", mode = "symlink" }
+"~/AppData/Roaming/hrdx/themes" = { source = "../../../files/shells/hrdx/themes", mode = "symlink" }
+"~/AppData/Roaming/hrdx/keys.json" = { source = "../../../files/shells/hrdx/keys.json", mode = "symlink" }
+"~/AppData/Roaming/hrdx/harness.json" = { source = "../../../files/shells/hrdx/harness.json", mode = "symlink" }
+"~/AppData/Roaming/hrdx/sounds.json" = { source = "../../../files/shells/hrdx/sounds.json", mode = "symlink" }
+"~/Documents/PowerShell" = { source = "../../../files/shells/powershell", mode = "copy" }

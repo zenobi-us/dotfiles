@@ -67,13 +67,14 @@ Use the legacy wrapper only as a shortcut:
 
 | Path | Purpose |
 | --- | --- |
-| `mise.toml` | Common tools, bootstrap tasks, and shared dotfiles |
-| `mise.linux.toml` | Linux packages, dotfiles, and systemd user units |
-| `mise.wsl2.toml` | WSL2-only systemd user units. Loads only when `MISE_ENV=wsl2` (set by `shells/zsh/modules/wsl__env.zsh`) |
+| `mise.toml` | Common tools, bootstrap tasks, and common bootstrap roots |
+| `mise.linux.toml` | Linux packages, repositories, and Linux bootstrap roots |
+| `mise.wsl2.toml` | WSL2-only systemd user units. Loads only when `MISE_ENV=wsl2` (set by `files/shells/zsh/modules/wsl__env.zsh`) |
 | `mise.macos.toml` | macOS packages and dotfiles |
-| `mise.windows.toml` | Windows dotfiles and setup tasks |
-| `devtools/mise/tasks/` | File tasks for mise |
-| `*/files/` | Managed dotfile sources |
+| `mise.windows.toml` | Windows repositories and bootstrap roots |
+| `files/devtools/mise/tasks/` | File tasks for Mise |
+| `manifests/` | Composed declarative bootstrap roots for common, Unix, Linux, and Windows resources |
+| `files/assets/`, `files/browsers/`, `files/commands/`, `files/devtools/`, `files/packagemanagers/`, `files/shells/`, `files/windowmanagers/` | Managed source files by domain |
 
 ## Notes
 

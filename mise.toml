@@ -117,6 +117,9 @@ glab = "latest"
 "gitlab:gitlab-org/cli" = "latest"
 zot = "0.3.64"
 
+[bootstrap]
+config_roots = ["manifests/common/*"]
+
 [shell_alias]
 pi = "mise x node@lts -- pi "
 piupdate = "mise x node@lts -- pi update"
@@ -125,28 +128,11 @@ piinstall = "mise x node@lts -- pi install"
 
 [bootstrap.hooks]
 pre-dotfiles = """
-if [ -L "$HOME/.config/mise" ] && [ "$(readlink "$HOME/.config/mise")" = "$PWD/devtools/mise" ]; then
+if [ -L "$HOME/.config/mise" ] && [ "$(readlink "$HOME/.config/mise")" = "$PWD/files/devtools/mise" ]; then
   rm "$HOME/.config/mise"
   mkdir -p "$HOME/.config/mise"
 fi
 """
-
-[dotfiles]
-"~/.bunfig.toml" = { source = "devtools/bun/bunfig.toml", mode = "symlink" }
-"~/.gitconfig" = { source = "devtools/git/.gitconfig", mode = "copy" }
-"~/.gitignore_global" = { source = "devtools/git/.gitignore_global", mode = "copy" }
-"~/.local/state/zot/config.json" = { source = "devtools/zot/config.json", mode = "symlink" }
-"~/.local/state/zot/themes" = { source = "devtools/zot/themes", mode = "symlink" }
-"~/.local/state/zot/extensions/agent-core" = { source = "devtools/zot/extensions/agent-core", mode = "symlink" }
-"~/.local/state/zot/extensions/creator" = { source = "devtools/agent/bundles/creator", mode = "symlink" }
-"~/.local/state/zot/extensions/developer" = { source = "devtools/agent/bundles/developer", mode = "symlink" }
-"~/.local/state/zot/extensions/matt-pocock" = { source = "devtools/agent/bundles/matt-pocock", mode = "symlink" }
-"~/.local/state/zot/extensions/platform" = { source = "devtools/agent/bundles/platform", mode = "symlink" }
-"~/.local/state/zot/extensions/private-share" = { source = "devtools/agent/bundles/private-share", mode = "symlink" }
-"~/.local/state/zot/extensions/researcher" = { source = "devtools/agent/bundles/researcher", mode = "symlink" }
-"~/.local/state/zot/extensions/vanilla-green" = { source = "devtools/agent/bundles/vanilla-green", mode = "symlink" }
-"~/.local/state/zot/extensions/writing" = { source = "devtools/agent/bundles/writing", mode = "symlink" }
-"~/.config/lazygit" = { source = "devtools/lazygit", mode = "symlink-each" }
 
 [tasks.bootstrap]
 description = "Finish machine setup after declarative bootstrap phases"
@@ -155,8 +141,8 @@ set -eu
 cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
 git submodule update --init --recursive -- $(git config --file .gitmodules --get-regexp '\\.path$' | cut -d' ' -f2- | while read -r path; do git ls-files --stage -- "$path" | awk '$1 == 160000 { print $4 }'; done)
 git config --global core.excludesFile "$HOME/.gitignore_global"
-if [ -d devtools/pi/agent ]; then
-  (cd devtools/pi/agent && bun install)
+if [ -d files/devtools/pi/agent ]; then
+  (cd files/devtools/pi/agent && bun install)
 fi
 case "$(uname -s)" in
   Linux) mise run bootstrap:linux ;;
@@ -166,7 +152,7 @@ esac
 run_windows = [
   "Set-Location $env:MISE_CONFIG_ROOT; git submodule update --init --recursive",
   "git config --global core.excludesFile $HOME/.gitignore_global",
-  "Set-Location $env:MISE_CONFIG_ROOT; if (Test-Path devtools/pi/agent) { Push-Location devtools/pi/agent; bun install; Pop-Location }",
+  "Set-Location $env:MISE_CONFIG_ROOT; if (Test-Path files/devtools/pi/agent) { Push-Location files/devtools/pi/agent; bun install; Pop-Location }",
   "mise run bootstrap:windows",
 ]
 
@@ -180,7 +166,7 @@ if command -v rpm-ostree >/dev/null && ! command -v xrdb >/dev/null; then
   echo "rpm-ostree created a pending deployment; reboot before rerunning bootstrap"
   exit 0
 fi
-font-install -fromFile assets/fonts.txt
+font-install -fromFile files/assets/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
   xrdb -merge "$HOME/.Xresources"
@@ -192,7 +178,7 @@ description = "macOS-only bootstrap leftovers"
 run = """
 set -eu
 cd "$(dirname "$(readlink "$MISE_CONFIG_ROOT/.config/mise/config.toml")")"
-font-install -fromFile assets/fonts.txt
+font-install -fromFile files/assets/fonts.txt
 chmod +x "$HOME/.config/firefox-extensions/load-extensions.sh" 2>/dev/null || true
 """
 

@@ -1,0 +1,14 @@
+[dotfiles]
+"~/.config/starship.toml" = { source = "../../../files/shells/starship/starship.toml", mode = "copy" }
+"~/.zshrc" = { source = "../../../files/shells/zsh/.zshrc", mode = "symlink" }
+"~/.zprofile" = { source = "../../../files/shells/zsh/.zprofile", mode = "symlink" }
+"~/.zshenv" = { source = "../../../files/shells/zsh/.zshenv", mode = "symlink" }
+"~/.config/ghostty" = { source = "../../../files/shells/ghostty", mode = "symlink" }
+"~/.config/herdr/config.toml" = { source = "../../../files/shells/herdr/config.toml", mode = "symlink" }
+"~/.config/herdr/plugins" = { source = "../../../files/shells/herdr/plugins", mode = "symlink" }
+"~/.config/hrdx/themes" = { source = "../../../files/shells/hrdx/themes", mode = "symlink" }
+"~/.config/hrdx/keys.json" = { source = "../../../files/shells/hrdx/keys.json", mode = "symlink" }
+"~/.config/hrdx/harness.json" = { source = "../../../files/shells/hrdx/harness.json", mode = "symlink" }
+"~/.config/hrdx/sounds.json" = { source = "../../../files/shells/hrdx/sounds.json", mode = "symlink" }
+"~/.XresourceThemes" = { source = "../../../files/shells/xresources/.XresourceThemes", mode = "symlink" }
+"~/.Xresources" = { source = "../../../files/shells/xresources/.Xresources", mode = "symlink" }

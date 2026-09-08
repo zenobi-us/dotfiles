@@ -1,0 +1,3 @@
+[dotfiles]
+"~/.config/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf" = { source = "../../../files/windowmanagers/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf", mode = "copy" }
+"~/.local/share/applications" = { source = "../../../files/commands/applications", mode = "copy" }

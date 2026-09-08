@@ -1,0 +1,4 @@
+[dotfiles]
+"~/.config/deskflow" = { source = "../../../files/windowmanagers/deskflow", mode = "symlink" }
+"~/.config/firefox-extensions/qr-code" = { source = "../../../files/browsers/firefox/extensions/qr-code", mode = "copy" }
+"~/.config/firefox-extensions/load-extensions.sh" = { source = "../../../files/browsers/firefox/load-extensions.sh", mode = "copy" }

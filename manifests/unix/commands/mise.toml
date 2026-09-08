@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.local/bin" = { source = "../../../files/commands/bin", mode = "symlink-each" }

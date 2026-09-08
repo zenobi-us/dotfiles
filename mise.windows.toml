@@ -1,25 +1,9 @@
+[bootstrap]
+config_roots = ["manifests/common/*", "manifests/windows/*"]
+
 [bootstrap.repos]
 "~/AppData/Local/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }
 
 [dotfiles]
-"~/.bunfig.toml" = { source = "devtools/bun/bunfig.toml", mode = "symlink" }
-"~/.gitconfig" = { source = "devtools/git/.gitconfig", mode = "copy" }
-"~/.gitignore_global" = { source = "devtools/git/.gitignore_global", mode = "copy" }
 "~/AppData/Local/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
-"~/AppData/Local/mise/tasks" = { source = "devtools/mise/tasks", mode = "symlink" }
-"~/.ssh/ssh-agent-pipe.sh" = { source = "devtools/wsl2/ssh-agent-pipe.sh", mode = "copy" }
-"~/AppData/Local/mcporter" = { source = "devtools/mcporter", mode = "symlink" }
-"~/AppData/Local/Packages/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe/LocalState/settings.json" = { source = "packagemanagers/winget.json", mode = "copy" }
-"~/AppData/Local/pi" = { source = "devtools/pi", mode = "symlink" }
-"~/AppData/Roaming/alacritty" = { source = "shells/alacritty", mode = "symlink" }
-"~/AppData/Roaming/deskflow" = { source = "windowmanagers/deskflow", mode = "symlink" }
-"~/AppData/Roaming/worktrunk" = { source = "devtools/worktrunk", mode = "symlink" }
-"~/AppData/Roaming/starship.toml" = { source = "shells/starship/starship.toml", mode = "copy" }
-"~/AppData/Roaming/herdr/config.toml" = { source = "shells/herdr/config.toml", mode = "symlink" }
-"~/AppData/Roaming/herdr/plugins" = { source = "shells/herdr/plugins", mode = "symlink" }
-"~/AppData/Roaming/hrdx/themes" = { source = "shells/hrdx/themes", mode = "symlink" }
-"~/AppData/Roaming/hrdx/keys.json" = { source = "shells/hrdx/keys.json", mode = "symlink" }
-"~/AppData/Roaming/hrdx/harness.json" = { source = "shells/hrdx/harness.json", mode = "symlink" }
-"~/AppData/Roaming/hrdx/sounds.json" = { source = "shells/hrdx/sounds.json", mode = "symlink" }
-"~/AppData/Roaming/zellij" = { source = "shells/zellij", mode = "symlink" }
-"~/Documents/PowerShell" = { source = "shells/powershell", mode = "copy" }
+"~/AppData/Local/mise/tasks" = { source = "files/devtools/mise/tasks", mode = "symlink" }
