@@ -2,7 +2,7 @@
 
 ## Detection
 
-`HRDX=1` is set by hrdx for processes running in its panes. Confirmed in `devtools/files/pi/agent/extensions/@zenobius/pi-hrdx-agents/README.md` ("Requirements") and its `pi-extension/subagents/hrdx.ts` (`process.env.HRDX === "1" && hasCommand("hrdx")`). `scripts/detect.mjs`'s `detectMuxer()` checks the env var only, without the binary check — a false positive would need something else setting `HRDX=1`, which is unlikely.
+`HRDX=1` is set by hrdx for processes running in its panes. Confirmed in `devtools/files/pi/agent/extensions/@zenobius/pi-hrdx-agents/README.md` ("Requirements") and its `pi-extension/subagents/hrdx.ts` (`process.env.HRDX === "1" && hasCommand("hrdx")`). `scripts/router.mjs`'s `detectMuxer()` checks the env var only, without the binary check — a false positive would need something else setting `HRDX=1`, which is unlikely.
 
 ## Worktree awareness
 

@@ -16,5 +16,5 @@ Anything outside that list reports `unknown-muxer`/`unknown-agent` on purpose, r
 ## Fix
 
 - Pass the override explicitly: `route "<request>" --agent zot` (or any other case detection cannot see).
-- If this is a new, real, confirmed signal (not a guess), update `detectMuxer()`/`detectAgent()` in `scripts/detect.mjs` and the matching `references/muxers/*.md` or `references/agents/*.md` file.
+- If this is a new, real, confirmed signal (not a guess), update `detectMuxer()`/`detectAgent()` in `scripts/router.mjs` and the matching `references/muxers/*.md` or `references/agents/*.md` file.
 - Never silently pick a muxer or agent when detection returns `unknown-muxer`/`unknown-agent` and no override was given — ask the user.
