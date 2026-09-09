@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.config/deskflow" = { source = ".", exclude = ["mise*.toml"], mode = "symlink" }

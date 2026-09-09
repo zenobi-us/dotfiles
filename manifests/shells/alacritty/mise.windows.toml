@@ -1,2 +1,0 @@
-[dotfiles]
-"~/AppData/Roaming/alacritty" = { source = "../../../files/shells/alacritty", mode = "symlink" }

@@ -1,0 +1,4 @@
+[dotfiles]
+"~/.zshrc" = { source = ".zshrc", mode = "symlink" }
+"~/.zprofile" = { source = ".zprofile", mode = "symlink" }
+"~/.zshenv" = { source = ".zshenv", mode = "symlink" }

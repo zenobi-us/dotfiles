@@ -1,2 +1,0 @@
-[dotfiles]
-"~/.bunfig.toml" = { source = "../../../files/devtools/bun/bunfig.toml", mode = "symlink" }

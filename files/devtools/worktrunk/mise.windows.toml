@@ -1,0 +1,2 @@
+[dotfiles]
+"~/AppData/Roaming/worktrunk" = { source = ".", exclude = ["mise*.toml"], mode = "symlink" }

@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.config/ghostty" = { source = ".", exclude = ["mise*.toml"], mode = "symlink" }

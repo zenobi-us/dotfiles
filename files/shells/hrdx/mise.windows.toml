@@ -1,0 +1,5 @@
+[dotfiles]
+"~/AppData/Roaming/hrdx/themes" = { source = "./themes", mode = "symlink" }
+"~/AppData/Roaming/hrdx/keys.json" = { source = "./keys.json", mode = "symlink" }
+"~/AppData/Roaming/hrdx/harness.json" = { source = "./harness.json", mode = "symlink" }
+"~/AppData/Roaming/hrdx/sounds.json" = { source = "./sounds.json", mode = "symlink" }

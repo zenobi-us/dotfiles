@@ -1,3 +1,0 @@
-[dotfiles]
-"~/AppData/Roaming/herdr/config.toml" = { source = "../../../files/shells/herdr/config.toml", mode = "symlink" }
-"~/AppData/Roaming/herdr/plugins" = { source = "../../../files/shells/herdr/plugins", mode = "symlink" }

@@ -1,0 +1,2 @@
+[dotfiles]
+"~/AppData/Local/mcporter" = { source = ".", exclude = ["mise*.toml"], mode = "symlink" }

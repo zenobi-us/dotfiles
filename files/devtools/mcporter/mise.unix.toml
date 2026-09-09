@@ -1,0 +1,3 @@
+[dotfiles]
+"~/.config/mcporter" = { source = ".", exclude = ["mise*.toml"], mode = "symlink" }
+"~/.mcporter" = { source = ".", exclude = ["mise*.toml"], mode = "symlink" }

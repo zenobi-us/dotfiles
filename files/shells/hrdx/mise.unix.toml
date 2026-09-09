@@ -1,0 +1,5 @@
+[dotfiles]
+"~/.config/hrdx/themes" = { source = "./themes", mode = "symlink" }
+"~/.config/hrdx/keys.json" = { source = "./keys.json", mode = "symlink" }
+"~/.config/hrdx/harness.json" = { source = "./harness.json", mode = "symlink" }
+"~/.config/hrdx/sounds.json" = { source = "./sounds.json", mode = "symlink" }

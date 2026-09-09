@@ -1,2 +1,0 @@
-[dotfiles]
-"~/.config/starship.toml" = { source = "../../../files/shells/starship/starship.toml", mode = "copy" }

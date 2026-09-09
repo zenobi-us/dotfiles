@@ -1,0 +1,3 @@
+[dotfiles]
+"~/.config/firefox-extensions/qr-code" = { source = "./extensions/qr-code", mode = "copy" }
+"~/.config/firefox-extensions/load-extensions.sh" = { source = "./load-extensions.sh", mode = "copy" }

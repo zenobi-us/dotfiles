@@ -1,0 +1,3 @@
+[dotfiles]
+"~/AppData/Local/mise/config.toml" = { source = "../../../mise.toml", mode = "symlink" }
+"~/AppData/Local/mise/tasks" = { source = "./tasks", mode = "symlink" }

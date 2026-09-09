@@ -1,2 +1,0 @@
-[dotfiles]
-"~/.local/share/applications" = { source = "../../../files/commands/applications", mode = "copy" }

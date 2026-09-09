@@ -1,2 +1,0 @@
-[dotfiles]
-"~/Documents/PowerShell" = { source = "../../../files/shells/powershell", mode = "copy" }

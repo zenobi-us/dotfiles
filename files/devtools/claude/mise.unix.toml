@@ -1,0 +1,7 @@
+[dotfiles]
+"~/.claude/settings.json" = { source = "./settings.json", mode = "symlink" }
+"~/.claude/statusline.sh" = { source = "./statusline.sh", mode = "symlink" }
+"~/.claude/themes/" = { source = "./themes", mode = "symlink-each" }
+"~/.claude/output-styles/" = { source = "./output-styles", mode = "symlink-each" }
+"~/.claude/CLAUDE.md" = { source = "../agent/AGENTS.md", mode = "symlink" }
+"~/.local/bin/clip-bridge" = { source = "./clip-bridge", mode = "symlink" }

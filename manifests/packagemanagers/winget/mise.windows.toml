@@ -1,2 +1,0 @@
-[dotfiles]
-"~/AppData/Local/Packages/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe/LocalState/settings.json" = { source = "../../../files/packagemanagers/winget.json", mode = "copy" }

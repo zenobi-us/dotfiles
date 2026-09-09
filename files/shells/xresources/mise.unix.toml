@@ -1,0 +1,3 @@
+[dotfiles]
+"~/.XresourceThemes" = { source = ".XresourceThemes", mode = "symlink" }
+"~/.Xresources" = { source = ".Xresources", mode = "symlink" }

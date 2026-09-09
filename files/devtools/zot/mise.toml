@@ -1,0 +1,11 @@
+[dotfiles]
+"~/.local/state/zot/config.json" = { source = "./config.json", mode = "symlink" }
+"~/.local/state/zot/themes" = { source = "./themes", mode = "symlink" }
+"~/.local/state/zot/extensions/creator" = { source = "../agent/bundles/creator", mode = "symlink" }
+"~/.local/state/zot/extensions/developer" = { source = "../agent/bundles/developer", mode = "symlink" }
+"~/.local/state/zot/extensions/matt-pocock" = { source = "../agent/bundles/matt-pocock", mode = "symlink" }
+"~/.local/state/zot/extensions/platform" = { source = "../agent/bundles/platform", mode = "symlink" }
+"~/.local/state/zot/extensions/private-share" = { source = "../agent/bundles/private-share", mode = "symlink" }
+"~/.local/state/zot/extensions/researcher" = { source = "../agent/bundles/researcher", mode = "symlink" }
+"~/.local/state/zot/extensions/vanilla-green" = { source = "../agent/bundles/vanilla-green", mode = "symlink" }
+"~/.local/state/zot/extensions/writing" = { source = "../agent/bundles/writing", mode = "symlink" }

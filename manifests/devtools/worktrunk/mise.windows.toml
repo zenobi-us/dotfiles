@@ -1,2 +1,0 @@
-[dotfiles]
-"~/AppData/Roaming/worktrunk" = { source = "../../../files/devtools/worktrunk", mode = "symlink" }

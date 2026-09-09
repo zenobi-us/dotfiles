@@ -1,3 +1,0 @@
-[dotfiles]
-"~/.config/mise/config.toml" = { source = "../../../mise.toml", mode = "symlink" }
-"~/.config/mise/tasks" = { source = "../../../files/devtools/mise/tasks", mode = "symlink" }

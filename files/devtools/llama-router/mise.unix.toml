@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.local/bin/llama-router" = { source = "./llama-router.sh", mode = "symlink" }

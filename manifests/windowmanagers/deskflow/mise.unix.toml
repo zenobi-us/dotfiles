@@ -1,2 +1,0 @@
-[dotfiles]
-"~/.config/deskflow" = { source = "../../../files/windowmanagers/deskflow", mode = "symlink" }

@@ -1,5 +1,0 @@
-[dotfiles]
-"~/AppData/Roaming/hrdx/themes" = { source = "../../../files/shells/hrdx/themes", mode = "symlink" }
-"~/AppData/Roaming/hrdx/keys.json" = { source = "../../../files/shells/hrdx/keys.json", mode = "symlink" }
-"~/AppData/Roaming/hrdx/harness.json" = { source = "../../../files/shells/hrdx/harness.json", mode = "symlink" }
-"~/AppData/Roaming/hrdx/sounds.json" = { source = "../../../files/shells/hrdx/sounds.json", mode = "symlink" }

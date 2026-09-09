@@ -1,4 +1,0 @@
-[dotfiles]
-"~/.zshrc" = { source = "../../../files/shells/zsh/.zshrc", mode = "symlink" }
-"~/.zprofile" = { source = "../../../files/shells/zsh/.zprofile", mode = "symlink" }
-"~/.zshenv" = { source = "../../../files/shells/zsh/.zshenv", mode = "symlink" }

@@ -1,0 +1,3 @@
+[dotfiles]
+"~/.gitconfig" = { source = ".gitconfig", mode = "copy" }
+"~/.gitignore_global" = { source = ".gitignore_global", mode = "copy" }

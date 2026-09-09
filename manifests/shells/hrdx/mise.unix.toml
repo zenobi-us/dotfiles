@@ -1,5 +1,0 @@
-[dotfiles]
-"~/.config/hrdx/themes" = { source = "../../../files/shells/hrdx/themes", mode = "symlink" }
-"~/.config/hrdx/keys.json" = { source = "../../../files/shells/hrdx/keys.json", mode = "symlink" }
-"~/.config/hrdx/harness.json" = { source = "../../../files/shells/hrdx/harness.json", mode = "symlink" }
-"~/.config/hrdx/sounds.json" = { source = "../../../files/shells/hrdx/sounds.json", mode = "symlink" }

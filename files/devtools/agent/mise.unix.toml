@@ -1,0 +1,5 @@
+[dotfiles]
+"~/.claude/agents" = { source = "./agents", mode = "symlink" }
+"~/.pi/agent/AGENTS.md" = { source = "./AGENTS.md", mode = "symlink" }
+"~/.pi/agent/agents" = { source = "./agents", mode = "symlink" }
+"~/.pi/agent/bundles" = { source = "./bundles", mode = "symlink" }

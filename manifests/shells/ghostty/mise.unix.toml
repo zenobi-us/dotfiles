@@ -1,2 +1,0 @@
-[dotfiles]
-"~/.config/ghostty" = { source = "../../../files/shells/ghostty", mode = "symlink" }
