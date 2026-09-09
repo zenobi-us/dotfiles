@@ -17,3 +17,5 @@ echo "OS: $os/$osfamily - $DEFAULT_ARCH"
 mise run "bootstrap:osfamily_$osfamily"
 mise run "bootstrap:os_$os"
 mise run '//files/...:bootstrap'
+
+bun install --frozen-lockfile

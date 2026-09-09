@@ -1,6 +1,5 @@
 [dotfiles]
 "~/.pi/agent/APPEND_SYSTEM.md" = { source = "./agent/APPEND_SYSTEM.md", mode = "symlink" }
-"~/.pi/agent/bun.lock" = { source = "./agent/bun.lock", mode = "symlink" }
 "~/.pi/agent/extensions" = { source = "./agent/extensions", mode = "symlink" }
 "~/.pi/agent/fzf.json" = { source = "./agent/fzf.json", mode = "symlink" }
 "~/.pi/agent/package.json" = { source = "./agent/package.json", mode = "symlink" }
@@ -9,7 +8,3 @@
 "~/.pi/agent/pi-sub-core-settings.json" = { source = "./agent/pi-sub-core-settings.json", mode = "symlink" }
 "~/.pi/agent/settings.json" = { source = "./agent/settings.json", mode = "symlink" }
 "~/.pi/agent/tsconfig.json" = { source = "./agent/tsconfig.json", mode = "symlink" }
-
-[tasks.bootstrap]
-description = "Install Pi agent bundle dependencies"
-run = "bun install --cwd ../../.. --frozen-lockfile"
