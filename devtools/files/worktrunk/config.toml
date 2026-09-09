@@ -8,7 +8,7 @@ worktree-path = "{{ repo_path }}/../{{repo}}.worktrees/{{ branch | sanitize }}"
 sync = ""
 
 [[post-start]]
-mise-trust = "mise trust -y"
+mise-trust = "mise trust -y; mise setup;"
 
 [[projects."github.com/zenobi-us/dotfiles".post-start]]
 mise-trust = "mise trust; mise setup;"
