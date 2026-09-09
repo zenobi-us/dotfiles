@@ -4,6 +4,20 @@
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/home/zenobius/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "worktree": {
     "baseRef": "fresh"
   },
@@ -29,7 +43,7 @@
     "zenobius-agent-bundles": {
       "source": {
         "source": "directory",
-        "path": "/home/zenobius/Projects/dotfiles/files/devtools/agent/bundles"
+        "path": "/var/home/zenobius/Projects/dotfiles/files/devtools/agent/bundles"
       }
     }
   },
@@ -44,6 +58,5 @@
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:rose-pine-moon",
-  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '/home/zenobius/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
+  "theme": "custom:rose-pine-moon"
 }
