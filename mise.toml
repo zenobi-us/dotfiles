@@ -1,6 +1,13 @@
+monorepo_root = true
+
 [settings]
 experimental = true
 dotfiles.default_mode = "symlink"
+
+[monorepo]
+config_roots = [
+  "./files/devtools/zot",
+]
 
 [tools]
 "cargo:p1rallels/codemapper" = "latest"

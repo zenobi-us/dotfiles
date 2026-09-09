@@ -9,3 +9,7 @@
 "~/.pi/agent/pi-sub-core-settings.json" = { source = "./agent/pi-sub-core-settings.json", mode = "symlink" }
 "~/.pi/agent/settings.json" = { source = "./agent/settings.json", mode = "symlink" }
 "~/.pi/agent/tsconfig.json" = { source = "./agent/tsconfig.json", mode = "symlink" }
+
+[tasks.bootstrap]
+description = "Install Pi agent dependencies"
+run = "bun install --cwd agent --frozen-lockfile"

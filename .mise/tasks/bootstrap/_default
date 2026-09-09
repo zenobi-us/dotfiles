@@ -32,3 +32,4 @@ function run_mise_task() {
 
 run_mise_task "bootstrap:osfamily_$osfamily"
 run_mise_task "bootstrap:os_$os"
+mise run '//files/...:bootstrap'

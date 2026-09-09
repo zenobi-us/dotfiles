@@ -1,3 +1,5 @@
+monorepo_root = true
+
 [bootstrap.linux.systemd.units.clip-bridge]
 description = "Convert WSLg's mirrored clipboard image (BI_BITFIELDS BMP) to PNG so Claude Code can paste it. No-ops outside WSL."
 exec_start = "~/.local/bin/clip-bridge"

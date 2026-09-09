@@ -9,3 +9,7 @@
 "~/.local/state/zot/extensions/researcher" = { source = "../agent/bundles/researcher", mode = "symlink" }
 "~/.local/state/zot/extensions/vanilla-green" = { source = "../agent/bundles/vanilla-green", mode = "symlink" }
 "~/.local/state/zot/extensions/writing" = { source = "../agent/bundles/writing", mode = "symlink" }
+
+[tasks.bootstrap]
+description = "Verify Zot agent bundles are available"
+run = "for bundle in agent-core creator developer matt-pocock platform private-share researcher vanilla-green writing; do test -d \"../agent/bundles/$bundle\"; done"
