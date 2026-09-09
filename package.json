@@ -1,4 +1,12 @@
 {
+  "private": true,
+  "workspaces": [
+    "files/devtools/agent/bundles/*",
+    "files/devtools/pi/agent",
+    "files/devtools/pi/agent/extensions/@vanillagreen/*",
+    "files/devtools/pi/agent/extensions/@zenobius/*",
+    "files/devtools/pi/agent/packages/*"
+  ],
   "dependencies": {
     "@types/nconf": "^0.10.7",
     "nconf": "^0.13.0"

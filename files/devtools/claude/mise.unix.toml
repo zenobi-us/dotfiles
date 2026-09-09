@@ -7,7 +7,7 @@
 "~/.local/bin/clip-bridge" = { source = "./clip-bridge", mode = "symlink" }
 
 [tasks.bootstrap]
-description = "Install the Claude Code agent bundle plugins"
+description = "Install Claude Code agent bundle plugins and their dependencies"
 run = """
 set -euo pipefail
 
@@ -16,4 +16,6 @@ claude plugin marketplace add ../agent/bundles >/dev/null 2>&1 || true
 for plugin in agent-core creator developer matt-pocock platform private-share researcher vanilla-green writing; do
   claude plugin install "${plugin}@zenobius-agent-bundles"
 done
+
+bun install --cwd ../../.. --frozen-lockfile
 """

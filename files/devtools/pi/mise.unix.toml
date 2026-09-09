@@ -11,5 +11,5 @@
 "~/.pi/agent/tsconfig.json" = { source = "./agent/tsconfig.json", mode = "symlink" }
 
 [tasks.bootstrap]
-description = "Install Pi agent dependencies"
-run = "bun install --cwd agent --frozen-lockfile"
+description = "Install Pi agent bundle dependencies"
+run = "bun install --cwd ../../.. --frozen-lockfile"

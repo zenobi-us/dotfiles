@@ -11,5 +11,5 @@
 "~/.local/state/zot/extensions/writing" = { source = "../agent/bundles/writing", mode = "symlink" }
 
 [tasks.bootstrap]
-description = "Verify Zot agent bundles are available"
-run = "for bundle in agent-core creator developer matt-pocock platform private-share researcher vanilla-green writing; do test -d \"../agent/bundles/$bundle\"; done"
+description = "Verify Zot agent bundles and install their dependencies"
+run = "for bundle in agent-core creator developer matt-pocock platform private-share researcher vanilla-green writing; do test -d \"../agent/bundles/$bundle\"; done && bun install --cwd ../../.. --frozen-lockfile"
