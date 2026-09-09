@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "set -o pipefail; bun run \"${CLAUDE_PLUGIN_ROOT}/skills/shared-context/scripts/shared-context/cli.ts\" context inject | jq -c '{continue: true, hookSpecificOutput: {hookEventName: \"SessionStart\", additionalContext: (. // \"\")}}'"
+          }
+        ]
+      }
+    ]
+  }
+}

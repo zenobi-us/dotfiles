@@ -1,0 +1,12 @@
+{
+  "provider": "openai-codex",
+  "model": "gpt-5.6-luna",
+  "reasoning": "medium",
+  "theme": "rose-pine",
+  "auto_swarm_enabled": true,
+  "recursive_file_suggest": true,
+  "show_instructions_at_startup": true,
+  "tui_status_position": "below_input",
+  "tui_working_position": "below_input",
+  "last_changelog_shown": "0.3.69"
+}

@@ -1,0 +1,2 @@
+[dotfiles]
+"~/AppData/Roaming/starship.toml" = { source = "../../../files/shells/starship/starship.toml", mode = "copy" }

@@ -1,0 +1,13 @@
+{
+  "name": "platform",
+  "description": "Cloudflare, home automation, infra ops, and specialized deployment experts",
+  "version": "0.1.0",
+  "skills": [
+    "./skills/files/devtools/",
+    "./skills/files/devtools/cloudflare/",
+    "./skills/files/devtools/mise/",
+    "./skills/files/devtools/moonrepo/",
+    "./skills/files/devtools/pi-mono/",
+    "./skills/homeassistant/"
+  ]
+}

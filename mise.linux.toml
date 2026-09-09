@@ -1,10 +1,6 @@
+[bootstrap]
+config_roots = ["manifests/*/*"]
+
 [bootstrap.packages]
 "apt:x11-xserver-utils" = "latest"
 "dnf:xrdb" = "latest"
-
-[bootstrap.repos]
-"~/.config/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }
-
-[dotfiles]
-"~/.config/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf" = { source = "windowmanagers/files/wireplumber/wireplumber.conf.d/51-bluez-handsfree.conf", mode = "copy" }
-"~/.local/share/applications" = { source = "commands/files/applications", mode = "copy" }

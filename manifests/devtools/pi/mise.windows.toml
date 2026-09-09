@@ -1,0 +1,2 @@
+[dotfiles]
+"~/AppData/Local/pi" = { source = "../../../files/devtools/pi", mode = "symlink" }

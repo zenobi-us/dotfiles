@@ -1,0 +1,16 @@
+{
+  "name": "developer",
+  "description": "Code writing, git workflow, testing, and language/quality experts",
+  "version": "0.1.1",
+  "skills": [
+    "./skills/atlassian/",
+    "./skills/better-auth/",
+    "./skills/files/browsers/",
+    "./skills/files/devtools/",
+    "./skills/game-dev/",
+    "./skills/git/",
+    "./skills/files/shells/",
+    "./skills/files/shells/neovim/",
+    "./skills/uidev/"
+  ]
+}

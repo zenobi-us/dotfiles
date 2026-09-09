@@ -1,0 +1,7 @@
+[dotfiles]
+"~/.claude/settings.json" = { source = "../../../files/devtools/claude/settings.json", mode = "symlink" }
+"~/.claude/statusline.sh" = { source = "../../../files/devtools/claude/statusline.sh", mode = "symlink" }
+"~/.claude/themes/" = { source = "../../../files/devtools/claude/themes/", mode = "symlink-each" }
+"~/.claude/output-styles/" = { source = "../../../files/devtools/claude/output-styles/", mode = "symlink-each" }
+"~/.claude/CLAUDE.md" = { source = "../../../files/devtools/agent/AGENTS.md", mode = "symlink" }
+"~/.local/bin/clip-bridge" = { source = "../../../files/devtools/claude/clip-bridge", mode = "symlink" }

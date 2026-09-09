@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.config/worktrunk" = { source = "../../../files/devtools/worktrunk", mode = "symlink" }

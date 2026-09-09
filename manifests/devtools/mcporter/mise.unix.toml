@@ -1,0 +1,3 @@
+[dotfiles]
+"~/.config/mcporter" = { source = "../../../files/devtools/mcporter", mode = "symlink" }
+"~/.mcporter" = { source = "../../../files/devtools/mcporter", mode = "symlink" }
