@@ -14,22 +14,6 @@ osfamily="${usage_osfamily:-$DEFAULT_OS_FAMILY}"
 
 echo "OS: $os/$osfamily - $DEFAULT_ARCH"
 
-function does_task_exist() {
-  local task_name="$1"
-
-  mise tasks -J | jq -r '.[] | select(.name == "'"$task_name"'") | .name' | grep -qFx "$task_name"
-}
-
-function run_mise_task() {
-  local task_name="$1"
-
-  if does_task_exist "$task_name"; then
-    mise run "$task_name"
-  else
-    echo "No task defined for $task_name"
-  fi
-}
-
-run_mise_task "bootstrap:osfamily_$osfamily"
-run_mise_task "bootstrap:os_$os"
+mise run "bootstrap:osfamily_$osfamily"
+mise run "bootstrap:os_$os"
 mise run '//files/...:bootstrap'

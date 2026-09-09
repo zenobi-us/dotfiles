@@ -6,6 +6,8 @@ dotfiles.default_mode = "symlink"
 
 [monorepo]
 config_roots = [
+  "./files/devtools/claude",
+  "./files/devtools/pi",
   "./files/devtools/zot",
 ]
 
@@ -22,6 +24,7 @@ config_roots = [
 "go:github.com/Crosse/font-install" = "latest"
 "npm:@earendil-works/gondolin" = "latest"
 "npm:@earendil-works/pi-coding-agent" = "latest"
+"npm:@anthropic-ai/claude-code" = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:agent-browser" = "latest"
 "npm:chrome-devtools-mcp" = "latest"
