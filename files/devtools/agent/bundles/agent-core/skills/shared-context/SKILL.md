@@ -8,7 +8,7 @@ description: Reports and manages origin-keyed shared engineering context; use to
 Use the bundled CLI for shared engineering context operations:
 
 ```bash
-bun run "<skillroot>/scripts/shared-context-cli.ts" context <subcommand>
+bun run "<skillroot>/scripts/shared-context/cli.ts" <subcommand>
 ```
 
 Replace `<skillroot>` with the root directory of this skill. In Zot, prefer
