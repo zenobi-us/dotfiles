@@ -1,6 +1,7 @@
 [dotfiles]
 "~/.local/state/zot/config.json" = { source = "./config.json", mode = "symlink" }
 "~/.local/state/zot/themes" = { source = "./themes", mode = "symlink" }
+"~/.local/state/zot/extensions/agent-core" = { source = "../agent/bundles/agent-core", mode = "symlink" }
 "~/.local/state/zot/extensions/creator" = { source = "../agent/bundles/creator", mode = "symlink" }
 "~/.local/state/zot/extensions/developer" = { source = "../agent/bundles/developer", mode = "symlink" }
 "~/.local/state/zot/extensions/matt-pocock" = { source = "../agent/bundles/matt-pocock", mode = "symlink" }

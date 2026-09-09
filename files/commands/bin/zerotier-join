@@ -33,19 +33,25 @@ console.log(`Joining ZeroTier network ${networkId}...`);
 sudo(["zerotier-cli", "join", networkId]);
 sudo(["zerotier-cli", "set", networkId, "allowDNS=true"]);
 
-const interfaceName = sudo(["zerotier-cli", "get", networkId, "portDeviceName"]);
-const dnsConfigText = sudo(["zerotier-cli", "get", networkId, "dns"]);
+const networksText = sudo(["zerotier-cli", "-j", "listnetworks"]);
 
-let dnsConfig: { domain?: string; servers?: string[] };
+let networks: Array<{
+  id?: string;
+  nwid?: string;
+  portDeviceName?: string;
+  dns?: { domain?: string; servers?: string[] };
+}>;
 try {
-  dnsConfig = JSON.parse(dnsConfigText);
+  networks = JSON.parse(networksText);
 } catch {
-  console.error(`Could not parse ZeroTier DNS configuration:\n${dnsConfigText}`);
+  console.error(`Could not parse ZeroTier network configuration:\n${networksText}`);
   process.exit(1);
 }
 
-const domain = dnsConfig.domain?.trim();
-const servers = dnsConfig.servers?.filter((server) => server.trim().length > 0) ?? [];
+const network = networks.find((candidate) => candidate.id === networkId || candidate.nwid === networkId);
+const interfaceName = network?.portDeviceName ?? "";
+const domain = network?.dns?.domain?.trim();
+const servers = network?.dns?.servers?.filter((server) => server.trim().length > 0) ?? [];
 if (!interfaceName || !domain || servers.length === 0) {
   console.error("The network does not provide a DNS domain and server.");
   process.exit(1);

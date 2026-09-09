@@ -1,0 +1,2 @@
+[tasks]
+hello = "echo 'Hello, world!'"
