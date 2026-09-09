@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#MISE description "Bootstrap Linux system"
+#MISE description="Bootstrap Linux system"
 
 pwd {{ config_root }}
 

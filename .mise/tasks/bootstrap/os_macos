@@ -1,3 +1,2 @@
 #!/usr/bin/bash
-#MISE description "bootstrap macOS"
-
+#MISE description="bootstrap macOS"
