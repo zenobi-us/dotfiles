@@ -3,7 +3,7 @@
 
 pwd {{ config_root }}
 
-font-install -fromFile ./files/assets/fonts.txt
+mise run //files/assets:install-fonts
 if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
   xrdb -merge "$HOME/.Xresources"
 fi

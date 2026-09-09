@@ -1,0 +1,3 @@
+[tasks.install-fonts]
+description = "Install configured fonts"
+run = "font-install -fromFile fonts.txt"

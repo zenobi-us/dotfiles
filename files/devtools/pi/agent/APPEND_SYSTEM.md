@@ -1,3 +1,21 @@
+<!-- vstack:append-system @vanillagreen/pi-task-panel begin -->
+## pi-task-panel — `tasks_write` tool
+
+The Pi `tasks_write` tool is the only way the user sees what you're working on. Writing tasks once and ignoring them is the most common failure mode — keep the panel current throughout the turn, not only at the final reply.
+
+Use:
+- Before any non-trivial multi-step work, `action: "replace"` with a full `tasks: [...]` list.
+- The moment you start an item, `action: "start_task"`.
+- The moment you finish one, `action: "mark_done"` (auto-advances to the next pending task).
+- When scope changes mid-turn, `action: "add_task"` for new follow-ups, `action: "drop_task"` for items that no longer apply.
+
+Rules:
+- Never end a turn with a stale `in_progress` task. If work has moved on, `start_task` the right one or `drop_task` it before replying.
+- Do not narrate task transitions in prose ("now I'll start X") — just call the tool.
+- For one-shot trivial requests, do not create a task panel at all.
+- If the user hides the panel, `tasks_write` updates keep state current but do not auto-reopen the widget; only explicit `/tasks show`, `/tasks show-all`, or toggle-in reveals it again.
+<!-- vstack:append-system @vanillagreen/pi-task-panel end -->
+
 <!-- vstack:append-system @vanillagreen/pi-session-bridge begin -->
 ## pi-session-bridge — `pi-bridge` CLI
 
@@ -29,21 +47,3 @@ Tool selection (pick the cheapest option that answers the question):
 - `web_research` — multi-source deep-dive findings report. Expensive; only when the user wants a researched recommendation, not a quick lookup.
 - `get_web_content` — re-read content already fetched/searched in this session by id (`web-...`). Never refetch what you already have. To page another tool's truncated output, re-call that tool with `offset:` — don't pass its tool-call id or sidecar path here.
 <!-- vstack:append-system @vanillagreen/pi-web-tools end -->
-
-<!-- vstack:append-system @vanillagreen/pi-task-panel begin -->
-## pi-task-panel — `tasks_write` tool
-
-The Pi `tasks_write` tool is the only way the user sees what you're working on. Writing tasks once and ignoring them is the most common failure mode — keep the panel current throughout the turn, not only at the final reply.
-
-Use:
-- Before any non-trivial multi-step work, `action: "replace"` with a full `tasks: [...]` list.
-- The moment you start an item, `action: "start_task"`.
-- The moment you finish one, `action: "mark_done"` (auto-advances to the next pending task).
-- When scope changes mid-turn, `action: "add_task"` for new follow-ups, `action: "drop_task"` for items that no longer apply.
-
-Rules:
-- Never end a turn with a stale `in_progress` task. If work has moved on, `start_task` the right one or `drop_task` it before replying.
-- Do not narrate task transitions in prose ("now I'll start X") — just call the tool.
-- For one-shot trivial requests, do not create a task panel at all.
-- If the user hides the panel, `tasks_write` updates keep state current but do not auto-reopen the widget; only explicit `/tasks show`, `/tasks show-all`, or toggle-in reveals it again.
-<!-- vstack:append-system @vanillagreen/pi-task-panel end -->
