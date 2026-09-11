@@ -1,5 +1,7 @@
 #!/usr/bin/env bun
 import { spawnSync } from "node:child_process";
+import { Crust } from "@crustjs/core";
+import { helpPlugin } from "@crustjs/plugins";
 import {
   initializeSharedContext,
   listSharedContextFiles,
@@ -8,6 +10,7 @@ import {
   renderSharedContext,
   resolveSharedContext,
   type Exec,
+  type SharedAgentContext,
 } from "./lib";
 
 const exec: Exec = async (command, args) => {
@@ -42,56 +45,59 @@ async function runInject(): Promise<void> {
   process.stdout.write(`${JSON.stringify(renderSharedContext(context))}\n`);
 }
 
-async function main(): Promise<void> {
-  const [command = "report", ...rest] = process.argv.slice(2);
-  const cwd = process.cwd();
+async function runFiles(): Promise<void> {
+  const result = await listSharedContextFiles(exec, process.cwd());
+  process.stdout.write(result.stdout);
+  process.exitCode = result.code;
+}
 
-  if (command === "inject") return runInject();
+async function runList(): Promise<void> {
+  const contexts = await listSharedContexts();
+  console.log(contexts.length > 0
+    ? contexts.map((item) => `${item.slug}${item.storage ? ` [${item.storage}]` : ""}\n  ${item.root}`).join("\n")
+    : "No shared engineering contexts found");
+}
 
-  if (command === "files") {
-    const result = await listSharedContextFiles(exec, cwd);
-    process.stdout.write(result.stdout);
-    process.exitCode = result.code;
-    return;
-  }
-
-  if (command === "list") {
-    const contexts = await listSharedContexts();
-    console.log(contexts.length > 0
-      ? contexts.map((item) => `${item.slug}${item.storage ? ` [${item.storage}]` : ""}\n  ${item.root}`).join("\n")
-      : "No shared engineering contexts found");
-    return;
-  }
-
-  const context = await resolveSharedContext(exec, cwd);
+async function requireContext(): Promise<SharedAgentContext | undefined> {
+  const context = await resolveSharedContext(exec, process.cwd());
   if (!context) {
     console.error("No git repository with an origin remote found");
     process.exitCode = 1;
-    return;
+    return undefined;
   }
+  return context;
+}
 
-  if (command === "init") {
-    const { agents, created } = await initializeSharedContext(context);
-    console.log(created ? `Created ${agents}. Shared storage activates on the next session.` : `${agents} already exists`);
-    return;
+async function runInit(): Promise<void> {
+  const context = await requireContext();
+  if (!context) return;
+
+  const { agents, created } = await initializeSharedContext(context);
+  console.log(created ? `Created ${agents}. Shared storage activates on the next session.` : `${agents} already exists`);
+}
+
+async function runMigrate(): Promise<void> {
+  const context = await requireContext();
+  if (!context) return;
+
+  try {
+    const result = await migrateAlignmentContext(context);
+    console.log(`Copied ${result.copied.length} alignment path(s) to ${result.storage} storage:\n${result.copied.join("\n")}`);
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
   }
+}
 
-  if (command === "migrate") {
-    try {
-      const result = await migrateAlignmentContext(context);
-      console.log(`Copied ${result.copied.length} alignment path(s) to ${result.storage} storage:\n${result.copied.join("\n")}`);
-    } catch (error) {
-      console.error(error instanceof Error ? error.message : String(error));
-      process.exitCode = 1;
-    }
-    return;
-  }
-
-  if (command !== "report") {
-    console.error(`Unknown subcommand: ${command} ${rest.join(" ")}`.trim());
+async function runReport(ctx: { args: { command: string[] } }): Promise<void> {
+  if (ctx.args.command.length > 0) {
+    console.error(`Unknown subcommand: ${ctx.args.command.join(" ")}`);
     process.exitCode = 1;
     return;
   }
+
+  const context = await requireContext();
+  if (!context) return;
 
   console.log([
     `storage: ${context.storage}`,
@@ -106,4 +112,25 @@ async function main(): Promise<void> {
   if (context.error) console.error(context.error);
 }
 
-main();
+const cli = new Crust("shared-context")
+  .meta({ description: "Origin-keyed shared engineering context" })
+  .use(helpPlugin())
+  .command("inject", (cmd) => cmd
+    .meta({ description: "Emit hook JSON injecting shared context for the current session" })
+    .run(runInject))
+  .command("files", (cmd) => cmd
+    .meta({ description: "List files under the resolved context root" })
+    .run(runFiles))
+  .command("list", (cmd) => cmd
+    .meta({ description: "List every known shared context" })
+    .run(runList))
+  .command("init", (cmd) => cmd
+    .meta({ description: "Create shared context storage for this repository" })
+    .run(runInit))
+  .command("migrate", (cmd) => cmd
+    .meta({ description: "Copy alignment files between repository and shared storage" })
+    .run(runMigrate))
+  .args([{ name: "command", type: "string", variadic: true }] as const)
+  .run(runReport);
+
+await cli.execute();

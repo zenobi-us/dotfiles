@@ -11,6 +11,10 @@
     "files/devtools/agent/bundles/agent-core": {
       "name": "@zenobius/pi-agent-core",
       "version": "0.1.0",
+      "dependencies": {
+        "@crustjs/core": "^0.0.19",
+        "@crustjs/plugins": "^0.1.2",
+      },
     },
     "files/devtools/agent/bundles/creator": {
       "name": "@zenobius/pi-creator",
