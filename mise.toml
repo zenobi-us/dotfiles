@@ -107,7 +107,7 @@ herdr = "latest"
 "github:patriceckhart/hrdx" = "0.0.42"
 "github:margin-lab/evals" = "latest"
 glab = "latest"
-zot = "0.3.64"
+zot = "0.3.72"
 "github:mwunsch/termscope" = "latest"
 
 [shell_alias]
