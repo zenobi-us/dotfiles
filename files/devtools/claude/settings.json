@@ -43,7 +43,7 @@
     "zenobius-agent-bundles": {
       "source": {
         "source": "directory",
-        "path": "/home/zenobius/Projects/dotfiles/files/devtools/agent/bundles"
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/files/devtools/agent/bundles"
       }
     }
   },
