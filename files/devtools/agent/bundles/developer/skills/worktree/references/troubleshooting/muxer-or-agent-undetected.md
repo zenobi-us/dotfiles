@@ -8,7 +8,7 @@
 
 Detection only checks confirmed, self-identifying signals:
 
-- Muxer: `HERDR_ENV=1` (herdr), `$ZELLIJ` (zellij), `$TMUX` (tmux), `HRDX=1` (hrdx — confirmed in `devtools/files/pi/agent/extensions/@zenobius/pi-hrdx-agents/README.md`).
+- Muxer: `HERDR_ENV=1` (herdr), `$ZELLIJ` (zellij), `$TMUX` (tmux), `HRDX=1` (hrdx — confirmed in `files/devtools/pi/agent/extensions/@zenobius/pi-hrdx-agents/README.md`).
 - Agent: `CLAUDECODE=1` (claude), `PI_CODING_AGENT=true` (pi). zot has no confirmed signal. pi's SDK-embedded mode does not set its own markers either — only pi's CLI-launched sessions do.
 
 Anything outside that list reports `unknown-muxer`/`unknown-agent` on purpose, rather than guessing from a weaker signal like a binary being on `PATH`.
