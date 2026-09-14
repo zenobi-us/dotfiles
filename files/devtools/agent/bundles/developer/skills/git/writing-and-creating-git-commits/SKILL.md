@@ -9,7 +9,7 @@ Create a semantic commit to accomodate user request.
 
 If any of these checks fail, check with the user before proceeding.
 
-1. WARN_ON_DEFAULTBRANCH: !`[$(git branch --show-current) = $(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)] && echo 1 || echo 0` should equal 0
+1. WARN_ON_DEFAULTBRANCH: !`d=$(git rev-parse --abbrev-ref origin/HEAD 2>/dev/null | sed "s|^origin/||"); [ -z "$d" ] && d=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name 2>/dev/null); { [ -z "$d" ] || [ "$(git branch --show-current)" = "$d" ]; } && echo 1 || echo 0` should equal 0
 2. WARN_MERGECONFLICTS: !`git ls-files -u | wc -l` should equal 0
 3. WARN_INVALIDBRANCHNAME: !`git branch --show-current` should match `^(feat|fix|docs|style|refactor|perf|test|chore)\/[a-z0-9\-]+$` (if not on default branch)
 
