@@ -44,6 +44,17 @@ alignment files against it, falling back to the repository root when absent.
 All hosts call the same `lib.ts`/`config.ts` — no duplicated context logic
 between tools.
 
+## Running the CLI
+
+Run `scripts/shared-context/cli.ts` directly. Its shebang is
+`#!/usr/bin/env -S mise exec -- bun run --install=fallback`, which starts bun
+through mise and auto-installs `@crustjs/core` and `@crustjs/plugins` when they are
+missing. The import specifiers carry their own version ranges for that reason.
+
+Do not call it as `bun run cli.ts`. That skips the shebang, and bun disables
+auto-install whenever a `node_modules` directory exists next to the script — even
+an empty one, which is what a plugin install leaves behind.
+
 ## Usage
 
 `/eng-context` (pi) or `/shared-agent-context:eng-context` (Claude Code)

@@ -15,8 +15,8 @@ Every ingested file lives in a source directory under an anchor.
 Get the directory from the CLI. Do not build the path by hand:
 
 ```bash
-bun run "<skillroot>/scripts/shared-context/cli.ts" anchor --source confluence --key RWR-16627
-bun run "<skillroot>/scripts/shared-context/cli.ts" anchor --source web --dry-run
+"<skillroot>/scripts/shared-context/cli.ts" anchor --source confluence --key RWR-16627
+"<skillroot>/scripts/shared-context/cli.ts" anchor --source web --dry-run
 ```
 
 `anchor` creates the directory and prints the absolute path. `--dry-run` prints the
@@ -122,7 +122,7 @@ fetch is normal. The comparison decides whether to write, not whether to fetch.
 After you add or remove a file in a source directory, rebuild its index:
 
 ```bash
-bun run "<skillroot>/scripts/shared-context/cli.ts" index "<anchor directory>"
+"<skillroot>/scripts/shared-context/cli.ts" index "<anchor directory>"
 ```
 
 The command reads every sibling `.md` file's frontmatter and writes the list

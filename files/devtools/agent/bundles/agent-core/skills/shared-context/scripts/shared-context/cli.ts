@@ -1,8 +1,8 @@
-#!/usr/bin/env bun
+#!/usr/bin/env -S mise exec -- bun run --install=fallback
 import { spawnSync } from "node:child_process";
 import path from "node:path";
-import { Crust } from "@crustjs/core";
-import { helpPlugin } from "@crustjs/plugins";
+import { Crust } from "@crustjs/core@^0.0.19";
+import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import {
   anchorPath,
   buildContextIndex,

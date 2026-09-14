@@ -11,7 +11,7 @@ outside any single repository clone, keyed by the repository's git `origin`.
 ## Step 0: resolve the root. Always.
 
 ```bash
-cd "<repository being worked on>" && bun run "<skillroot>/scripts/shared-context/cli.ts"
+cd "<repository being worked on>" && "<skillroot>/scripts/shared-context/cli.ts"
 ```
 
 You **MUST** run every `cli.ts` call with the working directory inside the
@@ -24,6 +24,11 @@ Use that copy, not another one on disk — an installed plugin cache can be olde
 than the source. The path to the CLI repeats the directory name:
 `<skillroot>/scripts/shared-context/cli.ts`. That is correct. Do not trim a
 segment.
+
+Run the file directly, as shown. Its shebang starts bun through mise and installs
+the CLI's own dependencies on first run. You **MUST NOT** prefix the call with
+`bun run` — that skips the shebang, and the call then fails in an installed copy
+that has no dependencies.
 
 `report` is the default. `cli.ts` and `cli.ts report` do the same thing. Output:
 
