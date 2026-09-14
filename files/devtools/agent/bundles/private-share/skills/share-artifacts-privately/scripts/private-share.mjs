@@ -1,7 +1,7 @@
-#!/usr/bin/env -S mise x -- bun --install=auto
+#!/usr/bin/env -S mise x -- bun --install=fallback
 
-import { Crust } from "@crustjs/core";
-import { helpPlugin } from "@crustjs/plugins";
+import { Crust } from "@crustjs/core@^0.0.19";
+import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import { createHash } from "node:crypto";
 import {
   cpSync,

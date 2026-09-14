@@ -1,7 +1,7 @@
 {
   "name": "developer",
   "description": "Code writing, git workflow, testing, and language/quality experts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "skills": [
     "./skills/atlassian/",
     "./skills/better-auth/",

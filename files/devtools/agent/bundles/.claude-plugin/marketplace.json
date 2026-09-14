@@ -20,7 +20,7 @@
       "name": "developer",
       "source": "./developer",
       "description": "Code writing, git workflow, testing, and language/quality experts",
-      "version": "0.1.1"
+      "version": "0.1.2"
     },
     {
       "name": "matt-pocock",
@@ -38,7 +38,7 @@
       "name": "private-share",
       "source": "./private-share",
       "description": "Private GitHub Pages artifact sharing skill",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "researcher",
