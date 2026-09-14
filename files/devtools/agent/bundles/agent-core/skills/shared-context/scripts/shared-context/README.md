@@ -1,8 +1,8 @@
 # shared-agent-context
 
 Origin-keyed shared agent context: a place for `AGENTS.md` and related alignment
-files (`docs/agents/`, `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, `.scratch/`
-when the tracker backend is `local-markdown`) to live outside any single
+files (`docs/agents/`, `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, `library/`,
+`.scratch/` when the tracker backend is `local-markdown`) to live outside any single
 repository clone, keyed by the repo's canonicalized git `origin`. Works the
 same way whether you're driving the repo with pi or with Claude Code.
 
@@ -54,6 +54,14 @@ subcommands:
 - `list` — list every origin-keyed shared context.
 - `migrate` — copy alignment files to the opposite storage, verifying existing
   files match first. Source files are left intact.
+- `anchor --source <name> [--key <KEY>] [--dry-run]` — create and print the
+  directory an ingested source belongs in: `<root>/<KEY>/<name>/` with a key,
+  `<root>/library/<name>/` without one. `--dry-run` prints the path and creates
+  nothing.
+- `index <dir> [--force]` — rebuild the managed block of `<dir>/index.md` from the
+  frontmatter of its sibling Markdown files. Text outside the
+  `<!-- shared-context:index start -->` / `<!-- shared-context:index end -->`
+  markers is kept. An `index.md` with no markers is refused unless `--force`.
 
 When shared `AGENTS.md` exists, the injected block looks like:
 

@@ -2,16 +2,21 @@ import { afterEach, describe, expect, test } from "bun:test";
 import { promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import sharedAgentContextExtension, {
+import {
+  anchorPath,
+  buildContextIndex,
   canonicalizeGitRemote,
+  INDEX_MARKER_END,
+  INDEX_MARKER_START,
   initializeSharedContext,
   listSharedContexts,
   migrateAlignmentContext,
+  parseFrontmatter,
   renderSharedContext,
   resolveSharedContext,
   slugifyGitRemote,
   type SharedAgentContext,
-} from "../extensions/pi-shared-context";
+} from "../lib";
 
 const temporaryDirectories: string[] = [];
 
@@ -132,6 +137,8 @@ describe("context resolution", () => {
     await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "issue-tracker.md"), "---\nbackend: local-markdown\n---\n");
     await fs.writeFile(path.join(repositoryRoot, ".scratch", "feature", "PRD.md"), "local issue");
     await fs.writeFile(path.join(repositoryRoot, "src", "billing", "docs", "adr", "0001.md"), "decision");
+    await fs.mkdir(path.join(repositoryRoot, "library", "web"), { recursive: true });
+    await fs.writeFile(path.join(repositoryRoot, "library", "web", "rfc-2119.md"), "ingested page");
 
     const repository = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
     const toShared = await migrateAlignmentContext(repository!);
@@ -139,6 +146,7 @@ describe("context resolution", () => {
     expect(toShared.copied).toContain("CONTEXT.md");
     expect(toShared.copied).toContain("src/billing/docs/adr");
     expect(toShared.copied).toContain(".scratch");
+    expect(toShared.copied).toContain("library");
 
     const shared = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
     expect(shared?.storage).toBe("shared");
@@ -148,6 +156,7 @@ describe("context resolution", () => {
     const restored = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
     expect(restored?.storage).toBe("repository");
     expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "CONTEXT.md"), "utf8")).toBe("domain glossary");
+    expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "library", "web", "rfc-2119.md"), "utf8")).toBe("ingested page");
   });
 
   test("skips scratch data for an external tracker backend", async () => {
@@ -195,25 +204,6 @@ describe("context resolution", () => {
 
     expect(context).toBeUndefined();
   });
-});
-
-test("registers eng-context with subcommand autocomplete", () => {
-  let registeredName = "";
-  let registeredOptions: any;
-  sharedAgentContextExtension({
-    exec: async () => ({ stdout: "", stderr: "", code: 0, killed: false }),
-    on: () => {},
-    registerCommand: (name: string, options: any) => {
-      registeredName = name;
-      registeredOptions = options;
-    },
-  } as any);
-
-  expect(registeredName).toBe("eng-context");
-  expect(registeredOptions.getArgumentCompletions("r")).toEqual([{ value: "report", label: "report" }]);
-  expect(registeredOptions.getArgumentCompletions("").map((item: any) => item.value)).toEqual([
-    "report", "init", "list", "migrate",
-  ]);
 });
 
 test("lists shared contexts alphabetically with storage preferences", async () => {
@@ -268,4 +258,103 @@ test("rendered XML identifies provenance and escapes injected instructions", () 
   expect(xml).toContain('storage="shared"');
   expect(xml).toContain('source="/home/q/shared-agent-context/github-com-owner-repo--12345678/AGENTS.md"');
   expect(xml).toContain("Use &lt;safe&gt; &amp; exact rules.");
+});
+
+function sharedContext(root: string): SharedAgentContext {
+  return {
+    repositoryRoot: "/work/repo",
+    origin: "https://github.com/Owner/Repo.git",
+    canonicalOrigin: "github.com/Owner/Repo",
+    slug: "github-com-owner-repo--12345678",
+    sharedRoot: root,
+    candidateSharedRoot: root,
+    root,
+    storage: "shared",
+    source: path.join(root, "AGENTS.md"),
+  };
+}
+
+describe("ingest anchors", () => {
+  test("a work key anchors beside the key, a missing key anchors under library", () => {
+    const context = sharedContext("/shared/repo");
+    expect(anchorPath(context, { source: "confluence", key: "RWR-16627" })).toBe("/shared/repo/RWR-16627/confluence");
+    expect(anchorPath(context, { source: "web" })).toBe("/shared/repo/library/web");
+  });
+
+  test("path traversal in a key or source is refused", () => {
+    const context = sharedContext("/shared/repo");
+    expect(() => anchorPath(context, { source: "../../etc" })).toThrow(/Invalid source/);
+    expect(() => anchorPath(context, { source: "web", key: ".." })).toThrow(/Invalid key/);
+    expect(() => anchorPath(context, { source: "a/b" })).toThrow(/Invalid source/);
+  });
+});
+
+describe("frontmatter", () => {
+  test("reads quoted, bare, and numeric fields and ignores the body", () => {
+    const fields = parseFrontmatter(['---', 'source: "confluence"', "id: 4280287398", "title: Leave screen", "---", "", "id: not-this"].join("\n"));
+    expect(fields).toEqual({ source: "confluence", id: "4280287398", title: "Leave screen" });
+  });
+
+  test("a file with no frontmatter yields no fields", () => {
+    expect(parseFrontmatter("# Title\n\nbody")).toEqual({});
+  });
+});
+
+describe("index rebuild", () => {
+  test("lists every sibling markdown file, links the url when present, and excludes itself", async () => {
+    const base = await temporaryDirectory();
+    const directory = path.join(base, "RWR-1", "confluence");
+    await fs.mkdir(directory, { recursive: true });
+    await fs.writeFile(path.join(directory, "200.md"), '---\nsource: "confluence"\nid: "200"\ntitle: "Second"\nurl: "https://example.test/200"\n---\nbody\n');
+    await fs.writeFile(path.join(directory, "100.md"), '---\nsource: "confluence"\nid: "100"\ntitle: "First"\n---\nbody\n');
+    await fs.writeFile(path.join(directory, "index.md"), "stale\n");
+
+    const result = await buildContextIndex(directory, { force: true });
+    expect(result.entries.map((entry) => entry.file)).toEqual(["100.md", "200.md"]);
+
+    const index = await fs.readFile(result.path, "utf8");
+    expect(index).toContain('source: "confluence"');
+    expect(index).toContain('scope: "RWR-1"');
+    expect(index).toContain("# confluence sources for RWR-1");
+    expect(index).toContain("- First — local copy: [100.md](100.md)");
+    expect(index).toContain("- [Second](https://example.test/200) — local copy: [200.md](200.md)");
+    expect(index).not.toContain("index.md](index.md)");
+    expect(index).not.toContain("stale");
+  });
+
+  test("refuses to clobber a hand-written index and keeps text around a managed block", async () => {
+    const base = await temporaryDirectory();
+    const directory = path.join(base, "RWR-2", "confluence");
+    await fs.mkdir(directory, { recursive: true });
+    await fs.writeFile(path.join(directory, "300.md"), '---\nsource: "confluence"\nid: "300"\ntitle: "Third"\n---\nbody\n');
+    await fs.writeFile(path.join(directory, "index.md"), "# Hand written\n\n| Page | Why it matters |\n|---|---|\n| 300 | cited in the PRD |\n");
+
+    await expect(buildContextIndex(directory)).rejects.toThrow(/written by hand/);
+    expect(await fs.readFile(path.join(directory, "index.md"), "utf8")).toContain("cited in the PRD");
+
+    await fs.writeFile(
+      path.join(directory, "index.md"),
+      `# Hand written\n\nWhy it matters: cited in the PRD.\n\n${INDEX_MARKER_START}\nold\n${INDEX_MARKER_END}\n\nTrailing note.\n`,
+    );
+    const result = await buildContextIndex(directory);
+    expect(result.preserved).toBe(true);
+
+    const index = await fs.readFile(result.path, "utf8");
+    expect(index).toContain("cited in the PRD");
+    expect(index).toContain("Trailing note.");
+    expect(index).toContain("- Third — local copy: [300.md](300.md)");
+    expect(index).not.toContain("old");
+  });
+
+  test("rebuilding twice produces the same entries", async () => {
+    const base = await temporaryDirectory();
+    const directory = path.join(base, "library", "web");
+    await fs.mkdir(directory, { recursive: true });
+    await fs.writeFile(path.join(directory, "rfc-2119.md"), '---\nsource: "web"\ntitle: "RFC 2119"\nurl: "https://example.test/rfc"\n---\nbody\n');
+
+    const first = await buildContextIndex(directory);
+    const second = await buildContextIndex(directory);
+    expect(second.entries).toEqual(first.entries);
+    expect(second.entries).toHaveLength(1);
+  });
 });

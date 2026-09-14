@@ -5,7 +5,9 @@ import { loadConfig } from "./config";
 
 const MAX_AGENTS_BYTES = 100_000;
 const STORAGE_FILE = ".storage";
-const ALIGNMENT_PATHS = ["docs/agents", "CONTEXT.md", "CONTEXT-MAP.md", "docs/adr"];
+const LIBRARY_DIR = "library";
+const ALIGNMENT_PATHS = ["docs/agents", "CONTEXT.md", "CONTEXT-MAP.md", "docs/adr", LIBRARY_DIR];
+const SEGMENT_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 
 export type SharedAgentContext = {
   repositoryRoot: string;
@@ -356,4 +358,117 @@ export function renderSharedContext(context: SharedAgentContext): string {
     : `<instructions${context.source ? ` source="${escapeXml(context.source)}"` : ""} already-loaded="true" />`;
 
   return `\n\n<shared-agent-context ${attributes.join(" ")}>\n${instructions}\n</shared-agent-context>`;
+}
+
+export type AnchorOptions = {
+  source: string;
+  key?: string;
+};
+
+function assertSegment(value: string, label: string): void {
+  if (!SEGMENT_PATTERN.test(value)) {
+    throw new Error(`Invalid ${label} "${value}": use letters, numbers, dot, dash, or underscore`);
+  }
+}
+
+export function anchorPath(context: SharedAgentContext, options: AnchorOptions): string {
+  assertSegment(options.source, "source");
+  if (options.key !== undefined) assertSegment(options.key, "key");
+  return options.key
+    ? path.join(context.root, options.key, options.source)
+    : path.join(context.root, LIBRARY_DIR, options.source);
+}
+
+export async function ensureAnchorPath(context: SharedAgentContext, options: AnchorOptions): Promise<string> {
+  const directory = anchorPath(context, options);
+  await fs.mkdir(directory, { recursive: true });
+  return directory;
+}
+
+export function parseFrontmatter(text: string): Record<string, string> {
+  const block = text.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  if (!block) return {};
+
+  const fields: Record<string, string> = {};
+  for (const line of block[1].split(/\r?\n/)) {
+    const entry = line.match(/^([A-Za-z0-9_]+):[ \t]*(.*)$/);
+    if (!entry) continue;
+    fields[entry[1]] = entry[2].trim().replace(/^"([\s\S]*)"$/, "$1").replace(/^'([\s\S]*)'$/, "$1");
+  }
+  return fields;
+}
+
+export type ContextIndexEntry = {
+  file: string;
+  title: string;
+  url?: string;
+};
+
+export const INDEX_MARKER_START = "<!-- shared-context:index start -->";
+export const INDEX_MARKER_END = "<!-- shared-context:index end -->";
+
+export async function buildContextIndex(
+  directory: string,
+  options: { force?: boolean } = {},
+): Promise<{ path: string; entries: ContextIndexEntry[]; preserved: boolean }> {
+  const names = (await fs.readdir(directory, { withFileTypes: true }))
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".md") && entry.name !== "index.md")
+    .map((entry) => entry.name)
+    .sort();
+
+  let source = path.basename(directory);
+  const entries = await Promise.all(names.map(async (file): Promise<ContextIndexEntry> => {
+    const fields = parseFrontmatter(await fs.readFile(path.join(directory, file), "utf8"));
+    if (fields.source) source = fields.source;
+    return { file, title: fields.title || path.basename(file, ".md"), url: fields.url || undefined };
+  }));
+
+  const scope = path.basename(path.dirname(directory));
+  const lines = entries.map((entry) => (entry.url
+    ? `- [${entry.title}](${entry.url}) — local copy: [${entry.file}](${entry.file})`
+    : `- ${entry.title} — local copy: [${entry.file}](${entry.file})`));
+  const block = [INDEX_MARKER_START, lines.length > 0 ? lines.join("\n") : "No files recorded yet.", INDEX_MARKER_END].join("\n");
+  const indexPath = path.join(directory, "index.md");
+
+  const existing = await readIfPresent(indexPath);
+  if (existing !== undefined) {
+    const start = existing.indexOf(INDEX_MARKER_START);
+    const end = existing.indexOf(INDEX_MARKER_END);
+    if (start !== -1 && end > start) {
+      const updated = `${existing.slice(0, start)}${block}${existing.slice(end + INDEX_MARKER_END.length)}`;
+      await fs.writeFile(indexPath, updated);
+      return { path: indexPath, entries, preserved: true };
+    }
+    if (!options.force) {
+      throw new Error([
+        `${indexPath} was written by hand and has no managed block.`,
+        `Add ${INDEX_MARKER_START} and ${INDEX_MARKER_END} around the generated list to keep your own notes,`,
+        "or pass --force to replace the whole file.",
+      ].join("\n"));
+    }
+  }
+
+  await fs.writeFile(indexPath, [
+    "---",
+    `source: "${source}"`,
+    `scope: "${scope}"`,
+    `generated_by: "shared-context"`,
+    `generated_at: "${new Date().toISOString()}"`,
+    "---",
+    "",
+    `# ${source} sources for ${scope}`,
+    "",
+    block,
+    "",
+  ].join("\n"));
+  return { path: indexPath, entries, preserved: false };
+}
+
+async function readIfPresent(file: string): Promise<string | undefined> {
+  try {
+    return await fs.readFile(file, "utf8");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return undefined;
+    throw error;
+  }
 }

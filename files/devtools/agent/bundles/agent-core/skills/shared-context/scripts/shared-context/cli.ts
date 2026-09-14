@@ -1,8 +1,12 @@
 #!/usr/bin/env bun
 import { spawnSync } from "node:child_process";
+import path from "node:path";
 import { Crust } from "@crustjs/core";
 import { helpPlugin } from "@crustjs/plugins";
 import {
+  anchorPath,
+  buildContextIndex,
+  ensureAnchorPath,
   initializeSharedContext,
   listSharedContextFiles,
   listSharedContexts,
@@ -89,9 +93,34 @@ async function runMigrate(): Promise<void> {
   }
 }
 
+async function runAnchor(ctx: { flags: { source: string; key?: string; "dry-run"?: boolean } }): Promise<void> {
+  const context = await requireContext();
+  if (!context) return;
+
+  const options = { source: ctx.flags.source, key: ctx.flags.key };
+  try {
+    console.log(ctx.flags["dry-run"] ? anchorPath(context, options) : await ensureAnchorPath(context, options));
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+  }
+}
+
+async function runIndex(ctx: { args: { directory: string }; flags: { force?: boolean } }): Promise<void> {
+  try {
+    const result = await buildContextIndex(path.resolve(ctx.args.directory), { force: ctx.flags.force });
+    const count = `${result.entries.length} entr${result.entries.length === 1 ? "y" : "ies"}`;
+    console.log(`${result.path}\n${count}${result.preserved ? " (managed block updated, surrounding text kept)" : ""}`);
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+  }
+}
+
 async function runReport(ctx: { args: { command: string[] } }): Promise<void> {
-  if (ctx.args.command.length > 0) {
-    console.error(`Unknown subcommand: ${ctx.args.command.join(" ")}`);
+  const rest = ctx.args.command[0] === "report" ? ctx.args.command.slice(1) : ctx.args.command;
+  if (rest.length > 0) {
+    console.error(`Unknown subcommand: ${rest.join(" ")}`);
     process.exitCode = 1;
     return;
   }
@@ -127,6 +156,19 @@ const cli = new Crust("shared-context")
   .command("init", (cmd) => cmd
     .meta({ description: "Create shared context storage for this repository" })
     .run(runInit))
+  .command("anchor", (cmd) => cmd
+    .meta({ description: "Create and print the directory an ingested source belongs in" })
+    .flags({
+      source: { type: "string", required: true },
+      key: { type: "string" },
+      "dry-run": { type: "boolean" },
+    })
+    .run(runAnchor))
+  .command("index", (cmd) => cmd
+    .meta({ description: "Rebuild index.md from the frontmatter of a source directory" })
+    .flags({ force: { type: "boolean" } })
+    .args([{ name: "directory", type: "string", required: true }] as const)
+    .run(runIndex))
   .command("migrate", (cmd) => cmd
     .meta({ description: "Copy alignment files between repository and shared storage" })
     .run(runMigrate))
