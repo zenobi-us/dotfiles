@@ -8,7 +8,7 @@
       "name": "agent-core",
       "source": "./agent-core",
       "description": "Superpowers, skill management, and shell environment for pi",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "creator",
