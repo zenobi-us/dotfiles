@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.sh\"",
+            "bash": "bash \"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.sh\"",
+            "powershell": "& bash \"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.sh\"",
+            "shell": "bash",
+            "async": false
+          }
+        ]
+      }
+    ]
+  }
+}

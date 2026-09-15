@@ -11,7 +11,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+GODOT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
 # --- 1. Locate the Godot project -------------------------------------------------------------
 # Two passes, in this order:
@@ -102,7 +102,7 @@ extract_card() {
   ' "$file"
 }
 
-SESSION_CARD="$(extract_card "${PLUGIN_ROOT}/skills/using-godot-prompter/SKILL.md" 'SESSION-CARD')"
+SESSION_CARD="$(extract_card "${GODOT_ROOT}/using-godot-prompter/SKILL.md" 'SESSION-CARD')"
 [ -z "$SESSION_CARD" ] && exit 0
 
 # --- 3. Detect Godot version and renderer ----------------------------------------------------
@@ -164,7 +164,7 @@ if [ -n "${HOME:-}" ]; then
     # Match the "mode" key specifically — a loose grep false-positives on
     # {"mode":"normal","last_mode":"mentor"}.
     if [ -f "$STATE_FILE" ] && grep -qE '"mode"[[:space:]]*:[[:space:]]*"mentor"' "$STATE_FILE"; then
-      MENTOR_CARD="$(extract_card "${PLUGIN_ROOT}/skills/godot-mentor/SKILL.md" 'MENTOR-CARD')"
+      MENTOR_CARD="$(extract_card "${GODOT_ROOT}/godot-mentor/SKILL.md" 'MENTOR-CARD')"
       # Name the file in the injected card. After a /clear the agent has the card but NOT the
       # skill, so without this it cannot find the state file to honour the off-ramp.
       [ -n "$MENTOR_CARD" ] && MENTOR_CARD="${MENTOR_CARD}"$'\n\n'"Mentor state file for this project: \`${STATE_FILE}\`"
