@@ -3,12 +3,23 @@
   "version": "0.1.1",
   "description": "Code writing, git workflow, testing, and language/quality experts",
   "private": true,
-  "keywords": ["pi-package"],
+  "keywords": [
+    "pi-package"
+  ],
   "dependencies": {
     "@crustjs/core": "^0.0.19",
     "@crustjs/plugins": "^0.1.2"
   },
   "pi": {
-    "skills": ["./skills"]
+    "skills": [
+      "./skills"
+    ]
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   }
 }

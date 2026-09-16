@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "// why": [
+    "Shared compiler options for every bundle's scripts.",
+    "Scripts run through `#!/usr/bin/env -S mise exec -- bun run --install=fallback`,",
+    "so they are never compiled. This config exists only so editors and a manual",
+    "`tsc --noEmit` understand Bun globals, node: imports and .ts import specifiers.",
+    "Each bundle extends this from its own tsconfig.json, because each bundle is",
+    "its own package with its own node_modules."
+  ],
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "module": "Preserve",
+    "moduleResolution": "bundler",
+    "types": ["bun"],
+
+    // Scripts import siblings by their real path: `import { x } from "./y.ts"`.
+    // Bun resolves that at runtime, so the editor must accept it too.
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": false,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+
+    // Nothing here is ever built. Bun executes the .ts file directly.
+    "noEmit": true
+  }
+}

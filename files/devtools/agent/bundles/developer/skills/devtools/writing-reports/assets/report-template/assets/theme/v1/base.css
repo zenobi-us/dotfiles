@@ -1,0 +1,26 @@
+/*!
+ * theme v1 — base layer. The only element selectors this repo allows.
+ *
+ * Every other rule in every other stylesheet targets a BEM class. This file
+ * exists because `:root` and `body` cannot carry one, and because a reset has
+ * to reach nodes that markup does not name.
+ *
+ * Load order on every page: tokens.css -> base.css -> the page's components.
+ *
+ * Pinned at v1. A breaking change goes in assets/theme/v2/.
+ */
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font: var(--text-600) / 1.6 var(--font-sans);
+}
+
+/*
+ * The lightbox toggles visibility with `el.hidden`. A component that sets
+ * `display` would otherwise beat the user-agent rule.
+ */
+[hidden] {
+  display: none !important;
+}

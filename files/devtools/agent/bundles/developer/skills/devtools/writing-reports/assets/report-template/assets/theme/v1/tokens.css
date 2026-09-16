@@ -1,0 +1,131 @@
+/*!
+ * theme v1 — design tokens. The single source of colour, type, and shape for
+ * every page in this repo.
+ *
+ * Rules:
+ *   - No page, component stylesheet, or HTML file writes a raw colour. Every
+ *     colour comes from a token here. `mise run validate-sessions` enforces it.
+ *   - One name per role. Do not add a second name for a colour that already
+ *     has one.
+ *   - Spacing tokens hold the exact values the components already used, so
+ *     adopting them changes no pixel. A value used once stays literal in its
+ *     component file.
+ *
+ * Pinned at v1. Published reports link to it forever. A breaking change goes
+ * in assets/theme/v2/.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* Ground */
+  --color-bg: #fbfaf8;
+  --color-surface: #fff;
+  --color-border: #e3dfd8;
+
+  /* Ink */
+  --color-ink: #1d1b18;
+  --color-ink-muted: #6b665e;
+
+  /* Brand */
+  --color-accent: #4b2fae;
+
+  /* Status: a readable ink and the wash it sits on */
+  --color-pass: #1d7a4f;
+  --color-pass-bg: #e8f5ee;
+  --color-fail: #b3401a;
+  --color-fail-bg: #fdeee8;
+  --color-info: #2a5d9e;
+  --color-info-bg: #eaf1fa;
+  --color-warn: #8a6400;
+  --color-warn-bg: #fdf5e0;
+
+  /* Overlay. Fixed across themes: a lightbox is dark in both. */
+  --color-overlay: rgba(10, 9, 14, .93);
+  --color-overlay-ink: #f2f0f7;
+  --color-overlay-ink-muted: #9d97ad;
+  --color-overlay-accent: #c9b8ff;
+  --color-overlay-surface: rgba(255, 255, 255, .09);
+  --color-overlay-surface-hover: rgba(255, 255, 255, .18);
+  --color-overlay-border: rgba(255, 255, 255, .18);
+
+  /* Type */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-100: 11px;
+  --text-200: 12px;
+  --text-300: 12.5px;
+  --text-400: 13.5px;
+  --text-500: 14px;
+  --text-600: 15px;
+  --text-700: 16px;
+  --text-800: 20px;
+  --text-900: 30px;
+
+  /* Space. Values match what the components already used. */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 10px;
+  --space-6: 12px;
+  --space-7: 14px;
+  --space-8: 16px;
+  --space-9: 18px;
+  --space-10: 20px;
+  --space-11: 26px;
+  --space-12: 40px;
+  --space-13: 44px;
+  --space-14: 80px;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-badge: 20px;
+  --radius-pill: 999px;
+
+  --shadow-panel: 0 10px 30px rgb(0 0 0 / 14%);
+  --shadow-overlay: 0 12px 48px rgba(0, 0, 0, .55);
+
+  /* Layout */
+  --measure: 920px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #16151a;
+    --color-surface: #1e1d24;
+    --color-border: #34323c;
+    --color-ink: #eceaf2;
+    --color-ink-muted: #a09bad;
+    --color-accent: #b7a4ff;
+    --color-pass: #5fd39a;
+    --color-pass-bg: #12301f;
+    --color-fail: #ff9d78;
+    --color-fail-bg: #33180e;
+    --color-info: #8fb7ef;
+    --color-info-bg: #14243a;
+    --color-warn: #e8c46a;
+    --color-warn-bg: #33290e;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #16151a;
+  --color-surface: #1e1d24;
+  --color-border: #34323c;
+  --color-ink: #eceaf2;
+  --color-ink-muted: #a09bad;
+  --color-accent: #b7a4ff;
+  --color-pass: #5fd39a;
+  --color-pass-bg: #12301f;
+  --color-fail: #ff9d78;
+  --color-fail-bg: #33180e;
+  --color-info: #8fb7ef;
+  --color-info-bg: #14243a;
+  --color-warn: #e8c46a;
+  --color-warn-bg: #33290e;
+}

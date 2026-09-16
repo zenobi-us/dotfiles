@@ -43,6 +43,27 @@ Use skills by circumstance:
 - Verify reality after at most three meaningful actions.
 - If you cannot explain why something exists, do not change it.
 
+## Scripts
+
+- Write every script as TypeScript run by bun. Use this shebang, exactly:
+
+  ```
+  #!/usr/bin/env -S mise exec -- bun run --install=fallback
+  ```
+
+- Do not write Python scripts. Do not embed Python in a shell heredoc.
+- Do not write Bash beyond a one-line wrapper. Logic belongs in the `.ts` file.
+- `--install=fallback` lets the script import a pinned npm package inline, for
+  example `import { Crust } from "@crustjs/core@^0.0.19";`. No `package.json`
+  and no install step.
+- Name the file `.ts` and make it executable with `chmod +x`.
+- If you catch yourself reaching for Python, stop and write the `.ts` file.
+- Typecheck with `bun run typecheck` from the bundle root. Compiler options are
+  shared in `bundles/tsconfig.base.json`; each bundle extends it.
+- Never add tsconfig `paths`. Bun reads `paths` at runtime, so a mapping added
+  for the editor changes what the script imports and breaks it. Declare a
+  pinned import in `<bundle>/types/versioned-imports.d.ts` instead.
+
 ## Codebase Work
 
 - Trace the real flow before editing.

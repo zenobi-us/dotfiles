@@ -1,0 +1,362 @@
+/*!
+ * report v1 — components for a session report page.
+ *
+ * Strict BEM. Every styled node carries a class. The only element selectors
+ * in this repo live in theme/v1/base.css.
+ *
+ * Load order: tokens.css -> base.css -> report.css
+ *
+ * Vocabulary and examples:
+ *   .agents/skills/writing-session-reports/references/markup.md
+ *
+ * Pinned at v1. Published reports link to it forever. A breaking change goes
+ * in assets/report/v2/.
+ */
+
+/* ==========================================================================
+   report — the page shell and its running text
+   ========================================================================== */
+
+/*
+ * Content-box on purpose: --measure is the text column, and the side padding
+ * sits outside it.
+ */
+.report {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-10) var(--space-14);
+}
+
+.report__title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-900);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+
+.report__subtitle {
+  margin: 0 0 28px;
+  color: var(--color-ink-muted);
+  font-size: var(--text-500);
+}
+
+.report__section {
+  margin: var(--space-13) 0 var(--space-6);
+  padding-top: var(--space-9);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-800);
+  letter-spacing: -.01em;
+}
+
+.report__subsection {
+  margin: var(--space-11) 0 var(--space-4);
+  font-size: var(--text-700);
+}
+
+.report__text {
+  margin: 0 0 var(--space-6);
+}
+
+.report__list {
+  margin: 0 0 var(--space-6);
+  padding-left: var(--space-10);
+}
+
+.report__item {
+  margin-bottom: 5px;
+}
+
+.report__meta {
+  color: var(--color-ink-muted);
+  font-size: var(--text-300);
+}
+
+/* A jump link lands 16px clear of the viewport edge, then flashes once. */
+.report__section:target,
+.report__subsection:target {
+  scroll-margin-top: var(--space-8);
+  animation: report-flash 1.4s ease;
+}
+
+@keyframes report-flash {
+  0%, 40% { background: var(--color-warn-bg); }
+  100% { background: transparent; }
+}
+
+/* ==========================================================================
+   link — any link in running text
+   ========================================================================== */
+
+.link {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   code — an identifier inside a sentence
+   ========================================================================== */
+
+.code {
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  background: var(--color-info-bg);
+  font-family: var(--font-mono);
+  font-size: .9em;
+}
+
+/* ==========================================================================
+   code-block — a pasted request, response, or error
+   ========================================================================== */
+
+.code-block {
+  padding: var(--space-7);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  overflow-x: auto;
+  font-size: var(--text-300);
+  line-height: 1.5;
+}
+
+/* 0.9em of the block, so a pasted payload sits a step below body text. */
+.code-block__text {
+  padding: 0;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: .9em;
+}
+
+/* ==========================================================================
+   table — a wrapper that scrolls, and the grid inside it
+   ========================================================================== */
+
+/* The wrapper scrolls itself, so a wide table never scrolls the page. */
+.table {
+  overflow-x: auto;
+}
+
+.table__grid {
+  width: 100%;
+  margin: 0 0 var(--space-7);
+  border-collapse: collapse;
+  font-size: var(--text-400);
+}
+
+.table__head,
+.table__cell {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table__head {
+  color: var(--color-ink-muted);
+  font-weight: 600;
+  font-size: var(--text-200);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* ==========================================================================
+   summary — the result table. Every cell of a row carries the same link, so
+   the whole row is clickable with no JavaScript.
+   ========================================================================== */
+
+.summary {
+  overflow-x: auto;
+}
+
+.summary__grid {
+  width: 100%;
+  margin: 0 0 var(--space-7);
+  border-collapse: collapse;
+  font-size: var(--text-400);
+}
+
+.summary__head,
+.summary__cell {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.summary__head {
+  color: var(--color-ink-muted);
+  font-weight: 600;
+  font-size: var(--text-200);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.summary__row {
+  transition: background .12s ease;
+}
+
+.summary__row:has(.summary__link):hover {
+  background: var(--color-info-bg);
+}
+
+.summary__row:has(.summary__link):hover .summary__cell:first-child .summary__link {
+  color: var(--color-accent);
+}
+
+/* The link carries the cell padding, so the click target fills the cell. */
+.summary__cell:has(> .summary__link) {
+  padding: 0;
+}
+
+.summary__link {
+  display: block;
+  padding: var(--space-4) var(--space-5);
+  color: inherit;
+  text-decoration: none;
+}
+
+.summary__link:hover {
+  color: var(--color-accent);
+}
+
+.summary__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   figure — a screenshot and what it proves
+   ========================================================================== */
+
+.figure {
+  margin: 0 0 var(--space-4);
+}
+
+.figure__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transition: border-color .12s ease;
+}
+
+.figure__image:hover,
+.figure__image:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.figure__image:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.figure__caption {
+  margin-top: 7px;
+  color: var(--color-ink-muted);
+  font-size: var(--text-300);
+}
+
+.figure__label {
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   figures — a row of figures
+   ========================================================================== */
+
+.figures {
+  display: grid;
+  gap: var(--space-9);
+}
+
+@media (min-width: 720px) {
+  .figures--pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ==========================================================================
+   badge — a result
+   ========================================================================== */
+
+.badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-badge);
+  font-size: var(--text-100);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  vertical-align: middle;
+}
+
+.badge--pass { background: var(--color-pass-bg); color: var(--color-pass); }
+.badge--fail { background: var(--color-fail-bg); color: var(--color-fail); }
+.badge--info { background: var(--color-info-bg); color: var(--color-info); }
+.badge--warn { background: var(--color-warn-bg); color: var(--color-warn); }
+
+/* ==========================================================================
+   card — one self-contained finding
+   ========================================================================== */
+
+.card {
+  margin: 0 0 var(--space-9);
+  padding: var(--space-9) var(--space-10);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.card__title {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-700);
+}
+
+.card__text {
+  margin: 0 0 var(--space-6);
+}
+
+.card__meta {
+  margin: 0 0 var(--space-6);
+  color: var(--color-ink-muted);
+  font-size: var(--text-300);
+}
+
+/* ==========================================================================
+   note — the reasoning that ties evidence to code
+   ========================================================================== */
+
+.note {
+  margin: 0 0 var(--space-8);
+  padding: var(--space-6) var(--space-8);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--color-surface);
+}
+
+.note__text {
+  margin: 0 0 var(--space-6);
+}
+
+.note__label {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   mark — a literal value the reader must find on screen
+   ========================================================================== */
+
+.mark {
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  background: var(--color-warn-bg);
+  color: var(--color-warn);
+  font-weight: 700;
+}
