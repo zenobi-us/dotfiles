@@ -2,6 +2,7 @@
 name: grill-me
 description: A relentless interview to sharpen a plan or design.
 disable-model-invocation: true
+user-invocable: true
 ---
 
 ## Language

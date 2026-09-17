@@ -1,6 +1,7 @@
 ---
 name: explain
 description: Research a subject and build a single-page Diátaxis explainer in minimalist HTML, when a user asks for a researched web explanation, resulting in a validated HTML page with sources
+user-invocable: true
 ---
 
 # Create a Single-Page Explainer

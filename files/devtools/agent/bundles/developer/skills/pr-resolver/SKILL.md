@@ -2,6 +2,7 @@
 name: pr-resolver
 description: Resolve all review comments on a specified GitHub pull request.
 disable-model-invocation: true
+user-invocable: true
 ---
 
 **Input:** GitHub PR URL (e.g., https://github.com/owner/repo/pull/123) or PR number.

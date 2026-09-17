@@ -2,6 +2,7 @@
 name: worktree
 description: Route a worktree subcommand (start, submit, fix, finish, review, continue) to its playbook, after detecting the active muxer and agent.
 disable-model-invocation: true
+user-invocable: true
 ---
 
 Route `UserRequest` to the correct worktree workflow. This skill dispatches only — it does not resolve tickets, run validation, or launch agents itself. All of that lives in the playbook it points to.
