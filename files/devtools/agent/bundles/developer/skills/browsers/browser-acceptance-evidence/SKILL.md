@@ -82,6 +82,19 @@ You **MUST NOT** hand-write report HTML, invent CSS, or emit a Markdown file
 instead. Report presentation is that skill's job and it has a validator that
 this skill does not duplicate.
 
+You **MUST** copy `test-plan.md`, `evidence.jsonl` and every workflow file
+into the report's own `files/` directory, and link them from a "Related files"
+or "How to re-run this" section:
+
+```sh
+cp test-plan.md evidence.jsonl workflows/*.json \
+   <root>/<work-id>/manual-tests/report/files/
+```
+
+Link them as `files/<name>`. You **MUST NOT** link them as `../test-plan.md`.
+The report is handed to a reviewer on its own, and `writing-reports` rejects a
+link that reaches outside the report directory.
+
 Map each evidence record onto the template:
 
 | Evidence field | Report node |

@@ -32,12 +32,18 @@ records what happened, in the past tense, with proof.
   assets/report/v1/       report.css               <- never edit
   assets/lightbox/v1/     lightbox.js              <- never edit
   shots/                  NN-slug.png
+  files/                  companion artifacts the report links to
 ```
 
 Every report carries its own copy of the four asset files, linked
 sibling-relative. That is deliberate: a report gets moved, zipped, downloaded
 and reopened from somewhere else. A report that only renders inside one
 directory tree is a report that dies on first contact with a reviewer.
+
+`files/` holds the same idea for everything else the report links to: the test
+plan it ran, the evidence file behind the verdicts, a script or a workflow a
+reader would re-run. Those artifacts usually live in a sibling directory. A
+copy goes in `files/` so the link survives the move.
 
 ## Rules
 
@@ -53,6 +59,12 @@ directory tree is a report that dies on first contact with a reviewer.
   directory.
 - You **MUST NOT** change an asset path to `../` or `../../`. The report is
   self-contained.
+- You **MUST** copy any companion artifact the report links to — a test plan,
+  an evidence file, a script, a workflow — into `<destination>/files/`, and
+  link it sibling-relative as `files/<name>`. You **MUST NOT** reach a sibling
+  directory with `../`, even for a link that is not an asset. A report is
+  handed over on its own; a `../` link dies the first time it moves. Leave the
+  original where it is and treat the copy as the reader's copy.
 - You **MUST** give every `<img>` a `class`, `src`, `alt`, `width`, and
   `height`. Without the size the page shifts while screenshots load and every
   jump link lands on the wrong section.
@@ -91,6 +103,17 @@ directory tree is a report that dies on first contact with a reviewer.
 2. **MUST** save every screenshot into `<destination>/shots/`, named
    `NN-slug.png`. `NN` orders the shots as the reader meets them, and leaves
    gaps for later inserts: `10-login.png`, `20-banner.png`, `31-missing.png`.
+
+2b. **MUST** copy every companion artifact the report will link to into
+   `<destination>/files/`:
+
+   ```sh
+   mkdir -p <destination>/files
+   cp <plan> <evidence> <workflows> <destination>/files/
+   ```
+
+   Link them from the page as `files/<name>`. A report that points at a
+   sibling directory stops working the moment someone zips it and sends it on.
 
 3. **MUST** read the real pixel sizes:
 
@@ -144,6 +167,7 @@ directory tree is a report that dies on first contact with a reviewer.
 | `badge--pass` on an unproven check | The report lies, and lies are worse than gaps | `badge--info` plus a "Not covered" row |
 | Caption repeats the `alt` text | `alt` describes the picture; the caption says what it proves | Write two different sentences |
 | No "Not covered" section | The reader assumes full coverage | Always write it |
+| `../plan.md` in a link | The report dies when moved or zipped on its own | Copy into `files/`, link `files/plan.md` |
 | Editing `report.css` to fix one page | Restyles every past report | New `v2` directory, or ask |
 
 ## Reference

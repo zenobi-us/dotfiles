@@ -77,8 +77,19 @@ async function validate(page: string): Promise<string[]> {
     if (src.includes(asset) && !existsSync(join(root, asset)))
       fail(`linked asset is missing on disk: ${asset}`);
   }
-  if (/(href|src)="\.\.\//.test(src))
-    fail("an asset path starts with ../ . The report must be self-contained.");
+  for (const m of src.matchAll(/(href|src)="(\.\.\/[^"]*)"/g)) {
+    const [, attr, path] = m;
+    const isAsset = attr === "src" || /\.(css|js)(\?|#|$)/.test(path);
+    if (isAsset) {
+      fail(`an asset path starts with ../ : ${path} . The report must be self-contained.`);
+    } else {
+      const name = path.split("/").pop() || "file";
+      fail(
+        `a link points outside the report: ${path} . Copy the artifact into ` +
+          `<report>/files/ and link files/${name} instead.`,
+      );
+    }
+  }
 
   // 4. every <img> carries class, src, alt, width, height — and the size is real
   const imgs = [...src.matchAll(/<img\b[^>]*>/gi)].map((m) => m[0]);

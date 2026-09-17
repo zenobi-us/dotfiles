@@ -103,8 +103,17 @@ cp ./.surf/workflows/<work-id>-test-*.json "<root>/<work-id>/manual-tests/workfl
 ```
 
 They are a deliverable. The next person re-runs the test instead of re-reading
-it, and a regression later has a script waiting for it. Link them from the
-report.
+it, and a regression later has a script waiting for it.
+
+Copy them a second time into the report's own `files/` directory:
+
+```sh
+cp ./.surf/workflows/<work-id>-test-*.json "<root>/<work-id>/manual-tests/report/files/"
+```
+
+The report links that copy as `files/<name>`, never as `../workflows/<name>`.
+The shared-context copy is the source of truth; the report copy is the one
+that survives the report being zipped and sent on.
 
 ## surf-specific traps
 

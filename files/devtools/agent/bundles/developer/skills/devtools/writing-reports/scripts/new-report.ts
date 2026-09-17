@@ -19,8 +19,10 @@ const USAGE = `usage: new-report.ts <destination-dir> <title>
                      Example: "$ALIGNMENT_ROOT/TICKET-1/manual-tests/report"
   <title>            Report title. Appears in <title> and the page heading.
 
-The created directory is self-contained: index.html, its own assets/ copy and
-an empty shots/ directory. Move it anywhere and it still renders.`;
+The created directory is self-contained: index.html, its own assets/ copy, an
+empty shots/ directory and an empty files/ directory for companion artifacts
+(the test plan, the evidence file, any script the report links to). Move it
+anywhere and it still renders.`;
 
 if (import.meta.main) {
   const [dest, title] = Bun.argv.slice(2);
@@ -44,6 +46,12 @@ if (import.meta.main) {
   await mkdir(dirname(resolve(dest)), { recursive: true });
   await cp(template, dest, { recursive: true });
 
+  // files/ holds copies of the artifacts the report links to. It is created
+  // empty so the shape is obvious without reading the skill: a link that would
+  // need ../ to reach a sibling belongs in here instead.
+  await mkdir(join(dest, "files"), { recursive: true });
+  await Bun.write(join(dest, "files", ".gitkeep"), "");
+
   // Stamp the title. The template carries the same placeholder in <title> and
   // in the <h1>, so one substitution covers both.
   const index = join(dest, "index.html");
@@ -52,6 +60,7 @@ if (import.meta.main) {
 
   console.log(index);
   console.error(`next: save screenshots into ${join(dest, "shots")} as NN-slug.png`);
+  console.error(`      copy companion artifacts (plan, evidence, scripts) into ${join(dest, "files")}`);
   console.error(`      read their sizes with: ${join(scriptDir, "imgsize.ts")} ${join(dest, "shots")}/*.png`);
   console.error(`      then validate with: ${join(scriptDir, "validate-report.ts")} ${index}`);
 }
