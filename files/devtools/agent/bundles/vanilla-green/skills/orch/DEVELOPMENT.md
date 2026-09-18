@@ -4,7 +4,7 @@ Implementation details and contributor notes. End-user setup: [`README.md`](./RE
 
 ## GitHub Auth Fallback
 
-`approval-wait` and `ci-wait` use `scripts/lib/gh-auth.sh`, which wraps the GitHub skill's shared `scripts/lib/gh-auth.sh` helpers. Each candidate source is probed at most once during startup:
+`approval-wait` and `ci-wait` use `scripts/lib/gh-auth.ts`, which wraps the GitHub skill's shared auth helpers. Each candidate source is probed at most once during startup:
 
 1. **Selected env token.** If `GH_TOKEN` or `GITHUB_TOKEN` is set, validate it with bounded `gh api user`.
 2. **Keyring fallback.** If that env token fails, try `env -u GH_TOKEN -u GITHUB_TOKEN gh auth status` once. If it succeeds, warn on stderr and unset the stale env token.
@@ -195,10 +195,10 @@ bash skills/orch/tests/run-all.sh session_init
 
 Tests stage isolated repos/worktrees with parametrized CLI stubs on `PATH`. Each `tests/*.sh` is self-contained and prints `pass: N fail: M`. Suites:
 
-- `approval_wait.sh` — GitHub-native approval verdict detection, review-mode gating (head pinning, author/DISMISSED exclusion, standing CHANGES_REQUESTED, thread resolution, `PR_REVIEW_CHECK` check-run and commit-status evidence), `--resolve-mode` precedence + output contract.
-- `ci_wait.sh` — CI-wait state machine + auth ladder.
-- `session_init.sh` — worktree Linear auth diagnostic preservation.
-- `review_artifact_check.sh` — deterministic reviewer artifact acceptance (`review-artifact-check`), including `--file` freshness with an optional delegated-at boundary, plus review-pr and submit-pr `--file` wiring assertions.
+- `approval-wait` — GitHub-native approval verdict detection, review-mode gating (head pinning, author/DISMISSED exclusion, standing CHANGES_REQUESTED, thread resolution, `PR_REVIEW_CHECK` check-run and commit-status evidence), `--resolve-mode` precedence + output contract.
+- `ci-wait` — CI-wait state machine + auth ladder.
+- `session-init` — worktree Linear auth diagnostic preservation.
+- `review-artifact-check` — deterministic reviewer artifact acceptance (`review-artifact-check`), including `--file` freshness with an optional delegated-at boundary, plus review-pr and submit-pr `--file` wiring assertions.
 
 All tests discovered by `run-all.sh` are part of the installed orch skill and
 must pass in downstream projects without access to the vstack source checkout.

@@ -1,76 +1,11 @@
-#!/usr/bin/env bash
-# Print small git context values for workflow snippets without inline shell plumbing.
-
-set -euo pipefail
-
-cmd="${1:-help}"
-shift || true
-
-worktree_arg() {
-    printf '%s' "${1:-.}"
-}
-
-case "$cmd" in
-    branch)
-        worktree="$(worktree_arg "$@")"
-        git -C "$worktree" branch --show-current
-        ;;
-    head)
-        worktree="$(worktree_arg "$@")"
-        git -C "$worktree" rev-parse HEAD
-        ;;
-    issue-from-branch)
-        worktree="$(worktree_arg "$@")"
-        pattern="${2:-${GH_ISSUE_PATTERN:-([A-Z]+-[0-9]+|issue-[0-9]+)}}"
-        branch="$(git -C "$worktree" branch --show-current)"
-        shopt -s nocasematch
-        if [[ "$branch" =~ $pattern ]]; then
-            issue_id="${BASH_REMATCH[0]}"
-            if [[ "$issue_id" == issue-* ]]; then
-                printf '%s\n' "${issue_id,,}"
-            else
-                printf '%s\n' "${issue_id^^}"
-            fi
-        else
-            echo "Error: no issue id matched branch '$branch'" >&2
-            exit 1
-        fi
-        ;;
-    repo-root)
-        worktree="$(worktree_arg "$@")"
-        git -C "$worktree" rev-parse --show-toplevel
-        ;;
-    common-root)
-        worktree="$(worktree_arg "$@")"
-        git_common_dir="$(git -C "$worktree" rev-parse --git-common-dir)"
-        case "$git_common_dir" in
-            */.git) dirname "$git_common_dir" ;;
-            *) git -C "$worktree" rev-parse --show-toplevel ;;
-        esac
-        ;;
-    timestamp)
-        format="${1:-compact}"
-        case "$format" in
-            compact) date +%Y%m%d-%H%M%S ;;
-            epoch) date +%s ;;
-            *) echo "Error: unknown timestamp format '$format'" >&2; exit 2 ;;
-        esac
-        ;;
-    help|--help|-h)
-        cat << 'EOF'
-Usage: git-context <command> [worktree]
-
-Commands:
-  branch [worktree]               Print current branch
-  head [worktree]                 Print current HEAD SHA
-  issue-from-branch [worktree]    Print issue id matched from branch
-  repo-root [worktree]            Print git worktree root
-  common-root [worktree]          Print main checkout root for worktree sets
-  timestamp [compact|epoch]       Print workflow timestamp
-EOF
-        ;;
-    *)
-        echo "Unknown command: $cmd" >&2
-        exit 1
-        ;;
-esac
+#!/usr/bin/env -S mise x -- bun --install=fallback
+import { run, fail } from "./lib/runtime.ts";
+const [command = "help", arg = ".", pattern] = process.argv.slice(2);
+if (["help", "--help", "-h"].includes(command)) { console.log(`Usage: git-context <branch|head|issue-from-branch|repo-root|common-root|timestamp> [worktree]`); process.exit(0); }
+if (command === "timestamp") { const format = arg === "." ? "compact" : arg; if (format === "epoch") console.log(Math.floor(Date.now() / 1000)); else if (format === "compact") console.log(new Date().toISOString().replace(/[-:TZ.]/g, "").slice(0, 15)); else fail(`Error: unknown timestamp format '${format}'`, 2); process.exit(0); }
+const gitArgs = command === "branch" ? ["branch", "--show-current"] : command === "head" ? ["rev-parse", "HEAD"] : command === "repo-root" ? ["rev-parse", "--show-toplevel"] : command === "common-root" ? ["rev-parse", "--git-common-dir"] : ["branch", "--show-current"];
+const result = run(["git", "-C", arg, ...gitArgs]);
+if (result.code !== 0) fail(result.stderr.trim() || `git-context: git command failed`);
+if (command === "issue-from-branch") { const p = new RegExp(pattern ?? process.env.GH_ISSUE_PATTERN ?? "([A-Z]+-[0-9]+|issue-[0-9]+)", "i"); const match = result.stdout.match(p); if (!match) fail(`Error: no issue id matched branch '${result.stdout.trim()}'`); console.log(match[0].startsWith("issue-") ? match[0].toLowerCase() : match[0].toUpperCase()); }
+else if (command === "common-root") console.log(result.stdout.trim().endsWith("/.git") ? result.stdout.trim().slice(0, -5) : run(["git", "-C", arg, "rev-parse", "--show-toplevel"]).stdout.trim());
+else console.log(result.stdout.trim());

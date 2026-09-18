@@ -15,6 +15,10 @@ metadata:
 
 # GitHub Queries
 
+## Bun entry point
+
+Run `scripts/github.ts` directly. CrustJS routes the existing command names. The original `scripts/github.sh` path remains available for compatibility.
+
 CLI wrapper for GitHub API operations used in PR workflows. Provides structured JSON output, bot account support, and configurable issue ID extraction.
 
 ```bash

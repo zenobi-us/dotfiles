@@ -92,19 +92,21 @@ Use `skills/orch/scripts/pr-view-json WORKTREE_PATH --json number,state` when a 
 
 Use `skills/orch/scripts/review-init` to initialize standalone review context and print branch, worktree, issue ID, state path, and whether state was created as JSON.
 
-Use `skills/orch/scripts/review-artifact-check WORKTREE_PATH AGENT_NAME DELEGATED_AT_EPOCH` to deterministically validate a reviewer's on-disk JSON artifact (existence, `mtime >=` delegation epoch, `jq -e '.verdict'`). It prints `{ok, path, reason}`; review-pr accepts a reviewer completion only when `ok == true`. `review-artifact-check --file <json_path> [delegated_at_epoch]` validates one explicit artifact (such as an external second-opinion review output); when the optional `delegated_at_epoch` is supplied it applies the same freshness gate, so a stale or misdated file is rejected instead of accepted on existence + verdict alone. Both modes also reject an artifact that self-reports no review was performed (`qa_metadata.review_performed: false`, or a no-scope/no-review `qa_metadata.reason`) with reason `no_review` — a schema-valid "pass" from a reviewer that admits it reviewed nothing never validates. Artifacts without `qa_metadata` (internal reviewers) are unaffected.
+Use `skills/orch/scripts/review-artifact-check WORKTREE_PATH AGENT_NAME DELEGATED_AT_EPOCH` to deterministically validate a reviewer's on-disk JSON artifact (existence, freshness, and `.verdict`). It prints `{ok, path, reason}`; review-pr accepts a reviewer completion only when `ok == true`. `review-artifact-check --file <json_path> [delegated_at_epoch]` validates one explicit artifact (such as an external second-opinion review output); when the optional `delegated_at_epoch` is supplied it applies the same freshness gate, so a stale or misdated file is rejected instead of accepted on existence + verdict alone. Both modes also reject an artifact that self-reports no review was performed (`qa_metadata.review_performed: false`, or a no-scope/no-review `qa_metadata.reason`) with reason `no_review` — a schema-valid "pass" from a reviewer that admits it reviewed nothing never validates. Artifacts without `qa_metadata` (internal reviewers) are unaffected.
 
 Use `skills/orch/scripts/dev-return-write --worktree PATH --kind implement|fix --issue ID --round-id RID --branch BRANCH --commit SHA --validate STR [--qa-label LABEL]... [--bundled] [--no-summary] [--summary-file PATH] [--item N DECISION REASONING]...` for the dev agent to write its round-scoped completion artifact deterministically (atomically, well-formed) instead of hand-authoring JSON; it prints the artifact path and exits 2 on invalid input. Canonical schema — fields, kind rules, `items[]` shape: [`schemas/dev-return.md`](./schemas/dev-return.md); validation and round-id internals: [`DEVELOPMENT.md`](./DEVELOPMENT.md).
 
 Use `skills/orch/scripts/dev-artifact-check --worktree WT --issue ISSUE --round-id RID [--expect-items N,N,...]` to deterministically validate a dev agent's round-scoped completion artifact; it prints `{ok, path, reason}` (`valid`/`missing`/`invalid`/`incomplete`). A fresh valid artifact lets `dev-start` § 3 / `dev-fix` accept a completion whose live return was lost to a tool timeout (vstack#770) without re-delegation; git/tracker corroboration stays in the orch workflow. Schema: [`schemas/dev-return.md`](./schemas/dev-return.md); gate ordering, type-strict fields, and the `--expect-items`/`--file` modes: [`DEVELOPMENT.md`](./DEVELOPMENT.md).
 
-Use `skills/orch/scripts/tracker-for-issue ISSUE_ID` when workflow docs need tracker branching without inline shell conditionals.
+Use `skills/orch/scripts/tracker-for-issue ISSUE_ID` when workflow docs need tracker branching without inline shell conditionals. Run every script directly. Do not prefix migrated scripts with `bash`, `node`, `python`, or `bun run`.
 
 Use `skills/orch/scripts/orch-env VAR_NAME DEFAULT` to print the effective value of a vstack `[env]` setting (process env > `vstack.settings.toml` > default) when a workflow step needs a configurable value without inline shell fallbacks. With a numeric default, a non-numeric effective value falls back to the default — e.g. `orch-env CI_FIX_MAX_CYCLES 6` for the ci-fix cycle budget.
 
 ## System Dependencies
 
-- `jq`, `bash` 4+, `flock` (util-linux)
+- Bun and mise
+- `gh` for GitHub operations
+- `git` for repository operations
 
 ## Codex Desktop Threads
 

@@ -18,6 +18,10 @@ metadata:
 
 # Project Management
 
+## Bun entry point
+
+Run `scripts/verification-scope.ts` directly. The existing `scripts/verification-scope` path remains available for compatibility.
+
 User-facing wrappers and TPM-execution workflows for project-level planning, audit, roadmap, and research-driven decomposition.
 
 ## Commands
