@@ -28,7 +28,7 @@ segment.
 
 Run the file directly, as shown. Its shebang starts bun through mise and installs
 the CLI's own dependencies on first run. You **MUST NOT** prefix the call with
-`bun run` — that skips the shebang, and the call then fails in an installed copy
+Bun's runner — that skips the shebang, and the call then fails in an installed copy
 that has no dependencies.
 
 `report` is the default. `cli.ts` and `cli.ts report` do the same thing. Output:

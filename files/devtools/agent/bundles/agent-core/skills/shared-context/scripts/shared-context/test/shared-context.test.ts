@@ -220,6 +220,13 @@ test("lists shared contexts alphabetically with storage preferences", async () =
   ]);
 });
 
+test("the CLI is directly executable and exposes help", () => {
+  const script = path.join(import.meta.dir, "..", "cli.ts");
+  const result = Bun.spawnSync([script, "--help"], { stdout: "pipe", stderr: "pipe" });
+  expect(result.exitCode).toBe(0);
+  expect(Buffer.from(result.stdout).toString()).toContain("doctor");
+});
+
 test("repository XML points root and shared-root at the repository", () => {
   const context: SharedAgentContext = {
     repositoryRoot: "/work/repo",

@@ -5,7 +5,7 @@ description: Preview any local Markdown file in a browser, when an agent or user
 
 # Markdown Preview
 
-Use the bundled `scripts/markdown-preview.js` skill script to serve one local Markdown file as HTML.
+Use the bundled `scripts/markdown-preview.js` skill script to serve one local Markdown file as HTML. It runs directly with Bun through mise and does not need a global command.
 
 Resolve the script path relative to this `SKILL.md` file. Do not require a global `md-preview` command.
 
@@ -17,8 +17,10 @@ Resolve the script path relative to this `SKILL.md` file. Do not require a globa
 4. Stop the process with `Ctrl-C` when the preview is no longer necessary.
 
 ```sh
-node <skill-directory>/scripts/markdown-preview.js path/to/file.md
+<skill-directory>/scripts/markdown-preview.js path/to/file.md
 ```
+
+Use `<skill-directory>/scripts/markdown-preview.js doctor` to check the Bun runtime.
 
 The script MUST read the file without changing it.
 The script MUST select a free local port.

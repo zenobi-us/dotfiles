@@ -47,7 +47,7 @@ between tools.
 ## Running the CLI
 
 Run `scripts/shared-context/cli.ts` directly. Its shebang is
-`#!/usr/bin/env -S mise exec -- bun run --install=fallback`, which starts bun
+`#!/usr/bin/env -S mise x -- bun --install=fallback`, which starts Bun
 through mise and auto-installs `@crustjs/core` and `@crustjs/plugins` when they are
 missing. The import specifiers carry their own version ranges for that reason.
 
@@ -69,6 +69,7 @@ subcommands:
   directory an ingested source belongs in: `<root>/<KEY>/<name>/` with a key,
   `<root>/library/<name>/` without one. `--dry-run` prints the path and creates
   nothing.
+- `doctor` — check Bun, mise, git, and fd prerequisites.
 - `index <dir> [--force]` — rebuild the managed block of `<dir>/index.md` from the
   frontmatter of its sibling Markdown files. Text outside the
   `<!-- shared-context:index start -->` / `<!-- shared-context:index end -->`
