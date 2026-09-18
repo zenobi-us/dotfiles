@@ -86,8 +86,12 @@ copy goes in `files/` so the link survives the move.
   them. State the risk each gap leaves.
 - You **MUST** pass `scripts/validate-report.ts` before you call the report
   done.
-- The scripts are TypeScript run by bun through a `mise exec` shebang. Run
+- The scripts are TypeScript run by Bun through a `mise x -- bun --install=fallback` shebang. Run
   them directly. Do not invoke them with `bash`, `sh`, `node` or `python`.
+
+## CLI
+
+Run `scripts/report-cli.ts --help` for the Crust router. Use `new`, `validate`, `imgsize`, and `doctor`. The individual script paths remain direct compatibility entry points.
 
 ## Procedure
 

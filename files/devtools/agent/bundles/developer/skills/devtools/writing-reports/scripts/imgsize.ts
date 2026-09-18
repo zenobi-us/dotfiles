@@ -1,4 +1,4 @@
-#!/usr/bin/env -S mise exec -- bun run --install=fallback
+#!/usr/bin/env -S mise x -- bun --install=fallback
 /**
  * Print the real pixel size of image files: one "<name> <w> <h>" line each.
  *

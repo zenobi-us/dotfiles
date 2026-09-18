@@ -6,6 +6,8 @@ allowed-tools: Bash(npx agent-browser:*), Bash(agent-browser:*)
 
 # Browser Automation with agent-browser
 
+Run `scripts/validate-template.ts` directly to detect drift in the retained Bash templates. The validator does not convert or run the templates.
+
 The CLI uses Chrome/Chromium via CDP directly. Install via `npm i -g agent-browser`, `brew install agent-browser`, or `cargo install agent-browser`. Run `agent-browser install` to download Chrome. Run `agent-browser upgrade` to update to the latest version.
 
 ## Core Workflow

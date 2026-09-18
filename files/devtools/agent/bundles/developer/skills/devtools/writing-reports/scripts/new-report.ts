@@ -1,4 +1,4 @@
-#!/usr/bin/env -S mise exec -- bun run --install=fallback
+#!/usr/bin/env -S mise x -- bun --install=fallback
 /**
  * Create a self-contained HTML report directory from the writing-reports template.
  *

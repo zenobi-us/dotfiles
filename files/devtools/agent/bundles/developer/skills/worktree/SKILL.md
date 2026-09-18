@@ -11,10 +11,10 @@ Route `UserRequest` to the correct worktree workflow. This skill dispatches only
 
 MUST resolve the muxer before anything else, every time, in this order:
 
-1. Look for a `<worktree-session muxer="..." agent="...">` tag already in context. The developer bundle's `SessionStart` hook (`hooks/hooks.json` → `scripts/router.mjs session-context`) injects this once per session, so the muxer is normally already known — no script call needed.
+1. Look for a `<worktree-session muxer="..." agent="...">` tag already in context. The developer bundle's `SessionStart` hook (`hooks/hooks.json` → `scripts/router.ts session-context`) injects this once per session, so the muxer is normally already known — no script call needed.
 2. If that tag is absent (an older session, the hook did not fire, or the muxer changed mid-session — for example the operator attached a new terminal), fall back to:
    ```bash
-   scripts/router.mjs detect-muxer
+   scripts/router.ts detect-muxer
    ```
 
 Either source gives one of `herdr`, `zellij`, `tmux`, `hrdx`, `unknown-muxer` — see `references/muxers/hrdx.md` for the `HRDX=1` signal hrdx sets. If detection is wrong, pass `--muxer <actual>` to `route` instead of trusting either source.
@@ -24,7 +24,7 @@ Either source gives one of `herdr`, `zellij`, `tmux`, `hrdx`, `unknown-muxer` �
 Same order as rule 0, using the same `<worktree-session>` tag's `agent` attribute first, falling back only when absent or stale:
 
 ```bash
-scripts/router.mjs detect-agent
+scripts/router.ts detect-agent
 ```
 
 Either source gives one of `claude`, `pi`, `unknown-agent`. zot has no confirmed signal — see `references/agents/zot.md` — and always reports as `unknown-agent`. Pass `--agent zot` to `route` when the caller knows better.
@@ -32,7 +32,7 @@ Either source gives one of `claude`, `pi`, `unknown-agent`. zot has no confirmed
 # Route
 
 ```bash
-scripts/router.mjs route "$ARGUMENTS" --muxer <resolved-muxer> --agent <resolved-agent>
+scripts/router.ts route "$ARGUMENTS" --muxer <resolved-muxer> --agent <resolved-agent>
 ```
 
 Always pass `--muxer` and `--agent` explicitly, sourced from rule 0/rule 1 above — this keeps `route` a pure lookup with no env probing of its own. It resolves the subcommand and prints JSON: `{ match, subcommand, remainder, muxer, agent, playbook, muxerContract, agentContract }` on success, or `{ match: false, request }` with a non-zero exit on no match.

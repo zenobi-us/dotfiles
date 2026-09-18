@@ -1,9 +1,10 @@
+#!/usr/bin/env -S mise x -- bun --install=fallback
 /**
  * Firefox DevTools Integration Tests
  * Tests real-world integration scenarios
  */
 
-import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
+import { describe, it, expect, beforeAll, afterAll } from 'bun:test';
 
 /**
  * Integration configuration module

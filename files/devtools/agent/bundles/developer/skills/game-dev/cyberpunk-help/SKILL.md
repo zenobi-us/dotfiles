@@ -35,10 +35,10 @@ Never paste the full mod table into `SKILL.md` or every chat reply.
 Canonical (Python 3, stdlib only):
 
 ```bash
-python3 "$HOME/.grok/skills/cyberpunk-help/scripts/get_cp2077_help_context.py"
+"$HOME/.grok/skills/cyberpunk-help/scripts/get_cp2077_help_context.ts"
 ```
 
-Windows (finds `python` / `python3`):
+Windows: use the PowerShell compatibility helper:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File "$env:USERPROFILE\.grok\skills\cyberpunk-help\scripts\Get-Cp2077HelpContext.ps1"

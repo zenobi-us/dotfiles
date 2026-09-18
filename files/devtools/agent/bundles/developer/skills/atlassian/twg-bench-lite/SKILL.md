@@ -7,6 +7,8 @@ description: >
 
 # twg-bench-lite
 
+Run `scripts/benchmark-lite/runner.ts` directly. Use its `run`, `render`, and `doctor` subcommands.
+
 Run one read-only prompt twice: once with free Atlassian/local MCP context and
 once with paid Atlassian Teamwork Graph context through TWG CLI. This is a
 skill-first workflow with a thin `twg benchmark lite run` bridge. The benchmark

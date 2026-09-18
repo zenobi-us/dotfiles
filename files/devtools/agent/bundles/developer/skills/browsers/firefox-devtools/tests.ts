@@ -1,9 +1,10 @@
+#!/usr/bin/env -S mise x -- bun --install=fallback
 /**
  * Firefox DevTools Skill Test Suite
  * Tests core functionality and integration points
  */
 
-import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
+import { describe, it, expect, beforeAll, afterAll } from 'bun:test';
 
 // Mock RDP Client for testing
 class MockRDPClient {
