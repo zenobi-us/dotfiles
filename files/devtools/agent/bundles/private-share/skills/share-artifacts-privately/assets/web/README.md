@@ -7,7 +7,7 @@ This branch publishes private-share artifacts through GitHub Pages.
 ```text
 index.html
 sessions.jsonl
-scripts/validate-sessions-index.mjs
+scripts/validate-sessions-index.ts
 s/<hash>/index.html
 s/<hash>.zip
 ```
@@ -33,5 +33,5 @@ Directory shares also have `zipPath`.
 Run this command from the branch root before you push:
 
 ```bash
-node scripts/validate-sessions-index.mjs
+bun scripts/validate-sessions-index.ts
 ```

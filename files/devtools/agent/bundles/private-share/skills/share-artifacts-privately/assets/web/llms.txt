@@ -65,7 +65,7 @@ Agents MUST NOT force-push.
 Before committing, agents MUST run:
 
 ```bash
-node scripts/validate-sessions-index.mjs
+bun scripts/validate-sessions-index.ts
 ```
 
 The validator checks:
