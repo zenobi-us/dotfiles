@@ -1,7 +1,7 @@
 ---
 name: commit
 description: Commit staged and unstaged changes with atomic conventional commits.
-disable-model-invocation: true
+user-invocable: true
 ---
 
 Use the writing-git-commits skill to commit unstaged and staged changes and carry out additional instructions in the current repository.

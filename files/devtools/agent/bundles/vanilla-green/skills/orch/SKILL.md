@@ -179,9 +179,11 @@ Follow ALL [Workflow Execution](#workflow-execution) rules for every command.
 
 `session-init --json` reports worktree Linear auth as the structured `linear_auth` object from `linear auth-check`. `linear_auth.error = "not installed"` is reserved for a missing Linear skill command; API key, 1Password, and API failures keep their original auth-check diagnostic.
 
-Both `approval-wait` and `ci-wait` use `scripts/lib/gh-auth.sh`, which wraps the GitHub skill's shared auth helpers, for a bounded auth-resolution ladder — see `DEVELOPMENT.md` for the full ladder description. GitHub auth is env-first: already-resolved `GH_TOKEN`, `GITHUB_TOKEN`, or `GH_BOT_TOKEN` values from the parent process win before local files are read, and `op read` is only used for the final selected `op://` reference. Auth preflight validates selected env tokens with `gh api user`; `gh auth status` is only authoritative for keyring auth when no env token is selected. The waiters probe each candidate auth source at most once before moving to the next fallback. The `github.sh` router additionally prefers a resolved `GH_BOT_TOKEN` before a resolved `GITHUB_TOKEN` for bot-capable operations. Exit `3` on hard auth failure; callers treat both scripts consistently.
+Both `approval-wait` and `ci-wait` use the Bun module `scripts/lib/gh-auth.ts`, which wraps the GitHub skill's shared auth helpers, for a bounded auth-resolution ladder — see `DEVELOPMENT.md` for the full ladder description. GitHub auth is env-first: already-resolved `GH_TOKEN`, `GITHUB_TOKEN`, or `GH_BOT_TOKEN` values from the parent process win before local files are read, and `op read` is only used for the final selected `op://` reference. Auth preflight validates selected env tokens with `gh api user`; `gh auth status` is only authoritative for keyring auth when no env token is selected. The waiters probe each candidate auth source at most once before moving to the next fallback. The `github.sh` router additionally prefers a resolved `GH_BOT_TOKEN` before a resolved `GITHUB_TOKEN` for bot-capable operations. Exit `3` on hard auth failure; callers treat both scripts consistently.
 
 ### `workflow-state` actions
+
+All scripts under `scripts/` run directly through Bun with the exact `mise x -- bun --install=fallback` shebang. The Crust router is `scripts/orch.ts`; use its discrete workflow subcommands or use the historical helper paths directly.
 
 To target a state directory from a worktree, pass the global `--state-dir <path>` flag before the subcommand: it applies to every action and takes precedence over `ORCH_STATE_DIR`. Prefer the flag over an `ORCH_STATE_DIR=… workflow-state …` env prefix — the env-assignment prefix is rejected under Codex `approval=never` as a flagged command shape, while a plain flag is classifier-safe. `ORCH_STATE_DIR` remains supported as an environment fallback (default: `tmp`). Put non-secret workflow settings in committed `vstack.settings.toml` under `[env]`; `.env.local` remains supported for secrets and personal overrides.
 
@@ -204,7 +206,7 @@ State keys are the normalized issue IDs — `issue-N` for GitHub issues (per `st
 | `new-round-id <ID> <field>` | Generate a unique per-delegation round token (`date +%s%N`-`$RANDOM` — nanosecond timestamp + random suffix, distinct even across rapid re-stamps), store it at `<field>`, and print it — binds a dev completion artifact to its delegation (vstack#776) |
 | `append <ID> <field> <value>` | Append to array field |
 | `increment <ID> <field>` | Increment counter |
-| `update <ID> <jq-expr>` | Arbitrary jq mutation (e.g. nested merges) |
+| `update <ID> <expression>` | Apply supported state mutations without an external JSON runtime |
 
 ## Schemas
 
@@ -228,9 +230,10 @@ Audit input and roadmap-plan schemas live in `project-management/schemas/` — c
 
 ## System Dependencies
 
-- `jq`
-- `bash` 4+
-- `flock` (util-linux) for atomic state updates
+- Bun
+- mise
+- `gh` for GitHub operations
+- `git` for repository operations
 
 ## Tests
 

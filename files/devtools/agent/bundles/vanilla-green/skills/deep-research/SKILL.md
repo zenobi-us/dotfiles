@@ -18,6 +18,10 @@ metadata:
 
 # Deep Research
 
+## Bun entry point
+
+Run `scripts/deep-research.ts` directly. It uses CrustJS routing and preserves the existing `scripts/deep-research` path during migration.
+
 Use this skill for evidence-backed research reports, architectural investigations, vendor/library comparisons, technology choices, and workflow-owned `findings.md` reports.
 
 ## Harness Routing

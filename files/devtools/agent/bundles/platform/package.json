@@ -4,6 +4,13 @@
   "description": "Cloudflare, home automation, infra ops, and specialized deployment experts",
   "private": true,
   "keywords": ["pi-package"],
+  "dependencies": {
+    "@crustjs/core": "^0.0.19",
+    "@crustjs/plugins": "^0.1.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
   "pi": {
     "skills": ["./skills"]
   }

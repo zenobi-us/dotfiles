@@ -1,5 +1,4 @@
-#!/usr/bin/env -S mise exec -- bun run --install=fallback
-import { spawnSync } from "node:child_process";
+#!/usr/bin/env -S mise x -- bun --install=fallback
 import path from "node:path";
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
@@ -18,8 +17,8 @@ import {
 } from "./lib";
 
 const exec: Exec = async (command, args) => {
-  const result = spawnSync(command, args, { encoding: "utf8" });
-  return { stdout: result.stdout ?? "", code: result.status ?? 1 };
+  const result = Bun.spawnSync([command, ...args], { stdout: "pipe", stderr: "pipe" });
+  return { stdout: Buffer.from(result.stdout).toString("utf8"), code: result.exitCode };
 };
 
 async function readStdin(): Promise<string> {
@@ -117,6 +116,17 @@ async function runIndex(ctx: { args: { directory: string }; flags: { force?: boo
   }
 }
 
+function runDoctor(): void {
+  const checks = [
+    ["bun", Bun.version],
+    ["mise", Bun.which("mise") ? "available" : "missing"],
+    ["git", Bun.which("git") ? "available" : "missing"],
+    ["fd", Bun.which("fd") ? "available" : "missing"],
+  ];
+  console.log(checks.map(([name, status]) => `${name}: ${status}`).join("\n"));
+  if (checks.some(([name, status]) => name !== "bun" && status === "missing")) process.exitCode = 1;
+}
+
 async function runReport(ctx: { args: { command: string[] } }): Promise<void> {
   const rest = ctx.args.command[0] === "report" ? ctx.args.command.slice(1) : ctx.args.command;
   if (rest.length > 0) {
@@ -172,6 +182,9 @@ const cli = new Crust("shared-context")
   .command("migrate", (cmd) => cmd
     .meta({ description: "Copy alignment files between repository and shared storage" })
     .run(runMigrate))
+  .command("doctor", (cmd) => cmd
+    .meta({ description: "Check Bun and external command prerequisites" })
+    .run(runDoctor))
   .args([{ name: "command", type: "string", variadic: true }] as const)
   .run(runReport);
 

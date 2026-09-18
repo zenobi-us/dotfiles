@@ -1,4 +1,4 @@
-#!/usr/bin/env -S mise exec -- bun run --install=fallback
+#!/usr/bin/env -S mise x -- bun --install=fallback
 /**
  * Validate a report written from the writing-reports template.
  *

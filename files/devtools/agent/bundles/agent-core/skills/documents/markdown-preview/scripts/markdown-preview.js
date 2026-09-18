@@ -1,9 +1,7 @@
-#!/usr/bin/env node
-import process from "node:process";
-
-import fs from "node:fs/promises";
-import http from "node:http";
+#!/usr/bin/env -S mise x -- bun --install=fallback
 import path from "node:path";
+import { Crust } from "@crustjs/core@^0.0.19";
+import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 
 const PORT = 0;
 
@@ -98,7 +96,7 @@ function markdownToHtml(markdown) {
   return output.join("\n");
 }
 
-function htmlDocument(markdown, title = "Markdown preview") {
+export function htmlDocument(markdown, title = "Markdown preview") {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -111,35 +109,60 @@ function htmlDocument(markdown, title = "Markdown preview") {
 </html>`;
 }
 
-async function startServer(file, host = "127.0.0.1") {
+export async function startServer(file, host = "127.0.0.1") {
   const filePath = path.resolve(file);
-  const markdown = await fs.readFile(filePath, "utf8");
-  const server = http.createServer((request, response) => {
-    if (request.url !== "/" && request.url !== "/index.html") {
-      response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
-      response.end("Not found\n");
-      return;
-    }
-    response.writeHead(200, { "content-type": "text/html; charset=utf-8" });
-    response.end(htmlDocument(markdown, path.basename(filePath)));
+  const markdown = await Bun.file(filePath).text();
+  const server = Bun.serve({
+    port: PORT,
+    hostname: host,
+    fetch(request) {
+      const url = new URL(request.url);
+      if (url.pathname !== "/" && url.pathname !== "/index.html") return new Response("Not found\n", { status: 404 });
+      return new Response(htmlDocument(markdown, path.basename(filePath)), { headers: { "content-type": "text/html; charset=utf-8" } });
+    },
   });
-  await new Promise((resolve, reject) => {
-    server.once("error", reject);
-    server.listen(PORT, host, resolve);
-  });
-  const address = server.address();
-  return { server, url: `http://${host}:${address.port}/` };
+  return { server, url: `http://${host}:${server.port}/` };
 }
 
-const file = process.argv[2];
-if (!file || file === "-h" || file === "--help") {
-  console.error("Usage: md-preview <file.md>");
-  process.exit(file ? 0 : 2);
-}
-
-startServer(file)
-  .then(({ url }) => console.log(url))
-  .catch((error) => {
-    console.error(`md-preview: ${error.message}`);
+async function runPreview(ctx) {
+  const file = ctx.args.file;
+  if (!file) {
+    console.error("Usage: md-preview <file.md>");
+    process.exitCode = 2;
+    return;
+  }
+  try {
+    const { url } = await startServer(file);
+    console.log(url);
+  } catch (error) {
+    console.error(`md-preview: ${error instanceof Error ? error.message : String(error)}`);
     process.exitCode = 1;
-  });
+  }
+}
+
+function runDoctor() {
+  console.log(`bun: ${Bun.version}`);
+  console.log("status: ready");
+}
+
+const cli = new Crust("markdown-preview")
+  .meta({ description: "Serve a local Markdown file as HTML" })
+  .use(helpPlugin())
+  .command("preview", (cmd) => cmd
+    .meta({ description: "Serve one Markdown file on a free local port" })
+    .args([{ name: "file", type: "string", required: true }])
+    .run(runPreview))
+  .command("doctor", (cmd) => cmd
+    .meta({ description: "Check the Bun runtime" })
+    .run(runDoctor));
+
+if (import.meta.main) {
+  // Keep the original direct path contract: <script> file.md means preview file.md.
+  if (process.argv.length === 2) {
+    console.error("Usage: md-preview <file.md>");
+    process.exitCode = 2;
+  } else {
+    if (process.argv[2] && !["preview", "doctor"].includes(process.argv[2]) && !process.argv[2].startsWith("-")) process.argv.splice(2, 0, "preview");
+    await cli.execute();
+  }
+}

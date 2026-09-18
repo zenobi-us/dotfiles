@@ -2,6 +2,7 @@
 name: pr-creator
 description: Create a GitHub pull request from the current branch after preparing and reviewing its changes.
 disable-model-invocation: true
+user-invocable: true
 ---
 
 # Create Pull Request

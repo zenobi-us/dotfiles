@@ -16,6 +16,10 @@ metadata:
 
 # Second Opinion
 
+## Bun entry point
+
+Run `scripts/second-opinion.ts` directly. CrustJS routes the review modes. The original `scripts/second-opinion` path remains available for compatibility.
+
 Cross-model second opinion via external AI CLI. Auto-detects the current harness and calls the opposite:
 
 | Running in | Calls |

@@ -6,6 +6,8 @@ description: Enables Firefox remote debugging workflows, when browser automation
 # Firefox DevTools Integration Skill
 
 ## Purpose
+
+Run `scripts/analysis.ts` directly for test coverage analysis. Run `scripts/test-analysis.ts` directly to execute the Bun test suite.
 This skill enables seamless integration of Firefox Remote Debugging Protocol (RDP) for development workflows, similar to Chrome DevTools integration. It configures Firefox to accept remote debugging connections and provides tooling to interact with browser instances programmatically.
 
 ## Prerequisites

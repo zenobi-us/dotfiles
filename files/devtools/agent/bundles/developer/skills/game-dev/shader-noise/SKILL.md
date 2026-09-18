@@ -5,6 +5,8 @@ description: Procedural noise functions in GLSL—Perlin, simplex, Worley/cellul
 
 # Shader Noise
 
+The files in `scripts/` are GLSL source libraries. Keep them as GLSL assets. Do not run them through Bun.
+
 Procedural noise creates natural-looking randomness. Unlike `random()`, noise is coherent—nearby inputs produce nearby outputs.
 
 ## Quick Start

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S mise x -- bun --install=fallback
 
 /**
  * Home Assistant ops toolkit (single CLI).
@@ -15,6 +15,8 @@
  * Uses only Node built-ins (requires Node 22+ for fetch + WebSocket).
  */
 
+import { Crust } from "@crustjs/core@^0.0.19";
+import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as readlinePromises from "node:readline/promises";
@@ -425,7 +427,7 @@ function die(message, code = 2) {
 	process.exit(code);
 }
 
-async function run() {
+async function legacyRun() {
 	const argv = process.argv.slice(2);
 	if (!argv.length || argv[0] === "-h" || argv[0] === "--help") {
 		printTopHelp();
@@ -3020,6 +3022,27 @@ async function cmdNameReviewFromBackup(argv) {
 	return 0;
 }
 
-run()
-	.then((code) => process.exit(code))
-	.catch((e) => die(e?.stack || e?.message || String(e), 1));
+const app = new Crust("ha-ops").meta({ description: "Plan, apply, validate, and inspect Home Assistant changes" });
+function forwarded() { return process.argv.slice(3); }
+const forwardedFlags = {
+	apply: { type: "boolean" }, json: { type: "boolean" }, yes: { type: "boolean", short: "y" }, "dry-run": { type: "boolean" }, raw: { type: "boolean" },
+	"include-states": { type: "boolean" }, automations: { type: "boolean" }, scripts: { type: "boolean" }, scenes: { type: "boolean" }, lovelace: { type: "boolean" }, live: { type: "boolean" }, backup: { type: "boolean" }, "include-diagnostic": { type: "boolean" }, "include-lights-cove": { type: "boolean" },
+	steps: { type: "string" }, pattern: { type: "string", multiple: true }, "blueprint-pattern": { type: "string" }, log: { type: "string" }, out: { type: "string" }, indent: { type: "string" }, needle: { type: "string", multiple: true }, "needles-file": { type: "string" }, "map-json": { type: "string" }, "backup-root": { type: "string" }, "json-out": { type: "string" }, "max-bytes": { type: "string" }, domain: { type: "string" }, "item-id": { type: "string" }, "entity-id": { type: "string" }, "run-id": { type: "string" }, entity: { type: "string", multiple: true }, "event-type": { type: "string", multiple: true }, "device-ieee": { type: "string", multiple: true }, "device-id": { type: "string", multiple: true }, seconds: { type: "string" }, limit: { type: "string" }
+};
+function add(name: string, description: string, handler: (args: string[]) => Promise<number>) {
+	return app.sub(name).meta({ description }).flags(forwardedFlags).run(async () => {
+		try { process.exitCode = await handler(forwarded()); }
+		catch (e) { die(e instanceof Error ? e.message : String(e), 1); }
+	});
+}
+const cleanupCmd = add("cleanup", "Bulk cleanup (dry-run by default)", cmdCleanup);
+const snapshotCmd = add("snapshot", "Create a JSON snapshot", cmdSnapshot);
+const rollbackCmd = add("rollback", "Rollback registry changes", cmdRollback);
+const referencesCmd = add("find-references", "Find entity references", cmdFindReferences);
+const tracesCmd = add("traces", "Inspect automation traces", cmdTraces);
+const eventsCmd = add("tail-events", "Tail Home Assistant events", cmdTailEvents);
+const namesCmd = add("name-review-from-backup", "Review names from a backup", cmdNameReviewFromBackup);
+const doctorCmd = app.sub("doctor").meta({ description: "Check Home Assistant prerequisites" }).run(() => {
+	console.log(JSON.stringify({ bun: Bun.version, HA_URL: Boolean(process.env.HA_URL), HA_TOKEN: Boolean(process.env.HA_TOKEN) }, null, 2));
+});
+app.use(helpPlugin()).command(cleanupCmd).command(snapshotCmd).command(rollbackCmd).command(referencesCmd).command(tracesCmd).command(eventsCmd).command(namesCmd).command(doctorCmd).execute();

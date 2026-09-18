@@ -15,6 +15,10 @@ metadata:
 
 # Linear CLI
 
+## Bun entry point
+
+Run `scripts/linear.ts` directly. CrustJS routes the existing resource names. The original `scripts/linear.sh` path remains available for compatibility.
+
 CLI wrapper for Linear's GraphQL API with local cache, bulk operations, and structured output.
 
 ```bash

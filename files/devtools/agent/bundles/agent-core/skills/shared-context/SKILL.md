@@ -1,6 +1,7 @@
 ---
 name: shared-context
 description: Routes shared engineering context work to the right procedure — report or change where context is stored, pull an external source (Confluence page, Jira issue, web page, PDF, screenshot) into it, and publish the write so other agents see it. Use when the user says shared context, eng-context, alignment root, "save this page", "pull this in", "where does my context live", or when a write must land outside the repository clone.
+user-invocable: true
 ---
 
 # Shared Context
@@ -27,7 +28,7 @@ segment.
 
 Run the file directly, as shown. Its shebang starts bun through mise and installs
 the CLI's own dependencies on first run. You **MUST NOT** prefix the call with
-`bun run` — that skips the shebang, and the call then fails in an installed copy
+Bun's runner — that skips the shebang, and the call then fails in an installed copy
 that has no dependencies.
 
 `report` is the default. `cli.ts` and `cli.ts report` do the same thing. Output:

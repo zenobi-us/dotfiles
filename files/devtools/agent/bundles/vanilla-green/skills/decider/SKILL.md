@@ -15,6 +15,10 @@ metadata:
 
 # Decider
 
+## Bun entry point
+
+Run `scripts/decisions.ts` directly. It uses the exact Bun fallback shebang and preserves the existing `scripts/decisions` path as the compatibility implementation.
+
 Manages Architecture Decision Records (ADRs) — represented in this skill as numbered `DXXX` architectural decision documents indexed in `INDEX.md` (by default under `docs/decisions/`) — with canonical templates, creation/update workflows, and a search CLI. Provides the single source of truth for decision entry format and lifecycle.
 
 ```bash

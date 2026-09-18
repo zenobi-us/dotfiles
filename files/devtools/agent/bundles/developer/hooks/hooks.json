@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun run \"${CLAUDE_PLUGIN_ROOT}/skills/worktree/scripts/router.mjs\" session-context | jq -c '{continue: true, hookSpecificOutput: {hookEventName: \"SessionStart\", additionalContext: (. // \"\")}}'"
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/skills/worktree/scripts/router.ts\" session-context | jq -c '{continue: true, hookSpecificOutput: {hookEventName: \"SessionStart\", additionalContext: (. // \"\")}}'"
           }
         ]
       }

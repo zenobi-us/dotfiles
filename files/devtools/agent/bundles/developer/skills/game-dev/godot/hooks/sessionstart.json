@@ -6,9 +6,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.sh\"",
-            "bash": "bash \"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.sh\"",
-            "powershell": "& bash \"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.sh\"",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.ts\"",
+            "bash": "\"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.ts\"",
+            "powershell": "& \"${CLAUDE_PLUGIN_ROOT}/skills/game-dev/godot/project/scripts/session_start.ts\"",
             "shell": "bash",
             "async": false
           }

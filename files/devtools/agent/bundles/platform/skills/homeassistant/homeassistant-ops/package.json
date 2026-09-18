@@ -2,5 +2,12 @@
 	"name": "homeassistant-ops",
 	"private": true,
 	"type": "module",
-	"description": "Home Assistant ops skill scripts (no external deps)."
+	"dependencies": {
+		"@crustjs/core": "^0.0.19",
+		"@crustjs/plugins": "^0.1.2"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"description": "Home Assistant ops skill scripts."
 }

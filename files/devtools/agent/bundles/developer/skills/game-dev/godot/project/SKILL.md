@@ -7,7 +7,7 @@ description: Use when starting a session in a Godot project — detects the proj
 
 This skill owns the Godot project session-start integration.
 
-The companion script at `scripts/session_start.sh` runs from the `SessionStart` hook and adds
+The companion script at `scripts/session_start.ts` runs from the `SessionStart` hook and adds
 project context to the agent session. It detects the nearest Godot project, reads its Godot
 version and renderer, identifies C# projects, restores mentor mode, and checks whether the
 project's agent instructions mention GodotPrompter.

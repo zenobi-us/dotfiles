@@ -2,6 +2,7 @@
 name: writing-great-skills
 description: Compatibility alias for writing-for-agents.
 disable-model-invocation: true
+user-invocable: true
 ---
 
 `writing-for-agents` is the canonical upstream name for this skill. Use that skill when it is available. Keep this alias for existing local references.

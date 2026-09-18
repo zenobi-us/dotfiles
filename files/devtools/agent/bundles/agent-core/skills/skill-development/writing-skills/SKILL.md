@@ -174,11 +174,13 @@ Never use flowcharts for:
 
 For graphviz style conventions, load the `graphviz-conventions` resource from the `writing-skills` skill.
 
-**Visualizing for your human partner:** Use `render-graphs.js` from `scripts/writing-skills/` to render flowcharts to SVG:
-```bash
-./scripts/writing-skills/render-graphs.js ./skills/some-skill           # Each diagram separately
-./scripts/writing-skills/render-graphs.js ./skills/some-skill --combine # All diagrams in one SVG
+**Visualizing for your human partner:** Run `scripts/render-graphs.js` directly to render flowcharts to SVG. It uses Bun through mise and requires Graphviz `dot`:
+```sh
+./scripts/render-graphs.js render ./skills/some-skill
+./scripts/render-graphs.js combine ./skills/some-skill
+./scripts/render-graphs.js doctor
 ```
+The legacy form `./scripts/render-graphs.js ./skills/some-skill --combine` remains supported.
 
 ## Code Examples
 

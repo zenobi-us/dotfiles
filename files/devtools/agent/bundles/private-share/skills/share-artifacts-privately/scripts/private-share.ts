@@ -259,7 +259,7 @@ async function setup(repo) {
   const { tmp, worktree } = clonePages(repo);
   try {
     copyWebAssetsToBranch(worktree);
-    run("node", ["scripts/validate-sessions-index.mjs"], { cwd: worktree, inherit: true });
+    run("bun", ["scripts/validate-sessions-index.ts"], { cwd: worktree, inherit: true });
     const commit = commitAndPush(worktree, "setup private share pages");
     const pagesUrl = ensurePages(repo);
 
@@ -332,7 +332,7 @@ function share(sourcePath, options = {}) {
       `${existsSync(join(worktree, "sessions.jsonl")) ? readFileSync(join(worktree, "sessions.jsonl"), "utf8").replace(/\s*$/, "\n") : ""}${JSON.stringify(record)}\n`,
     );
 
-    run("node", ["scripts/validate-sessions-index.mjs"], { cwd: worktree, inherit: true });
+    run("bun", ["scripts/validate-sessions-index.ts"], { cwd: worktree, inherit: true });
     const shortName = slugify(title);
     const commit = commitAndPush(worktree, `add share: ${shortName}`);
     const result = { url: `${pagesUrl}/${record.path}`, zipUrl: record.zipPath ? `${pagesUrl}/${record.zipPath}` : undefined, repo, branch: "gh-pages", commit, hash };
@@ -394,9 +394,24 @@ const selfTestCmd = app
   .meta({ description: "Run private-share helper checks" })
   .run(() => selfTest());
 
+const validateCmd = app
+  .sub("validate")
+  .meta({ description: "Validate the local sessions index" })
+  .run(() => run("bun", ["assets/web/scripts/validate-sessions-index.ts"], { cwd: skillDir, inherit: true }));
+
+const doctorCmd = app
+  .sub("doctor")
+  .meta({ description: "Check private-share prerequisites" })
+  .run(() => {
+    for (const command of ["gh", "git"]) requireCommand(command);
+    console.log(JSON.stringify({ bun: Bun.version, gh: true, git: true, configPath }, null, 2));
+  });
+
 app
   .use(helpPlugin())
   .command(setupCmd)
   .command(shareCmd)
   .command(selfTestCmd)
+  .command(validateCmd)
+  .command(doctorCmd)
   .execute();

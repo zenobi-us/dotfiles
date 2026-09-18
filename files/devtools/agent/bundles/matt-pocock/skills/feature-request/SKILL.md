@@ -1,6 +1,7 @@
 ---
 name: feature-request
 description: Investigate and submit a repository feature request, when a user has a repository and feature idea, resulting in a feasibility report and a repository-compliant request only when the idea remains viable
+user-invocable: true
 ---
 
 # Prepare a Feature Request
