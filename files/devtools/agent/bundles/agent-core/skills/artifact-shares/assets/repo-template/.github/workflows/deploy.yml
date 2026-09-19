@@ -50,6 +50,17 @@ jobs:
       - name: Check package.json has no scripts
         run: mise run checks:scripts
 
+      # The whole repository, with provider verification. A credential that is
+      # still live must never reach a public URL.
+      - name: Scan for credentials
+        run: mise run checks:secrets -- --verify
+
+      - name: Check published images carry no metadata
+        run: mise run checks:metadata
+
+      - name: Check file and site sizes
+        run: mise run checks:size
+
       - name: Build
         run: mise run build
         env:

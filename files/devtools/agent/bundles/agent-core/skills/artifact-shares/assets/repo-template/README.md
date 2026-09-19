@@ -36,6 +36,9 @@ mise run build            # writes dist/public
 mise run start            # serve the built site
 mise run checks:types     # .types against content/shares/ and the kind registry
 mise run checks:scripts   # package.json must have no scripts block
+mise run checks:secrets   # trufflehog and gitleaks over the whole repository
+mise run checks:metadata  # EXIF and text chunks in published images
+mise run checks:size      # file sizes against GitHub's limits
 mise run checks:typescript
 mise tasks ls             # list them with their descriptions
 ```

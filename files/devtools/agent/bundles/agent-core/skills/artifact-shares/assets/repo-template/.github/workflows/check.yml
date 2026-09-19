@@ -25,6 +25,15 @@ jobs:
       - name: Check package.json has no scripts
         run: mise run checks:scripts
 
+      - name: Scan for credentials
+        run: mise run checks:secrets -- --verify
+
+      - name: Check published images carry no metadata
+        run: mise run checks:metadata
+
+      - name: Check file and site sizes
+        run: mise run checks:size
+
       - name: Type check
         run: mise run checks:typescript
 

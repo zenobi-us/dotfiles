@@ -2,6 +2,10 @@ amends "package://github.com/jdx/hk/releases/download/v1.26.0/hk@1.26.0#/Config.
 
 // Every command is a mise task. The task files live in .mise/tasks/, so the
 // hook, the workflows, and a person all run exactly the same thing.
+//
+// `artifact-shares create` runs `hk install`, so these hooks are live in every
+// repository the skill makes. `artifact-shares share` runs the same checks
+// itself, so a clone whose hooks were never installed is still covered.
 hooks {
   ["pre-commit"] {
     steps {
@@ -14,6 +18,23 @@ hooks {
       // Cheap, and it catches the one mistake that splits a command in two.
       ["scripts"] {
         check = "mise run checks:scripts"
+        exclusive = true
+      }
+      // The whole repository, every commit, offline. A published credential
+      // is the one mistake this repository cannot take back.
+      ["secrets"] {
+        check = "mise run checks:secrets"
+        exclusive = true
+      }
+      // A screenshot carries the user name and the machine name unless
+      // a check reads the file format itself.
+      ["metadata"] {
+        check = "mise run checks:metadata"
+        exclusive = true
+      }
+      // Fails here, with the file name, instead of at git push or at deploy.
+      ["size"] {
+        check = "mise run checks:size"
         exclusive = true
       }
     }
@@ -29,6 +50,20 @@ hooks {
       }
       ["scripts"] {
         check = "mise run checks:scripts"
+        exclusive = true
+      }
+      // --verify asks each provider whether the credential is live. It makes
+      // network calls, so it runs here and in CI, never on pre-commit.
+      ["secrets"] {
+        check = "mise run checks:secrets -- --verify"
+        exclusive = true
+      }
+      ["metadata"] {
+        check = "mise run checks:metadata"
+        exclusive = true
+      }
+      ["size"] {
+        check = "mise run checks:size"
         exclusive = true
       }
       ["typescript"] {

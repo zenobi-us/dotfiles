@@ -4,7 +4,13 @@
 # node is pinned because the fumapress CLI declares `engines.node >= 24` and
 # runs through its own `#!/usr/bin/env node` shebang. bun installs the packages
 # and runs the validator; it does not run the site build.
+#
+# trufflehog and gitleaks are pinned because checks:secrets runs them on every
+# commit. A scanner that changes version between a person and CI gives two
+# different answers for the same bytes.
 [tools]
 node = "24"
 bun = "1.3.14"
 hk = "1.26.0"
+trufflehog = "3.97.5"
+gitleaks = "8.30.1"

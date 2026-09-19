@@ -1,0 +1,25 @@
+# gitleaks keeps its own rules and adds the allowlist below.
+#
+# `.git/` is excluded because a loose object outlives the file it came from. A
+# secret staged once and then deleted leaves a blob that no working-tree change
+# can clear, so the check would fail every later commit with no way forward.
+# History is not this check's job: `artifact-shares recreate` is what removes
+# it, and nothing under `.git/` is ever published.
+#
+# Only build output, installed dependencies, and git internals belong here.
+# Never add a path under public/s/ or content/shares/: those are the published
+# files, and they are the reason this scan exists.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Git internals, build output, and installed dependencies"
+paths = [
+  '''\.git/''',
+  '''node_modules/''',
+  '''dist/''',
+  '''\.source/''',
+  '''bun\.lock''',
+  '''src/pages\.gen\.ts''',
+]
