@@ -7,9 +7,21 @@ and publishes the page.
 
 The command pushes to GitHub. Run it only when the user names the operation.
 
-You **MUST** read the artifact first. Publishing distributes the content. Check
-it for credentials, tokens, customer data, and internal detail the reader must
-not have. A screenshot carries as much as a paragraph does.
+You **MUST** dry run it first, and read the page it writes. Publishing
+distributes the content. A screenshot carries as much as a paragraph does.
+
+```bash
+cli.ts share <kind> <path> --dry-run
+```
+
+The dry run builds the real page in a temporary directory, runs every check on
+it, and touches neither the clone nor GitHub. Read the `page` path it prints.
+That file is what a reader gets, which is a better thing to check than the
+source artifact.
+
+The checks find credentials and image metadata. They do not find customer data,
+an internal hostname, or an unreleased product name. Those are still yours to
+see.
 
 ## Steps
 
@@ -39,7 +51,7 @@ not have. A screenshot carries as much as a paragraph does.
    deploy workflow finishes:
 
    ```bash
-   gh run watch --repo <owner>/<name>
+   gh run watch "$(gh run list --repo <owner>/<name> --limit 1 --json databaseId --jq '.[0].databaseId')" --repo <owner>/<name>
    ```
 
 ## Flags
@@ -50,6 +62,9 @@ not have. A screenshot carries as much as a paragraph does.
 | `--title <text>` | Page title. Defaults to the artifact's `<title>`, then its `<h1>`, then its file name |
 | `--date <YYYY-MM-DD>` | Share date. Defaults to today, local time |
 | `--description <text>` | One-line summary for the sidebar |
+| `--dry-run` | Build and check the page in a temporary directory. Writes nothing, pushes nothing |
+| `--allow-metadata` | Publish images that carry embedded metadata |
+| `--allow-large` | Publish a file over 50 MiB |
 
 ## What happens to the artifact
 
@@ -100,6 +115,52 @@ the old page stays where it is, because a published URL must keep working.
 | `Unknown kind: <k>` | The kind is not in the site's registry | Pick a listed kind, or read `references/types.md` |
 | `Not an artifact share repository` | The clone is not built from the template | Check the path in `list` |
 | `types validation: ...` | `.types`, `content/shares/`, and the kinds disagree | Do not push. Read the message; it names the file and line |
+| `secrets check: ...` | trufflehog or gitleaks found a credential | Stop. Read `references/redact.md`. There is no override |
+| `metadata check: ...` | A published image carries EXIF or text chunks | Strip it in the source artifact and share again |
+| `size check: ...` | A file is over 50 MiB, or the site is over 1 GB | Shrink the artifact, or agree `--allow-large` with the user |
 
 The validator runs before the commit, so a broken share never reaches the deploy
 workflow.
+
+## The checks
+
+Four tasks run before the commit, in this order. Each one lives in the
+repository, so a repository that adds a check gets it here with no change to the
+CLI.
+
+| Task | Fails when |
+|---|---|
+| `checks:types` | `.types`, `content/shares/`, and the kind registry disagree |
+| `checks:size` | A file is over 50 MiB, or the published site is over 1 GB |
+| `checks:metadata` | A published PNG, JPEG, or WebP carries EXIF or text chunks |
+| `checks:secrets` | trufflehog or gitleaks finds a credential anywhere in the repository |
+
+`checks:secrets` scans the whole repository, not only the new share. An old
+share that leaks stops a new one. That is deliberate: a scan that skipped old
+shares would report a repository clean when it is not.
+
+When a check fails, the three files `share` just wrote are removed again and
+nothing is pushed. The clone is left exactly as it was.
+
+### Two overrides, and when they are allowed
+
+| Flag | Gets past |
+|---|---|
+| `--allow-metadata` | `checks:metadata` |
+| `--allow-large` | `checks:size`, up to the 100 MiB GitHub blocks outright |
+
+You **MUST NOT** pass either without telling the user what the check reported
+and getting an answer. There is no override for `checks:secrets`.
+
+The better fix for a metadata finding is to strip the metadata in the source
+artifact and share it again. Different bytes give a different hash, so the
+result is a new page and the original stays untouched.
+
+## When a check finds a credential
+
+Stop. Do not retry, and do not look for a flag.
+
+1. Rotate the credential.
+2. If the share never reached GitHub, the rollback already removed it. Fix the
+   source artifact and share again.
+3. If it did reach GitHub, read `references/redact.md`.

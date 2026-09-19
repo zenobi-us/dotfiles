@@ -13,7 +13,11 @@ Check the prerequisites:
 "<skillroot>/scripts/artifact-shares/cli.ts" doctor
 ```
 
-`doctor` exits non-zero when `gh`, `git`, or the template is missing.
+`doctor` exits non-zero when `gh`, `git`, `mise`, or the template is missing.
+
+It also reports `trufflehog` and `gitleaks`. Those two are pinned in the new
+repository's own `mise.toml`, so `false` here is not a failure: `mise run
+check:secrets` installs them inside the clone on first use.
 
 ## Steps
 
@@ -26,7 +30,11 @@ Check the prerequisites:
    ```bash
    cli.ts create <name>
    cli.ts create <name> --owner <org>     # an organisation instead of you
+   cli.ts create <name> --public          # everyone can read every share in it
    ```
+
+   `--public` is the only thing that works on a free plan. It is a decision
+   the user makes. You **MUST NOT** pass it on your own.
 
 3. You **MUST** report the printed `pagesUrl` to the user, together with the
    warning below.
@@ -34,7 +42,7 @@ Check the prerequisites:
 4. You **SHOULD** watch the first deploy. The site 404s until it finishes:
 
    ```bash
-   gh run watch --repo <owner>/<name>
+   gh run watch "$(gh run list --repo <owner>/<name> --limit 1 --json databaseId --jq '.[0].databaseId')" --repo <owner>/<name>
    ```
 
 ## What the command does
@@ -45,11 +53,12 @@ Check the prerequisites:
 | 2 | Refuses if the name is already in `~/.config/artifact-shares.json` |
 | 3 | Refuses if the repository already exists on GitHub |
 | 4 | Refuses if the clone directory already exists |
-| 5 | Creates the repository with `gh repo create --private` |
+| 5 | Creates the repository with `gh repo create --private`, or `--public` with the flag |
 | 6 | Copies `assets/repo-template/` into the clone and renames `package.json` |
-| 7 | Commits and pushes `main` |
-| 8 | Sets the Pages source to `build_type: workflow` |
-| 9 | Records the share in `~/.config/artifact-shares.json` |
+| 7 | Installs the git hooks with `hk install`, so the pre-commit checks are live |
+| 8 | Commits and pushes `main` |
+| 9 | Sets the Pages source to `build_type: workflow` |
+| 10 | Records the share in `~/.config/artifact-shares.json` |
 
 Nothing is served from a branch. `.github/workflows/deploy.yml` builds the site
 and uploads `dist/public`.
@@ -64,10 +73,36 @@ and uploads `dist/public`.
 Change `clone_root` in the config to put clones somewhere else. The CLI reads the
 value; it does not move existing clones.
 
+## The plan comes first
+
+GitHub serves Pages from a **private** repository only on a paid plan. On a free
+account or a free organisation the site cannot exist at all: enabling Pages
+returns HTTP 422, and `deploy.yml` then fails at `configure-pages`.
+
+`create` reports this and exits non-zero. The repository and the clone are still
+usable; only the site is missing.
+
+Check before you start:
+
+```bash
+gh api orgs/<owner> --jq .plan.name     # an organisation
+gh api user --jq .plan.name             # your own account
+```
+
+A free plan leaves two choices, and both belong to the user:
+
+| Choice | Cost |
+|---|---|
+| Upgrade the account | Money |
+| `create <name> --public` | Anyone can read every share in it, for ever |
+
+You **MUST NOT** make a share repository public to get past this. Ask.
+
 ## Pages visibility
 
-A private repository serves its Pages site **publicly**, unless the account has
-GitHub Pages access control. That feature is GitHub Enterprise Cloud only.
+A private repository on a paid plan serves its Pages site **publicly**, unless
+the account has GitHub Pages access control. That feature is GitHub Enterprise
+Cloud only.
 
 You **MUST** state this to the user before the first share. A private repository
 is not a private website.
@@ -86,6 +121,8 @@ gh api repos/<owner>/<name>/pages --jq '{visibility: .visibility, build_type: .b
 | `<owner>/<name> already exists` | The repository is on GitHub already | Pick another name, or clone it yourself and add a config entry |
 | `<path> already exists` | An old clone is in the way | Move it aside, then run again |
 | `Could not read the GitHub login` | `gh` is not authenticated | Run `gh auth login`, or pass `--owner` |
+| `Your current plan does not support GitHub Pages` | The repository is private on a free plan | Read "The plan comes first" above. Ask the user before changing anything |
+| `warning: hk install failed` | hk could not write the hooks | Not fatal. `share` runs the same checks itself. Fix with `cd <clone> && mise exec -- hk install` |
 
 The command does not clean up after a partial failure. If it fails after
 `gh repo create`, delete the repository and the clone before you run it again.
