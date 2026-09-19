@@ -5,6 +5,6 @@
   },
   {
     "kind": "nvim",
-    "binary": "nvim"
+    "binary": "nvim ."
   }
 ]
