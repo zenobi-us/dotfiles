@@ -1,0 +1,72 @@
+# Build the site, then deploy it to GitHub Pages.
+#
+# Pages is configured with `build_type: workflow`, so nothing is served from a
+# branch. The site is built here and only `dist/public` is uploaded.
+#
+# Every command is a mise task from .mise/tasks/, so this workflow runs what a
+# person runs. mise installs node, bun, and hk from mise.toml.
+#
+# BASE_PATH comes from the repository name, so no file in this repository names
+# the repository. Pages serves it at https://<owner>.github.io/<repo>/, and
+# fumapress rejects a basePath that does not end with "/".
+#
+# Every action is pinned to a commit SHA. A tag can be moved; a SHA cannot.
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time, and never cancel one that is part way through.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
+
+      - id: pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      # Explicitly frozen. The `deps` task installs without the flag, which is
+      # right for a person and wrong for a check.
+      - name: Install dependencies
+        run: mise run deps -- --frozen-lockfile
+
+      - name: Check the share index
+        run: mise run checks:types
+
+      - name: Check package.json has no scripts
+        run: mise run checks:scripts
+
+      - name: Build
+        run: mise run build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/
+          SITE_BASE_URL: ${{ steps.pages.outputs.base_url }}
+          SITE_NAME: ${{ github.event.repository.name }}
+
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: dist/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

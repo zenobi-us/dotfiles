@@ -1,0 +1,113 @@
+/*!
+ * Artifact share theme.
+ *
+ * The colours come from the zeno theme v1 (assets/theme/v1/tokens.css). They
+ * are declared twice on purpose:
+ *
+ *   1. As Tailwind theme colours, so a component writes `text-ink` or
+ *      `border-border` instead of a hex value.
+ *   2. As the fumadocs `--color-fd-*` variables, so the navbar, sidebar,
+ *      search dialog, and prose take the same theme with no extra work.
+ *
+ * Rules kept from zeno:
+ *   - No component writes a raw colour. Every colour is a token here.
+ *   - One name for one role. Do not add a second name for a colour that
+ *     already has one.
+ *   - The overlay palette is fixed across themes: a lightbox is dark in both.
+ */
+
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+@import "fumapress/css/preset.css";
+
+@theme {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --default-font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Ground */
+  --color-bg: #fbfaf8;
+  --color-surface: #fff;
+  --color-border: #e3dfd8;
+
+  /* Ink */
+  --color-ink: #1d1b18;
+  --color-ink-muted: #6b665e;
+
+  /* Brand */
+  --color-accent: #4b2fae;
+
+  /* Status: a readable ink and the wash it sits on */
+  --color-pass: #1d7a4f;
+  --color-pass-bg: #e8f5ee;
+  --color-fail: #b3401a;
+  --color-fail-bg: #fdeee8;
+  --color-info: #2a5d9e;
+  --color-info-bg: #eaf1fa;
+  --color-warn: #8a6400;
+  --color-warn-bg: #fdf5e0;
+
+  /* Overlay. Fixed across themes. */
+  --color-overlay: rgba(10, 9, 14, .93);
+  --color-overlay-ink: #f2f0f7;
+  --color-overlay-ink-muted: #9d97ad;
+  --color-overlay-accent: #c9b8ff;
+  --color-overlay-surface: rgba(255, 255, 255, .09);
+  --color-overlay-surface-hover: rgba(255, 255, 255, .18);
+  --color-overlay-border: rgba(255, 255, 255, .18);
+
+  /* Shape */
+  --radius-panel: 14px;
+  --radius-badge: 20px;
+
+  --shadow-panel: 0 10px 30px rgb(0 0 0 / 14%);
+  --shadow-overlay: 0 12px 48px rgba(0, 0, 0, .55);
+}
+
+/* Dark theme. Tailwind utilities read these variables at use time, so
+   redefining them here re-themes every utility and every fumadocs surface.
+   `.dark` is the class fumadocs toggles. */
+.dark {
+  --color-bg: #16151a;
+  --color-surface: #1e1d24;
+  --color-border: #34323c;
+  --color-ink: #eceaf2;
+  --color-ink-muted: #a09bad;
+  --color-accent: #b7a4ff;
+  --color-pass: #5fd39a;
+  --color-pass-bg: #12301f;
+  --color-fail: #ff9d78;
+  --color-fail-bg: #33180e;
+  --color-info: #8fb7ef;
+  --color-info-bg: #14243a;
+  --color-warn: #e8c46a;
+  --color-warn-bg: #33290e;
+}
+
+/* Hand the same palette to fumadocs. These follow the imports above, so they
+   win over fumadocs-ui/css/neutral.css. */
+:root,
+.dark {
+  --color-fd-background: var(--color-bg);
+  --color-fd-foreground: var(--color-ink);
+  --color-fd-muted: var(--color-bg);
+  --color-fd-muted-foreground: var(--color-ink-muted);
+  --color-fd-popover: var(--color-surface);
+  --color-fd-popover-foreground: var(--color-ink);
+  --color-fd-card: var(--color-surface);
+  --color-fd-card-foreground: var(--color-ink);
+  --color-fd-border: var(--color-border);
+  --color-fd-primary: var(--color-accent);
+  --color-fd-primary-foreground: var(--color-surface);
+  --color-fd-secondary: var(--color-surface);
+  --color-fd-secondary-foreground: var(--color-ink);
+  --color-fd-accent: var(--color-info-bg);
+  --color-fd-accent-foreground: var(--color-ink);
+  --color-fd-ring: var(--color-accent);
+}
+
+/* The lightbox toggles visibility with `hidden`. Without this a utility that
+   sets `display` beats the user-agent rule. */
+[hidden] {
+  display: none !important;
+}

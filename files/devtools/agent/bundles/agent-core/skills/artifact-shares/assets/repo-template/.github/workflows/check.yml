@@ -1,0 +1,36 @@
+# Check a pull request without deploying it.
+name: check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2
+
+      - name: Install dependencies
+        run: mise run deps -- --frozen-lockfile
+
+      - name: Check the share index
+        run: mise run checks:types
+
+      - name: Check package.json has no scripts
+        run: mise run checks:scripts
+
+      - name: Type check
+        run: mise run checks:typescript
+
+      # A build that fails here fails the deploy too. Catch it on the pull
+      # request instead.
+      - name: Build
+        run: mise run build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/

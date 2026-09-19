@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Serve the site on http://localhost:3000 with hot reload"
+#MISE depends=["deps"]
+set -euo pipefail
+
+# fumapress carries its own `#!/usr/bin/env node` shebang, so this resolves to
+# the node mise.toml pins, not to whatever node the shell happens to have.
+exec ./node_modules/.bin/fumapress dev "$@"

@@ -8,7 +8,9 @@
   ],
   "dependencies": {
     "@crustjs/core": "^0.0.19",
-    "@crustjs/plugins": "^0.1.2"
+    "@crustjs/plugins": "^0.1.2",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2"
   },
   "pi": {
     "skills": [
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/turndown": "^5.0.6",
     "typescript": "^5"
   },
   "scripts": {

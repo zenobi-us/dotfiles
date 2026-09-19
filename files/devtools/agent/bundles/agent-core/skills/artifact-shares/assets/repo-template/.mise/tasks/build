@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Build the static site into dist/public"
+#MISE depends=["deps"]
+set -euo pipefail
+
+# BASE_PATH is set by .github/workflows/deploy.yml from the repository name.
+# Unset it means "/", which is right for a local build and wrong for Pages.
+exec ./node_modules/.bin/fumapress build "$@"

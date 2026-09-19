@@ -1,0 +1,40 @@
+amends "package://github.com/jdx/hk/releases/download/v1.26.0/hk@1.26.0#/Config.pkl"
+
+// Every command is a mise task. The task files live in .mise/tasks/, so the
+// hook, the workflows, and a person all run exactly the same thing.
+hooks {
+  ["pre-commit"] {
+    steps {
+      // `.types`, content/shares/, and src/components/kinds.ts must agree
+      // before a share reaches the deploy workflow.
+      ["types"] {
+        check = "mise run checks:types"
+        exclusive = true
+      }
+      // Cheap, and it catches the one mistake that splits a command in two.
+      ["scripts"] {
+        check = "mise run checks:scripts"
+        exclusive = true
+      }
+    }
+  }
+
+  // `checks:typescript` is not in pre-commit: it needs node_modules, so it
+  // would install on a fresh clone in the middle of a commit.
+  ["check"] {
+    steps {
+      ["types"] {
+        check = "mise run checks:types"
+        exclusive = true
+      }
+      ["scripts"] {
+        check = "mise run checks:scripts"
+        exclusive = true
+      }
+      ["typescript"] {
+        check = "mise run checks:typescript"
+        exclusive = true
+      }
+    }
+  }
+}
