@@ -1,0 +1,10 @@
+# Keep these in step with .github/workflows/*.yml, which installs them with
+# jdx/mise-action and then runs the tasks in .mise/tasks/.
+#
+# node is pinned because the fumapress CLI declares `engines.node >= 24` and
+# runs through its own `#!/usr/bin/env node` shebang. bun installs the packages
+# and runs the validator; it does not run the site build.
+[tools]
+node = "24"
+bun = "1.3.14"
+hk = "1.26.0"

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Serve the built site from dist/"
+set -euo pipefail
+
+exec ./node_modules/.bin/fumapress start "$@"

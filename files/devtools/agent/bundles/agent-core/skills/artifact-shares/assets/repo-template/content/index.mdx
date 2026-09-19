@@ -1,0 +1,19 @@
+---
+title: Artifact shares
+description: Private, published agent artifacts.
+---
+
+# Artifact shares
+
+Every page under **Shares** is one artifact published by the `artifact-shares`
+skill. The sidebar lists them newest first.
+
+This repository is private. GitHub Pages serves it, so check who can read the
+Pages site before you share anything sensitive.
+
+## How a share gets here
+
+1. `artifact-shares share <kind> <path>` converts the artifact to MDX.
+2. Media files are copied to `public/s/<hash>/` and the MDX links them.
+3. One `<hash>=<kind>` line is appended to `.types`.
+4. The push triggers `.github/workflows/deploy.yml`, which builds and deploys.

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#MISE description="Install the site dependencies from bun.lock"
+set -euo pipefail
+
+# --frozen-lockfile in CI, a plain install here. A task that rewrites the
+# lockfile during a check would hide a dependency drift.
+exec bun install "$@"

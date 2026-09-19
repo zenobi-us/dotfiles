@@ -1,0 +1,8 @@
+# One line per share: <hash>=<kind>
+#
+# This file is the filesystem record of a share's type. `artifact-shares share`
+# appends a line. `bun run validate` fails when a line has no matching MDX
+# file, when a hash repeats, or when a kind is missing from
+# src/components/kinds.ts.
+#
+# Do not edit by hand.
