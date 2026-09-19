@@ -13,6 +13,7 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
+  rmSync,
   writeFileSync,
 } from "node:fs";
 import path from "node:path";
@@ -200,4 +201,45 @@ export function commitAndPush(worktree: string, branch: string, message: string)
   run("git", ["commit", "-m", message], { cwd: worktree });
   run("git", ["push", "-u", "origin", branch], { cwd: worktree });
   return run("git", ["rev-parse", "HEAD"], { cwd: worktree }).stdout;
+}
+
+/** Remove a hash from `.types`. Returns false when no line named it, so a
+ *  caller can tell "removed" from "was never there". */
+export function removeType(repoDir: string, hash: string): boolean {
+  const file = path.join(repoDir, ".types");
+  if (!existsSync(file)) return false;
+
+  const lines = readFileSync(file, "utf8").split(/\r?\n/);
+  const kept = lines.filter((line) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return true;
+    return trimmed.slice(0, trimmed.indexOf("=")).trim() !== hash;
+  });
+
+  if (kept.length === lines.length) return false;
+  writeFileSync(file, `${kept.join("\n").replace(/\s*$/, "")}\n`);
+  return true;
+}
+
+/** Delete the three things a share is made of. `share` writes them together,
+ *  so they are removed together. */
+export function removeShareFiles(repoDir: string, hash: string): void {
+  rmSync(path.join(repoDir, "public", "s", hash), { recursive: true, force: true });
+  rmSync(path.join(repoDir, "content", "shares", `${hash}.mdx`), { force: true });
+  removeType(repoDir, hash);
+}
+
+/** A directory this CLI is allowed to rewrite. Checked before anything
+ *  destructive, because the path comes from a config file a person can edit. */
+export function assertShareClone(clone: string): void {
+  if (!existsSync(clone)) fail(`Not cloned: ${clone}`);
+  if (!existsSync(path.join(clone, ".git"))) fail(`Not a git repository: ${clone}`);
+  if (!existsSync(path.join(clone, "src", "components", "kinds.ts"))) {
+    fail(`Not an artifact share repository: ${clone}`);
+  }
+}
+
+/** A file name that sorts by time and never collides. */
+export function timestamp(): string {
+  return new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
 }
