@@ -11,7 +11,7 @@ description = "Install Claude Code agent bundle plugins and their dependencies"
 run = """
 claude plugin marketplace add ../agent/bundles >/dev/null 2>&1 || true
 
-for plugin in agent-core creator developer matt-pocock platform private-share researcher vanilla-green writing; do
+for plugin in agent-core creator developer matt-pocock platform researcher vanilla-green writing; do
   claude plugin install "${plugin}@zenobius-agent-bundles"
 done
 """
