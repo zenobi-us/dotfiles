@@ -12,7 +12,7 @@
 
 - [ ] Name uses only letters, numbers, hyphens (no parentheses/special chars)
 - [ ] YAML frontmatter with only name and description (max 1024 chars)
-- [ ] Description starts with "Use when..." and includes specific triggers/symptoms
+- [ ] Description states what the skill does, when to use it, and the result it produces
 - [ ] Description written in third person
 - [ ] Keywords throughout for search (errors, symptoms, tools)
 - [ ] Clear overview with core principle
@@ -35,7 +35,7 @@
 - [ ] Quick reference table
 - [ ] Common mistakes section
 - [ ] No narrative storytelling
-- [ ] Supporting files only for tools or heavy reference
+- [ ] Supporting files use `references/`, `scripts/`, `examples/`, or `assets/` for content that does not belong in `SKILL.md`
 
 ## Deployment
 
