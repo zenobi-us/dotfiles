@@ -57,5 +57,6 @@
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:rose-pine-moon"
+  "theme": "custom:mono-slate",
+  "verbose": true
 }

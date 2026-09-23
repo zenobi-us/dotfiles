@@ -114,6 +114,6 @@ When stopping, state:
 
 Before starting, load these skills:
 
-`agent-core/sop/simple-english`
-`agent-core/skills/sop/sop-rfc2119`
+`agent-core:simple-english`
+`agent-core:sop-rfc2119`
 
