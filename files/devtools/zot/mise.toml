@@ -9,3 +9,11 @@
 "~/.local/state/zot/extensions/researcher" = { source = "../agent/bundles/researcher", mode = "symlink" }
 "~/.local/state/zot/extensions/vanilla-green" = { source = "../agent/bundles/vanilla-green", mode = "symlink" }
 "~/.local/state/zot/extensions/writing" = { source = "../agent/bundles/writing", mode = "symlink" }
+
+[bootstrap.repos]
+"~/.local/state/zot/extensions/zot-annotate" = { url = "https://github.com/zenobi-us/zot-annotate.git", ref = "master" }
+"~/.local/state/zot/extensions/zot-usage-limits" = { url = "https://github.com/zenobi-us/zot-usage-limits.git", ref = "master" }
+"~/.local/state/zot/extensions/zot-extension-template-golang" = { url = "https://github.com/zenobi-us/zot-extension-template-golang.git", ref = "master" }
+"~/.local/state/zot/extensions/zot-claude-hooks" = { url = "https://github.com/zenobi-us/zot-claude-hooks.git", ref = "master" }
+"~/.local/state/zot/extensions/zot-question" = { url = "https://github.com/zenobi-us/zot-question.git", ref = "master" }
+"~/.local/state/zot/extensions/zot-skill-cmds" = { url = "https://github.com/zenobi-us/zot-skill-cmds.git", ref = "master" }
