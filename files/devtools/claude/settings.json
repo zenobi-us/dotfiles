@@ -57,6 +57,6 @@
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "custom:mono-slate",
+  "theme": "auto",
   "verbose": true
 }
