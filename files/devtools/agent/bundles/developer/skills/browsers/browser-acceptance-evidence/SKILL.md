@@ -17,6 +17,10 @@ Three artifacts come out, all in shared context:
 | `evidence.jsonl` | One record per step: selector, URL, screenshot, verdict |
 | `report/index.html` | The reviewable page, built by the `writing-reports` skill |
 
+The report carries the steps twice on purpose: the whole plan at the top, and
+each test's own steps again inside its outcome section. A reader who meets a
+verdict without the steps next to it cannot tell what the verdict means.
+
 ## When to use
 
 - The user asks for manual test steps, QA steps, acceptance evidence, or a test report.
@@ -105,7 +109,75 @@ Map each evidence record onto the template:
 | `resolved` | `<code class="code">` next to the figure |
 | `verdict` | the `badge--*` in the summary row and the section heading |
 
-### 6. Name every gap. MUST.
+### 6. Put the whole test plan at the top of the report. MUST.
+
+The reader must know what you did before they read what happened. A verdict
+with no steps next to it is a claim.
+
+Add one `report__section` with `id="steps"`, placed after the result summary
+and before the first test section. Replace the template's "How the test was
+built" section with it, or keep both and put this one first. The section
+**MUST** carry:
+
+- The **Preconditions** block from `test-plan.md`, with the state each one was
+  actually found in.
+- Every numbered test, with every numbered step, in the order they were run.
+- The environment line: URL, account, branch, driver.
+
+The steps here are the steps from `test-plan.md`. You **MUST NOT** rewrite,
+shorten, or merge them. A link to `files/test-plan.md` is not a substitute for
+this section. The reader must not have to open a second file.
+
+```html
+<h2 class="report__section" id="steps">Manual test steps</h2>
+
+<p class="report__text">Every step below was run by hand in a real browser. The
+outcomes follow, each one repeating its own steps.</p>
+
+<h3 class="report__subsection" id="steps-pre">Preconditions</h3>
+
+<ul class="report__list">
+  <li class="report__item">Flag <code class="code">feature_x</code> — found off, enabled locally.</li>
+</ul>
+
+<h3 class="report__subsection" id="steps-1">Test 1 — short claim</h3>
+
+<ol class="report__list">
+  <li class="report__item">Open <code class="code">/app/settings/payments</code>.</li>
+  <li class="report__item">Click the link <strong>Upgrade now</strong>.</li>
+</ol>
+```
+
+### 7. Repeat each test's steps inside its own outcome section. MUST.
+
+Every test section **MUST** open with that test's steps, before the first
+screenshot, before the caption, before the note. The reader reaches a verdict
+after reading the steps that produced it, never before.
+
+Use the same step text as section 6. Same words, same numbers, no summary.
+
+```html
+<h2 class="report__section" id="check1">Test 1 — short claim <span class="badge badge--pass">Pass</span></h2>
+
+<div class="card">
+  <h3 class="card__title">Steps run</h3>
+  <ol class="report__list">
+    <li class="report__item">Open <code class="code">/app/settings/payments</code>.</li>
+    <li class="report__item">Click the link <strong>Upgrade now</strong>.</li>
+  </ol>
+  <p class="card__meta">PASS: the portal opens. FAIL: the link is dead or missing.</p>
+</div>
+
+<figure class="figure">…</figure>
+```
+
+The `card__meta` line **MUST** carry the plan's PASS line and FAIL line for
+that test. That is what turns the badge into a reading the reader can check.
+
+A `BLOCKED` or `NOT COVERED` test keeps its steps block too, so the reader sees
+what was planned and did not run.
+
+### 8. Name every gap. MUST.
 
 The report's "Not covered" section lists each test you could not complete and
 the risk it leaves. The "Test data left behind" section lists every override,
