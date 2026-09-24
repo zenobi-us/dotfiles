@@ -17,3 +17,6 @@
 "~/.local/state/zot/extensions/zot-claude-hooks" = { url = "https://github.com/zenobi-us/zot-claude-hooks.git", ref = "master" }
 "~/.local/state/zot/extensions/zot-question" = { url = "https://github.com/zenobi-us/zot-question.git", ref = "master" }
 "~/.local/state/zot/extensions/zot-skill-cmds" = { url = "https://github.com/zenobi-us/zot-skill-cmds.git", ref = "master" }
+"~/.local/state/zot/extensions/zot-jev" = { url = "https://github.com/patriceckhart/zot-jev.git", ref = "main" }
+"~/.local/state/zot/extensions/zot-loop" = { url = "https://github.com/patriceckhart/zot-loop.git", ref = "main" }
+"~/.local/state/zot/extensions/zot-todo" = { url = "https://github.com/patriceckhart/zot-todo.git", ref = "main" }
