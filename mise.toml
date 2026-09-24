@@ -113,6 +113,7 @@ hrdx = "0.0.44"
 btop = "latest"
 "cargo:rustledger" = "0.21.0"
 "aqua:tree-sitter/tree-sitter" = "latest"
+claude = "latest"
 
 [shell_alias]
 pi = "mise x node@lts -- pi "
