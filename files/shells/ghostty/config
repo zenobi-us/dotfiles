@@ -50,4 +50,4 @@ window-inherit-working-directory = false
 
 # Rando stuff
 gtk-single-instance = true
-theme = Rose Pine
+theme = mono-slate
