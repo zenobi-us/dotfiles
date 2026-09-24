@@ -1,0 +1,46 @@
+# Mono Slate
+# Greyscale ramp with two warm hues. Matched to:
+#   nvim  ~/.config/nvim/lua/plugins/zenobius-themes/lua/zenobius-themes/palettes/mono-slate.lua
+#   hrdx  built-in preset "mono slate" (theme_presets.go)
+#   ghostty  files/shells/ghostty/themes/mono-slate
+# ANSI slot order copies highlights/mono-slate.lua M.terminal().
+
+[colors.primary]
+background = '#1c1c1c'
+foreground = '#dadada'
+
+[colors.cursor]
+text = '#1c1c1c'
+cursor = '#dadada'
+
+[colors.vi_mode_cursor]
+text = '#1c1c1c'
+cursor = '#d7af5f'
+
+[colors.selection]
+text = '#dadada'
+background = '#3a3a3a'
+
+[colors.normal]
+black = '#303030'
+red = '#d75f5f'
+green = '#a8a8a8'
+yellow = '#d7af5f'
+blue = '#767676'
+magenta = '#bcbcbc'
+cyan = '#c6c6c6'
+white = '#dadada'
+
+[colors.bright]
+black = '#5f5f5f'
+red = '#d75f5f'
+green = '#c6c6c6'
+yellow = '#d7af5f'
+blue = '#6c6c6c'
+magenta = '#bcbcbc'
+cyan = '#eeeeee'
+white = '#eeeeee'
+
+[colors.hints]
+start = { foreground = '#1c1c1c', background = '#d7af5f' }
+end = { foreground = '#dadada', background = '#3a3a3a' }

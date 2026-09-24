@@ -1,0 +1,27 @@
+# Mono Slate
+# Greyscale ramp with two warm hues, matched to:
+#   nvim  files: ~/.config/nvim/lua/plugins/zenobius-themes/lua/zenobius-themes/palettes/mono-slate.lua
+#   hrdx  built-in preset "mono slate" (theme_presets.go)
+# ANSI slot order copies highlights/mono-slate.lua M.terminal().
+background = #1c1c1c
+foreground = #dadada
+selection-background = #3a3a3a
+selection-foreground = #dadada
+cursor-color = #dadada
+cursor-text = #1c1c1c
+palette = 0=#303030
+palette = 1=#d75f5f
+palette = 2=#a8a8a8
+palette = 3=#d7af5f
+palette = 4=#767676
+palette = 5=#bcbcbc
+palette = 6=#c6c6c6
+palette = 7=#dadada
+palette = 8=#5f5f5f
+palette = 9=#d75f5f
+palette = 10=#c6c6c6
+palette = 11=#d7af5f
+palette = 12=#6c6c6c
+palette = 13=#bcbcbc
+palette = 14=#eeeeee
+palette = 15=#eeeeee

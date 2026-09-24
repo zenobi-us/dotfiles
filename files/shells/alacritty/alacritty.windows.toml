@@ -19,7 +19,7 @@
 # https://github.com/alacritty/alacritty/tree/master#configuration
 
 import = [
-  "themes/rose_pine.toml"
+  "themes/mono_slate.toml"
 ]
 
 [window]

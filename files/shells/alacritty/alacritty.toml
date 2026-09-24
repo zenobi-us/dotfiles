@@ -1,3 +1,7 @@
+import = [
+  "~/.config/alacritty/themes/mono_slate.toml"
+]
+
 [general]
 live_config_reload = true
 
