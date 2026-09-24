@@ -6,7 +6,7 @@ Submit commits, pushes, and opens a pull request from the current worktree — i
 
 ## Ticket resolution
 
-Resolve the ticket before submitting work.
+Load `references/issue-tracker.md` and the project issue tracker definition before resolving the ticket. Resolve the ticket before submitting work.
 
 1. Use an explicit issue or ticket identifier in `UserRequest`.
 2. If `UserRequest` has no identifier, use the most recent unambiguous ticket mention in the conversation.
@@ -21,6 +21,7 @@ Resolve the ticket before submitting work.
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/agent-core context report` and read relevant context and ADRs before submitting.
 - Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and pull requests in the worktree repository.
 - Follow `SHARED-CONTEXT-LINKS.md` for the write rule (any shared-context file created or updated while submitting this ticket) and the reference rule (linking ADRs, tasks, the review artifact, or a manual test report in the commit message and pull request body).
+- Follow `references/issue-tracker.md` for the configured tracker. For local Markdown, use the resolved issue path in place of an external issue URL.
 - Require a matching persisted `SUCCESS` verdict from the `review` playbook, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
 - A manual test report is optional. A missing report does not block the pull request.
 - Do not push directly to the base branch.
@@ -43,7 +44,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 7. Push the source branch.
 8. Use the pull request creation skill if available. Otherwise use `gh pr create`.
 9. Add these items to the pull request body:
-   - the ticket link,
+   - the ticket link, or the resolved local Markdown tracker path when no external link exists,
    - a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to the successful review artifact,
    - a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to every ADR the review verdict relied on,
    - a link to every manual test report found in step 6, per "Manual test reports" below,

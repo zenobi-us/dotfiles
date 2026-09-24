@@ -4,7 +4,7 @@
 
 ## Ticket resolution
 
-Same rule as every other subcommand: explicit identifier in `UserRequest`, else the most recent unambiguous ticket mention in the conversation, else ask. Do not guess.
+Load `references/issue-tracker.md` and the project issue tracker definition first. Then apply the same rule as every other subcommand: explicit identifier in `UserRequest`, else the most recent unambiguous ticket mention in the conversation, else ask. For local Markdown, retain the resolved issue path. Do not guess.
 
 ## Process
 
@@ -16,7 +16,7 @@ Same rule as every other subcommand: explicit identifier in `UserRequest`, else 
    - Review artifact with verdict `SUCCESS`, no PR recorded → next step is `submit` or `finish` (ask which, per the `review` playbook's own "Next step" output).
    - Review artifact with verdict `SUCCESS` and a PR already recorded → nothing left to continue; report this and stop.
 4. If step 3 is ambiguous — conflicting records, a record with no verdict, or a worktree that no longer exists — ask the user which step to resume. Do not guess.
-5. Re-run rule 0 (muxer) and rule 1 (agent) detection, then dispatch to the playbook named in step 3, passing the same resolved ticket so it does not re-resolve from scratch.
+5. Re-run Rule 1 (muxer) and Rule 2 (agent) detection, then dispatch to the playbook named in step 3, passing the same resolved ticket so it does not re-resolve from scratch.
 
 ## Unchanged
 

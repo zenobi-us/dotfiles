@@ -2,22 +2,22 @@
 
 Create isolated Worktrunk worktrees and start agents for tickets.
 
-This playbook receives `muxer` and `agent` already resolved by the `worktree` skill's rule 0 (muxer) and rule 1 (agent) — it does not detect either itself.
+This playbook receives `muxer` and `agent` already resolved by the `worktree` skill's Rule 1 (muxer) and Rule 2 (agent) — it does not detect either itself.
 
 ## Input format
 
 Trim `UserRequest` before parsing.
 
-Accept these forms:
+Accept the selector forms defined by `references/issue-tracker.md` and the project's tracker document.
+
+For external numeric trackers, retain these forms:
 
 - `issue 1`
 - `1`
 - `issues 1-3`
 - `1-3`
 
-The range is inclusive. The `issue` or `issues` prefix is optional and case-insensitive.
-
-Reject invalid input. Do not add support for comma-separated or mixed selectors.
+For `backend: local-markdown`, also accept the tracker-defined issue path, path relative to `ALIGNMENT_ROOT`, path relative to `issue-root`, number, or slug. Do not force a local path through numeric range parsing. Reject ambiguous selectors. Do not add comma-separated or mixed selectors unless the tracker document defines them.
 
 ## Ticket resolution
 
@@ -42,22 +42,19 @@ Resolve the ticket or tickets before starting work.
 
 # Process
 
-1. Resolve the ticket selector from `UserRequest` or the Ticket resolution rules.
-2. Parse the selector into a list of ticket numbers.
-   - Expand ranges inclusively.
-   - Remove duplicate ticket numbers.
-3. Resolve the active engineering context and select the applicable engineering skill for the ticket jobs.
+1. Load `references/issue-tracker.md` and the project issue tracker definition.
+2. Resolve the ticket selector from `UserRequest` or the Ticket resolution rules.
+3. Parse the selector according to the configured backend.
+   - For external numeric trackers, expand supported ranges and remove duplicates.
+   - For local Markdown, resolve each path, number, or slug to one issue file. Preserve the resolved tracker path.
+4. Resolve the active engineering context and select the applicable engineering skill for the ticket jobs.
    - If `<shared-agent-context />` isn't in context, run the slash cmd `/agent-core context report` to understand where we store information.
    - Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active `ALIGNMENT_ROOT`.
-4. Determine the issue tracker from the explicit or inferred ticket source.
-5. Fetch every ticket's details.
-   - Jira: use `reading-and-writing-jira-tickets`.
-   - GitHub: use `gh issue view`.
+5. Resolve the issue tracker backend and fetch every ticket's details.
+   - Jira, GitHub, GitLab, or another external backend: use the configured tracker skill and operations.
+   - Local Markdown: read each resolved file under `$ALIGNMENT_ROOT/<issue-root>` and follow the tracker document's claim operation.
 6. Validate every ticket before changing any ticket state.
-7. Mark every ticket as in progress and assign it to me, depending on the tracker:
-   - with a status change or,
-   - add a label or,
-   - comment indicating that the ticket is being worked on.
+7. Mark every ticket as in progress using the configured tracker operation. For local Markdown, update the issue file only as the tracker document requires and preserve its format.
 8. Resolve the current workspace or session state for the active `muxer` (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — skip this step for them).
 9. Start one independent job for each ticket. Run these jobs in parallel.
    - Choose a unique safe branch name that includes the ticket ID.

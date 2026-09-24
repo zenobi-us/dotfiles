@@ -7,9 +7,15 @@ user-invocable: true
 
 Route `UserRequest` to the correct worktree workflow. This skill dispatches only — it does not resolve tickets, run validation, or launch agents itself. All of that lives in the playbook it points to.
 
-# Rule 0: detect the muxer
+# Rule 0: resolve the project issue tracker
 
-MUST resolve the muxer before anything else, every time, in this order:
+Before reading or changing a ticket, load `references/issue-tracker.md`. Resolve the active `ALIGNMENT_ROOT`, then read `$ALIGNMENT_ROOT/docs/agents/issue-tracker.md`. The project definition selects the backend and, for `backend: local-markdown`, the issue root. Resolve local issue files below `$ALIGNMENT_ROOT/<issue-root>`, not below the current process directory.
+
+A local Markdown ticket may use a path, number, or slug defined by the project tracker document. Read that document before selecting a file. Ask when a selector is ambiguous. Use the tracker document's read, claim, comment, and resolve operations. Do not call external tracker commands for a local Markdown backend.
+
+# Rule 1: detect the muxer
+
+MUST resolve the muxer before routing or running a playbook, every time, in this order:
 
 1. Look for a `<worktree-session muxer="..." agent="...">` tag already in context. The developer bundle's `SessionStart` hook (`hooks/hooks.json` → `scripts/router.ts session-context`) injects this once per session, so the muxer is normally already known — no script call needed.
 2. If that tag is absent (an older session, the hook did not fire, or the muxer changed mid-session — for example the operator attached a new terminal), fall back to:
@@ -19,9 +25,9 @@ MUST resolve the muxer before anything else, every time, in this order:
 
 Either source gives one of `herdr`, `zellij`, `tmux`, `hrdx`, `unknown-muxer` — see `references/muxers/hrdx.md` for the `HRDX=1` signal hrdx sets. If detection is wrong, pass `--muxer <actual>` to `route` instead of trusting either source.
 
-# Rule 1: detect the agent
+# Rule 2: detect the agent
 
-Same order as rule 0, using the same `<worktree-session>` tag's `agent` attribute first, falling back only when absent or stale:
+Use the same tag-first order as Rule 1, using the `<worktree-session>` tag's `agent` attribute first and falling back only when absent or stale:
 
 ```bash
 scripts/router.ts detect-agent
@@ -31,11 +37,13 @@ Either source gives one of `claude`, `pi`, `unknown-agent`. zot has no confirmed
 
 # Route
 
+Resolve the issue tracker before following a playbook that reads or updates a ticket. The playbook receives the resolved ticket identifier and local tracker path as working context.
+
 ```bash
 scripts/router.ts route "$ARGUMENTS" --muxer <resolved-muxer> --agent <resolved-agent>
 ```
 
-Always pass `--muxer` and `--agent` explicitly, sourced from rule 0/rule 1 above — this keeps `route` a pure lookup with no env probing of its own. It resolves the subcommand and prints JSON: `{ match, subcommand, remainder, muxer, agent, playbook, muxerContract, agentContract }` on success, or `{ match: false, request }` with a non-zero exit on no match.
+Always pass `--muxer` and `--agent` explicitly, sourced from Rules 1 and 2 above — this keeps `route` a pure lookup with no env probing of its own. It resolves the subcommand and prints JSON: `{ match, subcommand, remainder, muxer, agent, playbook, muxerContract, agentContract }` on success, or `{ match: false, request }` with a non-zero exit on no match.
 
 ## On match
 

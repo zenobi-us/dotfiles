@@ -6,7 +6,7 @@ Review never opens a new pane or launches a fresh agent — it only inspects the
 
 ## Ticket resolution
 
-Resolve the ticket before reviewing work.
+Load `references/issue-tracker.md` and the project issue tracker definition before resolving the ticket. Resolve the ticket before reviewing work.
 
 1. Use an explicit issue or ticket identifier in `UserRequest`.
 2. If `UserRequest` has no identifier, use the most recent unambiguous ticket mention in the conversation.

@@ -68,7 +68,7 @@ const sessionContextCmd = app
     const agent = detectAgent();
     console.log(
       JSON.stringify(
-        `\n\n<worktree-session muxer="${muxer}" agent="${agent}">\nDetected once at session start by the \`worktree\` skill's rule 0/rule 1 logic (\`detectMuxer\`/\`detectAgent\` in scripts/router.mjs). Use these values directly instead of running \`scripts/router.mjs detect-muxer\`/\`detect-agent\` again. zot has no self-identifying signal and always reports as \`unknown-agent\` — pass an explicit \`--agent zot\` override to \`route\` when you know better. If the muxer or agent changes mid-session (for example the operator attaches a new terminal), re-run the detect commands instead of trusting this stale value.\n</worktree-session>`,
+        `\n\n<worktree-session muxer="${muxer}" agent="${agent}">\nDetected once at session start by the \`worktree\` skill's Rule 1/Rule 2 logic (\`detectMuxer\`/\`detectAgent\` in scripts/router.mjs). Use these values directly instead of running \`scripts/router.mjs detect-muxer\`/\`detect-agent\` again. zot has no self-identifying signal and always reports as \`unknown-agent\` — pass an explicit \`--agent zot\` override to \`route\` when you know better. If the muxer or agent changes mid-session (for example the operator attaches a new terminal), re-run the detect commands instead of trusting this stale value.\n</worktree-session>`,
       ),
     );
   });

@@ -2,11 +2,11 @@
 
 Start an agent to fix blocking review findings in an existing Worktrunk worktree.
 
-This playbook receives `muxer` and `agent` already resolved by the `worktree` skill's rule 0 and rule 1.
+This playbook receives `muxer` and `agent` already resolved by the `worktree` skill's Rule 1 and Rule 2.
 
 ## Ticket resolution
 
-Resolve the ticket before fixing work.
+Load `references/issue-tracker.md` and the project issue tracker definition before resolving the ticket. Resolve the ticket before fixing work.
 
 1. Use an explicit issue or ticket identifier in `UserRequest`.
 2. If `UserRequest` has no identifier, use the most recent unambiguous ticket mention in the conversation.
