@@ -149,6 +149,7 @@ Tailwind and produces no CSS.
 | `FileTree.tsx` | Files grouped by folder, with a filter and one viewer across every group |
 | `FileLink.tsx` | The default file row |
 | `ShareMeta.tsx` | The header: kind badge, date, hash, link to the original files |
+| `Timeline.tsx` | A dated run of events, in a rail, ledger, or span variant |
 | `media.ts` | Which extensions a browser can render |
 | `base.ts` | The base path helper |
 | `kinds.ts`, `renderers.ts`, `registry.tsx` | The kind registry. See `types.md` |
@@ -158,6 +159,15 @@ video opens paused with controls and never autoplays, the arrow keys seek the
 video while it has focus, clicking an image toggles 1:1 zoom, Esc closes, and
 `FileTree` walks every thumbnail on screen so prev and next cross group
 boundaries.
+
+`Timeline.tsx` is a React port of the zeno timeline v1. It is a compound
+component: the root takes `variant`, and each part is a child of
+`<Timeline.Item>`. The root clones the variant into its items and an item
+clones the variant and the kind into its parts, because this site renders
+through React Server Components. A `"use client"` module would lose the
+statics that make `<Timeline.Item>` resolve, and `createContext` is not
+allowed in a server component. Nothing in the block is stateful, so it ships
+no JavaScript. The cost is that a part must be a direct child of its item.
 
 `registry.tsx` lists every component the generated MDX may name. Removing one
 breaks every published share that names it. Add, do not remove.

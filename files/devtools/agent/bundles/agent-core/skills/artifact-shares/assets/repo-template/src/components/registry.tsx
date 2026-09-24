@@ -19,6 +19,7 @@ import { FileLink } from "./FileLink";
 import { FileTree } from "./FileTree";
 import { Figure, Gallery } from "./Gallery";
 import { ShareMeta } from "./ShareMeta";
+import { Timeline } from "./Timeline";
 
 export { DEFAULT_KIND, isKnownKind, kindFor, shareKinds } from "./kinds";
 export type { KindEntry } from "./kinds";
@@ -32,4 +33,5 @@ export const mdxComponents = {
   Gallery,
   Figure,
   FileLink,
+  Timeline,
 };
