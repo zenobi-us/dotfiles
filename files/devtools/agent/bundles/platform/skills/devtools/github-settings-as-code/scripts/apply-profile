@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+readonly PACKAGE_VERSION="4.0.0"
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+readonly SCRIPT_DIR="$script_dir"
+dotfiles_root=$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)
+readonly DOTFILES_ROOT="$dotfiles_root"
+readonly PROFILE_ROOT="$DOTFILES_ROOT/files/devtools/github"
+
+usage() {
+  cat >&2 <<'EOF'
+Usage: apply-profile OWNER/REPO [--profile NAME]
+       apply-profile --owner OWNER --repo REPO [--profile NAME]
+
+Apply a dotfiles GitHub settings profile without changing the source profile.
+If --profile is omitted, the default profile is used.
+EOF
+}
+
+fail() {
+  printf 'error: %s\n' "$1" >&2
+  exit 2
+}
+
+owner=''
+repo=''
+profile='default'
+positionals=()
+
+while (($# > 0)); do
+  case "$1" in
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    --profile)
+      (($# >= 2)) || fail "--profile requires a value"
+      profile=$2
+      shift 2
+      ;;
+    --owner)
+      (($# >= 2)) || fail "--owner requires a value"
+      owner=$2
+      shift 2
+      ;;
+    --repo)
+      (($# >= 2)) || fail "--repo requires a value"
+      repo=$2
+      shift 2
+      ;;
+    --*)
+      fail "unknown option: $1"
+      ;;
+    *)
+      positionals+=("$1")
+      shift
+      ;;
+  esac
+done
+
+if ((${#positionals[@]} > 1)); then
+  fail "expected at most one OWNER/REPO argument"
+fi
+
+if ((${#positionals[@]} == 1)); then
+  [[ -z "$owner" && -z "$repo" ]] || fail 'do not combine OWNER/REPO with --owner or --repo'
+  [[ "${positionals[0]}" == */* ]] || fail 'target must use OWNER/REPO format'
+  owner=${positionals[0]%%/*}
+  repo=${positionals[0]#*/}
+fi
+
+if [[ -z "$owner" || -z "$repo" ]]; then
+  remote=$(git remote get-url origin 2>/dev/null) || fail 'provide OWNER/REPO outside a Git repository'
+  remote_path=${remote#*://}
+  remote_path=${remote_path#*@}
+  remote_path=${remote_path#*:}
+  remote_path=${remote_path%.git}
+  [[ "$remote_path" == */* ]] || fail "cannot resolve OWNER/REPO from origin: $remote"
+  owner=${remote_path%%/*}
+  repo=${remote_path#*/}
+fi
+
+[[ "$owner" != */* && -n "$owner" ]] || fail 'owner must be a single path component'
+[[ "$repo" != */* && -n "$repo" ]] || fail 'repository must be a single path component'
+[[ "$profile" =~ ^[A-Za-z0-9._-]+$ ]] || fail 'profile must contain only letters, numbers, dot, underscore, or hyphen'
+
+profile_dir="$PROFILE_ROOT/$profile"
+[[ -d "$profile_dir" ]] || fail "profile does not exist: $profile"
+[[ -d "$PROFILE_ROOT/default" ]] || fail 'required default profile does not exist'
+
+shopt -s nullglob globstar
+profile_files=("$profile_dir"/**/*.json)
+((${#profile_files[@]} > 0)) || fail "profile contains no JSON files: $profile"
+
+for file in "${profile_files[@]}"; do
+  node --input-type=commonjs -e 'JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))' "$file" \
+    || fail "invalid JSON: ${file#"$DOTFILES_ROOT/"}"
+done
+
+work_dir=$(mktemp -d "${TMPDIR:-/tmp}/github-settings-as-code.XXXXXX")
+cleanup() {
+  rm -rf -- "$work_dir"
+}
+trap cleanup EXIT
+
+mkdir -p "$work_dir/repo-settings"
+cp -R -- "$profile_dir/." "$work_dir/repo-settings/"
+
+printf 'Applying profile %q to %s/%s\n' "$profile" "$owner" "$repo"
+(
+  cd -- "$work_dir"
+  npm exec --yes "github-settings-as-code@${PACKAGE_VERSION}" -- \
+    apply --owner "$owner" --repo "$repo"
+)
+
+printf 'Applied profile %q to %s/%s\n' "$profile" "$owner" "$repo"
