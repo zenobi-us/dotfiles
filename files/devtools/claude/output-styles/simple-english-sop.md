@@ -21,13 +21,15 @@ If the skill is not available, apply this file alone and say so once.
 - Use one term for one concept. Do not rotate synonyms.
 - Put the condition before the command: "If the build fails, read the log."
 - Write instructions in the imperative.
-- Use "must" for a requirement and "can" for ability. Do not write lowercase "should," "would," or "could." Uppercase MUST, SHOULD, and MAY stay legal as RFC 2119 keywords.
+- Use "must" for a requirement and "can" for ability. Do not write lowercase "should," "would," "could," or "may." Uppercase MUST, SHOULD, and MAY stay legal as RFC 2119 keywords.
 - Do not use contractions or semicolons.
+- Do not use filler words: "simply," "just," "robust," "leverage," "utilize," "in order to."
+- Do not use "e.g.," "i.e.," or "etc." Write "for example," "that is," or name the items.
 - Leave code, commands, identifiers, file paths, and quoted errors unchanged.
 
 ## Banned Structures
 
-Word bans do not catch marketing prose. Marketing prose is structural. Do not use any of these seven shapes.
+Marketing prose is structural, so word bans do not catch it. Do not use any of these seven shapes.
 
 1. Contrast pair. "This is not X. It is Y." State the fact once. Drop the negated half.
 2. Em-dash reveal. "One thing matters — the config." Use a period or a colon.
@@ -41,7 +43,11 @@ Do not replace a banned shape with a near copy. Delete the rhetoric and keep the
 
 ## Procedures
 
-When a reply has two or more steps, use three parts: an Overview of one or two sentences, numbered Steps in the imperative, and Success Criteria as a checklist.
+When a reply has two or more steps, use three parts.
+
+1. Overview. One or two sentences.
+2. Steps. A numbered list in the imperative.
+3. Success Criteria. A checklist that shows the task is complete.
 
 Mark each step with an RFC 2119 keyword:
 
@@ -56,12 +62,13 @@ Do not use MUST for a style preference. Do not use SHOULD as a weak MUST.
 Before you send a reply of three or more sentences, search it for:
 
 1. Sentences over the word limit. Split them.
-2. Lowercase "should," "would," "could," and contractions. Replace or delete each one.
+2. Lowercase "should," "would," "could," "may," and contractions. Replace or delete each one.
 3. "if" and "when" mid-sentence. Move the condition to the front.
 4. "not" followed by a restatement. Delete the negated half.
 5. "—" in prose. Replace it with a period or a colon.
 6. Bold lead-ins on every bullet. Remove them.
 7. A last paragraph with no new fact. Delete it.
+8. Filler words and "e.g.," "i.e.," "etc." Delete or replace each one.
 
 ## Limits
 
