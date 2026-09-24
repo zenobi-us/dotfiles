@@ -110,7 +110,13 @@ Validate before execution when flow is uncertain:
 surf do 'go "https://example.com" | click e5' --dry-run
 ```
 
-For a reusable flow, save it as a named workflow JSON file under `~/.surf/workflows/` or `./.surf/workflows/` and run `surf do my-workflow --url "..."`. See [references/advanced-features.md](references/advanced-features.md) for the JSON format (args, loops, step outputs).
+For a reusable flow, save it as a workflow JSON file under the shared-context root and run it by absolute path. You **MUST NOT** create `./.surf/workflows/` inside the repository.
+
+```bash
+surf do "$ROOT/RWR-19971/surf-workflows/login.json" --email "user@example.com"
+```
+
+Both `surf do <path>.json` and `surf do --file <path>.json` accept any path. A bare name reaches only two hardcoded directories, and a miss fails silently. See [references/advanced-features.md](references/advanced-features.md) for the storage procedure, the traps, and the JSON format (args, loops, step outputs).
 
 ### 3) Debugging workflow
 
@@ -194,8 +200,10 @@ surf emulate.viewport --width 375 --height 812
 
 # Workflows & playbooks
 surf do 'go "https://example.com" | read | screenshot'
-surf workflow.list
-surf workflow.info <name>
+surf do <path>.json --arg value     # stored workflow: always by path
+surf workflow.info <path>.json
+surf workflow.validate <path>.json
+surf workflow.list                  # hardcoded dirs only; misses shared context
 surf playbook list
 surf use <site> <op>
 ```
@@ -223,12 +231,20 @@ Full command surface: `surf --help-full`. Search by keyword: `surf --find <term>
    - Fix: rerun `surf read` and use fresh refs.
 
 4. **Long flows as many separate commands**
-   - Fix: collapse into `surf do` for deterministic execution, or save a named workflow.
+   - Fix: collapse into `surf do` for deterministic execution, or save a workflow file.
 
-5. **Ignoring timeouts on slow AI models/pages**
+5. **Running a stored workflow by bare name**
+   - A bare name reaches only `./.surf/workflows/` and `~/.surf/workflows/`. A miss does not error: surf parses the name as an inline command and runs one bogus step.
+   - Fix: store workflows under the shared-context root and always pass the absolute path.
+
+6. **Saving a playbook with `--project`**
+   - `--project` is the only thing that writes `./.surf/playbooks/` into the repository. `surf pb save` and `surf playbook import` already default to user scope.
+   - Fix: drop the flag. Keep the canonical copy in shared context and `surf playbook export`/`import` to move it.
+
+7. **Ignoring timeouts on slow AI models/pages**
    - Fix: increase timeout (`--timeout 600`) and add explicit waits.
 
-6. **Assuming AI tools work without browser login**
+8. **Assuming AI tools work without browser login**
    - Fix: ensure active login session in Chrome for each provider.
 
 ## Decision Map
@@ -256,6 +272,7 @@ Full command surface: `surf --help-full`. Search by keyword: `surf --find <term>
 
 ## Adjacent Skills
 
+- `shared-context`: resolves the root that stored workflow JSON is written under
 - `agent-browser`: alternate browser automation CLI
 - `chrome-debug`: CDP-first debugging workflows
 - `lynx-web-search`: research without browser automation

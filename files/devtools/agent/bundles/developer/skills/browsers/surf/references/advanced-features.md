@@ -66,11 +66,67 @@ Notes:
 
 ## Workflow Files
 
-Save a reusable `surf do` flow as JSON in `~/.surf/workflows/` (user) or `./.surf/workflows/` (project), then run it by name:
+### Where workflow JSON lives
+
+Workflow JSON **MUST** live under the shared-context root. You **MUST NOT**
+create `./.surf/workflows/` inside a repository.
+
+Surf has no setting that moves its own search path. `getWorkflowDirs()` in
+`native/workflow-definition.cjs` hardcodes `./.surf/workflows/` (project) and
+`~/.surf/workflows/` (user), and every call site passes no override.
+`SURF_STATE_DIR` moves `~/.surf/state` only. `SURF_NETWORK_PATH` moves network
+captures only. Neither moves workflows.
+
+The name lookup is avoidable. `resolveWorkflow` treats any argument that
+contains `/` or ends in `.json` as a file path, so both forms load a workflow
+from any directory:
 
 ```bash
-surf do my-workflow --url "https://example.com" --max_items 10
+surf do "$ROOT/RWR-19971/surf-workflows/login.json" --email "user@example.com"
+surf do --file "$ROOT/RWR-19971/surf-workflows/login.json" --email "user@example.com"
 ```
+
+### Procedure: save a reusable workflow
+
+1. You **MUST** resolve the context root from inside the repository you are
+   working on. Load the `shared-context` skill and run its CLI:
+
+   ```bash
+   cd "<the repository you are working on>"
+   "<shared-context skillroot>/scripts/shared-context/cli.ts" report
+   ```
+
+   Read the `root:` line. If `storage:` reports `repository`, the resolved root
+   is the repository itself. Tell the user before you write, and read the
+   `shared-context` storage procedure if they want shared storage instead.
+
+2. You **MUST** write the file to
+   `<root>/<WORK-KEY>/surf-workflows/<name>.json` when a work key is active, or
+   to `<root>/library/surf-workflows/<name>.json` when there is none. A surf
+   workflow is task material, like `planning.md`, not an ingested source, so it
+   keeps its own directory name.
+
+3. You **MUST** run, validate, and inspect the workflow by its absolute path.
+
+4. You **SHOULD** validate before the first run:
+
+   ```bash
+   surf workflow.validate "$ROOT/RWR-19971/surf-workflows/login.json"
+   ```
+
+### Traps
+
+- **A bare name fails silently.** `surf do login` with no `login.json` in the
+  two hardcoded directories does not error. It parses `login` as an inline
+  command and reports `Would execute 1 steps: 1. login`. Always pass a path.
+- **`surf workflow.list` cannot see these files.** It scans the two hardcoded
+  directories only. Use `ls "<root>/<WORK-KEY>/surf-workflows/"` instead.
+- **`surf workflow.info` and `surf workflow.validate` do accept a path.** Both
+  resolve a path argument before they search the hardcoded directories.
+- **Playbooks are separate.** This section covers workflows only. Playbooks
+  have no path escape hatch — see "Where playbooks live" below.
+
+### JSON format
 
 ```json
 {
@@ -89,7 +145,7 @@ surf do my-workflow --url "https://example.com" --max_items 10
 }
 ```
 
-Step outputs (`"as": "title"`), `each`/`repeat` loops, and `until` exit conditions are supported — see the upstream README for full loop syntax. Manage with `surf workflow.list`, `surf workflow.info <name>`, `surf workflow.validate ./file.json`.
+Step outputs (`"as": "title"`), `each`/`repeat` loops, and `until` exit conditions are supported — see the upstream README for full loop syntax. Inspect and check a stored workflow with `surf workflow.info <path>` and `surf workflow.validate <path>`.
 
 ## Playbooks
 
@@ -114,6 +170,50 @@ surf pb record start example --op read --network --watch
 surf pb record stop --draft
 surf pb save --from-record <record-id>
 ```
+
+### Where playbooks live
+
+Playbooks differ from workflows. A playbook has no path escape hatch. `surf use`
+takes a playbook id, and `ID_PATTERN` in `native/playbooks.cjs` is
+`/^[a-z0-9][a-z0-9._-]{0,63}$/`, which forbids a slash. You cannot name a
+directory instead.
+
+Only one thing writes a playbook into the repository: the `--project` flag.
+`surf pb save` and `surf playbook import` both default to `user` scope
+(`~/.surf/playbooks/`), which is already outside the repository.
+
+Rules:
+
+1. You **MUST NOT** pass `--project` to `surf pb save` or
+   `surf playbook import`. That flag is what creates `./.surf/playbooks/`.
+2. You **MUST** keep the canonical copy of an authored playbook under the
+   shared-context root, at `<root>/<WORK-KEY>/surf-playbooks/<id>/` or
+   `<root>/library/surf-playbooks/<id>/`. Resolve `<root>` with the
+   `shared-context` CLI, as the workflow procedure above describes.
+3. You **MUST** treat `~/.surf/playbooks/` as an install target, not as the
+   source of truth. It is a per-machine cache.
+
+Publish a playbook you authored, then install it elsewhere:
+
+```bash
+# Author into user scope (default), then publish the canonical copy
+surf pb save --from-record <record-id>
+surf playbook export <id> --out "$ROOT/RWR-19971/surf-playbooks/<id>"
+
+# Install on another machine or after a reset (user scope is the default)
+surf playbook import "$ROOT/RWR-19971/surf-playbooks/<id>"
+```
+
+### Playbook traps
+
+- **Neither export nor import is idempotent.** `writePlaybookDirectory` throws
+  `playbook output already exists` when the destination directory exists. To
+  refresh a published copy or a reinstall, remove the destination directory
+  first. Check the directory before you delete it.
+- **Import can shadow a built-in.** Importing an id such as `page` puts a user
+  playbook ahead of the built-in of the same name. Choose a distinct id.
+- **`surf playbook list` reports scope.** Use it to confirm a playbook resolved
+  from `user` and not from `project`.
 
 ## Oracle (durable ChatGPT consult)
 
