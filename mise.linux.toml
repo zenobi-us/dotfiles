@@ -1,6 +1,17 @@
-[bootstrap]
-config_roots = ["files/*/*"]
-
 [bootstrap.packages]
 "apt:x11-xserver-utils" = "latest"
 "dnf:xrdb" = "latest"
+
+# Build dependencies for cargo:alacritty. mise supplies cmake and rust.
+# These three headers have no mise package and must come from the system.
+"apt:libfreetype6-dev" = "latest"
+"apt:libfontconfig1-dev" = "latest"
+"apt:libxkbcommon-dev" = "latest"
+"dnf:freetype-devel" = "latest"
+"dnf:fontconfig-devel" = "latest"
+"dnf:libxkbcommon-devel" = "latest"
+
+[tools]
+# Alacritty publishes no Linux binary on GitHub, so mise builds it from source.
+# The system apt package is capped at 0.13.2, which predates the [general] table.
+"cargo:alacritty" = "latest"
