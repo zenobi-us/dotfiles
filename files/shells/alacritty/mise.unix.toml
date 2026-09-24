@@ -1,2 +1,0 @@
-[dotfiles]
-"~/.config/alacritty" = { source = ".", exclude = ["mise*.toml"], mode = "symlink" }

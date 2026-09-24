@@ -10,8 +10,3 @@
 "dnf:freetype-devel" = "latest"
 "dnf:fontconfig-devel" = "latest"
 "dnf:libxkbcommon-devel" = "latest"
-
-[tools]
-# Alacritty publishes no Linux binary on GitHub, so mise builds it from source.
-# The system apt package is capped at 0.13.2, which predates the [general] table.
-"cargo:alacritty" = "latest"
