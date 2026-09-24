@@ -6,3 +6,7 @@
 
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
 export XDG_CACHE_HOME="$HOME/.cache"
+
+if [[ "$OSTYPE" == linux* ]]; then
+  export SURF_SOCKET="${XDG_RUNTIME_DIR}/app/com.google.Chrome/surf.sock"
+fi
