@@ -1,2 +1,8 @@
 [dotfiles]
 "~/AppData/Roaming/alacritty" = { source = ".", exclude = ["mise*.toml"], mode = "symlink" }
+
+[tools]
+# Windows release assets include Alacritty-v<version>-portable.exe and an .msi,
+# so the github backend resolves a real binary here. It does not on Linux,
+# where the release carries only man pages and completions. See mise.linux.toml.
+"github:alacritty/alacritty" = "latest"
