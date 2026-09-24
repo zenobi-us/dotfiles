@@ -1,3 +1,7 @@
+if (-not $env:MISE_GLOBAL_CONFIG_ROOT) {
+	$env:MISE_GLOBAL_CONFIG_ROOT = "$HOME/.local/share/dotfiles"
+}
+
 . "${PSScriptRoot}/common.ps1"
 
 load-parts (join-path $PSScriptRoot "parts") "init*"

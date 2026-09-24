@@ -2,6 +2,7 @@
 # store path to this directory
 export HEREDIR="$(cd "$(dirname "$(readlink -f "${(%):-%N}")")" && pwd)"
 export DOTFILE_REPO_ROOT="$(git -C "${HEREDIR}" rev-parse --show-toplevel 2>/dev/null || echo "${HEREDIR}")"
+export MISE_GLOBAL_CONFIG_ROOT="${DOTFILE_REPO_ROOT}"
 export DOTFILE_ROOT="$HEREDIR"
 
 source "${DOTFILE_ROOT}/zinit.zsh"
