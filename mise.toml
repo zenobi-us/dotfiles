@@ -42,7 +42,7 @@ claude-code = "latest"
 "npm:mcporter" = "latest"
 "npm:release-please" = "latest"
 "npm:semver" = "latest"
-"npm:surf-cli" = "latest"
+"npm:surf-cli" = { version = "latest", allow_low_downloads = true }
 "npm:typescript-language-server" = "latest"
 act = "latest"
 action-validator = "latest"
