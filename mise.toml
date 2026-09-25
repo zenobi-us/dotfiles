@@ -10,16 +10,6 @@ config_roots = [
   "./files/*/*",
 ]
 
-[bootstrap]
-config_roots = [
-  "./files/*",
-  "./files/*/*",
-]
-
-[bootstrap.mise_shell_activate]
-zprofile = "shims"
-zshrc = "activate"
-
 [tools]
 "cargo:p1rallels/codemapper" = "latest"
 "github:Feel-ix-343/markdown-oxide" = "latest"
