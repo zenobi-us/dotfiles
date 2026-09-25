@@ -1,7 +1,5 @@
 # My Dotfiles
 
-![Dotfiles banner](./banner.png)
-
 Cross-platform configuration for:
 
 - Zsh on Linux and macOS
