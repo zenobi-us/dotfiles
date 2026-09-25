@@ -11,7 +11,5 @@
   "use_squash_pr_title_as_default": true,
   "squash_merge_commit_title": "PR_TITLE",
   "squash_merge_commit_message": "PR_BODY",
-  "merge_commit_title": "PR_TITLE",
-  "merge_commit_message": "PR_BODY",
   "web_commit_signoff_required": false
 }
