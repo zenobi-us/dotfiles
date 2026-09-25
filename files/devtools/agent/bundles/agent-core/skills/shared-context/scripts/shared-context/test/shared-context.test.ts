@@ -281,6 +281,28 @@ function sharedContext(root: string): SharedAgentContext {
   };
 }
 
+describe("publishing guidance", () => {
+  test("keeps non-git shared storage usable and offers version-control options", async () => {
+    const skillRoot = path.join(import.meta.dir, "..", "..", "..");
+    const skill = await fs.readFile(path.join(skillRoot, "SKILL.md"), "utf8");
+    const publishing = await fs.readFile(path.join(skillRoot, "references", "publishing.md"), "utf8");
+
+    expect(skill).toContain("local-only");
+    expect(publishing).toContain("continue the shared-context write");
+    expect(publishing.toLowerCase()).toContain("offer to initialize");
+    expect(publishing).not.toContain("Say so and stop");
+  });
+
+  test("offers a private artifact-share repository with a shared-context directory", async () => {
+    const skillRoot = path.join(import.meta.dir, "..", "..", "..");
+    const publishing = await fs.readFile(path.join(skillRoot, "references", "publishing.md"), "utf8");
+
+    expect(publishing).toContain("private artifact-share repository");
+    expect(publishing).toContain("shared-context/");
+    expect(publishing).toContain("artifact-shares");
+  });
+});
+
 describe("ingest anchors", () => {
   test("a work key anchors beside the key, a missing key anchors under library", () => {
     const context = sharedContext("/shared/repo");

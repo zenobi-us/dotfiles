@@ -106,12 +106,24 @@ trap cleanup EXIT
 
 mkdir -p "$work_dir/repo-settings"
 cp -R -- "$profile_dir/." "$work_dir/repo-settings/"
+git -C "$work_dir" init --quiet
+
+targets=()
+[[ -f "$work_dir/repo-settings/repository-settings/settings.json" ]] && targets+=(repository)
+compgen -G "$work_dir/repo-settings/rulesets/*.json" >/dev/null && targets+=(rulesets)
+[[ -f "$work_dir/repo-settings/variables/settings.json" ]] && targets+=(variables)
+[[ -f "$work_dir/repo-settings/actions-settings/settings.json" ]] && targets+=(actions)
+[[ -f "$work_dir/repo-settings/pages/settings.json" ]] && targets+=(pages)
+compgen -G "$work_dir/repo-settings/environments/*.json" >/dev/null && targets+=(environments)
+[[ -f "$work_dir/repo-settings/vulnerability-alerts/settings.json" ]] && targets+=(vulnerability-alerts)
 
 printf 'Applying profile %q to %s/%s\n' "$profile" "$owner" "$repo"
-(
-  cd -- "$work_dir"
-  npm exec --yes "github-settings-as-code@${PACKAGE_VERSION}" -- \
-    apply --owner "$owner" --repo "$repo"
-)
+for target in "${targets[@]}"; do
+  (
+    cd -- "$work_dir"
+    npm exec --yes "github-settings-as-code@${PACKAGE_VERSION}" -- \
+      apply "$target" --owner "$owner" --repo "$repo"
+  )
+done
 
 printf 'Applied profile %q to %s/%s\n' "$profile" "$owner" "$repo"

@@ -63,9 +63,10 @@ slug: <origin-derived directory name>
    anything.
 4. You **MUST** run `cli.ts index <dir>` after you add or remove a file in a
    source directory.
-5. If `storage` is `shared`, you **MUST** commit and push the write in the same
-   turn. Read `references/publishing.md` first — the branch check there can stop
-   the push.
+5. If `storage` is `shared`, you **MUST** read `references/publishing.md` after
+   the write. Publish when the store has a usable git remote. A non-git store is
+   valid local-only storage: keep the completed write, report that it is local,
+   and offer the version-control options in that reference.
 6. You **MUST NOT** overwrite a file that holds hand-written work. See the
    authored-content guard in `references/layout.md`.
 7. You **MUST** stop and report a non-zero exit status from `cli.ts`. Do not retry
