@@ -8,7 +8,7 @@
   "defaultProjectTrust": "always",
   "enableInstallTelemetry": false,
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "0.86.1",
+  "lastChangelogVersion": "0.87.1",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
     "./bundles/agent-core",

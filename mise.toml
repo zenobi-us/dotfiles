@@ -116,6 +116,7 @@ micro = "latest"
 "github:afshinm/zerobox" = "0.3.3"
 "github:jarun/nnn" = "latest"
 "pipx:comfy-cli" = "latest"
+"github:NVIDIA/OpenShell" = "latest"
 
 [shell_alias]
 pi = "mise x node@lts -- pi "
