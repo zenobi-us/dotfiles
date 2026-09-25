@@ -1,7 +1,6 @@
 ---
 name: writing-great-skills
 description: Compatibility alias for writing-for-agents.
-disable-model-invocation: true
 user-invocable: true
 ---
 
