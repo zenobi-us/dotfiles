@@ -10,3 +10,9 @@
 "dnf:freetype-devel" = "latest"
 "dnf:fontconfig-devel" = "latest"
 "dnf:libxkbcommon-devel" = "latest"
+
+[env]
+# surf-cli talks to its Chrome native host over this socket. The host launches
+# from Chrome (on WSL2 via host-wrapper-wsl.cmd), so it never reads this value
+# and always creates /tmp/surf.sock. Only this path works. See `surf doctor`.
+SURF_SOCKET = "/tmp/surf.sock"
