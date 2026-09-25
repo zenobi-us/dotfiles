@@ -221,4 +221,4 @@ These exist because each one has been got wrong in a real run.
 
 - `references/evidence-schema.md` — the `evidence.jsonl` record contract.
 - `references/drivers/surf-cli.md` — the surf driver.
-- `references/drivers/playwright-cli.md` — the Playwright driver. **TODO.**
+- `references/drivers/playwright-cli.md` — the Playwright driver.
