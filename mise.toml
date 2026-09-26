@@ -109,6 +109,7 @@ micro = "latest"
 "github:jarun/nnn" = "latest"
 "pipx:comfy-cli" = "latest"
 "github:NVIDIA/OpenShell" = "latest"
+"github:graykode/abtop" = "latest"
 
 [shell_alias]
 pi = "mise x node@lts -- pi "
