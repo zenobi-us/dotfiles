@@ -1,14 +1,6 @@
-monorepo_root = true
-
 [settings]
 experimental = true
 dotfiles.default_mode = "symlink"
-
-[monorepo]
-config_roots = [
-  "./files/*",
-  "./files/*/*",
-]
 
 [tools]
 "cargo:p1rallels/codemapper" = "latest"

@@ -17,7 +17,8 @@ echo "OS: $os/$osfamily - $DEFAULT_ARCH"
 mise run "bootstrap:osfamily_$osfamily"
 mise run "bootstrap:os_$os"
 
-mise run '//files/...:bootstrap-today'
+if [[ "$osfamily" == "unix" ]] && mise tasks ls --all | grep -qx 'bootstrap-claude'; then
+  mise run bootstrap-claude
+fi
 
-mise run '//files/...:bootstrap'
 bun install --frozen-lockfile

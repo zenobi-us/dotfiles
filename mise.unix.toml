@@ -1,5 +1,3 @@
-monorepo_root = true
-
 [bootstrap.repos]
 "~/.config/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }
 

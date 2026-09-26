@@ -146,60 +146,10 @@ Show the active config files:
 mise config ls
 ```
 
-Show the selected nested bootstrap roots:
-
-```bash
-mise bootstrap config-roots
-```
-
-Inspect the roots as JSON:
-
-```bash
-mise bootstrap config-roots --json | jq
-```
-
-If your command runner merges stderr into stdout, keep the deprecation warning away from `jq`:
-
-```bash
-mise bootstrap config-roots --json 2>/dev/null | jq
-```
-
 Show the combined bootstrap plan:
 
 ```bash
 mise bootstrap plan
 ```
 
-### Fix `config_roots did not match any config roots`
-
-This repository links its root `mise.toml` as the global mise config. Mise must resolve relative config-root patterns from the repository, not from the home directory.
-
-On Linux or macOS, confirm the variable:
-
-```zsh
-print -r -- "$MISE_GLOBAL_CONFIG_ROOT"
-```
-
-For a one-off repair, run:
-
-```bash
-MISE_GLOBAL_CONFIG_ROOT="$HOME/.local/share/dotfiles" \
-  mise bootstrap config-roots
-```
-
-On Windows, confirm the variable:
-
-```powershell
-$env:MISE_GLOBAL_CONFIG_ROOT
-```
-
-For a one-off repair, run:
-
-```powershell
-$env:MISE_GLOBAL_CONFIG_ROOT = "$HOME/.local/share/dotfiles"
-mise bootstrap config-roots
-```
-
-### Expected deprecation warning
-
-Mise currently prints a warning for `[bootstrap].config_roots`. This warning is expected. Mise supports the setting for compatibility but plans to remove it in mise `2027.3.3`.
+The repository uses folder fragments under `.mise/conf.d/`. Each direct child is a self-contained mise bundle. The bundle contains its platform-specific `mise.<env>.toml` files and the files referenced by those configurations.

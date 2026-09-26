@@ -2,14 +2,3 @@
 "~/AppData/Roaming/herdr/config.toml" = { source = "./config.toml", mode = "symlink" }
 "~/AppData/Roaming/herdr/plugins" = { source = "./plugins", mode = "symlink" }
 
-[tasks."bootstrap-today"]
-description = "TEMP: apply this bundle's local mise bootstrap config until conf.d folder fragments are released"
-run = """
-target="{{ config_root }}"
-repo_root="$(git -C "$target" rev-parse --show-toplevel)"
-empty_global="$(mktemp --suffix=.toml)"
-ignored_roots="$repo_root/mise.toml:$repo_root/mise.unix.toml:$repo_root/mise.linux.toml:$repo_root/mise.windows.toml:$repo_root/mise.wsl2.toml"
-trap 'rm -f "$empty_global"' EXIT
-
-env MISE_AUTO_ENV=1 MISE_GLOBAL_CONFIG_ROOT= MISE_GLOBAL_CONFIG_FILE="$empty_global" MISE_IGNORED_CONFIG_PATHS="$ignored_roots${MISE_IGNORED_CONFIG_PATHS:+:$MISE_IGNORED_CONFIG_PATHS}" mise -C "$target" bootstrap --skip task
-"""
