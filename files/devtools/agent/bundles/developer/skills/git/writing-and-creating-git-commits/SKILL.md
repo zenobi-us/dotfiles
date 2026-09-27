@@ -81,6 +81,8 @@ If any of these checks fail, fix the issue before proceeding. or Exit if human i
 
 ## Guidance: Commit Message Writing
 
+When the caller provides an active issue or ticket, include its stable reference in the commit subject. Do not put the reference only in the body. For local Markdown, use the stable path defined by the tracker document. Keep the Conventional Commit type and the subject within the normal length limit; use the shortest tracker-defined reference that remains unique.
+
 Use the `skills_superpowers_writing_git_commits` skill to guide you in writing great commit messages and body content following the Conventional Commits specification.
 
 Otherwise:

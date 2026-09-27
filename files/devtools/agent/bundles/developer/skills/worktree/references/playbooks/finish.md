@@ -6,13 +6,7 @@ Finish merges and removes the worktree. It does not open a new pane or launch a 
 
 ## Ticket resolution
 
-Load `references/issue-tracker.md` and the project issue tracker definition before resolving the ticket. Resolve the ticket before finishing work.
-
-1. Use an explicit issue or ticket identifier in `UserRequest`.
-2. If `UserRequest` has no identifier, use the most recent unambiguous ticket mention in the conversation.
-3. Cross-check the inferred ticket against the current worktree and persisted workflow or review records.
-4. If no unique ticket matches, or candidates conflict, ask the user which ticket to finish.
-5. Do not guess or silently choose a ticket.
+Load `references/issue-tracker.md` and the ticket skill before resolving the ticket. Use the ticket skill to return the canonical `ticket` and `tracker path`. If no identifier is present, use the most recent unambiguous ticket mention in the conversation. Cross-check it against workflow records. Ask when it is missing or ambiguous. Do not guess.
 
 # Preconditions
 
@@ -21,8 +15,8 @@ Load `references/issue-tracker.md` and the project issue tracker definition befo
 - Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/agent-core context report` and read relevant context and ADRs before merging.
 - Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and branches in the repository worktree.
 - Follow `SHARED-CONTEXT-LINKS.md` for the write rule (any shared-context file created or updated while closing this ticket) and the reference rule (linking ADRs, tasks, or the review artifact in the final commit message).
-- Follow `references/issue-tracker.md` for the configured tracker. For local Markdown, resolve and update the issue file under `$ALIGNMENT_ROOT/<issue-root>`.
-- Require a matching persisted `SUCCESS` verdict from the `review` playbook, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
+- Follow `references/issue-tracker.md` and the ticket skill for the configured tracker and returned `tracker path`.
+- Require a matching persisted `SUCCESS` verdict from the `review` playbook at the tracker-defined review artifact path. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
 - Do not remove a worktree while an agent still runs inside it.
 
 Ask the user for the missing ticket before continuing. Exit if the review artifact scope does not match the resolved ticket or if you cannot identify:
@@ -43,12 +37,10 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 7. Switch to or focus the base worktree. Do not run merge operations from an active source-agent pane or session.
 8. Update the base branch from its remote.
 9. Squash merge the source branch into the base branch.
-10. Use the `writing-git-commits` skill for the final commit message.
-11. Include the ticket ID and the external ticket link, or the resolved local Markdown tracker path, in the commit message. Include a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to every ADR the review verdict relied on and to the persisted review artifact itself.
-12. Push the base branch.
-13. Resolve the matching ticket using the configured tracker. For local Markdown, apply the tracker document's resolve operation only after the merge and push succeed.
-14. Remove the source worktree with Worktrunk only after the push and ticket update succeed.
-
+10. Use the `writing-and-creating-git-commits` skill for the final merge commit message. Put the ticket reference in the commit title. Include the ticket link or the `tracker path` returned by the ticket skill in the commit body. Include a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to every ADR the review verdict relied on and to the persisted review artifact itself.
+11. Push the base branch.
+12. After the merge and push succeed, use the ticket skill to complete the matching ticket. Follow its tracker and commit rules.
+13. Remove the source worktree with Worktrunk only after the push and ticket update succeed.
 # Safety rules
 
 - Do not squash merge without the matching persisted `SUCCESS` review artifact.

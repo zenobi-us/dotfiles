@@ -6,7 +6,7 @@ user-invocable: true
 
 # Prepare a Feature Request
 
-Use this workflow when the user gives a repository and a feature or idea. Treat the repository as the source of truth. Separate evidence from assumptions. Always create a Markdown draft in the active shared context. Submit a request only after the idea passes the viability gate.
+Use this workflow when the user gives a repository and a feature or idea. Treat the repository as the source of truth. Separate evidence from assumptions. Always create a Markdown draft in the active shared context. Submit a request only after the idea passes the viability gate. When the request uses the configured issue tracker, use `/reading-and-writing-tickets` for tracker selection, ticket schema, paths, fields, labels, and submission mechanics; this skill owns feasibility and request intent.
 
 ## Inputs
 
@@ -165,7 +165,7 @@ Run this step only for `viable` ideas.
 2. Draft the request in the repository's required format. Use the project's terminology. Include the problem, users, proposed outcome, concrete use case, alternatives considered, compromise or trade-offs, implementation notes only when useful, and acceptance criteria.
 3. Check that the request does not claim unsupported facts. Link the research draft only when the repository permits external links and the link is accessible to maintainers.
 4. Show the final request to the user before an irreversible submission, unless the user explicitly authorised automatic submission in the original request.
-5. Submit through the documented channel. Record the URL, identifier, or exact failure in the shared-context draft.
+5. Submit through the documented channel. If that channel is the configured issue tracker, use `/reading-and-writing-tickets`; otherwise follow the repository's documented channel. Record the URL, identifier, or exact failure in the shared-context draft.
 
 **Completion criterion:** The request matches the repository template and is either submitted with a recorded result or ready for the user with the exact next action.
 

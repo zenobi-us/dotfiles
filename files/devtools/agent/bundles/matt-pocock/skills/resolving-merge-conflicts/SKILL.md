@@ -29,7 +29,7 @@ Before reading or writing workflow or domain artifacts:
 
 1. **See the current state** of the merge/rebase. Check git history, and the conflicting files.
 
-2. **Find the primary sources** for each conflict. Understand deeply why each change was made, and what the original intent was. Read the commit messages, check the PRs, check original issues/tickets.
+2. **Find the primary sources** for each conflict. Understand deeply why each change was made, and what the original intent was. Read the commit messages, check the PRs, and use `/reading-and-writing-tickets` to resolve and read original issues or tickets.
 
 3. **Resolve each hunk.** Preserve both intents where possible. Where incompatible, pick the one matching the merge's stated goal and note the trade-off. Do **not** invent new behaviour. Always resolve; never `--abort`.
 

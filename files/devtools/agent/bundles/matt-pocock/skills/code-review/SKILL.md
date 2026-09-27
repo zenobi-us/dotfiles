@@ -24,7 +24,7 @@ Both axes run as **parallel sub-agents** so they don't pollute each other's cont
 
 Before resolving workflow artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). Repository source, ordinary `docs/` and `specs/`, and Git history remain repository-root relative; tracker-local `.scratch/` and `docs/agents/` use the active alignment root.
 
-The issue tracker should have been provided to you — run `/setup-matt-pocock-skills` if `docs/agents/issue-tracker.md` is missing.
+The issue tracker should have been provided to you — run `/setup-matt-pocock-skills` if `docs/agents/issue-tracker.md` is missing. Use `/reading-and-writing-tickets` for ticket reads, issue-reference resolution, tracker paths, and review-artifact mechanics.
 
 ## Process
 
@@ -40,7 +40,7 @@ Before going further, confirm the fixed point resolves (`git rev-parse <fixed-po
 
 Look for the originating spec, in this order:
 
-1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.) — fetch via the workflow in `docs/agents/issue-tracker.md`.
+1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.) — resolve and read through `/reading-and-writing-tickets`.
 2. A path the user passed as an argument.
 3. A PRD/spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
 4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
@@ -92,6 +92,22 @@ If the spec is missing, skip the Spec sub-agent and note this in the final repor
 Present the two reports under `## Standards` and `## Spec` headings, verbatim or lightly cleaned. Do **not** merge or rerank findings — the two axes are deliberately separate (see _Why two axes_).
 
 End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes — that's the reranking the separation exists to prevent.
+
+6. Persist the review
+
+After aggregation, use `/reading-and-writing-tickets` to resolve the configured review-artifact location and write or replace the artifact for the ticket.
+
+The artifact MUST include:
+
+- ticket reference and tracker path or URL;
+- source branch, base branch, and reviewed commit;
+- committed, staged, and unstaged scope;
+- validation commands and results;
+- the complete `Standards` report;
+- the complete `Spec` report, or `no spec available`;
+- verdict and timestamp.
+
+Ask `/reading-and-writing-tickets` to apply any configured tracker commit or publication operation. A review is not complete until the artifact is saved and durable. Report its path in the final response.
 
 ## Why two axes
 

@@ -1,6 +1,7 @@
 ---
 backend: local-markdown
 issue-root: .scratch
+review-root: .scratch/<feature-slug>/reviews
 ---
 
 # Issue tracker: Local Markdown
@@ -12,8 +13,11 @@ Issues and specs (you may know a spec as a PRD) live as markdown files in `.scra
 - One feature per directory: `.scratch/<feature-slug>/`
 - The spec is `.scratch/<feature-slug>/spec.md`
 - Implementation issues are one file per ticket at `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01` — never a single combined tickets file
-- Triage state is recorded as a `Status:` line near the top of each issue file (see `triage-labels.md` for the role strings)
+- Ticket metadata is stored in YAML frontmatter. The canonical fields are `id`, `title`, `type`, `triage`, `work_status`, `blocked_by`, and `parent` when applicable. See the `reading-and-writing-tickets` skill for the schema and operations
 - Comments and conversation history append to the bottom of the file under a `## Comments` heading
+- Review artifacts are stored at `.scratch/<feature-slug>/reviews/<NN>-<issue-slug>.md`
+- The review artifact records the ticket path, source branch, base branch, commit, validation, findings, verdict, and timestamp
+- The local Markdown store is the Git repository that contains `issue-root`. When it is a Git repository, commit all changed Markdown files in the local issue store before starting issue work. Use the `reading-and-writing-tickets` skill for this operation and the `writing-and-creating-git-commits` skill for the commit
 
 ## When a skill says "publish to the issue tracker"
 
@@ -23,13 +27,17 @@ Create a new file under `.scratch/<feature-slug>/` (creating the directory if ne
 
 Read the file at the referenced path. The user will normally pass the path or the issue number directly.
 
+## Git operations
+
+Use the `reading-and-writing-tickets` skill for local Markdown reads and writes. It owns the preflight, schema, review path, completion operation, and tracker-specific commit rules. Use the `writing-and-creating-git-commits` skill for every tracker or review commit.
+
 ## Wayfinding operations
 
 Used by `/wayfinder`. The **map** is a file with one **child** file per ticket.
 
 - **Map**: `.scratch/<effort>/map.md` — the Notes / Decisions-so-far / Fog body.
-- **Child ticket**: `.scratch/<effort>/issues/NN-<slug>.md`, numbered from `01`, with the question in the body. A `Type:` line records the ticket type (`research`/`prototype`/`grilling`/`task`); a `Status:` line records `claimed`/`resolved`.
-- **Blocking**: a `Blocked by: NN, NN` line near the top. A ticket is unblocked when every file it lists is `resolved`.
-- **Frontier**: scan `.scratch/<effort>/issues/` for files that are open, unblocked, and unclaimed; first by number wins.
-- **Claim**: set `Status: claimed` and save before any work.
-- **Resolve**: append the answer under an `## Answer` heading, set `Status: resolved`, then append a context pointer (gist + link) to the map's Decisions-so-far in `map.md`.
+- **Child ticket**: `.scratch/<effort>/issues/NN-<slug>.md`, numbered from `01`, with ticket metadata in frontmatter and the question in the body. Use `type: research`, `prototype`, `grilling`, or `task`.
+- **Blocking**: store direct blockers in frontmatter as `blocked_by: [ticket-id, ...]`. Do not store a second authoritative reverse edge.
+- **Frontier**: use the `reading-and-writing-tickets` skill to query open, unblocked, and unclaimed child tickets.
+- **Claim**: use the `reading-and-writing-tickets` skill to set `work_status: claimed` before any work.
+- **Resolve**: use the `reading-and-writing-tickets` skill to append the answer under `## Answer` and set the configured completion state. Append a context pointer to the map's Decisions-so-far in `map.md`.

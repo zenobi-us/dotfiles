@@ -9,9 +9,9 @@ Route `UserRequest` to the correct worktree workflow. This skill dispatches only
 
 # Rule 0: resolve the project issue tracker
 
-Before reading or changing a ticket, load `references/issue-tracker.md`. Resolve the active `ALIGNMENT_ROOT`, then read `$ALIGNMENT_ROOT/docs/agents/issue-tracker.md`. The project definition selects the backend and, for `backend: local-markdown`, the issue root. Resolve local issue files below `$ALIGNMENT_ROOT/<issue-root>`, not below the current process directory.
+Before reading or changing a ticket, load `references/issue-tracker.md`, then follow `files/devtools/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/SKILL.md`. That skill owns ticket selectors, backend resolution, schema, paths, reads, claims, review artifacts, comments, completion, and tracker commits. This skill owns only the Worktrunk workflow.
 
-A local Markdown ticket may use a path, number, or slug defined by the project tracker document. Read that document before selecting a file. Ask when a selector is ambiguous. Use the tracker document's read, claim, comment, and resolve operations. Do not call external tracker commands for a local Markdown backend.
+Every commit made by a worktree playbook MUST use the `writing-and-creating-git-commits` skill. Every commit title MUST contain the resolved issue reference. This applies to source commits, review-artifact commits, tracker-state commits, and the final merge commit.
 
 # Rule 1: detect the muxer
 
@@ -37,7 +37,7 @@ Either source gives one of `claude`, `pi`, `unknown-agent`. zot has no confirmed
 
 # Route
 
-Resolve the issue tracker before following a playbook that reads or updates a ticket. The playbook receives the resolved ticket identifier and local tracker path as working context.
+Resolve the issue tracker before following a playbook that reads or updates a ticket. The playbook receives the resolved `ticket` and `tracker path` as working context.
 
 ```bash
 scripts/router.ts route "$ARGUMENTS" --muxer <resolved-muxer> --agent <resolved-agent>

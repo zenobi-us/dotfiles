@@ -21,7 +21,7 @@ Before reading or writing domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALI
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline — challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `CONTEXT.md` for vocabulary is not this skill — that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)
 
-Inspect source code and committed domain artifacts when you check the model. Treat issue tracker content as planning input, not as codebase truth.
+Inspect source code and committed domain artifacts when you check the model. Use `/reading-and-writing-tickets` to read issue tracker content and resolve its canonical path or URL. Treat that content as planning input, not as codebase truth. This skill owns domain terms and decisions, not ticket mechanics.
 
 ## File structure
 

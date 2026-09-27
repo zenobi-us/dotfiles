@@ -23,7 +23,11 @@ Run typechecking regularly, single test files regularly, and the full test suite
 
 Once done, use /code-review to review the committed, staged, and unstaged changes. The review MUST include the worktree when the implementation is not committed yet.
 
-Commit your work to the current branch.
+Before implementation, use the `reading-and-writing-tickets` skill to resolve the ticket, read its requirements and blockers, claim it, and run any configured local tracker preflight.
+
+Commit your work to the current branch. Before every commit, call the `writing-and-creating-git-commits` skill. Pass the resolved ticket reference from the ticket skill. Keep the commit title within the normal subject limit.
+
+Use the `reading-and-writing-tickets` skill to update ticket state. Set completion only after validation, review, merge, and push succeed.
 
 ## Local repository rules
 

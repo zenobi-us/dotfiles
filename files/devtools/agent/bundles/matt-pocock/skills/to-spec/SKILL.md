@@ -22,6 +22,8 @@ Before resolving workflow or domain artifacts, follow [ALIGNMENT-ROOT.md](../../
 
 The issue tracker and triage label vocabulary should have been provided to you â€” run `/setup-matt-pocock-skills` if not.
 
+When publishing the spec, use `/reading-and-writing-tickets` for tracker selection, ticket schema, paths, fields, labels, and write operations. This skill owns spec synthesis and workflow intent only.
+
 ## Process
 
 1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec, and respect any ADRs in the area you're touching.
@@ -30,7 +32,7 @@ The issue tracker and triage label vocabulary should have been provided to you â
 
 Check with the user that these seams match their expectations.
 
-3. Write the spec using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` triage label - no need for additional triage.
+3. Write the spec using the template below, then ask `/reading-and-writing-tickets` to publish it to the configured issue tracker. Apply the `ready-for-agent` triage label through that skill; no additional triage is needed.
 
 <spec-template>
 

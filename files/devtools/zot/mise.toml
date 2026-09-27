@@ -1,14 +1,6 @@
 [dotfiles]
 "~/.local/state/zot/config.json" = { source = "./config.json", mode = "symlink" }
 "~/.local/state/zot/themes" = { source = "./themes", mode = "symlink" }
-"~/.local/state/zot/extensions/agent-core" = { source = "../agent/bundles/agent-core", mode = "symlink" }
-"~/.local/state/zot/extensions/creator" = { source = "../agent/bundles/creator", mode = "symlink" }
-"~/.local/state/zot/extensions/developer" = { source = "../agent/bundles/developer", mode = "symlink" }
-"~/.local/state/zot/extensions/matt-pocock" = { source = "../agent/bundles/matt-pocock", mode = "symlink" }
-"~/.local/state/zot/extensions/platform" = { source = "../agent/bundles/platform", mode = "symlink" }
-"~/.local/state/zot/extensions/researcher" = { source = "../agent/bundles/researcher", mode = "symlink" }
-"~/.local/state/zot/extensions/vanilla-green" = { source = "../agent/bundles/vanilla-green", mode = "symlink" }
-"~/.local/state/zot/extensions/writing" = { source = "../agent/bundles/writing", mode = "symlink" }
 
 [bootstrap.repos]
 "~/.local/state/zot/extensions/zot-annotate" = { url = "https://github.com/zenobi-us/zot-annotate.git", ref = "master" }
@@ -18,6 +10,4 @@
 "~/.local/state/zot/extensions/zot-question" = { url = "https://github.com/zenobi-us/zot-question.git", ref = "master" }
 "~/.local/state/zot/extensions/zot-skill-cmds" = { url = "https://github.com/zenobi-us/zot-skill-cmds.git", ref = "master" }
 "~/.local/state/zot/extensions/zot-jev" = { url = "https://github.com/patriceckhart/zot-jev.git", ref = "main" }
-"~/.local/state/zot/extensions/zot-loop" = { url = "https://github.com/patriceckhart/zot-loop.git", ref = "main" }
 "~/.local/state/zot/extensions/zot-todo" = { url = "https://github.com/patriceckhart/zot-todo.git", ref = "main" }
-

@@ -44,6 +44,10 @@ Every comment or issue posted to the issue tracker during triage **must** start 
 - [AGENT-BRIEF.md](AGENT-BRIEF.md): how to write durable agent briefs
 - [OUT-OF-SCOPE.md](OUT-OF-SCOPE.md): how the `.out-of-scope/` knowledge base works
 
+## Tracker writes
+
+Use `/reading-and-writing-tickets` for every ticket or issue read and write. That skill owns tracker selection, schema, paths, fields, comments, Git preflight, commits, and dependency mechanics. This skill owns triage roles and workflow intent. Triage changes the triage state only. Implementation claims use the configured claim operation; completion uses the configured completion operation only after verified merge and push.
+
 ## Roles
 
 Two **category** roles:

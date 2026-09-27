@@ -3,3 +3,11 @@
 "~/.pi/agent/AGENTS.md" = { source = "./AGENTS.md", mode = "symlink" }
 "~/.pi/agent/agents" = { source = "./agents", mode = "symlink" }
 "~/.pi/agent/bundles" = { source = "./bundles", mode = "symlink" }
+"~/.local/state/zot/extensions/agent-core" = { source = "./bundles/agent-core", mode = "symlink" }
+"~/.local/state/zot/extensions/creator" = { source = "./bundles/creator", mode = "symlink" }
+"~/.local/state/zot/extensions/developer" = { source = "./bundles/developer", mode = "symlink" }
+"~/.local/state/zot/extensions/matt-pocock" = { source = "./bundles/matt-pocock", mode = "symlink" }
+"~/.local/state/zot/extensions/platform" = { source = "./bundles/platform", mode = "symlink" }
+"~/.local/state/zot/extensions/researcher" = { source = "./bundles/researcher", mode = "symlink" }
+"~/.local/state/zot/extensions/writing" = { source = "./bundles/writing", mode = "symlink" }
+"~/.agents/hooks/shared-context.json" = { source = "./bundles/agent-core/hooks/hooks.json", mode = "symlink" }

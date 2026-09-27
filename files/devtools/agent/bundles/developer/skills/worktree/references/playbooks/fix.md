@@ -6,13 +6,7 @@ This playbook receives `muxer` and `agent` already resolved by the `worktree` sk
 
 ## Ticket resolution
 
-Load `references/issue-tracker.md` and the project issue tracker definition before resolving the ticket. Resolve the ticket before fixing work.
-
-1. Use an explicit issue or ticket identifier in `UserRequest`.
-2. If `UserRequest` has no identifier, use the most recent unambiguous ticket mention in the conversation.
-3. Cross-check the inferred ticket against the current worktree and persisted workflow or review records.
-4. If no unique ticket matches, or candidates conflict, ask the user which ticket to fix.
-5. Do not guess or silently choose a ticket.
+Load `references/issue-tracker.md` and the ticket skill before resolving the ticket. Use the ticket skill to return the canonical `ticket` and `tracker path`. If no identifier is present, use the most recent unambiguous ticket mention in the conversation. Cross-check it against workflow records. Ask when it is missing or ambiguous. Do not guess.
 
 # Preconditions
 
@@ -24,12 +18,12 @@ Load `references/issue-tracker.md` and the project issue tracker definition befo
 - Follow `ALIGNMENT-ROOT.md`. Do not invent a shared path or write alignment files to inactive storage.
 - Prefer `storage="shared"` for memory shared across worktrees when it is active. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.
 - Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`.
-- Require a matching persisted `FAILURE` verdict from the `review` playbook, read from `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md` in the active shared agent context root.
+- Require a matching persisted `FAILURE` verdict from the `review` playbook, read from the tracker-defined review artifact path.
 - Do not create a second worktree for the same source branch.
 
 # Process
 
-1. Resolve the ticket, then identify the source branch, worktree path, and blocking findings from `UserRequest` or the review artifact at `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`.
+1. Resolve the ticket, then identify the source branch, worktree path, and blocking findings from `UserRequest` or the tracker-defined review artifact.
 2. Resolve the active `ALIGNMENT_ROOT`, run `/agent-core context report`, and select the applicable engineering skill.
 3. Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active alignment storage.
 4. Use Worktrunk to verify that the source worktree exists and that the branch is correct.

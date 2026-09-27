@@ -4,12 +4,12 @@
 
 ## Ticket resolution
 
-Load `references/issue-tracker.md` and the project issue tracker definition first. Then apply the same rule as every other subcommand: explicit identifier in `UserRequest`, else the most recent unambiguous ticket mention in the conversation, else ask. For local Markdown, retain the resolved issue path. Do not guess.
+Load `references/issue-tracker.md` and the ticket skill first. Use the ticket skill to resolve the selector and return the canonical `ticket` and `tracker path`. If no identifier is present, use the most recent unambiguous ticket mention in the conversation. Ask when it is missing or ambiguous. Do not guess.
 
 ## Process
 
 1. Resolve the ticket.
-2. Read the persisted workflow record for the ticket (written by `start`/`fix`) and the review artifact at `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`, if one exists.
+2. Read the persisted workflow record for the ticket (written by `start`/`fix`) and the review artifact at the tracker-defined path, if one exists.
 3. Determine the last known state from what is present:
    - No review artifact yet → next step is `review`.
    - Review artifact with verdict `FAILURE` → next step is `fix`.

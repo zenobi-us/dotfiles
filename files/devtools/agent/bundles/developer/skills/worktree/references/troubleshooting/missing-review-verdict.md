@@ -2,7 +2,7 @@
 
 ## Symptom
 
-`submit` or `finish` cannot proceed: no persisted `SUCCESS` verdict exists at `<ALIGNMENT_ROOT>/docs/agents/reviews/{ticket-id}.md`, or the file's scope does not match the resolved ticket.
+`submit` or `finish` cannot proceed: no persisted `SUCCESS` verdict exists at the review artifact path returned by the `reading-and-writing-tickets` skill, or the file's scope does not match the resolved ticket.
 
 ## Cause
 

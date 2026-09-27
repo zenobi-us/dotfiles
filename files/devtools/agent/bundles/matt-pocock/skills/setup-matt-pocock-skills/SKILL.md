@@ -128,7 +128,9 @@ Write configuration files beneath `ALIGNMENT_ROOT` using these seeds:
 - [triage-labels.md](./triage-labels.md)
 - [domain.md](./domain.md)
 
-Every generated `docs/agents/issue-tracker.md` MUST begin with YAML frontmatter naming the actual backend, such as `backend: github`, `backend: gitlab`, `backend: jira`, or `backend: local-markdown`. Local markdown MUST also declare `issue-root: .scratch`. `/agent-core context migrate` uses this metadata and MUST NOT infer the backend from prose.
+Every generated `docs/agents/issue-tracker.md` MUST begin with YAML frontmatter naming the actual backend, such as `backend: github`, `backend: gitlab`, `backend: jira`, or `backend: local-markdown`. Local markdown MUST also declare `issue-root: .scratch` and `review-root: .scratch/<feature-slug>/reviews`. `/agent-core context migrate` uses this metadata and MUST NOT infer the backend from prose.
+
+For local Markdown, the generated tracker document MUST define separate `Triage:` and `Work status:` fields. `Work status: completed` is valid only after verification, merge, and push succeed. Validate these fields and `review-root` after writing the tracker document.
 
 For another tracker, write the tracker document from the user's description and use the actual service identifier as `backend`.
 
