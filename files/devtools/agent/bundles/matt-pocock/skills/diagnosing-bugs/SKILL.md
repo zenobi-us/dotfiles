@@ -151,12 +151,8 @@ Required before declaring done:
 
 **Then ask: what would have prevented this bug?** If the answer involves architectural change (no good test seam, tangled callers, hidden coupling) hand off to the `/improve-codebase-architecture` skill with the specifics. Make the recommendation **after** the fix is in, not before — you have more information now than when you started.
 
-## Local repository rules
+## Context resolution
 
-Before reading or writing workflow or domain artifacts:
+Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
-2. Resolve alignment paths against `ALIGNMENT_ROOT`.
-3. Keep source code and ordinary project files relative to `repository-root`.
-4. Do not silently mix alignment roots.
-5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.
+For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

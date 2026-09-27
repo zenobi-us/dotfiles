@@ -17,7 +17,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 
 # Domain Modeling
 
-Before reading or writing domain artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). Every structure below is rooted at the active alignment root.
+Before reading or writing domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its reported `root` as `ALIGNMENT_ROOT`; every structure below is rooted at that CLI-reported root. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline — challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `CONTEXT.md` for vocabulary is not this skill — that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)
 
@@ -25,19 +25,15 @@ Inspect source code and committed domain artifacts when you check the model. Use
 
 ## File structure
 
-Most repos have a single context:
+Most repos have a single context under the CLI-reported `ALIGNMENT_ROOT`:
 
-```
-/
-├── CONTEXT.md
-├── docs/
-│   └── adr/
-│       ├── 0001-event-sourced-orders.md
-│       └── 0002-postgres-for-write-model.md
-└── src/
+```text
+<ALIGNMENT_ROOT>/CONTEXT.md
+<ALIGNMENT_ROOT>/docs/adr/
+<repository-root>/src/
 ```
 
-If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
+If a `CONTEXT-MAP.md` exists at `ALIGNMENT_ROOT`, the repo has multiple contexts. The map points to where each one lives:
 
 ```
 /
@@ -75,7 +71,7 @@ When the user states how something works, check whether the code agrees. If you 
 
 ### Update CONTEXT.md inline
 
-When a term is resolved, update `CONTEXT.md` right there. Don't batch these up — capture them as they happen. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
+When a term is resolved, update `ALIGNMENT_ROOT/CONTEXT.md` right there. Do not batch these updates. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md). After a shared-root write, read the shared-context publishing procedure. If the file is in a shared-context source directory, run `cli.ts index <dir>`.
 
 `CONTEXT.md` should be totally devoid of implementation details. Do not treat `CONTEXT.md` as a spec, a scratch pad, or a repository for implementation decisions. It is a glossary and nothing else.
 
@@ -89,12 +85,8 @@ Only offer to create an ADR when all three are true:
 
 If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md).
 
-## Local repository rules
+## Context resolution
 
-Before reading or writing workflow or domain artifacts:
+Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
-2. Resolve alignment paths against `ALIGNMENT_ROOT`.
-3. Keep source code and ordinary project files relative to `repository-root`.
-4. Do not silently mix alignment roots.
-5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.
+For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

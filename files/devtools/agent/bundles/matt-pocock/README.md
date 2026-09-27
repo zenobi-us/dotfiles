@@ -14,7 +14,7 @@ Pi-specific divergence is limited to [ALIGNMENT-ROOT.md](./ALIGNMENT-ROOT.md), s
 
 ## Context extension
 
-See the `shared-context` skill for how the agent-core extension resolves an origin-keyed shared root, the `/agent-core context` subcommands, and the injected `<shared-agent-context>` XML shape that this bundle's skills read via [ALIGNMENT-ROOT.md](./ALIGNMENT-ROOT.md). The shared root is configured in `~/.config/shared-agent-context/config.json` (`storage_path`), not hardcoded to any one tool's directory.
+See the `shared-context` skill for how the agent-core extension resolves an origin-keyed shared root with `scripts/shared-context/cli.ts`, and for the injected `<shared-agent-context>` XML shape that this bundle's skills read via [ALIGNMENT-ROOT.md](./ALIGNMENT-ROOT.md). The shared root is configured in `~/.config/shared-agent-context/config.json` (`storage_path`), not hardcoded to any one tool's directory.
 
 `root` and `shared-root` both identify the active alignment storage. They point to the repository in repository mode and the origin-keyed external directory in shared mode. A `.storage` marker in the external directory records the selected mode, allowing migration back to repository storage without deleting the shared copy. The external candidate is intentionally omitted from XML while repository storage is active.
 

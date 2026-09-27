@@ -18,11 +18,14 @@ This skill owns ticket mechanics and ticket schema. Calling skills own workflow 
 
 Before reading or writing a ticket:
 
-1. Resolve `ALIGNMENT_ROOT` from the active shared-agent context. If no shared context exists, use the repository root after the required context report.
-2. Read `$ALIGNMENT_ROOT/docs/agents/issue-tracker.md`.
-3. Read its YAML frontmatter.
-4. Select the backend-specific operation below.
-5. Preserve the configured tracker format. Do not infer a backend from file paths or prose.
+1. Run the shared-context CLI `report` procedure from `agent-core:shared-context` in the repository root.
+2. Use the reported `root` as `ALIGNMENT_ROOT`. Use the reported `repository-root` for the repository. Do not inspect prompt or environment data, or derive either path by hand.
+3. Read `<reported-root>/docs/agents/issue-tracker.md`.
+4. Read its YAML frontmatter.
+5. Select the backend-specific operation below.
+6. Preserve the configured tracker format. Do not infer a backend from file paths or prose.
+
+For a write under a shared `ALIGNMENT_ROOT`, read the shared-context publishing procedure after the write. Run `cli.ts index <dir>` after adding or removing a file in a shared-context source directory.
 
 If the tracker definition is missing, malformed, or lacks the required operation, stop and ask the user to run `/setup-matt-pocock-skills` or to define the missing operation.
 
@@ -43,7 +46,7 @@ Calling skills MUST NOT parse or modify ticket fields directly when this skill c
 For `backend: local-markdown`, resolve files below:
 
 ```text
-$ALIGNMENT_ROOT/<issue-root>
+`<issue-root>` resolved under the CLI-reported `ALIGNMENT_ROOT`
 ```
 
 Read the tracker document's `review-root` when a review artifact is involved.
@@ -195,7 +198,7 @@ For GitHub, GitLab, Linear, Jira, or another configured backend:
 
 ## Result contract
 
-After every write, report:
+After every write, read the shared-context publishing procedure when the write used a shared `ALIGNMENT_ROOT`, then report:
 
 - operation;
 - ticket identifier;

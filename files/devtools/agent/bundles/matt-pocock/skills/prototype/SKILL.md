@@ -35,16 +35,12 @@ The two branches produce very different artifacts — getting this wrong wastes 
 3. **No persistence by default.** State lives in memory. Persistence is the thing the prototype is _checking_, not something it should depend on. If the question explicitly involves a database, hit a scratch DB or a local file with a clear "PROTOTYPE — wipe me" name.
 4. **Skip the polish.** No tests, no error handling beyond what makes the prototype _runnable_, no abstractions. The point is to learn something fast.
 5. **Surface the state.** After every action (logic) or on every variant switch (UI), print or render the full relevant state so the user can see what changed.
-6. **Capture it when done.** Fold any validated decision into the real code, then capture the prototype itself as a **primary source**: commit it to a throwaway branch, out of main, and leave a context pointer to that branch on the implementation issue. Capture the answer too — the verdict and the question it settled — in the issue or a commit. The main branch keeps only the validated decision.
+6. **Capture it when done.** Fold any validated decision into the real code, then capture the prototype itself as a **primary source**: commit it to a throwaway branch, out of main, and leave a context pointer to that branch on the implementation issue. Capture the answer too — the verdict and the question it settled — in the issue or a commit. If the context pointer is written under shared storage, publish it through the shared-context procedure. The main branch keeps only the validated decision.
 
-If the prototype writes context, ADRs, or issue links, resolve those paths against `ALIGNMENT_ROOT` first.
+If the prototype writes context, ADRs, or issue links, use the CLI-reported `ALIGNMENT_ROOT`. Run the shared-context CLI `report` procedure first. For a shared-root write, read the publishing procedure afterwards; run `cli.ts index <dir>` after adding or removing a file in a source directory.
 
-## Local repository rules
+## Context resolution
 
-Before reading or writing workflow or domain artifacts:
+Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
-2. Resolve alignment paths against `ALIGNMENT_ROOT`.
-3. Keep source code and ordinary project files relative to `repository-root`.
-4. Do not silently mix alignment roots.
-5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.
+For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

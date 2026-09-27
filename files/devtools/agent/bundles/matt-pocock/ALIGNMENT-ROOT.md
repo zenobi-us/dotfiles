@@ -4,8 +4,15 @@ Matt Pocock engineering skills use one active alignment root for workflow config
 
 ## Resolve the root
 
-1. If the system prompt contains `<shared-agent-context root="...">`, `ALIGNMENT_ROOT` MUST be that absolute `root` path.
-2. Otherwise `ALIGNMENT_ROOT` MUST be the Git repository root.
+Run the shared-context CLI procedure from `agent-core:shared-context` in the repository root before reading or writing alignment artifacts:
+
+```bash
+<shared-context-skill-root>/scripts/shared-context/cli.ts report
+```
+
+Run `cli.ts` directly. Do not prefix it with Bun's runner. Use the reported `root` as `ALIGNMENT_ROOT` and the reported `repository-root` for source code and ordinary project files. The CLI is the source of truth. Do not inspect the prompt or environment, and do not derive a path from the origin or a storage configuration.
+
+If the CLI exits with a non-zero status, stop and report the error. Use `cli.ts anchor` to select a target directory before a shared-context source write. Run `cli.ts index <dir>` after adding or removing a file in a source directory. After any write under a shared `ALIGNMENT_ROOT`, read the shared-context publishing procedure and publish when its rules require it.
 
 Resolve these paths against `ALIGNMENT_ROOT`, even when an upstream skill calls it the repo root:
 

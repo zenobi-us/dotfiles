@@ -24,13 +24,13 @@ Scaffold the configuration that the engineering skills assume:
 - **Triage labels** — the strings used for the five canonical triage roles
 - **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
 
-Before reading or writing these artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). This is a prompt-driven skill: explore, present what you found, confirm with the user, then write.
+Before reading or writing these artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its reported `root` as `ALIGNMENT_ROOT` and its reported `repository-root` for repository files. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). The CLI is the source of truth for storage and path resolution.
 
 ## Process
 
 ### 1. Resolve roots and explore
 
-Inspect the system prompt for `<shared-agent-context>`. Record its `storage`, `root`, `shared-root`, `repository-root`, `source`, `origin`, and `slug` attributes. If it is absent, repository storage is the only active mode and the Git repository root is `ALIGNMENT_ROOT`.
+Run the shared-context CLI `report` command and record its `storage`, `root`, `shared root`, `origin`, and `slug` output. Use the reported `root` as `ALIGNMENT_ROOT`. Do not resolve storage from prompt text, environment variables, configuration paths, or repository path formulas.
 
 Inspect the repository root for source and Git state:
 
@@ -39,7 +39,7 @@ Inspect the repository root for source and Git state:
 - monorepo signals: `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or populated `packages/*/src/`
 - whether `triage` is installed
 
-Inspect `ALIGNMENT_ROOT` for alignment state:
+Inspect the reported `ALIGNMENT_ROOT` for alignment state:
 
 - `AGENTS.md` or the active repository instruction file
 - `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, and context-scoped `src/*/docs/adr/`
@@ -57,9 +57,9 @@ Summarise what's present and missing. Take the sections in order, one answer at 
 Default to the currently active storage.
 
 - **Repository** — alignment files live in the Git working tree.
-- **Shared** — alignment files live beneath `<storage_path>/<origin-slug>/` (see `~/.config/shared-agent-context/config.json`); source code remains in the repository.
+- **Shared** — alignment files live under the `root` reported by the CLI; source code remains in the repository.
 
-If no `<shared-agent-context>` exists, do not invent a shared path. If repository storage is active and the user chooses first-time shared storage, run `/agent-core context init`, stop, and rerun this skill on the next agent turn. If populated alignment storage must switch modes, run `/agent-core context migrate`, stop, and rerun on the next turn. Never write into an inactive destination.
+If storage must change, ask the user to run the shared-context `init` or `migrate` command through its documented CLI procedure. Stop after that command. Never write into an inactive destination.
 
 **Section B — Issue tracker.**
 
@@ -92,9 +92,11 @@ Show one draft containing:
 - `docs/agents/domain.md`
 - `docs/agents/triage-labels.md` when `triage` is installed
 
-Let the user edit before writing.
+Let the user edit before writing. If the write uses shared storage, show the resolved root and the publication steps.
 
 ### 4. Write
+
+Before each write, confirm that the destination is under the current CLI-reported `ALIGNMENT_ROOT`. Use `cli.ts anchor` when selecting a shared-context source directory. After adding or removing a file in such a directory, run `cli.ts index <dir>`. Read the shared-context publishing procedure after every shared-root write and publish when required.
 
 For repository storage, edit `CLAUDE.md` when it exists, otherwise `AGENTS.md`. If neither exists, ask which one to create. Never create the other file when one already exists.
 
@@ -128,7 +130,7 @@ Write configuration files beneath `ALIGNMENT_ROOT` using these seeds:
 - [triage-labels.md](./triage-labels.md)
 - [domain.md](./domain.md)
 
-Every generated `docs/agents/issue-tracker.md` MUST begin with YAML frontmatter naming the actual backend, such as `backend: github`, `backend: gitlab`, `backend: jira`, or `backend: local-markdown`. Local markdown MUST also declare `issue-root: .scratch` and `review-root: .scratch/<feature-slug>/reviews`. `/agent-core context migrate` uses this metadata and MUST NOT infer the backend from prose.
+Every generated `docs/agents/issue-tracker.md` MUST begin with YAML frontmatter naming the actual backend, such as `backend: github`, `backend: gitlab`, `backend: jira`, or `backend: local-markdown`. Local markdown MUST also declare `issue-root: .scratch` and `review-root: .scratch/<feature-slug>/reviews`. The shared-context CLI migration procedure uses this metadata and MUST NOT infer the backend from prose.
 
 For local Markdown, the generated tracker document MUST define separate `Triage:` and `Work status:` fields. `Work status: completed` is valid only after verification, merge, and push succeed. Validate these fields and `review-root` after writing the tracker document.
 
@@ -138,14 +140,10 @@ Only local markdown stores issue data beneath `ALIGNMENT_ROOT`; external tracker
 
 ### 5. Done
 
-Report active storage, absolute `ALIGNMENT_ROOT`, and files written. Mention that `docs/agents/*.md` can be edited directly later. A storage change activates on the next agent turn.
+Report active storage, absolute `ALIGNMENT_ROOT`, and files written. Mention that `docs/agents/*.md` can be edited directly later. After `init` or `migrate`, run the shared-context CLI `report` command again and use its new output immediately.
 
-## Local repository rules
+## Context resolution
 
-Before reading or writing workflow or domain artifacts:
+Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-1. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
-2. Resolve alignment paths against `ALIGNMENT_ROOT`.
-3. Keep source code and ordinary project files relative to `repository-root`.
-4. Do not silently mix alignment roots.
-5. All agent-authored prose MUST follow ASD-STE100 Simplified Technical English.
+For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

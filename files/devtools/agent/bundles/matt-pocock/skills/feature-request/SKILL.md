@@ -17,7 +17,7 @@ If either input is missing, ask for it before doing repository work. If `$IDEA` 
 
 ## Non-negotiable outputs
 
-Create one Markdown file in the active shared-context root before the final decision. Keep it when the idea is not viable. Update the same file after each completed stage: workspace establishment, repository-rule discovery, outcome clarification, feasibility research, capability grouping, viability gate, and submission preparation. Include:
+Run the shared-context CLI `report` procedure from the repository root. Use its reported `root` as `ALIGNMENT_ROOT`, then use `cli.ts anchor` to select the destination directory before creating the Markdown draft. Read the shared-context publishing procedure after each shared-root write and run `cli.ts index <dir>` after adding or removing a file in a source directory. Create one Markdown file in the active shared-context root before the final decision. Keep it when the idea is not viable. Update the same file after each completed stage: workspace establishment, repository-rule discovery, outcome clarification, feasibility research, capability grouping, viability gate, and submission preparation. Include:
 
 - repository and revision examined
 - original feature idea and clarified user answers
@@ -53,10 +53,10 @@ Use a stable name such as `feature-requests/<repo-slug>-<date>-<short-slug>.md` 
    ```
 
    Record the clone URL, path, branch, commit, and remote state.
-4. Treat the user's request for this workflow as explicit authorisation to run shared-context `init` for the cloned repository. Invoke the shared-context skill with the clone as the repository context. Run `report` first and confirm that the origin and slug match `$REPO`. Run `init` only for that clone. Then run `report` and `files` again to identify the active shared root and its conventions. Stop if the origin, slug, or root does not match.
-5. Create the feature-request Markdown draft in the reported active shared root. Confirm that the file exists before continuing. Update it after every completed stage.
+4. Run the shared-context CLI `report` from inside the clone. Confirm that the reported origin and slug match `$REPO`. Use the reported `root`; do not derive a shared path or run `init` or `migrate` unless the user explicitly requests a storage change.
+5. Use `cli.ts anchor` to select the feature-request directory. Create the Markdown draft in the reported active shared root. Confirm that the file exists, run `cli.ts index <dir>` when the directory is a source directory, and read the publishing procedure before continuing. Update the draft after every completed stage.
 
-**Completion criterion:** The repository is cloned in a temporary directory, the clone revision is recorded, shared context is initialised for the matching origin, and the draft exists in the active shared root.
+**Completion criterion:** The repository is cloned in a temporary directory, the clone revision is recorded, the CLI reports the matching origin and root, and the draft exists in the active shared root.
 
 ### 2. Read repository instructions before analysis
 
