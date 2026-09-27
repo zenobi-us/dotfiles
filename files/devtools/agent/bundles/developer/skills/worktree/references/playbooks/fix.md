@@ -14,20 +14,21 @@ Load `references/issue-tracker.md` and the ticket skill before resolving the tic
 - Use `references/muxers/<muxer>.md` for pane and agent commands. Do not use commands from a different muxer's contract.
 - Use `references/agents/<agent>.md` for the launch command. If `agent` is `unknown-agent` and no override was given, ask the user before proceeding.
 - Use the applicable Matt Pocock engineering skill, normally `implement`, `tdd`, or `diagnosing-bugs`.
-- Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/agent-core context report` and read relevant context and ADRs before changing code.
-- Follow `ALIGNMENT-ROOT.md`. Do not invent a shared path or write alignment files to inactive storage.
-- Prefer `storage="shared"` for memory shared across worktrees when it is active. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.
-- Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`.
+- Treat the shared agent context as durable project memory. Run `<shared-context-skillroot>/scripts/shared-context/cli.ts` from the source repository and use its reported `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` or a ticket path by hand.
+- Follow `ALIGNMENT-ROOT.md` from the reported root. `storage: repository` and shared stores without a usable remote are valid local-only modes; do not invent, initialise, or publish a shared path.
+- Use `cli.ts anchor --source local --key <ticket-id>` for ticket-scoped files and use the returned directory. Respect private and local-only access boundaries, and stop on a non-zero CLI result.
+- Prefer `storage: shared` when the CLI reports it. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.
+- Follow the `agent-core:shared-context` skill's write and publishing rules for every file you create or update under the reported root.
 - Require a matching persisted `FAILURE` verdict from the `review` playbook, read from the tracker-defined review artifact path.
 - Do not create a second worktree for the same source branch.
 
 # Process
 
 1. Resolve the ticket, then identify the source branch, worktree path, and blocking findings from `UserRequest` or the tracker-defined review artifact.
-2. Resolve the active `ALIGNMENT_ROOT`, run `/agent-core context report`, and select the applicable engineering skill.
-3. Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active alignment storage.
+2. Run the shared-context CLI from the source repository, use its reported root and storage mode, and select the applicable engineering skill.
+3. Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the reported root.
 4. Use Worktrunk to verify that the source worktree exists and that the branch is correct.
-5. Write `/tmp/{ticket-id}-fix-handoff.md` with only the blocking findings, exact files, source worktree path, active `ALIGNMENT_ROOT` and storage mode, selected engineering skill, relevant context files, expected validation command, and these completion instructions:
+5. Write `/tmp/{ticket-id}-fix-handoff.md` with only the blocking findings, exact files, source worktree path, CLI-reported root and storage mode, selected engineering skill, relevant context files, expected validation command, and these completion instructions:
    - Fix the blocking findings.
    - Run the expected validation command.
    - End the final response with the exact marker `WORKTREE_FIX_DONE` when the fix and validation pass.
@@ -37,8 +38,8 @@ Load `references/issue-tracker.md` and the ticket skill before resolving the tic
 8. If the fixer reaches `blocked`, fails validation, or does not include `WORKTREE_FIX_DONE`, report the failure and do not start a review. See `references/troubleshooting/fixer-agent-blocked.md`.
 9. If the fixer includes `WORKTREE_FIX_DONE`, close its pane or session per the active muxer contract, then run this skill again with `review {ticket-id}`.
 10. Do not create a second worktree for the same source branch. Worktrunk owns the checkout.
-11. Record the fixer agent name, pane/session identifier, active `ALIGNMENT_ROOT`, and storage mode in the workflow record.
-12. If the active `ALIGNMENT_ROOT` has `storage="shared"`, follow `SHARED-CONTEXT-LINKS.md`'s write rule for the workflow record.
+11. Record the fixer agent name, pane/session identifier, CLI-reported root, and storage mode in the workflow record.
+12. If the CLI reports `storage: shared`, publish the workflow record as required by the `agent-core:shared-context` skill. If it reports local-only or private storage, keep the record within that access boundary and do not build a public link.
 
 # Output
 

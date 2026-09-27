@@ -14,11 +14,13 @@ Use conversation context only to identify the scope. Do not use it as evidence t
 
 - Use the `worktrunk` skill. Worktrunk is required for worktree and branch inspection.
 - Use the Matt Pocock `code-review` skill.
-- Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Follow `ALIGNMENT-ROOT.md` before reading alignment files.
-- Prefer `storage="shared"` for memory shared across worktrees when it is active. Record any durable domain or architecture decision with `domain-modeling` or `codebase-design` in the active alignment storage.
+- Treat the shared agent context as durable project memory. Run `<shared-context-skillroot>/scripts/shared-context/cli.ts` from the repository being reviewed and use its reported `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` or a ticket path by hand.
+- Follow `ALIGNMENT-ROOT.md` from the reported root before reading alignment files. `storage: repository` and a shared store with no remote are valid local-only modes; do not initialise or publish them.
+- Use `cli.ts anchor --source local --key <ticket-id>` for ticket-scoped files and use its returned directory. Respect the shared-context access boundary: private or local-only stores use local paths or `SharedContext/<relative-path>`, not public URLs.
+- Prefer `storage: shared` for memory shared across worktrees when the CLI reports it. Record any durable domain or architecture decision with `domain-modeling` or `codebase-design` in the active alignment storage.
 - Store the review artifact at the path returned by the ticket skill for the active tracker.
 - Never write review artifacts to `/tmp` or leave them only in chat.
-- Follow `SHARED-CONTEXT-LINKS.md`'s write rule for every file you create or update under `ALIGNMENT_ROOT`. The `fix`, `finish`, and `submit` playbooks read the tracker-defined review artifact and will not see an uncommitted or unpushed copy.
+- Follow the `agent-core:shared-context` skill's write and publishing rules for every file you create or update under the CLI-reported root. The `fix`, `finish`, and `submit` playbooks read the tracker-defined review artifact and will not see an uncommitted or unpushed copy. Stop on a non-zero shared-context CLI result.
 - Do not change source code during review.
 - Do not rely on chat context as the review gate.
 
@@ -34,8 +36,8 @@ You must identify all of these items:
 
 # Process
 
-1. Resolve the active `ALIGNMENT_ROOT` and run `/agent-core context report`.
-2. Read the relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the active alignment root.
+1. Run the shared-context CLI from the repository being reviewed. Use its reported root and storage mode; do not construct either path manually.
+2. Read the relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from that reported root.
 3. Resolve the current worktree (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
 4. Use Worktrunk and Git to identify the source branch, base branch, and actual diff.
 5. Use the `code-review` skill, and use `domain-modeling` or `codebase-design` when the findings concern domain terms or module boundaries.

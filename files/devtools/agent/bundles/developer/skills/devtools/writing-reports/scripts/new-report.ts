@@ -16,7 +16,14 @@ const PLACEHOLDER = "TICKET &mdash; report title";
 const USAGE = `usage: new-report.ts <destination-dir> <title>
 
   <destination-dir>  Directory to create. Must not exist.
-                     Example: "$ALIGNMENT_ROOT/TICKET-1/manual-tests/report"
+                     For shared-context reports, get the ticket anchor from the
+                     shared-context CLI. Do not build an ALIGNMENT_ROOT path by hand:
+
+                       REPORT_ROOT=$("<shared-context-skillroot>/scripts/shared-context/cli.ts" anchor --source local --key "<ticket-id>")
+                       new-report.ts "$REPORT_ROOT/manual-tests/report" "<ticket-id> &mdash; what this proves"
+
+                     Use the CLI-reported root and storage boundary. Local-only or
+                     private stores stay local and must not receive a public URL.
   <title>            Report title. Appears in <title> and the page heading.
 
 The created directory is self-contained: index.html, its own assets/ copy, an

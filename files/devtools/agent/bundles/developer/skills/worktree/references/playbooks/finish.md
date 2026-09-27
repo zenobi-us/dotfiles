@@ -12,9 +12,10 @@ Load `references/issue-tracker.md` and the ticket skill before resolving the tic
 
 - Use the `worktrunk` skill. Worktrunk is required for worktree operations.
 - Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
-- Treat the shared agent context as durable project memory. Resolve `ALIGNMENT_ROOT` from `<shared-agent-context>` or fall back to the repository root. Run `/agent-core context report` and read relevant context and ADRs before merging.
-- Follow `ALIGNMENT-ROOT.md`. Keep alignment files in the active storage location and keep source code, commits, and branches in the repository worktree.
-- Follow `SHARED-CONTEXT-LINKS.md` for the write rule (any shared-context file created or updated while closing this ticket) and the reference rule (linking ADRs, tasks, or the review artifact in the final commit message).
+- Treat the shared agent context as durable project memory. Run `<shared-context-skillroot>/scripts/shared-context/cli.ts` from the source repository and use its reported `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` or a ticket path by hand.
+- Follow `ALIGNMENT-ROOT.md` from the reported root. Keep alignment files in that reported storage and keep source code, commits, and branches in the repository worktree. Local-only and private stores remain within their access boundary.
+- Run the CLI before choosing any context path or link. Use `cli.ts anchor --source local --key <ticket-id>` for ticket-scoped files, and use the returned directory rather than joining paths yourself.
+- Follow the `Shared-context writes and links` section of the `agent-core:shared-context` skill for writes, publishing, and access-boundary checks. Use `SharedContext/<relative-path>` for a private or local-only reference; do not create a public URL.
 - Follow `references/issue-tracker.md` and the ticket skill for the configured tracker and returned `tracker path`.
 - Require a matching persisted `SUCCESS` verdict from the `review` playbook at the tracker-defined review artifact path. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
 - Do not remove a worktree while an agent still runs inside it.
@@ -28,7 +29,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 
 # Process
 
-1. Resolve the active `ALIGNMENT_ROOT` and run `/agent-core context report`.
+1. Run the shared-context CLI from the source repository. Use its reported root and storage mode; do not construct either path manually.
 2. Resolve the source and base worktrees (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
 3. Use Worktrunk to verify the source branch and worktree state.
 4. Make sure that the source worktree has no unintended changes.
@@ -37,7 +38,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 7. Switch to or focus the base worktree. Do not run merge operations from an active source-agent pane or session.
 8. Update the base branch from its remote.
 9. Squash merge the source branch into the base branch.
-10. Use the `writing-and-creating-git-commits` skill for the final merge commit message. Put the ticket reference in the commit title. Include the ticket link or the `tracker path` returned by the ticket skill in the commit body. Include a link, per `SHARED-CONTEXT-LINKS.md`'s reference rule, to every ADR the review verdict relied on and to the persisted review artifact itself.
+10. Use the `writing-and-creating-git-commits` skill for the final merge commit message. Put the ticket reference in the commit title. Include the ticket link or the `tracker path` returned by the ticket skill in the commit body. Include a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on and to the persisted review artifact itself.
 11. Push the base branch.
 12. After the merge and push succeed, use the ticket skill to complete the matching ticket. Follow its tracker and commit rules.
 13. Remove the source worktree with Worktrunk only after the push and ticket update succeed.

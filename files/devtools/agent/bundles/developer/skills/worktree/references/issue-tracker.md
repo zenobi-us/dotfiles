@@ -5,7 +5,32 @@ This reference routes ticket work to the ticket skill. It does not define ticket
 Before a playbook reads or changes a ticket, load:
 
 - `files/devtools/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/SKILL.md`
-- `$ALIGNMENT_ROOT/docs/agents/issue-tracker.md`, after resolving the active `ALIGNMENT_ROOT` and running the context report required by the playbook
+- `docs/agents/issue-tracker.md` from the root reported by the shared-context CLI, when that file exists
+
+Resolve the context before constructing any path. From the repository being worked on,
+run the CLI from the `agent-core:shared-context` skill that is loaded for this task:
+
+```bash
+cd "<repository being worked on>" && "<shared-context-skillroot>/scripts/shared-context/cli.ts"
+```
+
+Use its `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` from the repository,
+origin slug, ticket key, or a guessed home-directory path. `storage: repository` is a
+valid local-only mode: use the reported root and do not create or publish a shared
+store. A shared root can also be local-only or private. Do not make a public link
+unless the shared store and the destination have the same public access boundary; use
+the shared-context skill's `SharedContext/<relative-path>` form when they do not.
+
+For a ticket-scoped shared-context directory, ask the CLI for the anchor instead of
+joining the root and ticket key yourself:
+
+```bash
+"<shared-context-skillroot>/scripts/shared-context/cli.ts" anchor --source local --key "<ticket-id>"
+```
+
+Use the returned directory for workflow records and other ticket-local context. Run
+`cli.ts index <returned-directory>` after adding or removing a file in a source
+directory. Stop if any shared-context CLI command exits non-zero.
 
 Use the ticket skill for all ticket mechanics. It owns backend selection, selector resolution, ticket reads, claims, review artifact paths, comments, completion, external tracker operations, and tracker commits. Ask when the tracker definition is missing, malformed, ambiguous, or does not define the required operation.
 
