@@ -1,9 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-import { existsSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
-const a = process.argv.slice(2); const val = (flag: string) => { const i = a.indexOf(flag); return i < 0 ? "" : a[i + 1] ?? ""; }; const file = a.includes("--file") ? val("--file") : resolve(val("--worktree"), "tmp", `dev-return-${val("--issue")}-${val("--round-id")}.json`); const out = (ok: boolean, reason: string) => { console.log(JSON.stringify({ ok, path: existsSync(file) ? file : null, reason })); process.exit(ok ? 0 : 1); };
-if (a.includes("-h") || a.includes("--help")) { console.log("Usage: dev-artifact-check --worktree WT --issue ISSUE --round-id RID [--expect-items N,N,...]\n       dev-artifact-check --file PATH [--round-id RID] [--expect-items N,N,...]"); process.exit(0); }
-if (!existsSync(file)) out(false, "missing"); let data: any; try { data = JSON.parse(readFileSync(file, "utf8")); } catch { out(false, "invalid"); }
-if (val("--round-id") && data.round_id !== val("--round-id")) out(false, "invalid"); if (!["implement", "fix"].includes(data.kind) || !["issue", "branch", "commit", "validate", "round_id"].every((k) => typeof data[k] === "string" && data[k]) || typeof data.schema_version !== "number") out(false, "invalid");
-const expected = val("--expect-items").split(",").filter(Boolean).map(Number); const items = Array.isArray(data.items) ? data.items : []; const validItems = items.every((x: any) => x && typeof x.n === "number" && ["Applied", "Skipped", "Blocked"].includes(x.decision) && typeof x.reasoning === "string" && x.reasoning);
-if (expected.length ? !validItems || expected.sort((x, y) => x - y).join() !== items.map((x: any) => x.n).sort((x: number, y: number) => x - y).join() : ((data.kind === "fix" || data.bundled) && (!items.length || !validItems))) out(false, "incomplete"); out(true, "valid");

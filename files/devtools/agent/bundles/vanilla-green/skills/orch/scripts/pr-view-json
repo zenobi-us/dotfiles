@@ -1,4 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-import { run, json } from "./lib/runtime.ts";
-const args = process.argv.slice(2); if (args.includes("--help") || args.includes("-h")) { console.log("Usage: pr-view-json [WORKTREE_PATH] --json FIELDS"); process.exit(0); } const cwd = args.shift() ?? "."; const fields = args.includes("--json") ? args[args.indexOf("--json") + 1] : "number,state"; const result = run(["gh", "pr", "view", "--json", fields], { cwd });
-if (result.code === 0) { try { json({ status: "pr", ...JSON.parse(result.stdout) }); } catch { json({ status: "error", error: "invalid JSON from gh" }); process.exit(1); } } else { json({ status: "no_pr" }); }

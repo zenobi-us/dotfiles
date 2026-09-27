@@ -1,7 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-import { run, fail } from "./lib/runtime.ts";
-const a = process.argv.slice(2); if (a.includes("-h") || a.includes("--help")) { console.log("Usage: open-terminal [--tracker linear|github] [--repo OWNER/REPO] ITEM... [--harness NAME] [--tmux|--ghostty] [--cmd COMMAND]"); process.exit(0); }
-let tracker = "linear", repo = "", harness = "", mode = process.env.TMUX ? "tmux" : "gui", template = ""; const items: string[] = [];
-for (let i = 0; i < a.length; i++) { const x = a[i]; if (["--tracker", "--repo", "--harness", "--cmd"].includes(x)) { const v = a[++i] ?? ""; if (x === "--tracker") tracker = v; else if (x === "--repo") repo = v; else if (x === "--harness") harness = v; else template = v; } else if (x === "--tmux") mode = "tmux"; else if (x === "--ghostty") mode = "ghostty"; else items.push(x); }
-if (!items.length || !harness && !template) fail("Error: item and --harness or --cmd are required"); if (!repo) repo = run(["gh", "repo", "view", "--json", "nameWithOwner", "--jq", ".nameWithOwner"]).stdout.trim();
-for (const item of items) { const command = template ? template.replaceAll("{issue}", item).replaceAll("{item}", item).replaceAll("{repo}", repo) : `${harness} '/orch start ${tracker === "github" ? `github ${repo}#${item}` : item}'`; if (mode === "tmux") { run(["tmux", "new-window", "-c", ".", command]); } else console.log(command); }

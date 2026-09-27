@@ -1,8 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
-const dir = process.env.ORCH_CACHE_DIR ?? ".cache/orch"; const file = join(dir, "parallel-groups.json"); const command = process.argv[2] ?? "help"; const read = () => existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : {};
-if (["help", "--help", "-h"].includes(command)) { console.log("Usage: parallel-groups <read|write|clear|lookup|needs-refresh> [key] [value]"); process.exit(0); }
-if (command === "read") { console.log(JSON.stringify(read())); process.exit(0); } if (command === "clear") { if (existsSync(file)) Bun.write(file, "{}\n"); process.exit(0); }
-mkdirSync(dir, { recursive: true }); const data = read(); const key = process.argv[3]; if (!key) { console.error("parallel-groups: key is required"); process.exit(2); }
-if (command === "write") { data[key] = process.argv[4] ?? ""; writeFileSync(file, JSON.stringify(data, null, 2) + "\n"); } else if (command === "lookup") console.log(data[key] ?? ""); else if (command === "needs-refresh") process.exit(data[key] ? 1 : 0); else { console.error(`Unknown command: ${command}`); process.exit(1); }

@@ -1,5 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-import { existsSync } from "node:fs";
-import { run, json, projectRoot } from "./lib/runtime.ts";
-const root = projectRoot(); const branch = run(["git", "branch", "--show-current"], { cwd: root }).stdout.trim(); const issue = branch.match(/(?:[A-Z]+-\d+|issue-\d+)/i)?.[0] ?? ""; const state = issue ? `tmp/workflow-state-${issue}.json` : "";
-json({ branch, worktree: root, issue_id: issue, state_path: state, state_created: existsSync(state) });

@@ -1,7 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-import { existsSync, readFileSync, statSync } from "node:fs";
-import { resolve } from "node:path";
-const a = process.argv.slice(2); const explicit = a.includes("--file"); const requested = explicit ? a[a.indexOf("--file") + 1] : ""; const boundary = Number(explicit ? a[a.indexOf("--file") + 2] : a[2] ?? 0); let file = requested || ""; if (!file) { const matches = [...new Bun.Glob(`review-${a[1] ?? ""}-*.json`).scanSync({ cwd: resolve(a[0] ?? ".", "tmp"), absolute: true })].sort(); file = matches.at(-1) ?? ""; } const emit = (ok: boolean, reason: string) => { console.log(JSON.stringify({ ok, path: file && existsSync(file) ? file : null, reason })); process.exit(ok ? 0 : 1); };
-if (a.includes("-h") || a.includes("--help")) { console.log("Usage: review-artifact-check WORKTREE AGENT [DELEGATED_AT_EPOCH]\n       review-artifact-check --file PATH [DELEGATED_AT_EPOCH]"); process.exit(0); }
-if (!existsSync(file) || file.includes("*")) emit(false, "missing"); if (boundary && statSync(file).mtimeMs / 1000 < boundary) emit(false, "stale"); let value: any; try { value = JSON.parse(readFileSync(file, "utf8")); } catch { emit(false, "invalid"); }
-if (!value || typeof value.verdict !== "string") emit(false, "invalid"); if (value.qa_metadata?.review_performed === false || /no.?review|no.?scope/i.test(value.qa_metadata?.reason ?? "")) emit(false, "no_review"); if (value.qa_metadata && (!Array.isArray(value.blockers) || !Array.isArray(value.suggestions))) emit(false, "incomplete"); emit(true, "valid");

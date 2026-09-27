@@ -1,7 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-import { run } from "./lib/runtime.ts";
-const cwd = process.argv[2] ?? ".";
-if (process.env.WORKTREE_DEFAULT_BRANCH) { console.log(process.env.WORKTREE_DEFAULT_BRANCH); process.exit(0); }
-const remote = run(["git", "-C", cwd, "symbolic-ref", "refs/remotes/origin/HEAD"]);
-if (remote.code === 0) { console.log(remote.stdout.trim().replace(/^refs\/remotes\/origin\//, "")); process.exit(0); }
-console.log("main");

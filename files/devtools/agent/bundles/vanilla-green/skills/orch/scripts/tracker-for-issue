@@ -1,4 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-const id = process.argv[2];
-if (!id) { console.error("Usage: tracker-for-issue ISSUE_ID"); process.exit(2); }
-console.log(id.startsWith("issue-") ? "github" : "linear");

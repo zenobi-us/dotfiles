@@ -1,8 +1,0 @@
-#!/usr/bin/env -S mise x -- bun --install=fallback
-import { existsSync } from "node:fs";
-if (process.argv.includes("--help") || process.argv.includes("-h")) { console.log("Usage: list-review-agents"); process.exit(0); }
-const dirs = [".pi/agents", ".claude/agents", ".agents", ".codex/agents", ".opencode/agents"];
-const names = new Set<string>();
-for (const dir of dirs) if (existsSync(dir)) for (const path of new Bun.Glob("reviewer-*").scanSync({ cwd: dir, absolute: false })) names.add(path.replace(/\.[^.]+$/, ""));
-if (!names.size) process.exit(1);
-console.log([...names].sort().join("\n"));
