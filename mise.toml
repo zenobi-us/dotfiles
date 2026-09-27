@@ -110,6 +110,9 @@ micro = "latest"
 "pipx:comfy-cli" = "latest"
 "github:NVIDIA/OpenShell" = "latest"
 "github:graykode/abtop" = "latest"
+"github:valentjn/lsp-cli" = "latest"
+"github:harehare/mq" = "latest"
+"pipx:itch-dl" = "latest"
 
 [shell_alias]
 pi = "mise x node@lts -- pi "
