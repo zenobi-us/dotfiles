@@ -1,0 +1,381 @@
+# Pattern Matching
+
+The match expression enables pattern matching on values, providing a powerful way to destructure and handle different data types.
+
+## Basic Syntax
+
+```mq
+match (value):
+  | pattern: body
+end
+```
+
+The match expression evaluates the value and compares it against a series of patterns. The first matching pattern's body is executed.
+
+## Literal Patterns
+
+Match against specific values:
+
+```mq
+match (x):
+  | 1: "one"
+  | 2: "two"
+  | _: "other"
+end
+```
+
+Literal patterns support:
+- Numbers: `1`, `2.5`, `-10`
+- Strings: `"hello"`, `"world"`
+- Booleans: `true`, `false`
+- None: `none`
+
+## Type Patterns
+
+Match based on value type using the `:type_name` syntax:
+
+```mq
+match (value):
+  | :string: "is string"
+  | :number: "is number"
+  | :array: "is array"
+  | :dict: "is dict"
+  | :bool: "is boolean"
+  | :none: "is none"
+  | _: "other type"
+end
+```
+
+Available type patterns:
+- `:string` - Matches string values
+- `:number` - Matches numeric values
+- `:array` - Matches array values
+- `:dict` - Matches dictionary values
+- `:bool` - Matches boolean values
+- `:markdown` - Matches markdown values
+- `:none` - Matches none value
+
+## Markdown Node-Kind Patterns
+
+Match a `:markdown` value against a specific node kind using the same names as
+[selectors](./selectors.md) (without the leading `.`):
+
+```mq
+match (node):
+  | :h1: "top-level heading"
+  | :h2: "section heading"
+  | :code: "code block"
+  | :list: "list"
+  | :text: "text"
+  | _: "other node"
+end
+```
+
+Any node-kind name accepted by a selector (`h1`..`h6`, `h`, `code`, `list`,
+`text`, `strong`, `emphasis`, `link`, `table`, and so on) can be used. A
+pattern matches only when the value is a markdown node of that kind; other
+values fall through to the next arm.
+
+Inside a matched arm, `.` refers to the matched node itself, so attribute
+selectors like `.depth`, `.lang`, or `.ordered` can be used directly in the
+guard or body without binding a variable:
+
+```mq
+match (node):
+  | :h if (.depth > 2): "deep heading"
+  | :code if (.lang == "rust"): upcase(.value)
+  | :code: .value
+  | :list if (.ordered): "ordered list"
+  | :list: "unordered list"
+  | _: "other node"
+end
+```
+
+## Array Patterns
+
+Destructure arrays and bind elements to variables:
+
+```mq
+match (arr):
+  | []: "empty array"
+  | [x]: x
+  | [x, y]: add(x, y)
+  | [first, second, third]: first
+  | [first, ..rest]: first
+end
+```
+
+Array patter features:
+- Match exact length: `[x, y]` matches arrays with exactly 2 elements
+- Rest pattern: `..rest` captures remaining elements
+- Empty array: `[]` matches empty arrays
+- Variable binding: Elements are bound to named variables
+
+### Rest Pattern Example
+
+```mq
+match (arr):
+  | [head, ..tail]: tail
+end
+# array(1, 2, 3, 4) => array(2, 3, 4)
+```
+
+## Dict Patterns
+
+Destructure dictionaries and extract values:
+
+```mq
+match (obj):
+  | {name, age}: name
+  | {x, y}: add(x, y)
+  | {}: "empty dict"
+  | _: "no match"
+end
+```
+
+Dict pattern features:
+- Extract specific keys: `{name, age}` binds values to variables
+- Partial matching: Matches dicts that have at least the specified keys
+- Empty dict: `{}` matches empty dictionaries
+
+### Example with Object
+
+```mq
+let person = {"name": "Alice", "age": 30, "city": "Tokyo"} |
+match (person):
+  | {name, age}: s"${name} is ${age} years old"
+  | {name}: name
+  | _: "unknown"
+end
+# => "Alice is 30 years old"
+```
+
+## Or Patterns
+
+Match multiple patterns in a single arm using `||`:
+
+```mq
+match (x):
+  | 1 || 2 || 3: "small"
+  | 4 || 5: "medium"
+  | _: "other"
+end
+```
+
+Or patterns can combine any pattern types:
+
+```mq
+# Literal or patterns
+match (status):
+  | "ok" || "success": "all good"
+  | "error" || "fail" || "failure": "something went wrong"
+  | _: "unknown"
+end
+
+# Type or patterns
+match (value):
+  | :string || :number: "primitive"
+  | :array || :dict: "collection"
+  | _: "other"
+end
+
+# Mixed literal and type
+match (x):
+  | 0 || false || none: "falsy"
+  | _: "truthy"
+end
+```
+
+The first alternative that matches is used. The overall arm matches if **any** of the alternatives match.
+
+## Variable Binding
+
+Bind the matched value to a variable:
+
+```mq
+match (value):
+  | x: x + 1
+end
+```
+
+Variable binding captures the entire value and makes it available in the body expression.
+
+## Wildcard Pattern
+
+The underscore `_` matches any value:
+
+```mq
+match (x):
+  | 1: "one"
+  | 2: "two"
+  | _: "something else"
+end
+```
+
+Use the wildcard pattern as the last arm to handle all remaining cases.
+
+## Guards
+
+Add conditions to patterns using `if`:
+
+```mq
+match (n):
+  | x if (x > 0): "positive"
+  | x if (x < 0): "negative"
+  | _: "zero"
+end
+```
+
+Guards allow you to:
+- Add complex conditions to patterns
+- Filter matched values
+- Combine pattern matching with boolean logic
+
+### Guard Examples
+
+```mq
+# Match even numbers
+match (n):
+  | x if (x % 2 == 0): "even"
+  | _: "odd"
+end
+
+# Match array with positive numbers
+match (arr):
+  | [x, ..] if (x > 0): "starts with positive"
+  | _: "other"
+end
+```
+
+## Multiple Arms
+
+Combine multiple patterns for comprehensive matching:
+
+```mq
+match (value):
+  | 0: "zero"
+  | x if (x > 0): "positive"
+  | x if (x < 0): "negative"
+  | :string: "text"
+  | []: "empty array"
+  | [x, ..rest]: "non-empty array"
+  | {}: "empty dict"
+  | _: "something else"
+end
+```
+
+## Pattern Matching vs If Expressions
+
+Pattern matching provides several advantages over if expressions:
+
+### Using If Expressions
+
+```mq
+if (type_of(x) == "number"):
+  if (x == 0):
+    "positive number"
+  elif (x < 0):
+    "negative number"
+  else:
+    "zero"
+elif (type_of(x) == "array"):
+  if (len(x) == 0):
+    "empty array"
+  else:
+    "non-empty array"
+else:
+  "other"
+```
+
+### Using Pattern Matching
+
+```mq
+match (x):
+  | n if (n > 0): "positive number"
+  | n if (n < 0): "negative number"
+  | 0: "zero"
+  | []: "empty array"
+  | [_, ..rest]: "non-empty array"
+  | _: "other"
+end
+```
+
+## Practical Examples
+
+### Processing Different Data Types
+
+```mq
+def describe(value):
+  match (value):
+    | :none: "nothing"
+    | :bool: "true or false"
+    | x if (gt(x, 100)): "big number"
+    | :number: "small number"
+    | "": "empty string"
+    | :string: "text"
+    | []: "empty list"
+    | [x]: s"list with one item: ${x}"
+    | [_, ..rest]: "list with multiple items"
+    | {}: "empty object"
+    | _: "dictionary"
+  end
+end
+```
+
+### Extracting Data from Structures
+
+```mq
+def get_first_name(user):
+  match (user):
+    | {name}: name
+    | _: "unknown"
+  end
+```
+
+### Handling API Responses
+
+```mq
+def handle_response(response):
+  match (response):
+    | {status, data} if (eq(status, 200)): data
+    | {status, error} if (eq(status, 404)): s"Not found: ${error}"
+    | {status, error} if (eq(status, 500)): s"Server error: ${error}"
+    | _: "Unknown response"
+  end
+end
+```
+
+### Classifying HTTP Status Codes with Or Patterns
+
+```mq
+def classify_status(code):
+  match (code):
+    | 200 || 201 || 204: "success"
+    | 301 || 302 || 307 || 308: "redirect"
+    | 400 || 422: "client error"
+    | 401 || 403: "auth error"
+    | 404: "not found"
+    | 500 || 502 || 503: "server error"
+    | _: "unknown"
+  end
+end
+```
+
+### Dispatching on Markdown Node Kinds
+
+```mq
+def describe_node(node):
+  match (node):
+    | :h1: "top-level heading"
+    | :h2: "section heading"
+    | :h if (.depth > 2): "deep heading"
+    | :code if (.lang == "rust"): upcase(.value)
+    | :code: .value
+    | :list if (.ordered): "ordered list"
+    | :list: "unordered list"
+    | :text: .value
+    | _: "other node"
+  end
+end
+```
+

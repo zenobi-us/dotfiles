@@ -1,0 +1,227 @@
+# Install
+
+## Quick Install
+
+```bash
+curl -sSL https://mqlang.org/install.sh | bash
+# Install the debugger
+curl -sSL https://mqlang.org/install.sh | bash -s -- --with-debug
+```
+
+The installer will:
+- Download the latest mq binary for your platform
+- Install it to `~/.local/bin/`
+- Update your shell profile to add mq to your PATH
+
+## Cargo
+
+```sh
+# Install from crates.io
+cargo install mq-run
+# Install from Github
+cargo install --git https://github.com/harehare/mq.git mq-run --tag v0.9.1
+# Latest Development Version
+cargo install --git https://github.com/harehare/mq.git mq-run --bin mq
+# Install the debugger
+cargo install --git https://github.com/harehare/mq.git mq-run --bin mq-dbg --features="debugger"
+# Install using binstall
+cargo binstall mq-run@0.9.1
+```
+
+## Binaries
+
+You can download pre-built binaries from the [GitHub releases page](https://github.com/harehare/mq/releases):
+
+```sh
+# macOS (Apple Silicon)
+curl -L https://github.com/harehare/mq/releases/download/v0.9.1/mq-aarch64-apple-darwin -o /usr/local/bin/mq && chmod +x /usr/local/bin/mq
+# Linux x86_64
+curl -L https://github.com/harehare/mq/releases/download/v0.9.1/mq-x86_64-unknown-linux-gnu -o /usr/local/bin/mq && chmod +x /usr/local/bin/mq
+# Linux arm64
+curl -L https://github.com/harehare/mq/releases/download/v0.9.1/mq-aarch64-unknown-linux-gnu -o /usr/local/bin/mq && chmod +x /usr/local/bin/mq
+# Windows (PowerShell)
+Invoke-WebRequest -Uri https://github.com/harehare/mq/releases/download/v0.9.1/mq-x86_64-pc-windows-msvc.exe -OutFile "$env:USERPROFILE\bin\mq.exe"
+```
+
+## Homebrew
+
+```sh
+# Using Homebrew (macOS and Linux)
+$ brew install mq
+```
+
+## Docker
+
+```sh
+$ docker run --rm ghcr.io/harehare/mq:0.9.1
+```
+
+### mq-lsp (Language Server)
+
+The mq Language Server provides IDE features like completion, hover, and diagnostics for mq query files.
+
+#### Quick Install
+
+```bash
+curl -sSL https://mqlang.org/install_lsp.sh | bash
+```
+
+#### Cargo
+
+```sh
+# Install from crates.io
+cargo install mq-lsp
+# Install from Github
+cargo install --git https://github.com/harehare/mq.git mq-lsp --tag v0.9.1
+# Latest Development Version
+cargo install --git https://github.com/harehare/mq.git mq-lsp
+# Install using binstall
+cargo binstall mq-lsp@0.9.1
+```
+
+#### Binaries
+
+You can download pre-built binaries from the [GitHub releases page](https://github.com/harehare/mq/releases):
+
+```sh
+# macOS (Apple Silicon)
+curl -L https://github.com/harehare/mq/releases/download/v0.9.1/mq-lsp-aarch64-apple-darwin -o /usr/local/bin/mq-lsp && chmod +x /usr/local/bin/mq-lsp
+# Linux x86_64
+curl -L https://github.com/harehare/mq/releases/download/v0.9.1/mq-lsp-x86_64-unknown-linux-gnu -o /usr/local/bin/mq-lsp && chmod +x /usr/local/bin/mq-lsp
+# Linux arm64
+curl -L https://github.com/harehare/mq/releases/download/v0.9.1/mq-lsp-aarch64-unknown-linux-gnu -o /usr/local/bin/mq-lsp && chmod +x /usr/local/bin/mq-lsp
+# Windows (PowerShell)
+Invoke-WebRequest -Uri https://github.com/harehare/mq/releases/download/v0.9.1/mq-lsp-x86_64-pc-windows-msvc.exe -OutFile "$env:USERPROFILE\bin\mq-lsp.exe"
+```
+
+## Shell Completion
+
+mq can generate shell completion scripts via the `completion` subcommand. Supported shells: `bash`, `elvish`, `fish`, `nushell`, `powershell`, `zsh`.
+
+```sh
+# Bash (add to ~/.bashrc)
+echo 'source <(mq completion bash)' >> ~/.bashrc
+
+# Zsh (add to ~/.zshrc)
+echo 'source <(mq completion zsh)' >> ~/.zshrc
+
+# Fish
+mq completion fish > ~/.config/fish/completions/mq.fish
+
+# Elvish (add to ~/.config/elvish/rc.elv)
+mq completion elvish >> ~/.config/elvish/rc.elv
+
+# PowerShell (add to your PowerShell profile)
+mq completion powershell >> $PROFILE
+```
+
+### Nushell
+
+Generate the completion script and source it from your `config.nu`:
+
+```sh
+mkdir -p ~/.config/nushell/completions
+mq completion nushell > ~/.config/nushell/completions/mq.nu
+```
+
+Then add the following line to `~/.config/nushell/config.nu`:
+
+```nu
+source ~/.config/nushell/completions/mq.nu
+```
+
+Restart Nushell (or run `source ~/.config/nushell/config.nu`) to enable completions.
+
+## Visual Studio Code Extension
+
+You can install the VSCode extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=harehare.vscode-mq).
+
+### Chrome Extension
+
+The mq Chrome extension converts the page you're viewing to Markdown and
+runs mq queries against it from the toolbar popup. Queries run automatically
+after editing, or immediately with Cmd/Ctrl+Enter; results can be copied or
+downloaded as Markdown. It isn't on the Chrome Web Store yet, so install it
+unpacked:
+
+```sh
+git clone https://github.com/harehare/mq.git
+cd mq/packages/mq-chrome-extension
+pnpm install
+pnpm build
+```
+
+Then in Chrome, open `chrome://extensions`, enable **Developer mode**,
+click **Load unpacked**, and select `packages/mq-chrome-extension/.output/chrome-mv3`.
+See the [package README](https://github.com/harehare/mq/blob/main/packages/mq-chrome-extension/README.md)
+for details and known limitations.
+
+### Neovim
+
+You can install the Neovim plugin by following the instructions in the [mq.nvim README](https://github.com/harehare/mq/blob/main/editors/neovim/README.md).
+
+### Obsidian
+
+You can install the mq plugin from the [Obsidian Community Plugins](https://community.obsidian.md/plugins/mq) directory. It runs mq queries directly inside Obsidian, fully client-side via WebAssembly.
+
+### GitHub Actions
+
+You can use mq in your GitHub Actions workflows with the [Setup mq](https://github.com/marketplace/actions/setup-mq) action:
+
+```yaml
+steps:
+  - uses: actions/checkout@v4
+  - uses: harehare/setup-mq@v1
+  - run: mq '.code' README.md
+```
+
+## MCP (Model Context Protocol) server
+
+mq supports an MCP server for integration with LLM applications.
+
+See the [MCP documentation](https://github.com/harehare/mq-mcp/blob/main/README.md) for more information.
+
+## Python
+
+You can use mq in Python through the [`markdown-query`](https://pypi.org/project/markdown-query/) package:
+
+```sh
+# Install from PyPI
+$ pip install markdown-query
+```
+
+## npm
+
+You can use mq in npm through the [`mq-web`](https://www.npmjs.com/package/mq-web) package:
+
+```sh
+$ npm i mq-web
+```
+
+## Web crawler
+
+### Quick Install
+
+```bash
+curl -sSL https://mqlang.org/install_crawler.sh | bash
+```
+
+The installer will:
+- Download the latest `mq-crawl` binary for your platform
+- Install it to `~/.local/bin/`
+- Verify the checksum of the downloaded binary
+- Update your shell profile to add `mq-crawl` to your PATH
+
+### Homebrew
+
+```sh
+brew install harehare/tap/mq-crawl
+```
+
+### Cargo
+
+```sh
+cargo install mq-crawler
+```
+
+See the [Web Crawler](./crawler.md) page for usage details.

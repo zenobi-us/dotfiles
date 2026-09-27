@@ -1,0 +1,453 @@
+# Selectors
+
+Selectors in mq allow you to select specific markdown nodes from a document. You can also access attributes of selected nodes using dot notation.
+
+## Basic Selector Usage
+
+Selectors use the `.` prefix to select markdown nodes. For example:
+
+```mq
+.h       # Selects all heading nodes
+.code    # Selects all code blocks
+.link    # Selects all link nodes
+```
+
+## Selector Aliases
+
+Many selectors have shorter or alternative names that you can use interchangeably:
+
+| Canonical Selector | Aliases                       | Description            |
+| ------------------ | ----------------------------- | ---------------------- |
+| `.text`            | `.p`, `.paragraph`            | Paragraph / text nodes |
+| `.list`            | `.li`                         | List items             |
+| `.code`            | `.code_block`                 | Fenced code blocks     |
+| `.code_inline`     | `.inline_code`                | Inline code spans      |
+| `.math_inline`     | `.inline_math`                | Inline math spans      |
+| `.horizontal_rule` | `.hr`, `.---`, `.***`, `.___` | Horizontal rules       |
+| `.break`           | `.br`                         | Line breaks            |
+
+Example:
+
+```mq
+.p          # Same as .text — selects all paragraph nodes
+.li         # Same as .list — selects all list items
+.code_block # Same as .code — selects all fenced code blocks
+.hr         # Same as .horizontal_rule
+```
+
+## Selector Calls (Filtered Matching)
+
+Selectors can accept arguments to filter nodes by specific properties, using a function-call syntax:
+
+```mq
+.h(1)           # Selects only h1 headings
+.h(2, 3)        # Selects h2 and h3 headings
+.h(1..3)        # Selects h1, h2, and h3 headings (range)
+.code("rust")   # Selects only Rust code blocks
+```
+
+### Heading Depth Filtering
+
+Pass one or more numeric arguments to match headings at specific depths:
+
+```mq
+# Select only top-level headings
+.h(1)
+
+# Select h2 and h3 headings
+.h(2, 3)
+
+# Select h1 through h3 using a range
+.h(1..3)
+```
+
+### Code Language Filtering
+
+Pass a string argument to match code blocks with a specific language:
+
+```mq
+# Select only Rust code blocks
+.code("rust")
+
+# Select Python or JavaScript code blocks
+.code("python") | to_array | concat(.code("javascript"))
+```
+
+### Link and Image URL Filtering
+
+Pass one or more string arguments to match links or images by their exact URL:
+
+```mq
+# Select only links pointing to a specific URL
+.link("https://example.com")
+
+# Select links pointing to either of two URLs
+.link("https://a.com", "https://b.com")
+
+# Select only images with a specific URL
+.image("photo.png")
+```
+
+### Reference Identifier Filtering
+
+Pass one or more string arguments to match reference-style nodes by their identifier:
+
+```mq
+# Select the link reference with identifier "id"
+.link_ref("id")
+
+# Select the image reference with identifier "id"
+.image_ref("id")
+
+# Select the footnote reference with identifier "1"
+.footnote_ref("1")
+
+# Select the footnote definition with identifier "1"
+.footnote("1")
+
+# Select the link/image definition with identifier "id"
+.definition("id")
+```
+
+### Combining with Other Operations
+
+Selector calls can be combined with pipes and functions just like plain selectors:
+
+```mq
+# Extract content of all h2 headings
+.h(2) | .value
+
+# Count Rust code blocks
+.code("rust") | len
+
+# Replace language of all TypeScript blocks
+.code("typescript").lang |= "ts"
+```
+
+## Descendant Selectors
+
+Chaining two or more selectors with a space selects nodes of the second type that are nested anywhere underneath a node of the first type — similar to a descendant combinator in CSS:
+
+```mq
+# Code blocks nested inside a blockquote (not top-level code blocks)
+.blockquote .code
+
+# Chains can go arbitrarily deep
+.blockquote .list .code
+
+# Each step can use a selector call to filter further
+.blockquote .code("rust")
+
+# A trailing attribute access still works after the chain
+.blockquote .code.lang
+```
+
+This is sugar for recursing into each match and then filtering by the next selector, i.e. `.blockquote .code` is equivalent to `.blockquote | .. | .code`.
+
+Note this only matches _descendants_ (nodes nested at any depth), not direct children specifically. To get only the immediate children of a match, use the `.children` attribute: `.blockquote.children | .code`.
+
+## Attribute Access
+
+Once you've selected a node, you can access its attributes using dot notation. The available attributes depend on the node type.
+
+### Common Attributes
+
+#### `value`
+
+Most nodes support `value` to get the text content:
+
+```mq
+.code.value    # Gets the code content
+```
+
+#### `line`, `end_line`
+
+Every node supports `line`/`end_line` to get the 1-indexed source line it starts/ends on. Returns `none` for a node with no source position (e.g. built with `to_h`/`to_md_text` rather than parsed):
+
+```mq
+# Input:
+# # Title
+#
+# ## Sub
+
+.h.line    # Returns: [1, 3]
+```
+
+### Heading Attributes
+
+Heading nodes support the following attributes:
+
+| Attribute        | Type    | Description              | Example    |
+| ---------------- | ------- | ------------------------ | ---------- |
+| `depth`, `level` | Integer | The heading level (1-6)  | `.h.level` |
+| `value`          | String  | The value of the heading | `.h.value` |
+
+Example:
+
+```mq
+# Input: # Hello World
+
+.h.level # Returns: 1
+.h.value # Returns: "Hello World"
+```
+
+### Code Block Attributes
+
+Code block nodes support the following attributes:
+
+| Attribute          | Type    | Description                             | Example       |
+| ------------------ | ------- | --------------------------------------- | ------------- |
+| `lang`, `language` | String  | The language of the code block          | `.code.lang`  |
+| `value`            | String  | The code content                        | `.code.value` |
+| `meta`             | String  | Metadata associated with the code block | `.code.meta`  |
+| `fence`            | Boolean | Whether the code block is fenced        | `.code.fence` |
+
+Example:
+
+````mq
+# Input: ```rust
+# fn main() {}
+# ```
+
+.code.lang      # Returns: "rust"
+.code.value     # Returns: "fn main() {}"
+````
+
+### Link Attributes
+
+Link nodes support the following attributes:
+
+| Attribute | Type   | Description           | Example       |
+| --------- | ------ | --------------------- | ------------- |
+| `url`     | String | The URL of the link   | `.link.url`   |
+| `title`   | String | The title of the link | `.link.title` |
+| `value`   | String | The link value        | `.link.value` |
+
+Example:
+
+```mq
+# Input: [Example](https://example.com "Example Site")
+
+.link.url       # Returns: "https://example.com"
+.link.title     # Returns: "Example Site"
+.link.value     # Returns: "Example"
+```
+
+### Image Attributes
+
+Image nodes support the following attributes:
+
+| Attribute | Type   | Description               | Example        |
+| --------- | ------ | ------------------------- | -------------- |
+| `url`     | String | The URL of the image      | `.image.url`   |
+| `alt`     | String | The alt text of the image | `.image.alt`   |
+| `title`   | String | The title of the image    | `.image.title` |
+
+Example:
+
+```mq
+# Input: ![Alt text](image.png "Image Title")
+
+.image.url      # Returns: "image.png"
+.image.alt      # Returns: "Alt text"
+.image.title    # Returns: "Image Title"
+```
+
+### List Attributes
+
+List nodes support the following attributes:
+
+| Attribute | Type    | Description                        | Example         |
+| --------- | ------- | ---------------------------------- | --------------- |
+| `index`   | Integer | The index of the list item         | `.list.index`   |
+| `level`   | Integer | The nesting level of the list item | `.list.level`   |
+| `ordered` | Boolean | Whether the list is ordered        | `.list.ordered` |
+| `checked` | Boolean | The checked state (for task lists) | `.list.checked` |
+| `value`   | String  | The text content of the list item  | `.list.value`   |
+
+### Table Cell Attributes
+
+Table cell nodes support the following attributes:
+
+| Attribute               | Type    | Description                                | Example                         |
+| ----------------------- | ------- | ------------------------------------------ | ------------------------------- |
+| `row`                   | Integer | The row number of the cell                 | `.[0][0].row`                   |
+| `column`                | Integer | The column number of the cell              | `.[0][0].column`                |
+| `last_cell_in_row`      | Boolean | Whether this is the last cell in the row   | `.[0][0].last_cell_in_row`      |
+| `last_cell_of_in_table` | Boolean | Whether this is the last cell in the table | `.[0][0].last_cell_of_in_table` |
+| `value`                 | String  | The text content of the cell               | `.[0][0].value`                 |
+
+### Reference Nodes Attributes
+
+Reference nodes (link references, image references, footnotes) support:
+
+| Node Type       | Attributes                       | Description                            |
+| --------------- | -------------------------------- | -------------------------------------- |
+| `.link_ref`     | `ident`, `label`                 | Identifier and label of link reference |
+| `.image_ref`    | `ident`, `label`, `alt`          | Identifier, label, and alt text        |
+| `.footnote_ref` | `ident`, `label`                 | Identifier and label of footnote       |
+| `.footnote`     | `ident`, `text`                  | Identifier and content of footnote     |
+| `.definition`   | `ident`, `url`, `title`, `label` | Link/image definition attributes       |
+
+### MDX Attributes
+
+MDX nodes support the following attributes:
+
+| Attribute | Type   | Description                 | Example                      |
+| --------- | ------ | --------------------------- | ---------------------------- |
+| `name`    | String | The name of the MDX element | `.mdx_jsx_flow_element.name` |
+| `value`   | String | The content of the MDX node | `.mdx_flow_expression.value` |
+
+### Text Nodes Attributes
+
+Text, HTML, YAML, TOML, Math nodes support:
+
+| Attribute | Type   | Description      | Example       |
+| --------- | ------ | ---------------- | ------------- |
+| `value`   | String | The text content | `.text.value` |
+
+## Property Selector (Dict Key Access)
+
+Property selectors access values from dict (object) values using quoted dot notation (`."key"`). They work on both single dicts and arrays of dicts.
+
+Use `."key"` to access a dict key by name:
+
+```mq
+# Input dict: {"name": "Alice", "age": 30}
+
+."name"   # Returns: "Alice"
+."age"    # Returns: 30
+```
+
+Keys with spaces, special characters, or names that match reserved selector names are also supported:
+
+```mq
+# Input dict: {"h1": "title", "my key": "value"}
+
+."h1"       # Returns: "title"
+."my key"   # Returns: "value"
+."url"      # Returns: the "url" key value
+```
+
+Escape sequences inside quoted keys: `\"` for a literal `"` and `\\` for a literal `\`.
+
+### Arrays of Dicts
+
+When applied to an array of dicts, the property selector maps over each element:
+
+```mq
+# Input: [{"name": "Alice"}, {"name": "Bob"}, {"name": "Charlie"}]
+
+."name"   # Returns: ["Alice", "Bob", "Charlie"]
+```
+
+Non-dict elements in the array return `none`.
+
+### Missing Keys
+
+Accessing a key that doesn't exist returns `none`:
+
+```mq
+# Input dict: {"name": "Alice"}
+
+."age"    # Returns: none
+```
+
+## Combining Selectors with Functions
+
+You can combine selectors with functions like `select()`, `map()`, and `filter()` for powerful transformations:
+
+### Using select()
+
+The `select()` function filters elements based on a condition:
+
+```mq
+# Select only code blocks (exclude non-code nodes)
+select(.code)
+
+# Select nodes that are not code blocks
+select(!.code)
+```
+
+### Using map()
+
+Transform each selected node:
+
+```mq
+# Get all heading levels
+.h | map(fn(h): h.level;)
+
+# Get all code block languages
+.code | map(fn(c): c.lang;)
+```
+
+### Using filter()
+
+Filter nodes based on attribute values:
+
+```mq
+# Get only level 2 headings
+.h | filter(fn(h): h.level == 2;)
+
+# Get only rust code blocks
+.code | filter(fn(c): c.lang == "rust";)
+```
+
+The selector call syntax provides a more concise alternative for common cases:
+
+```mq
+.h(2)           # equivalent to: .h | filter(fn(h): h.level == 2;)
+.code("rust")   # equivalent to: .code | filter(fn(c): c.lang == "rust";)
+```
+
+### Extract Code Languages
+
+```mq
+.code.lang
+```
+
+### Extract All Links
+
+```mq
+.link.url
+```
+
+### Filter High-Level Headings
+
+```mq
+# Using attribute comparison
+select(.h.level <= 2)
+
+# Using selector call for exact levels
+.h(1, 2)
+```
+
+## Setting Attributes
+
+You can modify node attributes using the update operator (`|=`):
+
+```mq
+# Change code block language
+.code.lang |= "rust"
+
+# Update link URL
+.link.url |= "https://new-url.com"
+
+# Update heading level
+.h.depth |= 2
+```
+
+The `set_attr()` function is an alternative that takes the attribute name as a string:
+
+```mq
+.code | set_attr("lang", "rust")
+.link | set_attr("url", "https://new-url.com")
+.h | set_attr("level", 2)
+```
+
+## See Also
+
+- `mq help <selector>` - Signature, matched/produced type, description, and examples for any
+  selector, e.g. `mq help .h1` (the leading `.` is optional: `mq help h1` also works).
+- [Builtin selectors and functions](../builtins.html) - Complete list of available selectors and functions
+- [Nodes](nodes.md) - Details about markdown node types
