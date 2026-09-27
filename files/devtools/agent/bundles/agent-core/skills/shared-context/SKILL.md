@@ -31,11 +31,13 @@ the CLI's own dependencies on first run. You **MUST NOT** prefix the call with
 Bun's runner — that skips the shebang, and the call then fails in an installed copy
 that has no dependencies.
 
-`report` is the default. `cli.ts` and `cli.ts report` do the same thing. Output:
+`report` is the default. `cli.ts` and `cli.ts report` do the same thing. Use
+`cli.ts root` when a script needs only the resolved root; do not derive it.
+Output:
 
 ```
 storage: shared | repository
-root: <ALIGNMENT_ROOT — use this for every write>
+root: <resolved root — use this for every write>
 shared root: <equals root in shared mode, equals the repository root otherwise>
 shared candidate: <where shared storage would live; printed only in repository mode>
 origin: <git origin>
@@ -51,6 +53,47 @@ slug: <origin-derived directory name>
 | Pull an external source into context | `references/ingest.md` |
 | Fetch one specific source type | `references/sources.md` |
 | Make a write visible to other agents | `references/publishing.md` |
+
+## Shared-context writes and links
+
+Run the shared-context CLI before you choose a path or link:
+
+```bash
+cd "<repository being worked on>" && "<skillroot>/scripts/shared-context/cli.ts"
+```
+
+Use the CLI output to determine the storage mode. Use its resolved root instead
+of deriving a path yourself. The CLI reports the resolved root, storage mode,
+origin, and context slug.
+
+### Write rule
+
+When the CLI reports `storage: shared`, write the file under the resolved `root`.
+Commit and push every file that you create or update there when the shared store
+has a usable git remote. Other agents only see the update after it reaches the
+remote. A non-git store is valid local-only storage. Keep the write and report
+that it is local.
+
+### Link rule
+
+Use a public URL only when the shared-context store is a public git repository
+and the destination has the same public access boundary. Build the URL only
+after you commit and push the file. Include the context slug in the path.
+
+For a shared-context store with no git repository, no usable remote, or a private
+GitHub repository whose destination is not related to the shared-context store,
+write the reference as:
+
+```text
+SharedContext/<path relative to the shared-context root>
+```
+
+If you cannot determine whether the shared-context store and the destination
+have the same access boundary, ask the user before you choose a URL or path.
+Never use a public URL for a private or uncertain boundary.
+
+For a file in the repository being changed, use a path relative to that
+repository root.
 
 ## Rules that override convenience
 

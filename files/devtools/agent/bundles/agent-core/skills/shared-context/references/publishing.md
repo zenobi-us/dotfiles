@@ -2,20 +2,21 @@
 
 A shared-context write is usable on the current machine as soon as it is written.
 A git remote makes it available to agents on other machines. Read this after every
-write under a shared `ALIGNMENT_ROOT`.
+write under the root printed by `cli.ts report`. The CLI is the only root resolver.
 
 ## Detect the storage mode
 
-The storage path can be a symlink into a git repository. Test the alignment root
-itself:
+The storage path can be a symlink into a git repository. Resolve the root first:
 
 ```bash
-git -C "$ALIGNMENT_ROOT" rev-parse --show-toplevel
+cli.ts report
 ```
 
+Then test the reported root with `git -C "<root from report>" rev-parse --show-toplevel`.
+
 If the command succeeds, use the git-backed workflow below. The repository root
-that it prints can contain many context slugs. It is not necessarily the
-`ALIGNMENT_ROOT`.
+that it prints can contain many context slugs. It is not necessarily the resolved
+context root.
 
 If the command fails, continue the shared-context write as local-only work. Do
 not treat missing git setup as a failure, and do not undo the write. Complete any
@@ -34,11 +35,9 @@ Then offer these choices. Do not perform either choice until the user accepts it
 
 ## Offer a local git repository
 
-The shared store is the parent of the origin-keyed `ALIGNMENT_ROOT`:
-
-```bash
-SHARED_STORE="$(dirname "$ALIGNMENT_ROOT")"
-```
+The shared store is the parent of the origin-keyed root printed by the CLI when
+storage is shared. Do not derive or replace the active root. Use `cli.ts report`
+first and inspect the reported path.
 
 Offer to initialize that directory. Explain that `git init` adds local version
 history but does not make the context available on another machine. If the user
@@ -76,9 +75,10 @@ even when this repository is used only as shared-context storage.
 First inspect the branch, upstream, and worktree:
 
 ```bash
-git -C "$ALIGNMENT_ROOT" rev-parse --abbrev-ref HEAD
-git -C "$ALIGNMENT_ROOT" rev-parse --abbrev-ref '@{upstream}'
-git -C "$ALIGNMENT_ROOT" status --porcelain
+ROOT="$(cli.ts root)"
+git -C "$ROOT" rev-parse --abbrev-ref HEAD
+git -C "$ROOT" rev-parse --abbrev-ref '@{upstream}'
+git -C "$ROOT" status --porcelain
 ```
 
 Use these branches:
@@ -112,7 +112,7 @@ context(library): add document superstream-spec
 After a successful push, confirm that your paths are clean:
 
 ```bash
-git -C "$ALIGNMENT_ROOT" status --porcelain
+git -C "$(cli.ts root)" status --porcelain
 ```
 
 Unrelated existing changes can remain. Report them; do not stage them.
@@ -121,15 +121,18 @@ Unrelated existing changes can remain. Report them; do not stage them.
 
 Build a remote link only after the file is pushed.
 
-- For a file under a pushed shared `ALIGNMENT_ROOT`, build the link from the
-  storage repository's `origin` and pushed commit. Include the context slug:
+- For a file under a pushed shared context root, build the link from the storage
+  repository's `origin` and pushed commit. Include the context slug:
   `https://github.com/{owner}/{repo}/blob/{sha}/{slug}/library/web/rfc-2119.md`.
 - For an artifact-share store, include `shared-context/` before the slug:
   `https://github.com/{owner}/{repo}/blob/{sha}/shared-context/{slug}/library/web/rfc-2119.md`.
 - For local-only storage, report the local path and state that no citable remote
   link exists.
+- Never create a public URL from a private store, a repository-local store, or an
+  uncertain access boundary. Use `SharedContext/<relative path>` for private or
+  uncertain boundaries.
 - For a file in the repository being changed, use a path relative to that
-  repository root.
+  repository root. Do not use an absolute local path.
 
-The full link rule lives in `developer/SHARED-CONTEXT-LINKS.md`. This reference
-does not replace it.
+The full link rule lives in the `Shared-context writes and links` section of the
+`agent-core:shared-context` skill.

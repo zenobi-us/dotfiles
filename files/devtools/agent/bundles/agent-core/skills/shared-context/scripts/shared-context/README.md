@@ -60,7 +60,8 @@ an empty one, which is what a plugin install leaves behind.
 `/eng-context` (pi) or `/shared-agent-context:eng-context` (Claude Code)
 subcommands:
 
-- `report` (default) — current storage, roots, origin, slug.
+- `report` (default) — current storage, roots, origin, slug. This is the only root resolver.
+- `root` — print only the resolved context root for scripts.
 - `init` — create shared `AGENTS.md` and activate shared storage.
 - `list` — list every origin-keyed shared context.
 - `migrate` — copy alignment files to the opposite storage, verifying existing
@@ -71,7 +72,8 @@ subcommands:
   nothing.
 - `doctor` — check Bun, mise, git, and fd prerequisites.
 - `index <dir> [--force]` — rebuild the managed block of `<dir>/index.md` from the
-  frontmatter of its sibling Markdown files. Text outside the
+  frontmatter of its sibling Markdown files. The CLI rejects targets outside the
+  resolved root and targets or inputs that escape through symlinks. Text outside the
   `<!-- shared-context:index start -->` / `<!-- shared-context:index end -->`
   markers is kept. An `index.md` with no markers is refused unless `--force`.
 

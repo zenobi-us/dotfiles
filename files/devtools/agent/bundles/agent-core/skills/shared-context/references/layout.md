@@ -1,11 +1,11 @@
 # Layout
 
-Read this before any write under `ALIGNMENT_ROOT`. It applies to ingested source
+Read this before any write under the root printed by the CLI. It applies to ingested source
 material and to notes you author.
 
 ## Anchor rule
 
-Every ingested file lives in a source directory under an anchor.
+Every ingested file lives in a source directory under the root printed by the CLI. Do not resolve the root from the repository, configuration, or environment separately.
 
 | Condition | Anchor |
 |---|---|
@@ -23,8 +23,10 @@ Get the directory from the CLI. Do not build the path by hand:
 same path and creates nothing. Use `--dry-run` when you are planning. Both forms refuse
 a key or source containing a slash or `..`.
 
-`<source>` is one lowercase word: `confluence`, `jira`, `web`, `document`,
-`library-docs`, `local`. Use an existing directory name before you invent one.
+`<source>` starts with a lowercase letter and contains only lowercase letters,
+numbers, and dashes: `confluence`, `jira`, `web`, `document`, `library-docs`,
+`local`. It must not contain slashes, dots, underscores, or uppercase letters.
+Use an existing directory name before you invent one.
 
 Work-key directories also hold task material that is not an ingest: `planning.md`,
 `workflow-record.md`, `deliverable-tasks/`. Those keep their existing names.

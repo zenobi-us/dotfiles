@@ -8,6 +8,7 @@ const STORAGE_FILE = ".storage";
 const LIBRARY_DIR = "library";
 const ALIGNMENT_PATHS = ["docs/agents", "CONTEXT.md", "CONTEXT-MAP.md", "docs/adr", LIBRARY_DIR];
 const SEGMENT_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+const SOURCE_PATTERN = /^[a-z][a-z0-9-]*$/;
 
 export type SharedAgentContext = {
   repositoryRoot: string;
@@ -372,7 +373,9 @@ function assertSegment(value: string, label: string): void {
 }
 
 export function anchorPath(context: SharedAgentContext, options: AnchorOptions): string {
-  assertSegment(options.source, "source");
+  if (!SOURCE_PATTERN.test(options.source)) {
+    throw new Error(`Invalid source "${options.source}": use lowercase letters, numbers, or dashes`);
+  }
   if (options.key !== undefined) assertSegment(options.key, "key");
   return options.key
     ? path.join(context.root, options.key, options.source)
@@ -404,17 +407,45 @@ export type ContextIndexEntry = {
   url?: string;
 };
 
+function isWithinRoot(root: string, target: string): boolean {
+  const relative = path.relative(root, target);
+  return relative === "" || (relative !== ".." && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative));
+}
+
+/**
+ * Check an index target after resolving both paths through symlinks.
+ * Lexical checks alone allow a directory inside the root to point outside it.
+ */
+export async function validateIndexTarget(root: string, directory: string): Promise<void> {
+  const [rootReal, directoryReal] = await Promise.all([fs.realpath(root), fs.realpath(directory)]);
+  if (!isWithinRoot(rootReal, directoryReal) || rootReal === directoryReal) {
+    throw new Error(`Index target ${directory} must be a directory below resolved root ${root}`);
+  }
+  const stat = await fs.stat(directoryReal);
+  if (!stat.isDirectory()) throw new Error(`Index target ${directory} is not a directory`);
+}
+
 export const INDEX_MARKER_START = "<!-- shared-context:index start -->";
 export const INDEX_MARKER_END = "<!-- shared-context:index end -->";
 
 export async function buildContextIndex(
   directory: string,
-  options: { force?: boolean } = {},
+  options: { force?: boolean; root?: string } = {},
 ): Promise<{ path: string; entries: ContextIndexEntry[]; preserved: boolean }> {
+  if (options.root) await validateIndexTarget(options.root, directory);
+
+  const directoryReal = await fs.realpath(directory);
   const names = (await fs.readdir(directory, { withFileTypes: true }))
     .filter((entry) => entry.isFile() && entry.name.endsWith(".md") && entry.name !== "index.md")
     .map((entry) => entry.name)
     .sort();
+
+  for (const file of names) {
+    const fileReal = await fs.realpath(path.join(directory, file));
+    if (!isWithinRoot(directoryReal, fileReal)) {
+      throw new Error(`Index source ${path.join(directory, file)} escapes its target through a symlink`);
+    }
+  }
 
   let source = path.basename(directory);
   const entries = await Promise.all(names.map(async (file): Promise<ContextIndexEntry> => {
@@ -429,6 +460,14 @@ export async function buildContextIndex(
     : `- ${entry.title} — local copy: [${entry.file}](${entry.file})`));
   const block = [INDEX_MARKER_START, lines.length > 0 ? lines.join("\n") : "No files recorded yet.", INDEX_MARKER_END].join("\n");
   const indexPath = path.join(directory, "index.md");
+  try {
+    const indexReal = await fs.realpath(indexPath);
+    if (!isWithinRoot(directoryReal, indexReal)) {
+      throw new Error(`Index file ${indexPath} escapes its target through a symlink`);
+    }
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
 
   const existing = await readIfPresent(indexPath);
   if (existing !== undefined) {

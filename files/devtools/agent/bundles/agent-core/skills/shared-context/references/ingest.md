@@ -5,14 +5,16 @@ Pull an external source into shared context so other agents can read it.
 ## Overview
 
 Nine steps. They take a URL, a ticket key, a file path, or a screenshot and leave a
-provenance-stamped Markdown file at a known path, indexed and pushed.
+provenance-stamped Markdown file at a known path, indexed and pushed when the
+resolved storage has a usable remote.
 
 ## Steps
 
 1. You **MUST** resolve the root. Run `cli.ts` with no subcommand, with the working
    directory inside the repository you are working on. Read `storage` and `root`.
-2. If `storage` is `repository`, you **MUST** stop and tell the user shared storage
-   is off for this repository. You **MUST NOT** run `init` to fix it. Ask.
+2. Use the `root` printed by the CLI as the only write target. Repository storage
+   is valid repository-local context; shared storage is valid external context.
+   Do not run `init` unless the user explicitly asks to change storage.
 3. You **MUST** identify the work key. Read it from the user's words, the branch
    name, or the worktree name. If no work key applies, the anchor is `library/`.
    If a work key is likely but unstated, ask before you write.
@@ -41,8 +43,8 @@ provenance-stamped Markdown file at a known path, indexed and pushed.
       that index survived.
 - [ ] A second run of the same request overwrites or skips. It never creates a
       second file.
-- [ ] `git -C "$ALIGNMENT_ROOT" status --porcelain` is empty after the push, or you
-      reported why you did not push.
+- [ ] The resolved root is clean after a successful push, or you reported why you
+      did not push. Use the CLI's root/report output; do not derive the root separately.
 
 ## Many sources at once
 

@@ -106,14 +106,22 @@ async function runAnchor(ctx: { flags: { source: string; key?: string; "dry-run"
 }
 
 async function runIndex(ctx: { args: { directory: string }; flags: { force?: boolean } }): Promise<void> {
+  const context = await requireContext();
+  if (!context) return;
+
   try {
-    const result = await buildContextIndex(path.resolve(ctx.args.directory), { force: ctx.flags.force });
+    const result = await buildContextIndex(path.resolve(ctx.args.directory), { force: ctx.flags.force, root: context.root });
     const count = `${result.entries.length} entr${result.entries.length === 1 ? "y" : "ies"}`;
     console.log(`${result.path}\n${count}${result.preserved ? " (managed block updated, surrounding text kept)" : ""}`);
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
   }
+}
+
+async function runRoot(): Promise<void> {
+  const context = await requireContext();
+  if (context) console.log(context.root);
 }
 
 function runDoctor(): void {
@@ -185,6 +193,9 @@ const cli = new Crust("shared-context")
   .command("doctor", (cmd) => cmd
     .meta({ description: "Check Bun and external command prerequisites" })
     .run(runDoctor))
+  .command("root", (cmd) => cmd
+    .meta({ description: "Print the resolved context root" })
+    .run(runRoot))
   .args([{ name: "command", type: "string", variadic: true }] as const)
   .run(runReport);
 
