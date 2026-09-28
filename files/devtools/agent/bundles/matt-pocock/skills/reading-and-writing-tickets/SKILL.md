@@ -14,16 +14,18 @@ Use short sentences. Use active voice. Keep one term for one concept. Keep comma
 
 This skill owns ticket mechanics and ticket schema. Calling skills own workflow intent. A calling skill decides **why** it needs a ticket operation. This skill decides **how** to read or write the ticket through the configured tracker.
 
-## Router rule
+## Mandatory ticket-resolution preamble
 
-Before reading or writing a ticket:
+Apply this preamble before loading tracker configuration or reading or writing a ticket, workflow record, review artifact, or other tracker-owned file:
 
-1. Run the shared-context CLI `report` procedure from `agent-core:shared-context` in the repository root.
-2. Use the reported `root` as `ALIGNMENT_ROOT`. Use the reported `repository-root` for the repository. Do not inspect prompt or environment data, or derive either path by hand.
-3. Read `<reported-root>/docs/agents/issue-tracker.md`.
+1. Run the shared-context CLI `report` procedure from `agent-core:shared-context` in the repository being worked on.
+2. Set `ALIGNMENT_ROOT` to the reported `root`. Use the reported `repository-root` for repository files. Do not inspect prompt or environment data, or derive either path from the repository path, origin slug, ticket ID, configuration, or a guessed home-directory path.
+3. Read `<ALIGNMENT_ROOT>/docs/agents/issue-tracker.md`.
 4. Read its YAML frontmatter.
 5. Select the backend-specific operation below.
 6. Preserve the configured tracker format. Do not infer a backend from file paths or prose.
+
+Calling skills MUST use this preamble before they ask this skill to resolve a ticket. They MUST pass the CLI-reported `root`, `storage`, and repository root as working context. If a calling skill already resolved these values, verify that they came from the same repository and the same CLI run; do not replace them with a derived path.
 
 For a write under a shared `ALIGNMENT_ROOT`, read the shared-context publishing procedure after the write. Run `cli.ts index <dir>` after adding or removing a file in a shared-context source directory.
 

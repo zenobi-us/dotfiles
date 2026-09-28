@@ -31,6 +31,8 @@ _Avoid_: Client, buyer, account
 
 ## Single vs multi-context repos
 
+Resolve `ALIGNMENT_ROOT` with the shared-context CLI before reading or writing these files. Do not derive it from the repository path, origin slug, ticket key, configuration, or environment.
+
 **Single context (most projects):** One `CONTEXT.md` at the active alignment root.
 
 **Multiple contexts:** A `CONTEXT-MAP.md` at the active alignment root lists the contexts, where they live, and how they relate to each other:
