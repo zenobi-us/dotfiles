@@ -19,7 +19,7 @@ This playbook receives `muxer` and `agent` from the `worktree` skill. It does no
 1. Resolve and validate the ticket. Run its preflight and claim operation.
 2. Read the relevant context, ADRs, and agent instructions.
 3. Resolve the base branch and create the source branch with Worktrunk.
-4. Create the ticket workflow directory and append the initial `start` phase-start receipt.
+4. Create the ticket workflow directory and initialize its append-only receipt history with the initial `start` phase-start receipt. The receipt history is the workflow record; do not create a second authoritative workflow file.
 5. Write a temporary implementation handoff. Include the ticket, branch, worktree, base branch, context root and storage mode, relevant files, requirements, validation commands, receipt path, and these completion requirements:
    - Implement the ticket.
    - Run validation.

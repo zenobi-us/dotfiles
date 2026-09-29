@@ -13,21 +13,23 @@ The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or re
 - Follow `ALIGNMENT-ROOT.md` and use `cli.ts anchor --source local --key <ticket-id>`.
 - Require the latest persisted review receipt to have `verdict: FAILURE`.
 - Verify that the source worktree and branch still exist.
+- Confirm that the current source branch matches the `source_branch` recorded in the consumed review receipt. Reject the fix on mismatch.
 
 ## Process
 
 1. Read the latest immutable review artifact and receipt. Read the implementation receipt, latest draft snapshot, ticket, context, ADRs, and agent instructions.
-2. Select only the blocking findings for the fixer. Preserve their IDs, ADR references, exact files, line references, and validation commands.
-3. Record the current source commit and create a new fix phase-start receipt with the review receipt as its parent.
-4. Write a temporary fix handoff containing the source worktree, source and base branches, current source commit, context root and storage mode, selected engineering skill, review receipt, blocking findings, and expected validation.
-5. Open a new pane or tab in the existing worktree workspace. For hrdx, use `pane.create` with the absolute workspace path, `split: "tab"`, and the configured agent kind. Do not send text to the prior session.
-6. Launch the fresh fixer session with the agent contract and the fix handoff.
-7. Wait for completion through the muxer contract. Require `WORKTREE_FIX_DONE` only after the fixer has applied the changes and passed validation.
-8. If the fixer is blocked, fails validation, or omits the marker, append a failed fix phase-complete receipt and keep the worktree. Do not start a review.
-9. If the fixer succeeds, verify the immutable fix phase-result receipt, the new source commit, the new draft snapshot, and the regenerated projections.
-10. Close the fixer pane. Keep the worktree workspace available.
-11. Create a phase-complete receipt that links to the fix phase-result receipt.
-12. Update the workflow projection and report `review <ticket-id>` as the next command. A new review is required because the source commit changed.
+2. Confirm that the current source branch matches the branch recorded in the consumed review receipt. Stop on mismatch.
+3. Select only the blocking findings for the fixer. Preserve their IDs, ADR references, exact files, line references, and validation commands.
+4. Record the current source commit and create a new fix phase-start receipt with the review receipt as its parent.
+5. Write a temporary fix handoff containing the source worktree, source and base branches, current source commit, context root and storage mode, selected engineering skill, review receipt, blocking findings, and expected validation.
+6. Open a new pane or tab in the existing worktree workspace. For hrdx, use `pane.create` with the absolute workspace path, `split: "tab"`, and the configured agent kind. Do not send text to the prior session.
+7. Launch the fresh fixer session with the agent contract and the fix handoff.
+8. Wait for completion through the muxer contract. Require `WORKTREE_FIX_DONE` only after the fixer has applied the changes and passed validation.
+9. If the fixer is blocked, fails validation, or omits the marker, append a failed fix phase-complete receipt and keep the worktree. Do not start a review.
+10. If the fixer succeeds, verify the immutable fix phase-result receipt, the new source commit, the new draft snapshot, and the regenerated projections.
+11. Close the fixer pane. Keep the worktree workspace available.
+12. Create a phase-complete receipt that links to the fix phase-result receipt.
+13. Update the workflow projection and report `review <ticket-id>` as the next command. A new review is required because the source commit changed.
 
 ## Fix receipt requirements
 

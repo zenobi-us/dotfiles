@@ -544,3 +544,27 @@
   The most important invariant is:
 
   ┃ Every phase gets a new session, reads durable artifacts, writes a new receipt, and links its result to the exact source commit it inspected or changed.
+
+  ---
+
+  # Post-review correlation
+
+  The worktree skill changed after this review. Commit `aec2a692` added fresh
+  review and fix sessions, append-only receipts, commit-scoped review
+  validation, and projection rules.
+
+  The current Worktrunk configuration has:
+
+  ```toml
+  [merge]
+  squash = true
+  ```
+
+  The remaining design gaps were addressed as follows:
+
+  • `fix` now checks the current branch against the consumed review receipt;
+  • receipt `inputs` and `outputs` are now standardized;
+  • projection contents are now defined;
+  • terminal finish receipt fields are now defined;
+  • the receipt history is the workflow record;
+  • review artifacts use the tracker path or the `reviews/` fallback directory.

@@ -32,7 +32,7 @@ Finish does not launch an agent for source work. It releases every remaining age
 13. Complete the ticket with the ticket skill.
 14. Remove the source worktree with Worktrunk.
 15. Close the hrdx workspace after the worktree is removed.
-16. Append a final immutable `FINISHED` receipt with the merge commit, push result, ticket result, worktree result, and workspace result. If any step from 6 through 15 fails, append `FINISH_FAILED` instead and keep every resource required for recovery. Regenerate the final projections.
+16. Append a final immutable `FINISHED` receipt using the terminal receipt fields in `references/receipts.md`. If any step from 6 through 15 fails, append `FINISH_FAILED` with the failure fields and preserve every resource required for recovery. Regenerate the final projections.
 
 ## Safety rules
 

@@ -11,7 +11,7 @@ The reviewer MUST use a new pane or tab. It MUST NOT reuse the implementation or
 - Use Worktrunk, the `code-review` skill, and the active muxer and agent contracts.
 - Run the shared-context CLI from the repository. Use its reported root and storage mode.
 - Follow `ALIGNMENT-ROOT.md` and use `cli.ts anchor --source local --key <ticket-id>`.
-- Store the review artifact at the tracker-defined path or the ticket anchor path. Never store it only in chat or `/tmp`.
+- Store the review artifact at the tracker-defined review path. If the tracker has no review path, use `<ticket-anchor>/reviews/`. Never store it only in chat or `/tmp`.
 
 ## Preconditions that block the review
 

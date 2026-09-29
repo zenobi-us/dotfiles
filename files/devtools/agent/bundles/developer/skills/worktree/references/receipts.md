@@ -46,8 +46,21 @@ session_id: session-id-or-null
 context_root: /resolved/context/root
 context_storage: repository
 ticket_path: /resolved/ticket/path
+
+inputs:
+  - kind: ticket
+    ref: ABC-123
+
+outputs:
+  - kind: receipt
+    ref: review-0003
+
 status: completed
 ```
+
+Every receipt MUST list the durable records it consumed in `inputs`.
+Every receipt MUST list the durable records it created in `outputs`.
+Temporary handoffs MUST NOT appear as authoritative outputs.
 
 Implementation receipts MUST also record changed files, validation results, the implementation summary, and open questions.
 
@@ -83,7 +96,66 @@ FINISH_FAILED
 
 A phase-complete receipt MUST link to the phase-result receipt. A projection MUST NOT replace a receipt.
 
-## Projections
+The append-only receipt history under the ticket anchor is the workflow record. A separate `workflow.yaml` file is optional and MUST NOT become another source of truth.
+
+## Terminal finish receipt
+
+A terminal finish receipt MUST use these fields:
+
+```yaml
+merged_commit: abc123
+pushed: true
+ticket_completed: true
+worktree_removed: true
+workspace_closed: true
+```
+
+When finish fails, it MUST also record:
+
+```yaml
+failure_step: push
+failure_reason: ...
+worktree_preserved: true
+workspace_preserved: true
+```
+
+## Projection requirements
+
+`projections/pr-draft.md` MUST contain:
+
+- ticket summary;
+- problem statement;
+- implementation summary;
+- changed files;
+- validation results;
+- review history;
+- resolved findings;
+- remaining findings;
+- latest reviewer verdict;
+- merge status;
+- links to all supporting receipts and artifacts.
+
+`projections/implementation-log.md` MUST contain:
+
+- implementation and fix receipt history;
+- changed files by phase;
+- validation results by phase;
+- unresolved questions.
+
+`projections/latest-status.yaml` MUST contain:
+
+```yaml
+workflow_id: ...
+ticket: ...
+state: ...
+latest_receipt: ...
+latest_source_commit: ...
+latest_source_tree: ...
+latest_review_verdict: SUCCESS|FAILURE|null
+open_findings: []
+```
+
+## Snapshots and projections
 
 Create versioned draft snapshots under `snapshots/`, for example:
 
