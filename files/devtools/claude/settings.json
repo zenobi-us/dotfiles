@@ -58,5 +58,5 @@
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
-  "verbose": true
+  "verbose": false
 }
