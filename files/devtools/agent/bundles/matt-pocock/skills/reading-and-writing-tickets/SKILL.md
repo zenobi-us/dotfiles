@@ -12,6 +12,13 @@ Use short sentences. Use active voice. Keep one term for one concept. Keep comma
 
 # Reading and Writing Tickets
 
+Before any operation on a local Markdown ticket or review artifact, use
+`agent-core:mq-query` as the Markdown interface. Load its matching task reference
+and required upstream reference first. Use explicit input and output formats.
+Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or an ad hoc Markdown
+parser to locate, query, or inspect the file. Preserve the configured frontmatter
+and body structure when you write it.
+
 This skill owns ticket mechanics and ticket schema. Calling skills own workflow intent. A calling skill decides **why** it needs a ticket operation. This skill decides **how** to read or write the ticket through the configured tracker.
 
 ## Mandatory ticket-resolution preamble

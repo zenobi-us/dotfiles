@@ -9,6 +9,15 @@ compatibility: Requires the `wt` CLI (https://worktrunk.dev)
 
 Help users work with Worktrunk, a CLI tool for managing git worktrees.
 
+## Markdown access policy
+
+When a Worktrunk workflow searches, reads, filters, selects, lists, summarises,
+or validates local Markdown, use `agent-core:mq-query`. Load its matching task
+reference and required upstream reference first. Use explicit input and output
+formats. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or an ad hoc
+Markdown parser for that work. This does not apply to shell diagnostics for
+non-Markdown configuration or process output.
+
 ## Available Documentation
 
 Reference files are synced from [worktrunk.dev](https://worktrunk.dev) documentation:
@@ -238,12 +247,7 @@ wt config --help
 
 Load **reference files** for detailed configuration, hook specifications, and troubleshooting.
 
-Find specific sections with grep:
-```bash
-grep -A 20 "## Setup" reference/llm-commits.md
-grep -A 30 "### pre-start" reference/hook.md
-grep -A 20 "## Warning Messages" reference/shell-integration.md
-```
+Find specific sections in the Worktrunk Markdown references with `agent-core:mq-query`. Load the matching mq-query task reference and required upstream reference first. Use explicit Markdown input and output formats. Do not use `grep` or another ad hoc text parser for this work.
 
 ## Hook Approvals in Non-Interactive Sessions
 

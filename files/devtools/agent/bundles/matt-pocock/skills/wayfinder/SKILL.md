@@ -21,7 +21,14 @@ Before reading or writing workflow or domain artifacts, run the shared-context C
 
 For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.
 
+## Markdown access
 
+Use `agent-core:mq-query` for every local Markdown search, read, filter, selection,
+list, summary, validation, transformation, or creation. Load its matching task
+reference and required upstream reference first. Use explicit input and output
+formats. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or an ad hoc
+Markdown parser for maps, tickets, workflow records, or context documents. Use
+`reading-and-writing-tickets` for tracker-owned records.
 
 A loose idea has arrived, too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. Wayfinding is about finding that way, not charging at the destination. This skill charts the way as a **shared map** on the repo's issue tracker, then works its **decision tickets** (questions whose resolution is a decision, not slices of a build to execute) one at a time until the route is clear.
 

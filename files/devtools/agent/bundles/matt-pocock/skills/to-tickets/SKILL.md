@@ -21,7 +21,14 @@ Before reading or writing workflow or domain artifacts, run the shared-context C
 
 For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.
 
+## Markdown access
 
+Use `agent-core:mq-query` for every local Markdown search, read, filter, selection,
+list, summary, validation, transformation, or creation. Load its matching task
+reference and required upstream reference first. Use explicit input and output
+formats. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or an ad hoc
+Markdown parser for specs, workflow records, or ticket content. Use
+`reading-and-writing-tickets` for tracker-owned records.
 
 # To Tickets
 

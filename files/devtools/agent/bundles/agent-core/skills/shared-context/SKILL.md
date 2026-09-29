@@ -9,6 +9,19 @@ user-invocable: true
 Origin-keyed engineering context. Alignment files and ingested source material live
 outside any single repository clone, keyed by the repository's git `origin`.
 
+## Markdown access policy
+
+Use `agent-core:mq-query` for every agent operation that searches, reads, filters,
+selects, lists, summarises, or validates local Markdown content. Load its matching
+task reference and the required upstream reference first. Use explicit input and
+output formats.
+
+Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or ad hoc Markdown
+parsers to locate or inspect local Markdown. A known path may be passed to
+`mq`, but `mq` remains the content-reading interface. This policy applies to
+alignment files, ingested files, indexes, and local ticket files. It does not
+change the implementation of the shared-context CLI itself.
+
 ## Step 0: resolve the root. Always.
 
 ```bash

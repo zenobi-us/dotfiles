@@ -5,6 +5,12 @@ description: Use the mise-installed harehare/mq command to query, read, transfor
 
 # mq-query
 
+Use `mq` as the required interface for local Markdown content. This includes
+searching, reading, filtering, selecting, listing, summarising, validating,
+transforming, and creating Markdown. Agents may use a domain or tracker CLI to
+identify authoritative records and filesystem tools to check whether a path
+exists, but they must use `mq` to inspect Markdown content.
+
 Use `mq` for structured document work. The binary is installed through `mise`.
 
 ## Required module

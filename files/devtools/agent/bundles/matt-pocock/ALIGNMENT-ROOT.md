@@ -2,6 +2,19 @@
 
 Matt Pocock engineering skills use one active alignment root for workflow configuration, domain documents, ADRs, and local issue files. Repository source and ordinary project artifacts stay in the Git working tree.
 
+## Markdown access policy
+
+Use `agent-core:mq-query` for every agent operation that searches, reads, filters,
+selects, lists, summarises, or validates local Markdown content. Load its matching
+task reference and the required upstream reference first. Use explicit input and
+output formats.
+
+Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or ad hoc Markdown
+parsers to locate or inspect local Markdown. A known path may be passed to
+`mq`, but `mq` remains the content-reading interface. This applies to
+`CONTEXT.md`, `CONTEXT-MAP.md`, ADRs, `docs/agents/`, `.scratch/`, review
+artifacts, and other alignment Markdown.
+
 ## Resolve the root
 
 Run the shared-context CLI procedure from `agent-core:shared-context` in the repository root before reading or writing alignment artifacts:

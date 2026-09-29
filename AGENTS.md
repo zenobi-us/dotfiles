@@ -24,6 +24,10 @@ GitHub Issues in `zenobi-us/dotfiles` are the source of truth. Use `gh` for issu
 
 This is a single-context repository. Read `CONTEXT.md` and relevant `docs/adr/` files when they exist. See `docs/agents/domain.md` relative to the active Matt Pocock alignment root.
 
+### Local Markdown
+
+Use `agent-core:mq-query` for local Markdown search, reading, filtering, selection, listing, summaries, validation, transformation, and creation. Load its matching task reference and required upstream reference first. Use explicit input and output formats. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or ad hoc Markdown parsers to inspect Markdown content. Use domain or tracker tools to identify authoritative records, and filesystem tools only to check whether paths exist.
+
 ## Container tools
 
 - Use Podman instead of Docker when Podman supports the required operation.

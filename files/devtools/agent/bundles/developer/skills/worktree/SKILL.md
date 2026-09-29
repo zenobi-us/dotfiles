@@ -9,6 +9,12 @@ Route `UserRequest` to the correct worktree workflow. This skill dispatches only
 
 # Rule 0: resolve the project issue tracker
 
+For every local Markdown file used by a worktree workflow, use
+`agent-core:mq-query` to locate, read, filter, select, list, summarise, or
+validate its content. Load the matching mq-query task reference and required
+upstream reference first. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell
+globs, or an ad hoc Markdown parser for that work.
+
 Before loading tracker configuration or reading or changing a ticket, apply the **Mandatory ticket-resolution preamble** in `files/devtools/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/SKILL.md`. Run the shared-context CLI from the repository being worked on, set `ALIGNMENT_ROOT` to the CLI-reported `root`, and read `docs/agents/issue-tracker.md` from that root. Pass the CLI-reported `root`, `storage`, and repository root to the ticket skill. Do not derive `ALIGNMENT_ROOT` or a tracker path from the repository path, ticket ID, origin slug, configuration, or environment. That skill owns ticket selectors, backend resolution, schema, paths, reads, claims, review artifacts, comments, completion, and tracker commits. This skill owns only the Worktrunk workflow.
 
 Every commit made by a worktree playbook MUST use the `writing-and-creating-git-commits` skill. Every commit title MUST contain the resolved issue reference. This applies to source commits, review-artifact commits, tracker-state commits, and the final merge commit.

@@ -60,7 +60,9 @@ Use a stable name such as `feature-requests/<repo-slug>-<date>-<short-slug>.md` 
 
 ### 2. Read repository instructions before analysis
 
-Before forming any recommendation, recursively discover instruction and contribution files from the repository root. Include every applicable `AGENTS.md`, `CLAUDE.md`, equivalent agent file, `CONTRIBUTING*`, issue template, governance file, support policy, and directory-local instruction file. Do not limit discovery to directories that appear relevant. For every discovered file, record `read`, `not applicable`, or `blocked`, with the reason. For every source directory or file inspected later, resolve the most-specific applicable instructions first. Search for, at minimum:
+Before forming any recommendation, use `agent-core:mq-query` for every local Markdown search, read, filter, selection, list, summary, or validation. Load its matching task reference and required upstream reference first. Use explicit input and output formats. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or an ad hoc Markdown parser for Markdown content.
+
+Recursively discover instruction and contribution files from the repository root. Include every applicable `AGENTS.md`, `CLAUDE.md`, equivalent agent file, `CONTRIBUTING*`, issue template, governance file, support policy, and directory-local instruction file. Do not limit discovery to directories that appear relevant. For every discovered file, record `read`, `not applicable`, or `blocked`, with the reason. For every source directory or file inspected later, resolve the most-specific applicable instructions first. Search for, at minimum:
 
 - `AGENTS.md`, `CLAUDE.md`, and other agent instructions
 - `CONTRIBUTING*`
