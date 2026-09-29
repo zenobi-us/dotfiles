@@ -19,7 +19,7 @@ This playbook receives `muxer` and `agent` from the `worktree` skill. It does no
 1. Resolve and validate the ticket. Run its preflight and claim operation.
 2. Read the relevant context, ADRs, and agent instructions.
 3. Resolve the base branch and create the source branch with Worktrunk.
-4. Create the ticket workflow directory and append the initial `start` receipt.
+4. Create the ticket workflow directory and append the initial `start` phase-start receipt.
 5. Write a temporary implementation handoff. Include the ticket, branch, worktree, base branch, context root and storage mode, relevant files, requirements, validation commands, receipt path, and these completion requirements:
    - Implement the ticket.
    - Run validation.
@@ -30,8 +30,8 @@ This playbook receives `muxer` and `agent` from the `worktree` skill. It does no
 6. Open one agent pane or session with the active muxer contract. Pass the handoff file to the agent contract's launch command.
 7. Do not open another implementation session for this worktree while one is active.
 8. Wait for completion using the muxer contract. Read the final output and verify the marker.
-9. If the agent is blocked, fails validation, or omits the marker, append a failed receipt and keep the worktree.
-10. If the agent succeeds, verify the implementation receipt, draft snapshot, and projections. Record their paths in a completion receipt.
+9. If the agent is blocked, fails validation, or omits the marker, append a failed phase-complete receipt and keep the worktree.
+10. If the agent succeeds, verify the implementation phase-result receipt, draft snapshot, and projections. Record their paths in a phase-complete receipt.
 11. Close the implementation pane. Keep the worktree and workspace available for review.
 
 ## Receipt requirements

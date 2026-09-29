@@ -4,9 +4,13 @@ Use receipts as the durable record for every worktree phase.
 
 ## Rules
 
-- Create one receipt for every `start`, implementation completion, `review`, `fix`, and `finish` event.
+- Create one receipt for every `start`, implementation completion, `review`, `fix`, `submit`, and `finish` event.
+- The parent playbook MUST create a phase-start receipt before it launches an agent.
+- The child agent MUST create one phase-result receipt after it completes its work.
+- The parent playbook MUST create one phase-complete receipt after it reads and validates the result receipt.
 - Store receipts under the ticket anchor returned by the shared-context CLI.
-- Use an append-only `events/` directory. Never overwrite an event or review receipt.
+- Use an append-only `events/` directory. Never overwrite an event or result receipt.
+- Allocate a new receipt ID before every write. Fail when the target path already exists.
 - Record the exact source commit and tree that the agent inspected or changed.
 - Link each receipt to its parent receipt.
 - Treat chat, pane output, and `/tmp` handoffs as transport only. They are not workflow state.
@@ -50,6 +54,34 @@ Implementation receipts MUST also record changed files, validation results, the 
 Review receipts MUST also record `verdict: SUCCESS|FAILURE` and every finding with an ID, severity, ADR reference, file, line, description, required change, and validation command.
 
 Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, unresolved finding IDs, validation results, and the new source commit.
+
+## Receipt protocol
+
+1. Read the ticket anchor before selecting a receipt ID.
+2. List the existing receipt IDs in the anchor.
+3. Select the next unused sequence number.
+4. Write a new file with `--no-clobber` or the equivalent atomic operation.
+5. Read the receipt after writing it.
+6. Stop when a required field is missing or the target path exists.
+
+Use these phase result values for `status`:
+
+```text
+completed
+failed
+blocked
+```
+
+Use `FINISHED` or `FINISH_FAILED` for terminal finish receipts. The example above shows the normal `completed` value.
+
+Use these finish result states:
+
+```text
+FINISHED
+FINISH_FAILED
+```
+
+A phase-complete receipt MUST link to the phase-result receipt. A projection MUST NOT replace a receipt.
 
 ## Projections
 

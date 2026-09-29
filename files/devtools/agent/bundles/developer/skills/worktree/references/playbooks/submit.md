@@ -2,7 +2,7 @@
 
 Submit the reviewed work for the resolved ticket as a pull request.
 
-Submit commits, pushes, and opens a pull request from the current worktree — it does not open a new pane or launch a fresh agent. The muxer and agent contracts do not apply to this playbook.
+Submit commits, pushes, and opens a pull request from the current worktree. This playbook does not open a new pane or launch a fresh agent. The muxer and agent contracts do not apply to this playbook.
 
 ## Ticket resolution
 
@@ -37,16 +37,17 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-and-creating-git-commits` skill. Put the ticket reference in the commit title. Include the ticket link and a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on in the commit body.
 5. Run the smallest validation command recorded by the successful review.
 6. Look for a manual test report for the resolved ticket. See "Manual test reports" below.
-7. Push the source branch.
-8. Use the pull request creation skill if available. Otherwise use `gh pr create`.
-9. Add these items to the pull request body:
+7. Append a `submit` phase-start receipt before pushing the source branch.
+8. Push the source branch.
+9. Use the pull request creation skill if available. Otherwise use `gh pr create`.
+10. Add these items to the pull request body:
    - the ticket link or the `tracker path` returned by the ticket skill when no external link exists,
    - a link, per the `agent-core:shared-context` skill's reference rule, to the successful review artifact,
    - a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on,
    - a link to every manual test report found in step 6, per "Manual test reports" below,
    - validation output,
    - a concise summary of changes.
-10. Leave the source worktree open. Do not remove it after submitting the pull request.
+11. Append a `submit` phase-result receipt with the pull request URL and pushed commit. Append a phase-complete receipt after the result is read. Leave the source worktree open. Do not remove it after submitting the pull request.
 
 # Manual test reports
 
