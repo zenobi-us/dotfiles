@@ -5,41 +5,51 @@ disable-model-invocation: true
 user-invocable: true
 ---
 
-Route `UserRequest` to the correct worktree workflow. This skill dispatches only — it does not resolve tickets, run validation, or launch agents itself. All of that lives in the playbook it points to.
+Route `UserRequest` to the correct worktree workflow. This skill dispatches only. It does not resolve tickets, run validation, or launch agents itself. All of that lives in the playbook it points to.
+
+# Global workflow rules
+
+Load `references/receipts.md` before running a worktree playbook.
+
+Every phase MUST create a durable receipt under the ticket anchor returned by the shared-context CLI. Receipts are append-only and immutable. Chat output, pane output, and temporary handoff files are transport only and are not authoritative workflow state.
+
+Every receipt MUST record the ticket, workflow ID, phase, parent receipt, source branch, base branch, exact source commit and tree, context root and storage mode, tracker path, muxer, workspace path, agent, pane or session identifier, timestamp, status, and output paths.
+
+`start`, `review`, and `fix` MUST use independent agent sessions. A review or fix MUST open a new pane or tab in the existing worktree workspace. It MUST launch a fresh agent session. It MUST NOT send instructions to, resume, or reuse an earlier implementation, review, or fixer session.
+
+Review the exact source commit recorded in the review handoff. A verdict is valid only for that commit. A later source commit invalidates the verdict until a new review completes.
+
+Use immutable review artifacts for every review attempt. Never overwrite an earlier review. Store the current PR draft and implementation log as projections of the receipt history, not as the source of truth.
+
+Every commit made by a worktree playbook MUST use the `writing-and-creating-git-commits` skill. Every commit title MUST contain the resolved issue reference. This applies to source commits, workflow-artifact commits, tracker-state commits, and the final merge commit.
 
 # Rule 0: resolve the project issue tracker
 
-For every local Markdown file used by a worktree workflow, use
-`agent-core:mq-query` to locate, read, filter, select, list, summarise, or
-validate its content. Load the matching mq-query task reference and required
-upstream reference first. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell
-globs, or an ad hoc Markdown parser for that work.
+For every local Markdown file used by a worktree workflow, use `agent-core:mq-query` to locate, read, filter, select, list, summarise, or validate its content. Load the matching mq-query task reference and required upstream reference first. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or an ad hoc Markdown parser for that work.
 
 Before loading tracker configuration or reading or changing a ticket, apply the **Mandatory ticket-resolution preamble** in `files/devtools/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/SKILL.md`. Run the shared-context CLI from the repository being worked on, set `ALIGNMENT_ROOT` to the CLI-reported `root`, and read `docs/agents/issue-tracker.md` from that root. Pass the CLI-reported `root`, `storage`, and repository root to the ticket skill. Do not derive `ALIGNMENT_ROOT` or a tracker path from the repository path, ticket ID, origin slug, configuration, or environment. That skill owns ticket selectors, backend resolution, schema, paths, reads, claims, review artifacts, comments, completion, and tracker commits. This skill owns only the Worktrunk workflow.
-
-Every commit made by a worktree playbook MUST use the `writing-and-creating-git-commits` skill. Every commit title MUST contain the resolved issue reference. This applies to source commits, review-artifact commits, tracker-state commits, and the final merge commit.
 
 # Rule 1: detect the muxer
 
 MUST resolve the muxer before routing or running a playbook, every time, in this order:
 
-1. Look for a `<worktree-session muxer="..." agent="...">` tag already in context. The developer bundle's `SessionStart` hook (`hooks/hooks.json` → `scripts/router.ts session-context`) injects this once per session, so the muxer is normally already known — no script call needed.
-2. If that tag is absent (an older session, the hook did not fire, or the muxer changed mid-session — for example the operator attached a new terminal), fall back to:
+1. Look for a `<worktree-session muxer="..." agent="...">` tag already in context.
+2. If absent or stale, run:
    ```bash
    scripts/router.ts detect-muxer
    ```
 
-Either source gives one of `herdr`, `zellij`, `tmux`, `hrdx`, `unknown-muxer` — see `references/muxers/hrdx.md` for the `HRDX=1` signal hrdx sets. If detection is wrong, pass `--muxer <actual>` to `route` instead of trusting either source.
+Either source gives `herdr`, `zellij`, `tmux`, `hrdx`, or `unknown-muxer`. If detection is wrong, pass `--muxer <actual>` to `route`.
 
 # Rule 2: detect the agent
 
-Use the same tag-first order as Rule 1, using the `<worktree-session>` tag's `agent` attribute first and falling back only when absent or stale:
+Use the same tag-first order. If the tag is absent or stale, run:
 
 ```bash
 scripts/router.ts detect-agent
 ```
 
-Either source gives one of `claude`, `pi`, `unknown-agent`. zot has no confirmed signal — see `references/agents/zot.md` — and always reports as `unknown-agent`. Pass `--agent zot` to `route` when the caller knows better.
+Either source gives `claude`, `pi`, or `unknown-agent`. zot has no confirmed signal. Pass `--agent zot` when the caller knows better.
 
 # Route
 
@@ -49,29 +59,31 @@ Resolve the issue tracker before following a playbook that reads or updates a ti
 scripts/router.ts route "$ARGUMENTS" --muxer <resolved-muxer> --agent <resolved-agent>
 ```
 
-Always pass `--muxer` and `--agent` explicitly, sourced from Rules 1 and 2 above — this keeps `route` a pure lookup with no env probing of its own. It resolves the subcommand and prints JSON: `{ match, subcommand, remainder, muxer, agent, playbook, muxerContract, agentContract }` on success, or `{ match: false, request }` with a non-zero exit on no match.
+Always pass `--muxer` and `--agent` explicitly. The command resolves the subcommand and prints JSON: `{ match, subcommand, remainder, muxer, agent, playbook, muxerContract, agentContract }` on success, or `{ match: false, request }` with a non-zero exit on no match.
 
 ## On match
 
-1. Read `playbook` (`references/playbooks/<subcommand>.md`). It is the full Ticket resolution, Preconditions, Process, and Output for that subcommand — follow it as written.
-2. Where the playbook says to open a pane, launch an agent, or release one, read `muxerContract` (and, when launching, `agentContract`) and follow that contract's commands.
-3. If `muxer` is `unknown-muxer` or `agent` is `unknown-agent` and no override was given, ask the user before proceeding. Do not guess.
+1. Read `references/receipts.md`.
+2. Read `references/playbooks/<subcommand>.md`.
+3. Read `muxerContract` where the playbook opens, waits for, or releases a pane.
+4. Read `agentContract` where the playbook launches an agent.
+5. If `muxer` is `unknown-muxer` or `agent` is `unknown-agent` and no override was given, ask the user. Do not guess.
 
-## On no match (NLP fallthrough)
+## On no match
 
-`UserRequest` did not start with one of `start | submit | fix | finish | review | continue`. Do not reject it outright. Read the six files under `references/playbooks/` and pick the one whose stated goal best matches the free-text request. State which one you picked and why before proceeding. If two are equally plausible, ask.
+Read the six files under `references/playbooks/` and choose the playbook whose goal best matches the request. State which one you chose and why. Ask if two are equally plausible.
 
 # Worktrunk owns worktrees
 
-Every playbook, every muxer contract, and every agent contract in this skill MUST use Worktrunk (`wt`) for creating, switching, removing, and merging worktrees. None of them may call `git worktree` directly. This is unconditional — it does not depend on which muxer or agent was detected.
+Every playbook, muxer contract, and agent contract MUST use Worktrunk (`wt`) for creating, switching, removing, and merging worktrees. None may call `git worktree` directly.
 
 # Troubleshooting
 
 Known failure modes live in `references/troubleshooting/`:
 
-- `wt-hook-approval-needed.md` — a `wt` command needs hook approval in a non-interactive session.
-- `fixer-agent-blocked.md` — the `fix` playbook's fixer agent stalls or fails validation.
-- `missing-review-verdict.md` — `submit`/`finish` blocked because no persisted review verdict exists.
-- `muxer-or-agent-undetected.md` — detection returns `unknown-muxer`/`unknown-agent` when it should not.
+- `wt-hook-approval-needed.md`
+- `fixer-agent-blocked.md`
+- `missing-review-verdict.md`
+- `muxer-or-agent-undetected.md`
 
 UserRequest: $ARGUMENTS

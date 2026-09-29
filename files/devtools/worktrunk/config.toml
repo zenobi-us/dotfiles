@@ -25,6 +25,6 @@ stage = "all"
 command = "if command -v pimono >/dev/null 2>&1; then pimono; else printf 'chore: update\n'; fi"
 
 [merge]
-squash = false
+squash = true
 commit = false
 rebase = false

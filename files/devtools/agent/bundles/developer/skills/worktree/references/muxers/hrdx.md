@@ -83,6 +83,16 @@ c.on("connect", () => c.write(process.argv[2] + "\n"));
 
 Events pushed after `events.subscribe`: `workspace.created`, `workspace.closed`, `pane.created`, `pane.closed`, `pane.busy_changed`, `menu.action`. Subscribe instead of polling `status` in a loop.
 
+### Fresh phase sessions
+
+Each `start`, `review`, and `fix` phase MUST use a new agent session. Keep the existing worktree workspace, but create a new tab and launch the configured agent in the returned pane. Use the absolute worktree path.
+
+```json
+{"id":"1","method":"pane.create","params":{"workspace":"/absolute/worktree/path","kind":"pi","split":"tab"}}
+```
+
+Use the returned `pane_id` to launch and monitor the new session. Use `pane.send_text` only for the new pane when the agent contract requires it. Never send a review or fix request to an earlier implementation or review pane.
+
 ### Pane, tab, and workspace: which call to use
 
 | Goal | Call |

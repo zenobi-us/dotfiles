@@ -2,61 +2,56 @@
 
 Squash merge reviewed work and close its ticket.
 
-Finish merges and removes the worktree. It does not open a new pane or launch a fresh agent for the ticket work itself, but it does need to release any pane or session left running from `start`/`fix` — use `references/muxers/<muxer>.md` for that release step only.
+Finish does not launch an agent for source work. It releases every remaining agent pane before merge and removes the worktree only after the push and ticket update succeed.
 
-## Ticket resolution
+## Preconditions
 
-Load `references/issue-tracker.md` and the ticket skill before resolving the ticket. Use the ticket skill to return the canonical `ticket` and `tracker path`. If no identifier is present, use the most recent unambiguous ticket mention in the conversation. Cross-check it against workflow records. Ask when it is missing or ambiguous. Do not guess.
+- Read `references/receipts.md`.
+- Resolve the canonical ticket and tracker path with the ticket skill.
+- Use Worktrunk and the applicable `code-review` and `implement` skills.
+- Run the shared-context CLI from the source repository. Use its reported root and storage mode.
+- Follow `ALIGNMENT-ROOT.md` and use `cli.ts anchor --source local --key <ticket-id>`.
+- Require an immutable `SUCCESS` review receipt for the current source commit and tree.
+- Confirm that no later source changes exist after the successful review.
+- Do not remove the worktree while an agent is running.
 
-# Preconditions
+## Process
 
-- Use the `worktrunk` skill. Worktrunk is required for worktree operations.
-- Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
-- Treat the shared agent context as durable project memory. Run `<shared-context-skillroot>/scripts/shared-context/cli.ts` from the source repository and use its reported `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` or a ticket path by hand.
-- Follow `ALIGNMENT-ROOT.md` from the reported root. Keep alignment files in that reported storage and keep source code, commits, and branches in the repository worktree. Local-only and private stores remain within their access boundary.
-- Run the CLI before choosing any context path or link. Use `cli.ts anchor --source local --key <ticket-id>` for ticket-scoped files, and use the returned directory rather than joining paths yourself.
-- Follow the `Shared-context writes and links` section of the `agent-core:shared-context` skill for writes, publishing, and access-boundary checks. Use `SharedContext/<relative-path>` for a private or local-only reference; do not create a public URL.
-- Follow `references/issue-tracker.md` and the ticket skill for the configured tracker and returned `tracker path`.
-- Require a matching persisted `SUCCESS` verdict from the `review` playbook at the tracker-defined review artifact path. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
-- Do not remove a worktree while an agent still runs inside it.
-
-Ask the user for the missing ticket before continuing. Exit if the review artifact scope does not match the resolved ticket or if you cannot identify:
-
-1. The source worktree.
-2. The source branch.
-3. The base branch.
-4. The issue or ticket.
-
-# Process
-
-1. Run the shared-context CLI from the source repository. Use its reported root and storage mode; do not construct either path manually.
-2. Resolve the source and base worktrees (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
-3. Use Worktrunk to verify the source branch and worktree state.
-4. Make sure that the source worktree has no unintended changes.
-5. Run the smallest validation command recorded by the successful review.
-6. Stop or release the source agent's pane or session before removing its worktree, following `references/muxers/<muxer>.md`'s release/close procedure. Under `unknown-muxer` there is no pane to release.
-7. Switch to or focus the base worktree. Do not run merge operations from an active source-agent pane or session.
+1. Resolve the workflow, source branch, base branch, and source worktree.
+2. Read the latest `SUCCESS` review receipt, review artifact, fix or implementation receipt, relevant context, ADR links, and validation command.
+3. Verify that the successful review covers the current source commit and tree.
+4. Run the recorded validation command.
+5. Append a `finish` receipt with status `FINISHING`.
+6. Stop or release every source-worktree agent pane or session using the active muxer contract. Keep the receipt if shutdown fails.
+7. Focus the base worktree. Do not merge from a source-agent pane.
 8. Update the base branch from its remote.
-9. Squash merge the source branch into the base branch.
-10. Use the `writing-and-creating-git-commits` skill for the final merge commit message. Put the ticket reference in the commit title. Include the ticket link or the `tracker path` returned by the ticket skill in the commit body. Include a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on and to the persisted review artifact itself.
-11. Push the base branch.
-12. After the merge and push succeed, use the ticket skill to complete the matching ticket. Follow its tracker and commit rules.
-13. Remove the source worktree with Worktrunk only after the push and ticket update succeed.
-# Safety rules
+9. Verify that Worktrunk is configured for a squash merge. If `[merge].squash = false`, stop and report the configuration mismatch instead of silently performing a non-squash merge.
+10. Squash merge the source branch into the base branch with Worktrunk.
+11. Use `writing-and-creating-git-commits` for the final merge commit. Put the ticket reference in the title. Include the tracker path, successful review artifact, and every ADR relied on by the review in the body.
+12. Push the base branch.
+13. Complete the ticket with the ticket skill.
+14. Remove the source worktree with Worktrunk.
+15. Close the hrdx workspace after the worktree is removed.
+16. Append a final immutable receipt with the merge commit, push result, ticket result, worktree result, and workspace result. Regenerate the final projections.
 
-- Do not squash merge without the matching persisted `SUCCESS` review artifact.
-- Do not remove the worktree before the base push succeeds.
-- Do not close the ticket if the merge or push fails.
-- Keep the worktree when agent shutdown, merge, push, or ticket update fails.
+## Safety rules
 
-# Output
+- Do not merge without a matching `SUCCESS` review receipt.
+- Do not merge when the source commit changed after review.
+- Do not remove the worktree before the push and ticket update succeed.
+- Do not close the ticket when merge or push fails.
+- Keep the worktree and receipts when agent shutdown, merge, push, ticket update, or cleanup fails.
+
+## Output
 
 ```md
 ## Finished
 - Ticket: {ticket}
 - Source branch: {branch}
 - Base branch: {base}
-- Commit: {sha}
+- Reviewed source commit: {sha}
+- Merge commit: {sha}
+- Finish receipt: {path}
 
 ## Validation
 - {command}: {result}
@@ -66,4 +61,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 
 ## Worktree
 - {removed or kept, with reason}
+
+## Workspace
+- {closed or kept, with reason}
 ```

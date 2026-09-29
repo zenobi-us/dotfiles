@@ -17,7 +17,8 @@ Load `references/issue-tracker.md` and the ticket skill before resolving the tic
 - Run the CLI before choosing any context path or link. Use `cli.ts anchor --source local --key <ticket-id>` for ticket-scoped files, and use the returned directory rather than joining paths yourself.
 - Follow the `Shared-context writes and links` section of the `agent-core:shared-context` skill for writes, publishing, and access-boundary checks. Use `SharedContext/<relative-path>` for a private or local-only reference; do not create a public URL.
 - Follow `references/issue-tracker.md` and the ticket skill for the configured tracker and returned `tracker path`.
-- Require a matching persisted `SUCCESS` verdict from the `review` playbook at the tracker-defined review artifact path. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
+- Read `references/receipts.md`.
+- Require an immutable `SUCCESS` review receipt from the `review` playbook that covers the current source commit and tree. Read the linked review artifact at the tracker-defined path. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
 - A manual test report is optional. A missing report does not block the pull request.
 - Do not push directly to the base branch.
 
@@ -77,7 +78,7 @@ A report is HTML. A raw git forge blob link renders the source, not the page. Li
 
 # Safety rules
 
-- Do not create a pull request without the matching persisted `SUCCESS` review artifact.
+- Do not create a pull request without the matching immutable `SUCCESS` review receipt and review artifact for the current source commit.
 - Do not include unrelated changes in the commit.
 - Do not push directly to the base branch.
 - Do not link a manual test report that is not pushed.

@@ -1,46 +1,46 @@
 # Playbook: fix
 
-Start an agent to fix blocking review findings in an existing Worktrunk worktree.
+Fix blocking review findings in an existing Worktrunk worktree with a fresh agent session.
 
-This playbook receives `muxer` and `agent` already resolved by the `worktree` skill's Rule 1 and Rule 2.
+The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or reviewer session.
 
-## Ticket resolution
+## Preconditions
 
-Load `references/issue-tracker.md` and the ticket skill before resolving the ticket. Use the ticket skill to return the canonical `ticket` and `tracker path`. If no identifier is present, use the most recent unambiguous ticket mention in the conversation. Cross-check it against workflow records. Ask when it is missing or ambiguous. Do not guess.
+- Read `references/receipts.md`.
+- Resolve the canonical ticket and tracker path with the ticket skill. Cross-check the workflow record.
+- Use Worktrunk, the applicable engineering skill, and the active muxer and agent contracts.
+- Run the shared-context CLI from the source repository. Use its reported root and storage mode.
+- Follow `ALIGNMENT-ROOT.md` and use `cli.ts anchor --source local --key <ticket-id>`.
+- Require the latest persisted review receipt to have `verdict: FAILURE`.
+- Verify that the source worktree and branch still exist.
 
-# Preconditions
+## Process
 
-- Use the `worktrunk` skill. Worktrunk is required for worktree inspection and operations.
-- Use `references/muxers/<muxer>.md` for pane and agent commands. Do not use commands from a different muxer's contract.
-- Use `references/agents/<agent>.md` for the launch command. If `agent` is `unknown-agent` and no override was given, ask the user before proceeding.
-- Use the applicable Matt Pocock engineering skill, normally `implement`, `tdd`, or `diagnosing-bugs`.
-- Treat the shared agent context as durable project memory. Run `<shared-context-skillroot>/scripts/shared-context/cli.ts` from the source repository and use its reported `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` or a ticket path by hand.
-- Follow `ALIGNMENT-ROOT.md` from the reported root. `storage: repository` and shared stores without a usable remote are valid local-only modes; do not invent, initialise, or publish a shared path.
-- Use `cli.ts anchor --source local --key <ticket-id>` for ticket-scoped files and use the returned directory. Respect private and local-only access boundaries, and stop on a non-zero CLI result.
-- Prefer `storage: shared` when the CLI reports it. Record durable domain or architecture decisions with `domain-modeling` or `codebase-design` in the active alignment storage.
-- Follow the `agent-core:shared-context` skill's write and publishing rules for every file you create or update under the reported root.
-- Require a matching persisted `FAILURE` verdict from the `review` playbook, read from the tracker-defined review artifact path.
-- Do not create a second worktree for the same source branch.
+1. Read the latest immutable review artifact and receipt. Read the implementation receipt, latest draft snapshot, ticket, context, ADRs, and agent instructions.
+2. Select only the blocking findings for the fixer. Preserve their IDs, ADR references, exact files, line references, and validation commands.
+3. Record the current source commit and create a new fix receipt with the review receipt as its parent.
+4. Write a temporary fix handoff containing the source worktree, source and base branches, current source commit, context root and storage mode, selected engineering skill, review receipt, blocking findings, and expected validation.
+5. Open a new pane or tab in the existing worktree workspace. For hrdx, use `pane.create` with the absolute workspace path, `split: "tab"`, and the configured agent kind. Do not send text to the prior session.
+6. Launch the fresh fixer session with the agent contract and the fix handoff.
+7. Wait for completion through the muxer contract. Require `WORKTREE_FIX_DONE` only after the fixer has applied the changes and passed validation.
+8. If the fixer is blocked, fails validation, or omits the marker, append a failed fix receipt and keep the worktree. Do not start a review.
+9. If the fixer succeeds, verify the immutable fix receipt, the new source commit, the new draft snapshot, and the regenerated projections.
+10. Close the fixer pane. Keep the worktree workspace available.
+11. Update the workflow projection and report `review <ticket-id>` as the next command. A new review is required because the source commit changed.
 
-# Process
+## Fix receipt requirements
 
-1. Resolve the ticket, then identify the source branch, worktree path, and blocking findings from `UserRequest` or the tracker-defined review artifact.
-2. Run the shared-context CLI from the source repository, use its reported root and storage mode, and select the applicable engineering skill.
-3. Read relevant `CONTEXT.md` or `CONTEXT-MAP.md`, ADRs, and `docs/agents/` files from the reported root.
-4. Use Worktrunk to verify that the source worktree exists and that the branch is correct.
-5. Write `/tmp/{ticket-id}-fix-handoff.md` with only the blocking findings, exact files, source worktree path, CLI-reported root and storage mode, selected engineering skill, relevant context files, expected validation command, and these completion instructions:
-   - Fix the blocking findings.
-   - Run the expected validation command.
-   - End the final response with the exact marker `WORKTREE_FIX_DONE` when the fix and validation pass.
-   - Do not use the marker when the fix is blocked or validation fails.
-6. Open a pane or session for the fixer following `references/muxers/<muxer>.md`'s "Opening a pane for an agent" procedure, using `references/agents/<agent>.md`'s launch command with `@/tmp/{ticket-id}-fix-handoff.md` as the task input, in the existing source worktree path.
-7. Wait for the fixer to finish. Under `herdr`, `zellij`, `tmux`, or `hrdx`, follow the active muxer contract's wait/read commands. Under `unknown-muxer`, the fixer already ran to completion in the foreground — read its final output directly.
-8. If the fixer reaches `blocked`, fails validation, or does not include `WORKTREE_FIX_DONE`, report the failure and do not start a review. See `references/troubleshooting/fixer-agent-blocked.md`.
-9. If the fixer includes `WORKTREE_FIX_DONE`, close its pane or session per the active muxer contract, then run this skill again with `review {ticket-id}`.
-10. Do not create a second worktree for the same source branch. Worktrunk owns the checkout.
-11. Record the fixer agent name, pane/session identifier, CLI-reported root, and storage mode in the workflow record.
-12. If the CLI reports `storage: shared`, publish the workflow record as required by the `agent-core:shared-context` skill. If it reports local-only or private storage, keep the record within that access boundary and do not build a public link.
+The fix receipt MUST record:
 
-# Output
+- consumed review receipt IDs;
+- resolved and unresolved finding IDs;
+- changed files;
+- validation results;
+- the new source commit and tree;
+- the draft snapshot and projection paths;
+- agent and pane or session identifier;
+- completion marker result.
 
-Report the source branch, worktree path, fixer agent, pane/session identifier, handoff path, validation command, fixer completion marker, pane/session close result, and review command result.
+## Output
+
+Report the source branch, worktree path, fixer agent, workspace path, pane or session identifier, fix receipt, draft snapshot, projection paths, handoff path, validation result, completion marker, pane close result, and the next command: `review <ticket-id>`.
