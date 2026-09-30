@@ -5,6 +5,12 @@
   "skills": [
     "./skills/documents/",
     "./skills/skill-development/",
-    "./skills/sop/"
+    "./skills/sop/",
+    "./skills/artifact-shares/",
+    "./skills/dumbzone/",
+    "./skills/explain/",
+    "./skills/install-skill/",
+    "./skills/mq-query/",
+    "./skills/shared-context/"
   ]
 }
