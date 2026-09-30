@@ -21,8 +21,10 @@ astGrep:
 github:
   enabled: true
 statusLine:
-  preset: minimal
-  separator: block
+  preset: custom
+  separator: none
+  sessionAccent: false
+  transparent: true
 terminal:
   showProgress: true
 tui:
@@ -35,3 +37,6 @@ recap:
   enabled: false
 dev:
   autoqaConsent: granted
+composer:
+  shape: claude
+  tokenRate: true
