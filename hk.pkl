@@ -1,0 +1,36 @@
+amends "package://github.com/jdx/hk/releases/download/v1.50.0/hk@1.50.0#/Config.pkl"
+
+hooks {
+  ["pre-commit"] {
+    fix = false
+    stash = "git"
+    stage = false
+    steps {
+      ["bundle-versions"] {
+        check = "mise exec -- bun run files/devtools/agent/bundles/scripts/bundle-versions.ts check --staged"
+        exclusive = true
+      }
+    }
+  }
+
+  ["check"] {
+    steps {
+      ["bundle-versions"] {
+        check = "mise exec -- bun run files/devtools/agent/bundles/scripts/bundle-versions.ts check --dirty"
+        exclusive = true
+      }
+    }
+  }
+
+  ["fix"] {
+    fix = true
+    stage = false
+    steps {
+      ["bundle-versions"] {
+        check = "mise exec -- bun run files/devtools/agent/bundles/scripts/bundle-versions.ts check --dirty"
+        fix = "mise exec -- bun run files/devtools/agent/bundles/scripts/bundle-versions.ts fix --dirty"
+        exclusive = true
+      }
+    }
+  }
+}
