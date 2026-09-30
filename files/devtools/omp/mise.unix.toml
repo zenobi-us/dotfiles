@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.omp/agent/config.yml" = { source = "./config.yml", mode = "symlink" }

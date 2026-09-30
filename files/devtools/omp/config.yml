@@ -1,0 +1,31 @@
+modelRoles:
+  default: openai-codex/gpt-5.6-sol
+  smol: openai-codex/gpt-6-luna:high
+  plan: openai-codex/gpt-6-astra:medium
+  commit: openai-codex/gpt-6-luna:off
+symbolPreset: nerd
+theme:
+  dark: dark-rose-pine
+  light: dark-rose-pine
+setupVersion: 2
+task:
+  disabledAgents:
+    []
+  enableLsp: true
+lsp:
+  formatOnWrite: true
+astGrep:
+  enabled: true
+github:
+  enabled: true
+statusLine:
+  preset: minimal
+  separator: block
+terminal:
+  showProgress: true
+tui:
+  tight: true
+display:
+  shimmer: kitt
+  showTokenUsage: true
+  cacheMissMarker: true
