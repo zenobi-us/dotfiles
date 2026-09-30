@@ -1,0 +1,5 @@
+#!/usr/bin/env -S bun run
+
+import { main } from "../../devtools/enpass-merge/enpass-merge.ts";
+
+process.exit(await main());
