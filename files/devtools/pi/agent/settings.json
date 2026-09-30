@@ -1,14 +1,14 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "gpt-5.6-luna",
-  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultProvider": "openai",
   "defaultThinkingLevel": "medium",
   "doubleEscapeAction": "tree",
   "defaultProjectTrust": "always",
   "enableInstallTelemetry": false,
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "0.99.1",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
     "./bundles/agent-core",
@@ -40,7 +40,10 @@
     "clearOnShrink": false,
     "showTerminalProgress": true
   },
-  "theme": "rose-pine-moon",
+  "theme": "system/system",
   "transport": "sse",
-  "enableSkillCommands": true
+  "enableSkillCommands": true,
+  "modelThinkingLevels": {
+    "openai/gpt-5.5": "medium"
+  }
 }

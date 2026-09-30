@@ -14,7 +14,6 @@ dotfiles.default_mode = "symlink"
 "github:max-sixty/worktrunk" = "0.52.0"
 "go:github.com/Crosse/font-install" = "latest"
 "npm:@earendil-works/gondolin" = "latest"
-"npm:@earendil-works/pi-coding-agent" = "latest"
 claude-code = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:agent-browser" = "latest"
@@ -113,11 +112,7 @@ micro = "latest"
 "github:valentjn/lsp-cli" = "latest"
 "github:harehare/mq" = "latest"
 "pipx:itch-dl" = "latest"
-
-[shell_alias]
-pi = "mise x node@lts -- pi "
-piupdate = "mise x node@lts -- pi update"
-piinstall = "mise x node@lts -- pi install"
+"github:earendil-works/pi" = "v0.99.1"
 
 [tool_alias]
 zot = "github:patriceckhart/zot"
