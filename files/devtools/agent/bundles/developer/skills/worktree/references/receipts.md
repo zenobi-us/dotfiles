@@ -2,19 +2,45 @@
 
 Use receipts as the durable record for every worktree phase.
 
+## Workflow layout
+
+Resolve the root with:
+
+```sh
+shared-context path workflow --id <ticket-id>
+```
+
+Use only:
+
+```text
+events/
+artifacts/reviews/
+artifacts/snapshots/
+artifacts/evidence/
+projections/
+manifest.yaml
+```
+
+`events/` is authoritative and append-only. `artifacts/` holds immutable
+authored outputs and evidence. `projections/` and `manifest.yaml` are generated
+and replaceable. Do not write workflow state to `.scratch/`, `<ticket>/local/`,
+`tracker/`, or `sources/`.
+
 ## Rules
 
-- Create one receipt for every `start`, implementation completion, `review`, `fix`, `submit`, and `finish` event.
+- Create one receipt for every `start`, implementation completion, `review`,
+  `fix`, `submit`, and `finish` event.
 - The parent playbook MUST create a phase-start receipt before it launches an agent.
 - The child agent MUST create one phase-result receipt after it completes its work.
 - The parent playbook MUST create one phase-complete receipt after it reads and validates the result receipt.
-- Store receipts under the ticket anchor returned by the shared-context CLI.
-- Use an append-only `events/` directory. Never overwrite an event or result receipt.
+- Store every receipt under `events/`.
+- Never overwrite an event or result receipt.
 - Allocate a new receipt ID before every write. Fail when the target path already exists.
 - Record the exact source commit and tree that the agent inspected or changed.
 - Link each receipt to its parent receipt.
 - Treat chat, pane output, and `/tmp` handoffs as transport only. They are not workflow state.
-- Treat `projections/` as generated views. The receipt history is authoritative.
+- Treat `manifest.yaml` and `projections/` as generated views.
+- Name each review artifact `artifacts/reviews/review-<receipt-id>.md`.
 
 ## Receipt fields
 
@@ -70,10 +96,11 @@ Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, 
 
 ## Receipt protocol
 
-1. Read the ticket anchor before selecting a receipt ID.
-2. List the existing receipt IDs in the anchor.
+1. Resolve the workflow root before selecting a receipt ID.
+2. List the existing receipt IDs under `events/`.
 3. Select the next unused sequence number.
-4. Write a new file with `--no-clobber` or the equivalent atomic operation.
+4. Write a new file under `events/` with `--no-clobber` or the equivalent
+   atomic operation.
 5. Read the receipt after writing it.
 6. Stop when a required field is missing or the target path exists.
 
@@ -94,9 +121,10 @@ FINISHED
 FINISH_FAILED
 ```
 
-A phase-complete receipt MUST link to the phase-result receipt. A projection MUST NOT replace a receipt.
+A phase-complete receipt MUST link to the phase-result receipt. A projection MUST
+NOT replace a receipt.
 
-The append-only receipt history under the ticket anchor is the workflow record. A separate `workflow.yaml` file is optional and MUST NOT become another source of truth.
+The append-only history under `events/` is the workflow record.
 
 ## Terminal finish receipt
 
@@ -120,6 +148,23 @@ workspace_preserved: true
 ```
 
 ## Projection requirements
+
+`manifest.yaml` MUST contain:
+
+```yaml
+schema: worktree-workflow/v2
+workflow_id: ABC-123
+ticket: ABC-123
+tracker_path: tracker/tickets/ABC-123.md
+initiative: example-initiative
+event_root: events
+artifact_root: artifacts
+projection_root: projections
+latest_receipt: finish-0031
+state: FINISHED
+```
+
+Use `null` for `initiative` when no initiative applies.
 
 `projections/pr-draft.md` MUST contain:
 
@@ -145,6 +190,7 @@ workspace_preserved: true
 `projections/latest-status.yaml` MUST contain:
 
 ```yaml
+schema: worktree-latest-status/v1
 workflow_id: ...
 ticket: ...
 state: ...
@@ -157,11 +203,11 @@ open_findings: []
 
 ## Snapshots and projections
 
-Create versioned draft snapshots under `snapshots/`, for example:
+Create versioned draft snapshots under `artifacts/snapshots/`, for example:
 
 ```text
-snapshots/pr-draft-0002.md
-snapshots/pr-draft-0004.md
+artifacts/snapshots/pr-draft-0002.md
+artifacts/snapshots/pr-draft-0004.md
 ```
 
 Regenerate these convenience views after each implementation or fix:

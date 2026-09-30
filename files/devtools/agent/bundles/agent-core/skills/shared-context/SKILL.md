@@ -114,9 +114,10 @@ repository root.
    storage. Run either only when the user names that operation.
 2. You **MUST** write under the resolved `root`. You **MUST NOT** mix the
    repository root and the shared root in one task.
-3. You **MUST** use `cli.ts anchor` to get a target directory. Do not build the
-   path by hand. Add `--dry-run` when you are planning and must not create
-   anything.
+3. You **MUST** use `cli.ts path` to get a typed target. Do not join
+   root-relative path segments in a skill. For source ingestion, use
+   `path source --ticket <ID> --source <SOURCE>` or
+   `path source --library --source <SOURCE>`.
 4. You **MUST** run `cli.ts index <dir>` after you add or remove a file in a
    source directory.
 5. If `storage` is `shared`, you **MUST** read `references/publishing.md` after

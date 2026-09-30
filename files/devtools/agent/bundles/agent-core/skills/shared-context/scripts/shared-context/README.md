@@ -1,10 +1,10 @@
 # shared-agent-context
 
-Origin-keyed shared agent context: a place for `AGENTS.md` and related alignment
-files (`docs/agents/`, `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, `library/`,
-`.scratch/` when the tracker backend is `local-markdown`) to live outside any single
-repository clone, keyed by the repo's canonicalized git `origin`. Works the
-same way whether you're driving the repo with pi or with Claude Code.
+Origin-keyed shared agent context: a place for `AGENTS.md` and typed alignment
+areas (`docs/agents/`, `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, `domains/`,
+`tracker/`, `workflows/`, and `sources/`) to live outside any single repository
+clone, keyed by the repo's canonicalized git `origin`. Works the same way
+whether you use pi, OMP, Zot, or Claude Code.
 
 ## Why
 
@@ -35,6 +35,8 @@ alignment files against it, falling back to the repository root when absent.
 
 - **pi**: `extensions/pi-shared-context.ts` wires this into
   `before_agent_start` and registers `/eng-context`.
+- **OMP**: `hooks/pre/shared-context.ts` resolves context on `session_start` and
+  `session_switch`, then extends each `before_agent_start` system prompt.
 - **Zot**: `extensions/zot-shared-context.ts` uses Zot's extension protocol,
   including the `before_agent_start` prompt hook, and registers `/eng-context`.
 - **Claude Code**: ships as the `shared-agent-context` plugin —
@@ -62,14 +64,14 @@ subcommands:
 
 - `report` (default) — current storage, roots, origin, slug. This is the only root resolver.
 - `root` — print only the resolved context root for scripts.
-- `init` — create shared `AGENTS.md` and activate shared storage.
+- `init` — create shared `AGENTS.md` and `CONTEXT-MAP.md`, then activate shared storage.
 - `list` — list every origin-keyed shared context.
-- `migrate` — copy alignment files to the opposite storage, verifying existing
-  files match first. Source files are left intact.
-- `anchor --source <name> [--key <KEY>] [--dry-run]` — create and print the
-  directory an ingested source belongs in: `<root>/<KEY>/<name>/` with a key,
-  `<root>/library/<name>/` without one. `--dry-run` prints the path and creates
-  nothing.
+- `migrate` — copy typed context areas to the opposite storage, verifying
+  existing files match first. Source files are left intact.
+- `path tracker` — print the tracker root.
+- `path ticket|initiative|workflow|adr --id <ID>` — print one typed record path.
+- `path source --ticket <ID> --source <name>` — print a ticket source directory.
+- `path source --library --source <name>` — print a library source directory.
 - `doctor` — check Bun, mise, git, and fd prerequisites.
 - `index <dir> [--force]` — rebuild the managed block of `<dir>/index.md` from the
   frontmatter of its sibling Markdown files. The CLI rejects targets outside the

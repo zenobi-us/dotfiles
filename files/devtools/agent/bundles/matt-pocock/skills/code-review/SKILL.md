@@ -22,9 +22,15 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
-Before resolving workflow artifacts, follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). Repository source, ordinary `docs/` and `specs/`, and Git history remain repository-root relative; tracker-local `.scratch/` and `docs/agents/` use the active alignment root.
+Before resolving workflow artifacts, follow
+[ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). Repository source, ordinary
+`docs/` and `specs/`, and Git history remain repository-root relative.
+`docs/agents/`, `tracker/`, and `workflows/` use the active alignment root.
 
-The issue tracker should have been provided to you — run `/setup-matt-pocock-skills` if `docs/agents/issue-tracker.md` is missing. Use `/reading-and-writing-tickets` for ticket reads, issue-reference resolution, tracker paths, and review-artifact mechanics.
+The issue tracker should have been provided to you. Run
+`/setup-matt-pocock-skills` if `docs/agents/issue-tracker.md` is missing. Use
+`/reading-and-writing-tickets` for ticket reads, issue-reference resolution,
+tracker paths, and review comments.
 
 ## Process
 
@@ -42,7 +48,8 @@ Look for the originating spec, in this order:
 
 1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.) — resolve and read through `/reading-and-writing-tickets`.
 2. A path the user passed as an argument.
-3. A PRD/spec file under repository-root `docs/` or `specs/`, or under `.scratch/` below the CLI-reported `ALIGNMENT_ROOT`, matching the branch name or feature.
+3. A PRD/spec file under repository-root `docs/` or `specs/`, or an initiative
+   spec resolved with `shared-context path initiative --id <ID>`.
 4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
 
 ### 3. Identify the standards sources
@@ -93,21 +100,22 @@ Present the two reports under `## Standards` and `## Spec` headings, verbatim or
 
 End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes — that's the reranking the separation exists to prevent.
 
-6. Persist the review
+### 6. Persist the review
 
-After aggregation, use `/reading-and-writing-tickets` to resolve the configured review-artifact location and write or replace the artifact for the ticket.
+Keep one review body.
 
-The artifact MUST include:
+- In a worktree workflow, return the complete review to the worktree review
+  playbook. It writes one immutable artifact under
+  `artifacts/reviews/review-<receipt-id>.md`. Then ask
+  `/reading-and-writing-tickets` to append only the verdict, reviewed commit,
+  timestamp, and artifact link to the ticket.
+- Without a worktree workflow, ask `/reading-and-writing-tickets` to store the
+  complete review once as a native tracker comment. For local Markdown, append it
+  under `## Comments`.
 
-- ticket reference and tracker path or URL;
-- source branch, base branch, and reviewed commit;
-- committed, staged, and unstaged scope;
-- validation commands and results;
-- the complete `Standards` report;
-- the complete `Spec` report, or `no spec available`;
-- verdict and timestamp.
-
-Ask `/reading-and-writing-tickets` to apply any configured tracker commit or publication operation. A review is not complete until the artifact is saved and durable. Report its path in the final response.
+The review body MUST include the ticket reference, tracker path or URL, branches,
+reviewed commit, scope, validation, both axis reports, verdict, and timestamp.
+Do not create a second review file.
 
 ## Why two axes
 
@@ -120,6 +128,9 @@ Reporting them separately stops one axis from masking the other.
 
 ## Context resolution
 
-Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
-
-For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.
+Before reading or writing workflow or domain artifacts, run the shared-context
+CLI procedure from `agent-core:shared-context` in the repository root. Use its
+`root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code
+and ordinary project files. Use `cli.ts path` for tracker, workflow, source, and
+ADR targets. Do not derive an alignment path by hand. Read the shared-context
+publishing procedure after a shared-root write.

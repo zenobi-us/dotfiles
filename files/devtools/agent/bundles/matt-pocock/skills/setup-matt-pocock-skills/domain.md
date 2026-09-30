@@ -4,39 +4,43 @@ How the engineering skills should consume this project's domain documentation fr
 
 ## Before exploring, read these
 
-- **`CONTEXT.md`** at the alignment root, or
-- **`CONTEXT-MAP.md`** at the alignment root if it exists — it points at one `CONTEXT.md` per context. Read each one relevant to the topic.
-- **`docs/adr/`** — read ADRs that touch the area you're about to work in. In multi-context repos, also check `src/<context>/docs/adr/` for context-scoped decisions.
+- **`CONTEXT-MAP.md`** at the alignment root. It lists the stable context entry
+  points.
+- **`CONTEXT.md`** when the map identifies one root domain, or the relevant
+  **`domains/<domain>/CONTEXT.md`** files when it identifies multiple domains.
+- **`docs/adr/index.md`** and the ADRs that affect the current area.
 
-If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront. The `/domain-modeling` skill (reached via `/grill-with-docs` and `/improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
+If a linked domain document does not exist, proceed silently. The
+`/domain-modeling` skill creates it when terms or decisions are resolved.
 
 ## File structure
 
-Single-context project (most projects):
+Single-context project:
 
-```
-/
-├── CONTEXT.md
-├── docs/adr/
-│   ├── 0001-event-sourced-orders.md
-│   └── 0002-postgres-for-write-model.md
-└── src/
-```
-
-Multi-context project (presence of `CONTEXT-MAP.md` at the alignment root):
-
-```
+```text
 /
 ├── CONTEXT-MAP.md
-├── docs/adr/                          ← system-wide decisions
-└── src/
-    ├── ordering/
-    │   ├── CONTEXT.md
-    │   └── docs/adr/                  ← context-specific decisions
-    └── billing/
-        ├── CONTEXT.md
-        └── docs/adr/
+├── CONTEXT.md
+└── docs/adr/
+    └── index.md
 ```
+
+Multi-context project:
+
+```text
+/
+├── CONTEXT-MAP.md
+├── docs/adr/
+│   └── index.md
+└── domains/
+    ├── ordering/
+    │   └── CONTEXT.md
+    └── billing/
+        └── CONTEXT.md
+```
+
+Keep all ADRs under `docs/adr/`. Use the domain links in `CONTEXT-MAP.md` instead
+of putting ADR directories under source code.
 
 ## Use the glossary's vocabulary
 

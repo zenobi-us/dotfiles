@@ -21,17 +21,19 @@ store. A shared root can also be local-only or private. Do not make a public lin
 unless the shared store and the destination have the same public access boundary; use
 the shared-context skill's `SharedContext/<relative-path>` form when they do not.
 
-For a ticket-scoped shared-context directory, ask the CLI for the anchor instead of
-joining the root and ticket key yourself:
+Resolve the workflow root with the typed path command:
 
 ```bash
-"<shared-context-skillroot>/scripts/shared-context/cli.ts" anchor --source local --key "<ticket-id>"
+"<shared-context-skillroot>/scripts/shared-context/cli.ts" path workflow --id "<ticket-id>"
 ```
 
-Use the returned directory for workflow records and other ticket-local context. Run
-`cli.ts index <returned-directory>` after adding or removing a file in a source
-directory. Stop if any shared-context CLI command exits non-zero.
+Use only the fixed internal paths in `references/receipts.md`. Stop if any
+shared-context CLI command exits non-zero.
 
-Use the ticket skill for all ticket mechanics. It owns backend selection, selector resolution, ticket reads, claims, review artifact paths, comments, completion, external tracker operations, and tracker commits. Ask when the tracker definition is missing, malformed, ambiguous, or does not define the required operation.
+Use the ticket skill for all ticket mechanics. It owns backend selection,
+selector resolution, ticket reads, claims, comments, completion, external
+tracker operations, and tracker commits. It does not create review artifacts or
+choose a review directory. Ask when the tracker definition is missing,
+malformed, ambiguous, or does not define the required operation.
 
 The worktree playbook owns only workflow intent: when to resolve a ticket, when to claim or complete it, and how ticket state gates Worktrunk operations. Preserve the ticket skill's returned `ticket` and `tracker path` in workflow records, commit messages, and pull requests when the playbook requires them.

@@ -14,11 +14,18 @@ Load `references/issue-tracker.md` and the ticket skill before resolving the tic
 - Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
 - Treat the shared agent context as durable project memory. Run `<shared-context-skillroot>/scripts/shared-context/cli.ts` from the source repository and use its reported `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` or a ticket path by hand.
 - Follow `ALIGNMENT-ROOT.md` from the reported root. Keep alignment files in that reported storage and keep source code, commits, and pull requests in the worktree repository. Local-only and private stores remain within their access boundary.
-- Run the CLI before choosing any context path or link. Use `cli.ts anchor --source local --key <ticket-id>` for ticket-scoped files, and use the returned directory rather than joining paths yourself.
-- Follow the `Shared-context writes and links` section of the `agent-core:shared-context` skill for writes, publishing, and access-boundary checks. Use `SharedContext/<relative-path>` for a private or local-only reference; do not create a public URL.
+- Run the CLI before choosing any context path or link. Resolve the workflow root
+  with `cli.ts path workflow --id <ticket-id>`.
+- Follow the `Shared-context writes and links` section of the
+  `agent-core:shared-context` skill for writes, publishing, and access-boundary
+  checks. Use `SharedContext/<relative-path>` for a private or local-only
+  reference; do not create a public URL.
 - Follow `references/issue-tracker.md` and the ticket skill for the configured tracker and returned `tracker path`.
 - Read `references/receipts.md`.
-- Require an immutable `SUCCESS` review receipt from the `review` playbook that covers the current source commit and tree. Read the linked review artifact at the tracker-defined path. See `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
+- Require an immutable `SUCCESS` review receipt from the `review` playbook that
+  covers the current source commit and tree. Read its artifact under
+  `artifacts/reviews/`. See
+  `references/troubleshooting/missing-review-verdict.md` if this gate blocks you.
 - A manual test report is optional. A missing report does not block the pull request.
 - Do not push directly to the base branch.
 
@@ -31,7 +38,8 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 
 # Process
 
-1. Run the shared-context CLI from the source repository. Use its reported root and storage mode; do not construct either path manually.
+1. Run the shared-context CLI from the source repository. Use its reported root
+   and storage mode. Resolve `cli.ts path workflow --id <ticket-id>`.
 2. Resolve the current worktree (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
 3. Use Worktrunk to verify the source branch and worktree state.
 4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-and-creating-git-commits` skill. Put the ticket reference in the commit title. Include the ticket link and a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on in the commit body.
@@ -51,29 +59,37 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 
 # Manual test reports
 
-The `browser-acceptance-evidence` skill writes browser evidence to shared context. The `writing-reports` skill writes the HTML report itself. Both leave a report a reviewer can open.
+Manual test evidence belongs under
+`artifacts/evidence/manual-test-<run-id>/` in the resolved workflow root. One run
+contains its test plan, results, diagnostics, screenshots, scripts, fixtures, and
+report. The report MUST link to these inputs. It MUST NOT copy them into a
+generated `report/files/` directory.
 
 ## Find the report
 
-1. You **MUST** ask the shared-context CLI for the ticket anchor, then search the returned directory. Do not construct the root and ticket path by hand:
+1. Resolve the workflow root:
 
    ```bash
-   REPORT_ROOT=$("<shared-context-skillroot>/scripts/shared-context/cli.ts" anchor --source local --key "<ticket-id>" --dry-run)
-   find "$REPORT_ROOT" -maxdepth 3 -name index.html
+   WORKFLOW_ROOT=$("<shared-context-skillroot>/scripts/shared-context/cli.ts" path workflow --id "<ticket-id>")
    ```
 
-   Use the CLI from the source repository. If it exits non-zero, stop. The returned
-   anchor is authoritative even when storage is local-only or private. Older tickets
-   use `manual-test/` or another report directory name, so match on `index.html`.
-2. You **MUST** treat zero results as "no manual test report". Say so in the output. Do not create one and do not block the pull request.
-3. You **MUST** list every report you find. A ticket can hold more than one.
+2. Inspect `WORKFLOW_ROOT/artifacts/evidence/` with the available filesystem
+   directory tool. List every `index.html` under a `manual-test-<run-id>/`
+   directory. Do not use `find`, shell globs, or a derived root.
+3. Treat zero results as "no manual test report". Say so in the output. Do not
+   create one and do not block the pull request.
 
 ## Link the public view
 
 A report is HTML. A raw git forge blob link renders the source, not the page. Link the published view instead.
 
 1. You **MUST** commit and push the report before you build any link, per the `agent-core:shared-context` skill's write rule. An unpushed report is a dead link.
-2. You **MUST** use the shared context store's public view URL only when the CLI reports a shared git store with a usable remote and the destination has the same public access boundary. Read `PUBLIC-VIEW.md` from the reported store root for the base URL and path rule. The report URL is the published anchor-relative path joined to that base URL, and it **MUST** end in a trailing slash on a directory that holds `index.html`.
+2. You **MUST** use the shared context store's public view URL only when the CLI
+   reports a shared git store with a usable remote and the destination has the
+   same public access boundary. Read `PUBLIC-VIEW.md` from the reported store
+   root for the base URL and path rule. Join the report's root-relative workflow
+   path to that base URL. The URL MUST end in a trailing slash on the directory
+   that holds `index.html`.
 3. If the store is local-only, private, has no usable remote, or has a different access boundary, do not make a public URL. Use the `agent-core:shared-context` skill's `SharedContext/<path relative to the reported root>` reference and say that the link is local/source-only, not a rendered public report.
 4. You **MUST NOT** link a `file://` path, a path inside the worktree, or a public URL that crosses an access boundary.
 

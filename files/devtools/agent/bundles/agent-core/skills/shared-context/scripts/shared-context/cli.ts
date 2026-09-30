@@ -3,15 +3,15 @@ import path from "node:path";
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import {
-  anchorPath,
   buildContextIndex,
-  ensureAnchorPath,
   initializeSharedContext,
   listSharedContextFiles,
   listSharedContexts,
   migrateAlignmentContext,
   renderSharedContext,
+  resolveContextPath,
   resolveSharedContext,
+  type ContextPathOptions,
   type Exec,
   type SharedAgentContext,
 } from "./lib";
@@ -92,13 +92,38 @@ async function runMigrate(): Promise<void> {
   }
 }
 
-async function runAnchor(ctx: { flags: { source: string; key?: string; "dry-run"?: boolean } }): Promise<void> {
+type PathFlags = { id?: string; ticket?: string; source?: string; library?: boolean };
+
+async function runPath(ctx: { args: { kind: string }; flags: PathFlags }): Promise<void> {
   const context = await requireContext();
   if (!context) return;
 
-  const options = { source: ctx.flags.source, key: ctx.flags.key };
   try {
-    console.log(ctx.flags["dry-run"] ? anchorPath(context, options) : await ensureAnchorPath(context, options));
+    let options: ContextPathOptions;
+    switch (ctx.args.kind) {
+      case "tracker":
+        options = { kind: "tracker" };
+        break;
+      case "ticket":
+      case "initiative":
+      case "workflow":
+      case "adr":
+        if (!ctx.flags.id) throw new Error(`${ctx.args.kind} paths require --id`);
+        options = { kind: ctx.args.kind, id: ctx.flags.id };
+        break;
+      case "source":
+        if (!ctx.flags.source) throw new Error("source paths require --source");
+        options = {
+          kind: "source",
+          source: ctx.flags.source,
+          ticket: ctx.flags.ticket,
+          library: ctx.flags.library,
+        };
+        break;
+      default:
+        throw new Error(`Unknown path kind "${ctx.args.kind}"`);
+    }
+    console.log(await resolveContextPath(context, options));
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
@@ -174,14 +199,16 @@ const cli = new Crust("shared-context")
   .command("init", (cmd) => cmd
     .meta({ description: "Create shared context storage for this repository" })
     .run(runInit))
-  .command("anchor", (cmd) => cmd
-    .meta({ description: "Create and print the directory an ingested source belongs in" })
+  .command("path", (cmd) => cmd
+    .meta({ description: "Print a typed path under the resolved context root" })
     .flags({
-      source: { type: "string", required: true },
-      key: { type: "string" },
-      "dry-run": { type: "boolean" },
+      id: { type: "string" },
+      ticket: { type: "string" },
+      source: { type: "string" },
+      library: { type: "boolean" },
     })
-    .run(runAnchor))
+    .args([{ name: "kind", type: "string", required: true }] as const)
+    .run(runPath))
   .command("index", (cmd) => cmd
     .meta({ description: "Rebuild index.md from the frontmatter of a source directory" })
     .flags({ force: { type: "boolean" } })

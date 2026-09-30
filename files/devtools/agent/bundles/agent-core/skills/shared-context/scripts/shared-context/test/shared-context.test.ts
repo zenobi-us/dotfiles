@@ -3,7 +3,6 @@ import { promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
-  anchorPath,
   buildContextIndex,
   canonicalizeGitRemote,
   INDEX_MARKER_END,
@@ -13,6 +12,7 @@ import {
   migrateAlignmentContext,
   parseFrontmatter,
   renderSharedContext,
+  resolveContextPath,
   resolveSharedContext,
   slugifyGitRemote,
   type SharedAgentContext,
@@ -121,32 +121,56 @@ describe("context resolution", () => {
     expect(result.agents).toBe(path.join(context!.candidateSharedRoot!, "AGENTS.md"));
     expect(await fs.readFile(result.agents, "utf8")).toContain("# Shared agent context");
     expect(await fs.readFile(path.join(context!.candidateSharedRoot!, ".storage"), "utf8")).toBe("shared\n");
+    expect(await fs.readFile(path.join(context!.candidateSharedRoot!, "CONTEXT-MAP.md"), "utf8")).toContain("# Context map");
     await expect(fs.stat(path.join(repositoryRoot, "AGENTS.md"))).rejects.toMatchObject({ code: "ENOENT" });
   });
 
-  test("copies alignment files in both directions and toggles active storage", async () => {
+  test("initialization preserves an authored context map", async () => {
+    const root = await temporaryDirectory();
+    const context = sharedContext(root);
+    await fs.writeFile(path.join(root, "AGENTS.md"), "existing instructions");
+    await fs.writeFile(path.join(root, "CONTEXT-MAP.md"), "authored navigation");
+
+    const result = await initializeSharedContext(context);
+
+    expect(result.created).toBe(false);
+    expect(await fs.readFile(path.join(root, "CONTEXT-MAP.md"), "utf8")).toBe("authored navigation");
+  });
+
+  test("copies the typed context areas in both directions and ignores legacy layouts", async () => {
     const repositoryRoot = await temporaryDirectory();
     const sharedBase = await temporaryDirectory();
     const origin = "https://github.com/Owner/Repo.git";
     await fs.mkdir(path.join(repositoryRoot, "docs", "agents"), { recursive: true });
-    await fs.mkdir(path.join(repositoryRoot, "src", "billing", "docs", "adr"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, "docs", "adr"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, "domains", "billing"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, "tracker", "tickets"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, "workflows", "billing-01", "events"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, "sources", "library", "web"), { recursive: true });
     await fs.mkdir(path.join(repositoryRoot, ".scratch", "feature"), { recursive: true });
-    await fs.writeFile(path.join(repositoryRoot, "AGENTS.md"), "repo instructions");
-    await fs.writeFile(path.join(repositoryRoot, "CONTEXT.md"), "domain glossary");
-    await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "domain.md"), "domain config");
-    await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "issue-tracker.md"), "---\nbackend: local-markdown\n---\n");
-    await fs.writeFile(path.join(repositoryRoot, ".scratch", "feature", "PRD.md"), "local issue");
-    await fs.writeFile(path.join(repositoryRoot, "src", "billing", "docs", "adr", "0001.md"), "decision");
     await fs.mkdir(path.join(repositoryRoot, "library", "web"), { recursive: true });
-    await fs.writeFile(path.join(repositoryRoot, "library", "web", "rfc-2119.md"), "ingested page");
+    await fs.writeFile(path.join(repositoryRoot, "AGENTS.md"), "repo instructions");
+    await fs.writeFile(path.join(repositoryRoot, "CONTEXT-MAP.md"), "stable entry points");
+    await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "domain.md"), "domain config");
+    await fs.writeFile(path.join(repositoryRoot, "docs", "adr", "billing-01.md"), "decision");
+    await fs.writeFile(path.join(repositoryRoot, "domains", "billing", "CONTEXT.md"), "domain glossary");
+    await fs.writeFile(path.join(repositoryRoot, "tracker", "tickets", "billing-01.md"), "local issue");
+    await fs.writeFile(path.join(repositoryRoot, "workflows", "billing-01", "events", "start-0001.yaml"), "receipt");
+    await fs.writeFile(path.join(repositoryRoot, "sources", "library", "web", "rfc-2119.md"), "ingested page");
+    await fs.writeFile(path.join(repositoryRoot, ".scratch", "feature", "issue.md"), "legacy issue");
+    await fs.writeFile(path.join(repositoryRoot, "library", "web", "legacy.md"), "legacy source");
 
     const repository = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
     const toShared = await migrateAlignmentContext(repository!);
     expect(toShared.storage).toBe("shared");
-    expect(toShared.copied).toContain("CONTEXT.md");
-    expect(toShared.copied).toContain("src/billing/docs/adr");
-    expect(toShared.copied).toContain(".scratch");
-    expect(toShared.copied).toContain("library");
+    expect(toShared.copied).toContain("CONTEXT-MAP.md");
+    expect(toShared.copied).toContain("docs/adr");
+    expect(toShared.copied).toContain("domains");
+    expect(toShared.copied).toContain("tracker");
+    expect(toShared.copied).toContain("workflows");
+    expect(toShared.copied).toContain("sources");
+    expect(toShared.copied).not.toContain(".scratch");
+    expect(toShared.copied).not.toContain("library");
 
     const shared = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
     expect(shared?.storage).toBe("shared");
@@ -155,44 +179,10 @@ describe("context resolution", () => {
 
     const restored = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
     expect(restored?.storage).toBe("repository");
-    expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "CONTEXT.md"), "utf8")).toBe("domain glossary");
-    expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "library", "web", "rfc-2119.md"), "utf8")).toBe("ingested page");
-  });
-
-  test("skips scratch data for an external tracker backend", async () => {
-    const repositoryRoot = await temporaryDirectory();
-    const sharedBase = await temporaryDirectory();
-    await fs.mkdir(path.join(repositoryRoot, "docs", "agents"), { recursive: true });
-    await fs.mkdir(path.join(repositoryRoot, ".scratch"), { recursive: true });
-    await fs.writeFile(path.join(repositoryRoot, "AGENTS.md"), "repo instructions");
-    await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "issue-tracker.md"), "---\nbackend: github\n---\n");
-    await fs.writeFile(path.join(repositoryRoot, ".scratch", "orphan.md"), "not tracker data");
-
-    const context = await resolveSharedContext(
-      gitExec(repositoryRoot, "https://github.com/Owner/Repo.git"),
-      repositoryRoot,
-      sharedBase,
-    );
-    const result = await migrateAlignmentContext(context!);
-
-    expect(result.copied).not.toContain(".scratch");
-    await expect(fs.stat(path.join(context!.candidateSharedRoot!, ".scratch"))).rejects.toMatchObject({ code: "ENOENT" });
-  });
-
-  test("refuses ambiguous scratch migration without tracker metadata", async () => {
-    const repositoryRoot = await temporaryDirectory();
-    const sharedBase = await temporaryDirectory();
-    await fs.mkdir(path.join(repositoryRoot, ".scratch"), { recursive: true });
-    await fs.writeFile(path.join(repositoryRoot, "AGENTS.md"), "repo instructions");
-    await fs.writeFile(path.join(repositoryRoot, ".scratch", "issue.md"), "unknown backend");
-
-    const context = await resolveSharedContext(
-      gitExec(repositoryRoot, "https://github.com/Owner/Repo.git"),
-      repositoryRoot,
-      sharedBase,
-    );
-
-    await expect(migrateAlignmentContext(context!)).rejects.toThrow("Cannot migrate .scratch without backend metadata");
+    expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "domains", "billing", "CONTEXT.md"), "utf8")).toBe("domain glossary");
+    expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "sources", "library", "web", "rfc-2119.md"), "utf8")).toBe("ingested page");
+    await expect(fs.stat(path.join(shared!.candidateSharedRoot!, ".scratch"))).rejects.toMatchObject({ code: "ENOENT" });
+    await expect(fs.stat(path.join(shared!.candidateSharedRoot!, "library"))).rejects.toMatchObject({ code: "ENOENT" });
   });
 
   test("returns no context when origin is missing", async () => {
@@ -303,18 +293,29 @@ describe("publishing guidance", () => {
   });
 });
 
-describe("ingest anchors", () => {
-  test("a work key anchors beside the key, a missing key anchors under library", () => {
-    const context = sharedContext("/shared/repo");
-    expect(anchorPath(context, { source: "confluence", key: "RWR-16627" })).toBe("/shared/repo/RWR-16627/confluence");
-    expect(anchorPath(context, { source: "web" })).toBe("/shared/repo/library/web");
+describe("typed context paths", () => {
+  test("resolves every stable record type", async () => {
+    const root = await temporaryDirectory();
+    const context = sharedContext(root);
+    await fs.mkdir(path.join(root, "docs", "adr"), { recursive: true });
+    await fs.writeFile(path.join(root, "docs", "adr", "ledger-ui-10-shell-state.md"), "decision");
+
+    await expect(resolveContextPath(context, { kind: "tracker" })).resolves.toBe(path.join(root, "tracker"));
+    await expect(resolveContextPath(context, { kind: "ticket", id: "ledger-ui-04" })).resolves.toBe(path.join(root, "tracker", "tickets", "ledger-ui-04.md"));
+    await expect(resolveContextPath(context, { kind: "initiative", id: "ledger-ui-shadcn-migration" })).resolves.toBe(path.join(root, "tracker", "initiatives", "ledger-ui-shadcn-migration"));
+    await expect(resolveContextPath(context, { kind: "workflow", id: "ledger-ui-04" })).resolves.toBe(path.join(root, "workflows", "ledger-ui-04"));
+    await expect(resolveContextPath(context, { kind: "source", ticket: "ledger-ui-04", source: "jira" })).resolves.toBe(path.join(root, "sources", "tickets", "ledger-ui-04", "jira"));
+    await expect(resolveContextPath(context, { kind: "source", library: true, source: "document" })).resolves.toBe(path.join(root, "sources", "library", "document"));
+    await expect(resolveContextPath(context, { kind: "adr", id: "ledger-ui-10" })).resolves.toBe(path.join(root, "docs", "adr", "ledger-ui-10-shell-state.md"));
+    await expect(resolveContextPath(context, { kind: "adr", id: "ledger-ui-11" })).resolves.toBe(path.join(root, "docs", "adr", "ledger-ui-11.md"));
   });
 
-  test("path traversal in a key or source is refused", () => {
+  test("refuses invalid or incomplete typed paths", async () => {
     const context = sharedContext("/shared/repo");
-    expect(() => anchorPath(context, { source: "../../etc" })).toThrow(/Invalid source/);
-    expect(() => anchorPath(context, { source: "web", key: ".." })).toThrow(/Invalid key/);
-    expect(() => anchorPath(context, { source: "a/b" })).toThrow(/Invalid source/);
+    await expect(resolveContextPath(context, { kind: "source", source: "../../etc", library: true })).rejects.toThrow(/Invalid source/);
+    await expect(resolveContextPath(context, { kind: "source", source: "web" })).rejects.toThrow(/exactly one/);
+    await expect(resolveContextPath(context, { kind: "source", source: "web", ticket: "ABC-1", library: true })).rejects.toThrow(/exactly one/);
+    await expect(resolveContextPath(context, { kind: "ticket", id: ".." })).rejects.toThrow(/Invalid id/);
   });
 });
 

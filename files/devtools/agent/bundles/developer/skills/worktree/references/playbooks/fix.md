@@ -10,14 +10,17 @@ The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or re
 - Resolve the canonical ticket and tracker path with the ticket skill. Cross-check the workflow record.
 - Use Worktrunk, the applicable engineering skill, and the active muxer and agent contracts.
 - Run the shared-context CLI from the source repository. Use its reported root and storage mode.
-- Follow `ALIGNMENT-ROOT.md` and use `cli.ts anchor --source local --key <ticket-id>`.
+- Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
+  `cli.ts path workflow --id <ticket-id>`.
 - Require the latest persisted review receipt to have `verdict: FAILURE`.
 - Verify that the source worktree and branch still exist.
 - Confirm that the current source branch matches the `source_branch` recorded in the consumed review receipt. Reject the fix on mismatch.
 
 ## Process
 
-1. Read the latest immutable review artifact and receipt. Read the implementation receipt, latest draft snapshot, ticket, context, ADRs, and agent instructions.
+1. Read the latest immutable review artifact under `artifacts/reviews/` and its
+   receipt. Read the implementation receipt, latest draft under
+   `artifacts/snapshots/`, ticket, context, ADRs, and agent instructions.
 2. Confirm that the current source branch matches the branch recorded in the consumed review receipt. Stop on mismatch.
 3. Select only the blocking findings for the fixer. Preserve their IDs, ADR references, exact files, line references, and validation commands.
 4. Record the current source commit and create a new fix phase-start receipt with the review receipt as its parent.
@@ -26,10 +29,14 @@ The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or re
 7. Launch the fresh fixer session with the agent contract and the fix handoff.
 8. Wait for completion through the muxer contract. Require `WORKTREE_FIX_DONE` only after the fixer has applied the changes and passed validation.
 9. If the fixer is blocked, fails validation, or omits the marker, append a failed fix phase-complete receipt and keep the worktree. Do not start a review.
-10. If the fixer succeeds, verify the immutable fix phase-result receipt, the new source commit, the new draft snapshot, and the regenerated projections.
+10. If the fixer succeeds, verify the immutable fix phase-result receipt, the
+    new source commit, the new draft snapshot under `artifacts/snapshots/`, and
+    the regenerated manifest and projections.
 11. Close the fixer pane. Keep the worktree workspace available.
 12. Create a phase-complete receipt that links to the fix phase-result receipt.
-13. Update the workflow projection and report `review <ticket-id>` as the next command. A new review is required because the source commit changed.
+13. Regenerate the manifest and workflow projections. Report
+    `review <ticket-id>` as the next command. A new review is required because
+    the source commit changed.
 
 ## Fix receipt requirements
 

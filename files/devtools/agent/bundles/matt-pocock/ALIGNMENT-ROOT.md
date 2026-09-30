@@ -12,8 +12,8 @@ output formats.
 Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or ad hoc Markdown
 parsers to locate or inspect local Markdown. A known path may be passed to
 `mq`, but `mq` remains the content-reading interface. This applies to
-`CONTEXT.md`, `CONTEXT-MAP.md`, ADRs, `docs/agents/`, `.scratch/`, review
-artifacts, and other alignment Markdown.
+`CONTEXT.md`, `CONTEXT-MAP.md`, ADRs, `docs/agents/`, `tracker/`, `workflows/`,
+review artifacts, and other alignment Markdown.
 
 ## Resolve the root
 
@@ -25,19 +25,24 @@ Run the shared-context CLI procedure from `agent-core:shared-context` in the rep
 
 Run `cli.ts` directly. Do not prefix it with Bun's runner. Use the reported `root` as `ALIGNMENT_ROOT` and the reported `repository-root` for source code and ordinary project files. The CLI is the source of truth. Do not inspect the prompt or environment, and do not derive a path from the origin or a storage configuration.
 
-If the CLI exits with a non-zero status, stop and report the error. Use `cli.ts anchor` to select a target directory before a shared-context source write. Run `cli.ts index <dir>` after adding or removing a file in a source directory. After any write under a shared `ALIGNMENT_ROOT`, read the shared-context publishing procedure and publish when its rules require it.
+If the CLI exits with a non-zero status, stop and report the error. Use
+`cli.ts path` to resolve tracker, workflow, source, and ADR targets. Run
+`cli.ts index <dir>` after adding or removing a file in a source directory.
+After any write under a shared `ALIGNMENT_ROOT`, read the shared-context
+publishing procedure and publish when its rules require it.
 
-Resolve these paths against `ALIGNMENT_ROOT`, even when an upstream skill calls it the repo root:
+Resolve these paths against `ALIGNMENT_ROOT`, even when an upstream skill calls
+it the repo root:
 
 - `AGENTS.md` or the active repository instruction file
-- `docs/agents/issue-tracker.md`
-- `docs/agents/triage-labels.md`
-- `docs/agents/domain.md`
+- `docs/agents/`
 - `CONTEXT.md`
 - `CONTEXT-MAP.md`
 - `docs/adr/`
-- context-scoped `src/**/docs/adr/`
-- `.scratch/` when the tracker backend is `local-markdown`
+- `domains/`
+- `tracker/`
+- `workflows/`
+- `sources/`
 
 Keep these relative to `repository-root`:
 

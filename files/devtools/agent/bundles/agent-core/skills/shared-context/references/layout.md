@@ -3,33 +3,32 @@
 Read this before any write under the root printed by the CLI. It applies to ingested source
 material and to notes you author.
 
-## Anchor rule
+## Typed path rule
 
-Every ingested file lives in a source directory under the root printed by the CLI. Do not resolve the root from the repository, configuration, or environment separately.
+Every stored record has one typed path under the root printed by the CLI. A
+calling skill MUST ask the CLI for that path. It MUST NOT join root-relative
+segments.
 
-| Condition | Anchor |
-|---|---|
-| A work key is active (ticket key, branch ticket) | `<root>/<KEY>/<source>/` |
-| No work key | `<root>/library/<source>/` |
+| Record | Command | Result |
+|---|---|---|
+| Tracker root | `path tracker` | `<root>/tracker` |
+| Ticket | `path ticket --id <ID>` | `<root>/tracker/tickets/<ID>.md` |
+| Initiative | `path initiative --id <ID>` | `<root>/tracker/initiatives/<ID>/` |
+| Workflow | `path workflow --id <ID>` | `<root>/workflows/<ID>/` |
+| Ticket source | `path source --ticket <ID> --source <SOURCE>` | `<root>/sources/tickets/<ID>/<SOURCE>/` |
+| Library source | `path source --library --source <SOURCE>` | `<root>/sources/library/<SOURCE>/` |
+| ADR | `path adr --id <ID>` | The unique matching file under `<root>/docs/adr/`, or `<root>/docs/adr/<ID>.md` for a new ADR |
 
-Get the directory from the CLI. Do not build the path by hand:
+`path` prints an absolute path and does not create it. Create the printed
+directory, or its parent for a file path, only when the current operation writes
+there. The CLI refuses an ID or source that contains a slash or `..`. It also
+refuses a source request that does not select exactly one of `--ticket` and
+`--library`.
 
-```bash
-"<skillroot>/scripts/shared-context/cli.ts" anchor --source confluence --key RWR-16627
-"<skillroot>/scripts/shared-context/cli.ts" anchor --source web --dry-run
-```
-
-`anchor` creates the directory and prints the absolute path. `--dry-run` prints the
-same path and creates nothing. Use `--dry-run` when you are planning. Both forms refuse
-a key or source containing a slash or `..`.
-
-`<source>` starts with a lowercase letter and contains only lowercase letters,
+`<SOURCE>` starts with a lowercase letter and contains only lowercase letters,
 numbers, and dashes: `confluence`, `jira`, `web`, `document`, `library-docs`,
-`local`. It must not contain slashes, dots, underscores, or uppercase letters.
-Use an existing directory name before you invent one.
-
-Work-key directories also hold task material that is not an ingest: `planning.md`,
-`workflow-record.md`, `deliverable-tasks/`. Those keep their existing names.
+or `local`. It must not contain slashes, dots, underscores, or uppercase letters.
+Use an existing source name before you add one.
 
 ## Filename rule
 
@@ -124,7 +123,7 @@ fetch is normal. The comparison decides whether to write, not whether to fetch.
 After you add or remove a file in a source directory, rebuild its index:
 
 ```bash
-"<skillroot>/scripts/shared-context/cli.ts" index "<anchor directory>"
+"<skillroot>/scripts/shared-context/cli.ts" index "<source directory>"
 ```
 
 The command reads every sibling `.md` file's frontmatter and writes the list
@@ -147,12 +146,16 @@ three different shapes in this store.
 
 ## Binary assets
 
-Screenshots and source binaries live beside the Markdown that describes them.
+Keep a source binary beside the Markdown that describes it.
 
-- A screenshot attached to a work key: `<root>/<KEY>/screenshot-<subject>.png`.
-- A converted document: keep the original beside the Markdown, for example
-  `library/document/superstream-spec.pdf` next to `superstream-spec.md`.
-
+- Put a screenshot used as ticket source material under the ticket's `local`
+  source directory.
+- Put workflow test screenshots under
+  `workflows/<ticket>/artifacts/evidence/<run-id>/screenshots/`. The worktree
+  skill owns that path.
+- Keep a converted document beside its Markdown, for example
+  `sources/library/document/superstream-spec.pdf` next to
+  `superstream-spec.md`.
 Copy the original into the store. Do not move it. The user's own copy stays where
 it is.
 

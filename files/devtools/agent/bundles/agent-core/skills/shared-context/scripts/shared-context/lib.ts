@@ -5,8 +5,29 @@ import { loadConfig } from "./config";
 
 const MAX_AGENTS_BYTES = 100_000;
 const STORAGE_FILE = ".storage";
-const LIBRARY_DIR = "library";
-const ALIGNMENT_PATHS = ["docs/agents", "CONTEXT.md", "CONTEXT-MAP.md", "docs/adr", LIBRARY_DIR];
+const DEFAULT_CONTEXT_MAP = `# Context map
+
+Use this file for stable entry points. Do not list individual workflow receipts.
+
+## Stable entry points
+
+- \`docs/agents/\`
+- \`docs/adr/index.md\`
+- \`tracker/index.md\`
+- \`workflows/index.md\`
+- \`sources/\`
+- \`domains/\`
+`;
+const ALIGNMENT_PATHS = [
+  "docs/agents",
+  "CONTEXT.md",
+  "CONTEXT-MAP.md",
+  "docs/adr",
+  "domains",
+  "tracker",
+  "workflows",
+  "sources",
+];
 const SEGMENT_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const SOURCE_PATTERN = /^[a-z][a-z0-9-]*$/;
 
@@ -170,42 +191,24 @@ export async function initializeSharedContext(context: SharedAgentContext): Prom
 
   await fs.mkdir(context.candidateSharedRoot, { recursive: true });
   const agents = path.join(context.candidateSharedRoot, "AGENTS.md");
+  let created = true;
   try {
     await fs.writeFile(agents, "# Shared agent context\n\nSee `docs/agents/` for engineering workflow configuration.\n", { flag: "wx" });
-    await fs.writeFile(path.join(context.candidateSharedRoot, STORAGE_FILE), "shared\n");
-    return { agents, created: true };
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
-    await fs.writeFile(path.join(context.candidateSharedRoot, STORAGE_FILE), "shared\n");
-    return { agents, created: false };
-  }
-}
-
-async function contextAdrPaths(root: string): Promise<string[]> {
-  const found: string[] = [];
-
-  async function walk(directory: string): Promise<void> {
-    let entries;
-    try {
-      entries = await fs.readdir(directory, { withFileTypes: true });
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === "ENOENT") return;
-      throw error;
-    }
-    for (const entry of entries) {
-      if (!entry.isDirectory()) continue;
-      const child = path.join(directory, entry.name);
-      if (entry.name === "adr" && path.basename(path.dirname(child)) === "docs") {
-        found.push(path.relative(root, child));
-      } else {
-        await walk(child);
-      }
-    }
+    created = false;
   }
 
-  await walk(path.join(root, "src"));
-  return found;
+  try {
+    await fs.writeFile(path.join(context.candidateSharedRoot, "CONTEXT-MAP.md"), DEFAULT_CONTEXT_MAP, { flag: "wx" });
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+  }
+
+  await fs.writeFile(path.join(context.candidateSharedRoot, STORAGE_FILE), "shared\n");
+  return { agents, created };
 }
+
 
 async function exists(target: string): Promise<boolean> {
   try {
@@ -217,16 +220,6 @@ async function exists(target: string): Promise<boolean> {
   }
 }
 
-async function trackerBackend(root: string): Promise<string | undefined> {
-  try {
-    const config = await fs.readFile(path.join(root, "docs", "agents", "issue-tracker.md"), "utf8");
-    const frontmatter = config.match(/^---\s*\n([\s\S]*?)\n---(?:\s*\n|$)/)?.[1];
-    return frontmatter?.match(/^backend:\s*(\S+)\s*$/m)?.[1];
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") return;
-    throw error;
-  }
-}
 
 async function filesUnder(source: string, target: string): Promise<Array<{ source: string; target: string }>> {
   const stat = await fs.stat(source);
@@ -264,15 +257,7 @@ export async function migrateAlignmentContext(context: SharedAgentContext): Prom
       target: targetInstructions,
     });
   }
-  const alignmentPaths = [...ALIGNMENT_PATHS, ...await contextAdrPaths(from)];
-  const scratch = path.join(from, ".scratch");
-  if (await exists(scratch)) {
-    const backend = await trackerBackend(from);
-    if (!backend) {
-      throw new Error(`Cannot migrate .scratch without backend metadata in ${path.join(from, "docs", "agents", "issue-tracker.md")}`);
-    }
-    if (backend === "local-markdown") alignmentPaths.push(".scratch");
-  }
+  const alignmentPaths = [...ALIGNMENT_PATHS];
   for (const relative of alignmentPaths) {
     const source = path.join(from, relative);
     if (await exists(source)) entries.push({ relative, source, target: path.join(to, relative) });
@@ -361,10 +346,13 @@ export function renderSharedContext(context: SharedAgentContext): string {
   return `\n\n<shared-agent-context ${attributes.join(" ")}>\n${instructions}\n</shared-agent-context>`;
 }
 
-export type AnchorOptions = {
-  source: string;
-  key?: string;
-};
+export type ContextPathOptions =
+  | { kind: "tracker" }
+  | { kind: "ticket"; id: string }
+  | { kind: "initiative"; id: string }
+  | { kind: "workflow"; id: string }
+  | { kind: "source"; source: string; ticket?: string; library?: boolean }
+  | { kind: "adr"; id: string };
 
 function assertSegment(value: string, label: string): void {
   if (!SEGMENT_PATTERN.test(value)) {
@@ -372,20 +360,51 @@ function assertSegment(value: string, label: string): void {
   }
 }
 
-export function anchorPath(context: SharedAgentContext, options: AnchorOptions): string {
-  if (!SOURCE_PATTERN.test(options.source)) {
-    throw new Error(`Invalid source "${options.source}": use lowercase letters, numbers, or dashes`);
+export async function resolveContextPath(context: SharedAgentContext, options: ContextPathOptions): Promise<string> {
+  switch (options.kind) {
+    case "tracker":
+      return path.join(context.root, "tracker");
+    case "ticket":
+      assertSegment(options.id, "id");
+      return path.join(context.root, "tracker", "tickets", `${options.id}.md`);
+    case "initiative":
+      assertSegment(options.id, "id");
+      return path.join(context.root, "tracker", "initiatives", options.id);
+    case "workflow":
+      assertSegment(options.id, "id");
+      return path.join(context.root, "workflows", options.id);
+    case "source": {
+      if (!SOURCE_PATTERN.test(options.source)) {
+        throw new Error(`Invalid source "${options.source}": use lowercase letters, numbers, or dashes`);
+      }
+      if (Boolean(options.ticket) === Boolean(options.library)) {
+        throw new Error("Source paths require exactly one of ticket or library");
+      }
+      if (options.ticket) {
+        assertSegment(options.ticket, "ticket");
+        return path.join(context.root, "sources", "tickets", options.ticket, options.source);
+      }
+      return path.join(context.root, "sources", "library", options.source);
+    }
+    case "adr": {
+      assertSegment(options.id, "id");
+      const directory = path.join(context.root, "docs", "adr");
+      let names: string[] = [];
+      try {
+        names = await fs.readdir(directory);
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+      }
+      const prefix = `${options.id}-`;
+      const matches = names.filter((name) =>
+        name === `${options.id}.md` || (name.startsWith(prefix) && name.endsWith(".md"))
+      );
+      if (matches.length > 1) {
+        throw new Error(`ADR id "${options.id}" is ambiguous: ${matches.join(", ")}`);
+      }
+      return path.join(directory, matches[0] ?? `${options.id}.md`);
+    }
   }
-  if (options.key !== undefined) assertSegment(options.key, "key");
-  return options.key
-    ? path.join(context.root, options.key, options.source)
-    : path.join(context.root, LIBRARY_DIR, options.source);
-}
-
-export async function ensureAnchorPath(context: SharedAgentContext, options: AnchorOptions): Promise<string> {
-  const directory = anchorPath(context, options);
-  await fs.mkdir(directory, { recursive: true });
-  return directory;
 }
 
 export function parseFrontmatter(text: string): Record<string, string> {

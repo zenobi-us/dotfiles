@@ -10,8 +10,11 @@ The reviewer MUST use a new pane or tab. It MUST NOT reuse the implementation or
 - Resolve the canonical ticket and tracker path with the ticket skill. Cross-check the workflow record.
 - Use Worktrunk, the `code-review` skill, and the active muxer and agent contracts.
 - Run the shared-context CLI from the repository. Use its reported root and storage mode.
-- Follow `ALIGNMENT-ROOT.md` and use `cli.ts anchor --source local --key <ticket-id>`.
-- Store the review artifact at the tracker-defined review path. If the tracker has no review path, use `<ticket-anchor>/reviews/`. Never store it only in chat or `/tmp`.
+- Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
+  `cli.ts path workflow --id <ticket-id>`.
+- Store one review artifact at
+  `artifacts/reviews/review-<review-receipt-id>.md`. Never copy its body into the
+  tracker, chat, or another directory.
 
 ## Preconditions that block the review
 
@@ -24,8 +27,9 @@ Reject the request when any of these conditions is true:
 
 ## Process
 
-1. Resolve the ticket and workflow record.
-2. Read the latest implementation or fix receipt, the latest draft snapshot, the ticket, context, ADRs, and agent instructions.
+1. Resolve the ticket and workflow root.
+2. Read the latest implementation or fix receipt, the latest draft under
+   `artifacts/snapshots/`, the ticket, context, ADRs, and agent instructions.
 3. Resolve the source branch, base branch, worktree path, and current source commit.
 4. Freeze the review target to the current source commit and tree. Record both in the review handoff.
 5. Create a new review phase-start receipt with a new attempt ID. Never overwrite an earlier receipt.
@@ -43,12 +47,16 @@ Reject the request when any of these conditions is true:
 7. Open a new pane or tab in the existing worktree workspace. Use the active muxer contract. For hrdx, use `pane.create` with the absolute workspace path, `split: "tab"`, and the configured agent kind. Do not use `pane.send_text` on the previous session.
 8. Launch the agent with the agent contract and the review handoff.
 9. Wait for the fresh reviewer session to finish. Read its output through the muxer contract.
-10. Verify that the reviewer created one immutable phase-result receipt and one review artifact. The artifact MUST identify the frozen source commit.
+10. Verify that the reviewer created one immutable phase-result receipt and one
+    review artifact. The artifact MUST identify the frozen source commit.
 11. Make sure that the reviewer did not change the source tree. If the tree changed, create a failed phase-complete receipt and stop.
 12. Run the smallest validation command that proves the reviewed work passes. Record the command and result in the review receipt.
 13. Use `SUCCESS` when no blocking findings remain. Use `FAILURE` when any blocking finding remains.
-14. Close the review pane or session. Do not close the worktree workspace.
-15. Create a phase-complete receipt that links to the phase-result receipt. Preserve every earlier review in the workflow projection.
+14. Ask the ticket skill to append the verdict, reviewed commit, timestamp, and
+    review artifact link to the ticket. Do not copy the review body.
+15. Close the review pane or session. Do not close the worktree workspace.
+16. Create a phase-complete receipt that links to the phase-result receipt.
+    Regenerate the manifest and projections without dropping earlier reviews.
 
 ## Review requirements
 

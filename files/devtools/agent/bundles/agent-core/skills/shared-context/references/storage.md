@@ -14,10 +14,13 @@ on. See Step 0 in `SKILL.md`.
 | `list` | no | List contexts that have shared storage |
 | `files` | no | List files under the resolved root |
 | `inject` | no | Emit the hook JSON that injects context at session start |
-| `anchor --source S [--key K] [--dry-run]` | creates a directory unless `--dry-run` | Print the directory an ingested source belongs in |
-| `index <dir> [--force]` | writes `index.md` | Rebuild the managed block of `index.md` |
-| `init` | yes | Create shared `AGENTS.md` and activate shared storage |
-| `migrate` | yes | Copy alignment files to the opposite storage |
+| `path tracker` | no | Print the tracker root |
+| `path ticket\|initiative\|workflow\|adr --id ID` | no | Print one typed record path |
+| `path source --ticket ID --source S` | no | Print a ticket source directory |
+| `path source --library --source S` | no | Print a library source directory |
+| `index <dir> [--force]` | writes `index.md` | Rebuild the managed block of a source `index.md` |
+| `init` | yes | Create shared `AGENTS.md` and `CONTEXT-MAP.md`, then activate shared storage |
+| `migrate` | yes | Copy typed context areas to the opposite storage |
 
 Show read-only output verbatim. Do not add analysis.
 
@@ -38,16 +41,9 @@ print it.
 
 - `storage: shared` — run `files`.
 - `storage: repository` — do **not** run `files`. It lists the whole repository.
-  One run produced 3284 paths. List the alignment paths instead:
-
-  ```bash
-  for p in AGENTS.md CONTEXT.md CONTEXT-MAP.md docs/agents docs/adr library .scratch; do
-    [ -e "$p" ] && find "$p" -maxdepth 2 || :
-  done
-  ```
-
-  The loop exits 0 whether or not a path is missing. Expand each directory one
-  level so the user sees real filenames, not a bare directory name.
+  Read `CONTEXT-MAP.md` for stable entry points. Use `path tracker` and the
+  record-specific `path` commands when a caller supplies an ID. Inspect only
+  paths that exist.
 
 `list` shows only contexts that have shared storage. A repository in repository
 mode never appears. Do not conclude from `list` alone that the current repository
@@ -58,11 +54,12 @@ has no context. Read the `report` first.
 1. You **MUST** confirm the user named the operation. "Set up shared context" names
    `init`. "Save this page" does not.
 2. You **MUST** state the subcommand and the directory it can change.
-3. `migrate` copies these paths only: `AGENTS.md`, `docs/agents`, `CONTEXT.md`,
-   `CONTEXT-MAP.md`, `docs/adr`, context-scoped `src/**/docs/adr`, `library`, and
-   `.scratch` when the tracker backend is `local-markdown`.
-4. Work-key directories such as `RWR-16627/` are **not** migrated. They exist only
-   in the storage they were written to.
+3. `migrate` copies these typed context areas only: `AGENTS.md`, `docs/agents`,
+   `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr`, `domains`, `tracker`, `workflows`,
+   and `sources`.
+4. Legacy `.scratch/`, top-level ticket directories, and top-level `library/`
+   are not migrated. Move them through the layout migration before storage
+   migration.
 5. `migrate` refuses when a target file exists with different content. Read the
    conflict list. Do not delete the target to force the copy.
 
@@ -70,6 +67,8 @@ has no context. Read the `report` first.
 
 - `inject` prints `null` when no shared `AGENTS.md` exists. That is success, not
   failure.
+- `init` creates `CONTEXT-MAP.md` when it is absent. It preserves an existing
+  authored map.
 - `init` writes a marker file named `.storage` holding the word `shared`. Shared
   storage activates on the next session, not immediately.
 - The storage path can be a symlink. Read `references/publishing.md` before you

@@ -52,13 +52,18 @@ Calling skills MUST NOT parse or modify ticket fields directly when this skill c
 
 ## Local Markdown schema
 
-For `backend: local-markdown`, resolve files below:
+For `backend: local-markdown`, require these configured roots:
 
-```text
-`<issue-root>` resolved under the CLI-reported `ALIGNMENT_ROOT`
+```yaml
+initiative-root: tracker/initiatives
+issue-root: tracker/tickets
 ```
 
-Read the tracker document's `review-root` when a review artifact is involved.
+Run `shared-context path tracker` for listing. Run
+`shared-context path ticket --id <ID>` or
+`shared-context path initiative --id <ID>` for one record. Do not join the
+configured segments to `ALIGNMENT_ROOT`. The shared-context CLI owns physical
+path construction.
 
 Ticket files MUST use frontmatter for machine-readable metadata:
 
@@ -126,7 +131,10 @@ Use the operation that the calling skill requests.
 
 ### Read
 
-Resolve the ticket selector using the tracker document. Accept only selector forms that the tracker defines. Reject ambiguous selectors. Read the complete ticket, including frontmatter, body, and comments.
+Resolve the ticket selector using the tracker document. Accept only selector
+forms that the tracker defines. Reject ambiguous selectors. For local Markdown,
+resolve a stable ID with `shared-context path ticket --id <ID>`. Read the complete
+ticket, including frontmatter, body, and comments.
 
 Return both:
 
@@ -135,15 +143,17 @@ Return both:
 
 ### List
 
-Use the configured tracker query. For local Markdown, query frontmatter rather than body text. Return the canonical identifier, title, state, blockers, and tracker path.
+Use the configured tracker query. For local Markdown, run
+`shared-context path tracker`, query frontmatter under its `tickets/` area, and
+return the canonical identifier, title, state, blockers, and tracker path.
 
 ### Create
 
 Create the ticket in the tracker-defined format. For local Markdown:
 
 1. choose a unique stable `id`;
-2. write frontmatter;
-3. write the human-readable body;
+2. resolve `shared-context path ticket --id <ID>`;
+3. write frontmatter and the human-readable body to that path;
 4. resolve every `blocked_by` reference;
 5. validate the graph;
 6. follow the local Git preflight and commit rules.
@@ -166,13 +176,16 @@ Save before source work starts. Do not change `triage` unless the calling workfl
 
 ### Review
 
-Use the tracker-defined review artifact location. For local Markdown, use:
+The ticket skill MUST NOT create a review artifact or choose a review directory.
 
-```text
-<review-root>/<ticket-file-name-without-extension>.md
-```
+- For a worktree review, the worktree skill owns the only review body under
+  `workflows/<ID>/artifacts/reviews/`. Receive its artifact path, verdict,
+  reviewed commit, and timestamp. Add only the verdict and artifact link to the
+  ticket comments.
+- For a review with no worktree workflow, store the complete review once as a
+  native tracker comment. For local Markdown, append it under `## Comments`.
 
-The review artifact MUST include the ticket identifier, tracker path, scope, branches, commit, validation, findings, verdict, and timestamp. Follow the local Git commit and shared-context publication rules.
+Never copy a worktree review body into the ticket or another directory.
 
 ### Complete
 

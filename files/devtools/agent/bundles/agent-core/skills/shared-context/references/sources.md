@@ -52,10 +52,10 @@ Child issues go in `jira/children/`. Text you have not yet posted goes in
 `docling` is not on `PATH` here. Run it through `uvx`:
 
 ```bash
-uvx --from docling docling <input> --to md --output <anchor directory>
+uvx --from docling docling <input> --to md --output <source directory>
 ```
 
-- Copy the original into the anchor directory first, then convert the copy.
+- Copy the original into the source directory first, then convert the copy.
 - Docling writes `<input stem>.md` into the output directory. That stem is the
   filename the layout rule already chose.
 - A scanned document needs OCR. Docling enables OCR when it finds no text layer.
@@ -77,9 +77,15 @@ unless the redirect is permanent.
 
 ## Screenshots
 
-A screenshot is not a source directory. Write it at the work-key root as
-`<root>/<KEY>/screenshot-<subject>.png` and reference it from the note that
-explains it. `index` ignores binary files.
+A source screenshot uses the ticket's `local` source directory. Resolve it with:
+
+```bash
+cli.ts path source --ticket <ID> --source local
+```
+
+Write `screenshot-<subject>.png` there and reference it from the source note.
+Workflow test screenshots are evidence, not sources. The worktree skill stores
+them under its workflow artifact path.
 
 ## Adding a source type
 

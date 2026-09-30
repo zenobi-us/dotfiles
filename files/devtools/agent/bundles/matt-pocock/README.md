@@ -24,16 +24,19 @@ Skills resolve these paths against the injected `root`, falling back to the repo
 
 ```text
 AGENTS.md
-docs/agents/issue-tracker.md
-docs/agents/triage-labels.md
-docs/agents/domain.md
+docs/agents/
 CONTEXT.md
 CONTEXT-MAP.md
 docs/adr/
-src/**/docs/adr/
-.scratch/
+domains/
+tracker/
+workflows/
+sources/
 ```
 
-Migration covers `AGENTS.md` (or the active repository instruction file), `docs/agents/`, `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, and context-scoped `src/**/docs/adr/`. It copies `.scratch/` only when `docs/agents/issue-tracker.md` declares `backend: local-markdown`; external trackers leave `.scratch/` behind. Missing backend metadata with an existing `.scratch/` aborts migration. Differing destination files also abort before anything is copied.
+Migration copies these typed context areas. It does not copy legacy `.scratch/`,
+top-level ticket workflow directories, or top-level `library/`. Move legacy
+records to the typed layout before storage migration. Differing destination
+files abort migration before anything is copied.
 
 Repository source code, ordinary project docs/specs, tests, prototypes, research notes, commits, and branches always remain in the Git working tree.

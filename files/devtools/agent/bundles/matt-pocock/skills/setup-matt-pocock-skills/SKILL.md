@@ -42,9 +42,9 @@ Inspect the repository root for source and Git state:
 Inspect the reported `ALIGNMENT_ROOT` for alignment state:
 
 - `AGENTS.md` or the active repository instruction file
-- `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, and context-scoped `src/*/docs/adr/`
+- `CONTEXT-MAP.md`, `docs/adr/`, and `domains/*/CONTEXT.md`
 - `docs/agents/`
-- `.scratch/`
+- `tracker/`, `workflows/`, and `sources/`
 
 Read existing files. Do not infer missing state from repository paths while shared storage is active.
 
@@ -69,7 +69,8 @@ If the remote is GitHub, recommend GitHub. If it is GitLab, recommend GitLab. Ot
 
 - **GitHub** — GitHub Issues via `gh`
 - **GitLab** — GitLab Issues via `glab`
-- **Local markdown** — one file per issue beneath `.scratch/<feature>/` under `ALIGNMENT_ROOT`
+- **Local markdown** — stable ticket files under `tracker/tickets/` and
+  initiative records under `tracker/initiatives/`
 - **Other** — record the user's workflow as freeform prose
 
 The tracker choice is independent of alignment storage. Record it in `docs/agents/issue-tracker.md`. GitHub and GitLab templates keep external PRs as a request surface disabled by default.
@@ -80,7 +81,10 @@ Ask whether to keep the default labels: `needs-triage`, `needs-info`, `ready-for
 
 **Section D — Domain docs.**
 
-Default to single-context: one `CONTEXT.md` plus `docs/adr/` beneath `ALIGNMENT_ROOT`. Offer multi-context — one `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` and ADR directories beneath the same root — only when exploration found genuine monorepo signals.
+Create `CONTEXT-MAP.md` as the stable root navigation document. For a
+single-context project, it points to one `CONTEXT.md` and `docs/adr/`. For a
+multi-context project, it points to `domains/<domain>/CONTEXT.md`. Keep ADRs
+central under `docs/adr/`.
 
 ### 3. Confirm and edit
 
@@ -96,7 +100,11 @@ Let the user edit before writing. If the write uses shared storage, show the res
 
 ### 4. Write
 
-Before each write, confirm that the destination is under the current CLI-reported `ALIGNMENT_ROOT`. Use `cli.ts anchor` when selecting a shared-context source directory. After adding or removing a file in such a directory, run `cli.ts index <dir>`. Read the shared-context publishing procedure after every shared-root write and publish when required.
+Before each write, confirm that the destination is under the current
+CLI-reported `ALIGNMENT_ROOT`. Use `cli.ts path` for tracker, workflow, source,
+and ADR targets. Run `cli.ts index <dir>` after adding or removing a file in a
+source directory. Read the shared-context publishing procedure after every
+shared-root write and publish when required.
 
 For repository storage, edit `CLAUDE.md` when it exists, otherwise `AGENTS.md`. If neither exists, ask which one to create. Never create the other file when one already exists.
 
@@ -130,9 +138,29 @@ Write configuration files beneath `ALIGNMENT_ROOT` using these seeds:
 - [triage-labels.md](./triage-labels.md)
 - [domain.md](./domain.md)
 
-Every generated `docs/agents/issue-tracker.md` MUST begin with YAML frontmatter naming the actual backend, such as `backend: github`, `backend: gitlab`, `backend: jira`, or `backend: local-markdown`. Local markdown MUST also declare `issue-root: .scratch` and `review-root: .scratch/<feature-slug>/reviews`. The shared-context CLI migration procedure uses this metadata and MUST NOT infer the backend from prose.
+Create or update these navigation files:
 
-For local Markdown, the generated tracker document MUST define separate `Triage:` and `Work status:` fields. `Work status: completed` is valid only after verification, merge, and push succeed. Validate these fields and `review-root` after writing the tracker document.
+- `CONTEXT-MAP.md` with stable entry points only;
+- `docs/adr/index.md` with links to existing ADRs;
+- `workflows/index.md` when a workflow area exists;
+- `tracker/index.md` when the backend is `local-markdown`;
+- each initiative's `tracker/initiatives/<id>/index.md`.
+
+An index MUST describe or link existing records. It MUST NOT claim that a
+directory is empty. Do not list individual event receipts in `CONTEXT-MAP.md`.
+
+Every generated `docs/agents/issue-tracker.md` MUST begin with YAML frontmatter
+naming the actual backend, such as `backend: github`, `backend: gitlab`,
+`backend: jira`, or `backend: local-markdown`. Local Markdown MUST also declare:
+
+```yaml
+initiative-root: tracker/initiatives
+issue-root: tracker/tickets
+```
+
+For local Markdown, define separate `triage` and `work_status` fields.
+`work_status: completed` is valid only after verification, merge, and push
+succeed. Validate both configured roots after writing the tracker document.
 
 For another tracker, write the tracker document from the user's description and use the actual service identifier as `backend`.
 
@@ -146,4 +174,7 @@ Report active storage, absolute `ALIGNMENT_ROOT`, and files written. Mention tha
 
 Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.
+For a shared-context source write, use `cli.ts path source` before choosing a
+directory, run `cli.ts index <dir>` after adding or removing a file there, and
+read the shared-context publishing procedure after the write. Follow
+[ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

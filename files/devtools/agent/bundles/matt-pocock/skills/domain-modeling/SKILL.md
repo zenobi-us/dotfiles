@@ -25,31 +25,27 @@ Inspect source code and committed domain artifacts when you check the model. Use
 
 ## File structure
 
-Most repos have a single context under the CLI-reported `ALIGNMENT_ROOT`:
+Read `CONTEXT-MAP.md` under the CLI-reported `ALIGNMENT_ROOT`.
+
+For one domain, the map points to:
 
 ```text
 <ALIGNMENT_ROOT>/CONTEXT.md
 <ALIGNMENT_ROOT>/docs/adr/
-<repository-root>/src/
 ```
 
-If a `CONTEXT-MAP.md` exists at `ALIGNMENT_ROOT`, the repo has multiple contexts. The map points to where each one lives:
+For multiple domains, the map points to:
 
-```
-/
-├── CONTEXT-MAP.md
-├── docs/
-│   └── adr/                          ← system-wide decisions
-├── src/
-│   ├── ordering/
-│   │   ├── CONTEXT.md
-│   │   └── docs/adr/                 ← context-specific decisions
-│   └── billing/
-│       ├── CONTEXT.md
-│       └── docs/adr/
+```text
+<ALIGNMENT_ROOT>/domains/<domain>/CONTEXT.md
+<ALIGNMENT_ROOT>/docs/adr/
 ```
 
-Create files lazily — only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
+Keep ADRs central under `docs/adr/`. Do not put domain documents or ADRs under
+the repository source tree.
+
+Create files lazily. Update `CONTEXT-MAP.md` when you create the first domain
+document. Update `docs/adr/index.md` when you add or rename an ADR.
 
 ## During the session
 
@@ -69,9 +65,13 @@ When domain relationships are being discussed, stress-test them with specific sc
 
 When the user states how something works, check whether the code agrees. If you find a contradiction, surface it: "Your code cancels entire Orders, but you just said partial cancellation is possible — which is right?"
 
-### Update CONTEXT.md inline
+### Update the domain context inline
 
-When a term is resolved, update `ALIGNMENT_ROOT/CONTEXT.md` right there. Do not batch these updates. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md). After a shared-root write, read the shared-context publishing procedure. If the file is in a shared-context source directory, run `cli.ts index <dir>`.
+When a term is resolved, update the domain file linked from `CONTEXT-MAP.md`
+immediately. Use root `CONTEXT.md` for one domain and
+`domains/<domain>/CONTEXT.md` for multiple domains. Do not batch these updates.
+Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md). After a shared-root
+write, read the shared-context publishing procedure.
 
 `CONTEXT.md` should be totally devoid of implementation details. Do not treat `CONTEXT.md` as a spec, a scratch pad, or a repository for implementation decisions. It is a glossary and nothing else.
 
@@ -83,10 +83,15 @@ Only offer to create an ADR when all three are true:
 2. **Surprising without context** — a future reader will wonder "why did they do it this way?"
 3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons
 
-If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md).
+If any of the three is missing, skip the ADR. Use the format in
+[ADR-FORMAT.md](./ADR-FORMAT.md), resolve its path with
+`cli.ts path adr --id <ID>`, and update `docs/adr/index.md`.
 
 ## Context resolution
 
 Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts anchor` before choosing a source directory, run `cli.ts index <dir>` after adding or removing a file in that directory, and read the shared-context publishing procedure after the write. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.
+For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts path` for tracker,
+workflow, source, and ADR targets. Run `cli.ts index <dir>` only after a source
+directory changes. Read the shared-context publishing procedure after the write.
+Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

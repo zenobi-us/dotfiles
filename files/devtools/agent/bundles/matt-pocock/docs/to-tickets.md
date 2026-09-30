@@ -30,7 +30,8 @@ Reach for it once you have an agreed plan or a written spec and you want it spli
 
 The blocking edges are the whole point. They make one set of tickets read two ways, depending on the tracker:
 
-- **Local files** → one file per ticket under `.scratch/<feature>/issues/`, numbered blockers-first, the edges written as text. You work them top-to-bottom, by hand, staying in the loop.
+- **Local files** → one stable-ID file per ticket under `tracker/tickets/`, with
+  direct blockers in frontmatter. You work the frontier in blocker order.
 - **A real tracker (GitHub, Linear)** → one issue per ticket, the edges as native blocking links (or sub-issues). Any ticket whose blockers are all done is on the **frontier** and can be grabbed — so several agents can run at once.
 
 The edges live in the ticket regardless of medium; the medium only decides whether anything acts on them in parallel. `to-tickets` produces the artifact — how you run it (sequential by hand, or a parallel fleet) is up to you.

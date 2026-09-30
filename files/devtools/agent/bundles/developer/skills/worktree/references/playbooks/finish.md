@@ -10,15 +10,18 @@ Finish does not launch an agent for source work. It releases every remaining age
 - Resolve the canonical ticket and tracker path with the ticket skill.
 - Use Worktrunk and the applicable `code-review` and `implement` skills.
 - Run the shared-context CLI from the source repository. Use its reported root and storage mode.
-- Follow `ALIGNMENT-ROOT.md` and use `cli.ts anchor --source local --key <ticket-id>`.
+- Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
+  `cli.ts path workflow --id <ticket-id>`.
 - Require an immutable `SUCCESS` review receipt for the current source commit and tree.
 - Confirm that no later source changes exist after the successful review.
 - Do not remove the worktree while an agent is running.
 
 ## Process
 
-1. Resolve the workflow, source branch, base branch, and source worktree.
-2. Read the latest `SUCCESS` review receipt, review artifact, fix or implementation receipt, relevant context, ADR links, and validation command.
+1. Resolve the workflow root, source branch, base branch, and source worktree.
+2. Read the latest `SUCCESS` review receipt, its artifact under
+   `artifacts/reviews/`, the fix or implementation receipt, relevant context,
+   ADR links, and validation command.
 3. Verify that the successful review covers the current source commit and tree.
 4. Run the recorded validation command.
 5. Append a `finish` receipt with status `FINISHING`.
@@ -32,7 +35,10 @@ Finish does not launch an agent for source work. It releases every remaining age
 13. Complete the ticket with the ticket skill.
 14. Remove the source worktree with Worktrunk.
 15. Close the hrdx workspace after the worktree is removed.
-16. Append a final immutable `FINISHED` receipt using the terminal receipt fields in `references/receipts.md`. If any step from 6 through 15 fails, append `FINISH_FAILED` with the failure fields and preserve every resource required for recovery. Regenerate the final projections.
+16. Append a final immutable `FINISHED` receipt using the terminal receipt fields
+    in `references/receipts.md`. If any step from 6 through 15 fails, append
+    `FINISH_FAILED` with the failure fields and preserve every resource required
+    for recovery. Regenerate the final manifest and projections.
 
 ## Safety rules
 

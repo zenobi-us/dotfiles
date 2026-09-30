@@ -17,7 +17,15 @@ If either input is missing, ask for it before doing repository work. If `$IDEA` 
 
 ## Non-negotiable outputs
 
-Run the shared-context CLI `report` procedure from the repository root. Use its reported `root` as `ALIGNMENT_ROOT`, then use `cli.ts anchor` to select the destination directory before creating the Markdown draft. Read the shared-context publishing procedure after each shared-root write and run `cli.ts index <dir>` after adding or removing a file in a source directory. Create one Markdown file in the active shared-context root before the final decision. Keep it when the idea is not viable. Update the same file after each completed stage: workspace establishment, repository-rule discovery, outcome clarification, feasibility research, capability grouping, viability gate, and submission preparation. Include:
+Run the shared-context CLI `report` procedure from the repository root. Use its
+reported `root` as `ALIGNMENT_ROOT`. Choose a stable feature ID, then use
+`cli.ts path initiative --id <feature-id>` for the destination. Create one
+`spec.md` in that initiative before the final decision. Read the shared-context
+publishing procedure after each shared-root write. Keep the file when the idea is
+not viable. Update the same file after each completed stage: workspace
+establishment, repository-rule discovery, outcome clarification, feasibility
+research, capability grouping, viability gate, and submission preparation.
+Include:
 
 - repository and revision examined
 - original feature idea and clarified user answers
@@ -54,7 +62,9 @@ Use a stable name such as `feature-requests/<repo-slug>-<date>-<short-slug>.md` 
 
    Record the clone URL, path, branch, commit, and remote state.
 4. Run the shared-context CLI `report` from inside the clone. Confirm that the reported origin and slug match `$REPO`. Use the reported `root`; do not derive a shared path or run `init` or `migrate` unless the user explicitly requests a storage change.
-5. Use `cli.ts anchor` to select the feature-request directory. Create the Markdown draft in the reported active shared root. Confirm that the file exists, run `cli.ts index <dir>` when the directory is a source directory, and read the publishing procedure before continuing. Update the draft after every completed stage.
+5. Resolve `cli.ts path initiative --id <feature-id>`. Create `spec.md` in that
+   directory. Confirm that the file exists, and read the publishing procedure
+   before continuing. Update the draft after every completed stage.
 
 **Completion criterion:** The repository is cloned in a temporary directory, the clone revision is recorded, the CLI reports the matching origin and root, and the draft exists in the active shared root.
 
