@@ -8,6 +8,8 @@ theme:
   dark: dark-rose-pine
   light: dark-rose-pine
 setupVersion: 2
+extensions:
+  - ~/.omp/agent/hooks/pre
 task:
   disabledAgents:
     []
@@ -29,3 +31,7 @@ display:
   shimmer: kitt
   showTokenUsage: true
   cacheMissMarker: true
+recap:
+  enabled: false
+dev:
+  autoqaConsent: granted
