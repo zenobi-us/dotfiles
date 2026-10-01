@@ -113,6 +113,7 @@ micro = "latest"
 "github:harehare/mq" = "latest"
 "pipx:itch-dl" = "latest"
 "github:earendil-works/pi" = "v0.99.1"
+fd = "latest"
 
 [tool_alias]
 zot = "github:patriceckhart/zot"
