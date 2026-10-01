@@ -123,7 +123,7 @@ fetch is normal. The comparison decides whether to write, not whether to fetch.
 After you add or remove a file in a source directory, rebuild its index:
 
 ```bash
-"<skillroot>/scripts/shared-context/cli.ts" index "<source directory>"
+shared-context index "<source directory>"
 ```
 
 The command reads every sibling `.md` file's frontmatter and writes the list

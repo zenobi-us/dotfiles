@@ -11,7 +11,7 @@ The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or re
 - Use Worktrunk, the applicable engineering skill, and the active muxer and agent contracts.
 - Run the shared-context CLI from the source repository. Use its reported root and storage mode.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
-  `cli.ts path workflow --id <ticket-id>`.
+  `shared-context path workflow --id <ticket-id>`.
 - Require the latest persisted review receipt to have `verdict: FAILURE`.
 - Verify that the source worktree and branch still exist.
 - Confirm that the current source branch matches the `source_branch` recorded in the consumed review receipt. Reject the fix on mismatch.

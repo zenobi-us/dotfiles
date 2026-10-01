@@ -11,7 +11,7 @@ Resolve the context before constructing any path. From the repository being work
 run the CLI from the `agent-core:shared-context` skill that is loaded for this task:
 
 ```bash
-cd "<repository being worked on>" && "<shared-context-skillroot>/scripts/shared-context/cli.ts"
+cd "<repository being worked on>" && shared-context
 ```
 
 Use its `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` from the repository,
@@ -24,7 +24,7 @@ the shared-context skill's `SharedContext/<relative-path>` form when they do not
 Resolve the workflow root with the typed path command:
 
 ```bash
-"<shared-context-skillroot>/scripts/shared-context/cli.ts" path workflow --id "<ticket-id>"
+shared-context path workflow --id "<ticket-id>"
 ```
 
 Use only the fixed internal paths in `references/receipts.md`. Stop if any

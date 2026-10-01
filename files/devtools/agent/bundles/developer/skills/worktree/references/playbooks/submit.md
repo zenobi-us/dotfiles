@@ -12,10 +12,10 @@ Load `references/issue-tracker.md` and the ticket skill before resolving the tic
 
 - Use the `worktrunk` skill. Worktrunk is required for worktree and branch operations.
 - Use the applicable Matt Pocock engineering skills, especially `code-review` and `implement`.
-- Treat the shared agent context as durable project memory. Run `<shared-context-skillroot>/scripts/shared-context/cli.ts` from the source repository and use its reported `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` or a ticket path by hand.
+- Treat the shared agent context as durable project memory. Run `shared-context` from the source repository and use its reported `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` or a ticket path by hand.
 - Follow `ALIGNMENT-ROOT.md` from the reported root. Keep alignment files in that reported storage and keep source code, commits, and pull requests in the worktree repository. Local-only and private stores remain within their access boundary.
 - Run the CLI before choosing any context path or link. Resolve the workflow root
-  with `cli.ts path workflow --id <ticket-id>`.
+  with `shared-context path workflow --id <ticket-id>`.
 - Follow the `Shared-context writes and links` section of the
   `agent-core:shared-context` skill for writes, publishing, and access-boundary
   checks. Use `SharedContext/<relative-path>` for a private or local-only
@@ -39,7 +39,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 # Process
 
 1. Run the shared-context CLI from the source repository. Use its reported root
-   and storage mode. Resolve `cli.ts path workflow --id <ticket-id>`.
+   and storage mode. Resolve `shared-context path workflow --id <ticket-id>`.
 2. Resolve the current worktree (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
 3. Use Worktrunk to verify the source branch and worktree state.
 4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-and-creating-git-commits` skill. Put the ticket reference in the commit title. Include the ticket link and a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on in the commit body.
@@ -70,7 +70,7 @@ generated `report/files/` directory.
 1. Resolve the workflow root:
 
    ```bash
-   WORKFLOW_ROOT=$("<shared-context-skillroot>/scripts/shared-context/cli.ts" path workflow --id "<ticket-id>")
+   WORKFLOW_ROOT=$(shared-context path workflow --id "<ticket-id>")
    ```
 
 2. Inspect `WORKFLOW_ROOT/artifacts/evidence/` with the available filesystem

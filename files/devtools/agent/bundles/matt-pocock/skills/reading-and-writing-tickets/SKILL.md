@@ -34,7 +34,7 @@ Apply this preamble before loading tracker configuration or reading or writing a
 
 Calling skills MUST use this preamble before they ask this skill to resolve a ticket. They MUST pass the CLI-reported `root`, `storage`, and repository root as working context. If a calling skill already resolved these values, verify that they came from the same repository and the same CLI run; do not replace them with a derived path.
 
-For a write under a shared `ALIGNMENT_ROOT`, read the shared-context publishing procedure after the write. Run `cli.ts index <dir>` after adding or removing a file in a shared-context source directory.
+For a write under a shared `ALIGNMENT_ROOT`, read the shared-context publishing procedure after the write. Run `shared-context index <dir>` after adding or removing a file in a shared-context source directory.
 
 If the tracker definition is missing, malformed, or lacks the required operation, stop and ask the user to run `/setup-matt-pocock-skills` or to define the missing operation.
 

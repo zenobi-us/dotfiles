@@ -25,27 +25,27 @@ change the implementation of the shared-context CLI itself.
 ## Step 0: resolve the root. Always.
 
 ```bash
-cd "<repository being worked on>" && "<skillroot>/scripts/shared-context/cli.ts"
+cd "<repository being worked on>" && shared-context
 ```
 
-You **MUST** run every `cli.ts` call with the working directory inside the
+You **MUST** run every `shared-context` call with the working directory inside the
 repository you are working on. The CLI reads the origin from the working
 directory. Run it from the skill directory and it resolves a different
 repository and reports the wrong root.
 
-`<skillroot>` is the directory holding the `SKILL.md` you are reading right now.
-Use that copy, not another one on disk — an installed plugin cache can be older
-than the source. The path to the CLI repeats the directory name:
-`<skillroot>/scripts/shared-context/cli.ts`. That is correct. Do not trim a
-segment.
+`shared-context` is the stable executable for this skill. The agent bootstrap
+installs it on `PATH`. Cross-plugin callers do not share one skill root, so use
+the executable instead of a path inside an OMP plugin cache.
 
-Run the file directly, as shown. Its shebang starts bun through mise and installs
-the CLI's own dependencies on first run. You **MUST NOT** prefix the call with
-Bun's runner — that skips the shebang, and the call then fails in an installed copy
-that has no dependencies.
+Run `shared-context` directly. Its entry point starts bun through mise and
+installs the CLI's own dependencies on first run. You **MUST NOT** prefix the
+call with Bun's runner because that skips the entry point's shebang.
 
-`report` is the default. `cli.ts` and `cli.ts report` do the same thing. Use
-`cli.ts root` when a script needs only the resolved root; do not derive it.
+If `shared-context` is not on `PATH`, stop and report that the agent bootstrap
+did not install it. Do not derive a path inside an OMP plugin cache.
+
+`report` is the default. `shared-context` and `shared-context report` do the same thing. Use
+`shared-context root` when a script needs only the resolved root; do not derive it.
 Output:
 
 ```
@@ -72,7 +72,7 @@ slug: <origin-derived directory name>
 Run the shared-context CLI before you choose a path or link:
 
 ```bash
-cd "<repository being worked on>" && "<skillroot>/scripts/shared-context/cli.ts"
+cd "<repository being worked on>" && shared-context
 ```
 
 Use the CLI output to determine the storage mode. Use its resolved root instead
@@ -114,11 +114,11 @@ repository root.
    storage. Run either only when the user names that operation.
 2. You **MUST** write under the resolved `root`. You **MUST NOT** mix the
    repository root and the shared root in one task.
-3. You **MUST** use `cli.ts path` to get a typed target. Do not join
+3. You **MUST** use `shared-context path` to get a typed target. Do not join
    root-relative path segments in a skill. For source ingestion, use
    `path source --ticket <ID> --source <SOURCE>` or
    `path source --library --source <SOURCE>`.
-4. You **MUST** run `cli.ts index <dir>` after you add or remove a file in a
+4. You **MUST** run `shared-context index <dir>` after you add or remove a file in a
    source directory.
 5. If `storage` is `shared`, you **MUST** read `references/publishing.md` after
    the write. Publish when the store has a usable git remote. A non-git store is
@@ -126,6 +126,6 @@ repository root.
    and offer the version-control options in that reference.
 6. You **MUST NOT** overwrite a file that holds hand-written work. See the
    authored-content guard in `references/layout.md`.
-7. You **MUST** stop and report a non-zero exit status from `cli.ts`. Do not retry
-   silently. This rule covers `cli.ts` only. An ordinary shell probe such as `ls`
+7. You **MUST** stop and report a non-zero exit status from `shared-context`. Do not retry
+   silently. This rule covers `shared-context` only. An ordinary shell probe such as `ls`
    exits non-zero for an absent path, which is an answer, not a failure.

@@ -80,7 +80,7 @@ unless the redirect is permanent.
 A source screenshot uses the ticket's `local` source directory. Resolve it with:
 
 ```bash
-cli.ts path source --ticket <ID> --source local
+shared-context path source --ticket <ID> --source local
 ```
 
 Write `screenshot-<subject>.png` there and reference it from the source note.

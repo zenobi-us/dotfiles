@@ -93,7 +93,7 @@ surf do --file "$ROOT/RWR-19971/surf-workflows/login.json" --email "user@example
 
    ```bash
    cd "<the repository you are working on>"
-   "<shared-context skillroot>/scripts/shared-context/cli.ts" report
+   shared-context report
    ```
 
    Read the `root:` line. If `storage:` reports `repository`, the resolved root

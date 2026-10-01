@@ -12,7 +12,7 @@ This playbook receives `muxer` and `agent` from the `worktree` skill. It does no
 - Run the shared-context CLI from the repository. Use its reported root and storage mode.
 - Follow `ALIGNMENT-ROOT.md` before reading context, ADRs, or `docs/agents/`.
 - Resolve the workflow root with
-  `cli.ts path workflow --id <ticket-id>`. Do not construct the path by hand.
+  `shared-context path workflow --id <ticket-id>`. Do not construct the path by hand.
 - Use the applicable Matt Pocock engineering skill.
 
 ## Process

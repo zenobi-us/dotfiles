@@ -11,7 +11,7 @@ Finish does not launch an agent for source work. It releases every remaining age
 - Use Worktrunk and the applicable `code-review` and `implement` skills.
 - Run the shared-context CLI from the source repository. Use its reported root and storage mode.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
-  `cli.ts path workflow --id <ticket-id>`.
+  `shared-context path workflow --id <ticket-id>`.
 - Require an immutable `SUCCESS` review receipt for the current source commit and tree.
 - Confirm that no later source changes exist after the successful review.
 - Do not remove the worktree while an agent is running.

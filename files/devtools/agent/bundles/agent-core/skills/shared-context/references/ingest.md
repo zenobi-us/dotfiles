@@ -10,7 +10,7 @@ resolved storage has a usable remote.
 
 ## Steps
 
-1. You **MUST** resolve the root. Run `cli.ts` with no subcommand, with the working
+1. You **MUST** resolve the root. Run `shared-context` with no subcommand, with the working
    directory inside the repository you are working on. Read `storage` and `root`.
 2. Use the `root` printed by the CLI as the only write target. Repository storage
    is valid repository-local context; shared storage is valid external context.
@@ -20,8 +20,8 @@ resolved storage has a usable remote.
    area. If a ticket is likely but unstated, ask before you write.
 4. You **MUST** run one typed path command. Use its printed directory as the
    target:
-   - `cli.ts path source --ticket <ID> --source <SOURCE>`
-   - `cli.ts path source --library --source <SOURCE>`
+   - `shared-context path source --ticket <ID> --source <SOURCE>`
+   - `shared-context path source --library --source <SOURCE>`
    See `references/layout.md` for the source names.
 5. You **MUST** check whether the target file already exists. If it does, apply the
    authored-content guard and the refresh rule in `references/layout.md` before you
@@ -32,13 +32,13 @@ resolved storage has a usable remote.
 7. You **MUST** write the file with the full frontmatter contract from
    `references/layout.md`. A file with no frontmatter is not ingested, it is
    litter.
-8. You **MUST** run `cli.ts index "<source directory>"`.
+8. You **MUST** run `shared-context index "<source directory>"`.
 9. If `storage` is `shared`, you **MUST** publish. Follow `references/publishing.md`
    in the same turn. The branch check there can stop the push. Report it if so.
 
 ## Success criteria
 
-- [ ] `cli.ts` reports the active storage and the write is under its `root`.
+- [ ] `shared-context` reports the active storage and the write is under its `root`.
 - [ ] The file sits in the typed source directory under the name the filename rule chose.
 - [ ] The first six frontmatter fields are present and correct.
 - [ ] `index.md` lists the file with a working link, and any hand-written text in

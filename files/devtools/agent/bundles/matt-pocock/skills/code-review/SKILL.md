@@ -131,6 +131,6 @@ Reporting them separately stops one axis from masking the other.
 Before reading or writing workflow or domain artifacts, run the shared-context
 CLI procedure from `agent-core:shared-context` in the repository root. Use its
 `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code
-and ordinary project files. Use `cli.ts path` for tracker, workflow, source, and
+and ordinary project files. Use `shared-context path` for tracker, workflow, source, and
 ADR targets. Do not derive an alignment path by hand. Read the shared-context
 publishing procedure after a shared-root write.

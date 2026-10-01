@@ -11,7 +11,7 @@ The reviewer MUST use a new pane or tab. It MUST NOT reuse the implementation or
 - Use Worktrunk, the `code-review` skill, and the active muxer and agent contracts.
 - Run the shared-context CLI from the repository. Use its reported root and storage mode.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
-  `cli.ts path workflow --id <ticket-id>`.
+  `shared-context path workflow --id <ticket-id>`.
 - Store one review artifact at
   `artifacts/reviews/review-<review-receipt-id>.md`. Never copy its body into the
   tracker, chat, or another directory.

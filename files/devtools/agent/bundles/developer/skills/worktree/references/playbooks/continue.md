@@ -9,7 +9,7 @@ tracker configuration, workflow records, or review artifacts. Use its reported
 `root` as `ALIGNMENT_ROOT` and read `docs/agents/issue-tracker.md` from that root.
 Load `references/issue-tracker.md` and the ticket skill. Use the ticket skill to
 resolve the selector and return the canonical ticket and tracker path. Then run
-`cli.ts path workflow --id <ticket-id>`. Do not derive any path from the
+`shared-context path workflow --id <ticket-id>`. Do not derive any path from the
 repository path, ticket ID, origin slug, or environment. Ask when the selector
 is missing or ambiguous.
 

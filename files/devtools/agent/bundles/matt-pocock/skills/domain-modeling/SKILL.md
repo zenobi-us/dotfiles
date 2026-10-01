@@ -17,7 +17,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 
 # Domain Modeling
 
-Before reading or writing domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its reported `root` as `ALIGNMENT_ROOT`; every structure below is rooted at that CLI-reported root. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
+Before reading or writing domain artifacts, load `agent-core:shared-context`, then run `shared-context` in the repository root. Use its reported `root` as `ALIGNMENT_ROOT`; every structure below is rooted at that CLI-reported root. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md).
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline — challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `CONTEXT.md` for vocabulary is not this skill — that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)
 
@@ -85,13 +85,13 @@ Only offer to create an ADR when all three are true:
 
 If any of the three is missing, skip the ADR. Use the format in
 [ADR-FORMAT.md](./ADR-FORMAT.md), resolve its path with
-`cli.ts path adr --id <ID>`, and update `docs/adr/index.md`.
+`shared-context path adr --id <ID>`, and update `docs/adr/index.md`.
 
 ## Context resolution
 
-Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
+Before reading or writing workflow or domain artifacts, load `agent-core:shared-context`, then run `shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts path` for tracker,
-workflow, source, and ADR targets. Run `cli.ts index <dir>` only after a source
+For a write under a shared `ALIGNMENT_ROOT`, use `shared-context path` for tracker,
+workflow, source, and ADR targets. Run `shared-context index <dir>` only after a source
 directory changes. Read the shared-context publishing procedure after the write.
 Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

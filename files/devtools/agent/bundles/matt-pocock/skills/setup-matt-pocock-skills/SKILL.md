@@ -24,7 +24,7 @@ Scaffold the configuration that the engineering skills assume:
 - **Triage labels** — the strings used for the five canonical triage roles
 - **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
 
-Before reading or writing these artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its reported `root` as `ALIGNMENT_ROOT` and its reported `repository-root` for repository files. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). The CLI is the source of truth for storage and path resolution.
+Before reading or writing these artifacts, load `agent-core:shared-context`, then run `shared-context` in the repository root. Use its reported `root` as `ALIGNMENT_ROOT` and its reported `repository-root` for repository files. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). The CLI is the source of truth for storage and path resolution.
 
 ## Process
 
@@ -101,8 +101,8 @@ Let the user edit before writing. If the write uses shared storage, show the res
 ### 4. Write
 
 Before each write, confirm that the destination is under the current
-CLI-reported `ALIGNMENT_ROOT`. Use `cli.ts path` for tracker, workflow, source,
-and ADR targets. Run `cli.ts index <dir>` after adding or removing a file in a
+CLI-reported `ALIGNMENT_ROOT`. Use `shared-context path` for tracker, workflow, source,
+and ADR targets. Run `shared-context index <dir>` after adding or removing a file in a
 source directory. Read the shared-context publishing procedure after every
 shared-root write and publish when required.
 
@@ -172,9 +172,9 @@ Report active storage, absolute `ALIGNMENT_ROOT`, and files written. Mention tha
 
 ## Context resolution
 
-Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
+Before reading or writing workflow or domain artifacts, load `agent-core:shared-context`, then run `shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-For a shared-context source write, use `cli.ts path source` before choosing a
-directory, run `cli.ts index <dir>` after adding or removing a file there, and
+For a shared-context source write, use `shared-context path source` before choosing a
+directory, run `shared-context index <dir>` after adding or removing a file there, and
 read the shared-context publishing procedure after the write. Follow
 [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

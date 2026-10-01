@@ -2,14 +2,14 @@
 
 A shared-context write is usable on the current machine as soon as it is written.
 A git remote makes it available to agents on other machines. Read this after every
-write under the root printed by `cli.ts report`. The CLI is the only root resolver.
+write under the root printed by `shared-context report`. The CLI is the only root resolver.
 
 ## Detect the storage mode
 
 The storage path can be a symlink into a git repository. Resolve the root first:
 
 ```bash
-cli.ts report
+shared-context report
 ```
 
 Then test the reported root with `git -C "<root from report>" rev-parse --show-toplevel`.
@@ -36,7 +36,7 @@ Then offer these choices. Do not perform either choice until the user accepts it
 ## Offer a local git repository
 
 The shared store is the parent of the origin-keyed root printed by the CLI when
-storage is shared. Do not derive or replace the active root. Use `cli.ts report`
+storage is shared. Do not derive or replace the active root. Use `shared-context report`
 first and inspect the reported path.
 
 Offer to initialize that directory. Explain that `git init` adds local version
@@ -75,7 +75,7 @@ even when this repository is used only as shared-context storage.
 First inspect the branch, upstream, and worktree:
 
 ```bash
-ROOT="$(cli.ts root)"
+ROOT="$(shared-context root)"
 git -C "$ROOT" rev-parse --abbrev-ref HEAD
 git -C "$ROOT" rev-parse --abbrev-ref '@{upstream}'
 git -C "$ROOT" status --porcelain
@@ -112,7 +112,7 @@ context(library): add document superstream-spec
 After a successful push, confirm that your paths are clean:
 
 ```bash
-git -C "$(cli.ts root)" status --porcelain
+git -C "$(shared-context root)" status --porcelain
 ```
 
 Unrelated existing changes can remain. Report them; do not stage them.

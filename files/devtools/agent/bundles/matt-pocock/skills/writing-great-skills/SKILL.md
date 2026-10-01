@@ -97,9 +97,9 @@ Use these to diagnose issues the user may be having with the skill.
 
 ## Context resolution
 
-Before reading or writing workflow or domain artifacts, run the shared-context CLI procedure from `agent-core:shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
+Before reading or writing workflow or domain artifacts, load `agent-core:shared-context`, then run `shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-For a write under a shared `ALIGNMENT_ROOT`, use `cli.ts path` for tracker,
-workflow, source, and ADR targets. Run `cli.ts index <dir>` only after a source
+For a write under a shared `ALIGNMENT_ROOT`, use `shared-context path` for tracker,
+workflow, source, and ADR targets. Run `shared-context index <dir>` only after a source
 directory changes. Read the shared-context publishing procedure after the write.
 Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

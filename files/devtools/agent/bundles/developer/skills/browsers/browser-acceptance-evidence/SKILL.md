@@ -34,7 +34,7 @@ Do not use for unit or integration tests. Those belong in the test suite.
 ### 1. Resolve the shared-context root. MUST.
 
 ```sh
-cd "<repository being worked on>" && "<shared-context-skill>/scripts/shared-context/cli.ts"
+cd "<repository being worked on>" && shared-context
 ```
 
 Every artifact goes under `<root>/<work-id>/manual-tests/`. You **MUST NOT**
