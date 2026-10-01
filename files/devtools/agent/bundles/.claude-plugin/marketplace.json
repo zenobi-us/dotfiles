@@ -41,12 +41,6 @@
       "version": "0.1.0"
     },
     {
-      "name": "vanilla-green",
-      "source": "./vanilla-green",
-      "description": "VStack-managed skills: orchestration, review, and project-management workflows",
-      "version": "0.1.0"
-    },
-    {
       "name": "writing",
       "source": "./writing",
       "description": "Business English writing styles and professional document writing skills",
