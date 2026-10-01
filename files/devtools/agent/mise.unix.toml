@@ -4,6 +4,7 @@
 "~/.pi/agent/agents" = { source = "./agents", mode = "symlink" }
 "~/.pi/agent/bundles" = { source = "./bundles", mode = "symlink" }
 "~/.omp/agent/hooks/pre" = { source = "./bundles/agent-core/hooks/pre", mode = "symlink-each" }
+"~/.omp/agent/hooks/pre/worktree-session.ts" = { source = "./bundles/developer/hooks/pre/worktree-session.ts", mode = "symlink" }
 "~/.local/state/zot/extensions/agent-core" = { source = "./bundles/agent-core", mode = "symlink" }
 "~/.local/state/zot/extensions/creator" = { source = "./bundles/creator", mode = "symlink" }
 "~/.local/state/zot/extensions/developer" = { source = "./bundles/developer", mode = "symlink" }

@@ -64,6 +64,8 @@ MUST resolve the muxer before routing or running a playbook, every time, in this
    scripts/router.ts detect-muxer
    ```
 
+The Claude `SessionStart` hook and the OMP `hooks/pre/worktree-session.ts` hook inject this tag. Both use `scripts/session-context.ts`, so they render the same context.
+
 Either source gives `herdr`, `zellij`, `tmux`, `hrdx`, or `unknown-muxer`. If detection is wrong, pass `--muxer <actual>` to `route`.
 
 # Rule 2: detect the agent
