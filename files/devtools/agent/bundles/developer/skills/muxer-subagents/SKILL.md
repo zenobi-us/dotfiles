@@ -1,6 +1,6 @@
 ---
 name: muxer-subagents
-description: Spawn a child agent in a terminal multiplexer pane, tab, or workspace. Detects the active muxer (herdr, hrdx, zellij, tmux) and agent CLI (claude, pi, zot), then resolves the contract that says how to open, launch, wait, read, and close a session.
+description: Spawn a child agent in a terminal multiplexer pane, tab, or workspace. Detects the active muxer (herdr, hrdx, zellij, tmux) and agent CLI (claude, omp, pi, zot), then resolves the contract that says how to open, launch, wait, read, and close a session.
 ---
 
 Use this skill whenever a parent agent must start a child agent in its own pane.
@@ -29,7 +29,7 @@ Use the same tag-first order. If the tag is absent or stale, run:
 scripts/router.ts detect-agent
 ```
 
-Either source gives `claude`, `pi`, or `unknown-agent`. zot has no confirmed signal. Pass `--agent zot` when the caller knows better.
+The hooks can supply `claude`, `omp`, `pi`, or `unknown-agent`. `detect-agent` returns `claude`, `pi`, or `unknown-agent`. The OMP extension supplies `omp` directly. Outside that extension, pass `--agent omp` when OMP is the target. zot has no confirmed signal. Pass `--agent zot` when the caller knows better.
 
 # Resolve the contracts
 
@@ -77,7 +77,7 @@ Use one pane for each independent task. Give each child a short name, one clear 
 | Kind | Contracts |
 |---|---|
 | Muxer | `references/muxers/herdr.md`, `hrdx.md`, `zellij.md`, `tmux.md`, `unknown-muxer.md` |
-| Agent | `references/agents/claude.md`, `pi.md`, `zot.md` |
+| Agent | `references/agents/claude.md`, `omp.md`, `pi.md`, `zot.md` |
 
 # Troubleshooting
 

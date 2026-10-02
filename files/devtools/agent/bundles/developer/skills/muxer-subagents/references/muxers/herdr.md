@@ -20,7 +20,7 @@ Herdr is worktree-native. Use its own worktree commands. Do not open a plain pan
 5. Read its output: `herdr agent read <agent-name> --source recent-unwrapped --lines 120`.
 6. Close the pane when done: `herdr pane close <pane-id>`.
 
-`<agent-kind>` MUST match one of `references/agents/*.md` (`claude`, `pi`; `zot` has no detection signal — pass it explicitly).
+`<agent-kind>` MUST match one of `references/agents/*.md` (`claude`, `omp`, `pi`; `zot` has no detection signal — pass it explicitly).
 
 ## Do not
 

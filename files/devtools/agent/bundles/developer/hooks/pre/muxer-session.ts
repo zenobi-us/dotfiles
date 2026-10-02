@@ -11,7 +11,7 @@ export default function muxerSession(pi: ExtensionAPI): void {
   let contextBlock: string | undefined;
 
   function refresh(): void {
-    contextBlock = renderSessionContext(detectMuxer(), "pi");
+    contextBlock = renderSessionContext(detectMuxer(), "omp");
   }
 
   pi.on("session_start", () => {

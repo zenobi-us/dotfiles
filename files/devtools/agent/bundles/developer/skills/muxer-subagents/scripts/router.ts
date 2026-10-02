@@ -6,8 +6,10 @@ import { existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  AGENTS,
   detectAgent,
   detectMuxer,
+  isAgent,
   isMuxer,
   MUXERS,
   renderSessionContext,
@@ -16,8 +18,6 @@ import {
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const skillDir = resolve(scriptDir, "..");
 const referencesDir = join(skillDir, "references");
-
-const AGENTS = ["claude", "pi", "zot", "unknown-agent"];
 
 function contractPath(kind: string, name: string): string | null {
   const path = join(referencesDir, kind, `${name}.md`);
@@ -43,7 +43,7 @@ const detectAgentCmd = app
   .sub("detect-agent")
   .meta({
     description:
-      "Print the active agent CLI: claude, pi, or unknown-agent. zot has no self-identifying signal yet.",
+      "Print the active agent CLI: claude, pi, or unknown-agent. OMP and zot need explicit identification.",
   })
   .run(() => {
     console.log(detectAgent());
@@ -87,7 +87,7 @@ const contractsCmd = app
     },
     agent: {
       type: "string",
-      description: `Override auto-detected agent (${AGENTS.join(", ")}). Required for zot today — it has no self-identifying signal.`,
+      description: `Override auto-detected agent (${AGENTS.join(", ")}). Required for OMP and zot when no session hook identifies them.`,
     },
   })
   .run(({ flags }) => {
@@ -97,7 +97,7 @@ const contractsCmd = app
       return;
     }
 
-    if (flags.agent && !AGENTS.includes(flags.agent)) {
+    if (flags.agent && !isAgent(flags.agent)) {
       console.error(`Unknown --agent ${flags.agent}. Expected one of: ${AGENTS.join(", ")}`);
       process.exitCode = 1;
       return;
