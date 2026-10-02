@@ -8,7 +8,7 @@ The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or re
 
 - Read `references/receipts.md`.
 - Resolve the canonical ticket and tracker path with the ticket skill. Cross-check the workflow record.
-- Use Worktrunk, the applicable engineering skill, and the active muxer and agent contracts.
+- Use Worktrunk, the applicable engineering skill, and the `muxerContract` and `agentContract` resolved by the `muxer-subagents` skill.
 - Run the shared-context CLI from the source repository. Use its reported root and storage mode.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
   `shared-context path workflow --id <ticket-id>`.
@@ -25,7 +25,7 @@ The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or re
 3. Select only the blocking findings for the fixer. Preserve their IDs, ADR references, exact files, line references, and validation commands.
 4. Record the current source commit and create a new fix phase-start receipt with the review receipt as its parent.
 5. Write a temporary fix handoff containing the source worktree, source and base branches, current source commit, context root and storage mode, selected engineering skill, review receipt, blocking findings, and expected validation.
-6. Open a new pane or tab in the existing worktree workspace. For hrdx, use `pane.create` with the absolute workspace path, `split: "tab"`, and the configured agent kind. Do not send text to the prior session.
+6. Open a fresh agent session in the existing worktree workspace. Follow the `muxer-subagents` skill's fresh-session mechanic and the resolved `muxerContract`. Do not send text to the prior session.
 7. Launch the fresh fixer session with the agent contract and the fix handoff.
 8. Wait for completion through the muxer contract. Require `WORKTREE_FIX_DONE` only after the fixer has applied the changes and passed validation.
 9. If the fixer is blocked, fails validation, or omits the marker, append a failed fix phase-complete receipt and keep the worktree. Do not start a review.

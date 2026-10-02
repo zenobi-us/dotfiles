@@ -2,7 +2,7 @@
 
 Submit the reviewed work for the resolved ticket as a pull request.
 
-Submit commits, pushes, and opens a pull request from the current worktree. This playbook does not open a new pane or launch a fresh agent. The muxer and agent contracts do not apply to this playbook.
+Submit commits, pushes, and opens a pull request from the current worktree. This playbook does not open a new pane or launch a fresh agent, so the `muxer-subagents` skill does not apply to it.
 
 ## Ticket resolution
 
@@ -40,7 +40,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
 
 1. Run the shared-context CLI from the source repository. Use its reported root
    and storage mode. Resolve `shared-context path workflow --id <ticket-id>`.
-2. Resolve the current worktree (for `herdr`: `herdr worktree list --cwd "$PWD" --json`; other muxers have no equivalent lookup — use `git`/`wt` state directly instead).
+2. Resolve the current worktree from `git` and `wt` state. Submit runs in the current worktree and does not ask a muxer where it is.
 3. Use Worktrunk to verify the source branch and worktree state.
 4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-and-creating-git-commits` skill. Put the ticket reference in the commit title. Include the ticket link and a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on in the commit body.
 5. Run the smallest validation command recorded by the successful review.

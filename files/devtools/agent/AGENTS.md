@@ -21,7 +21,7 @@ Use skills by circumstance:
 |---|---|
 | General internet search | `lynx-web-search` |
 | Codebase exploration or flow tracing | `codemapper` |
-| subagents or parallel agents | `hrdx-subagents` |
+| subagents or parallel agents | `muxer-subagents` |
 | Library or SDK documentation | `code-library-docs` |
 | Zot coding harness extensions or themes | `zot` | 
 | Pi agent, extensions, themes, sessions | `pi-mono` |
@@ -88,7 +88,7 @@ Use skills by circumstance:
 
 ## Subagents
 
-- Use the `hrdx-subagents` skill for parallel agent work, independent reviews, and isolated worktree work.
+- Use the `muxer-subagents` skill for parallel agent work, independent reviews, and isolated worktree work. It detects the muxer and agent, then resolves the spawn contract.
 - Use visible subagents for broad exploration, review, research, or parallel work.
 - Give each subagent a focused task, minimal context, and expected output.
 - Do not delegate tiny reads or edits.

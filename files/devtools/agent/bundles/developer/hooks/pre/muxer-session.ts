@@ -3,10 +3,10 @@ import type { ExtensionAPI } from "@oh-my-pi/pi-coding-agent";
 import {
   detectMuxer,
   renderSessionContext,
-} from "../../skills/worktree/scripts/session-context.ts";
+} from "../../skills/muxer-subagents/scripts/session-context.ts";
 
-export default function worktreeSession(pi: ExtensionAPI): void {
-  pi.setLabel("Worktree Session");
+export default function muxerSession(pi: ExtensionAPI): void {
+  pi.setLabel("Muxer Session");
 
   let contextBlock: string | undefined;
 

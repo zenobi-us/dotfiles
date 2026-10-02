@@ -21,7 +21,7 @@ branch, base branch, exact source commit and tree, context root and storage mode
 tracker path, muxer, workspace path, agent, pane or session identifier,
 timestamp, status, and output paths.
 
-`start`, `review`, and `fix` MUST use independent agent sessions. A review or fix MUST open a new pane or tab in the existing worktree workspace. It MUST launch a fresh agent session. It MUST NOT send instructions to, resume, or reuse an earlier implementation, review, or fixer session.
+`start`, `review`, and `fix` MUST use independent agent sessions. A review or fix MUST run in a fresh agent session in the existing worktree workspace. It MUST NOT send instructions to, resume, or reuse an earlier implementation, review, or fixer session. The `muxer-subagents` skill owns how that fresh session is opened.
 
 Review the exact source commit recorded in the review handoff. A verdict is valid only for that commit. A later source commit invalidates the verdict until a new review completes.
 
@@ -54,47 +54,35 @@ paths: `events/`, `artifacts/reviews/`, `artifacts/snapshots/`,
 `artifacts/evidence/`, and `projections/`. Do not write workflow state into
 `.scratch/`, `<ticket>/local/`, `tracker/`, or `sources/`.
 
-# Rule 1: detect the muxer
+# Rule 1: resolve the muxer and agent
 
-MUST resolve the muxer before routing or running a playbook, every time, in this order:
-
-1. Look for a `<worktree-session muxer="..." agent="...">` tag already in context.
-2. If absent or stale, run:
-   ```bash
-   scripts/router.ts detect-muxer
-   ```
-
-The Claude `SessionStart` hook and the OMP `hooks/pre/worktree-session.ts` hook inject this tag. Both use `scripts/session-context.ts`, so they render the same context.
-
-Either source gives `herdr`, `zellij`, `tmux`, `hrdx`, or `unknown-muxer`. If detection is wrong, pass `--muxer <actual>` to `route`.
-
-# Rule 2: detect the agent
-
-Use the same tag-first order. If the tag is absent or stale, run:
+Load the `muxer-subagents` skill before any playbook that opens a pane or launches a child agent. It owns muxer detection, agent detection, the spawn contracts, and the fresh-session mechanic.
 
 ```bash
-scripts/router.ts detect-agent
+files/devtools/agent/bundles/developer/skills/muxer-subagents/scripts/router.ts contracts
 ```
 
-Either source gives `claude`, `pi`, or `unknown-agent`. zot has no confirmed signal. Pass `--agent zot` when the caller knows better.
+Take `muxer`, `agent`, `muxerContract`, and `agentContract` from its output and pass them to the playbook as working context. If it reports `needsOperatorInput: true`, ask the user. Do not guess.
+
+`submit` does not launch an agent. Skip this rule for `submit`.
 
 # Route
 
 Resolve the issue tracker before following a playbook that reads or updates a ticket. The playbook receives the resolved `ticket` and `tracker path` as working context.
 
 ```bash
-scripts/router.ts route "$ARGUMENTS" --muxer <resolved-muxer> --agent <resolved-agent>
+scripts/router.ts route "$ARGUMENTS"
 ```
 
-Always pass `--muxer` and `--agent` explicitly. The command resolves the subcommand and prints JSON: `{ match, subcommand, remainder, muxer, agent, playbook, muxerContract, agentContract }` on success, or `{ match: false, request }` with a non-zero exit on no match.
+The command resolves the subcommand and prints JSON: `{ match, subcommand, remainder, playbook }` on success, or `{ match: false, request }` with a non-zero exit on no match. It does not resolve the muxer or the agent; Rule 1 does.
 
 ## On match
 
 1. Read `references/receipts.md`.
-2. Read `references/playbooks/<subcommand>.md`.
-3. Read `muxerContract` where the playbook opens, waits for, or releases a pane.
-4. Read `agentContract` where the playbook launches an agent.
-5. If `muxer` is `unknown-muxer` or `agent` is `unknown-agent` and no override was given, ask the user. Do not guess.
+2. Read `playbook` from the route output.
+3. Apply Rule 1 where the playbook opens a pane or launches an agent.
+4. Read `muxerContract` where the playbook opens, waits for, or releases a pane.
+5. Read `agentContract` where the playbook launches an agent.
 
 ## On no match
 
@@ -111,6 +99,7 @@ Known failure modes live in `references/troubleshooting/`:
 - `wt-hook-approval-needed.md`
 - `fixer-agent-blocked.md`
 - `missing-review-verdict.md`
-- `muxer-or-agent-undetected.md`
+
+For `unknown-muxer` or `unknown-agent`, see `muxer-subagents`'s `references/troubleshooting/muxer-or-agent-undetected.md`.
 
 UserRequest: $ARGUMENTS

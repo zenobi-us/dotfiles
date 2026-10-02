@@ -25,7 +25,7 @@ Finish does not launch an agent for source work. It releases every remaining age
 3. Verify that the successful review covers the current source commit and tree.
 4. Run the recorded validation command.
 5. Append a `finish` receipt with status `FINISHING`.
-6. Stop or release every source-worktree agent pane or session using the active muxer contract. Keep the receipt if shutdown fails.
+6. Stop or release every source-worktree agent pane or session using the resolved `muxerContract` from the `muxer-subagents` skill. Keep the receipt if shutdown fails.
 7. Focus the base worktree. Do not merge from a source-agent pane.
 8. Update the base branch from its remote.
 9. Verify that Worktrunk is configured for a squash merge. If `[merge].squash = false`, stop and report the configuration mismatch instead of silently performing a non-squash merge.
@@ -34,7 +34,7 @@ Finish does not launch an agent for source work. It releases every remaining age
 12. Push the base branch.
 13. Complete the ticket with the ticket skill.
 14. Remove the source worktree with Worktrunk.
-15. Close the hrdx workspace after the worktree is removed.
+15. Close the muxer workspace after the worktree is removed, using the resolved `muxerContract`.
 16. Append a final immutable `FINISHED` receipt using the terminal receipt fields
     in `references/receipts.md`. If any step from 6 through 15 fails, append
     `FINISH_FAILED` with the failure fields and preserve every resource required

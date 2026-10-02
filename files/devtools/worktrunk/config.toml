@@ -17,10 +17,6 @@ server = "lsof -ti :{{ branch | hash_port }} -sTCP:LISTEN | xargs kill 2>/dev/nu
 [commit]
 stage = "all"
 
-[commit.generation]
-# Use pimono for commit message generation (reads rendered prompt from stdin)
-command = "if command -v pimono >/dev/null 2>&1; then pimono; else printf 'chore: update\n'; fi"
-
 [merge]
 squash = true
 commit = false
@@ -34,7 +30,7 @@ rebase = false
 # mise setup is repeated from the global post-start on purpose: project hooks
 # append after global ones with no completion guarantee, and rkn needs mise's node.
 # `preset load` writes stack.local.json and brings the stack up in one call.
-post-start.stack = "mise trust -y && mise setup && rkn init && rkn preset load default-frontend"
+post-start.stack = "mise trust -y && ./bootstrap.sh && rkn init && rkn preset load default-frontend"
 # Without this the removed worktree leaves a registered stack, a caddy site and
 # six held ports behind. Repair for a leak: `rkn stacks prune`.
 pre-remove.stack = "rkn down"

@@ -8,7 +8,7 @@ The reviewer MUST use a new pane or tab. It MUST NOT reuse the implementation or
 
 - Read `references/receipts.md`.
 - Resolve the canonical ticket and tracker path with the ticket skill. Cross-check the workflow record.
-- Use Worktrunk, the `code-review` skill, and the active muxer and agent contracts.
+- Use Worktrunk, the `code-review` skill, and the `muxerContract` and `agentContract` resolved by the `muxer-subagents` skill.
 - Run the shared-context CLI from the repository. Use its reported root and storage mode.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
   `shared-context path workflow --id <ticket-id>`.
@@ -44,7 +44,7 @@ Reject the request when any of these conditions is true:
    - relevant ADRs and validation commands;
    - exact review artifact path;
    - review receipt path.
-7. Open a new pane or tab in the existing worktree workspace. Use the active muxer contract. For hrdx, use `pane.create` with the absolute workspace path, `split: "tab"`, and the configured agent kind. Do not use `pane.send_text` on the previous session.
+7. Open a fresh agent session in the existing worktree workspace. Follow the `muxer-subagents` skill's fresh-session mechanic and the resolved `muxerContract`. Do not send input to the previous session.
 8. Launch the agent with the agent contract and the review handoff.
 9. Wait for the fresh reviewer session to finish. Read its output through the muxer contract.
 10. Verify that the reviewer created one immutable phase-result receipt and one

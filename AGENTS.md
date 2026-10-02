@@ -42,4 +42,4 @@ Use `agent-core:mq-query` for local Markdown search, reading, filtering, selecti
 
 ## Subagents
 
-Spawn subagents as new panes,tabs or workspaces with the hrdx-subagent skill.
+Subagents are interactive. Spawn them with the `muxer-subagents` skill.

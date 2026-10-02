@@ -2,13 +2,13 @@
 
 Create an isolated Worktrunk worktree and start an implementation agent.
 
-This playbook receives `muxer` and `agent` from the `worktree` skill. It does not detect either.
+This playbook receives `muxer`, `agent`, `muxerContract`, and `agentContract` from the `worktree` skill, which resolves them with the `muxer-subagents` skill. It does not detect either.
 
 ## Preconditions
 
 - Read `references/receipts.md`.
 - Load the issue-tracker reference and ticket skill. Resolve the canonical ticket and tracker path. Ask when the selector is missing or ambiguous.
-- Use Worktrunk and the active muxer and agent contracts.
+- Use Worktrunk and the `muxerContract` and `agentContract` resolved by the `muxer-subagents` skill.
 - Run the shared-context CLI from the repository. Use its reported root and storage mode.
 - Follow `ALIGNMENT-ROOT.md` before reading context, ADRs, or `docs/agents/`.
 - Resolve the workflow root with
@@ -35,7 +35,7 @@ This playbook receives `muxer` and `agent` from the `worktree` skill. It does no
      `projections/implementation-log.md`, and
      `projections/latest-status.yaml`.
    - End the final response with `WORKTREE_IMPLEMENTATION_DONE` only when implementation and validation pass.
-6. Open one agent pane or session with the active muxer contract. Pass the handoff file to the agent contract's launch command.
+6. Open one agent session with the `muxer-subagents` skill. Pass the worktree path as the target directory and the handoff file to the agent contract's launch command.
 7. Do not open another implementation session for this worktree while one is active.
 8. Wait for completion using the muxer contract. Read the final output and verify the marker.
 9. If the agent is blocked, fails validation, or omits the marker, append a failed phase-complete receipt and keep the worktree.

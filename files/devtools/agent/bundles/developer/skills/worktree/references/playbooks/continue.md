@@ -28,8 +28,8 @@ is missing or ambiguous.
      nothing remains to continue. Report this and stop.
 4. If step 3 is ambiguous, an event parent is missing, or the worktree no longer
    exists, ask the user which step to resume. Do not guess.
-5. Re-run Rule 1 (muxer) and Rule 2 (agent) detection. Dispatch to the selected
-   playbook with the same resolved ticket.
+5. Re-resolve the muxer and agent with the `muxer-subagents` skill, then dispatch to
+   the selected playbook with the same resolved ticket.
 
 ## Unchanged
 
