@@ -24,28 +24,22 @@ change the implementation of the shared-context CLI itself.
 
 ## Step 0: resolve the root. Always.
 
-```bash
-cd "<repository being worked on>" && shared-context
-```
+`scripts/shared-context/cli.ts`
 
-You **MUST** run every `shared-context` call with the working directory inside the
-repository you are working on. The CLI reads the origin from the working
-directory. Run it from the skill directory and it resolves a different
+Every shown command **MUST** set or preserve the working directory inside the
+repository being worked on because the CLI reads the origin from that working
+directory. Invoking the entry point by its path does not change the working
+directory. Do not `cd` to the skill directory: that resolves a different
 repository and reports the wrong root.
 
-`shared-context` is the stable executable for this skill. The agent bootstrap
-installs it on `PATH`. Cross-plugin callers do not share one skill root, so use
-the executable instead of a path inside an OMP plugin cache.
+Run `scripts/shared-context/cli.ts` directly. Its shebang starts Bun through mise and installs the
+CLI's own dependencies on first run. You **MUST NOT** prefix the call with Bun's
+runner because that skips the entry point's shebang.
 
-Run `shared-context` directly. Its entry point starts bun through mise and
-installs the CLI's own dependencies on first run. You **MUST NOT** prefix the
-call with Bun's runner because that skips the entry point's shebang.
 
-If `shared-context` is not on `PATH`, stop and report that the agent bootstrap
-did not install it. Do not derive a path inside an OMP plugin cache.
-
-`report` is the default. `shared-context` and `shared-context report` do the same thing. Use
-`shared-context root` when a script needs only the resolved root; do not derive it.
+`report` is the default. Running `scripts/shared-context/cli.ts` without a subcommand and running
+`cli.ts report` do the same thing. Use `scripts/shared-context/cli.ts root` when a script needs only
+the resolved root; do not derive it.
 Output:
 
 ```
@@ -72,7 +66,7 @@ slug: <origin-derived directory name>
 Run the shared-context CLI before you choose a path or link:
 
 ```bash
-cd "<repository being worked on>" && shared-context
+scripts/shared-context/cli.ts
 ```
 
 Use the CLI output to determine the storage mode. Use its resolved root instead

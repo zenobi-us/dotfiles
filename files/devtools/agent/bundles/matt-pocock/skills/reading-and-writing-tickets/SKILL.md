@@ -25,7 +25,7 @@ This skill owns ticket mechanics and ticket schema. Calling skills own workflow 
 
 Apply this preamble before loading tracker configuration or reading or writing a ticket, workflow record, review artifact, or other tracker-owned file:
 
-1. Run the shared-context CLI `report` procedure from `agent-core:shared-context` in the repository being worked on.
+1. Use the `agent-core:shared-context` skill in the repository being worked on.
 2. Set `ALIGNMENT_ROOT` to the reported `root`. Use the reported `repository-root` for repository files. Do not inspect prompt or environment data, or derive either path from the repository path, origin slug, ticket ID, configuration, or a guessed home-directory path.
 3. Read `<ALIGNMENT_ROOT>/docs/agents/issue-tracker.md`.
 4. Read its YAML frontmatter.
@@ -34,7 +34,7 @@ Apply this preamble before loading tracker configuration or reading or writing a
 
 Calling skills MUST use this preamble before they ask this skill to resolve a ticket. They MUST pass the CLI-reported `root`, `storage`, and repository root as working context. If a calling skill already resolved these values, verify that they came from the same repository and the same CLI run; do not replace them with a derived path.
 
-For a write under a shared `ALIGNMENT_ROOT`, read the shared-context publishing procedure after the write. Run `shared-context index <dir>` after adding or removing a file in a shared-context source directory.
+For a write under a shared `ALIGNMENT_ROOT`, apply the `agent-core:shared-context` skill's publishing procedure after the write. Use that skill to update the source index after adding or removing a file in a shared-context source directory.
 
 If the tracker definition is missing, malformed, or lacks the required operation, stop and ask the user to run `/setup-matt-pocock-skills` or to define the missing operation.
 
@@ -59,10 +59,9 @@ initiative-root: tracker/initiatives
 issue-root: tracker/tickets
 ```
 
-Run `shared-context path tracker` for listing. Run
-`shared-context path ticket --id <ID>` or
-`shared-context path initiative --id <ID>` for one record. Do not join the
-configured segments to `ALIGNMENT_ROOT`. The shared-context CLI owns physical
+Use the `agent-core:shared-context` skill to resolve the tracker root for listing.
+Use that skill to resolve a ticket or initiative path for `<ID>`. Do not join the
+configured segments to `ALIGNMENT_ROOT`. The shared-context skill owns physical
 path construction.
 
 Ticket files MUST use frontmatter for machine-readable metadata:
@@ -133,7 +132,7 @@ Use the operation that the calling skill requests.
 
 Resolve the ticket selector using the tracker document. Accept only selector
 forms that the tracker defines. Reject ambiguous selectors. For local Markdown,
-resolve a stable ID with `shared-context path ticket --id <ID>`. Read the complete
+use the `agent-core:shared-context` skill to resolve the ticket path for stable ID `<ID>`. Read the complete
 ticket, including frontmatter, body, and comments.
 
 Return both:
@@ -143,8 +142,8 @@ Return both:
 
 ### List
 
-Use the configured tracker query. For local Markdown, run
-`shared-context path tracker`, query frontmatter under its `tickets/` area, and
+Use the configured tracker query. For local Markdown, use the `agent-core:shared-context` skill to resolve the tracker
+root, query frontmatter under its `tickets/` area, and
 return the canonical identifier, title, state, blockers, and tracker path.
 
 ### Create
@@ -152,7 +151,7 @@ return the canonical identifier, title, state, blockers, and tracker path.
 Create the ticket in the tracker-defined format. For local Markdown:
 
 1. choose a unique stable `id`;
-2. resolve `shared-context path ticket --id <ID>`;
+2. use the `agent-core:shared-context` skill to resolve the ticket path for `<ID>`;
 3. write frontmatter and the human-readable body to that path;
 4. resolve every `blocked_by` reference;
 5. validate the graph;

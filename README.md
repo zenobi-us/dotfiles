@@ -153,3 +153,5 @@ mise bootstrap plan
 ```
 
 The repository uses folder fragments under `.mise/conf.d/`. Each direct child is a self-contained mise bundle. The bundle contains its platform-specific `mise.<env>.toml` files and the files referenced by those configurations.
+## OMP shared-context autocomplete
+The mise bootstrap links `files/devtools/omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `#` to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.

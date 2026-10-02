@@ -11,8 +11,8 @@ Route `UserRequest` to the correct worktree workflow. This skill dispatches only
 
 Load `references/receipts.md` before running a worktree playbook.
 
-Every phase MUST create a durable receipt under the workflow root returned by
-`shared-context path workflow --id <ticket-id>`. Receipts in `events/` are
+Every phase MUST create a durable receipt under the workflow root that the
+`agent-core:shared-context` skill resolves for `<ticket-id>`. Receipts in `events/` are
 append-only and authoritative. Chat output, pane output, temporary handoff files,
 manifests, and projections are not authoritative workflow state.
 
@@ -39,17 +39,17 @@ For every local Markdown file used by a worktree workflow, use `agent-core:mq-qu
 Before loading tracker configuration or reading or changing a ticket, apply the
 **Mandatory ticket-resolution preamble** in
 `files/devtools/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/SKILL.md`.
-Run the shared-context CLI from the repository being worked on, set
-`ALIGNMENT_ROOT` to the CLI-reported `root`, and read
-`docs/agents/issue-tracker.md` from that root. Pass the CLI-reported `root`,
-`storage`, and repository root to the ticket skill. Do not derive
+Use the `agent-core:shared-context` skill from the repository being worked on. Set
+`ALIGNMENT_ROOT` to the root that the skill resolves, and read
+`docs/agents/issue-tracker.md` from that root. Pass the resolved root, storage mode,
+and repository root to the ticket skill. Do not derive
 `ALIGNMENT_ROOT`, a tracker path, or a workflow path. The ticket skill owns
 ticket selectors, backend resolution, schema, paths, reads, claims, comments,
 completion, and tracker commits. This skill owns review artifacts, receipts,
 snapshots, evidence, manifests, and workflow projections.
 
-Resolve the workflow root with
-`shared-context path workflow --id <ticket-id>`. Use only these fixed internal
+Use the `agent-core:shared-context` skill to resolve the workflow root for
+`<ticket-id>`. Use only these fixed internal
 paths: `events/`, `artifacts/reviews/`, `artifacts/snapshots/`,
 `artifacts/evidence/`, and `projections/`. Do not write workflow state into
 `.scratch/`, `<ticket>/local/`, `tracker/`, or `sources/`.

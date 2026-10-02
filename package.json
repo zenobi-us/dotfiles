@@ -5,6 +5,7 @@
     "files/devtools/pi/agent",
     "files/devtools/pi/agent/extensions/@vanillagreen/*",
     "files/devtools/pi/agent/extensions/@zenobius/*",
+    "files/devtools/omp/extensions/*",
     "files/devtools/pi/agent/packages/*"
   ],
   "dependencies": {

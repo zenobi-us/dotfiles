@@ -62,6 +62,10 @@
       "name": "@zenobius/pi-writing",
       "version": "0.1.0",
     },
+    "files/devtools/omp/extensions/shared-context": {
+      "name": "@zenobius/omp-shared-context",
+      "version": "0.1.0",
+    },
     "files/devtools/pi/agent": {
       "name": "@zenobius/pi-agent-extensions",
       "version": "0.0.1",
@@ -195,20 +199,6 @@
         "@earendil-works/pi-coding-agent": "*",
         "@earendil-works/pi-tui": "*",
         "@sinclair/typebox": "*",
-      },
-    },
-    "files/devtools/pi/agent/extensions/@zenobius/pi-fzf": {
-      "name": "pi-fzf",
-      "version": "0.5.0",
-      "dependencies": {
-        "fzf": "^0.5.2",
-      },
-      "devDependencies": {
-        "vitest": "^4.1.11",
-      },
-      "peerDependencies": {
-        "@earendil-works/pi-coding-agent": "*",
-        "@earendil-works/pi-tui": "*",
       },
     },
     "files/devtools/pi/agent/extensions/@zenobius/pi-handoff": {
@@ -723,6 +713,8 @@
 
     "@zenobius/markdown-preview": ["@zenobius/markdown-preview@workspace:files/devtools/pi/agent/extensions/@zenobius/markdown-preview"],
 
+    "@zenobius/omp-shared-context": ["@zenobius/omp-shared-context@workspace:files/devtools/omp/extensions/shared-context"],
+
     "@zenobius/pi-agent-core": ["@zenobius/pi-agent-core@workspace:files/devtools/agent/bundles/agent-core"],
 
     "@zenobius/pi-agent-extensions": ["@zenobius/pi-agent-extensions@workspace:files/devtools/pi/agent"],
@@ -923,8 +915,6 @@
 
     "fsevents": ["fsevents@2.3.3", "", { "os": "darwin" }, "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw=="],
 
-    "fzf": ["fzf@0.5.2", "", {}, "sha512-Tt4kuxLXFKHy8KT40zwsUPUkg1CrsgY25FxA2U/j/0WgEDCk3ddc/zLTCCcbSHX9FcKtLuVaDGtGE/STWC+j3Q=="],
-
     "gaxios": ["gaxios@7.3.1", "", { "dependencies": { "extend": "^3.0.2", "https-proxy-agent": "^7.0.1", "node-fetch": "^3.3.2" } }, "sha512-kB3rzJV7d9juLZh8/56QTXCwQfxyhdOMdyYk1HdQKFtF8TJTDTZQJtixWIwXdE9Jji91mC41DUNpjleo4L4eAQ=="],
 
     "gcp-metadata": ["gcp-metadata@8.1.2", "", { "dependencies": { "gaxios": "^7.0.0", "google-logging-utils": "^1.0.0", "json-bigint": "^1.0.0" } }, "sha512-zV/5HKTfCeKWnxG0Dmrw51hEWFGfcF2xiXqcA3+J90WDuP0SvoiSO5ORvcBsifmx/FoIjgQN3oNOGaQ5PhLFkg=="],
@@ -1082,8 +1072,6 @@
     "pend": ["pend@1.2.0", "", {}, "sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg=="],
 
     "pi-autoresearch": ["pi-autoresearch@workspace:files/devtools/pi/agent/extensions/@zenobius/pi-autoresearch"],
-
-    "pi-fzf": ["pi-fzf@workspace:files/devtools/pi/agent/extensions/@zenobius/pi-fzf"],
 
     "pi-poster": ["pi-poster@workspace:files/devtools/pi/agent/extensions/@zenobius/pi-poster"],
 

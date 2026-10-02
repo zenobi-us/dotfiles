@@ -37,13 +37,11 @@ The two branches produce very different artifacts — getting this wrong wastes 
 5. **Surface the state.** After every action (logic) or on every variant switch (UI), print or render the full relevant state so the user can see what changed.
 6. **Capture it when done.** Fold any validated decision into the real code, then capture the prototype itself as a **primary source**: commit it to a throwaway branch, out of main, and leave a context pointer to that branch on the implementation issue. Capture the answer too — the verdict and the question it settled — in the issue or a commit. If the context pointer is written under shared storage, publish it through the shared-context procedure. The main branch keeps only the validated decision.
 
-If the prototype writes context, ADRs, or issue links, use the CLI-reported `ALIGNMENT_ROOT`. Run the shared-context CLI `report` procedure first. For a shared-root write, read the publishing procedure afterwards; run `shared-context index <dir>` after adding or removing a file in a source directory.
+If the prototype writes context, ADRs, or issue links, use the `agent-core:shared-context` skill first. Use its resolved root as `ALIGNMENT_ROOT`. For a shared-root write, apply the skill's publishing procedure afterwards. Use the skill to update the source index after adding or removing a file in a source directory.
 
 ## Context resolution
 
-Before reading or writing workflow or domain artifacts, load `agent-core:shared-context`, then run `shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
+Before reading or writing workflow or domain artifacts, use the `agent-core:shared-context` skill from the repository root. Use the root that the skill resolves as `ALIGNMENT_ROOT`. Use the repository root for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-For a write under a shared `ALIGNMENT_ROOT`, use `shared-context path` for tracker,
-workflow, source, and ADR targets. Run `shared-context index <dir>` only after a source
-directory changes. Read the shared-context publishing procedure after the write.
+For a write under a shared `ALIGNMENT_ROOT`, use the `agent-core:shared-context` skill to resolve tracker, workflow, source, and ADR targets. Use that skill to update the source index only after a source directory changes and to apply the publishing procedure after the write.
 Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

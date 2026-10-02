@@ -33,9 +33,7 @@ Do not use for unit or integration tests. Those belong in the test suite.
 
 ### 1. Resolve the shared-context root. MUST.
 
-```sh
-cd "<repository being worked on>" && shared-context
-```
+Use the `agent-core:shared-context` skill from the repository being worked on. Use the root that the skill resolves.
 
 Every artifact goes under `<root>/<work-id>/manual-tests/`. You **MUST NOT**
 write the plan, the evidence, the screenshots, or the report into the

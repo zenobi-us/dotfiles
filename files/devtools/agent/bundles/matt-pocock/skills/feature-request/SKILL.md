@@ -17,9 +17,9 @@ If either input is missing, ask for it before doing repository work. If `$IDEA` 
 
 ## Non-negotiable outputs
 
-Run the shared-context CLI `report` procedure from the repository root. Use its
-reported `root` as `ALIGNMENT_ROOT`. Choose a stable feature ID, then use
-`shared-context path initiative --id <feature-id>` for the destination. Create one
+Use the `agent-core:shared-context` skill from the repository root. Use the root
+that the skill resolves as `ALIGNMENT_ROOT`. Choose a stable feature ID, then use
+that skill to resolve the initiative destination for `<feature-id>`. Create one
 `spec.md` in that initiative before the final decision. Read the shared-context
 publishing procedure after each shared-root write. Keep the file when the idea is
 not viable. Update the same file after each completed stage: workspace
@@ -61,8 +61,8 @@ Use a stable name such as `feature-requests/<repo-slug>-<date>-<short-slug>.md` 
    ```
 
    Record the clone URL, path, branch, commit, and remote state.
-4. Run the shared-context CLI `report` from inside the clone. Confirm that the reported origin and slug match `$REPO`. Use the reported `root`; do not derive a shared path or run `init` or `migrate` unless the user explicitly requests a storage change.
-5. Resolve `shared-context path initiative --id <feature-id>`. Create `spec.md` in that
+4. Use the `agent-core:shared-context` skill from inside the clone. Confirm that its resolved origin and slug match `$REPO`. Use its resolved root; do not derive a shared path or request `init` or `migrate` unless the user explicitly requests a storage change.
+5. Use that skill to resolve the initiative destination for `<feature-id>`. Create `spec.md` in that
    directory. Confirm that the file exists, and read the publishing procedure
    before continuing. Update the draft after every completed stage.
 

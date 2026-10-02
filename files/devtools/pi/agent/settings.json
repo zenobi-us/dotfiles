@@ -25,7 +25,6 @@
     "./extensions/@vanillagreen/pi-task-panel",
     "./extensions/@zenobius/pi-annotate",
     "./extensions/@zenobius/pi-autoresearch",
-    "./extensions/@zenobius/pi-fzf",
     "./extensions/@zenobius/pi-handoff",
     "./extensions/@zenobius/pi-poster",
     "./extensions/@zenobius/sub-limits",

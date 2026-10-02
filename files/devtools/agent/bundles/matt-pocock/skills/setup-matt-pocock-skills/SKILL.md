@@ -24,13 +24,13 @@ Scaffold the configuration that the engineering skills assume:
 - **Triage labels** — the strings used for the five canonical triage roles
 - **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
 
-Before reading or writing these artifacts, load `agent-core:shared-context`, then run `shared-context` in the repository root. Use its reported `root` as `ALIGNMENT_ROOT` and its reported `repository-root` for repository files. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). The CLI is the source of truth for storage and path resolution.
+Before reading or writing these artifacts, use the `agent-core:shared-context` skill from the repository root. Use the root that the skill resolves as `ALIGNMENT_ROOT` and use the repository root for repository files. Follow [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md). The shared-context skill is the source of truth for storage and path resolution.
 
 ## Process
 
 ### 1. Resolve roots and explore
 
-Run the shared-context CLI `report` command and record its `storage`, `root`, `shared root`, `origin`, and `slug` output. Use the reported `root` as `ALIGNMENT_ROOT`. Do not resolve storage from prompt text, environment variables, configuration paths, or repository path formulas.
+Use the `agent-core:shared-context` skill and record its resolved `storage`, `root`, `shared root`, `origin`, and `slug`. Use the resolved `root` as `ALIGNMENT_ROOT`. Do not resolve storage from prompt text, environment variables, configuration paths, or repository path formulas.
 
 Inspect the repository root for source and Git state:
 
@@ -59,7 +59,7 @@ Default to the currently active storage.
 - **Repository** — alignment files live in the Git working tree.
 - **Shared** — alignment files live under the `root` reported by the CLI; source code remains in the repository.
 
-If storage must change, ask the user to run the shared-context `init` or `migrate` command through its documented CLI procedure. Stop after that command. Never write into an inactive destination.
+If storage must change, ask the user to use the `agent-core:shared-context` skill for its documented `init` or `migrate` procedure. Stop after that command. Never write into an inactive destination.
 
 **Section B — Issue tracker.**
 
@@ -101,10 +101,10 @@ Let the user edit before writing. If the write uses shared storage, show the res
 ### 4. Write
 
 Before each write, confirm that the destination is under the current
-CLI-reported `ALIGNMENT_ROOT`. Use `shared-context path` for tracker, workflow, source,
-and ADR targets. Run `shared-context index <dir>` after adding or removing a file in a
-source directory. Read the shared-context publishing procedure after every
-shared-root write and publish when required.
+`ALIGNMENT_ROOT` resolved by the `agent-core:shared-context` skill. Use that skill to
+resolve tracker, workflow, source, and ADR targets. Use it to update the source index
+after adding or removing a file in a source directory. Apply its publishing procedure
+after every shared-root write and publish when required.
 
 For repository storage, edit `CLAUDE.md` when it exists, otherwise `AGENTS.md`. If neither exists, ask which one to create. Never create the other file when one already exists.
 
@@ -168,13 +168,14 @@ Only local markdown stores issue data beneath `ALIGNMENT_ROOT`; external tracker
 
 ### 5. Done
 
-Report active storage, absolute `ALIGNMENT_ROOT`, and files written. Mention that `docs/agents/*.md` can be edited directly later. After `init` or `migrate`, run the shared-context CLI `report` command again and use its new output immediately.
+Report active storage, absolute `ALIGNMENT_ROOT`, and files written. Mention that `docs/agents/*.md` can be edited directly later. After `init` or `migrate`, use the `agent-core:shared-context` skill again and apply its newly resolved values immediately.
 
 ## Context resolution
 
-Before reading or writing workflow or domain artifacts, load `agent-core:shared-context`, then run `shared-context` in the repository root. Use its `root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
+Before reading or writing workflow or domain artifacts, use the `agent-core:shared-context` skill from the repository root. Use the root that the skill resolves as `ALIGNMENT_ROOT`. Use the repository root for source code and ordinary project files. Do not inspect the prompt or environment, or derive an alignment path by hand.
 
-For a shared-context source write, use `shared-context path source` before choosing a
-directory, run `shared-context index <dir>` after adding or removing a file there, and
-read the shared-context publishing procedure after the write. Follow
+For a shared-context source write, use the `agent-core:shared-context` skill to
+resolve the source directory before choosing a destination. Use that skill to update
+the source index after adding or removing a file there, and apply its publishing
+procedure after the write. Follow
 [ALIGNMENT-ROOT.md](../../ALIGNMENT-ROOT.md) for the complete rule.

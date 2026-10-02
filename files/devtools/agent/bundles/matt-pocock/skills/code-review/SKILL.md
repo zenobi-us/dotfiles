@@ -49,7 +49,7 @@ Look for the originating spec, in this order:
 1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.) — resolve and read through `/reading-and-writing-tickets`.
 2. A path the user passed as an argument.
 3. A PRD/spec file under repository-root `docs/` or `specs/`, or an initiative
-   spec resolved with `shared-context path initiative --id <ID>`.
+   spec resolved through the `agent-core:shared-context` skill for `<ID>`.
 4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
 
 ### 3. Identify the standards sources
@@ -128,9 +128,9 @@ Reporting them separately stops one axis from masking the other.
 
 ## Context resolution
 
-Before reading or writing workflow or domain artifacts, run the shared-context
-CLI procedure from `agent-core:shared-context` in the repository root. Use its
-`root` output as `ALIGNMENT_ROOT` and its `repository-root` output for source code
-and ordinary project files. Use `shared-context path` for tracker, workflow, source, and
-ADR targets. Do not derive an alignment path by hand. Read the shared-context
-publishing procedure after a shared-root write.
+Before reading or writing workflow or domain artifacts, use the
+`agent-core:shared-context` skill from the repository root. Use the root that the
+skill resolves as `ALIGNMENT_ROOT`. Use the repository root for source code and
+ordinary project files. Use that skill to resolve tracker, workflow, source, and
+ADR targets. Do not derive an alignment path by hand. Apply the skill's publishing
+procedure after a shared-root write.

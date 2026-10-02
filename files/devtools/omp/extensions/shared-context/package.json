@@ -1,0 +1,11 @@
+{
+  "name": "@zenobius/omp-shared-context",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Autocomplete files from the shared context associated with the current OMP session",
+  "omp": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}
