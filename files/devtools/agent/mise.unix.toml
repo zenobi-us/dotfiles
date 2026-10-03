@@ -16,32 +16,28 @@
 "~/.local/bin/shared-context" = { source = "./bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts", mode = "symlink" }
 
 [tasks.bootstrap]
-description = "Register the OMP agent bundle marketplace and install its plugins"
+description = "Link OMP agent bundle plugins from source"
 run = """
 {% set bundles_dir = (config_root ~ "/bundles") | canonicalize %}
 {% set marketplace_file = bundles_dir ~ "/.claude-plugin/marketplace.json" %}
+bundles_dir={{ bundles_dir | quote }}
 marketplace_file={{ marketplace_file | quote }}
 marketplace="$(jq -r '.name' "$marketplace_file")"
-
-if ! omp plugin marketplace list | grep -Fq -- {{ bundles_dir | quote }}; then
-  omp plugin marketplace add {{ bundles_dir | quote }}
-fi
-omp plugin marketplace update "$marketplace"
-
 installed_plugins="$(omp plugin list --json)"
-jq -r '.plugins[] | .name, (.version // "")' "$marketplace_file" |
-while IFS= read -r plugin && IFS= read -r desired_version; do
-  plugin_id="${plugin}@${marketplace}"
-  installed_version="$(
-    printf '%s\n' "$installed_plugins" |
-      jq -r --arg id "$plugin_id" \
-        'first(.marketplace[]? | select(.id == $id) | .entries[]? | select(.scope == "user") | .version) // empty'
-  )"
 
-  if [ -z "$installed_version" ]; then
-    omp plugin install --scope user "$plugin_id"
-  elif [ -n "$desired_version" ] && [ "$installed_version" != "$desired_version" ]; then
-    omp plugin upgrade --scope user "$plugin_id"
+jq -r '.plugins[].name' "$marketplace_file" |
+while IFS= read -r plugin; do
+  plugin_id="${plugin}@${marketplace}"
+  if printf '%s\n' "$installed_plugins" |
+    jq -e --arg id "$plugin_id" \
+      'any(.marketplace[]?; .id == $id and .scope == "user")' >/dev/null
+  then
+    omp plugin uninstall --scope user "$plugin_id"
   fi
+done
+
+jq -r '.plugins[].source' "$marketplace_file" |
+while IFS= read -r plugin_source; do
+  omp plugin link --scope user "$bundles_dir/${plugin_source#./}"
 done
 """

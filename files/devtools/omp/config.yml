@@ -40,3 +40,5 @@ dev:
 composer:
   shape: claude
   tokenRate: true
+git:
+  enabled: false
