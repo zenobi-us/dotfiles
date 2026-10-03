@@ -4,14 +4,14 @@
 
 ## Ticket resolution
 
-Run the shared-context CLI from the repository being worked on before reading
-tracker configuration, workflow records, or review artifacts. Use its reported
-`root` as `ALIGNMENT_ROOT` and read `docs/agents/issue-tracker.md` from that root.
-Load `references/issue-tracker.md` and the ticket skill. Use the ticket skill to
-resolve the selector and return the canonical ticket and tracker path. Then run
-`shared-context path workflow --id <ticket-id>`. Do not derive any path from the
-repository path, ticket ID, origin slug, or environment. Ask when the selector
-is missing or ambiguous.
+Run the shared-context CLI from the repository before reading tracker
+configuration, workflow records, or review artifacts. Use its reported
+alignment `root` as `ALIGNMENT_ROOT` and read
+`docs/agents/issue-tracker.md` from that root. Load `references/issue-tracker.md`
+and the ticket skill. Resolve the selector and return the canonical ticket
+`ref` and backend. Then run
+`shared-context resolve workflow --id <ticket-id>`. Do not derive paths. Ask
+when the selector is missing or ambiguous.
 
 ## Process
 

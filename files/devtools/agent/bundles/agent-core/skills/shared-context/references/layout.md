@@ -1,29 +1,29 @@
 # Layout
 
-Read this before any write under the root printed by the CLI. It applies to ingested source
-material and to notes you author.
+Read this before you write an ingested source or authored note. Each file-backed
+record can use a different store.
 
 ## Typed path rule
 
-Every stored record has one typed path under the root printed by the CLI. A
-calling skill MUST ask the CLI for that path. It MUST NOT join root-relative
-segments.
+Resolve the record kind with `shared-context resolve <kind> ... --json`. Use its
+`path` for file access and `ref` for cross-store links. Never join paths under
+the alignment root or select a store from `mode`.
 
 | Record | Command | Result |
 |---|---|---|
-| Tracker root | `path tracker` | `<root>/tracker` |
-| Ticket | `path ticket --id <ID>` | `<root>/tracker/tickets/<ID>.md` |
-| Initiative | `path initiative --id <ID>` | `<root>/tracker/initiatives/<ID>/` |
-| Workflow | `path workflow --id <ID>` | `<root>/workflows/<ID>/` |
-| Ticket source | `path source --ticket <ID> --source <SOURCE>` | `<root>/sources/tickets/<ID>/<SOURCE>/` |
-| Library source | `path source --library --source <SOURCE>` | `<root>/sources/library/<SOURCE>/` |
-| ADR | `path adr --id <ID>` | The unique matching file under `<root>/docs/adr/`, or `<root>/docs/adr/<ID>.md` for a new ADR |
+| Alignment | `resolve alignment` | Alignment store root |
+| Ticket | Ticket skill; local Markdown uses `resolve ticket --id <ID>` | External ticket reference or local file |
+| Initiative | `resolve initiative --id <ID>` | Configured initiative directory |
+| Workflow | `resolve workflow --id <ID>` | Configured workflow directory |
+| Evidence | `resolve evidence --workflow <ID> --run <RUN>` | Configured evidence directory |
+| Ticket source | `resolve source --ticket <ID> --source <SOURCE>` | Configured source directory |
+| Library source | `resolve source --library --source <SOURCE>` | Configured source directory |
+| ADR | `resolve adr --id <ID>` | Unique matching file in the alignment store, or the proposed file path |
 
-`path` prints an absolute path and does not create it. Create the printed
-directory, or its parent for a file path, only when the current operation writes
-there. The CLI refuses an ID or source that contains a slash or `..`. It also
-refuses a source request that does not select exactly one of `--ticket` and
-`--library`.
+The resolver prints a path and does not create it. Create the resolved directory,
+or its parent for a file path, only when the operation writes there. IDs cannot
+contain a slash or `..`. A source request must select exactly one of `--ticket`
+and `--library`.
 
 `<SOURCE>` starts with a lowercase letter and contains only lowercase letters,
 numbers, and dashes: `confluence`, `jira`, `web`, `document`, `library-docs`,

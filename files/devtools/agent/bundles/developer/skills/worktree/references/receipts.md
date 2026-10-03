@@ -4,10 +4,16 @@ Use receipts as the durable record for every worktree phase.
 
 ## Workflow layout
 
-Resolve the root with:
+Resolve the workflow record with:
 
 ```sh
-shared-context path workflow --id <ticket-id>
+shared-context resolve workflow --id <ticket-id> --json
+```
+
+Resolve each evidence run separately with:
+
+```sh
+shared-context resolve evidence --workflow <ticket-id> --run <run-id> --json
 ```
 
 Use only:
@@ -23,8 +29,8 @@ manifest.yaml
 
 `events/` is authoritative and append-only. `artifacts/` holds immutable
 authored outputs and evidence. `projections/` and `manifest.yaml` are generated
-and replaceable. Do not write workflow state to `.scratch/`, `<ticket>/local/`,
-`tracker/`, or `sources/`.
+and replaceable. Evidence can use a different store from the workflow. Do not
+write workflow state to `.scratch/`, `<ticket>/local/`, `tracker/`, or `sources/`.
 
 ## Rules
 
@@ -49,8 +55,7 @@ Every receipt MUST include:
 ```yaml
 schema: worktree-receipt/v1
 receipt_id: review-0003
-ticket: ABC-123
-workflow_id: ABC-123
+workflow_id: GH-42
 phase: review
 attempt: 1
 parent_receipt: implementation-0002
@@ -69,13 +74,27 @@ pane_id: 42
 agent: pi
 session_id: session-id-or-null
 
-context_root: /resolved/context/root
-context_storage: repository
-ticket_path: /resolved/ticket/path
+ticket:
+  backend: github
+  id: "42"
+  ref: https://github.com/owner/repository/issues/42
+
+workflow:
+  store: shared
+  root: /resolved/shared/root
+  ref: shared://workflows/GH-42
+
+evidence:
+  store: repository
+  ref: workflows/GH-42/artifacts/evidence/manual-001
+
+ticket_ref: https://github.com/owner/repository/issues/42
 
 inputs:
   - kind: ticket
-    ref: ABC-123
+    ref: https://github.com/owner/repository/issues/42
+  - kind: evidence
+    ref: workflows/GH-42/artifacts/evidence/manual-001
 
 outputs:
   - kind: receipt
@@ -87,6 +106,10 @@ status: completed
 Every receipt MUST list the durable records it consumed in `inputs`.
 Every receipt MUST list the durable records it created in `outputs`.
 Temporary handoffs MUST NOT appear as authoritative outputs.
+
+When an input or output references an external evidence object, include its
+`sha256` checksum with the stable `ref`. Local file evidence does not need a
+checksum.
 
 Implementation receipts MUST also record changed files, validation results, the implementation summary, and open questions.
 
@@ -154,8 +177,7 @@ workspace_preserved: true
 ```yaml
 schema: worktree-workflow/v2
 workflow_id: ABC-123
-ticket: ABC-123
-tracker_path: tracker/tickets/ABC-123.md
+ticket_ref: https://github.com/owner/repository/issues/42
 initiative: example-initiative
 event_root: events
 artifact_root: artifacts

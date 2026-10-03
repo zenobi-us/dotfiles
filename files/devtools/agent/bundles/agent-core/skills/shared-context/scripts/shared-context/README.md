@@ -1,10 +1,9 @@
 # shared-agent-context
 
-Origin-keyed shared agent context: a place for `AGENTS.md` and typed alignment
-areas (`docs/agents/`, `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr/`, `domains/`,
-`tracker/`, `workflows/`, and `sources/`) to live outside any single repository
-clone, keyed by the repo's canonicalized git `origin`. Works the same way
-whether you use pi, OMP, Zot, or Claude Code.
+Origin-keyed engineering context with per-record storage routes. Alignment,
+initiatives, workflows, evidence, and sources can use repository or shared
+storage. External tickets stay in their tracker. Each origin uses its
+canonicalized git `origin`. The CLI works with pi, OMP, Zot, and Claude Code.
 
 ## Why
 
@@ -27,11 +26,10 @@ own subdirectory: `<storage_path>/<slugified-origin>--<hash>/`.
 
 ## How it works
 
-On session/agent start, the tool injects a `<shared-agent-context>` XML block
-into the system prompt pointing at the active root (shared or repository).
-Skills that understand this block (e.g. matt-pocock's engineering skills, via
-[`../matt-pocock/ALIGNMENT-ROOT.md`](../matt-pocock/ALIGNMENT-ROOT.md)) resolve
-alignment files against it, falling back to the repository root when absent.
+On session or agent start, the tool injects a `<shared-agent-context>` XML block
+with the alignment root, repository root, origin, and route summary. Skills can
+resolve each file-backed record through the CLI. See
+[`../matt-pocock/ALIGNMENT-ROOT.md`](../matt-pocock/ALIGNMENT-ROOT.md).
 
 - **pi**: `extensions/pi-shared-context.ts` wires this into
   `before_agent_start` and registers `/eng-context`.
@@ -62,33 +60,84 @@ an empty one, which is what a plugin install leaves behind.
 `/eng-context` (pi) or `/shared-agent-context:eng-context` (Claude Code)
 subcommands:
 
-- `report` (default) — current storage, roots, origin, slug. This is the only root resolver.
-- `root` — print only the resolved context root for scripts.
-- `init` — create shared `AGENTS.md` and `CONTEXT-MAP.md`, then activate shared storage.
-- `list` — list every origin-keyed shared context.
-- `migrate` — copy typed context areas to the opposite storage, verifying
-  existing files match first. Source files are left intact.
-- `path tracker` — print the tracker root.
-- `path ticket|initiative|workflow|adr --id <ID>` — print one typed record path.
-- `path source --ticket <ID> --source <name>` — print a ticket source directory.
-- `path source --library --source <name>` — print a library source directory.
+- `report` (default) — route table, roots, origin, and slug. `mode` is a summary, not a path selector.
+- `root` — print the alignment root for scripts.
+- `init [--preset hosted-shared]` — create shared instructions and a route manifest.
+- `list` — list origin-keyed contexts under the shared base.
+- `resolve alignment` — resolve the alignment root.
+- `resolve initiative --id <ID>` — resolve one initiative directory.
+- `resolve workflow --id <ID>` — resolve one workflow directory.
+- `resolve evidence --workflow <ID> --run <ID>` — resolve one evidence directory.
+- `resolve source --ticket <ID> --source <name>` — resolve ticket source material.
+- `resolve source --library --source <name>` — resolve library source material.
+- `resolve ticket --id <ID>` — resolve a local Markdown ticket. External tickets
+  must use the tracker skill.
+- `resolve <kind> ... --json` — print adapter, store, root, path, stable ref, and publication rule.
+- `migrate <kind> --to <store>` — copy only that record kind after conflict checks.
+- `migrate --legacy-only` — write a route manifest from the legacy `.storage` preference.
 - `doctor` — check Bun, mise, git, and fd prerequisites.
-- `index <dir> [--force]` — rebuild the managed block of `<dir>/index.md` from the
-  frontmatter of its sibling Markdown files. The CLI rejects targets outside the
-  resolved root and targets or inputs that escape through symlinks. Text outside the
+- `index <dir> [--kind <kind> ...] [--force]` — rebuild the managed block of
+  `<dir>/index.md` from sibling Markdown frontmatter. `--kind` selects the route
+  and accepts the resolver selectors (`--id`, `--workflow`, `--run`, `--ticket`,
+  `--source`, `--library`). The CLI rejects targets outside the selected record
+  store and targets or inputs that escape through symlinks. Text outside the
   `<!-- shared-context:index start -->` / `<!-- shared-context:index end -->`
   markers is kept. An `index.md` with no markers is refused unless `--force`.
+
+## Route manifest
+
+The origin-scoped shared candidate stores project routes in
+`.context-routes.toml`. Machine-local `storage_path` remains in
+`~/.config/shared-agent-context/config.json`.
+
+```toml
+schema = 2
+
+[records.alignment]
+adapter = "markdown"
+store = "shared"
+
+[records.tickets]
+adapter = "github"
+
+[records.initiatives]
+adapter = "markdown"
+store = "shared"
+
+[records.workflows]
+adapter = "files"
+store = "shared"
+
+[records.evidence]
+adapter = "files"
+store = "inherit:workflows"
+
+[records.sources]
+adapter = "files"
+store = "inherit:alignment"
+```
+
+External ticket adapters have no `store`. Local Markdown tickets set
+`adapter = "local-markdown"` and a `store`.
 
 When shared `AGENTS.md` exists, the injected block looks like:
 
 ```xml
 <shared-agent-context
   storage="shared"
+  mode="shared"
   root="/home/q/Notes/SharedAgentContext/github-com-owner-repo--12345678"
+  alignment-root="/home/q/Notes/SharedAgentContext/github-com-owner-repo--12345678"
+  routes="alignment=shared,tickets=github,initiatives=shared,workflows=shared,evidence=workflows-&gt;shared,sources=alignment-&gt;shared"
   shared-root="/home/q/Notes/SharedAgentContext/github-com-owner-repo--12345678"
   repository-root="/work/repo"
   origin="https://github.com/owner/repo.git"
   slug="github-com-owner-repo--12345678"
+  tickets="github"
+  initiatives="shared"
+  workflows="shared"
+  evidence="shared"
+  sources="shared"
   source="/home/q/Notes/SharedAgentContext/github-com-owner-repo--12345678/AGENTS.md">
   <instructions source="/home/q/Notes/SharedAgentContext/github-com-owner-repo--12345678/AGENTS.md">
     ...XML-escaped instructions...

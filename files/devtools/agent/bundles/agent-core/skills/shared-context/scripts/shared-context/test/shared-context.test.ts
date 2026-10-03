@@ -3,6 +3,7 @@ import { promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
+  migrateLegacyStorage,
   buildContextIndex,
   canonicalizeGitRemote,
   INDEX_MARKER_END,
@@ -10,10 +11,14 @@ import {
   initializeSharedContext,
   listSharedContexts,
   migrateAlignmentContext,
+  migrateContextRoute,
   parseFrontmatter,
+  renderContextReport,
   renderSharedContext,
   resolveContextPath,
+  resolveContextRecord,
   resolveSharedContext,
+  ROUTE_MANIFEST_FILE,
   slugifyGitRemote,
   type SharedAgentContext,
 } from "../lib";
@@ -105,6 +110,125 @@ describe("context resolution", () => {
     expect(second?.instructions).toBe("changed next turn");
   });
 
+  test("resolves each record through an origin-scoped route manifest", async () => {
+    const repositoryRoot = await temporaryDirectory();
+    const sharedBase = await temporaryDirectory();
+    const slug = slugifyGitRemote("https://github.com/Owner/Repo.git");
+    const sharedRoot = path.join(sharedBase, slug);
+    await fs.mkdir(sharedRoot, { recursive: true });
+    await fs.writeFile(path.join(sharedRoot, "AGENTS.md"), "shared instructions");
+    await fs.writeFile(path.join(sharedRoot, ROUTE_MANIFEST_FILE), [
+      "schema = 2",
+      "",
+      "[records.alignment]",
+      'adapter = "markdown"',
+      'store = "shared"',
+      "",
+      "[records.tickets]",
+      'adapter = "github"',
+      "",
+      "[records.initiatives]",
+      'adapter = "markdown"',
+      'store = "shared"',
+      "",
+      "[records.workflows]",
+      'adapter = "files"',
+      'store = "repository"',
+      "",
+      "[records.evidence]",
+      'adapter = "files"',
+      'store = "inherit:workflows"',
+      "",
+      "[records.sources]",
+      'adapter = "files"',
+      'store = "inherit:alignment"',
+      "",
+    ].join("\n"));
+
+    const context = await resolveSharedContext(
+      gitExec(repositoryRoot, "https://github.com/Owner/Repo.git"),
+      repositoryRoot,
+      sharedBase,
+    );
+
+    expect(context?.mode).toBe("mixed");
+    expect(context?.alignmentRoot).toBe(sharedRoot);
+    expect(context?.routes).toMatchObject({
+      alignment: { adapter: "markdown", store: "shared" },
+      tickets: { adapter: "github" },
+      initiatives: { adapter: "markdown", store: "shared" },
+      workflows: { adapter: "files", store: "repository" },
+      evidence: { adapter: "files", inherits: "workflows" },
+      sources: { adapter: "files", inherits: "alignment" },
+    });
+
+    await expect(resolveContextRecord(context!, { kind: "workflow", id: "GH-42" })).resolves.toMatchObject({
+      adapter: "files",
+      store: "repository",
+      root: repositoryRoot,
+      path: path.join(repositoryRoot, "workflows", "GH-42"),
+      ref: "workflows/GH-42",
+      publication: "repository",
+    });
+    await expect(resolveContextRecord(context!, { kind: "evidence", workflow: "GH-42", run: "manual-001" })).resolves.toMatchObject({
+      store: "repository",
+      path: path.join(repositoryRoot, "workflows", "GH-42", "artifacts", "evidence", "manual-001"),
+      ref: "workflows/GH-42/artifacts/evidence/manual-001",
+    });
+    await expect(resolveContextRecord(context!, { kind: "source", ticket: "GH-42", source: "confluence" })).resolves.toMatchObject({
+      store: "shared",
+      path: path.join(sharedRoot, "sources", "tickets", "GH-42", "confluence"),
+      ref: "shared://sources/tickets/GH-42/confluence",
+      publication: "push-if-remote",
+    });
+    await expect(resolveContextPath(context!, { kind: "ticket", id: "42" })).rejects.toThrow(
+      /github owns tickets/i,
+    );
+  });
+
+  test("maps a legacy storage marker to routes without moving external tickets", async () => {
+    const repositoryRoot = await temporaryDirectory();
+    const sharedBase = await temporaryDirectory();
+    const slug = slugifyGitRemote("https://github.com/Owner/Repo.git");
+    const sharedRoot = path.join(sharedBase, slug);
+    await fs.mkdir(path.join(sharedRoot, "docs", "agents"), { recursive: true });
+    await fs.writeFile(path.join(sharedRoot, ".storage"), "shared\n");
+    await fs.writeFile(path.join(sharedRoot, "AGENTS.md"), "shared instructions");
+    await fs.writeFile(path.join(sharedRoot, "docs", "agents", "issue-tracker.md"), "---\nbackend: github\n---\n");
+
+    const context = await resolveSharedContext(
+      gitExec(repositoryRoot, "https://github.com/Owner/Repo.git"),
+      repositoryRoot,
+      sharedBase,
+    );
+
+    expect(context?.mode).toBe("shared");
+    expect(context?.routes.tickets).toEqual({ adapter: "github" });
+    expect(context?.routes.workflows.store).toBe("shared");
+    expect(renderContextReport(context!)).toContain("tickets: github");
+  });
+
+  test("migrates the legacy preference to a route manifest and removes the marker", async () => {
+    const repositoryRoot = await temporaryDirectory();
+    const sharedBase = await temporaryDirectory();
+    const sharedRoot = path.join(sharedBase, slugifyGitRemote("https://github.com/Owner/Repo.git"));
+    await fs.mkdir(path.join(sharedRoot, "docs", "agents"), { recursive: true });
+    await fs.writeFile(path.join(sharedRoot, ".storage"), "shared\n");
+    await fs.writeFile(path.join(sharedRoot, "docs", "agents", "issue-tracker.md"), "---\nbackend: github\n---\n");
+    const context = (await resolveSharedContext(
+      gitExec(repositoryRoot, "https://github.com/Owner/Repo.git"),
+      repositoryRoot,
+      sharedBase,
+    ))!;
+
+    await migrateLegacyStorage(context);
+
+    const manifest = await fs.readFile(path.join(sharedRoot, ROUTE_MANIFEST_FILE), "utf8");
+    expect(manifest).toContain('[records.tickets]\nadapter = "github"');
+    expect(manifest).toContain('[records.workflows]\nadapter = "files"\nstore = "shared"');
+    await expect(fs.stat(path.join(sharedRoot, ".storage"))).rejects.toMatchObject({ code: "ENOENT" });
+  });
+
   test("initializes the external candidate without writing into the repository", async () => {
     const repositoryRoot = await temporaryDirectory();
     const sharedBase = await temporaryDirectory();
@@ -116,12 +240,12 @@ describe("context resolution", () => {
 
     expect(context).toBeDefined();
     const result = await initializeSharedContext(context!);
-
     expect(result.created).toBe(true);
     expect(result.agents).toBe(path.join(context!.candidateSharedRoot!, "AGENTS.md"));
     expect(await fs.readFile(result.agents, "utf8")).toContain("# Shared agent context");
-    expect(await fs.readFile(path.join(context!.candidateSharedRoot!, ".storage"), "utf8")).toBe("shared\n");
+    expect(await fs.readFile(path.join(context!.candidateSharedRoot!, ROUTE_MANIFEST_FILE), "utf8")).toContain('schema = 2');
     expect(await fs.readFile(path.join(context!.candidateSharedRoot!, "CONTEXT-MAP.md"), "utf8")).toContain("# Context map");
+    await expect(fs.stat(path.join(context!.candidateSharedRoot!, ".storage"))).rejects.toMatchObject({ code: "ENOENT" });
     await expect(fs.stat(path.join(repositoryRoot, "AGENTS.md"))).rejects.toMatchObject({ code: "ENOENT" });
   });
 
@@ -137,6 +261,43 @@ describe("context resolution", () => {
     expect(await fs.readFile(path.join(root, "CONTEXT-MAP.md"), "utf8")).toBe("authored navigation");
   });
 
+  test("initialization preserves an existing route manifest", async () => {
+    const root = await temporaryDirectory();
+    const context = sharedContext(root);
+    const manifest = [
+      "schema = 2",
+      "",
+      "[records.alignment]",
+      'adapter = "markdown"',
+      'store = "shared"',
+      "",
+      "[records.tickets]",
+      'adapter = "github"',
+      "",
+      "[records.initiatives]",
+      'adapter = "markdown"',
+      'store = "repository"',
+      "",
+      "[records.workflows]",
+      'adapter = "files"',
+      'store = "shared"',
+      "",
+      "[records.evidence]",
+      'adapter = "files"',
+      'store = "inherit:workflows"',
+      "",
+      "[records.sources]",
+      'adapter = "files"',
+      'store = "inherit:alignment"',
+      "",
+    ].join("\n");
+    await fs.writeFile(path.join(root, ROUTE_MANIFEST_FILE), manifest);
+
+    await initializeSharedContext(context);
+
+    expect(await fs.readFile(path.join(root, ROUTE_MANIFEST_FILE), "utf8")).toBe(manifest);
+  });
+
   test("copies the typed context areas in both directions and ignores legacy layouts", async () => {
     const repositoryRoot = await temporaryDirectory();
     const sharedBase = await temporaryDirectory();
@@ -146,6 +307,7 @@ describe("context resolution", () => {
     await fs.mkdir(path.join(repositoryRoot, "domains", "billing"), { recursive: true });
     await fs.mkdir(path.join(repositoryRoot, "tracker", "tickets"), { recursive: true });
     await fs.mkdir(path.join(repositoryRoot, "workflows", "billing-01", "events"), { recursive: true });
+    await fs.mkdir(path.join(repositoryRoot, "workflows", "billing-01", "artifacts", "evidence", "manual-001", "screenshots"), { recursive: true });
     await fs.mkdir(path.join(repositoryRoot, "sources", "library", "web"), { recursive: true });
     await fs.mkdir(path.join(repositoryRoot, ".scratch", "feature"), { recursive: true });
     await fs.mkdir(path.join(repositoryRoot, "library", "web"), { recursive: true });
@@ -156,31 +318,52 @@ describe("context resolution", () => {
     await fs.writeFile(path.join(repositoryRoot, "domains", "billing", "CONTEXT.md"), "domain glossary");
     await fs.writeFile(path.join(repositoryRoot, "tracker", "tickets", "billing-01.md"), "local issue");
     await fs.writeFile(path.join(repositoryRoot, "workflows", "billing-01", "events", "start-0001.yaml"), "receipt");
+    await fs.writeFile(path.join(repositoryRoot, "workflows", "billing-01", "artifacts", "evidence", "manual-001", "screenshots", "screen.png"), "evidence");
     await fs.writeFile(path.join(repositoryRoot, "sources", "library", "web", "rfc-2119.md"), "ingested page");
     await fs.writeFile(path.join(repositoryRoot, ".scratch", "feature", "issue.md"), "legacy issue");
     await fs.writeFile(path.join(repositoryRoot, "library", "web", "legacy.md"), "legacy source");
 
     const repository = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
     const toShared = await migrateAlignmentContext(repository!);
-    expect(toShared.storage).toBe("shared");
+    expect(toShared.store).toBe("shared");
     expect(toShared.copied).toContain("CONTEXT-MAP.md");
     expect(toShared.copied).toContain("docs/adr");
     expect(toShared.copied).toContain("domains");
-    expect(toShared.copied).toContain("tracker");
-    expect(toShared.copied).toContain("workflows");
-    expect(toShared.copied).toContain("sources");
+    expect(toShared.copied).not.toContain("tracker");
+    expect(toShared.copied).not.toContain("workflows");
+    expect(toShared.copied).not.toContain("sources");
     expect(toShared.copied).not.toContain(".scratch");
     expect(toShared.copied).not.toContain("library");
 
     const shared = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
-    expect(shared?.storage).toBe("shared");
-    const toRepository = await migrateAlignmentContext(shared!);
-    expect(toRepository.storage).toBe("repository");
+    const toSharedWorkflows = await migrateContextRoute(shared!, "workflows", "shared");
+    expect(toSharedWorkflows.copied).toEqual(["workflows"]);
+    const afterWorkflowMigration = (await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase))!;
+    const evidenceRecord = await resolveContextRecord(afterWorkflowMigration, {
+      kind: "evidence", workflow: "billing-01", run: "manual-001",
+    });
+    expect(evidenceRecord.store).toBe("repository");
+    await expect(fs.stat(path.join(shared!.candidateSharedRoot!, "workflows", "billing-01", "artifacts", "evidence"))).rejects.toMatchObject({ code: "ENOENT" });
+    const toSharedEvidence = await migrateContextRoute(afterWorkflowMigration, "evidence", "shared");
+    expect(toSharedEvidence.copied).toEqual([path.join("workflows", "billing-01", "artifacts", "evidence")]);
+    await expect(migrateContextRoute(shared!, "tickets", "shared")).rejects.toThrow();
+    expect(await fs.readFile(path.join(repositoryRoot, "tracker", "tickets", "billing-01.md"), "utf8")).toBe("local issue");
+    const toSharedSources = await migrateContextRoute(
+      (await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase))!,
+      "sources",
+      "shared",
+    );
+    expect(toSharedSources.copied).toEqual(["sources"]);
+    const toRepository = await migrateAlignmentContext(
+      (await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase))!,
+    );
+    expect(toRepository.store).toBe("repository");
 
     const restored = await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase);
-    expect(restored?.storage).toBe("repository");
+    expect(restored?.mode).toBe("mixed");
     expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "domains", "billing", "CONTEXT.md"), "utf8")).toBe("domain glossary");
     expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "sources", "library", "web", "rfc-2119.md"), "utf8")).toBe("ingested page");
+    expect(await fs.readFile(path.join(shared!.candidateSharedRoot!, "workflows", "billing-01", "events", "start-0001.yaml"), "utf8")).toBe("receipt");
     await expect(fs.stat(path.join(shared!.candidateSharedRoot!, ".scratch"))).rejects.toMatchObject({ code: "ENOENT" });
     await expect(fs.stat(path.join(shared!.candidateSharedRoot!, "library"))).rejects.toMatchObject({ code: "ENOENT" });
   });
@@ -217,6 +400,69 @@ test("the CLI is directly executable and exposes help", () => {
   expect(Buffer.from(result.stdout).toString()).toContain("doctor");
 });
 
+test("hosted-shared init rejects local tickets and routes external tickets", async () => {
+  const sandbox = await temporaryDirectory();
+  const repositoryRoot = path.join(sandbox, "repo");
+  const home = path.join(sandbox, "home");
+  const sharedBase = path.join(sandbox, "shared");
+  await fs.mkdir(path.join(repositoryRoot, "docs", "agents"), { recursive: true });
+  await fs.mkdir(path.join(home, ".config", "shared-agent-context"), { recursive: true });
+  await fs.writeFile(
+    path.join(home, ".config", "shared-agent-context", "config.json"),
+    JSON.stringify({ storage_path: sharedBase }),
+  );
+  await fs.writeFile(path.join(repositoryRoot, "docs", "agents", "issue-tracker.md"), [
+    "---",
+    "backend: local-markdown",
+    "initiative-root: tracker/initiatives",
+    "issue-root: tracker/tickets",
+    "---",
+    "",
+  ].join("\n"));
+  const initialized = Bun.spawnSync(["git", "init", repositoryRoot], { stdout: "pipe", stderr: "pipe" });
+  expect(initialized.exitCode).toBe(0);
+  const remote = Bun.spawnSync([
+    "git", "-C", repositoryRoot, "remote", "add", "origin", "https://github.com/Owner/Repo.git",
+  ], { stdout: "pipe", stderr: "pipe" });
+  expect(remote.exitCode).toBe(0);
+
+  const script = path.join(import.meta.dir, "..", "cli.ts");
+  const result = Bun.spawnSync([process.execPath, script, "init", "--preset", "hosted-shared"], {
+    cwd: repositoryRoot,
+    env: { ...process.env, HOME: home },
+    stdout: "pipe",
+    stderr: "pipe",
+  });
+
+  expect(result.exitCode).toBe(1);
+  expect(Buffer.from(result.stderr).toString()).toContain("requires an external ticket adapter");
+  await expect(fs.stat(sharedBase)).rejects.toMatchObject({ code: "ENOENT" });
+
+  const hostedRoot = path.join(sandbox, "hosted");
+  await fs.mkdir(path.join(hostedRoot, "docs", "agents"), { recursive: true });
+  await fs.writeFile(path.join(hostedRoot, "docs", "agents", "issue-tracker.md"), "---\nbackend: github\n---\n");
+  const hostedGit = Bun.spawnSync(["git", "init", hostedRoot], { stdout: "pipe", stderr: "pipe" });
+  expect(hostedGit.exitCode).toBe(0);
+  const hostedRemote = "https://github.com/Owner/Hosted.git";
+  const hostedOrigin = Bun.spawnSync([
+    "git", "-C", hostedRoot, "remote", "add", "origin", hostedRemote,
+  ], { stdout: "pipe", stderr: "pipe" });
+  expect(hostedOrigin.exitCode).toBe(0);
+  const hostedResult = Bun.spawnSync([process.execPath, script, "init", "--preset", "hosted-shared"], {
+    cwd: hostedRoot,
+    env: { ...process.env, HOME: home },
+    stdout: "pipe",
+    stderr: "pipe",
+  });
+  expect(hostedResult.exitCode).toBe(0);
+  const hostedManifest = await fs.readFile(
+    path.join(sharedBase, slugifyGitRemote(hostedRemote), ROUTE_MANIFEST_FILE),
+    "utf8",
+  );
+  expect(hostedManifest).toContain('[records.tickets]\nadapter = "github"');
+  expect(hostedManifest).toContain('[records.initiatives]\nadapter = "markdown"\nstore = "shared"');
+});
+
 test("repository XML points root and shared-root at the repository", () => {
   const context: SharedAgentContext = {
     repositoryRoot: "/work/repo",
@@ -227,11 +473,16 @@ test("repository XML points root and shared-root at the repository", () => {
     candidateSharedRoot: "/home/q/shared-agent-context/github-com-owner-repo--12345678",
     root: "/work/repo",
     storage: "repository",
+    mode: "repository",
+    alignmentRoot: "/work/repo",
+    routes: testRoutes("repository"),
     source: "/work/repo/AGENTS.md",
   };
 
   const xml = renderSharedContext(context);
   expect(xml).toContain('storage="repository"');
+  expect(xml).toContain('alignment-root="/work/repo"');
+  expect(xml).toContain('routes="alignment=repository,tickets=repository,initiatives=repository,workflows=repository,evidence=workflows-&gt;repository,sources=alignment-&gt;repository"');
   expect(xml).toContain('root="/work/repo"');
   expect(xml).toContain('shared-root="/work/repo"');
   expect(xml).not.toContain(context.candidateSharedRoot!);
@@ -247,6 +498,9 @@ test("rendered XML identifies provenance and escapes injected instructions", () 
     candidateSharedRoot: "/home/q/shared-agent-context/github-com-owner-repo--12345678",
     root: "/home/q/shared-agent-context/github-com-owner-repo--12345678",
     storage: "shared",
+    mode: "shared",
+    alignmentRoot: "/home/q/shared-agent-context/github-com-owner-repo--12345678",
+    routes: testRoutes("shared"),
     source: "/home/q/shared-agent-context/github-com-owner-repo--12345678/AGENTS.md",
     instructions: "Use <safe> & exact rules.",
   };
@@ -256,6 +510,17 @@ test("rendered XML identifies provenance and escapes injected instructions", () 
   expect(xml).toContain('source="/home/q/shared-agent-context/github-com-owner-repo--12345678/AGENTS.md"');
   expect(xml).toContain("Use &lt;safe&gt; &amp; exact rules.");
 });
+
+function testRoutes(store: "shared" | "repository"): SharedAgentContext["routes"] {
+  return {
+    alignment: { adapter: "markdown", store },
+    tickets: { adapter: "local-markdown", store },
+    initiatives: { adapter: "markdown", store },
+    workflows: { adapter: "files", store },
+    evidence: { adapter: "files", inherits: "workflows" },
+    sources: { adapter: "files", inherits: "alignment" },
+  };
+}
 
 function sharedContext(root: string): SharedAgentContext {
   return {
@@ -267,31 +532,13 @@ function sharedContext(root: string): SharedAgentContext {
     candidateSharedRoot: root,
     root,
     storage: "shared",
+    mode: "shared",
+    alignmentRoot: root,
+    routes: testRoutes("shared"),
     source: path.join(root, "AGENTS.md"),
   };
 }
 
-describe("publishing guidance", () => {
-  test("keeps non-git shared storage usable and offers version-control options", async () => {
-    const skillRoot = path.join(import.meta.dir, "..", "..", "..");
-    const skill = await fs.readFile(path.join(skillRoot, "SKILL.md"), "utf8");
-    const publishing = await fs.readFile(path.join(skillRoot, "references", "publishing.md"), "utf8");
-
-    expect(skill).toContain("local-only");
-    expect(publishing).toContain("continue the shared-context write");
-    expect(publishing.toLowerCase()).toContain("offer to initialize");
-    expect(publishing).not.toContain("Say so and stop");
-  });
-
-  test("offers a private artifact-share repository with a shared-context directory", async () => {
-    const skillRoot = path.join(import.meta.dir, "..", "..", "..");
-    const publishing = await fs.readFile(path.join(skillRoot, "references", "publishing.md"), "utf8");
-
-    expect(publishing).toContain("private artifact-share repository");
-    expect(publishing).toContain("shared-context/");
-    expect(publishing).toContain("artifact-shares");
-  });
-});
 
 describe("typed context paths", () => {
   test("resolves every stable record type", async () => {

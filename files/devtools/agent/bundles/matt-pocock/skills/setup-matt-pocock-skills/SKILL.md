@@ -30,7 +30,10 @@ Before reading or writing these artifacts, use the `agent-core:shared-context` s
 
 ### 1. Resolve roots and explore
 
-Use the `agent-core:shared-context` skill and record its resolved `storage`, `root`, `shared root`, `origin`, and `slug`. Use the resolved `root` as `ALIGNMENT_ROOT`. Do not resolve storage from prompt text, environment variables, configuration paths, or repository path formulas.
+Use the `agent-core:shared-context` skill and record its route table, `mode`,
+alignment `root`, `repository-root`, `origin`, and `slug`. Use the reported
+alignment `root` as `ALIGNMENT_ROOT`. Do not infer a route from prompt text,
+environment variables, configuration paths, or repository path formulas.
 
 Inspect the repository root for source and Git state:
 
@@ -52,28 +55,39 @@ Read existing files. Do not infer missing state from repository paths while shar
 
 Summarise what's present and missing. Take the sections in order, one answer at a time. Lead with the recommended answer. Skip a section when exploration already settled it.
 
-**Section A — Alignment storage.**
+**Section A — File-backed records.**
 
-Default to the currently active storage.
+Default to the active routes. If routes are not configured, recommend the
+repository store unless the user requests shared storage.
 
-- **Repository** — alignment files live in the Git working tree.
-- **Shared** — alignment files live under the `root` reported by the CLI; source code remains in the repository.
+- **Alignment** — `AGENTS.md`, domain documents, ADRs, and agent configuration.
+- **Initiatives** — Markdown records. Use the default file store.
+- **Workflows** — receipts, reviews, snapshots, and projections. Use the default
+  file store.
+- **Evidence** — inherit the workflow store. Ask about a separate store only
+  when the user requests one.
+- **Sources** — inherit the alignment store.
 
-If storage must change, ask the user to use the `agent-core:shared-context` skill for its documented `init` or `migrate` procedure. Stop after that command. Never write into an inactive destination.
+Ask for one default file store: `repository` or `shared`. Show the full route
+table before you write it.
 
 **Section B — Issue tracker.**
 
-The issue tracker is where issues live. Skills such as `to-tickets`, `triage`, `to-spec`, and `wayfinder` read from and write to it.
+The issue tracker owns ticket records. Skills such as `to-tickets`, `triage`,
+`to-spec`, and `wayfinder` read from and write to it.
 
-If the remote is GitHub, recommend GitHub. If it is GitLab, recommend GitLab. Otherwise offer:
+If the remote is GitHub, recommend GitHub. If it is GitLab, recommend GitLab.
+Otherwise offer:
 
 - **GitHub** — GitHub Issues via `gh`
 - **GitLab** — GitLab Issues via `glab`
-- **Local markdown** — stable ticket files under `tracker/tickets/` and
-  initiative records under `tracker/initiatives/`
-- **Other** — record the user's workflow as freeform prose
+- **Local Markdown** — tickets and initiatives use their configured file stores.
+- **Other** — use a configured tracker adapter.
 
-The tracker choice is independent of alignment storage. Record it in `docs/agents/issue-tracker.md`. GitHub and GitLab templates keep external PRs as a request surface disabled by default.
+The tracker choice is independent of file storage. Record it in
+`docs/agents/issue-tracker.md`. External tickets remain in the tracker. Use the
+`hosted-shared` preset when the user wants external tickets with shared
+initiatives and workflow records.
 
 **Section C — Triage label vocabulary.** Skip when `triage` is not installed.
 
@@ -90,21 +104,25 @@ central under `docs/adr/`.
 
 Show one draft containing:
 
-- active storage and absolute `ALIGNMENT_ROOT`
-- the `## Agent skills` block
-- `docs/agents/issue-tracker.md`
-- `docs/agents/domain.md`
-- `docs/agents/triage-labels.md` when `triage` is installed
+- the full record route table and absolute alignment root;
+- the selected preset, if any;
+- the `## Agent skills` block;
+- `docs/agents/issue-tracker.md`;
+- `docs/agents/domain.md`;
+- `docs/agents/triage-labels.md` when `triage` is installed.
 
-Let the user edit before writing. If the write uses shared storage, show the resolved root and the publication steps.
+Let the user edit before writing. If a route uses shared storage, show its
+resolved root and publication steps.
 
 ### 4. Write
 
-Before each write, confirm that the destination is under the current
-`ALIGNMENT_ROOT` resolved by the `agent-core:shared-context` skill. Use that skill to
-resolve tracker, workflow, source, and ADR targets. Use it to update the source index
-after adding or removing a file in a source directory. Apply its publishing procedure
-after every shared-root write and publish when required.
+Before each write, resolve its record kind with the
+`agent-core:shared-context` skill. Use the reported alignment root only for
+alignment files. Resolve tracker, initiative, workflow, evidence, source, and
+ADR targets with `shared-context resolve`. Run
+`shared-context index <dir> --kind source --source <SOURCE>` after a source
+directory changes. Include its ticket or library selector. Apply the publishing
+rules to each shared store after the write.
 
 For repository storage, edit `CLAUDE.md` when it exists, otherwise `AGENTS.md`. If neither exists, ask which one to create. Never create the other file when one already exists.
 
@@ -164,11 +182,15 @@ succeed. Validate both configured roots after writing the tracker document.
 
 For another tracker, write the tracker document from the user's description and use the actual service identifier as `backend`.
 
-Only local markdown stores issue data beneath `ALIGNMENT_ROOT`; external tracker data remains external. Repository source, ordinary project docs, prototypes, research notes, commits, and branches remain in the repository.
+Only local Markdown stores issue data in file-backed routes; external tracker
+data remains external. Repository source, ordinary project docs, prototypes,
+research notes, commits, and branches remain in the repository.
 
 ### 5. Done
 
-Report active storage, absolute `ALIGNMENT_ROOT`, and files written. Mention that `docs/agents/*.md` can be edited directly later. After `init` or `migrate`, use the `agent-core:shared-context` skill again and apply its newly resolved values immediately.
+Report the route table, absolute alignment root, and files written. Mention that
+`docs/agents/*.md` can be edited directly later. After `init` or `migrate`, rerun
+the shared-context CLI and resolve each affected record before continuing.
 
 ## Context resolution
 

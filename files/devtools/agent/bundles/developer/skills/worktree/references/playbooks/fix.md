@@ -7,11 +7,13 @@ The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or re
 ## Preconditions
 
 - Read `references/receipts.md`.
-- Resolve the canonical ticket and tracker path with the ticket skill. Cross-check the workflow record.
-- Use Worktrunk, the applicable engineering skill, and the `muxerContract` and `agentContract` resolved by the `muxer-subagents` skill.
-- Run the shared-context CLI from the source repository. Use its reported root and storage mode.
+- Resolve the canonical ticket `ref` and backend with the ticket skill.
+- Use Worktrunk, the applicable engineering skill, and the `muxerContract` and
+  `agentContract` resolved by the `muxer-subagents` skill.
+- Run the shared-context CLI from the source repository. Record its route table
+  and alignment root.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
-  `shared-context path workflow --id <ticket-id>`.
+  `shared-context resolve workflow --id <ticket-id>`.
 - Require the latest persisted review receipt to have `verdict: FAILURE`.
 - Verify that the source worktree and branch still exist.
 - Confirm that the current source branch matches the `source_branch` recorded in the consumed review receipt. Reject the fix on mismatch.
@@ -24,7 +26,9 @@ The fixer MUST use a new pane or tab. It MUST NOT reuse the implementation or re
 2. Confirm that the current source branch matches the branch recorded in the consumed review receipt. Stop on mismatch.
 3. Select only the blocking findings for the fixer. Preserve their IDs, ADR references, exact files, line references, and validation commands.
 4. Record the current source commit and create a new fix phase-start receipt with the review receipt as its parent.
-5. Write a temporary fix handoff containing the source worktree, source and base branches, current source commit, context root and storage mode, selected engineering skill, review receipt, blocking findings, and expected validation.
+5. Write a temporary fix handoff containing the source worktree, source and
+   base branches, current source commit, workflow store and reference, selected
+   engineering skill, review receipt, blocking findings, and expected validation.
 6. Open a fresh agent session in the existing worktree workspace. Follow the `muxer-subagents` skill's fresh-session mechanic and the resolved `muxerContract`. Do not send text to the prior session.
 7. Launch the fresh fixer session with the agent contract and the fix handoff.
 8. Wait for completion through the muxer contract. Require `WORKTREE_FIX_DONE` only after the fixer has applied the changes and passed validation.

@@ -6,20 +6,28 @@ type: Decision
 
 # Separate context records by responsibility
 
-Accepted. Use typed roots under the active shared-context root.
+Accepted. Store typed context records through an explicit per-kind route
+manifest. A route selects a repository store, an origin-keyed shared store, an
+external ticket adapter, or inheritance from another record kind.
 
 ## Decision
 
-- `tracker/` stores canonical local initiatives and tickets.
-- `docs/adr/` stores canonical architecture decisions.
-- `domains/` stores domain vocabulary.
+- `alignment` stores agent instructions, domain vocabulary, ADRs, and context maps.
+- `tickets` use the configured external adapter or a local Markdown store.
+- `initiatives` store canonical initiative records.
 - `workflows/<id>/events/` stores append-only workflow receipts.
-- `workflows/<id>/artifacts/` stores immutable reviews, snapshots, and evidence.
-- `workflows/<id>/projections/` and `manifest.yaml` are generated views.
-- `sources/` stores external and local source copies.
-- `CONTEXT-MAP.md` lists stable entry points.
+- `workflows/<id>/artifacts/` stores immutable reviews, snapshots, and related artifacts.
+- `evidence` stores manual test reports and linked test inputs; it inherits the
+  workflow route unless configured separately.
+- `sources/` stores external and local source copies; it inherits alignment
+  unless configured separately.
+- `CONTEXT-MAP.md` lists stable alignment entry points.
 
-The shared-context CLI owns physical path construction through typed `path` commands. The ticket skill owns tracker records. The worktree skill owns workflow records.
+The route manifest selects stores independently of record ownership. The
+shared-context CLI resolves record locations through `resolve`; the ticket
+skill owns tracker records, and the worktree skill owns workflow records.
+Changing a route moves only records of that kind. Inherited routes are pinned
+to their previous store when their parent route changes.
 
 ## Considered options
 

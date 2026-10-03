@@ -7,12 +7,15 @@ This playbook receives `muxer`, `agent`, `muxerContract`, and `agentContract` fr
 ## Preconditions
 
 - Read `references/receipts.md`.
-- Load the issue-tracker reference and ticket skill. Resolve the canonical ticket and tracker path. Ask when the selector is missing or ambiguous.
-- Use Worktrunk and the `muxerContract` and `agentContract` resolved by the `muxer-subagents` skill.
-- Run the shared-context CLI from the repository. Use its reported root and storage mode.
+- Load the issue-tracker reference and ticket skill. Resolve the canonical ticket
+  `ref` and backend. Ask when the selector is missing or ambiguous.
+- Use Worktrunk and the `muxerContract` and `agentContract` resolved by the
+  `muxer-subagents` skill.
+- Run the shared-context CLI from the repository. Record its route table and
+  alignment root.
 - Follow `ALIGNMENT-ROOT.md` before reading context, ADRs, or `docs/agents/`.
 - Resolve the workflow root with
-  `shared-context path workflow --id <ticket-id>`. Do not construct the path by hand.
+  `shared-context resolve workflow --id <ticket-id> --json`.
 - Use the applicable Matt Pocock engineering skill.
 
 ## Process
@@ -23,10 +26,10 @@ This playbook receives `muxer`, `agent`, `muxerContract`, and `agentContract` fr
 4. Create the workflow root and its fixed internal directories. Write the
    initial `start` phase-start receipt under `events/`. Generate `manifest.yaml`
    and the initial projections from the event.
-5. Write a temporary implementation handoff. Include the ticket, branch,
-   worktree, base branch, context root and storage mode, workflow root, relevant
-   files, requirements, validation commands, receipt path, and these completion
-   requirements:
+5. Write a temporary implementation handoff. Include the ticket `ref` and
+   backend, branch, worktree, base branch, workflow store and reference,
+   relevant files, requirements, validation commands, receipt path, and these
+   completion requirements:
    - Implement the ticket.
    - Run validation.
    - Write an immutable implementation receipt under `events/`.

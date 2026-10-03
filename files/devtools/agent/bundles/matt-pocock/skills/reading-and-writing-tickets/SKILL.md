@@ -26,15 +26,23 @@ This skill owns ticket mechanics and ticket schema. Calling skills own workflow 
 Apply this preamble before loading tracker configuration or reading or writing a ticket, workflow record, review artifact, or other tracker-owned file:
 
 1. Use the `agent-core:shared-context` skill in the repository being worked on.
-2. Set `ALIGNMENT_ROOT` to the reported `root`. Use the reported `repository-root` for repository files. Do not inspect prompt or environment data, or derive either path from the repository path, origin slug, ticket ID, configuration, or a guessed home-directory path.
+2. Set `ALIGNMENT_ROOT` to the reported alignment `root`. Use the reported
+   `repository-root` for repository files. Do not infer either path.
 3. Read `<ALIGNMENT_ROOT>/docs/agents/issue-tracker.md`.
 4. Read its YAML frontmatter.
 5. Select the backend-specific operation below.
-6. Preserve the configured tracker format. Do not infer a backend from file paths or prose.
+6. Preserve the configured tracker format. Do not infer a backend from paths or prose.
 
-Calling skills MUST use this preamble before they ask this skill to resolve a ticket. They MUST pass the CLI-reported `root`, `storage`, and repository root as working context. If a calling skill already resolved these values, verify that they came from the same repository and the same CLI run; do not replace them with a derived path.
+Calling skills MUST pass the CLI-reported `root`, `mode`, route table, and
+repository root as working context. If a calling skill already resolved these
+values, verify that they came from the same repository and CLI run.
 
-For a write under a shared `ALIGNMENT_ROOT`, apply the `agent-core:shared-context` skill's publishing procedure after the write. Use that skill to update the source index after adding or removing a file in a shared-context source directory.
+For local Markdown, resolve tickets with
+`shared-context resolve ticket --id <ID>` and initiatives with
+`shared-context resolve initiative --id <ID>`. Do not infer their stores from
+the alignment root. Publish a shared-store write by following the
+`agent-core:shared-context` publishing procedure. Update a source index only
+after a source directory changes.
 
 If the tracker definition is missing, malformed, or lacks the required operation, stop and ask the user to run `/setup-matt-pocock-skills` or to define the missing operation.
 
@@ -59,10 +67,10 @@ initiative-root: tracker/initiatives
 issue-root: tracker/tickets
 ```
 
-Use the `agent-core:shared-context` skill to resolve the tracker root for listing.
-Use that skill to resolve a ticket or initiative path for `<ID>`. Do not join the
-configured segments to `ALIGNMENT_ROOT`. The shared-context skill owns physical
-path construction.
+Use the `agent-core:shared-context` skill to resolve local ticket and initiative
+paths for stable IDs. Do not join configured segments to `ALIGNMENT_ROOT`.
+The resolver owns physical path construction. Resolve `tracker` only when a
+listing operation needs its root.
 
 Ticket files MUST use frontmatter for machine-readable metadata:
 
@@ -215,18 +223,29 @@ For GitHub, GitLab, Linear, Jira, or another configured backend:
 - use the tracker document's fallback body convention only when native relationships are unavailable;
 - never write local Markdown frontmatter into an external issue;
 - use the tracker-defined claim, comment, review, and completion operations;
-- return the external issue URL with the result.
+- return the ticket backend, stable ID, and canonical `ref` in the result.
 
 ## Result contract
 
-After every write, read the shared-context publishing procedure when the write used a shared `ALIGNMENT_ROOT`, then report:
+Return this ticket identity after reads and writes:
+
+```json
+{
+  "backend": "github",
+  "id": "42",
+  "ref": "https://github.com/owner/repository/issues/42"
+}
+```
+
+For local Markdown, use the resolved file reference for `ref`.
+
+After every write to a local Markdown ticket, read the shared-context publishing
+procedure when the ticket resolved to `store: shared`. Then report:
 
 - operation;
-- ticket identifier;
-- tracker path or URL;
+- ticket identity (`backend`, `id`, and `ref`);
 - fields changed;
 - dependency edges changed;
 - validation result;
 - commit or publication result when applicable.
-
 After every failed write, leave the ticket unchanged when possible. Report the exact blocker and the next required action.

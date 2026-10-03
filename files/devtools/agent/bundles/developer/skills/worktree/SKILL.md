@@ -16,10 +16,10 @@ Every phase MUST create a durable receipt under the workflow root that the
 append-only and authoritative. Chat output, pane output, temporary handoff files,
 manifests, and projections are not authoritative workflow state.
 
-Every receipt MUST record the ticket, workflow ID, phase, parent receipt, source
-branch, base branch, exact source commit and tree, context root and storage mode,
-tracker path, muxer, workspace path, agent, pane or session identifier,
-timestamp, status, and output paths.
+Every receipt MUST record the ticket `ref`, workflow ID, phase, parent receipt,
+source branch, base branch, exact source commit and tree, workflow store and
+reference, muxer, workspace path, agent, pane or session identifier, timestamp,
+status, and output references.
 
 `start`, `review`, and `fix` MUST use independent agent sessions. A review or fix MUST run in a fresh agent session in the existing worktree workspace. It MUST NOT send instructions to, resume, or reuse an earlier implementation, review, or fixer session. The `muxer-subagents` skill owns how that fresh session is opened.
 
@@ -27,8 +27,9 @@ Review the exact source commit recorded in the review handoff. A verdict is vali
 
 Use one immutable artifact under `artifacts/reviews/` for every review attempt.
 Never overwrite an earlier review or copy its body into the tracker. Store
-versioned PR drafts under `artifacts/snapshots/`. Store manual evidence under
-`artifacts/evidence/`. Store current views under `projections/`.
+versioned PR drafts under `artifacts/snapshots/`. Resolve manual evidence with
+`shared-context resolve evidence`; its store can differ from the workflow store.
+Store current views under `projections/`.
 
 Every commit made by a worktree playbook MUST use the `writing-and-creating-git-commits` skill. Every commit title MUST contain the resolved issue reference. This applies to source commits, workflow-artifact commits, tracker-state commits, and the final merge commit.
 
@@ -39,20 +40,22 @@ For every local Markdown file used by a worktree workflow, use `agent-core:mq-qu
 Before loading tracker configuration or reading or changing a ticket, apply the
 **Mandatory ticket-resolution preamble** in
 `files/devtools/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/SKILL.md`.
-Use the `agent-core:shared-context` skill from the repository being worked on. Set
-`ALIGNMENT_ROOT` to the root that the skill resolves, and read
-`docs/agents/issue-tracker.md` from that root. Pass the resolved root, storage mode,
-and repository root to the ticket skill. Do not derive
-`ALIGNMENT_ROOT`, a tracker path, or a workflow path. The ticket skill owns
-ticket selectors, backend resolution, schema, paths, reads, claims, comments,
-completion, and tracker commits. This skill owns review artifacts, receipts,
-snapshots, evidence, manifests, and workflow projections.
+Use the `agent-core:shared-context` skill from the repository being worked on.
+Set `ALIGNMENT_ROOT` to its reported alignment `root`, and read
+`docs/agents/issue-tracker.md` from that root. Pass the route table, alignment
+root, mode, and repository root to the ticket skill. Do not derive these values.
+The ticket skill owns ticket selectors, backend resolution, schema, references,
+reads, claims, comments, completion, and tracker commits. This skill owns review
+artifacts, receipts, snapshots, evidence, manifests, and workflow projections.
 
-Use the `agent-core:shared-context` skill to resolve the workflow root for
-`<ticket-id>`. Use only these fixed internal
-paths: `events/`, `artifacts/reviews/`, `artifacts/snapshots/`,
-`artifacts/evidence/`, and `projections/`. Do not write workflow state into
-`.scratch/`, `<ticket>/local/`, `tracker/`, or `sources/`.
+Resolve the workflow root with
+`shared-context resolve workflow --id <ticket-id> --json`. Resolve evidence
+separately with
+`shared-context resolve evidence --workflow <ticket-id> --run <run-id> --json`.
+Use only these paths within the resolved roots: `events/`,
+`artifacts/reviews/`, `artifacts/snapshots/`, `artifacts/evidence/`, and
+`projections/`. Do not write workflow state into `.scratch/`, `<ticket>/local/`,
+`tracker/`, or `sources/`.
 
 # Rule 1: resolve the muxer and agent
 
@@ -68,7 +71,7 @@ Take `muxer`, `agent`, `muxerContract`, and `agentContract` from its output and 
 
 # Route
 
-Resolve the issue tracker before following a playbook that reads or updates a ticket. The playbook receives the resolved `ticket` and `tracker path` as working context.
+Resolve the issue tracker before following a playbook that reads or updates a ticket. The playbook receives the ticket `ref` and backend as working context.
 
 ```bash
 scripts/router.ts route "$ARGUMENTS"

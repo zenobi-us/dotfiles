@@ -7,11 +7,14 @@ The reviewer MUST use a new pane or tab. It MUST NOT reuse the implementation or
 ## Preconditions
 
 - Read `references/receipts.md`.
-- Resolve the canonical ticket and tracker path with the ticket skill. Cross-check the workflow record.
-- Use Worktrunk, the `code-review` skill, and the `muxerContract` and `agentContract` resolved by the `muxer-subagents` skill.
-- Run the shared-context CLI from the repository. Use its reported root and storage mode.
+- Resolve the canonical ticket `ref` and backend with the ticket skill. Cross-check
+  the workflow record.
+- Use Worktrunk, the `code-review` skill, and the `muxerContract` and
+  `agentContract` resolved by the `muxer-subagents` skill.
+- Run the shared-context CLI from the repository. Record its route table and
+  alignment root.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
-  `shared-context path workflow --id <ticket-id>`.
+  `shared-context resolve workflow --id <ticket-id>`.
 - Store one review artifact at
   `artifacts/reviews/review-<review-receipt-id>.md`. Never copy its body into the
   tracker, chat, or another directory.
@@ -34,13 +37,13 @@ Reject the request when any of these conditions is true:
 4. Freeze the review target to the current source commit and tree. Record both in the review handoff.
 5. Create a new review phase-start receipt with a new attempt ID. Never overwrite an earlier receipt.
 6. Write a temporary review handoff containing:
-   - ticket and tracker path;
+   - ticket `ref` and backend;
    - source and base branches;
    - absolute worktree path;
    - frozen source commit and tree;
    - implementation or fix receipt path;
    - draft PR snapshot path;
-   - context root and storage mode;
+   - workflow store and reference;
    - relevant ADRs and validation commands;
    - exact review artifact path;
    - review receipt path.

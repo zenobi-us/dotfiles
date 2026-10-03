@@ -10,71 +10,85 @@ on. See Step 0 in `SKILL.md`.
 
 | Command | Mutates | Does |
 |---|---|---|
-| (none) or `report` | no | Print storage, root, shared root, shared candidate, origin, slug |
-| `list` | no | List contexts that have shared storage |
-| `files` | no | List files under the resolved root |
-| `inject` | no | Emit the hook JSON that injects context at session start |
-| `path tracker` | no | Print the tracker root |
-| `path ticket\|initiative\|workflow\|adr --id ID` | no | Print one typed record path |
-| `path source --ticket ID --source S` | no | Print a ticket source directory |
-| `path source --library --source S` | no | Print a library source directory |
-| `index <dir> [--force]` | writes `index.md` | Rebuild the managed block of a source `index.md` |
-| `init` | yes | Create shared `AGENTS.md` and `CONTEXT-MAP.md`, then activate shared storage |
-| `migrate` | yes | Copy typed context areas to the opposite storage |
+| (none) or `report` | no | Print the route table, roots, origin, and slug |
+| `list` | no | List origin-keyed contexts under the shared base |
+| `files` | no | List files under the alignment root |
+| `inject` | no | Emit the hook JSON that injects shared instructions |
+| `resolve <kind> ... [--json]` | no | Resolve one file-backed record and its publication rule |
+| `path <kind> ...` | no | Print the path for a file-backed record |
+| `index <dir> [--kind <kind> ...] [--force]` | writes `index.md` | Rebuild an index under its resolved record store |
+| `init [--preset hosted-shared]` | yes | Create shared context and its route manifest |
+| `migrate [<kind>] --to <store>` | yes | Copy one record kind and update its route |
+| `migrate` | yes | Copy alignment to the other store |
+| `migrate --legacy-only` | yes | Replace the legacy `.storage` marker with a route manifest |
 
 Show read-only output verbatim. Do not add analysis.
 
 ## Reading the report
 
-`storage: shared` means `root` is a directory managed by this CLI, outside the
-repository clone. `storage: repository` means `root` is the repository root and
-ordinary repository behavior applies.
+`mode` is a summary only. It can be `repository`, `shared`, or `mixed`. It does
+not select a path. Resolve each record kind before you read or write it.
 
-`shared root` is mode-dependent and easy to misread. In shared mode it equals
-`root`. In repository mode it equals the repository root, which is not shared at
-all. The path where shared storage *would* live is printed as `shared candidate`.
-Quote `root` when the user asks where context lives. Quote `shared candidate` only
-to answer "where would it go", and only in repository mode — shared mode does not
-print it.
+`root` is the alignment root. `shared candidate` is the origin-keyed directory
+under the configured shared base. The CLI prints it only when alignment uses
+repository storage.
+
+`tickets` names either a tracker adapter such as `github`, or a local Markdown
+store. External tickets remain in the tracker. `initiatives`, `workflows`,
+`evidence`, and `sources` have independent routes. Evidence inherits the workflow
+store by default. Sources inherit the alignment store by default.
+
+Use `resolve <kind> ... --json` to get `adapter`, `store`, `root`, `path`, `ref`,
+and `publication`. Use the `ref` field for cross-store links. Do not infer a
+record path from `root` or the report mode.
 
 ## Answering "what files are in it"
 
-- `storage: shared` — run `files`.
-- `storage: repository` — do **not** run `files`. It lists the whole repository.
-  Read `CONTEXT-MAP.md` for stable entry points. Use `path tracker` and the
-  record-specific `path` commands when a caller supplies an ID. Inspect only
-  paths that exist.
+- When the requested record resolves to `store: shared`, inspect only its
+  resolved path.
+- When the requested record resolves to `store: repository`, use the repository
+  root and inspect only its resolved path. Do not list the whole repository.
+- `files` lists the alignment root only. It does not list all stores in mixed
+  mode.
 
-`list` shows only contexts that have shared storage. A repository in repository
-mode never appears. Do not conclude from `list` alone that the current repository
-has no context. Read the `report` first.
+`list` shows origin-keyed shared contexts. It does not prove that the current
+repository has no local records. Read `report` first.
 
 ## Before you run init or migrate
 
-1. You **MUST** confirm the user named the operation. "Set up shared context" names
+1. Confirm that the user named the operation. "Set up shared context" names
    `init`. "Save this page" does not.
-2. You **MUST** state the subcommand and the directory it can change.
-3. `migrate` copies these typed context areas only: `AGENTS.md`, `docs/agents`,
-   `CONTEXT.md`, `CONTEXT-MAP.md`, `docs/adr`, `domains`, `tracker`, `workflows`,
-   and `sources`.
-4. Legacy `.scratch/`, top-level ticket directories, and top-level `library/`
-   are not migrated. Move them through the layout migration before storage
-   migration.
-5. `migrate` refuses when a target file exists with different content. Read the
-   conflict list. Do not delete the target to force the copy.
+2. State the subcommand and the record kinds it can change.
+3. `migrate <kind> --to <store>` copies only that record kind. It checks
+   conflicts before copying and updates the route after the copy.
+4. Workflow migration excludes `artifacts/evidence/`. Evidence uses its own
+   route and migration.
+5. When a parent route changes, the CLI pins inherited child routes to their
+   current store. They do not move as a side effect.
+6. External tickets have no shared-context file store. Resolve them through the
+   ticket skill.
+7. `migrate --legacy-only` replaces the old `.storage` marker with a route
+   manifest. It does not move records.
+
+`migrate` refuses when a target file differs. Read the conflict list. Do not
+delete the target to force the copy.
 
 ## Traps
 
-- `inject` prints `null` when no shared `AGENTS.md` exists. That is success, not
-  failure.
-- `init` creates `CONTEXT-MAP.md` when it is absent. It preserves an existing
-  authored map.
-- `init` writes a marker file named `.storage` holding the word `shared`. Shared
-  storage activates on the next session, not immediately.
+- `inject` prints `null` when no shared `AGENTS.md` exists. That is success.
+- `init` preserves an authored `CONTEXT-MAP.md` and an existing route manifest.
+- `init --preset hosted-shared` refuses to replace a non-shared route manifest.
+  Migrate the record kinds explicitly, then retry.
+- `init --preset hosted-shared` keeps the configured external ticket adapter and
+  stores the file-backed engineering records in shared context.
+- The hosted-shared preset requires an external ticket adapter.
+- Existing `.storage` markers remain readable until migration.
 - The storage path can be a symlink. Read `references/publishing.md` before you
   decide the store is not a git repository.
 
 ## Storage path
 
-`~/.config/shared-agent-context/config.json` holds `storage_path`. The default is
-`~/Notes/SharedAgentContext`. Each repository gets `<storage_path>/<slug>/`.
+`~/.config/shared-agent-context/config.json` holds the machine-local
+`storage_path`. The default is `~/Notes/SharedAgentContext`. Each origin has a
+directory at `<storage_path>/<slug>/`. Its `.context-routes.toml` file holds
+project-level routing policy.

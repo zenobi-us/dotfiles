@@ -7,11 +7,12 @@ Finish does not launch an agent for source work. It releases every remaining age
 ## Preconditions
 
 - Read `references/receipts.md`.
-- Resolve the canonical ticket and tracker path with the ticket skill.
+- Resolve the canonical ticket `ref` and backend with the ticket skill.
 - Use Worktrunk and the applicable `code-review` and `implement` skills.
-- Run the shared-context CLI from the source repository. Use its reported root and storage mode.
+- Run the shared-context CLI from the source repository. Record its route table
+  and alignment root.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
-  `shared-context path workflow --id <ticket-id>`.
+  `shared-context resolve workflow --id <ticket-id>`.
 - Require an immutable `SUCCESS` review receipt for the current source commit and tree.
 - Confirm that no later source changes exist after the successful review.
 - Do not remove the worktree while an agent is running.
@@ -30,7 +31,9 @@ Finish does not launch an agent for source work. It releases every remaining age
 8. Update the base branch from its remote.
 9. Verify that Worktrunk is configured for a squash merge. If `[merge].squash = false`, stop and report the configuration mismatch instead of silently performing a non-squash merge.
 10. Squash merge the source branch into the base branch with Worktrunk.
-11. Use `writing-and-creating-git-commits` for the final merge commit. Put the ticket reference in the title. Include the tracker path, successful review artifact, and every ADR relied on by the review in the body.
+11. Use `writing-and-creating-git-commits` for the final merge commit. Put the
+    ticket reference in the title. Include the ticket `ref`, successful review
+    artifact, and every ADR relied on by the review in the body.
 12. Push the base branch.
 13. Complete the ticket with the ticket skill.
 14. Remove the source worktree with Worktrunk.

@@ -1,18 +1,19 @@
 # Publishing
 
-A shared-context write is usable on the current machine as soon as it is written.
-A git remote makes it available to agents on other machines. Read this after every
-write under the root printed by `shared-context report`. The CLI is the only root resolver.
+A write to `store: shared` is usable on the current machine as soon as it is
+written. A git remote makes it available to agents on other machines. Resolve
+the record with `shared-context resolve <kind> ... --json` before publishing.
 
 ## Detect the storage mode
 
-The storage path can be a symlink into a git repository. Resolve the root first:
+The shared store path can be a symlink into a git repository. Resolve the
+record first:
 
 ```bash
-shared-context report
+shared-context resolve <kind> ... --json
 ```
 
-Then test the reported root with `git -C "<root from report>" rev-parse --show-toplevel`.
+Test its reported `root` with `git -C "<resolved record root>" rev-parse --show-toplevel`.
 
 If the command succeeds, use the git-backed workflow below. The repository root
 that it prints can contain many context slugs. It is not necessarily the resolved
@@ -35,9 +36,8 @@ Then offer these choices. Do not perform either choice until the user accepts it
 
 ## Offer a local git repository
 
-The shared store is the parent of the origin-keyed root printed by the CLI when
-storage is shared. Do not derive or replace the active root. Use `shared-context report`
-first and inspect the reported path.
+Use the resolved shared store path. Do not derive or replace it. Run
+`shared-context report` to inspect the route table first.
 
 Offer to initialize that directory. Explain that `git init` adds local version
 history but does not make the context available on another machine. If the user
@@ -72,10 +72,10 @@ even when this repository is used only as shared-context storage.
 
 ## Publish a git-backed store
 
-First inspect the branch, upstream, and worktree:
+First inspect the resolved record store's branch, upstream, and worktree:
 
 ```bash
-ROOT="$(shared-context root)"
+ROOT="<resolved record root>"
 git -C "$ROOT" rev-parse --abbrev-ref HEAD
 git -C "$ROOT" rev-parse --abbrev-ref '@{upstream}'
 git -C "$ROOT" status --porcelain
@@ -122,7 +122,8 @@ Unrelated existing changes can remain. Report them; do not stage them.
 Build a remote link only after the file is pushed.
 
 - For a file under a pushed shared context root, build the link from the storage
-  repository's `origin` and pushed commit. Include the context slug:
+  repository's `origin` and pushed commit. Use the resolved `ref` and include
+  the context slug:
   `https://github.com/{owner}/{repo}/blob/{sha}/{slug}/library/web/rfc-2119.md`.
 - For an artifact-share store, include `shared-context/` before the slug:
   `https://github.com/{owner}/{repo}/blob/{sha}/shared-context/{slug}/library/web/rfc-2119.md`.

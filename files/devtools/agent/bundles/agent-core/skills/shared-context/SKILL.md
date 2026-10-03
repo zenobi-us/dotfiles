@@ -6,8 +6,8 @@ user-invocable: true
 
 # Shared Context
 
-Origin-keyed engineering context. Alignment files and ingested source material live
-outside any single repository clone, keyed by the repository's git `origin`.
+Origin-keyed engineering context. Each file-backed record uses its configured
+repository or shared store. The repository's Git `origin` identifies shared context.
 
 ## Markdown access policy
 
@@ -37,16 +37,20 @@ CLI's own dependencies on first run. You **MUST NOT** prefix the call with Bun's
 runner because that skips the entry point's shebang.
 
 
-`report` is the default. Running `scripts/shared-context/cli.ts` without a subcommand and running
-`cli.ts report` do the same thing. Use `scripts/shared-context/cli.ts root` when a script needs only
-the resolved root; do not derive it.
-Output:
+`report` is the default. It prints the route table and alignment root. Use
+`scripts/shared-context/cli.ts resolve <kind> ... --json` to resolve a record.
+Use `scripts/shared-context/cli.ts root` only when a script needs the alignment
+root.
 
-```
-storage: shared | repository
-root: <resolved root — use this for every write>
-shared root: <equals root in shared mode, equals the repository root otherwise>
-shared candidate: <where shared storage would live; printed only in repository mode>
+```text
+mode: shared | repository | mixed
+root: <alignment root>
+alignment: shared | repository
+tickets: <tracker adapter or local store>
+initiatives: shared | repository
+workflows: shared | repository
+evidence: workflows -> <store>, or <store>
+sources: alignment -> <store>, or <store>
 origin: <git origin>
 slug: <origin-derived directory name>
 ```
@@ -69,17 +73,20 @@ Run the shared-context CLI before you choose a path or link:
 scripts/shared-context/cli.ts
 ```
 
-Use the CLI output to determine the storage mode. Use its resolved root instead
-of deriving a path yourself. The CLI reports the resolved root, storage mode,
-origin, and context slug.
+Use `resolve <kind>` for the record you will read or write. Its structured
+result names the adapter, store, root, path, stable reference, and publication
+rule. Do not infer a store from `mode` or join paths under `root`.
+
+For an external ticket, use the ticket skill. `shared-context` resolves only
+file-backed records. A file-backed record can use the repository or the
+origin-keyed shared store.
 
 ### Write rule
 
-When the CLI reports `storage: shared`, write the file under the resolved `root`.
-Commit and push every file that you create or update there when the shared store
-has a usable git remote. Other agents only see the update after it reaches the
-remote. A non-git store is valid local-only storage. Keep the write and report
-that it is local.
+When a record resolves to `store: shared`, write to its resolved path. Read
+`references/publishing.md` and publish when the store has a usable git remote.
+A non-git store is valid local-only storage. Keep the write and report that it
+is local.
 
 ### Link rule
 
@@ -103,23 +110,23 @@ For a file in the repository being changed, use a path relative to that
 repository root.
 
 ## Rules that override convenience
-
-1. You **MUST NOT** run `init` or `migrate` from an implied request. Both mutate
-   storage. Run either only when the user names that operation.
-2. You **MUST** write under the resolved `root`. You **MUST NOT** mix the
-   repository root and the shared root in one task.
-3. You **MUST** use `shared-context path` to get a typed target. Do not join
+1. You **MUST NOT** run `init` or `migrate` from an implied request. Both
+   mutate storage. Run either only when the user names that operation.
+2. You **MUST** resolve each record kind before choosing a path. Do not infer a
+   store from the report mode or mix a resolved path with a different root.
+3. You **MUST** use `shared-context resolve` to get a typed target. Do not join
    root-relative path segments in a skill. For source ingestion, use
-   `path source --ticket <ID> --source <SOURCE>` or
-   `path source --library --source <SOURCE>`.
-4. You **MUST** run `shared-context index <dir>` after you add or remove a file in a
-   source directory.
-5. If `storage` is `shared`, you **MUST** read `references/publishing.md` after
-   the write. Publish when the store has a usable git remote. A non-git store is
-   valid local-only storage: keep the completed write, report that it is local,
-   and offer the version-control options in that reference.
+   `resolve source --ticket <ID> --source <SOURCE>` or
+   `resolve source --library --source <SOURCE>`.
+4. Run `shared-context index <dir> --kind source --source <SOURCE>` after you
+   add or remove a file in a source directory. Include `--ticket <ID>` or
+   `--library` to select the source record.
+5. For each record resolved to `store: shared`, you **MUST** read
+   `references/publishing.md` after the write. Publish when that store has a
+   usable git remote. A non-git store is valid local-only storage.
 6. You **MUST NOT** overwrite a file that holds hand-written work. See the
    authored-content guard in `references/layout.md`.
-7. You **MUST** stop and report a non-zero exit status from `shared-context`. Do not retry
-   silently. This rule covers `shared-context` only. An ordinary shell probe such as `ls`
-   exits non-zero for an absent path, which is an answer, not a failure.
+7. You **MUST** stop and report a non-zero exit status from `shared-context`.
+   Do not retry silently. This rule covers `shared-context` only. An ordinary
+   shell probe such as `ls` exits non-zero for an absent path, which is an
+   answer, not a failure.

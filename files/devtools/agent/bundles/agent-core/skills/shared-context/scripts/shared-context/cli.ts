@@ -8,12 +8,18 @@ import {
   listSharedContextFiles,
   listSharedContexts,
   migrateAlignmentContext,
+  migrateContextRoute,
+  migrateLegacyStorage,
+  renderContextReport,
   renderSharedContext,
   resolveContextPath,
+  resolveContextRecord,
   resolveSharedContext,
   type ContextPathOptions,
   type Exec,
+  type RecordKind,
   type SharedAgentContext,
+  type Store,
 } from "./lib";
 
 const exec: Exec = async (command, args) => {
@@ -40,7 +46,7 @@ async function runInject(): Promise<void> {
   }
 
   const context = await resolveSharedContext(exec, cwd);
-  if (!context || context.storage !== "shared" || !context.instructions) {
+  if (!context || !context.instructions) {
     process.stdout.write("null\n");
     return;
   }
@@ -71,21 +77,108 @@ async function requireContext(): Promise<SharedAgentContext | undefined> {
   return context;
 }
 
-async function runInit(): Promise<void> {
+async function runInit(ctx: { flags: { preset?: string } }): Promise<void> {
   const context = await requireContext();
   if (!context) return;
 
+  if (ctx.flags.preset && ctx.flags.preset !== "hosted-shared") {
+    console.error(`Unknown setup preset "${ctx.flags.preset}"`);
+    process.exitCode = 1;
+    return;
+  }
+  if (ctx.flags.preset === "hosted-shared" && context.routes.tickets.adapter === "local-markdown") {
+    console.error("The hosted-shared preset requires an external ticket adapter. Configure the tracker, then retry.");
+    process.exitCode = 1;
+    return;
+  }
+  if (ctx.flags.preset === "hosted-shared"
+    && context.mode !== "shared"
+    && await Bun.file(path.join(context.candidateSharedRoot!, ".context-routes.toml")).exists()) {
+    console.error(`Cannot apply hosted-shared preset over existing routes:\n${renderContextReport(context)}\nMigrate each record kind explicitly, then retry.`);
+    process.exitCode = 1;
+    return;
+  }
   const { agents, created } = await initializeSharedContext(context);
-  console.log(created ? `Created ${agents}. Shared storage activates on the next session.` : `${agents} already exists`);
+  console.log(`${created ? `Created ${agents}` : `${agents} already exists`}. Shared storage activates on the next session.`);
+  if (ctx.flags.preset === "hosted-shared") {
+    console.log("Preset: Hosted tickets with shared engineering records");
+  }
 }
 
-async function runMigrate(): Promise<void> {
+async function runMigrate(ctx: {
+  args: { kind?: string };
+  flags: { to?: string; legacyOnly?: boolean };
+}): Promise<void> {
   const context = await requireContext();
   if (!context) return;
-
   try {
-    const result = await migrateAlignmentContext(context);
-    console.log(`Copied ${result.copied.length} alignment path(s) to ${result.storage} storage:\n${result.copied.join("\n")}`);
+    if (ctx.flags.legacyOnly) {
+      await migrateLegacyStorage(context);
+      console.log(`Wrote ${path.join(context.candidateSharedRoot!, ".context-routes.toml")} and removed the legacy .storage marker`);
+      return;
+    }
+    if (!ctx.args.kind && !ctx.flags.to) {
+      const result = await migrateAlignmentContext(context);
+      console.log(`Copied ${result.copied.length} alignment path(s) to ${result.store} storage:\n${result.copied.join("\n")}`);
+      console.log(result.store === "shared" ? "Publication: push-if-remote" : "Publication: repository Git");
+      return;
+    }
+    const validKinds = ["alignment", "tickets", "initiatives", "workflows", "evidence", "sources"];
+    const kind = ctx.args.kind === "ticket" ? "tickets" : ctx.args.kind;
+    if (!kind || !validKinds.includes(kind)) throw new Error(`Migration requires one of: ${validKinds.join(", ")}`);
+    if (ctx.flags.to !== "shared" && ctx.flags.to !== "repository") throw new Error("Migration requires --to shared or --to repository");
+    const result = await migrateContextRoute(context, kind as RecordKind, ctx.flags.to as Store);
+    console.log(`Copied ${result.copied.length} ${result.kind} path(s) to ${result.store} storage:\n${result.copied.join("\n")}`);
+    console.log(result.store === "shared" ? "Publication: push-if-remote" : "Publication: repository Git");
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+  }
+}
+
+type RecordFlags = {
+  id?: string;
+  workflow?: string;
+  run?: string;
+  ticket?: string;
+  source?: string;
+  library?: boolean;
+};
+type RecordOptions = Parameters<typeof resolveContextRecord>[1];
+
+function recordOptions(kind: string, flags: RecordFlags, operation: string): RecordOptions {
+  switch (kind) {
+    case "alignment":
+      return { kind: "alignment" };
+    case "ticket":
+      if (!flags.id) throw new Error(`${operation} ticket requires --id`);
+      return { kind: "ticket", id: flags.id };
+    case "initiative":
+    case "workflow":
+    case "adr":
+      if (!flags.id) throw new Error(`${operation} ${kind} requires --id`);
+      return { kind, id: flags.id };
+    case "evidence":
+      if (!flags.workflow || !flags.run) throw new Error(`${operation} evidence requires --workflow and --run`);
+      return { kind: "evidence", workflow: flags.workflow, run: flags.run };
+    case "source":
+      if (!flags.source) throw new Error(`${operation} source requires --source`);
+      return { kind: "source", source: flags.source, ticket: flags.ticket, library: flags.library };
+    default:
+      throw new Error(`Unknown record kind "${kind}"`);
+  }
+}
+
+async function runResolve(ctx: {
+  args: { kind: string };
+  flags: { id?: string; workflow?: string; run?: string; ticket?: string; source?: string; library?: boolean; json?: boolean };
+}): Promise<void> {
+  const context = await requireContext();
+  if (!context) return;
+  try {
+    const record = await resolveContextRecord(context, recordOptions(ctx.args.kind, ctx.flags, "resolve"));
+    if (ctx.flags.json) console.log(JSON.stringify(record, null, 2));
+    else console.log(record.path ?? record.ref);
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
@@ -130,12 +223,33 @@ async function runPath(ctx: { args: { kind: string }; flags: PathFlags }): Promi
   }
 }
 
-async function runIndex(ctx: { args: { directory: string }; flags: { force?: boolean } }): Promise<void> {
+async function runIndex(ctx: {
+  args: { directory: string };
+  flags: {
+    force?: boolean;
+    kind?: string;
+    id?: string;
+    workflow?: string;
+    run?: string;
+    ticket?: string;
+    source?: string;
+    library?: boolean;
+  };
+}): Promise<void> {
   const context = await requireContext();
   if (!context) return;
 
   try {
-    const result = await buildContextIndex(path.resolve(ctx.args.directory), { force: ctx.flags.force, root: context.root });
+    let root = context.alignmentRoot;
+    if (ctx.flags.kind) {
+      const record = await resolveContextRecord(
+        context,
+        recordOptions(ctx.flags.kind, ctx.flags, "index --kind"),
+      );
+      if (!record.root) throw new Error(`No file store is available for ${ctx.flags.kind}`);
+      root = record.root;
+    }
+    const result = await buildContextIndex(path.resolve(ctx.args.directory), { force: ctx.flags.force, root });
     const count = `${result.entries.length} entr${result.entries.length === 1 ? "y" : "ies"}`;
     console.log(`${result.path}\n${count}${result.preserved ? " (managed block updated, surrounding text kept)" : ""}`);
   } catch (error) {
@@ -172,14 +286,16 @@ async function runReport(ctx: { args: { command: string[] } }): Promise<void> {
   if (!context) return;
 
   console.log([
-    `storage: ${context.storage}`,
-    `root: ${context.root}`,
+    `mode: ${context.mode}`,
+    `root: ${context.alignmentRoot}`,
     `shared root: ${context.sharedRoot}`,
     ...(context.candidateSharedRoot && context.candidateSharedRoot !== context.sharedRoot
       ? [`shared candidate: ${context.candidateSharedRoot}`]
       : []),
     `origin: ${context.origin}`,
     `slug: ${context.slug}`,
+    "",
+    renderContextReport(context).split("\n").slice(3).join("\n"),
   ].join("\n"));
   if (context.error) console.error(context.error);
 }
@@ -198,7 +314,21 @@ const cli = new Crust("shared-context")
     .run(runList))
   .command("init", (cmd) => cmd
     .meta({ description: "Create shared context storage for this repository" })
+    .flags({ preset: { type: "string" } })
     .run(runInit))
+  .command("resolve", (cmd) => cmd
+    .meta({ description: "Resolve one record through its configured adapter and store" })
+    .flags({
+      id: { type: "string" },
+      workflow: { type: "string" },
+      run: { type: "string" },
+      ticket: { type: "string" },
+      source: { type: "string" },
+      library: { type: "boolean" },
+      json: { type: "boolean" },
+    })
+    .args([{ name: "kind", type: "string", required: true }] as const)
+    .run(runResolve))
   .command("path", (cmd) => cmd
     .meta({ description: "Print a typed path under the resolved context root" })
     .flags({
@@ -210,12 +340,26 @@ const cli = new Crust("shared-context")
     .args([{ name: "kind", type: "string", required: true }] as const)
     .run(runPath))
   .command("index", (cmd) => cmd
-    .meta({ description: "Rebuild index.md from the frontmatter of a source directory" })
-    .flags({ force: { type: "boolean" } })
+    .meta({ description: "Rebuild index.md within a resolved record store" })
+    .flags({
+      force: { type: "boolean" },
+      kind: { type: "string" },
+      id: { type: "string" },
+      workflow: { type: "string" },
+      run: { type: "string" },
+      ticket: { type: "string" },
+      source: { type: "string" },
+      library: { type: "boolean" },
+    })
     .args([{ name: "directory", type: "string", required: true }] as const)
     .run(runIndex))
   .command("migrate", (cmd) => cmd
-    .meta({ description: "Copy alignment files between repository and shared storage" })
+    .meta({ description: "Migrate one record kind between repository and shared storage" })
+    .flags({
+      to: { type: "string" },
+      legacyOnly: { type: "boolean" },
+    })
+    .args([{ name: "kind", type: "string" }] as const)
     .run(runMigrate))
   .command("doctor", (cmd) => cmd
     .meta({ description: "Check Bun and external command prerequisites" })
