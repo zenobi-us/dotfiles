@@ -42,3 +42,34 @@ composer:
   tokenRate: true
 git:
   enabled: false
+skills:
+  customDirectories:
+    - ~/.pi/agent/bundles/agent-core/skills
+    - ~/.pi/agent/bundles/agent-core/skills/documents
+    - ~/.pi/agent/bundles/agent-core/skills/skill-development
+    - ~/.pi/agent/bundles/agent-core/skills/sop
+    - ~/.pi/agent/bundles/creator/skills
+    - ~/.pi/agent/bundles/creator/skills/imagegen
+    - ~/.pi/agent/bundles/developer/skills
+    - ~/.pi/agent/bundles/developer/skills/atlassian
+    - ~/.pi/agent/bundles/developer/skills/better-auth
+    - ~/.pi/agent/bundles/developer/skills/browsers
+    - ~/.pi/agent/bundles/developer/skills/devtools
+    - ~/.pi/agent/bundles/developer/skills/game-dev
+    - ~/.pi/agent/bundles/developer/skills/game-dev/godot
+    - ~/.pi/agent/bundles/developer/skills/git
+    - ~/.pi/agent/bundles/developer/skills/shells
+    - ~/.pi/agent/bundles/developer/skills/shells/neovim
+    - ~/.pi/agent/bundles/developer/skills/uidev
+    - ~/.pi/agent/bundles/matt-pocock/skills
+    - ~/.pi/agent/bundles/platform/skills/devtools
+    - ~/.pi/agent/bundles/platform/skills/devtools/cloudflare
+    - ~/.pi/agent/bundles/platform/skills/devtools/mise
+    - ~/.pi/agent/bundles/platform/skills/devtools/moonrepo
+    - ~/.pi/agent/bundles/platform/skills/devtools/pi-mono
+    - ~/.pi/agent/bundles/platform/skills/homeassistant
+    - ~/.pi/agent/bundles/researcher/skills
+    - ~/.pi/agent/bundles/researcher/skills/devtools
+    - ~/.pi/agent/bundles/writing/skills
+    - ~/.pi/agent/bundles/writing/skills/business
+    - ~/.pi/agent/bundles/writing/skills/fictional

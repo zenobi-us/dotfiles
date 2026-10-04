@@ -115,12 +115,13 @@ Apply the full machine setup:
 mise bootstrap --yes
 ```
 
-Apply selected bootstrap parts:
+Apply selected bootstrap parts, or refresh only the OMP agent setup:
 
 ```bash
 mise bootstrap --only dotfiles --yes
 mise bootstrap --only tools --yes
 mise bootstrap --only task --yes
+mise run bootstrap-agent
 ```
 
 Inspect state without changing the machine:
