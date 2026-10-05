@@ -11,18 +11,6 @@
   "lastChangelogVersion": "1.0.2",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
-    "./bundles/agent-core",
-    "./bundles/developer",
-    "./bundles/matt-pocock",
-    "./bundles/creator",
-    "./bundles/researcher",
-    "./bundles/platform",
-    "./bundles/writing",
-    "./extensions/@vanillagreen/pi-qol",
-    "./extensions/@vanillagreen/pi-web-tools",
-    "./extensions/@vanillagreen/pi-tool-renderer",
-    "./extensions/@vanillagreen/pi-caveman",
-    "./extensions/@vanillagreen/pi-task-panel",
     "./extensions/@zenobius/pi-annotate",
     "./extensions/@zenobius/pi-autoresearch",
     "./extensions/@zenobius/pi-handoff",
@@ -30,9 +18,10 @@
     "./extensions/@zenobius/sub-limits",
     "npm:pi-add-dir",
     "npm:@mrclrchtr/supi-ask-user",
-    "npm:pi-debug-mode"
+    "npm:pi-debug-mode",
+    "npm:pi-code"
   ],
-  "quietStartup": true,
+  "quietStartup": "header",
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
   "showHardwareCursor": false,
   "terminal": {
