@@ -5,6 +5,7 @@ dotfiles.default_mode = "symlink"
 [tools]
 "cargo:p1rallels/codemapper" = "latest"
 "github:Feel-ix-343/markdown-oxide" = "latest"
+"github:gopasspw/gopass" = "latest"
 "github:aristocratos/btop" = "latest"
 "github:cantino/mcfly" = "latest"
 "github:hmarr/codeowners" = "latest"
