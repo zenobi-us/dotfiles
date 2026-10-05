@@ -1,1 +1,0 @@
-../bundles/developer/agents/reviewer-safety.md
