@@ -37,11 +37,20 @@ The hooks can supply `claude`, `omp`, `pi`, or `unknown-agent`. `detect-agent` r
 scripts/router.ts contracts --muxer <resolved-muxer> --agent <resolved-agent>
 ```
 
-Always pass `--muxer` and `--agent` explicitly. The command prints JSON: `{ muxer, agent, muxerContract, agentContract, needsOperatorInput }`.
+Always pass `--muxer` and `--agent` explicitly. The command prints JSON with `muxer`, `agent`, contract paths, `limits` (`maxSubagentsPerSession`, `maxDepth`, `currentDepth`), and `needsOperatorInput`.
 
 1. Read `muxerContract` before you open, wait on, read, or close a pane.
 2. Read `agentContract` before you launch an agent.
 3. If `needsOperatorInput` is `true`, ask the user. Do not guess a muxer or an agent.
+
+# Session limits
+
+The current limits are five concurrently active direct child agents per parent session and a maximum depth of two. The root session is depth zero.
+
+- MUST track the number of direct child agents that this parent has started and not yet completed and closed. Do not exceed five active children.
+- MUST NOT start a child when the current `depth` is greater than or equal to `max-depth`.
+- MUST set `MUXER_SUBAGENT_DEPTH` to the parent's `depth` plus one in the child agent's environment. This lets the router report the child's depth and enforce the depth check for later spawns.
+- MUST NOT spawn if the emitted `depth` is invalid. The root session gets depth zero from the router when no depth is set.
 
 # Fresh session mechanic
 

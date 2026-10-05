@@ -7,10 +7,13 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   AGENTS,
+  currentSubagentDepth,
   detectAgent,
   detectMuxer,
   isAgent,
   isMuxer,
+  MAX_SUBAGENT_DEPTH,
+  MAX_SUBAGENTS_PER_SESSION,
   MUXERS,
   renderSessionContext,
 } from "./session-context.ts";
@@ -121,11 +124,15 @@ const contractsCmd = app
           agent,
           muxerContract,
           agentContract,
+          limits: {
+            maxSubagentsPerSession: MAX_SUBAGENTS_PER_SESSION,
+            maxDepth: MAX_SUBAGENT_DEPTH,
+            currentDepth: currentSubagentDepth(),
+          },
           needsOperatorInput:
             (muxer === "unknown-muxer" && !flags.muxer) ||
             (agent === "unknown-agent" && !flags.agent),
         },
-        null,
         2,
       ),
     );
