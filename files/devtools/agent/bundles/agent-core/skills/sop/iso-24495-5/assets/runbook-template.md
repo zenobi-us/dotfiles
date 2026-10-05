@@ -1,0 +1,26 @@
+# [Task Title]
+
+- **Purpose:** [What the reader will have done by the end, and what the task covers, in one sentence.]
+- **For:** [Who runs this task, and when.]
+- **Version:** [Version or date.]
+- **Instead of this:** [Link the runbook that may suit the reader better and say when to use it, or delete this line.]
+
+## Check these before you start
+
+- [ ] [Requirement 1]
+- [ ] [Requirement 2]
+
+> [!CAUTION]
+> [Critical risks or conditions, before any step runs.]
+
+## Run these steps in order
+
+1. [First action]
+2. [Second action]
+   > [!NOTE]
+   > [Expected output for step 2. Where it differs, stop and do not run step 3.]
+3. [Third action]
+
+## Confirm the task worked
+
+- Run `[command]` and confirm the output contains `[expected state]`.

@@ -1,8 +1,9 @@
 modelRoles:
-  default: openai-codex/gpt-5.6-sol
+  default: openai-codex/gpt-6-luna:medium
   smol: openai-codex/gpt-6-luna:high
   plan: openai-codex/gpt-6-astra:medium
   commit: openai-codex/gpt-6-luna:off
+  slow: strata/qwen3.8-flash-next-coder-iq1_m
 symbolPreset: nerd
 theme:
   dark: dark-rose-pine
@@ -73,3 +74,5 @@ skills:
     - ~/.pi/agent/bundles/writing/skills
     - ~/.pi/agent/bundles/writing/skills/business
     - ~/.pi/agent/bundles/writing/skills/fictional
+codexResets:
+  autoRedeem: "no"
