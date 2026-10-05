@@ -1,5 +1,5 @@
 ---
-name: simple-english
+name: asd-ste100
 version: 1.0.0
 description: |
   Write or rewrite technical text with the rules of ASD-STE100 Simplified
