@@ -33,9 +33,8 @@ export const DEFAULT_CLONE_ROOT = "~/.local/share/artifact-shares";
 export type ShareRepo = {
   repo: string;
   branch: string;
-  pages_url: string;
+  pages_url: string | null;
 };
-
 export type ArtifactSharesConfig = {
   clone_root: string;
   shares: Record<string, ShareRepo>;

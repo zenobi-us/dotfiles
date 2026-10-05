@@ -1,5 +1,5 @@
 {
-  "name": "artifact-share",
+  "name": "@zenobis/agent-bundle-repo-template",
   "private": true,
   "type": "module",
   "sideEffects": false,

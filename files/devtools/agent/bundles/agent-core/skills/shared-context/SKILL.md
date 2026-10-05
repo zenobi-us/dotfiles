@@ -22,9 +22,33 @@ parsers to locate or inspect local Markdown. A known path may be passed to
 alignment files, ingested files, indexes, and local ticket files. It does not
 change the implementation of the shared-context CLI itself.
 
+## The shared-context CLI
+
+it is a TypeScript script that runs in Bun. It resolves the alignment root, the
+shared-context store, and the repository store. It reports the route table and
+alignment root, and it resolves a record to its store, path, and stable reference.
+
+When running it, use the absolute path to the entry point. Do not `cd` to the skill directory.
+
+Most harnesses will tell you the absolute path to the skill file. Use that to construct the 
+absolute path to the entry point. For example, if the harness shows:
+
+```text
+files/devtools/agent/bundles/agent-core/skills/shared-context/SKILL.md
+```
+
+Then the absolute path to the entry point is:
+
+```text
+files/devtools/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts
+```
+
+You **MUST** use that absolute path to run the CLI. Do not `cd` to the skill directory and run it with a relative path.
+
+
 ## Step 0: resolve the root. Always.
 
-`scripts/shared-context/cli.ts`
+`./scripts/shared-context/cli.ts`
 
 Every shown command **MUST** set or preserve the working directory inside the
 repository being worked on because the CLI reads the origin from that working
@@ -32,14 +56,14 @@ directory. Invoking the entry point by its path does not change the working
 directory. Do not `cd` to the skill directory: that resolves a different
 repository and reports the wrong root.
 
-Run `scripts/shared-context/cli.ts` directly. Its shebang starts Bun through mise and installs the
+Run `./scripts/shared-context/cli.ts` directly. Its shebang starts Bun through mise and installs the
 CLI's own dependencies on first run. You **MUST NOT** prefix the call with Bun's
 runner because that skips the entry point's shebang.
 
 
 `report` is the default. It prints the route table and alignment root. Use
-`scripts/shared-context/cli.ts resolve <kind> ... --json` to resolve a record.
-Use `scripts/shared-context/cli.ts root` only when a script needs the alignment
+`./scripts/shared-context/cli.ts resolve <kind> ... --json` to resolve a record.
+Use `./scripts/shared-context/cli.ts root` only when a script needs the alignment
 root.
 
 ```text
@@ -70,7 +94,7 @@ slug: <origin-derived directory name>
 Run the shared-context CLI before you choose a path or link:
 
 ```bash
-scripts/shared-context/cli.ts
+./scripts/shared-context/cli.ts
 ```
 
 Use `resolve <kind>` for the record you will read or write. Its structured
@@ -110,6 +134,7 @@ For a file in the repository being changed, use a path relative to that
 repository root.
 
 ## Rules that override convenience
+0. You **MUST** Always use the absolute path to the CLI entry point. Do not `cd` to the skill directory.
 1. You **MUST NOT** run `init` or `migrate` from an implied request. Both
    mutate storage. Run either only when the user names that operation.
 2. You **MUST** resolve each record kind before choosing a path. Do not infer a
@@ -130,3 +155,4 @@ repository root.
    Do not retry silently. This rule covers `shared-context` only. An ordinary
    shell probe such as `ls` exits non-zero for an absent path, which is an
    answer, not a failure.
+8. If there exists `<shared-agent-context />` block in the system prompt, then you don't need to run the shared-context cli to get a report.

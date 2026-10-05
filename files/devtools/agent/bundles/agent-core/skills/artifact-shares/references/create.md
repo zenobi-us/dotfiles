@@ -1,7 +1,8 @@
 # Create a share repository
 
-Make a new private GitHub repository, fill it with the site template, and turn on
-GitHub Pages.
+Make a new GitHub repository and copy the share-site template into it. By
+default, the command enables GitHub Pages. Use `--no-pages` to keep the
+repository-only workflow.
 
 ## Before you start
 
@@ -21,25 +22,28 @@ check:secrets` installs them inside the clone on first use.
 
 ## Steps
 
-1. You **MUST** agree the name with the user. The name becomes the repository
-   name and the last part of the site URL. It must be lowercase letters, digits,
-   dot, dash, or underscore.
+1. You **MUST** agree the name with the user. The name must be lowercase
+   letters, digits, dot, dash, or underscore. Without `--no-pages`, it also
+   becomes the last part of the site URL.
 
 2. You **MUST** run the command with that name:
 
    ```bash
    cli.ts create <name>
-   cli.ts create <name> --owner <org>     # an organisation instead of you
-   cli.ts create <name> --public          # everyone can read every share in it
+   cli.ts create <name> --owner <org>        # an organisation instead of you
+   cli.ts create <name> --public             # everyone can read every share in it
+   cli.ts create <name> --no-pages           # keep the repository private, without a site
    ```
 
-   `--public` is the only thing that works on a free plan. It is a decision
-   the user makes. You **MUST NOT** pass it on your own.
+   `--public` is a visibility choice. You **MUST NOT** pass it on your own.
+   `--no-pages` creates a private repository without a site. To enable Pages
+   later, read `references/pages.md`.
 
-3. You **MUST** report the printed `pagesUrl` to the user, together with the
-   warning below.
+3. You **MUST** report the printed `pagesUrl` and visibility warning when Pages
+   is enabled. For `--no-pages`, report `pagesUrl: null`.
 
-4. You **SHOULD** watch the first deploy. The site 404s until it finishes:
+4. When Pages is enabled, you **SHOULD** watch the first deploy. The site 404s
+   until it finishes:
 
    ```bash
    gh run watch "$(gh run list --repo <owner>/<name> --limit 1 --json databaseId --jq '.[0].databaseId')" --repo <owner>/<name>
@@ -55,13 +59,15 @@ check:secrets` installs them inside the clone on first use.
 | 4 | Refuses if the clone directory already exists |
 | 5 | Creates the repository with `gh repo create --private`, or `--public` with the flag |
 | 6 | Copies `assets/repo-template/` into the clone and renames `package.json` |
-| 7 | Installs the git hooks with `hk install`, so the pre-commit checks are live |
-| 8 | Commits and pushes `main` |
-| 9 | Sets the Pages source to `build_type: workflow` |
-| 10 | Records the share in `~/.config/artifact-shares.json` |
+| 7 | With `--no-pages`, archives the deploy workflow outside `.github/workflows/` |
+| 8 | Installs the git hooks with `hk install`, so the pre-commit checks are live |
+| 9 | Commits and pushes `main` |
+| 10 | Enables Pages unless `--no-pages` is set |
+| 11 | Records the share in `~/.config/artifact-shares.json` |
 
-Nothing is served from a branch. `.github/workflows/deploy.yml` builds the site
-and uploads `dist/public`.
+When Pages is enabled, `.github/workflows/deploy.yml` builds the site and
+uploads `dist/public`. In repository-only mode, the workflow is stored at
+`.artifact-shares/deploy.yml` and does not run.
 
 ## Where things land
 
@@ -89,12 +95,13 @@ gh api orgs/<owner> --jq .plan.name     # an organisation
 gh api user --jq .plan.name             # your own account
 ```
 
-A free plan leaves two choices, and both belong to the user:
+A free plan leaves these choices, and each belongs to the user:
 
-| Choice | Cost |
+| Choice | Effect |
 |---|---|
-| Upgrade the account | Money |
-| `create <name> --public` | Anyone can read every share in it, for ever |
+| Upgrade the account | Keep the repository private and enable Pages |
+| `create <name> --no-pages` | Keep a private repository; no website is served |
+| `create <name> --public` | Anyone can read every share in the repository |
 
 You **MUST NOT** make a share repository public to get past this. Ask.
 

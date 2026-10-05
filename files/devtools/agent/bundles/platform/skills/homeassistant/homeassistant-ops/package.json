@@ -1,5 +1,5 @@
 {
-	"name": "homeassistant-ops",
+	"name": "@zenobis/agent-bundle-homeassistant-ops",
 	"private": true,
 	"type": "module",
 	"dependencies": {

@@ -13,6 +13,10 @@ work-shares  [12 shares]
   repo:  zenobi-us/work-shares
   pages: https://zenobi-us.github.io/work-shares/
   clone: /home/zenobius/.local/share/artifact-shares/work-shares
+private-evidence  [not cloned]
+  repo:  zenobi-us/private-evidence
+  pages: disabled
+  clone: /home/zenobius/.local/share/artifact-shares/private-evidence
 ```
 
 | Line | Meaning |
@@ -20,7 +24,7 @@ work-shares  [12 shares]
 | `[12 shares]` | Lines in the clone's `.types` file |
 | `[not cloned]` | The config names it, but the clone directory is missing |
 | `repo` | The GitHub repository |
-| `pages` | The site root. A share page is `<pages>shares/<hash>/` |
+| `pages` | The site root, or `disabled` when Pages is off |
 | `clone` | Where `share` writes |
 
 ## What it reads
@@ -44,8 +48,8 @@ config entry is not found. To adopt one, add the entry by hand:
 }
 ```
 
-`pages_url` **MUST** end with a slash. Every published URL is built by joining to
-it.
+`pages_url` is `null` when Pages is disabled. Otherwise, it **MUST** end with a
+slash. The CLI builds each page URL from this value.
 
 ## When a share says `not cloned`
 

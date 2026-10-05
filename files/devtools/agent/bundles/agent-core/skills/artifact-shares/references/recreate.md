@@ -15,9 +15,9 @@ You **MUST** state the cost and the limit:
 | | |
 |---|---|
 | Cost | The commit history, issues, and stars are gone |
-| Cost | The site 404s until the new deploy finishes |
-| Kept | The repository name, so the Pages URL does not change |
-| Kept | **Every share still in the tree keeps the URL it had** |
+| Cost | When Pages is enabled, the site 404s until the new deploy finishes |
+| Kept | The repository name |
+| Kept | With Pages enabled, every remaining share keeps its URL |
 | Limit | It does not recall what was already read, cloned, or forked |
 
 That last row is why rotation comes first, always.
@@ -46,9 +46,10 @@ the objects because it removes the repository.
    cli.ts recreate <name> --confirm <name>
    ```
 
-4. You **MUST** report the new `pagesUrl` and the bundle path.
+4. You **MUST** report `pagesUrl` when Pages is enabled, or `pagesUrl: null`
+   when it is disabled. Also report the bundle path.
 
-5. You **SHOULD** watch the first deploy:
+5. When Pages is enabled, you **SHOULD** watch the first deploy:
 
    ```bash
    gh run watch "$(gh run list --repo <owner>/<name> --limit 1 --json databaseId --jq '.[0].databaseId')" --repo <owner>/<name>
@@ -62,11 +63,11 @@ the objects because it removes the repository.
 | 2 | Refuses a path that is not a share repository clone | — |
 | 3 | Runs every check on the working tree. All **MUST** pass | — |
 | 4 | Writes `<clone>/../<name>-<timestamp>.bundle`, the whole old history | — |
-| 5 | Turns GitHub Pages off | yes |
+| 5 | Turns GitHub Pages off when it was enabled | yes |
 | 6 | Deletes the repository | **no** |
 | 7 | Creates it again, same owner, same name, **same visibility** | — |
 | 8 | Removes `.git`, commits the tree once, pushes | — |
-| 9 | Installs the hooks and sets Pages back to `build_type: workflow` | — |
+| 9 | Restores Pages only if it was enabled before the rebuild | — |
 
 Step 3 comes before step 6 on purpose. Rebuilding around a secret spends the one
 move that removes it.

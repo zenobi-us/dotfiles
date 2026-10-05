@@ -1,5 +1,5 @@
 {
-  "name": "@zenobius/pi-agent-core",
+  "name": "@zenobis/agent-bundle-agent-core",
   "version": "0.1.0",
   "description": "Superpowers, skill management, and shell environment for pi",
   "private": true,

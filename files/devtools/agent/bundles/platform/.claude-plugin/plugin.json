@@ -1,7 +1,7 @@
 {
   "name": "platform",
   "description": "Cloudflare, home automation, infra ops, and specialized deployment experts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "skills": [
     "./skills/files/devtools/",
     "./skills/files/devtools/cloudflare/",

@@ -1,5 +1,5 @@
 {
-	"name": "cloudflare-worker-base-test",
+	"name": "@zenobis/agent-bundle-assets",
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {

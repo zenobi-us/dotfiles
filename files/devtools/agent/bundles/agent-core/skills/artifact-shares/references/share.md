@@ -1,7 +1,8 @@
 # Share an artifact
 
-Convert one artifact to MDX, copy its files, and push. The deploy workflow builds
-and publishes the page.
+Convert one artifact to MDX, copy its files, and push. When Pages is enabled,
+the deploy workflow publishes the page. Otherwise, the share stays in the
+repository and the command returns no page URL.
 
 ## Before you start
 
@@ -47,12 +48,12 @@ see.
    cli.ts share artifact ./report-dir --date 2026-09-01 --description "PR 6906 evidence"
    ```
 
-4. You **MUST** report the printed `url` to the user. The page 404s until the
-   deploy workflow finishes:
+4. You **MUST** report the result. With Pages enabled, report the printed `url`;
+   the page resolves after the deploy workflow finishes. In repository-only mode,
+   report `url: null` and `repositoryPath`.
 
-   ```bash
-   gh run watch "$(gh run list --repo <owner>/<name> --limit 1 --json databaseId --jq '.[0].databaseId')" --repo <owner>/<name>
-   ```
+   To enable Pages later, read `references/pages.md` first. Enabling it can
+   publish every existing share.
 
 ## Flags
 

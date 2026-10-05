@@ -35,6 +35,9 @@ Use skills by circumstance:
 | TDD implementation | `tdd` |
 | Handoff summaries | `handoff` |
 
+
+Scripts mentioned in skills with a relative path MUST ALWAYS be run with an absolute path from the skill directory. For example, `./scripts/diagnose.sh` is wrong. Use `/files/devtools/agent/scripts/diagnose.sh` instead.
+
 ## Operating Rules
 
 - Prefer existing code, standard libraries, native tools, and installed dependencies before new code.
@@ -63,6 +66,8 @@ Use skills by circumstance:
 - Never add tsconfig `paths`. Bun reads `paths` at runtime, so a mapping added
   for the editor changes what the script imports and breaks it. Declare a
   pinned import in `<bundle>/types/versioned-imports.d.ts` instead.
+
+
 
 ## Codebase Work
 

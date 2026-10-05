@@ -1,5 +1,5 @@
 {
-  "name": "@zenobius/pi-platform",
+  "name": "@zenobis/agent-bundle-platform",
   "version": "0.1.0",
   "description": "Cloudflare, home automation, infra ops, and specialized deployment experts",
   "private": true,

@@ -1,7 +1,7 @@
 # Take a published share down
 
-`redact` removes one share from the repository and pushes. The page stops
-resolving when the next deploy finishes.
+`redact` removes one share from the repository and pushes. When Pages is enabled,
+the page stops resolving after the next deploy finishes.
 
 ## What it does not do
 
@@ -35,10 +35,11 @@ go.
    cli.ts redact 2e9171720acb --into work-shares
    ```
 
-4. You **MUST** report the removal to the user, and say plainly that the page
-   was taken down but the bytes were not recalled.
+4. You **MUST** report that the artifact was removed from the current tree but
+   remains in Git history. If Pages is enabled, report that its page will stop
+   resolving after the next deploy.
 
-5. You **SHOULD** watch the deploy. The page resolves until it finishes:
+5. When Pages is enabled, you **SHOULD** watch the deploy:
 
    ```bash
    gh run watch "$(gh run list --repo <owner>/<name> --limit 1 --json databaseId --jq '.[0].databaseId')" --repo <owner>/<name>

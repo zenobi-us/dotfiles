@@ -1,10 +1,14 @@
 {
-  "name": "@zenobius/pi-matt-pocock",
+  "name": "@zenobis/agent-bundle-matt-pocock",
   "version": "0.1.0",
   "description": "Matt Pocock engineering workflow skills",
   "private": true,
-  "keywords": ["pi-package"],
+  "keywords": [
+    "pi-package"
+  ],
   "pi": {
-    "skills": ["./skills"]
+    "skills": [
+      "./skills"
+    ]
   }
 }

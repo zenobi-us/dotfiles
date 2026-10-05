@@ -1,9 +1,10 @@
 #!/usr/bin/env -S mise exec -- bun run --install=fallback
 
 /*!
- * artifact-shares — private artifact sites on GitHub Pages.
+ * artifact-shares — checked artifact repositories with optional GitHub Pages.
  *
- *   create <name>          make a new private share repository
+ *   create <name>          make a share repository
+ *   pages enable <name>    enable Pages after explicit confirmation
  *   share <kind> <path>    publish one artifact into a share repository
  *   redact <hash>          take one published share down
  *   recreate <name>        delete the repository and build it again, cleaned
@@ -13,12 +14,12 @@
  * Read-only extras: doctor, check, self-test, --help.
  * `share --dry-run` is read-only too: it stages to a temporary directory.
  *
- * `create`, `share`, `redact`, `recreate`, and `sync` change remote state. Run
- * them only when the user names the operation. `recreate` also deletes a
- * GitHub repository, and asks for the name twice before it does.
+ * `create`, `pages enable`, `share`, `redact`, `recreate`, and `sync` change
+ * remote state. Run them only when the user names the operation. `recreate`
+ * deletes the repository and asks for the name twice before it does.
  */
 
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, cpSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, cpSync, rmSync, statSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -96,7 +97,7 @@ function pagesUrlFor(repo: string): string {
 function resolveShare(
   config: ArtifactSharesConfig,
   name: string | undefined,
-): { name: string; clone: string; repo: string; branch: string; pagesUrl: string } {
+): { name: string; clone: string; repo: string; branch: string; pagesUrl: string | null } {
   const names = Object.keys(config.shares);
   if (names.length === 0) fail(`No shares configured. Run: artifact-shares create <name>`);
 
@@ -244,14 +245,12 @@ function installHooks(clone: string): void {
 // create
 // ---------------------------------------------------------------------------
 
-async function create(name: string, options: { owner?: string; public?: boolean }): Promise<void> {
+async function create(name: string, options: { owner?: string; public?: boolean; noPages?: boolean }): Promise<void> {
   assertShareName(name);
   requireGithub();
 
-  // A free account and a free organisation cannot serve Pages from a private
-  // repository, so public is the only thing that works there. It is still a
-  // decision the user makes, never one this CLI makes for them.
   const wantPublic = options.public === true;
+  const noPages = options.noPages === true;
 
   const config = await loadConfig();
   if (config.shares[name]) fail(`${name} is already configured in ${CONFIG_FILE}`);
@@ -269,6 +268,12 @@ async function create(name: string, options: { owner?: string; public?: boolean 
   run("gh", ["repo", "create", repo, wantPublic ? "--public" : "--private"]);
 
   copyTemplate(templateDir, clone);
+  if (noPages) {
+    const workflow = path.join(clone, ".github", "workflows", "deploy.yml");
+    const archivedWorkflow = path.join(clone, ".artifact-shares", "deploy.yml");
+    mkdirSync(path.dirname(archivedWorkflow), { recursive: true });
+    renameSync(workflow, archivedWorkflow);
+  }
   // package.json ships under the template name. The repository name is the
   // better one, and nothing reads it but a person.
   const packageFile = path.join(clone, "package.json");
@@ -288,11 +293,8 @@ async function create(name: string, options: { owner?: string; public?: boolean 
   run("git", ["commit", "-m", "create artifact share site"], { cwd: clone });
   run("git", ["push", "-u", "origin", "main"], { cwd: clone });
 
-  // GitHub Pages builds from the workflow, not from a branch, so nothing is
-  // served until `deploy.yml` finishes its first run.
-  const pagesReady = enablePages(repo);
-
-  const pagesUrl = pagesUrlFor(repo);
+  const pagesReady = noPages ? false : enablePages(repo);
+  const pagesUrl = noPages ? null : pagesUrlFor(repo);
   config.shares[name] = { repo, branch: "main", pages_url: pagesUrl };
   await saveConfig(config);
 
@@ -304,6 +306,11 @@ async function create(name: string, options: { owner?: string; public?: boolean 
     ),
   );
   console.log("");
+  if (noPages) {
+    console.log("Pages is disabled. Shares are stored in the repository and have no public page URL.");
+    if (wantPublic) warnPublic(repo);
+    return;
+  }
 
   if (!pagesReady) {
     console.log("The repository and the clone are ready. The site is NOT.");
@@ -457,9 +464,18 @@ async function share(kind: string, target: string, options: ShareOptions): Promi
   const isDirectory = statSync(source).isDirectory();
 
   const hash = hashPath(source, isDirectory);
+  const shareUrl = chosen.pagesUrl ? `${chosen.pagesUrl}shares/${hash}/` : null;
   const types = readTypes(chosen.clone);
   if (types.has(hash)) {
-    console.log(JSON.stringify({ hash, kind: types.get(hash), url: `${chosen.pagesUrl}shares/${hash}/`, unchanged: true }, null, 2));
+    const url = shareUrl;
+    console.log(JSON.stringify({
+      hash,
+      kind: types.get(hash),
+      url,
+      repositoryPath: `content/shares/${hash}.mdx`,
+      unchanged: true,
+      ...(dryRun ? { dryRun: true } : {}),
+    }, null, 2));
     return;
   }
 
@@ -536,7 +552,8 @@ async function share(kind: string, target: string, options: ShareOptions): Promi
           kind,
           hash,
           title,
-          url: `${chosen.pagesUrl}shares/${hash}/`,
+          url: shareUrl,
+          repositoryPath: `content/shares/${hash}.mdx`,
           page,
           stage,
           files,
@@ -580,8 +597,9 @@ async function share(kind: string, target: string, options: ShareOptions): Promi
         kind,
         hash,
         title,
-        url: `${chosen.pagesUrl}shares/${hash}/`,
-        files: `${chosen.pagesUrl}s/${hash}/`,
+        url: shareUrl,
+        files: chosen.pagesUrl ? `${chosen.pagesUrl}s/${hash}/` : null,
+        repositoryPath: `content/shares/${hash}.mdx`,
         commit,
       },
       null,
@@ -594,9 +612,8 @@ async function share(kind: string, target: string, options: ShareOptions): Promi
 // redact, recreate
 // ---------------------------------------------------------------------------
 
-/** Take one share down. The page stops resolving as soon as the next deploy
- *  finishes. The bytes stay in git history, so this is containment, not
- *  erasure, and the command says so every time. */
+/** Remove one share from the current tree. When Pages is enabled, the page
+ *  stops resolving after the next deploy. The bytes remain in git history. */
 async function redact(hash: string, options: { into?: string }): Promise<void> {
   requireGithub();
 
@@ -627,16 +644,21 @@ async function redact(hash: string, options: { into?: string }): Promise<void> {
     ),
   );
   console.log("");
-  console.log("The page stops resolving when the next deploy finishes:");
-  console.log(`  gh run list --repo ${chosen.repo} --limit 1`);
-  console.log(`  gh run watch <id> --repo ${chosen.repo}`);
-  console.log("");
+  if (chosen.pagesUrl) {
+    console.log("The page stops resolving when the next deploy finishes:");
+    console.log(`  gh run list --repo ${chosen.repo} --limit 1`);
+    console.log(`  gh run watch <id> --repo ${chosen.repo}`);
+  } else {
+    console.log("The artifact is no longer in the repository's current tree.");
+  }
   console.log("This does NOT unpublish what was already read.");
   console.log("  - The bytes stay in this repository's git history and on GitHub.");
   console.log("  - Anyone who cloned, forked, or opened the page already has them.");
   console.log("");
   console.log("If the share carried a credential, rotate it now. Nothing else fixes that.");
-  console.log("To drop the history as well, and keep every other share's URL working:");
+  console.log(chosen.pagesUrl
+    ? "To drop the history as well, and keep every other share's URL working:"
+    : "To drop the history as well, and keep the remaining repository contents:");
   console.log(`  artifact-shares recreate ${chosen.name} --confirm ${chosen.name}`);
 }
 
@@ -646,10 +668,9 @@ async function redact(hash: string, options: { into?: string }): Promise<void> {
  *  does not: it rewrites history, breaks every clone, and leaves unreachable
  *  objects GitHub still serves.
  *
- *  The cost is smaller than it looks. The new repository takes the same
- *  owner and name, so the Pages URL does not change and every share except the
- *  redacted one resolves exactly as before. What is lost is the commit history,
- *  the issues, and the stars, none of which a share repository uses. */
+ *  The rebuilt repository keeps the same owner and name. If Pages was
+ *  enabled, its URL stays the same. The rebuild removes the commit history,
+ *  issues, and stars, none of which a share repository uses. */
 async function recreate(name: string, options: { confirm?: string; owner?: string }): Promise<void> {
   requireGithub();
 
@@ -703,8 +724,8 @@ async function recreate(name: string, options: { confirm?: string; owner?: strin
   run("git", ["commit", "-m", "recreate artifact share site"], { cwd: chosen.clone });
   run("git", ["push", "-u", "origin", chosen.branch], { cwd: chosen.clone });
 
-  const pagesReady = enablePages(chosen.repo);
-  const pagesUrl = pagesUrlFor(chosen.repo);
+  const pagesReady = chosen.pagesUrl ? enablePages(chosen.repo) : false;
+  const pagesUrl = chosen.pagesUrl ? pagesUrlFor(chosen.repo) : null;
   config.shares[chosen.name] = { repo: chosen.repo, branch: chosen.branch, pages_url: pagesUrl };
   await saveConfig(config);
 
@@ -726,6 +747,12 @@ async function recreate(name: string, options: { confirm?: string; owner?: strin
     ),
   );
   console.log("");
+  if (!chosen.pagesUrl) {
+    console.log("The repository was rebuilt. Pages remains disabled.");
+    console.log("Shares are stored in the repository and have no public page URL.");
+    if (wasPublic) warnPublic(chosen.repo);
+    return;
+  }
   if (!pagesReady) {
     console.log("The repository was rebuilt. Pages is NOT on, so no page resolves.");
     console.log(`Fix Pages, then: gh workflow run deploy --repo ${chosen.repo}`);
@@ -762,10 +789,96 @@ async function list(): Promise<void> {
     const state = existsSync(clone) ? `${countShares(clone)} shares` : "not cloned";
     console.log(`${name}  [${state}]`);
     console.log(`  repo:  ${entry.repo}`);
-    console.log(`  pages: ${entry.pages_url}`);
+    console.log(`  pages: ${entry.pages_url ?? "disabled"}`);
     console.log(`  clone: ${clone}`);
   }
 }
+
+async function enablePagesForShare(name: string, confirm: string | undefined): Promise<void> {
+  if (confirm !== name) fail(`Pages activation requires --confirm ${name}`);
+  requireGithub();
+
+  const config = await loadConfig();
+  const entry = config.shares[name];
+  if (!entry) fail(`Unknown share: ${name}. Configured: ${Object.keys(config.shares).join(", ")}`);
+  if (entry.pages_url) fail(`${name} already has GitHub Pages enabled`);
+
+  const chosen = resolveShare(config, name);
+  assertShareClone(chosen.clone);
+  ensureClone(chosen.clone, chosen.repo, chosen.branch);
+  if (run("git", ["status", "--porcelain"], { cwd: chosen.clone }).stdout) {
+    fail(`The clone has local changes. Commit or remove them before enabling Pages: ${chosen.clone}`);
+  }
+
+  const count = countShares(chosen.clone);
+  console.log(`Enabling Pages can make all ${count} existing share(s) public.`);
+  console.log("A private repository does not make its Pages site private.");
+  console.log("Continue only if every existing share can be published.");
+
+  const archivedWorkflow = path.join(chosen.clone, ".artifact-shares", "deploy.yml");
+  const activeWorkflow = path.join(chosen.clone, ".github", "workflows", "deploy.yml");
+  let commit: string | null;
+  if (existsSync(archivedWorkflow)) {
+    if (!enablePages(chosen.repo)) fail(`GitHub Pages could not be enabled for ${chosen.repo}`);
+    try {
+      mkdirSync(path.dirname(activeWorkflow), { recursive: true });
+      renameSync(archivedWorkflow, activeWorkflow);
+      commit = commitAndPush(chosen.clone, chosen.branch, "enable GitHub Pages");
+    } catch (error) {
+      const activeCommitted = run(
+        "git",
+        ["show", "HEAD:.github/workflows/deploy.yml"],
+        { cwd: chosen.clone, allowFailure: true },
+      ).ok && !run(
+        "git",
+        ["show", "HEAD:.artifact-shares/deploy.yml"],
+        { cwd: chosen.clone, allowFailure: true },
+      ).ok;
+      if (activeCommitted) {
+        console.error(`The workflow commit exists. Rerun: cli.ts pages enable ${name} --confirm ${name}`);
+      } else {
+        run("git", ["reset", "--hard", "HEAD"], { cwd: chosen.clone, allowFailure: true });
+        run("gh", ["api", `repos/${chosen.repo}/pages`, "--method", "DELETE"], { allowFailure: true });
+      }
+      throw error;
+    }
+  } else if (existsSync(activeWorkflow)) {
+    if (!enablePages(chosen.repo)) fail(`GitHub Pages could not be enabled for ${chosen.repo}`);
+    run("git", ["push", "-u", "origin", chosen.branch], { cwd: chosen.clone });
+    commit = run("git", ["rev-parse", "HEAD"], { cwd: chosen.clone }).stdout;
+  } else {
+    fail(`Deploy workflow is missing from ${chosen.clone}`);
+  }
+
+  const pagesUrl = pagesUrlFor(chosen.repo);
+  config.shares[name] = { ...entry, pages_url: pagesUrl };
+  try {
+    await saveConfig(config);
+  } catch (error) {
+    console.error(`Pages and its workflow are active. Rerun: cli.ts pages enable ${name} --confirm ${name}`);
+    console.error(`The config file could not be updated: ${CONFIG_FILE}`);
+    throw error;
+  }
+  console.log(JSON.stringify({
+    name,
+    repo: chosen.repo,
+    pagesUrl,
+    existingSharesExposed: count,
+    commit,
+  }, null, 2));
+  console.log("The first Pages deploy must finish before the URLs resolve.");
+}
+
+const pagesEnableCmd = new Crust("enable")
+  .meta({ description: "Enable Pages and publish all existing shares" })
+  .args([{ name: "name", type: "string", description: "Share name", required: true }])
+  .flags({ confirm: { type: "string", description: "Repeat the share name to confirm Pages activation" } })
+  .run(({ args, flags }) => enablePagesForShare(args.name, flags.confirm));
+
+const pagesCmd = app
+  .sub("pages")
+  .meta({ description: "Manage GitHub Pages for a share repository" })
+  .command(pagesEnableCmd);
 
 async function sync(name: string): Promise<void> {
   requireCommand("git");
@@ -862,8 +975,11 @@ const createCmd = app
       type: "boolean",
       description: "Make the repository public. Everyone can read every share in it",
     },
+    pages: { type: "boolean", default: true, description: "Enable GitHub Pages for this share repository" },
   })
-  .run(({ args, flags }: any) => create(args.name, { owner: flags.owner, public: flags.public === true }));
+  .run(({ args, flags }: any) =>
+    create(args.name, { owner: flags.owner, public: flags.public === true, noPages: flags.pages === false }),
+  );
 
 const shareCmd = app
   .sub("share")
@@ -959,6 +1075,7 @@ const COMMANDS = [
   "doctor",
   "check",
   "self-test",
+  "pages",
 ];
 
 // Crust prints "Unknown command" and returns normally, which exits 0. A caller
@@ -982,6 +1099,7 @@ try {
     .command(doctorCmd)
     .command(checkCmd)
     .command(selfTestCmd)
+    .command(pagesCmd)
     .execute();
 } catch (error) {
   if (error instanceof CliError) {
