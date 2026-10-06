@@ -2,7 +2,7 @@ import { promises as fs, type Dirent } from "node:fs";
 import path from "node:path";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { Theme } from "@earendil-works/pi-coding-agent";
-import { matchesKey, truncateToWidth, wrapTextWithAnsi, type AutocompleteItem } from "@earendil-works/pi-tui";
+import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type AutocompleteItem } from "@earendil-works/pi-tui";
 import { buildSharedContextReport, initializeContextForCwd } from "../../skills/shared-context/scripts/shared-context/api";
 import { renderSharedContext, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
 
@@ -102,12 +102,15 @@ class ContextBrowser {
   private preview = "";
   private previewPath = "";
   private previewOffset = 0;
+  private copyPicker?: CopyPathModal;
 
   constructor(
     root: string,
     private theme: Theme,
     private done: (result: void) => void,
     private requestRender: () => void,
+    private cwd: string,
+    private exec: (command: string, args: string[]) => Promise<{ stdout: string; code: number }>,
   ) {
     this.levels = [root];
   }
@@ -141,6 +144,44 @@ class ContextBrowser {
   }
 
   async handleInput(data: string): Promise<void> {
+    if (this.copyPicker) {
+      const result = this.copyPicker.handleInput(data);
+      if (result !== undefined) {
+        this.copyPicker = undefined;
+        if (result) {
+          process.stdout.write(`\x1b]52;c;${Buffer.from(result).toString("base64")}\x07`);
+        }
+      }
+      this.requestRender();
+      return;
+    }
+    if (matchesKey(data, "y")) {
+      const selected = this.entries[this.activeColumn]?.[this.cursors[this.activeColumn] ?? 0];
+      if (selected && !selected.directory) {
+        const absolute = selected.path;
+        const relative = path.relative(this.levels[0], absolute);
+        const gitRootResult = await this.exec("git", ["-C", this.cwd, "rev-parse", "--show-toplevel"]);
+        const gitRoot = gitRootResult.code === 0 ? gitRootResult.stdout.trim() : this.cwd;
+        const remoteResult = await this.exec("git", ["-C", gitRoot, "remote", "get-url", "origin"]);
+        const remote = remoteResult.code === 0 ? remoteResult.stdout.trim() : "";
+        const webRemote = remote
+          .replace(/^(?:[^@/]+@)?([^/:]+):(.+)$/, "https://$1/$2")
+          .replace(/^ssh:\/\//, "https://")
+          .replace(/\.git$/i, "");
+        const remotePath = path.relative(gitRoot, absolute).split(path.sep).join("/");
+        const remoteUrl = remote && !remotePath.startsWith("../")
+          ? `${webRemote}/blob/HEAD/${remotePath}`
+          : "File is outside the Git repository or no origin remote is configured";
+        this.copyPicker = new CopyPathModal([
+          [`shared://${relative.split(path.sep).join("/")}`, `shared://${relative.split(path.sep).join("/")}`],
+          ["Absolute path", absolute],
+          ["Filename", path.basename(absolute)],
+          ["Remote Git URL", remoteUrl],
+        ], this.theme);
+        this.requestRender();
+      }
+      return;
+    }
     if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) {
       this.done();
       return;
@@ -210,10 +251,16 @@ class ContextBrowser {
 
   render(width: number): string[] {
     const th = this.theme;
-    const inner = Math.max(24, width - 4);
+    if (this.copyPicker) return this.copyPicker.render(width);
+    const boxWidth = Math.max(28, width - 2);
+    const inner = boxWidth - 2;
     const visibleLevels = this.levels.length;
-    const previewWidth = Math.max(24, Math.floor(inner * 0.38));
-    const paneWidth = Math.max(14, Math.floor((inner - previewWidth - visibleLevels) / visibleLevels));
+    const previewWidth = Math.max(12, Math.floor(inner * 0.38));
+    const paneWidth = Math.max(8, Math.floor((inner - previewWidth - visibleLevels) / visibleLevels));
+    const row = (content: string) => {
+      const clipped = truncateToWidth(content, inner, "…", true);
+      return th.fg("border", "│") + clipped + " ".repeat(Math.max(0, inner - visibleWidth(clipped))) + th.fg("border", "│");
+    };
     const paneCount = visibleLevels + 1;
     const bodyHeight = 16;
     const lines: string[] = [];
@@ -221,8 +268,9 @@ class ContextBrowser {
     const border = th.fg("border", "│");
     const pathName = (value: string) => path.basename(value) || value;
     const header = ["Shared context", ...this.levels.map(pathName), "Preview"].join("  ›  ");
-    lines.push(th.fg("accent", clip(header, inner)));
-    lines.push(th.fg("border", "─".repeat(inner)));
+    lines.push(th.fg("border", `╭${"─".repeat(inner)}╮`));
+    lines.push(row(th.fg("accent", ` ${header}`)));
+    lines.push(th.fg("border", `├${"─".repeat(inner)}┤`));
 
     for (let rowIndex = 0; rowIndex < bodyHeight; rowIndex++) {
       const panes: string[] = [];
@@ -231,9 +279,9 @@ class ContextBrowser {
         const item = this.entries[column]?.[itemIndex];
         const cursor = this.cursors[column] === itemIndex;
         const label = item ? `${item.directory ? "▸ " : "  "}${item.name}` : "";
-        const styled = cursor && column === this.activeColumn
-          ? th.bg("selectedBg", th.fg("text", clip(label, paneWidth)))
-          : cursor ? th.fg("accent", clip(label, paneWidth)) : clip(label, paneWidth);
+        let styled = clip(label, paneWidth);
+        if (cursor && column === this.activeColumn) styled = th.bg("selectedBg", th.fg("text", styled));
+        else if (cursor) styled = th.fg("accent", styled);
         panes.push(styled);
       }
       const previewLines = this.preview.split(/\r?\n/);
@@ -241,14 +289,56 @@ class ContextBrowser {
       const active = this.activeColumn === visibleLevels;
       const previewStyled = active ? th.fg("accent", clip(previewText, previewWidth)) : clip(previewText, previewWidth);
       panes.push(previewStyled);
-      lines.push(panes.map((pane, i) => clip(pane, i === paneCount - 1 ? previewWidth : paneWidth)).join(border));
+      const content = panes.map((pane, i) => clip(pane, i === paneCount - 1 ? previewWidth : paneWidth)).join(border);
+      lines.push(row(content));
     }
 
-    lines.push(th.fg("border", "─".repeat(inner)));
+    lines.push(th.fg("border", `├${"─".repeat(inner)}┤`));
     const selected = this.entries[this.activeColumn]?.[this.cursors[this.activeColumn] ?? 0];
     const status = selected?.path ?? (this.previewPath || this.levels[Math.min(this.activeColumn, this.levels.length - 1)]);
-    lines.push(clip(`${status}  ·  ←→ browse  ↑↓ move/scroll  Enter open  Backspace parent  Esc close`, inner));
+    lines.push(row(clip(` ${status}`, inner)));
+    const navigation = " ←→ browse  ↑↓ move  Enter open  Backspace parent";
+    const actions = "y copy path  Esc close";
+    const gap = " ".repeat(Math.max(1, inner - visibleWidth(navigation) - visibleWidth(actions)));
+    lines.push(row(`${navigation}${gap}${actions}`));
+    lines.push(th.fg("border", `╰${"─".repeat(inner)}╯`));
     return lines;
+  }
+}
+
+class CopyPathModal {
+  private selected = 0;
+
+  constructor(private options: [string, string][], private theme: Theme) {}
+
+  handleInput(data: string): string | null | undefined {
+    if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) return null;
+    if (matchesKey(data, "up")) this.selected = Math.max(0, this.selected - 1);
+    else if (matchesKey(data, "down")) this.selected = Math.min(this.options.length - 1, this.selected + 1);
+    else if (matchesKey(data, "return")) return this.options[this.selected]?.[1];
+    return undefined;
+  }
+
+  render(width: number): string[] {
+    const boxWidth = Math.max(28, width - 2);
+    const inner = boxWidth - 2;
+    const row = (content: string) => {
+      const clipped = truncateToWidth(content, inner, "…", true);
+      return this.theme.fg("border", "│") + clipped + " ".repeat(Math.max(0, inner - visibleWidth(clipped))) + this.theme.fg("border", "│");
+    };
+    return [
+      this.theme.fg("border", `╭${"─".repeat(inner)}╮`),
+      row(this.theme.fg("accent", " Copy path as")),
+      this.theme.fg("border", `├${"─".repeat(inner)}┤`),
+      ...this.options.map(([label, value], index) => {
+        const line = `${index === this.selected ? "›" : " "} ${label}: ${value}`;
+        const text = truncateToWidth(line, inner, "…", true);
+        return row(index === this.selected ? this.theme.bg("selectedBg", this.theme.fg("text", text)) : text);
+      }),
+      this.theme.fg("border", `├${"─".repeat(inner)}┤`),
+      row(this.theme.fg("dim", " ↑↓ select  Enter copy  Esc cancel")),
+      this.theme.fg("border", `╰${"─".repeat(inner)}╯`),
+    ];
   }
 }
 
@@ -392,7 +482,7 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
           return;
         }
         await ctx.ui.custom<void>((tui, theme, _keybindings, done) => {
-          const component = new ContextBrowser(context.root, theme, done, () => tui.requestRender());
+          const component = new ContextBrowser(context.root, theme, done, () => tui.requestRender(), ctx.cwd, (command, argv) => exec(ctx.cwd, command, argv));
           void component.load();
           return {
             render: (width: number) => component.render(width),
