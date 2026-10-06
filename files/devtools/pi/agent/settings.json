@@ -36,7 +36,8 @@
     "npm:pi-herdr-agents",
     "npm:pi-lens",
     "npm:@earendil-works/pi-voice",
-    "npm:@prjct.app/pi-clipboard"
+    "npm:@prjct.app/pi-clipboard",
+    "npm:@xynogen/pix-display"
   ],
   "quietStartup": "header",
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
