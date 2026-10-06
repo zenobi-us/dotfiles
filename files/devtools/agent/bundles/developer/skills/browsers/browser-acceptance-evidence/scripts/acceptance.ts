@@ -7,17 +7,19 @@
  *   acceptance.ts compile  <dir>          plan.ts -> workflows/<work-id>-test-N.{js,json}
  *   acceptance.ts run      <dir> [--test N]  execute, write shots and evidence.jsonl
  *   acceptance.ts verdicts <dir>          summarise evidence.jsonl
+ *   acceptance.ts report   <dir>          build and validate the HTML report
  *
  * <dir> is the manual-tests directory under the shared-context root. Resolve
  * that root with the `shared-context` skill; never build the path by hand.
  */
-import { mkdir, writeFile, readFile, rm } from "node:fs/promises";
+import { cp, mkdir, readdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { basename, isAbsolute, join, resolve } from "node:path";
 import type { Evidence, Plan, Verdict } from "./plan.ts";
 import { renderPlan } from "./render-plan.ts";
 import { compilePlaywright, compileSurf } from "./compile.ts";
 import { checkPrecondition, openSession, runPlaywright, writeEvidence } from "./run.ts";
+import { buildReport } from "./report.ts";
 
 const USAGE = `usage: acceptance.ts <command> <manual-tests-dir> [options]
 
@@ -27,6 +29,7 @@ commands:
   compile   <dir>               plan.ts -> workflows/
   run       <dir> [--test N]    execute and write evidence.jsonl
   verdicts  <dir>               summarise evidence.jsonl
+  report    <dir>               build and validate the HTML report
 
 <dir> is <shared-context-root>/<work-id>/manual-tests. Resolve the root with
 the shared-context skill. Do not write into the repository under test.`;
@@ -47,9 +50,9 @@ export const plan: Plan = {
   tests: [
     {
       id: "1",
-      claim: "short claim the reader can check",
-      pass: "what success looks like",
-      fail: "what failure looks like",
+      claim: "TODO a short claim the reader can check",
+      pass: "TODO what success looks like",
+      fail: "TODO what failure looks like",
       requires: [],
       steps: [
         { do: "navigate", to: "/", shot: "landing" },
@@ -72,6 +75,18 @@ async function loadPlan(dir: string): Promise<Plan> {
   if (!existsSync(file)) die(`no plan at ${file}\nRun: acceptance.ts init ${dir}`);
   const mod = (await import(file)) as { plan?: Plan };
   if (!mod.plan) die(`${file} must export a const named 'plan'`);
+
+  // Fail here, not four commands later inside the report validator, and name
+  // the field the author still has to write.
+  const todo = mod.plan.tests.flatMap((t) =>
+    (["claim", "pass", "fail"] as const)
+      .filter((k) => t[k].startsWith("TODO"))
+      .map((k) => `  test ${t.id}: ${k} is still "${t[k]}"`),
+  );
+  if (todo.length) {
+    die(`${file} still has scaffold text:\n${todo.join("\n")}\n\n` +
+        `A test with no real claim, PASS line and FAIL line is not a test yet.`);
+  }
   return mod.plan;
 }
 
@@ -168,6 +183,81 @@ async function cmdVerdicts(dir: string) {
   }
 }
 
+
+/**
+ * `writing-reports` owns the report directory. We create it with that skill's
+ * own script rather than copying its template, so a change there reaches this
+ * skill without an edit here.
+ */
+const REPORTS = resolve(import.meta.dir, "..", "..", "..", "devtools", "writing-reports", "scripts");
+
+async function ensureReportDir(reportDir: string, title: string) {
+  if (existsSync(join(reportDir, "index.html"))) return;
+  // new-report.ts refuses to overwrite, and `run` may already have made shots/.
+  const stash = `${reportDir}.shots-stash`;
+  const hadShots = existsSync(join(reportDir, "shots"));
+  if (hadShots) await rename(join(reportDir, "shots"), stash);
+  if (existsSync(reportDir)) await rm(reportDir, { recursive: true, force: true });
+  const p = Bun.spawn([join(REPORTS, "new-report.ts"), reportDir, title], {
+    stdout: "pipe",
+    stderr: "pipe",
+  });
+  if ((await p.exited) !== 0) {
+    die(`new-report.ts failed:\n${await new Response(p.stderr).text()}`);
+  }
+  if (hadShots) {
+    await rm(join(reportDir, "shots"), { recursive: true, force: true });
+    await rename(stash, join(reportDir, "shots"));
+  }
+}
+
+async function cmdReport(dir: string) {
+  const plan = await loadPlan(dir);
+  const evidenceFile = join(dir, "evidence.jsonl");
+  if (!existsSync(evidenceFile)) die(`no evidence at ${evidenceFile}\nRun: acceptance.ts run ${dir}`);
+  const records = (await readFile(evidenceFile, "utf8"))
+    .trim()
+    .split("\n")
+    .filter(Boolean)
+    .map((l) => JSON.parse(l) as Evidence);
+
+  const reportDir = resolve(dir, "report");
+  await ensureReportDir(reportDir, `${plan.workId} — acceptance evidence`);
+
+  // Every artifact the report links to travels inside it.
+  const filesDir = join(reportDir, "files");
+  await mkdir(filesDir, { recursive: true });
+  const copied: string[] = [];
+  for (const name of ["plan.ts", "test-plan.md", "evidence.jsonl"]) {
+    if (existsSync(join(dir, name))) {
+      await cp(join(dir, name), join(filesDir, name));
+      copied.push(name);
+    }
+  }
+  const wfDir = join(dir, "workflows");
+  if (existsSync(wfDir)) {
+    for (const f of await readdir(wfDir)) {
+      await cp(join(wfDir, f), join(filesDir, f));
+      copied.push(f);
+    }
+  }
+
+  const date = new Date().toISOString().slice(0, 10);
+  const html = await buildReport(plan, records, reportDir, copied, date);
+  const page = join(reportDir, "index.html");
+  await writeFile(page, html);
+  console.log(`wrote ${page}`);
+
+  const v = Bun.spawn([join(REPORTS, "validate-report.ts"), page], { stdout: "pipe", stderr: "pipe" });
+  const [vo, ve] = await Promise.all([
+    new Response(v.stdout).text(),
+    new Response(v.stderr).text(),
+  ]);
+  const code = await v.exited;
+  console.log((vo + ve).trim());
+  if (code !== 0) process.exit(1);
+}
+
 const [cmd, dirArg, ...rest] = process.argv.slice(2);
 if (!cmd || !dirArg || cmd === "--help" || cmd === "-h") die(USAGE);
 const dir = isAbsolute(dirArg) ? dirArg : resolve(process.cwd(), dirArg);
@@ -180,5 +270,6 @@ switch (cmd) {
   case "compile": await cmdCompile(dir); break;
   case "run": await cmdRun(dir, only); break;
   case "verdicts": await cmdVerdicts(dir); break;
+  case "report": await cmdReport(dir); break;
   default: die(USAGE);
 }

@@ -132,112 +132,57 @@ If a locator is wrong, fix `plan.ts` and re-run `compile`. You **MUST NOT**
 edit a generated script — the next `compile` overwrites it, and the plan and
 the run would then disagree.
 
-### 5. Build the report with the `writing-reports` skill. MUST.
-
-Load `writing-reports`. Run its `new-report.ts` into
-`<root>/<work-id>/manual-tests/report`, fill it from `evidence.jsonl`, and pass
-its validator.
-
-You **MUST NOT** hand-write report HTML, invent CSS, or emit a Markdown file
-instead. Report presentation is that skill's job and it has a validator that
-this skill does not duplicate.
-
-You **MUST** copy `test-plan.md`, `evidence.jsonl` and every workflow file
-into the report's own `files/` directory, and link them from a "Related files"
-or "How to re-run this" section:
+### 5. Build the report. MUST.
 
 ```sh
-cp plan.ts test-plan.md evidence.jsonl workflows/* \
-   <root>/<work-id>/manual-tests/report/files/
+"$SC" report "$MT"          # fills the writing-reports template, then validates
 ```
 
-Link them as `files/<name>`. You **MUST NOT** link them as `../test-plan.md`.
-The report is handed to a reviewer on its own, and `writing-reports` rejects a
-link that reaches outside the report directory.
+The command creates the report directory with `writing-reports`' own
+`new-report.ts`, renders every section from `plan.ts` and `evidence.jsonl`,
+copies `plan.ts`, `test-plan.md`, `evidence.jsonl` and every driver script into
+the report's `files/`, and runs that skill's validator. It exits non-zero if
+validation fails.
 
-Map each evidence record onto the template:
+You **MUST NOT** hand-write report HTML, invent CSS, or emit a Markdown file
+instead. Report presentation belongs to `writing-reports` and it has a
+validator this skill does not duplicate.
 
-| Evidence field | Report node |
+What the command generates:
+
+| Section | From |
 |---|---|
-| `step` | the section `id` a summary row targets |
-| `screenshot` | `<img class="figure__image">` |
-| `observed` | `.figure__caption` — what the shot proves |
-| `resolved` | `<code class="code">` next to the figure |
-| `verdict` | the `badge--*` in the summary row and the section heading |
+| Result summary | one row per test, badge from the verdict, every cell a jump link |
+| `#steps` | the whole plan: environment, preconditions with the state each was found in, every test's steps |
+| `#check<N>` | per test: its steps again, the PASS and FAIL lines, the `ASSERT FAIL` message, every screenshot with a real caption |
+| `#notdone` | every `BLOCKED` and `PARTIAL` test, with its note |
+| `#cleanup` | the driver session |
+| `#files` | links to the copies in `files/` |
 
-### 6. Put the whole test plan at the top of the report. MUST.
+The steps appear twice on purpose — the whole plan before any verdict, and
+each test's own steps beside its outcome. A reader who meets a verdict without
+the steps next to it cannot tell what it means. Both renderings come from
+`plan.ts`, so they cannot drift.
 
-The reader must know what you did before they read what happened. A verdict
-with no steps next to it is a claim.
+### 6. Finish what the runner cannot know. MUST.
 
-Add one `report__section` with `id="steps"`, placed after the result summary
-and before the first test section. Replace the template's "How the test was
-built" section with it, or keep both and put this one first. The section
-**MUST** carry:
+The generated report is complete except for what no tool can observe. You
+**MUST** edit `index.html` to add:
 
-- The **Preconditions** block from `test-plan.md`, with the state each one was
-  actually found in.
-- Every numbered test, with every numbered step, in the order they were run.
-- The environment line: URL, account, branch, driver.
+- **Test data left behind.** The command seeds the table with the driver
+  session only. Every config override, seed record, account or running process
+  the run needed goes in that table, each with its undo. A run that changed a
+  flag to make the test pass **MUST** say so.
+- **Any `WARN`.** A defect noticed on the side, unrelated to the change under
+  test. Add it as a `card` under an `#other` section.
+- **Risk in `#notdone`.** The command lists what did not run and why. Say what
+  that leaves untested, in a sentence a reader can act on.
 
-The steps here are the steps from `test-plan.md`. You **MUST NOT** rewrite,
-shorten, or merge them. A link to `files/test-plan.md` is not a substitute for
-this section. The reader must not have to open a second file.
+Re-run the validator after editing:
 
-```html
-<h2 class="report__section" id="steps">Manual test steps</h2>
-
-<p class="report__text">Every step below was run by hand in a real browser. The
-outcomes follow, each one repeating its own steps.</p>
-
-<h3 class="report__subsection" id="steps-pre">Preconditions</h3>
-
-<ul class="report__list">
-  <li class="report__item">Flag <code class="code">feature_x</code> — found off, enabled locally.</li>
-</ul>
-
-<h3 class="report__subsection" id="steps-1">Test 1 — short claim</h3>
-
-<ol class="report__list">
-  <li class="report__item">Open <code class="code">/app/settings/payments</code>.</li>
-  <li class="report__item">Click the link <strong>Upgrade now</strong>.</li>
-</ol>
+```sh
+skills/devtools/writing-reports/scripts/validate-report.ts "$MT/report/index.html"
 ```
-
-### 7. Repeat each test's steps inside its own outcome section. MUST.
-
-Every test section **MUST** open with that test's steps, before the first
-screenshot, before the caption, before the note. The reader reaches a verdict
-after reading the steps that produced it, never before.
-
-Use the same step text as section 6. Same words, same numbers, no summary.
-
-```html
-<h2 class="report__section" id="check1">Test 1 — short claim <span class="badge badge--pass">Pass</span></h2>
-
-<div class="card">
-  <h3 class="card__title">Steps run</h3>
-  <ol class="report__list">
-    <li class="report__item">Open <code class="code">/app/settings/payments</code>.</li>
-    <li class="report__item">Click the link <strong>Upgrade now</strong>.</li>
-  </ol>
-  <p class="card__meta">PASS: the portal opens. FAIL: the link is dead or missing.</p>
-</div>
-
-<figure class="figure">…</figure>
-```
-
-The `card__meta` line **MUST** carry the plan's PASS line and FAIL line for
-that test. That is what turns the badge into a reading the reader can check.
-
-A `BLOCKED` or `NOT COVERED` test keeps its steps block too, so the reader sees
-what was planned and did not run.
-
-### 8. Name every gap. MUST.
-
-The report's "Not covered" section lists each test you could not complete and
-the risk it leaves. The "Test data left behind" section lists every override,
-account, record or running process, with the undo for each.
 
 ## Verdict rules
 
@@ -287,7 +232,7 @@ and the enforcement is the reason to keep writing the plan honestly.
 
 ## Reference
 
-- `scripts/acceptance.ts` — the CLI: `init`, `render`, `compile`, `run`, `verdicts`.
+- `scripts/acceptance.ts` — the CLI: `init`, `render`, `compile`, `run`, `verdicts`, `report`.
 - `scripts/plan.ts` — the `Plan` type. The authoring surface.
 - `references/evidence-schema.md` — the `evidence.jsonl` record contract.
 - `references/drivers/surf-cli.md` — the surf driver.
