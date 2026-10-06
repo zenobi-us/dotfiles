@@ -19,8 +19,13 @@
     "npm:pi-add-dir",
     "npm:@mrclrchtr/supi-ask-user",
     "npm:pi-debug-mode",
-    "npm:pi-code",
-    "npm:pi-herdsman"
+    {
+      "source": "npm:pi-code",
+      "extensions": [
+        "!extensions/subagent/**"
+      ]
+    },
+    "npm:pi-herdr-agents"
   ],
   "quietStartup": "header",
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
