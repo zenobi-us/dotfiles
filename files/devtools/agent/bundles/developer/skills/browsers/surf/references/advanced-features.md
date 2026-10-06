@@ -145,7 +145,133 @@ surf do --file "$ROOT/RWR-19971/surf-workflows/login.json" --email "user@example
 }
 ```
 
-Step outputs (`"as": "title"`), `each`/`repeat` loops, and `until` exit conditions are supported — see the upstream README for full loop syntax. Inspect and check a stored workflow with `surf workflow.info <path>` and `surf workflow.validate <path>`.
+Inspect and check a stored workflow with `surf workflow.info <path>` and
+`surf workflow.validate <path>`.
+
+### Step schema: what the runner actually reads
+
+Verified against surf v2.20.0. The upstream README documents a richer step
+schema than the runner implements. The validator accepts every key below and
+reports `✓ Valid workflow`, so **validation is not proof that a key does
+anything**.
+
+A **tool step** reads three keys and drops the rest:
+
+```json
+{ "tool": "js", "args": { "code": "return document.title" }, "as": "title" }
+```
+
+| Key | Node | Behaviour in v2.20.0 |
+|---|---|---|
+| `tool`, `args` | tool step | Works. |
+| `as` | tool step | Works. Captures the step output into the context. |
+| `%{name}` | any string in `args` | Works. Interpolates an arg or an earlier `as`. |
+| `repeat` + `steps` | loop node | Works. |
+| `each` + `as` + `steps` | loop node | Works. |
+| `until` | loop node | **Runs every iteration and never exits.** |
+| `expect` | tool step | **Silently ignored.** |
+| `when`, `if` | tool step | **Silently ignored.** The step always runs. |
+| `retry` | tool step | **Silently ignored.** One attempt. |
+| `continueOnError` | tool step | **Silently ignored.** Use `--on-error continue`. |
+
+You **MUST NOT** use `expect`, `when`, `if`, `retry`, `continueOnError` or
+`until` to control a workflow. A workflow that relies on one of them reports
+success while doing the opposite of what it says.
+
+### Assert deterministically by throwing
+
+Because `expect` does nothing, the only deterministic assertion is a `js` step
+that throws. A thrown error fails the step and halts the workflow:
+
+```json
+{ "tool": "js", "args": { "code":
+  "var t=document.title; if(t!=='Example Domain') throw new Error('ASSERT FAIL: title was '+t); return t" },
+  "as": "title" }
+```
+
+```json
+{ "status": "failed", "completedSteps": 1,
+  "error": "Error: ASSERT FAIL: title was Example Domain" }
+```
+
+You **MUST NOT** use `semantic.step` with `"op": "assert"` to verify an
+outcome you need to be certain about. That op sends the page to a model and
+returns a confidence judgement. It needs `--allow-semantic`, and it answers
+"does this look right", not "is this right". You **MAY** use `semantic.find`
+to locate an element, then assert on it by throwing.
+
+### Loop node shape
+
+A loop is its own node. It is **not** a modifier on a tool step. `repeat` beside
+a `tool` key fails parsing with `loop must have a non-empty 'steps' array`.
+
+```json
+{ "repeat": 3, "steps": [ { "tool": "js", "args": { "code": "..." }, "as": "n" } ] }
+{ "each": "%{items}", "as": "item", "steps": [ { "tool": "js", "args": { "code": "return 'saw %{item}'" } } ] }
+```
+
+An `as` inside a loop keeps **only the last iteration's value**. Collect
+per-iteration values by returning an array from one `js` step instead of
+looping.
+
+### Reading results with `--json`
+
+`--json` is how a workflow reports back. `vars` carries every `as` capture and
+every argument, and it **survives a failed run**, so captures from the steps
+before the failure are still readable.
+
+```bash
+surf do -f "$ROOT/<WORK-KEY>/surf-workflows/test-1.json" --base "$BASE" --json
+```
+
+```json
+{
+  "status": "failed",
+  "completedSteps": 3,
+  "totalSteps": 4,
+  "results": [
+    { "step": 1, "cmd": "navigate", "status": "ok", "ms": 836 },
+    { "step": 4, "cmd": "screenshot", "status": "error", "error": "...", "ms": 5097 }
+  ],
+  "error": "...",
+  "totalMs": 6159,
+  "vars": { "base": "https://example.com", "title": "Example Domain", "ok": true }
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `status` | `completed` or `failed`. |
+| `completedSteps` / `totalSteps` | Where it stopped. |
+| `results[]` | Per step: `step`, `cmd`, `status`, `ms`, and `error` when it failed. A loop node reports `stepsExecuted`. |
+| `failed` | Count, present on a `completed` run. |
+| `vars` | Every `as` capture and argument. This is the machine-readable output. |
+
+A run halts on the first error by default. `--on-error continue` runs the rest
+and reports `"failed": <count>`, verified.
+
+### Screenshots need the tab to be visible
+
+A `screenshot` step fails when the session's tab is not the active tab in its
+window:
+
+```
+Error: Cannot use screenshot fallback because tab 312627304 is not visible in window 312627204 [screenshot_target_not_visible]
+```
+
+No file is written, and the step fails **after** the actions before it already
+ran. `session.new` opens an unfocused window, so this is the default state for
+a fresh session.
+
+You **MUST** switch to the tab before the first screenshot:
+
+```bash
+surf tab.switch "$(surf page.state | grep -oE 'tab=[0-9]+' | head -1 | cut -d= -f2)"
+```
+
+Surf drives a visible Chrome. It **cannot** capture evidence unattended. Use
+`playwright-cli` when a run has to produce screenshots with nobody at the
+keyboard.
 
 ## Playbooks
 

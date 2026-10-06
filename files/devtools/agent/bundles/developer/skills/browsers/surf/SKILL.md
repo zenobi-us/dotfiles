@@ -116,7 +116,9 @@ For a reusable flow, save it as a workflow JSON file under the shared-context ro
 surf do "$ROOT/RWR-19971/surf-workflows/login.json" --email "user@example.com"
 ```
 
-Both `surf do <path>.json` and `surf do --file <path>.json` accept any path. A bare name reaches only two hardcoded directories, and a miss fails silently. See [references/advanced-features.md](references/advanced-features.md) for the storage procedure, the traps, and the JSON format (args, loops, step outputs).
+Both `surf do <path>.json` and `surf do --file <path>.json` accept any path. A bare name reaches only two hardcoded directories, and a miss fails silently.
+
+Read `surf do --json` to get the result back: `vars` carries every `as` capture. Assert by throwing inside a `js` step — `expect`, `when`, `if`, `retry`, `continueOnError` and `until` are accepted by the validator and ignored by the runner. See [references/advanced-features.md](references/advanced-features.md) for the storage procedure, the verified step schema, and the `--json` contract.
 
 ### 3) Debugging workflow
 
@@ -181,6 +183,7 @@ surf wait.load
 surf wait.ready --selector ".results"
 
 # Capture
+surf tab.switch <tab-id>                 # required before a screenshot on an unfocused session
 surf screenshot --output /tmp/shot.png   # alias: snap
 surf screenshot --fullpage
 surf record --duration 2000 --fps 10 --output /tmp/anim.gif
@@ -204,6 +207,8 @@ surf do <path>.json --arg value     # stored workflow: always by path
 surf workflow.info <path>.json
 surf workflow.validate <path>.json
 surf workflow.list                  # hardcoded dirs only; misses shared context
+surf do <path>.json --json          # results + vars (every `as` capture)
+surf do <path>.json --on-error continue   # do not halt on first failed step
 surf playbook list
 surf use <site> <op>
 ```
@@ -237,15 +242,27 @@ Full command surface: `surf --help-full`. Search by keyword: `surf --find <term>
    - A bare name reaches only `./.surf/workflows/` and `~/.surf/workflows/`. A miss does not error: surf parses the name as an inline command and runs one bogus step.
    - Fix: store workflows under the shared-context root and always pass the absolute path.
 
-6. **Saving a playbook with `--project`**
+6. **Trusting `expect`, `when`, `if`, `retry` or `continueOnError` in a workflow**
+   - The validator accepts all five. The runner reads none of them, with no warning. A step with a failing `expect` reports `ok`; a step with `when` false still runs. `until` runs every iteration and never exits its loop.
+   - Fix: assert by throwing inside a `js` step, which does fail the run. Use `--on-error continue` instead of `continueOnError`. See [references/advanced-features.md](references/advanced-features.md).
+
+7. **Using `semantic.step` with `op: assert` to verify an outcome**
+   - That op sends the page to a model and returns a confidence judgement, not a fact. It also needs `--allow-semantic`.
+   - Fix: use it to find an element if you must, then assert deterministically by throwing.
+
+8. **Screenshotting a session tab that is not visible**
+   - `session.new` opens an unfocused window, so a fresh session fails with `screenshot_target_not_visible`. No file is written, and the step fails after the earlier actions already ran.
+   - Fix: `surf tab.switch <tab-id>` before the first screenshot. For unattended capture use `playwright-cli` instead — surf drives a visible Chrome.
+
+9. **Saving a playbook with `--project`**
    - `--project` is the only thing that writes `./.surf/playbooks/` into the repository. `surf pb save` and `surf playbook import` already default to user scope.
    - Fix: drop the flag. Keep the canonical copy in shared context and `surf playbook export`/`import` to move it.
 
-7. **Ignoring timeouts on slow AI models/pages**
-   - Fix: increase timeout (`--timeout 600`) and add explicit waits.
+10. **Ignoring timeouts on slow AI models/pages**
+    - Fix: increase timeout (`--timeout 600`) and add explicit waits.
 
-8. **Assuming AI tools work without browser login**
-   - Fix: ensure active login session in Chrome for each provider.
+11. **Assuming AI tools work without browser login**
+    - Fix: ensure active login session in Chrome for each provider.
 
 ## Decision Map
 
