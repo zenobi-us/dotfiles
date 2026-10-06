@@ -57,8 +57,15 @@ so the browser work has something to disagree with.
 
 | Driver | Reference | Use when |
 |---|---|---|
-| `surf` | `references/drivers/surf-cli.md` | A live browser with the user's real profile, existing logins and extensions |
-| `playwright` | `references/drivers/playwright-cli.md` | A clean isolated profile, repeatable from zero |
+| `playwright` | `references/drivers/playwright-cli.md` | **Default.** A clean isolated profile, repeatable from zero, runs unattended, and captures a popup |
+| `surf` | `references/drivers/surf-cli.md` | Signing in from zero is expensive or needs a second factor, and a human is at the keyboard |
+
+`playwright` is the default because surf cannot do two things an acceptance run
+needs. Surf drives a visible Chrome, so a screenshot fails when its tab is not
+the active one — no unattended capture. And a `window.open` from a synthesized
+click is suppressed under surf, so a popup step can never be better than
+`PARTIAL`. Choose `surf` when a live login is worth those costs, and say in the
+report which driver ran.
 
 You **MUST** read the chosen driver's reference before the first browser
 command. If that reference is marked **TODO**, you **MUST** stop and tell the
