@@ -1,6 +1,6 @@
 # Driver: playwright-cli
 
-Status: **ready**
+Status: **ready. The default driver.**
 
 Drives a headless Chrome through the `playwright-cli` daemon. Each session gets
 its own in-memory profile: no existing logins, no extensions, no shared
@@ -10,7 +10,7 @@ operator at the keyboard, and safe to run beside the user's own browser.
 For the command surface itself, load the `playwright-cli` skill. This reference
 covers only what acceptance evidence needs on top of it.
 
-Facts below were verified against `playwright-cli 0.1.18` on WSL2. When a
+Facts below were verified against `playwright-cli 0.1.22` on WSL2. When a
 command behaves differently, fix this file before you fix the run.
 
 ## Choose this driver or surf
@@ -20,13 +20,16 @@ command behaves differently, fix this file before you fix the run.
 | Profile | Fresh, in-memory, per session | The user's real Chrome profile |
 | Login | You drive it, or you load a saved state | Already signed in |
 | Operator | Not needed | Window must hold focus |
+| Screenshot | Works headless | Fails unless the session tab is visible |
 | `window.open` from a click | **Captured.** The tab appears. | Suppressed. `PARTIAL` at best. |
+| Assertion | A throw, and the exit code reports it | A throw inside a `js` step |
 | Runs unattended | Yes | No |
 
-The popup row is the reason to prefer this driver for any flow that opens a
-tab. Under surf that step can never be better than `PARTIAL`.
+The screenshot and popup rows are why this is the default. Under surf, an
+unattended run captures nothing and a popup step can never beat `PARTIAL`.
+Choose surf only when a live login is worth those costs.
 
-## 0. Environment. MUST.
+## 0. Environment and version. MUST.
 
 ```sh
 export NO_UPDATE_NOTIFIER=1
@@ -35,6 +38,17 @@ export NO_UPDATE_NOTIFIER=1
 The update notice is written to the same stream as the result, and a caller
 that parses the output reads it as a tool failure. In this repository
 `payroll-login.sh` reports it as `browser-probe-failed`.
+
+The `playwright-cli` mise shim may have no version set, which fails with
+`No version is set for shim: playwright-cli`. Check before the run:
+
+```sh
+mise ls | grep playwright
+playwright-cli --version
+```
+
+If the shim is unpinned, pin it or call the installed binary by path. You
+**MUST** record the version you ran in the report's environment line.
 
 ## 1. Claim a session. MUST.
 
@@ -68,12 +82,17 @@ debugging. Screenshots are identical either way.
 
 The plan is a script. Write it as one.
 
-Each test in `test-plan.md` becomes one script file:
+Each test in `test-plan.md` becomes one script file, written **straight to
+shared context**:
 
 ```
-./.playwright/acceptance/<work-id>-test-1.js
-./.playwright/acceptance/<work-id>-test-2.js
+<root>/<work-id>/manual-tests/workflows/<work-id>-test-1.js
+<root>/<work-id>/manual-tests/workflows/<work-id>-test-2.js
 ```
+
+You **MUST NOT** write these into the repository under test. A repository holds
+code, not session output, and the scripts are a report deliverable. Writing
+them to their destination also removes a copy step.
 
 One script **per test**, not one for the whole plan. A script drives but does
 not record, so the boundary between scripts is where you stop and write
@@ -93,37 +112,53 @@ async (page) => {
   seen.push({ step: '1.1', url: page.url() });
 
   const upgrade = page.getByRole('link', { name: 'Upgrade now' });
-  seen.push({ step: '1.4', href: await upgrade.getAttribute('href') });
+  const href = await upgrade.getAttribute('href');
+  if (!href) throw new Error('ASSERT FAIL: upgrade link has no href');
+  seen.push({ step: '1.4', href });
+
   await upgrade.click();
   await page.screenshot({ path: `${shots}/14-portal.png` });
 
+  const url = page.url();
+  if (!/portal\./.test(url)) throw new Error(`ASSERT FAIL: expected portal, got ${url}`);
+  seen.push({ step: '1.5', url });
+
   return seen;
-};
+}
 ```
 
 Rules for the script file:
 
 - The file **MUST** hold one function expression and nothing else. The runner
   wraps it in `(...)` and evaluates it. `import`, `export` and `require` fail.
+- The file **MUST NOT** end with a semicolon after the closing brace. A
+  trailing `};` fails with `SyntaxError: Unexpected token ';'`, and
+  `node --check` does **not** catch it. See section 3.
 - Step order **MUST** mirror the numbered steps in `test-plan.md`. A reviewer
   reads the plan and the script side by side.
 - Every step that needs proof **MUST** end in a `page.screenshot({ path })`
   whose path is the step's evidence path, so the file names line up with
   `evidence.jsonl` without renaming.
+- A `page.screenshot` **MUST** come before the first action that can throw or
+  time out. A failed run stops where it failed, so an assertion placed before
+  the first shot leaves a `FAIL` with no image.
+- The script **MUST** assert by throwing, with a message that says what was
+  expected and what was found. The throw sets the exit code, which is what
+  decides the verdict.
 - The script **MUST** return the values you cannot see in a screenshot: the
   url, an `href`, an attribute, a text content. That return value is what you
   paste into `evidence.jsonl`.
 - You **MUST NOT** write a username, password, token or MFA code into the
-  script. The file is an artifact that gets copied into shared context. See
+  script. The file is an artifact that gets copied into the report. See
   section 6.
 - Prefer a stable locator: `getByRole`, `getByTestId`, `getByLabel`, an `href`.
-  A snapshot ref such as `e46` is valid only inside one page read and
+  A snapshot ref such as `f1e13` is valid only inside one page read and
   **MUST NOT** appear in a script file.
 
-### The sandbox has one global
+### The sandbox has `page`, and no way to read a secret
 
-`run-code` evaluates the function with `page` and nothing else. `process`,
-`require` and `globalThis.fetch` are all absent, verified:
+`run-code` evaluates the function with `page`. `process` and `require` are
+absent, verified:
 
 ```sh
 playwright-cli run-code "async page => ({ p: typeof process, r: typeof require })"
@@ -134,30 +169,32 @@ So a script **cannot** read an environment variable. Parameters are literals in
 the file. That is the reason secrets never go in one: there is no other place
 to put them, and the file is a deliverable.
 
+(`fetch` is defined in 0.1.22, unlike earlier versions. Do not use it to reach
+an app under test — a request that does not go through the page is not evidence
+about the page.)
+
 ## 3. Resolve, syntax-check, then run. MUST, in that order.
 
-`playwright-cli` has no `--dry-run`. These two passes replace it. Skipping them
-half-executes a flow and leaves the app in a state the next test does not
-expect.
+`playwright-cli` has no `--dry-run`. These passes replace it.
 
 ```sh
 # 1. Resolve every locator the script uses, against the live page.
 playwright-cli open "$BASE/settings/payments"
 playwright-cli --raw find "Upgrade now"
-playwright-cli --raw generate-locator e5
+playwright-cli --raw generate-locator f1e13
 
 # 2. Syntax-check the file.
-node --check ./.playwright/acceptance/<work-id>-test-1.js
+node --check "$WF/<work-id>-test-1.js"
 
 # 3. Run it.
-playwright-cli run-code --filename="$PWD/.playwright/acceptance/<work-id>-test-1.js"
+playwright-cli run-code --filename="$WF/<work-id>-test-1.js"
+echo "exit=$?"
 ```
 
-`node --check` accepts the bare function expression as written, verified. It
-catches a syntax error and nothing else. A locator that no longer matches still
-gets through, so the resolve pass is the real gate. Do not pass the file
-through process substitution: `node` cannot read a pipe, and the check exits 0
-after printing an `ENOENT` it never applied.
+`node --check` is a weak gate. Verified: it exits 0 for a file ending `};`,
+which `run-code` then rejects with `SyntaxError: Unexpected token ';'`. It also
+exits 0 for a locator that matches nothing. The resolve pass is the real gate,
+and the first real run is the rest of it.
 
 ### Selector capture
 
@@ -166,8 +203,8 @@ string is the `resolved` field in `evidence.jsonl`, and it is also what belongs
 in the script file.
 
 ```sh
-playwright-cli --raw generate-locator e3
-# getByRole('button', { name: 'Open portal' })
+playwright-cli --raw generate-locator f1e13
+# getByRole('link', { name: 'Learn more' })
 ```
 
 `click`, `fill` and the rest accept that expression directly, so no ref ever
@@ -179,35 +216,62 @@ playwright-cli click "getByRole('button', { name: 'Continue', exact: true })"
 
 ### Screenshot paths
 
-`--filename` and `path` resolve against the current working directory, and
-neither one creates a missing directory. A missing `shots/` directory fails
-with `ENOENT` after the action already ran.
+`--filename` and `path` resolve against the current working directory. In
+0.1.22 a missing directory **is created**, so the older `mkdir -p` rule no
+longer applies. Still pass an absolute path, so a shot never lands next to
+whichever directory you happened to run from:
 
 ```sh
-mkdir -p "$SHOTS"                       # MUST, before the first shot
-playwright-cli screenshot --filename="$SHOTS/11-settings.png"   # absolute
+playwright-cli screenshot --filename="$SHOTS/11-settings.png"
 ```
 
 Point `$SHOTS` at the report's `shots/` directory from the start, so nothing
 needs moving later.
 
-## 4. Record evidence between scripts. MUST.
+## 4. Record evidence from the exit code and the return value. MUST.
 
 A script reports what it did; it does not decide whether that satisfies the
-plan. After each script run:
+plan. Two things come back from a run:
+
+| Source | Meaning |
+|---|---|
+| Exit code | `0` every assertion held. `1` a throw, a missing locator, or a timeout. |
+| Return value | The array the function returned, printed under `### Result`. `--raw` prints the value alone. |
+
+Verified: `run-code` exits `1` both for an explicit `throw` and for a locator
+that never matches. The exit code **is** a verdict signal in 0.1.22, unlike
+earlier versions.
+
+```sh
+OUT=$(playwright-cli --raw run-code --filename="$WF/<work-id>-test-1.js"); RC=$?
+```
+
+Map it onto `evidence.jsonl`:
+
+| Evidence field | Source |
+|---|---|
+| `resolved` | the `href` or locator in the returned array, or `generate-locator` |
+| `url` | the `url` entry the script pushed for that step |
+| `screenshot` | the `path` of that step's `page.screenshot` |
+| `observed` | the returned entry on success; the `ASSERT FAIL` message on a throw |
+| `verdict` | `PASS` when `RC` is `0`; `FAIL` on an `ASSERT FAIL` throw |
+
+A run that stops on a missing element is `BLOCKED`, not `FAIL`, until the
+precondition is proved. Check the precondition before you write the record.
+
+After the run, read what the screenshot cannot show:
 
 ```sh
 playwright-cli --raw eval "location.href"
-playwright-cli --raw find "<the thing>"
 playwright-cli tab-list
 playwright-cli console
+playwright-cli requests
 ```
-
-Then append this test's records to `evidence.jsonl`, including the resolved
-locator from `generate-locator`. Only then start the next test's script.
 
 `--raw` strips the page header, the generated code and the snapshot section, so
 the output is the value alone. Use it for everything you paste into evidence.
+
+Append this test's records, then start the next test's script.
 
 ## 5. Popup behaviour. Verified.
 
@@ -219,7 +283,7 @@ playwright-cli -s=probe open about:blank
 playwright-cli -s=probe run-code "async page => page.setContent('<button onclick=\"window.open(\'https://example.com/\')\">Open</button>')"
 playwright-cli -s=probe click "getByRole('button', { name: 'Open' })"
 playwright-cli -s=probe --raw tab-list
-# - 0: (current) [Popup probe](about:blank)
+# - 0: (current) [](about:blank)
 # - 1: [Example Domain](https://example.com/)
 ```
 
@@ -263,41 +327,41 @@ playwright-cli state-load "$MT/auth.json"
 playwright-cli goto "$BASE"
 ```
 
-`state-load` fails with `The browser '<name>' is not open` when no session is
-open. The order above is the working one.
+`state-load` fails with `The browser '<name>' is not open, please run open
+first` when no session is open. The order above is the working one.
 
 The state file holds live cookies. You **MUST NOT** copy it into the report's
 `files/` directory or into shared context.
 
-## 7. Copy the scripts into shared context. MUST.
+## 7. Copy the scripts into the report. MUST.
+
+The scripts already live in shared context, so there is one copy to make:
 
 ```sh
-cp ./.playwright/acceptance/<work-id>-test-*.js "<root>/<work-id>/manual-tests/workflows/"
-cp ./.playwright/acceptance/<work-id>-test-*.js "<root>/<work-id>/manual-tests/report/files/"
+cp "<root>/<work-id>/manual-tests/workflows/"<work-id>-test-*.js \
+   "<root>/<work-id>/manual-tests/report/files/"
 ```
 
 They are a deliverable. The next person re-runs the test instead of re-reading
 it, and a regression later has a script waiting for it.
 
-The report links the second copy as `files/<name>`, never as
-`../workflows/<name>`. The shared-context copy is the source of truth; the
-report copy is the one that survives the report being zipped and sent on.
+The report links that copy as `files/<name>`, never as `../workflows/<name>`.
+The shared-context copy is the source of truth; the report copy is the one
+that survives the report being zipped and sent on.
 
 ## playwright-cli traps
 
-- **`file:` is blocked.** `open file:///...` fails with
+- **A trailing `};` breaks the file.** `run-code` wraps the contents in
+  parentheses, so a statement terminator after the function expression is a
+  syntax error. `node --check` passes it. End the file with `}`.
+- **`file:` is blocked.** `goto file:///...` fails with
   `Access to "file:" protocol is blocked`. Serve a fixture over HTTP, or build
   it with `page.setContent` inside `run-code`.
-- **`--filename` does not create directories.** `mkdir -p` the shots directory
-  before the first screenshot, or lose the shot to `ENOENT` after the action
-  already happened.
 - **Snapshots land in the working directory.** Every command writes
   `./.playwright-cli/page-<timestamp>.yml`. Run from a directory where that is
   gitignored. It is gitignored in this repository.
-- **Refs are per-read.** `e46` changes on every navigation and re-render.
+- **Refs are per-read.** `f1e13` changes on every navigation and re-render.
   Re-read before you click, and record what `generate-locator` resolved it to.
-- **`run-code` returns 0 even when a locator is missing.** The exit code is not
-  a verdict. Read the returned value and assert on it yourself.
 - **A dialog wedges the session.** A `beforeunload` guard puts the CLI in a
   modal state where every command fails. Clear it with
   `playwright-cli dialog-accept`, then retry. If that fails, `close` the
@@ -313,16 +377,18 @@ report copy is the one that survives the report being zipped and sent on.
 
 | Need | Command |
 |---|---|
+| Version | `playwright-cli --version` |
 | List sessions | `playwright-cli list` |
 | Claim session | `export PLAYWRIGHT_CLI_SESSION="<work-id>"; playwright-cli open about:blank` |
 | Where am I | `playwright-cli --raw eval "location.href"` |
+| Read the page | `playwright-cli --raw snapshot` |
 | Find an element | `playwright-cli --raw find "Upgrade now"` |
-| Resolve a ref | `playwright-cli --raw generate-locator e5` |
+| Resolve a ref | `playwright-cli --raw generate-locator f1e13` |
 | Click a stable locator | `playwright-cli click "getByRole('link', { name: 'Upgrade now' })"` |
 | Evidence shot | `playwright-cli screenshot --filename="$SHOTS/NN-slug.png"` |
 | New tabs after a click | `playwright-cli tab-list` then `playwright-cli tab-select 1` |
 | Page errors | `playwright-cli console` |
 | Failed requests | `playwright-cli requests` |
-| Run a test script | `playwright-cli run-code --filename="$PWD/.playwright/acceptance/<work-id>-test-1.js"` |
+| Run a test script | `playwright-cli --raw run-code --filename="$WF/<work-id>-test-1.js"` |
 | Save a login | `playwright-cli state-save "$MT/auth.json"` |
 | Tear down | `playwright-cli close && playwright-cli delete-data` |
