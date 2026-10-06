@@ -69,16 +69,42 @@ async function readAlignmentAgents(root: string): Promise<string | undefined> {
   }
 }
 
-function renderAlignmentSkills(skills: AlignmentSkill[]): string {
-  if (skills.length === 0) return "";
-  const entries = skills.map(skill => [
+function renderAlignmentSkill(skill: AlignmentSkill): string {
+  return [
     "  <skill>",
     `    <name>${escapeXml(skill.name)}</name>`,
     `    <description>${escapeXml(skill.description)}</description>`,
     `    <location>${escapeXml(skill.location)}</location>`,
     "  </skill>",
-  ].join("\n")).join("\n");
-  return `<skills>\n<available_skills>\n${entries}\n</available_skills>\n</skills>`;
+  ].join("\n");
+}
+
+function mergeAlignmentSkills(systemPrompt: string[], skills: AlignmentSkill[]): string[] {
+  if (skills.length === 0) return systemPrompt;
+
+  const blockPattern = /<skills>\s*<available_skills>([\s\S]*?)<\/available_skills>\s*<\/skills>/;
+  const blockIndex = systemPrompt.findIndex(block => blockPattern.test(block));
+  if (blockIndex === -1) {
+    const entries = skills.map(renderAlignmentSkill).join("\n");
+    return [...systemPrompt, `<skills>\n<available_skills>\n${entries}\n</available_skills>\n</skills>`];
+  }
+
+  const block = systemPrompt[blockIndex];
+  const match = blockPattern.exec(block);
+  if (!match) return systemPrompt;
+
+  const existingLocations = new Set(
+    [...match[1].matchAll(/<location>([\s\S]*?)<\/location>/g)].map(location => location[1]),
+  );
+  const additions = skills
+    .filter(skill => !existingLocations.has(escapeXml(skill.location)))
+    .map(renderAlignmentSkill);
+  if (additions.length === 0) return systemPrompt;
+
+  const updated = block.replace(blockPattern, (_whole, contents: string) =>
+    `<skills>\n<available_skills>${contents}${contents.trim() ? "\n" : ""}${additions.join("\n")}\n</available_skills>\n</skills>`,
+  );
+  return systemPrompt.map((part, index) => index === blockIndex ? updated : part);
 }
 
 async function readEntries(directory: string): Promise<Entry[]> {
@@ -102,7 +128,7 @@ class ContextBrowser {
   private preview = "";
   private previewPath = "";
   private previewOffset = 0;
-  private copyPicker?: CopyPathModal;
+  private pathFormat = 0;
 
   constructor(
     root: string,
@@ -111,6 +137,7 @@ class ContextBrowser {
     private requestRender: () => void,
     private cwd: string,
     private exec: (command: string, args: string[]) => Promise<{ stdout: string; code: number }>,
+    private insertText: (text: string) => void,
   ) {
     this.levels = [root];
   }
@@ -144,42 +171,13 @@ class ContextBrowser {
   }
 
   async handleInput(data: string): Promise<void> {
-    if (this.copyPicker) {
-      const result = this.copyPicker.handleInput(data);
-      if (result !== undefined) {
-        this.copyPicker = undefined;
-        if (result) {
-          process.stdout.write(`\x1b]52;c;${Buffer.from(result).toString("base64")}\x07`);
-        }
-      }
-      this.requestRender();
+    if (matchesKey(data, "y")) {
+      await this.insertSelectedPath();
       return;
     }
-    if (matchesKey(data, "y")) {
-      const selected = this.entries[this.activeColumn]?.[this.cursors[this.activeColumn] ?? 0];
-      if (selected && !selected.directory) {
-        const absolute = selected.path;
-        const relative = path.relative(this.levels[0], absolute);
-        const gitRootResult = await this.exec("git", ["-C", this.cwd, "rev-parse", "--show-toplevel"]);
-        const gitRoot = gitRootResult.code === 0 ? gitRootResult.stdout.trim() : this.cwd;
-        const remoteResult = await this.exec("git", ["-C", gitRoot, "remote", "get-url", "origin"]);
-        const remote = remoteResult.code === 0 ? remoteResult.stdout.trim() : "";
-        const webRemote = remote
-          .replace(/^(?:[^@/]+@)?([^/:]+):(.+)$/, "https://$1/$2")
-          .replace(/^ssh:\/\//, "https://")
-          .replace(/\.git$/i, "");
-        const remotePath = path.relative(gitRoot, absolute).split(path.sep).join("/");
-        const remoteUrl = remote && !remotePath.startsWith("../")
-          ? `${webRemote}/blob/HEAD/${remotePath}`
-          : "File is outside the Git repository or no origin remote is configured";
-        this.copyPicker = new CopyPathModal([
-          [`shared://${relative.split(path.sep).join("/")}`, `shared://${relative.split(path.sep).join("/")}`],
-          ["Absolute path", absolute],
-          ["Filename", path.basename(absolute)],
-          ["Remote Git URL", remoteUrl],
-        ], this.theme);
-        this.requestRender();
-      }
+    if (matchesKey(data, "f")) {
+      this.pathFormat = (this.pathFormat + 1) % 4;
+      this.requestRender();
       return;
     }
     if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) {
@@ -241,6 +239,26 @@ class ContextBrowser {
     }
   }
 
+  private async insertSelectedPath(): Promise<void> {
+    const selected = this.entries[this.activeColumn]?.[this.cursors[this.activeColumn] ?? 0];
+    const absolute = selected?.path ?? (this.previewPath || this.levels[Math.min(this.activeColumn, this.levels.length - 1)]);
+    let value = absolute;
+    if (this.pathFormat === 0) value = `shared://${path.relative(this.levels[0], absolute).split(path.sep).join("/")}`;
+    else if (this.pathFormat === 2) value = path.basename(absolute);
+    else if (this.pathFormat === 3) {
+      const rootResult = await this.exec("git", ["-C", this.cwd, "rev-parse", "--show-toplevel"]);
+      const gitRoot = rootResult.code === 0 ? rootResult.stdout.trim() : this.cwd;
+      const remoteResult = await this.exec("git", ["-C", gitRoot, "remote", "get-url", "origin"]);
+      const remote = remoteResult.code === 0 ? remoteResult.stdout.trim() : "";
+      const webRemote = remote.replace(/^(?:[^@/]+@)?([^/:]+):(.+)$/, "https://$1/$2").replace(/^ssh:\/\//, "https://").replace(/\.git$/i, "");
+      const remotePath = path.relative(gitRoot, absolute).split(path.sep).join("/");
+      if (!remote || remotePath.startsWith("../")) return;
+      value = `${webRemote}/blob/HEAD/${remotePath}`;
+    }
+    this.insertText(value);
+    this.done();
+  }
+
   private async enter(entry: Entry): Promise<void> {
     this.levels = [...this.levels.slice(0, this.activeColumn + 1), entry.path];
     this.cursors = [...this.cursors.slice(0, this.activeColumn + 1), 0];
@@ -251,7 +269,6 @@ class ContextBrowser {
 
   render(width: number): string[] {
     const th = this.theme;
-    if (this.copyPicker) return this.copyPicker.render(width);
     const boxWidth = Math.max(28, width - 2);
     const inner = boxWidth - 2;
     const visibleLevels = this.levels.length;
@@ -298,47 +315,11 @@ class ContextBrowser {
     const status = selected?.path ?? (this.previewPath || this.levels[Math.min(this.activeColumn, this.levels.length - 1)]);
     lines.push(row(clip(` ${status}`, inner)));
     const navigation = " ←→ browse  ↑↓ move  Enter open  Backspace parent";
-    const actions = "y copy path  Esc close";
+    const actions = `y insert  f format: ${["shared://", "absolute", "filename", "remote URL"][this.pathFormat]}  Esc close`;
     const gap = " ".repeat(Math.max(1, inner - visibleWidth(navigation) - visibleWidth(actions)));
     lines.push(row(`${navigation}${gap}${actions}`));
     lines.push(th.fg("border", `╰${"─".repeat(inner)}╯`));
     return lines;
-  }
-}
-
-class CopyPathModal {
-  private selected = 0;
-
-  constructor(private options: [string, string][], private theme: Theme) {}
-
-  handleInput(data: string): string | null | undefined {
-    if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) return null;
-    if (matchesKey(data, "up")) this.selected = Math.max(0, this.selected - 1);
-    else if (matchesKey(data, "down")) this.selected = Math.min(this.options.length - 1, this.selected + 1);
-    else if (matchesKey(data, "return")) return this.options[this.selected]?.[1];
-    return undefined;
-  }
-
-  render(width: number): string[] {
-    const boxWidth = Math.max(28, width - 2);
-    const inner = boxWidth - 2;
-    const row = (content: string) => {
-      const clipped = truncateToWidth(content, inner, "…", true);
-      return this.theme.fg("border", "│") + clipped + " ".repeat(Math.max(0, inner - visibleWidth(clipped))) + this.theme.fg("border", "│");
-    };
-    return [
-      this.theme.fg("border", `╭${"─".repeat(inner)}╮`),
-      row(this.theme.fg("accent", " Copy path as")),
-      this.theme.fg("border", `├${"─".repeat(inner)}┤`),
-      ...this.options.map(([label, value], index) => {
-        const line = `${index === this.selected ? "›" : " "} ${label}: ${value}`;
-        const text = truncateToWidth(line, inner, "…", true);
-        return row(index === this.selected ? this.theme.bg("selectedBg", this.theme.fg("text", text)) : text);
-      }),
-      this.theme.fg("border", `├${"─".repeat(inner)}┤`),
-      row(this.theme.fg("dim", " ↑↓ select  Enter copy  Esc cancel")),
-      this.theme.fg("border", `╰${"─".repeat(inner)}╯`),
-    ];
   }
 }
 
@@ -387,10 +368,12 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
   };
   let contextBlock: string | undefined;
   let alignmentBlock: string | undefined;
+  let alignmentSkills: AlignmentSkill[] = [];
 
   async function refreshContext(cwd: string): Promise<void> {
     contextBlock = undefined;
     alignmentBlock = undefined;
+    alignmentSkills = [];
     const context = await resolveSharedContext((command, args) => exec(cwd, command, args), cwd);
     if (!context) return;
     contextBlock = renderSharedContext(context);
@@ -404,8 +387,7 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
     if (agents?.trim() && !(context.instructions && context.source === agentsPath)) {
       additions.push(`<alignment-agent-instructions source="${escapeXml(agentsPath)}">\n${escapeXml(agents.trim())}\n</alignment-agent-instructions>`);
     }
-    const skillList = renderAlignmentSkills(skills);
-    if (skillList) additions.push(skillList);
+    alignmentSkills = skills;
     if (additions.length > 0) alignmentBlock = additions.join("\n\n");
   }
 
@@ -419,8 +401,33 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
 
   pi.on("before_agent_start", event => {
     const additions = [contextBlock, alignmentBlock].filter((block): block is string => Boolean(block));
-    if (additions.length === 0) return;
-    return { systemPrompt: [...event.systemPrompt, ...additions] };
+    const systemPrompt = mergeAlignmentSkills(event.systemPrompt, alignmentSkills);
+    if (additions.length === 0 && systemPrompt === event.systemPrompt) return;
+    return { systemPrompt: [...systemPrompt, ...additions] };
+  });
+
+  pi.registerShortcut("ctrl+shift+g", {
+    description: "Open shared-context browser",
+    handler: async ctx => {
+      try {
+        const context = await resolveSharedContext((command, argv) => exec(ctx.cwd, command, argv), ctx.cwd);
+        if (!context) {
+          ctx.ui.notify("Could not resolve shared context for this project.", "warning");
+          return;
+        }
+        await ctx.ui.custom<void>((tui, theme, _keybindings, done) => {
+          const component = new ContextBrowser(context.root, theme, done, () => tui.requestRender(), ctx.cwd, (command, argv) => exec(ctx.cwd, command, argv), text => ctx.ui.pasteToEditor(text));
+          void component.load();
+          return {
+            render: (width: number) => component.render(width),
+            handleInput: (data: string) => { void component.handleInput(data); },
+            invalidate: () => {},
+          };
+        }, { overlay: true, overlayOptions: { anchor: "center", width: "90%", maxHeight: "80%" } });
+      } catch (error) {
+        ctx.ui.notify(`Could not open shared context: ${error instanceof Error ? error.message : String(error)}`, "error");
+      }
+    },
   });
 
   pi.registerCommand("shared-context", {
@@ -482,7 +489,7 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
           return;
         }
         await ctx.ui.custom<void>((tui, theme, _keybindings, done) => {
-          const component = new ContextBrowser(context.root, theme, done, () => tui.requestRender(), ctx.cwd, (command, argv) => exec(ctx.cwd, command, argv));
+          const component = new ContextBrowser(context.root, theme, done, () => tui.requestRender(), ctx.cwd, (command, argv) => exec(ctx.cwd, command, argv), text => ctx.ui.pasteToEditor(text));
           void component.load();
           return {
             render: (width: number) => component.render(width),
