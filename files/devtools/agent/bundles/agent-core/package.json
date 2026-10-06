@@ -15,6 +15,9 @@
   "pi": {
     "skills": [
       "./skills"
+    ],
+    "extensions": [
+      "./extensions/pi-shared-context"
     ]
   },
   "devDependencies": {

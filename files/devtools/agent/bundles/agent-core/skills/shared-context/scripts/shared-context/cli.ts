@@ -1,16 +1,15 @@
 #!/usr/bin/env -S mise x -- bun --install=fallback
 import path from "node:path";
+import { buildSharedContextReport, initializeContextForCwd } from "./api";
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import {
   buildContextIndex,
-  initializeSharedContext,
   listSharedContextFiles,
   listSharedContexts,
   migrateAlignmentContext,
   migrateContextRoute,
   migrateLegacyStorage,
-  renderContextReport,
   renderSharedContext,
   resolveContextPath,
   resolveContextRecord,
@@ -78,30 +77,13 @@ async function requireContext(): Promise<SharedAgentContext | undefined> {
 }
 
 async function runInit(ctx: { flags: { preset?: string } }): Promise<void> {
-  const context = await requireContext();
-  if (!context) return;
-
-  if (ctx.flags.preset && ctx.flags.preset !== "hosted-shared") {
-    console.error(`Unknown setup preset "${ctx.flags.preset}"`);
+  try {
+    const { agents, created, hostedShared } = await initializeContextForCwd(exec, process.cwd(), ctx.flags.preset);
+    console.log(`${created ? `Created ${agents}` : `${agents} already exists`}. Shared storage activates on the next session.`);
+    if (hostedShared) console.log("Preset: Hosted tickets with shared engineering records");
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
-    return;
-  }
-  if (ctx.flags.preset === "hosted-shared" && context.routes.tickets.adapter === "local-markdown") {
-    console.error("The hosted-shared preset requires an external ticket adapter. Configure the tracker, then retry.");
-    process.exitCode = 1;
-    return;
-  }
-  if (ctx.flags.preset === "hosted-shared"
-    && context.mode !== "shared"
-    && await Bun.file(path.join(context.candidateSharedRoot!, ".context-routes.toml")).exists()) {
-    console.error(`Cannot apply hosted-shared preset over existing routes:\n${renderContextReport(context)}\nMigrate each record kind explicitly, then retry.`);
-    process.exitCode = 1;
-    return;
-  }
-  const { agents, created } = await initializeSharedContext(context);
-  console.log(`${created ? `Created ${agents}` : `${agents} already exists`}. Shared storage activates on the next session.`);
-  if (ctx.flags.preset === "hosted-shared") {
-    console.log("Preset: Hosted tickets with shared engineering records");
   }
 }
 
@@ -282,22 +264,13 @@ async function runReport(ctx: { args: { command: string[] } }): Promise<void> {
     return;
   }
 
-  const context = await requireContext();
-  if (!context) return;
-
-  console.log([
-    `mode: ${context.mode}`,
-    `root: ${context.alignmentRoot}`,
-    `shared root: ${context.sharedRoot}`,
-    ...(context.candidateSharedRoot && context.candidateSharedRoot !== context.sharedRoot
-      ? [`shared candidate: ${context.candidateSharedRoot}`]
-      : []),
-    `origin: ${context.origin}`,
-    `slug: ${context.slug}`,
-    "",
-    renderContextReport(context).split("\n").slice(3).join("\n"),
-  ].join("\n"));
-  if (context.error) console.error(context.error);
+  const report = await buildSharedContextReport(exec, process.cwd());
+  if (!report) {
+    console.error("No git repository with an origin remote found");
+    process.exitCode = 1;
+    return;
+  }
+  console.log(report);
 }
 
 const cli = new Crust("shared-context")
