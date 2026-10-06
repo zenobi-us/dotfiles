@@ -1,7 +1,9 @@
 [dotfiles]
 "~/.pi/agent/APPEND_SYSTEM.md" = { source = "./agent/APPEND_SYSTEM.md", mode = "symlink" }
-"~/.pi/agent/extensions" = { source = "./agent/extensions", mode = "symlink" }
+"~/.pi/agent/extensions/@zenobius/*" = { source = "./agent/extensions/@zenobius/*", mode = "symlink" }
+"~/.pi/agent/extensions/herdr-agent-state.ts" = { source = "./agent/extensions/herdr-agent-state.ts", mode = "symlink" }
 "~/.pi/agent/package.json" = { source = "./agent/package.json", mode = "symlink" }
 "~/.pi/agent/settings.json" = { source = "./agent/settings.json", mode = "symlink" }
 "~/.pi/agent/tsconfig.json" = { source = "./agent/tsconfig.json", mode = "symlink" }
+
 
