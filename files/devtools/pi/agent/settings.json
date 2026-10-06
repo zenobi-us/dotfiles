@@ -1,7 +1,7 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "gpt-5.5",
+  "defaultModel": "gpt-6-luna",
   "defaultProvider": "openai",
   "defaultThinkingLevel": "medium",
   "doubleEscapeAction": "tree",
