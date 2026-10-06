@@ -1,10 +1,17 @@
 # evidence.jsonl contract
 
-One JSON object per line, appended at the moment the step is taken. Never
-written in bulk at the end from memory.
+One JSON object per line, at `<root>/<work-id>/manual-tests/evidence.jsonl`.
 
-The file lives at `<root>/<work-id>/manual-tests/evidence.jsonl`. Screenshot
-paths are relative to the report directory, so they can be copied straight into
+`acceptance.ts run` writes this file. You **MUST NOT** hand-write or edit a
+record, with the one exception in "Adding a WARN" below. The fields come from
+the live run — the URL the page was actually on, the markup the locator
+actually matched, the message the assertion actually threw — which is what
+stops a tool ref and a remembered observation reaching a report.
+
+The compiler emits the `E.push({...})` calls into the driver script, so the
+records are produced at the moment of the step, not reconstructed afterwards.
+
+Screenshot paths are relative to the report directory, so they are copied into
 the report without rewriting.
 
 ## Record
@@ -12,65 +19,98 @@ the report without rewriting.
 ```json
 {
   "test": "1",
-  "step": "1.4",
+  "step": "1.3",
   "action": "click",
-  "target": "link \"Upgrade now\"",
-  "resolved": "a[href='https://portal.example.invalid/']",
-  "url": "http://localhost:8090/app/settings/payments",
-  "screenshot": "shots/14-upgrade-banner.png",
-  "observed": "Anchor carries an href. Click navigated to the portal login.",
-  "verdict": "PASS",
+  "target": "a[data-testid=upgrade]",
+  "resolved": "<a data-testid=\"upgrade\" href=\"/portal\">Upgrade now</a>",
+  "url": "http://localhost:8099/portal",
+  "screenshot": "shots/14-portal.png",
+  "observed": "Clicked.",
+  "verdict": "",
   "note": ""
 }
 ```
 
 ## Fields
 
-| Field | Required | Meaning |
+| Field | Source | Meaning |
 |---|---|---|
-| `test` | yes | Test number from `test-plan.md`. Groups records into report sections. |
-| `step` | yes | Step number from the plan, `<test>.<step>`. Must exist in the plan. |
-| `action` | yes | `navigate`, `click`, `type`, `read`, `screenshot`, `assert`, `wait`. |
-| `target` | yes | What you aimed at, as written in the command. |
-| `resolved` | yes for `click` and `type` | What the target actually resolved to: a CSS selector, an `href`, a test id. A tool ref such as `e46` alone is **not** acceptable. |
-| `url` | yes | The URL at the moment of the step. Proves which page and which tenant. |
-| `screenshot` | yes for every step with a verdict | Path, relative to the report directory. |
-| `observed` | yes | What actually happened, in the past tense. Not what you expected. |
-| `verdict` | yes for the last step of a test, optional otherwise | See below. |
-| `note` | no | Supporting evidence for a `PARTIAL`, or the reason for a `BLOCKED`. |
+| `test` | plan | Test id. Groups records into report sections. |
+| `step` | plan position | `<test>.<n>`, from the step's index. Always exists in the plan. |
+| `action` | plan | `navigate`, `click`, `type`, `read`, `assert`. |
+| `target` | plan | The locator or URL as the plan wrote it. |
+| `resolved` | **live** | What the locator matched: the element's own markup for a `click`, the attribute or text for a `capture`, the URL for a url assertion. Empty for `navigate`. |
+| `url` | **live** | `page.url()` at the moment of the step. Proves which page and which tenant. |
+| `screenshot` | derived | `shots/NN-slug.png`, or empty when the step declared no `shot`. |
+| `observed` | **live** | What happened, past tense. On a failure this is the `ASSERT FAIL` message, with the expected and found values in it. |
+| `verdict` | runner | Set on the last record of a test, and on any `human` step. Empty elsewhere. |
+| `note` | runner | The FAIL line for a `FAIL`, the unmet precondition for a `BLOCKED`, what is still owed for a `PARTIAL`. |
+
+`resolved` carries real markup rather than a tool ref on purpose. A ref such as
+`f1e13` or `e46` is valid only inside one page read, and means nothing to the
+next reader.
 
 ## Verdicts
 
-| Verdict | Meaning | Report badge |
+The runner decides these. The table is in the skill's step 4.
+
+| Verdict | Set when | Report badge |
 |---|---|---|
-| `PASS` | The plan's PASS line was observed, with a screenshot. | `badge--pass` |
-| `FAIL` | The plan's FAIL line was observed. Say in `note` who owns it. | `badge--fail` |
-| `PARTIAL` | Partly proved. The remaining proof needs a human, or another tool. `note` **MUST** say exactly what is still needed. | `badge--info` |
-| `BLOCKED` | A precondition was not met, so the test never ran. `note` **MUST** name the precondition. | `badge--info` |
-| `WARN` | A defect found on the side, unrelated to the change under test. | `badge--warn` |
+| `PASS` | The driver exited zero and a screenshot exists. | `badge--pass` |
+| `FAIL` | The driver exited non-zero. `observed` is the assertion message. | `badge--fail` |
+| `PARTIAL` | A `human` step was reached, or the run passed with no screenshot. | `badge--info` |
+| `BLOCKED` | A `requires:` precondition check failed, so the test never ran. | `badge--info` |
+| `WARN` | Never set by the runner. See below. | `badge--warn` |
 
 There is no sixth verdict. "Probably fine" is `PARTIAL`.
 
+A test can carry at most one verdict. When records disagree, the report takes
+the worst: `FAIL`, then `BLOCKED`, then `PARTIAL`, then `PASS`.
+
+## Adding a WARN
+
+`WARN` is a defect you noticed on the side, unrelated to the change under test.
+The runner cannot see one, so this is the only record you append by hand:
+
+```sh
+cat >> evidence.jsonl <<'JSON'
+{"test":"2","step":"2.3","action":"assert","target":"console","resolved":"","url":"http://localhost:8099/settings","screenshot":"shots/23-console.png","observed":"The page logged a 404 for /api/prefs on every load.","verdict":"WARN","note":"Unrelated to this change. Pre-dates the branch."}
+JSON
+```
+
+It **MUST** carry a `screenshot` like any other claim, and its `note` **MUST**
+say why it is unrelated to the work under test. Re-run `acceptance.ts report`
+afterwards so the page picks it up.
+
 ## Screenshot naming
 
-`shots/NN-slug.png`, where `NN` orders the shots as the reader meets them and
-leaves gaps for later inserts.
-
-Derive `NN` from the step: step `1.4` becomes `14-`, step `2.1` becomes `21-`.
-The slug says what is in the picture, not what it proves.
+`shots/NN-slug.png`. `acceptance.ts` derives `NN` from the step, so a shot
+cannot be filed under the wrong one: step `1.4` becomes `14-`, step `2.1`
+becomes `21-`. The slug is the `shot` field in the plan, and it says what is in
+the picture, not what it proves.
 
 ```
-shots/10-login.png
-shots/14-upgrade-banner.png
-shots/21-help-link.png
-shots/31-RESULT-missing.png
+shots/11-settings.png
+shots/14-portal.png
+shots/22-banner.png
 ```
 
 ## Worked fragment
 
+Real output, from a four-test run against a local fixture. Test 1 passes on its
+last step; test 2 fails its assertion; test 3 never ran.
+
 ```jsonl
-{"test":"1","step":"1.1","action":"navigate","target":"/app/settings/payments","resolved":"","url":"http://localhost:8090/app/settings/payments","screenshot":"shots/11-settings.png","observed":"Page rendered blank.","verdict":"","note":""}
-{"test":"1","step":"1.2","action":"assert","target":"precondition: feature flag on","resolved":"config.local.js -> {\"feature_x\":true}","url":"http://localhost:8090/app/settings/payments","screenshot":"shots/12-config.png","observed":"Flag was off. Enabled it locally and restarted the server.","verdict":"","note":"override recorded in Test data left behind"}
-{"test":"1","step":"1.3","action":"read","target":"banner heading","resolved":"h2.banner__title","url":"http://localhost:8090/app/settings/payments","screenshot":"shots/13-banner.png","observed":"Banner rendered after the flag was enabled.","verdict":"","note":""}
-{"test":"1","step":"1.4","action":"click","target":"link \"Upgrade now\"","resolved":"a[href='https://portal.example.invalid/']","url":"https://auth.example.invalid/login?redirect_url=...","screenshot":"shots/14-portal.png","observed":"Navigated to the portal, which redirected to its login.","verdict":"PASS","note":""}
+{"test":"1","step":"1.1","action":"navigate","target":"/settings","resolved":"","url":"http://localhost:8099/settings","screenshot":"shots/11-settings.png","observed":"Page loaded.","verdict":"","note":""}
+{"test":"1","step":"1.2","action":"read","target":"a[data-testid=upgrade]","resolved":"/portal","url":"http://localhost:8099/settings","screenshot":"","observed":"Read: /portal","verdict":"","note":""}
+{"test":"1","step":"1.3","action":"click","target":"a[data-testid=upgrade]","resolved":"<a data-testid=\"upgrade\" href=\"/portal\">Upgrade now</a>","url":"http://localhost:8099/portal","screenshot":"","observed":"Clicked.","verdict":"","note":""}
+{"test":"1","step":"1.4","action":"assert","target":"url ~ /portal","resolved":"http://localhost:8099/portal","url":"http://localhost:8099/portal","screenshot":"shots/14-portal.png","observed":"URL matched: http://localhost:8099/portal","verdict":"","note":""}
+{"test":"1","step":"1.5","action":"assert","target":"#portal-title","resolved":"<h1 id=\"portal-title\">Billing portal</h1>","url":"http://localhost:8099/portal","screenshot":"","observed":"Found text: Billing portal","verdict":"PASS","note":""}
+{"test":"2","step":"2.2","action":"assert","target":"the banner says Invoices","resolved":"","url":"","screenshot":"shots/22-banner.png","observed":"ASSERT FAIL 2.2: expected \"Invoices\", got \"Payments\"","verdict":"FAIL","note":"FAIL line: the banner says something else"}
+{"test":"3","step":"3.1","action":"assert","target":"precondition","resolved":"","url":"","screenshot":"","observed":"The test did not run.","verdict":"BLOCKED","note":"feature_y is on — found \"absent\""}
 ```
+
+A `FAIL` record keeps the screenshot taken before the assertion threw, because
+the compiler emits the shot ahead of the step that can fail. A verdict with no
+image is worth less than one with it, on the failure path as much as the
+success path.

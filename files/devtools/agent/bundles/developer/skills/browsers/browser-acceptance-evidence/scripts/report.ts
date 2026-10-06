@@ -208,6 +208,34 @@ function summary(plan: Plan, records: Evidence[]): string {
   ].join("\n");
 }
 
+/**
+ * WARN records: defects found on the side, unrelated to the change under test.
+ * They get their own section rather than staying buried in the notes of
+ * whichever test happened to be running when they were spotted.
+ */
+function otherFindings(records: Evidence[]): string {
+  const warns = records.filter((r) => r.verdict === "WARN");
+  if (!warns.length) return "";
+
+  const cards = warns.map((r, i) =>
+    [
+      `<div class="card">`,
+      `  <h3 class="card__title">F${i + 1} &mdash; found at step ${esc(r.step)} <span class="badge badge--warn">Warn</span></h3>`,
+      `  <p class="card__text">${esc(r.observed)}</p>`,
+      `  <p class="card__meta">${esc(r.note)}${r.url ? ` On <code class="code">${esc(r.url)}</code>.` : ""}</p>`,
+      `</div>`,
+    ].join("\n"),
+  );
+
+  return [
+    `<h2 class="report__section" id="other">Other findings</h2>`,
+    ``,
+    `<p class="report__text">Defects noticed while testing, not caused by the change under test. Each one still needs an owner.</p>`,
+    ``,
+    cards.join("\n"),
+  ].join("\n");
+}
+
 function notCovered(plan: Plan, records: Evidence[]): string {
   const gaps = plan.tests
     .map((t) => [t, verdictOf(records, t.id)] as const)
@@ -320,6 +348,7 @@ export async function buildReport(
     stepsSection(plan, records),
     ``,
     sections.join("\n"),
+    otherFindings(records),
     notCovered(plan, records),
     ``,
     `<h2 class="report__section" id="cleanup">Test data left behind</h2>`,

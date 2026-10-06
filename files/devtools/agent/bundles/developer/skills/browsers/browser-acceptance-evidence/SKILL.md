@@ -166,19 +166,28 @@ the steps next to it cannot tell what it means. Both renderings come from
 
 ### 6. Finish what the runner cannot know. MUST.
 
-The generated report is complete except for what no tool can observe. You
-**MUST** edit `index.html` to add:
+Two things no tool can observe.
 
-- **Test data left behind.** The command seeds the table with the driver
-  session only. Every config override, seed record, account or running process
-  the run needed goes in that table, each with its undo. A run that changed a
-  flag to make the test pass **MUST** say so.
-- **Any `WARN`.** A defect noticed on the side, unrelated to the change under
-  test. Add it as a `card` under an `#other` section.
-- **Risk in `#notdone`.** The command lists what did not run and why. Say what
-  that leaves untested, in a sentence a reader can act on.
+**A defect you noticed on the side.** Append one `WARN` record to
+`evidence.jsonl` and re-run `report`. It gets its own "Other findings" card.
+The record **MUST** carry a screenshot like any other claim, and its `note`
+**MUST** say why it is unrelated to the work under test. The format is in
+`references/evidence-schema.md`. This is the only record you write by hand.
 
-Re-run the validator after editing:
+```sh
+"$SC" report "$MT"          # picks the WARN up
+```
+
+**Test data left behind.** The command seeds that table with the driver
+session only, because that is all it knows about. Every config override, seed
+record, account or running process the run needed goes in the table in
+`index.html`, each with its undo. A run that changed a flag to make the test
+pass **MUST** say so, there and in the report's opening line.
+
+You **MAY** also sharpen the risk wording in `#notdone`. The command lists what
+did not run and why; only you can say what that leaves untested.
+
+Re-run the validator after editing the page by hand:
 
 ```sh
 skills/devtools/writing-reports/scripts/validate-report.ts "$MT/report/index.html"
@@ -211,7 +220,8 @@ and the enforcement is the reason to keep writing the plan honestly.
   recorded `FAIL`, and that may be a lie about someone else's code. If you are
   not sure why an element is absent, find out before you publish.
 - **`WARN`.** A defect noticed on the side, unrelated to the change under test.
-  The runner never emits one. Add the record and say what you saw.
+  The runner never emits one. Append the record yourself — step 6, and the
+  format in `references/evidence-schema.md`.
 - **Whether the test proves the claim.** A green run of the wrong assertion is
   the most expensive outcome here. The plan is the part no tool checks.
 
