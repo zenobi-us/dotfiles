@@ -35,52 +35,9 @@ description = "run lazygit"
 width = "80%"
 height = "80%"
 
-
-#
-# Plugin: worktrunk
-#
-#
-[[keys.command]]
-key = "prefix+w"
-type = "plugin_action"
-command = "worktrunk.open"
-
-description = "Worktree: switch / create from default branch"
-
-# Optional: bind current-branch creation separately.
-[[keys.command]]
-key = "prefix+shift+c"
-type = "plugin_action"
-command = "worktrunk.open-current"
-description = "Worktree: switch / create from current branch"
-
-[[keys.command]]
-key = "prefix+shift+d"
-type = "plugin_action"
-command = "worktrunk.remove"
-description = "Worktree: remove"
-
-
-#
-# Plugin: Command Palette
-#
-#
-[[keys.command]]
-key = "prefix+p"
-type = "plugin_action"
-command = "jt.command-palette.open"
-description = "Command palette"
-
-
-#
-# Plugin: herdr-bar
-[[keys.command]]
-key = "prefix+k"
-type = "plugin_action"
-command = "herdr-bar.open"
-description = "command bar"
-
 [ui]
+
 agent_panel_sort = "priority"
 prompt_new_tab_name = false
-status_indicators = "symbols"
+status_indicators = "dots"
+
