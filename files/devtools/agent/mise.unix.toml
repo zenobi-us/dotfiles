@@ -9,4 +9,4 @@
 "~/.local/state/zot/extensions/writing" = { source = "./bundles/writing", mode = "symlink" }
 "~/.agents/hooks/shared-context.json" = { source = "./bundles/agent-core/hooks/hooks.json", mode = "symlink" }
 "~/.local/bin/shared-context" = { source = "./bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts", mode = "symlink" }
-"~/.pi/agent/extensions/@zenobius/agent-core" = { source = "./bundles/agent-core", mode = "symlink" }
+"~/.pi/agent/extensions/@zenobius/*" = { source = "./bundles/*", mode = "symlink" }

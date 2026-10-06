@@ -1,12 +1,85 @@
-import { promises as fs } from "node:fs";
+import { promises as fs, type Dirent } from "node:fs";
 import path from "node:path";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, wrapTextWithAnsi, type AutocompleteItem } from "@earendil-works/pi-tui";
 import { buildSharedContextReport, initializeContextForCwd } from "../../skills/shared-context/scripts/shared-context/api";
-import { resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
+import { renderSharedContext, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
 
 type Entry = { name: string; path: string; directory: boolean };
+type AlignmentSkill = { name: string; description: string; location: string };
+
+function escapeXml(value: string): string {
+  return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&apos;");
+}
+
+function parseSkillMetadata(content: string, fallbackName: string): { name: string; description: string } {
+  const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)?.[1] ?? "";
+  const name = frontmatter.match(/^name:\s*["']?([^\r\n"']+)["']?\s*$/m)?.[1]?.trim() || fallbackName;
+  const descriptionStart = frontmatter.match(/^description:\s*(.*)$/m);
+  let description = "";
+  if (descriptionStart) {
+    const after = frontmatter.slice((descriptionStart.index ?? 0) + descriptionStart[0].length);
+    if (["|", ">", "|-", ">-", "|+", ">+"].includes(descriptionStart[1].trim())) {
+      description = after.split("\n").filter(line => /^\s+/.test(line)).map(line => line.trim()).join(" ");
+    } else {
+      description = descriptionStart[1].trim().replace(/^["']|["']$/g, "");
+    }
+  }
+  return { name, description };
+}
+
+async function readAlignmentSkills(root: string): Promise<AlignmentSkill[]> {
+  const skillsRoot = path.join(root, "skills");
+  const results: AlignmentSkill[] = [];
+  const visit = async (directory: string): Promise<void> => {
+    let entries: Dirent[];
+    try {
+      entries = await fs.readdir(directory, { withFileTypes: true });
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") return;
+      throw error;
+    }
+    for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
+      if (entry.name === ".git" || entry.name === "node_modules" || entry.isSymbolicLink()) continue;
+      const fullPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        await visit(fullPath);
+      } else if (entry.isFile() && entry.name === "SKILL.md") {
+        const content = await fs.readFile(fullPath, "utf8");
+        const fallbackName = path.basename(path.dirname(fullPath));
+        const metadata = parseSkillMetadata(content, fallbackName);
+        results.push({ ...metadata, location: fullPath });
+      }
+    }
+  };
+  await visit(skillsRoot);
+  return results;
+}
+
+async function readAlignmentAgents(root: string): Promise<string | undefined> {
+  const file = path.join(root, "AGENTS.md");
+  try {
+    const stat = await fs.lstat(file);
+    if (!stat.isFile() || stat.size > 100_000) return;
+    return await fs.readFile(file, "utf8");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return;
+    throw error;
+  }
+}
+
+function renderAlignmentSkills(skills: AlignmentSkill[]): string {
+  if (skills.length === 0) return "";
+  const entries = skills.map(skill => [
+    "  <skill>",
+    `    <name>${escapeXml(skill.name)}</name>`,
+    `    <description>${escapeXml(skill.description)}</description>`,
+    `    <location>${escapeXml(skill.location)}</location>`,
+    "  </skill>",
+  ].join("\n")).join("\n");
+  return `<skills>\n<available_skills>\n${entries}\n</available_skills>\n</skills>`;
+}
 
 async function readEntries(directory: string): Promise<Entry[]> {
   const entries = await fs.readdir(directory, { withFileTypes: true });
@@ -222,6 +295,43 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
     const result = await pi.exec(command, args, { cwd });
     return { stdout: result.stdout, code: result.code };
   };
+  let contextBlock: string | undefined;
+  let alignmentBlock: string | undefined;
+
+  async function refreshContext(cwd: string): Promise<void> {
+    contextBlock = undefined;
+    alignmentBlock = undefined;
+    const context = await resolveSharedContext((command, args) => exec(cwd, command, args), cwd);
+    if (!context) return;
+    contextBlock = renderSharedContext(context);
+
+    const agentsPath = path.join(context.alignmentRoot, "AGENTS.md");
+    const [agents, skills] = await Promise.all([
+      readAlignmentAgents(context.alignmentRoot),
+      readAlignmentSkills(context.alignmentRoot),
+    ]);
+    const additions: string[] = [];
+    if (agents?.trim() && !(context.instructions && context.source === agentsPath)) {
+      additions.push(`<alignment-agent-instructions source="${escapeXml(agentsPath)}">\n${escapeXml(agents.trim())}\n</alignment-agent-instructions>`);
+    }
+    const skillList = renderAlignmentSkills(skills);
+    if (skillList) additions.push(skillList);
+    if (additions.length > 0) alignmentBlock = additions.join("\n\n");
+  }
+
+  pi.on("session_start", async (_event, ctx) => {
+    await refreshContext(ctx.cwd);
+  });
+
+  pi.on("session_switch", async (_event, ctx) => {
+    await refreshContext(ctx.cwd);
+  });
+
+  pi.on("before_agent_start", event => {
+    const additions = [contextBlock, alignmentBlock].filter((block): block is string => Boolean(block));
+    if (additions.length === 0) return;
+    return { systemPrompt: [...event.systemPrompt, ...additions] };
+  });
 
   pi.registerCommand("shared-context", {
     description: "Browse and manage shared context for the current project",

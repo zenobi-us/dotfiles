@@ -4,7 +4,7 @@ description: Commit staged and unstaged changes with atomic conventional commits
 user-invocable: true
 ---
 
-Use the writing-git-commits skill to commit unstaged and staged changes and carry out additional instructions in the current repository.
+Use the writing-and-creating-git-commits skill to commit unstaged and staged changes and carry out additional instructions in the current repository.
 
 1. Unstage files before analysis
 2. Plan atomic commit groupings

@@ -11,6 +11,13 @@
   "lastChangelogVersion": "1.0.2",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
+    "./extensions/@zenobius/agent-core",
+    "./extensions/@zenobius/creator",
+    "./extensions/@zenobius/developer",
+    "./extensions/@zenobius/matt-pocock",
+    "./extensions/@zenobius/platform",
+    "./extensions/@zenobius/researcher",
+    "./extensions/@zenobius/writing",
     "./extensions/@zenobius/pi-annotate",
     "./extensions/@zenobius/pi-autoresearch",
     "./extensions/@zenobius/pi-handoff",
@@ -22,7 +29,8 @@
     {
       "source": "npm:pi-code",
       "extensions": [
-        "!extensions/subagent/**"
+        "!extensions/subagent/**",
+        "!extensions/skills.ts"
       ]
     },
     "npm:pi-herdr-agents",
