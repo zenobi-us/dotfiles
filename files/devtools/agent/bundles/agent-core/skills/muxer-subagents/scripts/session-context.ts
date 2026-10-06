@@ -26,5 +26,24 @@ export function detectAgent(): Exclude<Agent, "omp" | "zot"> {
 
 export function renderSessionContext(muxer: Muxer, agent: Agent): string {
   const depth = currentSubagentDepth();
-  return `\n\n<muxer-session muxer="${muxer}" agent="${agent}" max-subagents="${MAX_SUBAGENTS_PER_SESSION}" max-depth="${MAX_SUBAGENT_DEPTH}" depth="${depth}">\nDetected once at session start by the \`muxer-subagents\` skill's Rule 1/Rule 2 logic. Use these values directly instead of running \`scripts/router.ts detect-muxer\`/\`detect-agent\` again. OMP and zot have no distinct self-identifying signal for \`detect-agent\`. The OMP extension supplies \`omp\` directly. Otherwise, pass an explicit \`--agent omp\` or \`--agent zot\` override to \`contracts\` when you know better. If the muxer or agent changes mid-session (for example the operator attaches a new terminal), re-run the detect commands instead of trusting this stale value.\n</muxer-session>`;
+
+  return `
+  Muxer Subagents Session Context
+
+  - muxer: ${muxer}
+  - agent: ${agent}
+  - maxSubagents: ${MAX_SUBAGENTS_PER_SESSION}
+  - maxDepth: ${MAX_SUBAGENT_DEPTH}
+  - depth: ${depth}
+
+  Detected once at session start by the \`muxer-subagents\` skill's Rule 1/Rule 2 logic.
+
+  Use these values directly instead of running \`scripts/router.ts detect-muxer\`/\`detect-agent\` again.
+
+  OMP and Zot have no distinct self-identifying signal for \`detect-agent\`.
+
+  The OMP extension supplies \`omp\` directly. Otherwise, pass an explicit \`--agent omp\` or \`--agent zot\` override to \`contracts\` when you know better.
+
+  If the muxer or agent changes mid-session (for example the operator attaches a new terminal), re-run the detect commands instead of trusting this stale value.
+  `;
 }
