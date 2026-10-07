@@ -1,5 +1,6 @@
 [dotfiles]
 "~/.pi/agent/AGENTS.md" = { source = "./AGENTS.md", mode = "symlink" }
+"~/.claude/CLAUDE.md" = { source = "../agent/AGENTS.md", mode = "symlink" }
 "~/.local/state/zot/extensions/agent-core" = { source = "./bundles/agent-core", mode = "symlink" }
 "~/.local/state/zot/extensions/creator" = { source = "./bundles/creator", mode = "symlink" }
 "~/.local/state/zot/extensions/developer" = { source = "./bundles/developer", mode = "symlink" }
