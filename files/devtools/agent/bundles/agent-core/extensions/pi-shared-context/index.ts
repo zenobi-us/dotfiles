@@ -57,12 +57,12 @@ async function readAlignmentSkills(root: string): Promise<AlignmentSkill[]> {
   return results;
 }
 
-async function readAlignmentAgents(root: string): Promise<string | undefined> {
-  const file = path.join(root, "AGENTS.md");
+async function readPromptFile(file: string): Promise<string | undefined> {
   try {
     const stat = await fs.lstat(file);
     if (!stat.isFile() || stat.size > 100_000) return;
-    return await fs.readFile(file, "utf8");
+    const content = (await fs.readFile(file, "utf8")).trim();
+    return content || undefined;
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return;
     throw error;
@@ -378,14 +378,19 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
     if (!context) return;
     contextBlock = renderSharedContext(context);
 
-    const agentsPath = path.join(context.alignmentRoot, "AGENTS.md");
-    const [agents, skills] = await Promise.all([
-      readAlignmentAgents(context.alignmentRoot),
+    const agentsPath = context.source ?? path.join(context.alignmentRoot, "AGENTS.md");
+    const [agents, sharedAppend, repositoryAppend, skills] = await Promise.all([
+      readPromptFile(agentsPath),
+      readPromptFile(path.join(context.sharedRoot, "APPEND_SYSTEM.md")),
+      readPromptFile(path.join(context.repositoryRoot, "APPEND_SYSTEM.md")),
       readAlignmentSkills(context.alignmentRoot),
     ]);
     const additions: string[] = [];
-    if (agents?.trim() && !(context.instructions && context.source === agentsPath)) {
-      additions.push(`<alignment-agent-instructions source="${escapeXml(agentsPath)}">\n${escapeXml(agents.trim())}\n</alignment-agent-instructions>`);
+    if (agents && context.source) {
+      additions.push(`<project_instructions path="${escapeXml(agentsPath)}">\n${escapeXml(agents)}\n</project_instructions>`);
+    }
+    for (const contents of [sharedAppend, repositoryAppend]) {
+      if (contents) additions.push(contents);
     }
     alignmentSkills = skills;
     if (additions.length > 0) alignmentBlock = additions.join("\n\n");

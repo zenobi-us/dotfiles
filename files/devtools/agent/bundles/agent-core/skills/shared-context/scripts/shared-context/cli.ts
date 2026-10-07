@@ -45,12 +45,40 @@ async function runInject(): Promise<void> {
   }
 
   const context = await resolveSharedContext(exec, cwd);
-  if (!context || !context.instructions) {
+  if (!context) {
     process.stdout.write("null\n");
     return;
   }
 
-  process.stdout.write(`${JSON.stringify(renderSharedContext(context))}\n`);
+  const escapeXml = (value: string) => value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+  const additions: string[] = [];
+  if (context.instructions?.trim() && context.source) {
+    additions.push(`<project_instructions path="${escapeXml(context.source)}">\n${escapeXml(context.instructions.trim())}\n</project_instructions>`);
+  }
+
+  const appendFiles = [
+    path.join(context.sharedRoot, "APPEND_SYSTEM.md"),
+    path.join(context.repositoryRoot, "APPEND_SYSTEM.md"),
+  ];
+  for (const file of [...new Set(appendFiles)]) {
+    try {
+      const contents = (await Bun.file(file).text()).trim();
+      if (contents) additions.push(contents);
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+    }
+  }
+
+  if (additions.length === 0) {
+    process.stdout.write("null\n");
+    return;
+  }
+  process.stdout.write(`${JSON.stringify([renderSharedContext(context), ...additions].join("\n\n"))}\n`);
 }
 
 async function runFiles(): Promise<void> {
