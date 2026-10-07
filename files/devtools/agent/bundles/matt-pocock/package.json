@@ -3,6 +3,18 @@
   "version": "0.1.0",
   "description": "Matt Pocock engineering workflow skills",
   "private": true,
+  "dependencies": {
+    "@crustjs/core": "^0.0.19",
+    "@crustjs/plugins": "^0.1.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "keywords": [
     "pi-package"
   ],

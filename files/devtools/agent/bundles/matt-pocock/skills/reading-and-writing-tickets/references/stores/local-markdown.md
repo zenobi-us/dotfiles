@@ -12,7 +12,7 @@ When applicable, use `## What to build`, `## Question`, `## Acceptance criteria`
 
 ## Query and graph
 
-Resolve the tracker root before listing. Query only its `tickets/` area. Return the canonical ID, title, state, direct blockers, and resolved file reference. For a graph, run `./scripts/local-markdown-dependency-tree.ts <resolved-tracker-root>` from this skill directory; pass the absolute tracker root returned by shared-context. The script uses `mq` to read ticket frontmatter and prints direct blocker edges. It marks blocker IDs with no matching local ticket as not found. Do not read body text as a replacement for frontmatter relationships. Derive reverse edges; do not store a second `blocks` list.
+Resolve the tracker root before listing. Query only its `tickets/` area. Return the canonical ID, title, state, direct blockers, and resolved file reference. For a DAG, run `./scripts/dep-tree-cli.ts markdown <shared-context-root> --ticket TICKET-ID` to discover the containing initiative, or `./scripts/dep-tree-cli.ts markdown <shared-context-root> --initiative INITIATIVE-ID` to select it directly. Initiative index links become graph roots; the command follows `blocked_by` edges and prints each node as `- [type] id - title`. It uses `mq` to read initiative indexes and `tracker/tickets/` frontmatter. It fails when a referenced blocker has no matching local ticket. Do not read body text as a replacement for frontmatter relationships. Derive reverse edges; do not store a second `blocks` list.
 
 ## Writes
 

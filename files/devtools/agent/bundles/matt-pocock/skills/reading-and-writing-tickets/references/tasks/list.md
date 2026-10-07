@@ -6,8 +6,8 @@
 4. For a dependency graph request, use the graph procedure in the selected store reference. Print an ASCII dot-list tree with one ticket per line and its direct blockers indented below it. Use this form:
 
 ```text
-. #42 Example ticket
-  . blocked by #41 Prerequisite
+- [task] 42 - Example ticket
+  - [task] 41 - Prerequisite
 ```
 
 Show direct blocker edges only. Do not imply that a partial result is exhaustive.

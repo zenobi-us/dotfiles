@@ -42,6 +42,15 @@
     "files/devtools/agent/bundles/matt-pocock": {
       "name": "@zenobis/agent-bundle-matt-pocock",
       "version": "0.1.0",
+      "dependencies": {
+        "@crustjs/core": "^0.0.19",
+        "@crustjs/plugins": "^0.1.2",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+        "@types/node": "^20.11.0",
+        "typescript": "^5.9.3",
+      },
     },
     "files/devtools/agent/bundles/platform": {
       "name": "@zenobis/agent-bundle-platform",
