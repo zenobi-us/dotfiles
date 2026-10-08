@@ -25,9 +25,10 @@
     "./extensions/@zenobius/sub-limits",
     "npm:@mrclrchtr/supi-ask-user",
     "npm:pi-debug-mode",
-    "npm:pi-lens",
     "npm:@prjct.app/pi-clipboard",
-    "npm:@xynogen/pix-display"
+    "npm:@xynogen/pix-display",
+    "npm:@xynogen/pix-footer",
+    "npm:@xynogen/pix-models"
   ],
   "quietStartup": "header",
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",

@@ -41,3 +41,7 @@ files/devtools/pi/agent/bundles/developer/skills/atlassian/twg/.twg-install.json
 
 # playwright-cli writes page snapshots and console logs into the working directory
 .playwright-cli/
+
+# Pix Agent
+.pi/
+.pi-lens/
