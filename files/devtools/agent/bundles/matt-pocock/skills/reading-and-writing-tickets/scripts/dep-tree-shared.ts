@@ -6,6 +6,7 @@ export interface Ticket {
   id: string;
   title: string;
   type: string;
+  status?: string;
 }
 
 export interface DependencyGraph {
@@ -52,13 +53,25 @@ export function renderDependencyGraph(graph: DependencyGraph): string {
   function render(id: string, depth: number): void {
     const ticket = graph.tickets.get(id);
     if (!ticket) throw new Error(`internal graph error: ticket ${id} is missing`);
-    lines.push(`${"  ".repeat(depth)}- [${ticket.type}] ${ticket.id} - ${ticket.title}`);
+    const blockers = graph.blockedBy.get(id) ?? [];
+    const status = blockers.length > 0 ? "WAITING" : formatStatus(ticket.status);
+    const blockerLabel = blockers.length > 0 ? ` · blocked by ${blockers.join(", ")}` : "";
+    lines.push(`${"  ".repeat(depth)}- [${ticket.type}] ${ticket.id} - ${ticket.title}  ${status}${blockerLabel}`);
     if (emitted.has(id)) return;
     emitted.add(id);
     for (const dependency of graph.blockedBy.get(id) ?? []) render(dependency, depth + 1);
   }
   for (const root of graph.roots) render(root, 0);
   return lines.join("\n");
+}
+
+function formatStatus(status: string | undefined): string {
+  const value = status?.trim().toLowerCase();
+  if (!value) return "UNKNOWN";
+  if (["done", "closed", "resolved", "complete", "completed", "merged", "implemented"].includes(value)) return "COMPLETED";
+  if (["in progress", "in-progress", "in_progress", "active", "started", "claimed"].includes(value)) return "IN PROGRESS";
+  if (["todo", "to do", "open", "new", "backlog", "unclaimed", "ready"].includes(value)) return "NOT STARTED";
+  return (status ?? "UNKNOWN").trim().toUpperCase();
 }
 
 export function compareIds(left: string, right: string): number {

@@ -49,7 +49,7 @@ async function jiraGraph(ticketKey: string | undefined, epicKey: string | undefi
 
 async function jiraLoadTicket(key: string): Promise<{ ticket: Ticket; blockedBy: string[] }> {
   const issue = await jiraIssue(key);
-  return { ticket: { id: issue.key, title: issue.title, type: issue.type }, blockedBy: issue.blockedBy };
+  return { ticket: { id: issue.key, title: issue.title, type: issue.type, status: issue.status }, blockedBy: issue.blockedBy };
 }
 
 async function discoverJiraEpic(ticketKey: string | undefined): Promise<string> {
@@ -61,7 +61,7 @@ async function discoverJiraEpic(ticketKey: string | undefined): Promise<string> 
   return parent.key;
 }
 
-async function jiraIssue(key: string): Promise<{ key: string; title: string; type: string; parentKey?: string; blockedBy: string[] }> {
+async function jiraIssue(key: string): Promise<{ key: string; title: string; type: string; status: string; parentKey?: string; blockedBy: string[] }> {
   if (!/^[A-Z][A-Z0-9_]+-\d+$/i.test(key)) throw new Error(`Invalid Jira key: ${key}`);
   const envelope = record(await jiraGet(key), `TWG workitem ${key} output`);
   const data = record(envelope.data, `TWG workitem ${key} data`);
@@ -70,6 +70,7 @@ async function jiraIssue(key: string): Promise<{ key: string; title: string; typ
   if (actualKey !== key) throw new Error(`TWG returned ${actualKey} when ${key} was requested`);
   const fields = record(issue.fields, `Jira workitem ${key} fields`);
   const title = nonEmptyString(fields.summary, `Jira workitem ${key} summary`);
+  const status = nonEmptyString(record(fields.status, `Jira workitem ${key} status`).name, `Jira workitem ${key} status name`);
   const issueType = record(fields.issuetype, `Jira workitem ${key} issue type`);
   const type = nonEmptyString(issueType.name, `Jira workitem ${key} issue type name`);
   const parentValue = fields.parent;
@@ -88,7 +89,7 @@ async function jiraIssue(key: string): Promise<{ key: string; title: string; typ
     if (endpoint === undefined) throw new Error(`Jira workitem ${key} blocker link has no endpoint`);
     blockedBy.push(nonEmptyString(record(endpoint, `Jira workitem ${key} blocker endpoint`).key, `Jira workitem ${key} blocker key`));
   }
-  return { key: actualKey, title, type, ...(parentKey ? { parentKey } : {}), blockedBy };
+  return { key: actualKey, title, type, status, ...(parentKey ? { parentKey } : {}), blockedBy };
 }
 
 async function jiraEpicChildren(epicKey: string): Promise<string[]> {
@@ -128,7 +129,7 @@ async function githubGraph(repository: string, ticketNumber: string | undefined,
   if (spec.subIssues.length === 0) throw new Error(`GitHub spec #${selectedSpec} has no sub-issues.`);
   const graph = await buildDependencyForest(spec.subIssues, async (number) => {
     const issue = await githubIssue(repository, number);
-    return { ticket: { id: issue.number, title: issue.title, type: issue.type }, blockedBy: issue.blockedBy };
+    return { ticket: { id: issue.number, title: issue.title, type: issue.type, status: issue.status }, blockedBy: issue.blockedBy };
   });
   return renderDependencyGraph(graph);
 }
@@ -147,14 +148,15 @@ async function discoverGitHubSpec(repository: string, ticketNumber: string): Pro
 }
 
 async function githubIssue(repository: string, number: string): Promise<{
-  number: string; title: string; type: string; blockedBy: string[]; parentNumber?: string; subIssues: string[]; isSpec: boolean;
+  number: string; title: string; type: string; status: string; blockedBy: string[]; parentNumber?: string; subIssues: string[]; isSpec: boolean;
 }> {
   if (!/^\d+$/.test(number)) throw new Error(`Invalid GitHub issue number: ${number}`);
-  const result = parseJson(run("gh", ["issue", "view", number, "--repo", repository, "--json", "number,title,body,labels,issueType,parent,subIssues,blockedBy"]), "gh");
+  const result = parseJson(run("gh", ["issue", "view", number, "--repo", repository, "--json", "number,title,body,state,labels,issueType,parent,subIssues,blockedBy"]), "gh");
   const issue = record(result, `GitHub issue #${number}`);
   const actualNumber = nonEmptyString(String(issue.number ?? ""), `GitHub issue #${number} number`);
   if (actualNumber !== number) throw new Error(`gh returned issue #${actualNumber} when #${number} was requested`);
   const title = nonEmptyString(issue.title, `GitHub issue #${number} title`);
+  const status = nonEmptyString(issue.state, `GitHub issue #${number} state`);
   const labels = Array.isArray(issue.labels) ? issue.labels.map((value) => nonEmptyString(record(value, `GitHub issue #${number} label`).name, `GitHub issue #${number} label name`)) : [];
   const issueType = issue.issueType && typeof issue.issueType === "object" && !Array.isArray(issue.issueType)
     ? (issue.issueType as Record<string, unknown>).name
@@ -168,7 +170,7 @@ async function githubIssue(repository: string, number: string): Promise<{
   const body = typeof issue.body === "string" ? issue.body : "";
   const bodyParent = body.match(/^Part of #([0-9]+)/m)?.[1];
   const isSpec = labels.includes("wayfinder:map") || type.toLowerCase() === "spec";
-  return { number: actualNumber, title, type: isSpec ? "map" : type, blockedBy, ...(parentNumber ?? bodyParent ? { parentNumber: parentNumber ?? bodyParent } : {}), subIssues, isSpec };
+  return { number: actualNumber, title, type: isSpec ? "map" : type, status, blockedBy, ...(parentNumber ?? bodyParent ? { parentNumber: parentNumber ?? bodyParent } : {}), subIssues, isSpec };
 }
 
 async function markdownGraph(root: string, ticketId: string | undefined, initiativeId: string | undefined): Promise<string> {
@@ -192,11 +194,12 @@ async function markdownGraph(root: string, ticketId: string | undefined, initiat
     if (tickets.has(id)) throw new Error(`duplicate ticket ID: ${id}`);
     const title = scalar(frontmatter.title, `Markdown ticket ${index + 1} title`);
     const type = typeof frontmatter.type === "string" ? frontmatter.type.trim() : "ticket";
+    const status = typeof frontmatter.work_status === "string" ? frontmatter.work_status.trim() : undefined;
     const parent = typeof frontmatter.parent === "string" ? frontmatter.parent.trim() : undefined;
     const rawBlockers = frontmatter.blocked_by ?? [];
     if (!Array.isArray(rawBlockers)) throw new Error(`ticket ${id} has a non-list blocked_by value`);
     const blockedBy = rawBlockers.map((value) => scalar(value, `ticket ${id} blocker`));
-    tickets.set(id, { ticket: { id, title, type: type || "ticket" }, blockedBy, ...(parent ? { parent } : {}) });
+    tickets.set(id, { ticket: { id, title, type: type || "ticket", ...(status ? { status } : {}) }, blockedBy, ...(parent ? { parent } : {}) });
   }
   const initiatives = initiativeId
     ? [await readMarkdownInitiative(root, initiativeId)]

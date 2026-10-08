@@ -25,7 +25,6 @@
     "./extensions/@zenobius/sub-limits",
     "npm:@mrclrchtr/supi-ask-user",
     "npm:pi-debug-mode",
-    "npm:pi-herdr-agents",
     "npm:pi-lens",
     "npm:@prjct.app/pi-clipboard",
     "npm:@xynogen/pix-display"
