@@ -91,6 +91,22 @@ function playwrightStep(t: Test, s: Step, i: number, plan: Plan): string[] {
       }
       break;
     }
+    case "wait": {
+      out.push(`  { const L = ${loc(s.locator)};`);
+      out.push(`    await L.first().waitFor({ state: 'attached', timeout: ${s.timeoutMs ?? 30000} });`);
+      out.push(`    const R = await resolve(L.first());`);
+      if (snap) out.push(`  ${snap.trim()}`);
+      out.push(`  ${push("wait", s.locator, "R", q("Rendered.")).trim()} }`);
+      break;
+    }
+    case "scroll": {
+      out.push(`  { const L = ${loc(s.locator)}.first();`);
+      out.push(`    await L.scrollIntoViewIfNeeded();`);
+      out.push(`    const R = await resolve(L);`);
+      if (snap) out.push(`  ${snap.trim()}`);
+      out.push(`  ${push("scroll", s.locator, "R", q("Scrolled into view.")).trim()} }`);
+      break;
+    }
     case "human": {
       if (snap) out.push(snap);
       out.push(push("assert", "human step", q(""), q("Driver cannot complete this step."), "PARTIAL", s.needs));
@@ -157,6 +173,21 @@ export function compileSurf(plan: Plan, t: Test, shotsDir: string): string {
         snap();
         steps.push({ tool: "js", args: { code: surfAssert(s, step) }, as: `assert_${step.replace(".", "_")}` });
         break;
+      case "wait":
+        steps.push({
+          tool: "wait.element",
+          args: { selector: s.locator, timeout: s.timeoutMs ?? 30000 },
+        });
+        snap();
+        break;
+      case "scroll":
+        steps.push({
+          tool: "js",
+          args: { code: surfScroll(s.locator, step) },
+          as: `scroll_${step.replace(".", "_")}`,
+        });
+        snap();
+        break;
       case "human":
         snap();
         break;
@@ -175,6 +206,10 @@ export function compileSurf(plan: Plan, t: Test, shotsDir: string): string {
     null,
     2,
   );
+}
+
+function surfScroll(locator: string, step: string): string {
+  return `(function(){var e=document.querySelector(${q(locator)});if(!e)throw new Error('ASSERT FAIL ${step}: ${locator} not found');e.scrollIntoView({block:'center'});return 'scrolled';})()`;
 }
 
 function surfRead(locator: string, attr: string | undefined, step: string): string {

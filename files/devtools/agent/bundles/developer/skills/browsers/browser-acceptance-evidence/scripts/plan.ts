@@ -39,6 +39,20 @@ export type Step =
       shot?: Slug;
     }
   /**
+   * Wait for a locator to appear before going on. A single-page app renders
+   * after its navigation settles, so a bare `navigate` leaves the next step
+   * racing the first paint. The wait fails the run if the locator never
+   * arrives, so it is a gate, not a sleep.
+   */
+  | { do: "wait"; locator: string; timeoutMs?: number; shot?: Slug }
+  /**
+   * Bring a locator into the viewport. A driver that dispatches a click at an
+   * element's coordinates cannot reach one below the fold, and surf's
+   * `click --selector` does not scroll on its own, so a control at the foot of
+   * a long page is clicked into empty space and the step still reports ok.
+   */
+  | { do: "scroll"; locator: string; shot?: Slug }
+  /**
    * Something only a human can finish — a popup the driver suppresses, a
    * payment, a second factor. The run records PARTIAL and `needs` says what
    * is still owed. It never fails the run.
@@ -125,6 +139,10 @@ export function stepText(step: Step, base: string): string {
       if (step.visible === false) return `Confirm \`${step.locator}\` is absent.`;
       return `Confirm \`${step.locator}\` is present.`;
     }
+    case "wait":
+      return `Wait for \`${step.locator}\` to render.`;
+    case "scroll":
+      return `Scroll \`${step.locator}\` into view.`;
     case "human":
       return `By hand: ${step.needs}`;
   }

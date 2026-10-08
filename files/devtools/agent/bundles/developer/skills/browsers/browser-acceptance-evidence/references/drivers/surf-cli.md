@@ -221,6 +221,12 @@ survives the report being zipped and sent on.
   error, no file is written, and it fires after the earlier actions already
   ran. Run `tab.switch` once when you claim the session. If the user focuses
   another tab mid-run, every later shot fails the same way.
+- **`surf click --selector` does not scroll into view.** It dispatches at the
+  element's coordinates, so a control below the fold — a pager under a long
+  grid, a footer button — is clicked into empty space. The step reports `ok`
+  and nothing happens. `locate.role --action click` does scroll first, but a
+  workflow cannot call it, so put a `{ do: "scroll", locator }` step in the
+  plan before any click on something that may be off-screen.
 - **`surf click` does not beat the popup blocker.** A `window.open` in a new
   tab is suppressed for a synthesized click. `tab.list` shows no new tab and
   the console shows no error. Do not retry it a third time. Record `PARTIAL`,

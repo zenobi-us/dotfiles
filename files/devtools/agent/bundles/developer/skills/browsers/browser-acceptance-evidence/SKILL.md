@@ -70,6 +70,15 @@ A step that only a human can finish — a popup the driver suppresses, a payment
 a second factor — is `{ do: "human", needs: "..." }`. It records `PARTIAL` and
 never fails the run.
 
+A single-page app renders after its navigation settles, so a bare `navigate`
+leaves the next step racing the first paint. Gate on the thing you are about to
+touch with `{ do: "wait", locator: "..." }`. It is a gate, not a sleep: the run
+fails if the locator never arrives.
+
+A control below the fold is clicked into empty space by a driver that dispatches
+at coordinates, and the step still reports ok. Put
+`{ do: "scroll", locator: "..." }` before any click on one.
+
 ```sh
 "$SC" render "$MT"          # plan.ts -> test-plan.md
 ```
