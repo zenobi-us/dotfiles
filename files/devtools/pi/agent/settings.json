@@ -28,7 +28,9 @@
     "npm:@prjct.app/pi-clipboard",
     "npm:@xynogen/pix-display",
     "npm:@xynogen/pix-footer",
-    "npm:@xynogen/pix-models"
+    "npm:@xynogen/pix-models",
+    "npm:@xynogen/pix-diagnostics",
+    "npm:@xynogen/pix-pretty"
   ],
   "quietStartup": "header",
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
