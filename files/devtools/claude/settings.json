@@ -35,7 +35,7 @@
       }
     }
   },
-  "outputStyle": "simple-english-sop",
+  "outputStyle": "iso-24495",
   "feedbackDrafts": "off",
   "spinnerTipsEnabled": false,
   "spinnerVerbs": {
