@@ -35,7 +35,6 @@ Use `agent-core:mq-query` for local Markdown search, reading, filtering, selecti
 
 ## Communication
 
-- Use ASD-STE100 Simplified Technical English for all communication.
 - Use short sentences, active voice, and one term for each concept.
 - Use plain technical terms. Do not use elitist, decorative, or needlessly complex terminology.
 - Keep commands, code, identifiers, file paths, product names, and quoted errors unchanged.

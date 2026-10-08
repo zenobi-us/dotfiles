@@ -10,15 +10,15 @@ committing on its own, committing for a pull request, and committing during a re
 
 | Need | Read |
 |---|---|
-| The message format, the type and scope vocabulary | `developer:pr` `references/rules/commits.md` |
-| The procedure: unstage, group, print the plan, commit | `developer:pr` `references/playbooks/commit.md` |
+| The message format, the type and scope vocabulary | `skill://pr/references/rules/commits.md` |
+| The procedure: unstage, group, print the plan, commit | `skill://pr/references/playbooks/commit.md` |
 
 Load those two files, then follow the playbook.
 
 ## Before the first commit
 
 1. MUST NOT commit on the default branch. Create a working branch first:
-   `developer:pr` `references/playbooks/branch.md`.
+   `skill://pr/references/playbooks/branch.md`.
 2. MUST resolve every merge conflict before committing. `git ls-files -u` must print nothing.
 3. MUST include the issue or ticket reference in the commit subject when the caller resolved
    one. The body alone is not enough.
@@ -26,4 +26,4 @@ Load those two files, then follow the playbook.
 ## This skill does not push
 
 Pushing, rebasing on the target branch and opening a pull request belong to
-`developer:pr` `references/playbooks/create.md`.
+`skill://pr/references/playbooks/create.md`.
