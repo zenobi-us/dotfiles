@@ -1,7 +1,0 @@
-[bootstrap.repos]
-"~/.config/nvim" = { url = "git@github.com:zenobi-us/lazyvim.profile.git" }
-
-[env]
-VISUAL = "nvim"
-EDITOR = "nvim"
-AGENT_BUNDLE_STORAGE_PATH_PATTERN = "$DOTFILE_REPO_ROOT/files/devtools/agent/bundles/{domain}/"
