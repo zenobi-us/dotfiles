@@ -44,7 +44,7 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
    and resolve the workflow root with `shared-context resolve workflow --id <ticket-id>`.
 2. Resolve the current worktree from `git` and `wt` state. Submit runs in the current worktree and does not ask a muxer where it is.
 3. Use Worktrunk to verify the source branch and worktree state.
-4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `writing-and-creating-git-commits` skill. Put the ticket reference in the commit title. Include the ticket link and a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on in the commit body.
+4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `skill://commit` skill. Put the ticket reference in the commit title. Include the ticket link and a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on in the commit body.
 5. Run the smallest validation command recorded by the successful review.
 6. Look for a manual test report for the resolved ticket. See "Manual test reports" below.
 7. Append a `submit` phase-start receipt before pushing the source branch.

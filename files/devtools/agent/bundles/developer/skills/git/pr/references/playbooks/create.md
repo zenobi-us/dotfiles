@@ -3,7 +3,7 @@
 Execution spec for the `pr` skill. Read it when you open a new PR or update an existing one.
 
 Load `../rules/fixed-decisions.md` and `../rules/repository-conventions.md` before Step 1.
-Load `../rules/commits.md` when Step 1 commits, and `../rules/branch-naming.md` when Step 2.1
+Use the `skill://commit` skill for commit mechanics and message rules when Step 1 commits, and load `../rules/branch-naming.md` when Step 2.1
 rejects the branch name.
 
 ## Contents

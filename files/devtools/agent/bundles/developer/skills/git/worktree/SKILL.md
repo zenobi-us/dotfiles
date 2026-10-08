@@ -32,7 +32,7 @@ versioned PR drafts under `artifacts/snapshots/`. Resolve manual evidence with
 `skiLL://shared-context/scripts/shared-context.ts resolve evidence`; its store can differ from the workflow store.
 Store current views under `projections/`.
 
-Every commit made by a worktree playbook MUST use the `skill://writing-and-creating-git-commits` skill. Every commit title MUST contain the resolved issue reference. This applies to source commits, workflow-artifact commits, tracker-state commits, and the final merge commit.
+Every commit made by a worktree playbook MUST use the `skill://commit` skill. Every commit title MUST contain the resolved issue reference. This applies to source commits, workflow-artifact commits, tracker-state commits, and the final merge commit.
 
 # Rule 0: resolve the project issue tracker
 

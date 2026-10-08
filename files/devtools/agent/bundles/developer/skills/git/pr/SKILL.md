@@ -5,8 +5,7 @@ description: Runs the git and GitHub pull request workflow of any repository - o
 
 # PR: the git and GitHub workflow
 
-This skill dispatches. Every rule and every procedure lives in the file it points to. Read only
-what the task needs.
+This skill owns PR and branch workflows. Commit grouping, commit mechanics, and commit-message rules belong to the `skill://commit` skill; invoke it whenever a PR workflow needs to create commits. Read only the PR playbook and rules needed for the task.
 
 ## Route
 
@@ -18,7 +17,7 @@ Match the request against this table. Read the playbook, then do what it says.
 | Work through review threads, reviewer comments and failing checks | `references/playbooks/resolve.md` |
 | Watch a PR, fix CI failures and comments as they arrive | `references/playbooks/watch.md` |
 | Name a branch, create one, check the current name | `references/playbooks/branch.md` |
-| Commit staged or unstaged work, with no PR in the request | `references/playbooks/commit.md` |
+| Commit staged or unstaged work, with no PR in the request | `skill://commit` skill |
 
 No match: read the five playbook headings and pick the one whose goal fits. Say which you
 chose and why. Ask when two fit equally.
@@ -34,12 +33,15 @@ Every playbook names the rule files it needs. Load those, not this file.
 
 ## Rules every playbook shares
 
+PR work MUST NOT commit directly on the default branch. Create or switch to the PR working branch using the branch workflow. This restriction belongs to PR workflows; standalone commits are governed by `skill://commit` and do not create branches automatically.
+
+
 | File | Covers |
 |---|---|
 | `references/rules/repository-conventions.md` | the repository's own conventions win, and where to find them |
 | `references/rules/fixed-decisions.md` | what to apply instead of asking the user |
 | `references/rules/branch-naming.md` | the branch name form and the checker |
-| `references/rules/commits.md` | the commit message format and the type vocabulary |
+| `skill://commit` skill | commit grouping, mechanics, and message format when a PR workflow needs commits |
 | `references/rules/portable-commands.md` | no shell features, and how to extend the scripts |
 
 ## Scripts

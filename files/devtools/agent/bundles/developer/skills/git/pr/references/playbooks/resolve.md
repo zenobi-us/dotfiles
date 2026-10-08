@@ -3,7 +3,7 @@
 Execution spec for the `pr` skill. Read it when a PR has review comments to address or
 failing CI checks to fix. `<PR>` below is the PR number or URL.
 
-Load `../rules/fixed-decisions.md` and `../rules/commits.md` before Stage 3. Load
+Load `../rules/fixed-decisions.md` before Stage 3. Use the `skill://commit` skill for commit mechanics and message rules when committing review fixes. Load
 `../rules/repository-conventions.md` when Stage 5 needs the repository's own check commands.
 
 **Process EVERY unresolved thread. No skipping. Zero unresolved threads is the only
@@ -40,9 +40,8 @@ The token needs the `repo` scope and `write:discussion` for the resolve mutation
 7. **Verify** - re-fetch from GitHub; confirm zero unresolved threads and passing checks.
 
 **Commit cadence (non-negotiable):** each review thread or reviewer comment that changes code
-is one commit (fix → `git add` → `git commit` → resolve the thread or answer the comment →
-next item); each CI check type is one commit. Never batch all the changes into a single commit at the end. Use the
-commit format in `../rules/commits.md`. A thread resolved by a reply
+is one commit (fix → use the `skill://commit` mechanics for that single change → resolve the thread or answer the comment →
+next item); each CI check type is one commit. Never batch all the changes into a single commit at the end. Follow the commit format in the `skill://commit` skill. A thread resolved by a reply
 rather than a change has nothing to commit - see Stage 4.4.
 
 **Always fetch fresh data from GitHub.** Never reuse cached or previously fetched context.
@@ -191,13 +190,10 @@ the repo's semantic format. Infer the type from the comment:
 | Performance, optimize | `perf` |
 | Style, indent, whitespace | `style` |
 
-The scope is the area of the repository, as in `../rules/commits.md` - taken from the
+The scope is the area of the repository, following the `skill://commit` rules - taken from the
 repository's own commit history, not from the raw directory name.
 
-```bash
-git add <path>
-git commit -m "refactor(users): rename getUser to fetchUser"
-```
+Use the `skill://commit` skill to create this single-thread commit. For example, stage only the affected path and use a semantic subject such as `refactor(users): rename getUser to fetchUser`.
 
 ### 4.4 Respond and defer threads: reply instead
 

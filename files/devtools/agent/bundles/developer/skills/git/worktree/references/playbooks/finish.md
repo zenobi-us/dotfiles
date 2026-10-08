@@ -31,7 +31,7 @@ Finish does not launch an agent for source work. It releases every remaining age
 8. Update the base branch from its remote.
 9. Verify that Worktrunk is configured for a squash merge. If `[merge].squash = false`, stop and report the configuration mismatch instead of silently performing a non-squash merge.
 10. Squash merge the source branch into the base branch with Worktrunk.
-11. Use `writing-and-creating-git-commits` for the final merge commit. Put the
+11. Use the `skill://commit` skill for the final merge commit. Put the
     ticket reference in the title. Include the ticket `ref`, successful review
     artifact, and every ADR relied on by the review in the body.
 12. Push the base branch.
@@ -53,6 +53,7 @@ Finish does not launch an agent for source work. It releases every remaining age
 - Never replace a `FINISHING` receipt with a terminal receipt. Append the terminal receipt.
 
 ## Output
+
 
 ```md
 ## Finished
