@@ -2,6 +2,9 @@
 experimental = true
 dotfiles.default_mode = "symlink"
 
+[bootstrap.services.mise-history]
+builtin = "history-watch"
+
 [tools]
 "cargo:p1rallels/codemapper" = "latest"
 "github:Feel-ix-343/markdown-oxide" = "latest"
@@ -121,5 +124,3 @@ fd = "latest"
 zot = "github:patriceckhart/zot"
 hrdx = "github:patriceckhart/hrdx"
 
-[env]
-NEOVIM_THEME_NAME = "monoglow-z"
