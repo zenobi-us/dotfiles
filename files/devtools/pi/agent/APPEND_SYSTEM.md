@@ -39,5 +39,10 @@ Then you MUST always resolve the absolute path of the script relative to the ski
 
 Never assume that the path is relative to the current working directory unless that is explicitly stated. Always resolve the path relative to the skill document's location.
 
+Execute skill scripts directly. When a skill instructs you to run a script, resolve its absolute path relative to the
+│ SKILL.md that mentions it, then invoke that path directly with the requested arguments—for example,
+│ /absolute/path/to/skill/scripts/thing.ts --args—so its shebang selects the runtime. Don’t invoke it through node or
+│ another guessed runtime.
+
 <!-- PiSkillScript
      Pi Sucks at skill script/reference loading //-->
