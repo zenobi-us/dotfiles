@@ -1,7 +1,7 @@
 {
   "name": "researcher",
   "description": "Research methodology, deep analysis, and data/AI expert personas",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "skills": [
     "./skills/files/devtools/"
   ]

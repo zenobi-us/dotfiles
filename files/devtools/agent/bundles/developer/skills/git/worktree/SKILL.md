@@ -1,6 +1,6 @@
 ---
 name: worktree
-description: Route a worktree subcommand (start, submit, fix, finish, review, continue) to its playbook, after detecting the active muxer and agent.
+description: Route a worktree subcommand (start, submit, fix, finish, review, continue, tasks) to its playbook, after detecting the active muxer and agent.
 disable-model-invocation: true
 user-invocable: true
 ---
@@ -71,13 +71,13 @@ Take `muxer`, `agent`, `muxerContract`, and `agentContract` from its output and 
 
 # Route
 
-Resolve the issue tracker before following a playbook that reads or updates a ticket. The playbook receives the ticket `ref` and backend as working context.
+Resolve the issue tracker before following a playbook that reads or updates a ticket. The playbook receives the ticket `ref` and backend as working context. For `tasks`, follow its backend-specific dependency-tree procedure; it reads tracker data but does not change tickets.
 
 ```bash
 scripts/router.ts route "$ARGUMENTS"
 ```
 
-The command resolves the subcommand and prints JSON: `{ match, subcommand, remainder, playbook }` on success, or `{ match: false, request }` with a non-zero exit on no match. It does not resolve the muxer or the agent; Rule 1 does.
+The command resolves the subcommand and prints JSON: `{ match, subcommand, remainder, playbook }` on success, or `{ match: false, request }` with a non-zero exit on no match. `/worktree tasks [optional ticket id]` routes to `references/playbooks/tasks.md`; it does not resolve the muxer or the agent.
 
 ## On match
 

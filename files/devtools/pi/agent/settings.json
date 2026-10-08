@@ -23,19 +23,10 @@
     "./extensions/@zenobius/pi-handoff",
     "./extensions/@zenobius/pi-poster",
     "./extensions/@zenobius/sub-limits",
-    "npm:pi-add-dir",
     "npm:@mrclrchtr/supi-ask-user",
     "npm:pi-debug-mode",
-    {
-      "source": "npm:pi-code",
-      "extensions": [
-        "!extensions/subagent/**",
-        "!extensions/skills.ts"
-      ]
-    },
     "npm:pi-herdr-agents",
     "npm:pi-lens",
-    "npm:@earendil-works/pi-voice",
     "npm:@prjct.app/pi-clipboard",
     "npm:@xynogen/pix-display"
   ],
@@ -51,5 +42,6 @@
   "enableSkillCommands": true,
   "modelThinkingLevels": {
     "openai/gpt-5.5": "medium"
-  }
+  },
+  "deviceId": "7f7bf46e-13fd-46ee-96e9-558d9fc08e59"
 }

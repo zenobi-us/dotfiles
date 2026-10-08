@@ -10,7 +10,7 @@ const scriptDir = dirname(fileURLToPath(import.meta.url));
 const skillDir = resolve(scriptDir, "..");
 const referencesDir = join(skillDir, "references");
 
-const SUBCOMMANDS = ["start", "submit", "fix", "finish", "review", "continue"];
+const SUBCOMMANDS = ["start", "submit", "fix", "finish", "review", "continue", "tasks"];
 
 function playbookPath(name: string): string | null {
   const path = join(referencesDir, "playbooks", `${name}.md`);

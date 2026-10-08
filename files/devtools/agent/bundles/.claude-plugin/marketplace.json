@@ -8,7 +8,7 @@
       "name": "agent-core",
       "source": "./agent-core",
       "description": "Superpowers, skill management, and shell environment for pi",
-      "version": "0.1.19"
+      "version": "0.1.20"
     },
     {
       "name": "creator",
@@ -20,7 +20,7 @@
       "name": "developer",
       "source": "./developer",
       "description": "Code writing, git workflow, testing, and language/quality experts",
-      "version": "0.2.8"
+      "version": "0.2.9"
     },
     {
       "name": "matt-pocock",
@@ -38,7 +38,7 @@
       "name": "researcher",
       "source": "./researcher",
       "description": "Research methodology, deep analysis, and data/AI expert personas",
-      "version": "0.1.1"
+      "version": "0.1.2"
     },
     {
       "name": "writing",
