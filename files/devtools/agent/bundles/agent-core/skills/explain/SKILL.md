@@ -25,7 +25,9 @@ The final result MUST be a web page, not a slide deck or presentation.
 Load these skills before you start:
 
 - `research`
-- `simple-english`
+- `iso-24495-1`
+- `iso-24495-3`
+- `iso-24495-5`
 - `poster`
 - The best domain skills for the subject
 - A browser skill for final visual checks
@@ -123,7 +125,7 @@ Do not mix the purpose of one section into another section.
 
 ## 4. Write in Simplified Technical English
 
-Apply the `simple-english` skill to all page text.
+Apply the `iso-24495-3` skill to all page text.
 
 - Use active voice.
 - Use one term for one concept.
@@ -219,7 +221,7 @@ Before completion:
 6. Check that citations open the correct sources.
 7. Check that the page remains usable without custom JavaScript.
 8. Check that all four Diátaxis sections have distinct purposes.
-9. Run the `simple-english` self-check on the final text.
+9. Run the `iso-24495-3` self-check on the final text.
 10. Remove unused assets and temporary files.
 
 Fix errors before you report completion.

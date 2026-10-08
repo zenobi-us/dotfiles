@@ -13,7 +13,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 - Put conditions before commands.
 - Use imperative sentences for procedures.
 - Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
-- Use the `simple-english` skill for the full rule set.
+- Use the `iso-24495-1` skill for the full rule set.
 
 # Test-Driven Development
 

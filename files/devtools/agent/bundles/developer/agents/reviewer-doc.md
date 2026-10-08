@@ -1,7 +1,7 @@
 ---
 name: reviewer-doc
 description: "Documentation accuracy reviewer. Verifies docs match implementation, detects stale API docs, and audits architecture documentation drift."
-skills: simple-english
+skills: iso-24495-3, iso-24495-5
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, delegate_subagent, question, tasks_write
 color: yellow
 pane: true

@@ -27,7 +27,10 @@ Use skills by circumstance:
 | Pi agent, extensions, themes, sessions | `pi-mono` |
 | Dotfiles and mise bootstrap | `pi-mono` |
 | SOP writing | `sop-authoring`, `sop-structure`, `sop-rfc2119` |
-| Clear technical docs, runbooks, READMEs, error messages | `simple-english` |
+| Clear technical docs, runbooks, READMEs | `iso-24495-3`, `iso-24495-5` |
+| Names, comments, error messages in source code | `iso-24495-code` |
+| Hard Simplified Technical English, de-slop a text | `asd-ste100` |
+| Audit a Markdown file for plain-language faults | `iso-24495-text-audit` |
 | Skill creation, editing, or validation | `writing-skills` |
 | Finding external skills | `skill-hunter` |
 | Bug diagnosis | `diagnosing-bugs` |
@@ -78,7 +81,7 @@ Scripts mentioned in skills with a relative path MUST ALWAYS be run with an abso
 
 ## Documentation Work
 
-- Use `simple-english` for documentation, READMEs, runbooks, procedures, release notes, error messages, and agent instructions.
+- Use `iso-24495-3` for documentation, READMEs, runbooks, procedures, release notes, and agent instructions. Add `iso-24495-5` when the document has many sections.
 - Keep one term for one concept.
 - Prefer active voice and short sentences.
 - Keep commands, code, identifiers, paths, flags, and quoted errors unchanged.

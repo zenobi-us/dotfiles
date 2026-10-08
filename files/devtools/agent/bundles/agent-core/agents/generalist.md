@@ -1,7 +1,7 @@
 ---
 name: generalist
 description: "General-purpose agent for documentation, cleanup, stale references, code organization, and miscellaneous maintenance tasks."
-skills: simple-english
+skills: iso-24495-1, iso-24495-3
 deny-tools: subagent, get_subagent_result, steer_subagent, stop_subagent, question
 allowed-subagents: scout
 color: green

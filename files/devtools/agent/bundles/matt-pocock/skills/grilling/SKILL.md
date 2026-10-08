@@ -13,7 +13,7 @@ All agent-authored prose MUST follow **ASD-STE100 Simplified Technical English**
 - Put conditions before commands.
 - Use imperative sentences for procedures.
 - Keep code, identifiers, commands, quoted text, product names, and exact domain terms unchanged.
-- Use the `simple-english` skill for the full rule set.
+- Use the `iso-24495-1` skill for the full rule set.
 
 Interview me relentlessly about every aspect of this until we reach a shared understanding. Walk down each branch of the decision tree, resolving dependencies between decisions one-by-one. Group related questions into rounds, but ask only one question per turn. For each question, provide your recommended answer.
 
