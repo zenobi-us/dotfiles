@@ -12,3 +12,10 @@
 "~/.local/bin/shared-context" = { source = "./bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts", mode = "symlink" }
 "~/.pi/agent/extensions/@zenobius/*" = { source = "./bundles/*", mode = "symlink" }
 "~/.claude/output-styles/iso-24495.md" = { source = "./bundles/agent-core/skills/sop/iso-24495/SKILL.md", mode = "symlink" }
+
+
+[env]
+# surf-cli talks to its Chrome native host over this socket. The host launches
+# from Chrome (on WSL2 via host-wrapper-wsl.cmd), so it never reads this value
+# and always creates /tmp/surf.sock. Only this path works. See `surf doctor`.
+SURF_SOCKET = "/tmp/surf.sock"

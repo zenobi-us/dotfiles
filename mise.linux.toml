@@ -2,17 +2,3 @@
 "apt:x11-xserver-utils" = "latest"
 "dnf:xrdb" = "latest"
 
-# Build dependencies for cargo:alacritty. mise supplies cmake and rust.
-# These three headers have no mise package and must come from the system.
-"apt:libfreetype6-dev" = "latest"
-"apt:libfontconfig1-dev" = "latest"
-"apt:libxkbcommon-dev" = "latest"
-"dnf:freetype-devel" = "latest"
-"dnf:fontconfig-devel" = "latest"
-"dnf:libxkbcommon-devel" = "latest"
-
-[env]
-# surf-cli talks to its Chrome native host over this socket. The host launches
-# from Chrome (on WSL2 via host-wrapper-wsl.cmd), so it never reads this value
-# and always creates /tmp/surf.sock. Only this path works. See `surf doctor`.
-SURF_SOCKET = "/tmp/surf.sock"

@@ -1,3 +1,13 @@
+[bootstrap.packages]
+# Build dependencies for cargo:alacritty. mise supplies cmake and rust.
+# These three headers have no mise package and must come from the system.
+"apt:libfreetype-dev" = "latest"
+"apt:libfontconfig1-dev" = "latest"
+"apt:libxkbcommon-dev" = "latest"
+"dnf:freetype-devel" = "latest"
+"dnf:fontconfig-devel" = "latest"
+"dnf:libxkbcommon-devel" = "latest"
+
 [tasks.bootstrap]
 description = "Install configured fonts"
 run = "font-install -fromFile fonts.txt"
