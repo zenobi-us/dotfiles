@@ -120,3 +120,6 @@ fd = "latest"
 [tool_alias]
 zot = "github:patriceckhart/zot"
 hrdx = "github:patriceckhart/hrdx"
+
+[env]
+NEOVIM_THEME_NAME = "monoglow-z"

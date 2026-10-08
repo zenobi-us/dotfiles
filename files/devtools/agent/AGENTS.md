@@ -25,7 +25,7 @@ Use skills by circumstance:
 | Library or SDK documentation | `code-library-docs` |
 | Zot coding harness extensions or themes | `zot` | 
 | Pi agent, extensions, themes, sessions | `pi-mono` |
-| Dotfiles and mise bootstrap | `pi-mono` |
+| Dotfiles and mise bootstrap | `mise` |
 | SOP writing | `sop-authoring`, `sop-structure`, `sop-rfc2119` |
 | Clear technical docs, runbooks, READMEs | `iso-24495-3`, `iso-24495-5` |
 | Names, comments, error messages in source code | `iso-24495-code` |
@@ -39,8 +39,6 @@ Use skills by circumstance:
 | Handoff summaries | `handoff` |
 
 
-Scripts mentioned in skills with a relative path MUST ALWAYS be run with an absolute path from the skill directory. For example, `./scripts/diagnose.sh` is wrong. Use `/files/devtools/agent/scripts/diagnose.sh` instead.
-
 ## Operating Rules
 
 - Prefer existing code, standard libraries, native tools, and installed dependencies before new code.
@@ -48,6 +46,8 @@ Scripts mentioned in skills with a relative path MUST ALWAYS be run with an abso
 - Do not touch code that you cannot explain.
 - Verify reality after at most three meaningful actions.
 - If you cannot explain why something exists, do not change it.
+- Don't automatically create branches for work yourself if the user didn't ask for it.
+
 
 ## Scripts
 
@@ -69,6 +69,7 @@ Scripts mentioned in skills with a relative path MUST ALWAYS be run with an abso
 - Never add tsconfig `paths`. Bun reads `paths` at runtime, so a mapping added
   for the editor changes what the script imports and breaks it. Declare a
   pinned import in `<bundle>/types/versioned-imports.d.ts` instead.
+- Scripts referenced in skills must be run with their absolute resolved path. 
 
 
 
@@ -124,4 +125,3 @@ Before starting, load these skills:
 
 `iso-24495`
 `sop-rfc2119`
-

@@ -8,7 +8,7 @@
   "defaultProjectTrust": "always",
   "enableInstallTelemetry": false,
   "hideThinkingBlock": false,
-  "lastChangelogVersion": "1.0.2",
+  "lastChangelogVersion": "1.0.4",
   "packages": [
     "npm:@marckrenn/pi-sub-core",
     "./extensions/@zenobius/agent-core",
@@ -30,7 +30,9 @@
     "npm:@xynogen/pix-footer",
     "npm:@xynogen/pix-models",
     "npm:@xynogen/pix-diagnostics",
-    "npm:@xynogen/pix-pretty"
+    "npm:@xynogen/pix-pretty",
+    "npm:@xynogen/pix-ask",
+    "npm:@vanillagreen/pi-tool-renderer"
   ],
   "quietStartup": "header",
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",
@@ -41,7 +43,6 @@
   },
   "theme": "system/system",
   "transport": "sse",
-  "enableSkillCommands": true,
   "modelThinkingLevels": {
     "openai/gpt-5.5": "medium"
   },
