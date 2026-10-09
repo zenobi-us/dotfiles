@@ -1,0 +1,7 @@
+[dotfiles]
+"~/AppData/Local/mise/config.toml" = { source = "./mise.toml", mode = "symlink" }
+
+[bootstrap.hooks.post-dotfiles]
+run = """
+powershell.exe -NoProfile -Command "[Environment]::SetEnvironmentVariable('MISE_GLOBAL_CONFIG_ROOT', '{{ config_root }}', 'User')"
+"""

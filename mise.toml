@@ -1,8 +1,13 @@
 [settings]
 experimental = true
 dotfiles.default_mode = "symlink"
-
+dotfiles.root = "~/.dotfiles"
 
 [tools]
 "github:cantino/mcfly" = "0.9.4"
 worktrunk = { version = "0.80.0", workflow = "release.yaml" }
+usage = "latest"
+
+[dotfiles]
+"~/.config/mise/config.toml" = { source = "./mise.toml", mode = "symlink" }
+"~/.config/mise/conf.d/devtools-neovim" = { source = ".mise/conf.d/devtools-neovim", mode = "symlink" }
