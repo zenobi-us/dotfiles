@@ -4,3 +4,7 @@ dotfiles.default_mode = "symlink"
 
 [bootstrap.services.mise-history]
 builtin = "history-watch"
+
+[tools]
+neovim = "latest"
+worktrunk = { version = "latest", workflow = "release.yaml" }
