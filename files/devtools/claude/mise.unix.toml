@@ -5,7 +5,7 @@
 "~/.claude/output-styles/" = { source = "./output-styles", mode = "symlink-each" }
 "~/.local/bin/clip-bridge" = { source = "./clip-bridge", mode = "symlink" }
 
-[tasks.bootstrap-claude]
+[tasks.bootstrap]
 description = "Install Claude Code agent bundle plugins and their dependencies"
 run = """
 claude plugin marketplace add ../agent/bundles >/dev/null 2>&1 || true

@@ -1,6 +1,22 @@
+monorepo_root = true
+
 [settings]
 experimental = true
 dotfiles.default_mode = "symlink"
+
+[monorepo]
+# devtools, browsers, commands, packagemanagers, secrets, shells, windowmanagers,
+#
+config_roots = [
+  "files/devtools/*",
+  "files/commands/*",
+  "files/browsers/*",
+  "files/packagemanagers/*",
+  "files/secrets/*",
+  "files/shells/*",
+  "files/windowmanagers/*",
+  "files/*"
+]
 
 [bootstrap.services.mise-history]
 builtin = "history-watch"

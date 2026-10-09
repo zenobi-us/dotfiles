@@ -1,0 +1,8 @@
+[bootstrap.linux.systemd.units.clip-bridge]
+description = "Convert WSLg's mirrored clipboard image (BI_BITFIELDS BMP) to PNG so Claude Code can paste it. No-ops outside WSL."
+exec_start = "~/.local/bin/clip-bridge"
+environment = { WAYLAND_DISPLAY = "wayland-0" }
+restart = "on-failure"
+restart_sec = "2s"
+standard_output = "append:%h/.local/state/clip-bridge.log"
+standard_error = "journal"
