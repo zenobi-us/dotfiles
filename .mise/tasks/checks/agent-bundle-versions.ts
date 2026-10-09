@@ -1,4 +1,5 @@
 #!/usr/bin/env -S mise exec -- bun run
+// vim: set filetype=typescript :
 
 import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";

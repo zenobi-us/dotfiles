@@ -7,7 +7,7 @@ hooks {
     stage = false
     steps {
       ["bundle-versions"] {
-        check = "mise exec -- bun run .mise/conf.d/devtools-agent/bundles/scripts/bundle-versions.ts check --staged"
+        check = "mise run checks:agent-bundle-versions -- check --staged"
         exclusive = true
       }
     }
@@ -16,7 +16,7 @@ hooks {
   ["check"] {
     steps {
       ["bundle-versions"] {
-        check = "mise exec -- bun run .mise/conf.d/devtools-agent/bundles/scripts/bundle-versions.ts check --dirty"
+        check = "mise run checks:agent-bundle-versions -- check --dirty"
         exclusive = true
       }
     }
@@ -27,8 +27,8 @@ hooks {
     stage = false
     steps {
       ["bundle-versions"] {
-        check = "mise exec -- bun run .mise/conf.d/devtools-agent/bundles/scripts/bundle-versions.ts check --dirty"
-        fix = "mise exec -- bun run .mise/conf.d/devtools-agent/bundles/scripts/bundle-versions.ts fix --dirty"
+        check = "mise run checks:agent-bundle-versions -- check --dirty"
+        fix = "mise run checks:agent-bundle-versions -- fix --dirty"
         exclusive = true
       }
     }
