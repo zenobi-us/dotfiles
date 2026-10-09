@@ -1,3 +1,10 @@
 [dotfiles]
 "~/.gitconfig" = { source = ".gitconfig", mode = "copy" }
 "~/.gitignore_global" = { source = ".gitignore_global", mode = "copy" }
+
+[tools]
+github-cli = "latest"
+glab = "latest"
+"github:hmarr/codeowners" = "latest"
+"npm:release-please" = "latest"
+hk = "latest"

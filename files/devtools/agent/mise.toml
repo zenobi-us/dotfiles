@@ -1,0 +1,8 @@
+[tools]
+"npm:@earendil-works/gondolin" = "latest"
+"npm:kandev" = "latest"
+"github:JustVugg/colibri" = "latest"
+"github:margin-lab/evals" = "latest"
+"github:kurama/dealve-tui" = "latest"
+"github:afshinm/zerobox" = "0.3.3"
+"github:NVIDIA/OpenShell" = "latest"

@@ -1,3 +1,6 @@
 [dotfiles]
 "~/.config/starship.toml" = { source = "./starship.toml", mode = "copy" }
 
+
+[tools]
+starship = "latest"

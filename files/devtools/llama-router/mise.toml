@@ -1,0 +1,4 @@
+[tools]
+"github:sockheadrps/llmctl" = "0.2.2"
+"github:AlexsJones/llmfit" = "latest"
+"github:AlexsJones/llmserve" = "latest"

@@ -5,3 +5,6 @@ run = """
 bun install
 """
 dir = "~/.pi/agent"
+
+[tools]
+"github:earendil-works/pi" = "latest"

@@ -10,3 +10,9 @@
 "~/.local/state/zot/extensions/zot-question" = { url = "https://github.com/zenobi-us/zot-question.git", ref = "master" }
 "~/.local/state/zot/extensions/zot-skill-cmds" = { url = "https://github.com/zenobi-us/zot-skill-cmds.git", ref = "master" }
 "~/.local/state/zot/extensions/zot-todo" = { url = "https://github.com/patriceckhart/zot-todo.git", ref = "main" }
+
+[tools]
+zot = "latest"
+
+[tool_alias]
+zot = "github:patriceckhart/zot"

@@ -1,2 +1,5 @@
 [dotfiles]
 "~/.config/lazygit" = { source = ".", exclude = ["mise*.toml"], mode = "symlink-each" }
+
+[tools]
+lazygit = "latest"

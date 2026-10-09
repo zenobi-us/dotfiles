@@ -3,3 +3,6 @@ VISUAL = "nvim"
 EDITOR = "nvim"
 NEOVIM_THEME_NAME = "monoglow-z"
 
+
+[tools]
+neovim = "latest"
