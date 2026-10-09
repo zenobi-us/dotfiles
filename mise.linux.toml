@@ -1,4 +1,5 @@
 [bootstrap.packages]
+
 "apt:x11-xserver-utils" = "latest"
 "dnf:xrdb" = "latest"
 
