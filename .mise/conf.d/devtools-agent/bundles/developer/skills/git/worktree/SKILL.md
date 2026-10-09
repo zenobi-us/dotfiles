@@ -9,8 +9,8 @@ Route `UserRequest` to the correct worktree workflow. This skill dispatches only
 
 # Global workflow rules
 
-
-Load `skill://worktree/references/receipts.md` before running a worktree playbook.
+- 0. Treat the router.ts script here as a executable. It doesn't need to be sourced, imported or run with an engine.
+- 1. Load `skill://worktree/references/receipts.md` before running a worktree playbook.
 
 Every phase MUST create a durable receipt under the workflow root that the
 `skill://shared-context` skill resolves for `<ticket-id>`. Receipts in `events/` are
