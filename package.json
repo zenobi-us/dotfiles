@@ -1,11 +1,11 @@
 {
   "private": true,
   "workspaces": [
-    "files/devtools/agent/bundles/*",
-    "files/devtools/pi/agent",
-    "files/devtools/pi/agent/extensions/@zenobius/*",
-    "files/devtools/omp/extensions/*",
-    "files/devtools/pi/agent/packages/*"
+    ".mise/conf.d/devtools-agent/bundles/*",
+    ".mise/conf.d/devtools-pi/agent",
+    ".mise/conf.d/devtools-pi/agent/extensions/@zenobius/*",
+    ".mise/conf.d/devtools-omp/extensions/*",
+    ".mise/conf.d/devtools-pi/agent/packages/*"
   ],
   "dependencies": {
     "@types/nconf": "^0.10.7",

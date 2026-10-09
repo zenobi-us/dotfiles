@@ -1,12 +1,12 @@
-[submodule "files/devtools/pi/agent/extensions/powerline-footer"]
-	path = files/devtools/pi/agent/extensions/powerline-footer
+[submodule ".mise/conf.d/devtools-pi/agent/extensions/powerline-footer"]
+	path = .mise/conf.d/devtools-pi/agent/extensions/powerline-footer
 	url = https://github.com/nicobailon/pi-powerline-footer
-[submodule "files/shells/xresources/.XresourceThemes"]
-	path = files/shells/xresources/.XresourceThemes
+[submodule ".mise/conf.d/shells-xresources/.XresourceThemes"]
+	path = .mise/conf.d/shells-xresources/.XresourceThemes
 	url = https://github.com/janoamaral/Xresources-themes.git
-[submodule "files/windowmanagers/awesome/radical"]
-	path = files/windowmanagers/awesome/radical
+[submodule ".mise/conf.d/windowmanagers-awesome/radical"]
+	path = .mise/conf.d/windowmanagers-awesome/radical
 	url = https://github.com/Elv13/radical
-[submodule "files/windowmanagers/awesome/widgets"]
-	path = files/windowmanagers/awesome/widgets
+[submodule ".mise/conf.d/windowmanagers-awesome/widgets"]
+	path = .mise/conf.d/windowmanagers-awesome/widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets.git

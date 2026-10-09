@@ -6,8 +6,8 @@ This review checks the implementation of the recommendations in these three agen
 
 The review covers committed changes only. It does not include the existing unstaged changes in:
 
-- `files/devtools/agent/bundles/developer/skills/worktree/scripts/router.mjs`
-- `files/devtools/zot/mise.toml`
+- `.mise/conf.d/devtools-agent/bundles/developer/skills/worktree/scripts/router.mjs`
+- `.mise/conf.d/devtools-zot/mise.toml`
 
 No source file was edited for this review. This report is the only new file.
 
@@ -107,13 +107,13 @@ The three source files contain 9, 6, and 9 top-level findings, for 24 total. The
 
 ## Tests and validation
 
-- `bun test files/devtools/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/shared-context.test.ts`
+- `bun test .mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/shared-context.test.ts`
   - **Passed:** 21 tests, 0 failures, 74 expectations.
   - The tests cover origin normalization, context resolution, migration, anchor traversal rejection, frontmatter, index preservation, and CLI help.
 - `git diff --check 29e82158^..HEAD`
   - **Passed:** no whitespace errors.
 - `git status --short`
-  - Found pre-existing unstaged changes in `files/devtools/agent/bundles/developer/skills/worktree/scripts/router.mjs` and `files/devtools/zot/mise.toml`. They were not included in this review or changed by it.
+  - Found pre-existing unstaged changes in `.mise/conf.d/devtools-agent/bundles/developer/skills/worktree/scripts/router.mjs` and `.mise/conf.d/devtools-zot/mise.toml`. They were not included in this review or changed by it.
 - No full repository test command was defined in the root `package.json`. The focused shared-context test was the available implementation test.
 
 The focused tests do not cover the remaining H1, H2, or M1 cases. In particular, they do not assert anchor provenance, the ingest checklist, or screenshot placement.

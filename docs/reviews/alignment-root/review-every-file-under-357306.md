@@ -1,7 +1,7 @@
 # Agent review: Matt Pocock ALIGNMENT_ROOT references
 
 - Agent: `review-every-file-under-357306`
-- Scope: all files under `files/devtools/agent/bundles/matt-pocock/skills` containing `ALIGNMENT_ROOT`, plus `ALIGNMENT-ROOT.md`
+- Scope: all files under `.mise/conf.d/devtools-agent/bundles/matt-pocock/skills` containing `ALIGNMENT_ROOT`, plus `ALIGNMENT-ROOT.md`
 - Result: no files edited
 
 ## Findings
@@ -10,7 +10,7 @@
 
 Files:
 
-- `files/devtools/agent/bundles/matt-pocock/ALIGNMENT-ROOT.md:3-4`
+- `.mise/conf.d/devtools-agent/bundles/matt-pocock/ALIGNMENT-ROOT.md:3-4`
 - `skills/setup-matt-pocock-skills/SKILL.md:33`
 - `skills/setup-matt-pocock-skills/SKILL.md:42`
 - `skills/setup-matt-pocock-skills/SKILL.md:145-150`

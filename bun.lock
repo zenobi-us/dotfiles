@@ -8,7 +8,7 @@
         "nconf": "^0.13.0",
       },
     },
-    "files/devtools/agent/bundles/agent-core": {
+    ".mise/conf.d/devtools-agent/bundles/agent-core": {
       "name": "@zenobis/agent-bundle-agent-core",
       "version": "0.1.0",
       "dependencies": {
@@ -23,11 +23,11 @@
         "typescript": "^5",
       },
     },
-    "files/devtools/agent/bundles/creator": {
+    ".mise/conf.d/devtools-agent/bundles/creator": {
       "name": "@zenobis/agent-bundle-creator",
       "version": "0.1.0",
     },
-    "files/devtools/agent/bundles/developer": {
+    ".mise/conf.d/devtools-agent/bundles/developer": {
       "name": "@zenobis/agent-bundle-developer",
       "version": "0.1.1",
       "dependencies": {
@@ -39,7 +39,7 @@
         "typescript": "^5",
       },
     },
-    "files/devtools/agent/bundles/matt-pocock": {
+    ".mise/conf.d/devtools-agent/bundles/matt-pocock": {
       "name": "@zenobis/agent-bundle-matt-pocock",
       "version": "0.1.0",
       "dependencies": {
@@ -52,7 +52,7 @@
         "typescript": "^5.9.3",
       },
     },
-    "files/devtools/agent/bundles/platform": {
+    ".mise/conf.d/devtools-agent/bundles/platform": {
       "name": "@zenobis/agent-bundle-platform",
       "version": "0.1.0",
       "dependencies": {
@@ -63,19 +63,19 @@
         "@types/bun": "latest",
       },
     },
-    "files/devtools/agent/bundles/researcher": {
+    ".mise/conf.d/devtools-agent/bundles/researcher": {
       "name": "@zenobis/agent-bundle-researcher",
       "version": "0.1.0",
     },
-    "files/devtools/agent/bundles/writing": {
+    ".mise/conf.d/devtools-agent/bundles/writing": {
       "name": "@zenobis/agent-bundle-writing",
       "version": "0.1.0",
     },
-    "files/devtools/omp/extensions/shared-context": {
+    ".mise/conf.d/devtools-omp/extensions/shared-context": {
       "name": "@zenobius/omp-shared-context",
       "version": "0.1.0",
     },
-    "files/devtools/pi/agent": {
+    ".mise/conf.d/devtools-pi/agent": {
       "name": "@zenobius/pi-agent-extensions",
       "version": "0.0.1",
       "dependencies": {
@@ -93,21 +93,21 @@
         "vitest": "^4.1.11",
       },
     },
-    "files/devtools/pi/agent/extensions/@zenobius/markdown-preview": {
+    ".mise/conf.d/devtools-pi/agent/extensions/@zenobius/markdown-preview": {
       "name": "@zenobius/markdown-preview",
       "version": "0.0.1",
       "bin": {
         "md-preview": "./bin/md-preview.js",
       },
     },
-    "files/devtools/pi/agent/extensions/@zenobius/pi-annotate": {
+    ".mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-annotate": {
       "name": "@diegopetrucci/pi-annotate-last-message",
       "version": "0.1.3",
       "peerDependencies": {
         "@earendil-works/pi-coding-agent": "*",
       },
     },
-    "files/devtools/pi/agent/extensions/@zenobius/pi-autoresearch": {
+    ".mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-autoresearch": {
       "name": "pi-autoresearch",
       "version": "1.6.0",
       "devDependencies": {
@@ -123,14 +123,14 @@
         "@sinclair/typebox": "*",
       },
     },
-    "files/devtools/pi/agent/extensions/@zenobius/pi-handoff": {
+    ".mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-handoff": {
       "name": "handoff",
       "version": "0.0.1",
       "dependencies": {
         "bun-types": "*",
       },
     },
-    "files/devtools/pi/agent/extensions/@zenobius/pi-poster": {
+    ".mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-poster": {
       "name": "pi-poster",
       "version": "0.1.3",
       "dependencies": {
@@ -147,7 +147,7 @@
         "typebox": "*",
       },
     },
-    "files/devtools/pi/agent/extensions/@zenobius/sub-limits": {
+    ".mise/conf.d/devtools-pi/agent/extensions/@zenobius/sub-limits": {
       "name": "sub-limits",
       "version": "1.0.0",
       "peerDependencies": {
@@ -237,7 +237,7 @@
 
     "@crustjs/utils": ["@crustjs/utils@0.0.3", "", { "peerDependencies": { "@standard-schema/spec": "^1.1.0", "typescript": "^6.0.3" }, "optionalPeers": ["@standard-schema/spec"] }, "sha512-5J/CeFpUTDX6F8EHc62blJQEQmr+tcH9Ojc26QTkQ08LoGZBT56kxL+XjHzp9m2QAg8T69omjwL25bmB3AWZig=="],
 
-    "@diegopetrucci/pi-annotate-last-message": ["@diegopetrucci/pi-annotate-last-message@workspace:files/devtools/pi/agent/extensions/@zenobius/pi-annotate"],
+    "@diegopetrucci/pi-annotate-last-message": ["@diegopetrucci/pi-annotate-last-message@workspace:.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-annotate"],
 
     "@earendil-works/pi-agent-core": ["@earendil-works/pi-agent-core@0.84.4", "", { "dependencies": { "@earendil-works/pi-ai": "^0.84.4", "@earendil-works/pi-telemetry": "^0.84.4", "diff": "8.0.4", "ignore": "7.0.5", "typebox": "1.3.7", "yaml": "2.9.0" } }, "sha512-HyUnjaOXj6oN/6SNcr8A1J/ElRQA50FtIE0XUTSKAQVqmdlb9qdojOyUQwF/jULE5+yOEtGuVgi/N1RnBiNG+g=="],
 
@@ -507,25 +507,25 @@
 
     "@vitest/utils": ["@vitest/utils@4.1.11", "", { "dependencies": { "@vitest/pretty-format": "4.1.11", "convert-source-map": "^2.0.0", "tinyrainbow": "^3.1.0" } }, "sha512-zTCVGpyFsGWBhllOyKlTw/vnr6D9qxsfSDyfbyZmTyjHw5N/VuvzHpHoQjm2ZJzn4RJgx5w4r7V0er69CmLgPQ=="],
 
-    "@zenobis/agent-bundle-agent-core": ["@zenobis/agent-bundle-agent-core@workspace:files/devtools/agent/bundles/agent-core"],
+    "@zenobis/agent-bundle-agent-core": ["@zenobis/agent-bundle-agent-core@workspace:.mise/conf.d/devtools-agent/bundles/agent-core"],
 
-    "@zenobis/agent-bundle-creator": ["@zenobis/agent-bundle-creator@workspace:files/devtools/agent/bundles/creator"],
+    "@zenobis/agent-bundle-creator": ["@zenobis/agent-bundle-creator@workspace:.mise/conf.d/devtools-agent/bundles/creator"],
 
-    "@zenobis/agent-bundle-developer": ["@zenobis/agent-bundle-developer@workspace:files/devtools/agent/bundles/developer"],
+    "@zenobis/agent-bundle-developer": ["@zenobis/agent-bundle-developer@workspace:.mise/conf.d/devtools-agent/bundles/developer"],
 
-    "@zenobis/agent-bundle-matt-pocock": ["@zenobis/agent-bundle-matt-pocock@workspace:files/devtools/agent/bundles/matt-pocock"],
+    "@zenobis/agent-bundle-matt-pocock": ["@zenobis/agent-bundle-matt-pocock@workspace:.mise/conf.d/devtools-agent/bundles/matt-pocock"],
 
-    "@zenobis/agent-bundle-platform": ["@zenobis/agent-bundle-platform@workspace:files/devtools/agent/bundles/platform"],
+    "@zenobis/agent-bundle-platform": ["@zenobis/agent-bundle-platform@workspace:.mise/conf.d/devtools-agent/bundles/platform"],
 
-    "@zenobis/agent-bundle-researcher": ["@zenobis/agent-bundle-researcher@workspace:files/devtools/agent/bundles/researcher"],
+    "@zenobis/agent-bundle-researcher": ["@zenobis/agent-bundle-researcher@workspace:.mise/conf.d/devtools-agent/bundles/researcher"],
 
-    "@zenobis/agent-bundle-writing": ["@zenobis/agent-bundle-writing@workspace:files/devtools/agent/bundles/writing"],
+    "@zenobis/agent-bundle-writing": ["@zenobis/agent-bundle-writing@workspace:.mise/conf.d/devtools-agent/bundles/writing"],
 
-    "@zenobius/markdown-preview": ["@zenobius/markdown-preview@workspace:files/devtools/pi/agent/extensions/@zenobius/markdown-preview"],
+    "@zenobius/markdown-preview": ["@zenobius/markdown-preview@workspace:.mise/conf.d/devtools-pi/agent/extensions/@zenobius/markdown-preview"],
 
-    "@zenobius/omp-shared-context": ["@zenobius/omp-shared-context@workspace:files/devtools/omp/extensions/shared-context"],
+    "@zenobius/omp-shared-context": ["@zenobius/omp-shared-context@workspace:.mise/conf.d/devtools-omp/extensions/shared-context"],
 
-    "@zenobius/pi-agent-extensions": ["@zenobius/pi-agent-extensions@workspace:files/devtools/pi/agent"],
+    "@zenobius/pi-agent-extensions": ["@zenobius/pi-agent-extensions@workspace:.mise/conf.d/devtools-pi/agent"],
 
     "@zumer/snapdom": ["@zumer/snapdom@2.24.16", "", {}, "sha512-W+WKJO/YFWj2oG4Wq0pgijp9fbWb72N92muxqtAbp+l4SVVYKTJHjgWvathXZ6v8CqHdDkzCI6jnsJjv0UpNfA=="],
 
@@ -701,7 +701,7 @@
 
     "grok-mermaid": ["grok-mermaid@0.2.2", "", {}, "sha512-XcJEP5dDC8liHBh52mlLjU18fNvu1ckFsu0QpIG3+APZ270fsj9wxpiA6cOURmbUEuoMVgjbC2+UYgTdCqqgzA=="],
 
-    "handoff": ["handoff@workspace:files/devtools/pi/agent/extensions/@zenobius/pi-handoff"],
+    "handoff": ["handoff@workspace:.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-handoff"],
 
     "has-flag": ["has-flag@4.0.0", "", {}, "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ=="],
 
@@ -803,9 +803,9 @@
 
     "pend": ["pend@1.2.0", "", {}, "sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg=="],
 
-    "pi-autoresearch": ["pi-autoresearch@workspace:files/devtools/pi/agent/extensions/@zenobius/pi-autoresearch"],
+    "pi-autoresearch": ["pi-autoresearch@workspace:.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-autoresearch"],
 
-    "pi-poster": ["pi-poster@workspace:files/devtools/pi/agent/extensions/@zenobius/pi-poster"],
+    "pi-poster": ["pi-poster@workspace:.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-poster"],
 
     "picocolors": ["picocolors@1.1.1", "", {}, "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="],
 
@@ -889,7 +889,7 @@
 
     "strtok3": ["strtok3@10.3.5", "", { "dependencies": { "@tokenizer/token": "^0.3.0" } }, "sha512-ki4hZQfh5rX0QDLLkOCj+h+CVNkqmp/CMf8v8kZpkNVK6jGQooMytqzLZYUVYIZcFZ6yDB70EfD8POcFXiF5oA=="],
 
-    "sub-limits": ["sub-limits@workspace:files/devtools/pi/agent/extensions/@zenobius/sub-limits"],
+    "sub-limits": ["sub-limits@workspace:.mise/conf.d/devtools-pi/agent/extensions/@zenobius/sub-limits"],
 
     "supports-color": ["supports-color@7.2.0", "", { "dependencies": { "has-flag": "^4.0.0" } }, "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw=="],
 

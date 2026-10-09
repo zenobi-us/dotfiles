@@ -93,7 +93,7 @@ The loader must continue to read the current schema. An explicit `config migrate
 
 ## Terminal command and mise bootstrap
 
-Add a mise dotfile entry to `files/devtools/agent/mise.unix.toml`:
+Add a mise dotfile entry to `.mise/conf.d/devtools-agent/mise.unix.toml`:
 
 ```toml
 "~/.local/bin/artifact-share" = {
@@ -176,7 +176,7 @@ The server must bind to loopback by default, reload config changes, reject trave
 
 ## Traefik service
 
-Create a dedicated dotfile surface under `files/devtools/artifact-share/` for Traefik and service configuration.
+Create a dedicated dotfile surface under `.mise/conf.d/devtools-artifact-share/` for Traefik and service configuration.
 
 Traefik must:
 

@@ -1,21 +1,21 @@
 .env
 !.zsh*
-files/devtools/opencode/bin
+.mise/conf.d/devtools-opencode/bin
 in-memoria*
 !.memory/
 # In Memoria
 in-memoria.db
 .in-memoria/cache/
 .in-memoria/.env
-files/devtools/mcporter/credentials.json
-files/devtools/opencode/plugin/subtask2/logs/debug.log
-files/devtools/opencode/plugin/subtask2/logs/debug.log
-files/devtools/opencode/AGENTS.md
-files/devtools/opencode/agent
-files/devtools/opencode/command
-files/devtools/opencode/skills
-files/devtools/opencode/AGENT.md
-files/devtools/pi/agent/extensions/tools/node_modules
+.mise/conf.d/devtools-mcporter/credentials.json
+.mise/conf.d/devtools-opencode/plugin/subtask2/logs/debug.log
+.mise/conf.d/devtools-opencode/plugin/subtask2/logs/debug.log
+.mise/conf.d/devtools-opencode/AGENTS.md
+.mise/conf.d/devtools-opencode/agent
+.mise/conf.d/devtools-opencode/command
+.mise/conf.d/devtools-opencode/skills
+.mise/conf.d/devtools-opencode/AGENT.md
+.mise/conf.d/devtools-pi/agent/extensions/tools/node_modules
 # Node modules everywhere
 node_modules/
 package-lock.json
@@ -24,20 +24,20 @@ package-lock.json
 .ralph
 
 # Share extension webapp: keep source tracked, ignore generated/local files
-files/devtools/pi/agent/extensions/share/webapp/dist/
-files/devtools/pi/agent/extensions/share/webapp/.tanstack/
-files/devtools/pi/agent/extensions/share/webapp/.cta.json
-files/devtools/pi/agent/extensions/share/webapp/.vscode/
+.mise/conf.d/devtools-pi/agent/extensions/share/webapp/dist/
+.mise/conf.d/devtools-pi/agent/extensions/share/webapp/.tanstack/
+.mise/conf.d/devtools-pi/agent/extensions/share/webapp/.cta.json
+.mise/conf.d/devtools-pi/agent/extensions/share/webapp/.vscode/
 
 # Pi agent runtime/auth/cache files
-/files/devtools/pi/agent/auth.json
-/files/devtools/pi/agent/.pi/agent/auth.json
-/files/devtools/pi/agent/cache/
-/files/devtools/pi/agent/sessions/
-/files/devtools/pi/agent/mcp-oauth/
-/files/devtools/pi/agent/mcp-cache.json
-/files/devtools/pi/agent/bin/
-files/devtools/pi/agent/bundles/developer/skills/atlassian/twg/.twg-install.json
+/.mise/conf.d/devtools-pi/agent/auth.json
+/.mise/conf.d/devtools-pi/agent/.pi/agent/auth.json
+/.mise/conf.d/devtools-pi/agent/cache/
+/.mise/conf.d/devtools-pi/agent/sessions/
+/.mise/conf.d/devtools-pi/agent/mcp-oauth/
+/.mise/conf.d/devtools-pi/agent/mcp-cache.json
+/.mise/conf.d/devtools-pi/agent/bin/
+.mise/conf.d/devtools-pi/agent/bundles/developer/skills/atlassian/twg/.twg-install.json
 
 # playwright-cli writes page snapshots and console logs into the working directory
 .playwright-cli/
@@ -45,3 +45,8 @@ files/devtools/pi/agent/bundles/developer/skills/atlassian/twg/.twg-install.json
 # Pix Agent
 .pi/
 .pi-lens/
+
+# This package keeps extension source in .pi/, not runtime state.
+!.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-poster/.pi/
+.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-poster/.pi/*
+!.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-poster/.pi/extensions/

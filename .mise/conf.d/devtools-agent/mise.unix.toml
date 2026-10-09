@@ -1,0 +1,22 @@
+[dotfiles]
+"~/.pi/agent/AGENTS.md" = { source = "./AGENTS.md", mode = "symlink" }
+"~/.claude/CLAUDE.md" = { source = "./AGENTS.md", mode = "symlink" }
+"~/.local/state/zot/extensions/agent-core" = { source = "./bundles/agent-core", mode = "symlink" }
+"~/.local/state/zot/extensions/creator" = { source = "./bundles/creator", mode = "symlink" }
+"~/.local/state/zot/extensions/developer" = { source = "./bundles/developer", mode = "symlink" }
+"~/.local/state/zot/extensions/matt-pocock" = { source = "./bundles/matt-pocock", mode = "symlink" }
+"~/.local/state/zot/extensions/platform" = { source = "./bundles/platform", mode = "symlink" }
+"~/.local/state/zot/extensions/researcher" = { source = "./bundles/researcher", mode = "symlink" }
+"~/.local/state/zot/extensions/writing" = { source = "./bundles/writing", mode = "symlink" }
+"~/.agents/hooks/shared-context.json" = { source = "./bundles/agent-core/hooks/hooks.json", mode = "symlink" }
+"~/.local/bin/shared-context" = { source = "./bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts", mode = "symlink" }
+"~/.pi/agent/extensions/@zenobius/*" = { source = "./bundles/*", mode = "symlink" }
+"~/.claude/output-styles/iso-24495.md" = { source = "./bundles/agent-core/skills/sop/iso-24495/SKILL.md", mode = "symlink" }
+
+
+[env]
+# surf-cli talks to its Chrome native host over this socket. The host launches
+# from Chrome (on WSL2 via host-wrapper-wsl.cmd), so it never reads this value
+# and always creates /tmp/surf.sock. Only this path works. See `surf doctor`.
+SURF_SOCKET = "/tmp/surf.sock"
+AGENT_BUNDLE_STORAGE_PATH_PATTERN = "$DOTFILE_REPO_ROOT/.mise/conf.d/devtools-agent/bundles/{domain}/"

@@ -1,7 +1,7 @@
 # Agent review: agent-core ALIGNMENT_ROOT references
 
 - Agent: `review-every-file-under-404592`
-- Scope: all files under `files/devtools/agent/bundles/agent-core/skills` that contain `ALIGNMENT_ROOT`
+- Scope: all files under `.mise/conf.d/devtools-agent/bundles/agent-core/skills` that contain `ALIGNMENT_ROOT`
 - Result: no files edited
 
 ## Findings

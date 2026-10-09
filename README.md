@@ -153,6 +153,14 @@ Show the combined bootstrap plan:
 mise bootstrap plan
 ```
 
-The repository uses folder fragments under `.mise/conf.d/`. Each direct child is a self-contained mise bundle. The bundle contains its platform-specific `mise.<env>.toml` files and the files referenced by those configurations.
+The repository stores its modules directly under `.mise/conf.d/`. Each direct child is a real directory, not a symlink to a separate `files/` tree. Module names use `<category>-<module>`, such as `devtools-agent`, `shells-zsh`, and `assets-fonts`; `secrets` keeps its existing name.
+
+Each module contains its platform-specific `mise.<env>.toml` files and the files referenced by those configurations. Keep module-local source paths relative to the module, and refer to another module by its flattened directory name.
+
+After updating a checkout from the old layout, refresh deployed symlinks without reinstalling tools:
+
+```bash
+mise bootstrap --only dotfiles --yes
+```
 ## OMP shared-context autocomplete
-The mise bootstrap links `files/devtools/omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `#` to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.
+The mise bootstrap links `.mise/conf.d/devtools-omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `#` to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.

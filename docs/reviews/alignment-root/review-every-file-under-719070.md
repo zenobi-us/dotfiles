@@ -1,7 +1,7 @@
 # Agent review: developer ALIGNMENT_ROOT references
 
 - Agent: `review-every-file-under-719070`
-- Scope: all files under `files/devtools/agent/bundles/developer/skills` containing `ALIGNMENT_ROOT`, including `writing-reports`
+- Scope: all files under `.mise/conf.d/devtools-agent/bundles/developer/skills` containing `ALIGNMENT_ROOT`, including `writing-reports`
 - Result: no files edited
 
 ## Findings
