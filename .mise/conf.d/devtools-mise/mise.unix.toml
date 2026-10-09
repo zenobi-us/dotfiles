@@ -1,4 +1,4 @@
 [dotfiles]
 "~/.config/mise/config.toml" = { source = "../../../mise.toml", mode = "symlink" }
 "~/.config/mise/tasks" = { source = "./tasks", mode = "symlink" }
-
+"~/.config/mise/conf.d/" = { source = "../", mode = "symlink-each" }

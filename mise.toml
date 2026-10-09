@@ -2,9 +2,7 @@
 experimental = true
 dotfiles.default_mode = "symlink"
 
-[bootstrap.services.mise-history]
-builtin = "history-watch"
 
 [tools]
-neovim = "latest"
-worktrunk = { version = "latest", workflow = "release.yaml" }
+"github:cantino/mcfly" = "0.9.4"
+worktrunk = { version = "0.80.0", workflow = "release.yaml" }
