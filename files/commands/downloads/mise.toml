@@ -1,0 +1,4 @@
+[tools]
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+youtube-dl = "latest"
+"pipx:itch-dl" = "latest"

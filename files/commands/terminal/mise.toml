@@ -1,0 +1,13 @@
+[tools]
+fzf = "latest"
+glow = "latest"
+jq = "latest"
+mc = "latest"
+ripgrep = "latest"
+yq = "latest"
+fd = "latest"
+micro = "latest"
+"github:jarun/nnn" = "latest"
+"npm:neofetch" = "latest"
+"github:mexirica/aptui" = "latest"
+"github:harehare/mq" = "latest"

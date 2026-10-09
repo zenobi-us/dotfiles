@@ -1,0 +1,5 @@
+[tools]
+btop = "latest"
+"github:aristocratos/btop" = "latest"
+"github:mwunsch/termscope" = "latest"
+"github:graykode/abtop" = "latest"
