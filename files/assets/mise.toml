@@ -8,6 +8,6 @@
 "dnf:fontconfig-devel" = "latest"
 "dnf:libxkbcommon-devel" = "latest"
 
-[tasks.bootstrap]
+[tasks."assets.bootstrap"]
 description = "Install configured fonts"
 run = "font-install -fromFile fonts.txt"

@@ -2,7 +2,7 @@
 "~/.XresourceThemes" = { source = ".XresourceThemes", mode = "symlink" }
 "~/.Xresources" = { source = ".Xresources", mode = "symlink" }
 
-[tasks.bootstrap]
+[tasks."xresources.bootstrap"]
 run = """
 if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
 	xrdb -merge "$HOME/.Xresources"
