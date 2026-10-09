@@ -1,0 +1,5 @@
+[tools]
+awscli = { version = "latest", symlink_bins = "true" }
+granted = "latest"
+terraform = "latest"
+lazydocker = "0.25.2"

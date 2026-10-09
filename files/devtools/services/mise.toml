@@ -1,0 +1,7 @@
+[tools]
+pitchfork = "latest"
+cloudflared = "latest"
+"npm:portless" = "latest"
+traefik = "latest"
+"npm:serve" = "latest"
+"npm:tempomat" = "latest"

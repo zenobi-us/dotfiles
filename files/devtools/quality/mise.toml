@@ -1,0 +1,5 @@
+[tools]
+bats = "latest"
+shellcheck = "latest"
+shfmt = "latest"
+tombi = "latest"

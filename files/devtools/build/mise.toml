@@ -1,0 +1,5 @@
+[tools]
+cmake = "latest"
+"github:moonrepo/moon" = "latest"
+"github:moonrepo/proto" = "latest"
+watchexec = "latest"

@@ -1,0 +1,7 @@
+[tools]
+"cargo:p1rallels/codemapper" = "latest"
+"github:Feel-ix-343/markdown-oxide" = "latest"
+ast-grep = "latest"
+"npm:typescript-language-server" = "latest"
+"aqua:tree-sitter/tree-sitter" = "latest"
+"github:valentjn/lsp-cli" = "latest"
