@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+mise run "**:bootstrap"
+bun install --frozen-lockfile
