@@ -1,0 +1,4 @@
+[bootstrap.repos]
+"~/AppData/Local/nvim" = { url = "git@github.com:zenobi-us/astronvim.profile.git" }
+
+

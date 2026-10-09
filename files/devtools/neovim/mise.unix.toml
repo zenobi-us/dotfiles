@@ -1,8 +1,3 @@
 [bootstrap.repos]
 "~/.config/nvim" = { url = "git@github.com:zenobi-us/lazyvim.profile.git" }
 
-[env]
-VISUAL = "nvim"
-EDITOR = "nvim"
-NEOVIM_THEME_NAME = "monoglow-z"
-
