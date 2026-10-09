@@ -1,0 +1,7 @@
+[tasks."devtools:pi:bootstrap"]
+description = "Install Zenobius Agent bundle plugins and their dependencies"
+tools.bun = "latest"
+run = """
+bun install
+"""
+dir = "~/.pi/agent"
