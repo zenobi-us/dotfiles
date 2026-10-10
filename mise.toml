@@ -118,5 +118,9 @@ starship = "latest"
 "yt-dlp" = { "version" = "latest", "rename_exe" = "yt-dlp" }
 "zig" = "latest"
 "zot" = "latest"
+
 [dotfiles]
 "~/.config/mise/config.toml" = { source = "./mise.toml", mode = "symlink" }
+
+[tool_alias]
+pi = "github:earendil-works/pi"
