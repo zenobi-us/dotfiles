@@ -6,19 +6,17 @@ Working with dotfiles and machine bootstrap
 
 Working with Pi-Coding-Agent
 
-- Use the [pi-mono](./.mise/conf.d/devtools-agent/bundles/platform/skills/devtools/pi-mono/) skill.
+- Use the `pi-mono` skill.
 
 Reading or converting documents
 
 - Use the `docling` skill to read, parse, extract, or convert PDF, XLS, XLSX, DOC, and DOCX files.
 
-Project management
-
-- Use the [project-planning](./.mise/conf.d/devtools-agent/bundles/business/skills/projectmanagement/project-planning/) skill.
-
 ### Issue tracker
 
-GitHub Issues in `zenobi-us/dotfiles` are the source of truth. Use `gh` for issue operations. See `docs/agents/issue-tracker.md` relative to the active Matt Pocock alignment root.
+Use shared-context skill.
+
+GitHub Issues in `zenobi-us/dotfiles` are the source of truth. Use `gh` for issue operations. See `docs/agents/issue-tracker.md` relative to the ALIGNMENT_ROOT.
 
 ### Domain docs
 
@@ -26,7 +24,7 @@ This is a single-context repository. Read `CONTEXT.md` and relevant `docs/adr/` 
 
 ### Local Markdown
 
-Use `agent-core:mq-query` for local Markdown search, reading, filtering, selection, listing, summaries, validation, transformation, and creation. Load its matching task reference and required upstream reference first. Use explicit input and output formats. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or ad hoc Markdown parsers to inspect Markdown content. Use domain or tracker tools to identify authoritative records, and filesystem tools only to check whether paths exist.
+Use `mq-query` for local Markdown search, reading, filtering, selection, listing, summaries, validation, transformation, and creation. Load its matching task reference and required upstream reference first. Use explicit input and output formats. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or ad hoc Markdown parsers to inspect Markdown content. Use domain or tracker tools to identify authoritative records, and filesystem tools only to check whether paths exist.
 
 ## Container tools
 
