@@ -1,0 +1,4 @@
+interface:
+  display_name: "Proxmox Guest Control"
+  short_description: "Manage Proxmox VM and container workflows"
+  default_prompt: "Use $proxmox-skill to inspect this Proxmox host and safely start or create a VM or LXC container from this workspace."

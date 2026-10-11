@@ -1,9 +1,13 @@
 [dotfiles]
-"~/.pi/agent/APPEND_SYSTEM.md" = { source = "./agent/APPEND_SYSTEM.md", mode = "symlink" }
-"~/.pi/agent/extensions/@zenobius/*" = { source = "./agent/extensions/@zenobius/*", mode = "symlink" }
-"~/.pi/agent/extensions/herdr-agent-state.ts" = { source = "./agent/extensions/herdr-agent-state.ts", mode = "symlink" }
+"~/.pi/agent/bundles/agent-core" = { source = "../devtools-agent/bundles/agent-core", mode = "symlink" }
+"~/.pi/agent/bundles/creator" = { source = "../devtools-agent/bundles/creator", mode = "symlink" }
+"~/.pi/agent/bundles/developer" = { source = "../devtools-agent/bundles/developer", mode = "symlink" }
+"~/.pi/agent/bundles/matt-pocock" = { source = "../devtools-agent/bundles/matt-pocock", mode = "symlink" }
+"~/.pi/agent/bundles/platform" = { source = "../devtools-agent/bundles/platform", mode = "symlink" }
+"~/.pi/agent/bundles/researcher" = { source = "../devtools-agent/bundles/researcher", mode = "symlink" }
+"~/.pi/agent/bundles/writing" = { source = "../devtools-agent/bundles/writing", mode = "symlink" }
+"~/.pi/agent/extensions/*" = { source = "./agent/extensions/*", mode = "symlink" }
 "~/.pi/agent/package.json" = { source = "./agent/package.json", mode = "symlink" }
 "~/.pi/agent/settings.json" = { source = "./agent/settings.json", mode = "symlink" }
+"~/.pi/agent/keybindings.json" = { source = "./agent/keybindings.json", mode = "symlink" }
 "~/.pi/agent/tsconfig.json" = { source = "./agent/tsconfig.json", mode = "symlink" }
-
-

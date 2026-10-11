@@ -1,7 +1,7 @@
 {
   "autocompleteMaxVisible": 10,
   "collapseChangelog": true,
-  "defaultModel": "gpt-6-luna",
+  "defaultModel": "gpt-5.5",
   "defaultProvider": "openai",
   "defaultThinkingLevel": "medium",
   "doubleEscapeAction": "tree",
@@ -10,17 +10,13 @@
   "hideThinkingBlock": false,
   "lastChangelogVersion": "1.1.0",
   "packages": [
-    "./extensions/@zenobius/agent-core",
-    "./extensions/@zenobius/creator",
-    "./extensions/@zenobius/developer",
-    "./extensions/@zenobius/matt-pocock",
-    "./extensions/@zenobius/platform",
-    "./extensions/@zenobius/researcher",
-    "./extensions/@zenobius/writing",
-    "./extensions/@zenobius/pi-annotate",
-    "./extensions/@zenobius/pi-autoresearch",
-    "./extensions/@zenobius/pi-handoff",
-    "./extensions/@zenobius/pi-poster"
+    "./extensions/agent-core",
+    "./extensions/creator",
+    "./extensions/developer",
+    "./extensions/matt-pocock",
+    "./extensions/platform",
+    "./extensions/researcher",
+    "./extensions/writing"
   ],
   "quietStartup": "header",
   "shellCommandPrefix": "eval \"$(mise env -s bash)\"\nshopt -s expand_aliases\neval \"$(grep '^alias ' ~/.zshrc)\"",

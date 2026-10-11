@@ -4,7 +4,7 @@ modelRoles:
   plan: openai-codex/gpt-6-astra:medium
   commit: openai-codex/gpt-6-luna:off
   slow: strata/qwen3.8-flash-next-coder-iq1_m
-symbolPreset: nerd
+symbolPreset: unicode
 theme:
   dark: dark-rose-pine
   light: dark-rose-pine
@@ -29,11 +29,14 @@ statusLine:
 terminal:
   showProgress: true
 tui:
-  tight: true
+  tight: false
+  reactions: false
 display:
   shimmer: kitt
   showTokenUsage: true
   cacheMissMarker: true
+  subagentLivePreview: true
+  pinnedAgents: collapsed
 recap:
   enabled: false
 dev:
@@ -45,34 +48,25 @@ git:
   enabled: false
 skills:
   customDirectories:
-    - ~/.pi/agent/bundles/agent-core/skills
-    - ~/.pi/agent/bundles/agent-core/skills/documents
-    - ~/.pi/agent/bundles/agent-core/skills/skill-development
-    - ~/.pi/agent/bundles/agent-core/skills/sop
-    - ~/.pi/agent/bundles/creator/skills
-    - ~/.pi/agent/bundles/creator/skills/imagegen
-    - ~/.pi/agent/bundles/developer/skills
-    - ~/.pi/agent/bundles/developer/skills/atlassian
-    - ~/.pi/agent/bundles/developer/skills/better-auth
-    - ~/.pi/agent/bundles/developer/skills/browsers
-    - ~/.pi/agent/bundles/developer/skills/devtools
-    - ~/.pi/agent/bundles/developer/skills/game-dev
-    - ~/.pi/agent/bundles/developer/skills/game-dev/godot
-    - ~/.pi/agent/bundles/developer/skills/git
-    - ~/.pi/agent/bundles/developer/skills/shells
-    - ~/.pi/agent/bundles/developer/skills/shells/neovim
-    - ~/.pi/agent/bundles/developer/skills/uidev
-    - ~/.pi/agent/bundles/matt-pocock/skills
-    - ~/.pi/agent/bundles/platform/skills/devtools
-    - ~/.pi/agent/bundles/platform/skills/devtools/cloudflare
-    - ~/.pi/agent/bundles/platform/skills/devtools/mise
-    - ~/.pi/agent/bundles/platform/skills/devtools/moonrepo
-    - ~/.pi/agent/bundles/platform/skills/devtools/pi-mono
-    - ~/.pi/agent/bundles/platform/skills/homeassistant
-    - ~/.pi/agent/bundles/researcher/skills
-    - ~/.pi/agent/bundles/researcher/skills/devtools
-    - ~/.pi/agent/bundles/writing/skills
-    - ~/.pi/agent/bundles/writing/skills/business
-    - ~/.pi/agent/bundles/writing/skills/fictional
+    - ~/.omp/agent/bundles/agent-core/skills
+    - ~/.omp/agent/bundles/creator/skills
+    - ~/.omp/agent/bundles/developer/skills
+    - ~/.omp/agent/bundles/developer/skills/atlassian
+    - ~/.omp/agent/bundles/developer/skills/browsers
+    - ~/.omp/agent/bundles/developer/skills/devtools
+    - ~/.omp/agent/bundles/developer/skills/game-dev
+    - ~/.omp/agent/bundles/developer/skills/git
+    - ~/.omp/agent/bundles/developer/skills/shells
+    - ~/.omp/agent/bundles/developer/skills/uidev
+    - ~/.omp/agent/bundles/matt-pocock/skills
+    - ~/.omp/agent/bundles/platform/skills/devtools
+    - ~/.omp/agent/bundles/platform/skills/devtools/cloudflare
+    - ~/.omp/agent/bundles/platform/skills/devtools/mise
+    - ~/.omp/agent/bundles/platform/skills/devtools/moonrepo
+    - ~/.omp/agent/bundles/platform/skills/devtools/pi-mono
+    - ~/.omp/agent/bundles/platform/skills/homeassistant
+    - ~/.omp/agent/bundles/writing/skills
+    - ~/.omp/agent/bundles/writing/skills/business
+    - ~/.omp/agent/bundles/writing/skills/fictional
 codexResets:
   autoRedeem: "no"

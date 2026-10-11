@@ -45,6 +45,22 @@
       "env": {
         "npm_config_loglevel": "error"
       }
+    },
+    "proxmox": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/ry-ops/proxmox-mcp-server",
+        "proxmox-mcp-server"
+      ],
+      "env": {
+        "PROXMOX_HOST": "${PROXMOX_HOST}",
+        "PROXMOX_USER": "${PROXMOX_USER}",
+        "PROXMOX_TOKEN_NAME": "${PROXMOX_TOKEN_NAME}",
+        "PROXMOX_TOKEN_VALUE": "${PROXMOX_TOKEN_VALUE}",
+        "PROXMOX_READ_ONLY": "${PROXMOX_READ_ONLY:-true}"
+      }
     }
   }
 }
