@@ -1,5 +1,5 @@
 ---
-name: docling
+name: converting-and-parsing-documents
 description: >
   Use Docling to understand the content of documents in any supported format —
   PDF (born-digital or scanned), DOCX, PPTX, XLSX, HTML, Markdown, AsciiDoc,

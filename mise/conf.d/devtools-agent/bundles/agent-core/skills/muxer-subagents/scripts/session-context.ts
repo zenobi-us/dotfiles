@@ -18,9 +18,22 @@ export function detectMuxer(): Muxer {
   return "unknown-muxer";
 }
 
-export function detectAgent(): Exclude<Agent, "omp" | "zot"> {
-  if (process.env.CLAUDECODE === "1") return "claude";
-  if (process.env.PI_CODING_AGENT === "true") return "pi";
+export function detectAgent(
+  identity?: Agent,
+  environment: Record<string, string | undefined> = process.env,
+): Agent {
+  if (identity !== undefined) return identity;
+
+  const isClaude = environment.CLAUDECODE === "1";
+  const isPi = environment.PI_CODING_AGENT === "true" ||
+    environment.AI_AGENT === "pi";
+  const isOmp = environment.OMPCODE === "1";
+  const detectedCount = Number(isClaude) + Number(isPi) + Number(isOmp);
+
+  if (detectedCount > 1) return "unknown-agent";
+  if (isClaude) return "claude";
+  if (isPi) return "pi";
+  if (isOmp) return "omp";
   return "unknown-agent";
 }
 
@@ -40,10 +53,11 @@ export function renderSessionContext(muxer: Muxer, agent: Agent): string {
 
   Use these values directly instead of running \`scripts/router.ts detect-muxer\`/\`detect-agent\` again.
 
-  OMP and Zot have no distinct self-identifying signal for \`detect-agent\`.
+  Agent detection uses \`CLAUDECODE=1\` for Claude, \`PI_CODING_AGENT=true\` or \`AI_AGENT=pi\` for Pi, and \`OMPCODE=1\` for OMP. Conflicting environment markers return \`unknown-agent\`. An explicit caller identity takes precedence.
 
-  The OMP extension supplies \`omp\` directly. Otherwise, pass an explicit \`--agent omp\` or \`--agent zot\` override to \`contracts\` when you know better.
+  Zot has no confirmed self-identifying signal. Pass an explicit \`--agent zot\` override when you know the target.
 
   If the muxer or agent changes mid-session (for example the operator attaches a new terminal), re-run the detect commands instead of trusting this stale value.
   `;
 }
+

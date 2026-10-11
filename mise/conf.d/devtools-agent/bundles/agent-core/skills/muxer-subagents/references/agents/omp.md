@@ -2,9 +2,9 @@
 
 ## Detection
 
-OMP has no confirmed environment variable that distinguishes it from Pi. The OMP extension at `hooks/pre/muxer-session.ts` supplies `agent="omp"` directly.
+`OMPCODE=1` identifies OMP in its spawned shells. The OMP extension also supplies `agent="omp"` as an explicit caller identity.
 
-Outside the OMP extension, `detect-agent` cannot identify OMP. Pass `--agent omp` explicitly when OMP is the target. `command -v omp` only proves that the executable is installed.
+When several environment markers identify different agents, `detect-agent` returns `unknown-agent`. An explicit caller identity takes precedence. Do not infer OMP from `command -v omp`; that only proves that the executable is installed.
 
 ## Launch
 

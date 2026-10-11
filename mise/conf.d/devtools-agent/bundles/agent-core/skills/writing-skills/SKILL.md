@@ -35,6 +35,7 @@ Keep `SKILL.md` as a thin topic and use-case router.
 - Point to a reference at the decision that requires it.
 - Give each reference one clear purpose.
 - Keep one authoritative source for each rule.
+- For every skill-provided script, state that its path is relative to the installed skill directory (not the repository), how to resolve that directory, and the required working directory. Use an absolute script path in invocation examples when execution starts from another directory.
 - Load only the references needed for the current branch.
 
 Read `references/progressive-disclosure.md` when designing or restructuring a skill.

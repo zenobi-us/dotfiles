@@ -45,7 +45,7 @@ const detectAgentCmd = app
   .sub("detect-agent")
   .meta({
     description:
-      "Print the active agent CLI: claude, pi, or unknown-agent. OMP and zot need explicit identification.",
+      "Print the active agent CLI: claude, omp, pi, or unknown-agent. Zot needs explicit identification.",
   })
   .run(() => {
     console.log(detectAgent());
@@ -90,7 +90,7 @@ const contractsCmd = app
     },
     agent: {
       type: "string",
-      description: `Override auto-detected agent (${AGENTS.join(", ")}). Required for OMP and zot when no session hook identifies them.`,
+      description: `Override auto-detected agent (${AGENTS.join(", ")}). Required for zot or when detection returns unknown-agent.`,
     },
   })
   .run(({ flags }) => {

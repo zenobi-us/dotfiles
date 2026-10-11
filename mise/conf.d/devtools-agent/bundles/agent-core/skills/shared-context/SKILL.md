@@ -25,14 +25,23 @@ change the implementation of the shared-context CLI itself.
 
 ## Step 0: resolve the root. Always.
 
-Run `./scripts/shared-context/cli.ts` directly in your project root.
+Resolve the installed shared-context skill directory (the directory containing
+this `SKILL.md`) and set `SHARED_CONTEXT_SKILL_ROOT` to its absolute path.
+The CLI is inside the skill, not the repository. Run it by absolute path from
+the project root:
+
+```bash
+"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts"
+```
+
 Its shebang starts Bun through mise and installs the CLI's own dependencies on first run.
 You **MUST NOT** prefix the call with Bun's runner (or any other runner) because that skips the entry point's shebang.
 
-`report` is the default. It prints the route table and alignment root. Use
-`./scripts/shared-context/cli.ts resolve <kind> ... --json` to resolve a record.
-Use `./scripts/shared-context/cli.ts root` only when a script needs the alignment
-root.
+`report` is the default. Use
+`"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" resolve <kind> ... --json`
+to resolve a record. Use
+`"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" root` only when a
+script needs the alignment root.
 
 ```text
 mode: shared | repository | mixed
@@ -59,10 +68,11 @@ slug: <origin-derived directory name>
 
 ## Shared-context writes and links
 
-Run the shared-context CLI before you choose a path or link:
+Run the shared-context CLI before you choose a path or link, using the absolute
+skill-relative path established in Step 0:
 
 ```bash
-./scripts/shared-context/cli.ts
+"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts"
 ```
 
 Use `resolve <kind>` for the record you will read or write. Its structured

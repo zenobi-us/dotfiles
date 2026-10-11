@@ -1,6 +1,7 @@
 import type { ExtensionAPI } from "@oh-my-pi/pi-coding-agent";
 
 import {
+  detectAgent,
   detectMuxer,
   renderSessionContext,
 } from "../../skills/muxer-subagents/scripts/session-context.ts";
@@ -11,7 +12,7 @@ export default function muxerSession(pi: ExtensionAPI): void {
   let contextBlock: string | undefined;
 
   function refresh(): void {
-    contextBlock = renderSessionContext(detectMuxer(), "omp");
+    contextBlock = renderSessionContext(detectMuxer(), detectAgent("omp"));
   }
 
   pi.on("session_start", () => {

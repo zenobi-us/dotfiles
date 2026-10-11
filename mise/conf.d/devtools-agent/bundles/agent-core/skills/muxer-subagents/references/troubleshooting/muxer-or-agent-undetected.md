@@ -9,12 +9,12 @@
 Detection only checks confirmed, self-identifying signals:
 
 - Muxer: `HERDR_ENV=1` (herdr), `$ZELLIJ` (zellij), `$TMUX` (tmux), `HRDX=1` (hrdx — confirmed in `.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-hrdx-agents/README.md`).
-- Agent: `CLAUDECODE=1` (claude), `PI_CODING_AGENT=true` (pi). zot has no confirmed signal. pi's SDK-embedded mode does not set its own markers either — only pi's CLI-launched sessions do.
+- Agent: `CLAUDECODE=1` (claude), `PI_CODING_AGENT=true` or `AI_AGENT=pi` (pi), and `OMPCODE=1` (omp). Conflicting agent markers return `unknown-agent`. zot has no confirmed signal. pi's SDK-embedded mode does not set its markers — only its CLI-launched sessions do.
 
 Anything outside that list reports `unknown-muxer`/`unknown-agent` on purpose, rather than guessing from a weaker signal like a binary being on `PATH`.
 
 ## Fix
 
 - Pass the override explicitly: `route "<request>" --agent zot` (or any other case detection cannot see).
-- If this is a new, real, confirmed signal (not a guess), update `detectMuxer()`/`detectAgent()` in `scripts/router.ts` and the matching `references/muxers/*.md` or `references/agents/*.md` file.
+- If a new, real, confirmed signal appears, update `detectAgent()` in `scripts/session-context.ts` and the matching `references/agents/*.md` file. Do not add weak signals such as executable availability.
 - Never silently pick a muxer or agent when detection returns `unknown-muxer`/`unknown-agent` and no override was given — ask the user.
