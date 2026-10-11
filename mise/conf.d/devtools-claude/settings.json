@@ -4,6 +4,7 @@
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
+  "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
       {

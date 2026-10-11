@@ -114,7 +114,7 @@ function spawnHerdr(agent: SpawnAgent, cwd: string, handoffFile: string, depth: 
     "tab", "create", "--workspace", String(workspace), "--cwd", cwd,
     "--label", agentName, "--no-focus", "--env", `MUXER_SUBAGENT_DEPTH=${depth}`,
   ]));
-  const paneId = tab.pane_id ?? tab.root_pane_id ?? nestedRecord(tab, "pane")?.id;
+  const paneId = tab.pane_id ?? tab.root_pane_id ?? nestedRecord(tab, "root_pane")?.pane_id ?? nestedRecord(tab, "pane")?.id;
   if (paneId === undefined) throw new Error("Herdr did not report the new tab's root pane id");
   run("herdr", [
     "agent", "start", agentName, "--kind", agent, "--pane", String(paneId), "--", `@${handoffFile}`,
