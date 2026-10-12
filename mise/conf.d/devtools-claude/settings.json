@@ -12,7 +12,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/home/zenobius/.claude/hooks/herdr-agent-state.sh' session",
+            "command": "bash '~/.claude/hooks/herdr-agent-state.sh' session",
             "timeout": 10
           }
         ]
@@ -43,7 +43,7 @@
     "zenobius-agent-bundles": {
       "source": {
         "source": "directory",
-        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles"
+        "path": "~/.dotfiles/mise/conf.d/devtools-agent/bundles"
       }
     }
   },
