@@ -1,12 +1,10 @@
 # Agent contract: zot
 
-## Detection — unresolved
+## Detection
 
-zot has no self-identifying environment variable. Checked `github.com/patriceckhart/zot`'s own README/docs directly: it documents provider API keys, `ZOT_HOME`, `ZOT_INLINE_IMAGES`, `ZOT_FLAT_TOOLS`, `ZOT_TOOL_ARG_WIDTH`, `ZOT_COMPACT_INPUT`, proxy vars, `TERM`/`TERM_PROGRAM` — none of them mean "running inside zot."
+The upstream zot project does not document a self-identifying environment variable. This router uses `AGENT=zot` as an explicit local marker. Set it in zot's process environment to enable automatic detection. Otherwise, pass `--agent zot`.
 
-- `detect-agent` cannot see zot automatically today.
-- MUST pass `--agent zot` explicitly (to `scripts/router.ts route`) when the caller knows zot is the target.
-- `command -v zot` only proves the binary is installed, not that the current process is zot — do not use it as a detection substitute.
+`command -v zot` only proves the binary is installed, not that the current process is zot.
 
 ## Launch
 

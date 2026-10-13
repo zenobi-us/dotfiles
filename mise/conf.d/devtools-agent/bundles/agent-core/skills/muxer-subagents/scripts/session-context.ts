@@ -24,16 +24,14 @@ export function detectAgent(
 ): Agent {
   if (identity !== undefined) return identity;
 
-  const isClaude = environment.CLAUDECODE === "1";
-  const isPi = environment.PI_CODING_AGENT === "true" ||
-    environment.AI_AGENT === "pi";
-  const isOmp = environment.OMPCODE === "1";
-  const detectedCount = Number(isClaude) + Number(isPi) + Number(isOmp);
-
-  if (detectedCount > 1) return "unknown-agent";
-  if (isClaude) return "claude";
-  if (isPi) return "pi";
-  if (isOmp) return "omp";
+  if (environment.OMPCODE === "1") return "omp";
+  if (
+    environment.PI_CODING_AGENT === "true" ||
+    environment.AI_AGENT === "pi"
+  ) return "pi";
+  if (environment.AGENT === "zot") return "zot";
+  if (environment.AGENT === "codex") return "codex";
+  if (environment.CLAUDECODE === "1") return "claude";
   return "unknown-agent";
 }
 
@@ -53,11 +51,10 @@ export function renderSessionContext(muxer: Muxer, agent: Agent): string {
 
   Use these values directly instead of running \`scripts/router.ts detect-muxer\`/\`detect-agent\` again.
 
-  Agent detection uses \`CLAUDECODE=1\` for Claude, \`PI_CODING_AGENT=true\` or \`AI_AGENT=pi\` for Pi, and \`OMPCODE=1\` for OMP. Conflicting environment markers return \`unknown-agent\`. An explicit caller identity takes precedence.
-
-  Zot has no confirmed self-identifying signal. Pass an explicit \`--agent zot\` override when you know the target.
+  Agent detection checks \`OMPCODE=1\`, Pi's \`PI_CODING_AGENT=true\` or \`AI_AGENT=pi\`, \`AGENT=zot\`, \`AGENT=codex\`, then \`CLAUDECODE=1\`, in that priority order. An explicit caller identity takes precedence.
 
   If the muxer or agent changes mid-session (for example the operator attaches a new terminal), re-run the detect commands instead of trusting this stale value.
   `;
 }
+
 

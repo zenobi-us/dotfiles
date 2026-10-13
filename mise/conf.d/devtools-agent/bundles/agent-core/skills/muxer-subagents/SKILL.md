@@ -29,7 +29,7 @@ Use the same tag-first order. If the tag is absent or stale, run:
 scripts/router.ts detect-agent
 ```
 
-The hooks can supply `claude`, `omp`, `pi`, or `unknown-agent`. `detect-agent` reads `CLAUDECODE=1` for Claude, `PI_CODING_AGENT=true` or `AI_AGENT=pi` for Pi, and `OMPCODE=1` for OMP. Conflicting environment markers return `unknown-agent`. An explicit caller identity takes precedence. zot has no confirmed signal. Pass `--agent zot` when the caller knows better.
+The hooks can supply `omp`, `pi`, `zot`, `codex`, `claude`, or `unknown-agent`. `detect-agent` checks `OMPCODE=1`, Pi's `PI_CODING_AGENT=true` or `AI_AGENT=pi`, `AGENT=zot`, `AGENT=codex`, then `CLAUDECODE=1`, in that priority order. An explicit caller identity takes precedence.
 
 # Resolve the contracts
 

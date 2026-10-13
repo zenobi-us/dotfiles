@@ -2,32 +2,35 @@ import { describe, expect, test } from "bun:test";
 import { detectAgent } from "./session-context.ts";
 
 describe("agent detection", () => {
-  test("detects Claude from its marker", () => {
+  test("detects each agent from its marker", () => {
+    expect(detectAgent(undefined, { OMPCODE: "1" })).toBe("omp");
+    expect(detectAgent(undefined, { PI_CODING_AGENT: "true" })).toBe("pi");
+    expect(detectAgent(undefined, { AI_AGENT: "pi" })).toBe("pi");
+    expect(detectAgent(undefined, { AGENT: "zot" })).toBe("zot");
+    expect(detectAgent(undefined, { AGENT: "codex" })).toBe("codex");
     expect(detectAgent(undefined, { CLAUDECODE: "1" })).toBe("claude");
   });
 
-  test("detects Pi from either documented marker", () => {
-    expect(detectAgent(undefined, { PI_CODING_AGENT: "true" })).toBe("pi");
-    expect(detectAgent(undefined, { AI_AGENT: "pi" })).toBe("pi");
+  test("uses the requested priority when agent markers overlap", () => {
     expect(detectAgent(undefined, {
-      PI_CODING_AGENT: "true",
-      AI_AGENT: "pi",
-    })).toBe("pi");
-  });
-
-  test("detects OMP from its marker", () => {
-    expect(detectAgent(undefined, { OMPCODE: "1" })).toBe("omp");
-  });
-
-  test("returns unknown when environment markers conflict", () => {
-    expect(detectAgent(undefined, {
-      CLAUDECODE: "1",
-      PI_CODING_AGENT: "true",
-    })).toBe("unknown-agent");
-    expect(detectAgent(undefined, {
-      AI_AGENT: "pi",
       OMPCODE: "1",
-    })).toBe("unknown-agent");
+      PI_CODING_AGENT: "true",
+      AGENT: "zot",
+      CLAUDECODE: "1",
+    })).toBe("omp");
+    expect(detectAgent(undefined, {
+      PI_CODING_AGENT: "true",
+      AGENT: "zot",
+      CLAUDECODE: "1",
+    })).toBe("pi");
+    expect(detectAgent(undefined, {
+      AGENT: "zot",
+      CLAUDECODE: "1",
+    })).toBe("zot");
+    expect(detectAgent(undefined, {
+      AGENT: "codex",
+      CLAUDECODE: "1",
+    })).toBe("codex");
   });
 
   test("uses explicit caller identity over conflicting environment markers", () => {

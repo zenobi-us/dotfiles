@@ -45,7 +45,7 @@ const detectAgentCmd = app
   .sub("detect-agent")
   .meta({
     description:
-      "Print the active agent CLI: claude, omp, pi, or unknown-agent. Zot needs explicit identification.",
+      "Print the active agent CLI: omp, pi, zot, codex, claude, or unknown-agent.",
   })
   .run(() => {
     console.log(detectAgent());

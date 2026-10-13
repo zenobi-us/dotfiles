@@ -6,7 +6,7 @@ export const MUXERS = [
   "unknown-muxer",
 ] as const;
 
-export const AGENTS = ["claude", "omp", "pi", "zot", "unknown-agent"] as const;
+export const AGENTS = ["claude", "codex", "omp", "pi", "zot", "unknown-agent"] as const;
 
 export type Muxer = (typeof MUXERS)[number];
 export type Agent = (typeof AGENTS)[number];

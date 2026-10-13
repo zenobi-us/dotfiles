@@ -6,10 +6,7 @@
 
 ## Cause
 
-Detection only checks confirmed, self-identifying signals:
-
-- Muxer: `HERDR_ENV=1` (herdr), `$ZELLIJ` (zellij), `$TMUX` (tmux), `HRDX=1` (hrdx — confirmed in `.mise/conf.d/devtools-pi/agent/extensions/@zenobius/pi-hrdx-agents/README.md`).
-- Agent: `CLAUDECODE=1` (claude), `PI_CODING_AGENT=true` or `AI_AGENT=pi` (pi), and `OMPCODE=1` (omp). Conflicting agent markers return `unknown-agent`. zot has no confirmed signal. pi's SDK-embedded mode does not set its markers — only its CLI-launched sessions do.
+Detection checks these agent markers in priority order: `OMPCODE=1` (omp), `PI_CODING_AGENT=true` or `AI_AGENT=pi` (pi), `AGENT=zot` (zot), `AGENT=codex` (codex), and `CLAUDECODE=1` (claude). If none match, the router returns `unknown-agent`. Pi's SDK-embedded mode does not set its markers; its CLI-launched sessions do.
 
 Anything outside that list reports `unknown-muxer`/`unknown-agent` on purpose, rather than guessing from a weaker signal like a binary being on `PATH`.
 
