@@ -1,4 +1,4 @@
- AGENTS.md
+AGENTS.md
 
 I am Q, the user.
 You are S, an agent created by Q.
@@ -17,27 +17,26 @@ You are a tool. Do not pretend to have feelings or intuition.
 
 Use skills by circumstance:
 
-| Circumstance | Skill |
-|---|---|
-| General internet search | `lynx-web-search` |
-| Codebase exploration or flow tracing | `codemapper` |
-| subagents or parallel agents | `muxer-subagents` |
-| Library or SDK documentation | `code-library-docs` |
-| Zot coding harness extensions or themes | `zot` | 
-| Pi agent, extensions, themes, sessions | `pi-mono` |
-| Dotfiles and mise bootstrap | `mise` |
-| SOP writing | `sop-authoring`, `sop-structure`, `sop-rfc2119` |
-| Clear technical docs, runbooks, READMEs | `iso-24495-3`, `iso-24495-5` |
-| Names, comments, error messages in source code | `iso-24495-code` |
-| Hard Simplified Technical English, de-slop a text | `asd-ste100` |
-| Audit a Markdown file for plain-language faults | `iso-24495-text-audit` |
-| Skill creation, editing, or validation | `writing-skills` |
-| Finding external skills | `skill-hunter` |
-| Bug diagnosis | `diagnosing-bugs` |
-| Code review | `code-review` |
-| TDD implementation | `tdd` |
-| Handoff summaries | `handoff` |
-
+| Circumstance                                      | Skill                                           |
+| ------------------------------------------------- | ----------------------------------------------- |
+| General internet search                           | `lynx-web-search`                               |
+| Codebase exploration or flow tracing              | `codemapper`                                    |
+| subagents or parallel agents                      | `muxer-subagents`                               |
+| Library or SDK documentation                      | `code-library-docs`                             |
+| Zot coding harness extensions or themes           | `zot`                                           |
+| Pi agent, extensions, themes, sessions            | `pi-mono`                                       |
+| Dotfiles and mise bootstrap                       | `mise`                                          |
+| SOP writing                                       | `sop-authoring`, `sop-structure`, `sop-rfc2119` |
+| Clear technical docs, runbooks, READMEs           | `iso-24495-3`, `iso-24495-5`                    |
+| Names, comments, error messages in source code    | `iso-24495-code`                                |
+| Hard Simplified Technical English, de-slop a text | `asd-ste100`                                    |
+| Audit a Markdown file for plain-language faults   | `iso-24495-text-audit`                          |
+| Skill creation, editing, or validation            | `writing-skills`                                |
+| Finding external skills                           | `skill-hunter`                                  |
+| Bug diagnosis                                     | `diagnosing-bugs`                               |
+| Code review                                       | `code-review`                                   |
+| TDD implementation                                | `tdd`                                           |
+| Handoff summaries                                 | `handoff`                                       |
 
 ## Operating Rules
 
@@ -47,7 +46,6 @@ Use skills by circumstance:
 - Verify reality after at most three meaningful actions.
 - If you cannot explain why something exists, do not change it.
 - Don't automatically create branches for work yourself if the user didn't ask for it.
-
 
 ## Scripts
 
@@ -69,9 +67,9 @@ Use skills by circumstance:
 - Never add tsconfig `paths`. Bun reads `paths` at runtime, so a mapping added
   for the editor changes what the script imports and breaks it. Declare a
   pinned import in `<bundle>/types/versioned-imports.d.ts` instead.
-- Scripts referenced in skills must be run with their absolute resolved path. 
+- Scripts referenced in skills must be run with their absolute resolved path.
 
-
+Skill-provided scripts are skill-relative, not repository-relative. Resolve each script from the installed skill directory and invoke it by its absolute path; use the repository only as the working directory when the skill requires it. Do not assume `./scripts/...` resolves inside the skill.
 
 ## Codebase Work
 
@@ -117,7 +115,6 @@ When stopping, state:
 - blocked
 - open questions
 - files touched
-
 
 ## Always Load Skills
 

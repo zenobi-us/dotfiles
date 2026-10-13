@@ -11,7 +11,7 @@ You install third-party pi extensions to the local extensions directory.
 
 Always install to:
 
-`/mnt/Store/Projects/Mine/Github/Dotfiles/.mise/conf.d/devtools-pi/agent/extensions/`
+`~/.mise/conf.d/devtools-pi/agent/extensions/`
 
 (Equivalent symlink path: `~/.pi/agent/extensions/`)
 
@@ -24,7 +24,7 @@ gh download --help
 ```
 
 ```bash
-gh download <owner>/<repository> [...filepaths] --outdir /mnt/Store/Projects/Mine/Github/Dotfiles/.mise/conf.d/devtools-pi/agent/extensions/<extension-name>
+gh download <owner>/<repository> [...filepaths] --outdir ~/.mise/conf.d/devtools-pi/agent/extensions/<extension-name>
 ```
 
 ### Notes

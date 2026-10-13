@@ -111,6 +111,14 @@ Never use a public URL for a private or uncertain boundary.
 For a file in the repository being changed, use a path relative to that
 repository root.
 
+
+## CLI usage errors
+
+If a CLI command fails because its arguments or usage are incorrect, read its
+`--help` output, correct the command, and try again. Do not report the error as
+a blocker before checking the documented usage. For other non-zero exit
+statuses, follow Rule 7.
+
 ## Rules that override convenience
 
 0. You **MUST** Always use the absolute path to the CLI entry point. Do not `cd` to the skill directory.
@@ -130,8 +138,10 @@ repository root.
    usable git remote. A non-git store is valid local-only storage.
 6. You **MUST NOT** overwrite a file that holds hand-written work. See the
    authored-content guard in `references/layout.md`.
-7. You **MUST** stop and report a non-zero exit status from `shared-context`.
-   Do not retry silently. This rule covers `shared-context` only. An ordinary
+7. You **MUST** stop and report a non-zero exit status from `shared-context`,
+   except for an incorrect-arguments or usage error. For that error, read
+   `shared-context --help`, correct the command, and try again. Do not retry
+   other failures silently. This rule covers `shared-context` only. An ordinary
    shell probe such as `ls` exits non-zero for an absent path, which is an
    answer, not a failure.
 8. If there exists `<shared-agent-context />` block in the system prompt, then you don't need to run the shared-context cli to get a report.
