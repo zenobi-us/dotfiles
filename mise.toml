@@ -118,6 +118,7 @@ starship = "latest"
 "yt-dlp" = { "version" = "latest", "rename_exe" = "yt-dlp" }
 "zig" = "latest"
 "zot" = "latest"
+fnox = { version = "1.39.0", workflow = "release.yml" }
 
 [tool_alias]
 pi = "github:earendil-works/pi"
