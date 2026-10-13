@@ -43,7 +43,7 @@
     "zenobius-agent-bundles": {
       "source": {
         "source": "directory",
-        "path": "~/.dotfiles/mise/conf.d/devtools-agent/bundles"
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles"
       }
     }
   },
