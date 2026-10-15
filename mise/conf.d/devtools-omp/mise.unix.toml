@@ -1,5 +1,6 @@
 [dotfiles]
 "~/.omp/agent/config.yml" = { source = "./config.yml", mode = "symlink" }
+"~/.omp/agent/models.yaml" = { source = "./models.yaml", mode = "symlink" }
 "~/.omp/agent/bundles/agent-core" = { source = "../devtools-agent/bundles/agent-core", mode = "symlink" }
 "~/.omp/agent/bundles/creator" = { source = "../devtools-agent/bundles/creator", mode = "symlink" }
 "~/.omp/agent/bundles/developer" = { source = "../devtools-agent/bundles/developer", mode = "symlink" }

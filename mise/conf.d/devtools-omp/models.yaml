@@ -1,0 +1,18 @@
+providers:
+  strata:
+    baseUrl: http://127.0.0.1:8080/v1
+    api: openai-responses
+    auth: none
+    models:
+      - id: qwen3.8-flash-next-coder-iq1_m
+        name: Strata Coder IQ1_M
+        reasoning: true
+        input: [text]
+        tokenizer: qwen3
+        contextWindow: 131072
+        maxTokens: 32768
+        cost:
+          input: 0
+          output: 0
+          cacheRead: 0
+          cacheWrite: 0
