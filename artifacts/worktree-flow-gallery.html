@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worktree Flow Atlas — 20 report directions</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Trebuchet MS", sans-serif; }
+  button, select { font: inherit; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid #d66b4e; outline-offset: 4px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+  .masthead { position: relative; z-index: 3; display: flex; align-items: center; gap: 1.25rem; justify-content: space-between; padding: 1rem clamp(1.25rem, 4vw, 4.5rem); background: #242d2b; color: #f4efe3; border-bottom: 1px solid #58625d; }
+  .brand { font-weight: 800; letter-spacing: .12em; text-decoration: none; font-size: .8rem; text-transform: uppercase; }
+  .masthead small { color: #d7d4c7; font-size: .82rem; }
+  .masthead nav { display: flex; gap: .45rem; align-items: center; }
+  .masthead nav a { text-decoration: none; padding: .58rem .8rem; border: 1px solid #69736c; min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .masthead nav a:hover { background: #435048; }
+  .masthead select { max-width: 15rem; padding: .6rem .7rem; border: 1px solid #69736c; border-radius: 0; background: #242d2b; color: #f4efe3; min-height: 44px; }
+  .gallery { min-height: 100vh; background: #ede9dc; color: #27312e; }
+  .gallery-hero { padding: clamp(3rem, 7vw, 7rem) clamp(1.25rem, 5vw, 5rem) 3rem; max-width: 1550px; margin: auto; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(17rem, .6fr); gap: 3rem; align-items: end; }
+  .gallery-hero .overline { font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: #8c4135; }
+  .gallery-hero h1 { font: 400 clamp(3.4rem, 8vw, 8rem)/.94 Georgia, serif; letter-spacing: -.065em; margin: 1rem 0 1.6rem; max-width: 11ch; }
+  .gallery-hero p { max-width: 48rem; line-height: 1.6; font-size: clamp(1rem, 1.5vw, 1.2rem); margin: 0; }
+  .gallery-note { border-top: 2px solid #27312e; padding-top: 1.2rem; align-self: end; font-size: .93rem; line-height: 1.6; }
+  .gallery-note strong { display: block; font-size: 1.2rem; margin-bottom: .55rem; }
+  .gallery-index { max-width: 1550px; margin: 0 auto; padding: 1rem clamp(1.25rem, 5vw, 5rem) 6rem; }
+  .gallery-index > h2 { font-size: .9rem; letter-spacing: .13em; text-transform: uppercase; border-top: 1px solid #8f958b; padding-top: 1.5rem; margin: 0 0 1.5rem; }
+  .study-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.1rem; }
+  .study-card { --bg: #f1eee5; --ink: #292b29; --accent: #a44d3b; --node: #e6dcca; --stroke: #b6aa96; --on-accent: #f8f5e9; display: flex; min-height: 21rem; flex-direction: column; text-decoration: none; background: var(--bg); color: var(--ink); border: 1px solid var(--stroke); padding: 1.25rem; transition: transform .18s ease, box-shadow .18s ease; }
+  .study-card:hover { transform: translateY(-5px); box-shadow: 8px 9px 0 #27312e27; }
+  .study-card .card-top { display: flex; justify-content: space-between; align-items: flex-start; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+  .study-card .card-mark { display: grid; place-items: center; margin: 1.65rem auto .85rem; width: 100%; max-width: 14rem; height: 7.5rem; }
+  .card-mark svg { width: 100%; height: 100%; overflow: visible; }
+  .study-card h3 { font: 400 clamp(1.55rem, 2vw, 2.1rem)/1.12 Georgia, serif; letter-spacing: -.04em; margin: auto 0 .4rem; }
+  .study-card p { font-size: .87rem; line-height: 1.45; min-height: 2.6em; margin: 0 0 1.2rem; }
+  .card-foot { border-top: 1px solid var(--stroke); padding-top: .75rem; display: flex; justify-content: space-between; align-items: center; gap: .7rem; font-size: .73rem; text-transform: uppercase; font-weight: 700; letter-spacing: .06em; }
+  .swatches { display: inline-flex; gap: 3px; }
+  .swatches i { width: 12px; height: 12px; border: 1px solid var(--stroke); display: block; }
+  .report-page { background: var(--bg); color: var(--ink); min-height: 100vh; font-family: var(--body-font); line-height: 1.55; }
+  .report-page .masthead { font-family: "Trebuchet MS", sans-serif; }
+  .report-grid { display: grid; gap: clamp(1.1rem, 2vw, 2rem); max-width: 1630px; margin: auto; padding: clamp(1.25rem, 3vw, 3rem); align-items: stretch; }
+  .report-grid > * { min-width: 0; }
+  .hero { grid-area: hero; position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 25rem; overflow: hidden; padding: clamp(1.6rem, 4vw, 3.8rem); background: var(--hero); color: var(--hero-ink); border: var(--border-width, 1px) solid var(--stroke); isolation: isolate; }
+  .hero .hero-copy { z-index: 1; max-width: 45rem; }
+  .hero .overline, .plate-kicker, .aside-label { text-transform: uppercase; letter-spacing: .16em; font-size: .73rem; font-weight: 800; }
+  .hero .overline { margin: 0 0 1.6rem; }
+  .hero h1 { margin: 0 0 1rem; font: 400 clamp(3rem, 5.4vw, 6.2rem)/.98 var(--display-font); letter-spacing: -.06em; overflow-wrap: anywhere; }
+  .hero .lead { font-size: clamp(1rem, 1.4vw, 1.24rem); max-width: 40rem; margin: 0; line-height: 1.55; }
+  .hero-bottom { z-index: 1; display: flex; gap: .8rem; align-items: flex-end; justify-content: space-between; margin-top: 3rem; }
+  .hero-bottom span { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .hero-mark { width: clamp(6rem, 14vw, 12rem); height: clamp(5rem, 11vw, 10rem); opacity: .9; flex: none; }
+  .aside { grid-area: aside; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; padding: clamp(1.35rem, 2.4vw, 2.5rem); border: var(--border-width, 1px) solid var(--stroke); background: var(--aside); }
+  .aside-label { color: var(--accent); margin: 0 0 1.25rem; }
+  .aside h2 { font: 400 clamp(1.6rem, 2.5vw, 2.6rem)/1.08 var(--display-font); letter-spacing: -.04em; margin: 0 0 1.2rem; }
+  .aside p { font-size: .95rem; line-height: 1.65; margin: 0; max-width: 50ch; }
+  .section-nav { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; }
+  .section-nav a { border: 1px solid var(--stroke); text-decoration: none; font-size: .75rem; font-weight: 700; padding: .55rem .7rem; min-height: 44px; display: inline-flex; align-items: center; }
+  .section-nav a:hover { background: var(--node); }
+  .aside dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .7rem 1rem; font-size: .85rem; }
+  .aside dt { font-weight: 800; }
+  .aside dd { margin: 0; }
+  .aside .palette { display: flex; align-items: center; gap: .35rem; border-top: 1px solid var(--stroke); padding-top: 1rem; }
+  .aside .palette i { display: block; flex: 1; height: 2.5rem; border: 1px solid var(--stroke); }
+  .plate { padding: clamp(1.25rem, 2vw, 2.1rem); border: var(--border-width, 1px) solid var(--stroke); background: var(--surface); position: relative; display: flex; flex-direction: column; }
+  .plate[data-kind="ownership"] { grid-area: ownership; }
+  .plate[data-kind="handoff"] { grid-area: handoff; }
+  .plate[data-kind="lifecycle"] { grid-area: lifecycle; }
+  .plate[data-kind="records"] { grid-area: records; }
+  .plate-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; margin-bottom: 1rem; }
+  .plate-kicker { color: var(--accent); margin: 0 0 .7rem; }
+  .plate h2 { font: 400 clamp(1.5rem, 2vw, 2.35rem)/1.16 var(--display-font); letter-spacing: -.035em; margin: 0; }
+  .plate .kind { border: 1px solid var(--stroke); padding: .3rem .5rem; font-size: .67rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
+  .plate figure { margin: 1.2rem 0 0; }
+  .diagram-viewport { overflow-x: auto; overflow-y: hidden; padding: .5rem 0; scrollbar-color: var(--accent) transparent; }
+  .diagram-viewport:focus-visible { outline-offset: -3px; }
+  .pan-hint { display: none; color: var(--accent); font-size: .75rem; font-weight: 800; letter-spacing: .04em; margin: .35rem 0 0; }
+  .plate.is-scrollable .pan-hint { display: block; }
+  .diagram-svg { display: block; width: 100%; min-width: 610px; height: auto; color: var(--ink); }
+  .diagram-svg text { font-family: var(--body-font); font-size: 15px; font-weight: 700; }
+  .diagram-svg .label { font-size: 12px; letter-spacing: .04em; font-weight: 700; }
+  .diagram-svg .lane { letter-spacing: .15em; font-size: 14px; font-weight: 800; }
+  .diagram-svg .small { font-size: 12px; font-weight: 600; }
+  .plate figcaption { font-size: .84rem; line-height: 1.5; color: var(--muted); margin-top: 1rem; padding-top: .75rem; border-top: 1px solid var(--stroke); }
+  .report-footer { max-width: 1630px; margin: 0 auto; padding: 0 clamp(1.25rem, 3vw, 3rem) 4rem; display: flex; justify-content: space-between; gap: 1rem; font-size: .88rem; }
+  .report-footer p { margin: 0; max-width: 70ch; }
+  .report-footer a { font-weight: 800; text-underline-offset: 3px; white-space: nowrap; }
+  .report-page :focus-visible { outline-color: var(--accent); }
+  .report-page[data-theme="folio"] .hero { border-top: 9px double var(--accent); }
+  .report-page[data-theme="signal"] .hero { box-shadow: inset 0 0 0 8px var(--hero), inset 0 0 0 9px var(--stroke); }
+  .report-page[data-theme="blueprint"] .hero, .report-page[data-theme="blueprint"] .plate { background-image: linear-gradient(to right, #28549018 1px, transparent 1px), linear-gradient(to bottom, #28549018 1px, transparent 1px); background-size: 28px 28px; }
+  .report-page[data-theme="herbarium"] .hero { border-radius: 11rem 11rem 0 0; }
+  .report-page[data-theme="dispatch"] .hero { border-bottom: 13px solid var(--accent); }
+  .report-page[data-theme="observatory"] .hero::before { content: ""; position: absolute; width: 42rem; height: 42rem; border: 1px solid var(--stroke); border-radius: 50%; right: -16rem; top: -20rem; box-shadow: 0 0 0 5rem #d3b27512, 0 0 0 9rem #d3b2750a; }
+  .report-page[data-theme="ceramic"] .hero { border-radius: 3rem 1rem 5rem 1rem; }
+  .report-page[data-theme="ledger"] .plate { border-left: 4px double var(--accent); }
+  .report-page[data-theme="transit"] .hero { background-image: repeating-linear-gradient(90deg, transparent 0 43px, #dd694414 44px 45px); }
+  .report-page[data-theme="margins"] .hero { border-left: 16px solid var(--accent); }
+  .report-page[data-theme="bauhaus"] .hero::after { content: ""; position: absolute; width: 20rem; height: 20rem; border-radius: 50%; background: #e4382826; right: -7rem; top: -7rem; }
+  .report-page[data-theme="northsea"] .hero { border-radius: 0 0 6rem 0; }
+  .report-page[data-theme="carbon"] .plate { box-shadow: 7px 7px 0 var(--stroke); margin-right: 7px; margin-bottom: 7px; }
+  .report-page[data-theme="chalkboard"] .hero, .report-page[data-theme="chalkboard"] .plate { border-style: dashed; }
+  .report-page[data-theme="museum"] .hero { outline: 1px solid var(--stroke); outline-offset: -13px; }
+  .report-page[data-theme="kinetic"] .hero-mark { transform: rotate(-12deg); }
+  .report-page[data-theme="atlas"] .hero { background-image: radial-gradient(var(--stroke) .7px, transparent .7px); background-size: 19px 19px; }
+  .report-page[data-theme="archive"] .plate::after { content: ""; position: absolute; right: 0; top: 0; border-top: 1.6rem solid var(--accent); border-left: 1.6rem solid transparent; }
+  .report-page[data-theme="circuit"] .plate { clip-path: polygon(0 0, calc(100% - 1.1rem) 0, 100% 1.1rem, 100% 100%, 1.1rem 100%, 0 calc(100% - 1.1rem)); }
+  .report-page[data-theme="sunrise"] .hero { background-image: linear-gradient(165deg, transparent 64%, #d0532a20 64% 70%, transparent 70%); }
+  @media (max-width: 1100px) { .study-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 900px) {
+    .report-grid { grid-template-columns: minmax(0,1fr) !important; grid-template-areas: "hero" "aside" "ownership" "handoff" "lifecycle" "records" !important; }
+    .report-grid .hero { min-height: 21rem; }
+    .report-grid .aside { gap: 1.5rem; }
+    .gallery-hero { grid-template-columns: 1fr; gap: 2rem; }
+    .study-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .masthead { flex-wrap: wrap; padding: .75rem 1rem; }
+    .masthead small { display: none; }
+    .masthead nav { width: 100%; justify-content: space-between; }
+    .masthead select { flex: 1; max-width: none; }
+    .study-grid { grid-template-columns: 1fr; }
+    .study-card { min-height: 19rem; }
+    .report-grid { padding: 1rem; gap: 1rem; }
+    .hero { padding: 1.5rem; }
+    .hero h1 { font-size: clamp(2.5rem, 14vw, 4rem); }
+    .plate-head { flex-wrap: wrap; }
+    .report-footer { flex-wrap: wrap; }
+  }
+  @media print {
+    .masthead { display: none; }
+    .report-grid { display: block; padding: 0; }
+    .report-grid > * { margin-bottom: 1rem; break-inside: avoid; }
+    .diagram-viewport { overflow: visible; }
+    .diagram-svg { min-width: 0; }
+    .hero { min-height: 0; }
+    .report-footer { padding: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .study-card { transition: none; } }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  const variants = [
+    {name:'Folio', theme:'folio', layout:'Left margin editorial', shape:'capsule', bg:'#f3eee2', hero:'#e7ddc9', surface:'#fbf7ef', aside:'#ece3d3', node:'#efe4cf', ink:'#302b2a', muted:'#665d59', accent:'#963f35', onAccent:'#f9f0e2', stroke:'#b7a899', display:'Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'A quiet field guide with a continuous reading margin.', treatment:'Editorial · quiet'},
+    {name:'Signal Room', theme:'signal', layout:'Control rail', shape:'chamfer', bg:'#252e2d', hero:'#30413d', surface:'#33403d', aside:'#1e2927', node:'#40544e', ink:'#f2ead8', muted:'#d4c9b5', accent:'#efad69', onAccent:'#2b2b24', stroke:'#7c8b7c', display:'"Arial Narrow", "Trebuchet MS", sans-serif', body:'"Trebuchet MS", sans-serif', line:'A dense operations board with a persistent left rail.', treatment:'Industrial · dense'},
+    {name:'Blueprint', theme:'blueprint', layout:'Drafting grid', shape:'square', bg:'#f0f4f3', hero:'#d8e8ed', surface:'#f8fbfa', aside:'#e4edf0', node:'#e1ecf1', ink:'#173a56', muted:'#435e71', accent:'#245e9d', onAccent:'#f8fbfa', stroke:'#89aab9', display:'"Palatino Linotype", Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'An engineering sheet with a measured two-column grid.', treatment:'Technical · precise'},
+    {name:'Herbarium', theme:'herbarium', layout:'Botanical spread', shape:'arch', bg:'#e9ede1', hero:'#ceddc4', surface:'#f5f5e9', aside:'#e0e9d7', node:'#e3edda', ink:'#244331', muted:'#506654', accent:'#3f7152', onAccent:'#f5f5e9', stroke:'#9db59c', display:'"Palatino Linotype", Georgia, serif', body:'Georgia, serif', line:'A rounded field study with a long supporting column.', treatment:'Organic · spacious'},
+    {name:'Dispatch', theme:'dispatch', layout:'Front-page stack', shape:'notch', bg:'#ede8dc', hero:'#e6ddcc', surface:'#faf6ec', aside:'#e7decf', node:'#f0e8db', ink:'#2d3032', muted:'#5e6060', accent:'#ad3831', onAccent:'#fff5e8', stroke:'#aba498', display:'Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'A newspaper-style hierarchy led by the handoff story.', treatment:'Newsroom · urgent'},
+    {name:'Observatory', theme:'observatory', layout:'Circular overview', shape:'ellipse', bg:'#282e3b', hero:'#34384b', surface:'#353c49', aside:'#242b39', node:'#48536a', ink:'#f2ecdd', muted:'#c9c5b6', accent:'#d6b770', onAccent:'#292d39', stroke:'#81858a', display:'Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'A night-sky overview centered on the review gate.', treatment:'Celestial · contemplative'},
+    {name:'Ceramic', theme:'ceramic', layout:'Offset clay blocks', shape:'blob', bg:'#f3e9dc', hero:'#eed7c4', surface:'#fcf3e8', aside:'#f0e2d2', node:'#f3ddc9', ink:'#51382e', muted:'#725950', accent:'#995032', onAccent:'#fbf1e5', stroke:'#bea390', display:'Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'Soft asymmetry with the ownership map beside the title.', treatment:'Tactile · warm'},
+    {name:'Ledger', theme:'ledger', layout:'Audit ledger', shape:'tab', bg:'#192c33', hero:'#223a42', surface:'#21343c', aside:'#15272e', node:'#2b454d', ink:'#e8eadd', muted:'#b8c7bf', accent:'#99c6aa', onAccent:'#1e3539', stroke:'#67837c', display:'"Courier New", monospace', body:'"Trebuchet MS", sans-serif', line:'An audit-first layout with durable records in the first row.', treatment:'Tabular · disciplined'},
+    {name:'Transit', theme:'transit', layout:'Route interchange', shape:'route', bg:'#f4eadd', hero:'#eee2cf', surface:'#fbf3e8', aside:'#eee5d7', node:'#f4e7d5', ink:'#223a46', muted:'#52656b', accent:'#ae4530', onAccent:'#fff8ed', stroke:'#aab2ab', display:'"Trebuchet MS", sans-serif', body:'"Trebuchet MS", sans-serif', line:'A route-map reading order for a clear start-to-finish path.', treatment:'Wayfinding · direct'},
+    {name:'Margins', theme:'margins', layout:'Book margin notes', shape:'bracket', bg:'#f0eadf', hero:'#e9e1d4', surface:'#f8f3e9', aside:'#eae4d8', node:'#eee5d9', ink:'#283b4c', muted:'#576979', accent:'#355d81', onAccent:'#f6f0e6', stroke:'#aeb7b8', display:'"Palatino Linotype", Georgia, serif', body:'Georgia, serif', line:'A scholarly margin that keeps the evidence close to each figure.', treatment:'Bookish · annotated'},
+    {name:'Bauhaus', theme:'bauhaus', layout:'Primary shapes', shape:'circle', bg:'#f3e6cd', hero:'#edd8ab', surface:'#faf0dc', aside:'#e7d9bd', node:'#efdfbe', ink:'#202c36', muted:'#4b5860', accent:'#c43b32', onAccent:'#f9f0de', stroke:'#a89575', display:'"Arial Black", "Trebuchet MS", sans-serif', body:'"Trebuchet MS", sans-serif', line:'A strong geometric rhythm with a full-width opening spread.', treatment:'Geometric · expressive'},
+    {name:'North Sea', theme:'northsea', layout:'Cold-water bands', shape:'wave', bg:'#dce7e8', hero:'#bfd4d9', surface:'#edf4f1', aside:'#d2e3e2', node:'#d9e8e8', ink:'#183949', muted:'#496676', accent:'#245d77', onAccent:'#f1f5ef', stroke:'#86a8ac', display:'"Palatino Linotype", Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'A calm layered report with the lifecycle as its horizon.', treatment:'Coastal · calm'},
+    {name:'Carbon Copy', theme:'carbon', layout:'Layered dossier', shape:'stack', bg:'#f2edf2', hero:'#e2dbe9', surface:'#fbf7fb', aside:'#e9e3ee', node:'#eee5f1', ink:'#392d48', muted:'#6f6176', accent:'#724e91', onAccent:'#f8f2fa', stroke:'#b9acc3', display:'Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'Layered pages that put the source and its copy side by side.', treatment:'Dossier · layered'},
+    {name:'Chalkboard', theme:'chalkboard', layout:'Classroom triptych', shape:'chalk', bg:'#253d36', hero:'#2e4a40', surface:'#365248', aside:'#233a33', node:'#466056', ink:'#f4eedc', muted:'#d2d6c4', accent:'#ebca83', onAccent:'#32463b', stroke:'#93a69a', display:'Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'A teaching wall with the service map across its top row.', treatment:'Teaching · tactile'},
+    {name:'Museum Label', theme:'museum', layout:'Gallery catalogue', shape:'label', bg:'#eee7dc', hero:'#e6d8c8', surface:'#f8f1e8', aside:'#e9ddcf', node:'#eee2d6', ink:'#3f302d', muted:'#71605b', accent:'#814c43', onAccent:'#f8eee4', stroke:'#bca99b', display:'"Palatino Linotype", Georgia, serif', body:'Georgia, serif', line:'A measured exhibition catalogue with full-width ownership.', treatment:'Curated · refined'},
+    {name:'Kinetic', theme:'kinetic', layout:'Tension grid', shape:'slant', bg:'#faede9', hero:'#f4d3cf', surface:'#fff5ef', aside:'#f3e2da', node:'#f9e4df', ink:'#452c40', muted:'#745368', accent:'#b34869', onAccent:'#fff3ed', stroke:'#c9a1aa', display:'"Arial Narrow", "Trebuchet MS", sans-serif', body:'"Trebuchet MS", sans-serif', line:'A deliberate diagonal pull from action to ownership.', treatment:'Dynamic · angular'},
+    {name:'Atlas', theme:'atlas', layout:'Cartographer folio', shape:'hexagon', bg:'#e8e5d5', hero:'#d4dfd0', surface:'#f4f2e6', aside:'#dce4d7', node:'#e1e7d9', ink:'#23443e', muted:'#506e66', accent:'#427866', onAccent:'#f2f2e4', stroke:'#9daf9c', display:'"Palatino Linotype", Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'A mapped territory where the evidence sits on the route.', treatment:'Mapped · grounded'},
+    {name:'Midnight Archive', theme:'archive', layout:'Archive shelves', shape:'shield', bg:'#2e2835', hero:'#453449', surface:'#403747', aside:'#29242f', node:'#554355', ink:'#f4e9db', muted:'#dbc6cd', accent:'#e8a69c', onAccent:'#3e2e3d', stroke:'#8c7482', display:'Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'A collected archive with the decision record alongside the map.', treatment:'Archival · nocturnal'},
+    {name:'Circuit', theme:'circuit', layout:'Component board', shape:'octagon', bg:'#272e28', hero:'#344035', surface:'#354037', aside:'#212922', node:'#44554a', ink:'#eff0df', muted:'#ced6bd', accent:'#b9d47b', onAccent:'#293526', stroke:'#7b9476', display:'"Courier New", monospace', body:'"Trebuchet MS", sans-serif', line:'A faceted component board with a compact summary at the end.', treatment:'Systemic · compact'},
+    {name:'Sunrise', theme:'sunrise', layout:'Rising sequence', shape:'ribbon', bg:'#f6ecce', hero:'#f4dca7', surface:'#fbf5df', aside:'#f1e4bc', node:'#f4e6c5', ink:'#44332c', muted:'#715849', accent:'#a44425', onAccent:'#fff5df', stroke:'#c8a77e', display:'Georgia, serif', body:'"Trebuchet MS", sans-serif', line:'A warm close-up that opens with the decision before the mechanics.', treatment:'Optimistic · open'}
+  ];
+  const layouts = [
+    {cols:'minmax(0,1.65fr) minmax(0,.85fr)', areas:['hero aside','ownership aside','handoff lifecycle','records records']},
+    {cols:'minmax(11rem,.45fr) minmax(0,1fr) minmax(0,1fr)', areas:['aside hero hero','aside ownership ownership','aside handoff lifecycle','aside records records']},
+    {cols:'minmax(0,.8fr) minmax(0,1.2fr)', areas:['hero hero','aside ownership','handoff records','lifecycle lifecycle']},
+    {cols:'minmax(0,1fr) minmax(0,1fr) minmax(12rem,.48fr)', areas:['hero hero hero','ownership ownership aside','handoff lifecycle aside','records records records']},
+    {cols:'minmax(0,1.3fr) minmax(0,.9fr)', areas:['hero aside','handoff aside','ownership lifecycle','records records']},
+    {cols:'minmax(0,.8fr) minmax(0,1.4fr)', areas:['aside hero','aside lifecycle','ownership handoff','records records']},
+    {cols:'minmax(0,.75fr) minmax(0,1.25fr)', areas:['hero ownership','hero handoff','aside lifecycle','records records']},
+    {cols:'minmax(12rem,.5fr) minmax(0,1fr) minmax(0,1fr)', areas:['aside hero hero','ownership ownership records','handoff lifecycle lifecycle']},
+    {cols:'minmax(0,1fr) minmax(0,1fr)', areas:['hero hero','ownership handoff','aside lifecycle','records records']},
+    {cols:'minmax(0,1.25fr) minmax(0,.9fr)', areas:['hero aside','ownership records','handoff lifecycle']},
+    {cols:'minmax(13rem,.55fr) minmax(0,1fr) minmax(0,1fr)', areas:['hero hero hero','aside ownership ownership','handoff handoff lifecycle','records records records']},
+    {cols:'minmax(0,1fr) minmax(0,1fr)', areas:['hero hero','ownership aside','records handoff','lifecycle lifecycle']},
+    {cols:'minmax(0,.9fr) minmax(0,1.3fr)', areas:['aside hero','ownership hero','handoff lifecycle','records records']},
+    {cols:'minmax(0,1fr) minmax(0,1fr) minmax(12rem,.45fr)', areas:['hero hero hero','ownership handoff aside','lifecycle records aside']},
+    {cols:'minmax(0,1.25fr) minmax(0,.75fr)', areas:['hero hero','ownership ownership','aside handoff','records lifecycle']},
+    {cols:'minmax(0,.95fr) minmax(0,1.2fr)', areas:['hero aside','handoff ownership','lifecycle lifecycle','records records']},
+    {cols:'minmax(0,.8fr) minmax(0,1.3fr)', areas:['hero hero','aside records','ownership handoff','lifecycle lifecycle']},
+    {cols:'minmax(12rem,.55fr) minmax(0,1fr) minmax(0,1fr)', areas:['aside hero hero','ownership ownership lifecycle','handoff records records']},
+    {cols:'minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)', areas:['hero hero hero','ownership ownership handoff','records lifecycle lifecycle','aside aside aside']},
+    {cols:'minmax(0,1.3fr) minmax(0,.9fr)', areas:['hero hero','lifecycle aside','handoff ownership','records records']}
+  ];
+  const app = document.getElementById('app');
+  const pad = (n) => String(n + 1).padStart(2, '0');
+  const link = (n) => `?v=${pad(n)}`;
+  const x = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const theme = (v) => `--bg:${v.bg};--hero:${v.hero};--surface:${v.surface};--aside:${v.aside};--node:${v.node};--ink:${v.ink};--hero-ink:${v.ink};--muted:${v.muted};--accent:${v.accent};--on-accent:${v.onAccent};--stroke:${v.stroke};--display-font:${v.display};--body-font:${v.body};`;
+  function shape(type, px, py, w, h, emph = false) {
+    const X = Number(px), Y = Number(py), W = Number(w), H = Number(h), r = 13;
+    const style = `fill="${emph ? 'var(--accent)' : 'var(--node)'}" stroke="var(--stroke)" stroke-width="2"`;
+    const path = (d, extra = '') => `<path d="${d}" ${style} ${extra}/>`;
+    if (type === 'capsule') return `<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="${H/2}" ${style}/>`;
+    if (type === 'chamfer') return path(`M${X+15} ${Y}H${X+W-15}L${X+W} ${Y+15}V${Y+H-15}L${X+W-15} ${Y+H}H${X+15}L${X} ${Y+H-15}V${Y+15}Z`);
+    if (type === 'square') return `<rect x="${X}" y="${Y}" width="${W}" height="${H}" ${style}/>`;
+    if (type === 'arch') return path(`M${X} ${Y+H}V${Y+H/2}C${X} ${Y-14} ${X+W} ${Y-14} ${X+W} ${Y+H/2}V${Y+H}Z`);
+    if (type === 'notch') return path(`M${X} ${Y}H${X+W}V${Y+H/2-9}L${X+W-12} ${Y+H/2}L${X+W} ${Y+H/2+9}V${Y+H}H${X}Z`);
+    if (type === 'ellipse') return `<ellipse cx="${X+W/2}" cy="${Y+H/2}" rx="${W/2}" ry="${H/2}" ${style}/>`;
+    if (type === 'blob') return path(`M${X+W*.2} ${Y+4}C${X+W*.4} ${Y-10} ${X+W*.78} ${Y+8} ${X+W*.9} ${Y+4}C${X+W+14} ${Y+16} ${X+W+7} ${Y+H*.75} ${X+W*.9} ${Y+H-3}C${X+W*.55} ${Y+H+11} ${X+W*.2} ${Y+H+3} ${X+W*.1} ${Y+H-3}C${X-12} ${Y+H*.72} ${X-7} ${Y+H*.18} ${X+W*.2} ${Y+4}Z`);
+    if (type === 'tab') return path(`M${X} ${Y+12}H${X+W*.23}L${X+W*.29} ${Y}H${X+W*.7}L${X+W*.77} ${Y+12}H${X+W}V${Y+H}H${X}Z`);
+    if (type === 'route') return path(`M${X+H/2} ${Y}H${X+W-H/2}A${H/2} ${H/2} 0 0 1 ${X+W-H/2} ${Y+H}H${X+H/2}A${H/2} ${H/2} 0 0 1 ${X+H/2} ${Y}Z`);
+    if (type === 'bracket') return path(`M${X+14} ${Y}H${X+W}V${Y+H-14}L${X+W-14} ${Y+H}H${X}V${Y+14}Z`);
+    if (type === 'circle') return `<ellipse cx="${X+W/2}" cy="${Y+H/2}" rx="${W/2-3}" ry="${H/2}" ${style}/>`;
+    if (type === 'wave') return path(`M${X} ${Y+8}Q${X+W*.2} ${Y-5} ${X+W*.4} ${Y+8}T${X+W*.8} ${Y+8}Q${X+W*.92} ${Y+1} ${X+W} ${Y+8}V${Y+H}H${X}Z`);
+    if (type === 'stack') return `<rect x="${X+8}" y="${Y-7}" width="${W-8}" height="${H}" rx="${r}" fill="none" stroke="var(--stroke)" stroke-width="2"/><rect x="${X}" y="${Y}" width="${W-8}" height="${H}" rx="${r}" ${style}/>`;
+    if (type === 'chalk') return `<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="7" ${style} stroke-dasharray="7 3"/>`;
+    if (type === 'label') return path(`M${X+16} ${Y}H${X+W-16}L${X+W} ${Y+H/2}L${X+W-16} ${Y+H}H${X+16}L${X} ${Y+H/2}Z`);
+    if (type === 'slant') return path(`M${X+18} ${Y}H${X+W}L${X+W-18} ${Y+H}H${X}Z`);
+    if (type === 'hexagon') return path(`M${X+W*.13} ${Y}H${X+W*.87}L${X+W} ${Y+H/2}L${X+W*.87} ${Y+H}H${X+W*.13}L${X} ${Y+H/2}Z`);
+    if (type === 'shield') return path(`M${X+W/2} ${Y-7}L${X+W} ${Y+12}V${Y+H*.58}Q${X+W*.89} ${Y+H*.87} ${X+W/2} ${Y+H+5}Q${X+W*.11} ${Y+H*.87} ${X} ${Y+H*.58}V${Y+12}Z`);
+    if (type === 'octagon') return path(`M${X+16} ${Y}H${X+W-16}L${X+W} ${Y+16}V${Y+H-16}L${X+W-16} ${Y+H}H${X+16}L${X} ${Y+H-16}V${Y+16}Z`);
+    if (type === 'ribbon') return path(`M${X} ${Y}H${X+W}V${Y+H}L${X+W*.78} ${Y+H-13}L${X+W*.55} ${Y+H}L${X+W*.28} ${Y+H-13}L${X} ${Y+H}Z`);
+    return `<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="${r}" ${style}/>`;
+  }
+  function node(v, px, py, width, height, label, emph = false) {
+    return `<g>${shape(v.shape,px,py,width,height,emph)}<text x="${px+width/2}" y="${py+height/2}" text-anchor="middle" dominant-baseline="middle" fill="${emph ? 'var(--on-accent)' : 'var(--ink)'}">${x(label)}</text></g>`;
+  }
+  function svgWrap(id, title, viewBox, contents) {
+    return `<svg class="diagram-svg" viewBox="${viewBox}" role="img" aria-label="${x(title)}" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arrow-${id}" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="var(--accent)"/></marker></defs>${contents}</svg>`;
+  }
+  function edge(id, path, dotted=false) {
+    return `<path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2" ${dotted ? 'stroke-dasharray="6 5"' : ''} marker-end="url(#arrow-${id})"/>`;
+  }
+  function ownership(v) {
+    const id = 'owner';
+    const lines = [[440,180,560,58],[440,180,560,145],[440,180,560,232],[440,180,560,319],[742,58,780,58],[742,145,780,145],[742,232,780,232],[173,180,230,180]].map(([a,b,c,d]) => edge(id,`M${a} ${b}L${c} ${d}`)).join('');
+    const nodes = node(v,12,154,160,54,'You') + node(v,230,146,210,68,'Worktree playbook',true) + node(v,560,31,182,54,'shared-context') + node(v,560,118,182,54,'muxer-subagents') + node(v,560,205,182,54,'Worktrunk') + node(v,560,292,182,54,'Ticket skill') + node(v,780,31,138,54,'Records') + node(v,780,118,138,54,'New agent') + node(v,780,205,138,54,'Git worktree');
+    const labels = `<text class="label" x="458" y="42" fill="var(--muted)">resolve paths</text><text class="label" x="471" y="126" fill="var(--muted)">run sessions</text><text class="label" x="474" y="217" fill="var(--muted)">Git lifecycle</text><text class="label" x="473" y="300" fill="var(--muted)">issue ref</text>`;
+    return svgWrap(id,'Ownership map: the worktree playbook coordinates shared-context, muxer-subagents, Worktrunk, and the ticket skill.', '0 0 930 370',lines+nodes+labels);
+  }
+  function handoff(v) {
+    const id='handoff', cols=[126,464,798];
+    const grid=cols.map((c)=>`<path d="M${c} 66V387" stroke="var(--stroke)" stroke-width="1.7" stroke-dasharray="5 6"/>`).join('');
+    const headers=['YOU','WORKTREE PLAYBOOK','FRESH AGENT SESSION'].map((s,i)=>`<text class="lane" x="${cols[i]}" y="37" text-anchor="middle" fill="var(--ink)">${s}</text>`).join('');
+    const entries=[
+      [0,1,105,'start(ticket)'],[1,2,155,'implementation handoff'],[2,1,205,'completion signal + receipt'],
+      [0,1,255,'review(ticket)'],[1,2,305,'new reviewer · same worktree'],[2,1,355,'verdict for frozen commit']
+    ];
+    const rows=entries.map(([from,to,y,label]) => `${edge(id,`M${cols[from]+(to>from?14:-14)} ${y}L${cols[to]+(to>from?-14:14)} ${y}`)}<circle cx="${cols[from]}" cy="${y}" r="6" fill="var(--accent)"/><text class="label" x="${(cols[from]+cols[to])/2}" y="${y-11}" text-anchor="middle" fill="var(--ink)">${x(label)}</text>`).join('');
+    return svgWrap(id,'Sequence diagram: start and review use separate agent sessions in one source worktree; the parent checks receipts after completion.', '0 0 930 410',grid+headers+rows);
+  }
+  function lifecycle(v) {
+    const id='life';
+    const edges=[
+      edge(id,'M215 87H280'),edge(id,'M445 87H510'),edge(id,'M675 87H740'),
+      edge(id,'M593 116V206'),edge(id,'M510 238H362Q320 238 320 199V118',true),
+      edge(id,'M822 118V206'),edge(id,'M770 57V43H260V238H280'),
+      edge(id,'M822 268V305H362V268'),edge(id,'M840 57V20H362V57',true)
+    ].join('');
+    const nodes=node(v,40,57,175,60,'Implementing')+node(v,280,57,165,60,'Reviewable')+node(v,510,57,165,60,'Review')+node(v,740,57,165,60,'Approved',true)+node(v,510,207,165,60,'Needs fix')+node(v,740,207,165,60,'Submitted')+node(v,280,207,165,60,'Finished');
+    const labels=`<text class="small" x="690" y="72" fill="var(--muted)">SUCCESS</text><text class="small" x="615" y="162" fill="var(--muted)">FAILURE</text><text class="small" x="366" y="188" fill="var(--muted)">fix → new commit</text><text class="small" x="784" y="172" fill="var(--muted)">optional PR</text><text class="small" x="178" y="201" fill="var(--muted)">finish</text><text class="small" x="530" y="16" fill="var(--muted)">new commit invalidates verdict</text><text class="small" x="514" y="323" fill="var(--muted)">finish after PR</text>`;
+    return svgWrap(id,'State diagram: a failed review requires a fix and new review; success applies only to the reviewed commit; submission is optional before finish.', '0 0 940 350',edges+nodes+labels);
+  }
+  function records(v) {
+    const id='records';
+    const edges=edge(id,'M226 64Q280 64 323 164')+edge(id,'M226 164H323')+edge(id,'M226 264Q280 264 323 164')+edge(id,'M536 164Q605 164 650 89')+edge(id,'M536 164Q605 164 650 240')+edge(id,'M428 194V280',true);
+    const nodes=node(v,31,38,195,54,'Phase-start')+node(v,31,138,195,54,'Phase-result')+node(v,31,238,195,54,'Phase-complete')+node(v,323,133,213,62,'events/ · append-only',true)+node(v,650,58,252,62,'Reviews + snapshots')+node(v,650,211,252,62,'Manifest + projections')+node(v,323,281,213,48,'Evidence ref');
+    const labels=`<text class="label" x="563" y="80" fill="var(--muted)">immutable</text><text class="label" x="566" y="256" fill="var(--muted)">replaceable</text><text class="label" x="552" y="314" fill="var(--muted)">separate resolution</text>`;
+    return svgWrap(id,'Provenance graph: phase receipts form the authoritative append-only event log; review artifacts are immutable, projections replaceable, and evidence separately resolved.', '0 0 930 355',edges+nodes+labels);
+  }
+  const diagrams=[
+    {key:'ownership',number:'01 / RELATIONSHIP',title:'Who owns what',kind:'Component map',alt:'The playbook coordinates the ticket skill, shared-context, muxer-subagents, and Worktrunk. The latter three own distinct locations, sessions, and Git worktrees.',render:ownership},
+    {key:'handoff',number:'02 / USER FLOW',title:'Start and review handoffs',kind:'Sequence',alt:'Start launches an implementation agent. Review launches a different agent session in the same source worktree. The parent verifies receipts after each signal.',render:handoff},
+    {key:'lifecycle',number:'03 / DECISIONS',title:'Review and finish gates',kind:'State machine',alt:'A failed review leads to a fix and another review. A successful verdict belongs to one commit; a new commit invalidates it. A pull request is optional before finish.',render:lifecycle},
+    {key:'records',number:'04 / PROVENANCE',title:'Where records go',kind:'Provenance graph',alt:'Receipts in events are append-only and authoritative. Review artifacts and snapshots are immutable; manifest and projections are replaceable; evidence has its own resolved path.',render:records}
+  ];
+  function nav(index) {
+    return `<header class="masthead"><a class="brand" href="${location.pathname}">Worktree / Flow Atlas</a><small>Twenty layouts · one workflow</small><nav aria-label="Report navigation">${index === null ? '' : `<a aria-label="Previous report" href="${link((index+19)%20)}">←</a>`}<select id="jump" aria-label="Open a report"><option value="">Choose a report</option>${variants.map((v,i)=>`<option value="${link(i)}" ${i===index?'selected':''}>${pad(i)} · ${x(v.name)}</option>`).join('')}</select>${index === null ? '' : `<a aria-label="Next report" href="${link((index+1)%20)}">→</a>`}</nav></header>`;
+  }
+  function card(v,i) {
+    return `<a class="study-card" style="${x(theme(v))}" href="${link(i)}"><div class="card-top"><span>Study ${pad(i)}</span><span>${x(v.treatment)}</span></div><div class="card-mark"><svg viewBox="0 0 230 110" aria-hidden="true">${shape(v.shape,4,20,88,70)}${shape(v.shape,137,20,88,70,true)}<path d="M97 55H128" stroke="var(--accent)" stroke-width="3"/><path d="m122 49 7 6-7 6" fill="none" stroke="var(--accent)" stroke-width="3"/></svg></div><h3>${x(v.name)}</h3><p>${x(v.line)}</p><div class="card-foot"><span>${x(v.layout)} ↗</span><span class="swatches" aria-hidden="true"><i style="background:${v.hero}"></i><i style="background:${v.node}"></i><i style="background:${v.accent}"></i></span></div></a>`;
+  }
+  function gallery() {
+    document.body.className='gallery';
+    document.title='Worktree Flow Atlas — 20 report directions';
+    app.innerHTML=nav(null)+`<main><section class="gallery-hero"><div><p class="overline">Visual exploration · 20 complete reports</p><h1>One workflow.<br>Twenty lenses.</h1><p>Compare twenty ways to explain the same worktree process. Every report contains an ownership map, a user-handoff sequence, a review state machine, and a record-provenance graph.</p></div><div class="gallery-note"><strong>Pick a direction.</strong>Layouts, palettes, type, and diagram-node shapes change. Workflow facts do not. These are static design previews, not a usability study.</div></section><section class="gallery-index" aria-labelledby="gallery-title"><h2 id="gallery-title">Open a report · 01—20</h2><div class="study-grid">${variants.map(card).join('')}</div></section></main>`;
+  }
+  function plate(v,d) {
+    return `<section class="plate" data-kind="${d.key}" id="${d.key}" aria-labelledby="title-${d.key}"><div class="plate-head"><div><p class="plate-kicker">${d.number}</p><h2 id="title-${d.key}">${d.title}</h2></div><span class="kind">${d.kind}</span></div><figure><div class="diagram-viewport" tabindex="0" aria-label="${d.title}; scroll sideways to inspect the full diagram">${d.render(v)}</div><p class="pan-hint">Scroll diagram sideways to see the full map →</p><figcaption>${d.alt}</figcaption></figure></section>`;
+  }
+  function report(index) {
+    const v=variants[index], layout=layouts[index];
+    document.body.className='report-page';
+    document.body.dataset.theme=v.theme;
+    document.body.setAttribute('style',theme(v));
+    document.title=`${v.name} — Worktree Flow Atlas`;
+    app.innerHTML=nav(index)+`
+      <main class="report-grid" data-layout="${x(v.layout)}">
+        <header class="hero">
+          <div class="hero-copy">
+            <p class="overline">Worktree workflow · Design study ${pad(index)} / 20</p>
+            <h1>${x(v.name)}</h1>
+            <p class="lead">${x(v.line)} Same ticket, sessions, commit gates, and durable receipts as every other direction.</p>
+          </div>
+          <div class="hero-bottom">
+            <span>${x(v.treatment)}<br>${x(v.layout)}</span>
+            <svg class="hero-mark" viewBox="0 0 200 120" aria-hidden="true">
+              ${shape(v.shape,8,9,183,101,true)}
+              <text x="100" y="72" text-anchor="middle" font-family="var(--display-font)" font-size="45" fill="var(--on-accent)">${pad(index)}</text>
+            </svg>
+          </div>
+        </header>
+        <aside class="aside" aria-labelledby="lens-title">
+          <div>
+            <p class="aside-label">Reading lens / ${pad(index)}</p>
+            <h2 id="lens-title">Reading key.</h2>
+            <p>The worktree playbook chooses the phase. Shared-context resolves where its records live. Muxer-subagents creates a fresh agent session. Worktrunk handles the Git worktree.</p>
+            <nav class="section-nav" aria-label="Diagrams in this report">
+              <a href="#ownership">Ownership</a><a href="#handoff">Handoffs</a><a href="#lifecycle">Decisions</a><a href="#records">Records</a>
+            </nav>
+          </div>
+          <dl>
+            <dt>Durable</dt><dd>Append-only event receipts</dd>
+            <dt>Transient</dt><dd>Pane output and completion signals</dd>
+            <dt>Review</dt><dd>Valid only for its recorded commit</dd>
+            <dt>Scope</dt><dd>Static report preview; no measured UX results</dd>
+          </dl>
+          <div class="palette" aria-label="Palette swatches"><i style="background:var(--hero)"></i><i style="background:var(--node)"></i><i style="background:var(--accent)"></i><i style="background:var(--ink)"></i></div>
+        </aside>
+        ${diagrams.map((d)=>plate(v,d)).join('')}
+      </main>
+      <footer class="report-footer"><p>Comparison criterion: can a reader find the responsible skill, the next action, and the authoritative record? Each report uses identical workflow facts.</p><a href="${location.pathname}">← Compare all 20</a></footer>`;
+    const grid=document.querySelector('.report-grid');
+    grid.style.gridTemplateColumns=layout.cols;
+    grid.style.gridTemplateAreas=layout.areas.map((row)=>`"${row}"`).join(' ');
+    requestAnimationFrame(() => document.querySelectorAll('.plate').forEach((section) => {
+      const viewport = section.querySelector('.diagram-viewport');
+      section.classList.toggle('is-scrollable', viewport.scrollWidth > viewport.clientWidth + 2);
+    }));
+  }
+  const requested=Number(new URLSearchParams(location.search).get('v'));
+  if (Number.isInteger(requested) && requested>=1 && requested<=variants.length) report(requested-1); else gallery();
+  document.addEventListener('change',(event)=>{if(event.target.id==='jump' && event.target.value) location.href=event.target.value;});
+  document.addEventListener('keydown',(event)=>{if(!document.body.classList.contains('report-page') || event.altKey || event.ctrlKey || event.metaKey || ['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName) || document.activeElement.closest('.diagram-viewport')) return; const index=Number(new URLSearchParams(location.search).get('v'))-1; if(event.key==='ArrowRight') location.href=link((index+1)%20); if(event.key==='ArrowLeft') location.href=link((index+19)%20);});
+</script>
+</body>
+</html>
