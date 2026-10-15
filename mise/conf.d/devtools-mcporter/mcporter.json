@@ -28,8 +28,11 @@
         "x",
         "node@22",
         "--",
-        "chrome-devtools-mcp",
-        "--browser-url=http://127.0.0.1:9222"
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--autoConnect",
+        "--channel=beta"
       ]
     },
     "firefox-devtools": {
