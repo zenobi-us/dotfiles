@@ -133,6 +133,30 @@ mise bootstrap --dry-run
 mise bootstrap plan
 ```
 
+## View Markdown locally
+
+Run `markdown-view` directly; its mise shebang starts Bun and installs pinned npm packages on first use:
+
+```bash
+markdown-view ./path/to/file.md
+markdown-view ./path/to/file.md --port 4000
+```
+
+The command prints a loopback URL. Refresh the browser to render edits to the file. YAML frontmatter configures markdown-it options and plugins:
+
+```yaml
+---
+markdown:
+  options:
+    breaks: true
+  plugins:
+    markdown-it-anchor@9.2.0:
+      tabIndex: false
+---
+```
+
+Plugin keys use exact npm versions, and plugins must default-export a markdown-it function. Frontmatter plugins execute with your user permissions: only view files you trust. Local image assets are served from the file's directory and its subdirectories; other assets and hidden paths are not served.
+
 ## Debug bootstrap configuration
 
 Show the mise version:

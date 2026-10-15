@@ -1,0 +1,180 @@
+#!/usr/bin/env -S mise exec -- bun run --install=fallback
+
+import { realpath, stat } from "node:fs/promises";
+import { basename, dirname, extname, isAbsolute, relative, resolve, sep } from "node:path";
+import { Crust } from "@crustjs/core@^0.0.19";
+import { helpPlugin } from "@crustjs/plugins@^0.1.2";
+import MarkdownIt from "markdown-it@14.1.0";
+
+const imageTypes: Record<string, string> = {
+  ".avif": "image/avif",
+  ".gif": "image/gif",
+  ".jpeg": "image/jpeg",
+  ".jpg": "image/jpeg",
+  ".png": "image/png",
+  ".svg": "image/svg+xml",
+  ".webp": "image/webp",
+};
+
+await new Crust("markdown-view")
+  .meta({ description: "Serve a Markdown file locally with plugins configured in its YAML frontmatter." })
+  .use(helpPlugin())
+  .args([{ name: "file", type: "string", required: true, description: "Markdown file to render." }] as const)
+  .flags({ port: { type: "string", description: "Local port (default: a free port)." } })
+  .run(async ({ args, flags }) => {
+    try {
+      const port = parsePort(flags.port);
+      const documentPath = await realpath(resolve(args.file));
+      if (!(await stat(documentPath)).isFile()) throw new Error("The Markdown path must be a file.");
+      await renderDocument(documentPath);
+
+      const server = Bun.serve({
+        hostname: "127.0.0.1",
+        port,
+        fetch: (request) => serveRequest(request, documentPath),
+      });
+      console.log(`Viewing ${documentPath} at ${server.url}`);
+    } catch (error) {
+      console.error(`markdown-view: ${error instanceof Error ? error.message : String(error)}`);
+      process.exitCode = 1;
+    }
+  })
+  .execute();
+
+function parsePort(value: string | undefined): number {
+  if (value === undefined) return 0;
+  const port = Number(value);
+  if (!/^(0|[1-9]\d*)$/.test(value) || !Number.isInteger(port) || port > 65535) {
+    throw new Error("--port must be an integer from 0 to 65535.");
+  }
+  return port;
+}
+
+async function serveRequest(request: Request, documentPath: string): Promise<Response> {
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    return new Response("Method not allowed", { status: 405, headers: { Allow: "GET, HEAD" } });
+  }
+
+  const pathname = new URL(request.url).pathname;
+  if (pathname !== "/") return serveImage(pathname, dirname(documentPath));
+
+  try {
+    return new Response(await renderDocument(documentPath), {
+      headers: {
+        "content-type": "text/html; charset=utf-8",
+        "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data: https:",
+        "x-content-type-options": "nosniff",
+      },
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`markdown-view: ${message}`);
+    return new Response(`Could not render Markdown: ${message}`, { status: 500 });
+  }
+}
+
+async function serveImage(pathname: string, directory: string): Promise<Response> {
+  let decoded: string;
+  try {
+    decoded = decodeURIComponent(pathname);
+  } catch {
+    return new Response("Not found", { status: 404 });
+  }
+  if (decoded.slice(1).split("/").some((part) => !part || part.startsWith(".") || part.includes("\\"))) {
+    return new Response("Not found", { status: 404 });
+  }
+  const target = resolve(directory, `.${decoded}`);
+  const type = imageTypes[extname(target).toLowerCase()];
+  if (!type) return new Response("Not found", { status: 404 });
+
+  try {
+    const filePath = await realpath(target);
+    const within = relative(directory, filePath);
+    if (within === ".." || within.startsWith(`..${sep}`) || isAbsolute(within)) {
+      return new Response("Not found", { status: 404 });
+    }
+    if (!(await stat(filePath)).isFile()) return new Response("Not found", { status: 404 });
+    return new Response(Bun.file(filePath), {
+      headers: {
+        "content-type": type,
+        "content-security-policy": "default-src 'none'; sandbox",
+        "x-content-type-options": "nosniff",
+      },
+    });
+  } catch {
+    return new Response("Not found", { status: 404 });
+  }
+}
+
+async function renderDocument(documentPath: string): Promise<string> {
+  const source = await Bun.file(documentPath).text();
+  const { body, settings } = parseFrontmatter(source);
+  const markdown = settings.markdown === undefined ? {} : requireObject(settings.markdown, "markdown");
+  const options = markdown.options === undefined ? {} : requireObject(markdown.options, "markdown.options");
+  const plugins = markdown.plugins === undefined ? {} : requireObject(markdown.plugins, "markdown.plugins");
+  const renderer = new MarkdownIt(options);
+
+  for (const [specifier, value] of Object.entries(plugins)) {
+    if (!/^(?:@[\w.-]+\/)?[\w.-]+@\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(specifier)) {
+      throw new Error(`Plugin ${specifier} must be an exact npm package version (name@1.2.3).`);
+    }
+    const pluginOptions = requireObject(value, `markdown.plugins.${specifier}`);
+    // Frontmatter selects packages at runtime, so static imports cannot name these plugins.
+    const module = await import(specifier);
+    if (typeof module.default !== "function") {
+      throw new Error(`Plugin ${specifier} must have a default function export.`);
+    }
+    renderer.use(module.default, pluginOptions);
+  }
+
+  const title = escapeHtml(basename(documentPath));
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+<style>
+  :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+  body { margin: 0; padding: clamp(1rem, 4vw, 3rem); background: Canvas; color: CanvasText; }
+  main { max-width: 76ch; margin: auto; line-height: 1.65; overflow-wrap: break-word; }
+  h1, h2, h3, h4 { line-height: 1.25; }
+  a { color: LinkText; }
+  a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  img, video { max-width: 100%; height: auto; }
+  pre { overflow-x: auto; padding: 1rem; border-radius: 0.5rem; background: color-mix(in srgb, CanvasText 8%, Canvas); }
+  :not(pre) > code { padding: 0.1em 0.3em; background: color-mix(in srgb, CanvasText 8%, Canvas); }
+  blockquote { margin-inline: 0; padding-inline-start: 1rem; border-inline-start: 3px solid currentColor; }
+  table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+  th, td { border: 1px solid GrayText; padding: 0.4rem 0.7rem; }
+</style>
+</head>
+<body><main>${renderer.render(body)}</main></body>
+</html>`;
+}
+
+function parseFrontmatter(source: string): { body: string; settings: Record<string, unknown> } {
+  const opening = /^(?:\uFEFF)?---[ \t]*\r?\n/.exec(source);
+  if (!opening) return { body: source, settings: {} };
+
+  const closingLine = /^---[ \t]*(?:\r?\n|$)/gm;
+  closingLine.lastIndex = opening[0].length;
+  const closing = closingLine.exec(source);
+  if (!closing) throw new Error("YAML frontmatter has no closing --- line.");
+
+  const yaml = source.slice(opening[0].length, closing.index);
+  const settings = yaml.trim() ? requireObject(Bun.YAML.parse(yaml), "frontmatter") : {};
+  return { body: source.slice(closing.index + closing[0].length), settings };
+}
+
+function requireObject(value: unknown, label: string): Record<string, unknown> {
+  if (value === null || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error(`${label} must be a YAML mapping.`);
+  }
+  return value as Record<string, unknown>;
+}
+
+function escapeHtml(value: string): string {
+  return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+}
