@@ -16,6 +16,7 @@ import { cp, mkdir, readdir, readFile, rename, rm, writeFile } from "node:fs/pro
 import { existsSync } from "node:fs";
 import { basename, isAbsolute, join, resolve } from "node:path";
 import type { Evidence, Plan, Verdict } from "./plan.ts";
+import { selectorish, stepNumber } from "./plan.ts";
 import { renderPlan } from "./render-plan.ts";
 import { compilePlaywright, compileSurf } from "./compile.ts";
 import { checkPrecondition, openSession, runPlaywright, writeEvidence } from "./run.ts";
@@ -55,10 +56,18 @@ export const plan: Plan = {
       fail: "TODO what failure looks like",
       requires: [],
       steps: [
-        { do: "navigate", to: "/", shot: "landing" },
-        // { do: "capture", locator: "a[data-testid=upgrade]", attr: "href", as: "upgradeHref" },
-        // { do: "click", locator: "getByRole('link', { name: 'Upgrade now' })" },
-        // { do: "expect", url: "portal\\\\.", shot: "portal" },
+        // \`says\` is the manual test step: what a person does, named the way the
+        // screen names it. The locator beside it is how the driver finds the
+        // same thing, and no reader ever sees it. Write every \`says\` first,
+        // then attach the locators.
+        { do: "navigate", says: "TODO open the page under test", to: "/", shot: "landing" },
+        // { do: "wait", locator: "[data-testid=account-list]" },
+        // { do: "capture", says: "Note where the Upgrade now link points",
+        //   locator: "a[data-testid=upgrade]", attr: "href", as: "upgradeHref" },
+        // { do: "click", says: "Select Upgrade now",
+        //   locator: "getByRole('link', { name: 'Upgrade now' })" },
+        // { do: "expect", says: "Confirm the billing portal opens",
+        //   url: "portal\\\\.", shot: "portal" },
       ],
     },
   ],
@@ -86,6 +95,27 @@ async function loadPlan(dir: string): Promise<Plan> {
   if (todo.length) {
     die(`${file} still has scaffold text:\n${todo.join("\n")}\n\n` +
         `A test with no real claim, PASS line and FAIL line is not a test yet.`);
+  }
+
+  // `says` is the only part of a step a reviewer reads. A selector in there
+  // turns the manual test plan back into a driver transcript, which is the
+  // fault this field exists to stop.
+  const bad = mod.plan.tests.flatMap((t) =>
+    t.steps.flatMap((s, i) => {
+      const says = s.do === "human" ? s.needs : s.says;
+      const at = `  test ${t.id} step ${stepNumber(t.id, i)}`;
+      if (says === undefined) return [];
+      if (!says.trim()) return [`${at}: says is empty`];
+      if (says.trim().startsWith("TODO")) return [`${at}: says is still "${says}"`];
+      const found = selectorish(says);
+      return found ? [`${at}: says carries ${found}`] : [];
+    }),
+  );
+  if (bad.length) {
+    die(`${file} has steps a person cannot follow:\n${bad.join("\n")}\n\n` +
+        `A \`says\` is the manual test step. Name what is on the screen — the visible\n` +
+        `label, the button text, the field name. The locator beside it is how the\n` +
+        `driver finds the same thing, and no reader ever sees it.`);
   }
   return mod.plan;
 }

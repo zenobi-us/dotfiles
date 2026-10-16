@@ -7,7 +7,7 @@
  * carrying images.
  */
 import type { Plan, Step, Test } from "./plan.ts";
-import { shotPath, stepNumber, stepText } from "./plan.ts";
+import { driverStep, humanStep, shotPath, stepNumber } from "./plan.ts";
 
 const q = (s: string) => JSON.stringify(s);
 
@@ -21,8 +21,11 @@ function loc(expr: string): string {
 function playwrightStep(t: Test, s: Step, i: number, plan: Plan): string[] {
   const step = stepNumber(t.id, i);
   const shot = s.shot ? shotPath(t.id, i, s.shot) : "";
-  const text = stepText(s, plan.base);
-  const out: string[] = [`  // ${step} ${text}`];
+  const says = humanStep(s);
+  const how = driverStep(s, plan.base).replace(/`/g, "");
+  const out: string[] = says && says !== how
+    ? [`  // ${step} ${says}`, `  //     ${how}`]
+    : [`  // ${step} ${says ?? how}`];
 
   const push = (action: string, target: string, resolved: string, observed: string, verdict = "", note = "") =>
     `  E.push({ test: ${q(t.id)}, step: ${q(step)}, action: ${q(action)}, target: ${q(target)}, ` +

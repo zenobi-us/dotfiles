@@ -88,8 +88,10 @@ attach a verdict to.
 
 Rules for the workflow file:
 
-- Step order **MUST** mirror the numbered steps in `test-plan.md`. A reviewer
-  reads the plan and the workflow side by side.
+- Step order **MUST** mirror `plan.ts`, step id for step id, plumbing included.
+  `test-plan.md` numbers only the steps a person performs, so its numbers are
+  deliberately not these ones; `evidence.jsonl` and the shot names use the
+  `plan.ts` ids.
 - Every step that needs proof **MUST** end in a `screenshot` whose `output`
   path is the step's evidence path, so the file names line up with
   `evidence.jsonl` without renaming.

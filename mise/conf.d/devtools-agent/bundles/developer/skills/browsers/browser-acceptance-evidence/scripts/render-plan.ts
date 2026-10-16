@@ -1,11 +1,16 @@
 /**
  * Plan -> `test-plan.md`.
  *
- * The same step text feeds the markdown, the driver script and both report
- * sections, so the plan a reviewer reads is the plan that ran.
+ * Only the manual test steps reach this file. A `wait` or a `scroll` with no
+ * `says` is driver plumbing and is left out, so the numbers here run 1..n and
+ * are not the plan step ids. The plan id stays the identity of the evidence
+ * record; this document is for the person who has to follow the steps.
+ *
+ * The same sentences feed both report step lists, so the plan a reviewer reads
+ * is the plan that ran.
  */
 import type { Plan, Test } from "./plan.ts";
-import { stepNumber, stepText } from "./plan.ts";
+import { readerSteps, stepNumber } from "./plan.ts";
 
 function preconditions(plan: Plan): string {
   if (!plan.preconditions?.length) {
@@ -17,9 +22,9 @@ function preconditions(plan: Plan): string {
   return `## Preconditions\n\nEach one is checked before the tests that need it, not assumed.\n\n${rows}\n`;
 }
 
-function test(t: Test, plan: Plan): string {
-  const steps = t.steps
-    .map((s, i) => `${i + 1}. ${stepText(s, plan.base)}`)
+function test(t: Test): string {
+  const steps = readerSteps(t)
+    .map((s) => `${s.n}. ${s.text}`)
     .join("\n");
   const req = t.requires?.length
     ? `\nRequires: ${t.requires.map((r) => `\`${r}\``).join(", ")}\n`
@@ -39,8 +44,7 @@ export function renderPlan(plan: Plan): string {
   const env = plan.environment ?? {};
   const envLines = [
     `- URL: \`${plan.base}\``,
-    `- Driver: \`${plan.driver}\``,
-    env.account ? `- Account: ${env.account}` : "",
+    `- Account: ${env.account ?? "the signed-in test account"}`,
     env.branch ? `- Branch: \`${env.branch}\`` : "",
     env.notes ? `- Notes: ${env.notes}` : "",
   ].filter(Boolean).join("\n");
@@ -48,14 +52,16 @@ export function renderPlan(plan: Plan): string {
   return [
     `# Manual test plan — ${plan.workId}`,
     "",
-    "Written before the browser opened. Generated from `plan.ts`; edit the plan, not this file.",
+    "Steps for a person to follow in a browser. Written before the browser opened,",
+    "and generated from `plan.ts`; edit the plan, not this file. The same steps were",
+    `driven with \`${plan.driver}\`, which is how the evidence was captured.`,
     "",
     "## Environment",
     "",
     envLines,
     "",
     preconditions(plan),
-    plan.tests.map((t) => test(t, plan)).join("\n"),
+    plan.tests.map(test).join("\n"),
   ].join("\n");
 }
 

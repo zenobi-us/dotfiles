@@ -134,8 +134,10 @@ Rules for the script file:
 - The file **MUST NOT** end with a semicolon after the closing brace. A
   trailing `};` fails with `SyntaxError: Unexpected token ';'`, and
   `node --check` does **not** catch it. See section 3.
-- Step order **MUST** mirror the numbered steps in `test-plan.md`. A reviewer
-  reads the plan and the script side by side.
+- Step order **MUST** mirror `plan.ts`, step id for step id, plumbing included.
+  `test-plan.md` numbers only the steps a person performs, so its numbers are
+  deliberately not these ones; `evidence.jsonl` and the shot names use the
+  `plan.ts` ids.
 - Every step that needs proof **MUST** end in a `page.screenshot({ path })`
   whose path is the step's evidence path, so the file names line up with
   `evidence.jsonl` without renaming.

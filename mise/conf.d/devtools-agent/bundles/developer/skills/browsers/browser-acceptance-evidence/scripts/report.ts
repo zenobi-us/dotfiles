@@ -13,13 +13,13 @@ import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import type { Evidence, Plan, Test, Verdict } from "./plan.ts";
-import { stepText } from "./plan.ts";
+import { humanStep, readerNumber, readerSteps } from "./plan.ts";
 
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /**
- * `stepText` returns markdown, because the same string also feeds test-plan.md.
+ * A step sentence may carry markdown, because the same string also feeds test-plan.md.
  * In HTML a backtick pair becomes the template's own code class. Run this
  * after `esc`, which leaves backticks alone.
  */
@@ -52,11 +52,11 @@ function verdictOf(records: Evidence[], testId: string): Verdict {
   return (mine[mine.length - 1]?.verdict as Verdict) ?? "PARTIAL";
 }
 
-function stepList(t: Test, plan: Plan): string {
+function stepList(t: Test): string {
   return (
     `<ol class="report__list">\n` +
-    t.steps
-      .map((s) => `  <li class="report__item">${mdCode(esc(stepText(s, plan.base)))}</li>`)
+    readerSteps(t)
+      .map((s) => `  <li class="report__item">${mdCode(esc(s.text))}</li>`)
       .join("\n") +
     `\n</ol>`
   );
@@ -93,7 +93,7 @@ function stepsSection(plan: Plan, records: Evidence[]): string {
     ...plan.tests.flatMap((t) => [
       `<h3 class="report__subsection" id="steps-${t.id}">Test ${t.id} &mdash; ${esc(t.claim)}</h3>`,
       ``,
-      stepList(t, plan),
+      stepList(t),
       ``,
     ]),
   ]
@@ -104,7 +104,6 @@ function stepsSection(plan: Plan, records: Evidence[]): string {
 /** Section 7: one outcome section per test, opening with that test's steps. */
 async function testSection(
   t: Test,
-  plan: Plan,
   records: Evidence[],
   reportDir: string,
 ): Promise<string> {
@@ -114,6 +113,9 @@ async function testSection(
 
   const figures: string[] = [];
   const seen = new Set<string>();
+  // A reader counts the steps they can follow, so a figure is labelled with the
+  // manual step number, not the plan step id the evidence record carries.
+  const readable = readerNumber(t);
   for (const r of mine) {
     if (!r.screenshot || seen.has(r.screenshot)) continue;
     seen.add(r.screenshot);
@@ -121,12 +123,15 @@ async function testSection(
     if (!existsSync(file)) continue;
     const size = await pngSize(file);
     if (!size) continue;
-    const caption = r.observed || stepText(t.steps[0]!, plan.base);
+    const at = readable.get(r.step) ?? 1;
+    const idx = Number(r.step.split(".").pop()) - 1;
+    const said = humanStep(t.steps[idx] ?? t.steps[0]!) ?? "";
+    const caption = r.observed || said;
     figures.push(
       [
         `<figure class="figure">`,
-        `  <img class="figure__image" src="${esc(r.screenshot)}" alt="Step ${esc(r.step)} of test ${esc(t.id)}" width="${size.width}" height="${size.height}">`,
-        `  <figcaption class="figure__caption"><strong class="figure__label">Step ${esc(r.step)}.</strong> ${esc(caption)}</figcaption>`,
+        `  <img class="figure__image" src="${esc(r.screenshot)}" alt="Step ${at} of test ${esc(t.id)}" width="${size.width}" height="${size.height}">`,
+        `  <figcaption class="figure__caption"><strong class="figure__label">Step ${at}.</strong> ${esc(caption)}</figcaption>`,
         `</figure>`,
       ].join("\n"),
     );
@@ -154,7 +159,7 @@ async function testSection(
     ``,
     `<div class="card">`,
     `  <h3 class="card__title">Steps run</h3>`,
-    stepList(t, plan)
+    stepList(t)
       .split("\n")
       .map((l) => `  ${l}`)
       .join("\n"),
@@ -312,7 +317,7 @@ export async function buildReport(
   date: string,
 ): Promise<string> {
   const title = `${plan.workId} &mdash; acceptance evidence`;
-  const sections = await Promise.all(plan.tests.map((t) => testSection(t, plan, records, reportDir)));
+  const sections = await Promise.all(plan.tests.map((t) => testSection(t, records, reportDir)));
 
   return [
     `<!doctype html>`,
