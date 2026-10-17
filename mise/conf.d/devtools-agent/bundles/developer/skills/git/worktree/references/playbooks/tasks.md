@@ -5,14 +5,14 @@ Print the dependency tree for a tracker ticket, epic, spec, or initiative. This 
 ## Resolve project context
 
 1. Load `agent-core:shared-context` for the repository being worked on. Run its CLI from that repository. Use the reported alignment `root` as `ALIGNMENT_ROOT`, and retain its `mode`, route table, and `repository-root`. Do not derive these values.
-2. Read `<ALIGNMENT_ROOT>/docs/agents/issue-tracker.md` and identify the configured backend. Load `references/issue-tracker.md` and the `reading-and-writing-tickets` skill. Apply that skill's mandatory ticket-resolution preamble and use its matching task and store references.
+2. Read `<ALIGNMENT_ROOT>/docs/agents/issue-tracker.md` and identify the configured backend. Load `references/issue-tracker.md` and the `reading-and-writing-tickets` skill. Apply that skill's routing procedure and use its matching task and store references.
 3. Confirm the shared-context ticket route agrees with the configured backend. Stop and report a mismatch or missing tracker operation.
 
 ## Build the dependency tree
 
-Use `.mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/dep-tree-cli.ts` from the repository where the script is available. Pass the explicit root reported by shared-context or the tracker configuration; never infer a repository, tracker root, or issue selector.
+Use `scripts/dep-tree-cli.ts` from the loaded `reading-and-writing-tickets` skill. For Markdown, pass the explicit `repository-root` reported by shared-context. For external trackers, use the configured tracker selector. Do not pass the alignment or tracker root as a repository root.
 
-- `local-markdown`: use `markdown <ALIGNMENT_ROOT> --ticket <ID>` when the request names a ticket, or `markdown <ALIGNMENT_ROOT> --initiative <ID>` for an initiative. Load `agent-core:mq-query`, its matching task procedure, the required upstream reference, and the configured Markdown store procedure before running the CLI. The CLI uses `mq` to read the initiative index and ticket frontmatter.
+- `local-markdown`: use `markdown <repository-root> --ticket <ID>` when the request names a ticket, or `markdown <repository-root> --initiative <ID>` for an initiative. Load `agent-core:mq-query`, its matching task procedure, the required upstream reference, and the configured Markdown store procedure before running the CLI. The CLI uses `mq` to read the initiative index and ticket frontmatter.
 - `github`: use `github <OWNER/REPO> --ticket <ID>` for a ticket or `github <OWNER/REPO> --spec <ID>` for a spec/map. Get the repository from `docs/agents/issue-tracker.md`, not from a guess.
 - `jira`: use `jira --ticket <KEY>` for a ticket or `jira --epic <KEY>` for an epic. Load the `twg` router and `twg-jira` skill required by the Jira store procedure.
 
@@ -23,18 +23,18 @@ If the user supplies no ticket ID, offer valid roots before asking for a choice:
 
 ### List local Markdown initiatives
 
-After loading `agent-core:mq-query`, its matching task procedure, required upstream reference, and the configured Markdown store procedure, run this query with the alignment root reported by shared-context:
+After loading `agent-core:mq-query`, its matching task procedure, required upstream reference, and the configured Markdown store procedure, run `shared-context resolve initiatives --json`. Set `INITIATIVES_ROOT` to its returned `path`. Run this query against that exact collection:
 
 ```bash
-mq --allow-http-import --allow-read="$ALIGNMENT_ROOT" --args root "$ALIGNMENT_ROOT" -I null -F json '
+mq --allow-http-import --allow-read="$INITIATIVES_ROOT" --args root "$INITIATIVES_ROOT" -I null -F json '
   import "github.com/harehare/okf.mq" |
   map(
-    walk_files(root, "tracker/initiatives/*/index.md"),
+    walk_files(root, "*/index.md"),
     fn(file): { path: file };
   )
 '
 ```
 
-Extract the initiative ID from each returned path matching `tracker/initiatives/<ID>/index.md`. Display the IDs as the available initiatives. Do not use filesystem commands or derive an alternate tracker path. An empty result means no initiative index files were found.
+Extract the initiative ID from each returned path matching `<ID>/index.md` relative to the resolved collection. Display the IDs as the available initiatives. Do not use filesystem commands or derive an alternate tracker path. An empty result means no initiative index files were found.
 
 Run the graph command and return its rendered tree. Report errors and coverage limits as given; do not treat missing blocker records as an empty result. The CLI follows direct blocker relationships from the selected initiative/epic/spec roots.

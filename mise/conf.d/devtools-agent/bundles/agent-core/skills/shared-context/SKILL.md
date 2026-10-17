@@ -145,3 +145,14 @@ statuses, follow Rule 7.
    shell probe such as `ls` exits non-zero for an absent path, which is an
    answer, not a failure.
 8. If there exists `<shared-agent-context />` block in the system prompt, then you don't need to run the shared-context cli to get a report.
+
+
+## Collection roots and layout
+
+Use `resolve tracker --json`, `resolve tickets --json`, `resolve initiatives --json`,
+or `resolve sources --json` to get exact collection directories. Do not append
+`tracker` or `sources` to a resolved store. Optional
+`docs/agents/context-layout.toml` in the active alignment root overrides tracker
+and source base directories; store routes remain independent. Local tracker
+frontmatter `issue-root` and `initiative-root` override their collection paths.
+See `references/layout.md` for schema, defaults, and validation rules.

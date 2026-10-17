@@ -10,7 +10,7 @@ user-invocable: true
 
 1. Run `agent-core:shared-context` for the repository. Set `ALIGNMENT_ROOT` to its reported `root`. Retain its `mode`, route table, and `repository-root`.
 2. Load `agent-core:mq-query`, its matching task procedure, and the required upstream reference before using `mq`. Read `<ALIGNMENT_ROOT>/docs/agents/issue-tracker.md` with explicit input and output formats. Read its YAML `backend` field. The `backend` must be `local-markdown`, `github`, or `jira`.
-3. Check the shared-context ticket route against the configured backend. For local Markdown, use shared-context to resolve ticket IDs and the tracker root. If the declarations conflict or the tracker definition lacks the requested operation, stop and report the mismatch.
+3. Check the shared-context ticket route against the configured backend. For local Markdown, use shared-context to resolve ticket IDs and the exact `tickets` and `initiatives` collections. Retain `repository-root` for the graph CLI; collections can use different stores. If the declarations conflict or the tracker definition lacks the requested operation, stop and report the mismatch.
 4. Select one task reference:
    - `read` → `references/tasks/read.md`
    - `list` or dependency graph → `references/tasks/list.md`

@@ -4,7 +4,7 @@ This reference routes ticket work to the ticket skill. It does not define ticket
 
 Before a playbook reads or changes a ticket, load:
 
-- `.mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/SKILL.md`
+- the loaded `reading-and-writing-tickets` skill
 - `docs/agents/issue-tracker.md` from the root reported by the shared-context CLI, when that file exists
 
 Resolve the context before constructing any path. From the repository being worked on,
@@ -14,7 +14,7 @@ run the CLI from the `agent-core:shared-context` skill that is loaded for this t
 cd "<repository being worked on>" && shared-context
 ```
 
-Use its `root` and `storage` fields. Do not derive `ALIGNMENT_ROOT` from the repository,
+Retain its `root`, `repository-root`, `mode`, and route table. Resolve each record separately; the alignment root does not select the ticket or workflow store. Do not derive `ALIGNMENT_ROOT` from the repository,
 origin slug, ticket key, or a guessed home-directory path. `storage: repository` is a
 valid local-only mode: use the reported root and do not create or publish a shared
 store. A shared root can also be local-only or private. Do not make a public link
@@ -36,4 +36,4 @@ tracker operations, and tracker commits. It does not create review artifacts or
 choose a review directory. Ask when the tracker definition is missing,
 malformed, ambiguous, or does not define the required operation.
 
-The worktree playbook owns only workflow intent: when to resolve a ticket, when to claim or complete it, and how ticket state gates Worktrunk operations. Preserve the ticket skill's returned `ticket` and `tracker path` in workflow records, commit messages, and pull requests when the playbook requires them.
+The worktree playbook owns only workflow intent: when to resolve a ticket, when to claim or complete it, and how ticket state gates Worktrunk operations. Preserve each ticket's returned `id` and canonical `ref` in workflow records, commit messages, and pull requests when the playbook requires them.

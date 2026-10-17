@@ -6,15 +6,16 @@ import { join } from "node:path";
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import { buildDependencyForest, nonEmptyString, parseJson, record, renderDependencyGraph, run, type JsonValue, type Ticket } from "./dep-tree-shared.ts";
+import { markdownGraph } from "./dep-tree-markdown.ts";
 
 const cli = new Crust("dep-tree-cli")
   .meta({ description: "Print typed ticket DAGs from Jira, GitHub, or Markdown." })
   .use(helpPlugin())
   .command("markdown", (cmd) => cmd
-    .meta({ description: "Build a DAG from a Markdown ticket or initiative." })
+    .meta({ description: "Build a DAG from configured Markdown stores for a repository." })
     .flags({ ticket: { type: "string" }, initiative: { type: "string" } })
-    .args([{ name: "root", type: "string", required: true }] as const)
-    .run(async ({ args, flags }) => runGraph(() => markdownGraph(args.root, flags.ticket, flags.initiative))))
+    .args([{ name: "repository-root", type: "string", required: true }] as const)
+    .run(async ({ args, flags }) => runGraph(() => markdownGraph(args["repository-root"], flags.ticket, flags.initiative))))
   .command("jira", (cmd) => cmd
     .meta({ description: "Build a DAG from a Jira ticket or epic." })
     .flags({ ticket: { type: "string" }, epic: { type: "string" } })
@@ -173,107 +174,3 @@ async function githubIssue(repository: string, number: string): Promise<{
   return { number: actualNumber, title, type: isSpec ? "map" : type, status, blockedBy, ...(parentNumber ?? bodyParent ? { parentNumber: parentNumber ?? bodyParent } : {}), subIssues, isSpec };
 }
 
-async function markdownGraph(root: string, ticketId: string | undefined, initiativeId: string | undefined): Promise<string> {
-  if (!root.startsWith("/")) throw new Error("Pass the absolute shared-context root returned by shared-context.");
-  if (Boolean(ticketId) === Boolean(initiativeId)) throw new Error("Pass exactly one of --ticket or --initiative.");
-  const query = `
-    import "github.com/harehare/okf.mq" |
-    map(
-      walk_files(root, "tracker/tickets/**/*.md"),
-      fn(file): { path: file, frontmatter: okf::okf_parse(read_file(root + "/" + file))["frontmatter"] };
-    )
-  `;
-  const result = run("mq", ["--allow-http-import", `--allow-read=${root}`, "--args", "root", root, "-I", "null", "-F", "json", query]);
-  const parsed = parseJson(result, "mq");
-  const rows = Array.isArray(parsed) ? parsed : [parsed];
-  const tickets = new Map<string, { ticket: Ticket; blockedBy: string[]; parent?: string }>();
-  for (let index = 0; index < rows.length; index += 1) {
-    const row = record(rows[index], `Markdown ticket ${index + 1}`);
-    const frontmatter = record(row.frontmatter, `Markdown ticket ${index + 1} frontmatter`);
-    const id = scalar(frontmatter.id, `Markdown ticket ${index + 1} id`);
-    if (tickets.has(id)) throw new Error(`duplicate ticket ID: ${id}`);
-    const title = scalar(frontmatter.title, `Markdown ticket ${index + 1} title`);
-    const type = typeof frontmatter.type === "string" ? frontmatter.type.trim() : "ticket";
-    const status = typeof frontmatter.work_status === "string" ? frontmatter.work_status.trim() : undefined;
-    const parent = typeof frontmatter.parent === "string" ? frontmatter.parent.trim() : undefined;
-    const rawBlockers = frontmatter.blocked_by ?? [];
-    if (!Array.isArray(rawBlockers)) throw new Error(`ticket ${id} has a non-list blocked_by value`);
-    const blockedBy = rawBlockers.map((value) => scalar(value, `ticket ${id} blocker`));
-    tickets.set(id, { ticket: { id, title, type: type || "ticket", ...(status ? { status } : {}) }, blockedBy, ...(parent ? { parent } : {}) });
-  }
-  const initiatives = initiativeId
-    ? [await readMarkdownInitiative(root, initiativeId)]
-    : await listMarkdownInitiatives(root);
-  const selectedInitiative = initiativeId
-    ? initiatives[0]
-    : discoverMarkdownInitiative(ticketId ?? "", tickets, initiatives);
-  if (!selectedInitiative) throw new Error(`No initiative found for ticket ${ticketId}`);
-  if (ticketId && !tickets.has(ticketId)) throw new Error(`Ticket ${ticketId} was not found in tracker/tickets/`);
-  const initiative = selectedInitiative;
-  const graph = await buildDependencyForest(initiative.ticketIds, async (id) => {
-    const found = tickets.get(id);
-    if (!found) throw new Error(`initiative ${initiative.id} references ticket ${id}, but that ticket was not found`);
-    return found;
-  });
-  return renderDependencyGraph(graph);
-}
-
-interface MarkdownInitiative { id: string; ticketIds: string[] }
-
-function discoverMarkdownInitiative(
-  ticketId: string,
-  tickets: Map<string, { ticket: Ticket; blockedBy: string[]; parent?: string }>,
-  initiatives: MarkdownInitiative[],
-): MarkdownInitiative | undefined {
-  let current: string | undefined = ticketId;
-  const visited = new Set<string>();
-  while (current && !visited.has(current)) {
-    visited.add(current);
-    const currentId = current;
-    const match = initiatives.find((initiative) => initiative.ticketIds.includes(currentId));
-    if (match) return match;
-    current = tickets.get(current)?.parent;
-  }
-  return undefined;
-}
-
-async function listMarkdownInitiatives(root: string): Promise<MarkdownInitiative[]> {
-  const query = `
-    import "github.com/harehare/okf.mq" |
-    map(
-      walk_files(root, "tracker/initiatives/*/index.md"),
-      fn(file): { path: file, contents: read_file(root + "/" + file) };
-    )
-  `;
-  const parsed = parseJson(run("mq", ["--allow-http-import", `--allow-read=${root}`, "--args", "root", root, "-I", "null", "-F", "json", query]), "mq initiative query");
-  const rows = Array.isArray(parsed) ? parsed : [parsed];
-  return rows.map((value) => record(value, "initiative index")).flatMap((row) => {
-    if (typeof row.path !== "string" || typeof row.contents !== "string") return [];
-    const id = row.path.match(/^tracker\/initiatives\/([^/]+)\/index\.md$/)?.[1];
-    if (!id) return [];
-    return [{ id, ticketIds: extractInitiativeTicketIds(row.contents) }];
-  });
-}
-
-async function readMarkdownInitiative(root: string, initiativeId: string): Promise<MarkdownInitiative> {
-  if (!/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(initiativeId)) {
-    throw new Error(`ticket or initiative '${initiativeId}' was not found`);
-  }
-  const initiatives = await listMarkdownInitiatives(root);
-  const initiative = initiatives.find((candidate) => candidate.id === initiativeId);
-  if (!initiative) throw new Error(`initiative '${initiativeId}' was not found`);
-  return initiative;
-}
-
-function extractInitiativeTicketIds(contents: string): string[] {
-  const ids = [...contents.matchAll(/\]\(\.\.\/\.\.\/tickets\/([A-Za-z0-9_-]+)\.md\)/g)]
-    .map((match) => match[1])
-    .filter((id): id is string => Boolean(id));
-  return [...new Set(ids)];
-}
-
-function scalar(value: unknown, label: string): string {
-  if (typeof value === "string" && value.trim()) return value.trim();
-  if (typeof value === "number" && Number.isFinite(value)) return String(value);
-  throw new Error(`${label} must be a non-empty string or number`);
-}

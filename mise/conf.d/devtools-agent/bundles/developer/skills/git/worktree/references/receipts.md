@@ -30,7 +30,7 @@ manifest.yaml
 `events/` is authoritative and append-only. `artifacts/` holds immutable
 authored outputs and evidence. `projections/` and `manifest.yaml` are generated
 and replaceable. Evidence can use a different store from the workflow. Do not
-write workflow state to `.scratch/`, `<ticket>/local/`, `tracker/`, or `sources/`.
+write workflow state to `.scratch/`, `<ticket>/local/`, the ticket collection, or the source collection.
 
 ## Rules
 

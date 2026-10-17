@@ -148,3 +148,51 @@ When shared `AGENTS.md` exists, the injected block looks like:
 Without shared `AGENTS.md`, repository behavior remains active (Claude Code
 already loads repository `CLAUDE.md`/`AGENTS.md` natively, so the hook is a
 no-op in that case rather than re-injecting it).
+
+
+## Configurable record layout
+
+Storage routes select **which store** holds each record. Layout selects the relative
+directory **inside that selected store**. Neither setting changes the other.
+
+Optionally add `docs/agents/context-layout.toml` under the active alignment root:
+
+```toml
+schema = 1
+
+[paths]
+tracker = "docs/tracker"
+sources = "docs/sources"
+```
+
+Without this file, the bases remain `tracker` and `sources`. Only `tracker` and
+`sources` can be overridden. Paths must be non-empty relative directories without
+absolute paths, traversal, or symlink escapes. Invalid configuration fails; it
+never silently falls back to default paths.
+
+For a local Markdown tracker, `issue-root` and `initiative-root` in
+`docs/agents/issue-tracker.md` frontmatter take precedence for ticket and initiative
+collections. Each is relative to its own routed store, not the alignment root.
+Absent fields default to `<tracker>/tickets` and `<tracker>/initiatives`. The
+tracker collection itself still uses the configured tracker base. Workflows,
+evidence, and ADR layouts do not change.
+
+Use these collection selectors instead of rebuilding directory names:
+
+```text
+resolve tracker --json
+resolve tickets --json
+resolve initiatives --json
+resolve sources --json
+```
+
+Each result has the same adapter, store, root, path, ref, and publication fields
+as a singular record. `root` is the selected store; `path` is the exact collection
+directory. `path tracker` remains available. Local ticket collections are not
+available when an external tracker owns tickets.
+
+`migrate tickets`, `migrate initiatives`, and `migrate sources` copy the configured
+collection paths. Alignment migration carries the layout and tracker configuration
+with the other alignment records. Initialization carries these two configuration
+files into a newly selected shared alignment root without overwriting existing
+files. Resolve again after changing routes or configuration.

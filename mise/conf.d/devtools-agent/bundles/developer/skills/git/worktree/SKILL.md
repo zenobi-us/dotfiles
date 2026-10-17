@@ -29,7 +29,7 @@ Review the exact source commit recorded in the review handoff. A verdict is vali
 Use one immutable artifact under `artifacts/reviews/` for every review attempt.
 Never overwrite an earlier review or copy its body into the tracker. Store
 versioned PR drafts under `artifacts/snapshots/`. Resolve manual evidence by
-running the `shared-context` skill’s `scripts/shared-context.ts` script with
+running the `shared-context` skill’s `scripts/shared-context/cli.ts` script with
 `resolve evidence`; its store can differ from the workflow store.
 Store current views under `projections/`.
 
@@ -40,7 +40,7 @@ Every commit made by a worktree playbook MUST follow the `commit` skill. Every c
 For every local Markdown file used by a worktree workflow, use the `mq-query` skill to locate, read, filter, select, list, summarise, or validate its content. Load the matching mq-query task reference and required upstream reference first. Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or an ad hoc Markdown parser for that work.
 
 Before loading tracker configuration or reading or changing a ticket, apply the
-**Mandatory ticket-resolution preamble** in the `reading-and-writing-tickets` skill.
+**Route the request** procedure in the `reading-and-writing-tickets` skill.
 
 Use the `shared-context` skill to understand where artifacts are stored in the repo concerned.
 
@@ -52,13 +52,13 @@ reads, claims, comments, completion, and tracker commits. This skill owns review
 artifacts, receipts, snapshots, evidence, manifests, and workflow projections.
 
 Resolve the workflow root by running the `shared-context` skill’s
-`scripts/shared-context.ts` script with `resolve workflow --id <ticket-id> --json`.
+`scripts/shared-context/cli.ts` script with `resolve workflow --id <ticket-id> --json`.
 Resolve evidence separately by running the same script with
 `resolve evidence --workflow <ticket-id> --run <run-id> --json`.
 Use only these paths within the resolved roots: `events/`,
 `artifacts/reviews/`, `artifacts/snapshots/`, `artifacts/evidence/`, and
 `projections/`. Do not write workflow state into `.scratch/`, `<ticket>/local/`,
-`tracker/`, or `sources/`.
+the ticket collection, or the source collection.
 
 # Rule 1: resolve the muxer and agent
 
@@ -103,4 +103,5 @@ Known failure modes live in the `worktree` skill’s `references/troubleshooting
 - `missing-review-verdict.md`
 
 For `unknown-muxer` or `unknown-agent`, see the `muxer-subagents` skill’s `references/troubleshooting/muxer-or-agent-undetected.md` file.
+
 

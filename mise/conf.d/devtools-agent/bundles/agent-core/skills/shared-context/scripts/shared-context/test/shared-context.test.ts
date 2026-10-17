@@ -346,7 +346,6 @@ describe("context resolution", () => {
     await expect(fs.stat(path.join(shared!.candidateSharedRoot!, "workflows", "billing-01", "artifacts", "evidence"))).rejects.toMatchObject({ code: "ENOENT" });
     const toSharedEvidence = await migrateContextRoute(afterWorkflowMigration, "evidence", "shared");
     expect(toSharedEvidence.copied).toEqual([path.join("workflows", "billing-01", "artifacts", "evidence")]);
-    await expect(migrateContextRoute(shared!, "tickets", "shared")).rejects.toThrow();
     expect(await fs.readFile(path.join(repositoryRoot, "tracker", "tickets", "billing-01.md"), "utf8")).toBe("local issue");
     const toSharedSources = await migrateContextRoute(
       (await resolveSharedContext(gitExec(repositoryRoot, origin), repositoryRoot, sharedBase))!,

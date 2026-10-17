@@ -13,7 +13,7 @@ Do not use `grep`, `find`, `rg`, `fd`, `ls`, shell globs, or ad hoc Markdown
 parsers to locate or inspect local Markdown. A known path may be passed to
 `mq`, but `mq` remains the content-reading interface. This applies to
 `CONTEXT.md`, `CONTEXT-MAP.md`, ADRs, `docs/agents/`, `tracker/`, `workflows/`,
-review artifacts, and other alignment Markdown.
+review artifacts, and other alignment Markdown. `tracker/` and `sources/` are default base directories, not fixed locations.
 
 ## Resolve the root
 
@@ -46,6 +46,24 @@ Resolve file-backed tracker records, workflows, evidence, and sources with
 tracker configuration from `ALIGNMENT_ROOT`, then use the configured tracker
 adapter for ticket operations. A GitHub ticket stays in GitHub even when its
 initiative or workflow record uses Markdown.
+
+Use `cli.ts resolve tracker --json`, `resolve tickets --json`,
+`resolve initiatives --json`, and `resolve sources --json` for collection roots.
+Use each record's `path`; collections can use different stores. Local tracker
+`issue-root` and `initiative-root` fields override their collection paths.
+
+The optional `docs/agents/context-layout.toml` lives under `ALIGNMENT_ROOT`:
+
+```toml
+schema = 1
+[paths]
+tracker = "docs/tracker"
+sources = "docs/sources"
+```
+
+Without this file, the bases are `tracker` and `sources`. The layout changes
+base directories, not storage routes. Configured paths must stay relative to
+the selected store. Resolve records again after a layout or tracker change.
 
 Keep these relative to `repository-root`:
 

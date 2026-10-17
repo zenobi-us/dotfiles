@@ -158,6 +158,11 @@ type RecordOptions = Parameters<typeof resolveContextRecord>[1];
 
 function recordOptions(kind: string, flags: RecordFlags, operation: string): RecordOptions {
   switch (kind) {
+    case "tracker":
+    case "tickets":
+    case "initiatives":
+    case "sources":
+      return { kind };
     case "alignment":
       return { kind: "alignment" };
     case "ticket":
@@ -205,7 +210,10 @@ async function runPath(ctx: { args: { kind: string }; flags: PathFlags }): Promi
     let options: ContextPathOptions;
     switch (ctx.args.kind) {
       case "tracker":
-        options = { kind: "tracker" };
+      case "tickets":
+      case "initiatives":
+      case "sources":
+        options = { kind: ctx.args.kind };
         break;
       case "ticket":
       case "initiative":
@@ -318,7 +326,7 @@ const cli = new Crust("shared-context")
     .flags({ preset: { type: "string" } })
     .run(runInit))
   .command("resolve", (cmd) => cmd
-    .meta({ description: "Resolve one record through its configured adapter and store" })
+    .meta({ description: "Resolve a record or collection (tracker, tickets, initiatives, sources) through its configured store" })
     .flags({
       id: { type: "string" },
       workflow: { type: "string" },

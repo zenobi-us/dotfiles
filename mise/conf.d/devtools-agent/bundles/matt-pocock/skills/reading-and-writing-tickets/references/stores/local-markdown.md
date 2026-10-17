@@ -2,17 +2,17 @@
 
 ## Resolve and read
 
-1. Use `agent-core:shared-context` to resolve ticket IDs and the tracker root. Do not construct paths from configured root segments.
+1. Use `agent-core:shared-context` to resolve ticket IDs and the `tickets` and `initiatives` collections with `resolve <kind> --json`. Use each returned `path`. Do not construct paths from configured root segments.
 2. Use `agent-core:mq-query` for every Markdown read, query, or validation. Load its matching task reference and upstream reference first. Use an explicit input and output format and load `okf.mq`.
 3. Read ticket metadata from YAML frontmatter. Keep the body as human-readable intent and comments as conversation history.
 
-The tracker config must declare `issue-root: tracker/tickets` and `initiative-root: tracker/initiatives`. Tickets use stable `id`, `title`, `work_status`, `blocked_by`, and optional `parent` fields. Workflow tickets may also use `type` (`research`, `prototype`, `grilling`, or `task`) and `triage`. Preserve unknown fields. Valid `work_status` values are `unclaimed`, `claimed`, `implemented`, `merged`, and `completed`. Set `completed` only after validation, review, merge, and push succeed.
+The tracker config can declare `issue-root` and `initiative-root` as store-relative paths. If absent, they default to `tickets` and `initiatives` beneath the configured tracker base (`tracker` by default). For example, a `docs/tracker` base defaults to `docs/tracker/tickets` and `docs/tracker/initiatives`. Storage routes still select each collection's store independently. Tickets use stable `id`, `title`, `work_status`, `blocked_by`, and optional `parent` fields. Workflow tickets may also use `type` (`research`, `prototype`, `grilling`, or `task`) and `triage`. Preserve unknown fields. Valid `work_status` values are `unclaimed`, `claimed`, `implemented`, `merged`, and `completed`. Set `completed` only after validation, review, merge, and push succeed.
 
 When applicable, use `## What to build`, `## Question`, `## Acceptance criteria`, and `## Comments` in the body. Do not treat body text such as `Blocked by:` as canonical metadata.
 
 ## Query and graph
 
-Resolve the tracker root before listing. Query only its `tickets/` area. Return the canonical ID, title, state, direct blockers, and resolved file reference. For a DAG, run `./scripts/dep-tree-cli.ts markdown <shared-context-root> --ticket TICKET-ID` to discover the containing initiative, or `./scripts/dep-tree-cli.ts markdown <shared-context-root> --initiative INITIATIVE-ID` to select it directly. Initiative index links become graph roots; the command follows `blocked_by` edges and prints each node as `- [type] id - title`. It uses `mq` to read initiative indexes and `tracker/tickets/` frontmatter. It fails when a referenced blocker has no matching local ticket. Do not read body text as a replacement for frontmatter relationships. Derive reverse edges; do not store a second `blocks` list.
+Resolve the `tickets` collection before listing. Query only its returned directory. Return the canonical ID, title, state, direct blockers, and resolved file reference. For a DAG, run `./scripts/dep-tree-cli.ts markdown <repository-root> --ticket TICKET-ID` to discover the containing initiative, or `./scripts/dep-tree-cli.ts markdown <repository-root> --initiative INITIATIVE-ID` to select it directly. Initiative index links become graph roots; the command follows `blocked_by` edges and prints each node as `- [type] id - title`. Pass the repository root, not an alignment or tracker root. The CLI resolves both collections through shared-context, then uses `mq` to read initiative links and ticket frontmatter. Local links are resolved from each initiative index to the actual ticket files, including links across stores. It fails when a referenced blocker has no matching local ticket. Do not read body text as a replacement for frontmatter relationships. Derive reverse edges; do not store a second `blocks` list.
 
 ## Writes
 

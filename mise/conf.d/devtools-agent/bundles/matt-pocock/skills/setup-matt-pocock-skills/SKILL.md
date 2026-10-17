@@ -47,7 +47,8 @@ Inspect the reported `ALIGNMENT_ROOT` for alignment state:
 - `AGENTS.md` or the active repository instruction file
 - `CONTEXT-MAP.md`, `docs/adr/`, and `domains/*/CONTEXT.md`
 - `docs/agents/`
-- `tracker/`, `workflows/`, and `sources/`
+- the collections returned by `resolve tracker`, `resolve tickets`,
+  `resolve initiatives`, and `resolve sources`, plus workflow records
 
 Read existing files. Do not infer missing state from repository paths while shared storage is active.
 
@@ -67,6 +68,12 @@ repository store unless the user requests shared storage.
 - **Evidence** — inherit the workflow store. Ask about a separate store only
   when the user requests one.
 - **Sources** — inherit the alignment store.
+
+Keep an existing `docs/agents/context-layout.toml`. If the repository needs
+non-default base directories, include that file in the draft. Use `schema = 1`
+and only `[paths] tracker` and `sources`, for example `docs/tracker` and
+`docs/sources`. The defaults are `tracker` and `sources`. These settings change
+paths within a store; they do not change the route table.
 
 Ask for one default file store: `repository` or `shared`. Show the full route
 table before you write it.
@@ -106,6 +113,7 @@ Show one draft containing:
 
 - the full record route table and absolute alignment root;
 - the selected preset, if any;
+- `docs/agents/context-layout.toml` when base directories change;
 - the `## Agent skills` block;
 - `docs/agents/issue-tracker.md`;
 - `docs/agents/domain.md`;
@@ -161,20 +169,28 @@ Create or update these navigation files:
 - `CONTEXT-MAP.md` with stable entry points only;
 - `docs/adr/index.md` with links to existing ADRs;
 - `workflows/index.md` when a workflow area exists;
-- `tracker/index.md` when the backend is `local-markdown`;
-- each initiative's `tracker/initiatives/<id>/index.md`.
+- `index.md` under the resolved tracker collection when the backend is
+  `local-markdown`;
+- `index.md` inside each directory returned by `resolve initiative --id <id>`.
 
 An index MUST describe or link existing records. It MUST NOT claim that a
 directory is empty. Do not list individual event receipts in `CONTEXT-MAP.md`.
 
 Every generated `docs/agents/issue-tracker.md` MUST begin with YAML frontmatter
 naming the actual backend, such as `backend: github`, `backend: gitlab`,
-`backend: jira`, or `backend: local-markdown`. Local Markdown MUST also declare:
+`backend: jira`, or `backend: local-markdown`. For local Markdown, preserve
+existing `initiative-root` and `issue-root` values. If explicit roots are needed,
+use paths relative to their selected stores. The default layout example is:
 
 ```yaml
 initiative-root: tracker/initiatives
 issue-root: tracker/tickets
 ```
+
+If the layout uses `tracker = "docs/tracker"`, use `docs/tracker/initiatives`
+and `docs/tracker/tickets` in that example. Omitted fields default to the
+configured tracker base plus `initiatives` and `tickets`. Resolve both
+collections through the CLI; do not join them to `ALIGNMENT_ROOT`.
 
 For local Markdown, define separate `triage` and `work_status` fields.
 `work_status: completed` is valid only after verification, merge, and push

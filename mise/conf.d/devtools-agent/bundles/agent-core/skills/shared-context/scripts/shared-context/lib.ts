@@ -2,6 +2,8 @@ import { createHash } from "node:crypto";
 import { constants, promises as fs } from "node:fs";
 import path from "node:path";
 import { loadConfig } from "./config";
+import { DEFAULT_LAYOUT, LAYOUT_FILE, readLayout, validateRelativePath, validateStorePath } from "./layout";
+import type { ContextLayout } from "./layout";
 
 const MAX_AGENTS_BYTES = 100_000;
 export const ROUTE_MANIFEST_FILE = ".context-routes.toml";
@@ -50,6 +52,7 @@ export type SharedAgentContext = {
   mode: "repository" | "shared" | "mixed";
   alignmentRoot: string;
   routes: ContextRoutes;
+  layout?: ContextLayout;
   source?: string;
   instructions?: string;
   error?: string;
@@ -167,6 +170,7 @@ function parseRouteManifest(source: string): Partial<Record<RecordKind, RecordRo
       if (configured.store !== "shared" && configured.store !== "repository") {
         throw new Error("records.tickets.store must be shared or repository for local-markdown");
       }
+      route.store = configured.store;
     } else if (kind === "tickets") {
       if (configured.store !== undefined) throw new Error(`records.tickets.store is not valid for ${route.adapter}`);
     } else if (kind === "evidence" || kind === "sources") {
@@ -253,6 +257,22 @@ export async function resolveSharedContext(
   const candidateSharedRoot = path.join(base, slug);
   const routes = await loadRoutes(candidateSharedRoot, repositoryRoot);
   const alignmentRoot = routeStore(routes, "alignment") === "shared" ? candidateSharedRoot : repositoryRoot;
+  const layout = await readLayout(alignmentRoot);
+  await validateStorePath(alignmentRoot, "docs/agents/issue-tracker.md");
+  const trackerConfig = await readIfPresent(path.join(alignmentRoot, "docs", "agents", "issue-tracker.md"));
+  if (trackerConfig !== undefined) {
+    const fields = parseFrontmatter(trackerConfig);
+    if (!fields.backend || fields.backend === "local-markdown") {
+      if (fields["issue-root"] !== undefined) layout.tickets = validateRelativePath(fields["issue-root"], "issue-root");
+      if (fields["initiative-root"] !== undefined) layout.initiatives = validateRelativePath(fields["initiative-root"], "initiative-root");
+    }
+  }
+  for (const [kind, relative] of [["tickets", layout.tickets], ["initiatives", layout.initiatives], ["sources", layout.sources]] as const) {
+    const store = routeStore(routes, kind);
+    if (store) await validateStorePath(store === "shared" ? candidateSharedRoot : repositoryRoot, relative);
+  }
+  const trackerStore = routeStore(routes, "tickets");
+  if (trackerStore) await validateStorePath(trackerStore === "shared" ? candidateSharedRoot : repositoryRoot, layout.tracker);
   const shared = await readSharedInstructions(candidateSharedRoot);
   return {
     repositoryRoot,
@@ -266,6 +286,7 @@ export async function resolveSharedContext(
     mode: routeMode(routes),
     alignmentRoot,
     routes,
+    layout,
     source: routeStore(routes, "alignment") === "shared" ? shared.source : await existingRepositoryInstructions(repositoryRoot),
     instructions: routeStore(routes, "alignment") === "shared" ? shared.instructions : undefined,
     error: shared.error,
@@ -287,6 +308,17 @@ export async function initializeSharedContext(context: SharedAgentContext): Prom
     await fs.writeFile(path.join(context.candidateSharedRoot, "CONTEXT-MAP.md"), DEFAULT_CONTEXT_MAP, { flag: "wx" });
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+  }
+  for (const relative of [LAYOUT_FILE, "docs/agents/issue-tracker.md"]) {
+    const source = path.join(context.alignmentRoot, relative);
+    const target = path.join(context.candidateSharedRoot, relative);
+    if (source === target || !await exists(source)) continue;
+    await validateStorePath(context.alignmentRoot, relative);
+    await validateStorePath(context.candidateSharedRoot, relative);
+    await fs.mkdir(path.dirname(target), { recursive: true });
+    try { await fs.copyFile(source, target, constants.COPYFILE_EXCL); } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+    }
   }
   if (!await exists(path.join(context.candidateSharedRoot, ROUTE_MANIFEST_FILE))) {
     const routes = defaultRoutes("shared", context.routes.tickets.adapter);
@@ -316,6 +348,10 @@ export async function resolveContextRecord(
   context: SharedAgentContext,
   options:
     | { kind: "alignment" }
+    | { kind: "tracker" }
+    | { kind: "tickets" }
+    | { kind: "initiatives" }
+    | { kind: "sources" }
     | { kind: "ticket"; id: string }
     | { kind: "initiative"; id: string }
     | { kind: "workflow"; id: string }
@@ -323,7 +359,7 @@ export async function resolveContextRecord(
     | { kind: "source"; source: string; ticket?: string; library?: boolean }
     | { kind: "adr"; id: string },
 ): Promise<ResolvedRecord> {
-  const kind: RecordKind = options.kind === "adr" ? "alignment"
+  const kind: RecordKind = options.kind === "tracker" ? "tickets" : options.kind === "adr" ? "alignment"
     : options.kind === "ticket" ? "tickets"
       : options.kind === "initiative" ? "initiatives"
         : options.kind === "workflow" ? "workflows"
@@ -337,13 +373,18 @@ export async function resolveContextRecord(
   const root = store === "shared" ? context.candidateSharedRoot : context.repositoryRoot;
   if (!root) throw new Error(`No ${store} root is available for ${kind}`);
   let relative: string;
+  const layout = context.layout ?? DEFAULT_LAYOUT;
   if (options.kind === "alignment") relative = "";
+  else if (options.kind === "tracker") relative = layout.tracker;
+  else if (options.kind === "tickets") relative = layout.tickets;
+  else if (options.kind === "initiatives") relative = layout.initiatives;
+  else if (options.kind === "sources") relative = layout.sources;
   else if (options.kind === "ticket") {
     assertSegment(options.id, "id");
-    relative = path.join("tracker", "tickets", `${options.id}.md`);
+    relative = path.join(layout.tickets, `${options.id}.md`);
   } else if (options.kind === "initiative") {
     assertSegment(options.id, "id");
-    relative = path.join("tracker", "initiatives", options.id);
+    relative = path.join(layout.initiatives, options.id);
   } else if (options.kind === "workflow") {
     assertSegment(options.id, "id");
     relative = path.join("workflows", options.id);
@@ -356,8 +397,8 @@ export async function resolveContextRecord(
     if (Boolean(options.ticket) === Boolean(options.library)) throw new Error("Source paths require exactly one of ticket or library");
     if (options.ticket) {
       assertSegment(options.ticket, "ticket");
-      relative = path.join("sources", "tickets", options.ticket, options.source);
-    } else relative = path.join("sources", "library", options.source);
+      relative = path.join(layout.sources, "tickets", options.ticket, options.source);
+    } else relative = path.join(layout.sources, "library", options.source);
   } else {
     assertSegment(options.id, "id");
     const dir = path.join(root, "docs", "adr");
@@ -369,6 +410,7 @@ export async function resolveContextRecord(
     if (matches.length > 1) throw new Error(`ADR id "${options.id}" is ambiguous: ${matches.join(", ")}`);
     relative = path.join("docs", "adr", matches[0] ?? `${options.id}.md`);
   }
+  if (relative) await validateStorePath(root, relative);
   const ref = relative
     ? store === "shared" ? `shared://${relative.split(path.sep).join("/")}` : relative.split(path.sep).join("/")
     : store === "shared" ? "shared://." : ".";
@@ -400,6 +442,10 @@ export function renderContextReport(context: SharedAgentContext): string {
     `workflows: ${storeText("workflows")}`,
     `evidence: ${inheritedStore("evidence")}`,
     `sources: ${inheritedStore("sources")}`,
+    ...((context.layout && (context.layout.tracker !== "tracker" || context.layout.sources !== "sources"
+      || context.layout.tickets !== "tracker/tickets" || context.layout.initiatives !== "tracker/initiatives"))
+      ? [`tracker path: ${context.layout.tracker}`, `tickets path: ${context.layout.tickets}`,
+        `initiatives path: ${context.layout.initiatives}`, `sources path: ${context.layout.sources}`] : []),
   ].join("\n");
 }
 
@@ -460,11 +506,11 @@ export async function migrateContextRoute(
   const to = targetStore === "shared" ? context.candidateSharedRoot : context.repositoryRoot;
   const relatives: Record<RecordKind, string[]> = {
     alignment: ["docs/agents", "CONTEXT.md", "CONTEXT-MAP.md", "docs/adr", "domains"],
-    tickets: ["tracker/tickets"],
-    initiatives: ["tracker/initiatives"],
+    tickets: [(context.layout ?? DEFAULT_LAYOUT).tickets],
+    initiatives: [(context.layout ?? DEFAULT_LAYOUT).initiatives],
     workflows: ["workflows"],
     evidence: [],
-    sources: ["sources"],
+    sources: [(context.layout ?? DEFAULT_LAYOUT).sources],
   };
   const entries: Array<{ relative: string; source: string; target: string }> = [];
   if (kind === "evidence") {
@@ -479,6 +525,8 @@ export async function migrateContextRoute(
     }
   } else {
     for (const relative of relatives[kind]) {
+      await validateStorePath(from, relative);
+      await validateStorePath(to, relative);
       const source = path.join(from, relative);
       if (await exists(source)) entries.push({ relative, source, target: path.join(to, relative) });
     }
@@ -503,6 +551,10 @@ export async function migrateContextRoute(
       const segments = path.relative(from, file.source).split(path.sep);
       return !segments.some((segment, index) => segment === "artifacts" && segments[index + 1] === "evidence");
     });
+  for (const file of files) {
+    await validateStorePath(from, path.relative(from, file.source));
+    await validateStorePath(to, path.relative(to, file.target));
+  }
   const conflicts: string[] = [];
   const missing: Array<{ source: string; target: string }> = [];
   for (const file of files) {
@@ -606,6 +658,12 @@ export function renderSharedContext(context: SharedAgentContext): string {
     `evidence="${routeStore(context.routes, "evidence")}"`,
     `sources="${routeStore(context.routes, "sources")}"`,
   ];
+  if (context.layout) {
+    attributes.push(`tracker-path="${escapeXml(context.layout.tracker)}"`,
+      `tickets-path="${escapeXml(context.layout.tickets)}"`,
+      `initiatives-path="${escapeXml(context.layout.initiatives)}"`,
+      `sources-path="${escapeXml(context.layout.sources)}"`);
+  }
   if (context.source) attributes.push(`source="${escapeXml(context.source)}"`);
 
   const instructions = context.storage === "shared" && context.instructions && context.source
@@ -616,7 +674,7 @@ export function renderSharedContext(context: SharedAgentContext): string {
 }
 
 export type ContextPathOptions =
-  | { kind: "tracker" }
+  | { kind: "tracker" | "tickets" | "initiatives" | "sources" }
   | { kind: "ticket"; id: string }
   | { kind: "initiative"; id: string }
   | { kind: "workflow"; id: string }
@@ -630,14 +688,6 @@ function assertSegment(value: string, label: string): void {
 }
 
 export async function resolveContextPath(context: SharedAgentContext, options: ContextPathOptions): Promise<string> {
-  if (options.kind === "tracker") {
-    if (context.routes.tickets.adapter !== "local-markdown") {
-      throw new Error(`${context.routes.tickets.adapter} owns tickets; there is no local tracker path`);
-    }
-    const root = context.routes.tickets.store === "shared" ? context.candidateSharedRoot : context.repositoryRoot;
-    if (!root) throw new Error("No tracker store is configured");
-    return path.join(root, "tracker");
-  }
   return (await resolveContextRecord(context, options)).path!;
 }
 
@@ -647,7 +697,7 @@ export function parseFrontmatter(text: string): Record<string, string> {
 
   const fields: Record<string, string> = {};
   for (const line of block[1].split(/\r?\n/)) {
-    const entry = line.match(/^([A-Za-z0-9_]+):[ \t]*(.*)$/);
+    const entry = line.match(/^([A-Za-z0-9_-]+):[ \t]*(.*)$/);
     if (!entry) continue;
     fields[entry[1]] = entry[2].trim().replace(/^"([\s\S]*)"$/, "$1").replace(/^'([\s\S]*)'$/, "$1");
   }
