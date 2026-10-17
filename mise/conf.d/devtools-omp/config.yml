@@ -1,5 +1,5 @@
 modelRoles:
-  default: openai-codex/gpt-6-luna:medium
+  default: openai-codex/gpt-6.1-sol:medium
   smol: openai-codex/gpt-6-luna:high
   plan: openai-codex/gpt-6-astra:medium
   commit: openai-codex/gpt-6-luna:off
@@ -12,8 +12,7 @@ setupVersion: 2
 extensions:
   - ~/.omp/agent/hooks/pre
 task:
-  disabledAgents:
-    []
+  disabledAgents: []
   enableLsp: true
 lsp:
   formatOnWrite: true

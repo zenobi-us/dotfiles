@@ -2,7 +2,7 @@ providers:
   strata:
     baseUrl: http://127.0.0.1:8080/v1
     api: openai-responses
-    auth: none
+    apiKey: "!jq -r .api_key $HOME/Applications/Strata/strata-iq3_xxs.json"
     models:
       - id: qwen3.8-flash-next-coder-iq1_m
         name: Strata Coder IQ1_M
@@ -16,3 +16,10 @@ providers:
           output: 0
           cacheRead: 0
           cacheWrite: 0
+  # Discovered llama.cpp models do not inherit the strata provider's API key.
+  llama.cpp:
+    baseUrl: http://127.0.0.1:8080
+    api: openai-responses
+    apiKey: "!jq -r .api_key $HOME/Applications/Strata/strata-iq3_xxs.json"
+    discovery:
+      type: llama.cpp
