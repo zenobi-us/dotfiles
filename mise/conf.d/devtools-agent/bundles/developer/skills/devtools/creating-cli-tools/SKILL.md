@@ -89,5 +89,9 @@ Fill these sections, drop anything irrelevant:
 
 ## Notes
 
+## Single-file Bun CLIs
+
+For a standalone TypeScript CLI that needs no package-manager setup, read `references/single-file-bun-cli.md`. Use its mise shebang and Bun fallback dependency installation; do not require `npm install`, `bun install`, or `pnpm install`.
+
 - Prefer recommending a parsing library (language-specific) only when asked; otherwise keep this skill language-agnostic.
 - If the request is “design parameters”, do not drift into implementation.
