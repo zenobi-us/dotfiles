@@ -3,7 +3,6 @@
   "workspaces": [
     "mise/conf.d/devtools-agent/bundles/*",
     "mise/conf.d/devtools-pi/agent",
-    "mise/conf.d/devtools-pi/agent/extensions/@zenobius/*",
     "mise/conf.d/devtools-omp/extensions/*",
     "mise/conf.d/devtools-pi/agent/packages/*"
   ],
