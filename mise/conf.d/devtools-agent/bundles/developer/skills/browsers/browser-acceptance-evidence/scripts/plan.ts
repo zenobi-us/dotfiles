@@ -26,8 +26,12 @@ export type Says = string;
 export type Step =
   /** Go to a URL. `to` is appended to the plan's `base` unless it is absolute. */
   | { do: "navigate"; says: Says; to: string; shot?: Slug }
-  /** Click a locator. */
-  | { do: "click"; says: Says; locator: string; shot?: Slug }
+  /**
+   * Click a locator. `dom: true` makes the surf driver call the element's own
+   * `.click()` instead of a synthesized pointer click, for controls such as a
+   * client-routed nav link that ignore surf's input events.
+   */
+  | { do: "click"; says: Says; locator: string; dom?: boolean; shot?: Slug }
   /** Type into a locator. `text` is a literal; never put a secret here. */
   | { do: "fill"; says: Says; locator: string; text: string; shot?: Slug }
   /**

@@ -155,7 +155,11 @@ export function compileSurf(plan: Plan, t: Test, shotsDir: string): string {
         snap();
         break;
       case "click":
-        steps.push({ tool: "click", args: { selector: s.locator } });
+        if (s.dom) {
+          steps.push({ tool: "js", args: { code: surfDomClick(s.locator, step) } });
+        } else {
+          steps.push({ tool: "click", args: { selector: s.locator } });
+        }
         steps.push({ tool: "wait.load", args: {} });
         snap();
         break;
@@ -209,6 +213,10 @@ export function compileSurf(plan: Plan, t: Test, shotsDir: string): string {
     null,
     2,
   );
+}
+
+function surfDomClick(locator: string, step: string): string {
+  return `(function(){var e=document.querySelector(${q(locator)});if(!e)throw new Error('ASSERT FAIL ${step}: ${locator} not found');e.click();return 'clicked';})()`;
 }
 
 function surfScroll(locator: string, step: string): string {
