@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-22T10:12:43.516Z",
+  "sources": [
+    {
+      "style": "report-dashboard",
+      "asset": "styles/report-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/llm-benchmarking-margin",
+        "path": "dashboard/DESIGN.md",
+        "localPath": "../llm-benchmarking-margin/dashboard/DESIGN.md"
+      },
+      "sha256": "93a0c7971cb3fe152f1f2e6d8c0a92285620e4562d9cdea2621d9d98e86487fc"
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/DESIGN.md",
+        "localPath": "../finance/pkgs/ledger-app/DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    },
+    {
+      "style": "widget-grid-dashboard",
+      "asset": "styles/widget-grid-dashboard/UI-FOUNDATION.md",
+      "source": {
+        "repository": "https://github.com/airtonix/finance",
+        "path": "pkgs/ledger-app/UI-FOUNDATION.md",
+        "localPath": "../finance/pkgs/ledger-app/UI-FOUNDATION.md"
+      },
+      "sha256": "2040982704430500cbb1046a2a52d7bf3112b773ca36b2831f0e06f51276f9a3"
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/dotfiles",
+        "path": "DESIGN.md",
+        "localPath": "DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    },
+    {
+      "style": "project-info",
+      "asset": "styles/project-info/EDITOR-DESIGN.md",
+      "source": {
+        "repository": "https://github.com/zenobi-us/lazyvim.profile",
+        "path": "DESIGN.md",
+        "localPath": "/home/zenobius/.config/nvim/DESIGN.md"
+      },
+      "sha256": "c10cf62936ad7896fa72b268834a6fdfcfe20849a779c171fb7de6cca9ca01d9"
+    }
+  ]
+}

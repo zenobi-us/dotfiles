@@ -1,10 +1,11 @@
 {
   "name": "creator",
   "description": "Design commands, UI/API building, and user-facing product experts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "skills": [
     "./skills/imagegen/comfyui",
     "./skills/imagegen/generate-images-with-takumi",
-    "./skills/html-artifact/"
+    "./skills/html-artifact/",
+    "./skills/web-design"
   ]
 }
