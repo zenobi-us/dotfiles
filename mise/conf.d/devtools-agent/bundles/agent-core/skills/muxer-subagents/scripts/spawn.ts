@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import * as net from "node:net";
 import type { Agent, Muxer } from "./types.ts";
 import {
@@ -104,11 +104,45 @@ function nestedRecord(record: Record<string, unknown>, key: string): Record<stri
     : undefined;
 }
 
+function isInside(path: string, root: string): boolean {
+  const relativePath = relative(root, path);
+  return relativePath === "" || (!relativePath.startsWith("..") && !isAbsolute(relativePath));
+}
+
+// The worktree list "source" is the main checkout. A linked worktree has its
+// own workspace, so pick the entry that holds cwd and open it when needed.
+function herdrWorktreeWorkspace(cwd: string): string {
+  const listing = resultValue(run("herdr", ["worktree", "list", "--cwd", cwd, "--json"]));
+  const worktrees = Array.isArray(listing.worktrees) ? listing.worktrees as Record<string, unknown>[] : [];
+  const worktree = worktrees
+    .filter((entry) => typeof entry.path === "string" && isInside(resolve(cwd), entry.path))
+    .sort((a, b) => String(b.path).length - String(a.path).length)[0];
+  if (!worktree) throw new Error(`Herdr did not report a worktree that contains ${cwd}`);
+  if (worktree.open_workspace_id) return String(worktree.open_workspace_id);
+
+  const opened = resultValue(run("herdr", ["worktree", "open", "--path", String(worktree.path), "--no-focus"]));
+  const workspace = opened.workspace_id
+    ?? nestedRecord(opened, "workspace")?.workspace_id
+    ?? nestedRecord(opened, "workspace")?.id
+    ?? opened.open_workspace_id;
+  if (!workspace) throw new Error(`Herdr did not report a workspace for worktree ${String(worktree.path)}`);
+  return String(workspace);
+}
+
+// `herdr agent start` can time out on readiness although the agent started.
+function herdrAgentInPane(paneId: string, agent: SpawnAgent): boolean {
+  const result = spawnSync("herdr", ["agent", "get", paneId], { encoding: "utf8" });
+  if (result.status !== 0) return false;
+  try {
+    return nestedRecord(resultValue(result.stdout), "agent")?.agent === agent;
+  } catch {
+    return false;
+  }
+}
+
 function spawnHerdr(agent: SpawnAgent, cwd: string, handoffFile: string, depth: number): { target: string; agentName: string } {
   if (agent === "zot") throw new Error("Herdr agent start does not support zot.");
-  const worktrees = resultValue(run("herdr", ["worktree", "list", "--cwd", cwd, "--json"]));
-  const workspace = nestedRecord(worktrees, "source")?.source_workspace_id;
-  if (!workspace) throw new Error("Herdr did not report a workspace for the current worktree");
+  const workspace = herdrWorktreeWorkspace(cwd);
   const agentName = `agent-${Date.now()}`;
   const tab = resultValue(run("herdr", [
     "tab", "create", "--workspace", String(workspace), "--cwd", cwd,
@@ -116,9 +150,15 @@ function spawnHerdr(agent: SpawnAgent, cwd: string, handoffFile: string, depth: 
   ]));
   const paneId = tab.pane_id ?? tab.root_pane_id ?? nestedRecord(tab, "root_pane")?.pane_id ?? nestedRecord(tab, "pane")?.id;
   if (paneId === undefined) throw new Error("Herdr did not report the new tab's root pane id");
-  run("herdr", [
-    "agent", "start", agentName, "--kind", agent, "--pane", String(paneId), "--", `@${handoffFile}`,
-  ]);
+  try {
+    run("herdr", [
+      "agent", "start", agentName, "--kind", agent, "--pane", String(paneId), "--", `@${handoffFile}`,
+    ]);
+  } catch (error) {
+    // The name may not be applied after a failed start; the pane ID is a valid wait target.
+    if (herdrAgentInPane(String(paneId), agent)) return { target: String(paneId), agentName: String(paneId) };
+    throw error;
+  }
   return { target: String(paneId), agentName };
 }
 
