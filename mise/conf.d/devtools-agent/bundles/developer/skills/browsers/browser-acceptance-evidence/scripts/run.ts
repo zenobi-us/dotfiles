@@ -19,6 +19,10 @@ export type RunResult = { verdict: Verdict; records: Evidence[]; raw: string };
 
 /** Open the session the run drives. Every later command picks it up by name. */
 export async function openSession(session: string): Promise<void> {
+  const env = { NO_UPDATE_NOTIFIER: "1" };
+  const listed = await sh(["playwright-cli", "list"], env);
+  const open = new RegExp(`^- ${session.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}:\\n\\s+- status: open`, "m");
+  if (open.test(listed.out)) return;
   await sh(["playwright-cli", "open", "about:blank"], {
     PLAYWRIGHT_CLI_SESSION: session,
     NO_UPDATE_NOTIFIER: "1",
