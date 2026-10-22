@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#191521">
+<meta name="description" content="Four full-width diagrams explaining worktree ownership, fresh-agent handoffs, commit-bound review gates, and durable workflow records.">
+<title>Worktree workflow — dotfiles</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+:root { --success: #9ccfd8; --error: #f58b92; --fg: var(--foreground); --accent: var(--primary); --surface: var(--card); }
+.workflow-main { width: calc(100% - 32px); max-width: none; padding-bottom: 24px; }
+.workflow-head, .diagram-block { border: 1px solid var(--border); background: var(--background); }
+.workflow-head { padding: 20px; }
+.workflow-head h1 { font-size: 24px; margin: 12px 0; letter-spacing: -.02em; }
+.workflow-head p { max-width: 100ch; }
+.meta-row { display: flex; flex-wrap: wrap; gap: 12px 24px; color: var(--muted); font-size: 11px; margin-top: 16px; }
+.diagram-viewport:focus-visible { outline: 2px solid var(--primary); outline-offset: -4px; }
+.section-links { display: flex; flex-wrap: wrap; border: 1px solid var(--border); border-top: 0; }
+.section-links a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; min-height: 44px; border-right: 1px solid var(--border); text-decoration: none; font-size: 11px; }
+.section-links a:hover { background: var(--card); }
+.diagram-block { margin-top: 16px; scroll-margin-top: 16px; }
+.block-head { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); background: var(--card); }
+.block-title { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.block-head h2 { font-size: 14px; margin: 0; }
+.kind { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }
+figure { margin: 0; padding: 20px; }
+.diagram-viewport { overflow-x: auto; scrollbar-color: var(--primary) var(--background); }
+.diagram-svg { display: block; width: min(100%, 1440px); min-width: 980px; height: auto; margin-inline: auto; }
+.diagram-svg text { fill: var(--foreground); font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 400; }
+.diagram-svg .small { font-size: 11px; fill: var(--muted); }
+.diagram-svg .label { font-size: 10px; fill: var(--muted); letter-spacing: .08em; }
+.diagram-svg .node { fill: var(--card); stroke: var(--border); stroke-width: 1; }
+.diagram-svg .key { stroke: var(--primary); }
+.diagram-svg .key-text { fill: var(--primary); }
+.diagram-svg .edge { fill: none; stroke: var(--primary); stroke-width: 1.3; }
+.diagram-svg .failure { stroke: var(--error); }
+.diagram-svg .failure-text { fill: var(--error); }
+.diagram-svg .success-text { fill: var(--success); }
+.diagram-svg .lane { stroke: var(--border); stroke-dasharray: 4 5; }
+figcaption { color: var(--muted); font-size: 11px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); }
+.pan-hint { color: var(--primary); font-size: 11px; margin: 0 0 12px; }
+.source-note { padding: 16px 20px; margin-top: 16px; border: 1px solid var(--border); color: var(--muted); font-size: 11px; }
+.source-note p { max-width: 110ch; }
+.workflow-footer { padding: 16px 0 0; }
+@media (min-width: 1600px) { .diagram-svg { width: min(100%, 1600px); } }
+@media (max-width: 760px) {
+  .workflow-main { width: calc(100% - 24px); }
+  .workflow-head, .block-head, figure, .source-note { padding: 16px; }
+  .block-head { align-items: flex-start; }
+  .block-title { gap: 8px; }
+  .kind { max-width: 110px; text-align: right; }
+}
+@media print { .header, .section-links, .pan-hint { display: none; } .diagram-svg { min-width: 0; } .diagram-viewport { overflow: visible; } .diagram-block { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#workflow">Skip to diagrams</a>
+<header class="header"><a class="brand" href="./"><span aria-hidden="true">[ df ]</span> dotfiles</a><nav aria-label="Workflow navigation"><a href="#workflow" aria-current="page">Worktree workflow</a><a href="artifacts/worktree-flow-gallery.html">Design atlas ↗</a></nav><a class="repository" href="https://github.com/zenobi-us/dotfiles">GitHub ↗</a></header>
+<main class="workflow-main" id="workflow" tabindex="-1">
+  <div class="workflow-head"><p class="eyebrow">Workstation field guide / worktree workflow</p><h1>Worktree workflow</h1><p>Who coordinates the work, how sessions hand off, when a review is valid, and which records prove completion.</p><div class="meta-row"><span>04 diagrams</span><span>Ownership → handoffs → review gates → records</span><span>Full-width maps · scroll locally on narrow screens</span></div></div>
+  <nav class="section-links" aria-label="Jump to a diagram"><a href="#ownership">01 Ownership ↓</a><a href="#handoff">02 Handoffs ↓</a><a href="#lifecycle">03 Review gates ↓</a><a href="#records">04 Records ↓</a></nav>
+  <div id="diagrams"></div>
+  <noscript><p class="source-note">Enable JavaScript to view the diagrams. The workflow covers separate ownership of storage, sessions, and Git; fresh implementation and reviewer sessions; review approval bound to a commit; and authoritative append-only receipts in events/.</p></noscript>
+  <aside class="source-note" aria-label="Diagram sources"><p>Based on the <a href="artifacts/worktree-flow-gallery.html?v=03">Worktree Flow Atlas</a>. These maps describe responsibilities and record boundaries; they do not execute a workflow or report its current state. Completion signals and pane output are not durable evidence.</p></aside>
+  <footer class="workflow-footer"><span>zenobi-us / dotfiles</span><a href="./">← Workstation guide</a><a href="#workflow">Back to top ↑</a></footer>
+</main>
+<script>
+const svg = (id, title, description, height, content) => `<svg class="diagram-svg" viewBox="0 0 1120 ${height}" role="img" aria-labelledby="${id}-title ${id}-desc" xmlns="http://www.w3.org/2000/svg"><title id="${id}-title">${title}</title><desc id="${id}-desc">${description}</desc><defs><marker id="${id}-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="var(--accent)"/></marker><marker id="${id}-error" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--error)"/></marker></defs>${content}</svg>`;
+const node = (x, y, w, title, subtitle = '', key = false) => `<g><rect class="node ${key ? 'key' : ''}" x="${x}" y="${y}" width="${w}" height="64"/><text class="${key ? 'key-text' : ''}" x="${x + 16}" y="${y + 26}">${title}</text>${subtitle ? `<text class="small" x="${x + 16}" y="${y + 47}">${subtitle}</text>` : ''}</g>`;
+const edge = (id, d, dashed = false, failure = false) => `<path class="edge ${failure ? 'failure' : ''}" d="${d}" ${dashed ? 'stroke-dasharray="5 5"' : ''} marker-end="url(#${id}-${failure ? 'error' : 'arrow'})"/>`;
+const text = (x, y, value, cls = 'small', anchor = 'start') => `<text class="${cls}" x="${x}" y="${y}" text-anchor="${anchor}">${value}</text>`;
+function ownership() {
+  const id = 'owner';
+  return svg(id, 'Who owns what', 'You invoke the worktree playbook. It coordinates shared-context for paths and records, muxer-subagents for fresh sessions, Worktrunk for Git worktrees, and the ticket skill for the issue reference.', 330,
+    edge(id, 'M160 163H220') + edge(id, 'M440 163H490V45H570') + edge(id, 'M490 125H570') + edge(id, 'M490 205H570') + edge(id, 'M490 163V285H570') +
+    edge(id, 'M790 45H900') + edge(id, 'M790 125H900') + edge(id, 'M790 205H900') +
+    node(16, 131, 144, 'You', 'Select a phase') + node(220, 131, 220, 'Worktree playbook', 'Coordinate the phase', true) +
+    node(570, 13, 220, 'shared-context', 'Resolve storage routes') + node(570, 93, 220, 'muxer-subagents', 'Create fresh sessions') + node(570, 173, 220, 'Worktrunk', 'Own Git lifecycle') + node(570, 253, 220, 'Ticket skill', 'Resolve issue reference') +
+    node(900, 13, 204, 'Records', 'Resolved locations') + node(900, 93, 204, 'New agent', 'Independent context') + node(900, 173, 204, 'Git worktree', 'Source workspace') +
+    text(490, 321, 'Coordination is not ownership of storage, sessions, or Git.', 'small', 'middle'));
+}
+function handoff() {
+  const id = 'handoff';
+  const lanes = [120, 520, 990];
+  let body = lanes.map(x => `<path class="lane" d="M${x} 50V388"/>`).join('');
+  body += text(120, 26, 'YOU', 'label', 'middle') + text(520, 26, 'WORKTREE PLAYBOOK', 'label', 'middle') + text(990, 26, 'FRESH AGENT SESSION', 'label', 'middle');
+  const rows = [[120,520,84,'start(ticket)'],[520,990,140,'Implementation handoff'],[990,520,196,'Completion signal + durable receipt'],[120,520,252,'review(ticket)'],[520,990,308,'Different reviewer · same source worktree'],[990,520,364,'Verdict for the frozen commit']];
+  for (const [a,b,y,label] of rows) body += edge(id, `M${a} ${y}H${b}`) + text((a+b)/2, y-12, label, 'small', 'middle');
+  body += text(120, 420, '01 / Request', 'small', 'middle') + text(520, 420, '02 / Verify receipts after each signal', 'small', 'middle') + text(990, 420, '03 / Never reuse the implementer', 'small', 'middle');
+  return svg(id, 'Start and review handoffs', 'Start launches an implementation agent. Review launches a different reviewer session in the same source worktree. A signal is transient; the parent verifies persisted receipts after each completion.', 442, body);
+}
+function lifecycle() {
+  const id = 'life';
+  return svg(id, 'Review and finish gates', 'Implementation becomes reviewable and is reviewed. FAILURE leads to a fix, a new commit, and review again. SUCCESS approves only the frozen commit. An approved source can finish directly or optionally submit a pull request before finishing. A new commit invalidates the approval.', 400,
+    edge(id, 'M220 116H290') + edge(id, 'M490 116H560') + edge(id, 'M760 116H840') +
+    edge(id, 'M660 148V239', false, true) + edge(id, 'M560 271H390V148', true) +
+    edge(id, 'M1040 116H1090V345H760') + edge(id, 'M940 148V239') + edge(id, 'M940 303V345H760') +
+    edge(id, 'M940 84V24H390V84', true) +
+    node(20, 84, 200, 'Implementing', 'Fresh implementation') + node(290, 84, 200, 'Reviewable', 'Freeze source commit') + node(560, 84, 200, 'Review', 'Independent reviewer') + node(840, 84, 200, 'Approved', 'Commit-bound verdict', true) +
+    node(560, 239, 200, 'Needs fix', 'Fix → new commit') + node(840, 239, 200, 'Submitted', 'Optional pull request') + node(560, 313, 200, 'Finished', 'Finish directly or after PR') +
+    text(800, 101, 'SUCCESS', 'success-text', 'middle') + text(676, 196, 'FAILURE', 'failure-text') + text(460, 229, 'Review again', 'small', 'middle') + text(956, 195, 'Submit', 'small') + text(1078, 229, 'Finish', 'small', 'end') + text(960, 330, 'Finish', 'small') + text(660, 15, 'New commit invalidates the previous verdict', 'small', 'middle'));
+}
+function records() {
+  const id = 'records';
+  return svg(id, 'Where records go', 'Phase-start, phase-result, and phase-complete receipts populate events, the append-only authoritative log. Reviews and snapshots are immutable artifacts; manifests and projections are replaceable views. Evidence paths are resolved separately.', 330,
+    edge(id, 'M230 48H290V164H360') + edge(id, 'M230 164H360') + edge(id, 'M230 280H290V164') +
+    edge(id, 'M610 164H680V70H770') + edge(id, 'M680 164V240H770') + edge(id, 'M485 196V259', true) +
+    node(20, 16, 210, 'Phase-start', 'Before the child runs') + node(20, 132, 210, 'Phase-result', 'Persist the outcome') + node(20, 248, 210, 'Phase-complete', 'Parent verification') +
+    node(360, 132, 250, 'events/ · append-only', 'Authoritative phase receipts', true) +
+    node(770, 38, 330, 'Reviews + snapshots', 'Immutable outputs / references') + node(770, 208, 330, 'Manifest + projections', 'Replaceable current views') +
+    node(360, 259, 250, 'Evidence reference', 'Resolve its route separately') + text(690, 58, 'Immutable', 'small') + text(690, 228, 'Replaceable', 'small'));
+}
+const diagrams = [
+  { id:'ownership', number:'01', title:'Who owns what', kind:'Ownership map', render:ownership, caption:'The playbook coordinates; shared-context, muxer-subagents, Worktrunk, and the ticket skill retain their own responsibilities.' },
+  { id:'handoff', number:'02', title:'Start and review handoffs', kind:'Sequence', render:handoff, caption:'The implementation and review use separate agent sessions in the same source worktree. The parent checks receipts after completion signals.' },
+  { id:'lifecycle', number:'03', title:'Review and finish gates', kind:'State machine', render:lifecycle, caption:'FAILURE requires a fix and another review. SUCCESS applies to the reviewed commit. Submission is optional before finish; a new commit invalidates the verdict.' },
+  { id:'records', number:'04', title:'Where records go', kind:'Provenance graph', render:records, caption:'Append-only events are authoritative. Reviews and snapshots remain immutable; manifests and projections are replaceable. Evidence uses its separately resolved route.' }
+];
+document.getElementById('diagrams').innerHTML = diagrams.map(d => `
+  <section class="diagram-block" id="${d.id}" aria-labelledby="title-${d.id}">
+    <div class="block-head"><div class="block-title"><span class="number">${d.number}</span><h2 id="title-${d.id}">${d.title}</h2></div><span class="kind">${d.kind}</span></div>
+    <figure><p class="pan-hint" hidden>Scroll this diagram sideways →</p><div class="diagram-viewport" tabindex="0" role="region" aria-label="${d.title}; scroll horizontally on narrow screens">${d.render()}</div><figcaption>${d.caption}</figcaption></figure>
+  </section>`).join('');
+function updateOverflow() {
+  document.querySelectorAll('.diagram-viewport').forEach(viewport => { viewport.previousElementSibling.hidden = viewport.scrollWidth <= viewport.clientWidth + 1; });
+}
+function revealHash() {
+  const block = document.getElementById(location.hash.slice(1));
+  if (!block?.classList.contains('diagram-block')) return;
+  requestAnimationFrame(() => block.scrollIntoView());
+}
+window.addEventListener('resize', updateOverflow);
+window.addEventListener('hashchange', revealHash);
+updateOverflow(); revealHash();
+document.fonts.ready.then(updateOverflow);
+</script>
+</body>
+</html>
