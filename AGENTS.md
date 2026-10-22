@@ -4,10 +4,6 @@ Working with dotfiles and machine bootstrap
 
 - Use the mise skill for mise bootstrap questions.
 
-Working with Pi-Coding-Agent
-
-- Use the `pi-mono` skill.
-
 Reading or converting documents
 
 - Use the `docling` skill to read, parse, extract, or convert PDF, XLS, XLSX, DOC, and DOCX files.

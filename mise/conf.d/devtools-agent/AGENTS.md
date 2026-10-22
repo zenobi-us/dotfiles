@@ -47,6 +47,13 @@ Use skills by circumstance:
 - If you cannot explain why something exists, do not change it.
 - Don't automatically create branches for work yourself if the user didn't ask for it.
 
+## Publishing
+
+- Share and publish artifacts only to shared context: reports, plans, evidence, test steps and pages.
+- The `shared-context` hook context names the project root for the session.
+- Always prefer to publish evidence, context, reports with the shared-context skill. 
+- To share a link, give the private GitHub Pages URL of the file in shared context, after the commit that adds it is pushed.
+
 ## Scripts
 
 - Write every script as TypeScript run by bun. Use this shebang, exactly:
