@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191521">
+  <meta name="description" content="A field guide to zenobi-us/dotfiles: machine setup, mise modules, agent tools, and interactive design studies.">
+  <title>dotfiles — a workstation field guide</title>
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to documentation</a>
+  <header class="header">
+    <a class="brand" href="#top"><span aria-hidden="true">[ df ]</span> dotfiles</a>
+    <nav aria-label="Documentation sections">
+      <a href="#start">Get started</a><a href="#guides">Guides</a><a href="#reference">Reference</a><a href="#artifacts">Artifacts</a>
+    </nav>
+    <a class="repository" href="https://github.com/zenobi-us/dotfiles">GitHub <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="landing" aria-labelledby="title">
+      <div class="landing-bar"><span>Workstation configuration / field guide</span><span class="badge">Managed with mise</span></div>
+      <div class="landing-body">
+        <div class="introduction">
+          <p class="eyebrow">A personal development environment</p>
+          <h1 id="title">dotfiles</h1>
+          <p class="lead">One checkout. Shells, tools, and agent workflows.</p>
+          <p>Cross-platform configuration for Zsh on Linux and macOS, PowerShell on Windows, and development tools managed by mise. Follow the setup, find a module, or explore the design studies.</p>
+          <div class="actions"><a class="button primary" href="#start">Start the setup <span aria-hidden="true">↓</span></a><a class="button" href="#artifacts">Browse artifacts</a></div>
+          <p class="muted">Personal configuration, not a separate distribution. Review the bootstrap plan before applying changes to your machine.</p>
+        </div>
+        <nav class="index" aria-label="Choose your documentation path">
+          <p class="eyebrow">Find your next step</p>
+          <a href="#start"><span class="number">01</span><span><strong>Get started</strong><span>Install mise and inspect the bootstrap.</span></span><span aria-hidden="true">↗</span></a>
+          <a href="#guides"><span class="number">02</span><span><strong>How-to guides</strong><span>Apply selected parts and refresh your setup.</span></span><span aria-hidden="true">↗</span></a>
+          <a href="#reference"><span class="number">03</span><span><strong>Reference</strong><span>Find configuration, commands, and design rules.</span></span><span aria-hidden="true">↗</span></a>
+          <a href="#artifacts"><span class="number">04</span><span><strong>Artifacts</strong><span>Open interactive workflow design studies.</span></span><span aria-hidden="true">↗</span></a>
+        </nav>
+      </div>
+      <div class="landing-bar bottom"><span>Linux · macOS · Windows</span><a href="https://github.com/zenobi-us/dotfiles/blob/master/README.md">Read the repository guide <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <section class="section" id="start" aria-labelledby="start-title">
+      <div class="section-heading"><span class="number">01</span><div><p class="eyebrow">Learning-oriented</p><h2 id="start-title">Get started</h2><p>Inspect first. Apply when the plan matches your machine.</p></div></div>
+      <div class="content">
+        <article><h3>Install mise</h3><p>On Linux or macOS, install mise, open a new shell, and check its version. Review the installer before running it.</p><pre><code>curl https://mise.run | sh
+mise --version</code></pre><p>On Windows, use <code>winget install --exact --id mise.run</code>. See the <a href="https://github.com/zenobi-us/dotfiles/blob/master/README.md#windows">Windows setup guide</a> for required features and environment configuration.</p></article>
+        <article><h3>Inspect the configuration</h3><p>Clone to the stable configuration path. These commands inspect the plan without applying it.</p><pre><code>git clone https://github.com/zenobi-us/dotfiles.git \
+  "$HOME/.local/share/dotfiles"
+cd "$HOME/.local/share/dotfiles"
+mise trust
+mise bootstrap --dry-run</code></pre><p>Use an existing checkout if that path is already present. Bootstrap can install packages and replace deployed configuration links; keep backups of your current setup.</p></article>
+        <article><h3>Apply the reviewed plan</h3><pre><code>mise bootstrap --yes</code></pre><p>On Linux and macOS, open a new Zsh process after shell files change: <code>exec zsh</code>. The managed <code>.zshenv</code> sets <code>MISE_GLOBAL_CONFIG_ROOT</code> for later bootstrap runs.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="guides" aria-labelledby="guides-title">
+      <div class="section-heading"><span class="number">02</span><div><p class="eyebrow">Task-oriented</p><h2 id="guides-title">How-to guides</h2><p>Change only the part you need.</p></div></div>
+      <div class="content">
+        <article><h3>Refresh configuration links</h3><p>Apply dotfiles without reinstalling every tool.</p><pre><code>mise bootstrap --only dotfiles --yes</code></pre></article>
+        <article><h3>Install tools or refresh agent setup</h3><pre><code>mise bootstrap --only tools --yes
+mise run bootstrap-agent</code></pre></article>
+        <article><h3>Check what is missing</h3><pre><code>mise bootstrap status
+mise bootstrap status --missing
+mise bootstrap plan</code></pre></article>
+        <article><h3>View a local Markdown file</h3><pre><code>markdown-view ./path/to/file.md</code></pre><p>The command prints a local browser URL. Frontmatter plugins execute with your permissions; view only trusted files.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="reference" aria-labelledby="reference-title">
+      <div class="section-heading"><span class="number">03</span><div><p class="eyebrow">Information-oriented</p><h2 id="reference-title">Reference</h2><p>Go from the guide to the source.</p></div></div>
+      <div class="content reference-list">
+        <a href="https://github.com/zenobi-us/dotfiles/blob/master/README.md"><strong>Repository guide <span aria-hidden="true">↗</span></strong><span>Installation, platform setup, and common commands.</span></a>
+        <a href="https://github.com/zenobi-us/dotfiles/blob/master/mise.toml"><strong>Root configuration <span aria-hidden="true">↗</span></strong><span>The repository's mise entry point.</span></a>
+        <a href="https://github.com/zenobi-us/dotfiles/tree/master/mise/conf.d"><strong>Configuration modules <span aria-hidden="true">↗</span></strong><span>Shells, development tools, assets, and agent bundles.</span></a>
+        <a href="https://github.com/zenobi-us/dotfiles/blob/master/DESIGN.md"><strong>Design reference <span aria-hidden="true">↗</span></strong><span>The copied finance design contract: palette, typography, and compact layouts.</span></a>
+        <a href="https://github.com/zenobi-us/dotfiles/blob/master/UI_FOUNDATION.md"><strong>UI foundation <span aria-hidden="true">↗</span></strong><span>The copied finance UI reference, including component and interaction rules.</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="artifacts" aria-labelledby="artifacts-title">
+      <div class="section-heading"><span class="number">04</span><div><p class="eyebrow">Interactive studies</p><h2 id="artifacts-title">Artifacts</h2><p>Explore proposals separately from the live tools.</p></div></div>
+      <div class="content"><a class="artifact" href="artifacts/worktree-flow-gallery.html"><span class="eyebrow">Workflow / 20 report directions</span><h3>Worktree Flow Atlas <span aria-hidden="true">↗</span></h3><p>Compare visual treatments for worktree workflow reports. Open the gallery to inspect each direction.</p><span class="artifact-footer">Interactive HTML study <span aria-hidden="true">→</span></span></a></div>
+    </section>
+    <footer><span>zenobi-us / dotfiles</span><a href="#top">Back to top ↑</a><a href="https://github.com/zenobi-us/dotfiles">Browse the source ↗</a></footer>
+  </main>
+</body>
+</html>
