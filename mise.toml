@@ -121,6 +121,7 @@ starship = "latest"
 fnox = { version = "1.39.0", workflow = "release.yml" }
 "github:smol-machines/smolvm" = "latest"
 "github:ktreharrison/tkmd" = "latest"
+"npm:@termdraw/app" = "latest"
 
 [tool_alias]
 pi = "github:earendil-works/pi"
