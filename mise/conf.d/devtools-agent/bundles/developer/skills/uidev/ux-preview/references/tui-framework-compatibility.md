@@ -17,6 +17,8 @@ Record:
 
 If the user does not provide the framework, ask for it. Do not use a generic TUI model when the framework changes the decision.
 
+Record the preview renderer and version separately from the production framework. Gridland is the default browser renderer; its capabilities are not evidence for another framework or host. Read `tui-gridland.md` for the renderer procedure and independent verification fields.
+
 ## Capability profile
 
 Create a capability profile before generating options:
@@ -87,6 +89,8 @@ The report MUST remain HTML. It MUST render a browser simulation of the logical 
 - `Excluded`: outside the integration scope
 
 A browser simulation does not prove terminal font metrics, host keymap behavior, redraw performance, or target-runtime lifecycle behavior.
+
+When the production framework is Gridland, reuse the component tree for terminal verification where possible. A browser run alone is not terminal-runtime verification. For other frameworks, treat Gridland code as a prototype, not a production implementation.
 
 ## Verification
 

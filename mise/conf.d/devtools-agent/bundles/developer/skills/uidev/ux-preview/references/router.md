@@ -18,7 +18,7 @@ Choose one primary scenario before generating the report. A secondary scenario m
 - If the answer changes by actor, goal, environment, or constraint, use **use case**.
 - If the main risk is a transition, async state, validation, cancellation, or recovery, use **stateful flow**.
 - If viewport, input method, localization, or content stress is the main risk, use **responsive**.
-- If the surface is a terminal UI, CLI dashboard, interactive shell screen, or ANSI-rendered display, use **tui-display**. Read `tui-framework-compatibility.md` first. Add responsive for terminal-size changes and stateful-flow for redraw or recovery as secondary lenses.
+- If the surface is a terminal UI, CLI dashboard, interactive shell screen, or ANSI-rendered display, use **tui-display**. Read `tui-framework-compatibility.md` first, then `tui-gridland.md` for the browser renderer. Add responsive for terminal-size changes and stateful-flow for redraw or recovery as secondary lenses.
 - If several apply, choose the one that contains the decision risk as primary. Add the others as constrained lenses, not as a new undirected mega-preview.
 
 ## Shared contract

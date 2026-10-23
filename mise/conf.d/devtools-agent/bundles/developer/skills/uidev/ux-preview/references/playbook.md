@@ -10,6 +10,7 @@ This playbook is the shared execution reference routed by `ux-preview/SKILL.md`.
 - `scenario-responsive.md` — compare viewport and input constraints
 - `scenario-tui-display.md` — compare terminal layouts, capabilities, and keyboard interaction
 - `tui-framework-compatibility.md` — constrain TUI options to a target framework and integration boundary
+- `tui-gridland.md` — render and verify TUI options in the browser with Gridland
 - `scenario-report.md` — shared report and verification contract
 
 Read the selected scenario reference before generating the report. Use this playbook for shared intake, composition, poster, verification, and serving rules.
@@ -139,7 +140,7 @@ Compose the relevant UI skills rather than rewriting their rules:
 - Apply a restrained design system from `developer:basic-design-principles` when the product already has one.
 - Use realistic text lengths and the requested responsive layouts. Test the longest label and the narrowest viewport in the brief.
 - Keep animations short and optional. A preview should make comparison easier, not hide transitions behind spectacle.
-- For `tui-display`, keep the report in HTML and render a labelled browser simulation of the logical terminal screen. Use a DOM grid or row renderer by default. Use canvas only for exact glyph metrics or dense redraw, with a parallel semantic state representation.
+- For `tui-display`, follow `tui-gridland.md`. Keep the report shell in semantic HTML and use Gridland for the terminal option panels.
 
 ## 8. Verification
 
@@ -150,12 +151,17 @@ Verify the artifact in layers:
 3. **Interaction**: click every report control and walk the declared prototype states. Use Playwright or surf when browser evidence is requested or the flow is complex.
 4. **Honesty**: remove claims that are not demonstrated. Distinguish a prototype observation from a production measurement.
 5. **TUI compatibility**: validate every option against the target framework and integration boundary. Treat unknown capabilities as unavailable. Label simulated, framework-compatible, runtime-verified, unverified, and excluded behavior.
+6. **TUI browser rendering**: complete the browser checks in `tui-gridland.md` and record browser verification independently from target compatibility.
 
 Capture screenshots only when they help a handoff or comparison. If screenshots are included, caption the state and viewport and keep them tied to the decision criteria.
 
 ## 9. Serving and handoff
 
-Serve the directory containing the final report, not a parent directory with unrelated files. Use a fixed port with switching disabled:
+Serve the directory containing the final report, not a parent directory with unrelated files.
+
+For a bundled app, build first and serve its output directory. Bundle runtime assets locally; keep source files, exact dependency versions, and the lockfile for reproduction. A report can be one HTML file or a directory of HTML and assets.
+
+Use a fixed port with switching disabled:
 
 ```sh
 serve -l 4273 --no-port-switching ./report

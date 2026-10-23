@@ -8,7 +8,7 @@ Use when the surface renders in a terminal or uses terminal-first interaction. K
 scenario: tui-display
 option_count: 3
 framework:
-  name: pi-tui | zot | opentui | ratatui | custom
+  name: gridland | pi-tui | zot | opentui | ratatui | custom
   version: detected-or-requested
   host: ""
   integration: ""
@@ -17,10 +17,10 @@ input_modes: [keyboard]
 color_modes: [truecolor, ansi16, monochrome]
 character_sets: [unicode, ascii]
 states: [entry, focused, loading, error, recovery]
-renderer: dom-grid | canvas | hybrid
+renderer: gridland
 ```
 
-Read `tui-framework-compatibility.md` before generating options.
+Read `tui-framework-compatibility.md` before generating options. Then read `tui-gridland.md` for the browser rendering procedure.
 
 ## Rules
 
@@ -48,7 +48,7 @@ The report MUST remain HTML. Use a logical screen model with these fields:
 - key bindings
 - current state and transition result
 
-Use a DOM grid or row-based renderer by default. Use canvas only when exact glyph metrics or dense redraw make it necessary. If canvas is used, provide a parallel semantic representation for the current state.
+Use Gridland by default. Follow `tui-gridland.md` for setup, terminal sizing, focus transfer, readable state output, and renderer limitations.
 
 The browser preview is a simulation. It MUST NOT claim that a design runs in the target framework unless target-runtime verification was performed.
 
@@ -84,7 +84,7 @@ Use synchronized option panels with controls for:
 - content length
 - current state
 
-Include a compatibility panel with the target framework, integration scope, capability evidence, unsupported features, and unverified behavior.
+Include a compatibility panel with the target framework, integration scope, capability evidence, unsupported features, and unverified behavior. Record the preview renderer and version separately, using the evidence fields in `tui-gridland.md`.
 
 Use this status vocabulary:
 

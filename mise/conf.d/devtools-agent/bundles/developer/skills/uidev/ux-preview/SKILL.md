@@ -34,7 +34,7 @@ If the user gives a number but no variation parameters, use a useful baseline ma
 
 1. Read `references/router.md` and choose one primary scenario: `style`, `detail`, `use-case`, `stateful-flow`, `responsive`, or `tui-display`.
 2. Read the selected scenario reference before generating the report. Use a secondary scenario only as a constrained lens around a distinct risk.
-3. For `tui-display`, read `references/tui-framework-compatibility.md` before generating options. Treat unknown framework capabilities as unavailable.
+3. For `tui-display`, read `references/tui-framework-compatibility.md` before generating options, then read `references/tui-gridland.md` for browser rendering. Treat unknown target-framework capabilities as unavailable.
 4. Load and apply `developer:ui-design` for accessibility, hierarchy, forms, keyboard behavior, responsive constraints, and motion restraint.
 5. Load `developer:frontend-design` when the preview needs a distinctive, production-quality visual composition.
 6. Load `developer:basic-design-principles` when the surface needs a disciplined product design system.
@@ -52,7 +52,7 @@ Do not duplicate those skills' full guidance here. Use this file to select and c
 | Explore a risky workflow | Build the smallest clickable multistep state model that exposes the risk |
 | Explain meaningful relationships | Use poster for a real flow/state/layout map, never decorative graphs |
 | Share the result | Start `serve` with an explicit fixed port and return URL + PID |
-| Preview a terminal UI | Keep the report as HTML and render a labelled browser simulation of the target terminal |
+| Preview a terminal UI | Use Gridland inside an HTML report; follow `references/tui-gridland.md` |
 
 ## Example request
 
@@ -62,7 +62,7 @@ Expected behavior: render exactly four options, explain which states each option
 
 ## Required output
 
-Produce a self-contained report HTML that:
+Produce a self-contained HTML report, either one file or a directory with locally bundled assets, that:
 
 - shows every requested option in one view or through obvious tabs
 - labels options consistently and explains the meaningful difference
@@ -81,6 +81,7 @@ For a multistep scenario, include a clickable prototype with an explicit state m
 Always:
 
 1. Write the report to a temporary or requested output directory.
+   For a bundled preview, build the app first and serve only its output directory. Keep source files and the dependency lockfile for reproduction.
 2. Find an available local port.
 3. Start a static server with port switching disabled, for example:
    `serve -l 4273 --no-port-switching <report-directory>`
@@ -110,5 +111,6 @@ Before returning the URL, verify:
 - the recommendation is justified by the stated decision criteria
 - for `tui-display`, every option's required capability has evidence or is marked unverified
 - for `tui-display`, the report distinguishes browser simulation from target-runtime verification
+- for `tui-display`, the Gridland browser checks in `references/tui-gridland.md` pass and the renderer version is recorded
 
 For the shared intake, option-generation rules, prototype state checklist, poster decision gate, and report contract, read `references/playbook.md` and `references/scenario-report.md`.
