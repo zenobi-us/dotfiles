@@ -1,10 +1,18 @@
 import { promises as fs, type Dirent } from "node:fs";
 import path from "node:path";
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, ExtensionCommandContext } from "@earendil-works/pi-coding-agent";
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type AutocompleteItem } from "@earendil-works/pi-tui";
 import { buildSharedContextReport, initializeContextForCwd } from "../../skills/shared-context/scripts/shared-context/api";
 import { renderSharedContext, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
+import { GraphExplorer } from "./explorer";
+import type { ExplorerNavigation, ExplorerResult } from "./explorer";
+import { buildSessionPrompt, launchExplorerSession } from "./actions";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+import type { Exec, ExplorerSessionRequest, SharedAgentContext } from "./model";
+import { safeTerminalText } from "./terminal-text";
+import { SharedContextModal } from "./modal";
+import { ContextOnboarding, readContextReadiness } from "./onboarding";
 
 type Entry = { name: string; path: string; directory: boolean };
 type AlignmentSkill = { name: string; description: string; location: string };
@@ -79,19 +87,15 @@ function renderAlignmentSkill(skill: AlignmentSkill): string {
   ].join("\n");
 }
 
-function mergeAlignmentSkills(systemPrompt: string[], skills: AlignmentSkill[]): string[] {
+function mergeAlignmentSkills(systemPrompt: string, skills: AlignmentSkill[]): string {
   if (skills.length === 0) return systemPrompt;
 
   const blockPattern = /<skills>\s*<available_skills>([\s\S]*?)<\/available_skills>\s*<\/skills>/;
-  const blockIndex = systemPrompt.findIndex(block => blockPattern.test(block));
-  if (blockIndex === -1) {
+  const match = blockPattern.exec(systemPrompt);
+  if (!match) {
     const entries = skills.map(renderAlignmentSkill).join("\n");
-    return [...systemPrompt, `<skills>\n<available_skills>\n${entries}\n</available_skills>\n</skills>`];
+    return `${systemPrompt}\n\n<skills>\n<available_skills>\n${entries}\n</available_skills>\n</skills>`;
   }
-
-  const block = systemPrompt[blockIndex];
-  const match = blockPattern.exec(block);
-  if (!match) return systemPrompt;
 
   const existingLocations = new Set(
     [...match[1].matchAll(/<location>([\s\S]*?)<\/location>/g)].map(location => location[1]),
@@ -101,10 +105,9 @@ function mergeAlignmentSkills(systemPrompt: string[], skills: AlignmentSkill[]):
     .map(renderAlignmentSkill);
   if (additions.length === 0) return systemPrompt;
 
-  const updated = block.replace(blockPattern, (_whole, contents: string) =>
+  return systemPrompt.replace(blockPattern, (_whole, contents: string) =>
     `<skills>\n<available_skills>${contents}${contents.trim() ? "\n" : ""}${additions.join("\n")}\n</available_skills>\n</skills>`,
   );
-  return systemPrompt.map((part, index) => index === blockIndex ? updated : part);
 }
 
 async function readEntries(directory: string): Promise<Entry[]> {
@@ -138,6 +141,7 @@ class ContextBrowser {
     private cwd: string,
     private exec: (command: string, args: string[]) => Promise<{ stdout: string; code: number }>,
     private insertText: (text: string) => void,
+    private height: () => number,
   ) {
     this.levels = [root];
   }
@@ -199,7 +203,8 @@ class ContextBrowser {
       return;
     }
     if ((matchesKey(data, "up") || matchesKey(data, "down")) && this.activeColumn >= this.levels.length) {
-      const maxOffset = Math.max(0, this.preview.split(/\r?\n/).length - 16);
+      const bodyHeight = Math.max(1, Math.min(16, this.height() - 8));
+      const maxOffset = Math.max(0, this.preview.split(/\r?\n/).length - bodyHeight);
       this.previewOffset = Math.max(0, Math.min(maxOffset, this.previewOffset + (matchesKey(data, "up") ? -1 : 1)));
       this.requestRender();
       return;
@@ -209,8 +214,9 @@ class ContextBrowser {
       const delta = matchesKey(data, "up") ? -1 : 1;
       this.cursors[this.activeColumn] = Math.max(0, Math.min(list.length - 1, (this.cursors[this.activeColumn] ?? 0) + delta));
       const cursor = this.cursors[this.activeColumn];
+      const bodyHeight = Math.max(1, Math.min(16, this.height() - 8));
       if (cursor < this.offsets[this.activeColumn]) this.offsets[this.activeColumn] = cursor;
-      if (cursor >= this.offsets[this.activeColumn] + 16) this.offsets[this.activeColumn] = cursor - 15;
+      if (cursor >= this.offsets[this.activeColumn] + bodyHeight) this.offsets[this.activeColumn] = cursor - bodyHeight + 1;
       this.levels = this.levels.slice(0, this.activeColumn + 1);
       this.entries = this.entries.slice(0, this.activeColumn + 1);
       this.cursors = this.cursors.slice(0, this.activeColumn + 1);
@@ -269,7 +275,7 @@ class ContextBrowser {
 
   render(width: number): string[] {
     const th = this.theme;
-    const boxWidth = Math.max(28, width - 2);
+    const boxWidth = Math.max(4, width);
     const inner = boxWidth - 2;
     const visibleLevels = this.levels.length;
     const previewWidth = Math.max(12, Math.floor(inner * 0.38));
@@ -279,7 +285,7 @@ class ContextBrowser {
       return th.fg("border", "│") + clipped + " ".repeat(Math.max(0, inner - visibleWidth(clipped))) + th.fg("border", "│");
     };
     const paneCount = visibleLevels + 1;
-    const bodyHeight = 16;
+    const bodyHeight = Math.max(1, Math.min(16, this.height() - 8));
     const lines: string[] = [];
     const clip = (text: string, size: number) => truncateToWidth(text, Math.max(1, size), "…", true);
     const border = th.fg("border", "│");
@@ -323,6 +329,76 @@ class ContextBrowser {
   }
 }
 
+async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandContext, context: SharedAgentContext, exec: Exec, initialTab: "tracker" | "files" = "tracker"): Promise<void> {
+  let navigation: ExplorerNavigation | undefined;
+  while (true) {
+    const result = await ctx.ui.custom<ExplorerResult>((tui, theme, _keybindings, done) => {
+      const height = () => Math.max(5, Math.floor(tui.terminal.rows * 0.9) - 3);
+      let modal: SharedContextModal;
+      const component = new GraphExplorer({
+        context, exec, theme, navigation,
+        done: result => {
+          if (result?.kind === "files") modal.showFiles();
+          else done(result);
+        },
+        requestRender: () => tui.requestRender(),
+        height,
+        commands: () => pi.getCommands(),
+      });
+      const files = new ContextBrowser(context.root, theme, () => done(undefined), () => tui.requestRender(), ctx.cwd, exec, text => ctx.ui.pasteToEditor(text), height);
+      modal = new SharedContextModal(context, theme, component, files, () => tui.requestRender(), initialTab);
+      void component.load();
+      void files.load().catch(error => {
+        ctx.ui.notify(safeTerminalText(`Could not browse shared files: ${error instanceof Error ? error.message : String(error)}`), "error");
+      });
+      return {
+        render: (width: number) => modal.render(width),
+        handleInput: (data: string) => { void modal.handleInput(data); },
+        invalidate: () => {},
+        dispose: () => component.dispose(),
+      };
+    }, { overlay: true, overlayOptions: { anchor: "center", width: "95%", maxHeight: "95%" } });
+    if (!result) return;
+    navigation = result.navigation;
+    if (result.kind === "files") continue;
+    let request: ExplorerSessionRequest = result.request;
+    const prompt = await ctx.ui.input(
+      request.action === "ask-matt" ? "Ask Matt: what should this chat help with?" : "Additional prompt (optional)",
+      "The next chat will receive the selected record and durable receipt references.",
+    );
+    if (prompt === undefined) continue;
+    if (request.action === "ask-matt" && !prompt.trim()) {
+      ctx.ui.notify("Add a prompt before opening an ask-matt chat.", "warning");
+      continue;
+    }
+    request = { ...request, prompt: prompt.trim() };
+    try {
+      const snapshot = await loadExplorerSnapshot(context, exec);
+      if (request.target.kind === "ticket") {
+        const previous = request.target.ticket;
+        const ticket = snapshot.tickets.find(ticket => ticket.id === previous.id && ticket.ref === previous.ref);
+        if (!ticket) throw new Error("The selected ticket changed or disappeared. Reload the explorer.");
+        request = { ...request, snapshot, target: { kind: "ticket", ticket }, workflow: await loadTicketWorkflow(context, ticket, exec) };
+      } else {
+        const previous = request.target.initiative;
+        const initiative = snapshot.initiatives.find(initiative => initiative.id === previous.id && initiative.ref === previous.ref);
+        if (!initiative) throw new Error("The selected initiative changed or disappeared. Reload the explorer.");
+        request = { ...request, snapshot, target: { kind: "initiative", initiative } };
+      }
+      const confirmed = await ctx.ui.confirm(
+        "Open a fresh chat?",
+        safeTerminalText(`${buildSessionPrompt(request)}\n\nThe command will be placed in the NEW chat's editor. Press Enter there to run it. Saved sessions remain available in /resume.`, true),
+      );
+      if (!confirmed) continue;
+      if (await launchExplorerSession(pi, ctx, request)) return;
+      ctx.ui.notify("Chat creation was cancelled. The current session is unchanged.", "info");
+    } catch (error) {
+      ctx.ui.notify(safeTerminalText(`Could not prepare the next chat: ${error instanceof Error ? error.message : String(error)}`), "error");
+    }
+  }
+}
+
+
 class ReportModal {
   private offset = 0;
 
@@ -364,7 +440,54 @@ class ReportModal {
 export default function sharedContextBrowser(pi: ExtensionAPI): void {
   const exec = async (cwd: string, command: string, args: string[]) => {
     const result = await pi.exec(command, args, { cwd });
-    return { stdout: result.stdout, code: result.code };
+    return { stdout: result.code === 0 ? result.stdout : [result.stdout, result.stderr].filter(Boolean).join("\n"), code: result.code };
+  };
+  const openExplorer = async (ctx: ExtensionCommandContext, tab: "tracker" | "files" = "tracker"): Promise<void> => {
+    if (ctx.mode !== "tui") {
+      ctx.ui.notify("The shared-context explorer requires the interactive terminal.", "warning");
+      return;
+    }
+    try {
+      let context = await resolveSharedContext((command, argv) => exec(ctx.cwd, command, argv), ctx.cwd);
+      if (!context) {
+        ctx.ui.notify("Could not resolve shared context for this project.", "warning");
+        return;
+      }
+      const run: Exec = (command, argv) => exec(ctx.cwd, command, argv);
+      const readiness = await readContextReadiness(context);
+      if (!readiness.routesConfigured || !readiness.sharedDirectory) {
+        const initialContext = context;
+        const overlayOptions = { anchor: "center", width: "95%", maxHeight: "95%", fullscreen: true, mouseTracking: true } as const;
+        const ready = await ctx.ui.custom<boolean>((tui, theme, _keybindings, done) => {
+          return new ContextOnboarding({
+            context: initialContext, readiness, theme,
+            height: () => Math.max(1, Math.floor(tui.terminal.rows * 0.9)),
+            viewport: () => ({ columns: tui.terminal.columns, rows: tui.terminal.rows }),
+            requestRender: () => tui.requestRender(),
+            done,
+            run: async action => {
+              try {
+                if (action === "setup") {
+                  await initializeContextForCwd(run, ctx.cwd);
+                  await refreshContext(ctx.cwd);
+                }
+                const resolved = await resolveSharedContext(run, ctx.cwd);
+                if (!resolved) throw new Error("Could not resolve shared context after setup.");
+                context = resolved;
+                return await readContextReadiness(resolved);
+              } catch (error) {
+                ctx.ui.notify(safeTerminalText(`Could not set up shared context: ${error instanceof Error ? error.message : String(error)}`), "error");
+                throw error;
+              }
+            },
+          });
+        }, { overlay: true, overlayOptions });
+        if (!ready) return;
+      }
+      await openGraphContext(pi, ctx, context, run, tab);
+    } catch (error) {
+      ctx.ui.notify(safeTerminalText(`Could not open shared context: ${error instanceof Error ? error.message : String(error)}`), "error");
+    }
   };
   let contextBlock: string | undefined;
   let alignmentBlock: string | undefined;
@@ -400,47 +523,30 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
     await refreshContext(ctx.cwd);
   });
 
-  pi.on("session_switch", async (_event, ctx) => {
-    await refreshContext(ctx.cwd);
-  });
 
   pi.on("before_agent_start", event => {
     const additions = [contextBlock, alignmentBlock].filter((block): block is string => Boolean(block));
     const systemPrompt = mergeAlignmentSkills(event.systemPrompt, alignmentSkills);
     if (additions.length === 0 && systemPrompt === event.systemPrompt) return;
-    return { systemPrompt: [...systemPrompt, ...additions] };
+    return { systemPrompt: [systemPrompt, ...additions].join("\n\n") };
   });
 
   pi.registerShortcut("ctrl+shift+g", {
-    description: "Open shared-context browser",
+    description: "Open shared-context Graph continuity explorer",
     handler: async ctx => {
-      try {
-        const context = await resolveSharedContext((command, argv) => exec(ctx.cwd, command, argv), ctx.cwd);
-        if (!context) {
-          ctx.ui.notify("Could not resolve shared context for this project.", "warning");
-          return;
-        }
-        await ctx.ui.custom<void>((tui, theme, _keybindings, done) => {
-          const component = new ContextBrowser(context.root, theme, done, () => tui.requestRender(), ctx.cwd, (command, argv) => exec(ctx.cwd, command, argv), text => ctx.ui.pasteToEditor(text));
-          void component.load();
-          return {
-            render: (width: number) => component.render(width),
-            handleInput: (data: string) => { void component.handleInput(data); },
-            invalidate: () => {},
-          };
-        }, { overlay: true, overlayOptions: { anchor: "center", width: "90%", maxHeight: "80%" } });
-      } catch (error) {
-        ctx.ui.notify(`Could not open shared context: ${error instanceof Error ? error.message : String(error)}`, "error");
-      }
+      // omp creates a command context for shortcuts, although the API declares a base context.
+      const commandContext = ctx as ExtensionCommandContext;
+      await openExplorer(commandContext);
     },
   });
 
   pi.registerCommand("shared-context", {
-    description: "Browse and manage shared context for the current project",
+    description: "Browse ready work, initiative dependency graphs, receipts, and shared files",
     getArgumentCompletions: (prefix): AutocompleteItem[] | null => {
       const subcommands: AutocompleteItem[] = [
         { value: "report", label: "report", description: "Show resolved context roots and routes" },
         { value: "init", label: "init", description: "Create shared context storage for this repository" },
+        { value: "files", label: "files", description: "Browse raw shared-context files" },
       ];
       if (!prefix.includes(" ")) return subcommands.filter(item => item.value.startsWith(prefix));
       if (prefix.startsWith("init ")) {
@@ -481,32 +587,16 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
             preset = subcommandArgs[1];
           }
           const result = await initializeContextForCwd((command, argv) => exec(ctx.cwd, command, argv), ctx.cwd, preset);
-          ctx.ui.notify(`${result.created ? `Created ${result.agents}` : `${result.agents} already exists`}. Shared storage activates on the next session.${result.hostedShared ? " Preset: Hosted tickets with shared engineering records." : ""}`, "info");
+          ctx.ui.notify(safeTerminalText(`${result.created ? `Created ${result.agents}` : `${result.agents} already exists`}. Shared storage activates on the next session.${result.hostedShared ? " Preset: Hosted tickets with shared engineering records." : ""}`), "info");
           return;
         }
-        if (subcommand) {
-          ctx.ui.notify("Usage: /shared-context [report|init]", "warning");
+        if (subcommand && subcommand !== "files") {
+          ctx.ui.notify("Usage: /shared-context [files|report|init]", "warning");
           return;
         }
-        const context = await resolveSharedContext((command, argv) => exec(ctx.cwd, command, argv), ctx.cwd);
-        if (!context) {
-          ctx.ui.notify("Could not resolve shared context for this project.", "warning");
-          return;
-        }
-        await ctx.ui.custom<void>((tui, theme, _keybindings, done) => {
-          const component = new ContextBrowser(context.root, theme, done, () => tui.requestRender(), ctx.cwd, (command, argv) => exec(ctx.cwd, command, argv), text => ctx.ui.pasteToEditor(text));
-          void component.load();
-          return {
-            render: (width: number) => component.render(width),
-            handleInput: (data: string) => { void component.handleInput(data); },
-            invalidate: () => {},
-          };
-        }, {
-          overlay: true,
-          overlayOptions: { anchor: "center", width: "90%", maxHeight: "80%" },
-        });
+        await openExplorer(ctx, subcommand === "files" ? "files" : "tracker");
       } catch (error) {
-        ctx.ui.notify(`Could not open shared context: ${error instanceof Error ? error.message : String(error)}`, "error");
+        ctx.ui.notify(safeTerminalText(`Could not open shared context: ${error instanceof Error ? error.message : String(error)}`), "error");
       }
     },
   });

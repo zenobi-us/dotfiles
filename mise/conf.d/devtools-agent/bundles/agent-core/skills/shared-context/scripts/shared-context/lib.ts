@@ -52,6 +52,7 @@ export type SharedAgentContext = {
   mode: "repository" | "shared" | "mixed";
   alignmentRoot: string;
   routes: ContextRoutes;
+  routeSource?: string;
   layout?: ContextLayout;
   source?: string;
   instructions?: string;
@@ -205,24 +206,28 @@ function routeMode(routes: ContextRoutes): "repository" | "shared" | "mixed" {
   return stores.size === 1 ? [...stores][0]! : "mixed";
 }
 
-async function loadRoutes(candidateSharedRoot: string, repositoryRoot: string): Promise<ContextRoutes> {
+async function loadRoutes(candidateSharedRoot: string, repositoryRoot: string): Promise<{ routes: ContextRoutes; routeSource?: string }> {
   const manifest = path.join(candidateSharedRoot, ROUTE_MANIFEST_FILE);
   try {
-    return parseRouteManifest(await fs.readFile(manifest, "utf8")) as ContextRoutes;
+    return { routes: parseRouteManifest(await fs.readFile(manifest, "utf8")) as ContextRoutes, routeSource: manifest };
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
   }
   const legacy = await readStoragePreference(candidateSharedRoot);
-  const store = legacy ?? ((await readSharedInstructions(candidateSharedRoot)).instructions ? "shared" : "repository");
+  const shared = legacy === undefined ? await readSharedInstructions(candidateSharedRoot) : undefined;
+  const store = legacy ?? (shared?.instructions ? "shared" : "repository");
+  let routeSource = legacy ? path.join(candidateSharedRoot, LEGACY_STORAGE_FILE) : shared?.source;
   let trackerAdapter = "local-markdown";
+  const trackerPath = path.join(store === "shared" ? candidateSharedRoot : repositoryRoot, "docs", "agents", "issue-tracker.md");
   try {
-    const trackerConfig = await fs.readFile(path.join(store === "shared" ? candidateSharedRoot : repositoryRoot, "docs", "agents", "issue-tracker.md"), "utf8");
+    const trackerConfig = await fs.readFile(trackerPath, "utf8");
+    routeSource ??= trackerPath;
     const backend = trackerConfig.match(/^backend:\s*([A-Za-z0-9-]+)/m)?.[1];
     if (backend && backend !== "local-markdown") trackerAdapter = backend;
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
   }
-  return defaultRoutes(store, trackerAdapter);
+  return { routes: defaultRoutes(store, trackerAdapter), routeSource };
 }
 
 export async function resolveSharedContext(
@@ -255,7 +260,7 @@ export async function resolveSharedContext(
   }
 
   const candidateSharedRoot = path.join(base, slug);
-  const routes = await loadRoutes(candidateSharedRoot, repositoryRoot);
+  const { routes, routeSource } = await loadRoutes(candidateSharedRoot, repositoryRoot);
   const alignmentRoot = routeStore(routes, "alignment") === "shared" ? candidateSharedRoot : repositoryRoot;
   const layout = await readLayout(alignmentRoot);
   await validateStorePath(alignmentRoot, "docs/agents/issue-tracker.md");
@@ -286,6 +291,7 @@ export async function resolveSharedContext(
     mode: routeMode(routes),
     alignmentRoot,
     routes,
+    routeSource,
     layout,
     source: routeStore(routes, "alignment") === "shared" ? shared.source : await existingRepositoryInstructions(repositoryRoot),
     instructions: routeStore(routes, "alignment") === "shared" ? shared.instructions : undefined,

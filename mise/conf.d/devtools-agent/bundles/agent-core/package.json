@@ -9,6 +9,8 @@
   "dependencies": {
     "@crustjs/core": "^0.0.19",
     "@crustjs/plugins": "^0.1.2",
+    "@earendil-works/pi-coding-agent": ">=1.1.0",
+    "@earendil-works/pi-tui": ">=1.1.0",
     "turndown": "^7.2.4",
     "turndown-plugin-gfm": "^1.0.2"
   },

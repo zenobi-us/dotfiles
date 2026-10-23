@@ -196,3 +196,44 @@ collection paths. Alignment migration carries the layout and tracker configurati
 with the other alignment records. Initialization carries these two configuration
 files into a newly selected shared alignment root without overwriting existing
 files. Resolve again after changing routes or configuration.
+
+## Pi/OMP onboarding modal
+
+`/shared-context`, `/shared-context files`, and `Ctrl+Shift+G` show a centered
+readiness banner instead of loading the explorer when either prerequisite is
+missing:
+
+- Established context routing, identified by the resolver. The route manifest
+  in the origin-keyed shared directory counts. Supported legacy storage markers,
+  shared instructions, and the tracker configuration used for fallback routing
+  also count. The modal does not require repository-local configuration files.
+- Shared registration: the origin-keyed `candidateSharedRoot` exists as a
+  directory. `sharedRoot` is not a registration check; it can alias the
+  repository alignment root. An empty directory alone is not configured context.
+
+The resolver reports the configuration it used as `routeSource`. The modal uses
+that result rather than searching for configuration in a second location.
+`docs/agents/context-layout.toml` and `docs/agents/issue-tracker.md` are read from
+the resolved alignment root, which can be shared storage. Neither optional file
+is required to complete onboarding. Missing tracker-specific configuration is
+reported by the explorer separately.
+
+The banner has solid-background, borderless **Run setup** and **Close** buttons.
+Use Tab or Left/Right to select a button, Enter or Space to activate it, and
+Escape or Ctrl+C to close. Native mouse clicks work when the host supports and
+enables mouse input, such as the fullscreen Pi/OMP renderer. Keyboard controls
+remain available without mouse support.
+
+**Run setup** executes the same initialization API as `/shared-context init`;
+it does not stage editor text or run a shell command. Activation writes shared
+instructions and the route manifest while preserving existing files. Buttons
+are disabled during setup to prevent duplicate writes. Failures remain visible
+and are also reported through the host notification system.
+
+After setup, the extension refreshes session context and checks readiness again.
+Successful shared-only setup opens the requested explorer tab without adding
+configuration to the repository. If routing or the shared directory is still
+missing, the banner stays open with **Check again**.
+
+Malformed configuration, invalid path types, and filesystem access errors are
+reported as errors, not treated as missing setup.
