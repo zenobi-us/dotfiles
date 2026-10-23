@@ -54,7 +54,7 @@ export class SharedContextModal {
       const clipped = truncateToWidth(value, inner, "…");
       return this.theme.fg("border", "│") + clipped + " ".repeat(Math.max(0, inner - visibleWidth(clipped))) + this.theme.fg("border", "│");
     };
-    const title = safeTerminalText(`${path.basename(this.context.repositoryRoot)} · Shared mode: ${this.context.mode}`);
+    const title = safeTerminalText(`${path.basename(this.context.repositoryRoot)} · Context mode: ${this.context.mode}`);
     const tabs = (["tracker", "files"] as const).map((tab, index) => {
       const label = `${index + 1} ${tab === "tracker" ? "Tracker" : "Files"}`;
       const labelWithState = tab === this.active ? `[${label}]` : ` ${label} `;

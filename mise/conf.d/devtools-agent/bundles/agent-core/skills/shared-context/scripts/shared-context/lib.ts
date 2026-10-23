@@ -215,6 +215,17 @@ async function loadRoutes(candidateSharedRoot: string, repositoryRoot: string): 
   }
   const legacy = await readStoragePreference(candidateSharedRoot);
   const shared = legacy === undefined ? await readSharedInstructions(candidateSharedRoot) : undefined;
+  if (!legacy && !shared?.instructions) {
+    const repositoryManifest = path.join(repositoryRoot, ROUTE_MANIFEST_FILE);
+    try {
+      return {
+        routes: parseRouteManifest(await fs.readFile(repositoryManifest, "utf8")) as ContextRoutes,
+        routeSource: repositoryManifest,
+      };
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+    }
+  }
   const store = legacy ?? (shared?.instructions ? "shared" : "repository");
   let routeSource = legacy ? path.join(candidateSharedRoot, LEGACY_STORAGE_FILE) : shared?.source;
   let trackerAdapter = "local-markdown";
@@ -226,6 +237,10 @@ async function loadRoutes(candidateSharedRoot: string, repositoryRoot: string): 
     if (backend && backend !== "local-markdown") trackerAdapter = backend;
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
+  if (!routeSource) {
+    const layoutFile = path.join(repositoryRoot, LAYOUT_FILE);
+    if (await exists(layoutFile)) routeSource = layoutFile;
   }
   return { routes: defaultRoutes(store, trackerAdapter), routeSource };
 }
@@ -299,6 +314,24 @@ export async function resolveSharedContext(
   };
 }
 
+export async function initializeRepositoryContext(context: SharedAgentContext): Promise<{ agents: string; created: boolean }> {
+  const agents = await existingRepositoryInstructions(context.repositoryRoot) ?? path.join(context.repositoryRoot, "AGENTS.md");
+  let created = true;
+  try {
+    await fs.writeFile(agents, "# Agent context\n\nSee `docs/agents/` for engineering workflow configuration.\n", { flag: "wx" });
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+    created = false;
+  }
+  try {
+    await fs.writeFile(path.join(context.repositoryRoot, "CONTEXT-MAP.md"), DEFAULT_CONTEXT_MAP, { flag: "wx" });
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+  }
+  await writeRouteManifest(context.repositoryRoot, context.routes, true);
+  return { agents, created };
+}
+
 export async function initializeSharedContext(context: SharedAgentContext): Promise<{ agents: string; created: boolean }> {
   if (!context.candidateSharedRoot) throw new Error("Cannot initialize shared context without a canonical git origin");
   await fs.mkdir(context.candidateSharedRoot, { recursive: true });
@@ -327,14 +360,15 @@ export async function initializeSharedContext(context: SharedAgentContext): Prom
     }
   }
   if (!await exists(path.join(context.candidateSharedRoot, ROUTE_MANIFEST_FILE))) {
-    const routes = defaultRoutes("shared", context.routes.tickets.adapter);
-    if (routes.tickets.adapter === "local-markdown") routes.tickets.store = "shared";
+    const routes = context.storage === "shared" && context.routeSource
+      ? context.routes
+      : defaultRoutes("shared", context.routes.tickets.adapter);
     await writeRouteManifest(context.candidateSharedRoot, routes);
   }
   return { agents, created };
 }
 
-async function writeRouteManifest(sharedRoot: string, routes: ContextRoutes): Promise<void> {
+async function writeRouteManifest(sharedRoot: string, routes: ContextRoutes, preserveExisting = false): Promise<void> {
   const lines = ["schema = 2", ""];
   for (const kind of ["alignment", "tickets", "initiatives", "workflows", "evidence", "sources"] as const) {
     const route = routes[kind];
@@ -347,7 +381,11 @@ async function writeRouteManifest(sharedRoot: string, routes: ContextRoutes): Pr
     }
     lines.push("");
   }
-  await fs.writeFile(path.join(sharedRoot, ROUTE_MANIFEST_FILE), lines.join("\n"));
+  try {
+    await fs.writeFile(path.join(sharedRoot, ROUTE_MANIFEST_FILE), lines.join("\n"), { flag: preserveExisting ? "wx" : "w" });
+  } catch (error) {
+    if (!preserveExisting || (error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+  }
 }
 
 export async function resolveContextRecord(

@@ -2,21 +2,37 @@ import { stat } from "node:fs/promises";
 import path from "node:path";
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
+import type { RecordKind, Store } from "../../skills/shared-context/scripts/shared-context/lib";
+import { ROUTE_MANIFEST_FILE } from "../../skills/shared-context/scripts/shared-context/lib";
 import type { SharedAgentContext } from "./model";
 import { safeTerminalText } from "./terminal-text";
 
 export interface ContextReadiness {
   routesConfigured: boolean;
-  sharedDirectory: boolean;
+  storesReady: boolean;
+  missingStores: string[];
 }
 
 export async function readContextReadiness(context: SharedAgentContext): Promise<ContextReadiness> {
   if (context.error) throw new Error(context.error);
-  if (!context.candidateSharedRoot) throw new Error("Shared context requires a canonical Git origin.");
-  return {
-    routesConfigured: Boolean(context.routeSource),
-    sharedDirectory: await isDirectory(context.candidateSharedRoot),
-  };
+  const stores = new Set<Store>();
+  for (const kind of Object.keys(context.routes) as RecordKind[]) {
+    if (kind === "tickets" && context.routes[kind].adapter !== "local-markdown") continue;
+    let route = context.routes[kind];
+    while (route.inherits) route = context.routes[route.inherits];
+    if (route.store) stores.add(route.store);
+  }
+  const roots: string[] = [];
+  if (stores.has("repository")) roots.push(context.repositoryRoot);
+  if (stores.has("shared")) {
+    if (!context.candidateSharedRoot) throw new Error("Shared routes require a canonical Git origin. Restore the origin and check again.");
+    roots.push(context.candidateSharedRoot);
+  }
+  const missingStores: string[] = [];
+  for (const root of roots) {
+    if (!await isDirectory(root)) missingStores.push(root);
+  }
+  return { routesConfigured: Boolean(context.routeSource), storesReady: missingStores.length === 0, missingStores };
 }
 
 interface OnboardingOptions {
@@ -26,7 +42,7 @@ interface OnboardingOptions {
   height: () => number;
   viewport?: () => { columns: number; rows: number };
   requestRender: () => void;
-  run: (action: "setup" | "check") => Promise<ContextReadiness>;
+  run: (action: "setup" | "check", store: Store) => Promise<ContextReadiness>;
   done: (ready: boolean) => void;
 }
 
@@ -37,13 +53,22 @@ export class ContextOnboarding {
   private busy = false;
   private disposed = false;
   private initialized = false;
+  private selectedStore: Store;
+  private detailOffset = 0;
   private message = "";
   private failed = false;
   private buttons: ButtonBounds[] = [];
   private screen?: { columns: number; rows: number; width: number; height: number };
   private mousePress?: { action: number; x: number; y: number };
 
-  constructor(private options: OnboardingOptions) {}
+  constructor(private options: OnboardingOptions) {
+    this.selectedStore = options.context.storage;
+    this.focusedAction = this.checkOnly ? 0 : this.selectedStore === "shared" ? 1 : 0;
+  }
+
+  private get checkOnly(): boolean {
+    return this.initialized || this.options.readiness.routesConfigured;
+  }
 
   async handleInput(data: string): Promise<void> {
     if (this.busy || this.disposed) return;
@@ -53,9 +78,14 @@ export class ContextOnboarding {
     }
     this.mousePress = undefined;
     if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) {
-      this.options.done(false);
-    } else if (matchesKey(data, "tab") || matchesKey(data, "shift+tab") || matchesKey(data, "left") || matchesKey(data, "right")) {
-      this.focusedAction = 1 - this.focusedAction;
+      this.close(false);
+    } else if (matchesKey(data, "pageUp") || matchesKey(data, "pageDown")) {
+      this.detailOffset = Math.max(0, this.detailOffset + (matchesKey(data, "pageUp") ? -1 : 1));
+      this.options.requestRender();
+    } else if (matchesKey(data, "tab") || matchesKey(data, "shift+tab") || matchesKey(data, "left") || matchesKey(data, "right") || matchesKey(data, "up") || matchesKey(data, "down")) {
+      const count = this.checkOnly ? 2 : 4;
+      const backwards = matchesKey(data, "shift+tab") || matchesKey(data, "left") || matchesKey(data, "up");
+      this.focusedAction = (this.focusedAction + (backwards ? count - 1 : 1)) % count;
       this.options.requestRender();
     } else if (matchesKey(data, "enter") || data === " ") {
       await this.activate(this.focusedAction);
@@ -82,45 +112,55 @@ export class ContextOnboarding {
       this.mousePress = undefined;
     }
     this.screen = viewport ? { ...viewport, width, height } : undefined;
-    if (width < 4 || height < 7) return [truncateToWidth("Shared context: enlarge terminal", Math.max(1, width))];
+    if (width < 4 || height < 9) return [truncateToWidth("Context: enlarge terminal", Math.max(1, width))];
     const inner = width - 2;
-    const { theme, readiness } = this.options;
+    const { theme, readiness, context } = this.options;
     const center = (text: string) => {
       const clipped = truncateToWidth(text, inner, "…");
       const gap = inner - visibleWidth(clipped);
       return " ".repeat(Math.floor(gap / 2)) + clipped + " ".repeat(Math.ceil(gap / 2));
     };
-    const content = [theme.fg("accent", "Set up shared context")];
-    if (height >= 10) content.push(theme.fg("muted", safeTerminalText(path.basename(this.options.context.repositoryRoot))));
-    if (height >= 16) content.push("");
-    content.push(
-      `${readiness.routesConfigured ? "[ok]" : "[--]"} Context routes: ${readiness.routesConfigured ? "found" : "missing"}`,
-      `${readiness.sharedDirectory ? "[ok]" : "[--]"} Shared dir: ${readiness.sharedDirectory ? "found" : "missing"}`,
-    );
-    const message = this.busy ? "Running setup…" : this.message || "Creates shared files; preserves existing files.";
-    const messageRows = Math.max(0, height - 4 - content.length);
-    content.push(...wrapTextWithAnsi(theme.fg(this.failed ? "error" : "muted", safeTerminalText(message)), inner).slice(0, messageRows));
-    const labels = [this.busy ? "Working…" : this.initialized ? "Check again" : "Run setup", "Close"];
+    const details = [this.checkOnly ? "Check context storage" : "Choose context storage"];
+    if (this.checkOnly) {
+      details.push(readiness.storesReady ? "Selected stores are available." : "Restore these stores, then check again:", ...readiness.missingStores);
+      details.push("Checking does not create or migrate files.");
+    } else {
+      const target = this.selectedStore === "repository" ? context.repositoryRoot : context.candidateSharedRoot;
+      details.push(`Target: ${target ?? "unavailable: configure a canonical Git origin"}`);
+      details.push("Create missing files only:", ROUTE_MANIFEST_FILE, "AGENTS.md", "CONTEXT-MAP.md");
+      if (this.selectedStore === "shared" && context.alignmentRoot !== context.candidateSharedRoot) {
+        details.push("Copy if present: docs/agents/context-layout.toml", "docs/agents/issue-tracker.md");
+      }
+      details.push("Existing files stay unchanged.");
+    }
+    if (this.busy) details.unshift("Working…");
+    if (this.message) details.unshift(this.message);
+    const labels = this.checkOnly
+      ? ["Check again", "Cancel"]
+      : [`${this.selectedStore === "repository" ? "(*)" : "( )"} Repository`, `${this.selectedStore === "shared" ? "(*)" : "( )"} Shared store`, "Apply setup", "Cancel"];
     const buttonText = labels.map((label, index) => ` ${this.focusedAction === index ? ">" : " "} ${label} `);
-    const stacked = buttonText.reduce((total, text) => total + visibleWidth(text), 2) > inner;
-    const actionRows = stacked ? 2 : 1;
-    while (content.length + actionRows + 1 > height - 2 && content.length > 3) content.pop();
-    const offset = Math.max(0, Math.floor((height - 2 - content.length - actionRows - 1) / 2));
-    const actionY = offset + content.length + 1;
+    const stacked = buttonText.reduce((total, text) => total + visibleWidth(text), (labels.length - 1) * 2) > inner;
+    const actionRows = stacked ? labels.length : 1;
+    const detailRows = height - 3 - actionRows - 1;
+    const wrapped = details.flatMap(text => wrapTextWithAnsi(safeTerminalText(text), inner));
+    this.detailOffset = Math.min(this.detailOffset, Math.max(0, wrapped.length - detailRows));
+    const content = wrapped.slice(this.detailOffset, this.detailOffset + detailRows).map(text => theme.fg(this.failed ? "error" : "text", text));
+    while (content.length < detailRows) content.push("");
+    const actionY = content.length + 1;
     const actionLines = stacked ? buttonText : [buttonText.join("  ")];
     for (let row = 0; row < actionLines.length; row++) {
-      const indices = stacked ? [row] : [0, 1];
+      const indices = stacked ? [row] : labels.map((_, index) => index);
       let x = 1 + Math.max(0, Math.floor((inner - visibleWidth(actionLines[row]!)) / 2));
       const styled = indices.map(index => {
-        const text = buttonText[index]!;
-        this.buttons.push({ action: index, x, y: actionY + row, width: Math.min(inner, visibleWidth(text)) });
+        const text = truncateToWidth(buttonText[index]!, inner, "…");
+        this.buttons.push({ action: index, x, y: actionY + row, width: visibleWidth(text) });
         x += visibleWidth(text) + 2;
         return theme.bg("selectedBg", theme.fg(this.busy ? "muted" : this.focusedAction === index ? "accent" : "text", text));
       }).join("  ");
       content.push(styled);
     }
-    content.push(theme.fg("muted", "Tab focus · Enter run · Esc close"));
-    const rows = Array.from({ length: height - 2 }, (_, row) => theme.fg("border", "│") + center(content[row - offset] ?? "") + theme.fg("border", "│"));
+    content.push(theme.fg("muted", "Tab/↑↓ focus · Enter select · PgUp/PgDn details · Esc cancel"));
+    const rows = Array.from({ length: height - 2 }, (_, row) => theme.fg("border", "│") + center(content[row] ?? "") + theme.fg("border", "│"));
     return [theme.fg("border", `╭${"─".repeat(inner)}╮`), ...rows, theme.fg("border", `╰${"─".repeat(inner)}╯`)];
   }
 
@@ -166,29 +206,45 @@ export class ContextOnboarding {
     }
   }
 
+  private close(ready: boolean): void {
+    this.dispose();
+    this.options.done(ready);
+  }
+
   private async activate(action: number): Promise<void> {
     if (this.busy || this.disposed) return;
-    if (action === 1) {
-      this.options.done(false);
+    if (action === (this.checkOnly ? 1 : 3)) {
+      this.close(false);
       return;
     }
+    if (!this.checkOnly && action < 2) {
+      this.selectedStore = action === 0 ? "repository" : "shared";
+      this.detailOffset = 0;
+      this.options.requestRender();
+      return;
+    }
+    const operation = this.checkOnly ? "check" : "setup";
     this.busy = true;
     this.failed = false;
+    this.detailOffset = 0;
     this.options.requestRender();
     try {
-      this.options.readiness = await this.options.run(this.initialized ? "check" : "setup");
-      this.initialized = true;
+      const readiness = await this.options.run(operation, this.selectedStore);
       if (this.disposed) return;
-      if (this.options.readiness.routesConfigured && this.options.readiness.sharedDirectory) {
-        this.options.done(true);
+      this.options.readiness = readiness;
+      this.initialized = readiness.routesConfigured;
+      this.focusedAction = this.checkOnly ? 0 : 2;
+      if (readiness.routesConfigured && readiness.storesReady) {
+        this.close(true);
         return;
       }
-      this.message = this.options.readiness.routesConfigured
-        ? "The shared directory is still missing. Check storage, then check again."
-        : "Context routes are still missing. Check shared storage, then check again.";
+      this.message = readiness.routesConfigured
+        ? "Restore the missing storage roots, then check again."
+        : "Routes are not configured. Review the target and retry setup.";
     } catch (error) {
+      if (this.disposed) return;
       this.failed = true;
-      this.message = `Setup failed: ${error instanceof Error ? error.message : String(error)}`;
+      this.message = `${operation === "check" ? "Check" : "Setup"} failed: ${error instanceof Error ? error.message : String(error)}`;
     } finally {
       this.busy = false;
       if (!this.disposed) this.options.requestRender();

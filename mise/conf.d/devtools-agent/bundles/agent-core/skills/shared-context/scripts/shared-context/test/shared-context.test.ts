@@ -426,7 +426,7 @@ test("hosted-shared init rejects local tickets and routes external tickets", asy
   expect(remote.exitCode).toBe(0);
 
   const script = path.join(import.meta.dir, "..", "cli.ts");
-  const result = Bun.spawnSync([process.execPath, script, "init", "--preset", "hosted-shared"], {
+  const result = Bun.spawnSync([process.execPath, script, "init", "--store", "shared", "--preset", "hosted-shared"], {
     cwd: repositoryRoot,
     env: { ...process.env, HOME: home },
     stdout: "pipe",
@@ -447,7 +447,11 @@ test("hosted-shared init rejects local tickets and routes external tickets", asy
     "git", "-C", hostedRoot, "remote", "add", "origin", hostedRemote,
   ], { stdout: "pipe", stderr: "pipe" });
   expect(hostedOrigin.exitCode).toBe(0);
-  const hostedResult = Bun.spawnSync([process.execPath, script, "init", "--preset", "hosted-shared"], {
+  for (const kind of ["alignment", "initiatives", "workflows", "evidence", "sources"] as const) {
+    const context = await resolveSharedContext(gitExec(hostedRoot, hostedRemote), hostedRoot, sharedBase);
+    await migrateContextRoute(context!, kind, "shared");
+  }
+  const hostedResult = Bun.spawnSync([process.execPath, script, "init", "--store", "shared", "--preset", "hosted-shared"], {
     cwd: hostedRoot,
     env: { ...process.env, HOME: home },
     stdout: "pipe",

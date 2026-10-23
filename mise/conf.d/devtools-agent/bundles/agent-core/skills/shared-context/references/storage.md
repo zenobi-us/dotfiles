@@ -17,7 +17,7 @@ on. See Step 0 in `SKILL.md`.
 | `resolve <kind> ... [--json]` | no | Resolve one file-backed record and its publication rule |
 | `path <kind> ...` | no | Print the path for a file-backed record |
 | `index <dir> [--kind <kind> ...] [--force]` | writes `index.md` | Rebuild an index under its resolved record store |
-| `init [--preset hosted-shared]` | yes | Create shared context and its route manifest |
+| `init --store <store> [--preset hosted-shared]` | yes | Initialize the selected store without changing established storage |
 | `migrate [<kind>] --to <store>` | yes | Copy one record kind and update its route |
 | `migrate` | yes | Copy alignment to the other store |
 | `migrate --legacy-only` | yes | Replace the legacy `.storage` marker with a route manifest |
@@ -58,7 +58,9 @@ repository has no local records. Read `report` first.
 
 1. Confirm that the user named the operation. "Set up shared context" names
    `init`. "Save this page" does not.
-2. State the subcommand and the record kinds it can change.
+2. State the subcommand and the record kinds it can change. For `init`, choose
+   `--store repository` or `--store shared` explicitly. Existing repository
+   context needs no shared directory. Use migration to change established storage.
 3. `migrate <kind> --to <store>` copies only that record kind. It checks
    conflicts before copying and updates the route after the copy.
 4. Workflow migration excludes `artifacts/evidence/`. Evidence uses its own
@@ -77,9 +79,9 @@ delete the target to force the copy.
 
 - `inject` prints `null` when no shared `AGENTS.md` exists. That is success.
 - `init` preserves an authored `CONTEXT-MAP.md` and an existing route manifest.
-- `init --preset hosted-shared` refuses to replace a non-shared route manifest.
+- `init --store shared --preset hosted-shared` refuses to replace established non-shared routes.
   Migrate the record kinds explicitly, then retry.
-- `init --preset hosted-shared` keeps the configured external ticket adapter and
+- `init --store shared --preset hosted-shared` keeps the configured external ticket adapter and
   stores the file-backed engineering records in shared context.
 - The hosted-shared preset requires an external ticket adapter.
 - Existing `.storage` markers remain readable until migration.
@@ -91,4 +93,7 @@ delete the target to force the copy.
 `~/.config/shared-agent-context/config.json` holds the machine-local
 `storage_path`. The default is `~/Notes/SharedAgentContext`. Each origin has a
 directory at `<storage_path>/<slug>/`. Its `.context-routes.toml` file holds
-project-level routing policy.
+project-level routing policy. Repository initialization instead writes
+`.context-routes.toml` in the checkout and creates no shared directory. The
+repository manifest is used when no shared manifest or legacy shared policy
+exists. `context-layout.toml` selects paths within stores, not storage mode.

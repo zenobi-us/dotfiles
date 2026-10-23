@@ -104,10 +104,14 @@ async function requireContext(): Promise<SharedAgentContext | undefined> {
   return context;
 }
 
-async function runInit(ctx: { flags: { preset?: string } }): Promise<void> {
+async function runInit(ctx: { flags: { store?: string; preset?: string } }): Promise<void> {
   try {
-    const { agents, created, hostedShared } = await initializeContextForCwd(exec, process.cwd(), ctx.flags.preset);
-    console.log(`${created ? `Created ${agents}` : `${agents} already exists`}. Shared storage activates on the next session.`);
+    const store = ctx.flags.store;
+    if (store !== "repository" && store !== "shared") {
+      throw new Error("Choose storage with init --store repository|shared [--preset hosted-shared]");
+    }
+    const { agents, created, hostedShared } = await initializeContextForCwd(exec, process.cwd(), { store, preset: ctx.flags.preset });
+    console.log(`${created ? `Created ${agents}` : `${agents} already exists`}. Context storage: ${store}. Reopen the session to refresh instructions.`);
     if (hostedShared) console.log("Preset: Hosted tickets with shared engineering records");
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
@@ -322,8 +326,8 @@ const cli = new Crust("shared-context")
     .meta({ description: "List every known shared context" })
     .run(runList))
   .command("init", (cmd) => cmd
-    .meta({ description: "Create shared context storage for this repository" })
-    .flags({ preset: { type: "string" } })
+    .meta({ description: "Initialize context in repository or shared storage; existing routes require explicit migration to change stores" })
+    .flags({ store: { type: "string" }, preset: { type: "string" } })
     .run(runInit))
   .command("resolve", (cmd) => cmd
     .meta({ description: "Resolve a record or collection (tracker, tickets, initiatives, sources) through its configured store" })

@@ -62,7 +62,7 @@ subcommands:
 
 - `report` (default) — route table, roots, origin, and slug. `mode` is a summary, not a path selector.
 - `root` — print the alignment root for scripts.
-- `init [--preset hosted-shared]` — create shared instructions and a route manifest.
+- `init --store repository|shared [--preset hosted-shared]` — initialize the selected context store without changing established storage.
 - `list` — list origin-keyed contexts under the shared base.
 - `resolve alignment` — resolve the alignment root.
 - `resolve initiative --id <ID>` — resolve one initiative directory.
@@ -86,8 +86,9 @@ subcommands:
 
 ## Route manifest
 
-The origin-scoped shared candidate stores project routes in
-`.context-routes.toml`. Machine-local `storage_path` remains in
+Project routes use `.context-routes.toml`. Shared manifests and legacy shared
+policies keep precedence; a repository-local manifest supplies repository-owned
+registration when neither exists. Machine-local `storage_path` remains in
 `~/.config/shared-agent-context/config.json`.
 
 ```toml
@@ -199,41 +200,50 @@ files. Resolve again after changing routes or configuration.
 
 ## Pi/OMP onboarding modal
 
-`/shared-context`, `/shared-context files`, and `Ctrl+Shift+G` show a centered
-readiness banner instead of loading the explorer when either prerequisite is
-missing:
+`/shared-context`, `/shared-context files`, and `Ctrl+Shift+G` open established
+context directly when its selected storage roots exist. Repository mode does not
+require an origin-keyed shared directory. Mixed mode checks the roots selected
+by its routes, including inherited evidence and source routes. External tickets
+need no local ticket directory. Missing optional collections remain empty; they
+do not trigger setup.
 
-- Established context routing, identified by the resolver. The route manifest
-  in the origin-keyed shared directory counts. Supported legacy storage markers,
-  shared instructions, and the tracker configuration used for fallback routing
-  also count. The modal does not require repository-local configuration files.
-- Shared registration: the origin-keyed `candidateSharedRoot` exists as a
-  directory. `sharedRoot` is not a registration check; it can alias the
-  repository alignment root. An empty directory alone is not configured context.
+The resolver reports its routing source as `routeSource`. Shared manifests and
+legacy shared policies keep precedence. A repository-local `.context-routes.toml`
+also establishes routing without creating shared registration. Existing
+repository tracker or layout configuration also counts as established context.
+`docs/agents/context-layout.toml` selects collection paths, not storage mode.
 
-The resolver reports the configuration it used as `routeSource`. The modal uses
-that result rather than searching for configuration in a second location.
-`docs/agents/context-layout.toml` and `docs/agents/issue-tracker.md` are read from
-the resolved alignment root, which can be shared storage. Neither optional file
-is required to complete onboarding. Missing tracker-specific configuration is
-reported by the explorer separately.
+An unconfigured project shows **Choose context storage** with **Repository**,
+**Shared store**, **Apply setup**, and **Cancel** controls. The detected storage
+is preselected. Selecting a store changes only the preview. The preview names
+the exact destination and missing files before any writes. **Apply setup**
+creates missing instructions, context map, and route manifest in the selected
+store. Shared setup also copies existing layout and tracker configuration when
+present. Existing files remain unchanged. Repository setup creates no shared
+directory. Reopening preserves the selected storage.
 
-The banner has solid-background, borderless **Run setup** and **Close** buttons.
-Use Tab or Left/Right to select a button, Enter or Space to activate it, and
-Escape or Ctrl+C to close. Native mouse clicks work when the host supports and
-enables mouse input, such as the fullscreen Pi/OMP renderer. Keyboard controls
-remain available without mouse support.
+Use Tab, Shift+Tab, or arrow keys to move focus. Use Enter or Space to select a
+store or apply setup. Use PgUp/PgDn to scroll long destination and file details.
+Escape or Ctrl+C cancels without writes. Mouse activation remains available in
+hosts that enable mouse input. Pending operations reject duplicate activation.
+Failures remain visible and permit retry.
 
-**Run setup** executes the same initialization API as `/shared-context init`;
-it does not stage editor text or run a shell command. Activation writes shared
-instructions and the route manifest while preserving existing files. Buttons
-are disabled during setup to prevent duplicate writes. Failures remain visible
-and are also reported through the host notification system.
+Established contexts with unavailable selected roots offer **Check again** and
+**Cancel** only. Restore the reported roots, then check again. This action does
+not initialize storage or rewrite routing. Malformed configuration, invalid
+path types, and filesystem access errors are reported as errors.
 
-After setup, the extension refreshes session context and checks readiness again.
-Successful shared-only setup opens the requested explorer tab without adding
-configuration to the repository. If routing or the shared directory is still
-missing, the banner stays open with **Check again**.
+The direct initialization commands require an explicit store:
 
-Malformed configuration, invalid path types, and filesystem access errors are
-reported as errors, not treated as missing setup.
+```text
+/shared-context init --store repository
+/shared-context init --store shared
+scripts/shared-context/cli.ts init --store repository
+scripts/shared-context/cli.ts init --store shared --preset hosted-shared
+```
+
+Initialization refuses to change established storage. Use `migrate <kind> --to
+<store>` for each record kind instead. The hosted-shared preset requires an
+external ticket adapter and established all-shared routes when context already
+exists. Reopen the session after command-line initialization to refresh injected
+instructions.

@@ -455,7 +455,7 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
       }
       const run: Exec = (command, argv) => exec(ctx.cwd, command, argv);
       const readiness = await readContextReadiness(context);
-      if (!readiness.routesConfigured || !readiness.sharedDirectory) {
+      if (!readiness.routesConfigured || !readiness.storesReady) {
         const initialContext = context;
         const overlayOptions = { anchor: "center", width: "95%", maxHeight: "95%", fullscreen: true, mouseTracking: true } as const;
         const ready = await ctx.ui.custom<boolean>((tui, theme, _keybindings, done) => {
@@ -465,10 +465,10 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
             viewport: () => ({ columns: tui.terminal.columns, rows: tui.terminal.rows }),
             requestRender: () => tui.requestRender(),
             done,
-            run: async action => {
+            run: async (action, store) => {
               try {
                 if (action === "setup") {
-                  await initializeContextForCwd(run, ctx.cwd);
+                  await initializeContextForCwd(run, ctx.cwd, { store });
                   await refreshContext(ctx.cwd);
                 }
                 const resolved = await resolveSharedContext(run, ctx.cwd);
@@ -545,20 +545,27 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
     getArgumentCompletions: (prefix): AutocompleteItem[] | null => {
       const subcommands: AutocompleteItem[] = [
         { value: "report", label: "report", description: "Show resolved context roots and routes" },
-        { value: "init", label: "init", description: "Create shared context storage for this repository" },
+        { value: "init", label: "init", description: "Initialize repository or shared context with --store" },
         { value: "files", label: "files", description: "Browse raw shared-context files" },
       ];
       if (!prefix.includes(" ")) return subcommands.filter(item => item.value.startsWith(prefix));
       if (prefix.startsWith("init ")) {
         const optionPrefix = prefix.slice("init ".length);
-        if (optionPrefix.startsWith("--preset ")) {
-          const valuePrefix = optionPrefix.slice("--preset ".length);
-          return [{ value: "hosted-shared", label: "hosted-shared", description: "Use hosted tickets with shared engineering records" }]
-            .filter(item => item.value.startsWith(valuePrefix));
+        const valueMatch = /(?:^|\s)(--store|--preset) ([^\s]*)$/.exec(optionPrefix);
+        if (valueMatch) {
+          const choices = valueMatch[1] === "--store"
+            ? [
+              { value: "repository", label: "repository", description: "Keep context in this checkout" },
+              { value: "shared", label: "shared", description: "Keep context in the shared store" },
+            ]
+            : [{ value: "hosted-shared", label: "hosted-shared", description: "Use hosted tickets with shared engineering records" }];
+          return choices.filter(item => item.value.startsWith(valueMatch[2]!));
         }
-        if ("--preset".startsWith(optionPrefix)) {
-          return [{ value: "--preset", label: "--preset", description: "Select an initialization preset" }];
-        }
+        const flagPrefix = optionPrefix.split(/\s+/).at(-1) ?? "";
+        return [
+          { value: "--store", label: "--store", description: "Choose repository or shared storage" },
+          { value: "--preset", label: "--preset", description: "Select an initialization preset" },
+        ].filter(item => item.value.startsWith(flagPrefix));
       }
       return null;
     },
@@ -578,16 +585,24 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
           return;
         }
         if (subcommand === "init") {
-          let preset: string | undefined;
-          if (subcommandArgs.length > 0) {
-            if (subcommandArgs.length !== 2 || subcommandArgs[0] !== "--preset") {
-              ctx.ui.notify("Usage: /shared-context init [--preset hosted-shared]", "warning");
+          const usage = "Usage: /shared-context init --store repository|shared [--preset hosted-shared]";
+          const flags = new Map<string, string>();
+          for (let index = 0; index < subcommandArgs.length; index += 2) {
+            const flag = subcommandArgs[index]!;
+            const value = subcommandArgs[index + 1];
+            if (!["--store", "--preset"].includes(flag) || !value || value.startsWith("--") || flags.has(flag)) {
+              ctx.ui.notify(usage, "warning");
               return;
             }
-            preset = subcommandArgs[1];
+            flags.set(flag, value);
           }
-          const result = await initializeContextForCwd((command, argv) => exec(ctx.cwd, command, argv), ctx.cwd, preset);
-          ctx.ui.notify(safeTerminalText(`${result.created ? `Created ${result.agents}` : `${result.agents} already exists`}. Shared storage activates on the next session.${result.hostedShared ? " Preset: Hosted tickets with shared engineering records." : ""}`), "info");
+          const store = flags.get("--store");
+          if (store !== "repository" && store !== "shared") {
+            ctx.ui.notify(usage, "warning");
+            return;
+          }
+          const result = await initializeContextForCwd((command, argv) => exec(ctx.cwd, command, argv), ctx.cwd, { store, preset: flags.get("--preset") });
+          ctx.ui.notify(safeTerminalText(`${result.created ? `Created ${result.agents}` : `${result.agents} already exists`}. Context storage: ${result.store}. Reopen the session to refresh instructions.${result.hostedShared ? " Preset: Hosted tickets with shared engineering records." : ""}`), "info");
           return;
         }
         if (subcommand && subcommand !== "files") {
