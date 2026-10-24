@@ -1,0 +1,29 @@
+# Local Markdown tracker
+
+## Collections
+
+- [Tickets]({{ tickets_ref }}): One Markdown file per stable ticket ID.
+{% if initiatives_cross_store %}
+- Initiatives: `{{ initiatives_ref }}`. One directory per initiative in its resolved store.
+{% else %}
+- [Initiatives]({{ initiatives_ref }}): One directory per initiative.
+{% endif %}
+
+Use the `reading-and-writing-tickets` skill for ticket operations. Resolve physical paths through the shared-context CLI. Keep `triage` separate from `work_status`.
+
+## Ticket records
+
+{% for entry in ticket_links %}
+- [{{ entry.title }}]({{ entry.href }})
+{% endfor %}
+
+## Initiative records
+
+{% for entry in initiative_links %}
+{% if entry.cross_store | default(false) %}
+- {{ entry.title }}: `{{ entry.href }}`
+{% else %}
+- [{{ entry.title }}]({{ entry.href }})
+{% endif %}
+{% endfor %}
+

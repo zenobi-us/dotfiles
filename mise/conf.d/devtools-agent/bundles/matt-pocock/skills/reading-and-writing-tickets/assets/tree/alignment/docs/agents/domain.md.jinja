@@ -1,0 +1,20 @@
+# Domain docs
+
+This repository uses {{ "one context" if domain_mode == "single" else "multiple contexts" }}.
+
+## Read before exploration
+
+1. Read `CONTEXT-MAP.md` at the active Matt Pocock alignment root.
+{% if domain_mode == "single" %}2. Read `CONTEXT.md` when it exists.
+{% else %}2. Read the relevant context documents:
+{% for domain in domains %}   - `domains/{{ domain }}/CONTEXT.md` when it exists.
+{% endfor %}{% endif %}3. Read `docs/adr/index.md` and the ADRs that affect the current area.
+
+If a linked domain document does not exist, continue without it. Use the `domain-modeling` skill to record terms and decisions when they are resolved.
+
+## Vocabulary and decisions
+
+Use the glossary's terms in ticket titles, proposals, hypotheses, and tests. Keep all ADRs under `docs/adr/`. Update the ADR index when a decision is recorded.
+
+If a proposal conflicts with an ADR, name the ADR and explain why it should be reopened. Keep the existing ADR authoritative until the decision changes.
+

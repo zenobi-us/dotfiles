@@ -1,0 +1,11 @@
+# Triage labels
+
+Keep `triage` separate from `work_status`. Each triaged ticket has one category and one triage role.
+
+| Canonical role | Tracker value |
+|---|---|
+{% for role, value in triage_labels.items() %}| `{{ role }}` | `{{ value }}` |
+{% endfor %}
+
+Use the configured tracker value when a skill names its canonical role. Use `bug` or `enhancement` as the category when applicable.
+

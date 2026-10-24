@@ -1,0 +1,12 @@
+### Issue tracker
+
+Use the shared-context skill to resolve tracker paths. {% if tracker_backend == "local-markdown" %}Local Markdown tickets are the source of truth.{% elif tracker_backend == "github" %}GitHub Issues are the source of truth. Use `gh` for issue operations.{% else %}GitLab Issues are the source of truth. Use `glab` for issue operations.{% endif %} Use the reading-and-writing-tickets skill for ticket operations. See `docs/agents/issue-tracker.md` relative to the active Matt Pocock alignment root.
+
+{% if triage_enabled %}### Triage labels
+
+Use the configured triage roles. See `docs/agents/triage-labels.md` relative to the active Matt Pocock alignment root.
+
+{% endif %}### Domain docs
+
+This is a {{ "single-context" if domain_mode == "single" else "multi-context" }} repository. Read `CONTEXT-MAP.md` and relevant domain documents and ADRs. See `docs/agents/domain.md` relative to the active Matt Pocock alignment root.
+

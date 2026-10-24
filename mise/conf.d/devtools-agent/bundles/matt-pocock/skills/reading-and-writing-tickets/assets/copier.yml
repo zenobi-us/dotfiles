@@ -1,0 +1,69 @@
+_min_copier_version: "9.15.1"
+_subdirectory: tree
+_templates_suffix: .jinja
+_answers_file: .copier-answers.yml
+_envops:
+  trim_blocks: true
+  lstrip_blocks: true
+  keep_trailing_newline: true
+
+tracker_backend:
+  type: str
+  choices: [local-markdown, github, gitlab]
+domain_mode:
+  type: str
+  default: single
+  choices: [single, multi]
+triage_enabled:
+  type: bool
+  default: true
+triage_labels:
+  type: json
+  default:
+    needs-triage: needs-triage
+    needs-info: needs-info
+    ready-for-agent: ready-for-agent
+    ready-for-human: ready-for-human
+    wontfix: wontfix
+domains:
+  type: json
+  default: []
+issue_root:
+  type: str
+  default: tracker/tickets
+initiative_root:
+  type: str
+  default: tracker/initiatives
+tracker_ref:
+  type: str
+  default: tracker/index.md
+tickets_ref:
+  type: str
+  default: tracker/tickets
+initiatives_ref:
+  type: str
+  default: tracker/initiatives
+initiatives_cross_store:
+  type: bool
+  default: false
+adr_links:
+  type: json
+  default: []
+workflow_links:
+  type: json
+  default: []
+initiative_links:
+  type: json
+  default: []
+ticket_links:
+  type: json
+  default: []
+initiative_records:
+  type: json
+  default: []
+context_links:
+  type: json
+  default: []
+origin:
+  type: str
+  default: ""

@@ -1,0 +1,26 @@
+# Context map
+
+Use these stable entry points. Keep individual workflow receipts out of this map.
+
+## Entry points
+
+{% for entry in context_links %}
+{% if entry.cross_store | default(false) %}
+- {{ entry.title }}: `{{ entry.href }}`
+{% else %}
+- [{{ entry.title }}]({{ entry.href }})
+{% endif %}
+{% endfor %}
+
+## Domain layout
+
+{% if domain_mode == "single" %}
+Read `CONTEXT.md` when it exists.
+{% else %}
+{% for domain in domains %}
+- Read `domains/{{ domain }}/CONTEXT.md` when it exists.
+{% endfor %}
+{% endif %}
+
+Keep architecture decisions under `docs/adr/`. Resolve ticket, initiative, workflow, evidence, and source paths through the shared-context CLI.
+
