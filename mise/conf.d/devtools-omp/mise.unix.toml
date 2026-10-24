@@ -8,4 +8,4 @@
 "~/.omp/agent/bundles/platform" = { source = "../devtools-agent/bundles/platform", mode = "symlink" }
 "~/.omp/agent/bundles/researcher" = { source = "../devtools-agent/bundles/researcher", mode = "symlink" }
 "~/.omp/agent/bundles/writing" = { source = "../devtools-agent/bundles/writing", mode = "symlink" }
-"~/.omp/agent/extensions" = { source = "./extensions", mode = "symlink" }
+"~/.omp/agent/extensions/*" = { source = "./extensions/*", mode = "symlink" }

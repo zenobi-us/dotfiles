@@ -50,7 +50,7 @@ write workflow state to `.scratch/`, `<ticket>/local/`, the ticket collection, o
 
 ## Receipt fields
 
-Every receipt MUST include:
+Every ticket-phase receipt MUST include:
 
 ```yaml
 schema: worktree-receipt/v1
@@ -106,6 +106,8 @@ status: completed
 Every receipt MUST list the durable records it consumed in `inputs`.
 Every receipt MUST list the durable records it created in `outputs`.
 Temporary handoffs MUST NOT appear as authoritative outputs.
+
+When dispatched by a goal coordinator, every phase handoff and ticket-phase receipt MUST carry `goal_run_id` and `goal_dispatch_ref`. Include the reservation in receipt `inputs`; parent and child phases preserve these fields. A standalone worktree command omits them. Reconciliation may link older receipts through a new coordinator event without rewriting those receipts.
 
 When an input or output references an external evidence object, include its
 `sha256` checksum with the stable `ref`. Local file evidence does not need a
@@ -169,6 +171,40 @@ failure_reason: ...
 worktree_preserved: true
 workspace_preserved: true
 ```
+
+## Finish checkpoints and integration evidence
+
+Use the ticket receipt envelope for append-only finish checkpoints. Set `phase: finish`, `status: FINISHING`, and `checkpoint` to the last verified boundary: `prepared`, `merged`, `pushed`, `ticket_completed`, or `worktree_removed`. Record `next_step`. Append `FINISH_FAILED` on failure; never erase earlier checkpoints.
+
+Before merge, record `review_receipt`, `reviewed_source_commit`, `reviewed_source_tree`, `base_before`, `base_branch`, `remote`, `remote_ref`, and `expected_merge_tree`. Compute the expected clean squash result from the reviewed source and recorded base without changing the working tree. If the merge is ambiguous or conflicts, stop. Record the proposed merge message and its ticket reference before invoking Worktrunk.
+
+After merge, record `merged_commit`, `merged_tree`, and its actual parents. The merge must have the recorded base as its sole parent and the expected tree. A ticket reference or matching file names alone is not integration evidence. Record integrated validation commands, working directories, and results.
+
+After push, record `remote_observed_commit` and evidence that `merged_commit` is reachable from it on the named remote ref. Later legitimate commits on the base do not invalidate reachability. After ticket completion, record the canonical tracker reference, observed state, and publication evidence required by its backend. Record actual worktree/workspace identity and removal observations.
+
+If a process stopped after a mutation but before its checkpoint, inspect actual state before retrying. Recover a missing merge checkpoint only if one unique commit is identified by the prepared base parent, expected tree, and recorded merge identity. Reconcile remote and tracker state independently. If evidence cannot establish a boundary, request human input rather than repeat a potentially completed mutation.
+
+Older receipts remain readable. Missing recovery fields are not permission to fabricate evidence. Require independently verifiable evidence or human recovery instructions.
+
+## Goal coordinator journal
+
+This journal is not a ticket-phase receipt. Resolve its workflow with `resolve workflow --id goal-<initiative-id> --json`. Verify that the returned location does not hold another workflow. Preparation reads existing journal events only. Create the journal after the user authorizes execution.
+
+Store append-only YAML events under that workflow's `events/`, with schema `worktree-goal/v1`. Use the receipt protocol's exclusive, no-clobber writes and parent links. Keep projections replaceable. Every event records its unique ID, parent event, timestamp, repository identity, canonical initiative reference, frozen ticket references, workflow store/ref, coordinator session/muxer identity, and event kind.
+
+The first `goal_started` event records the run ID, initial ticket receipt baseline, takeover approvals, per-ticket fix limit, dispatch limit, configured token budget, and associated OMP session/goal ID. The run ID survives coordinator restarts. A new invocation for the same unfinished initiative resumes that run; it does not create fresh allowances.
+
+Before each mutating phase, append a `dispatch_reserved` event with ticket ref, phase, attempt, consumed receipt refs, exact source commit/tree when available, and remaining allowances. The reservation consumes one dispatch even if launch fails or the process stops before a ticket receipt appears. A `fix` reservation also consumes one fix cycle for that ticket. Link the phase-start receipt in a later `dispatch_observed` event. Preserve failed and unresolved reservations; never reserve a duplicate while a prior dispatch could still be active.
+
+Append `dispatch_reconciled` after validating the phase result and parent completion receipts. A child marker or result receipt alone is not a completed parent phase. Recover a missing parent completion only from verified result, artifacts, validation, and agent shutdown; record the reconciliation without relaunching the child.
+
+Derive consumed allowances from reservations in this run, not from chat memory or replaceable projections. Resume from the original baseline. Refuse dispatch when the cap is reached or the event chain cannot establish the count. An explicit `limits_renewed` event must record user approval, prior consumption, and the new total limits; preserve all history.
+
+Record observed OMP token usage and its session/goal identity in checkpoints. On the same OMP goal, retain its runtime budget/accounting. Before creating a replacement goal, establish prior consumption from saved authoritative OMP accounting and carry forward only the remaining allowance. If exact accounting is unavailable, request explicit budget renewal; a lower-bound snapshot is not proof of remaining budget. Independent child spending is not bounded by this token budget.
+
+Only one coordinator may write for a run. Verify recorded owner liveness through the muxer contract before taking ownership. A live coordinator must be observed or explicitly handed off, not duplicated. An absent or unverifiable owner requires recorded takeover approval before a new owner event. Do not infer ticket ownership from `claimed` alone. Record which ticket workflows the user permits this run to adopt; claiming or changing ownership remains the ticket skill's operation.
+
+Append a checkpoint at pause, blocked, capped, and completion boundaries. Record outstanding dispatches, active agents, latest valid ticket receipts, recovery actions, and accounting evidence. Publish journal events according to the resolved store's rules. A journal write/publication failure blocks further dispatch.
 
 ## Projection requirements
 
@@ -252,4 +288,4 @@ REVIEWING → REVIEW_FAILED → FIXING → FIXED → REVIEWING
 REVIEWING → REVIEW_PASSED → FINISHING → FINISHED
 ```
 
-Reject `review` without an implementation receipt, `fix` without the latest persisted `FAILURE`, and `finish` without a `SUCCESS` receipt that covers the current source commit.
+Reject `review` without an implementation receipt, `fix` without the latest persisted `FAILURE`, and a new merge without a `SUCCESS` receipt that covers the current source commit and tree. After a verified merge, finish recovery uses the recorded reviewed-source-to-integration mapping; source-worktree removal does not invalidate that durable evidence.

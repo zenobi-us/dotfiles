@@ -8,6 +8,7 @@
 "~/.local/state/zot/extensions/platform" = { source = "./bundles/platform", mode = "symlink" }
 "~/.local/state/zot/extensions/researcher" = { source = "./bundles/researcher", mode = "symlink" }
 "~/.local/state/zot/extensions/writing" = { source = "./bundles/writing", mode = "symlink" }
+"~/.omp/agent/extensions/pi-shared-context" = { source = "./bundles/agent-core/extensions/pi-shared-context/", mode = "symlink" }
 "~/.agents/hooks/shared-context.json" = { source = "./bundles/agent-core/hooks/hooks.json", mode = "symlink" }
 "~/.local/bin/shared-context" = { source = "./bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts", mode = "symlink" }
 "~/.claude/output-styles/iso-24495.md" = { source = "./bundles/agent-core/skills/iso-24495/SKILL.md", mode = "symlink" }
