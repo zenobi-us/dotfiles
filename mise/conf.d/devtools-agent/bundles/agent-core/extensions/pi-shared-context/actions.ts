@@ -74,20 +74,16 @@ export async function launchExplorerSession(pi: ExtensionAPI, ctx: ExtensionComm
   if (choice.disabledReason) throw new Error(choice.disabledReason);
   const prompt = buildSessionPrompt(request);
   const parentSession = ctx.sessionManager.getSessionFile();
-  let staged = false;
+  let opened = false;
   try {
-    const result = await ctx.newSession({
-      parentSession,
-      withSession: async newctx => {
-        newctx.ui.setEditorText(`${prompt}\nReturn session DATA: ${quoteData(parentSession ?? null)}`);
-        staged = true;
-      },
-    });
+    const result = await ctx.newSession({ parentSession });
     if (result.cancelled) return false;
-    if (!staged) throw new Error("The fresh session did not provide an editor context.");
+    opened = true;
+    ctx.ui.setEditorText(`${prompt}\nReturn session DATA: ${quoteData(parentSession ?? null)}`);
     return true;
   } catch (error) {
-    throw new Error("Could not stage the action in a fresh Pi session.", { cause: error });
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`${opened ? "New session opened, but prompt preparation failed" : "Could not open a new session"}: ${message}`, { cause: error });
   }
 }
 

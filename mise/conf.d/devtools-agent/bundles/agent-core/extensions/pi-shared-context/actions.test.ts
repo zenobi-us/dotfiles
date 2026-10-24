@@ -124,6 +124,53 @@ describe("fresh-session boundaries", () => {
     expect(() => buildSessionPrompt({ ...request("ask-matt"), prompt: "  " })).toThrow();
   });
 
+  test("the prompt survives a successful session transition without a host callback", async () => {
+    let editor = "unsent user draft";
+    let session = "parent";
+    const ctx = {
+      waitForIdle: async () => {},
+      sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
+      ui: { setEditorText: (text: string) => {
+        expect(session).toBe("new");
+        editor = text;
+      } },
+      newSession: async () => {
+        await Promise.resolve();
+        editor = "";
+        session = "new";
+        return { cancelled: false };
+      },
+    } as unknown as ExtensionCommandContext;
+    const pi = {
+      getCommands: () => commands,
+      sendUserMessage: () => { throw new Error("The command must wait for Enter."); },
+    } as unknown as ExtensionAPI;
+    expect(await launchExplorerSession(pi, ctx, request("start"))).toBe(true);
+    expect(editor).toContain('/skill:worktree start');
+    expect(editor).toContain(ticket.ref);
+    expect(editor).toContain('Return session DATA: "/sessions/parent.jsonl"');
+  });
+
+  test("session creation and editor failures retain the cause and distinguish an opened session", async () => {
+    const cause = new Error("Host operation failed");
+    const ctx = {
+      waitForIdle: async () => {},
+      sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
+      ui: { setEditorText: () => { throw cause; } },
+      newSession: async () => ({ cancelled: false }),
+    } as unknown as ExtensionCommandContext;
+    const pi = { getCommands: () => commands } as unknown as ExtensionAPI;
+    await expect(launchExplorerSession(pi, ctx, request("start"))).rejects.toMatchObject({
+      message: "New session opened, but prompt preparation failed: Host operation failed",
+      cause,
+    });
+    ctx.newSession = async () => { throw cause; };
+    await expect(launchExplorerSession(pi, ctx, request("start"))).rejects.toMatchObject({
+      message: "Could not open a new session: Host operation failed",
+      cause,
+    });
+  });
+
   test("cancelling session creation preserves the old editor draft", async () => {
     let editor = "unsent user draft";
     const ctx = {

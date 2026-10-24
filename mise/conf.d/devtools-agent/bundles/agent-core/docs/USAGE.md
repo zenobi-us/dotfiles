@@ -86,7 +86,7 @@ Open `http://127.0.0.1:4389/`. On narrow screens, scroll inside each diagram fra
 
 ## Shared-context Graph continuity explorer
 
-The Pi extension requires Pi 1.1 or later. Run `/reload` after updating it.
+The extension supports Pi 1.1 or later and oh-my-pi. Run `/reload` after updating it.
 
 Open `/shared-context` or press `Ctrl+Shift+G`. The shortcut opens the modal directly; it does not send `/shared-context` as chat text or replace the editor draft. The titlebar shows the repository name and shared mode. Tracker and Files tabs sit below it. Press `1` for Tracker or `2` for Files. Tab highlights Tracker, Files, then returns focus to the content. Space or Enter activates the highlighted tab without opening a record. Switching tabs preserves both views. `/shared-context files` opens the Files tab directly. The initial Home view lists ready work and initiatives. It reads the configured tracker, not the preview's sample records.
 
@@ -113,7 +113,7 @@ At narrow terminal sizes, one pane is visible. Right / Enter opens detail from i
 | Initiative | `m` ask-matt with a required prompt; `t` to-tickets; `g` grill-with-docs |
 | Ticket | `m` ask-matt; `s` worktree start; `r` review; `x` fix; `f` finish; `u` submit |
 
-Each action shows its canonical record and handoff before it opens a fresh Pi session. The command is placed in the **new chat's editor**. Press Enter there to run it. The explorer does not auto-send a model request or run a worktree command. The worktree skill still owns independent implementation/reviewer/fixer processes and phase side effects. Cancel returns to the explorer without launching a chat.
+Each action shows its canonical record and handoff before it opens a fresh session. The extension waits for the session transition to finish before it places the command in the **new chat's editor**. Press Enter there to run it. The explorer does not auto-send a model request or run a worktree command. The worktree skill still owns independent implementation/reviewer/fixer processes and phase side effects. Cancel returns to the explorer without launching a chat. Session errors include the underlying cause. If the session opens but editor preparation fails, the error states that the new session is already open.
 
 Missing skills disable their actions. Unassigned is a browsing group, not a planning initiative. Preserve a durable planning handoff before splitting unfinished initiative work across chats.
 
