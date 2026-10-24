@@ -10,13 +10,15 @@ Reading or converting documents
 
 ### Issue tracker
 
-Use shared-context skill.
+Use the shared-context skill to resolve tracker paths. Local Markdown tickets are the source of truth. Use the reading-and-writing-tickets skill for ticket operations. See `docs/agents/issue-tracker.md` relative to the active Matt Pocock alignment root.
 
-GitHub Issues in `zenobi-us/dotfiles` are the source of truth. Use `gh` for issue operations. See `docs/agents/issue-tracker.md` relative to the ALIGNMENT_ROOT.
+### Triage labels
+
+Use the default triage roles. See `docs/agents/triage-labels.md` relative to the active Matt Pocock alignment root.
 
 ### Domain docs
 
-This is a single-context repository. Read `CONTEXT.md` and relevant `docs/adr/` files when they exist. See `docs/agents/domain.md` relative to the active Matt Pocock alignment root.
+This is a single-context repository. Read `CONTEXT-MAP.md`, `CONTEXT.md` when it exists, and relevant ADRs. See `docs/agents/domain.md` relative to the active Matt Pocock alignment root.
 
 ### Local Markdown
 
@@ -36,3 +38,5 @@ Use `mq-query` for local Markdown search, reading, filtering, selection, listing
 ## Subagents
 
 Subagents are interactive. Spawn them with the `muxer-subagents` skill.
+
+

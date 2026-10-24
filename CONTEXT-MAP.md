@@ -15,7 +15,7 @@ Use this file for stable entry points. Do not list individual workflow receipts 
 - [Issue tracker configuration](docs/agents/issue-tracker.md)
 - [Domain configuration](docs/agents/domain.md)
 
-The issue tracker for this repository is external. `docs/agents/issue-tracker.md` names it. The shared-context CLI creates typed `tracker/`, `workflows/`, and `sources/` paths only when a workflow needs them.
+The issue tracker uses Local Markdown. Read the [tracker index](tracker/index.md) for ticket and initiative navigation. Read `CONTEXT.md` when it exists. Keep architecture decisions under `docs/adr/`. Resolve workflow and source paths through the shared-context CLI when needed.
 
 ## Ownership
 
@@ -29,3 +29,4 @@ The issue tracker for this repository is external. `docs/agents/issue-tracker.md
 | `workflows/*/projections/` | Worktree skill | Generated and replaceable |
 | `sources/` | Shared-context skill | External and local source copies |
 | `domains/` | Domain skill | Stable domain vocabulary and rules |
+
