@@ -127,7 +127,8 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
   for (const file of await files(ticketsRecord.path, /\.md$/)) {
     const doc = await document(file, ticketsRecord.root, exec);
     const id = scalar(doc.fields.id, "ticket id");
-    tickets.push({ id, title: text(doc.fields.title, "ticket title"), ref: `${ticketsRecord.ref}/${relative(ticketsRecord.path, file).split("\\").join("/")}`, backend: "local-markdown", status: doc.fields.work_status == null ? "unknown" : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body });
+    const documentType = doc.fields.type == null ? undefined : text(doc.fields.type, "ticket type");
+    tickets.push({ id, title: text(doc.fields.title, "ticket title"), documentType, ref: `${ticketsRecord.ref}/${relative(ticketsRecord.path, file).split("\\").join("/")}`, backend: "local-markdown", status: doc.fields.work_status == null ? "unknown" : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body });
     paths.set(await realpath(file), id);
     if (doc.fields.parent != null) parents.set(id, scalar(doc.fields.parent, "ticket parent"));
   }
@@ -185,9 +186,9 @@ async function githubSnapshot(context: SharedAgentContext, exec: Exec): Promise<
     const children = await related("sub_issues");
     const title = text(issue.title, "GitHub issue title");
     const body = string(issue.body, "GitHub issue body");
-    tickets.set(id, { id, title, ref: `${base}${id}`, backend: "github", status: text(issue.state, "GitHub issue state"), blockedBy, body });
     const labels = list(issue.labels, "GitHub labels").map(value => text(object(value, "GitHub label").name, "GitHub label name"));
     const type = issue.issueType == null ? undefined : text(object(issue.issueType, "GitHub issue type").name, "GitHub issue type name");
+    tickets.set(id, { id, title, documentType: type, ref: `${base}${id}`, backend: "github", status: text(issue.state, "GitHub issue state"), blockedBy, body });
     if (labels.includes("wayfinder:map") || type?.toLowerCase() === "spec") initiatives.set(id, { id, title, ref: `${base}${id}`, ticketIds: children, body });
     if (issue.parent != null) {
       const parent = object(issue.parent, "GitHub parent");

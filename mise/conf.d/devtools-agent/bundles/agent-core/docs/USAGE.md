@@ -90,6 +90,8 @@ The extension supports Pi 1.1 or later and oh-my-pi. Run `/reload` after updatin
 
 Open `/shared-context` or press `Ctrl+Shift+G`. The shortcut opens the modal directly; it does not send `/shared-context` as chat text or replace the editor draft. The titlebar shows the repository name and shared mode. Tracker and Files tabs sit below it. Press `1` for Tracker or `2` for Files. Tab highlights Tracker, Files, then returns focus to the content. Space or Enter activates the highlighted tab without opening a record. Switching tabs preserves both views. `/shared-context files` opens the Files tab directly. The initial Home view lists ready work and initiatives. It reads the configured tracker, not the preview's sample records.
 
+Ticket rows show the frontmatter `type`, or the GitHub issue type, separately from the computed workflow state such as `[READY]`. Missing types show `[Ticket · type unspecified]`. Ticket detail also shows the type. Initiative rows show `[Initiative]`. Generated groups such as Unassigned show `[Collection]`. These labels do not depend on color.
+
 | Control | Behavior |
 | --- | --- |
 | `5`, `6`, `7`, `8` on Home | Ready, review/workflow actions, blocked/unknown, or all tickets |

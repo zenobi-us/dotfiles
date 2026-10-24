@@ -7,6 +7,7 @@ export interface ExplorerTicket {
   title: string;
   ref: string;
   backend: string;
+  documentType?: string;
   status: string;
   blockedBy: string[];
   body: string;

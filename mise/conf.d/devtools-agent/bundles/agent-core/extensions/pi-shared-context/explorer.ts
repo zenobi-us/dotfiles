@@ -334,7 +334,7 @@ export class GraphExplorer {
     if (this.loading || this.error || !this.snapshot) return [{ id: "state", title: "Shared context", rows: [{ text: this.loading ? "Loading tracker records…" : this.error || "No snapshot loaded.", tone: this.error ? "error" : "muted" }, { text: "R reload · b browse files · q close", tone: "muted" }] }];
     if (this.screen === "actions") return [{ id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" : "text", selected: index === this.actionIndex })) }];
     if (this.screen === "home") return [{ id: `home:${this.queue}`, title: `Ready-work Home · ${this.queue}`, rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
-    if (this.screen === "initiatives") return [{ id: "initiatives", title: "Initiatives", rows: this.snapshot.initiatives.map(initiative => ({ text: `${initiative.id} ${initiative.title}`, selected: initiative.id === this.initiativeId })) }, this.graphPane()];
+    if (this.screen === "initiatives") return [{ id: "initiatives", title: "Initiatives / collections", rows: this.snapshot.initiatives.map(initiative => ({ text: `[${initiative.group ? "Collection" : "Initiative"}] ${initiative.id} ${initiative.title}`, selected: initiative.id === this.initiativeId })) }, this.graphPane()];
     if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: "Ticket / dependencies / receipts", rows: this.ticketRows() }];
     const workflow = this.workflow();
     const receipts = workflow?.receipts ?? [];
@@ -354,10 +354,10 @@ export class GraphExplorer {
       if (!inQueue) continue;
       const blockers = ticket.blockedBy.filter(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!));
       const detail = blockers.length ? ` · waiting for ${blockers.join(" + ")}` : this.workflows.get(ticket.id)?.error ? ` · ${this.workflows.get(ticket.id)!.error}` : "";
-      rows.push({ text: `${ticket.id} [${state}] ${ticket.title}${detail}`, target: { kind: "ticket", ticket }, tone: state === "ERROR" ? "warning" : "text" });
+      rows.push({ text: `[${this.ticketType(ticket)}] ${ticket.id} [${state}] ${ticket.title}${detail}`, target: { kind: "ticket", ticket }, tone: state === "ERROR" ? "warning" : "text" });
     }
     if (!rows.length) rows.push({ text: this.receiptChecks < this.snapshot.tickets.length ? "Checking workflow receipts before offering work…" : `No tickets in ${this.queue}. Choose 4 for all tickets.`, tone: "muted" });
-    for (const initiative of this.snapshot.initiatives) rows.push({ text: `+ ${initiative.id} ${initiative.title} (${initiative.ticketIds.length} tickets)`, target: { kind: "initiative", initiative }, tone: "accent" });
+    for (const initiative of this.snapshot.initiatives) rows.push({ text: `+ [${initiative.group ? "Collection" : "Initiative"}] ${initiative.id} ${initiative.title} (${initiative.ticketIds.length} tickets)`, target: { kind: "initiative", initiative }, tone: "accent" });
     return rows;
   }
 
@@ -367,7 +367,7 @@ export class GraphExplorer {
     for (const id of ids) {
       const ticket = this.tickets.get(id);
       if (!ticket) continue;
-      rows.push({ text: `${id} [${this.ticketState(ticket)}] ${ticket.title}`, selected: this.screen === "tickets" && id === this.ticketId });
+      rows.push({ text: `[${this.ticketType(ticket)}] ${id} [${this.ticketState(ticket)}] ${ticket.title}`, selected: this.screen === "tickets" && id === this.ticketId });
       if (ticket.blockedBy.length) rows.push({ text: `  ← ${ticket.blockedBy.join(" + ")}`, tone: "muted" });
       const dependents = ids.filter(other => this.tickets.get(other)?.blockedBy.includes(id));
       if (dependents.length) rows.push({ text: `  → ${dependents.join(", ")}`, tone: "muted" });
@@ -380,7 +380,7 @@ export class GraphExplorer {
     const ticket = this.ticket();
     if (!ticket) return [{ text: "Select a ticket.", tone: "muted" }];
     const workflow = this.workflow();
-    return [{ text: `${ticket.id} ${ticket.title}`, tone: "accent" }, { text: `State: ${this.ticketState(ticket)}` }, { text: `Reference: ${ticket.ref}` }, { text: `Current source: ${workflow?.sourceCommit ?? "not recorded"}` }, { text: "Dependencies:", tone: "accent" }, ...this.neighborhoodRows(), { text: "Receipts:", tone: "accent" }, ...(workflow?.receipts.map(receipt => ({ text: `${receipt.id} ${receipt.phase} [${receipt.verdict ?? receipt.status}] @${receipt.sourceCommit}` })) ?? []), ...(workflow?.error ? [{ text: workflow.error, tone: "warning" as const }] : []), { text: workflow ? "→ inspect receipts · a actions" : "Checking receipts…", tone: "muted" }, { text: "Ticket:", tone: "accent" }, ...ticket.body.split(/\r?\n/).map(text => ({ text }))];
+    return [{ text: `${ticket.id} ${ticket.title}`, tone: "accent" }, { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${this.ticketState(ticket)}` }, { text: `Reference: ${ticket.ref}` }, { text: `Current source: ${workflow?.sourceCommit ?? "not recorded"}` }, { text: "Dependencies:", tone: "accent" }, ...this.neighborhoodRows(), { text: "Receipts:", tone: "accent" }, ...(workflow?.receipts.map(receipt => ({ text: `${receipt.id} ${receipt.phase} [${receipt.verdict ?? receipt.status}] @${receipt.sourceCommit}` })) ?? []), ...(workflow?.error ? [{ text: workflow.error, tone: "warning" as const }] : []), { text: workflow ? "→ inspect receipts · a actions" : "Checking receipts…", tone: "muted" }, { text: "Ticket:", tone: "accent" }, ...ticket.body.split(/\r?\n/).map(text => ({ text }))];
   }
 
   private neighborhoodRows(): Row[] {
@@ -406,6 +406,11 @@ export class GraphExplorer {
     if (!choice || !target || !this.snapshot) return;
     if (choice.disabledReason) { this.notice = choice.disabledReason; this.options.requestRender(); return; }
     this.options.done({ kind: "session", request: { action: choice.action, target, snapshot: this.snapshot, ...(target.kind === "ticket" ? { workflow: this.workflows.get(target.ticket.id) } : {}), prompt: "" }, navigation: this.navigation() });
+  }
+
+  private ticketType(ticket: ExplorerTicket): string {
+    const type = ticket.documentType;
+    return type ? type.charAt(0).toUpperCase() + type.slice(1) : "Ticket · type unspecified";
   }
 
   private ticketState(ticket: ExplorerTicket): string {
