@@ -86,6 +86,17 @@ Open `http://127.0.0.1:4389/`. On narrow screens, scroll inside each diagram fra
 
 ## Shared-context Graph continuity explorer
 
+The event list includes invalid receipts instead of stopping at the first error.
+Select an invalid event to inspect its stable reference, validation error, and
+recorded fields. Parse failures remain listed with their file reference.
+Invalid history blocks worktree actions and does not establish source freshness.
+Existing events remain append-only; inspection does not repair or rewrite them.
+
+Phase-start events can use `status: started`. Phase-start and phase-complete
+envelopes can omit an evidence run; phase-result receipts still require one.
+The receipt producer must copy `workflow.root` from the resolver store root,
+not its workflow directory path.
+
 The extension supports Pi 1.1 or later and oh-my-pi. Run `/reload` after updating it.
 
 Open `/shared-context` or press `Ctrl+Shift+G`. The shortcut opens the modal directly; it does not send `/shared-context` as chat text or replace the editor draft. The titlebar shows the repository name and shared mode. Tracker and Files tabs sit below it. Press `1` for Tracker or `2` for Files. Tab highlights Tracker, Files, then returns focus to the content. Space or Enter activates the highlighted tab without opening a record. Switching tabs preserves both views. `/shared-context files` opens the Files tab directly. The initial Home view lists ready work and initiatives. It reads the configured tracker, not the preview's sample records.

@@ -48,9 +48,18 @@ export interface ExplorerReceipt {
   body: string;
 }
 
+export interface ExplorerEvent {
+  id: string;
+  ref: string;
+  fields?: Record<string, unknown>;
+  body?: string;
+  error?: string;
+}
+
 export interface TicketWorkflow {
   ticketId: string;
   receipts: ExplorerReceipt[];
+  events?: ExplorerEvent[];
   sourceCommit?: string;
   sourceTree?: string;
   error?: string;

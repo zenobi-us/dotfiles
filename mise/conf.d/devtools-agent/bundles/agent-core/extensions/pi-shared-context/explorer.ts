@@ -4,6 +4,7 @@ import { actionChoices } from "./actions";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
 import { isCompleted, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
 import { safeTerminalText } from "./terminal-text";
+import type { ExplorerEvent } from "./model";
 
 type Screen = "home" | "initiatives" | "tickets" | "receipts" | "actions";
 type Queue = "ready" | "review" | "blocked" | "all";
@@ -231,8 +232,8 @@ export class GraphExplorer {
         const ids = this.scopes.get(this.initiativeId ?? "") ?? [];
         this.ticketId = ids[Math.max(0, Math.min(ids.length - 1, ids.indexOf(this.ticketId ?? "") + delta))];
       } else {
-        const receipts = this.workflow()?.receipts ?? [];
-        const index = receipts.findIndex(receipt => receipt.id === this.receiptId);
+        const receipts = this.history();
+        const index = Math.max(0, receipts.findIndex(receipt => receipt.id === this.receiptId));
         this.receiptId = receipts[Math.max(0, Math.min(receipts.length - 1, index + delta))]?.id;
       }
       this.notice = "";
@@ -271,7 +272,7 @@ export class GraphExplorer {
       } else if (this.screen === "tickets") {
         this.screen = "receipts";
         focus = "list";
-        if (!this.workflow()?.receipts.some(receipt => receipt.id === this.receiptId)) this.receiptId = this.workflow()?.receipts[0]?.id;
+        if (!this.history().some(receipt => receipt.id === this.receiptId)) this.receiptId = this.history()[0]?.id;
       }
       this.focus = focus;
       this.notice = "";
@@ -337,10 +338,24 @@ export class GraphExplorer {
     if (this.screen === "initiatives") return [{ id: "initiatives", title: "Initiatives / collections", rows: this.snapshot.initiatives.map(initiative => ({ text: `[${initiative.group ? "Collection" : "Initiative"}] ${initiative.id} ${initiative.title}`, selected: initiative.id === this.initiativeId })) }, this.graphPane()];
     if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: "Ticket / dependencies / receipts", rows: this.ticketRows() }];
     const workflow = this.workflow();
-    const receipts = workflow?.receipts ?? [];
-    const receipt = receipts.find(receipt => receipt.id === this.receiptId) ?? receipts[0];
-    return [{ id: `neighbors:${this.ticketId}`, title: "Dependency context", rows: this.neighborhoodRows().map((row, index) => ({ ...row, selected: this.focus === "neighborhood" && index === this.neighborhoodIndex })) }, { id: `receipts:${this.ticketId}`, title: "Receipts / newest first", rows: receipts.length ? receipts.map(item => ({ text: `${item.id} ${item.phase} [${item.verdict ?? item.status}]`, selected: item.id === receipt?.id })) : [{ text: workflow?.error ?? (workflow ? "No receipts yet." : "Loading receipts…"), tone: workflow?.error ? "error" : "muted" }] }, { id: `receipt:${this.ticketId}:${receipt?.id ?? "none"}`, title: "Receipt / exact evidence", rows: receipt ? [
+    const events = this.history();
+    const event = events.find(event => event.id === this.receiptId) ?? events[0];
+    const receipt = event && !event.error ? workflow?.receipts.find(receipt => receipt.ref === event.ref) : undefined;
+    return [{ id: `neighbors:${this.ticketId}`, title: "Dependency context", rows: this.neighborhoodRows().map((row, index) => ({ ...row, selected: this.focus === "neighborhood" && index === this.neighborhoodIndex })) }, {
+      id: `receipts:${this.ticketId}`, title: "Events / newest first",
+      rows: events.length ? events.map(item => ({
+        text: `${typeof item.fields?.receipt_id === "string" ? item.fields.receipt_id : item.ref.split("/").at(-1)} ${typeof item.fields?.phase === "string" ? item.fields.phase : ""} [${item.error ? "INVALID" : typeof item.fields?.status === "string" ? item.fields.status : "recorded"}]`,
+        selected: item.id === event?.id, tone: item.error ? "warning" : "text",
+      })) : [{ text: workflow?.error ?? (workflow ? "No receipts yet." : "Loading receipts…"), tone: workflow?.error ? "error" : "muted" }],
+    }, { id: `receipt:${this.ticketId}:${event?.id ?? "none"}`, title: "Receipt / exact evidence", rows: receipt ? [
       { text: `Ticket: ${this.ticket()?.ref ?? ""}`, tone: "accent" }, { text: `Receipt: ${receipt.id}` }, { text: `Phase: ${receipt.phase} · ${receipt.status}${receipt.verdict ? ` · ${receipt.verdict}` : ""}` }, { text: `Parent: ${receipt.parentReceipt ?? "none"}` }, { text: `Commit: ${receipt.sourceCommit}` }, { text: `Tree: ${receipt.sourceTree}` }, { text: `Current: ${workflow?.sourceCommit ?? "unavailable"}` }, { text: `Current tree: ${workflow?.sourceTree ?? "unavailable"}` }, { text: workflow?.error ?? (receipt.sourceCommit === workflow?.sourceCommit && receipt.sourceTree === workflow?.sourceTree ? "Source: matched" : "Source: stale / unavailable"), tone: workflow?.error || receipt.sourceCommit !== workflow?.sourceCommit || receipt.sourceTree !== workflow?.sourceTree ? "warning" : "accent" }, { text: `Workspace: ${receipt.workspacePath}` }, { text: `Branch: ${receipt.sourceBranch} · base ${receipt.baseBranch}` }, { text: `Session: ${receipt.sessionId ?? "not recorded"}` }, { text: `Created: ${receipt.createdAt}` }, { text: `Reference: ${receipt.ref}` }, { text: "Outputs:", tone: "accent" }, ...receipt.outputs.map(output => ({ text: `  ${output}` })), { text: "Receipt fields:", tone: "accent" }, ...JSON.stringify(receipt.fields, null, 2).split("\n").map(text => ({ text })), ...receipt.body.split(/\r?\n/).map(text => ({ text }))
+    ] : event ? [
+      { text: `Reference: ${event.ref}`, tone: "accent" },
+      { text: event.error ?? workflow?.error ?? "Unvalidated event.", tone: "error" },
+      { text: "Not valid workflow evidence. Worktree transitions remain blocked.", tone: "warning" },
+      { text: "Recorded fields:", tone: "accent" },
+      ...JSON.stringify(event.fields ?? null, null, 2).split("\n").map(text => ({ text })),
+      ...(event.body ?? "").split(/\r?\n/).map(text => ({ text })),
     ] : [{ text: workflow?.error ?? (workflow ? "No receipt exists for this ticket." : "Loading workflow…"), tone: workflow?.error ? "error" : "muted" }, { text: "Chat output is not workflow evidence." }] }];
   }
 
@@ -444,6 +459,11 @@ export class GraphExplorer {
 
   private ticket(): ExplorerTicket | undefined {
     return this.ticketId ? this.tickets.get(this.ticketId) : undefined;
+  }
+
+  private history(): ExplorerEvent[] {
+    const workflow = this.workflow();
+    return workflow?.events ?? workflow?.receipts ?? [];
   }
 
   private workflow(): TicketWorkflow | undefined {

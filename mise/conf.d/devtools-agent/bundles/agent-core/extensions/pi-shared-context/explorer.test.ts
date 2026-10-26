@@ -137,3 +137,24 @@ test("dependency navigation keeps the selected neighbor inside the viewport", as
   for (let index = 0; index < 10; index++) component.handleInput("\x1b[B");
   expect(component.render(40).some(line => line.startsWith(">") && line.includes("T-4"))).toBe(true);
 });
+
+test("invalid events can be selected and inspected alongside valid history", async () => {
+  const selected = { ...snapshot.tickets[2], blockedBy: [] };
+  const invalid = { id: "workflows/T-3/events/invalid.json", ref: "workflows/T-3/events/invalid.json", fields: { receipt_id: "invalid", phase: "review", status: "completed", workflow: { root: "/wrong/workflow/directory" } }, error: "Receipt workflow.root does not match the resolved workflow store root." };
+  const component = new GraphExplorer({
+    context, theme, commands, exec: async () => { throw new Error("Unexpected process execution"); },
+    done: () => {}, requestRender: () => {}, height: () => 40,
+    navigation: { screen: "receipts", ticketId: selected.id, queue: "all", focus: "list", offsets: [] },
+    loadSnapshot: async () => ({ ...snapshot, tickets: [selected], initiatives: [] }),
+    loadWorkflow: async () => ({ ticketId: selected.id, receipts: [receipt], events: [invalid, receipt], error: invalid.error }),
+  });
+  await component.load();
+  const invalidView = component.render(160).join("\n");
+  expect(invalidView).toContain("invalid review [INVALID]");
+  expect(invalidView).toContain("/wrong/workflow/directory");
+  expect(invalidView).toContain("Not valid workflow evidence");
+  component.handleInput("\x1b[B");
+  expect(component.render(160).join("\n")).toContain(`Commit: ${receipt.sourceCommit}`);
+  component.handleInput("\x1b[A");
+  expect(component.render(160).join("\n")).toContain("/wrong/workflow/directory");
+});

@@ -3,7 +3,7 @@ import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord } from "../../skills/shared-context/scripts/shared-context/lib";
 import { chronologicalReceipts } from "./model";
-import type { Exec, ExplorerInitiative, ExplorerReceipt, ExplorerSnapshot, ExplorerTicket, SharedAgentContext, TicketWorkflow } from "./model";
+import type { Exec, ExplorerEvent, ExplorerInitiative, ExplorerReceipt, ExplorerSnapshot, ExplorerTicket, SharedAgentContext, TicketWorkflow } from "./model";
 
 type Fields = Record<string, unknown>;
 type Document = { fields: Fields; body: string; links: unknown[] };
@@ -37,7 +37,7 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
 }
 
 export async function loadTicketWorkflow(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec): Promise<TicketWorkflow> {
-  const result: TicketWorkflow = { ticketId: ticket.id, receipts: [] };
+  const result: TicketWorkflow = { ticketId: ticket.id, receipts: [], events: [] };
   try {
     const workflowId = ticket.backend === "github" ? `GH-${ticket.id}` : ticket.id;
     const record = await resolveContextRecord(context, { kind: "workflow", id: workflowId });
@@ -47,42 +47,69 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
     const events = join(record.path, "events");
     if (!await exists(events)) return result;
     for (const file of await files(events, /\.(md|yaml|yml|json)$/)) {
-      const doc = await document(file, record.root, exec);
-      const fields = doc.fields;
-      if (fields.schema !== "worktree-receipt/v1") throw new Error("Event must use schema worktree-receipt/v1.");
-      if (fields.workflow_id !== workflowId) throw new Error("Receipt workflow_id does not match the selected ticket.");
-      const identity = object(fields.ticket, "receipt ticket");
-      if (String(identity.id) !== ticket.id || identity.backend !== ticket.backend || identity.ref !== ticket.ref || fields.ticket_ref !== ticket.ref) throw new Error("Receipt ticket identity or ref does not match the selected ticket.");
-      const workflow = object(fields.workflow, "receipt workflow");
-      if (workflow.ref !== record.ref || workflow.store !== record.store || workflow.root !== record.root) throw new Error("Receipt workflow ref, store, or root does not match the resolved workflow.");
-      const repository = text(fields.repository, "receipt repository");
-      if (!isAbsolute(repository) || resolve(repository) !== resolve(context.repositoryRoot)) throw new Error("Receipt repository does not match the current repository.");
-      const workspacePath = text(fields.worktree, "receipt worktree");
-      if (!isAbsolute(workspacePath) || fields.workspace_path !== workspacePath) throw new Error("Receipt worktree and workspace_path must name the same absolute worktree.");
-      const status = text(fields.status, "receipt status");
-      if (!["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status)) throw new Error("Receipt status is not a supported phase result.");
-      if (fields.verdict != null && !["SUCCESS", "FAILURE"].includes(String(fields.verdict))) throw new Error("Receipt verdict must be SUCCESS or FAILURE.");
-      if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < 1) throw new Error("Receipt attempt must be a positive integer.");
-      text(fields.muxer, "receipt muxer");
-      text(fields.agent, "receipt agent");
-      if (typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
-      const evidence = object(fields.evidence, "receipt evidence");
-      text(evidence.store, "receipt evidence store");
-      text(evidence.ref, "receipt evidence ref");
-      references(fields.inputs, "receipt inputs");
-      const outputs = references(fields.outputs, "receipt outputs");
-      const createdAt = text(fields.created_at, "receipt created_at");
-      if (!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(createdAt) || !Number.isFinite(Date.parse(createdAt))) throw new Error("Receipt created_at must be an ISO timestamp with a timezone.");
-      if (!Object.hasOwn(fields, "parent_receipt") || !Object.hasOwn(fields, "session_id")) throw new Error("Receipt parent_receipt and session_id are required; use null when absent.");
-      const parentReceipt = fields.parent_receipt == null ? undefined : text(fields.parent_receipt, "receipt parent_receipt");
-      result.receipts.push({
-        id: text(fields.receipt_id, "receipt receipt_id"), ref: `${record.ref}/events/${relative(events, file).split("\\").join("/")}`,
-        workflowId, phase: text(fields.phase, "receipt phase"), status, parentReceipt,
-        sourceCommit: hash(fields.source_commit, "receipt source_commit"), sourceTree: hash(fields.source_tree, "receipt source_tree"),
-        createdAt, workspacePath, sourceBranch: text(fields.source_branch, "receipt source_branch"), baseBranch: text(fields.base_branch, "receipt base_branch"),
-        sessionId: fields.session_id == null ? undefined : text(fields.session_id, "receipt session_id"),
-        verdict: fields.verdict == null ? undefined : text(fields.verdict, "receipt verdict"), outputs, fields, body: doc.body,
-      });
+      const ref = `${record.ref}/events/${relative(events, file).split("\\").join("/")}`;
+      const event: ExplorerEvent = { id: ref, ref };
+      result.events!.push(event);
+      try {
+        const doc = await document(file, record.root, exec);
+        const fields = doc.fields;
+        event.fields = fields;
+        event.body = doc.body;
+        if (fields.schema !== "worktree-receipt/v1") throw new Error("Event must use schema worktree-receipt/v1.");
+        if (fields.workflow_id !== workflowId) throw new Error("Receipt workflow_id does not match the selected ticket.");
+        const identity = object(fields.ticket, "receipt ticket");
+        if (String(identity.id) !== ticket.id || identity.backend !== ticket.backend || identity.ref !== ticket.ref || fields.ticket_ref !== ticket.ref) throw new Error("Receipt ticket identity or ref does not match the selected ticket.");
+        const workflow = object(fields.workflow, "receipt workflow");
+        for (const field of ["ref", "store", "root"] as const) {
+          if (workflow[field] !== record[field]) throw new Error(`Receipt workflow.${field} does not match the resolved workflow${field === "root" ? " store root (not the workflow directory)" : ""}.`);
+        }
+        const repository = text(fields.repository, "receipt repository");
+        if (!isAbsolute(repository) || resolve(repository) !== resolve(context.repositoryRoot)) throw new Error("Receipt repository does not match the current repository.");
+        const workspacePath = text(fields.worktree, "receipt worktree");
+        if (!isAbsolute(workspacePath) || fields.workspace_path !== workspacePath) throw new Error("Receipt worktree and workspace_path must name the same absolute worktree.");
+        const status = text(fields.status, "receipt status");
+        const lifecycle = fields.event === "phase-start" || fields.event === "phase-complete";
+        const started = fields.event === "phase-start" && status === "started";
+        const finishing = fields.phase === "finish" && status === "FINISHING";
+        if (!started && !finishing && !["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status)) throw new Error("Receipt status is not a supported phase result or lifecycle state.");
+        if (fields.verdict != null && !["SUCCESS", "FAILURE"].includes(String(fields.verdict))) throw new Error("Receipt verdict must be SUCCESS or FAILURE.");
+        if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < 1) throw new Error("Receipt attempt must be a positive integer.");
+        text(fields.muxer, "receipt muxer");
+        text(fields.agent, "receipt agent");
+        if (typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
+        if (!lifecycle || fields.evidence != null) {
+          const evidence = object(fields.evidence, "receipt evidence");
+          text(evidence.store, "receipt evidence store");
+          text(evidence.ref, "receipt evidence ref");
+        }
+        references(fields.inputs, "receipt inputs");
+        const outputs = references(fields.outputs, "receipt outputs");
+        const createdAt = text(fields.created_at, "receipt created_at");
+        if (!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(createdAt) || !Number.isFinite(Date.parse(createdAt))) throw new Error("Receipt created_at must be an ISO timestamp with a timezone.");
+        if (!Object.hasOwn(fields, "parent_receipt") || !Object.hasOwn(fields, "session_id")) throw new Error("Receipt parent_receipt and session_id are required; use null when absent.");
+        const parentReceipt = fields.parent_receipt == null ? undefined : text(fields.parent_receipt, "receipt parent_receipt");
+        result.receipts.push({
+          id: text(fields.receipt_id, "receipt receipt_id"), ref,
+          workflowId, phase: text(fields.phase, "receipt phase"), status, parentReceipt,
+          sourceCommit: hash(fields.source_commit, "receipt source_commit"), sourceTree: hash(fields.source_tree, "receipt source_tree"),
+          createdAt, workspacePath, sourceBranch: text(fields.source_branch, "receipt source_branch"), baseBranch: text(fields.base_branch, "receipt base_branch"),
+          sessionId: fields.session_id == null ? undefined : text(fields.session_id, "receipt session_id"),
+          verdict: fields.verdict == null ? undefined : text(fields.verdict, "receipt verdict"), outputs, fields, body: doc.body,
+        });
+      } catch (error) {
+        event.error = error instanceof Error ? error.message : String(error);
+      }
+    }
+    result.events!.sort((left, right) => {
+      const leftTime = Date.parse(String(left.fields?.created_at ?? ""));
+      const rightTime = Date.parse(String(right.fields?.created_at ?? ""));
+      return (Number.isFinite(rightTime) ? rightTime : 0) - (Number.isFinite(leftTime) ? leftTime : 0) || left.ref.localeCompare(right.ref);
+    });
+    result.receipts = chronologicalReceipts(result.receipts).reverse();
+    const errors = result.events!.filter(event => event.error).map(event => `${event.ref}: ${event.error}`);
+    if (errors.length) {
+      result.error = errors.join("\n");
+      return result;
     }
     const byId = new Map<string, ExplorerReceipt>();
     for (const receipt of result.receipts) {
@@ -90,7 +117,6 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
       byId.set(receipt.id, receipt);
     }
     validateRelations([...byId.values()].map(item => ({ id: item.id, blockedBy: item.parentReceipt ? [item.parentReceipt] : [] })), "receipt parent");
-    result.receipts = chronologicalReceipts(result.receipts).reverse();
     const newest = result.receipts[0];
     if (newest) {
       if (!await exists(newest.workspacePath)) throw new Error("Recorded worktree is unavailable; current source freshness cannot be established.");

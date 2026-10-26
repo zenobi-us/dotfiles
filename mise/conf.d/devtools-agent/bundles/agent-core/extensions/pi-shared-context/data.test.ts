@@ -5,6 +5,7 @@ import { dirname, join, relative } from "node:path";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
 import { unresolvedBlockers } from "./model";
 import type { Exec, ExplorerTicket, SharedAgentContext } from "./model";
+import { actionChoices } from "./actions";
 
 const temporaryDirectories: string[] = [];
 afterEach(async () => {
@@ -124,6 +125,34 @@ test("receipt identity and timestamps govern history, not filenames or projectio
   expect(workflow.sourceCommit).toBe(commit);
   expect(workflow.sourceTree).toBe(tree);
   await put(join(events, "wrong.json"), JSON.stringify({ ...fields, receipt_id: "wrong", ticket_ref: "records/issues/B.md" }));
+  expect((await loadTicketWorkflow(context, selected, execute)).error).toBeDefined();
+});
+
+test("invalid events remain inspectable without hiding valid receipts or permitting transitions", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  await put(join(events, "bad-root.json"), JSON.stringify({ ...fields, receipt_id: "bad-root", workflow: { ...fields.workflow, root: dirname(events) } }));
+  await put(join(events, "broken.json"), "{");
+  const workflow = await loadTicketWorkflow(context, selected, execute);
+  expect(workflow.receipts.map(item => item.id)).toEqual(["start-1"]);
+  expect(workflow.events?.map(item => item.ref.split("/").at(-1)).sort()).toEqual(["bad-root.json", "broken.json", "z-first.json"]);
+  expect(workflow.events?.find(item => item.fields?.receipt_id === "bad-root")?.error).toContain("workflow.root");
+  expect(workflow.events?.find(item => item.fields?.receipt_id === "bad-root")?.fields?.workflow).toEqual({ ...fields.workflow, root: dirname(events) });
+  expect(workflow.error).toContain("bad-root.json");
+  expect(workflow.error).toContain("broken.json");
+  expect(workflow.sourceCommit).toBeUndefined();
+  const choices = actionChoices({ kind: "ticket", ticket: selected }, { backend: selected.backend, tickets: [selected], initiatives: [] }, workflow, [{ name: "skill:worktree" }]);
+  expect(choices.filter(choice => choice.action !== "ask-matt").every(choice => Boolean(choice.disabledReason))).toBe(true);
+});
+
+test("phase-start and phase-complete envelopes do not require invented evidence", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  const { evidence, ...envelope } = fields;
+  await put(join(events, "z-first.json"), JSON.stringify({ ...envelope, event: "phase-start", status: "started" }));
+  await put(join(events, "complete.json"), JSON.stringify({ ...envelope, receipt_id: "complete", parent_receipt: fields.receipt_id, event: "phase-complete", created_at: "2026-10-02T10:00:00Z" }));
+  const workflow = await loadTicketWorkflow(context, selected, execute);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.receipts.map(item => item.id)).toEqual(["complete", "start-1"]);
+  await put(join(events, "complete.json"), JSON.stringify({ ...envelope, receipt_id: "complete", parent_receipt: fields.receipt_id, event: "phase-result" }));
   expect((await loadTicketWorkflow(context, selected, execute)).error).toBeDefined();
 });
 
