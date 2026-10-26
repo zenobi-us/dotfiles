@@ -25,6 +25,22 @@ interface ImageContent {
   data: string;
   mimeType: string;
 }
+interface TextContent {
+  type: "text";
+  text: string;
+}
+
+interface ImageToolParameters {
+  action: "new" | "annotate";
+  path?: string;
+}
+
+interface ImageToolResult {
+  content: (TextContent | ImageContent)[];
+  details: { action: "new" | "annotate"; status: "completed" | "cancelled" | "error" };
+  isError?: boolean;
+}
+
 
 interface ExtensionContext {
   mode: "tui" | "rpc" | "json" | "print";
@@ -34,6 +50,20 @@ interface ExtensionContext {
 }
 
 interface ExtensionAPI {
+  zod: {
+    object(shape: Record<string, unknown>): unknown;
+    enum(values: ["new", "annotate"]): unknown;
+    string(): { optional(): unknown };
+  };
+  registerTool(tool: {
+    name: string;
+    label: string;
+    description: string;
+    parameters: unknown;
+    loadMode: "essential";
+    deferrable: false;
+    execute(id: string, params: ImageToolParameters, signal: AbortSignal | undefined, onUpdate: ((result: { content: TextContent[] }) => void) | undefined, ctx: ExtensionContext): Promise<ImageToolResult>;
+  }): void;
   registerCommand(
     name: string,
     command: { description: string; handler(args: string, ctx: ExtensionContext): Promise<void> },
@@ -42,6 +72,7 @@ interface ExtensionAPI {
     event: "input",
     handler: (event: { source: string; text: string; images?: ImageContent[] }, ctx: ExtensionContext) => Promise<{ action: "continue" | "handled" }>,
   ): void;
+  on(event: "session_start" | "session_switch" | "session_branch" | "session_tree", handler: () => void): void;
   sendUserMessage(content: ({ type: "text"; text: string } | ImageContent)[]): Promise<void> | void;
 }
 
@@ -65,17 +96,63 @@ export interface AnnotatorResult {
 }
 
 export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
-  pi.registerCommand("annotate-image", {
-    description: "Annotate an image file; for a pasted image, submit it with text starting `annotate:`",
-    handler: async (args, ctx) => {
-      const parsed = parseArguments(args);
-      if (!parsed.path) {
-        ctx.ui.notify("Usage: /annotate-image <imagepath>. For a pasted image, submit it with text starting `annotate:`.", "warning");
-        return;
-      }
+  let latestImage: ImageContent | undefined;
 
+  for (const event of ["session_start", "session_switch", "session_branch", "session_tree"] as const) {
+    pi.on(event, () => { latestImage = undefined; });
+  }
+
+  const sourceFor = async (action: ImageToolParameters["action"], path: string | undefined, cwd: string) => {
+    if (action === "new") {
+      if (path) throw new Error("Use annotate to edit an existing image, or omit path for a new canvas.");
+      return undefined;
+    }
+    if (path) return readImageFile(path, cwd);
+    if (latestImage) return imageContent(latestImage, "attached-image");
+    throw new Error("Provide an image path or attach an image before requesting annotation.");
+  };
+
+  pi.registerTool({
+    name: "image_editor",
+    label: "Image editor",
+    description: "Open an interactive browser canvas when the user asks to draw a new image or annotate an image, screenshot, or photo. Use action=new for a blank canvas. Use action=annotate with an image file path, or omit path to use the latest user attachment in this session. This is a manual drawing editor, not AI image generation. Waits for the user to click Done or Cancel and returns the completed PNG.",
+    parameters: pi.zod.object({
+      action: pi.zod.enum(["new", "annotate"]),
+      path: pi.zod.string().optional(),
+    }),
+    loadMode: "essential",
+    deferrable: false,
+    execute: async (_id, params, signal, onUpdate, ctx) => {
       try {
-        const source = await readImageFile(parsed.path, ctx.cwd);
+        const source = await sourceFor(params.action, params.path, ctx.cwd);
+        onUpdate?.({ content: [{ type: "text", text: "Opening the image editor. Waiting for the user to finish or cancel." }] });
+        const result = await openAnnotator(source, ctx, signal ?? ctx.signal);
+        if (!result) return { content: [{ type: "text", text: "Image editing cancelled; no image was produced." }], details: { action: params.action, status: "cancelled" } };
+        return {
+          content: [
+            { type: "text", text: params.action === "new" ? "The user created this image." : "The user annotated this image." },
+            { type: "image", data: result.data.toString("base64"), mimeType: "image/png" },
+          ],
+          details: { action: params.action, status: "completed" },
+        };
+      } catch (error) {
+        return { content: [{ type: "text", text: errorMessage(error) }], details: { action: params.action, status: "error" }, isError: true };
+      }
+    },
+  });
+
+  pi.registerCommand("image", {
+    description: "Create a drawing with /image new [prompt], or annotate with /image annotate [imagepath] [prompt]",
+    handler: async (args, ctx) => {
+      try {
+        const match = /^(new|annotate)(?:\s+([\s\S]*))?$/.exec(args.trim());
+        if (!match) {
+          ctx.ui.notify("Usage: /image new [prompt] or /image annotate [imagepath] [prompt]. Omit imagepath to use the latest attached image.", "warning");
+          return;
+        }
+        const action = match[1] as ImageToolParameters["action"];
+        const parsed = action === "annotate" ? parseArguments(match[2] ?? "") : { prompt: match[2]?.trim() || undefined, path: undefined };
+        const source = await sourceFor(action, parsed.path, ctx.cwd);
         const result = await openAnnotator(source, ctx);
         if (result) await sendImage(pi, result, parsed.prompt);
       } catch (error) {
@@ -86,22 +163,18 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
 
   pi.on("input", async (event, ctx) => {
     if (event.source === "extension") return { action: "continue" };
-
+    if (event.images?.length) latestImage = event.images[0];
     const match = /^\s*annotate:\s*([\s\S]*)$/i.exec(event.text);
     if (!match) return { action: "continue" };
-
-    const pastedImage = event.images?.[0];
     try {
+      const pastedImage = event.images?.[0];
       if (!pastedImage) {
         ctx.ui.notify("Attach an image and start the message with `annotate:`.", "warning");
         return { action: "handled" };
       }
-
       const source = imageContent(pastedImage, "pasted-image");
       const result = await openAnnotator(source, ctx);
-      if (result) {
-        await sendImage(pi, result, match[1]?.trim() || undefined, event.images?.slice(1));
-      }
+      if (result) await sendImage(pi, result, match[1]?.trim() || undefined, event.images?.slice(1));
     } catch (error) {
       ctx.ui.notify(errorMessage(error), "error");
     }
@@ -169,8 +242,9 @@ function validateImageSignature(data: Buffer, mimeType: string): void {
   if (!matches) throw new Error("The file content does not match its image type.");
 }
 
-async function openAnnotator(source: SourceImage, ctx: ExtensionContext): Promise<AnnotatorResult | undefined> {
-  if (ctx.mode !== "tui") throw new Error("Image annotation needs Pi's interactive terminal mode.");
+async function openAnnotator(source: SourceImage | undefined, ctx: ExtensionContext, signal = ctx.signal): Promise<AnnotatorResult | undefined> {
+  if (ctx.mode !== "tui") throw new Error("Image editing needs OMP's interactive terminal mode.");
+  if (signal?.aborted) throw new Error("Image editing was cancelled.");
   const token = randomBytes(32).toString("hex");
   let complete: (result: AnnotatorResult | undefined) => void = () => {};
   let reject: (error: Error) => void = () => {};
@@ -187,16 +261,17 @@ async function openAnnotator(source: SourceImage, ctx: ExtensionContext): Promis
 
   const url = `http://127.0.0.1:${(address as AddressInfo).port}/?token=${token}`;
   try {
-    const timeout = setTimeout(() => reject(new Error("Annotation timed out after 15 minutes.")), 15 * 60 * 1000);
-    const abort = () => reject(new Error("Annotation was cancelled."));
-    ctx.signal?.addEventListener("abort", abort, { once: true });
-    if (ctx.signal?.aborted) abort();
+    const timeout = setTimeout(() => reject(new Error("Image editing timed out after 15 minutes.")), 15 * 60 * 1000);
+    const abort = () => reject(new Error("Image editing was cancelled."));
+    signal?.addEventListener("abort", abort, { once: true });
+    if (signal?.aborted) abort();
     try {
-      await openBrowser(url);
-      return await result;
+      if (signal?.aborted) return await result;
+      const [, image] = await Promise.all([openBrowser(url), result]);
+      return image;
     } finally {
       clearTimeout(timeout);
-      ctx.signal?.removeEventListener("abort", abort);
+      signal?.removeEventListener("abort", abort);
     }
   } finally {
     await server.close();
@@ -209,7 +284,7 @@ export interface AnnotationServer {
 }
 
 export async function createAnnotationServer(
-  source: SourceImage,
+  source: SourceImage | undefined,
   token: string,
   complete: (result: AnnotatorResult | undefined) => void,
 ): Promise<AnnotationServer> {
@@ -249,7 +324,7 @@ export async function createAnnotationServer(
 
       if (request.method === "GET" && requestUrl.pathname === "/api/source") {
         response.writeHead(200, { "content-type": "application/json", "cache-control": "no-store" });
-        response.end(JSON.stringify({ data: source.data, mimeType: source.mimeType }));
+        response.end(JSON.stringify(source ? { data: source.data, mimeType: source.mimeType } : null));
         return;
       }
       if (request.method === "POST" && requestUrl.pathname === "/api/cancel") {
@@ -266,7 +341,7 @@ export async function createAnnotationServer(
           const data = await readRequest(request, MAX_EXPORT_BYTES);
           if (data.length === 0) throw new Error("The PNG export is empty.");
           response.writeHead(200, { "cache-control": "no-store" }).end("Done");
-          complete({ data, name: source.name });
+          complete({ data, name: source?.name ?? "drawing.png" });
         } catch (error) {
           response.writeHead(413).end(errorMessage(error));
         }
@@ -348,7 +423,7 @@ async function sendImage(
   otherImages: ImageContent[] = [],
 ): Promise<void> {
   const name = result.name.split(/[\\/]/).at(-1) ?? "image";
-  const text = prompt ? `${prompt}\n\nAnnotated image: ${name}` : `Annotated image: ${name}`;
+  const text = prompt ? `${prompt}\n\nImage: ${name}` : `Image: ${name}`;
   await pi.sendUserMessage([
     { type: "text", text },
     { type: "image", data: result.data.toString("base64"), mimeType: "image/png" },

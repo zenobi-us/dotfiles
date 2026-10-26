@@ -20,7 +20,7 @@ const fileId = "annotation-source-image" as ExcalidrawFileId;
 const token = new URLSearchParams(window.location.search).get("token");
 
 function App() {
-  const [source, setSource] = useState<SourceImage | null>(null);
+  const [source, setSource] = useState<SourceImage | null | undefined>(undefined);
   const [scene, setScene] = useState<AnnotationScene | null>(null);
   const [api, setApi] = useState<ExcalidrawImperativeAPI | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -35,13 +35,13 @@ function App() {
     void fetch(`/api/source?token=${encodeURIComponent(token)}`)
       .then(async (response) => {
         if (!response.ok) throw new Error(await response.text());
-        return response.json() as Promise<SourceImage>;
+        return response.json() as Promise<SourceImage | null>;
       })
       .then(setSource)
       .catch((reason: unknown) => setError(errorText(reason)));
   }, []);
   useEffect(() => {
-    if (!source) return;
+    if (source === undefined) return;
     void makeScene(source).then(setScene).catch((reason: unknown) => setError(errorText(reason)));
   }, [source]);
   useEffect(() => {
@@ -72,7 +72,7 @@ function App() {
         body: blob,
       });
       if (!response.ok) throw new Error(await response.text());
-      document.body.innerHTML = "<main class=complete>Annotated image sent to Pi. You can close this tab.</main>";
+      document.body.innerHTML = "<main class=complete>Image sent to OMP. You can close this tab.</main>";
     } catch (reason) {
       setError(errorText(reason));
       setSaving(false);
@@ -91,14 +91,14 @@ function App() {
     }
   };
 
-  if (error && !source) return <main className="notice">{error}</main>;
-  if (!source || !scene) return <main className="notice">{error ?? "Loading image…"}</main>;
+  if (error && source === undefined) return <main className="notice">{error}</main>;
+  if (source === undefined || !scene) return <main className="notice">{error ?? "Loading image editor…"}</main>;
 
   return (
     <main className="app">
       <header className="toolbar">
-        <strong>Annotate image</strong>
-        <span>Draw on the image, then send the result to Pi.</span>
+        <strong>{source ? "Annotate image" : "New image"}</strong>
+        <span>{source ? "Draw on the image, then send the result to OMP." : "Draw an image, then send the result to OMP."}</span>
         <button className="cancel" type="button" onClick={() => void cancel()} disabled={saving}>
           Cancel
         </button>
@@ -115,7 +115,8 @@ function App() {
   );
 }
 
-async function makeScene(source: SourceImage): Promise<AnnotationScene> {
+async function makeScene(source: SourceImage | null): Promise<AnnotationScene> {
+  if (!source) return { elements: [], files: {}, appState: { viewBackgroundColor: "#ffffff" }, scrollToContent: false };
   const dataURL = `data:${source.mimeType};base64,${source.data}`;
   const image = new Image();
   image.src = dataURL;
