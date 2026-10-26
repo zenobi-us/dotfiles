@@ -188,3 +188,27 @@ mise bootstrap --only dotfiles --yes
 ```
 ## OMP shared-context autocomplete
 The mise bootstrap links `.mise/conf.d/devtools-omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `#` to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.
+
+## OMP image editor
+
+Run `/reload` after updating the extension. Use these commands in interactive
+OMP sessions:
+
+| Command | Action |
+| --- | --- |
+| `/image new [prompt]` | Open a blank drawing canvas. |
+| `/image annotate "path/to/image.png" [prompt]` | Annotate a PNG, JPEG, WebP, or GIF file. |
+| `/image annotate` | Annotate the latest image attached in the current session. |
+
+You can also ask the agent to open a canvas or let you annotate a screenshot.
+The `image_editor` tool accepts `action: new` or `action: annotate`, plus an
+optional file `path`. Without a path, annotation uses the latest user attachment.
+Attachment selection resets when you switch or branch sessions.
+
+Draw in the browser, then click **Done** to return a PNG. The tool returns the
+image directly to the agent. Slash commands submit the image and optional
+prompt as a user message. **Cancel** returns no image. This editor supports
+manual drawing; it does not generate images from prompts.
+
+The `annotate:` prefix still opens an attached image directly without an agent
+turn. The old annotation slash command has been replaced by `/image`.
