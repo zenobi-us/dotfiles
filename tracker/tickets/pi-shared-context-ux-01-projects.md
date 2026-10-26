@@ -6,7 +6,7 @@ sequence: 1
 title: Select shared-context projects through interactive breadcrumbs
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 ## What to build
@@ -58,4 +58,3 @@ Record the focused behavior checks and terminal observations. Include evidence f
 ## Comments
 
 The user approved this slice and its direct blockers during ticket decomposition.
-
