@@ -13,6 +13,7 @@ import type { Exec, ExplorerSessionRequest, SharedAgentContext } from "./model";
 import { safeTerminalText } from "./terminal-text";
 import { SharedContextModal } from "./modal";
 import { ContextOnboarding, readContextReadiness } from "./onboarding";
+import { DirectoryMonitor } from "./watch";
 
 type Entry = { name: string; path: string; directory: boolean };
 type AlignmentSkill = { name: string; description: string; location: string };
@@ -122,7 +123,7 @@ async function readEntries(directory: string): Promise<Entry[]> {
     .sort((a, b) => Number(b.directory) - Number(a.directory) || a.name.localeCompare(b.name));
 }
 
-class ContextBrowser {
+export class ContextBrowser {
   private levels: string[];
   private cursors: number[] = [0];
   private offsets: number[] = [0];
@@ -132,12 +133,17 @@ class ContextBrowser {
   private previewPath = "";
   private previewOffset = 0;
   private pathFormat = 0;
+  private monitor?: DirectoryMonitor;
+  private disposed = false;
+  private generation = 0;
+  private refreshing?: Promise<void>;
+  private reloadPending = false;
 
   constructor(
     root: string,
     private theme: Theme,
     private done: (result: void) => void,
-    private requestRender: () => void,
+    private renderRequested: () => void,
     private cwd: string,
     private exec: (command: string, args: string[]) => Promise<{ stdout: string; code: number }>,
     private insertText: (text: string) => void,
@@ -146,15 +152,98 @@ class ContextBrowser {
     this.levels = [root];
   }
 
+  private requestRender(): void {
+    if (!this.disposed) this.renderRequested();
+  }
+
   async load(): Promise<void> {
-    this.entries = await Promise.all(this.levels.map(readEntries));
-    await this.loadPreview();
+    if (this.disposed) return;
+    this.reloadPending = true;
+    if (this.refreshing) return this.refreshing;
+    this.refreshing = this.refreshFiles().finally(() => {
+      this.refreshing = undefined;
+      if (this.reloadPending && !this.disposed) void this.load().catch(error => this.refreshFailed(error));
+    });
+    return this.refreshing;
+  }
+
+  startWatching(): void {
+    if (this.monitor || this.disposed) return;
+    this.monitor = new DirectoryMonitor(() => this.load(), error => this.refreshFailed(error));
+    this.updateWatches();
+  }
+
+  private refreshFailed(error: unknown): void {
+    if (this.disposed) return;
+    this.preview = `File refresh failed: ${error instanceof Error ? error.message : String(error)}`;
     this.requestRender();
   }
 
+  setRoot(root: string): void {
+    if (this.levels[0] === root || this.disposed) return;
+    this.generation++;
+    this.levels = [root];
+    this.cursors = [0];
+    this.offsets = [0];
+    this.activeColumn = 0;
+    this.updateWatches();
+    void this.load().catch(error => this.refreshFailed(error));
+  }
+
+  dispose(): void {
+    this.disposed = true;
+    this.generation++;
+    this.monitor?.dispose();
+  }
+
+  private updateWatches(): void {
+    this.monitor?.setTargets([
+      ...this.levels.map(directory => ({ key: "files", path: directory })),
+      ...(this.previewPath ? [{ key: "files", path: this.previewPath }] : []),
+    ]);
+  }
+
+  private async refreshFiles(): Promise<void> {
+    while (this.reloadPending && !this.disposed) {
+      this.reloadPending = false;
+      const generation = this.generation;
+      const selected = this.levels.map((_level, index) => this.entries[index]?.[this.cursors[index]]?.path);
+      const listings = await Promise.all(this.levels.map(async directory => {
+        try { return await readEntries(directory); }
+        catch (error) {
+          if (["ENOENT", "ENOTDIR"].includes((error as NodeJS.ErrnoException).code ?? "")) return null;
+          throw error;
+        }
+      }));
+      if (this.disposed) return;
+      if (generation !== this.generation) { this.reloadPending = true; continue; }
+      const missing = listings.findIndex(list => list === null);
+      if (missing > 0) {
+        this.levels = this.levels.slice(0, missing);
+        this.cursors = this.cursors.slice(0, missing);
+        this.offsets = this.offsets.slice(0, missing);
+        this.activeColumn = Math.min(this.activeColumn, missing - 1);
+      }
+      const entries = listings.slice(0, this.levels.length).map(list => list ?? []);
+      this.entries = entries;
+      for (let index = 0; index < entries.length; index++) {
+        const found = entries[index].findIndex(entry => entry.path === selected[index]);
+        this.cursors[index] = found >= 0 ? found : Math.max(0, Math.min(this.cursors[index] ?? 0, entries[index].length - 1));
+      }
+      const offset = this.previewOffset;
+      const previewPath = this.previewPath;
+      await this.loadPreview();
+      if (this.disposed) return;
+      if (generation !== this.generation) { this.reloadPending = true; continue; }
+      if (previewPath === this.previewPath) this.previewOffset = offset;
+      this.updateWatches();
+      this.requestRender();
+    }
+  }
+
   private async loadPreview(): Promise<void> {
-    if (this.activeColumn >= this.levels.length) return;
-    const column = this.activeColumn;
+    const column = Math.min(this.activeColumn, this.levels.length - 1);
+    const generation = this.generation;
     const entry = this.entries[column]?.[this.cursors[column] ?? 0];
     if (!entry || entry.directory) {
       this.preview = "Select a file to preview it.";
@@ -162,19 +251,29 @@ class ContextBrowser {
       this.previewOffset = 0;
       return;
     }
-    this.previewPath = entry.path;
-    this.previewOffset = 0;
+    const previewPath = entry.path;
+    let preview: string;
     try {
-      const stat = await fs.stat(entry.path);
-      this.preview = stat.size > 100_000
+      const stat = await fs.stat(previewPath);
+      preview = stat.size > 100_000
         ? "File is larger than 100 KB. Preview is not available."
-        : await fs.readFile(entry.path, "utf8");
+        : await fs.readFile(previewPath, "utf8");
     } catch (error) {
-      this.preview = error instanceof Error ? error.message : String(error);
+      preview = error instanceof Error ? error.message : String(error);
     }
+    if (this.disposed || generation !== this.generation) return;
+    this.previewPath = previewPath;
+    this.preview = preview;
+    this.previewOffset = 0;
   }
 
   async handleInput(data: string): Promise<void> {
+    this.generation++;
+    try { await this.handleKey(data); }
+    finally { if (!this.disposed) this.updateWatches(); }
+  }
+
+  private async handleKey(data: string): Promise<void> {
     if (matchesKey(data, "y")) {
       await this.insertSelectedPath();
       return;
@@ -266,11 +365,16 @@ class ContextBrowser {
   }
 
   private async enter(entry: Entry): Promise<void> {
-    this.levels = [...this.levels.slice(0, this.activeColumn + 1), entry.path];
-    this.cursors = [...this.cursors.slice(0, this.activeColumn + 1), 0];
-    this.offsets = [...this.offsets.slice(0, this.activeColumn + 1), 0];
-    this.entries = await Promise.all(this.levels.map(readEntries));
-    this.activeColumn = this.levels.length - 1;
+    const generation = this.generation;
+    const column = this.activeColumn;
+    const levels = [...this.levels.slice(0, column + 1), entry.path];
+    const entries = await Promise.all(levels.map(readEntries));
+    if (this.disposed || generation !== this.generation) return;
+    this.levels = levels;
+    this.cursors = [...this.cursors.slice(0, column + 1), 0];
+    this.offsets = [...this.offsets.slice(0, column + 1), 0];
+    this.entries = entries;
+    this.activeColumn = levels.length - 1;
   }
 
   render(width: number): string[] {
@@ -335,8 +439,11 @@ async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandContext, 
     const result = await ctx.ui.custom<ExplorerResult>((tui, theme, _keybindings, done) => {
       const height = () => Math.max(5, Math.floor(tui.terminal.rows * 0.9) - 3);
       let modal: SharedContextModal;
+      const files = new ContextBrowser(context.root, theme, () => done(undefined), () => tui.requestRender(), ctx.cwd, exec, text => ctx.ui.pasteToEditor(text), height);
       const component = new GraphExplorer({
         context, exec, theme, navigation,
+        live: true,
+        contextChanged: updated => files.setRoot(updated.root),
         done: result => {
           if (result?.kind === "files") modal.showFiles();
           else done(result);
@@ -345,9 +452,9 @@ async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandContext, 
         height,
         commands: () => pi.getCommands(),
       });
-      const files = new ContextBrowser(context.root, theme, () => done(undefined), () => tui.requestRender(), ctx.cwd, exec, text => ctx.ui.pasteToEditor(text), height);
       modal = new SharedContextModal(context, theme, component, files, () => tui.requestRender(), initialTab);
       void component.load();
+      files.startWatching();
       void files.load().catch(error => {
         ctx.ui.notify(safeTerminalText(`Could not browse shared files: ${error instanceof Error ? error.message : String(error)}`), "error");
       });
@@ -355,7 +462,7 @@ async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandContext, 
         render: (width: number) => modal.render(width),
         handleInput: (data: string) => { void modal.handleInput(data); },
         invalidate: () => {},
-        dispose: () => component.dispose(),
+        dispose: () => { component.dispose(); files.dispose(); },
       };
     }, { overlay: true, overlayOptions: { anchor: "center", width: "95%", maxHeight: "95%" } });
     if (!result) return;

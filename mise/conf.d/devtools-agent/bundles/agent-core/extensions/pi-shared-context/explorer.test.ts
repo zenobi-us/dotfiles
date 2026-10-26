@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { stripTerminalSequences, visibleWidth } from "@earendil-works/pi-tui";
-import { GraphExplorer, type ExplorerResult } from "./explorer";
+import { GraphExplorer, focusedTicketIds, type ExplorerResult } from "./explorer";
 import type { ExplorerReceipt, ExplorerSnapshot, SharedAgentContext, TicketWorkflow } from "./model";
 
 const snapshot: ExplorerSnapshot = {
@@ -157,4 +157,12 @@ test("invalid events can be selected and inspected alongside valid history", asy
   expect(component.render(160).join("\n")).toContain(`Commit: ${receipt.sourceCommit}`);
   component.handleInput("\x1b[A");
   expect(component.render(160).join("\n")).toContain("/wrong/workflow/directory");
+});
+
+test("ticket focus includes transitive dependents and direct blockers without visiting unrelated branches", () => {
+  const selected = snapshot.tickets[2];
+  const extra = { ...snapshot.tickets[0], id: "T-5", blockedBy: ["T-4"] };
+  const data = { ...snapshot, tickets: [...snapshot.tickets, extra] };
+  expect([...focusedTicketIds(data, { kind: "ticket", ticket: selected })].sort()).toEqual(["T-1", "T-3", "T-4", "T-5"]);
+  expect([...focusedTicketIds(data, { kind: "initiative", initiative: data.initiatives[0] })].sort()).toEqual(["T-1", "T-2", "T-3", "T-4"]);
 });

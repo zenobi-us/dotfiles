@@ -1,3 +1,5 @@
+import { join } from "node:path";
+import { resolveContextRecord, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi } from "@earendil-works/pi-tui";
 import { actionChoices } from "./actions";
@@ -5,6 +7,7 @@ import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
 import { isCompleted, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
 import { safeTerminalText } from "./terminal-text";
 import type { ExplorerEvent } from "./model";
+import { DirectoryMonitor, type WatchTarget } from "./watch";
 
 type Screen = "home" | "initiatives" | "tickets" | "receipts" | "actions";
 type Queue = "ready" | "review" | "blocked" | "all";
@@ -38,6 +41,8 @@ interface ExplorerOptions {
   navigation?: ExplorerNavigation;
   loadSnapshot?: typeof loadExplorerSnapshot;
   loadWorkflow?: typeof loadTicketWorkflow;
+  live?: boolean;
+  contextChanged?: (context: SharedAgentContext) => void;
 }
 
 export class GraphExplorer {
@@ -61,10 +66,25 @@ export class GraphExplorer {
   private loading = false;
   private error = "";
   private notice = "";
-  private generation = 0;
   private disposed = false;
   private receiptChecks = 0;
   private lastWidth = 120;
+  private monitor?: DirectoryMonitor;
+  private liveTargets: WatchTarget[] = [];
+  private scopeKey = "";
+  private scopeRevision = 0;
+  private focusedIds = new Set<string>();
+  private pendingGraph = false;
+  private pendingRoutes = false;
+  private pendingAll = false;
+  private pendingIds = new Set<string>();
+  private refreshing?: Promise<void>;
+  private refreshError = "";
+  private graphError = "";
+  private routeError = "";
+  private sourceTimer?: NodeJS.Timeout;
+  private remoteTimer?: NodeJS.Timeout;
+  private pollingSource = false;
 
   constructor(private options: ExplorerOptions) {
     const navigation = options.navigation;
@@ -78,73 +98,241 @@ export class GraphExplorer {
   }
 
   async load(): Promise<void> {
-    const generation = ++this.generation;
-    this.loading = true;
-    this.error = "";
-    this.notice = "";
-    this.workflows.clear();
-    this.ticketStates.clear();
-    this.scopes.clear();
-    this.receiptChecks = 0;
-    this.options.requestRender();
-    try {
-      const snapshot = await (this.options.loadSnapshot ?? loadExplorerSnapshot)(this.options.context, this.options.exec);
-      if (this.disposed || generation !== this.generation) return;
-      this.snapshot = snapshot;
-      this.tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
-      for (const initiative of snapshot.initiatives) {
-        const visited = new Set<string>();
-        const ids: string[] = [];
-        const visit = (id: string) => {
-          if (visited.has(id)) return;
-          visited.add(id);
-          for (const blocker of this.tickets.get(id)?.blockedBy ?? []) visit(blocker);
-          ids.push(id);
-        };
-        for (const id of initiative.ticketIds) visit(id);
-        this.scopes.set(initiative.id, ids);
-      }
-      if (!snapshot.initiatives.some(initiative => initiative.id === this.initiativeId)) this.initiativeId = snapshot.initiatives[0]?.id;
-      if (!this.ticketId || !this.tickets.has(this.ticketId)) this.ticketId = this.initiative()?.ticketIds[0] ?? snapshot.tickets[0]?.id;
-      this.loading = false;
-      this.options.requestRender();
-      let index = 0;
-      const worker = async () => {
-        while (index < snapshot.tickets.length && generation === this.generation && !this.disposed) {
-          const ticket = snapshot.tickets[index++];
-          let workflow: TicketWorkflow;
-          try {
-            workflow = await (this.options.loadWorkflow ?? loadTicketWorkflow)(this.options.context, ticket, this.options.exec);
-          } catch (error) {
-            workflow = { ticketId: ticket.id, receipts: [], error: error instanceof Error ? error.message : String(error) };
-          }
-          if (this.disposed || generation !== this.generation) return;
-          this.workflows.set(ticket.id, workflow);
-          this.receiptChecks++;
-          this.options.requestRender();
-        }
-      };
-      await Promise.all(Array.from({ length: Math.min(3, snapshot.tickets.length) }, worker));
-      if (this.disposed || generation !== this.generation) return;
-      const home = this.homeRows();
-      const saved = home.findIndex(row => row.target?.kind === "ticket" && row.target.ticket.id === this.ticketId);
-      this.homeIndex = saved >= 0 ? saved : Math.max(0, Math.min(this.homeIndex, home.length - 1));
-    } catch (error) {
-      if (this.disposed || generation !== this.generation) return;
-      this.snapshot = undefined;
-      this.tickets.clear();
-      this.error = error instanceof Error ? error.message : String(error);
-      this.loading = false;
+    if (this.disposed) return;
+    if (this.options.live && this.monitor) { await this.refresh(new Set(["routes"])); return; }
+    if (this.options.live && !this.monitor) {
+      try { await this.startWatching(); }
+      catch (error) { this.stopWatching(); this.refreshFailed(error); }
     }
-    if (!this.disposed) this.options.requestRender();
+    this.pendingGraph = true;
+    this.pendingAll = true;
+    await this.drainRefresh();
+  }
+
+  private async refresh(keys: Set<string>): Promise<void> {
+    if (keys.has("routes")) this.pendingRoutes = true;
+    if (keys.has("graph")) this.pendingGraph = true;
+    for (const key of keys) {
+      if (key.startsWith("workflow:") && this.focusedIds.has(key.slice(9))) this.pendingIds.add(key.slice(9));
+    }
+    await this.drainRefresh();
+  }
+
+  private drainRefresh(): Promise<void> {
+    if (this.disposed) return Promise.resolve();
+    if (this.refreshing) return this.refreshing;
+    this.refreshing = this.readChanges().finally(() => {
+      this.refreshing = undefined;
+      if (!this.disposed && (this.pendingRoutes || this.pendingGraph || this.pendingAll || this.pendingIds.size)) void this.drainRefresh();
+      if (!this.disposed) this.options.requestRender();
+    });
+    return this.refreshing;
+  }
+
+  private async readChanges(): Promise<void> {
+    while (!this.disposed && (this.pendingRoutes || this.pendingGraph || this.pendingAll || this.pendingIds.size)) {
+      const routes = this.pendingRoutes;
+      let graph = this.pendingGraph;
+      let all = this.pendingAll;
+      const ids = this.pendingIds;
+      this.pendingRoutes = false;
+      this.pendingGraph = false;
+      this.pendingAll = false;
+      this.pendingIds = new Set();
+      const initial = !this.snapshot;
+      this.loading = initial;
+      this.options.requestRender();
+      try {
+        if (routes) {
+          const context = await resolveSharedContext(this.options.exec, this.options.context.repositoryRoot);
+          if (!context || context.error) throw new Error(context?.error ?? "Repository context is unavailable.");
+          if (this.disposed) return;
+          Object.assign(this.options.context, context);
+          this.options.contextChanged?.(this.options.context);
+          this.scopeKey = "";
+          await this.configureTargets();
+          this.routeError = "";
+          graph = true;
+          all = true;
+        }
+        if (graph || !this.snapshot) {
+          const snapshot = await (this.options.loadSnapshot ?? loadExplorerSnapshot)(this.options.context, this.options.exec);
+          if (this.disposed) return;
+          const selected = this.target();
+          for (const [id] of this.workflows) {
+            const before = this.tickets.get(id);
+            const after = snapshot.tickets.find(ticket => ticket.id === id);
+            if (!after || before?.ref !== after.ref || before?.backend !== after.backend) this.workflows.delete(id);
+          }
+          this.snapshot = snapshot;
+          this.tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
+          this.scopes.clear();
+          for (const initiative of snapshot.initiatives) {
+            const visited = new Set<string>();
+            const ids: string[] = [];
+            const visit = (id: string) => {
+              if (visited.has(id)) return;
+              visited.add(id);
+              for (const blocker of this.tickets.get(id)?.blockedBy ?? []) visit(blocker);
+              ids.push(id);
+            };
+            for (const id of initiative.ticketIds) visit(id);
+            this.scopes.set(initiative.id, ids);
+          }
+          if (!snapshot.initiatives.some(initiative => initiative.id === this.initiativeId)) this.initiativeId = snapshot.initiatives[0]?.id;
+          if (!this.ticketId || !this.tickets.has(this.ticketId)) this.ticketId = this.initiative()?.ticketIds[0] ?? snapshot.tickets[0]?.id;
+          this.scopeKey = "";
+          this.updateWatchScope();
+          this.ticketStates.clear();
+          this.restoreHomeSelection(selected);
+        }
+        this.loading = false;
+        this.error = "";
+        const tickets = this.snapshot!.tickets.filter(ticket => all || ids.has(ticket.id) || !this.workflows.has(ticket.id));
+        let index = 0;
+        const worker = async () => {
+          while (index < tickets.length && !this.disposed) {
+            const ticket = tickets[index++];
+            let workflow: TicketWorkflow;
+            try {
+              workflow = await (this.options.loadWorkflow ?? loadTicketWorkflow)(this.options.context, ticket, this.options.exec);
+            } catch (error) {
+              workflow = { ticketId: ticket.id, receipts: [], error: error instanceof Error ? error.message : String(error) };
+            }
+            if (this.disposed) return;
+            const selected = initial ? undefined : this.target();
+            this.workflows.set(ticket.id, workflow);
+            this.ticketStates.clear();
+            this.receiptChecks = this.workflows.size;
+            this.restoreHomeSelection(selected);
+            this.options.requestRender();
+          }
+        };
+        await Promise.all(Array.from({ length: Math.min(3, tickets.length) }, worker));
+        if (this.disposed) return;
+        if (initial) {
+          const rows = this.homeRows();
+          const index = rows.findIndex(row => row.target?.kind === "ticket" && row.target.ticket.id === this.ticketId);
+          this.homeIndex = index >= 0 ? index : Math.max(0, Math.min(this.homeIndex, rows.length - 1));
+        }
+        if (graph) this.graphError = "";
+        this.refreshError = this.routeError || this.graphError;
+        this.updateWatchScope();
+      } catch (error) {
+        if (this.disposed) return;
+        this.refreshFailed(error);
+        if (routes) this.routeError = this.refreshError;
+        if (graph) this.graphError = this.refreshError;
+        if (!this.snapshot) this.error = this.refreshError;
+        this.loading = false;
+      }
+      if (!this.disposed) this.options.requestRender();
+    }
+  }
+
+  private restoreHomeSelection(target: ExplorerTarget | undefined): void {
+    if (!target || this.screen !== "home" && !(this.screen === "actions" && this.returnScreen === "home")) return;
+    const ref = target.kind === "ticket" ? target.ticket.ref : target.initiative.ref;
+    const rows = this.homeRows();
+    const index = rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref : row.target.initiative.ref) === ref);
+    this.homeIndex = index >= 0 ? index : Math.max(0, Math.min(this.homeIndex, rows.length - 1));
+  }
+
+  private refreshFailed(error: unknown): void {
+    if (this.disposed) return;
+    this.refreshError = `Live refresh failed: ${error instanceof Error ? error.message : String(error)}`;
+    this.options.requestRender();
+  }
+
+  private async startWatching(): Promise<void> {
+    this.monitor = new DirectoryMonitor(keys => this.refresh(keys), error => this.refreshFailed(error));
+    await this.configureTargets();
+    this.sourceTimer = setInterval(() => { void this.pollSources(); }, 5_000);
+    this.sourceTimer.unref();
+    this.remoteTimer = setInterval(() => {
+      if (this.snapshot?.backend === "github") void this.refresh(new Set(["graph"]));
+    }, 60_000);
+    this.remoteTimer.unref();
+  }
+
+  private stopWatching(): void {
+    this.monitor?.dispose();
+    this.monitor = undefined;
+    clearInterval(this.sourceTimer);
+    clearInterval(this.remoteTimer);
+  }
+
+  private async pollSources(): Promise<void> {
+    if (this.disposed || this.pollingSource) return;
+    this.pollingSource = true;
+    try {
+      for (const id of this.focusedIds) {
+        const workflow = this.workflows.get(id);
+        const workspace = workflow?.receipts[0]?.workspacePath;
+        if (!workspace) continue;
+        const current = await this.options.exec("git", ["-C", workspace, "rev-parse", "--verify", "HEAD"]);
+        if (this.disposed) return;
+        if (current.code || current.stdout.trim() !== workflow?.sourceCommit) this.pendingIds.add(id);
+      }
+      await this.drainRefresh();
+    } catch (error) { this.refreshFailed(error); }
+    finally { this.pollingSource = false; }
+  }
+
+  private async configureTargets(): Promise<void> {
+    const context = this.options.context;
+    const alignment = await resolveContextRecord(context, { kind: "alignment" });
+    const targets: WatchTarget[] = [
+      { key: "routes", path: join(context.repositoryRoot, ".context-routes.toml") },
+      { key: "routes", path: join(context.candidateSharedRoot ?? context.repositoryRoot, ".context-routes.toml") },
+    ];
+    if (alignment.path) for (const file of ["issue-tracker.md", "context-layout.toml"]) targets.push({ key: "routes", path: join(alignment.path, "docs/agents", file) });
+    for (const kind of ["tickets", "initiatives"] as const) {
+      if (kind === "tickets" && context.routes.tickets.adapter !== "local-markdown") continue;
+      const record = await resolveContextRecord(context, { kind });
+      if (record.path) targets.push({ key: "graph", path: record.path, recursive: true, suffixes: [".md"] });
+    }
+    if (this.disposed) return;
+    this.liveTargets = targets;
+    this.updateWatchScope();
+  }
+
+  private updateWatchScope(): void {
+    if (!this.monitor || this.disposed) return;
+    const target = this.target();
+    const key = `${target?.kind}:${target?.kind === "ticket" ? target.ticket.id : target?.initiative.id}`;
+    if (key === this.scopeKey) return;
+    this.scopeKey = key;
+    const previous = this.focusedIds;
+    this.focusedIds = focusedTicketIds(this.snapshot, target);
+    for (const id of this.focusedIds) if (!previous.has(id)) this.pendingIds.add(id);
+    void this.bindScope(++this.scopeRevision).catch(error => this.refreshFailed(error));
+  }
+
+  private async bindScope(revision: number): Promise<void> {
+    const targets = [...this.liveTargets];
+    for (const id of this.focusedIds) {
+      const ticket = this.tickets.get(id);
+      if (!ticket) continue;
+      const record = await resolveContextRecord(this.options.context, { kind: "workflow", id: ticket.backend === "github" ? `GH-${id}` : id });
+      if (record.path) targets.push({ key: `workflow:${id}`, path: join(record.path, "events"), recursive: true, suffixes: [".md", ".json", ".yaml", ".yml"] });
+    }
+    if (this.disposed || this.scopeRevision !== revision) return;
+    this.monitor?.setTargets(targets);
+    if (this.pendingIds.size) await this.drainRefresh();
   }
 
   dispose(): void {
     this.disposed = true;
-    ++this.generation;
+    this.stopWatching();
   }
 
   handleInput(data: string): void {
+    try { this.handleKey(data); }
+    finally { this.updateWatchScope(); }
+  }
+
+  private handleKey(data: string): void {
     if (matchesKey(data, "q") || matchesKey(data, "ctrl+c")) {
       this.options.done(undefined);
       return;
@@ -324,7 +512,7 @@ export class GraphExplorer {
     }
     const breadcrumb = ["Home", ...(this.screen === "home" ? [] : [initiativeId, ticketId, this.screen === "receipts" ? this.receiptId : undefined])].filter(Boolean).join(" > ");
     const checks = this.snapshot && this.receiptChecks < this.snapshot.tickets.length ? `Checking receipts ${this.receiptChecks}/${this.snapshot.tickets.length}` : "";
-    const status = this.notice || this.error || (this.loading ? "Loading tracker…" : checks) || (target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+    const status = this.notice || this.error || this.refreshError || (this.loading ? "Loading tracker…" : checks) || (target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
     const keys = this.screen === "home" ? "5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close" : "← back → drill ↑↓ move Shift+Tab panes PgUp/Dn scroll a actions h home R reload q close";
     if (compact) return [th.fg("accent", truncateToWidth(this.clean(breadcrumb), width)), join(headers), ...body, th.fg(this.error ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
     const frame = (text: string) => th.fg("border", "│") + this.pad(text, inner) + th.fg("border", "│");
@@ -413,7 +601,9 @@ export class GraphExplorer {
 
   private choices(): ExplorerActionChoice[] {
     const target = this.target();
-    return target && this.snapshot ? actionChoices(target, this.snapshot, target.kind === "ticket" ? this.workflows.get(target.ticket.id) : undefined, this.options.commands()) : [];
+    const choices = target && this.snapshot ? actionChoices(target, this.snapshot, target.kind === "ticket" ? this.workflows.get(target.ticket.id) : undefined, this.options.commands()) : [];
+    const reason = this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state; wait before a worktree transition." : "");
+    return reason ? choices.map(choice => choice.action === "ask-matt" ? choice : { ...choice, disabledReason: reason }) : choices;
   }
 
   private chooseAction(choice: ExplorerActionChoice | undefined): void {
@@ -508,4 +698,33 @@ export class GraphExplorer {
     const text = truncateToWidth(value, Math.max(1, width), "…");
     return text + " ".repeat(Math.max(0, width - visibleWidth(text)));
   }
+}
+
+export function focusedTicketIds(snapshot: ExplorerSnapshot | undefined, target: ExplorerTarget | undefined): Set<string> {
+  const included = new Set<string>();
+  if (!snapshot || !target) return included;
+  const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
+  if (target.kind === "initiative") {
+    const visit = (id: string) => {
+      if (included.has(id) || !tickets.has(id)) return;
+      included.add(id);
+      for (const blocker of tickets.get(id)!.blockedBy) visit(blocker);
+    };
+    for (const id of target.initiative.ticketIds) visit(id);
+  } else {
+    const dependents = new Map<string, string[]>();
+    for (const ticket of snapshot.tickets) for (const blocker of ticket.blockedBy) {
+      const children = dependents.get(blocker) ?? [];
+      children.push(ticket.id);
+      dependents.set(blocker, children);
+    }
+    const visit = (id: string) => {
+      if (included.has(id) || !tickets.has(id)) return;
+      included.add(id);
+      for (const child of dependents.get(id) ?? []) visit(child);
+    };
+    visit(target.ticket.id);
+    for (const blocker of target.ticket.blockedBy) if (tickets.has(blocker)) included.add(blocker);
+  }
+  return included;
 }
