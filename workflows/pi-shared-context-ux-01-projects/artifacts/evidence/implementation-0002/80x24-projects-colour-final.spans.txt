@@ -1,0 +1,53 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=15:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[004] red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi
+[005] ons/pi-shared-context/index.ts. Using
+[006] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[007] red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi
+[008] on╭──────────────────────────────────────────────────────────────────────────╮
+[009]   │ Projects · Repo > repo                                                   │
+[010]   │   1 Tracker      2 Files    Tab focus · Space/Enter activate             │
+[011]  W│ Projects · ↑↓ select · Enter open · Esc close                            │
+[012]  A│ > repo (current)                                                         │
+[013]   │   github.com/acceptance/repo                                             │
+[014]  /│   github-com-other-repo                                                  │d
+[015]  o│   github-com-other-repo--9084f00c                                        │
+[016]   ╰──────────────────────────────────────────────────────────────────────────╯
+[017]  /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/d
+[018]  ocs/models.md
+[019] 
+[020] ────────────────────────────────────────────────────────────────────────────────
+[021] 
+[022] ────────────────────────────────────────────────────────────────────────────────
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown
+
+=== SPANS ===
+[001] 0-79:240,198,116
+[002] 0-79:240,198,116
+[003] 0-79:240,198,116
+[004] 0-79:240,198,116
+[005] 0-79:240,198,116
+[006] 0-79:240,198,116
+[007] 0-79:240,198,116
+[008] 0-1:240,198,116 2-77:129,162,190
+[009] 2:129,162,190 3-25:178,148,187 77:129,162,190
+[010] 2:129,162,190 4-16:178,148,187 19-29:dim 32-63:dim 77:129,162,190
+[011] 1:240,198,116 2:129,162,190 3-48:178,148,187 77:129,162,190 78-79:240,198,116
+[012] 1:240,198,116 2:129,162,190 77:129,162,190 78-79:240,198,116
+[013] 1:240,198,116 2:129,162,190 3-31:dim 77:129,162,190 78-79:240,198,116
+[014] 1:240,198,116 2:129,162,190 77:129,162,190 78-79:240,198,116
+[015] 1:240,198,116 2:129,162,190 3-36:dim 77:129,162,190 78-79:240,198,116
+[016] 1:240,198,116 2-77:129,162,190 78-79:240,198,116
+[017] 1-79:240,198,116
+[018] 1-13:240,198,116
+[020] 0-79:dim
+[021] 0:inverse
+[022] 0-79:dim
+[023] 0-49:dim
+[024] 0-79:dim

@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=21:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002] [E╭──────────────────────────────────────────────────────────────────────────╮
+[003]   │ Projects · Repo > repo                                                   │
+[004]   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[005] [E├──────────────────────────────────────────────────────────────────────────┤
+[006]   │ Shared context · Home                                                    │
+[007] /r│> Ready-work Home · ready                                                 │ha
+[008] re├──────────────────────────────────────────────────────────────────────────┤si
+[009] on│>[Ticket · type unspecified] item [READY] a project ticket                │
+[010]   │ + [Collection] unassigned Unassigned (1 tickets)                         │
+[011] tu│                                                                          │
+[012] /r│                                                                          │ha
+[013] re│                                                                          │si
+[014] on│                                                                          │
+[015] /r│                                                                          │ha
+[016] re│                                                                          │si
+[017] on│                                                                          │
+[018]   │                                                                          │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ tracker/tickets/item.md · READY                                          │──
+[021]   │ 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q cl…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

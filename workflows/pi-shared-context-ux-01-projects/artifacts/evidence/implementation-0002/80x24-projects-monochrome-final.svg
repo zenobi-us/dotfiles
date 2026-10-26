@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="24" fill="rgb(255,255,255)">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for</text>
+<text x="10" y="44" fill="rgb(255,255,255)">tui.altScreen.searchPrevious and</text>
+<text x="10" y="64" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha</text>
+<text x="10" y="84" fill="rgb(255,255,255)">red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi</text>
+<text x="10" y="104" fill="rgb(255,255,255)">ons/pi-shared-context/index.ts. Using</text>
+<text x="10" y="124" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha</text>
+<text x="10" y="144" fill="rgb(255,255,255)">red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi</text>
+<text x="10" y="164" fill="rgb(255,255,255)">on╭──────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  │ Projects · Repo &gt; repo                                                   │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │   1 Tracker      2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> W│ Projects · ↑↓ select · Enter open · Esc close                            │</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> A│ &gt; repo (current)                                                         │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │   github.com/acceptance/repo                                             │</text>
+<text x="10" y="284" fill="rgb(255,255,255)"> /│   github-com-other-repo                                                  │d</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> o│   github-com-other-repo--9084f00c                                        │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  ╰──────────────────────────────────────────────────────────────────────────╯</text>
+<text x="10" y="344" fill="rgb(255,255,255)"> /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/d</text>
+<text x="10" y="364" fill="rgb(255,255,255)"> ocs/models.md</text>
+<text x="10" y="404" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="444" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/tmp/pi-projects-acceptance-mp93gaxj/repo (master)</text>
+<text x="10" y="484" fill="rgb(255,255,255)">0.0%/0 (auto)                                                            unknown</text>
+</svg>

@@ -1,0 +1,24 @@
+$ mise exec -- bun test extensions/pi-shared-context/actions.test.ts
+bun test v1.4.3 (c6da4a4d3)
+mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.
+
+extensions/pi-shared-context/actions.test.ts:
+(pass) worktree receipt transitions > start rejects missing blockers, existing workflows, closed tickets, and unknown state [1.06ms]
+(pass) worktree receipt transitions > review can freeze a new revision after an earlier implementation or review [0.27ms]
+(pass) worktree receipt transitions > latest rejected review enables fix and supersedes an older success [0.22ms]
+(pass) worktree receipt transitions > a phase-start event cannot inherit an older verdict [0.20ms]
+(pass) worktree receipt transitions > finish and submit each require the current successful review [0.28ms]
+(pass) worktree receipt transitions > timezone offsets and equal timestamps cannot revive an older successful review [0.17ms]
+(pass) worktree receipt transitions > read errors and unknown current source cannot masquerade as freshness [0.15ms]
+(pass) fresh-session boundaries > missing skills disable their actions; synthetic groups cannot become planning initiatives [0.10ms]
+(pass) fresh-session boundaries > untrusted record and prompt text cannot inject another skill or XML instruction [0.43ms]
+(pass) fresh-session boundaries > a fresh chat stages the selected command through the replacement context without sending it [0.35ms]
+(pass) fresh-session boundaries > session creation and editor failures retain the cause and distinguish an opened session [0.24ms]
+(pass) fresh-session boundaries > cancelling session creation preserves the old editor draft [0.12ms]
+
+ 12 pass
+ 0 fail
+ 69 expect() calls
+Ran 12 tests across 1 file. [9.00ms]
+
+exit=0

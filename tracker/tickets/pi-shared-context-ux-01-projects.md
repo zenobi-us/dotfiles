@@ -6,7 +6,7 @@ sequence: 1
 title: Select shared-context projects through interactive breadcrumbs
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: implemented
 ---
 
 ## What to build

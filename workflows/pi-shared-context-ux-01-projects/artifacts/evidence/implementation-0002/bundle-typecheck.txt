@@ -1,0 +1,24 @@
+$ mise exec -- bun run typecheck
+extensions/pi-shared-context/actions.test.ts(2,54): error TS2305: Module '"@earendil-works/pi-coding-agent"' has no exported member 'ReplacedSessionContext'.
+skills/muxer-subagents/scripts/router.ts(136,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(value: any, replacer?: ((this: any, key: string, value: any) => any) | undefined, space?: string | number | undefined): string', gave the following error.
+    Argument of type 'number' is not assignable to parameter of type '(this: any, key: string, value: any) => any'.
+  Overload 2 of 2, '(value: any, replacer?: (string | number)[] | null | undefined, space?: string | number | undefined): string', gave the following error.
+    Argument of type 'number' is not assignable to parameter of type '(string | number)[]'.
+skills/muxer-subagents/scripts/signals.ts(151,38): error TS2769: No overload matches this call.
+  Overload 1 of 4, '(filename: PathLike, options?: BufferEncoding | WatchOptionsWithStringEncoding | null | undefined, listener?: WatchListener<string> | undefined): FSWatcher', gave the following error.
+    Argument of type '(value?: void | PromiseLike<void> | undefined) => void' is not assignable to parameter of type 'BufferEncoding | WatchOptionsWithStringEncoding | null | undefined'.
+  Overload 2 of 4, '(filename: PathLike, listener: WatchListener<string>): FSWatcher', gave the following error.
+    Argument of type '(value?: void | PromiseLike<void> | undefined) => void' is not assignable to parameter of type 'WatchListener<string>'.
+      Types of parameters 'value' and 'event' are incompatible.
+        Type 'WatchEventType' is not assignable to type 'void | PromiseLike<void> | undefined'.
+          Type '"rename"' is not assignable to type 'void | PromiseLike<void> | undefined'.
+skills/muxer-subagents/scripts/wait.ts(21,9): error TS2339: Property 'once' does not exist on type 'ChildProcess'.
+skills/muxer-subagents/scripts/wait.ts(21,24): error TS7006: Parameter 'error' implicitly has an 'any' type.
+skills/muxer-subagents/scripts/wait.ts(22,9): error TS2339: Property 'once' does not exist on type 'ChildProcess'.
+skills/muxer-subagents/scripts/wait.ts(22,23): error TS7006: Parameter 'code' implicitly has an 'any' type.
+skills/writing-skills/scripts/render-graphs.ts(43,52): error TS2322: Type 'string' is not assignable to type 'Writable'.
+mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.
+$ tsc --noEmit -p tsconfig.json
+
+exit=2

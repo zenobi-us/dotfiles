@@ -1,0 +1,189 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0002",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "status": "completed",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "afb6b874f70afb2035ed76288140daf1ff589691",
+  "source_tree": "bc8acd4597834dc04cb5169bdf93be44db95ab32",
+  "created_at": "2026-10-26T23:15:01.329701Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "pane_id": "w77:p1",
+  "agent": "omp",
+  "agent_name": "pi-context-projects-impl-0001",
+  "session_id": "01a17a5f-7608-76ba-8764-b4aab4eea9d8",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "specification",
+      "ref": "tracker/tickets/pi-shared-context-tui-ux-spec.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/start-0001.json"
+    },
+    {
+      "kind": "domain-map",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "domain-configuration",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "adr-index",
+      "ref": "docs/adr/index.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "source-commit",
+      "ref": "afb6b874f70afb2035ed76288140daf1ff589691"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002"
+    },
+    {
+      "kind": "implementation-review",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/implementation-review.md"
+    },
+    {
+      "kind": "terminal-acceptance",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/terminal-acceptance.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/latest-status.yaml"
+    }
+  ],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "validation_results": [
+    {
+      "name": "focused modal and affected contract tests",
+      "status": "passed",
+      "tests_passed": 90,
+      "tests_failed": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/focused-tests-final.txt"
+    },
+    {
+      "name": "extension suite",
+      "status": "passed",
+      "tests_passed": 59,
+      "tests_failed": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/extension-suite-final.txt"
+    },
+    {
+      "name": "fresh-session regression",
+      "status": "passed",
+      "tests_passed": 12,
+      "tests_failed": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/session-regression-final.txt"
+    },
+    {
+      "name": "scoped TypeScript compilation",
+      "status": "passed",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/scoped-typecheck-success.txt"
+    },
+    {
+      "name": "actual Pi terminal acceptance",
+      "status": "passed",
+      "sizes": [
+        "40x12",
+        "80x24",
+        "120x40"
+      ],
+      "presentations": [
+        "colour",
+        "monochrome"
+      ],
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/terminal-acceptance.md"
+    },
+    {
+      "name": "runtime session invariants",
+      "status": "passed",
+      "refs": [
+        "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/session-before.json",
+        "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/session-after.json"
+      ],
+      "details": "Directory, effective system-prompt hash, and ephemeral session-file identity are unchanged after project selection."
+    },
+    {
+      "name": "implementation code review",
+      "status": "passed-after-corrections",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/implementation-review.md"
+    },
+    {
+      "name": "bundle-wide typecheck",
+      "status": "failed",
+      "required_for_ticket_acceptance": false,
+      "details": "Errors remain only in untouched muxer-subagents and writing-skills scripts. Scoped source and tests compile.",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/implementation-0002/bundle-typecheck-remaining.txt"
+    }
+  ],
+  "implementation_summary": "Added focusable and clickable Projects navigation with canonical deduplication, route-owned tracker and Files reads, independent cached workspaces, watcher replacement, checkoutless shared and mixed-route reads, disabled action reasons, and preserved fresh-chat staging through Pi withSession.",
+  "open_questions": [],
+  "remaining_risks": [
+    "Bundle-wide typecheck still fails in untouched scripts.",
+    "Existing narrow tracker row clipping and the host ctrl+shift+g conflict remain outside this ticket.",
+    "Formal worktree review, merge, push, canonical workflow commit, and ticket state changes remain the parent responsibility."
+  ],
+  "formal_worktree_review_run": false,
+  "merged": false,
+  "pushed": false,
+  "ticket_state_changed": false,
+  "source_worktree_clean": true
+}

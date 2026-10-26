@@ -1,0 +1,5 @@
+$ /home/zenobius/.local/share/mise/installs/bun/latest/bin/bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/modal.ts extensions/pi-shared-context/explorer.ts extensions/pi-shared-context/data.ts extensions/pi-shared-context/projects.test.ts extensions/pi-shared-context/actions.test.ts
+extensions/pi-shared-context/actions.test.ts(161,38): error TS2352: Conversion of type '{ ui: { setEditorText: () => never; }; }' to type 'ReplacedSessionContext' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ ui: { setEditorText: () => never; }; }' is missing the following properties from type 'ReplacedSessionContext': sendMessage, sendUserMessage, getSystemPromptOptions, waitForIdle, and 21 more.
+
+exit=2

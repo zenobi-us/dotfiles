@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=10:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] /run/media/zenobius/Store/Projects/Mine/
+[002] G╭────────────────────────────────────╮a
+[003] r│ Projects · Shared > github-com-oth…│d
+[004] e│  [1 Tracker]     2 Files    Tab fo…│i
+[005] oHome > unassigned > item
+[006]  > Open a fresh chat · commands are …
+[007]  >[m] Ask Matt — No usable checkout.…
+[008] ─ [s] Start worktree — No usable che…  ─
+[009]   [r] Review — No usable checkout. O…
+[010] ─No checkout: context is readable; a...─
+[011] /← back → drill ↑↓ move Tab/Shift+Ta....
+[012] 0.0%/0 (auto)                    unknown

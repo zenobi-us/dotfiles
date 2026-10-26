@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=19:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tu╭──────────────────────────────────────────────────────────────────────────╮
+[003] /r│ Projects · Shared > github-com-other-repo                                │ha
+[004] re│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │si
+[005] on├──────────────────────────────────────────────────────────────────────────┤
+[006] /r│ Shared context · Home                                                    │ha
+[007] re│> Ready-work Home · ready                                                 │si
+[008] on├──────────────────────────────────────────────────────────────────────────┤
+[009]   │>[Ticket · type unspecified] item [READY] b project ticket                │
+[010]   │ + [Collection] unassigned Unassigned (1 tickets)                         │
+[011]  W│                                                                          │
+[012]  A│                                                                          │
+[013]   │                                                                          │
+[014]  /│                                                                          │d
+[015]  o│                                                                          │
+[016]   │                                                                          │
+[017]  /│                                                                          │d
+[018]  o│                                                                          │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ No usable checkout. Open this project from a checkout to run actions.    │──
+[021]   │ 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q cl…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

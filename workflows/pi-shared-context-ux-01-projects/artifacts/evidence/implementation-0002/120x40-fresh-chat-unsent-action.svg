@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820" width="1100" height="820">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)"> ▀▀█  v1.1.0</text>
+<text x="10" y="64" fill="rgb(255,255,255)"> █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more</text>
+<text x="10" y="84" fill="rgb(255,255,255)"> Press ctrl+o to show full startup help and loaded resources.</text>
+<text x="10" y="124" fill="rgb(255,255,255)"> Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.</text>
+<text x="10" y="164" fill="rgb(255,255,255)">[Skills]</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  ask-matt, worktree</text>
+<text x="10" y="224" fill="rgb(255,255,255)">[Extensions]</text>
+<text x="10" y="244" fill="rgb(255,255,255)">  pi-shared-context</text>
+<text x="10" y="284" fill="rgb(255,255,255)">[Extension issues]</text>
+<text x="10" y="304" fill="rgb(255,255,255)">  path (temp)</text>
+<text x="10" y="324" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d</text>
+<text x="10" y="344" fill="rgb(255,255,255)">evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts</text>
+<text x="10" y="364" fill="rgb(255,255,255)">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and</text>
+<text x="10" y="384" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d</text>
+<text x="10" y="404" fill="rgb(255,255,255)">evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts. Using</text>
+<text x="10" y="424" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d</text>
+<text x="10" y="444" fill="rgb(255,255,255)">evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts.</text>
+<text x="10" y="484" fill="rgb(255,255,255)"> Extension &quot;command:shared-context&quot; error: This extension ctx is stale after session replacement or reload. Do not use</text>
+<text x="10" y="504" fill="rgb(255,255,255)"> a captured pi or command ctx after ctx.newSession(), ctx.fork(), ctx.switchSession(), or ctx.reload(). For newSession,</text>
+<text x="10" y="524" fill="rgb(255,255,255)"> fork, and switchSession, move post-replacement work into withSession and use the ctx passed to withSession. For</text>
+<text x="10" y="544" fill="rgb(255,255,255)"> reload, do not use the old ctx after await ctx.reload().</text>
+<text x="10" y="724" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="764" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="784" fill="rgb(255,255,255)">/tmp/pi-projects-acceptance-mp93gaxj/repo (master)</text>
+<text x="10" y="804" fill="rgb(255,255,255)">0.0%/0 (auto)                                                                                                    unknown</text>
+</svg>

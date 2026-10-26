@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="24" fill="rgb(255,255,255)">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for</text>
+<text x="10" y="44" fill="rgb(255,255,255)">tu╭──────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="64" fill="rgb(255,255,255)">/r│ Projects · Repo &gt; repo                                                   │ha</text>
+<text x="10" y="84" fill="rgb(255,255,255)">re│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │si</text>
+<text x="10" y="104" fill="rgb(255,255,255)">on├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="124" fill="rgb(255,255,255)">/r│ Shared context · Home &gt; unassigned &gt; item                                │ha</text>
+<text x="10" y="144" fill="rgb(255,255,255)">re│&gt; Tickets / dependency …│  Ticket / dependencies / receipts               │si</text>
+<text x="10" y="164" fill="rgb(255,255,255)">on├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  │ A → B: B depends on A  │ item a project ticket                           │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │&gt;[Ticket · type unspeci…│ Type: Ticket · type unspecified                 │</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> W│                        │ State: READY                                    │</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> A│                        │ Reference: tracker/tickets/item.md              │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │                        │ Current source: not recorded                    │</text>
+<text x="10" y="284" fill="rgb(255,255,255)"> /│                        │ Dependencies:                                   │d</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> o│                        │ No dependency edges.                            │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │                        │ Receipts:                                       │</text>
+<text x="10" y="344" fill="rgb(255,255,255)"> /│                        │ → inspect receipts · a actions                  │d</text>
+<text x="10" y="364" fill="rgb(255,255,255)"> o│                        │ Ticket:                                         │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──│ tracker/tickets/item.md · READY                                          │──</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ ← back → drill ↑↓ move Tab/Shift+Tab focus PgUp/Dn scroll a actions h ho…│</text>
+<text x="10" y="444" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/tmp/pi-projects-acceptance-mp93gaxj/repo (master)</text>
+<text x="10" y="484" fill="rgb(255,255,255)">0.0%/0 (auto)                                                            unknown</text>
+</svg>

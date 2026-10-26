@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=20:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tu╭──────────────────────────────────────────────────────────────────────────╮
+[003] /r│ Projects · Repo > repo                                                   │ha
+[004] re│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │si
+[005] on├──────────────────────────────────────────────────────────────────────────┤
+[006] /r│ Shared context · Home > unassigned > item                                │ha
+[007] re│> Tickets / dependency …│  Ticket / dependencies / receipts               │si
+[008] on├──────────────────────────────────────────────────────────────────────────┤
+[009]   │ A → B: B depends on A  │ item a project ticket                           │
+[010]   │>[Ticket · type unspeci…│ Type: Ticket · type unspecified                 │
+[011]  W│                        │ State: READY                                    │
+[012]  A│                        │ Reference: tracker/tickets/item.md              │
+[013]   │                        │ Current source: not recorded                    │
+[014]  /│                        │ Dependencies:                                   │d
+[015]  o│                        │ No dependency edges.                            │
+[016]   │                        │ Receipts:                                       │
+[017]  /│                        │ → inspect receipts · a actions                  │d
+[018]  o│                        │ Ticket:                                         │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ tracker/tickets/item.md · READY                                          │──
+[021]   │ ← back → drill ↑↓ move Tab/Shift+Tab focus PgUp/Dn scroll a actions h ho…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

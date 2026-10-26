@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=11:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] /run/media/zenobius/Store/Projects/Mine/
+[002] Github/Dotfiles.worktrees/feature-pi-sha
+[003] r╭────────────────────────────────────╮d
+[004] e│ Projects · Repo > repo             │i
+[005] o│   1 Tracker      2 Files    Tab fo…│
+[006]  │ ↑↓ select · Enter open · Esc close │
+[007]  │ > repo (current)                   │
+[008] ─│   github.com/acceptance/repo       │─
+[009]  ╰────────────────────────────────────╯
+[010] ────────────────────────────────────────
+[011] /tmp/pi-projects-acceptance-mp93gaxj/...
+[012] 0.0%/0 (auto)                    unknown

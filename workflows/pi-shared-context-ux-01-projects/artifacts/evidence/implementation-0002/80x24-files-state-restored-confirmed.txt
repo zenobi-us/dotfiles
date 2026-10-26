@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=21:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002] [Extensions]
+[003]   ╭──────────────────────────────────────────────────────────────────────────╮
+[004]   │ Projects · Shared > github-com-other-repo                                │
+[005] [E│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │
+[006]   ├──────────────────────────────────────────────────────────────────────────┤
+[007] /r│ Shared context  ›  github-com-other-repo--9084f00c  ›  Preview           │ha
+[008] re├──────────────────────────────────────────────────────────────────────────┤si
+[009] on│▸ docs                                       │b project file content      │
+[010]   │▸ tracker                                    │                            │
+[011] tu│  .context-routes.toml                       │                            │
+[012] /r│  AGENTS.md                                  │                            │ha
+[013] re│  CONTEXT-MAP.md                             │                            │si
+[014] on│  notes.txt                                  │                            │
+[015] /r│                                             │                            │ha
+[016] re│                                             │                            │si
+[017] on│                                             │                            │
+[018]   │                                             │                            │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ /tmp/pi-projects-acceptance-mp93gaxj/shared/github-com-other-repo--9084f…│──
+[021]   │ ←→ browse  ↑↓ move  Enter open  Backspace parent y insert  f format: sha…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

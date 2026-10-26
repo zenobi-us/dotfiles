@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=21:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[002] re╭──────────────────────────────────────────────────────────────────────────╮si
+[003] on│ Projects · Shared > github-com-other-repo                                │
+[004] /r│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │ha
+[005] re├──────────────────────────────────────────────────────────────────────────┤si
+[006] on│ Shared context · Home                                                    │
+[007]   │> Ready-work Home · ready                                                 │
+[008]   ├──────────────────────────────────────────────────────────────────────────┤
+[009]  W│>[Ticket · type unspecified] item [READY] b project ticket                │
+[010]  A│ + [Collection] unassigned Unassigned (1 tickets)                         │
+[011]   │                                                                          │
+[012]  /│                                                                          │d
+[013]  o│                                                                          │
+[014]   │                                                                          │
+[015]  /│                                                                          │d
+[016]  o│                                                                          │
+[017]   │                                                                          │
+[018]  R│                                                                          │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ No checkout: context is readable; actions are disabled.                  │──
+[021]   │ 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q cl…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

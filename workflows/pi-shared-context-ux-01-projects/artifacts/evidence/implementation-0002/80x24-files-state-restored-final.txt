@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=16:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002] [Extensions]
+[003]   pi-shared-context
+[004] 
+[005] [Extension issues]
+[006]   path (temp)
+[007] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[008] re╭──────────────────────────────────────────────────────────────────────────╮si
+[009] on│ Projects · Shared > github-com-other-repo                                │
+[010]   │   1 Tracker      2 Files    Tab focus · Space/Enter activate             │
+[011] tu│ Projects · ↑↓ select · Enter open · Esc close                            │
+[012] /r│   repo (current)                                                         │ha
+[013] re│   github.com/acceptance/repo                                             │si
+[014] on│ > github-com-other-repo                                                  │
+[015] /r│   github-com-other-repo--9084f00c                                        │ha
+[016] re╰──────────────────────────────────────────────────────────────────────────╯si
+[017] ons/pi-shared-context/index.ts.
+[018] 
+[019] 
+[020] ────────────────────────────────────────────────────────────────────────────────
+[021] 
+[022] ────────────────────────────────────────────────────────────────────────────────
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

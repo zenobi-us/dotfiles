@@ -1,0 +1,30 @@
+[
+  {
+    "name": "focused-tests-final",
+    "command": "mise exec -- bun test extensions/pi-shared-context/projects.test.ts extensions/pi-shared-context/modal.test.ts extensions/pi-shared-context/explorer.test.ts extensions/pi-shared-context/live.test.ts extensions/pi-shared-context/data.test.ts extensions/pi-shared-context/actions.test.ts skills/shared-context/scripts/shared-context/test/shared-context.test.ts skills/shared-context/scripts/shared-context/test/layout.test.ts",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+    "exit_code": 0,
+    "evidence": "focused-tests-final.txt"
+  },
+  {
+    "name": "extension-suite-final",
+    "command": "mise exec -- bun test extensions/pi-shared-context",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+    "exit_code": 0,
+    "evidence": "extension-suite-final.txt"
+  },
+  {
+    "name": "scoped-typecheck-final",
+    "command": "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/modal.ts extensions/pi-shared-context/explorer.ts extensions/pi-shared-context/data.ts extensions/pi-shared-context/projects.test.ts extensions/pi-shared-context/actions.test.ts",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+    "exit_code": 2,
+    "evidence": "scoped-typecheck-final.txt"
+  },
+  {
+    "name": "bundle-typecheck",
+    "command": "mise exec -- bun run typecheck",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+    "exit_code": 2,
+    "evidence": "bundle-typecheck.txt"
+  }
+]

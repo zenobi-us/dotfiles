@@ -1,0 +1,38 @@
+{
+  "runtime": "Pi v1.1.0",
+  "terminal": "termscope session",
+  "command": [
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-mcp",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "--skill",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/matt-pocock/skills/ask-matt",
+    "--skill",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree"
+  ],
+  "sizes": [
+    [
+      40,
+      12
+    ],
+    [
+      80,
+      24
+    ],
+    [
+      120,
+      40
+    ]
+  ],
+  "fixture_repository": "/tmp/pi-projects-acceptance-mp93gaxj/repo",
+  "fixture_shared_store": "/tmp/pi-projects-acceptance-mp93gaxj/shared",
+  "session_observer": "Temporary read-only observer recorded ctx.cwd, a SHA-256 of ctx.getSystemPrompt(), and session file before and after project selection. The observer was not shipped.",
+  "model_requests_sent": 0
+}

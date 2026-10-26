@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=20:0 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002] [Extensions]
+[003]   pi-shared-context
+[004] 
+[005] [Extension issues]
+[006]   path (temp)
+[007] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[008] red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi
+[009] ons/pi-shared-context/index.ts
+[010]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[011] tui.altScreen.searchPrevious and
+[012] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[013] red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi
+[014] ons/pi-shared-context/index.ts. Using
+[015] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[016] red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi
+[017] ons/pi-shared-context/index.ts.
+[018] 
+[019] 
+[020] ────────────────────────────────────────────────────────────────────────────────
+[021] 
+[022] ────────────────────────────────────────────────────────────────────────────────
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

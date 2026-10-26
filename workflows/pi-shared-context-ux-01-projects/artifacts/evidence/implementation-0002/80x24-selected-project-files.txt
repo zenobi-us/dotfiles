@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=20:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha
+[004] re│ Projects · Shared > github-com-other-repo                                │si
+[005] on│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤ha
+[007] re│ Shared context  ›  github-com-other-repo--9084f00c  ›  Preview           │si
+[008] on├──────────────────────────────────────────────────────────────────────────┤
+[009]   │▸ docs                                       │Select a file to preview it.│
+[010]   │▸ tracker                                    │                            │
+[011]  W│  .context-routes.toml                       │                            │
+[012]  A│  AGENTS.md                                  │                            │
+[013]   │  CONTEXT-MAP.md                             │                            │
+[014]  /│  notes.txt                                  │                            │d
+[015]  o│                                             │                            │
+[016]   │                                             │                            │
+[017]  /│                                             │                            │d
+[018]  o│                                             │                            │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ /tmp/pi-projects-acceptance-mp93gaxj/shared/github-com-other-repo--9084f…│──
+[021]   │ ←→ browse  ↑↓ move  Enter open  Backspace parent y insert  f format: sha…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/pi-projects-acceptance-mp93gaxj/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

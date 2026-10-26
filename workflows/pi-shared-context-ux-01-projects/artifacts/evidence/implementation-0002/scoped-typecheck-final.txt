@@ -1,0 +1,4 @@
+$ /home/zenobius/.local/share/mise/installs/bun/latest/bin/bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/modal.ts extensions/pi-shared-context/explorer.ts extensions/pi-shared-context/data.ts extensions/pi-shared-context/projects.test.ts extensions/pi-shared-context/actions.test.ts
+extensions/pi-shared-context/actions.test.ts(2,54): error TS2305: Module '"@earendil-works/pi-coding-agent"' has no exported member 'ReplacedSessionContext'.
+
+exit=2

@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=10:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] /run/media/zenobius/Store/Projects/Mine/
+[002] G╭────────────────────────────────────╮a
+[003] r│ Projects · Shared > github-com-oth…│d
+[004] e│  [1 Tracker]     2 Files    Tab fo…│i
+[005] oHome
+[006]  > Ready-work Home · ready
+[007]  >[Ticket · type unspecified] item […
+[008] ─ + [Collection] unassigned Unassign…  ─
+[009] 
+[010] ─No checkout: context is readable; a...─
+[011] /5 ready 6 review 7 blocked 8 all  E....
+[012] 0.0%/0 (auto)                    unknown
