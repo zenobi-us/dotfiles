@@ -86,6 +86,28 @@ Open `http://127.0.0.1:4389/`. On narrow screens, scroll inside each diagram fra
 
 ## Shared-context Graph continuity explorer
 
+Live updates run only while the modal is open. Ticket selection watches the
+selected ticket, its transitive dependents, and its direct blockers. Initiative
+selection watches its members and their prerequisite closure. Collection-level
+watches discover new dependency edges outside the focused scope. Shared
+descendants use one subscription. Receipt changes refresh only the affected
+workflow, without refetching the tracker or moving the selected receipt.
+
+Filesystem notifications are debounced for 200 ms, with a one-second maximum
+delay during continuous changes. A five-second metadata scan recovers missed
+notifications and missing or replaced directories. Focused worktree HEAD checks
+run every five seconds. GitHub tracker polling runs every 60 seconds; local
+receipt updates do not trigger a GitHub tracker fetch. `R` remains a full reload.
+Route and layout changes rebuild the subscriptions from resolved paths.
+
+The Files tab watches its open directories and selected preview. Atomic file
+replacement updates the preview without changing selection or its scroll
+position. Tracker monitoring continues while the Files tab is active.
+
+Refresh failures retain the last displayed records and show an error. Worktree
+actions remain disabled while data is refreshing or the tracker is stale.
+Closing the modal stops watchers and timers and prevents late render requests.
+
 The event list includes invalid receipts instead of stopping at the first error.
 Select an invalid event to inspect its stable reference, validation error, and
 recorded fields. Parse failures remain listed with their file reference.
