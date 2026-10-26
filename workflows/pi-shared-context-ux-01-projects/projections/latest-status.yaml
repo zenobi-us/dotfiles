@@ -1,0 +1,9 @@
+schema: worktree-latest-status/v1
+workflow_id: pi-shared-context-ux-01-projects
+ticket: tracker/tickets/pi-shared-context-ux-01-projects.md
+state: IMPLEMENTING
+latest_receipt: start-0001
+latest_source_commit: d458207915067db9d1a3699aebe198840cffb905
+latest_source_tree: 5e91a705c203cbebd278a3f09ad8b74075acc892
+latest_review_verdict: null
+open_findings: []

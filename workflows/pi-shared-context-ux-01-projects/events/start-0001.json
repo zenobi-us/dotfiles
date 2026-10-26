@@ -1,0 +1,53 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "d458207915067db9d1a3699aebe198840cffb905",
+  "source_tree": "5e91a705c203cbebd278a3f09ad8b74075acc892",
+  "created_at": "2026-10-26T22:39:27.997Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "pane_id": "w77:p1",
+  "agent": "omp",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "specification",
+      "ref": "tracker/tickets/pi-shared-context-tui-ux-spec.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/latest-status.yaml"
+    }
+  ],
+  "status": "started"
+}
