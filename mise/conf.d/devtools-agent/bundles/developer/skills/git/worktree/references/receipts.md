@@ -50,6 +50,11 @@ write workflow state to `.scratch/`, `<ticket>/local/`, the ticket collection, o
 
 ## Receipt fields
 
+Copy `workflow.store`, `workflow.root`, and `workflow.ref` from the corresponding
+fields returned by `shared-context resolve workflow --id <ticket-id> --json`.
+`workflow.root` is the store root. It is not the returned `path`, which includes
+`workflows/<ticket-id>`. Never substitute the workflow directory for the store root.
+
 Every ticket-phase receipt MUST include:
 
 ```yaml
@@ -120,6 +125,13 @@ Review receipts MUST also record `verdict: SUCCESS|FAILURE` and every finding wi
 Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, unresolved finding IDs, validation results, and the new source commit.
 
 ## Receipt protocol
+
+Set `event: phase-start` and `status: started` before launching an agent. Set
+`event: phase-result` on its result and `event: phase-complete` on the parent
+completion. Phase-start and phase-complete receipts use the envelope above, but
+MAY omit `evidence` when they produce no evidence run. Preserve their durable
+input and output references. Phase-result receipts MUST include `evidence`.
+Do not invent an evidence run to satisfy the envelope.
 
 1. Resolve the workflow root before selecting a receipt ID.
 2. List the existing receipt IDs under `events/`.
