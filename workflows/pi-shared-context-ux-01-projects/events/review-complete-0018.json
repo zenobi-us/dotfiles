@@ -1,0 +1,300 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0018",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "review-0017",
+  "status": "completed",
+  "verdict": "FAILURE",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "34e28395c83826cdf46e1f09b8ad7761df2be219",
+  "source_tree": "47c38e3a6260f875f97fcba05e7f83c0be62b4ec",
+  "reviewed_base_commit": "b22bda0eb4c56c618487092b7fca68fc212632e2",
+  "created_at": "2026-10-27T04:41:21.466Z",
+  "muxer": "herdr",
+  "pane_id": "w7A:p7",
+  "agent": "omp",
+  "agent_name": "worktree-review-parent",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0017",
+    "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0017"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "specification",
+      "ref": "tracker/tickets/pi-shared-context-tui-ux-spec.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-start-0016.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/implementation-0002.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-0008.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0011.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-0014.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-complete-0015.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0011.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0014.md"
+    },
+    {
+      "kind": "configuration",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "configuration",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "configuration",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "configuration",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "standard",
+      "ref": "skill://creating-pi-extensions/references/ux-patterns.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0017.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-complete-0018.json"
+    },
+    {
+      "kind": "ticket-review",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0017/parent-focused-validation.txt"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/latest-status.yaml"
+    }
+  ],
+  "findings": [
+    {
+      "id": "STANDARDS-001",
+      "axis": "Standards",
+      "severity": "P2",
+      "adr_ref": "NO ADR",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+      "line": 186,
+      "line_ranges": [
+        "186-190",
+        "212-223"
+      ],
+      "requirement": "creating-pi-extensions/references/ux-patterns.md: Always provide fuzzy search; Show result count; Indicate active filter. Repository Escape-to-close requirements override generic filter-clearing Escape guidance.",
+      "description": "Projects accepts navigation keys but no search query. Rendering slices the complete entries array and shows neither active query nor filtered/total result count.",
+      "required_change": "Add fuzzy filtering over names and identities, an active-query indicator and filtered/total count. Keep selection valid, explain zero results and preserve the ticket Escape-to-close contract.",
+      "validation_command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "validation_scenario": "Cover subsequence matching, zero results and selection after filtering through the public modal. Exercise /shared-context -> Projects in actual Pi.",
+      "blocking_reason": "The new list omits explicit applicable extension interaction requirements and requires linear traversal of all stored projects.",
+      "status": "open"
+    }
+  ],
+  "axis_reports": {
+    "Standards": {
+      "axis": "Standards",
+      "finding_count": 1,
+      "blocking_finding_count": 1,
+      "worst_severity": "P2",
+      "session_id": "01a17ba3-06dc-75d3-b883-510fbc273750",
+      "agent": "omp",
+      "agent_name": "pi-projects-standards-0017",
+      "pane_id": "w7A:p8",
+      "declared_depth": 2,
+      "fresh_session": true,
+      "status": "completed",
+      "completion_signal": {
+        "status": "done",
+        "completion_seq": 363
+      },
+      "pane_closed": true,
+      "validation": "static review only; no build/lint/tests/formatters/runtime probes",
+      "spawned_children": false
+    },
+    "Spec": {
+      "axis": "Spec",
+      "finding_count": 0,
+      "blocking_finding_count": 0,
+      "worst_severity": null,
+      "session_id": "01a17ba3-06df-75c3-876f-517b47b4ccc2",
+      "agent": "omp",
+      "agent_name": "pi-projects-spec-0017",
+      "pane_id": "w7A:p9",
+      "declared_depth": 2,
+      "fresh_session": true,
+      "status": "completed",
+      "completion_signal": {
+        "status": "done",
+        "completion_seq": 365
+      },
+      "pane_closed": true,
+      "validation": "static review only; no build/lint/tests/formatters/runtime probes",
+      "spawned_children": false
+    }
+  },
+  "prior_findings": [
+    {
+      "id": "SPEC-001",
+      "axis": "Spec",
+      "status": "resolved"
+    },
+    {
+      "id": "SPEC-002",
+      "axis": "Spec",
+      "status": "resolved"
+    },
+    {
+      "id": "SPEC-003",
+      "axis": "Spec",
+      "status": "resolved"
+    }
+  ],
+  "review_artifact": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0017.md",
+  "source_worktree_clean": true,
+  "source_unchanged": true,
+  "artifact_validation": {
+    "command": "mq --allow-http-import -I raw -F json import-okf/okf_parse/okf_validate",
+    "errors": []
+  },
+  "validation_results": [
+    {
+      "name": "focused-project-actions",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "passed": 26,
+      "failed": 0,
+      "assertions": 144,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0017/focused-tests.txt"
+    },
+    {
+      "name": "identity-recovery-boundaries",
+      "command": "source cli.ts recover-identity SLUG --remote URL / --checkout PATH in isolated temporary HOME",
+      "exit_code": 0,
+      "details": "Remote and repeated checkout recovery succeed; wrong remote and both sources reject with exit 1; authored identity and route bytes remain unchanged after checkout removal.",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0017/identity-boundary.json"
+    },
+    {
+      "name": "actual-pi",
+      "command": "termscope session --cols 120 --rows 40 -- pi --offline --no-session --no-extensions --no-skills --no-prompt-templates --no-context-files --no-mcp -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "cwd": "/tmp/pi-review-0017-2JxA4n/alpha",
+      "exit_code": 0,
+      "details": "Selected recovered B; removed both checkouts; B native-watcher live tracker update and Files survived. Original A session directory retained. Actions disabled. NO_COLOR sizes 120x40, 80x24, 40x12. No model request.",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0017/pi-runtime.json"
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "status": "passed",
+      "tests_passed": 14,
+      "tests_failed": 0,
+      "assertions": 75,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0017/parent-focused-validation.txt"
+    }
+  ],
+  "validation_notes": [
+    "Historical failures accepted as ground truth. No broad compiler or obsolete-source reruns.",
+    "Both launch calls reported timeout while concrete panes held running OMP sessions. No relaunch. Herdr done signals establish completion.",
+    "Exploratory typing while Projects was loading is excluded from filtering evidence. Finding is supported by exact source input/render branches and applicable UX standard.",
+    "Initial terminal wait searched for absent offline text; snapshot showed ready. First shutdown wait timed out; protocol close and process then exited 0.",
+    "NO ADR decisions. No live GitHub service claim. Focused tests use deterministic hosted fixtures.",
+    "Generic filter-clearing Escape guidance is excluded because the ticket explicitly requires Escape from Projects to close."
+  ],
+  "parent_phase_completion_pending": false,
+  "ticket_state_changed": false,
+  "ticket_comments_changed": true,
+  "source_files_changed": false,
+  "merged": false,
+  "rebased": false,
+  "pushed": false,
+  "manifest_changed": true,
+  "projections_changed": true,
+  "completion_marker": "WORKTREE_REVIEW_DONE",
+  "next_step": "fix pi-shared-context-ux-01-projects",
+  "pane_close_owner": "parent",
+  "reviewer_session_id": "01a17ba1-8c61-7557-baf8-7a11e38f9d92",
+  "result_receipt": "workflows/pi-shared-context-ux-01-projects/events/review-0017.json",
+  "completion_signal": {
+    "agent_status": "done",
+    "completion_seq": 369,
+    "pane_id": "w7A:p7"
+  },
+  "pane_closed": true,
+  "workspace_preserved": true,
+  "ticket_review_recorded": true,
+  "parent_validation": {
+    "frozen_source_preserved": true,
+    "porcelain_empty": true,
+    "review_receipt_read": true,
+    "review_artifact_read": true,
+    "completion_marker_observed": true,
+    "axis_panes_closed": true,
+    "reviewer_pane_closed": true
+  }
+}

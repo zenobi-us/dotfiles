@@ -1,0 +1,52 @@
+[
+  {
+    "label": "remote",
+    "args": [
+      "--remote",
+      "git@github.com:review-beta/repo.git"
+    ],
+    "code": 0,
+    "stdout": "Recovered project identity: github.com/review-beta/repo. Reopen Projects. Routes and session instructions are unchanged.\n",
+    "stderr": ""
+  },
+  {
+    "label": "idempotent-checkout",
+    "args": [
+      "--checkout",
+      "/tmp/pi-review-0017-2JxA4n/beta"
+    ],
+    "code": 0,
+    "stdout": "Recovered project identity: github.com/review-beta/repo. Reopen Projects. Routes and session instructions are unchanged.\n",
+    "stderr": ""
+  },
+  {
+    "label": "wrong-remote",
+    "args": [
+      "--remote",
+      "https://github.com/wrong/repo.git"
+    ],
+    "code": 1,
+    "stdout": "",
+    "stderr": "The remote does not identify the selected stored project.\n"
+  },
+  {
+    "label": "ambiguous-source",
+    "args": [
+      "--checkout",
+      "/tmp/pi-review-0017-2JxA4n/beta",
+      "--remote",
+      "git@github.com:review-beta/repo.git"
+    ],
+    "code": 1,
+    "stdout": "",
+    "stderr": "Choose exactly one identity source: --checkout PATH or --remote URL.\n"
+  },
+  {
+    "label": "existing-metadata-byte-preservation-after-checkout-removal",
+    "code": 0,
+    "stdout": "Recovered project identity: github.com/review-beta/repo. Reopen Projects. Routes and session instructions are unchanged.\n",
+    "stderr": "",
+    "identity_preserved": true,
+    "routes_preserved": true
+  }
+]

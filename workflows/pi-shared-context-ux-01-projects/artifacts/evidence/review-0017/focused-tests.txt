@@ -1,0 +1,9 @@
+bun test v1.4.3 (c6da4a4d3)
+
+26 pass
+0 fail
+144 expect() calls
+Ran 26 tests across 2 files. [3.00s]
+Wall time: 3.40 seconds
+
+Command: mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts

@@ -7,7 +7,7 @@ type: Concept
 
 ## Current state
 
-FIXED at 34e28395c83826cdf46e1f09b8ad7761df2be219. Both review-0011 blockers are resolved by this fix. The latest reviewer verdict remains FAILURE for f4dffcaebf159cb857eb6008fad80dfb03e214fc. This source requires a fresh independent review. No review approval is claimed. Parent phase completion remains pending.
+REVIEW_FAILED at 34e28395c83826cdf46e1f09b8ad7761df2be219. Both review-0011 blockers are resolved by this fix. The latest reviewer verdict is FAILURE from review-0017 for the current source. STANDARDS-001 requires a fix; prior Spec findings are resolved. No review approval is claimed. Parent phase completion remains pending.
 
 [Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-01-projects.md). No tracker changes were made.
 
@@ -64,5 +64,12 @@ Source commits are complete and the source worktree is clean. Canonical workflow
 
 
 ## Parent phase completion
-[fix-complete-0015](../events/fix-complete-0015.json) validates the fix result, source identity, evidence, snapshot and WORKTREE_FIX_DONE marker. Herdr reported done (sequence 351). Pane w7A:p6 closed successfully; the source workspace remains available. A fresh independent review is required.
-Next command: `review pi-shared-context-ux-01-projects`.
+[fix-complete-0015](../events/fix-complete-0015.json) validates the fix result, source identity, evidence, snapshot and WORKTREE_FIX_DONE marker. Herdr reported done (sequence 351). Pane w7A:p6 closed successfully; the source workspace remains available. Review-0017 completed with FAILURE.
+Next command: `fix pi-shared-context-ux-01-projects`.
+
+
+## Latest formal review: review-0017
+Verdict: FAILURE for source 34e28395c83826cdf46e1f09b8ad7761df2be219. Standards: one blocking P2 finding, STANDARDS-001. Spec: no supported blockers. SPEC-001, SPEC-002 and SPEC-003 are resolved.
+The [immutable third review](../artifacts/reviews/review-review-0017.md) contains the sole review body. The [review result](../events/review-0017.json) and [parent completion](../events/review-complete-0018.json) are authoritative. The source commit and tree remained unchanged. Both axis panes and reviewer pane closed; the workspace remains available.
+Parent validation: [14 project tests passed](../artifacts/evidence/review-0017/parent-focused-validation.txt), zero failed. The reviewer also ran 26 project/action tests and actual Pi surviving-project smoke. The tracker contains the verdict, reviewed commit, timestamp and artifact link. No fix, merge or push ran.
+Next command: `fix pi-shared-context-ux-01-projects`.

@@ -7,7 +7,7 @@ type: Concept
 
 ## Current state
 
-FIXED at 34e28395c83826cdf46e1f09b8ad7761df2be219. Latest reviewer verdict remains FAILURE from review-0011 for predecessor f4dffcaebf159cb857eb6008fad80dfb03e214fc. A fresh review is required. Parent phase completion and pane closure succeeded in fix-complete-0015. The ticket is unchanged.
+REVIEW_FAILED at 34e28395c83826cdf46e1f09b8ad7761df2be219. Latest reviewer verdict is FAILURE from review-0017 for the current source. STANDARDS-001 remains open; prior Spec findings are resolved. Parent phase completion and pane closure succeeded in fix-complete-0015. The ticket is unchanged.
 
 ## Append-only phase history
 
@@ -53,3 +53,12 @@ No selected finding remains unresolved. Unknown hosted identity still requires a
 ## fix-complete-0015
 [fix-complete-0015](../events/fix-complete-0015.json) records parent validation of the result receipt, source commit and tree, 123 passing tests, scoped compiler result, real recovery CLI, actual Pi runtime evidence and immutable snapshot. WORKTREE_FIX_DONE was observed; Herdr reported done with completion sequence 351. Pane w7A:p6 closed successfully. The workspace remains available. No selected finding remains unresolved by this fix; fresh review is required.
 Next command: `review pi-shared-context-ux-01-projects`.
+
+
+## review-start-0016
+[review-start-0016](../events/review-start-0016.json) freezes source 34e28395c83826cdf46e1f09b8ad7761df2be219 and tree 47c38e3a6260f875f97fcba05e7f83c0be62b4ec against master at b22bda0eb4c56c618487092b7fca68fc212632e2.
+## review-0017
+[review-0017](../events/review-0017.json) records FAILURE. Standards: STANDARDS-001, P2, NO ADR. Spec: no supported blockers. SPEC-001, SPEC-002 and SPEC-003 are resolved. The [immutable third review](../artifacts/reviews/review-review-0017.md) holds the finding and both axis reports. No source files changed.
+## review-complete-0018
+[review-complete-0018](../events/review-complete-0018.json) records parent verification. Frozen source and clean worktree remained unchanged. [14 project tests passed](../artifacts/evidence/review-0017/parent-focused-validation.txt), zero failed. Herdr reported reviewer done, sequence 369; both axis panes and reviewer pane closed. The workspace remains available. The ticket contains the verdict and artifact link. No fix, merge, rebase or push ran.
+Next command: `fix pi-shared-context-ux-01-projects`.
