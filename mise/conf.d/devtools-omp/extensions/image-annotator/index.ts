@@ -115,7 +115,7 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   pi.registerTool({
     name: "image_editor",
     label: "Image editor",
-    description: "Open an interactive browser canvas when the user asks to draw a new image or annotate an image, screenshot, or photo. Use action=new for a blank canvas. Use action=annotate with an image file path, or omit path to use the latest user attachment in this session. This is a manual drawing editor, not AI image generation. Waits for the user to click Done or Cancel and returns the completed PNG.",
+    description: "Open an interactive browser canvas when the user asks to draw a new image or annotate an image, screenshot, or photo. Use action=new for a blank canvas. Use action=annotate with an image file path, or omit path to use the latest user attachment in this session. This is a manual drawing editor, not AI image generation. Waits without a time limit for the user to click Done or Cancel and returns the completed PNG.",
     parameters: pi.zod.object({
       action: pi.zod.enum(["new", "annotate"]),
       path: pi.zod.string().optional(),
@@ -142,7 +142,7 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   });
 
   pi.registerCommand("image", {
-    description: "Create a drawing with /image new [prompt], or annotate with /image annotate [imagepath] [prompt]",
+    description: "Create a drawing with /image new [prompt], or annotate with /image annotate [imagepath] [prompt]. Waits without a time limit until you finish or cancel.",
     handler: async (args, ctx) => {
       try {
         const match = /^(new|annotate)(?:\s+([\s\S]*))?$/.exec(args.trim());
@@ -261,7 +261,6 @@ async function openAnnotator(source: SourceImage | undefined, ctx: ExtensionCont
 
   const url = `http://127.0.0.1:${(address as AddressInfo).port}/?token=${token}`;
   try {
-    const timeout = setTimeout(() => reject(new Error("Image editing timed out after 15 minutes.")), 15 * 60 * 1000);
     const abort = () => reject(new Error("Image editing was cancelled."));
     signal?.addEventListener("abort", abort, { once: true });
     if (signal?.aborted) abort();
@@ -270,7 +269,6 @@ async function openAnnotator(source: SourceImage | undefined, ctx: ExtensionCont
       const [, image] = await Promise.all([openBrowser(url), result]);
       return image;
     } finally {
-      clearTimeout(timeout);
       signal?.removeEventListener("abort", abort);
     }
   } finally {
