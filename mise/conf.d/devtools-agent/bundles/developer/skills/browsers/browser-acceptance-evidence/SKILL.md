@@ -51,10 +51,11 @@ reads are the steps that ran. You **MUST NOT** hand-write `test-plan.md`,
 `evidence.jsonl`, a driver script, or a report step list.
 
 ```sh
-SC=skills/browsers/browser-acceptance-evidence/scripts/acceptance.ts
+SC=skills/browsers/browser-acceptance-evidence/scripts/browser-evidence.ts
 MT="<root>/<work-id>/manual-tests"
 
 "$SC" init "$MT"            # scaffolds plan.ts, shots/, workflows/
+"$SC" init "$MT" --driver surf   # the same, with the surf driver chosen
 ```
 
 Every step carries two layers, and this step of the procedure writes only the
@@ -96,6 +97,14 @@ A single-page app renders after its navigation settles, so a bare `navigate`
 leaves the next step racing the first paint. Gate on the thing you are about to
 touch with `{ do: "wait", locator: "..." }`. It is a gate, not a sleep: the run
 fails if the locator never arrives.
+
+After a delete or a dismiss, gate on the old element leaving instead:
+`{ do: "wait", locator: "...", gone: true }`. Do not gate on a loading
+indicator; it can come and go faster than any driver looks for it.
+
+An `expect` retries for `timeoutMs` (default 5000) before it fails, so a page
+that renders a moment after a refetch is not reported as broken. The run still
+fails when the state never arrives.
 
 A control below the fold is clicked into empty space by a driver that dispatches
 at coordinates, and the step still reports ok. Put
@@ -175,9 +184,11 @@ Verdicts are a table, not a judgement:
 `WARN` is the one verdict the runner cannot reach: a defect you noticed on the
 side, unrelated to the change under test. Add that record yourself and say so.
 
-Surf cannot be driven by `run`. `compile` emits its workflow JSON; run it with
-`surf do "$WF" --json` and read `vars`, as `references/drivers/surf-cli.md`
-describes.
+Both drivers run through `run`. For surf, keep the session window in front for
+the whole run, because a surf screenshot needs a visible tab. `run` retries a
+test once when surf stalls on its first navigate, and says so in the note; the
+output of every attempt is in `runs/test-N.log`. `references/drivers/surf-cli.md`
+lists what `run` does for surf and the traps it works around.
 
 If a locator is wrong, fix `plan.ts` and re-run `compile`. You **MUST NOT**
 edit a generated script — the next `compile` overwrites it, and the plan and
@@ -297,8 +308,12 @@ and the enforcement is the reason to keep writing the plan honestly.
 
 ## Reference
 
-- `scripts/acceptance.ts` — the CLI: `init`, `render`, `compile`, `run`, `verdicts`, `report`.
-- `scripts/plan.ts` — the `Plan` type. The authoring surface.
+- `scripts/browser-evidence.ts` — the CLI (crustjs): `init`, `render`, `compile`, `run`, `verdicts`, `report`. `--help` on any of them.
+- `scripts/browser-evidence/commands/` — one module per subcommand.
+- `scripts/browser-evidence/drivers/driver.ts` — the `Driver` interface. One module per driver beside it: `playwright-driver.ts`, `surf-driver.ts`.
+- `scripts/browser-evidence/verdict.ts` — the verdict table, shared by every driver.
+- `scripts/browser-evidence/plan.ts` — the `Plan` type. The authoring surface.
+- `scripts/acceptance.ts`, `scripts/plan.ts` — kept for older plans and notes; they forward to the files above.
 - `references/evidence-schema.md` — the `evidence.jsonl` record contract.
 - `references/drivers/surf-cli.md` — the surf driver.
 - `references/drivers/playwright-cli.md` — the Playwright driver.
