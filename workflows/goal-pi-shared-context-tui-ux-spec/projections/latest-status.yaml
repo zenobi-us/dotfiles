@@ -1,0 +1,18 @@
+schema: worktree-goal-status/v1
+run_id: ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135
+initiative: tracker/initiatives/pi-shared-context-tui-ux-spec/index.md
+state: blocked
+latest_event: goal-blocked-0002
+stop_condition: unverified_per_cycle_token_budget_enforcement
+phase_dispatches_reserved: 0
+cycles_consumed: 0
+first_safe_ticket: pi-shared-context-ux-02-initiatives
+active_child_agents: []
+worktrees_created: []
+claims_changed: false
+source_changed: false
+cycle_token_limit: 250000
+per_ticket_cycle_limit: 10
+configured_outer_goal_token_budget: 12500000
+observed_coordinator_tokens_used: 50514
+accounting_scope: coordinator session only
