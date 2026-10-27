@@ -14,6 +14,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import type { Evidence, Plan, Test, Verdict } from "./plan.ts";
 import { humanStep, readerNumber, readerSteps } from "./plan.ts";
+import type { CleanupRow } from "./drivers/driver.ts";
 
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -285,7 +286,11 @@ function relatedFiles(plan: Plan, files: string[]): string {
     "evidence.jsonl": "One record per step, written by the run",
   };
   const rows = files.map((f) => {
-    const desc = what[f] ?? `Driver script for ${f.replace(`${plan.workId}-`, "").replace(/\.\w+$/, "")}, re-runnable`;
+    const test = f.replace(`${plan.workId}-`, "").replace(/(\.map)?\.\w+$/, "");
+    const desc = what[f]
+      ?? (f.endsWith(".map.json") ? `Step map for ${test}: which driver steps belong to which plan step`
+        : f.endsWith(".log") ? `Raw driver output for ${test}, every attempt`
+        : `Driver script for ${test}, re-runnable`);
     return [
       `  <tr class="table__row">`,
       `    <td class="table__cell"><a class="link" href="files/${esc(f)}">${esc(f)}</a></td>`,
@@ -315,6 +320,7 @@ export async function buildReport(
   reportDir: string,
   files: string[],
   date: string,
+  cleanup: CleanupRow[],
 ): Promise<string> {
   const title = `${plan.workId} &mdash; acceptance evidence`;
   const sections = await Promise.all(plan.tests.map((t) => testSection(t, records, reportDir)));
@@ -364,11 +370,15 @@ export async function buildReport(
     `    <th class="table__head">State</th>`,
     `    <th class="table__head">Action</th>`,
     `  </tr>`,
-    `  <tr class="table__row">`,
-    `    <td class="table__cell">Driver session <code class="code">${esc(plan.workId)}</code></td>`,
-    `    <td class="table__cell">In-memory profile, closed at the end of the run</td>`,
-    `    <td class="table__cell"><strong>Nothing to undo.</strong> Confirm with <code class="code">playwright-cli list</code>.</td>`,
-    `  </tr>`,
+    ...cleanup.map((row) =>
+      [
+        `  <tr class="table__row">`,
+        `    <td class="table__cell">${row.item}</td>`,
+        `    <td class="table__cell">${row.state}</td>`,
+        `    <td class="table__cell">${row.action}</td>`,
+        `  </tr>`,
+      ].join("\n"),
+    ),
     `</table></div>`,
     ``,
     `<p class="report__text">Any config override or seed record the run needed must be added to the table above, with its undo. The runner cannot see those.</p>`,
