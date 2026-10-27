@@ -1,0 +1,125 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0002",
+  "workflow_id": "pi-shared-context-ux-02-initiatives",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "status": "blocked",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "source_commit": "d621bd11bab53ebf8267bb50150bba4b3931b9ea",
+  "source_tree": "cc4303111f2d17716d549ddb6aa514d4113c36d1",
+  "created_at": "2026-10-27T22:25:28.910Z",
+  "muxer": "herdr",
+  "pane_id": "w7B:p1",
+  "agent": "omp",
+  "agent_name": "ux02-implement-01",
+  "session_id": null,
+  "session_identity_note": "No OMP session ID was exposed by the tool inventory or session environment. HERDR_PANE_ID was observed as w7B:p1.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-02-initiatives",
+    "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0002"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0004.yaml",
+  "cycle_number": 1,
+  "native_session_goal": {
+    "create": "unavailable",
+    "get": "unavailable",
+    "finish": "unavailable",
+    "usage": null,
+    "budget": null,
+    "requested_budget": 250000
+  },
+  "changed_files": [],
+  "requirements_coverage": {
+    "status": "not implemented",
+    "reason": "Required native goal budget cannot be established. Policy blocks source work."
+  },
+  "validation": [
+    {
+      "command": "git branch --show-current",
+      "result": "feature/pi-shared-context-ux-02-initiatives"
+    },
+    {
+      "command": "git log -1 --format='%H %T'",
+      "result": "d621bd11bab53ebf8267bb50150bba4b3931b9ea cc4303111f2d17716d549ddb6aa514d4113c36d1"
+    },
+    {
+      "command": "goal.create token_budget=250000",
+      "result": "not executable: native tool unavailable"
+    },
+    {
+      "command": "goal.get",
+      "result": "not executable: native tool unavailable"
+    },
+    {
+      "command": "tests/compiler/runtime",
+      "result": "not run: blocked before source work"
+    }
+  ],
+  "summary": "Blocked before source work. No source, tracker, or user files changed. No source commit created. No formal review ran. Worktree preserved.",
+  "questions": [
+    "The coordinator must provide native goal tools before implementation can start. Actual OMP session ID and goal accounting are not exposed by this session."
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/start-0001.json"
+    },
+    {
+      "kind": "goal-policy",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0003.yaml"
+    },
+    {
+      "kind": "goal-reservation",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0004.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/implementation-0002.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0002/prerequisite-check.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/projections/latest-status.yaml"
+    }
+  ]
+}

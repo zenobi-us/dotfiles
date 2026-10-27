@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-10-27T22:24:50.927Z",
+  "branch": "feature/pi-shared-context-ux-02-initiatives",
+  "source_commit": "d621bd11bab53ebf8267bb50150bba4b3931b9ea",
+  "source_tree": "cc4303111f2d17716d549ddb6aa514d4113c36d1",
+  "native_goal_tools": {
+    "create": "unavailable",
+    "get": "unavailable",
+    "finish": "unavailable",
+    "usage": null,
+    "budget": null,
+    "requested_budget": 250000
+  },
+  "policy_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0003.yaml",
+  "policy_requirement": "Each fresh agent establishes its native goal budget before source work; no unreserved helper sessions.",
+  "session_id": null,
+  "session_identity_note": "No OMP session ID was exposed by the tool inventory or session environment. HERDR_PANE_ID was observed as w7B:p1.",
+  "source_edits": [],
+  "tests": "not run; blocked before source work",
+  "runtime": "not run; blocked before source work"
+}
