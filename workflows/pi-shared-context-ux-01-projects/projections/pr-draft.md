@@ -7,7 +7,7 @@ type: Concept
 
 ## Current status
 
-REVIEW_PASSED for source fa5c5427d3b541d80b17d3acfc16b518d111e724. Review-0023 returned SUCCESS. The latest reviewer verdict is SUCCESS from review-0023 for the current source. Parent phase completion and pane closure succeeded in fix-complete-0021. The source is not merged or pushed.
+FINISH_FAILED before merge for source fa5c5427d3b541d80b17d3acfc16b518d111e724; review remains SUCCESS. Review-0023 returned SUCCESS. The latest reviewer verdict is SUCCESS from review-0023 for the current source. Parent phase completion and pane closure succeeded in fix-complete-0021. The source is not merged or pushed.
 
 ## Ticket summary and problem
 
@@ -119,3 +119,10 @@ Verdict: SUCCESS for source fa5c5427d3b541d80b17d3acfc16b518d111e724 and tree 58
 The [immutable fourth review](../artifacts/reviews/review-review-0023.md) contains the sole review body. The [review result](../events/review-0023.json) and [parent completion](../events/review-complete-0024.json) are authoritative. Parent [Projects validation](../artifacts/evidence/review-0023/parent-focused-validation.txt) passed 17 tests, zero failed. The reviewer passed 67 extension tests and exercised actual Pi filtering. Captures remain monochrome; no full colour/contrast or live-service claim.
 Frozen source and clean worktree remained unchanged. Both axis panes and reviewer pane closed; workspace remains available. The tracker records SUCCESS with reviewed commit, timestamp and artifact link. No merge, push or ticket completion ran.
 Next command: `submit pi-shared-context-ux-01-projects` or `finish pi-shared-context-ux-01-projects`.
+
+
+## Finish attempt: FINISH_FAILED before merge
+The [finish start](../events/finish-start-0025.json) and [failure receipt](../events/finish-failed-0026.json) record preflight against published master 78029b50dd399ece54f456edd58d5716d36d00d2. Review-0023 remains SUCCESS for unchanged source fa5c5427d3b541d80b17d3acfc16b518d111e724. [Recorded extension validation](../artifacts/evidence/finish-0025/reviewed-source-validation.txt) passed 67 tests, zero failed.
+The base checkout contains user-owned unstaged edits to pi-shared-context/data.ts, which the reviewed integration also changes. Those edits were not staged, stashed, committed or discarded. Worktrunk --no-rebase also requires source ancestry that this graph lacks. An [isolated real-CLI probe](../artifacts/evidence/finish-0025/worktrunk-preflight.json) returned Branch not rebased onto master without changing either test branch.
+The committed trees have a clean computed integration tree d610941a177e48b332239b0793f9512339b2fd12. This is not an integration commit or permission to rewrite the approved source. No product merge, push, ticket completion or resource cleanup occurred. Source worktree and workspace are preserved. Resolve the base edits and authorize a source-preserving integration method before retrying finish.
+The migration hold is released. Canonical specification: [initiative](../../../tracker/initiatives/pi-shared-context-tui-ux-spec/index.md). Ticket path and state remain unchanged. Historical receipt and review artifacts were not rewritten.

@@ -1,0 +1,92 @@
+$ mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context
+bun test v1.4.3 (c6da4a4d3)
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts:
+(pass) the open modal refreshes focused DAG history and discovers a new dependent outside its scope [2076.00ms]
+(pass) file previews follow atomic replacement without moving selection to an inserted sibling [231.66ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts:
+(pass) worktree receipt transitions > start rejects missing blockers, existing workflows, closed tickets, and unknown state [0.37ms]
+(pass) worktree receipt transitions > review can freeze a new revision after an earlier implementation or review [0.18ms]
+(pass) worktree receipt transitions > latest rejected review enables fix and supersedes an older success [0.22ms]
+(pass) worktree receipt transitions > a phase-start event cannot inherit an older verdict [0.19ms]
+(pass) worktree receipt transitions > finish and submit each require the current successful review [0.26ms]
+(pass) worktree receipt transitions > timezone offsets and equal timestamps cannot revive an older successful review [0.17ms]
+(pass) worktree receipt transitions > read errors and unknown current source cannot masquerade as freshness [0.14ms]
+(pass) fresh-session boundaries > missing skills disable their actions; synthetic groups cannot become planning initiatives [0.12ms]
+(pass) fresh-session boundaries > untrusted record and prompt text cannot inject another skill or XML instruction [0.34ms]
+(pass) fresh-session boundaries > a fresh chat stages the selected command through the replacement context without sending it [0.33ms]
+(pass) fresh-session boundaries > session creation and editor failures retain the cause and distinguish an opened session [0.33ms]
+(pass) fresh-session boundaries > cancelling session creation preserves the old editor draft [0.11ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:
+(pass) Projects supports reverse focus, mouse breadcrumbs, canonical identities, and escape levels [99.65ms]
+(pass) Projects filters names and identities by subsequence and opens the filtered action target [74.37ms]
+(pass) Projects zero results cannot open a stale selection and editing restores a valid target [71.82ms]
+(pass) Escape closes Projects with an active filter even when a breadcrumb has focus [48.09ms]
+(pass) project switching owns tracker actions and Files while preserving each workspace [97.00ms]
+(pass) stored projects remain readable without a checkout and disable action dispatch [68.86ms]
+(pass) stored GitHub projects retain their remote identity after checkout removal [57.25ms]
+(pass) empty, unreadable, and unavailable project states retain the current project [70.89ms]
+(pass) inactive project updates do not replace the selected view and return refreshes its state [527.20ms]
+(pass) cached Files follows newly resolved alignment routes before reading records [89.19ms]
+(pass) checkoutless mixed routes retain shared records with a Repo alignment indicator [63.68ms]
+(pass) returning to a project restores its ticket reader and scroll position [323.08ms]
+(pass) focus traversal re-enters the first or last tracker pane in traversal order [278.30ms]
+(pass) the live modal recovers the deduplicated current project after checkout removal [554.65ms]
+(pass) repository-only A can disappear while selected shared B keeps loading records [325.49ms]
+(pass) legacy hosted identity recovery from checkout opens the complete modal without a checkout [179.27ms]
+(pass) legacy hosted identity recovery from remote opens the complete modal without a checkout [163.21ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts:
+(pass) tab highlighting does not activate content until Space or Enter [1.89ms]
+(pass) number shortcuts switch tabs without changing tracker queues or losing selection [0.72ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.test.ts:
+(pass) directory watches discover missing paths, survive replacement, and drop old subscriptions [363.56ms]
+(pass) changes arriving during refresh receive another serialized pass [70.88ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts:
+(pass) configured mixed stores preserve completed blockers and discover unassigned tickets [36.40ms]
+(pass) missing collections are empty but a missing tracker definition is actionable [8.59ms]
+(pass) missing blockers, dependency cycles, and duplicate ticket IDs fail instead of reporting readiness [73.44ms]
+(pass) initiative links cannot hide missing tickets or escape through collection symlinks [32.08ms]
+(pass) receipt identity and timestamps govern history, not filenames or projections [74.59ms]
+(pass) invalid events remain inspectable without hiding valid receipts or permitting transitions [39.98ms]
+(pass) phase-start and phase-complete envelopes do not require invented evidence [64.20ms]
+(pass) missing source worktrees and invalid source trees never borrow repository freshness [43.80ms]
+(pass) orphaned and cyclic receipt parents are invalid workflow history [30.33ms]
+(pass) GitHub pagination includes later pages and recursive prerequisite closure without parsing body references [9.05ms]
+(pass) GitHub failures and unsupported backends are errors, not empty or guessed graphs [17.23ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts:
+(pass) a ticket and its receipt selection survive leaving and restoring parent columns [1.40ms]
+(pass) action breadcrumbs follow the target without overwriting saved column selections [0.85ms]
+(pass) long and wide record text cannot overflow terminal bounds or inject terminal controls [13.88ms]
+(pass) narrow receipt wrapping preserves complete object IDs and paging reaches hidden source fields [0.75ms]
+(pass) compact receipt lists remain reachable through focus and back navigation [0.50ms]
+(pass) dependency navigation keeps the selected neighbor inside the viewport [0.75ms]
+(pass) invalid events can be selected and inspected alongside valid history [2.16ms]
+(pass) ticket focus includes transitive dependents and direct blockers without visiting unrelated branches [0.11ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.test.ts:
+(pass) repository setup is explicit, persists on reopen and preserves existing instructions [4.86ms]
+(pass) shared setup is explicit, persists on reopen and preserves existing instructions [3.93ms]
+(pass) cancel after choosing shared storage performs no initialization [1.26ms]
+(pass) existing repository tracker or layout routes are ready without shared registration [5.44ms]
+(pass) repository routes ignore an invalid unused shared base and optional collections [2.02ms]
+(pass) mixed and inherited routes require only selected roots, external tickets have no file store [4.48ms]
+(pass) required root errors are actionable and resolver errors propagate [1.19ms]
+(pass) established missing store offers check only, retries errors and never rewrites policy [2.87ms]
+(pass) pending setup rejects duplicate input and disposal prevents late completion [1.36ms]
+(pass) successful setup with unavailable roots transitions to check rather than initializing twice [1.10ms]
+(pass) narrow layouts retain bounded actions and keyboard cancellation [2.66ms]
+(pass) raw SGR mouse guards drags, stale bounds, right clicks and duplicate releases [1.93ms]
+(pass) detected shared choice survives setup failure and retries only on explicit apply [2.41ms]
+
+ 67 pass
+ 0 fail
+ 1829 expect() calls
+Ran 67 tests across 8 files. [6.42s]
+
+exit=0

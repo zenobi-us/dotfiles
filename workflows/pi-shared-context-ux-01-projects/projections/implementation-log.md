@@ -7,7 +7,7 @@ type: Concept
 
 ## Current state
 
-REVIEW_PASSED at `fa5c5427d3b541d80b17d3acfc16b518d111e724`. STANDARDS-001 is resolved by fix-0020. Latest reviewer verdict is SUCCESS from review-0023 for the current source. Review-0023 returned SUCCESS. Parent phase completion and pane closure succeeded in fix-complete-0021.
+FINISH_FAILED before merge at `fa5c5427d3b541d80b17d3acfc16b518d111e724`; review remains SUCCESS. STANDARDS-001 is resolved by fix-0020. Latest reviewer verdict is SUCCESS from review-0023 for the current source. Review-0023 returned SUCCESS. Parent phase completion and pane closure succeeded in fix-complete-0021.
 
 ## Append-only history
 
@@ -181,3 +181,9 @@ Next command: `submit pi-shared-context-ux-01-projects` or `finish pi-shared-con
 ## review-complete-0024
 [review-complete-0024](../events/review-complete-0024.json) records parent verification. Source commit/tree and clean worktree remained unchanged. [17 project tests passed](../artifacts/evidence/review-0023/parent-focused-validation.txt), zero failed. Reviewer evidence records 67 extension tests and actual Pi filtering. Herdr reported done, sequence 390; both axis panes and reviewer pane closed. Workspace preserved. The tracker contains SUCCESS, reviewed commit, timestamp and artifact link. No merge, push or ticket completion ran.
 Next command: `submit pi-shared-context-ux-01-projects` or `finish pi-shared-context-ux-01-projects`.
+
+
+## finish-start-0025 and finish-failed-0026
+[Start](../events/finish-start-0025.json) and [failure](../events/finish-failed-0026.json). Finish stopped at prepare_merge. The migration completion notice released the tracker/workflow write hold; canonical specification now resolves to tracker/initiatives/pi-shared-context-tui-ux-spec/index.md. Ticket state remains implemented. No migration or historical artifact rewrite ran here.
+The unchanged reviewed source passed [67 extension tests](../artifacts/evidence/finish-0025/reviewed-source-validation.txt). Current base and origin/master both pointed to 78029b50dd399ece54f456edd58d5716d36d00d2. git merge-tree computed clean expected tree d610941a177e48b332239b0793f9512339b2fd12 without changing the working tree.
+Two preflight blockers remain: user-owned unstaged data.ts changes in the base checkout overlap a reviewed integration path; required Worktrunk --no-rebase rejects the diverged source/base ancestry. The [isolated real-CLI probe](../artifacts/evidence/finish-0025/worktrunk-preflight.json) confirmed the latter. No actual integration was attempted. Reviewed source, user edits, ticket, worktree and workspace remain preserved. Resolve the base edits and authorize a source-preserving integration method before retrying finish.

@@ -1,8 +1,8 @@
 schema: worktree-latest-status/v1
 workflow_id: pi-shared-context-ux-01-projects
 ticket: tracker/tickets/pi-shared-context-ux-01-projects.md
-state: REVIEW_PASSED
-latest_receipt: review-complete-0024
+state: FINISH_FAILED
+latest_receipt: finish-failed-0026
 latest_source_commit: fa5c5427d3b541d80b17d3acfc16b518d111e724
 latest_source_tree: 58a4e85a43a983575f385d96c8e18cc8ada8b328
 latest_review_receipt: review-0023
@@ -18,5 +18,9 @@ fresh_review_required: false
 parent_phase_completion_pending: false
 merged: false
 pushed: false
-receipt_ref: workflows/pi-shared-context-ux-01-projects/events/review-complete-0024.json
+receipt_ref: workflows/pi-shared-context-ux-01-projects/events/finish-failed-0026.json
 draft_snapshot: workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0020.md
+failure_step: prepare_merge
+worktree_preserved: true
+workspace_preserved: true
+ticket_completed: false

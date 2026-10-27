@@ -1,0 +1,170 @@
+{
+  "purpose": "Isolated reproduction of required --no-rebase behavior when base advanced; no user repository mutations",
+  "before": "0d7c869e15284e870180323176f4b2e9a1c9b654\ncf13bd46a5ffe7f0df2c7c2ee68971eae391ea42\n",
+  "after": "0d7c869e15284e870180323176f4b2e9a1c9b654\ncf13bd46a5ffe7f0df2c7c2ee68971eae391ea42\n",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "init",
+        "-b",
+        "master"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "Initialized empty Git repository in /tmp/wt-finish-preflight-EtLDPm/repo/.git/\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "config",
+        "user.name",
+        "Finish preflight"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "config",
+        "user.email",
+        "finish-preflight@example.invalid"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "add",
+        "base.txt"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "commit",
+        "-m",
+        "initial"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "[master (root-commit) f9864c4] initial\n 1 file changed, 1 insertion(+)\n create mode 100644 base.txt\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "wt",
+        "--config",
+        "/tmp/wt-finish-preflight-EtLDPm/wt.toml",
+        "switch",
+        "--create",
+        "feature",
+        "--no-cd",
+        "--no-hooks"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "✓ Created branch feature from master and worktree @ /tmp/wt-finish-preflight-EtLDPm/feature\n"
+    },
+    {
+      "command": [
+        "git",
+        "add",
+        "feature.txt"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/feature",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "commit",
+        "-m",
+        "feat: reviewed feature"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/feature",
+      "exit_code": 0,
+      "stdout": "[feature 0d7c869] feat: reviewed feature\n 1 file changed, 1 insertion(+)\n create mode 100644 feature.txt\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "add",
+        "later-base.txt"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "commit",
+        "-m",
+        "later base"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "[master cf13bd4] later base\n 1 file changed, 1 insertion(+)\n create mode 100644 later-base.txt\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "feature",
+        "master"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "0d7c869e15284e870180323176f4b2e9a1c9b654\ncf13bd46a5ffe7f0df2c7c2ee68971eae391ea42\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "wt",
+        "--config",
+        "/tmp/wt-finish-preflight-EtLDPm/wt.toml",
+        "merge",
+        "master",
+        "--no-rebase",
+        "--no-remove",
+        "--no-hooks",
+        "--stage",
+        "none"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/feature",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "✗ Branch not rebased onto master\n↳ To rebase first, run wt step rebase master; or remove --no-rebase\n"
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "feature",
+        "master"
+      ],
+      "cwd": "/tmp/wt-finish-preflight-EtLDPm/repo",
+      "exit_code": 0,
+      "stdout": "0d7c869e15284e870180323176f4b2e9a1c9b654\ncf13bd46a5ffe7f0df2c7c2ee68971eae391ea42\n",
+      "stderr": ""
+    }
+  ]
+}

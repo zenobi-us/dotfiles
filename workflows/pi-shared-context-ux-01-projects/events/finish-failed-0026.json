@@ -1,0 +1,150 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-failed-0026",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "finish",
+  "event": "phase-result",
+  "attempt": 1,
+  "parent_receipt": "finish-start-0025",
+  "status": "FINISH_FAILED",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "created_at": "2026-10-27T21:30:21.245Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "worktree-finish-parent",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0025"
+  },
+  "review_receipt": "review-0023",
+  "reviewed_source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "reviewed_source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "observed_base_commit": "78029b50dd399ece54f456edd58d5716d36d00d2",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "78029b50dd399ece54f456edd58d5716d36d00d2",
+  "checkpoint": null,
+  "next_step": "Resolve base worktree edits and approve a source-preserving integration method before retrying finish",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0023.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-complete-0024.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "migration-publication",
+      "ref": "78029b50dd399ece54f456edd58d5716d36d00d2"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/finish-start-0025.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/finish-failed-0026.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0025"
+    }
+  ],
+  "failure_step": "prepare_merge",
+  "failure_reason": "The base worktree contains user-owned uncommitted edits to data.ts, a path changed by the reviewed source. The required Worktrunk --no-rebase merge also rejects this diverged source/base graph. Neither blocker can be resolved by rewriting the approved source or committing/stashing unrelated user work without additional authorization.",
+  "last_verified_boundary": null,
+  "integration_attempted": false,
+  "merged_commit": null,
+  "merged_tree": null,
+  "pushed": false,
+  "ticket_completed": false,
+  "ticket_observed_state": "implemented",
+  "worktree_removed": false,
+  "workspace_closed": false,
+  "worktree_preserved": true,
+  "workspace_preserved": true,
+  "source_unchanged": true,
+  "review_verdict": "SUCCESS",
+  "computed_integration": {
+    "base": "78029b50dd399ece54f456edd58d5716d36d00d2",
+    "source": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+    "merge_base": "d458207915067db9d1a3699aebe198840cffb905",
+    "expected_tree": "d610941a177e48b332239b0793f9512339b2fd12",
+    "merge_tree_clean": true,
+    "prepared": false
+  },
+  "blockers": [
+    {
+      "id": "dirty-overlapping-base",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+      "description": "User-owned unstaged changes overlap a path introduced by the reviewed integration. data.test.ts and unrelated tooling edits are also uncommitted."
+    },
+    {
+      "id": "worktrunk-no-rebase",
+      "description": "Worktrunk no-rebase requires source based on target. Base advanced beyond the reviewed source; isolated actual CLI probe rejected this graph without changing either branch.",
+      "observed_error": "Branch not rebased onto master",
+      "reproduction_ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0025/worktrunk-preflight.json"
+    }
+  ],
+  "validation_results": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "passed": 67,
+      "failed": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0025/reviewed-source-validation.txt"
+    },
+    {
+      "command": "git merge-tree --write-tree master feature/pi-shared-context-ux-01-projects",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "d610941a177e48b332239b0793f9512339b2fd12"
+    },
+    {
+      "command": "Isolated wt merge master --no-rebase --no-remove --no-hooks --stage none",
+      "exit_code": 1,
+      "result": "✗ Branch not rebased onto master\n↳ To rebase first, run wt step rebase master; or remove --no-rebase\n",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0025/worktrunk-preflight.json"
+    }
+  ],
+  "migration": {
+    "plan": "f4b8fb541686e3efb7c739de",
+    "publication_commit": "78029b50dd399ece54f456edd58d5716d36d00d2",
+    "hold_released": true,
+    "canonical_initiative": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+    "ticket_schema": "tracker-ticket/v1",
+    "ticket_unchanged": true
+  }
+}
