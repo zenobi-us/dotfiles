@@ -1,9 +1,11 @@
 import { spawnSync } from "node:child_process";
-import { dirname, isAbsolute, relative, resolve } from "node:path";
+import { statSync } from "node:fs";
+import { basename, dirname, isAbsolute, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord, resolveSharedContext } from "../../../../agent-core/skills/shared-context/scripts/shared-context/lib.ts";
 import { buildDependencyForest, parseJson, record, renderDependencyGraph, run } from "./dep-tree-shared.ts";
 import type { Ticket } from "./dep-tree-shared.ts";
+import { assertRecord, INITIATIVE_LINKS_QUERY, INITIATIVE_SCHEMA, validateInitiativeMembership } from "./record-schema.ts";
 
 type MarkdownTicket = { ticket: Ticket; blockedBy: string[]; parent?: string };
 interface MarkdownInitiative { id: string; ticketIds: string[] }
@@ -32,9 +34,10 @@ export async function markdownGraph(
   }
   const tickets = new Map<string, MarkdownTicket>();
   const ticketIdsByPath = new Map<string, string>();
-  for (const [index, value] of markdownRows(ticketCollection.path, "**/*.md", "frontmatter: okf::okf_parse(read_file(root + \"/\" + file))[\"frontmatter\"]").entries()) {
+  for (const [index, value] of markdownRows(ticketCollection.path, "**/*.md", 'frontmatter: doc["frontmatter"]').entries()) {
     const row = record(value, `Markdown ticket ${index + 1}`);
     const frontmatter = record(row.frontmatter, `Markdown ticket ${index + 1} frontmatter`);
+    assertRecord(frontmatter, "ticket", { allowLegacy: true, expectedId: basename(scalar(row.path, "ticket path"), ".md") });
     const id = scalar(frontmatter.id, `Markdown ticket ${index + 1} id`);
     if (tickets.has(id)) throw new Error(`duplicate ticket ID: ${id}`);
     const title = scalar(frontmatter.title, `Markdown ticket ${index + 1} title`);
@@ -48,10 +51,12 @@ export async function markdownGraph(
     ticketIdsByPath.set(resolve(ticketCollection.path, scalar(row.path, `ticket ${id} path`)), id);
   }
   if (ticketId && !tickets.has(ticketId)) throw new Error(`Ticket ${ticketId} was not found in ${ticketCollection.path}`);
-  const initiatives = markdownRows(initiativeCollection.path, "*/index.md", "links: okf::okf_extract_links(read_file(root + \"/\" + file))").map((value) => {
+  const initiatives = markdownRows(initiativeCollection.path, "*/index.md", `frontmatter: doc["frontmatter"], links: ${INITIATIVE_LINKS_QUERY}`).map((value) => {
     const row = record(value, "initiative index");
     const relativePath = scalar(row.path, "initiative index path");
     const id = dirname(relativePath);
+    const frontmatter = record(row.frontmatter, `initiative ${id} frontmatter`);
+    assertRecord(frontmatter, "initiative", { allowLegacy: true, expectedId: id });
     if (!Array.isArray(row.links)) throw new Error(`initiative ${id} has no link list`);
     const indexPath = resolve(initiativeCollection.path!, relativePath);
     const ticketIds = row.links.flatMap((value) => {
@@ -67,6 +72,10 @@ export async function markdownGraph(
       }
       return ticketId ? [ticketId] : [];
     });
+    if (frontmatter.schema === INITIATIVE_SCHEMA) {
+      const errors = validateInitiativeMembership(id, ticketIds, [...tickets].map(([id, ticket]) => ({ id, parent: ticket.parent })));
+      if (errors.length) throw new Error(errors.join(" "));
+    }
     return { id, ticketIds: [...new Set(ticketIds)] };
   });
   const initiative = initiativeId
@@ -82,9 +91,16 @@ export async function markdownGraph(
 }
 
 function markdownRows(root: string, pattern: string, fields: string): unknown[] {
+  try {
+    statSync(root);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+    throw error;
+  }
   const query = `
     import "github.com/harehare/okf.mq" |
-    map(walk_files(root, pattern), fn(file): { path: file, ${fields} };)
+    import "section" |
+    map(walk_files(root, pattern), fn(file): let source = read_file(root + "/" + file) | let doc = okf::okf_parse(source) | { path: file, ${fields} };)
   `;
   const parsed = parseJson(run("mq", ["--allow-http-import", `--allow-read=${root}`, "--args", "root", root, "--args", "pattern", pattern, "-I", "null", "-F", "json", query]), "mq");
   return Array.isArray(parsed) ? parsed : [parsed];

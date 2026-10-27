@@ -1,9 +1,10 @@
 import { lstat, readdir, realpath, stat } from "node:fs/promises";
-import { dirname, isAbsolute, join, relative, resolve } from "node:path";
+import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord } from "../../skills/shared-context/scripts/shared-context/lib";
 import { chronologicalReceipts } from "./model";
 import type { Exec, ExplorerEvent, ExplorerInitiative, ExplorerReceipt, ExplorerSnapshot, ExplorerTicket, SharedAgentContext, TicketWorkflow } from "./model";
+import { assertRecord, INITIATIVE_LINKS_QUERY, INITIATIVE_SCHEMA, validateInitiativeMembership } from "../../../matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema";
 
 type Fields = Record<string, unknown>;
 type Document = { fields: Fields; body: string; links: unknown[] };
@@ -152,6 +153,7 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
   const parents = new Map<string, string>();
   for (const file of await files(ticketsRecord.path, /\.md$/)) {
     const doc = await document(file, ticketsRecord.root, exec);
+    assertRecord(doc.fields, "ticket", { allowLegacy: true, expectedId: basename(file, ".md") });
     const id = scalar(doc.fields.id, "ticket id");
     const documentType = doc.fields.type == null ? undefined : text(doc.fields.type, "ticket type");
     tickets.push({ id, title: text(doc.fields.title, "ticket title"), documentType, ref: `${ticketsRecord.ref}/${relative(ticketsRecord.path, file).split("\\").join("/")}`, backend: "local-markdown", status: doc.fields.work_status == null ? "unknown" : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body });
@@ -163,6 +165,7 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
     if (relative(initiativesRecord.path, file).split(/[\\/]/).length !== 2 || !file.endsWith("/index.md")) continue;
     const doc = await document(file, initiativesRecord.root, exec);
     const id = dirname(relative(initiativesRecord.path, file));
+    assertRecord(doc.fields, "initiative", { allowLegacy: true, expectedId: id });
     const ticketIds: string[] = [];
     for (const rawLink of doc.links) {
       const url = text(object(rawLink, "initiative link").url, "initiative link URL");
@@ -173,6 +176,10 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
       const linkedId = paths.get(await realpath(target));
       if (!linkedId) throw new Error("Initiative links to a missing or unknown ticket.");
       ticketIds.push(linkedId);
+    }
+    if (doc.fields.schema === INITIATIVE_SCHEMA) {
+      const errors = validateInitiativeMembership(id, ticketIds, tickets.map(ticket => ({ id: ticket.id, parent: parents.get(ticket.id) })));
+      if (errors.length) throw new Error(errors.join(" "));
     }
     initiatives.push({ id, title: doc.fields.title == null ? id : text(doc.fields.title, "initiative title"), ref: `${initiativesRecord.ref}/${id}/index.md`, ticketIds: [...new Set(ticketIds)], body: doc.body });
   }
@@ -267,7 +274,7 @@ async function document(file: string, root: string, exec: Exec): Promise<Documen
   await contained(root, file);
   const markdown = file.endsWith(".md");
   const query = markdown
-    ? 'import "github.com/harehare/okf.mq" | { fields: okf::okf_parse(.)["frontmatter"], body: ., links: okf::okf_extract_links(.) }'
+    ? `import "github.com/harehare/okf.mq" | import "section" | let source = . | let doc = okf::okf_parse(source) | { fields: doc["frontmatter"], body: source, links: ${INITIATIVE_LINKS_QUERY} }`
     : 'import "github.com/harehare/okf.mq" | { fields: ., body: "", links: [] }';
   const parsed = object(JSON.parse(await run(exec, "mq", ["--allow-http-import", "--no-lockfile", `--allow-read=${root}`, "-I", markdown ? "raw" : file.endsWith(".json") ? "json" : "yaml", "-F", "json", query, file])), "mq document");
   return { fields: object(parsed.fields, "document fields"), body: string(parsed.body, "document body"), links: list(parsed.links, "document links") };

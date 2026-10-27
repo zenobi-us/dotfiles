@@ -85,4 +85,33 @@ describe("Markdown dependency graphs", () => {
     await fs.writeFile(path.join(repositoryRoot, "docs/agents/context-layout.toml"), 'schema = 1\n[paths]\ntracker = "../outside"\n');
     await expect(markdownGraph(repositoryRoot, "T-1", undefined, sharedBase)).rejects.toThrow();
   });
+
+  test("reads v1 records and ignores specification reference links outside Tickets", async () => {
+    const { repositoryRoot, sharedBase, ticketsRoot, initiativeRoot } = await fixture();
+    await fs.writeFile(path.join(ticketsRoot, "T-1.md"), "---\nschema: tracker-ticket/v1\nid: T-1\ntitle: First task\ntype: task\nwork_status: claimed\nblocked_by: [T-2]\nparent: release\nsequence: 1\ncustom: retained\n---\n");
+    const link = path.relative(initiativeRoot, path.join(ticketsRoot, "T-1.md"));
+    const reference = path.relative(initiativeRoot, path.join(ticketsRoot, "missing.md"));
+    await fs.writeFile(path.join(initiativeRoot, "index.md"), `---\nschema: tracker-initiative/v1\nid: release\ntitle: Release\n---\n\n## Specification\n\n[Reference](${reference})\n\n## Tickets\n\n- [First](${link})\n`);
+    expect(await markdownGraph(repositoryRoot, "T-1", undefined, sharedBase)).toBe(expected);
+  });
+
+  test("rejects future versions, malformed ticket fields, and record identity mismatches", async () => {
+    const { repositoryRoot, sharedBase, ticketsRoot } = await fixture();
+    for (const fields of ["schema: tracker-ticket/v2\nid: T-1\ntitle: Future", "schema: tracker-ticket/v1\nid: T-1\ntitle: Invalid\nwork_status: open\nblocked_by: []", "schema: tracker-ticket/v1\nid: other\ntitle: Wrong identity\nwork_status: claimed\nblocked_by: []"]) {
+      await fs.writeFile(path.join(ticketsRoot, "T-1.md"), `---\n${fields}\n---\n`);
+      await expect(markdownGraph(repositoryRoot, undefined, "release", sharedBase)).rejects.toThrow("Invalid ticket record");
+    }
+  });
+
+  test("rejects versioned initiative schemas, identity, execution fields, and inconsistent membership", async () => {
+    const { repositoryRoot, sharedBase, initiativeRoot, ticketsRoot } = await fixture();
+    const link = path.relative(initiativeRoot, path.join(ticketsRoot, "T-1.md"));
+    for (const fields of ["schema: tracker-initiative/v2\nid: release\ntitle: Release", "schema: tracker-initiative/v1\nid: wrong\ntitle: Release", "schema: tracker-initiative/v1\nid: release\ntitle: Release\nwork_status: claimed", "schema: tracker-initiative/v1\nid: release\ntitle: Release"]) {
+      await fs.writeFile(path.join(initiativeRoot, "index.md"), `---\n${fields}\n---\n\n## Tickets\n\n[First](${link})\n`);
+      await expect(markdownGraph(repositoryRoot, undefined, "release", sharedBase)).rejects.toThrow();
+    }
+    await fs.writeFile(path.join(ticketsRoot, "T-1.md"), "---\nid: T-1\ntitle: First\nparent: release\nblocked_by: []\n---\n");
+    await fs.writeFile(path.join(initiativeRoot, "index.md"), "---\nschema: tracker-initiative/v1\nid: release\ntitle: Release\n---\n\n## Tickets\n");
+    await expect(markdownGraph(repositoryRoot, undefined, "release", sharedBase)).rejects.toThrow("missing ticket T-1");
+  });
 });
