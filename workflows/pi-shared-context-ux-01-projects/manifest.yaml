@@ -5,7 +5,7 @@ initiative: pi-shared-context-tui-ux-spec
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: finish-failed-0026
+latest_receipt: finish-waiting-0027
 state: FINISH_FAILED
 source_branch: feature/pi-shared-context-ux-01-projects
 base_branch: master
