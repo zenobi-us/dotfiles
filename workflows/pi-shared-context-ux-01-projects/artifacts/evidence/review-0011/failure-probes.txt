@@ -1,0 +1,27 @@
+12 |   return { stdout: code ? `${stdout}${stderr}` : stdout, code };
+13 | }
+14 | async function putMarkdown(file: string, text: string) {
+15 |   await mkdir(join(file, ".."), { recursive: true });
+16 |   const result = await run("mq", ["--allow-http-import", "-I", "null", "-F", "raw", "--args", "body", text, 'import "github.com/harehare/okf.mq" | body', "-o", file, "--no-clobber"]);
+17 |   if (result.code) throw new Error(result.stdout);
+                                  ^
+error: error: unexpected argument '---
+backend: local-markdown
+---
+' found
+
+  tip: to pass '---
+backend: local-markdown
+---
+' as a value, use '-- ---
+backend: local-markdown
+---
+'
+
+Usage: mq --allow-http-import --input-format <INPUT_FORMAT> --output-format <OUTPUT_FORMAT> [QUERY OR FILE] [FILES]...
+
+For more information, try '--help'.
+
+      at putMarkdown (/tmp/review-0011-probe.ts:17:30)
+
+Bun v1.4.3 (Linux x64)

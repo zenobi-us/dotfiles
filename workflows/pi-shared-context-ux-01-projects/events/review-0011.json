@@ -1,0 +1,253 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0011",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "review",
+  "event": "phase-result",
+  "attempt": 2,
+  "parent_receipt": "review-start-0010",
+  "status": "completed",
+  "verdict": "FAILURE",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "f4dffcaebf159cb857eb6008fad80dfb03e214fc",
+  "source_tree": "76467ed6e58b3a364a74a19c7f85bcd69c8975bb",
+  "reviewed_base_commit": "8a453ef5df4ad3e94e79005c4c12481792f3ba4d",
+  "created_at": "2026-10-27T03:58:07.535376Z",
+  "muxer": "herdr",
+  "pane_id": "w7A:p2",
+  "agent": "omp",
+  "agent_name": "pi-context-projects-review-0002",
+  "session_id": "01a17b79-3563-7446-8935-db01be641aa8",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0011",
+    "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0011"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "specification",
+      "ref": "tracker/tickets/pi-shared-context-tui-ux-spec.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-start-0010.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/implementation-0002.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-0008.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-complete-0009.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0005.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0008.md"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0005.md"
+    },
+    {
+      "kind": "configuration",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "configuration",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "configuration",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "configuration",
+      "ref": "docs/agents/issue-tracker.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0011.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0011.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0011/pi-runtime.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0011/failure-probes-confirmed.txt"
+    }
+  ],
+  "findings": [
+    {
+      "id": "SPEC-003",
+      "axis": "Spec",
+      "severity": "P2",
+      "adr": "NO ADR",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "line": 618,
+      "end_line": 622,
+      "requirement": "Ticket acceptance criteria 3 and 8: the selected project owns tracker reads; a project without a usable checkout retains readable context.",
+      "description": "The execution wrapper keeps the original session directory and its candidate shared root. Repository-only project A need not have that shared root. After selecting shared project B and removing A, B Markdown reads fail because mq is launched in a missing directory.",
+      "required_change": "Choose a verified surviving execution directory for selected-project reads without changing the Pi session directory. Cover repository-only A to shared B followed by removal of A.",
+      "validation_command": "mise exec -- bun /tmp/review-0011-probe.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "observed_result": "BEFORE Surviving B ticket; after A removal ENOENT: no such file or directory, posix_spawn 'mq'; surviving-root control still reads Surviving B ticket.",
+      "blocks_completion": true,
+      "blocking_reason": "Readable selected-project context becomes unavailable solely because an unrelated previous checkout disappears."
+    },
+    {
+      "id": "SPEC-001",
+      "axis": "Spec",
+      "severity": "P2",
+      "adr": "NO ADR",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts",
+      "line": 285,
+      "end_line": 294,
+      "related_lines": [
+        364,
+        367
+      ],
+      "requirement": "Ticket What to build: browse existing tracker and Files workspace; acceptance criterion 8: retain readable context without a usable checkout.",
+      "description": "Legacy shared GitHub stores have no .context-project.json. Enumeration provides no origin. Stored resolution then returns an empty canonicalOrigin, and the existing GitHub loader rejects it before issuing a request. New initialization metadata fixes newly initialized stores, not existing ones.",
+      "required_change": "Provide an explicit identity-recovery path for existing hosted stores using an authoritative remote from a verified checkout or explicit user-supplied remote. Explain recovery when the identity is unavailable. Never reconstruct a remote from a lossy slug or scan unrelated repositories.",
+      "validation_command": "mise exec -- bun /tmp/review-0011-probe.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "observed_result": "LEGACY_ORIGIN \"\"; GitHub backend requires a github.com OWNER/REPO canonical origin.",
+      "blocks_completion": true,
+      "blocking_reason": "The Projects feature cannot open an existing supported hosted tracker unless a new, unstated metadata prerequisite is met."
+    }
+  ],
+  "axis_counts": {
+    "Standards": {
+      "blocking": 0,
+      "nonblocking": 0
+    },
+    "Spec": {
+      "blocking": 2,
+      "nonblocking": 0
+    }
+  },
+  "axis_sessions": [
+    {
+      "axis": "Standards",
+      "agent_name": "pi-review-0011-standards-fresh",
+      "session_id": "01a17b7c-1351-73f3-9f97-a7c9f64238e4",
+      "pane_id": "w7A:p5",
+      "declared_depth": 2,
+      "completion_state": "done",
+      "completion_sequence": 335,
+      "pane_closed": true,
+      "authoritative_review_body_created": false
+    },
+    {
+      "axis": "Spec",
+      "agent_name": "pi-review-0011-spec",
+      "session_id": "01a17b7a-bc40-72f9-a6b1-4609e841cb0b",
+      "pane_id": "w7A:p4",
+      "declared_depth": 2,
+      "completion_state": "done",
+      "completion_sequence": 339,
+      "pane_closed": true,
+      "authoritative_review_body_created": false
+    }
+  ],
+  "validation_results": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "status": "passed",
+      "tests_passed": 11,
+      "tests_failed": 0,
+      "assertions": 58
+    },
+    {
+      "command": "mise exec -- bun /tmp/review-0011-probe.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "cwd": "/tmp",
+      "status": "reproduced",
+      "exit_code": 0,
+      "finding_ids": [
+        "SPEC-003",
+        "SPEC-001"
+      ],
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0011/failure-probes-confirmed.txt",
+      "program_ref": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0011.md"
+    },
+    {
+      "command": "termscope session --cols 120 --rows 40 -- /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-skills --no-prompt-templates --no-context-files --no-mcp -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "status": "passed",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0011/pi-runtime.json",
+      "observations": "Actual Repo tracker, Esc to Projects, current canonical identity, return to tracker, 120x40/80x24/40x12 resize. No model request. No new full palette or mouse-coordinate audit."
+    },
+    {
+      "command": "mq --allow-http-import -I raw -F json 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(self) | okf::okf_validate(self)' workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0011.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "status": "passed",
+      "result": "[]"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} && git status --porcelain=v1",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "status": "passed",
+      "result": "Exact frozen source commit and tree; empty porcelain status."
+    }
+  ],
+  "recorded_validation": {
+    "fix_receipt": "120 focused tests, scoped TypeScript, GitHub runtime and actual checkout-removal Pi smoke; historical only",
+    "broader_bundle_typecheck": "Known unrelated failures; not rerun"
+  },
+  "prior_findings": {
+    "SPEC-001": "partially resolved; existing hosted store identity gap remains",
+    "SPEC-002": "resolved for direct current-entry fallback; SPEC-003 is a separate execution-root failure"
+  },
+  "review_artifact": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0011.md",
+  "source_worktree_clean": true,
+  "source_unchanged": true,
+  "source_tests_configuration_tracker_projections_unchanged": true,
+  "temporary_programs_removed": true,
+  "failed_startup": {
+    "pane_id": "w7A:p3",
+    "closed": true,
+    "used_for_review": false
+  },
+  "merged": false,
+  "rebased": false,
+  "pushed": false,
+  "ticket_state_changed": false,
+  "completion_marker": "WORKTREE_REVIEW_DONE",
+  "pane_close_owner": "parent",
+  "next_step": "fix pi-shared-context-ux-01-projects"
+}

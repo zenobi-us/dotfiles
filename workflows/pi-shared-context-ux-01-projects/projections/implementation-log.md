@@ -74,3 +74,13 @@ The parent completed result validation, phase completion and pane closure. Canon
 
 ## fix-complete-0009
 [fix-complete-0009](../events/fix-complete-0009.json). Parent validated the immutable fix result, source commit and tree, test and runtime evidence, snapshot, and WORKTREE_FIX_DONE marker. Herdr reported done with completion sequence 324. Pane w79:p1 closed successfully; the worktree workspace remains available. No selected finding remains unresolved. A fresh review is required.
+
+
+## review-start-0010
+[review-start-0010](../events/review-start-0010.json) freezes source f4dffcaebf159cb857eb6008fad80dfb03e214fc and tree 76467ed6e58b3a364a74a19c7f85bcd69c8975bb against master at 8a453ef5df4ad3e94e79005c4c12481792f3ba4d. A fresh reviewer opened in w7A:p2.
+## review-0011
+[review-0011](../events/review-0011.json) records FAILURE. Standards: zero findings. Spec: SPEC-003 and remaining SPEC-001, both P2. SPEC-002 is resolved for the reviewed scenario. The [immutable artifact](../artifacts/reviews/review-review-0011.md) holds the review body and reproductions. No source files changed.
+## review-complete-0012
+[review-complete-0012](../events/review-complete-0012.json) records parent validation. Frozen source and clean worktree remained unchanged. [11 project tests passed](../artifacts/evidence/review-0011/parent-focused-validation.txt); two failure probes remain blocking. Both axis panes and the reviewer pane closed. The workspace remains available. The ticket contains the verdict and artifact link. No fixes, merge, rebase or push ran.
+## Current unresolved questions
+SPEC-003 and SPEC-001 remain open. Use the immutable second review for exact requirements and validation commands. Next command: `fix pi-shared-context-ux-01-projects`.

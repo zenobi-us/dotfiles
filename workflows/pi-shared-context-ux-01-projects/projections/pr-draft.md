@@ -68,7 +68,7 @@ The [implementation code review](../artifacts/evidence/implementation-0002/imple
 
 The [formal review artifact](../artifacts/reviews/review-review-0005.md), [review result](../events/review-0005.json) and [parent review completion](../events/review-complete-0006.json) remain immutable. That review returned FAILURE for the predecessor source. Standards had no blocking findings. Spec reported SPEC-001 and SPEC-002, both P2 and NO ADR.
 
-The latest reviewer verdict remains FAILURE. This fix is not reviewer approval. The new source commit requires a fresh formal review.
+Review-0011 returned FAILURE for the current source. The earlier review and fix claims remain historical evidence.
 
 ## Resolved findings
 
@@ -77,7 +77,7 @@ The latest reviewer verdict remains FAILURE. This fix is not reviewer approval. 
 
 ## Remaining findings and risks
 
-No selected finding remains unresolved by this fix. The next independent review must verify these resolutions.
+The fix claimed both selected findings resolved. Review-0011 keeps SPEC-001 open and adds SPEC-003; SPEC-002 is resolved for its reviewed scenario.
 
 Older stores without identity metadata cannot reconstruct an unknown remote from their slug. Shared initialization from a checkout saves this metadata. The current project can also use its authoritative in-session origin. Local stored records need no hosted remote identity.
 
@@ -85,7 +85,7 @@ Known broader compiler errors, existing narrow title clipping and the host short
 
 ## Merge status
 
-Not merged. Not rebased. Not pushed. The ticket and its comments are unchanged. The parent completed result validation and pane closure. A fresh review remains required.
+Not merged. Not rebased. Not pushed. The ticket remains implemented; its comments now include review-0011 verdict and artifact link. The parent completed result validation and pane closure. A fresh review remains required.
 
 ## Durable phase history
 
@@ -107,9 +107,16 @@ Not merged. Not rebased. Not pushed. The ticket and its comments are unchanged. 
 
 ## Next command
 
-`review pi-shared-context-ux-01-projects`.
+`fix pi-shared-context-ux-01-projects`.
 
 
 
 ## Parent phase completion
-[fix-complete-0009](../events/fix-complete-0009.json) validates the fix result, source identity, evidence and completion marker. Herdr reported done (sequence 324); pane w79:p1 closed successfully. The worktree workspace remains available. A fresh review is required.
+[fix-complete-0009](../events/fix-complete-0009.json) validates the fix result, source identity, evidence and completion marker. Herdr reported done (sequence 324); pane w79:p1 closed successfully. The worktree workspace remains available. Review-0011 completed with FAILURE; a further fix is required.
+
+
+## Latest formal review: review-0011
+Verdict: FAILURE for source f4dffcaebf159cb857eb6008fad80dfb03e214fc. Standards: zero findings. Spec: two blocking P2 findings, SPEC-003 and remaining SPEC-001. SPEC-002 is resolved for the reviewed direct-current-entry scenario.
+The [immutable second review](../artifacts/reviews/review-review-0011.md) holds the findings and reproduction program. The [review result](../events/review-0011.json) and [parent completion](../events/review-complete-0012.json) are authoritative. Both axis panes and the reviewer pane closed. Source commit and tree remained unchanged.
+Parent validation: 11 project tests passed, zero failed; [validation log](../artifacts/evidence/review-0011/parent-focused-validation.txt). The passing suite does not cover both reproduced failures. The tracker contains the verdict and artifact link. No fix, merge or push ran.
+Next command: `fix pi-shared-context-ux-01-projects`.

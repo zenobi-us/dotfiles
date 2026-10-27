@@ -1,0 +1,22 @@
+$ mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts
+bun test v1.4.3 (c6da4a4d3)
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:
+(pass) Projects supports reverse focus, mouse breadcrumbs, canonical identities, and escape levels [106.18ms]
+(pass) project switching owns tracker actions and Files while preserving each workspace [93.70ms]
+(pass) stored projects remain readable without a checkout and disable action dispatch [68.33ms]
+(pass) stored GitHub projects retain their remote identity after checkout removal [56.89ms]
+(pass) empty, unreadable, and unavailable project states retain the current project [70.05ms]
+(pass) inactive project updates do not replace the selected view and return refreshes its state [525.69ms]
+(pass) cached Files follows newly resolved alignment routes before reading records [83.21ms]
+(pass) checkoutless mixed routes retain shared records with a Repo alignment indicator [58.97ms]
+(pass) returning to a project restores its ticket reader and scroll position [321.19ms]
+(pass) focus traversal re-enters the first or last tracker pane in traversal order [275.36ms]
+(pass) the live modal recovers the deduplicated current project after checkout removal [548.20ms]
+
+ 11 pass
+ 0 fail
+ 58 expect() calls
+Ran 11 tests across 1 file. [2.24s]
+
+exit=0

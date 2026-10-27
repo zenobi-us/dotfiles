@@ -1,0 +1,5 @@
+BEFORE [ "Surviving B ticket" ]
+SPEC-003 Error: ENOENT: no such file or directory, posix_spawn 'mq'
+SURVIVING_ROOT_CONTROL [ "Surviving B ticket" ]
+LEGACY_ORIGIN ""
+SPEC-001 Error: Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.
