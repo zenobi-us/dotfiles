@@ -61,3 +61,13 @@ The parent checked the source commit, source tree, result receipt, evidence, and
 
 [Phase completion](../events/implementation-complete-0003.json) records these checks. The canonical ticket state is implemented. Formal review remains pending.
 
+## review-0005 and review-complete-0006
+
+The independent [formal review](../artifacts/reviews/review-review-0005.md) returned FAILURE. Standards reported no blocking findings. Spec reported SPEC-001 and SPEC-002.
+
+The [result receipt](../events/review-0005.json) preserves the findings. The [parent completion](../events/review-complete-0006.json) records source preservation and successful pane closure.
+
+The source commit remains afb6b874f70afb2035ed76288140daf1ff589691. No source files changed during review. [Focused validation](../artifacts/evidence/review-0005/parent-focused-validation.txt) reports 9 passing tests. The existing suite does not cover the reproduced defects.
+
+Both findings remain open. The next phase is fix.
+

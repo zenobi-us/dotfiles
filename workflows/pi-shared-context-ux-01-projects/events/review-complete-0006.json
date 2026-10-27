@@ -1,0 +1,173 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0006",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-0005",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "afb6b874f70afb2035ed76288140daf1ff589691",
+  "source_tree": "bc8acd4597834dc04cb5169bdf93be44db95ab32",
+  "created_at": "2026-10-27T00:37:42.511Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "pane_id": "w78:p1",
+  "agent": "omp",
+  "session_id": "01a17ac3-0a78-7631-815b-b089567bf47a",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "specification",
+      "ref": "tracker/tickets/pi-shared-context-tui-ux-spec.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/implementation-0002.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/implementation-complete-0003.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0005.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0005.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0005/parent-focused-validation.txt"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-complete-0006.json"
+    },
+    {
+      "kind": "ticket-comment",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/implementation-log.md"
+    }
+  ],
+  "status": "completed",
+  "reviewed_base_commit": "8d3f035541a59319fe20272af1d3d150b1d7b14b",
+  "verdict": "FAILURE",
+  "findings": [
+    {
+      "id": "SPEC-001",
+      "axis": "Spec",
+      "severity": "P2",
+      "adr": "NO ADR",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts",
+      "line": 285,
+      "end_line": 286,
+      "description": "resolveStoredContext uses the lossy project slug as canonicalOrigin. The existing GitHub loader rejects that identity before any issue request.",
+      "requirement": "Ticket acceptance criterion 8: A project without a usable checkout retains readable context.",
+      "required_change": "Resolve the actual canonical origin from authoritative stored project data. Do not substitute the slug for a remote identity.",
+      "validation_command": "mise exec -- bun /tmp/projects-review-github.ts",
+      "observed_result": "CURRENT github.com/example/project github; STORED github-com-example-project--3d3378b2 github; REPRODUCED Error: GitHub backend requires a github.com OWNER/REPO canonical origin.",
+      "blocks_completion": true,
+      "blocking_reason": "Selecting a supported GitHub-backed stored project makes its existing tracker unreadable."
+    },
+    {
+      "id": "SPEC-002",
+      "axis": "Spec",
+      "severity": "P2",
+      "adr": "NO ADR",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "line": 455,
+      "end_line": 459,
+      "description": "The current entry permanently declares checkout true. Its resolver rejects a removed checkout although its shared records remain readable. Canonical deduplication retains this entry and suppresses the checkoutless stored entry.",
+      "requirement": "Ticket acceptance criteria 8 and 12: retain readable context without a usable checkout; keep the current project reachable.",
+      "required_change": "Fall back to the existing shared context when the current checkout becomes unavailable. Refresh cached workspace checkout capability, action restrictions, and watcher targets before activation.",
+      "validation_command": "mise exec -- bun /tmp/projects-review-current.ts",
+      "observed_result": "CURRENT_RESOLVER undefined; CURRENT_ENTRY Error: The current project checkout is unavailable.; SHARED_RECORD Surviving shared item",
+      "blocks_completion": true,
+      "blocking_reason": "The current project cannot recover its surviving shared context after its checkout disappears."
+    }
+  ],
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0005"
+  },
+  "axis_counts": {
+    "Standards": {
+      "blocking": 0,
+      "nonblocking": 0
+    },
+    "Spec": {
+      "blocking": 2,
+      "nonblocking": 0
+    }
+  },
+  "validation_results": [
+    {
+      "command": "mise exec -- bun test extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/review-0005/parent-focused-validation.txt",
+      "status": "passed",
+      "tests_passed": 9,
+      "tests_failed": 0
+    },
+    {
+      "name": "source preservation",
+      "status": "passed",
+      "details": "HEAD and tree match the frozen source identity. The source worktree remains clean."
+    },
+    {
+      "name": "independent review completion",
+      "status": "passed",
+      "details": "Herdr reported done at completion sequence 300. Both axis sessions completed and closed."
+    }
+  ],
+  "pane_closed": true,
+  "pane_close_result": "ok",
+  "source_unchanged": true,
+  "review_completion_sequence": 300,
+  "workflow_state": "REVIEW_FAILED",
+  "ticket_work_status": "implemented",
+  "merged": false,
+  "pushed": false
+}

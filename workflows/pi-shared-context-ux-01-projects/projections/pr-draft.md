@@ -7,7 +7,7 @@ type: Concept
 
 ## Ticket summary
 
-[tracker/tickets/pi-shared-context-ux-01-projects.md](../../../tracker/tickets/pi-shared-context-ux-01-projects.md) adds project selection to the existing shared-context modal. The canonical ticket remains claimed. The parent owns ticket state changes.
+[tracker/tickets/pi-shared-context-ux-01-projects.md](../../../tracker/tickets/pi-shared-context-ux-01-projects.md) adds project selection to the existing shared-context modal. The canonical ticket state is implemented. The parent owns ticket state changes.
 
 ## Problem statement
 
@@ -54,7 +54,7 @@ Required modal, contract, suite, and terminal checks pass. The broader bundle ty
 
 The [parent start receipt](../events/start-0001.json) started the independent implementation phase. No implementation or formal review result existed before this phase.
 Two independent agents performed the implementation code review. The owner applied their findings and verified the final diff and runtime behavior. [Implementation review](../artifacts/evidence/implementation-0002/implementation-review.md).
-No formal worktree review phase ran. Latest formal reviewer verdict: null.
+The first formal review returned FAILURE for source commit afb6b874f70afb2035ed76288140daf1ff589691. Standards reported no blocking findings. Spec reported SPEC-001 and SPEC-002. [Review artifact](../artifacts/reviews/review-review-0005.md).
 
 ## Resolved findings
 
@@ -66,14 +66,14 @@ No formal worktree review phase ran. Latest formal reviewer verdict: null.
 
 ## Remaining findings and risks
 
-No known implementation finding remains. The parent still must perform the formal worktree review.
+Two formal specification findings remain open: SPEC-001 and SPEC-002. The next phase is fix.
 The full bundle typecheck reports errors in untouched scripts. Existing narrow tracker title clipping and the host ctrl+shift+g conflict remain outside this ticket.
 The isolated runtime had no model credentials. The UI and fresh-chat staging ran without a model request.
 Stored project enumeration does not retain checkout locations. Checkout-dependent actions remain disabled until that project opens from a known checkout.
 
 ## Merge status
 
-Not merged. Not pushed. The source worktree and feature branch remain available. Canonical workflow artifacts remain for the parent to commit.
+Not merged. Not pushed. The source worktree and feature branch remain available. Workflow receipts and artifacts record implementation and review.
 
 ## Durable records
 
@@ -87,4 +87,10 @@ Not merged. Not pushed. The source worktree and feature branch remain available.
 ## Parent phase completion
 
 [Phase completion](../events/implementation-complete-0003.json) records the checked implementation result. The completed agent pane is closed. The worktree remains available for formal review. The ticket state is implemented, not completed.
+
+## Formal review completion
+
+[Review result](../events/review-0005.json) records FAILURE. [Parent completion](../events/review-complete-0006.json) records source preservation, artifact checks, and successful pane closure.
+
+[Focused validation](../artifacts/evidence/review-0005/parent-focused-validation.txt) reports 9 passing tests. These existing tests do not cover the two reproduced defects. No source change, merge, or push occurred.
 
