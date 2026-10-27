@@ -1,7 +1,6 @@
 ---
 name: worktree
-description: Route a worktree subcommand (start, submit, fix, finish, review, continue, tasks, goal) to its playbook.
-disable-model-invocation: true
+description: Route worktree phases and dependency views to their playbooks. Use the goal workflow in a guided-goal interview to complete an initiative or explicit ticket collection.
 user-invocable: true
 ---
 
@@ -13,7 +12,7 @@ Route `UserRequest` to the correct worktree workflow. This skill dispatches only
 - 1. Load the `worktree` skill’s `references/receipts.md` file before running a worktree playbook.
 
 Every mutating ticket phase MUST create a durable receipt under the workflow root resolved by
-the `shared-context` skill for `<ticket-id>`. The read-only `tasks` and `goal` playbooks create no receipts. Receipts in `events/` are
+the `shared-context` skill for `<ticket-id>`. `tasks` and goal preparation create no receipts. Receipts in `events/` are
 append-only and authoritative. Chat output, pane output, temporary handoff files,
 manifests, and projections are not authoritative workflow state.
 
@@ -22,7 +21,7 @@ source branch, base branch, exact source commit and tree, workflow store and
 reference, muxer, workspace path, agent, pane or session identifier, timestamp,
 status, and output references.
 
-Goal execution uses the separate coordinator journal contract in `references/receipts.md`. The read-only `goal` preparation playbook inspects this journal without creating or resetting it.
+Goal execution uses the separate coordinator journal contract in `references/receipts.md`. Goal preparation inspects this journal without creating or resetting it. The goal playbook supplies instructions to the current guided-goal interview and coordinates phases only after activation and scoped approval.
 
 `start`, `review`, and `fix` MUST use independent agent sessions. A review or fix MUST run in a fresh agent session in the existing worktree workspace. It MUST NOT send instructions to, resume, or reuse an earlier implementation, review, or fixer session. The `muxer-subagents` skill owns how that fresh session is opened.
 
@@ -35,7 +34,7 @@ running the `shared-context` skill’s `scripts/shared-context/cli.ts` script wi
 `resolve evidence`; its store can differ from the workflow store.
 Store current views under `projections/`.
 
-Every commit made by a worktree playbook MUST follow the `commit` skill. Ticket-phase commit titles MUST contain the resolved issue reference. This applies to source commits, workflow-artifact commits, tracker-state commits, and the final merge commit. Coordinator-only journal commits use the canonical initiative reference; they must not invent a ticket association.
+Every commit made by a worktree playbook MUST follow the `commit` skill. Ticket-phase commit titles MUST contain the resolved issue reference. This applies to source commits, workflow-artifact commits, tracker-state commits, and the final merge commit. Coordinator-only journal commits use the canonical initiative reference or the frozen ticket references for an explicit collection.
 
 # Rule 0: resolve the project issue tracker
 
@@ -70,15 +69,15 @@ Run the `muxer-subagents` skill’s `scripts/router.ts` script with the `contrac
 
 Take `muxer`, `agent`, `muxerContract`, and `agentContract` from its output and pass them to the playbook as working context. If it reports `needsOperatorInput: true`, ask the user. Do not guess.
 
-`submit`, `tasks`, and `goal` do not launch an agent. Skip launch setup for them. `goal` may resolve/read contracts for read-only liveness inspection, as its recovery reference requires.
+`submit`, `tasks`, and goal preparation do not launch an agent. Skip launch setup for them. Goal preparation may resolve/read contracts for read-only liveness inspection. Authorized goal execution applies launch setup through each mutating phase playbook.
 
 # Route
 
-Resolve the issue tracker before following a playbook that reads or updates a ticket. Mutating playbooks receive the ticket `ref` and backend as working context. The read-only `tasks` and `goal` playbooks resolve their initiative or ticket selector through their own procedures.
+Resolve the issue tracker before following a playbook that reads or updates a ticket. Mutating playbooks receive the ticket `ref` and backend as working context. `tasks` and `goal` resolve their initiative or ticket selectors through their own procedures.
 
 Run `"$WORKTREE_SKILL_ROOT/scripts/router.ts" route "$ARGUMENTS"` from the target repository.
 
-The command resolves the subcommand and prints JSON: `{ match, subcommand, remainder, playbook }` on success, or `{ match: false, request }` with a non-zero exit on no match. `/skill:worktree tasks [optional ticket id]` routes to `references/playbooks/tasks.md`. `/skill:worktree goal <initiative-id>` routes to `references/playbooks/goal.md`; it reconciles new or partially completed initiatives and returns a prepared goal or same-goal resume context without starting execution. Its recovery rules live in `references/goal-recovery.md`.
+The command resolves the subcommand and prints JSON: `{ match, subcommand, remainder, playbook }` on success, or `{ match: false, request }` with a non-zero exit on no match. `/skill:worktree tasks [optional ticket id]` routes to `references/playbooks/tasks.md`. `/skill:worktree goal <initiative-id>` and `/skill:worktree goal <ticket-id> [<ticket-id> ...]` route to `references/playbooks/goal.md`. A `/guided-goal` request to use the worktree goal skill loads that playbook directly, with the named selectors, without generating another prompt. Its recovery rules live in `references/goal-recovery.md`.
 
 ## On match
 

@@ -1,29 +1,36 @@
 # Playbook: goal
 
-Prepare a new or partially completed initiative for OMP goal mode. Return a ready-to-send `/guided-goal` prompt, or recovery context for the same paused goal, after read-only preparation.
+Resolve an initiative or explicit ticket collection into a scoped OMP goal. Supply the interview and execution instructions directly. Keep this session as coordinator.
 
 ## Invocation and boundary
 
-Use `/skill:worktree goal <initiative-id>`. The selector identifies one existing shared-context initiative, not a ticket to claim.
+Start from OMP's guided-goal interview:
 
-This invocation authorizes preparation only. Read the initiative, specification, plan, tickets, repository configuration, and existing workflow records. Do not claim tickets, create worktrees, write receipts, commit, fetch, merge, push, or launch agents. Do not create missing specs or tickets.
+```text
+/guided-goal use worktree goal skill to work through the ticket-slug-001 items
+/guided-goal use worktree goal skill to work through the initiative-id items
+```
 
-The skill cannot dispatch a built-in slash command by printing it. Return the prompt for the user to send in the same interactive OMP session. Do not send it through a shell or silently replace the interview with `omp --goal`. Once the user sends the prompt and the interview finishes, goal mode starts work immediately.
+For a ticket collection, name each ticket ID. `/skill:worktree goal <initiative-id>` and `/skill:worktree goal <ticket-id> [<ticket-id> ...]` load the same instructions directly. Natural-language requests that name the worktree goal skill must reach this playbook even without a subcommand invocation.
 
-## Resolve the initiative
+During the interview or a standalone invocation, perform read-only preparation. Read the selected records, repository configuration, and workflow history. Do not claim tickets, create worktrees, write receipts, commit, fetch, merge, push, or launch agents. Do not create missing specs or tickets.
+
+Give the current interview the resolved objective, success criteria, verification, boundaries, and stop conditions below. Do not generate another `/guided-goal` prompt or ask the user to restart the interview. A standalone invocation returns these instructions without activating goal mode. Execution starts only when the current goal is active and its scope, operations, ownership, and limits have explicit user approval. Naming this skill alone does not authorize merge or push.
+
+## Resolve the scope
 
 1. Load `shared-context`, `reading-and-writing-tickets`, `references/issue-tracker.md`, and the ticket skill's read/list procedures and configured store reference. Use `mq-query` for every local Markdown operation.
 2. Resolve the target repository and its context route table. Read its tracker configuration, relevant context, and ADRs. Run installed skill scripts by absolute path from this target repository, not from the skill directory.
-3. Require exactly one initiative ID. If it is missing, use the initiative listing procedure in [tasks](tasks.md), then ask for a selector. If the collection is absent, report that fact. If extra selectors or an ambiguous ID are supplied, ask which initiative to prepare. Never choose a root implicitly.
-4. Run the shared-context CLI with `resolve initiative --id <initiative-id> --json`. The resolver can return a proposed path for an absent record. Verify that the initiative exists before treating it as a resolved input.
-5. Read its index and linked specification and plan. Retain their canonical references and actual requirements. A missing optional plan is acceptable if the spec and tickets define the work. A missing specification or executable ticket set is a preparation blocker; report the exact missing record instead of inventing one.
+3. Resolve selectors through the ticket skill and shared-context. Accept one initiative ID or one or more explicit ticket IDs. For a ticket collection, freeze exactly the named tickets; do not expand to their initiative, descendants, or outside blockers. Ask only if a selector is missing, ambiguous, mixes an initiative with tickets, or cannot be resolved. If no selector is supplied, use the initiative listing procedure in [tasks](tasks.md), then ask for a selector.
+4. Read the initiative through the ticket skill's initiative procedure and configured backend. For Local Markdown, resolve its directory with `resolve initiative --id <initiative-id> --json` and verify that `index.md` exists. The index is the complete specification and authoritative child list, not a pointer requiring a separate specification file. Validate child membership and read an optional execution plan. Hosted initiatives use their configured native specification record.
+5. For explicit tickets, read each record through the configured ticket backend. Retain canonical references and linked requirements, specifications, and plans. Tickets with complete requirements and acceptance criteria do not require an initiative or a separate specification. Report missing required records or an empty executable scope instead of inventing them.
 
 ## Prepare the dependency graph
 
-1. Follow the configured backend's graph procedure in [tasks](tasks.md). For local Markdown, use the ticket skill's absolute `scripts/dep-tree-cli.ts` path with `markdown <repository-root> --initiative <initiative-id>`. Pass the target repository root, not the alignment root.
-2. Read every selected ticket through the ticket skill. Record its ID, canonical reference, readiness, work status, direct blockers, acceptance criteria, and validation requirements. Determine initiative membership from its authoritative index and tracker metadata, not from titles or graph position alone.
+1. Follow the configured backend's graph procedure in [tasks](tasks.md). For local Markdown, use the ticket skill's absolute `scripts/dep-tree-cli.ts` path with `markdown <repository-root> --initiative <initiative-id>` for an initiative, or `markdown <repository-root> --ticket <ticket-id>` for each explicit ticket. Combine graph records by canonical ticket ID. Pass the target repository root, not the alignment root.
+2. Read every selected ticket through the ticket skill. Record its ID, canonical reference, readiness, work status, direct blockers, acceptance criteria, and validation requirements. Determine initiative membership from its authoritative index and tracker metadata, not from titles or graph position alone. For explicit collections, the named IDs define membership.
 3. Freeze the selected ticket IDs as the proposed execution scope. Classify traversed blockers outside that scope separately. Do not add an outside prerequisite to the scope merely because graph traversal found it.
-4. Reject missing blocker records, self-edges, cycles, ambiguous membership, and incomplete graph coverage. An empty graph is not proof of completion. Stop with the exact preparation blockers; do not emit an execution-ready prompt.
+4. Reject missing blocker records, self-edges, cycles, ambiguous membership, and incomplete graph coverage. An empty graph is not proof of completion. Report exact blockers to the current interview or active goal; keep execution gated until they are resolved.
 5. Build the recovery map in [Goal recovery and scheduling](../goal-recovery.md). Classify completed work, new starts, safe phase resumptions, active sessions, ownership questions, and inconsistent state. Include exact source/review identities and consumed receipt references. Do not reduce eligibility to unclaimed tickets.
 6. Read any existing coordinator journal using the contract in `references/receipts.md`. Preserve its run ID, frozen scope, ownership approvals, counters, outstanding reservations, and OMP accounting. Reconcile the proposed scope with that run; scope changes require explicit approval.
 7. Recover authorized existing workflows before new starts, with canonical ticket ID as tie-breaker. Re-read direct blockers for every action. If nothing can start, resume, or progress through observed active work, report the blocking frontier. Completed labels with unfinished cleanup or missing finish receipts require reconciliation, not blanket skipping.
@@ -34,56 +41,50 @@ If all tickets have verified terminal finish and acceptance evidence, report com
 
 1. Read ticket acceptance criteria, the spec, repository tasks, and project Worktrunk configuration. Identify exact per-ticket validation commands and final integrated checks, including working directories and required evidence. Preserve human/manual checks when required. Do not invent a generic `test` command or run mutating validation during preparation.
 2. Resolve the intended base branch and its remote from repository conventions and Worktrunk configuration. Check local state and remote references with read-only commands when needed. Do not assume `main`, `origin`, the current feature branch, or that a local branch is current. Preserve unrelated dirty files.
-3. If acceptance criteria are subjective, checks are missing, or the base/remote is ambiguous, finish all reachable preparation and ask one batch of concrete questions. Emit the prompt only after the required values are resolved.
+3. If acceptance criteria are subjective, checks are missing, or the base/remote is ambiguous, finish all reachable preparation and ask one batch of concrete questions in the current interview. Proceed only after the required values are resolved.
 4. Read the `worktrunk` and `muxer-subagents` skills. Resolve/read muxer contracts when needed for read-only liveness inspection. Preparation never opens, resumes, or shuts down agents. Flag hook approvals and missing prerequisites without changing configuration.
 5. For a first run, propose one ticket at a time, two fix/review cycles per ticket, 30 mutating phase dispatches, and a 500000-token goal budget unless the user gave other limits. For an existing run, use its original totals and derived remaining allowances. Follow the journal's reservation/accounting rules; obtain explicit approval for renewal, uncertain accounting, or takeover. Never replace prior consumption with a new baseline.
-6. Explain the approval boundary before the prompt: sending it authorizes the scoped commits, squash merge, push, and completion that it names. If the user requires approval per merge, preserve that policy and include a human gate before each `finish`; do not promise unattended DAG completion.
+6. Ask for explicit approval of the frozen scope, phase operations, scoped commits, squash merge, push, ticket completion, existing workflow adoption, and limits during the current interview. Record the approved base/remote and ownership evidence. Preserve a user-required approval gate before each `finish`; do not promise unattended completion under that policy.
 
-## Return the prepared goal
+## Supply the goal instructions
 
-Return the initiative/spec/plan references, frozen ticket IDs, recovery map, first safe action, active sessions, ownership approvals, outside blockers, validation commands, base/remote, and existing journal/run references. Include original limits, consumed counts, and remaining allowances. Keep the summary short; put exact facts in the prompt so it survives context compaction.
+Give the current interview resolved facts, not a slash-command template. Include the canonical initiative/specification reference (one record), optional plan reference, frozen ticket IDs and references, repository root, context routes, recovery map, first safe action, active sessions, approved ownership, outside blockers, validation commands and working directories, base/remote, journal/run identity, original limits, consumed counts, and remaining allowances. Preserve user constraints and keep these facts in the goal context so they survive compaction.
 
-Resolve ownership, scope, limit, and accounting questions before emitting an execution-ready prompt. If this session already has the same paused OMP goal, return the recovery context and `/goal resume`; keep the existing goal and budget. If it is already active, report that state without starting a second goal. A replacement goal requires the journal's verified remaining token allowance or explicit renewal.
+If this session already has the same active goal, reconcile it and continue within its existing authority. If the same goal is paused, return recovery context and `/goal resume`; preserve its goal and budget. A replacement goal requires verified remaining token allowance or explicit renewal. Do not start a second goal.
 
-Otherwise return one fenced text block that begins with `/guided-goal`. Fill every field below with resolved facts. Omit absent optional fields instead of leaving placeholders. Preserve user constraints and existing run identity.
+### Objective and success criteria
 
-```text
-/guided-goal Complete initiative {initiative ID and canonical reference}.
+Implement the frozen ticket set against its authoritative requirements. Every selected ticket must satisfy its acceptance criteria and the configured tracker completion rules. Require successful finish receipts, remote integration evidence, and passing final integrated checks on the approved remote/base branch. Local implementation, a submitted PR, or a completed label alone is insufficient.
 
-## Objective
-Implement the frozen ticket set {IDs and canonical references} against {spec reference} and {plan reference, if present}, in repository {absolute repository root}.
-Use the shared-context route table {resolved stores and references}. Re-resolve physical paths during execution; preparation paths are not authority after a worktree change.
-I explicitly authorize the worktree workflow's start, review, fix, and finish playbooks for these tickets, including recovery of existing work. Keep this session as coordinator. Follow the installed worktree skill's references/goal-recovery.md and references/receipts.md. Use the ticket skill for tracker operations, Worktrunk for worktrees, and muxer-subagents for independent sessions. Adopt only these existing ticket workflows: {approved ticket refs and approval evidence, or none}.
+### Verification
 
-## Success criteria
-Every frozen ticket satisfies its acceptance criteria and has verified completion under the configured tracker rules. Successful finish receipts and remote integration evidence cover the work. Final integrated checks pass on {remote/base branch}. Do not shrink the frozen scope or count external prerequisites as authorized work.
+Use the resolved per-ticket commands, working directories, manual checks, and evidence requirements. Run the final integrated checks on the integrated result. Before goal completion, compare current tracker state, exact reviewed commit/tree, finish receipts, and remote base commit state with every acceptance criterion.
 
-## Verification
-Per-ticket checks and working directories: {exact commands/actions and required evidence}.
-Final integrated checks and working directory: {exact commands/actions}.
-Before goal completion, inspect current tracker state, exact reviewed commit/tree, finish receipts, and remote base commit state. Match every criterion to current evidence. Local implementation, a submitted PR, or a completed label alone is insufficient.
+### Execution boundaries
 
-## Boundaries
-Execute one ticket at a time. Reconciled recovery map and first safe action: {ticket-to-phase/observe/finish-recovery map with receipt and source identities}. Dependency order for new work: {ordered IDs, or none}. Existing coordinator run/journal: {canonical ref and run ID, or first run}.
-Before dispatch, reconcile active sessions, unresolved reservations, ownership, readiness, and direct blockers. Recover authorized existing work before starting new work. For new tickets, select only ready, unclaimed tickets with completed direct blockers. Never start a duplicate implementation or steal a claim.
-Use the recovery map to dispatch review after implementation/fix, fix after a matching FAILURE, fresh review after source changes, or finish after matching SUCCESS. Observe active agents instead of launching duplicates. For interrupted finish, use finish's checkpoint recovery; do not repeat verified merge, push, completion, or cleanup. Use explicit phase playbooks, not continue's submit/finish choice. Preserve each phase's preconditions, receipts, validation, and publication rules.
-I authorize required scoped commits, local squash merge, push to {remote/base branch}, and ticket completion for the frozen tickets only. {Preserve any user-required approval gate here.}
-Keep the source worktree through push and ticket completion: preserve it with Worktrunk merge's --no-remove option, then remove it only when finish permits removal. New worktrees must contain current published tracker context; branch-local snapshots are not shared live state.
-Change only code, tests, documentation, and resolved tracker/workflow records required by these tickets. Preserve unrelated user changes. Do not deploy, alter secrets, force-push, bypass hook approvals, or execute outside-scope tickets. Outside prerequisites: {IDs, states, and canonical references, or none}.
+After goal activation and approval, initialize or resume the durable coordinator journal under `references/receipts.md`. Re-resolve physical paths after worktree changes. Use the ticket skill for tracker operations, Worktrunk for worktrees, and `muxer-subagents` for independent sessions.
 
-## Stop conditions
-Initialize or resume the durable coordinator journal only after authorization. Run identity, original baseline, limits, and consumption: {resolved values}. Follow references/receipts.md: persist a dispatch reservation before every mutating phase; failed and unresolved reservations consume allowance. Preserve counts across coordinator restarts. Total limits are {fix-cycle total} fix cycles per ticket and {dispatch total} dispatches; remaining allowances are {per-ticket and total remaining counts}. The OMP token allowance for this goal is {verified remaining or explicitly renewed budget}, not a silent reset. Do not dispatch at a reached cap or with unverifiable history. Renew limits only with explicit recorded user approval.
-Stop for ambiguous requirements, missing/cyclic blockers, incomplete outside prerequisites, untrusted hooks, unresolved conflicts, invalid receipts, failed publication, uncertain ownership/accounting, or a reached cap. Changed reviewed source requires a fresh review, not stale fix or finish. If unfinished tickets remain but none can start, resume, or progress through observed active work, report blocked, not complete.
-Checkpoint the coordinator journal before pausing or reporting blocked/capped. Preserve the worktree and receipts. Ask the user to pause with /goal pause and report ticket, branch, worktree, active child sessions, outstanding reservations, last valid receipts, and next recovery action. Do not call goal complete when blocked or capped. Independently launched children require separate inspection and shutdown through the muxer workflow. The token budget is not a hard spending limit for those children.
-```
+Execute one ticket at a time through the installed `start`, `review`, `fix`, and `finish` playbooks. Follow [Goal recovery and scheduling](../goal-recovery.md). Before every dispatch, reconcile active sessions, reservations, ownership, readiness, and direct blockers. Recover approved existing workflows before new starts. Start only ready, unclaimed tickets with completed direct blockers. Observe active agents instead of launching duplicates.
 
-For a new or replacement goal, end with: “Send this prompt in the same interactive OMP session. The interview may ask for missing decisions. After it creates the goal, execution starts.” For the same paused goal, end with `/goal resume` and its reconciled next action instead. Preparation never activates or resumes goal mode.
+Dispatch review after implementation/fix, fix after a matching FAILURE, fresh review after source changes, and finish after matching SUCCESS. Use finish's checkpoint recovery for interrupted integration. Do not repeat verified merge, push, completion, or cleanup. Use explicit phase playbooks, not continue's submit/finish choice. Preserve phase preconditions, independent sessions, receipts, validation, and publication rules.
+
+Keep the source worktree through push and ticket completion with Worktrunk merge's `--no-remove` option. Remove it only when finish permits removal. New worktrees must contain current published tracker context; branch-local snapshots are not shared live state.
+
+Change only code, tests, documentation, and resolved tracker/workflow records required by the frozen tickets. Preserve unrelated user changes. Keep outside prerequisites outside the authorized scope. Do not deploy, alter secrets, force-push, or bypass hook approvals.
+
+### Limits and stop conditions
+
+Follow the journal's reservation and accounting contract. Persist a dispatch reservation before every mutating phase. Failed and unresolved reservations consume allowance. Preserve original baselines and counts across coordinator restarts. Use verified remaining OMP token allowance, not a reset budget. Stop at a reached cap or unverifiable history. Renew limits only with explicit recorded user approval.
+
+Stop for ambiguous requirements, missing/cyclic blockers, incomplete outside prerequisites, untrusted hooks, unresolved conflicts, invalid receipts, failed publication, or uncertain ownership/accounting. Changed reviewed source requires a fresh review. If unfinished tickets cannot start, resume, or progress through observed active work, report blocked, not complete.
+
+Checkpoint the coordinator journal before pausing or reporting blocked/capped. Preserve worktrees and receipts. Ask the user to pause with `/goal pause`. Report ticket, branch, worktree, active child sessions, outstanding reservations, last valid receipts, and next recovery action. Independently launched children require separate inspection and shutdown through the muxer workflow. The OMP token budget is not a hard spending limit for those children.
 
 ## Common mistakes
 
-- **Wrong command:** OMP's built-in `/worktree` command is not this skill. Use `/skill:worktree goal <initiative-id>`.
-- **Preparation as execution:** Preparation creates no ticket claims, worktrees, goal state, or workflow receipts.
-- **Printed command as dispatch:** A response containing `/guided-goal` does not activate it. The user sends the prepared prompt.
+- **Wrong command:** OMP's built-in `/worktree` command is not this skill. Name the worktree goal skill in the interview or use `/skill:worktree goal`.
+- **Preparation as execution:** Interview preparation creates no claims, worktrees, goal state, or workflow receipts. Active execution requires explicit scoped approval.
+- **Nested interview:** Supply instructions to the current `/guided-goal` interview instead of returning a second prompt.
 - **Graph as authority:** A rendered graph does not replace ticket readiness, membership, claim state, or completion evidence.
 - **Started DAG as blocked:** An implemented or reviewed ticket can have a safe recovery action even when no ticket is unclaimed.
 - **Restart as fresh budget:** Resume the durable run and its consumed reservations; request explicit renewal instead of resetting limits.

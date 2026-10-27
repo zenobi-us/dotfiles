@@ -35,7 +35,7 @@ A claimed ticket with a completed implementation is not a new `start`. Preserve 
 
 Read the coordinator journal, if one exists, before proposing new work. Record existing run identity, frozen scope, consumed allowances, active owner, takeover approvals, unresolved reservations, and OMP accounting evidence in the prepared goal. Do not create a new run merely because the previous coordinator stopped.
 
-A tracker `claimed` value without owner metadata does not establish who owns it. Accept durable ownership evidence tied to the current run, or explicit user approval naming the ticket workflows. For unknown or different owners, finish all safe preparation and ask one batch of adoption questions before emitting an execution-ready prompt. User approval does not authorize a second live agent: wait for or hand off the existing session first.
+A tracker `claimed` value without owner metadata does not establish who owns it. Accept durable ownership evidence tied to the current run, or explicit user approval naming the ticket workflows. For unknown or different owners, finish all safe preparation and ask one batch of adoption questions in the current interview before authorizing execution. User approval does not authorize a second live agent: wait for or hand off the existing session first.
 
 During execution, first observe active work. Reconcile any unresolved reservation before reserving another phase. Recover an authorized existing workflow before starting a new ticket; break ties by canonical ticket ID. Dispatch one ticket at a time. Re-read direct blockers before recovery as well as new work. An incomplete or outside-scope prerequisite must not be bypassed by calling the action recovery.
 
