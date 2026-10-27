@@ -4,14 +4,14 @@ import type { ExtensionAPI, ExtensionCommandContext } from "@earendil-works/pi-c
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type AutocompleteItem } from "@earendil-works/pi-tui";
 import { buildSharedContextReport, initializeContextForCwd } from "../../skills/shared-context/scripts/shared-context/api";
-import { renderSharedContext, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
+import { listSharedContexts, renderSharedContext, resolveSharedContext, resolveStoredContext } from "../../skills/shared-context/scripts/shared-context/lib";
 import { GraphExplorer } from "./explorer";
 import type { ExplorerNavigation, ExplorerResult } from "./explorer";
 import { buildSessionPrompt, launchExplorerSession } from "./actions";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
 import type { Exec, ExplorerSessionRequest, SharedAgentContext } from "./model";
 import { safeTerminalText } from "./terminal-text";
-import { SharedContextModal } from "./modal";
+import { SharedContextModal, type ProjectEntry, type ProjectWorkspace } from "./modal";
 import { ContextOnboarding, readContextReadiness } from "./onboarding";
 import { DirectoryMonitor } from "./watch";
 
@@ -190,6 +190,12 @@ export class ContextBrowser {
     void this.load().catch(error => this.refreshFailed(error));
   }
 
+  suspend(): void {
+    this.generation++;
+    this.monitor?.dispose();
+    this.monitor = undefined;
+  }
+
   dispose(): void {
     this.disposed = true;
     this.generation++;
@@ -345,6 +351,7 @@ export class ContextBrowser {
   }
 
   private async insertSelectedPath(): Promise<void> {
+    const generation = this.generation;
     const selected = this.entries[this.activeColumn]?.[this.cursors[this.activeColumn] ?? 0];
     const absolute = selected?.path ?? (this.previewPath || this.levels[Math.min(this.activeColumn, this.levels.length - 1)]);
     let value = absolute;
@@ -360,6 +367,7 @@ export class ContextBrowser {
       if (!remote || remotePath.startsWith("../")) return;
       value = `${webRemote}/blob/HEAD/${remotePath}`;
     }
+    if (this.disposed || generation !== this.generation) return;
     this.insertText(value);
     this.done();
   }
@@ -433,36 +441,91 @@ export class ContextBrowser {
   }
 }
 
-async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandContext, context: SharedAgentContext, exec: Exec, initialTab: "tracker" | "files" = "tracker"): Promise<void> {
+export async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandContext, context: SharedAgentContext, run: Exec, initialTab: "tracker" | "files" = "tracker"): Promise<void> {
+  const exec: Exec = async (command, args) => {
+    for (const directory of [context.root, context.candidateSharedRoot, context.repositoryRoot]) {
+      if (directory && (await fs.stat(directory).catch(() => undefined))?.isDirectory()) {
+        return run(command, args, directory);
+      }
+    }
+    throw new Error("The selected project has no surviving execution directory.");
+  };
   let navigation: ExplorerNavigation | undefined;
+  const currentRepositoryRoot = context.repositoryRoot;
+  const sharedContextBase = context.candidateSharedRoot ? path.dirname(context.candidateSharedRoot) : undefined;
   while (true) {
     const result = await ctx.ui.custom<ExplorerResult>((tui, theme, _keybindings, done) => {
       const height = () => Math.max(5, Math.floor(tui.terminal.rows * 0.9) - 3);
       let modal: SharedContextModal;
-      const files = new ContextBrowser(context.root, theme, () => done(undefined), () => tui.requestRender(), ctx.cwd, exec, text => ctx.ui.pasteToEditor(text), height);
-      const component = new GraphExplorer({
-        context, exec, theme, navigation,
-        live: true,
-        contextChanged: updated => files.setRoot(updated.root),
-        done: result => {
-          if (result?.kind === "files") modal.showFiles();
-          else done(result);
+      const currentContext = context;
+      const current: ProjectEntry = {
+        id: currentContext.slug,
+        name: path.basename(currentContext.repositoryRoot),
+        identity: currentContext.canonicalOrigin,
+        checkout: currentContext.checkoutAvailable !== false,
+        resolve: async () => {
+          const resolved = await resolveSharedContext(exec, currentRepositoryRoot, sharedContextBase);
+          if (resolved) return resolved;
+          const root = currentContext.candidateSharedRoot;
+          if (!root || !(await fs.stat(root).catch(() => undefined))?.isDirectory()) {
+            throw new Error("The current project checkout and stored context are unavailable.");
+          }
+          return resolveStoredContext({ slug: currentContext.slug, root, origin: currentContext.origin });
         },
-        requestRender: () => tui.requestRender(),
-        height,
-        commands: () => pi.getCommands(),
+      };
+      const create = (projectContext: SharedAgentContext, checkout: boolean): ProjectWorkspace => {
+        projectContext.checkoutAvailable ??= checkout;
+        const repositoryRoot = projectContext.repositoryRoot;
+        const filesRoot = () => projectContext.checkoutAvailable !== false ? projectContext.root : projectContext.candidateSharedRoot!;
+        const files = new ContextBrowser(filesRoot(), theme, () => done(undefined), () => tui.requestRender(), projectContext.repositoryRoot, exec, text => ctx.ui.pasteToEditor(text), height);
+        const tracker = new GraphExplorer({
+          context: projectContext, exec, theme,
+          navigation: projectContext === currentContext ? navigation : undefined,
+          live: true,
+          checkoutAvailable: checkout,
+          resolveContext: async () => projectContext.checkoutAvailable === false
+            ? resolveStoredContext({ slug: projectContext.slug, root: projectContext.candidateSharedRoot!, origin: projectContext.origin })
+            : (await resolveSharedContext(exec, repositoryRoot, sharedContextBase)) ?? resolveStoredContext({ slug: projectContext.slug, root: projectContext.candidateSharedRoot!, origin: projectContext.origin }),
+          contextChanged: () => files.setRoot(filesRoot()),
+          projects: () => { void modal.showProjects(); },
+          done: result => {
+            if (result?.kind === "files") modal.showFiles();
+            else { context = projectContext; done(result); }
+          },
+          requestRender: () => tui.requestRender(),
+          height,
+          commands: () => pi.getCommands(),
+        });
+        return {
+          context: projectContext, tracker, files,
+          activate: async () => {
+            files.setRoot(filesRoot());
+            files.startWatching();
+            await Promise.all([tracker.load(), files.load().catch(error => {
+              ctx.ui.notify(safeTerminalText(`Could not browse shared files: ${error instanceof Error ? error.message : String(error)}`), "error");
+            })]);
+          },
+          suspend: () => { tracker.suspend(); files.suspend(); },
+          dispose: () => { tracker.dispose(); files.dispose(); },
+        };
+      };
+      const workspace = create(context, context.checkoutAvailable !== false);
+      modal = new SharedContextModal(context, theme, workspace.tracker, workspace.files, () => tui.requestRender(), initialTab, {
+        current,
+        list: async () => (await listSharedContexts(sharedContextBase)).map(project => ({
+          id: project.slug, name: project.slug.replace(/--[a-f0-9]+$/, ""), identity: project.slug,
+          checkout: false, resolve: () => resolveStoredContext(project),
+        })),
+        create, selected: selected => { context = selected; }, close: () => done(undefined), height,
       });
-      modal = new SharedContextModal(context, theme, component, files, () => tui.requestRender(), initialTab);
-      void component.load();
-      files.startWatching();
-      void files.load().catch(error => {
-        ctx.ui.notify(safeTerminalText(`Could not browse shared files: ${error instanceof Error ? error.message : String(error)}`), "error");
-      });
+      modal.attach(workspace);
+      void workspace.activate();
       return {
         render: (width: number) => modal.render(width),
         handleInput: (data: string) => { void modal.handleInput(data); },
+        handleMouse: event => modal.handleMouse(event),
         invalidate: () => {},
-        dispose: () => { component.dispose(); files.dispose(); },
+        dispose: () => modal.dispose(),
       };
     }, { overlay: true, overlayOptions: { anchor: "center", width: "95%", maxHeight: "95%" } });
     if (!result) return;
@@ -560,7 +623,7 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
         ctx.ui.notify("Could not resolve shared context for this project.", "warning");
         return;
       }
-      const run: Exec = (command, argv) => exec(ctx.cwd, command, argv);
+      const run: Exec = (command, argv, directory = ctx.cwd) => exec(directory, command, argv);
       const readiness = await readContextReadiness(context);
       if (!readiness.routesConfigured || !readiness.storesReady) {
         const initialContext = context;

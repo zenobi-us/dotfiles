@@ -11,14 +11,17 @@ type Document = { fields: Fields; body: string; links: unknown[] };
 
 export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec): Promise<ExplorerSnapshot> {
   if (context.error) throw new Error(context.error);
-  const alignment = await resolveContextRecord(context, { kind: "alignment" });
-  if (!alignment.path) throw new Error("Alignment has no file-backed tracker definition.");
-  const definition = join(alignment.path, "docs/agents/issue-tracker.md");
-  if (!await exists(definition)) throw new Error(`Missing tracker definition: ${definition}. Configure docs/agents/issue-tracker.md before opening the explorer.`);
-  await contained(alignment.path, definition);
-  const config = (await document(definition, alignment.path, exec)).fields;
-  const backend = text(config.backend, "tracker backend");
-  if (backend !== context.routes.tickets.adapter) throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
+  let backend = context.routes.tickets.adapter;
+  if (context.checkoutAvailable !== false || context.routes.alignment.store === "shared") {
+    const alignment = await resolveContextRecord(context, { kind: "alignment" });
+    if (!alignment.path) throw new Error("Alignment has no file-backed tracker definition.");
+    const definition = join(alignment.path, "docs/agents/issue-tracker.md");
+    if (!await exists(definition)) throw new Error(`Missing tracker definition: ${definition}. Configure docs/agents/issue-tracker.md before opening the explorer.`);
+    await contained(alignment.path, definition);
+    const config = (await document(definition, alignment.path, exec)).fields;
+    backend = text(config.backend, "tracker backend");
+    if (backend !== context.routes.tickets.adapter) throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
+  }
   const snapshot = backend === "local-markdown" ? await localSnapshot(context, exec)
     : backend === "github" ? await githubSnapshot(context, exec)
       : (() => { throw new Error(`Unsupported tracker backend: ${backend}`); })();
@@ -43,6 +46,7 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
     const workflowId = ticket.backend === "github" ? `GH-${ticket.id}` : ticket.id;
     const record = await resolveContextRecord(context, { kind: "workflow", id: workflowId });
     if (!record.path || !record.root) throw new Error("Workflow route is not file-backed.");
+    if (context.checkoutAvailable === false && record.store === "repository") throw new Error("Workflow context requires a usable repository checkout.");
     if (!await exists(record.path)) return result;
     await contained(record.root, record.path);
     const events = join(record.path, "events");
@@ -151,7 +155,7 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
   const tickets: ExplorerTicket[] = [];
   const paths = new Map<string, string>();
   const parents = new Map<string, string>();
-  for (const file of await files(ticketsRecord.path, /\.md$/)) {
+  for (const file of context.checkoutAvailable === false && ticketsRecord.store === "repository" ? [] : await files(ticketsRecord.path, /\.md$/)) {
     const doc = await document(file, ticketsRecord.root, exec);
     assertRecord(doc.fields, "ticket", { allowLegacy: true, expectedId: basename(file, ".md") });
     const id = scalar(doc.fields.id, "ticket id");
@@ -161,7 +165,7 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
     if (doc.fields.parent != null) parents.set(id, scalar(doc.fields.parent, "ticket parent"));
   }
   const initiatives: ExplorerInitiative[] = [];
-  for (const file of await files(initiativesRecord.path, /\.md$/)) {
+  for (const file of context.checkoutAvailable === false && initiativesRecord.store === "repository" ? [] : await files(initiativesRecord.path, /\.md$/)) {
     if (relative(initiativesRecord.path, file).split(/[\\/]/).length !== 2 || !file.endsWith("/index.md")) continue;
     const doc = await document(file, initiativesRecord.root, exec);
     const id = dirname(relative(initiativesRecord.path, file));
@@ -171,6 +175,7 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
       const url = text(object(rawLink, "initiative link").url, "initiative link URL");
       if (url.startsWith("#") || url.startsWith("//") || (/^[A-Za-z][A-Za-z0-9+.-]*:/.test(url) && !url.startsWith("file:"))) continue;
       const target = url.startsWith("file:") ? fileURLToPath(new URL(url)) : resolve(dirname(file), decodeURIComponent(url.split(/[?#]/, 1)[0]!));
+      if (context.checkoutAvailable === false && ticketsRecord.store === "repository") continue;
       if (!within(ticketsRecord.path, target) || !target.endsWith(".md")) continue;
       await contained(ticketsRecord.path, target);
       const linkedId = paths.get(await realpath(target));
@@ -185,6 +190,7 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
   }
   validateRelations([...parents].map(([id, parent]) => ({ id, blockedBy: parents.has(parent) ? [parent] : [] })), "ticket hierarchy");
   for (const [id, parent] of parents) {
+    if (context.checkoutAvailable === false && initiativesRecord.store === "repository" && !tickets.some(ticket => ticket.id === parent)) continue;
     if (!tickets.some(ticket => ticket.id === parent) && !initiatives.some(item => item.id === parent)) throw new Error("Ticket parent does not exist.");
     let current: string | undefined = parent;
     while (current) {

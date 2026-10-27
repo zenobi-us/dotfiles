@@ -247,3 +247,36 @@ Initialization refuses to change established storage. Use `migrate <kind> --to
 external ticket adapter and established all-shared routes when context already
 exists. Reopen the session after command-line initialization to refresh injected
 instructions.
+
+
+## Pi project navigation
+
+`/shared-context` opens the current project. `/shared-context files` opens its Files workspace.
+
+Use Tab and Shift+Tab to move between tracker panes, workspace tabs, and the Projects breadcrumb.
+Press Enter on Projects, or click Projects, to open the project list.
+Type to filter project names and identities. Matching ignores case and accepts substrings or characters in order. Projects shows the filtered/total count and active query. Use Backspace to edit or Ctrl+U to clear. A zero-result list cannot open a project. Use the arrow keys to select a result. Press Enter to open it. Printable keys, including q, 1 and 2, enter search text while the Projects list has focus.
+The list includes stored shared-context projects and the current project. Stable identities distinguish equal names and remove duplicate projects.
+
+The header displays Shared or Repo from the selected alignment route. The indicator does not change storage.
+Project selection changes only the modal. It does not change the Pi session directory or system instructions.
+Each project keeps its tracker navigation, selection, scroll position, and independent Files state.
+Project changes stop the old watchers. Return navigation resolves routes before it starts the selected project's watchers and reads.
+
+Outside Projects, press 1 for Tracker or 2 for Files. At the tracker root, Esc opens Projects. At Projects, Esc closes the modal even with an active filter.
+Files keeps its existing escape and path-insertion behavior.
+
+Stored projects do not contain checkout locations. Shared initialization and route migration save the credential-free canonical remote in `.context-project.json`. Stored project resolution uses this identity for hosted trackers; it never treats the directory slug as a remote. Older stores without this file can still read local records. Hosted trackers need explicit identity recovery. Run `scripts/shared-context/cli.ts list`, then use exactly one authoritative source:
+
+```text
+scripts/shared-context/cli.ts recover-identity SLUG --checkout /verified/checkout
+scripts/shared-context/cli.ts recover-identity SLUG --remote https://github.com/OWNER/REPO.git
+```
+
+The checkout command reads that checkout’s Git origin. The remote command works without a checkout. Both require an existing store whose slug matches the supplied origin. Recovery writes only missing credential-free identity metadata. It preserves existing metadata, routes, records, and session instructions. Reopen Projects after recovery. If neither the authoritative remote nor a verified checkout is available, hosted tickets remain unavailable; the directory slug cannot recover that identity. No repository scan, initialization, migration, or clone runs.
+If the current checkout disappears while the modal is open, its existing shared directory remains reachable through the deduplicated current entry. Returning to a cached workspace refreshes checkout capability, disabled actions, Files roots, and watcher targets before it reads records. Selected-project reads use a verified surviving directory from that project, even if the original repository-only session checkout disappears. The Pi session directory stays unchanged.
+For mixed routes, repository-backed records remain unavailable until a checkout is known.
+Files can still browse the stored shared directory. Checkout-dependent actions display a disabled reason.
+Open the command from that project's checkout to use those actions. The modal does not search other repositories or create a project registry.
+
+Fresh-chat actions use Pi's replacement session context to stage the command. The command stays unsent until you press Enter.

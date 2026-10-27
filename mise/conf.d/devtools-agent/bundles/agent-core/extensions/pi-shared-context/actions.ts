@@ -76,11 +76,14 @@ export async function launchExplorerSession(pi: ExtensionAPI, ctx: ExtensionComm
   const parentSession = ctx.sessionManager.getSessionFile();
   let opened = false;
   try {
-    const result = await ctx.newSession({ parentSession });
-    if (result.cancelled) return false;
-    opened = true;
-    ctx.ui.setEditorText(`${prompt}\nReturn session DATA: ${quoteData(parentSession ?? null)}`);
-    return true;
+    const result = await ctx.newSession({
+      parentSession,
+      withSession: async next => {
+        opened = true;
+        next.ui.setEditorText(`${prompt}\nReturn session DATA: ${quoteData(parentSession ?? null)}`);
+      },
+    });
+    return !result.cancelled;
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     throw new Error(`${opened ? "New session opened, but prompt preparation failed" : "Could not open a new session"}: ${message}`, { cause: error });

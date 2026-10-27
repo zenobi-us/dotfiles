@@ -43,6 +43,9 @@ interface ExplorerOptions {
   loadWorkflow?: typeof loadTicketWorkflow;
   live?: boolean;
   contextChanged?: (context: SharedAgentContext) => void;
+  projects?: () => void;
+  checkoutAvailable?: boolean;
+  resolveContext?: () => Promise<SharedAgentContext>;
 }
 
 export class GraphExplorer {
@@ -87,6 +90,7 @@ export class GraphExplorer {
   private pollingSource = false;
 
   constructor(private options: ExplorerOptions) {
+    options.context.checkoutAvailable ??= options.checkoutAvailable ?? true;
     const navigation = options.navigation;
     this.screen = navigation?.screen ?? "home";
     this.queue = navigation?.queue ?? "ready";
@@ -144,7 +148,7 @@ export class GraphExplorer {
       this.options.requestRender();
       try {
         if (routes) {
-          const context = await resolveSharedContext(this.options.exec, this.options.context.repositoryRoot);
+          const context = await (this.options.resolveContext?.() ?? resolveSharedContext(this.options.exec, this.options.context.repositoryRoot));
           if (!context || context.error) throw new Error(context?.error ?? "Repository context is unavailable.");
           if (this.disposed) return;
           Object.assign(this.options.context, context);
@@ -246,7 +250,9 @@ export class GraphExplorer {
 
   private async startWatching(): Promise<void> {
     this.monitor = new DirectoryMonitor(keys => this.refresh(keys), error => this.refreshFailed(error));
+    const monitor = this.monitor;
     await this.configureTargets();
+    if (this.disposed || this.monitor !== monitor) return;
     this.sourceTimer = setInterval(() => { void this.pollSources(); }, 5_000);
     this.sourceTimer.unref();
     this.remoteTimer = setInterval(() => {
@@ -283,14 +289,14 @@ export class GraphExplorer {
     const context = this.options.context;
     const alignment = await resolveContextRecord(context, { kind: "alignment" });
     const targets: WatchTarget[] = [
-      { key: "routes", path: join(context.repositoryRoot, ".context-routes.toml") },
+      ...(context.checkoutAvailable === false ? [] : [{ key: "routes", path: join(context.repositoryRoot, ".context-routes.toml") }]),
       { key: "routes", path: join(context.candidateSharedRoot ?? context.repositoryRoot, ".context-routes.toml") },
     ];
-    if (alignment.path) for (const file of ["issue-tracker.md", "context-layout.toml"]) targets.push({ key: "routes", path: join(alignment.path, "docs/agents", file) });
+    if (alignment.path && !(context.checkoutAvailable === false && alignment.store === "repository")) for (const file of ["issue-tracker.md", "context-layout.toml"]) targets.push({ key: "routes", path: join(alignment.path, "docs/agents", file) });
     for (const kind of ["tickets", "initiatives"] as const) {
       if (kind === "tickets" && context.routes.tickets.adapter !== "local-markdown") continue;
       const record = await resolveContextRecord(context, { kind });
-      if (record.path) targets.push({ key: "graph", path: record.path, recursive: true, suffixes: [".md"] });
+      if (record.path && !(context.checkoutAvailable === false && record.store === "repository")) targets.push({ key: "graph", path: record.path, recursive: true, suffixes: [".md"] });
     }
     if (this.disposed) return;
     this.liveTargets = targets;
@@ -315,11 +321,37 @@ export class GraphExplorer {
       const ticket = this.tickets.get(id);
       if (!ticket) continue;
       const record = await resolveContextRecord(this.options.context, { kind: "workflow", id: ticket.backend === "github" ? `GH-${id}` : id });
-      if (record.path) targets.push({ key: `workflow:${id}`, path: join(record.path, "events"), recursive: true, suffixes: [".md", ".json", ".yaml", ".yml"] });
+      if (record.path && !(this.options.context.checkoutAvailable === false && record.store === "repository")) targets.push({ key: `workflow:${id}`, path: join(record.path, "events"), recursive: true, suffixes: [".md", ".json", ".yaml", ".yml"] });
     }
     if (this.disposed || this.scopeRevision !== revision) return;
     this.monitor?.setTargets(targets);
     if (this.pendingIds.size) await this.drainRefresh();
+  }
+
+  moveFocus(reverse: boolean): boolean {
+    const order = this.focusOrder();
+    const next = order.indexOf(this.focus) + (reverse ? -1 : 1);
+    if (next < 0 || next >= order.length) return false;
+    this.focus = order[next]!;
+    this.options.requestRender();
+    return true;
+  }
+
+  enterFocus(reverse: boolean): void {
+    const order = this.focusOrder();
+    this.focus = reverse ? order[order.length - 1]! : order[0]!;
+    this.options.requestRender();
+  }
+
+  private focusOrder(): ExplorerNavigation["focus"][] {
+    return this.panes().length < 2 ? ["list"]
+      : this.screen === "receipts" && this.neighborhoodRows().length ? ["list", "detail", "neighborhood"] : ["list", "detail"];
+  }
+
+  suspend(): void {
+    this.stopWatching();
+    this.scopeKey = "";
+    this.scopeRevision++;
   }
 
   dispose(): void {
@@ -360,7 +392,7 @@ export class GraphExplorer {
       else if (this.screen === "receipts") { this.screen = "tickets"; focus = compact ? "detail" : "list"; }
       else if (this.screen === "tickets") this.screen = "initiatives";
       else if (this.screen === "initiatives") this.screen = "home";
-      else { this.options.done(undefined); return; }
+      else { if (matchesKey(data, "escape") && this.options.projects) this.options.projects(); else this.options.done(undefined); return; }
       this.focus = focus;
       this.notice = "";
       this.options.requestRender();
@@ -376,12 +408,9 @@ export class GraphExplorer {
         return;
       }
     }
-    if (matchesKey(data, "tab")) {
-      if (this.panes().length < 2) this.focus = "list";
-      else if (this.focus === "list") this.focus = "detail";
-      else if (this.focus === "detail" && this.screen === "receipts" && this.neighborhoodRows().length) this.focus = "neighborhood";
-      else this.focus = "list";
-      this.options.requestRender();
+    if (matchesKey(data, "tab") || matchesKey(data, "shift+tab")) {
+      const reverse = matchesKey(data, "shift+tab");
+      if (!this.moveFocus(reverse)) this.enterFocus(reverse);
       return;
     }
     if (matchesKey(data, "pageUp") || matchesKey(data, "pageDown")) {
@@ -512,8 +541,13 @@ export class GraphExplorer {
     }
     const breadcrumb = ["Home", ...(this.screen === "home" ? [] : [initiativeId, ticketId, this.screen === "receipts" ? this.receiptId : undefined])].filter(Boolean).join(" > ");
     const checks = this.snapshot && this.receiptChecks < this.snapshot.tickets.length ? `Checking receipts ${this.receiptChecks}/${this.snapshot.tickets.length}` : "";
-    const status = this.notice || this.error || this.refreshError || (this.loading ? "Loading tracker…" : checks) || (target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
-    const keys = this.screen === "home" ? "5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close" : "← back → drill ↑↓ move Shift+Tab panes PgUp/Dn scroll a actions h home R reload q close";
+    const unavailable = this.options.context.checkoutAvailable === false
+      ? Object.values(this.options.context.routes).some(route => route.store === "repository")
+        ? "No checkout: repository records unavailable. Shared records remain readable."
+        : "No checkout: context is readable; actions are disabled."
+      : "";
+    const status = this.notice || this.error || this.refreshError || (this.loading ? "Loading tracker…" : checks) || unavailable || (target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+    const keys = this.screen === "home" ? "5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close" : "← back → drill ↑↓ move Tab/Shift+Tab focus PgUp/Dn scroll a actions h home R reload q close";
     if (compact) return [th.fg("accent", truncateToWidth(this.clean(breadcrumb), width)), join(headers), ...body, th.fg(this.error ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
     const frame = (text: string) => th.fg("border", "│") + this.pad(text, inner) + th.fg("border", "│");
     return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(th.fg("accent", ` Shared context · ${this.clean(breadcrumb)}`)), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
@@ -602,8 +636,8 @@ export class GraphExplorer {
   private choices(): ExplorerActionChoice[] {
     const target = this.target();
     const choices = target && this.snapshot ? actionChoices(target, this.snapshot, target.kind === "ticket" ? this.workflows.get(target.ticket.id) : undefined, this.options.commands()) : [];
-    const reason = this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state; wait before a worktree transition." : "");
-    return reason ? choices.map(choice => choice.action === "ask-matt" ? choice : { ...choice, disabledReason: reason }) : choices;
+    const reason = this.options.context.checkoutAvailable === false ? "No usable checkout. Open this project from a checkout to run actions." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state; wait before a worktree transition." : "");
+    return reason ? choices.map(choice => this.options.context.checkoutAvailable !== false && choice.action === "ask-matt" ? choice : { ...choice, disabledReason: reason }) : choices;
   }
 
   private chooseAction(choice: ExplorerActionChoice | undefined): void {

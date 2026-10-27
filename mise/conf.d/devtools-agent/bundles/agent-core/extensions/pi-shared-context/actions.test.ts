@@ -3,6 +3,9 @@ import type { ExtensionAPI, ExtensionCommandContext } from "@earendil-works/pi-c
 import { actionChoices, buildSessionPrompt, launchExplorerSession } from "./actions";
 import type { ExplorerAction, ExplorerReceipt, ExplorerSessionRequest, ExplorerSnapshot, ExplorerTarget, TicketWorkflow } from "./model";
 
+type SessionOptions = NonNullable<Parameters<ExtensionCommandContext["newSession"]>[0]>;
+type SessionContext = Parameters<NonNullable<SessionOptions["withSession"]>>[0];
+
 const ticket = { id: "42", title: "Graph continuity", ref: "https://github.com/owner/repo/issues/42", backend: "github", status: "open", blockedBy: [] as string[], body: "Private tracker details." };
 const target: ExplorerTarget = { kind: "ticket", ticket };
 const snapshot: ExplorerSnapshot = { tickets: [ticket], initiatives: [], backend: "github" };
@@ -124,20 +127,17 @@ describe("fresh-session boundaries", () => {
     expect(() => buildSessionPrompt({ ...request("ask-matt"), prompt: "  " })).toThrow();
   });
 
-  test("the prompt survives a successful session transition without a host callback", async () => {
+  test("a fresh chat stages the selected command through the replacement context without sending it", async () => {
     let editor = "unsent user draft";
-    let session = "parent";
     const ctx = {
       waitForIdle: async () => {},
       sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
-      ui: { setEditorText: (text: string) => {
-        expect(session).toBe("new");
-        editor = text;
-      } },
-      newSession: async () => {
-        await Promise.resolve();
+      ui: { setEditorText: () => { throw new Error("The parent context is stale."); } },
+      newSession: async (options: Parameters<ExtensionCommandContext["newSession"]>[0]) => {
         editor = "";
-        session = "new";
+        await options?.withSession?.({
+          ui: { setEditorText: (text: string) => { editor = text; } },
+        } as unknown as SessionContext);
         return { cancelled: false };
       },
     } as unknown as ExtensionCommandContext;
@@ -157,7 +157,10 @@ describe("fresh-session boundaries", () => {
       waitForIdle: async () => {},
       sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
       ui: { setEditorText: () => { throw cause; } },
-      newSession: async () => ({ cancelled: false }),
+      newSession: async (options: Parameters<ExtensionCommandContext["newSession"]>[0]) => {
+        await options?.withSession?.({ ui: { setEditorText: () => { throw cause; } } } as unknown as SessionContext);
+        return { cancelled: false };
+      },
     } as unknown as ExtensionCommandContext;
     const pi = { getCommands: () => commands } as unknown as ExtensionAPI;
     await expect(launchExplorerSession(pi, ctx, request("start"))).rejects.toMatchObject({

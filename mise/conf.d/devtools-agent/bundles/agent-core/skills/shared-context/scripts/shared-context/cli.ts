@@ -10,6 +10,7 @@ import {
   migrateAlignmentContext,
   migrateContextRoute,
   migrateLegacyStorage,
+  recoverStoredContextIdentity,
   renderSharedContext,
   resolveContextPath,
   resolveContextRecord,
@@ -92,6 +93,18 @@ async function runList(): Promise<void> {
   console.log(contexts.length > 0
     ? contexts.map((item) => `${item.slug}${item.storage ? ` [${item.storage}]` : ""}\n  ${item.root}`).join("\n")
     : "No shared engineering contexts found");
+}
+
+async function runRecoverIdentity(ctx: { args: { slug: string }; flags: { checkout?: string; remote?: string } }): Promise<void> {
+  try {
+    const project = (await listSharedContexts()).find(project => project.slug === ctx.args.slug);
+    if (!project) throw new Error("No existing shared context matches that slug. Run shared-context list.");
+    const context = await recoverStoredContextIdentity(exec, project, ctx.flags);
+    console.log(`Recovered project identity: ${context.canonicalOrigin}. Reopen Projects. Routes and session instructions are unchanged.`);
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+  }
 }
 
 async function requireContext(): Promise<SharedAgentContext | undefined> {
@@ -325,6 +338,11 @@ const cli = new Crust("shared-context")
   .command("list", (cmd) => cmd
     .meta({ description: "List every known shared context" })
     .run(runList))
+  .command("recover-identity", (cmd) => cmd
+    .meta({ description: "Recover an existing store's identity from an authoritative Git origin without initialization or migration" })
+    .flags({ checkout: { type: "string" }, remote: { type: "string" } })
+    .args([{ name: "slug", type: "string", required: true }] as const)
+    .run(runRecoverIdentity))
   .command("init", (cmd) => cmd
     .meta({ description: "Initialize context in repository or shared storage; existing routes require explicit migration to change stores" })
     .flags({ store: { type: "string" }, preset: { type: "string" } })

@@ -8,6 +8,7 @@ import type { ContextLayout } from "./layout";
 const MAX_AGENTS_BYTES = 100_000;
 export const ROUTE_MANIFEST_FILE = ".context-routes.toml";
 const LEGACY_STORAGE_FILE = ".storage";
+const PROJECT_IDENTITY_FILE = ".context-project.json";
 const DEFAULT_CONTEXT_MAP = `# Context map
 
 Use this file for stable entry points. Do not list individual workflow receipts.
@@ -42,6 +43,7 @@ export type ResolvedRecord = {
 
 export type SharedAgentContext = {
   repositoryRoot: string;
+  checkoutAvailable?: boolean;
   origin: string;
   canonicalOrigin: string;
   slug: string;
@@ -59,7 +61,9 @@ export type SharedAgentContext = {
   error?: string;
 };
 
-export type Exec = (command: string, args: string[]) => Promise<{ stdout: string; code: number }>;
+export type StoredContext = { slug: string; root: string; storage?: Store; origin?: string };
+
+export type Exec = (command: string, args: string[], cwd?: string) => Promise<{ stdout: string; code: number }>;
 
 export type MigrationResult = {
   from: string;
@@ -275,6 +279,68 @@ export async function resolveSharedContext(
   }
 
   const candidateSharedRoot = path.join(base, slug);
+  return resolveProjectRoutes(repositoryRoot, origin, canonicalOrigin, slug, candidateSharedRoot);
+}
+
+export async function resolveStoredContext(project: StoredContext): Promise<SharedAgentContext> {
+  await validateStorePath(project.root, PROJECT_IDENTITY_FILE);
+  const stored = await readIfPresent(path.join(project.root, PROJECT_IDENTITY_FILE));
+  const origin: unknown = stored === undefined ? project.origin ?? "" : JSON.parse(stored).origin;
+  if (typeof origin !== "string") throw new Error("Stored project origin must be a Git remote.");
+  if (origin && slugifyGitRemote(origin) !== project.slug) throw new Error("Stored project origin does not match its context directory.");
+  if (!origin) {
+    const { routes } = await loadRoutes(project.root, path.join(project.root, ".unavailable-checkout"));
+    if (routes.tickets.adapter !== "local-markdown") {
+      throw new Error("Stored hosted tracker identity is unavailable. Run shared-context recover-identity SLUG --checkout PATH or --remote URL with the authoritative Git origin, then reopen Projects. No remote can be recovered from the directory name alone.");
+    }
+  }
+  const context = await resolveProjectRoutes(
+    path.join(project.root, ".unavailable-checkout"), origin, origin ? canonicalizeGitRemote(origin) : "", project.slug, project.root,
+  );
+  return { ...context, checkoutAvailable: false };
+}
+
+/** Recover only identity metadata. Routes and authored records remain unchanged. */
+export async function recoverStoredContextIdentity(
+  exec: Exec, project: StoredContext, options: { checkout?: string; remote?: string },
+): Promise<SharedAgentContext> {
+  if (Boolean(options.checkout) === Boolean(options.remote)) {
+    throw new Error("Choose exactly one identity source: --checkout PATH or --remote URL.");
+  }
+  let origin = options.remote;
+  if (options.checkout) {
+    const checkout = await resolveSharedContext(exec, options.checkout, path.dirname(project.root));
+    if (!checkout || checkout.slug !== project.slug || checkout.candidateSharedRoot !== project.root) {
+      throw new Error("The checkout origin does not identify the selected stored project.");
+    }
+    origin = checkout.origin;
+  }
+  if (!origin || slugifyGitRemote(origin) !== project.slug) {
+    throw new Error("The remote does not identify the selected stored project.");
+  }
+  const canonicalOrigin = canonicalizeGitRemote(origin);
+  await validateStorePath(project.root, PROJECT_IDENTITY_FILE);
+  if (!(await fs.stat(project.root)).isDirectory()) throw new Error("The selected context store is not a directory.");
+  const identityPath = path.join(project.root, PROJECT_IDENTITY_FILE);
+  try {
+    await fs.writeFile(identityPath, `${JSON.stringify({ origin: `https://${canonicalOrigin}` })}\n`, { flag: "wx" });
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+    const existing = await resolveStoredContext(project);
+    if (existing.canonicalOrigin !== canonicalOrigin) throw new Error("Stored project identity already exists and differs. It was not changed.");
+  }
+  return resolveStoredContext(project);
+}
+
+async function writeProjectIdentity(context: SharedAgentContext): Promise<void> {
+  if (!context.candidateSharedRoot) return;
+  await validateStorePath(context.candidateSharedRoot, PROJECT_IDENTITY_FILE);
+  await fs.writeFile(path.join(context.candidateSharedRoot, PROJECT_IDENTITY_FILE), `${JSON.stringify({ origin: `https://${context.canonicalOrigin}` })}\n`);
+}
+
+async function resolveProjectRoutes(
+  repositoryRoot: string, origin: string, canonicalOrigin: string, slug: string, candidateSharedRoot: string,
+): Promise<SharedAgentContext> {
   const { routes, routeSource } = await loadRoutes(candidateSharedRoot, repositoryRoot);
   const alignmentRoot = routeStore(routes, "alignment") === "shared" ? candidateSharedRoot : repositoryRoot;
   const layout = await readLayout(alignmentRoot);
@@ -296,6 +362,7 @@ export async function resolveSharedContext(
   const shared = await readSharedInstructions(candidateSharedRoot);
   return {
     repositoryRoot,
+    checkoutAvailable: true,
     origin,
     canonicalOrigin,
     slug,
@@ -335,6 +402,7 @@ export async function initializeRepositoryContext(context: SharedAgentContext): 
 export async function initializeSharedContext(context: SharedAgentContext): Promise<{ agents: string; created: boolean }> {
   if (!context.candidateSharedRoot) throw new Error("Cannot initialize shared context without a canonical git origin");
   await fs.mkdir(context.candidateSharedRoot, { recursive: true });
+  await writeProjectIdentity(context);
   const agents = path.join(context.candidateSharedRoot, "AGENTS.md");
   let created = true;
   try {
@@ -616,6 +684,7 @@ export async function migrateContextRoute(
   }
 
   await fs.mkdir(context.candidateSharedRoot, { recursive: true });
+  await writeProjectIdentity(context);
   const updatedRoutes = routeWithStore(context.routes, kind, targetStore);
   await writeRouteManifest(context.candidateSharedRoot, updatedRoutes);
   return { from, to, store: targetStore, kind, copied: entries.map((entry) => entry.relative) };
@@ -632,6 +701,7 @@ export async function migrateLegacyStorage(context: SharedAgentContext): Promise
     throw new Error(`${ROUTE_MANIFEST_FILE} already exists`);
   }
   await writeRouteManifest(context.candidateSharedRoot, context.routes);
+  await writeProjectIdentity(context);
   await fs.rm(path.join(context.candidateSharedRoot, LEGACY_STORAGE_FILE), { force: true });
 }
 
