@@ -1,0 +1,39 @@
+{
+  "results": [
+    {
+      "name": "github-runtime",
+      "command": "mise exec -- bun /tmp/projects-fix-github.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0008/github-runtime.txt"
+    },
+    {
+      "name": "focused-tests-final",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0008/focused-tests-final.txt"
+    },
+    {
+      "name": "scoped-typecheck",
+      "command": "mise exec -- bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/modal.ts extensions/pi-shared-context/explorer.ts extensions/pi-shared-context/data.ts extensions/pi-shared-context/projects.test.ts extensions/pi-shared-context/actions.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0008/scoped-typecheck.txt"
+    },
+    {
+      "name": "actual Pi v1.1.0 terminal smoke",
+      "status": "passed",
+      "command": "termscope session --cols 120 --rows 40 -- /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-skills --no-prompt-templates --no-context-files --no-mcp -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts --skill /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/matt-pocock/skills/ask-matt",
+      "cwd": "/tmp/projects-fix-smoke-2TXO5w/repo",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0008/terminal-protocol.json",
+      "details": "Removed the active checkout while Projects was open. Reopened the single deduplicated current entry. Observed its surviving shared ticket, disabled ask-matt action, shared Files root, live Files creation and live tracker title update. Captured 120x40, 80x24 and 40x12 terminals. NO_COLOR=1; no new full palette audit. No model request sent. Terminal exited 0."
+    }
+  ],
+  "notes": [
+    "Initial combined suite: 118 pass, 2 fail. The new fixtures used an incorrect GitHub pagination shape and conflicting migration instructions. Corrected the fixtures.",
+    "Second combined suite: 119 pass, 1 fail. The new modal harness matched an old header before project enumeration completed. Corrected its readiness wait.",
+    "The final combined suite passed all 120 tests. Scoped TypeScript and both runtime probes passed.",
+    "The broader bundle typecheck has known unrelated failures and was not rerun. LSP initialization could not locate TypeScript; the scoped compiler ran successfully."
+  ]
+}

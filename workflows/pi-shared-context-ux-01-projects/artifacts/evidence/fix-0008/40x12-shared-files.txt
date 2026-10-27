@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=11:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]  ╭────────────────────────────────────╮
+[002]  │ Projects · Repo > repo             │
+[003]  │   1 Tracker     [2 Files]   Tab fo…│
+[004]  ├────────────────────────────────────┤
+[005]  │ Shared context  ›  github-com-exam…│
+[006]  ├────────────────────────────────────┤
+[007]  │▸ docs                │Select a fil…│
+[008] ─├────────────────────────────────────┤─
+[009]  │ /tmp/projects-fix-smoke-2TXO5w/sha…│
+[010] ─│ ←→ browse  ↑↓ move  Enter open  Ba…│─
+[011] /╰────────────────────────────────────╯.
+[012] 0.0%/0 (auto)                    unknown

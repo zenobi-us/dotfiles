@@ -1,0 +1,21 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {resolveStoredContext,listSharedContexts} from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts';
+import {loadExplorerSnapshot} from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts';
+const project=(await listSharedContexts('/tmp/projects-fix-smoke-2TXO5w/shared'))[0]!;
+const manifest=project.root+'/.context-routes.toml';
+await writeFile(manifest,(await readFile(manifest,'utf8')).replace('[records.tickets]\nadapter = "local-markdown"\nstore = "shared"','[records.tickets]\nadapter = "github"'));
+const context=await resolveStoredContext(project);
+const requests:string[][]=[];
+const exec=async(command:string,args:string[])=>{
+ if(command!=='gh') throw new Error('Unexpected command '+command);
+ requests.push(args);
+ const response=args[0]==='issue'?{number:42,title:'Checkoutless GitHub issue',body:'Existing remote record',state:'OPEN',labels:[]}:args.at(-1)==='repos/example/fix-smoke/issues?state=all&per_page=100'?[[{number:42}]]:[[]];
+ return {code:0,stdout:JSON.stringify(response)};
+};
+const snapshot=await loadExplorerSnapshot(context,exec);
+assert.equal(context.canonicalOrigin,'github.com/example/fix-smoke');
+assert.equal(snapshot.tickets[0]?.ref,'https://github.com/example/fix-smoke/issues/42');
+assert.equal(snapshot.tickets[0]?.title,'Checkoutless GitHub issue');
+assert(requests.some(args=>args.includes('example/fix-smoke')));
+console.log(JSON.stringify({canonicalOrigin:context.canonicalOrigin,checkoutAvailable:context.checkoutAvailable,backend:snapshot.backend,ticket:snapshot.tickets[0],ghRequests:requests.length,network:'substituted GitHub issue responses; no credentials or live network'},null,2));

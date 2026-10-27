@@ -5,8 +5,8 @@ initiative: null
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: review-complete-0006
-state: REVIEW_FAILED
+latest_receipt: fix-complete-0009
+state: FIXED
 source_branch: feature/pi-shared-context-ux-01-projects
 base_branch: master
 workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects

@@ -1,0 +1,21 @@
+$ mise exec -- bun /tmp/projects-fix-github.ts
+
+{
+  "canonicalOrigin": "github.com/example/fix-smoke",
+  "checkoutAvailable": false,
+  "backend": "github",
+  "ticket": {
+    "id": "42",
+    "title": "Checkoutless GitHub issue",
+    "ref": "https://github.com/example/fix-smoke/issues/42",
+    "backend": "github",
+    "status": "OPEN",
+    "blockedBy": [],
+    "body": "Existing remote record"
+  },
+  "ghRequests": 4,
+  "network": "substituted GitHub issue responses; no credentials or live network"
+}
+mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.
+
+exit=0

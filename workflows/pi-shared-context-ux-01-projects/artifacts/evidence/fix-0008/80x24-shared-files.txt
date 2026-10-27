@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=23:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha
+[004] re│ Projects · Repo > repo                                                   │si
+[005] on│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤ha
+[007] re│ Shared context  ›  github-com-example-fix-smoke--fb581bfc  ›  Preview    │si
+[008] on├──────────────────────────────────────────────────────────────────────────┤
+[009]   │▸ docs                                       │Select a file to preview it.│
+[010]   │▸ tracker                                    │                            │
+[011]  W│  .context-project.json                      │                            │
+[012]  A│  .context-routes.toml                       │                            │
+[013]   │  AGENTS.md                                  │                            │
+[014]  /│  CONTEXT-MAP.md                             │                            │d
+[015]  o│  live-after-removal.txt                     │                            │
+[016]   │  surviving.txt                              │                            │
+[017]  /│                                             │                            │d
+[018]  o│                                             │                            │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ /tmp/projects-fix-smoke-2TXO5w/shared/github-com-example-fix-smoke--fb58…│──
+[021]   │ ←→ browse  ↑↓ move  Enter open  Backspace parent y insert  f format: sha…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/projects-fix-smoke-2TXO5w/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

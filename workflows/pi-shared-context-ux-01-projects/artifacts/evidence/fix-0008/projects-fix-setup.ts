@@ -1,0 +1,16 @@
+import {mkdtemp,mkdir,writeFile,readFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {tmpdir} from 'node:os';
+import {resolveSharedContext,initializeSharedContext,migrateContextRoute} from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts';
+const root=await mkdtemp(join(tmpdir(),'projects-fix-smoke-'));
+const repo=join(root,'repo'),base=join(root,'shared'),home=join(root,'home');
+const exec=async(command:string,args:string[])=>{const p=Bun.spawn([command,...args],{stdout:'pipe',stderr:'pipe'});return {stdout:await new Response(p.stdout).text(),code:await p.exited};};
+await mkdir(repo);await exec('git',['init','--quiet',repo]);await exec('git',['-C',repo,'remote','add','origin','https://github.com/example/fix-smoke.git']);
+let context=(await resolveSharedContext(exec,repo,base))!;await initializeSharedContext(context);context=(await resolveSharedContext(exec,repo,base))!;
+await migrateContextRoute(context,'alignment','repository');context=(await resolveSharedContext(exec,repo,base))!;
+const shared=context.candidateSharedRoot!;
+await mkdir(join(shared,'tracker/tickets'),{recursive:true});
+await writeFile(join(shared,'tracker/tickets/item.md'),'---\nid: item\ntitle: Surviving shared item\nwork_status: open\n---\nRuntime checkout removal proof\n');
+await writeFile(join(shared,'surviving.txt'),'Shared file after checkout removal');
+await mkdir(join(home,'.config/shared-agent-context'),{recursive:true});await writeFile(join(home,'.config/shared-agent-context/config.json'),JSON.stringify({storage_path:base}));
+console.log(JSON.stringify({root,repo,base,home,shared}));

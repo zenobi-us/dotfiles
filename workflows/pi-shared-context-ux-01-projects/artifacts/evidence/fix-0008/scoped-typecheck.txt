@@ -1,0 +1,5 @@
+$ mise exec -- bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/modal.ts extensions/pi-shared-context/explorer.ts extensions/pi-shared-context/data.ts extensions/pi-shared-context/projects.test.ts extensions/pi-shared-context/actions.test.ts
+
+mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.
+
+exit=0
