@@ -1,0 +1,255 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0005",
+  "workflow_id": "pi-shared-context-ux-02-initiatives",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 2,
+  "parent_receipt": "start-0004",
+  "status": "completed",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "source_commit": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+  "created_at": "2026-10-27T22:53:59Z",
+  "muxer": "herdr",
+  "pane_id": "w7C:p1",
+  "agent": "omp",
+  "agent_name": "ux02-implement-02",
+  "session_id": "01a17f7c-dad8-77fa-8a43-075752e68699",
+  "session_identity_source": "herdr agent get ux02-implement-02 -> agent_session.value",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-02-initiatives",
+    "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0007.yaml",
+  "cycle_number": 2,
+  "agent_session_token_limit": 250000,
+  "native_goal_accounting": {
+    "goal_id": "15b72ce14c893c00",
+    "setup_uncached_tokens": 18025,
+    "native_goal_budget": 231975,
+    "native_goal_used_observed": 219521,
+    "native_goal_remaining_observed": 12454,
+    "session_ceiling": 250000,
+    "combined_used_observed": 237546,
+    "observation": "goal.get immediately before receipt preparation; final completion usage can be higher. No goal or consumption reset."
+  },
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "validation": [
+    {
+      "kind": "tests",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+      "exit_code": 0,
+      "result": "128 pass, 0 fail, 1750 expectations across 11 files",
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/focused-tests-final.txt"
+    },
+    {
+      "kind": "typescript",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+      "command": "mise exec -- bun /home/zenobius/.cache/.bun/install/cache/typescript@5.9.3@@@1/bin/tsc --project /tmp/ux02-tsconfig.json --pretty false",
+      "exit_code": 0,
+      "result": "Scoped extension, affected tests, imported shared-context modules and ambient types pass; broad bundle check was not run.",
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/scoped-typescript-final.txt",
+      "configuration": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/scoped-tsconfig.json"
+    },
+    {
+      "kind": "runtime",
+      "command": "termscope session --cols COLS --rows ROWS -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools --no-themes --use-theme dark -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "result": "Actual Pi v1.1.0 loaded worktree extension. Verified 40x12, 80x24 and 120x40 with real dark-theme RGB runs and a greyscale theme fixture. Keyboard, SGR mouse ancestors, root/children/detail, return selection, Ungrouped zero, queues, Files, live updates, removal, stale safety, initial unreadable, recovery and loading exercised. No model or service requests.",
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/runtime-actions-complete.json",
+      "captures": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/runtime-captures-complete.json",
+      "report": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/runtime-report.md"
+    }
+  ],
+  "requirements_coverage": [
+    {
+      "criterion": 1,
+      "implementation": "Initiative-first home; loader always appends synthetic Ungrouped.",
+      "evidence": [
+        "verified-dark-120x40-root.png",
+        "verified-mono-40x12-ungrouped.png"
+      ]
+    },
+    {
+      "criterion": 2,
+      "implementation": "Synthetic group has no initiative action choices; no authored initiative is written.",
+      "evidence": [
+        "focused-tests-final.txt",
+        "verified-dark-80x24-ungrouped.png"
+      ]
+    },
+    {
+      "criterion": 3,
+      "implementation": "Initiative identity and recorded body summary precede canonical child list; child Enter opens existing detail.",
+      "evidence": [
+        "verified-dark-120x40-children.png",
+        "verified-dark-80x24-detail.png"
+      ]
+    },
+    {
+      "criterion": 4,
+      "implementation": "Separate title, recorded phase or unavailable, and Items fields; no action-derived phase.",
+      "evidence": [
+        "verified-dark-120x40-root.png"
+      ]
+    },
+    {
+      "criterion": 5,
+      "implementation": "Separate type marker, stable ID, title and recorded state; subordinate reference or workflow warning.",
+      "evidence": [
+        "verified-dark-120x40-children.png"
+      ]
+    },
+    {
+      "criterion": 6,
+      "implementation": "Titles wrap within their field; narrow secondary fields use separate lines and paging.",
+      "evidence": [
+        "verified-dark-120x40-children.png",
+        "verified-mono-40x12-child-secondary.png"
+      ]
+    },
+    {
+      "criterion": 7,
+      "implementation": "Theme text/accent/muted/success/warning roles; semantic field labels and markers in greyscale.",
+      "evidence": [
+        "verified-dark-120x40-children.spans.txt",
+        "verified-mono-120x40-children.png"
+      ]
+    },
+    {
+      "criterion": 8,
+      "implementation": "Selection background plus > focused or diamond inactive marker; distinct ancestor focus.",
+      "evidence": [
+        "verified-dark-120x40-focus.png",
+        "verified-mono-40x12-focus.png"
+      ]
+    },
+    {
+      "criterion": 9,
+      "implementation": "Focusable and clickable available ancestors; one-level Esc; separate parent viewport offsets.",
+      "evidence": [
+        "focused-tests-final.txt",
+        "verified-dark-80x24-mouse-initiative-return.png",
+        "verified-mono-40x12-keyboard-root-return.png"
+      ]
+    },
+    {
+      "criterion": 10,
+      "implementation": "Canonical selection persists on reload; removed records explain fallback to nearby child or parent.",
+      "evidence": [
+        "verified-mono-live-selected.png",
+        "verified-mono-selected-removal.png"
+      ]
+    },
+    {
+      "criterion": 11,
+      "implementation": "Distinct loading, empty, initial unreadable and stale refresh-failure states; safe transitions remain gated.",
+      "evidence": [
+        "verified-mono-loading.png",
+        "verified-mono-initial-unreadable.png",
+        "verified-mono-refresh-failed.png",
+        "verified-mono-stale-action-gate.png"
+      ]
+    },
+    {
+      "criterion": 12,
+      "implementation": "Queues remain a separate Tracker screen; Files remains independent.",
+      "evidence": [
+        "verified-dark-80x24-queues.png",
+        "verified-mono-independent-files.png"
+      ]
+    },
+    {
+      "criterion": 13,
+      "implementation": "Existing action/session behavior, uppercase R refresh, workspace keys and Files path insertion preserved; hints updated.",
+      "evidence": [
+        "focused-tests-final.txt",
+        "verified-mono-files-path-insertion.png"
+      ]
+    }
+  ],
+  "summary": "Implemented initiative-first Tracker navigation, synthetic Ungrouped, structured wrapping fields, ancestor focus/mouse navigation and stable live selection with explicit error states. Preserved existing details, actions, queues, Files and ticket 01 project navigation. Source committed; independent review and merge remain with coordinator.",
+  "questions": [],
+  "review_status": "not performed; independent formal review is the next coordinator phase",
+  "merge_status": "not merged or pushed",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/start-0004.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0007.yaml"
+    },
+    {
+      "kind": "policy",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0003.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/implementation-0005.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/runtime-report.md"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/projections/latest-status.yaml"
+    }
+  ]
+}

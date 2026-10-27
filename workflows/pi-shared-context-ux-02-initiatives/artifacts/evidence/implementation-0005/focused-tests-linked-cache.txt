@@ -1,0 +1,149 @@
+mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.
+bun test v1.4.3 (c6da4a4d3)
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module '@earendil-works/pi-tui' from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts'
+-------------------------------
+
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts:
+(pass) worktree receipt transitions > start rejects missing blockers, existing workflows, closed tickets, and unknown state [0.89ms]
+(pass) worktree receipt transitions > review can freeze a new revision after an earlier implementation or review [0.24ms]
+(pass) worktree receipt transitions > latest rejected review enables fix and supersedes an older success [0.21ms]
+(pass) worktree receipt transitions > a phase-start event cannot inherit an older verdict [0.16ms]
+(pass) worktree receipt transitions > finish and submit each require the current successful review [0.28ms]
+(pass) worktree receipt transitions > timezone offsets and equal timestamps cannot revive an older successful review [0.17ms]
+(pass) worktree receipt transitions > read errors and unknown current source cannot masquerade as freshness [0.21ms]
+(pass) fresh-session boundaries > missing skills disable their actions; synthetic groups cannot become planning initiatives [0.14ms]
+(pass) fresh-session boundaries > untrusted record and prompt text cannot inject another skill or XML instruction [0.35ms]
+(pass) fresh-session boundaries > a fresh chat stages the selected command through the replacement context without sending it [0.32ms]
+(pass) fresh-session boundaries > session creation and editor failures retain the cause and distinguish an opened session [0.24ms]
+(pass) fresh-session boundaries > cancelling session creation preserves the old editor draft [0.12ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module '@earendil-works/pi-tui' from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts'
+-------------------------------
+
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module '@earendil-works/pi-tui' from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts'
+-------------------------------
+
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.test.ts:
+(pass) directory watches discover missing paths, survive replacement, and drop old subscriptions [362.94ms]
+(pass) changes arriving during refresh receive another serialized pass [70.84ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts:
+(pass) configured mixed stores preserve completed blockers and discover unassigned tickets [43.08ms]
+(pass) missing collections are empty but a missing tracker definition is actionable [10.00ms]
+(pass) missing blockers, dependency cycles, and duplicate ticket IDs fail instead of reporting readiness [92.01ms]
+(pass) initiative links cannot hide missing tickets or escape through collection symlinks [37.53ms]
+(pass) versioned records render direct members and descendants without treating specification links as members [38.01ms]
+(pass) versioned UI reader rejects future ticket schemas, malformed fields, and filename identity mismatches [72.00ms]
+(pass) versioned UI initiative indexes enforce schemas and exact direct-parent membership [133.56ms]
+(pass) receipt identity and timestamps govern history, not filenames or projections [74.76ms]
+(pass) invalid events remain inspectable without hiding valid receipts or permitting transitions [35.77ms]
+(pass) phase-start and phase-complete envelopes do not require invented evidence [62.20ms]
+(pass) missing source worktrees and invalid source trees never borrow repository freshness [41.51ms]
+(pass) orphaned and cyclic receipt parents are invalid workflow history [28.40ms]
+(pass) GitHub pagination includes later pages and recursive prerequisite closure without parsing body references [9.79ms]
+(pass) GitHub failures and unsupported backends are errors, not empty or guessed graphs [18.91ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module '@earendil-works/pi-tui' from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts'
+-------------------------------
+
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+error: Cannot find module '@earendil-works/pi-tui' from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.test.ts'
+-------------------------------
+
+
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/shared-context.test.ts:
+(pass) git origin normalization > SSH, SCP, and HTTPS forms resolve to one canonical origin and slug [0.33ms]
+(pass) context resolution > falls back to repository storage when shared AGENTS.md is absent [2.50ms]
+(pass) context resolution > uses shared storage and reloads changed instructions on each resolution [1.85ms]
+(pass) context resolution > resolves each record through an origin-scoped route manifest [1.61ms]
+(pass) context resolution > maps a legacy storage marker to routes without moving external tickets [0.97ms]
+(pass) context resolution > migrates the legacy preference to a route manifest and removes the marker [1.86ms]
+(pass) context resolution > initializes the external candidate without writing into the repository [1.55ms]
+(pass) context resolution > initialization preserves an authored context map [0.49ms]
+(pass) context resolution > initialization preserves an existing route manifest [0.38ms]
+(pass) context resolution > copies the typed context areas in both directions and ignores legacy layouts [9.81ms]
+(pass) context resolution > returns no context when origin is missing [0.23ms]
+(pass) lists shared contexts alphabetically with storage preferences [0.59ms]
+(pass) the CLI is directly executable and exposes help [325.10ms]
+(pass) hosted-shared init rejects local tickets and routes external tickets [71.81ms]
+(pass) repository XML points root and shared-root at the repository [0.19ms]
+(pass) rendered XML identifies provenance and escapes injected instructions [0.06ms]
+(pass) typed context paths > resolves every stable record type [1.36ms]
+(pass) typed context paths > refuses invalid or incomplete typed paths [0.19ms]
+(pass) frontmatter > reads quoted, bare, and numeric fields and ignores the body [0.05ms]
+(pass) frontmatter > a file with no frontmatter yields no fields [0.01ms]
+(pass) index rebuild > lists every sibling markdown file, links the url when present, and excludes itself [1.01ms]
+(pass) index rebuild > refuses to clobber a hand-written index and keeps text around a managed block [0.68ms]
+(pass) index rebuild > rebuilding twice produces the same entries [0.57ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/layout.test.ts:
+(pass) layout resolves collection roots, files, refs, unchanged workflows and indexed source content [11.65ms]
+(pass) explicit local tracker roots override layout defaults independently [11.24ms]
+(pass) invalid layout fails closed: "schema = 2" [9.39ms]
+(pass) invalid layout fails closed: "schema = 1\nunknown = true" [8.68ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\nworkflows = \"docs/workflows\"" [9.31ms]
+(pass) invalid layout fails closed: "schema = 1\npaths = \"docs\"" [9.23ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = 42" [8.98ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = \"\"" [9.09ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = \"/tmp/tracker\"" [8.96ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\nsources = \"../sources\"" [8.94ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = \"docs/../tracker\"" [9.11ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = [" [9.04ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = \"C:/tracker\"" [9.18ms]
+(pass) invalid explicit issue-root fails closed [9.12ms]
+(pass) invalid explicit initiative-root fails closed [8.93ms]
+(pass) configured and subsequently introduced symlink escapes are rejected [13.54ms]
+(pass) symlinked configuration never silently falls back [9.45ms]
+(pass) mixed routes interpret layout against selected stores and retain configured data through migrations [32.05ms]
+(pass) initialization carries layout and explicit roots to the new active alignment root [14.53ms]
+(pass) linked worktrees share origin routes but load repository layout from their own active root [21.48ms]
+(pass) absent layout preserves default collection paths [9.88ms]
+(pass) migration refuses configured destination symlink escapes before copying files [9.47ms]
+(pass) collection selectors expose typed CLI records without changing machine configuration [116.23ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/api.test.ts:
+(pass) repository setup reopens locally, preserves authored files, and never creates shared storage [31.44ms]
+(pass) shared setup reopens without changing authored repository files [31.91ms]
+(pass) repository tracker configuration rejects shared setup before writing a shared policy [15.21ms]
+(pass) hosted-shared setup preserves external tickets after explicit shared initialization [16.27ms]
+(pass) setup refuses opposite configured storage before creating files [58.24ms]
+(pass) same-store mixed setup preserves routes and shared policies take precedence [46.43ms]
+(pass) setup requires an explicit store and validates presets without writes [84.56ms]
+(pass) repository registration keeps an external ticket adapter [15.23ms]
+(pass) legacy repository routes reject shared setup without rewriting the policy [14.67ms]
+(pass) repository-aligned mixed setup preserves shared record routes [32.68ms]
+(pass) shared initialization preserves mixed routes from a repository manifest [19.06ms]
+(pass) layout-only repository context rejects shared setup without changing routing [15.82ms]
+(pass) resolver errors stop setup before repository files are created [12.54ms]
+
+5 tests failed:
+
+ 87 pass
+ 5 fail
+ 5 errors
+ 390 expect() calls
+Ran 92 tests across 11 files. [2.34s]

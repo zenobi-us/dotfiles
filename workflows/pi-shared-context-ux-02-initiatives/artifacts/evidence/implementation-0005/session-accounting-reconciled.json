@@ -1,0 +1,27 @@
+{
+  "schema": "worktree-session-accounting/v1",
+  "created_at": "2026-10-27T22:58:01.179Z",
+  "agent_name": "ux02-implement-02",
+  "session_id": "01a17f7c-dad8-77fa-8a43-075752e68699",
+  "session_ref": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-27T22-30-51-352Z_01a17f7c-dad8-77fa-8a43-075752e68699.jsonl",
+  "session_sha256": "518bd62e2e6509c95b8b2200f8c4396da80ba6b5bd995b0d22689ee29028cdff",
+  "goal_id": "15b72ce14c893c00",
+  "metric": "Sum of provider usage.input + usage.output + usage.cacheWrite over all assistant messages; cacheRead excluded to match native GoalRuntime work-token accounting.",
+  "provider_usage": {
+    "requests": 154,
+    "input": 191369,
+    "output": 59035,
+    "cacheRead": 24476416,
+    "cacheWrite": 0
+  },
+  "setup_uncached_tokens": 18025,
+  "native_goal_budget": 231975,
+  "native_goal_completed_usage": 230749,
+  "native_goal_completion_checkpoint_total": 248774,
+  "post_goal_completion_tokens": 1630,
+  "full_session_tokens": 250404,
+  "session_ceiling": 250000,
+  "overage_tokens": 404,
+  "status": "cap_exceeded",
+  "note": "The native goal completed within its adjusted budget. Subsequent evidence-write and final-response usage exceeded the full-session ceiling. No further agent cycle is authorized by the active goal stop conditions. Do not overwrite the earlier native-goal checkpoint."
+}

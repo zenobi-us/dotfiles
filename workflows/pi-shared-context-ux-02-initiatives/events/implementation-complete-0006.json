@@ -1,0 +1,138 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-complete-0006",
+  "workflow_id": "pi-shared-context-ux-02-initiatives",
+  "phase": "implementation",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "implementation-0005",
+  "status": "completed",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "source_commit": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+  "created_at": "2026-10-27T22:58:01.182Z",
+  "muxer": "herdr",
+  "pane_id": "w7C:p1",
+  "agent": "omp",
+  "agent_name": "ux02-implement-02",
+  "session_id": "01a17f7c-dad8-77fa-8a43-075752e68699",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-02-initiatives",
+    "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0007.yaml",
+  "agent_session_token_limit": 250000,
+  "cycle_number": 2,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/implementation-0005.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0007.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/session-accounting-reconciled.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/implementation-complete-0006.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/session-accounting-reconciled.json"
+    }
+  ],
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005"
+  },
+  "validation": [
+    {
+      "kind": "tests",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+      "exit_code": 0,
+      "result": "128 pass, 0 fail, 1750 expectations across 11 files",
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/focused-tests-final.txt"
+    },
+    {
+      "kind": "typescript",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+      "command": "mise exec -- bun /home/zenobius/.cache/.bun/install/cache/typescript@5.9.3@@@1/bin/tsc --project /tmp/ux02-tsconfig.json --pretty false",
+      "exit_code": 0,
+      "result": "Scoped extension, affected tests, imported shared-context modules and ambient types pass; broad bundle check was not run.",
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/scoped-typescript-final.txt",
+      "configuration": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/scoped-tsconfig.json"
+    },
+    {
+      "kind": "runtime",
+      "command": "termscope session --cols COLS --rows ROWS -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools --no-themes --use-theme dark -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "result": "Actual Pi v1.1.0 loaded worktree extension. Verified 40x12, 80x24 and 120x40 with real dark-theme RGB runs and a greyscale theme fixture. Keyboard, SGR mouse ancestors, root/children/detail, return selection, Ungrouped zero, queues, Files, live updates, removal, stale safety, initial unreadable, recovery and loading exercised. No model or service requests.",
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/runtime-actions-complete.json",
+      "captures": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/runtime-captures-complete.json",
+      "report": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/runtime-report.md"
+    }
+  ],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "agent_shutdown": {
+    "pane_id": "w7C:p1",
+    "closed": true
+  },
+  "accounting": {
+    "schema": "worktree-session-accounting/v1",
+    "created_at": "2026-10-27T22:58:01.179Z",
+    "agent_name": "ux02-implement-02",
+    "session_id": "01a17f7c-dad8-77fa-8a43-075752e68699",
+    "session_ref": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-27T22-30-51-352Z_01a17f7c-dad8-77fa-8a43-075752e68699.jsonl",
+    "session_sha256": "518bd62e2e6509c95b8b2200f8c4396da80ba6b5bd995b0d22689ee29028cdff",
+    "goal_id": "15b72ce14c893c00",
+    "metric": "Sum of provider usage.input + usage.output + usage.cacheWrite over all assistant messages; cacheRead excluded to match native GoalRuntime work-token accounting.",
+    "provider_usage": {
+      "requests": 154,
+      "input": 191369,
+      "output": 59035,
+      "cacheRead": 24476416,
+      "cacheWrite": 0
+    },
+    "setup_uncached_tokens": 18025,
+    "native_goal_budget": 231975,
+    "native_goal_completed_usage": 230749,
+    "native_goal_completion_checkpoint_total": 248774,
+    "post_goal_completion_tokens": 1630,
+    "full_session_tokens": 250404,
+    "session_ceiling": 250000,
+    "overage_tokens": 404,
+    "status": "cap_exceeded",
+    "note": "The native goal completed within its adjusted budget. Subsequent evidence-write and final-response usage exceeded the full-session ceiling. No further agent cycle is authorized by the active goal stop conditions. Do not overwrite the earlier native-goal checkpoint."
+  },
+  "coordinator_continuation_blocked": true,
+  "summary": "Implementation result, referenced evidence, draft and projections exist. Exact committed source/tree match; no staged or unstaged source changes remain. Agent pane closed. Implementation is ready for independent review, but the full-session token ceiling was exceeded by 404 after native goal completion. Coordinator stops before review or merge."
+}

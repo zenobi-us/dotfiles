@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    9,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - ux02-terminal-fixture-KfB7SN",
+  "lines": [
+    " help.",
+    " ╭────────────────────────────────────╮",
+    " │ Projects · Repo > ux02-terminal-fi…│",
+    " │  [1 Tracker]     2 Files    Tab fo…│",
+    "  Initiat…  >  Release…  >  item-0",
+    " > Ticket / dependencies / receipts",
+    "  item-0 Unicode 依存関係 title that",
+    "─ wraps below its own field without    ─",
+    "  overwriting state or identity",
+    "─tracker/tickets/item-0.md · UNKNOWN   ─",
+    "/Esc back  Enter open  Tab focus  R ....",
+    "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •"
+  ]
+}

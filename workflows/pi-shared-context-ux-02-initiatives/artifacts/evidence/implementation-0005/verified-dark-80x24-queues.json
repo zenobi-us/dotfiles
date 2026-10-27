@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    19,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - ux02-terminal-fixture-KfB7SN",
+  "lines": [
+    "",
+    " ▀▀█  v1.1.0",
+    " █╭──────────────────────────────────────────────────────────────────────────╮",
+    " c│ Projects · Repo > ux02-terminal-fixture-KfB7SN                           │",
+    " P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    " P│ Initiatives  >  Queues                                                   │",
+    " e│> Ticket queues · all                                                     │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "  │>[Enhancement]  ID: item-0                                                │",
+    "  │>Unicode 依存関係 title that wraps below its own field without overwriting│",
+    "  │>state or identity                                                        │",
+    "  │>State: claimed                                                           │",
+    "  │>tracker/tickets/item-0.md                                                │",
+    "  │ [Enhancement]  ID: item-1                                                │",
+    "  │ Child 1                                                                  │",
+    "  │ State: completed                                                         │",
+    "  │ tracker/tickets/item-1.md                                                │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ tracker/tickets/item-0.md · UNKNOWN                                      │──",
+    "  │ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R ref…│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/tmp/ux02-terminal-fixture-KfB7SN (master)",
+    "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 • medium"
+  ]
+}

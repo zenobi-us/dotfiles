@@ -1,0 +1,101 @@
+mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts(2,56): error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts(3,24): error TS2307: Cannot find module 'node:os' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts(4,41): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts(17,82): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts(17,119): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts(1,48): error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts(2,72): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts(3,31): error TS2307: Cannot find module 'node:url' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts(312,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts(316,32): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts(323,65): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts(1,22): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts(98,32): error TS2694: Namespace 'NodeJS' has no exported member 'Timeout'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts(99,32): error TS2694: Namespace 'NodeJS' has no exported member 'Timeout'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(1,45): error TS2307: Cannot find module 'node:fs' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(2,18): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(49,28): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(76,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(117,13): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(118,10): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(123,12): error TS7006: Parameter 'a' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(123,15): error TS7006: Parameter 'b' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts(220,63): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts(2,55): error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts(3,24): error TS2307: Cannot find module 'node:os' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts(4,41): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts(18,80): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts(18,115): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts(1,18): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.test.ts(2,63): error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.test.ts(3,16): error TS2307: Cannot find module 'node:os' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.test.ts(4,18): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.ts(1,22): error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.ts(2,18): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.ts(261,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(2,57): error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(3,24): error TS2307: Cannot find module 'node:os' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(4,22): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(19,72): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(464,74): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(485,14): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(487,25): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(487,52): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(488,39): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(492,84): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(492,119): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.test.ts(2,55): error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.test.ts(3,24): error TS2307: Cannot find module 'node:os' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.test.ts(4,22): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(1,30): error TS2307: Cannot find module 'node:events' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(2,39): error TS2307: Cannot find module 'node:fs' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(3,38): error TS2307: Cannot find module 'node:fs/promises' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(4,62): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(18,26): error TS2694: Namespace 'NodeJS' has no exported member 'Timeout'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(19,28): error TS2694: Namespace 'NodeJS' has no exported member 'Timeout'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(82,107): error TS7006: Parameter '_event' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(82,115): error TS7006: Parameter 'filename' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(128,64): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(143,60): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.ts(161,60): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/config.ts(1,32): error TS2307: Cannot find module 'node:fs' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/config.ts(2,16): error TS2307: Cannot find module 'node:os' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/config.ts(3,18): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/config.ts(23,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/config.ts(34,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/layout.ts(1,32): error TS2307: Cannot find module 'node:fs' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/layout.ts(2,18): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/layout.ts(24,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/layout.ts(43,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/layout.ts(48,32): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(1,28): error TS2307: Cannot find module 'node:crypto' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(2,43): error TS2307: Cannot find module 'node:fs' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(3,18): error TS2307: Cannot find module 'node:path' or its corresponding type declarations.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(81,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(139,35): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(218,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(230,28): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(243,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(328,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(390,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(396,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(411,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(417,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(427,28): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(455,47): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(519,28): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(570,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(664,30): error TS7006: Parameter 'segment' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(664,39): error TS7006: Parameter 'index' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(736,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(740,14): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(741,17): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(747,25): error TS7006: Parameter 'a' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(747,28): error TS7006: Parameter 'b' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(856,14): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(857,11): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(868,54): error TS7006: Parameter 'file' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(875,30): error TS7006: Parameter 'entry' implicitly has an 'any' type.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(886,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts(927,26): error TS2694: Namespace 'NodeJS' has no exported member 'ErrnoException'.

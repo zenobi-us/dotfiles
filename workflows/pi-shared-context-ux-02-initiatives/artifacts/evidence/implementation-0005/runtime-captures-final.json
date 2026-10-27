@@ -1,0 +1,1140 @@
+[
+  {
+    "name": "colour-120x40-root",
+    "fixture": true,
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "time": "2026-10-27T22:43:32Z"
+  },
+  {
+    "name": "colour-120x40-children",
+    "fixture": true,
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "time": "2026-10-27T22:43:32Z"
+  },
+  {
+    "name": "colour-120x40-child-detail",
+    "fixture": true,
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "time": "2026-10-27T22:43:47Z"
+  },
+  {
+    "name": "colour-120x40-mouse-root-return",
+    "fixture": true,
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "time": "2026-10-27T22:43:58Z"
+  },
+  {
+    "name": "colour-120x40-ungrouped-empty",
+    "fixture": true,
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "time": "2026-10-27T22:43:59Z"
+  },
+  {
+    "name": "colour-120x40-empty-initiative",
+    "fixture": true,
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "time": "2026-10-27T22:43:59Z"
+  },
+  {
+    "name": "colour-120x40-queues",
+    "fixture": true,
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "time": "2026-10-27T22:43:59Z"
+  },
+  {
+    "name": "dark-120x40-root",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-120x40-children",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-120x40-detail",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-120x40-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-120x40-ancestor-focus",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-120x40-ancestor-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-120x40-ungrouped-zero",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-120x40-queues",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-80x24-root",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-80x24-children",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-80x24-detail",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-80x24-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-80x24-ancestor-focus",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-80x24-ancestor-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-80x24-ungrouped-zero",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-80x24-queues",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-40x12-root",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-40x12-children",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-40x12-detail",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-40x12-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-40x12-ancestor-focus",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-40x12-ancestor-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-40x12-ungrouped-zero",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "dark-40x12-queues",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-root",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-children",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-child-secondary",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-detail",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-mouse-initiative-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-escape-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-focus",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-keyboard-root-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-ungrouped",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-queues",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-120x40-mouse-root-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-root",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-children",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-child-secondary",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-detail",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-mouse-initiative-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-escape-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-focus",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-keyboard-root-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-ungrouped",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-queues",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-80x24-mouse-root-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-root",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-children",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-child-secondary",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-detail",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-mouse-initiative-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-escape-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-focus",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-keyboard-root-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-ungrouped",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-queues",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-dark-40x12-mouse-root-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-root",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-children",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-child-secondary",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-detail",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-mouse-initiative-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-escape-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-focus",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-keyboard-root-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-ungrouped",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-queues",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-120x40-mouse-root-return",
+    "fixture": true,
+    "size": [
+      120,
+      40
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-root",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-children",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-child-secondary",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-detail",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-mouse-initiative-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-escape-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-focus",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-keyboard-root-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-ungrouped",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-queues",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-80x24-mouse-root-return",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-root",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-children",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-child-secondary",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-detail",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-mouse-initiative-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-escape-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-focus",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-keyboard-root-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-ungrouped",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-queues",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-40x12-mouse-root-return",
+    "fixture": true,
+    "size": [
+      40,
+      12
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-live-before",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-live-selected",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-refresh-failed",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-stale-action-gate",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-selected-removal",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-initial-unreadable",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-recovered",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-independent-files",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  },
+  {
+    "name": "verified-mono-files-path-insertion",
+    "fixture": true,
+    "size": [
+      80,
+      24
+    ],
+    "cwd": "/tmp/ux02-terminal-fixture-KfB7SN",
+    "extension": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "screenshot": "SVG rendered from actual termscope text and RGB spans"
+  }
+]

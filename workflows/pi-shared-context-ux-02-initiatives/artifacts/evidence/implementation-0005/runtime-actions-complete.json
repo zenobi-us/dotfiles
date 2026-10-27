@@ -1,0 +1,6411 @@
+[
+  {
+    "request": {
+      "id": 101,
+      "method": "resize",
+      "params": {
+        "cols": 120,
+        "rows": 40
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 102,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 103,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 104,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 105,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 106,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 107,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 108,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 109,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 110,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 111,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 112,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 113,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 114,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 115,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 116,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 117,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 118,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 119,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 120,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 121,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 122,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 123,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 124,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 125,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 126,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 127,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 128,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 129,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 130,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 131,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 132,
+      "method": "resize",
+      "params": {
+        "cols": 80,
+        "rows": 24
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 133,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 134,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 135,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 136,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 137,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 138,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 139,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 140,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 141,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 142,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 143,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 144,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 145,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 146,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 147,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 148,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 149,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 150,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 151,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 152,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 153,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 154,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 155,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 156,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 157,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 158,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 159,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 160,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 161,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 162,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 163,
+      "method": "resize",
+      "params": {
+        "cols": 40,
+        "rows": 12
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 164,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 165,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 166,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 167,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 168,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 169,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 170,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 171,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 172,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 173,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 174,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 175,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 176,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 177,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 178,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 179,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 180,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 181,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 182,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 183,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 184,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 185,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 186,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 187,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 188,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 189,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 190,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 191,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 192,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 193,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 194,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 195,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 196,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 197,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 198,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 199,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 200,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 201,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 202,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 203,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 204,
+      "method": "snapshot",
+      "params": {}
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 205,
+      "method": "resize",
+      "params": {
+        "cols": 120,
+        "rows": 40
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 206,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 207,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 208,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 209,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 210,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 211,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 212,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 213,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 214,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 215,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 216,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 217,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 218,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 219,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 220,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 221,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 222,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 223,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 224,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 225,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 226,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 227,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 228,
+      "method": "press",
+      "params": {
+        "key": "<prior>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 229,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 230,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 231,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 232,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 233,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 234,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 235,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 236,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;23;7M\u001b[<0;23;7m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 237,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 238,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 239,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 240,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 241,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 242,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 243,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 244,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 245,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 246,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 247,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 248,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 249,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 250,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 251,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 252,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 253,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 254,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 255,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 256,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 257,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 258,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 259,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 260,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 261,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 262,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 263,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 264,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 265,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 266,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 267,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 268,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 269,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 270,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 271,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 272,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 273,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;7;7M\u001b[<0;7;7m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 274,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 275,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 276,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 277,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 278,
+      "method": "resize",
+      "params": {
+        "cols": 80,
+        "rows": 24
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 279,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 280,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 281,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 282,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 283,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 284,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 285,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 286,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 287,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 288,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 289,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 290,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 291,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 292,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 293,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 294,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 295,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 296,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 297,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 298,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 299,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 300,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 301,
+      "method": "press",
+      "params": {
+        "key": "<prior>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 302,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 303,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 304,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 305,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 306,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 307,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 308,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 309,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;22;7M\u001b[<0;22;7m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 310,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 311,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 312,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 313,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 314,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 315,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 316,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 317,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 318,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 319,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 320,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 321,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 322,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 323,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 324,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 325,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 326,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 327,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 328,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 329,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 330,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 331,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 332,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 333,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 334,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 335,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 336,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 337,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 338,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 339,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 340,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 341,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 342,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 343,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 344,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 345,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 346,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;6;7M\u001b[<0;6;7m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 347,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 348,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 349,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 350,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 351,
+      "method": "resize",
+      "params": {
+        "cols": 40,
+        "rows": 12
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 352,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 353,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 354,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 355,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 356,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 357,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 358,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 359,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 360,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 361,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 362,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 363,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 364,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 365,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 366,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 367,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 368,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 369,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 370,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 371,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 372,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 373,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 374,
+      "method": "press",
+      "params": {
+        "key": "<prior>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 375,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 376,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 377,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 378,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 379,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 380,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 381,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 382,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 383,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;17;5M\u001b[<0;17;5m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 384,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 385,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 386,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 387,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 388,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 389,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 390,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 391,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 392,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 393,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 394,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 395,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 396,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 397,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 398,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 399,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 400,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 401,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 402,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 403,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 404,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 405,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 406,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 407,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 408,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 409,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 410,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 411,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 412,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 413,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 414,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 415,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 416,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 417,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 418,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 419,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 420,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 421,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;4;5M\u001b[<0;4;5m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 422,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 423,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 424,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 425,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 426,
+      "method": "close",
+      "params": {}
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 427,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 700
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 428,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 429,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 430,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 431,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 432,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 500
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 433,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 434,
+      "method": "resize",
+      "params": {
+        "cols": 120,
+        "rows": 40
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 435,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 436,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 437,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 438,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 439,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 440,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 441,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 442,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 443,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 444,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 445,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 446,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 447,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 448,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 449,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 450,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 451,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 452,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 453,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 454,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 455,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 456,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 457,
+      "method": "press",
+      "params": {
+        "key": "<prior>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 458,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 459,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 460,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 461,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 462,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 463,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 464,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 465,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;23;7M\u001b[<0;23;7m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 466,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 467,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 468,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 469,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 470,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 471,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 472,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 473,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 474,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 475,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 476,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 477,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 478,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 479,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 480,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 481,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 482,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 483,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 484,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 485,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 486,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 487,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 488,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 489,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 490,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 491,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 492,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 493,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 494,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 495,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 496,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 497,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 498,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 499,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 500,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 501,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 502,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;7;7M\u001b[<0;7;7m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 503,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 504,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 505,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 506,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 507,
+      "method": "resize",
+      "params": {
+        "cols": 80,
+        "rows": 24
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 508,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 509,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 510,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 511,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 512,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 513,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 514,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 515,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 516,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 517,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 518,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 519,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 520,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 521,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 522,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 523,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 524,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 525,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 526,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 527,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 528,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 529,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 530,
+      "method": "press",
+      "params": {
+        "key": "<prior>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 531,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 532,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 533,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 534,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 535,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 536,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 537,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 538,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;22;7M\u001b[<0;22;7m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 539,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 540,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 541,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 542,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 543,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 544,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 545,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 546,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 547,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 548,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 549,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 550,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 551,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 552,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 553,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 554,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 555,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 556,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 557,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 558,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 559,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 560,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 561,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 562,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 563,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 564,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 565,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 566,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 567,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 568,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 569,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 570,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 571,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 572,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 573,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 574,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 575,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;6;7M\u001b[<0;6;7m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 576,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 577,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 578,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 579,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 580,
+      "method": "resize",
+      "params": {
+        "cols": 40,
+        "rows": 12
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 581,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 582,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 583,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 584,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 585,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 586,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 587,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 588,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 589,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 590,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 591,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 592,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 593,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 594,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 595,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 596,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 597,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 598,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 599,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 600,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 601,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 602,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 603,
+      "method": "press",
+      "params": {
+        "key": "<prior>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 604,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 605,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 606,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 607,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 608,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 609,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 610,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 611,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;17;5M\u001b[<0;17;5m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 612,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 613,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 614,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 615,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 616,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 617,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 618,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 619,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 620,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 621,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 622,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 623,
+      "method": "type",
+      "params": {
+        "text": "\u001b[Z"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 624,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 625,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 626,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 627,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 628,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 629,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 630,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 631,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 632,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 633,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 634,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 635,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 636,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 637,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 638,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 639,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 640,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 641,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 642,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 643,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 644,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 645,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 646,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 647,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 648,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;4;5M\u001b[<0;4;5m"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 649,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 650,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 651,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 652,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 653,
+      "method": "resize",
+      "params": {
+        "cols": 80,
+        "rows": 24
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 654,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 655,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 656,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 657,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 658,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 659,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 660,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 661,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 662,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 663,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 664,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 665,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 666,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 667,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 668,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 669,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 670,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 671,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 672,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 800
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 673,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 674,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 1500
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 675,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 676,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 677,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 678,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 679,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Live refresh failed",
+        "timeout": 6000
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 680,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 681,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 682,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 683,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 684,
+      "method": "press",
+      "params": {
+        "key": "s"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 685,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 686,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 687,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 688,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 689,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 2000
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 690,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "removed",
+        "timeout": 6000
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 691,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 692,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 693,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 694,
+      "method": "press",
+      "params": {
+        "key": "q"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 695,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 696,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 697,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 698,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 699,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 700,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Tracker unreadable",
+        "timeout": 6000
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 701,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 702,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 703,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 704,
+      "method": "press",
+      "params": {
+        "key": "R"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 705,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 706,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Ungrouped",
+        "timeout": 6000
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 707,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 708,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 709,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 710,
+      "method": "press",
+      "params": {
+        "key": "2"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 711,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 712,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 713,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 714,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 715,
+      "method": "press",
+      "params": {
+        "key": "y"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 716,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 717,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 718,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 719,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 720,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 721,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 722,
+      "method": "press",
+      "params": {
+        "key": "C-u"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 723,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 724,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 725,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 726,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 727,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 10
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 728,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 729,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Ungrouped",
+        "timeout": 6000
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 730,
+      "method": "close",
+      "params": {}
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 731,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 600
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 732,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 733,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 120
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 734,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 735,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Loading tracker",
+        "timeout": 5000
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 736,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 737,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 738,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 739,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Ungrouped",
+        "timeout": 6000
+      }
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "id": 740,
+      "method": "close",
+      "params": {}
+    },
+    "error": null
+  }
+]

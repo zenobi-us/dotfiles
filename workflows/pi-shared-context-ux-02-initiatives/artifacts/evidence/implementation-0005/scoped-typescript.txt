@@ -1,0 +1,9 @@
+mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts(17,82): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts(17,119): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts(18,80): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts(18,115): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(19,72): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(464,74): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(492,84): error TS2339: Property 'text' does not exist on type 'Response'.
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts(492,119): error TS2339: Property 'text' does not exist on type 'Response'.

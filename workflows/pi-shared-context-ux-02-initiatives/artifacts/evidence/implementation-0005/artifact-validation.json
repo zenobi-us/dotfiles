@@ -1,0 +1,31 @@
+{
+  "receipt_readback": "passed",
+  "envelope": "worktree-receipt/v1",
+  "all_13_criteria_evidence_exists": true,
+  "projection_states": "IMPLEMENTED",
+  "source_commit": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+  "markdown_links": [
+    {
+      "path": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-implementation-0005.md",
+      "links_checked": 7,
+      "readback": "passed"
+    },
+    {
+      "path": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+      "links_checked": 10,
+      "readback": "passed"
+    },
+    {
+      "path": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+      "links_checked": 4,
+      "readback": "passed"
+    },
+    {
+      "path": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/runtime-report.md",
+      "links_checked": 22,
+      "readback": "passed"
+    }
+  ],
+  "prior_history_retained": true
+}

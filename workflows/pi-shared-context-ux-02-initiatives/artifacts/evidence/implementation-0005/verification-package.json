@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "dependencies": {
+    "@crustjs/core": "0.0.19",
+    "@crustjs/plugins": "0.1.2",
+    "@earendil-works/pi-coding-agent": "1.4.0",
+    "@earendil-works/pi-tui": "1.4.0",
+    "@types/bun": "1.4.3",
+    "typescript": "5.9.3"
+  }
+}

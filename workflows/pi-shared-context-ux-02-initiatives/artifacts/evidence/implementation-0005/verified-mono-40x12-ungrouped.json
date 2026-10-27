@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    9,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - ux02-terminal-fixture-KfB7SN",
+  "lines": [
+    " help.",
+    " ╭────────────────────────────────────╮",
+    " │ Projects · Repo > ux02-terminal-fi…│",
+    " │  [1 Tracker]     2 Files    Tab fo…│",
+    "  Initiatives  >  Ungrouped",
+    " > unassigned · Items 0",
+    "  This collection is empty. No child",
+    "─ items.                               ─",
+    "",
+    "─Summary: Tickets without an assigne...─",
+    "/Esc back  Enter open  Tab focus  R ....",
+    "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •"
+  ]
+}

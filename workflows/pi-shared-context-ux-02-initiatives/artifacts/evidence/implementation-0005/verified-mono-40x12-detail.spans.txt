@@ -1,0 +1,29 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=9:39 screen=alternate title="π - ux02-terminal-fixture-KfB7SN"
+
+=== TEXT ===
+[001]  help.
+[002]  ╭────────────────────────────────────╮
+[003]  │ Projects · Repo > ux02-terminal-fi…│
+[004]  │  [1 Tracker]     2 Files    Tab fo…│
+[005]   Initiat…  >  Release…  >  item-0
+[006]  > Ticket / dependencies / receipts
+[007]   item-0 Unicode 依存関係 title that
+[008] ─ wraps below its own field without    ─
+[009]   overwriting state or identity
+[010] ─tracker/tickets/item-0.md · UNKNOWN   ─
+[011] /Esc back  Enter open  Tab focus  R ....
+[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •
+
+=== SPANS ===
+[001] 1-5:221,221,221
+[002] 1-38:221,221,221
+[003] 1-36:221,221,221 38-39:221,221,221
+[004] 1:221,221,221 3-15:221,221,221 18-28:221,221,221 31-36:221,221,221 38-39:221,221,221
+[005] 1-8:221,221,221 11-21:221,221,221 24-34:221,221,221
+[007] 2-35:221,221,221
+[008] 0:221,221,221 2-34:221,221,221 39:221,221,221
+[009] 0:inverse 2-30:221,221,221
+[010] 0-35:221,221,221 39:221,221,221
+[011] 0-35:221,221,221 39:221,221,221
+[012] 0-39:221,221,221

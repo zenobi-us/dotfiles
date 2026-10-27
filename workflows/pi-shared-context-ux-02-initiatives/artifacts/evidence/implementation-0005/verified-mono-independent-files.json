@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    20,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - ux02-terminal-fixture-KfB7SN",
+  "lines": [
+    "",
+    " ▀▀█  v1.1.0",
+    " █╭──────────────────────────────────────────────────────────────────────────╮",
+    " c│ Projects · Repo > ux02-terminal-fixture-KfB7SN                           │",
+    " P│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    " P│ Shared context  ›  ux02-terminal-fixture-KfB7SN  ›  Preview              │",
+    " e├──────────────────────────────────────────────────────────────────────────┤",
+    "  │▸ docs                                       │Select a file to preview it.│",
+    "  │▸ tracker                                    │                            │",
+    "  │  .context-routes.toml                       │                            │",
+    "  │  AGENTS.md                                  │                            │",
+    "  │  CONTEXT-MAP.md                             │                            │",
+    "  │                                             │                            │",
+    "  │                                             │                            │",
+    "  │                                             │                            │",
+    "  │                                             │                            │",
+    "  │                                             │                            │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ /tmp/ux02-terminal-fixture-KfB7SN/docs                                   │──",
+    "  │ ←→ browse  ↑↓ move  Enter open  Backspace parent y insert  f format: sha…│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/tmp/ux02-terminal-fixture-KfB7SN (master)",
+    "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 • medium"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    20,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - ux02-terminal-fixture-KfB7SN",
+  "lines": [
+    "",
+    " ▀▀█  v1.1.0",
+    " █╭──────────────────────────────────────────────────────────────────────────╮",
+    " c│ Projects · Repo > ux02-terminal-fixture-KfB7SN                           │",
+    " P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    " P│ Initiatives  >  Ungrouped                                                │",
+    " e│> unassigned · Items 0                                                    │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "  │ unassigned · Phase: unavailable                                          │",
+    "  │ Summary: Tickets without an assigned initiative.                         │",
+    "  │ This collection is empty. No child items.                                │",
+    "  │                                                                          │",
+    "  │                                                                          │",
+    "  │                                                                          │",
+    "  │                                                                          │",
+    "  │                                                                          │",
+    "  │                                                                          │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ Summary: Tickets without an assigned initiative.                         │──",
+    "  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/tmp/ux02-terminal-fixture-KfB7SN (master)",
+    "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 • medium"
+  ]
+}

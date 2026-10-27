@@ -1,0 +1,14 @@
+{
+  "goal_id": "15b72ce14c893c00",
+  "status": "complete",
+  "setup_uncached_tokens": 18025,
+  "native_goal_tokens_used": 230749,
+  "native_goal_budget": 231975,
+  "native_goal_remaining": 1226,
+  "combined_tokens_used": 248774,
+  "session_ceiling": 250000,
+  "time_used_seconds": 1373,
+  "goal_reset": false,
+  "receipt_ref": "workflows/pi-shared-context-ux-02-initiatives/events/implementation-0005.json",
+  "source": "native goal.complete result"
+}

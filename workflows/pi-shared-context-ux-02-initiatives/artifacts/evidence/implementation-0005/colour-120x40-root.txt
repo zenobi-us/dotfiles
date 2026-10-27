@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=34:119 screen=alternate title="π - ux02-terminal-fixture-KfB7SN"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > ux02-terminal-fixture-KfB7SN                                                                 │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives                                                                                                    │
+[008]    │> Initiatives · title / phase / Items                                                                           │
+[009]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │>Empty initiative                                                                Phase: unavailable  Items: 0   │
+[011]    │>empty                                                                                                          │
+[012]    │ Release navigation with a long initiative title that wraps beneath its       Phase: implementation  Items: 8   │
+[013]    │ title field                                                                                                    │
+[014]    │ release                                                                                                        │
+[015]    │ Ungrouped                                                                       Phase: unavailable  Items: 0   │
+[016]    │ Collection                                                                                                     │
+[017]    │                                                                                                                │
+[018]    │                                                                                                                │
+[019]    │                                                                                                                │
+[020]    │                                                                                                                │
+[021]    │                                                                                                                │
+[022]    │                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]    │                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/initiatives/empty/index.md                                                                             │
+[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux02-terminal-fixture-KfB7SN (master)
+[040] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

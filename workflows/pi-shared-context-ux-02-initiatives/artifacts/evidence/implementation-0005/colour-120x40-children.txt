@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=35:119 screen=alternate title="π - ux02-terminal-fixture-KfB7SN"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > ux02-terminal-fixture-KfB7SN                                                                 │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Release navigation with a long initiative title tha…                                           │
+[008]    │> release · Items 8                                                                                             │
+[009]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │ release · Phase: implementation                                                                                │
+[011]    │ Summary: Recorded release summary.                                                                             │
+[012]    │>[Enhancement]   item-0            Unicode 依存関係 title that wraps below its own field      State: claimed    │
+[013]    │>                                  without overwriting state or identity                                        │
+[014]    │>tracker/tickets/item-0.md                                                                                      │
+[015]    │ [Enhancement]   item-1            Child 1                                                    State: completed  │
+[016]    │ tracker/tickets/item-1.md                                                                                      │
+[017]    │ [Enhancement]   item-2            Child 2                                                    State: claimed    │
+[018]    │ tracker/tickets/item-2.md                                                                                      │
+[019]    │ [Enhancement]   item-3            Child 3                                                    State: claimed    │
+[020]    │ tracker/tickets/item-3.md                                                                                      │
+[021]    │ [Enhancement]   item-4            Child 4                                                    State: claimed    │
+[022]    │ tracker/tickets/item-4.md                                                                                      │
+[023]    │ [Enhancement]   item-5            Child 5                                                    State: claimed    │
+[024]    │ tracker/tickets/item-5.md                                                                                      │
+[025]    │ [Enhancement]   item-6            Child 6                                                    State: claimed    │
+[026]    │ tracker/tickets/item-6.md                                                                                      │
+[027]    │ [Enhancement]   item-7            Child 7                                                    State: claimed    │
+[028]    │ tracker/tickets/item-7.md                                                                                      │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Summary: Recorded release summary.                                                                             │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux02-terminal-fixture-KfB7SN (master)
+[040] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

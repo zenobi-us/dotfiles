@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    17,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - ux02-terminal-fixture-KfB7SN",
+  "lines": [
+    "",
+    " ▀▀█  v1.1.0",
+    " █╭──────────────────────────────────────────────────────────────────────────╮",
+    " c│ Projects · Repo > ux02-terminal-fixture-KfB7SN                           │",
+    " P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    " P│ Initiatives  >  Release navigation with a long i…                        │",
+    " e│> release · Items 8                                                       │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "  │ tracker/tickets/item-1.md                                                │",
+    "  │ [Enhancement]  ID: item-2                                                │",
+    "  │ Child 2                                                                  │",
+    "  │ State: claimed                                                           │",
+    "  │ tracker/tickets/item-2.md                                                │",
+    "  │ [Enhancement]  ID: item-3                                                │",
+    "  │ Child 3                                                                  │",
+    "  │ State: claimed                                                           │",
+    "  │ tracker/tickets/item-3.md                                                │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ Summary: Recorded release summary.                                       │──",
+    "  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/tmp/ux02-terminal-fixture-KfB7SN (master)",
+    "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 • medium"
+  ]
+}
