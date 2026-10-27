@@ -2,6 +2,10 @@
 
 Use Jira as the source of truth. Load the `twg` router and `twg-jira` skill for Jira operations. Use live `twg help` for unfamiliar command grammar. Do not call Jira REST endpoints directly or guess flags.
 
+## Initiative mapping
+
+An initiative/spec is the configured Epic or equivalent supported parent type. Follow [Initiative publication](../tasks/initiative.md). Discover the configured project, parent issue type, required fields, and child-parent operation through TWG before writing. Store the complete specification in the parent description; preserve discussion and native children. Create approved slices under that native parent and keep blocker links separate. Read the parent description and child relationships back. Return the parent in `initiatives` using its key and canonical URL. If the project mapping or TWG operation is missing, report that prerequisite; do not substitute a normal task, guessed field, or local initiative file.
+
 ## Operations
 
 - Read known tickets with `jira workitem get`.

@@ -1,6 +1,6 @@
 # Ticket operation usage
 
-Read this reference for `read`, `list`, `create`, `update`, `claim`, `review`, and `complete`. For setup, read `tasks/setup.md` instead; setup can run before tracker configuration exists.
+Read this reference for record operations, including `check` and `migrate`. For setup, read `tasks/setup.md` instead; setup can run before tracker configuration exists.
 
 ## Resolve and validate
 
@@ -10,6 +10,10 @@ Read this reference for `read`, `list`, `create`, `update`, `claim`, `review`, a
 4. Compare the configured backend with the shared-context ticket route. If they conflict, stop and report the mismatch.
 5. For local Markdown, resolve ticket IDs and the exact ticket and initiative collections through shared-context. Keep the repository root for the graph CLI; collections can use different stores.
 6. Follow the selected task and store playbooks. If the tracker definition lacks the requested operation, stop and report it.
+
+Select initiative or ticket before resolution. “Publish this spec” selects an initiative. For initiative operations or child membership changes, read [Initiative publication](tasks/initiative.md). The Local Markdown store defines `index.md` as the complete specification. Hosted stores must declare their native initiative mapping; the shared-context initiatives route alone does not define a hosted issue operation.
+
+For Local Markdown, follow [Tracker schemas](schema.md). Read-only operations may accept supported legacy records. New records must declare the current schema. Before updates, claims, review comments, completion, or membership writes, validate every affected record and require explicit migration for legacy records. Unknown explicit versions block writes. Never use a claim or comment operation to silently upgrade a record. [Check and migrate](tasks/migrate.md) owns the executable validation/migration procedure.
 
 ## Store router
 

@@ -43,6 +43,8 @@ The issue tracker and triage label vocabulary should have been provided to you. 
 
 Work from whatever is already in the conversation context. If the user passes a reference (a spec path, an issue number or URL) as an argument, fetch it and read its full body and comments.
 
+Treat a specification as an initiative. Read its canonical record through `reading-and-writing-tickets`, including discussion and existing children. Retain its ID and reference. For a conversation or standalone plan without an initiative, include initiative publication in the proposed breakdown and obtain approval before writing it. A legacy specification ticket or separate `spec.md` requires an explicit migration decision; do not silently use it as a new parent or duplicate it.
+
 ### 2. Explore the codebase (optional)
 
 If you have not already explored the codebase, do so to understand the current state of the code. Ticket titles and descriptions should use the project's domain glossary vocabulary, and respect ADRs in the area you're touching.
@@ -84,7 +86,9 @@ Iterate until the user approves the breakdown.
 
 ### 5. Publish the tickets to the configured tracker
 
-After the user approves the breakdown, use `/reading-and-writing-tickets` to create the tickets. Pass the approved title, end-to-end behaviour, acceptance criteria, ticket type, parent, and direct blocking edges. That skill owns tracker selection, ticket schema, paths, fields, labels, dependency validation, and publication. Do not close or modify a parent issue unless the user explicitly requests it.
+After the user approves the breakdown, use `/reading-and-writing-tickets` to publish any approved new initiative and create its child tickets. Pass the initiative ID as each child's parent, plus the approved title, end-to-end behaviour, acceptance criteria, ticket type, sequence, and direct blocking edges. Ask that skill to update the initiative's child links and validate both sides of membership through normal tracker discovery. That skill owns schema, paths, fields, labels, dependency validation, and publication. Creating children authorizes membership updates only; preserve the specification and discussion, and do not close the initiative.
+
+Request `tracker-ticket/v1` for new Local Markdown children and `tracker-initiative/v1` for a new parent. The ticket skill validates these contracts and returns `tracker-result/v1`. Legacy parent or membership records require an approved migration before publication; ticket-decomposition approval is not migration approval.
 
 Work the **frontier**: any ticket whose blockers are all done. For a purely linear chain that means top to bottom.
 

@@ -1,4 +1,6 @@
-# Read a ticket
+# Read a record
+
+For an initiative or spec, follow [Initiative publication](initiative.md) to read its complete specification, discussion, and children. Use the steps below for a ticket.
 
 1. Resolve the selector with the configured store. Reject ambiguous selectors.
 2. Read the complete ticket. Include its body, comments, status, and direct blockers when the store exposes them.

@@ -1,0 +1,83 @@
+# Byte-preserving edits stay in mq; okf owns frontmatter interpretation.
+import "github.com/harehare/okf.mq" |
+
+def inspect(source):
+  let normalized = replace(source, "\r\n", "\n")
+  | {fields: okf::okf_parse(normalized)["frontmatter"], links: filter(map(to_markdown(source), fn(node): {url: node.url, node: node};), fn(link): !is_none(link["url"]);)}
+end
+
+def stamp(source, schema, defaults, removed):
+  let newline = if (contains(source, "\r\n")): "\r\n" else: "\n"
+  | let lines = split(source, newline)
+  | let close = if (lines[0] == "---"): find_index(skip(lines, 1), fn(line): line == "---";) + 1 else: -1
+  | if (close < 1): error("Migration requires a leading YAML frontmatter block")
+    else:
+      do
+        var kept = []
+        | var dropping = false
+        | foreach (line, slice(lines, 1, close)):
+            do
+              let top = is_regex_match(line, "^[^ \\t#][^:]*:")
+              | let key = if (top): replace(replace(trim(split(line, ":")[0]), "\"", ""), "'", "") else: ""
+              | if (top): dropping = in(removed + ["schema"], key) else: None
+              | if (!dropping || starts_with(trim(line), "#") || trim(line) == ""):
+                  kept = kept + [line]
+                elif (top && contains(line, " #")):
+                  kept = kept + [slice(line, index(line, " #") + 1, len(line))]
+                else: None
+              | None
+            end
+          end
+        | let added = map(keys(defaults), fn(key): key + ": " + defaults[key];)
+        | join(["---", "schema: " + schema] + kept + added + slice(lines, close, len(lines)), newline)
+      end
+end
+
+def replace_link(source, item):
+  let lines = split(source, "\n")
+  | let start = item["start"]
+  | let finish = item["end"]
+  | let selected = slice(lines, start["line"] - 1, finish["line"])
+  | let first = selected[0]
+  | let last = selected[len(selected) - 1]
+  | let token = if (len(selected) == 1):
+      slice(first, start["column"] - 1, finish["column"] - 1)
+    else:
+      join([slice(first, start["column"] - 1, len(first))] + slice(selected, 1, len(selected) - 1) + [slice(last, 0, finish["column"] - 1)], "\n")
+  | let delimiter = if (index(token, "](") != -1): index(token, "](") + 2 elif (index(token, "]:") != -1): index(token, "]:") + 2 else: 0
+  | let offset = index(slice(token, delimiter, len(token)), item["before"])
+  | if (offset == -1): error("Cannot preserve this Markdown link spelling safely; rewrite it explicitly before migration") else: None
+  | let destination = delimiter + offset
+  | let rewritten = slice(token, 0, destination) + item["after"] + slice(token, destination + len(item["before"]), len(token))
+  | let patched = slice(first, 0, start["column"] - 1) + rewritten + slice(last, finish["column"] - 1, len(last))
+  | join(slice(lines, 0, start["line"] - 1) + [patched] + slice(lines, finish["line"], len(lines)), "\n")
+end
+
+def membership(source, entries):
+  let newline = if (contains(source, "\r\n")): "\r\n" else: "\n"
+  | let lines = split(source, newline)
+  | let heading = find_index(lines, fn(line): line == "## Tickets";)
+  | let addition = map(entries, fn(entry): okf::okf_index_entry({path: entry["url"], title: entry["text"]});)
+  | if (heading == -1):
+      source + newline + "## Tickets" + newline + newline + join(addition, newline) + newline
+    else:
+      do
+        let tail = skip(lines, heading + 1)
+        | let next = find_index(tail, fn(line): is_regex_match(line, "^#{1,2} ");)
+        | let boundary = if (next == -1): len(lines) else: heading + 1 + next
+        | let existing = okf::okf_extract_links(join(slice(lines, heading + 1, boundary), newline))
+        | let missing = filter(addition, fn(line): !in(map(existing, fn(link): link["url"];), okf::okf_extract_links(line)[0]["url"]);)
+        | join(slice(lines, 0, boundary) + missing + [""] + skip(lines, boundary), newline)
+      end
+end
+
+if (operation == "inspect"):
+  inspect(.)
+elif (operation == "stamp"):
+  stamp(., schema, defaults, removed)
+elif (operation == "replace"):
+  fold(replacements, ., replace_link)
+elif (operation == "membership"):
+  membership(., entries)
+else:
+  error("Unknown Markdown operation")

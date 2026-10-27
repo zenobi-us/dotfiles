@@ -15,7 +15,11 @@ independently. Use shared-context to resolve their exact paths.
 ## Conventions
 
 - One initiative per directory returned by `resolve initiative --id <initiative-id>`.
-- Use `spec.md`, `plan.md`, and `index.md` inside an initiative when they apply.
+- A spec is an initiative. Store its complete specification, `id` and `title` frontmatter, child ticket links under `## Tickets`, and discussion under `## Comments` in `index.md`. Use optional `plan.md` for execution planning only.
+- Publish specs through the ticket skill's initiative operation, not as executable tickets or separate `spec.md` files. Existing records require explicit migration approval.
+- Set each child's `parent` to the initiative ID and keep its index link consistent. Sequence numbers order display; `blocked_by` defines dependencies.
+- New tickets declare `schema: tracker-ticket/v1`; initiative indexes declare `schema: tracker-initiative/v1`. The ticket skill owns executable validation and content migration. Supported unversioned records remain readable; migrate explicitly before mutation. Unknown explicit versions block writes.
+- Use the ticket skill's `check` and `migrate plan/apply/check` operations. Its scripts are relative to the installed skill directory, not this repository. `shared-context migrate` moves stores and does not upgrade tracker schemas.
 - Store each ticket at the path returned by `resolve ticket --id <stable-id>`.
 - Use the stable ticket ID as the filename. Put the sequence and title in
   frontmatter.
@@ -37,8 +41,8 @@ Use the shared-context CLI for every physical path:
 - Tracker collection: `shared-context resolve tracker --json`
 - Ticket collection: `shared-context resolve tickets --json`
 - Initiative collection: `shared-context resolve initiatives --json`
-- Initiative: `shared-context path initiative --id <initiative-id>`
-- Ticket: `shared-context path ticket --id <ticket-id>`
+- Initiative: `shared-context resolve initiative --id <initiative-id> --json`
+- Ticket: `shared-context resolve ticket --id <ticket-id> --json`
 
 Do not join `ALIGNMENT_ROOT`, `initiative-root`, or `issue-root` by hand.
 
@@ -94,7 +98,7 @@ GitHub shares one number space across issues and PRs, so a bare `#42` may be eit
 
 ## When a skill says "publish to the issue tracker"
 
-Create a GitHub issue.
+Use `reading-and-writing-tickets` to select the record kind. A spec creates or updates the initiative/map issue with its full specification; an executable slice creates a child issue. Confirm the native parent/sub-issue operation before publishing children.
 
 ## When a skill says "fetch the relevant ticket"
 
@@ -104,8 +108,8 @@ Run `gh issue view <number> --comments`.
 
 Used by `/wayfinder`. The **map** is a single issue with **child** issues as tickets.
 
-- **Map**: a single issue labelled `wayfinder:map`, holding the Notes / Decisions-so-far / Fog body. `gh issue create --label wayfinder:map`.
-- **Child ticket**: an issue linked to the map as a GitHub sub-issue (`gh api` on the sub-issues endpoint). Where sub-issues aren't enabled, add the child to a task list in the map body and put `Part of #<map>` at the top of the child body. Labels: `wayfinder:<type>` (`research`/`prototype`/`grilling`/`task`). Once claimed, the ticket is assigned to the driving dev.
+- **Map / initiative / spec**: a single issue labelled `wayfinder:map`, holding the complete specification and any Notes / Decisions-so-far / Fog sections. Publish through the ticket skill using the configured issue operation.
+- **Child ticket**: an issue linked to the map as a native GitHub sub-issue. Confirm the API operation and permissions before writing. If unavailable, report the missing relationship operation instead of creating unlinked children. Existing legacy body relationships remain readable but are not the publication contract. Labels: `wayfinder:<type>` (`research`/`prototype`/`grilling`/`task`). Once claimed, the ticket is assigned to the driving dev.
 - **Blocking**: GitHub's **native issue dependencies** are the canonical, UI-visible representation. Set them during creation with `gh issue create --blocked-by "<blocker-number>,<blocker-number>"` or after creation with `gh issue edit <child> --blocked-by "<blocker-number>,<blocker-number>"`. Use `--blocking` for the reverse relationship. Each flag accepts issue numbers or URLs. A ticket is unblocked when every blocker is closed. Use a `Blocked by: #<n>, #<n>` line only when native dependencies are unavailable.
 - **Frontier query**: list the map's open children (`gh issue list --state open`, scoped to the map's sub-issues / task list), inspect dependencies with `gh issue view <n> --json blockedBy,blocking`, drop any with an open blocker or an assignee, and take the first issue in map order.
 - **Claim**: `gh issue edit <n> --add-assignee @me` — the session's first write.

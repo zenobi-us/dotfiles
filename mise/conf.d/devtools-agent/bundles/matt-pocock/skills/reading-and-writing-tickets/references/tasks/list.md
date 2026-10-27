@@ -1,4 +1,6 @@
-# List tickets
+# List records
+
+For initiative listing, follow [Initiative publication](initiative.md) and return `initiatives`. Use the steps below for executable tickets and their dependency graph.
 
 1. Apply the user's filters and scope through the configured store.
 2. Return each ticket's identifier, title, state, direct blockers, and canonical `ref` when available.

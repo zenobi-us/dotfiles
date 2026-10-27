@@ -1,4 +1,6 @@
-# Update a ticket
+# Update a record
+
+For an initiative/spec or child membership change, follow [Initiative publication](initiative.md). Reparenting must update both affected initiatives and the child's parent. Use the steps below for ticket content and dependency changes.
 
 1. Read the current ticket before changing it.
 2. Change only the fields the user named. Preserve unknown fields, body sections, and comments.

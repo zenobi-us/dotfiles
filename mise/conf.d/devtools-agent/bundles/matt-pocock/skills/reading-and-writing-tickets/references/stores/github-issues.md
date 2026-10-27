@@ -2,6 +2,10 @@
 
 Use GitHub Issues as the source of truth. Use the repository declared in `docs/agents/issue-tracker.md`. Pass that repository to the dependency graph script. GitHub Issues must be enabled.
 
+## Initiative mapping
+
+An initiative/spec is the configured spec/map issue, not an implementation ticket. Follow [Initiative publication](../tasks/initiative.md). Before creation, confirm the configured map marker (`wayfinder:map` for the documented graph procedure), issue publication operation, and native parent/sub-issue operations. Put the complete specification in that issue's body and preserve its comments and children on update. Add approved implementation issues through native parent/sub-issue relationships; blockers remain separate. Read the issue and its child relationships back. Return it in `initiatives` using its issue number and URL. If configuration or API support lacks the mapping or relationship operation, report the missing prerequisite instead of creating an ordinary issue as a fallback.
+
 ## Operations
 
 Use the tracker document's commands and settings. The configured operations use `gh issue create`, `gh issue view`, `gh issue list`, `gh issue comment`, `gh issue edit`, and `gh issue close`. Use native issue relationship fields for blockers. Do not store a second `blocks` relationship.

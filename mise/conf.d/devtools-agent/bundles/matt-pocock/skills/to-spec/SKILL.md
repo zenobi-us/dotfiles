@@ -1,6 +1,6 @@
 ---
 name: to-spec
-description: Turn the current conversation into a spec and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.
+description: Synthesize the current conversation into a specification and publish it as an initiative through the configured tracker.
 disable-model-invocation: true
 user-invocable: true
 ---
@@ -22,7 +22,9 @@ Before resolving workflow or domain artifacts, follow [ALIGNMENT-ROOT.md](../../
 
 The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.
 
-When publishing the spec, use `/reading-and-writing-tickets` for tracker selection, ticket schema, paths, fields, labels, and write operations. This skill owns spec synthesis and workflow intent only.
+Publish through `/reading-and-writing-tickets` as an initiative create or update operation. “Spec” and “initiative” name the same record. For Local Markdown, the complete specification belongs in the resolved initiative's `index.md`, not a ticket or separate `spec.md`. The ticket skill owns paths, metadata, child membership, publication, and read-back validation. Preserve existing discussion and children. Legacy specification tickets require explicit migration approval.
+
+Request the current initiative schema through the ticket skill and return its `tracker-result/v1` result. For Local Markdown, this is `tracker-initiative/v1`. For legacy input, request a read-only migration plan; publication approval alone does not authorize applying that plan.
 
 ## Process
 
@@ -32,7 +34,7 @@ When publishing the spec, use `/reading-and-writing-tickets` for tracker selecti
 
 Check with the user that these seams match their expectations.
 
-3. Write the spec using the template below, then ask `/reading-and-writing-tickets` to publish it to the configured issue tracker. Apply the `ready-for-agent` triage label through that skill; no additional triage is needed.
+3. Write the spec using the template below, then ask `/reading-and-writing-tickets` to publish an initiative with its stable ID, title, and complete specification. Use the existing initiative identity when supplied. Apply `ready-for-agent` only where the configured initiative mapping supports readiness metadata. Do not add ticket `work_status` or create an executable specification ticket. Return the initiative's canonical reference.
 
 <spec-template>
 

@@ -17,14 +17,14 @@ If either input is missing, ask for it before doing repository work. If `$IDEA` 
 
 ## Non-negotiable outputs
 
-Use the `agent-core:shared-context` skill from the repository root. Use the root
-that the skill resolves as `ALIGNMENT_ROOT`. Choose a stable feature ID, then use
-that skill to resolve the initiative destination for `<feature-id>`. Create one
-`spec.md` in that initiative before the final decision. Read the shared-context
-publishing procedure after each shared-root write. Keep the file when the idea is
-not viable. Update the same file after each completed stage: workspace
-establishment, repository-rule discovery, outcome clarification, feasibility
-research, capability grouping, viability gate, and submission preparation.
+Use the `agent-core:shared-context` skill from the repository root to resolve
+`ALIGNMENT_ROOT`. Choose a stable feature ID. Use `reading-and-writing-tickets`
+to publish the feature specification as an initiative. For Local Markdown, keep
+the draft in that initiative's `index.md`, not a separate specification file.
+Keep the record when the idea is not viable. Update the same record after each
+completed stage: workspace establishment, repository-rule discovery, outcome
+clarification, feasibility research, capability grouping, viability gate, and
+submission preparation. Apply the resolved store's publication rules.
 Include:
 
 - repository and revision examined
@@ -40,7 +40,7 @@ Include:
 - final status: `viable`, `needs user decision`, or `not viable`
 - submission link, command, or exact next step when submitted
 
-Use a stable name such as `feature-requests/<repo-slug>-<date>-<short-slug>.md` unless the active shared context defines another convention. Do not place the draft only in the temporary clone.
+Keep the stable initiative identity throughout the investigation. Do not place the draft only in the temporary clone or create a second feature-request file.
 
 ## Workflow
 
@@ -62,9 +62,7 @@ Use a stable name such as `feature-requests/<repo-slug>-<date>-<short-slug>.md` 
 
    Record the clone URL, path, branch, commit, and remote state.
 4. Use the `agent-core:shared-context` skill from inside the clone. Confirm that its resolved origin and slug match `$REPO`. Use its resolved root; do not derive a shared path or request `init` or `migrate` unless the user explicitly requests a storage change.
-5. Use that skill to resolve the initiative destination for `<feature-id>`. Create `spec.md` in that
-   directory. Confirm that the file exists, and read the publishing procedure
-   before continuing. Update the draft after every completed stage.
+5. Use `reading-and-writing-tickets` to create or update the initiative for `<feature-id>`. Read its canonical record back before continuing. Update the draft after every completed stage and preserve any existing children and discussion.
 
 **Completion criterion:** The repository is cloned in a temporary directory, the clone revision is recorded, the CLI reports the matching origin and root, and the draft exists in the active shared root.
 
