@@ -7,7 +7,7 @@ sequence: 1
 title: Select shared-context projects through interactive breadcrumbs
 triage: ready-for-agent
 type: enhancement
-work_status: implemented
+work_status: completed
 ---
 
 ## What to build
@@ -68,3 +68,5 @@ Review verdict: FAILURE. Reviewed commit: `f4dffcaebf159cb857eb6008fad80dfb03e21
 Review verdict: FAILURE. Reviewed commit: `34e28395c83826cdf46e1f09b8ad7761df2be219`. Timestamp: `2026-10-27T04:39:25.224307Z`. [Review artifact](../../workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0017.md).
 
 Review verdict: SUCCESS. Reviewed commit: `fa5c5427d3b541d80b17d3acfc16b518d111e724`. Timestamp: `2026-10-27T05:04:12.904772Z`. [Review artifact](../../workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0023.md).
+
+Completed after SUCCESS review of `fa5c5427d3b541d80b17d3acfc16b518d111e724` and source-preserving squash integration `a069050baec9cda454feddc31eab2c8b4420df28`. The integration was verified on `origin/master`. Integrated extension/shared-context validation passed 129 tests, and actual Pi confirmed migrated tracker loading, filtering, safe zero-result Enter and the selected target. The original reviewed source was not rebased or rewritten.
