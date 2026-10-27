@@ -1,0 +1,173 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-ticket-completed-0032",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "finish",
+  "event": "phase-result",
+  "attempt": 2,
+  "parent_receipt": "finish-pushed-0031",
+  "status": "FINISHING",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "created_at": "2026-10-27T21:48:12.246Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "worktree-finish-parent",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0028"
+  },
+  "review_receipt": "review-0023",
+  "reviewed_source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "reviewed_source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "observed_base_commit": "49b89902c390e668739bd7a408915f858b1521fc",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "c60cb72c42da52a49c4e5b02d3bbb75b4b764aa8",
+  "checkpoint": "ticket_completed",
+  "next_step": "remove_worktrees",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0023.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-complete-0024.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "migration-publication",
+      "ref": "78029b50dd399ece54f456edd58d5716d36d00d2"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/finish-waiting-0027.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0028/reviewed-source-validation.txt"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/finish-prepared-0028.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/finish-merged-0029.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/finish-validated-0030.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/finish-pushed-0031.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/finish-ticket-completed-0032.json"
+    }
+  ],
+  "base_before": "49b89902c390e668739bd7a408915f858b1521fc",
+  "expected_merge_tree": "72f2ff643f3fde2c945f28e0b90e4a51be5a21b5",
+  "integration_method": "approved isolated squash integration, then Worktrunk --no-commit --no-rebase --no-remove",
+  "integration_branch": "integrate/pi-shared-context-ux-01-projects-finish",
+  "integration_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-01-projects-finish",
+  "proposed_merge_message": "feat: finish tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "review_artifact": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0023.md",
+  "adr_refs": [],
+  "source_preservation_required": true,
+  "merged_commit": "a069050baec9cda454feddc31eab2c8b4420df28",
+  "merged_tree": "72f2ff643f3fde2c945f28e0b90e4a51be5a21b5",
+  "merged_parents": [
+    "49b89902c390e668739bd7a408915f858b1521fc"
+  ],
+  "source_preserved": true,
+  "worktree_preserved": true,
+  "workspace_preserved": true,
+  "integrated_validation": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "passed": 129,
+      "failed": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0028/integrated-validation.txt"
+    },
+    {
+      "command": [
+        "termscope",
+        "session",
+        "--cols",
+        "120",
+        "--rows",
+        "40",
+        "--",
+        "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+        "--offline",
+        "--no-session",
+        "--no-extensions",
+        "--no-skills",
+        "--no-prompt-templates",
+        "--no-context-files",
+        "--no-mcp",
+        "-e",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "observations": [
+        "Migrated v1 initiative/ticket tracker loaded",
+        "Projects zero-result Enter stayed open",
+        "Identity subsequence selected current tracker",
+        "Pi session directory unchanged"
+      ],
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/finish-0028/pi-runtime.json"
+    }
+  ],
+  "pushed": true,
+  "remote_integration_reachable": true,
+  "publication_verification": {
+    "command": "git ls-remote origin refs/heads/master; git merge-base --is-ancestor a069050baec9cda454feddc31eab2c8b4420df28 origin/master",
+    "exit_code": 0
+  },
+  "ticket_completed": true,
+  "ticket_observed_state": "completed",
+  "ticket_completion_commit": "c60cb72c42da52a49c4e5b02d3bbb75b4b764aa8",
+  "ticket_publication_commit": "c60cb72c42da52a49c4e5b02d3bbb75b4b764aa8",
+  "ticket_validation": {
+    "command": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-shared-context-ux-01-projects",
+    "status": "passed",
+    "schema": "tracker-ticket/v1",
+    "state": "completed"
+  }
+}

@@ -5,8 +5,8 @@ initiative: pi-shared-context-tui-ux-spec
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: finish-waiting-0027
-state: FINISH_FAILED
+latest_receipt: finish-0034
+state: FINISHED
 source_branch: feature/pi-shared-context-ux-01-projects
 base_branch: master
 workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects

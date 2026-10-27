@@ -1,0 +1,663 @@
+{
+  "command": [
+    "termscope",
+    "session",
+    "--cols",
+    "120",
+    "--rows",
+    "40",
+    "--",
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-mcp",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "protocol": [
+    {
+      "request": {
+        "id": 1,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 1200
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 1,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 2,
+        "method": "type",
+        "params": {
+          "text": "/shared-context"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 2,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 3,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 3,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 4,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Projects",
+          "timeout": 15000
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 4,
+        "result": {
+          "found": true,
+          "row": 3,
+          "col": 27
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 5,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 5,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=15:119 screen=primary title=\"\"\n\n=== TEXT ===\n[001] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[002] \n[003]  Trust project folder?\n[004]  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\n[005] \n[006]  This allows pi to load .pi settings and resources, install missing project packages, and execute project extensions.\n[007] \n[008]  → Trust\n[009]    Trust parent folder (/run/media/zenobius/Store/Projects/Mine/Github)\n[010]    Trust (this session only)\n[011]    Do not trust\n[012]    Do not trust (this session only)\n[013] \n[014]  ↑↓ navigate  enter select  escape/ctrl+c cancel\n[015] \n[016] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 6,
+        "method": "press",
+        "params": {
+          "key": "<down>"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 6,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 7,
+        "method": "press",
+        "params": {
+          "key": "<down>"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 7,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 8,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 8,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 9,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 1000
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 9,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 10,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 10,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=36:0 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[017] ed-context/index.ts. Using\n[018] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[019] ed-context/index.ts.\n[020] \n[021] \n[022]  Warning: No models available. Use /login to log into a provider via OAuth or API key. See:\n[023]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md\n[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 11,
+        "method": "type",
+        "params": {
+          "text": "/shared-context"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 11,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 12,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 12,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 13,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Projects · Repo",
+          "timeout": 15000
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 13,
+        "result": {
+          "found": true,
+          "row": 3,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 14,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 14,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=37:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > Dotfiles                                                                                     │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Shared context · Home                                                                                          │\n[008] [Ex│> Shared context                                                                                                │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │ Loading tracker records…                                                                                       │\n[011] [Ex│ R reload · b browse files · q close                                                                            │\n[012]   p│                                                                                                                │\n[013] /ru│                                                                                                                │har\n[014] ed-│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │har\n[017] ed-│                                                                                                                │\n[018] /ru│                                                                                                                │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    │                                                                                                                │\n[035]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[036] ───│ Loading tracker…                                                                                               │───\n[037]    │ 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close                                    │\n[038] ───╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯───\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 15,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 1000
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 15,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 16,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 16,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > Dotfiles                                                                                     │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Shared context · Home                                                                                          │\n[008] [Ex│> Ready-work Home · ready                                                                                       │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[Enhancement] pi-shared-context-ux-02-initiatives [READY] Browse initiatives through structured tracker rows   │\n[011] [Ex│ + [Initiative] pi-shared-context-tui-ux-spec Improve shared-context project navigation and tracker readability…│\n[012]   p│                                                                                                                │\n[013] /ru│                                                                                                                │har\n[014] ed-│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │har\n[017] ed-│                                                                                                                │\n[018] /ru│                                                                                                                │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    │                                                                                                                │\n[035]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[036] ───│ tracker/tickets/pi-shared-context-ux-02-initiatives.md · READY                                                 │───\n[037]    │ 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close                                    │\n[038] ───╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯───\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 17,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 17,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 18,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 500
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 18,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 19,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 19,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=23:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /ru╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮har\n[017] ed-│ Projects · Repo > Dotfiles                                                                                     │\n[018] /ru│   1 Tracker      2 Files    Tab focus · Space/Enter activate                                                   │har\n[019] ed-│ Projects (1/1) · ↑↓ select · Enter open · Esc close                                                            │\n[020]    │ Type to filter names and identities                                                                            │\n[021]    │ > Dotfiles (current)                                                                                           │\n[022]  Wa│   github.com/zenobi-us/dotfiles                                                                                │\n[023]    │No stored projects. The current project is available.                                                           │\n[024]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 20,
+        "method": "type",
+        "params": {
+          "text": "q12NORESULT"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 20,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 21,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 21,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=23:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /ru╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮har\n[017] ed-│ Projects · Repo > Dotfiles                                                                                     │\n[018] /ru│   1 Tracker      2 Files    Tab focus · Space/Enter activate                                                   │har\n[019] ed-│ Projects (1/1) · ↑↓ select · Enter open · Esc close                                                            │\n[020]    │ Type to filter names and identities                                                                            │\n[021]    │ > Dotfiles (current)                                                                                           │\n[022]  Wa│   github.com/zenobi-us/dotfiles                                                                                │\n[023]    │No stored projects. The current project is available.                                                           │\n[024]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 22,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Projects (0/1)",
+          "timeout": 5000
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 22,
+        "result": {
+          "found": true,
+          "row": 19,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 23,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 23,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=21:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[017] ed-╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[018] /ru│ Projects · Repo > Dotfiles                                                                                     │har\n[019] ed-│   1 Tracker      2 Files    Tab focus · Space/Enter activate                                                   │\n[020]    │ Projects (0/1) · ↑↓ select · Enter open · Esc close                                                            │\n[021]    │ Filter: q12NORESULT                                                                                            │\n[022]  Wa│ No projects match. Edit the filter or use Ctrl+U to clear.                                                     │\n[023]    │No stored projects. The current project is available.                                                           │\n[024]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 24,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 24,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=21:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[017] ed-╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[018] /ru│ Projects · Repo > Dotfiles                                                                                     │har\n[019] ed-│   1 Tracker      2 Files    Tab focus · Space/Enter activate                                                   │\n[020]    │ Projects (0/1) · ↑↓ select · Enter open · Esc close                                                            │\n[021]    │ Filter: q12NORESULT                                                                                            │\n[022]  Wa│ No projects match. Edit the filter or use Ctrl+U to clear.                                                     │\n[023]    │No stored projects. The current project is available.                                                           │\n[024]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 25,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 25,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 26,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 150
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 26,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 27,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 27,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=21:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[017] ed-╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[018] /ru│ Projects · Repo > Dotfiles                                                                                     │har\n[019] ed-│   1 Tracker      2 Files    Tab focus · Space/Enter activate                                                   │\n[020]    │ Projects (0/1) · ↑↓ select · Enter open · Esc close                                                            │\n[021]    │ Filter: q12NORESULT                                                                                            │\n[022]  Wa│ No projects match. Edit the filter or use Ctrl+U to clear.                                                     │\n[023]    │No stored projects. The current project is available.                                                           │\n[024]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 28,
+        "method": "press",
+        "params": {
+          "key": "C-u"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 28,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 29,
+        "method": "type",
+        "params": {
+          "text": "znbdtfl"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 29,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 30,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Projects (1/1)",
+          "timeout": 5000
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 30,
+        "result": {
+          "found": true,
+          "row": 18,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 31,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 31,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=21:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /ru╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮har\n[017] ed-│ Projects · Repo > Dotfiles                                                                                     │\n[018] /ru│   1 Tracker      2 Files    Tab focus · Space/Enter activate                                                   │har\n[019] ed-│ Projects (1/1) · ↑↓ select · Enter open · Esc close                                                            │\n[020]    │ Type to filter names and identities                                                                            │\n[021]    │ > Dotfiles (current)                                                                                           │\n[022]  Wa│   github.com/zenobi-us/dotfiles                                                                                │\n[023]    │No stored projects. The current project is available.                                                           │\n[024]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 32,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 32,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 33,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Ready-work Home",
+          "timeout": 5000
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 33,
+        "result": {
+          "found": true,
+          "row": 7,
+          "col": 8
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 34,
+        "method": "snapshot",
+        "params": {}
+      }
+    },
+    {
+      "response": {
+        "id": 34,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=37:119 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > Dotfiles                                                                                     │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Shared context · Home                                                                                          │\n[008] [Ex│> Ready-work Home · ready                                                                                       │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[Enhancement] pi-shared-context-ux-02-initiatives [READY] Browse initiatives through structured tracker rows   │\n[011] [Ex│ + [Initiative] pi-shared-context-tui-ux-spec Improve shared-context project navigation and tracker readability…│\n[012]   p│                                                                                                                │\n[013] /ru│                                                                                                                │har\n[014] ed-│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │har\n[017] ed-│                                                                                                                │\n[018] /ru│                                                                                                                │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    │                                                                                                                │\n[035]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[036] ───│ tracker/tickets/pi-shared-context-ux-02-initiatives.md · READY                                                 │───\n[037]    │ 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close                                    │\n[038] ───╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯───\n[039] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 35,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 35,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 36,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Projects (1/1)",
+          "timeout": 5000
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 36,
+        "result": {
+          "found": true,
+          "row": 18,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 37,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 37,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 38,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 100
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 38,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 39,
+        "method": "press",
+        "params": {
+          "key": "C-d"
+        }
+      }
+    },
+    {
+      "response": {
+        "id": 39,
+        "result": {}
+      }
+    },
+    {
+      "response": {
+        "event": "child_exit",
+        "exit_code": 0
+      }
+    }
+  ],
+  "stderr": "",
+  "exit_code": 0,
+  "notes": [
+    "Isolated HOME required session-only project trust.",
+    "Initial snapshot raced render; waited for explicit Projects (0/1) before assertion.",
+    "Known host shortcut conflict observed; no model or live-service request."
+  ]
+}

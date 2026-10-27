@@ -1,0 +1,102 @@
+{
+  "source_worktree_exists": false,
+  "integration_worktree_exists": false,
+  "source_workspace_present": false,
+  "source_workspace_id": "w7A",
+  "source_workspace_already_closed_before_cleanup": true,
+  "source_branch_retained": "feature/pi-shared-context-ux-01-projects",
+  "source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "workspaces": [
+    {
+      "active_tab_id": "w68:t1",
+      "agent_status": "unknown",
+      "focused": false,
+      "label": "Notes",
+      "number": 1,
+      "pane_count": 3,
+      "tab_count": 2,
+      "workspace_id": "w68"
+    },
+    {
+      "active_tab_id": "w64:t1",
+      "agent_status": "working",
+      "focused": true,
+      "label": "Dotfiles",
+      "number": 2,
+      "pane_count": 3,
+      "tab_count": 1,
+      "workspace_id": "w64",
+      "worktree": {
+        "checkout_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "is_linked_worktree": false,
+        "repo_key": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git",
+        "repo_name": "Dotfiles",
+        "repo_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      }
+    },
+    {
+      "active_tab_id": "w67:t1",
+      "agent_status": "unknown",
+      "focused": false,
+      "label": "nvim",
+      "number": 3,
+      "pane_count": 2,
+      "tab_count": 1,
+      "workspace_id": "w67"
+    },
+    {
+      "active_tab_id": "w65:t1",
+      "agent_status": "unknown",
+      "focused": false,
+      "label": "serverfiles",
+      "number": 4,
+      "pane_count": 2,
+      "tab_count": 1,
+      "workspace_id": "w65"
+    },
+    {
+      "active_tab_id": "w66:t1",
+      "agent_status": "unknown",
+      "focused": false,
+      "label": "Lora",
+      "number": 5,
+      "pane_count": 2,
+      "tab_count": 1,
+      "workspace_id": "w66"
+    },
+    {
+      "active_tab_id": "w63:t1",
+      "agent_status": "working",
+      "focused": false,
+      "label": "finance",
+      "number": 6,
+      "pane_count": 3,
+      "tab_count": 1,
+      "workspace_id": "w63",
+      "worktree": {
+        "checkout_path": "/run/media/zenobius/Store/Projects/Mine/Github/finance",
+        "is_linked_worktree": false,
+        "repo_key": "/run/media/zenobius/Store/Projects/Mine/Github/finance/.git",
+        "repo_name": "finance",
+        "repo_root": "/run/media/zenobius/Store/Projects/Mine/Github/finance"
+      }
+    },
+    {
+      "active_tab_id": "w6C:t1",
+      "agent_status": "working",
+      "focused": false,
+      "label": "llm-benchmarking-margin",
+      "number": 7,
+      "pane_count": 2,
+      "tab_count": 1,
+      "workspace_id": "w6C",
+      "worktree": {
+        "checkout_path": "/run/media/zenobius/Store/Projects/Mine/Github/llm-benchmarking-margin",
+        "is_linked_worktree": false,
+        "repo_key": "/run/media/zenobius/Store/Projects/Mine/Github/llm-benchmarking-margin/.git",
+        "repo_name": "llm-benchmarking-margin",
+        "repo_root": "/run/media/zenobius/Store/Projects/Mine/Github/llm-benchmarking-margin"
+      }
+    }
+  ]
+}

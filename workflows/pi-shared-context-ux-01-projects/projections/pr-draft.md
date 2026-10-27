@@ -7,7 +7,7 @@ type: Concept
 
 ## Current status
 
-FINISH_FAILED before merge for source fa5c5427d3b541d80b17d3acfc16b518d111e724; review remains SUCCESS. Review-0023 returned SUCCESS. The latest reviewer verdict is SUCCESS from review-0023 for the current source. Parent phase completion and pane closure succeeded in fix-complete-0021. The source is not merged or pushed.
+FINISHED: reviewed source fa5c5427d3b541d80b17d3acfc16b518d111e724 integrated as a069050baec9cda454feddc31eab2c8b4420df28; published and ticket completed. Review-0023 returned SUCCESS. The latest reviewer verdict is SUCCESS from review-0023 for the current source. Parent phase completion and pane closure succeeded in fix-complete-0021. The source is not merged or pushed.
 
 ## Ticket summary and problem
 
@@ -130,3 +130,12 @@ The migration hold is released. Canonical specification: [initiative](../../../t
 
 ## Approved finish recovery
 [finish-waiting-0027](../events/finish-waiting-0027.json) records the user choices: wait for the owning session to resolve the base edits; then use an isolated integration branch. The reviewed source branch must remain unchanged. This session is not authorized to commit or relocate the existing edits. Wait for owning-session clearance before integration. No merge, push, ticket completion or cleanup ran.
+
+
+## Terminal finish: FINISHED
+[finish-0034](../events/finish-0034.json) is the terminal receipt. The prior blocked attempt and recovery decisions above are historical. The owning session committed the base edits; approved isolated integration preserved reviewed source fa5c5427d3b541d80b17d3acfc16b518d111e724.
+Squash integration a069050baec9cda454feddc31eab2c8b4420df28 has sole parent 49b89902c390e668739bd7a408915f858b1521fc and verified tree 72f2ff643f3fde2c945f28e0b90e4a51be5a21b5. Worktrunk advanced master without rebasing or rewriting the reviewed branch.
+[Integrated validation](../artifacts/evidence/finish-0028/integrated-validation.txt) passed 129 tests, zero failed. [Actual Pi protocol](../artifacts/evidence/finish-0028/pi-runtime.json) confirms migrated tracker loading, literal query/counts, safe zero-result Enter, identity subsequence selection and unchanged session directory. Offline monochrome smoke; no live-service or full colour audit claim.
+Integration was published on origin/master. Ticket completion commit c60cb72c42da52a49c4e5b02d3bbb75b4b764aa8 was also published; normal tracker discovery reports completed. Source and temporary integration worktrees were removed through Worktrunk. Recorded source workspace w7A was already absent; no unrelated workspace was closed. The reviewed source branch remains at its original commit for provenance. [Cleanup observation](../artifacts/evidence/finish-0028/cleanup.json).
+Finish checkpoints: [prepared](../events/finish-prepared-0028.json), [merged](../events/finish-merged-0029.json), [validated](../events/finish-validated-0030.json), [pushed](../events/finish-pushed-0031.json), [ticket completed](../events/finish-ticket-completed-0032.json), [worktrees removed](../events/finish-worktree-removed-0033.json), [FINISHED](../events/finish-0034.json).
+No further phase is required for this ticket.

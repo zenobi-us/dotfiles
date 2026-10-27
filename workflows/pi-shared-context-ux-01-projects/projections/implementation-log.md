@@ -7,7 +7,7 @@ type: Concept
 
 ## Current state
 
-FINISH_FAILED before merge at `fa5c5427d3b541d80b17d3acfc16b518d111e724`; review remains SUCCESS. STANDARDS-001 is resolved by fix-0020. Latest reviewer verdict is SUCCESS from review-0023 for the current source. Review-0023 returned SUCCESS. Parent phase completion and pane closure succeeded in fix-complete-0021.
+FINISHED: source `fa5c5427d3b541d80b17d3acfc16b518d111e724` integrated as `a069050baec9cda454feddc31eab2c8b4420df28`; published and ticket completed. STANDARDS-001 is resolved by fix-0020. Latest reviewer verdict is SUCCESS from review-0023 for the current source. Review-0023 returned SUCCESS. Parent phase completion and pane closure succeeded in fix-complete-0021.
 
 ## Append-only history
 
@@ -191,3 +191,17 @@ Two preflight blockers remain: user-owned unstaged data.ts changes in the base c
 
 ## finish-waiting-0027
 [Decision receipt](../events/finish-waiting-0027.json). User selected waiting for the owning session and authorized isolated integration after the base edits are resolved. Preserve the reviewed source. Do not commit or relocate existing edits. No integration or cleanup ran.
+
+
+## Finish attempt 2: FINISHED
+The owning session committed the overlapping base edits. User-approved isolated integration preserved the reviewed branch and created a069050baec9cda454feddc31eab2c8b4420df28, with sole parent 49b89902c390e668739bd7a408915f858b1521fc and expected tree 72f2ff643f3fde2c945f28e0b90e4a51be5a21b5. Worktrunk advanced master without rebase. Earlier blocked-finish records remain immutable history.
+| Checkpoint | Receipt | Observed result |
+| --- | --- | --- |
+| Prepared | [0028](../events/finish-prepared-0028.json) | Exact source/base/tree and approved integration method recorded |
+| Merged | [0029](../events/finish-merged-0029.json) | Parent and tree verified; reviewed source unchanged |
+| Validated | [0030](../events/finish-validated-0030.json) | 129 tests passed; real Pi migrated tracker/filtering smoke passed |
+| Published | [0031](../events/finish-pushed-0031.json) | Integration reachable on origin/master |
+| Ticket completed | [0032](../events/finish-ticket-completed-0032.json) | completed state validated and published in c60cb72c42da52a49c4e5b02d3bbb75b4b764aa8 |
+| Removed | [0033](../events/finish-worktree-removed-0033.json) | Both worktrees removed; recorded source workspace absent; reviewed branch retained |
+| Terminal | [0034](../events/finish-0034.json) | FINISHED |
+[Source validation](../artifacts/evidence/finish-0028/reviewed-source-validation.txt), [integrated validation](../artifacts/evidence/finish-0028/integrated-validation.txt), [actual Pi](../artifacts/evidence/finish-0028/pi-runtime.json), [cleanup](../artifacts/evidence/finish-0028/cleanup.json). No open findings or remaining finish operations.

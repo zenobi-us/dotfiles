@@ -1,0 +1,33 @@
+{
+  "agents": [],
+  "worktrees": [
+    {
+      "branch": "master",
+      "is_bare": false,
+      "is_detached": false,
+      "is_linked_worktree": false,
+      "is_prunable": false,
+      "label": "Dotfiles",
+      "open_workspace_id": "w64",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+    },
+    {
+      "branch": "feature/pi-shared-context-ux-01-projects",
+      "is_bare": false,
+      "is_detached": false,
+      "is_linked_worktree": true,
+      "is_prunable": false,
+      "label": "Dotfiles",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects"
+    },
+    {
+      "branch": "integrate/pi-shared-context-ux-01-projects-finish",
+      "is_bare": false,
+      "is_detached": false,
+      "is_linked_worktree": true,
+      "is_prunable": false,
+      "label": "Dotfiles",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-01-projects-finish"
+    }
+  ]
+}
