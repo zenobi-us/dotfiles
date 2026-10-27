@@ -1,4 +1,5 @@
 ---
+schema: tracker-ticket/v1
 blocked_by: []
 id: pi-shared-context-ux-01-projects
 parent: pi-shared-context-tui-ux-spec

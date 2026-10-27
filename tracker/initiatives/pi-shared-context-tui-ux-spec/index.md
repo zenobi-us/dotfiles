@@ -1,10 +1,9 @@
 ---
-blocked_by: []
+schema: tracker-initiative/v1
 id: pi-shared-context-tui-ux-spec
 title: Improve shared-context project navigation and tracker readability
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
 ---
 
 ## Problem Statement
@@ -205,3 +204,12 @@ This record is the specification, not an implementation claim. Its triage is rea
 
 The user approved the test boundary: modal behavior tests and terminal checks.
 
+
+## Tickets
+
+- [Select shared-context projects through interactive breadcrumbs](../../tickets/pi-shared-context-ux-01-projects.md)
+- [Browse initiatives through structured tracker rows](../../tickets/pi-shared-context-ux-02-initiatives.md)
+- [Browse research and tickets in the same initiative](../../tickets/pi-shared-context-ux-03-mixed-items.md)
+- [Read complete initiative and item descriptions](../../tickets/pi-shared-context-ux-04-descriptions.md)
+- [Inspect ticket events through readable history and evidence views](../../tickets/pi-shared-context-ux-05-events.md)
+- [Find actionable tickets through clear work queues](../../tickets/pi-shared-context-ux-06-queues.md)

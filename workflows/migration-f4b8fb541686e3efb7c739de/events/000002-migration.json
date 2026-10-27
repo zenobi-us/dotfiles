@@ -1,0 +1,9 @@
+{
+  "schema": "tracker-migration/v1",
+  "migration": "f4b8fb541686e3efb7c739de",
+  "sequence": 2,
+  "previousHash": "2d5d0e735fe20f0ba626334e068e8e7ab364fbf5dc6595026c60472c4b720dbe",
+  "state": "applied",
+  "planHash": "66bd900f9132ebe04fc5b571a3c2e95974443e76acdb0e5cf03768ba95530320",
+  "at": "2026-10-27T21:25:04.021Z"
+}

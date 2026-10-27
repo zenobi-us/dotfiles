@@ -1,4 +1,5 @@
 ---
+schema: tracker-ticket/v1
 blocked_by: 
   - pi-shared-context-ux-02-initiatives
 id: pi-shared-context-ux-06-queues

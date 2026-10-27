@@ -1,4 +1,5 @@
 ---
+schema: tracker-ticket/v1
 blocked_by: 
   - pi-shared-context-ux-03-mixed-items
 id: pi-shared-context-ux-04-descriptions
