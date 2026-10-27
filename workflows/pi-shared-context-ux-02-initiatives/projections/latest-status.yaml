@@ -6,13 +6,13 @@
     "id": "pi-shared-context-ux-02-initiatives",
     "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
   },
-  "state": "IMPLEMENTED",
-  "latest_receipt": "implementation-complete-0006",
+  "state": "REVIEWING",
+  "latest_receipt": "review-start-0007",
   "latest_source_commit": "7c647581807920320efa191f946b8ce9183558b7",
   "latest_source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
   "latest_review_verdict": null,
   "open_findings": [],
-  "review_status": "independent review paused: cycle 2 exceeded its full-session token ceiling by 404",
+  "review_status": "fresh independent Standards and Spec review reserved; continuation approved",
   "merge_status": "not merged",
   "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
   "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0007.yaml"
