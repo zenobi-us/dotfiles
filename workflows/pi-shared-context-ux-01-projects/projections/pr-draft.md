@@ -1,122 +1,68 @@
 ---
-title: Projects implementation and checkoutless fix draft
+title: Projects implementation and repair draft
 type: Concept
 ---
 
-# Projects implementation and fix draft
+# Projects implementation and repair draft
 
-## Ticket summary
+## Current state
 
-The [canonical ticket](../../../tracker/tickets/pi-shared-context-ux-01-projects.md) adds project selection to the shared-context modal. The ticket remains implemented. This fix does not change ticket state or comments.
+FIXED at 34e28395c83826cdf46e1f09b8ad7761df2be219. Both review-0011 blockers are resolved by this fix. The latest reviewer verdict remains FAILURE for f4dffcaebf159cb857eb6008fad80dfb03e214fc. This source requires a fresh independent review. No review approval is claimed. Parent phase completion remains pending.
 
-## Problem statement
+[Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-01-projects.md). No tracker changes were made.
 
-Stored GitHub projects used a lossy slug as their remote identity. The current entry rejected a removed checkout even when shared records survived. Canonical deduplication then hid the stored entry.
+## Changes
 
-## Implementation summary
+- **SPEC-003, NO ADR:** Commands select a verified surviving directory from the selected project. Shared B continues to load records after the original repository-only A disappears. Pi's session directory stays unchanged.
+- **SPEC-001, NO ADR:** Existing stores can recover identity with recover-identity SLUG --checkout PATH or --remote URL. The checkout origin is verified against the selected store. Explicit remotes must identify that same store. Recovery preserves existing metadata and routes; no initialization, migration, scan or clone runs. Missing hosted identity explains the recovery procedure.
+- **SPEC-002 preserved:** Current-entry fallback, cached capability refresh, disabled actions and watcher behavior retain passing coverage.
 
-The initial implementation added focusable and clickable Projects navigation, canonical deduplication, route-owned reads, independent cached workspaces, watcher replacement and fresh-chat safeguards.
-
-SPEC-001 now resolves hosted trackers from stored canonical project identity. SPEC-002 now recovers surviving shared context for the current entry and refreshes cached capability, action restrictions, execution roots, Files roots and watcher targets.
-
-Project selection changes only the modal context. No repository scan, cloning, tracker hierarchy change or new feature slice was added.
+Unknown remotes cannot be reconstructed from directory slugs. Without an authoritative remote or verified checkout, hosted identity remains unavailable.
 
 ## Source identity
 
 | Field | Value |
 | --- | --- |
-| Source branch | feature/pi-shared-context-ux-01-projects |
-| Base branch | master |
-| Latest source commit | f4dffcaebf159cb857eb6008fad80dfb03e214fc |
-| Latest source tree | 76467ed6e58b3a364a74a19c7f85bcd69c8975bb |
-| Stored-origin commit | f44a1ea9a75837f1bb19181e174e3df5a166c9bb |
-| Reviewed predecessor | afb6b874f70afb2035ed76288140daf1ff589691 |
-| Fixer | omp pi-context-projects-fix-0001; herdr w79:p1 |
-| Session | 01a17af3-d731-73e4-be63-a6b9f7f0e10a |
-
-The source worktree was clean after both source commits. Canonical workflow records are published in the parent phase commit.
+| Branch | feature/pi-shared-context-ux-01-projects |
+| Base | master |
+| Execution fix commit | c986abce69cbd347b5a7160d5c88cb3a191c482d |
+| Recovery fix commit | 34e28395c83826cdf46e1f09b8ad7761df2be219 |
+| Source tree | 47c38e3a6260f875f97fcba05e7f83c0be62b4ec |
+| Fixer | omp pi-context-projects-fix-0002 |
+| Pane | w7A:p6 |
+| Session | 01a17b92-6534-779c-8bf4-72ed068389bc |
 
 ## Changed files
 
-The fix changes six files:
+- **Source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts`.
+- **Source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts`.
+- **Source:** `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts`.
+- **Source:** `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts`.
+- **Source:** `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`.
 
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`.
-
-The original implementation also changed actions.ts, actions.test.ts and data.ts. Those three files are intentionally unchanged by this fix.
-
-## Validation results
+## Verification
 
 | Check | Result | Evidence |
 | --- | --- | --- |
-| Extension and shared-context contracts | 120 pass, 0 fail | [Final log](../artifacts/evidence/fix-0008/focused-tests-final.txt) |
-| Scoped TypeScript | Exit 0 | [Compiler log](../artifacts/evidence/fix-0008/scoped-typecheck.txt) |
-| Checkoutless GitHub probe | Canonical repository and issue 42 loaded | [Runtime output](../artifacts/evidence/fix-0008/github-runtime.txt) |
-| Actual Pi modal | Current checkout removal, disabled actions, live tracker and Files updates | [Observations](../artifacts/evidence/fix-0008/terminal-acceptance.md) |
+| Focused suites | 123 passed, 0 failed; 2070 assertions | [Final log](../artifacts/evidence/fix-0014/focused-tests-final.txt) |
+| Scoped TypeScript | Exit 0 | [Compiler log](../artifacts/evidence/fix-0014/scoped-typecheck.txt) |
+| Recovery CLI | Explicit remote saved canonical identity | [Runtime output](../artifacts/evidence/fix-0014/cli-runtime.txt) |
+| Actual Pi v1.1.0 | B live tracker and Files survived A removal | [Terminal evidence](../artifacts/evidence/fix-0014/terminal-acceptance.md) |
 
-Actual terminal captures cover 120x40, 80x24 and 40x12. The launch set NO_COLOR=1. The GitHub probe substitutes remote responses and needs no credentials or network. No model request ran.
+The complete modal regressions cover verified-checkout recovery and explicit-remote recovery, checkout removal, canonical GitHub targets, and rejection of a mismatched remote. gh responses are deterministic fixtures, not live service evidence. Pi captures cover 120x40, 80x24 and 40x12 with NO_COLOR=1. No model request ran. No new colour audit is claimed.
 
-The [original acceptance](../artifacts/evidence/implementation-0002/terminal-acceptance.md) retains the earlier colour/monochrome and fresh-chat evidence. It is historical evidence, not a new fix-phase claim. Known unrelated broader bundle typecheck failures were not repeated.
+[Exact commands and harness corrections](../artifacts/evidence/fix-0014/validation.json). LSP could not locate TypeScript; scoped tsc passed. Known unrelated broad compiler failures were not rerun. Existing narrow clipping and host shortcut conflicts remain outside scope.
 
-## Review history and latest verdict
+## Historical records
 
-The [implementation code review](../artifacts/evidence/implementation-0002/implementation-review.md) records the original internal review and corrections.
+[Implementation](../events/implementation-0002.json), [prior fix](../events/fix-0008.json), [prior snapshot](../artifacts/snapshots/pr-draft-fix-0008.md), and [second review](../artifacts/reviews/review-review-0011.md) remain immutable. Earlier fix claims are historical; review-0011 found the remaining legacy identity gap and execution-directory defect. [Fix start](../events/fix-start-0013.json) and [this fix result](../events/fix-0014.json) record this attempt.
 
-The [formal review artifact](../artifacts/reviews/review-review-0005.md), [review result](../events/review-0005.json) and [parent review completion](../events/review-complete-0006.json) remain immutable. That review returned FAILURE for the predecessor source. Standards had no blocking findings. Spec reported SPEC-001 and SPEC-002, both P2 and NO ADR.
+## Delivery
 
-Review-0011 returned FAILURE for the current source. The earlier review and fix claims remain historical evidence.
-
-## Resolved findings
-
-- **SPEC-001:** Shared initialization and route migration save the credential-free canonical remote in .context-project.json. Stored resolution validates its slug association and gives the GitHub loader its real remote identity.
-- **SPEC-002:** The deduplicated current entry falls back to its existing shared directory. Cached activation refreshes checkout capability, action restrictions, Files roots and watcher targets. Commands use a surviving execution directory if the session checkout disappears.
-
-## Remaining findings and risks
-
-The fix claimed both selected findings resolved. Review-0011 keeps SPEC-001 open and adds SPEC-003; SPEC-002 is resolved for its reviewed scenario.
-
-Older stores without identity metadata cannot reconstruct an unknown remote from their slug. Shared initialization from a checkout saves this metadata. The current project can also use its authoritative in-session origin. Local stored records need no hosted remote identity.
-
-Known broader compiler errors, existing narrow title clipping and the host shortcut conflict remain outside this fix.
-
-## Merge status
-
-Not merged. Not rebased. Not pushed. The ticket remains implemented; its comments now include review-0011 verdict and artifact link. The parent completed result validation and pane closure. A fresh review remains required.
-
-## Durable phase history
-
-| Phase | Receipt | Record |
-| --- | --- | --- |
-| start-0001 | [start-0001](../events/start-0001.json) | Parent starts implementation. |
-| implementation-0002 | [implementation-0002](../events/implementation-0002.json) | Implementation completes at afb6b874f70afb2035ed76288140daf1ff589691. |
-| implementation-complete-0003 | [implementation-complete-0003](../events/implementation-complete-0003.json) | Parent validates implementation and closes its pane. |
-| review-start-0004 | [review-start-0004](../events/review-start-0004.json) | Independent formal review starts. |
-| review-0005 | [review-0005](../events/review-0005.json) | Formal verdict FAILURE; SPEC-001 and SPEC-002, P2, NO ADR. |
-| review-complete-0006 | [review-complete-0006](../events/review-complete-0006.json) | Parent validates review and source preservation, then closes the reviewer pane. |
-| fix-start-0007 | [fix-start-0007](../events/fix-start-0007.json) | Parent dispatches only SPEC-001 and SPEC-002 to this fresh session. |
-| fix-0008 | [fix-0008](../events/fix-0008.json) | Both selected findings fixed; 120 tests, scoped TypeScript and runtime smoke pass. Fresh review is required. |
-
-- **Original immutable draft:** [implementation-0002 snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md).
-- **Current immutable draft:** [fix-0008 snapshot](../artifacts/snapshots/pr-draft-fix-0008.md).
-- **Original focused review validation:** [Parent review log](../artifacts/evidence/review-0005/parent-focused-validation.txt).
-- **Current commands and results:** [fix-0008 validation](../artifacts/evidence/fix-0008/validation.json).
-
-## Next command
-
-`fix pi-shared-context-ux-01-projects`.
+Source commits are complete and the source worktree is clean. Canonical workflow records are included in the parent phase commit. No merge, rebase, push, formal review or tracker change ran. The parent completed pane closure and phase completion.
 
 
 
 ## Parent phase completion
-[fix-complete-0009](../events/fix-complete-0009.json) validates the fix result, source identity, evidence and completion marker. Herdr reported done (sequence 324); pane w79:p1 closed successfully. The worktree workspace remains available. Review-0011 completed with FAILURE; a further fix is required.
-
-
-## Latest formal review: review-0011
-Verdict: FAILURE for source f4dffcaebf159cb857eb6008fad80dfb03e214fc. Standards: zero findings. Spec: two blocking P2 findings, SPEC-003 and remaining SPEC-001. SPEC-002 is resolved for the reviewed direct-current-entry scenario.
-The [immutable second review](../artifacts/reviews/review-review-0011.md) holds the findings and reproduction program. The [review result](../events/review-0011.json) and [parent completion](../events/review-complete-0012.json) are authoritative. Both axis panes and the reviewer pane closed. Source commit and tree remained unchanged.
-Parent validation: 11 project tests passed, zero failed; [validation log](../artifacts/evidence/review-0011/parent-focused-validation.txt). The passing suite does not cover both reproduced failures. The tracker contains the verdict and artifact link. No fix, merge or push ran.
-Next command: `fix pi-shared-context-ux-01-projects`.
+[fix-complete-0015](../events/fix-complete-0015.json) validates the fix result, source identity, evidence, snapshot and WORKTREE_FIX_DONE marker. Herdr reported done (sequence 351). Pane w7A:p6 closed successfully; the source workspace remains available. A fresh independent review is required.
+Next command: `review pi-shared-context-ux-01-projects`.

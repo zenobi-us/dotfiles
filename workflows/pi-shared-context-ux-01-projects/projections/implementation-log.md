@@ -1,86 +1,55 @@
 ---
-title: Project navigation implementation and fix log
+title: Projects workflow phase history
 type: Concept
 ---
 
-# Project navigation implementation log
+# Projects workflow history
 
-## start-0001
+## Current state
 
-[start-0001](../events/start-0001.json). Parent starts implementation.
+FIXED at 34e28395c83826cdf46e1f09b8ad7761df2be219. Latest reviewer verdict remains FAILURE from review-0011 for predecessor f4dffcaebf159cb857eb6008fad80dfb03e214fc. A fresh review is required. Parent phase completion and pane closure succeeded in fix-complete-0015. The ticket is unchanged.
 
-## implementation-0002
+## Append-only phase history
 
-[implementation-0002](../events/implementation-0002.json). Implementation completes at afb6b874f70afb2035ed76288140daf1ff589691.
+The table is generated from receipts. Earlier completion and finding-resolution claims are historical. Review-0011 superseded the earlier fix claims for SPEC-001 and added SPEC-003.
 
-Source tree: bc8acd4597834dc04cb5169bdf93be44db95ab32. The original phase changed actions.ts, actions.test.ts, data.ts, explorer.ts, index.ts, modal.ts, projects.test.ts, shared-context/lib.ts and its README.
+| Receipt | Phase event | Result | Source commit |
+| --- | --- | --- | --- |
+| [start-0001](../events/start-0001.json) | start phase-start | started | d458207915067db9d1a3699aebe198840cffb905 |
+| [implementation-0002](../events/implementation-0002.json) | implementation phase-result | completed | afb6b874f70afb2035ed76288140daf1ff589691 |
+| [implementation-complete-0003](../events/implementation-complete-0003.json) | implementation phase-complete | completed | afb6b874f70afb2035ed76288140daf1ff589691 |
+| [review-start-0004](../events/review-start-0004.json) | review phase-start | started | afb6b874f70afb2035ed76288140daf1ff589691 |
+| [review-0005](../events/review-0005.json) | review phase-result | FAILURE | afb6b874f70afb2035ed76288140daf1ff589691 |
+| [review-complete-0006](../events/review-complete-0006.json) | review phase-complete | FAILURE | afb6b874f70afb2035ed76288140daf1ff589691 |
+| [fix-start-0007](../events/fix-start-0007.json) | fix phase-start | started | afb6b874f70afb2035ed76288140daf1ff589691 |
+| [fix-0008](../events/fix-0008.json) | fix phase-result | completed | f4dffcaebf159cb857eb6008fad80dfb03e214fc |
+| [fix-complete-0009](../events/fix-complete-0009.json) | fix phase-complete | completed | f4dffcaebf159cb857eb6008fad80dfb03e214fc |
+| [review-start-0010](../events/review-start-0010.json) | review phase-start | started | f4dffcaebf159cb857eb6008fad80dfb03e214fc |
+| [review-0011](../events/review-0011.json) | review phase-result | FAILURE | f4dffcaebf159cb857eb6008fad80dfb03e214fc |
+| [review-complete-0012](../events/review-complete-0012.json) | review phase-complete | FAILURE | f4dffcaebf159cb857eb6008fad80dfb03e214fc |
+| [fix-start-0013](../events/fix-start-0013.json) | fix phase-start | started | f4dffcaebf159cb857eb6008fad80dfb03e214fc |
+| [fix-0014](../events/fix-0014.json) | fix phase-result | completed | 34e28395c83826cdf46e1f09b8ad7761df2be219 |
 
-Recorded checks: [90 focused tests](../artifacts/evidence/implementation-0002/focused-tests-final.txt), [59 extension tests](../artifacts/evidence/implementation-0002/extension-suite-final.txt), [12 session regressions](../artifacts/evidence/implementation-0002/session-regression-final.txt), [scoped compilation](../artifacts/evidence/implementation-0002/scoped-typecheck-success.txt), [actual Pi acceptance](../artifacts/evidence/implementation-0002/terminal-acceptance.md).
+## Immutable artifacts
 
-The [implementation code review](../artifacts/evidence/implementation-0002/implementation-review.md) and [immutable implementation draft](../artifacts/snapshots/pr-draft-implementation-0002.md) remain available.
+- **Original draft:** [implementation-0002](../artifacts/snapshots/pr-draft-implementation-0002.md).
+- **First review:** [review-0005](../artifacts/reviews/review-review-0005.md).
+- **Prior fix draft:** [fix-0008](../artifacts/snapshots/pr-draft-fix-0008.md).
+- **Latest review:** [review-0011](../artifacts/reviews/review-review-0011.md).
+- **Current fix draft:** [fix-0014](../artifacts/snapshots/pr-draft-fix-0014.md).
 
-## implementation-complete-0003
+## fix-0014 result
 
-[implementation-complete-0003](../events/implementation-complete-0003.json). Parent validates implementation and closes its pane.
+SPEC-003 and SPEC-001 are resolved by this fix, both NO ADR. SPEC-002 retains regression coverage. Source commits: c986abce69cbd347b5a7160d5c88cb3a191c482d, 34e28395c83826cdf46e1f09b8ad7761df2be219. Source tree: 47c38e3a6260f875f97fcba05e7f83c0be62b4ec.
 
-## review-start-0004
+[123 focused tests](../artifacts/evidence/fix-0014/focused-tests-final.txt), [scoped TypeScript](../artifacts/evidence/fix-0014/scoped-typecheck.txt), [actual CLI recovery](../artifacts/evidence/fix-0014/cli-runtime.txt) and [actual Pi surviving-project smoke](../artifacts/evidence/fix-0014/terminal-acceptance.md) passed. [Exact commands and harness corrections](../artifacts/evidence/fix-0014/validation.json) preserve initial fixture failures.
 
-[review-start-0004](../events/review-start-0004.json). Independent formal review starts.
+The actual Pi modal loaded B live tracker updates and Files after repository-only A was removed. Its session footer retained A. Captures cover 120x40, 80x24 and 40x12 with NO_COLOR=1. No model request ran. Complete-modal regressions use deterministic GitHub responses and exercise both explicit identity sources after checkout removal. No live GitHub or new colour audit is claimed.
 
-## review-0005
-
-[review-0005](../events/review-0005.json). Formal verdict FAILURE; SPEC-001 and SPEC-002, P2, NO ADR.
-
-The [immutable formal review](../artifacts/reviews/review-review-0005.md) preserves both findings and reproductions. It reviewed source afb6b874f70afb2035ed76288140daf1ff589691. No source files changed during that phase.
-
-## review-complete-0006
-
-[review-complete-0006](../events/review-complete-0006.json). Parent validates review and source preservation, then closes the reviewer pane.
-
-The [parent focused validation](../artifacts/evidence/review-0005/parent-focused-validation.txt) recorded 9 passing tests. Those tests did not cover the two defects.
-
-## fix-start-0007
-
-[fix-start-0007](../events/fix-start-0007.json). Parent dispatches only SPEC-001 and SPEC-002 to this fresh session.
-
-## fix-0008
-
-[fix-0008](../events/fix-0008.json). Both selected findings fixed; 120 tests, scoped TypeScript and runtime smoke pass. Fresh review is required.
-
-Source commit: f4dffcaebf159cb857eb6008fad80dfb03e214fc. Source tree: 76467ed6e58b3a364a74a19c7f85bcd69c8975bb. Source commits: f44a1ea9a75837f1bb19181e174e3df5a166c9bb, f4dffcaebf159cb857eb6008fad80dfb03e214fc.
-
-### Changed files
-
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts`.
-- **Fix source:** `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`.
-
-### Validation
-
-[120 focused tests](../artifacts/evidence/fix-0008/focused-tests-final.txt), [scoped TypeScript](../artifacts/evidence/fix-0008/scoped-typecheck.txt), [GitHub runtime probe](../artifacts/evidence/fix-0008/github-runtime.txt), and [actual Pi checkout-removal smoke](../artifacts/evidence/fix-0008/terminal-acceptance.md) passed. [Exact commands and results](../artifacts/evidence/fix-0008/validation.json).
-
-Both selected findings are resolved by this fix. Latest reviewer verdict remains FAILURE for the predecessor source. A fresh review is required. [Immutable fix draft](../artifacts/snapshots/pr-draft-fix-0008.md).
-
-## Unresolved questions
-
-No selected finding remains unresolved. Older stores need real identity metadata for hosted tracker reads; an unknown remote is never inferred from a slug. Known unrelated broader typecheck errors remain unchanged.
-
-The parent completed result validation, phase completion and pane closure. Canonical workflow records are published in the parent phase commit. The next step is independent review. This phase does not merge, rebase, push or change the ticket.
+No selected finding remains unresolved. Unknown hosted identity still requires an authoritative remote or verified checkout. The fixer did not merge, rebase, push, run a formal review, change tracker records, or commit canonical workflow records. The parent owns phase completion and pane closure.
 
 
 
-## fix-complete-0009
-[fix-complete-0009](../events/fix-complete-0009.json). Parent validated the immutable fix result, source commit and tree, test and runtime evidence, snapshot, and WORKTREE_FIX_DONE marker. Herdr reported done with completion sequence 324. Pane w79:p1 closed successfully; the worktree workspace remains available. No selected finding remains unresolved. A fresh review is required.
-
-
-## review-start-0010
-[review-start-0010](../events/review-start-0010.json) freezes source f4dffcaebf159cb857eb6008fad80dfb03e214fc and tree 76467ed6e58b3a364a74a19c7f85bcd69c8975bb against master at 8a453ef5df4ad3e94e79005c4c12481792f3ba4d. A fresh reviewer opened in w7A:p2.
-## review-0011
-[review-0011](../events/review-0011.json) records FAILURE. Standards: zero findings. Spec: SPEC-003 and remaining SPEC-001, both P2. SPEC-002 is resolved for the reviewed scenario. The [immutable artifact](../artifacts/reviews/review-review-0011.md) holds the review body and reproductions. No source files changed.
-## review-complete-0012
-[review-complete-0012](../events/review-complete-0012.json) records parent validation. Frozen source and clean worktree remained unchanged. [11 project tests passed](../artifacts/evidence/review-0011/parent-focused-validation.txt); two failure probes remain blocking. Both axis panes and the reviewer pane closed. The workspace remains available. The ticket contains the verdict and artifact link. No fixes, merge, rebase or push ran.
-## Current unresolved questions
-SPEC-003 and SPEC-001 remain open. Use the immutable second review for exact requirements and validation commands. Next command: `fix pi-shared-context-ux-01-projects`.
+## fix-complete-0015
+[fix-complete-0015](../events/fix-complete-0015.json) records parent validation of the result receipt, source commit and tree, 123 passing tests, scoped compiler result, real recovery CLI, actual Pi runtime evidence and immutable snapshot. WORKTREE_FIX_DONE was observed; Herdr reported done with completion sequence 351. Pane w7A:p6 closed successfully. The workspace remains available. No selected finding remains unresolved by this fix; fresh review is required.
+Next command: `review pi-shared-context-ux-01-projects`.

@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-10-27T04:27:08.668Z",
+  "receipt_read_back": true,
+  "receipt_id": "fix-0014",
+  "source_commit": "34e28395c83826cdf46e1f09b8ad7761df2be219",
+  "source_tree": "47c38e3a6260f875f97fcba05e7f83c0be62b4ec",
+  "markdown_validation": [
+    {
+      "file": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0014.md",
+      "errors": [],
+      "links_checked": 12
+    },
+    {
+      "file": "workflows/pi-shared-context-ux-01-projects/projections/pr-draft.md",
+      "errors": [],
+      "links_checked": 12
+    },
+    {
+      "file": "workflows/pi-shared-context-ux-01-projects/projections/implementation-log.md",
+      "errors": [],
+      "links_checked": 24
+    },
+    {
+      "file": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/terminal-acceptance.md",
+      "errors": [],
+      "links_checked": 5
+    }
+  ],
+  "missing_links": [],
+  "bundle_validation": "Not applicable: workflow receipts/artifacts are not an OKF indexed bundle. Individual Concept documents validated through okf::okf_validate.",
+  "historical_events": 13
+}

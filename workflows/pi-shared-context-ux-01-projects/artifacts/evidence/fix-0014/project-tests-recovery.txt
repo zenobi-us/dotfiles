@@ -1,0 +1,46 @@
+bun test v1.4.3 (c6da4a4d3)
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:
+(pass) Projects supports reverse focus, mouse breadcrumbs, canonical identities, and escape levels [112.10ms]
+(pass) project switching owns tracker actions and Files while preserving each workspace [96.60ms]
+(pass) stored projects remain readable without a checkout and disable action dispatch [69.86ms]
+(pass) stored GitHub projects retain their remote identity after checkout removal [56.25ms]
+(pass) empty, unreadable, and unavailable project states retain the current project [72.80ms]
+(pass) inactive project updates do not replace the selected view and return refreshes its state [527.11ms]
+(pass) cached Files follows newly resolved alignment routes before reading records [85.02ms]
+(pass) checkoutless mixed routes retain shared records with a Repo alignment indicator [60.84ms]
+(pass) returning to a project restores its ticket reader and scroll position [323.87ms]
+(pass) focus traversal re-enters the first or last tracker pane in traversal order [276.93ms]
+(pass) the live modal recovers the deduplicated current project after checkout removal [552.40ms]
+(pass) repository-only A can disappear while selected shared B keeps loading records [330.00ms]
+411 |     const wrong = await recover("--remote", "https://github.com/unrelated/repo.git");
+412 |     expect(wrong.code).toBe(1);
+413 |     expect(await Bun.file(identity).exists()).toBe(false);
+414 |     const originalManifest = await readFile(manifest, "utf8");
+415 |     const recovered = await recover(source === "checkout" ? "--checkout" : "--remote", source === "checkout" ? f.b.repositoryRoot : "git@github.com:beta/repo.git");
+416 |     if (recovered.code) throw new Error(`Identity recovery failed: ${recovered.stderr}`);
+                                        ^
+error: Identity recovery failed: mise ERROR bun is not a valid shim. This likely means you uninstalled a tool and the shim does not point to anything. Run `mise use <TOOL>` to reinstall the tool.
+mise ERROR Version: 2026.10.5 linux-x64 (2026-10-08)
+mise ERROR Run with --verbose or MISE_VERBOSE=1 for more information
+
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:416:35)
+(fail) legacy hosted identity recovery from checkout opens the complete modal without a checkout [78.15ms]
+411 |     const wrong = await recover("--remote", "https://github.com/unrelated/repo.git");
+412 |     expect(wrong.code).toBe(1);
+413 |     expect(await Bun.file(identity).exists()).toBe(false);
+414 |     const originalManifest = await readFile(manifest, "utf8");
+415 |     const recovered = await recover(source === "checkout" ? "--checkout" : "--remote", source === "checkout" ? f.b.repositoryRoot : "git@github.com:beta/repo.git");
+416 |     if (recovered.code) throw new Error(`Identity recovery failed: ${recovered.stderr}`);
+                                        ^
+error: Identity recovery failed: mise ERROR bun is not a valid shim. This likely means you uninstalled a tool and the shim does not point to anything. Run `mise use <TOOL>` to reinstall the tool.
+mise ERROR Version: 2026.10.5 linux-x64 (2026-10-08)
+mise ERROR Run with --verbose or MISE_VERBOSE=1 for more information
+
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:416:35)
+(fail) legacy hosted identity recovery from remote opens the complete modal without a checkout [75.51ms]
+
+ 12 pass
+ 2 fail
+ 67 expect() calls
+Ran 14 tests across 1 file. [2.77s]

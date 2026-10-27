@@ -1,0 +1,181 @@
+bun test v1.4.3 (c6da4a4d3)
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts:
+(pass) the open modal refreshes focused DAG history and discovers a new dependent outside its scope [2077.56ms]
+(pass) file previews follow atomic replacement without moving selection to an inserted sibling [234.41ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts:
+(pass) worktree receipt transitions > start rejects missing blockers, existing workflows, closed tickets, and unknown state [0.45ms]
+(pass) worktree receipt transitions > review can freeze a new revision after an earlier implementation or review [0.19ms]
+(pass) worktree receipt transitions > latest rejected review enables fix and supersedes an older success [0.19ms]
+(pass) worktree receipt transitions > a phase-start event cannot inherit an older verdict [0.19ms]
+(pass) worktree receipt transitions > finish and submit each require the current successful review [0.37ms]
+(pass) worktree receipt transitions > timezone offsets and equal timestamps cannot revive an older successful review [0.27ms]
+(pass) worktree receipt transitions > read errors and unknown current source cannot masquerade as freshness [0.14ms]
+(pass) fresh-session boundaries > missing skills disable their actions; synthetic groups cannot become planning initiatives [0.13ms]
+(pass) fresh-session boundaries > untrusted record and prompt text cannot inject another skill or XML instruction [0.42ms]
+(pass) fresh-session boundaries > a fresh chat stages the selected command through the replacement context without sending it [0.36ms]
+(pass) fresh-session boundaries > session creation and editor failures retain the cause and distinguish an opened session [0.31ms]
+(pass) fresh-session boundaries > cancelling session creation preserves the old editor draft [0.23ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:
+(pass) Projects supports reverse focus, mouse breadcrumbs, canonical identities, and escape levels [102.48ms]
+(pass) project switching owns tracker actions and Files while preserving each workspace [98.77ms]
+(pass) stored projects remain readable without a checkout and disable action dispatch [72.98ms]
+(pass) stored GitHub projects retain their remote identity after checkout removal [59.35ms]
+(pass) empty, unreadable, and unavailable project states retain the current project [72.40ms]
+(pass) inactive project updates do not replace the selected view and return refreshes its state [532.11ms]
+(pass) cached Files follows newly resolved alignment routes before reading records [90.11ms]
+(pass) checkoutless mixed routes retain shared records with a Repo alignment indicator [65.52ms]
+(pass) returning to a project restores its ticket reader and scroll position [330.53ms]
+(pass) focus traversal re-enters the first or last tracker pane in traversal order [281.00ms]
+(pass) the live modal recovers the deduplicated current project after checkout removal [560.82ms]
+(pass) repository-only A can disappear while selected shared B keeps loading records [322.11ms]
+411 |     const wrong = await recover("--remote", "https://github.com/unrelated/repo.git");
+412 |     expect(wrong.code).toBe(1);
+413 |     expect(await Bun.file(identity).exists()).toBe(false);
+414 |     const originalManifest = await readFile(manifest, "utf8");
+415 |     const recovered = await recover(source === "checkout" ? "--checkout" : "--remote", source === "checkout" ? f.b.repositoryRoot : "git@github.com:beta/repo.git");
+416 |     expect(recovered.code).toBe(0);
+                                 ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:416:28)
+(fail) legacy hosted identity recovery from checkout opens the complete modal without a checkout [106.38ms]
+411 |     const wrong = await recover("--remote", "https://github.com/unrelated/repo.git");
+412 |     expect(wrong.code).toBe(1);
+413 |     expect(await Bun.file(identity).exists()).toBe(false);
+414 |     const originalManifest = await readFile(manifest, "utf8");
+415 |     const recovered = await recover(source === "checkout" ? "--checkout" : "--remote", source === "checkout" ? f.b.repositoryRoot : "git@github.com:beta/repo.git");
+416 |     expect(recovered.code).toBe(0);
+                                 ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 1
+
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:416:28)
+(fail) legacy hosted identity recovery from remote opens the complete modal without a checkout [78.00ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts:
+(pass) tab highlighting does not activate content until Space or Enter [2.05ms]
+(pass) number shortcuts switch tabs without changing tracker queues or losing selection [0.90ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.test.ts:
+(pass) directory watches discover missing paths, survive replacement, and drop old subscriptions [362.32ms]
+(pass) changes arriving during refresh receive another serialized pass [71.05ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts:
+(pass) configured mixed stores preserve completed blockers and discover unassigned tickets [37.95ms]
+(pass) missing collections are empty but a missing tracker definition is actionable [9.45ms]
+(pass) missing blockers, dependency cycles, and duplicate ticket IDs fail instead of reporting readiness [74.05ms]
+(pass) initiative links cannot hide missing tickets or escape through collection symlinks [33.02ms]
+(pass) receipt identity and timestamps govern history, not filenames or projections [74.64ms]
+(pass) invalid events remain inspectable without hiding valid receipts or permitting transitions [39.98ms]
+(pass) phase-start and phase-complete envelopes do not require invented evidence [64.93ms]
+(pass) missing source worktrees and invalid source trees never borrow repository freshness [44.96ms]
+(pass) orphaned and cyclic receipt parents are invalid workflow history [30.35ms]
+(pass) GitHub pagination includes later pages and recursive prerequisite closure without parsing body references [9.26ms]
+(pass) GitHub failures and unsupported backends are errors, not empty or guessed graphs [15.47ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts:
+(pass) a ticket and its receipt selection survive leaving and restoring parent columns [2.54ms]
+(pass) action breadcrumbs follow the target without overwriting saved column selections [1.28ms]
+(pass) long and wide record text cannot overflow terminal bounds or inject terminal controls [16.57ms]
+(pass) narrow receipt wrapping preserves complete object IDs and paging reaches hidden source fields [0.76ms]
+(pass) compact receipt lists remain reachable through focus and back navigation [0.51ms]
+(pass) dependency navigation keeps the selected neighbor inside the viewport [0.67ms]
+(pass) invalid events can be selected and inspected alongside valid history [2.23ms]
+(pass) ticket focus includes transitive dependents and direct blockers without visiting unrelated branches [0.11ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.test.ts:
+(pass) repository setup is explicit, persists on reopen and preserves existing instructions [4.63ms]
+(pass) shared setup is explicit, persists on reopen and preserves existing instructions [3.37ms]
+(pass) cancel after choosing shared storage performs no initialization [1.05ms]
+(pass) existing repository tracker or layout routes are ready without shared registration [5.93ms]
+(pass) repository routes ignore an invalid unused shared base and optional collections [1.90ms]
+(pass) mixed and inherited routes require only selected roots, external tickets have no file store [4.08ms]
+(pass) required root errors are actionable and resolver errors propagate [1.08ms]
+(pass) established missing store offers check only, retries errors and never rewrites policy [2.57ms]
+(pass) pending setup rejects duplicate input and disposal prevents late completion [1.33ms]
+(pass) successful setup with unavailable roots transitions to check rather than initializing twice [1.06ms]
+(pass) narrow layouts retain bounded actions and keyboard cancellation [3.00ms]
+(pass) raw SGR mouse guards drags, stale bounds, right clicks and duplicate releases [1.72ms]
+(pass) detected shared choice survives setup failure and retries only on explicit apply [2.43ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/shared-context.test.ts:
+(pass) git origin normalization > SSH, SCP, and HTTPS forms resolve to one canonical origin and slug [0.10ms]
+(pass) context resolution > falls back to repository storage when shared AGENTS.md is absent [1.83ms]
+(pass) context resolution > uses shared storage and reloads changed instructions on each resolution [1.87ms]
+(pass) context resolution > resolves each record through an origin-scoped route manifest [1.51ms]
+(pass) context resolution > maps a legacy storage marker to routes without moving external tickets [0.91ms]
+(pass) context resolution > migrates the legacy preference to a route manifest and removes the marker [1.07ms]
+(pass) context resolution > initializes the external candidate without writing into the repository [1.41ms]
+(pass) context resolution > initialization preserves an authored context map [0.51ms]
+(pass) context resolution > initialization preserves an existing route manifest [0.40ms]
+(pass) context resolution > copies the typed context areas in both directions and ignores legacy layouts [10.55ms]
+(pass) context resolution > returns no context when origin is missing [0.21ms]
+(pass) lists shared contexts alphabetically with storage preferences [0.36ms]
+(pass) the CLI is directly executable and exposes help [370.72ms]
+(pass) hosted-shared init rejects local tickets and routes external tickets [79.80ms]
+(pass) repository XML points root and shared-root at the repository [0.24ms]
+(pass) rendered XML identifies provenance and escapes injected instructions [0.05ms]
+(pass) typed context paths > resolves every stable record type [1.39ms]
+(pass) typed context paths > refuses invalid or incomplete typed paths [0.26ms]
+(pass) frontmatter > reads quoted, bare, and numeric fields and ignores the body [0.07ms]
+(pass) frontmatter > a file with no frontmatter yields no fields [0.04ms]
+(pass) index rebuild > lists every sibling markdown file, links the url when present, and excludes itself [1.09ms]
+(pass) index rebuild > refuses to clobber a hand-written index and keeps text around a managed block [0.87ms]
+(pass) index rebuild > rebuilding twice produces the same entries [0.68ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/layout.test.ts:
+(pass) layout resolves collection roots, files, refs, unchanged workflows and indexed source content [13.98ms]
+(pass) explicit local tracker roots override layout defaults independently [10.74ms]
+(pass) invalid layout fails closed: "schema = 2" [9.59ms]
+(pass) invalid layout fails closed: "schema = 1\nunknown = true" [9.20ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\nworkflows = \"docs/workflows\"" [9.96ms]
+(pass) invalid layout fails closed: "schema = 1\npaths = \"docs\"" [9.12ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = 42" [9.28ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = \"\"" [9.15ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = \"/tmp/tracker\"" [9.62ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\nsources = \"../sources\"" [9.54ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = \"docs/../tracker\"" [9.09ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = [" [9.46ms]
+(pass) invalid layout fails closed: "schema = 1\n[paths]\ntracker = \"C:/tracker\"" [9.12ms]
+(pass) invalid explicit issue-root fails closed [9.79ms]
+(pass) invalid explicit initiative-root fails closed [9.31ms]
+(pass) configured and subsequently introduced symlink escapes are rejected [14.61ms]
+(pass) symlinked configuration never silently falls back [10.20ms]
+(pass) mixed routes interpret layout against selected stores and retain configured data through migrations [35.18ms]
+(pass) initialization carries layout and explicit roots to the new active alignment root [15.77ms]
+(pass) linked worktrees share origin routes but load repository layout from their own active root [22.80ms]
+(pass) absent layout preserves default collection paths [10.40ms]
+(pass) migration refuses configured destination symlink escapes before copying files [11.39ms]
+(pass) collection selectors expose typed CLI records without changing machine configuration [128.03ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/api.test.ts:
+(pass) repository setup reopens locally, preserves authored files, and never creates shared storage [33.85ms]
+(pass) shared setup reopens without changing authored repository files [33.61ms]
+(pass) repository tracker configuration rejects shared setup before writing a shared policy [15.95ms]
+(pass) hosted-shared setup preserves external tickets after explicit shared initialization [17.64ms]
+(pass) setup refuses opposite configured storage before creating files [62.00ms]
+(pass) same-store mixed setup preserves routes and shared policies take precedence [47.94ms]
+(pass) setup requires an explicit store and validates presets without writes [90.98ms]
+(pass) repository registration keeps an external ticket adapter [15.89ms]
+(pass) legacy repository routes reject shared setup without rewriting the policy [15.06ms]
+(pass) repository-aligned mixed setup preserves shared record routes [36.85ms]
+(pass) shared initialization preserves mixed routes from a repository manifest [18.83ms]
+(pass) layout-only repository context rejects shared setup without changing routing [16.49ms]
+(pass) resolver errors stop setup before repository files are created [12.77ms]
+
+2 tests failed:
+(fail) legacy hosted identity recovery from checkout opens the complete modal without a checkout [106.38ms]
+(fail) legacy hosted identity recovery from remote opens the complete modal without a checkout [78.00ms]
+
+ 121 pass
+ 2 fail
+ 2064 expect() calls
+Ran 123 tests across 11 files. [7.39s]

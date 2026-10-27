@@ -1,13 +1,13 @@
 schema: worktree-latest-status/v1
 workflow_id: pi-shared-context-ux-01-projects
 ticket: tracker/tickets/pi-shared-context-ux-01-projects.md
-state: REVIEW_FAILED
-latest_receipt: review-complete-0012
-latest_source_commit: f4dffcaebf159cb857eb6008fad80dfb03e214fc
-latest_source_tree: 76467ed6e58b3a364a74a19c7f85bcd69c8975bb
+state: FIXED
+latest_receipt: fix-complete-0015
+latest_source_commit: 34e28395c83826cdf46e1f09b8ad7761df2be219
+latest_source_tree: 47c38e3a6260f875f97fcba05e7f83c0be62b4ec
 latest_review_verdict: FAILURE
 latest_review_receipt: review-0011
-open_findings: [SPEC-003, SPEC-001]
-resolved_findings: [SPEC-002]
-fresh_review_required: false
+open_findings: []
+resolved_findings: [SPEC-002, SPEC-003, SPEC-001]
+fresh_review_required: true
 parent_phase_completion_pending: false

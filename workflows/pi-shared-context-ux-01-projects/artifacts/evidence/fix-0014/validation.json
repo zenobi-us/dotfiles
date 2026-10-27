@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-10-27T04:25:46.483Z",
+  "source_commit": "34e28395c83826cdf46e1f09b8ad7761df2be219",
+  "source_tree": "47c38e3a6260f875f97fcba05e7f83c0be62b4ec",
+  "results": [
+    {
+      "name": "focused-tests",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 1,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/focused-tests.txt"
+    },
+    {
+      "name": "project-tests-recovery",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 1,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/project-tests-recovery.txt"
+    },
+    {
+      "name": "focused-tests-final",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/focused-tests-final.txt"
+    },
+    {
+      "name": "scoped-typecheck",
+      "command": "mise exec -- bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/projects.test.ts skills/shared-context/scripts/shared-context/lib.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/scoped-typecheck.txt"
+    },
+    {
+      "name": "CLI runtime",
+      "command": "scripts/shared-context/cli.ts recover-identity github-com-smoke-beta-repo--7c485eb9 --remote https://github.com/smoke-beta/repo.git",
+      "cwd": "/tmp/pi-fix-0014-NgA5qh",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/cli-runtime.txt"
+    },
+    {
+      "name": "Actual Pi v1.1.0 terminal",
+      "command": "termscope session --cols 120 --rows 40 -- /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-skills --no-prompt-templates --no-context-files --no-mcp -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "cwd": "/tmp/pi-fix-0014-NgA5qh/a",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/pi-runtime.json",
+      "details": "Opened Repo A, selected shared B, deleted repository-only A, observed new B ticket via live refresh and surviving Files. Footer retained A. Captured 120x40, 80x24, 40x12 with NO_COLOR=1. No model request."
+    }
+  ],
+  "notes": [
+    "Initial focused suites: 121 passed, 2 failed because the isolated CLI fixture HOME hid the installed Bun shim. A project-only rerun retained that harness failure. The fixture now prepends the running Bun executable directory and isolates mise configuration. No product failure remained; final suites: 123 passed, 0 failed, 2070 assertions.",
+    "The first disposable CLI smoke used the OMP executable directory instead of Bun in PATH. Retried with the installed Bun directory; recovery succeeded. An isolated diagnostic triggered mise downloads under /tmp/pi-fix-cli-home and timed out; that temporary directory was removed. No repository tool configuration changed.",
+    "After Pi exited 0 on Ctrl+D, the termscope close request timed out because the protocol had already ended. The captured child_exit event and termscope exit code are 0.",
+    "LSP initialization failed because it could not locate TypeScript. Scoped tsc passed. Known unrelated broad bundle compiler failures were not rerun.",
+    "GitHub request targeting uses deterministic fixture responses in complete-modal regression tests. No live GitHub service acceptance claim.",
+    "The review failures were accepted as ground truth and were not rerun on unchanged source. The actual Pi runtime exercises the fixed SPEC-003 scenario rather than copying the obsolete execution wrapper."
+  ]
+}

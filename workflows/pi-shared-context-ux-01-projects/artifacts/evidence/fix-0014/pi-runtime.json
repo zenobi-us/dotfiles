@@ -1,0 +1,155 @@
+[
+  {
+    "id": 1,
+    "result": {}
+  },
+  {
+    "id": 2,
+    "result": {
+      "format": "text",
+      "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=36:0 screen=alternate title=\"π - a\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[017] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts. Using\n[018] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[019] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts.\n[020] \n[021] \n[022]  Warning: No models available. Use /login to log into a provider via OAuth or API key. See:\n[023]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md\n[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/pi-fix-0014-NgA5qh/a (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+    }
+  },
+  {
+    "id": 3,
+    "result": {}
+  },
+  {
+    "id": 4,
+    "result": {}
+  },
+  {
+    "id": 5,
+    "result": {
+      "found": true,
+      "row": 9,
+      "col": 49
+    }
+  },
+  {
+    "id": 6,
+    "result": {}
+  },
+  {
+    "id": 7,
+    "result": {
+      "format": "text",
+      "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - a\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > a                                                                                            │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Shared context · Home                                                                                          │\n[008] [Ex│> Ready-work Home · ready                                                                                       │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[Ticket · type unspecified] item [READY] Original A ticket                                                     │\n[011] [Ex│ + [Collection] unassigned Unassigned (1 tickets)                                                               │\n[012]   p│                                                                                                                │\n[013] /ru│                                                                                                                │d/d\n[014] evt│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │d/d\n[017] evt│                                                                                                                │\n[018] /ru│                                                                                                                │d/d\n[019] evt│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    │                                                                                                                │\n[035]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[036] ───│ tracker/tickets/item.md · READY                                                                                │───\n[037]    │ 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close                                    │\n[038] ───╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯───\n[039] /tmp/pi-fix-0014-NgA5qh/a (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+    }
+  },
+  {
+    "id": 8,
+    "result": {
+      "found": true,
+      "row": 20,
+      "col": 9
+    }
+  },
+  {
+    "id": 9,
+    "result": {
+      "format": "text",
+      "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=23:119 screen=alternate title=\"π - a\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /ru╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮d/d\n[017] evt│ Projects · Repo > a                                                                                            │\n[018] /ru│   1 Tracker      2 Files    Tab focus · Space/Enter activate                                                   │d/d\n[019] evt│ Projects · ↑↓ select · Enter open · Esc close                                                                  │\n[020]    │ > a (current)                                                                                                  │\n[021]    │   github.com/smoke-alpha/repo                                                                                  │\n[022]  Wa│   github-com-smoke-beta-repo                                                                                   │\n[023]    │   github-com-smoke-beta-repo--7c485eb9                                                                         │\n[024]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/pi-fix-0014-NgA5qh/a (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+    }
+  },
+  {
+    "id": 10,
+    "result": {}
+  },
+  {
+    "id": 11,
+    "result": {}
+  },
+  {
+    "id": 12,
+    "result": {
+      "found": true,
+      "row": 9,
+      "col": 49
+    }
+  },
+  {
+    "id": 13,
+    "result": {
+      "found": true,
+      "row": 9,
+      "col": 50
+    }
+  },
+  {
+    "id": 14,
+    "result": {
+      "format": "text",
+      "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=11:119 screen=alternate title=\"π - a\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Shared > github-com-smoke-beta-repo                                                                 │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Shared context · Home                                                                                          │\n[008] [Ex│> Ready-work Home · ready                                                                                       │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[Ticket · type unspecified] after [READY] B live after A removal                                               │\n[011] [Ex│ [Ticket · type unspecified] item [READY] Surviving B ticket                                                    │\n[012]   p│ + [Collection] unassigned Unassigned (2 tickets)                                                               │\n[013] /ru│                                                                                                                │d/d\n[014] evt│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │d/d\n[017] evt│                                                                                                                │\n[018] /ru│                                                                                                                │d/d\n[019] evt│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    │                                                                                                                │\n[035]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[036] ───│ No checkout: context is readable; actions are disabled.                                                        │───\n[037]    │ 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close                                    │\n[038] ───╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯───\n[039] /tmp/pi-fix-0014-NgA5qh/a (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+    }
+  },
+  {
+    "id": 15,
+    "result": {}
+  },
+  {
+    "id": 16,
+    "result": {
+      "found": true,
+      "row": 19,
+      "col": 8
+    }
+  },
+  {
+    "id": 17,
+    "result": {
+      "format": "text",
+      "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=37:119 screen=alternate title=\"π - a\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Ex╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[009]   p│ Projects · Shared > github-com-smoke-beta-repo                                                                 │\n[010]    │   1 Tracker     [2 Files]   Tab focus · Space/Enter activate                                                   │\n[011] [Ex├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[012]   p│ Shared context  ›  github-com-smoke-beta-repo--7c485eb9  ›  Preview                                            │\n[013] /ru├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤d/d\n[014] evt│▸ docs                                                               │Select a file to preview it.              │\n[015]    │▸ tracker                                                            │                                          │\n[016] /ru│  .context-project.json                                              │                                          │d/d\n[017] evt│  .context-routes.toml                                               │                                          │\n[018] /ru│  AGENTS.md                                                          │                                          │d/d\n[019] evt│  CONTEXT-MAP.md                                                     │                                          │\n[020]    │  notes.txt                                                          │                                          │\n[021]    │                                                                     │                                          │\n[022]  Wa│                                                                     │                                          │\n[023]    │                                                                     │                                          │\n[024]    │                                                                     │                                          │\n[025]    │                                                                     │                                          │\n[026]    │                                                                     │                                          │\n[027]    │                                                                     │                                          │\n[028]    │                                                                     │                                          │\n[029]    │                                                                     │                                          │\n[030]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[031]    │ /tmp/pi-fix-0014-NgA5qh/shared/github-com-smoke-beta-repo--7c485eb9/docs                                       │\n[032]    │ ←→ browse  ↑↓ move  Enter open  Backspace parent                       y insert  f format: shared://  Esc close│\n[033]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/pi-fix-0014-NgA5qh/a (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+    }
+  },
+  {
+    "id": 18,
+    "result": {}
+  },
+  {
+    "id": 19,
+    "result": {}
+  },
+  {
+    "id": 20,
+    "result": {
+      "format": "text",
+      "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=23:79 screen=alternate title=\"π - a\"\n\n=== TEXT ===\n[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for\n[002] tui.altScreen.searchPrevious and\n[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha\n[004] re│ Projects · Shared > github-com-smoke-beta-repo                           │si\n[005] on│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │\n[006] /r├──────────────────────────────────────────────────────────────────────────┤ha\n[007] re│ Shared context  ›  github-com-smoke-beta-repo--7c485eb9  ›  Preview      │si\n[008] on├──────────────────────────────────────────────────────────────────────────┤\n[009]   │▸ docs                                       │Select a file to preview it.│\n[010]   │▸ tracker                                    │                            │\n[011]  W│  .context-project.json                      │                            │\n[012]  A│  .context-routes.toml                       │                            │\n[013]   │  AGENTS.md                                  │                            │\n[014]  /│  CONTEXT-MAP.md                             │                            │d\n[015]  o│  notes.txt                                  │                            │\n[016]   │                                             │                            │\n[017]  /│                                             │                            │d\n[018]  o│                                             │                            │\n[019]   ├──────────────────────────────────────────────────────────────────────────┤\n[020] ──│ /tmp/pi-fix-0014-NgA5qh/shared/github-com-smoke-beta-repo--7c485eb9/docs │──\n[021]   │ ←→ browse  ↑↓ move  Enter open  Backspace parent y insert  f format: sha…│\n[022] ──╰──────────────────────────────────────────────────────────────────────────╯──\n[023] /tmp/pi-fix-0014-NgA5qh/a (master)\n[024] 0.0%/0 (auto)                                                            unknown\n"
+    }
+  },
+  {
+    "id": 21,
+    "result": {}
+  },
+  {
+    "id": 22,
+    "result": {}
+  },
+  {
+    "id": 23,
+    "result": {
+      "format": "text",
+      "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=11:39 screen=alternate title=\"π - a\"\n\n=== TEXT ===\n[001]  ╭────────────────────────────────────╮\n[002]  │ Projects · Shared > github-com-smo…│\n[003]  │   1 Tracker     [2 Files]   Tab fo…│\n[004]  ├────────────────────────────────────┤\n[005]  │ Shared context  ›  github-com-smok…│\n[006]  ├────────────────────────────────────┤\n[007]  │▸ docs                │Select a fil…│\n[008] ─├────────────────────────────────────┤─\n[009]  │ /tmp/pi-fix-0014-NgA5qh/shared/git…│\n[010] ─│ ←→ browse  ↑↓ move  Enter open  Ba…│─\n[011] /╰────────────────────────────────────╯\n[012] 0.0%/0 (auto)                    unknown\n"
+    }
+  },
+  {
+    "id": 24,
+    "result": {}
+  },
+  {
+    "id": 25,
+    "result": {}
+  },
+  {
+    "id": 26,
+    "result": {}
+  },
+  {
+    "id": 27,
+    "result": {}
+  },
+  {
+    "event": "child_exit",
+    "exit_code": 0
+  }
+]

@@ -1,0 +1,228 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-0014",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "fix",
+  "event": "phase-result",
+  "attempt": 2,
+  "parent_receipt": "fix-start-0013",
+  "status": "completed",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "34e28395c83826cdf46e1f09b8ad7761df2be219",
+  "source_tree": "47c38e3a6260f875f97fcba05e7f83c0be62b4ec",
+  "source_start_commit": "f4dffcaebf159cb857eb6008fad80dfb03e214fc",
+  "source_start_tree": "76467ed6e58b3a364a74a19c7f85bcd69c8975bb",
+  "reviewed_base_commit": "8a453ef5df4ad3e94e79005c4c12481792f3ba4d",
+  "source_commits": [
+    "c986abce69cbd347b5a7160d5c88cb3a191c482d",
+    "34e28395c83826cdf46e1f09b8ad7761df2be219"
+  ],
+  "created_at": "2026-10-27T04:25:46.483Z",
+  "muxer": "herdr",
+  "pane_id": "w7A:p6",
+  "agent": "omp",
+  "agent_name": "pi-context-projects-fix-0002",
+  "session_id": "01a17b92-6534-779c-8bf4-72ed068389bc",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014"
+  },
+  "consumed_review_receipt_ids": [
+    "review-0011"
+  ],
+  "resolved_finding_ids": [
+    "SPEC-003",
+    "SPEC-001"
+  ],
+  "unresolved_finding_ids": [],
+  "preserved_resolved_finding_ids": [
+    "SPEC-002"
+  ],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "validation_results": [
+    {
+      "name": "focused-tests",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 1,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/focused-tests.txt"
+    },
+    {
+      "name": "project-tests-recovery",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 1,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/project-tests-recovery.txt"
+    },
+    {
+      "name": "focused-tests-final",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/focused-tests-final.txt"
+    },
+    {
+      "name": "scoped-typecheck",
+      "command": "mise exec -- bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/projects.test.ts skills/shared-context/scripts/shared-context/lib.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/scoped-typecheck.txt"
+    },
+    {
+      "name": "CLI runtime",
+      "command": "scripts/shared-context/cli.ts recover-identity github-com-smoke-beta-repo--7c485eb9 --remote https://github.com/smoke-beta/repo.git",
+      "cwd": "/tmp/pi-fix-0014-NgA5qh",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/cli-runtime.txt"
+    },
+    {
+      "name": "Actual Pi v1.1.0 terminal",
+      "command": "termscope session --cols 120 --rows 40 -- /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-skills --no-prompt-templates --no-context-files --no-mcp -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "cwd": "/tmp/pi-fix-0014-NgA5qh/a",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014/pi-runtime.json",
+      "details": "Opened Repo A, selected shared B, deleted repository-only A, observed new B ticket via live refresh and surviving Files. Footer retained A. Captured 120x40, 80x24, 40x12 with NO_COLOR=1. No model request."
+    }
+  ],
+  "validation_notes": [
+    "Initial focused suites: 121 passed, 2 failed because the isolated CLI fixture HOME hid the installed Bun shim. A project-only rerun retained that harness failure. The fixture now prepends the running Bun executable directory and isolates mise configuration. No product failure remained; final suites: 123 passed, 0 failed, 2070 assertions.",
+    "The first disposable CLI smoke used the OMP executable directory instead of Bun in PATH. Retried with the installed Bun directory; recovery succeeded. An isolated diagnostic triggered mise downloads under /tmp/pi-fix-cli-home and timed out; that temporary directory was removed. No repository tool configuration changed.",
+    "After Pi exited 0 on Ctrl+D, the termscope close request timed out because the protocol had already ended. The captured child_exit event and termscope exit code are 0.",
+    "LSP initialization failed because it could not locate TypeScript. Scoped tsc passed. Known unrelated broad bundle compiler failures were not rerun.",
+    "GitHub request targeting uses deterministic fixture responses in complete-modal regression tests. No live GitHub service acceptance claim.",
+    "The review failures were accepted as ground truth and were not rerun on unchanged source. The actual Pi runtime exercises the fixed SPEC-003 scenario rather than copying the obsolete execution wrapper."
+  ],
+  "fix_summary": "SPEC-003 selects a verified surviving selected-project execution directory. SPEC-001 supplies explicit existing-store identity recovery from one verified checkout origin or user-supplied remote, without changing routes or existing metadata.",
+  "draft_snapshot": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0014.md",
+  "projection_paths": [
+    "workflows/pi-shared-context-ux-01-projects/manifest.yaml",
+    "workflows/pi-shared-context-ux-01-projects/projections/pr-draft.md",
+    "workflows/pi-shared-context-ux-01-projects/projections/implementation-log.md",
+    "workflows/pi-shared-context-ux-01-projects/projections/latest-status.yaml"
+  ],
+  "latest_review_verdict": "FAILURE",
+  "fresh_review_required": true,
+  "parent_phase_completion_pending": true,
+  "source_worktree_clean": true,
+  "formal_worktree_review_run": false,
+  "merged": false,
+  "rebased": false,
+  "pushed": false,
+  "ticket_state_changed": false,
+  "ticket_comments_changed": false,
+  "canonical_workflow_committed": false,
+  "completion_marker": "WORKTREE_FIX_DONE",
+  "completion_marker_result": true,
+  "pane_close_owner": "parent",
+  "open_questions": [],
+  "remaining_risks": [
+    "An unknown hosted identity still requires an authoritative remote or verified checkout. No slug inference is used.",
+    "No live GitHub service or new full colour audit is claimed. Known broad compiler failures and existing UI clipping/shortcut conflicts remain outside scope."
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-start-0013.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0011.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-complete-0012.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/implementation-0002.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-0008.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0011.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0008.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "tracker/tickets/pi-shared-context-tui-ux-spec.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "docs/adr/index.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-0014.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0014.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/latest-status.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0014"
+    }
+  ]
+}
