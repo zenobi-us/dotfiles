@@ -1,0 +1,57 @@
+{
+  "created_at": "2026-10-27T04:51:21.279491+00:00",
+  "source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "results": [
+    {
+      "name": "projects-tests",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/projects-tests.txt"
+    },
+    {
+      "name": "focused-suites",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/focused-suites.txt"
+    },
+    {
+      "name": "scoped-typecheck",
+      "command": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 1,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/scoped-typecheck.txt"
+    },
+    {
+      "name": "scoped-typecheck-final",
+      "command": "mise exec -- bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/scoped-typecheck-final.txt"
+    },
+    {
+      "name": "actual-pi",
+      "command": "termscope session --cols 120 --rows 40 -- /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-skills --no-prompt-templates --no-context-files --no-mcp -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "cwd": "/tmp/pi-project-filter-rnky_nri/alpha",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/pi-runtime.json"
+    }
+  ],
+  "notes": [
+    "The reviewed lack of filtering was accepted as ground truth. No unchanged-source test rerun was used to confirm it.",
+    "The first scoped compiler invocation used a nonexistent root node_modules path. Running the documented package-relative compiler succeeded. No source change was needed.",
+    "The first actual-Pi identity query btaqybd12 matched both origins because subsequence matching found b in github and later letters in each path. The unique query filterbta selected only beta. This was a smoke expectation correction, not a product defect.",
+    "Actual Pi v1.1.0 ran offline against disposable local Git and context fixtures. No model request or live GitHub API request ran. GitHub action regressions use deterministic responses.",
+    "Actual Pi captures cover 120x40, 80x24 and 40x12. NO_COLOR=1 and FORCE_COLOR=1 captures were taken. The terminal renderer still produced monochrome SVG output; no full colour or contrast audit is claimed.",
+    "At 40x12, project names and footer hints truncate, but count, query, selection and identity rows stay visible. Existing tracker clipping and host shortcut conflicts remain out of scope.",
+    "One resized colour-session Ctrl+D shutdown wait timed out. The explicit termscope close operation returned exit_code 0. All terminal sessions are closed.",
+    "Known unrelated broad bundle TypeScript failures were not rerun."
+  ],
+  "fixture": {
+    "root": "/tmp/pi-project-filter-rnky_nri",
+    "temporary": true,
+    "live_services": false
+  }
+}

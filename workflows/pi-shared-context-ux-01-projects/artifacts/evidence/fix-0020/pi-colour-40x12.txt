@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=11:39 screen=alternate title="π - alpha"
+
+=== TEXT ===
+[001]  nstalls/github-earendil-works-pi/1.1.0
+[002]  /docs/providers.md
+[003]  ╭────────────────────────────────────╮
+[004]  │ Projects · Repo > alpha            │
+[005]  │   1 Tracker      2 Files    Tab fo…│
+[006]  │ Projects (1/2) · ↑↓ select · Enter…│
+[007]  │ Filter: filterbta                  │
+[008] ─│ > github-com-filter-beta-query-boa…│─
+[009]  │   github-com-filter-beta-query-boa…│
+[010] ─╰────────────────────────────────────╯─
+[011] /tmp/pi-project-filter-rnky_nri/alpha...
+[012] 0.0%/0 (auto)                    unknown

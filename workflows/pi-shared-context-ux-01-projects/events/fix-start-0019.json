@@ -1,0 +1,65 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-start-0019",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "fix",
+  "event": "phase-start",
+  "attempt": 3,
+  "parent_receipt": "review-0017",
+  "status": "started",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "34e28395c83826cdf46e1f09b8ad7761df2be219",
+  "source_tree": "47c38e3a6260f875f97fcba05e7f83c0be62b4ec",
+  "reviewed_base_commit": "b22bda0eb4c56c618487092b7fca68fc212632e2",
+  "created_at": "2026-10-27T04:44:08.067Z",
+  "muxer": "herdr",
+  "pane_id": "w7A:pA",
+  "agent": "omp",
+  "agent_name": "pi-context-projects-fix-0003",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0017.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0017.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0014.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-start-0019.json"
+    }
+  ],
+  "selected_finding_ids": [
+    "STANDARDS-001"
+  ],
+  "consumed_review_receipt_ids": [
+    "review-0017"
+  ]
+}

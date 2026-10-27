@@ -1,0 +1,18 @@
+{
+  "receipt_envelope": "valid",
+  "receipt_readback": "exact match",
+  "receipt_sequence": 20,
+  "receipt_parent": "fix-start-0019",
+  "append_only_history": "19 prior JSON records unchanged from consumed records",
+  "links_checked": 145,
+  "missing_links": 0,
+  "okf_documents_validated": 4,
+  "bundle_validation": "Not applicable: worktree workflow is a receipts/artifacts store, not an OKF bundle with an index. Individual authored documents were validated.",
+  "snapshot_readback": "OKF parsed, validated and links resolved",
+  "projection_readback": "manifest and latest-status equal generated state; Markdown projections OKF valid with all links present",
+  "source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "parent_phase_completion_pending": true,
+  "latest_review_verdict": "FAILURE",
+  "state": "FIXED"
+}

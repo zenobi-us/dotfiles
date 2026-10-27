@@ -1,0 +1,489 @@
+{
+  "command": "termscope session --cols 120 --rows 40 -- /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-skills --no-prompt-templates --no-context-files --no-mcp -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+  "cwd": "/tmp/pi-project-filter-rnky_nri/alpha",
+  "env": {
+    "HOME": "/tmp/pi-project-filter-rnky_nri/home",
+    "NO_COLOR": "1"
+  },
+  "fixture": true,
+  "events": [
+    {
+      "request": {
+        "id": 1,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 500
+        }
+      },
+      "response": {
+        "id": 1,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 2,
+        "method": "type",
+        "params": {
+          "text": "/shared-context"
+        }
+      },
+      "response": {
+        "id": 2,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 3,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 3,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 4,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 700
+        }
+      },
+      "response": {
+        "id": 4,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 5,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 5,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n[004]  Pr\u2502 Projects \u00b7 Repo > alpha                                                                                        \u2502\n[005]    \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502\n[006]  Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[007]    \u2502 Shared context \u00b7 Home                                                                                          \u2502\n[008] [Ex\u2502> Ready-work Home \u00b7 ready                                                                                       \u2502\n[009]   p\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[010]    \u2502>[Ticket \u00b7 type unspecified] item [READY] alpha filter target                                                   \u2502\n[011] [Ex\u2502 + [Collection] unassigned Unassigned (1 tickets)                                                               \u2502\n[012]   p\u2502                                                                                                                \u2502\n[013] /ru\u2502                                                                                                                \u2502d/d\n[014] evt\u2502                                                                                                                \u2502\n[015]    \u2502                                                                                                                \u2502\n[016] /ru\u2502                                                                                                                \u2502d/d\n[017] evt\u2502                                                                                                                \u2502\n[018] /ru\u2502                                                                                                                \u2502d/d\n[019] evt\u2502                                                                                                                \u2502\n[020]    \u2502                                                                                                                \u2502\n[021]    \u2502                                                                                                                \u2502\n[022]  Wa\u2502                                                                                                                \u2502\n[023]    \u2502                                                                                                                \u2502\n[024]    \u2502                                                                                                                \u2502\n[025]    \u2502                                                                                                                \u2502\n[026]    \u2502                                                                                                                \u2502\n[027]    \u2502                                                                                                                \u2502\n[028]    \u2502                                                                                                                \u2502\n[029]    \u2502                                                                                                                \u2502\n[030]    \u2502                                                                                                                \u2502\n[031]    \u2502                                                                                                                \u2502\n[032]    \u2502                                                                                                                \u2502\n[033]    \u2502                                                                                                                \u2502\n[034]    \u2502                                                                                                                \u2502\n[035]    \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[036] \u2500\u2500\u2500\u2502 tracker/tickets/item.md \u00b7 READY                                                                                \u2502\u2500\u2500\u2500\n[037]    \u2502 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close                                    \u2502\n[038] \u2500\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 6,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      },
+      "response": {
+        "id": 6,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 7,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 300
+        }
+      },
+      "response": {
+        "id": 7,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 8,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 8,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=24:119 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /ru\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256ed/d\n[017] evt\u2502 Projects \u00b7 Repo > alpha                                                                                        \u2502\n[018] /ru\u2502   1 Tracker      2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502d/d\n[019] evt\u2502 Projects (2/2) \u00b7 \u2191\u2193 select \u00b7 Enter open \u00b7 Esc close                                                            \u2502\n[020]    \u2502 Type to filter names and identities                                                                            \u2502\n[021]    \u2502 > alpha (current)                                                                                              \u2502\n[022]  Wa\u2502   github.com/filter-alpha/query-board12                                                                        \u2502\n[023]    \u2502   github-com-filter-beta-query-board12                                                                         \u2502\n[024]    \u2502   github-com-filter-beta-query-board12--8191e183                                                               \u2502\n[025]    \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[037] \n[038] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 9,
+        "method": "type",
+        "params": {
+          "text": "qybd12"
+        }
+      },
+      "response": {
+        "id": 9,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 10,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 10,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 11,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 11,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=19:119 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /ru\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256ed/d\n[017] evt\u2502 Projects \u00b7 Repo > alpha                                                                                        \u2502\n[018] /ru\u2502   1 Tracker      2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502d/d\n[019] evt\u2502 Projects (2/2) \u00b7 \u2191\u2193 select \u00b7 Enter open \u00b7 Esc close                                                            \u2502\n[020]    \u2502 Filter: qybd12                                                                                                 \u2502\n[021]    \u2502 > alpha (current)                                                                                              \u2502\n[022]  Wa\u2502   github.com/filter-alpha/query-board12                                                                        \u2502\n[023]    \u2502   github-com-filter-beta-query-board12                                                                         \u2502\n[024]    \u2502   github-com-filter-beta-query-board12--8191e183                                                               \u2502\n[025]    \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[037] \n[038] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 12,
+        "method": "type",
+        "params": {
+          "text": "zzzz"
+        }
+      },
+      "response": {
+        "id": 12,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 13,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 13,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 14,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 14,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=24:0 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[017] evt\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n[018] /ru\u2502 Projects \u00b7 Repo > alpha                                                                                        \u2502d/d\n[019] evt\u2502   1 Tracker      2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502\n[020]    \u2502 Projects (0/2) \u00b7 \u2191\u2193 select \u00b7 Enter open \u00b7 Esc close                                                            \u2502\n[021]    \u2502 Filter: qybd12zzzz                                                                                             \u2502\n[022]  Wa\u2502 No projects match. Edit the filter or use Ctrl+U to clear.                                                     \u2502\n[023]    \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[037] \n[038] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 15,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 15,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 16,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 16,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 17,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 17,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=24:0 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[017] evt\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n[018] /ru\u2502 Projects \u00b7 Repo > alpha                                                                                        \u2502d/d\n[019] evt\u2502   1 Tracker      2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502\n[020]    \u2502 Projects (0/2) \u00b7 \u2191\u2193 select \u00b7 Enter open \u00b7 Esc close                                                            \u2502\n[021]    \u2502 Filter: qybd12zzzz                                                                                             \u2502\n[022]  Wa\u2502 No projects match. Edit the filter or use Ctrl+U to clear.                                                     \u2502\n[023]    \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[037] \n[038] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 18,
+        "method": "press",
+        "params": {
+          "key": "C-u"
+        }
+      },
+      "response": {
+        "id": 18,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 19,
+        "method": "type",
+        "params": {
+          "text": "btaqybd12"
+        }
+      },
+      "response": {
+        "id": 19,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 20,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 20,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 21,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 21,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=19:119 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /ru\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256ed/d\n[017] evt\u2502 Projects \u00b7 Repo > alpha                                                                                        \u2502\n[018] /ru\u2502   1 Tracker      2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502d/d\n[019] evt\u2502 Projects (2/2) \u00b7 \u2191\u2193 select \u00b7 Enter open \u00b7 Esc close                                                            \u2502\n[020]    \u2502 Filter: btaqybd12                                                                                              \u2502\n[021]    \u2502 > alpha (current)                                                                                              \u2502\n[022]  Wa\u2502   github.com/filter-alpha/query-board12                                                                        \u2502\n[023]    \u2502   github-com-filter-beta-query-board12                                                                         \u2502\n[024]    \u2502   github-com-filter-beta-query-board12--8191e183                                                               \u2502\n[025]    \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[037] \n[038] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 22,
+        "method": "press",
+        "params": {
+          "key": "C-u"
+        }
+      },
+      "response": {
+        "id": 22,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 23,
+        "method": "type",
+        "params": {
+          "text": "filterbta"
+        }
+      },
+      "response": {
+        "id": 23,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 24,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 24,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 25,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 25,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=24:0 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[017] evt\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n[018] /ru\u2502 Projects \u00b7 Repo > alpha                                                                                        \u2502d/d\n[019] evt\u2502   1 Tracker      2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502\n[020]    \u2502 Projects (1/2) \u00b7 \u2191\u2193 select \u00b7 Enter open \u00b7 Esc close                                                            \u2502\n[021]    \u2502 Filter: filterbta                                                                                              \u2502\n[022]  Wa\u2502 > github-com-filter-beta-query-board12                                                                         \u2502\n[023]    \u2502   github-com-filter-beta-query-board12--8191e183                                                               \u2502\n[024]    \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[037] \n[038] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 26,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 26,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 27,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 500
+        }
+      },
+      "response": {
+        "id": 27,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 28,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 28,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=37:119 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n[004]  Pr\u2502 Projects \u00b7 Shared > github-com-filter-beta-query-board12                                                       \u2502\n[005]    \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502\n[006]  Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[007]    \u2502 Shared context \u00b7 Home                                                                                          \u2502\n[008] [Ex\u2502> Ready-work Home \u00b7 ready                                                                                       \u2502\n[009]   p\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[010]    \u2502>[Ticket \u00b7 type unspecified] item [READY] beta filter target                                                    \u2502\n[011] [Ex\u2502 + [Collection] unassigned Unassigned (1 tickets)                                                               \u2502\n[012]   p\u2502                                                                                                                \u2502\n[013] /ru\u2502                                                                                                                \u2502d/d\n[014] evt\u2502                                                                                                                \u2502\n[015]    \u2502                                                                                                                \u2502\n[016] /ru\u2502                                                                                                                \u2502d/d\n[017] evt\u2502                                                                                                                \u2502\n[018] /ru\u2502                                                                                                                \u2502d/d\n[019] evt\u2502                                                                                                                \u2502\n[020]    \u2502                                                                                                                \u2502\n[021]    \u2502                                                                                                                \u2502\n[022]  Wa\u2502                                                                                                                \u2502\n[023]    \u2502                                                                                                                \u2502\n[024]    \u2502                                                                                                                \u2502\n[025]    \u2502                                                                                                                \u2502\n[026]    \u2502                                                                                                                \u2502\n[027]    \u2502                                                                                                                \u2502\n[028]    \u2502                                                                                                                \u2502\n[029]    \u2502                                                                                                                \u2502\n[030]    \u2502                                                                                                                \u2502\n[031]    \u2502                                                                                                                \u2502\n[032]    \u2502                                                                                                                \u2502\n[033]    \u2502                                                                                                                \u2502\n[034]    \u2502                                                                                                                \u2502\n[035]    \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[036] \u2500\u2500\u2500\u2502 No checkout: context is readable; actions are disabled.                                                        \u2502\u2500\u2500\u2500\n[037]    \u2502 5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close                                    \u2502\n[038] \u2500\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 29,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      },
+      "response": {
+        "id": 29,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 30,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 30,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 31,
+        "method": "type",
+        "params": {
+          "text": "q"
+        }
+      },
+      "response": {
+        "id": 31,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 32,
+        "method": "press",
+        "params": {
+          "key": "TAB"
+        }
+      },
+      "response": {
+        "id": 32,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 33,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      },
+      "response": {
+        "id": 33,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 34,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 34,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 35,
+        "method": "snapshot",
+        "params": {}
+      },
+      "response": {
+        "id": 35,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=36:0 screen=alternate title=\"\u03c0 - alpha\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[014] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[017] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts. Using\n[018] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/d\n[019] evtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts.\n[020] \n[021] \n[022]  Warning: No models available. Use /login to log into a provider via OAuth or API key. See:\n[023]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md\n[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[037] \n[038] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[039] /tmp/pi-project-filter-rnky_nri/alpha (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 36,
+        "method": "press",
+        "params": {
+          "key": "C-d"
+        }
+      },
+      "response": {
+        "id": 36,
+        "result": {}
+      }
+    }
+  ],
+  "exit_code": 0
+}

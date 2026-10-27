@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=23:79 screen=alternate title="π - alpha"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[004] red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi
+[005] ons/pi-shared-context/index.ts. Using
+[006] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-sha
+[007] red-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensi
+[008] ons/pi-shared-context/index.ts.
+[009]   ╭──────────────────────────────────────────────────────────────────────────╮
+[010]   │ Projects · Repo > alpha                                                  │
+[011]  W│   1 Tracker      2 Files    Tab focus · Space/Enter activate             │
+[012]  A│ Projects (1/2) · ↑↓ select · Enter open · Esc close                      │
+[013]   │ Filter: filterbta                                                        │
+[014]  /│ > github-com-filter-beta-query-board12                                   │d
+[015]  o│   github-com-filter-beta-query-board12--8191e183                         │
+[016]   ╰──────────────────────────────────────────────────────────────────────────╯
+[017]  /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/d
+[018]  ocs/models.md
+[019] 
+[020] ────────────────────────────────────────────────────────────────────────────────
+[021] 
+[022] ────────────────────────────────────────────────────────────────────────────────
+[023] /tmp/pi-project-filter-rnky_nri/alpha (master)
+[024] 0.0%/0 (auto)                                                            unknown

@@ -1,0 +1,26 @@
+mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.
+bun test v1.4.3 (c6da4a4d3)
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:
+(pass) Projects supports reverse focus, mouse breadcrumbs, canonical identities, and escape levels [108.25ms]
+(pass) Projects filters names and identities by subsequence and opens the filtered action target [73.26ms]
+(pass) Projects zero results cannot open a stale selection and editing restores a valid target [68.23ms]
+(pass) Escape closes Projects with an active filter even when a breadcrumb has focus [48.20ms]
+(pass) project switching owns tracker actions and Files while preserving each workspace [94.65ms]
+(pass) stored projects remain readable without a checkout and disable action dispatch [68.53ms]
+(pass) stored GitHub projects retain their remote identity after checkout removal [57.12ms]
+(pass) empty, unreadable, and unavailable project states retain the current project [70.62ms]
+(pass) inactive project updates do not replace the selected view and return refreshes its state [526.32ms]
+(pass) cached Files follows newly resolved alignment routes before reading records [87.66ms]
+(pass) checkoutless mixed routes retain shared records with a Repo alignment indicator [62.03ms]
+(pass) returning to a project restores its ticket reader and scroll position [323.71ms]
+(pass) focus traversal re-enters the first or last tracker pane in traversal order [277.70ms]
+(pass) the live modal recovers the deduplicated current project after checkout removal [554.94ms]
+(pass) repository-only A can disappear while selected shared B keeps loading records [323.94ms]
+(pass) legacy hosted identity recovery from checkout opens the complete modal without a checkout [203.09ms]
+(pass) legacy hosted identity recovery from remote opens the complete modal without a checkout [189.27ms]
+
+ 17 pass
+ 0 fail
+ 98 expect() calls
+Ran 17 tests across 1 file. [3.17s]

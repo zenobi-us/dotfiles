@@ -1,0 +1,235 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-0020",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "fix",
+  "event": "phase-result",
+  "attempt": 3,
+  "parent_receipt": "fix-start-0019",
+  "status": "completed",
+  "state": "FIXED",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "source_start_commit": "34e28395c83826cdf46e1f09b8ad7761df2be219",
+  "source_start_tree": "47c38e3a6260f875f97fcba05e7f83c0be62b4ec",
+  "source_commits": [
+    "fa5c5427d3b541d80b17d3acfc16b518d111e724"
+  ],
+  "reviewed_base_commit": "b22bda0eb4c56c618487092b7fca68fc212632e2",
+  "created_at": "2026-10-27T04:51:53.132860+00:00",
+  "muxer": "herdr",
+  "pane_id": "w7A:pA",
+  "agent": "omp",
+  "agent_name": "pi-context-projects-fix-0003",
+  "session_id": "01a17bac-cd2a-744c-83bf-e0de34fbef25",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020"
+  },
+  "consumed_review_receipt_ids": [
+    "review-0017"
+  ],
+  "selected_finding_ids": [
+    "STANDARDS-001"
+  ],
+  "resolved_finding_ids": [
+    "STANDARDS-001"
+  ],
+  "unresolved_finding_ids": [],
+  "preserved_resolved_finding_ids": [
+    "SPEC-001",
+    "SPEC-002",
+    "SPEC-003"
+  ],
+  "findings": [
+    {
+      "id": "STANDARDS-001",
+      "severity": "P2",
+      "adr": "NO ADR",
+      "status": "resolved",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+      "reviewed_lines": "186-190,212-223",
+      "resolution": "Reuse Pi Input and fuzzyMatch for project name/identity filtering, query and filtered/total count, stable valid selection and explicit zero results. Escape closes Projects, including with an active query and focused breadcrumb."
+    }
+  ],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "validation_results": [
+    {
+      "name": "projects-tests",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/projects-tests.txt"
+    },
+    {
+      "name": "focused-suites",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/focused-suites.txt"
+    },
+    {
+      "name": "scoped-typecheck",
+      "command": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 1,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/scoped-typecheck.txt"
+    },
+    {
+      "name": "scoped-typecheck-final",
+      "command": "mise exec -- bun node_modules/typescript/bin/tsc --noEmit --module preserve --moduleResolution bundler --target esnext --strict --skipLibCheck --types bun extensions/pi-shared-context/index.ts extensions/pi-shared-context/projects.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/scoped-typecheck-final.txt"
+    },
+    {
+      "name": "actual-pi",
+      "command": "termscope session --cols 120 --rows 40 -- /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-skills --no-prompt-templates --no-context-files --no-mcp -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "cwd": "/tmp/pi-project-filter-rnky_nri/alpha",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020/pi-runtime.json"
+    }
+  ],
+  "validation_notes": [
+    "The reviewed lack of filtering was accepted as ground truth. No unchanged-source test rerun was used to confirm it.",
+    "The first scoped compiler invocation used a nonexistent root node_modules path. Running the documented package-relative compiler succeeded. No source change was needed.",
+    "The first actual-Pi identity query btaqybd12 matched both origins because subsequence matching found b in github and later letters in each path. The unique query filterbta selected only beta. This was a smoke expectation correction, not a product defect.",
+    "Actual Pi v1.1.0 ran offline against disposable local Git and context fixtures. No model request or live GitHub API request ran. GitHub action regressions use deterministic responses.",
+    "Actual Pi captures cover 120x40, 80x24 and 40x12. NO_COLOR=1 and FORCE_COLOR=1 captures were taken. The terminal renderer still produced monochrome SVG output; no full colour or contrast audit is claimed.",
+    "At 40x12, project names and footer hints truncate, but count, query, selection and identity rows stay visible. Existing tracker clipping and host shortcut conflicts remain out of scope.",
+    "One resized colour-session Ctrl+D shutdown wait timed out. The explicit termscope close operation returned exit_code 0. All terminal sessions are closed.",
+    "Known unrelated broad bundle TypeScript failures were not rerun."
+  ],
+  "fix_summary": "Add Projects fuzzy filtering over names and identities, visible active query and counts, selection retention by identity with a first-result fallback, safe zero-result Enter, and Escape-to-close. Printable q/1/2 are search input in Projects; existing workspace shortcuts remain outside Projects. Existing README documents the behavior.",
+  "draft_snapshot": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0020.md",
+  "projection_paths": [
+    "workflows/pi-shared-context-ux-01-projects/manifest.yaml",
+    "workflows/pi-shared-context-ux-01-projects/projections/pr-draft.md",
+    "workflows/pi-shared-context-ux-01-projects/projections/implementation-log.md",
+    "workflows/pi-shared-context-ux-01-projects/projections/latest-status.yaml"
+  ],
+  "latest_review_receipt": "review-0017",
+  "latest_review_verdict": "FAILURE",
+  "fresh_review_required": true,
+  "parent_phase_completion_pending": true,
+  "formal_worktree_review_run": false,
+  "merged": false,
+  "rebased": false,
+  "pushed": false,
+  "ticket_state_changed": false,
+  "ticket_comments_changed": false,
+  "canonical_workflow_committed": false,
+  "completion_marker": "WORKTREE_FIX_DONE",
+  "completion_marker_result": true,
+  "pane_close_owner": "parent",
+  "open_questions": [],
+  "remaining_risks": [
+    "Latest reviewer verdict remains FAILURE until a new review.",
+    "No live-service acceptance or full colour/contrast audit. Existing host shortcut conflict and narrow tracker clipping remain out of scope."
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-start-0019.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-0017.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-complete-0018.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/implementation-0002.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-0014.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/reviews/review-review-0017.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0014.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "tracker/tickets/pi-shared-context-tui-ux-spec.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "requirements",
+      "ref": "docs/adr/index.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-0020.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0020.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-01-projects/projections/latest-status.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/evidence/fix-0020"
+    }
+  ]
+}
