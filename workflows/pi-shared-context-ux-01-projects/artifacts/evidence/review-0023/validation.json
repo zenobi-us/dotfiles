@@ -1,0 +1,54 @@
+{
+  "source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "tests": {
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+    "exit_code": 0
+  },
+  "actual_pi": {
+    "command": [
+      "termscope",
+      "session",
+      "--cols",
+      "120",
+      "--rows",
+      "40",
+      "--",
+      "pi",
+      "--offline",
+      "--no-session",
+      "--no-extensions",
+      "--no-skills",
+      "--no-prompt-templates",
+      "--no-context-files",
+      "--no-mcp",
+      "-e",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+    "exit_code": 0,
+    "observed": [
+      "Projects 9/9 includes current project",
+      "q12NORESULT is literal query; 0/9 count",
+      "Zero-result Enter stays in Projects",
+      "Ctrl+U clears; znbdtfl subsequence matches identity at 1/9",
+      "Filtered Enter returns current tracker",
+      "Escape from tracker opens Projects; Escape with q12 closes",
+      "SVG captures 120x40,80x24,40x12 inspected; monochrome only"
+    ],
+    "limits": [
+      "No live hosted-service or model request",
+      "Other project activation and watcher mutation not re-exercised in this runtime; covered by focused tests and prior durable evidence",
+      "No full colour or contrast claim",
+      "Known broad compiler failures not rerun"
+    ]
+  }
+}

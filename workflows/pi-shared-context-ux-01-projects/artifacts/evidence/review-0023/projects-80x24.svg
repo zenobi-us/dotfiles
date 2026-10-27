@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)"> ▀▀█  v1.1.0</text>
+<text x="10" y="64" fill="rgb(255,255,255)"> █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash ·</text>
+<text x="10" y="84" fill="rgb(255,255,255)"> ctrl+o more</text>
+<text x="10" y="104" fill="rgb(255,255,255)"> P╭──────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="124" fill="rgb(255,255,255)">  │ Projects · Repo &gt; feature-pi-shared-context-ux-01-projects               │</text>
+<text x="10" y="144" fill="rgb(255,255,255)"> P│   1 Tracker      2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="164" fill="rgb(255,255,255)"> e│ Projects (9/9) · ↑↓ select · Enter open · Esc close                      │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  │ Type to filter names and identities                                      │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │ &gt; feature-pi-shared-context-ux-01-projects (current)                     │</text>
+<text x="10" y="224" fill="rgb(255,255,255)">  │   github.com/zenobi-us/dotfiles                                          │</text>
+<text x="10" y="244" fill="rgb(255,255,255)">  │   github-com-airtonix-age-plugin-yubikey                                 │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │   github-com-airtonix-age-plugin-yubikey--9f84d1d0                       │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">  │   github-com-airtonix-finance                                            │</text>
+<text x="10" y="304" fill="rgb(255,255,255)">  │   github-com-airtonix-finance--1fb15e85                                  │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │   github-com-airtonix-remarkableprocomputedwidgets                       │</text>
+<text x="10" y="344" fill="rgb(255,255,255)">  │   github-com-airtonix-remarkableprocomputedwidgets--84f8c2c2             │</text>
+<text x="10" y="364" fill="rgb(255,255,255)">  │   github-com-airtonix-syncplay                                           │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  │   github-com-airtonix-syncplay--20d03bc5                                 │</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="444" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...</text>
+<text x="10" y="484" fill="rgb(255,255,255)">$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 • medium</text>
+</svg>

@@ -1,0 +1,59 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-start-0022",
+  "workflow_id": "pi-shared-context-ux-01-projects",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 4,
+  "parent_receipt": "fix-complete-0021",
+  "status": "started",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",
+  "source_branch": "feature/pi-shared-context-ux-01-projects",
+  "base_branch": "master",
+  "source_commit": "fa5c5427d3b541d80b17d3acfc16b518d111e724",
+  "source_tree": "58a4e85a43a983575f385d96c8e18cc8ada8b328",
+  "reviewed_base_commit": "bbc346e1337323974c17f938887344f8855ace78",
+  "created_at": "2026-10-27T04:58:55.713Z",
+  "muxer": "herdr",
+  "pane_id": "w7A:pB",
+  "agent": "omp",
+  "agent_name": "pi-context-projects-review-0004",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-01-projects",
+    "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-01-projects.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-01-projects"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-01-projects.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-0020.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/fix-complete-0021.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-01-projects/artifacts/snapshots/pr-draft-fix-0020.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-01-projects/events/review-start-0022.json"
+    }
+  ]
+}

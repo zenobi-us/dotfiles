@@ -5,10 +5,10 @@ initiative: ~
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: fix-complete-0021
-state: FIXED
+latest_receipt: review-complete-0024
+state: REVIEW_PASSED
 source_branch: feature/pi-shared-context-ux-01-projects
 base_branch: master
 workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects
-latest_review_verdict: FAILURE
+latest_review_verdict: SUCCESS
 parent_phase_completion_pending: false
