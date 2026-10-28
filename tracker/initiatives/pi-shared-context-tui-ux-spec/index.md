@@ -213,3 +213,6 @@ The user approved the test boundary: modal behavior tests and terminal checks.
 - [Read complete initiative and item descriptions](../../tickets/pi-shared-context-ux-04-descriptions.md)
 - [Inspect ticket events through readable history and evidence views](../../tickets/pi-shared-context-ux-05-events.md)
 - [Find actionable tickets through clear work queues](../../tickets/pi-shared-context-ux-06-queues.md)
+
+- [Track ongoing shared-context UX feedback](../../tickets/pi-shared-context-ux-07-feedback.md)
+
