@@ -1,0 +1,81 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "pi-shared-context-ux-04-descriptions",
+  "phase": "start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "source_branch": "feature/pi-shared-context-ux-04-descriptions",
+  "base_branch": "master",
+  "source_commit": "564329b54ae70757545966d1945ded1a53a5512a",
+  "source_tree": "7dd571db1351f45d15e49ec96e8cbcebc1e249a0",
+  "created_at": "2026-10-28T21:03:21.698Z",
+  "muxer": "herdr",
+  "pane_id": "w7Z:p1",
+  "agent": "omp",
+  "agent_name": "ux04-implement-c1",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-04-descriptions",
+    "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-04-descriptions"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml",
+  "event": "phase-start",
+  "status": "started",
+  "cycle_number": 1,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "564329b54ae70757545966d1945ded1a53a5512a",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-complete-0024.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/events/start-0001.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/projections/implementation-log.md"
+    }
+  ]
+}
