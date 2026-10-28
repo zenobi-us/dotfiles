@@ -173,6 +173,12 @@ The repository has no existing domain glossary or relevant recorded ADR for this
 
 The user approved one main integration seam, with separate real-device acceptance. Readiness metadata is omitted because the tracker configuration defines readiness for tickets but provides no initiative readiness mapping. This initiative has no executable children yet.
 
+### Proposed tablet client UI
+
+The user supplied this proposed tablet client UI. It shows the disconnected state, server connections, the server annotation inbox, and the annotation editor. This is a design reference, not implementation evidence.
+
+![Proposed tablet client UI with four screens: no connection, server connections, image inbox, and annotation editor.](tablet-client-ui.webp)
+
 ## Tickets
 
 No child tickets have been created.
@@ -180,4 +186,5 @@ No child tickets have been created.
 ## Comments
 
 The specification records the conversation workflow and the approved testing seam.
+
 
