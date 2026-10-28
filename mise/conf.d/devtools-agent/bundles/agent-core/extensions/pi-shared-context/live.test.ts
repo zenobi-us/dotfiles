@@ -65,7 +65,7 @@ test("the open modal refreshes focused DAG history and discovers a new dependent
   let graphReads = 0;
   let renders = 0;
   const graph = new GraphExplorer({
-    context: f.context, exec: execute, theme, done: () => {}, requestRender: () => { renders++; }, height: () => 40,
+    context: f.context, exec: execute, theme, done: () => { }, requestRender: () => { renders++; }, height: () => 40,
     commands: () => [{ name: "skill:worktree" }], live: true,
     navigation: { screen: "receipts", ticketId: "A", receiptId: "workflows/A/events/initial-A.json", focus: "list", queue: "all", offsets: [] },
     loadSnapshot: async (...args) => { graphReads++; return loadExplorerSnapshot(...args); },
@@ -78,7 +78,7 @@ test("the open modal refreshes focused DAG history and discovers a new dependent
   });
   cleanups.push(() => graph.dispose());
   await graph.load();
-  const files = new ContextBrowser(f.root, theme, () => {}, () => { renders++; }, f.root, execute, () => {}, () => 40);
+  const files = new ContextBrowser(f.root, theme, () => { }, () => { renders++; }, f.root, execute, () => { }, () => 40);
   cleanups.push(() => files.dispose());
   const modal = new SharedContextModal(f.context, theme, graph, files, () => { renders++; });
   await until(() => graphReads >= 2 && (counts.get("D") ?? 0) >= 2, "initial subscriptions");
@@ -118,7 +118,7 @@ test("file previews follow atomic replacement without moving selection to an ins
   const f = await fixture();
   const folder = join(f.root, "preview");
   await put(join(folder, "b.txt"), "original preview");
-  const browser = new ContextBrowser(folder, theme, () => {}, () => {}, f.root, execute, () => {}, () => 40);
+  const browser = new ContextBrowser(folder, theme, () => { }, () => { }, f.root, execute, () => { }, () => 40);
   cleanups.push(() => browser.dispose());
   browser.startWatching();
   await browser.load();
@@ -131,3 +131,69 @@ test("file previews follow atomic replacement without moving selection to an ins
   expect(view).toContain("b.txt");
   expect(view).not.toContain("unselected sibling");
 });
+
+test("mixed canonical records refresh type and membership without inventing workflows or dependency membership", async () => {
+  const f = await fixture();
+  const record = (id: string, type: string, extra = "", body = `${id} recorded findings`) =>
+    put(join(f.root, `tracker/tickets/${id}.md`), `---\nid: ${id}\ntitle: ${id} title\ntype: ${type}\n${extra}---\n${body}\n`);
+  const index = join(f.root, "tracker/initiatives/I/index.md");
+  await record("R", "research", "status: draft\nsource: sources/study\n");
+  await record("T", "enhancement", "work_status: open\n");
+  await record("N", "Report");
+  await record("U", "research");
+  await record("D", "task", "work_status: open\nblocked_by: [T]\n");
+  await put(index, "---\ntitle: Mixed initiative\n---\n[R](../../tickets/R.md)\n[T](../../tickets/T.md)\n[N](../../tickets/N.md)\n");
+  const graph = new GraphExplorer({ context: f.context, exec: execute, theme, done: () => { }, requestRender: () => { }, height: () => 40, commands: () => [{ name: "skill:to-tickets" }, { name: "skill:worktree" }], live: true });
+  cleanups.push(() => graph.dispose());
+  await graph.load();
+  const modal = new SharedContextModal(f.context, theme, graph, { render: () => ["Independent Files"], handleInput: () => { } }, () => { });
+  const view = () => modal.render(180).join("\n");
+  expect(view()).toContain("Items: 3");
+  expect(view()).toContain("Items: 2");
+  await modal.handleInput("\r");
+  expect(view()).toContain("[research]");
+  expect(view()).toContain("[enhancement]");
+  expect(view()).toContain("[Report]");
+  expect(view()).not.toContain("U title");
+  expect(view()).not.toContain("D title");
+  await modal.handleInput("\r");
+  expect(view()).toContain("sources/study");
+  expect(view()).not.toContain("Current source:");
+  await modal.handleInput("a");
+  expect(view()).toContain("To tickets");
+  expect(view()).toContain("skill:grill-with-docs command is unavailable");
+  expect(view()).not.toContain("Start worktree");
+  await modal.handleInput("\x1b");
+  await record("R", "task", "work_status: open\n", "R is now executable");
+  await until(() => view().includes("R is now executable"), "selected research becomes a ticket");
+  await modal.handleInput("\r");
+  expect(view()).toContain("Events /");
+  await record("R", "research", "status: reviewed\n", "R research restored");
+  await until(() => view().includes("R research restored"), "ticket event view returns to research details");
+  expect(view()).not.toContain("Events /");
+  expect(view()).not.toContain("Current source:");
+  await modal.handleInput("2");
+  await record("R", "research", "status: reviewed\n", "R refreshed while Files is active");
+  await modal.handleInput("1");
+  await until(() => view().includes("R refreshed while Files is active"), "Files preserves selected canonical research");
+  await record("R", "research", "parent: missing-initiative\n");
+  await until(() => view().includes("missing-initiative"), "missing parent explanation").catch(error => { throw new Error(`${error}\n${view()}`); });
+  expect(view()).toContain("R refreshed while Files is active");
+  await record("R", "research");
+  await put(index, "---\ntitle: Mixed initiative\n---\n[T](../../tickets/T.md)\n[N](../../tickets/N.md)\n");
+  await until(() => view().includes("removed from this collection"), "membership removal explains context change");
+  expect(view()).not.toContain("R title");
+  await modal.handleInput("\x1b");
+  await modal.handleInput("\x1b[B");
+  await modal.handleInput("\r");
+  expect(view()).toContain("Items 3");
+  expect(view()).toContain("R title");
+  expect(view()).toContain("U title");
+  expect(view()).toContain("D title");
+  expect(view()).not.toContain("T title");
+  await modal.handleInput("\x1b[B");
+  await modal.handleInput("\r");
+  expect(view()).toContain("ID: R");
+  await modal.handleInput("\x1b");
+  expect(view()).toContain("unassigned");
+}, 30_000);

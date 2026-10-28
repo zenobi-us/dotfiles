@@ -256,6 +256,9 @@ Ungrouped is a synthetic collection and stays visible with zero items. It has no
 Initiative rows show the recorded phase and Items count separately from the title. Missing phases show unavailable; actions never supply a phase.
 Press Enter to open an initiative summary and its children. Press Enter on a child to open its existing detail view.
 Child rows separate type, stable ID, title, and recorded state. Supporting references and workflow warnings appear below the primary fields.
+Initiative child lists include research, executable tickets, planning records, and other supported canonical records. Items counts include every member. Ungrouped includes every record without initiative membership; dependency edges do not create membership.
+Research and planning details show the recorded state, metadata, and body without ticket events, review counts, or worktree state. Research and planning use the existing To tickets and Grill commands when registered. Other non-executable types offer Ask Matt only. Missing commands explain why an action is disabled. Fresh-chat confirmation and unsent commands remain unchanged.
+Live type changes replace ticket-only details and actions. Live membership changes retain the selected canonical record when it remains in the collection. Tracker/Files switches and ancestor navigation preserve selection.
 Titles wrap. Narrow terminals wrap phase and Items on separate lines below the title. Use PgUp/PgDn to read long rows without changing selection. Resizing or row reflow brings the selected record back into view; unchanged layouts retain deliberate paging.
 The > marker identifies a focused selection. The ◇ marker identifies an inactive selection; both retain the selection background.
 Use Tab and Shift+Tab to focus ancestors, panes, and workspace controls. Press Enter or Space on an ancestor, or click it, to return directly.

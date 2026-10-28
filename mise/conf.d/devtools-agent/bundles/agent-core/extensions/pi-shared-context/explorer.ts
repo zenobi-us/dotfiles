@@ -4,7 +4,7 @@ import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
 import { actionChoices } from "./actions";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
-import { isCompleted, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
 import { safeTerminalText } from "./terminal-text";
 import type { ExplorerEvent } from "./model";
 import { DirectoryMonitor, type WatchTarget } from "./watch";
@@ -181,7 +181,7 @@ export class GraphExplorer {
           for (const [id] of this.workflows) {
             const before = this.tickets.get(id);
             const after = snapshot.tickets.find(ticket => ticket.id === id);
-            if (!after || before?.ref !== after.ref || before?.backend !== after.backend) this.workflows.delete(id);
+            if (!after || before?.ref !== after.ref || before?.backend !== after.backend || recordKind(after) !== "ticket") this.workflows.delete(id);
           }
           this.snapshot = snapshot;
           this.tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
@@ -222,6 +222,13 @@ export class GraphExplorer {
             }
           }
           if (!this.ticketId || removedTicket) this.ticketId = this.initiative()?.ticketIds[Math.min(previousChildIndex, (this.initiative()?.ticketIds.length ?? 0) - 1)];
+          if (this.ticket() && recordKind(this.ticket()!) !== "ticket" && (this.screen === "receipts" || this.screen === "actions" && this.returnScreen === "receipts")) {
+            this.screen = "tickets";
+            this.focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
+            this.receiptId = undefined;
+            this.notice = "Record type changed. Showing its recorded details.";
+          }
+          if (this.screen === "actions") this.actionIndex = Math.min(this.actionIndex, Math.max(0, this.choices().length - 1));
           this.scopeKey = "";
           this.updateWatchScope();
           this.ticketStates.clear();
@@ -229,7 +236,7 @@ export class GraphExplorer {
         }
         this.loading = false;
         this.error = "";
-        const tickets = this.snapshot!.tickets.filter(ticket => all || ids.has(ticket.id) || !this.workflows.has(ticket.id));
+        const tickets = this.snapshot!.tickets.filter(ticket => recordKind(ticket) === "ticket" && (all || ids.has(ticket.id) || !this.workflows.has(ticket.id)));
         let index = 0;
         const worker = async () => {
           while (index < tickets.length && !this.disposed) {
@@ -575,7 +582,7 @@ export class GraphExplorer {
         this.itemOrigin = "initiatives";
         this.screen = "tickets";
         focus = compact ? "detail" : "list";
-      } else if (this.screen === "tickets") {
+      } else if (this.screen === "tickets" && this.ticket() && recordKind(this.ticket()!) === "ticket") {
         this.screen = "receipts";
         focus = "list";
         if (!this.history().some(receipt => receipt.id === this.receiptId)) this.receiptId = this.history()[0]?.id;
@@ -618,14 +625,15 @@ export class GraphExplorer {
     const body = Array.from({ length: bodyHeight }, (_, row) => join(rendered.map(lines => lines[row] ?? "")));
     const target = this.target();
     const breadcrumb = this.renderBreadcrumbs(inner, compact);
-    const checks = this.snapshot && this.receiptChecks < this.snapshot.tickets.length ? `Checking receipts ${this.receiptChecks}/${this.snapshot.tickets.length}` : "";
+    const ticketCount = this.snapshot?.tickets.reduce((count, ticket) => count + Number(recordKind(ticket) === "ticket"), 0) ?? 0;
+    const checks = this.snapshot && this.receiptChecks < ticketCount ? `Checking receipts ${this.receiptChecks}/${ticketCount}` : "";
     const unavailable = this.options.context.checkoutAvailable === false
       ? Object.values(this.options.context.routes).some(route => route.store === "repository")
         ? "No checkout: repository records unavailable. Shared records remain readable."
         : "No checkout: context is readable; actions are disabled."
       : "";
     const summary = this.screen === "initiatives" ? this.initiative()?.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line)) : undefined;
-    const status = this.notice || this.error || this.refreshError || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+    const status = this.error || this.refreshError || this.notice || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
     const keys = compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh";
     if (compact) return [breadcrumb, join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
     const frame = (text: string) => th.fg("border", "│") + this.pad(text, inner) + th.fg("border", "│");
@@ -653,7 +661,7 @@ export class GraphExplorer {
     if (this.screen === "home") return [{ id: "home", title: "Initiatives · title / phase / Items", rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
     if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
     if (this.screen === "initiatives") return [this.graphPane()];
-    if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: "Ticket / dependencies / receipts", rows: this.ticketRows() }];
+    if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: this.ticket() && recordKind(this.ticket()!) !== "ticket" ? `${this.ticketType(this.ticket()!)} / recorded details` : "Ticket / dependencies / receipts", rows: this.ticketRows() }];
     const workflow = this.workflow();
     const events = this.history();
     const event = events.find(event => event.id === this.receiptId) ?? events[0];
@@ -664,16 +672,18 @@ export class GraphExplorer {
         text: `${typeof item.fields?.receipt_id === "string" ? item.fields.receipt_id : item.ref.split("/").at(-1)} ${typeof item.fields?.phase === "string" ? item.fields.phase : ""} [${item.error ? "INVALID" : typeof item.fields?.status === "string" ? item.fields.status : "recorded"}]`,
         selected: item.id === event?.id, tone: item.error ? "warning" : "text",
       })) : [{ text: workflow?.error ?? (workflow ? "No receipts yet." : "Loading receipts…"), tone: workflow?.error ? "error" : "muted" }],
-    }, { id: `receipt:${this.ticketId}:${event?.id ?? "none"}`, title: "Receipt / exact evidence", rows: receipt ? [
-      { text: `Ticket: ${this.ticket()?.ref ?? ""}`, tone: "accent" }, { text: `Receipt: ${receipt.id}` }, { text: `Phase: ${receipt.phase} · ${receipt.status}${receipt.verdict ? ` · ${receipt.verdict}` : ""}` }, { text: `Parent: ${receipt.parentReceipt ?? "none"}` }, { text: `Commit: ${receipt.sourceCommit}` }, { text: `Tree: ${receipt.sourceTree}` }, { text: `Current: ${workflow?.sourceCommit ?? "unavailable"}` }, { text: `Current tree: ${workflow?.sourceTree ?? "unavailable"}` }, { text: workflow?.error ?? (receipt.sourceCommit === workflow?.sourceCommit && receipt.sourceTree === workflow?.sourceTree ? "Source: matched" : "Source: stale / unavailable"), tone: workflow?.error || receipt.sourceCommit !== workflow?.sourceCommit || receipt.sourceTree !== workflow?.sourceTree ? "warning" : "accent" }, { text: `Workspace: ${receipt.workspacePath}` }, { text: `Branch: ${receipt.sourceBranch} · base ${receipt.baseBranch}` }, { text: `Session: ${receipt.sessionId ?? "not recorded"}` }, { text: `Created: ${receipt.createdAt}` }, { text: `Reference: ${receipt.ref}` }, { text: "Outputs:", tone: "accent" }, ...receipt.outputs.map(output => ({ text: `  ${output}` })), { text: "Receipt fields:", tone: "accent" }, ...JSON.stringify(receipt.fields, null, 2).split("\n").map(text => ({ text })), ...receipt.body.split(/\r?\n/).map(text => ({ text }))
-    ] : event ? [
-      { text: `Reference: ${event.ref}`, tone: "accent" },
-      { text: event.error ?? workflow?.error ?? "Unvalidated event.", tone: "error" },
-      { text: "Not valid workflow evidence. Worktree transitions remain blocked.", tone: "warning" },
-      { text: "Recorded fields:", tone: "accent" },
-      ...JSON.stringify(event.fields ?? null, null, 2).split("\n").map(text => ({ text })),
-      ...(event.body ?? "").split(/\r?\n/).map(text => ({ text })),
-    ] : [{ text: workflow?.error ?? (workflow ? "No receipt exists for this ticket." : "Loading workflow…"), tone: workflow?.error ? "error" : "muted" }, { text: "Chat output is not workflow evidence." }] }];
+    }, {
+      id: `receipt:${this.ticketId}:${event?.id ?? "none"}`, title: "Receipt / exact evidence", rows: receipt ? [
+        { text: `Ticket: ${this.ticket()?.ref ?? ""}`, tone: "accent" }, { text: `Receipt: ${receipt.id}` }, { text: `Phase: ${receipt.phase} · ${receipt.status}${receipt.verdict ? ` · ${receipt.verdict}` : ""}` }, { text: `Parent: ${receipt.parentReceipt ?? "none"}` }, { text: `Commit: ${receipt.sourceCommit}` }, { text: `Tree: ${receipt.sourceTree}` }, { text: `Current: ${workflow?.sourceCommit ?? "unavailable"}` }, { text: `Current tree: ${workflow?.sourceTree ?? "unavailable"}` }, { text: workflow?.error ?? (receipt.sourceCommit === workflow?.sourceCommit && receipt.sourceTree === workflow?.sourceTree ? "Source: matched" : "Source: stale / unavailable"), tone: workflow?.error || receipt.sourceCommit !== workflow?.sourceCommit || receipt.sourceTree !== workflow?.sourceTree ? "warning" : "accent" }, { text: `Workspace: ${receipt.workspacePath}` }, { text: `Branch: ${receipt.sourceBranch} · base ${receipt.baseBranch}` }, { text: `Session: ${receipt.sessionId ?? "not recorded"}` }, { text: `Created: ${receipt.createdAt}` }, { text: `Reference: ${receipt.ref}` }, { text: "Outputs:", tone: "accent" }, ...receipt.outputs.map(output => ({ text: `  ${output}` })), { text: "Receipt fields:", tone: "accent" }, ...JSON.stringify(receipt.fields, null, 2).split("\n").map(text => ({ text })), ...receipt.body.split(/\r?\n/).map(text => ({ text }))
+      ] : event ? [
+        { text: `Reference: ${event.ref}`, tone: "accent" },
+        { text: event.error ?? workflow?.error ?? "Unvalidated event.", tone: "error" },
+        { text: "Not valid workflow evidence. Worktree transitions remain blocked.", tone: "warning" },
+        { text: "Recorded fields:", tone: "accent" },
+        ...JSON.stringify(event.fields ?? null, null, 2).split("\n").map(text => ({ text })),
+        ...(event.body ?? "").split(/\r?\n/).map(text => ({ text })),
+      ] : [{ text: workflow?.error ?? (workflow ? "No receipt exists for this ticket." : "Loading workflow…"), tone: workflow?.error ? "error" : "muted" }, { text: "Chat output is not workflow evidence." }]
+    }];
   }
 
   private homeRows(): Row[] {
@@ -687,13 +697,15 @@ export class GraphExplorer {
   private queueRows(): Row[] {
     if (!this.snapshot) return [];
     const rows: Row[] = [];
+    const ticketCount = this.snapshot.tickets.reduce((count, ticket) => count + Number(recordKind(ticket) === "ticket"), 0);
     for (const ticket of this.snapshot.tickets) {
-      if (this.queue !== "all" && this.receiptChecks < this.snapshot.tickets.length) continue;
+      if (recordKind(ticket) !== "ticket") continue;
+      if (this.queue !== "all" && this.receiptChecks < ticketCount) continue;
       const state = this.ticketState(ticket);
       const inQueue = this.queue === "all" || this.queue === "ready" && state === "READY" || this.queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || this.queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
       if (inQueue) rows.push(this.childRow(ticket, false));
     }
-    if (!rows.length) rows.push({ text: this.receiptChecks < this.snapshot.tickets.length ? "Checking workflow receipts before offering work…" : `No tickets in ${this.queue}. Choose 8 for all tickets.`, tone: "muted" });
+    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : `No tickets in ${this.queue}. Choose 8 for all tickets.`, tone: "muted" });
     return rows;
   }
 
@@ -701,8 +713,10 @@ export class GraphExplorer {
     const blockers = ticket.blockedBy.filter(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!));
     return {
       text: "", selected, target: { kind: "ticket", ticket },
-      fields: { title: ticket.title, identity: ticket.id, type: this.ticketType(ticket), state: ticket.status || "unavailable",
-        supporting: blockers.length ? `Waiting for ${blockers.join(", ")}` : this.workflows.get(ticket.id)?.error ? `Workflow unreadable: ${this.workflows.get(ticket.id)!.error}` : ticket.ref },
+      fields: {
+        title: ticket.title, identity: ticket.id, type: this.ticketType(ticket), state: ticket.status || "unavailable",
+        supporting: recordKind(ticket) === "ticket" && blockers.length ? `Waiting for ${blockers.join(", ")}` : this.workflows.get(ticket.id)?.error ? `Workflow unreadable: ${this.workflows.get(ticket.id)!.error}` : ticket.ref
+      },
     };
   }
 
@@ -723,6 +737,18 @@ export class GraphExplorer {
   private ticketRows(): Row[] {
     const ticket = this.ticket();
     if (!ticket) return [{ text: "Select a ticket.", tone: "muted" }];
+    if (recordKind(ticket) !== "ticket") {
+      const fields = Object.entries(ticket.fields ?? {}).filter(([key]) => !["schema", "id", "title", "type", "work_status", "status", "blocked_by", "parent"].includes(key));
+      return [
+        { text: `ID: ${ticket.id}`, tone: "accent" }, { text: `Title: ${ticket.title}` },
+        { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${ticket.status || "unavailable"}` },
+        { text: `Reference: ${ticket.ref}` },
+        ...(ticket.fields?.parent ? [{ text: `Parent: ${String(ticket.fields.parent)}` }] : []),
+        ...fields.map(([key, value]) => ({ text: `${key}: ${typeof value === "string" ? value : JSON.stringify(value)}` })),
+        { text: "Recorded details:", tone: "accent" }, ...ticket.body.split(/\r?\n/).map(text => ({ text })),
+        { text: "a actions · Esc return", tone: "muted" },
+      ];
+    }
     const workflow = this.workflow();
     return [{ text: `${ticket.id} ${ticket.title}`, tone: "accent" }, { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${this.ticketState(ticket)}` }, { text: `Reference: ${ticket.ref}` }, { text: `Current source: ${workflow?.sourceCommit ?? "not recorded"}` }, { text: "Dependencies:", tone: "accent" }, ...this.neighborhoodRows(), { text: "Receipts:", tone: "accent" }, ...(workflow?.receipts.map(receipt => ({ text: `${receipt.id} ${receipt.phase} [${receipt.verdict ?? receipt.status}] @${receipt.sourceCommit}` })) ?? []), ...(workflow?.error ? [{ text: workflow.error, tone: "warning" as const }] : []), { text: workflow ? "→ inspect receipts · a actions" : "Checking receipts…", tone: "muted" }, { text: "Ticket:", tone: "accent" }, ...ticket.body.split(/\r?\n/).map(text => ({ text }))];
   }
@@ -757,10 +783,11 @@ export class GraphExplorer {
 
   private ticketType(ticket: ExplorerTicket): string {
     const type = ticket.documentType;
-    return type ? type.charAt(0).toUpperCase() + type.slice(1) : "Ticket · type unspecified";
+    return type || "Ticket · type unspecified";
   }
 
   private ticketState(ticket: ExplorerTicket): string {
+    if (recordKind(ticket) !== "ticket") return ticket.status || "unavailable";
     if (isCompleted(ticket)) return "DONE";
     if (ticket.blockedBy.some(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!))) return "BLOCKED";
     const workflow = this.workflows.get(ticket.id);
@@ -796,7 +823,8 @@ export class GraphExplorer {
   }
 
   private workflow(): TicketWorkflow | undefined {
-    return this.ticketId ? this.workflows.get(this.ticketId) : undefined;
+    const ticket = this.ticket();
+    return ticket && recordKind(ticket) === "ticket" ? this.workflows.get(ticket.id) : undefined;
   }
 
   private navigation(): ExplorerNavigation {
@@ -865,7 +893,9 @@ export class GraphExplorer {
           + th.fg("text", this.pad(line, titleWidth)) + "  "
           + th.fg(stateTone, this.pad(index === 0 ? secondary : "", stateWidth)));
       }
-      if (visibleWidth(identity) > idWidth) lines.push(th.fg("muted", `ID: ${identity}`));
+      if (visibleWidth(identity) > idWidth) lines.push(...wrapTextWithAnsi(`ID: ${identity}`, width).map(line => th.fg("muted", line)));
+      if (visibleWidth(this.clean(`[${fields.type}]`)) > typeWidth) lines.push(...wrapTextWithAnsi(this.clean(`Type: ${fields.type}`), width).map(line => th.fg("accent", line)));
+      if (visibleWidth(secondary) > stateWidth) lines.push(...wrapTextWithAnsi(secondary, width).map(line => th.fg(stateTone, line)));
     } else {
       if (!isInitiative) lines.push(...wrapTextWithAnsi(this.clean(`[${fields.type}]`) + `  ID: ${identity}`, width).map(line => th.fg("accent", line)));
       lines.push(...wrapTextWithAnsi(title, width).map(line => th.fg("text", line)));
@@ -890,7 +920,7 @@ export class GraphExplorer {
 export function focusedTicketIds(snapshot: ExplorerSnapshot | undefined, target: ExplorerTarget | undefined): Set<string> {
   const included = new Set<string>();
   if (!snapshot || !target) return included;
-  const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
+  const tickets = new Map(snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").map(ticket => [ticket.id, ticket]));
   if (target.kind === "initiative") {
     const visit = (id: string) => {
       if (included.has(id) || !tickets.has(id)) return;
@@ -900,7 +930,7 @@ export function focusedTicketIds(snapshot: ExplorerSnapshot | undefined, target:
     for (const id of target.initiative.ticketIds) visit(id);
   } else {
     const dependents = new Map<string, string[]>();
-    for (const ticket of snapshot.tickets) for (const blocker of ticket.blockedBy) {
+    for (const ticket of tickets.values()) for (const blocker of ticket.blockedBy) {
       const children = dependents.get(blocker) ?? [];
       children.push(ticket.id);
       dependents.set(blocker, children);

@@ -2,7 +2,7 @@ import { lstat, readdir, realpath, stat } from "node:fs/promises";
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord } from "../../skills/shared-context/scripts/shared-context/lib";
-import { chronologicalReceipts } from "./model";
+import { chronologicalReceipts, recordKind } from "./model";
 import type { Exec, ExplorerEvent, ExplorerInitiative, ExplorerReceipt, ExplorerSnapshot, ExplorerTicket, SharedAgentContext, TicketWorkflow } from "./model";
 import { assertRecord, INITIATIVE_LINKS_QUERY, INITIATIVE_SCHEMA, validateInitiativeMembership } from "../../../matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema";
 
@@ -34,12 +34,13 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
   const collectionRef = snapshot.backend === "local-markdown"
     ? (await resolveContextRecord(context, { kind: "tickets" })).ref
     : `https://${context.canonicalOrigin.replace(/^https?:\/\//, "").replace(/\.git$/, "")}/issues`;
-  snapshot.initiatives.push({ id: groupId, title: "Ungrouped", ref: collectionRef, ticketIds: unassigned, body: "Tickets without an assigned initiative.", group: true });
+  snapshot.initiatives.push({ id: groupId, title: "Ungrouped", ref: collectionRef, ticketIds: unassigned, body: "Records without an assigned initiative.", group: true });
   return snapshot;
 }
 
 export async function loadTicketWorkflow(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec): Promise<TicketWorkflow> {
   const result: TicketWorkflow = { ticketId: ticket.id, receipts: [], events: [] };
+  if (recordKind(ticket) !== "ticket") return result;
   try {
     const workflowId = ticket.backend === "github" ? `GH-${ticket.id}` : ticket.id;
     const record = await resolveContextRecord(context, { kind: "workflow", id: workflowId });
@@ -155,10 +156,11 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
   const parents = new Map<string, string>();
   for (const file of context.checkoutAvailable === false && ticketsRecord.store === "repository" ? [] : await files(ticketsRecord.path, /\.md$/)) {
     const doc = await document(file, ticketsRecord.root, exec);
-    assertRecord(doc.fields, "ticket", { allowLegacy: true, expectedId: basename(file, ".md") });
+    try { assertRecord(doc.fields, "ticket", { allowLegacy: true, expectedId: basename(file, ".md") }); }
+    catch (error) { throw new Error(`Unreadable record ${file}: ${error instanceof Error ? error.message : String(error)}`); }
     const id = scalar(doc.fields.id, "ticket id");
     const documentType = doc.fields.type == null ? undefined : text(doc.fields.type, "ticket type");
-    tickets.push({ id, title: text(doc.fields.title, "ticket title"), documentType, ref: `${ticketsRecord.ref}/${relative(ticketsRecord.path, file).split("\\").join("/")}`, backend: "local-markdown", status: doc.fields.work_status == null ? "unknown" : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body });
+    tickets.push({ id, title: text(doc.fields.title, "ticket title"), documentType, fields: doc.fields, ref: `${ticketsRecord.ref}/${relative(ticketsRecord.path, file).split("\\").join("/")}`, backend: "local-markdown", status: doc.fields.work_status == null ? doc.fields.status == null ? "unavailable" : text(doc.fields.status, "record status") : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body });
     paths.set(await realpath(file), id);
     if (doc.fields.parent != null) parents.set(id, scalar(doc.fields.parent, "ticket parent"));
   }
@@ -189,7 +191,7 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
   validateRelations([...parents].map(([id, parent]) => ({ id, blockedBy: parents.has(parent) ? [parent] : [] })), "ticket hierarchy");
   for (const [id, parent] of parents) {
     if (context.checkoutAvailable === false && initiativesRecord.store === "repository" && !tickets.some(ticket => ticket.id === parent)) continue;
-    if (!tickets.some(ticket => ticket.id === parent) && !initiatives.some(item => item.id === parent)) throw new Error("Ticket parent does not exist.");
+    if (!tickets.some(ticket => ticket.id === parent) && !initiatives.some(item => item.id === parent)) throw new Error(`Record ${id} refers to missing parent ${parent}.`);
     let current: string | undefined = parent;
     while (current) {
       for (const initiative of initiatives) if (initiative.id === current || initiative.ticketIds.includes(current)) initiative.ticketIds = [...new Set([...initiative.ticketIds, id])];
@@ -225,7 +227,7 @@ async function githubSnapshot(context: SharedAgentContext, exec: Exec): Promise<
     const body = string(issue.body, "GitHub issue body");
     const labels = list(issue.labels, "GitHub labels").map(value => text(object(value, "GitHub label").name, "GitHub label name"));
     const type = issue.issueType == null ? undefined : text(object(issue.issueType, "GitHub issue type").name, "GitHub issue type name");
-    tickets.set(id, { id, title, documentType: type, ref: `${base}${id}`, backend: "github", status: text(issue.state, "GitHub issue state"), blockedBy, body });
+    tickets.set(id, { id, title, documentType: type, fields: { labels }, ref: `${base}${id}`, backend: "github", status: text(issue.state, "GitHub issue state"), blockedBy, body });
     if (labels.includes("wayfinder:map") || type?.toLowerCase() === "spec") initiatives.set(id, { id, title, ref: `${base}${id}`, ticketIds: children, body });
     if (issue.parent != null) {
       const parent = object(issue.parent, "GitHub parent");

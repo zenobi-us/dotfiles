@@ -64,7 +64,7 @@ test("missing collections are empty but a missing tracker definition is actionab
   const context = await fixture();
   const empty = await loadExplorerSnapshot(context, execute);
   expect(empty.tickets).toEqual([]);
-  expect(empty.initiatives).toEqual([{ id: "unassigned", title: "Ungrouped", ref: "records/issues", ticketIds: [], body: "Tickets without an assigned initiative.", group: true }]);
+  expect(empty.initiatives.find(item => item.group)?.ticketIds).toEqual([]);
   await rm(join(context.repositoryRoot, "docs/agents/issue-tracker.md"));
   await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow();
 });

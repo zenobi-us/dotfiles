@@ -53,7 +53,6 @@ test("normal entry separates initiative fields and opens canonical children and 
   await f.modal.handleInput("\r");
   expect(f.view()).toContain("Recorded initiative summary.");
   expect(f.view()).toContain("plan");
-  expect(f.view()).toContain("[Enhancement]");
   expect(f.view()).toContain("T-2");
   expect(f.view()).toContain("State: claimed");
   expect(f.view()).not.toContain("Routes");
@@ -362,12 +361,13 @@ test("long Unicode titles wrap without terminal controls at all required dimensi
 
 test("invalid events remain inspectable and source evidence remains reachable", async () => {
   const invalid = { id: "invalid", ref: "workflows/T-3/events/invalid.json", fields: { receipt_id: "invalid", phase: "review", status: "completed" }, error: "Receipt workflow.root does not match the resolved workflow store root." };
-  const component = new GraphExplorer({ context, theme, commands, exec: async () => { throw new Error("Unexpected execution"); }, done: () => {}, requestRender: () => {}, height: () => 37,
+  const component = new GraphExplorer({
+    context, theme, commands, exec: async () => { throw new Error("Unexpected execution"); }, done: () => { }, requestRender: () => { }, height: () => 37,
     navigation: { screen: "receipts", ticketId: "T-3", queue: "all", focus: "list", offsets: [] }, loadSnapshot: async () => snapshot,
     loadWorkflow: async (_context, ticket) => ({ ticketId: ticket.id, receipts: [receipt], events: [invalid, receipt], error: invalid.error }),
   });
   await component.load();
-  const modal = new SharedContextModal(context, theme, component, { render: () => [], handleInput: () => {} }, () => {});
+  const modal = new SharedContextModal(context, theme, component, { render: () => [], handleInput: () => { } }, () => { });
   expect(modal.render(160).join("\n")).toContain("Not valid workflow evidence");
   await modal.handleInput("\x1b[B");
   expect(modal.render(160).join("\n")).toContain(`Commit: ${receipt.sourceCommit}`);

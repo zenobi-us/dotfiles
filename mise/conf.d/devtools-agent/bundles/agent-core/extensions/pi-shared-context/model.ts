@@ -11,6 +11,7 @@ export interface ExplorerTicket {
   status: string;
   blockedBy: string[];
   body: string;
+  fields?: Record<string, unknown>;
 }
 
 export interface ExplorerInitiative {
@@ -104,6 +105,16 @@ export function chronologicalReceipts(receipts: ExplorerReceipt[]): ExplorerRece
     || depths.get(left.id)! - depths.get(right.id)!
     || left.id.localeCompare(right.id, "en", { numeric: true }),
   );
+}
+
+// Tracker adapters return canonical issue records, including research and planning.
+// Only executable record types may consume workflow evidence or offer transitions.
+export function recordKind(ticket: ExplorerTicket): "ticket" | "research" | "planning" | "record" {
+  const type = ticket.documentType?.trim().toLowerCase();
+  if (!type || ["ticket", "issue", "task", "bug", "fix", "feature", "enhancement", "chore"].includes(type)) return "ticket";
+  if (type === "research") return "research";
+  if (["spec", "specification", "initiative", "plan"].includes(type)) return "planning";
+  return "record";
 }
 
 export function isCompleted(ticket: ExplorerTicket): boolean {
