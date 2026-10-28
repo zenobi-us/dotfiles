@@ -1,7 +1,7 @@
 import { join } from "node:path";
 import { resolveContextRecord, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
 import type { Theme } from "@earendil-works/pi-coding-agent";
-import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi } from "@earendil-works/pi-tui";
+import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
 import { actionChoices } from "./actions";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
 import { isCompleted, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
@@ -9,10 +9,10 @@ import { safeTerminalText } from "./terminal-text";
 import type { ExplorerEvent } from "./model";
 import { DirectoryMonitor, type WatchTarget } from "./watch";
 
-type Screen = "home" | "initiatives" | "tickets" | "receipts" | "actions";
+type Screen = "home" | "queues" | "initiatives" | "tickets" | "receipts" | "actions";
 type Queue = "ready" | "review" | "blocked" | "all";
-type Tone = "text" | "muted" | "accent" | "warning" | "error";
-type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string };
+type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
+type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
 type Pane = { id: string; title: string; rows: Row[] };
 
 export interface ExplorerNavigation {
@@ -21,8 +21,11 @@ export interface ExplorerNavigation {
   ticketId?: string;
   receiptId?: string;
   queue: Queue;
-  focus: "list" | "detail" | "neighborhood";
+  focus: "list" | "detail" | "neighborhood" | "breadcrumb";
   offsets: [string, number][];
+  homeIndex?: number;
+  itemOrigin?: "initiatives" | "queues";
+  queueIndex?: number;
 }
 
 export type ExplorerResult =
@@ -62,9 +65,17 @@ export class GraphExplorer {
   private receiptId?: string;
   private homeIndex = 0;
   private actionIndex = 0;
+  private queueIndex = 0;
+  private itemOrigin: "initiatives" | "queues" = "initiatives";
+  private childSelections = new Map<string, string>();
+  private breadcrumbIndex = 0;
+  private breadcrumbHits: { x: number; y: number; width: number; index: number }[] = [];
+  private active = true;
+  private renderedSelection = new Map<string, string>();
+  private renderedLayout = new Map<string, { width: number; height: number; start: number; end: number }>();
   private neighborhoodIndex = 0;
-  private focus: "list" | "detail" | "neighborhood" = "list";
-  private returnFocus: "list" | "detail" | "neighborhood" = "list";
+  private focus: ExplorerNavigation["focus"] = "list";
+  private returnFocus: ExplorerNavigation["focus"] = "list";
   private offsets: Map<string, number>;
   private loading = false;
   private error = "";
@@ -99,6 +110,9 @@ export class GraphExplorer {
     this.receiptId = navigation?.receiptId;
     this.focus = navigation?.focus ?? "list";
     this.offsets = new Map(navigation?.offsets ?? []);
+    this.homeIndex = navigation?.homeIndex ?? 0;
+    this.queueIndex = navigation?.queueIndex ?? 0;
+    this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
   }
 
   async load(): Promise<void> {
@@ -163,6 +177,7 @@ export class GraphExplorer {
           const snapshot = await (this.options.loadSnapshot ?? loadExplorerSnapshot)(this.options.context, this.options.exec);
           if (this.disposed) return;
           const selected = this.target();
+          const previousChildIndex = Math.max(0, this.initiative()?.ticketIds.indexOf(this.ticketId ?? "") ?? 0);
           for (const [id] of this.workflows) {
             const before = this.tickets.get(id);
             const after = snapshot.tickets.find(ticket => ticket.id === id);
@@ -172,19 +187,41 @@ export class GraphExplorer {
           this.tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
           this.scopes.clear();
           for (const initiative of snapshot.initiatives) {
-            const visited = new Set<string>();
-            const ids: string[] = [];
-            const visit = (id: string) => {
-              if (visited.has(id)) return;
-              visited.add(id);
-              for (const blocker of this.tickets.get(id)?.blockedBy ?? []) visit(blocker);
-              ids.push(id);
-            };
-            for (const id of initiative.ticketIds) visit(id);
+            const ids = initiative.ticketIds.filter(id => this.tickets.has(id));
             this.scopes.set(initiative.id, ids);
           }
-          if (!snapshot.initiatives.some(initiative => initiative.id === this.initiativeId)) this.initiativeId = snapshot.initiatives[0]?.id;
-          if (!this.ticketId || !this.tickets.has(this.ticketId)) this.ticketId = this.initiative()?.ticketIds[0] ?? snapshot.tickets[0]?.id;
+          const logicalScreen = this.screen === "actions" ? this.returnScreen : this.screen;
+          const initiativeView = logicalScreen === "initiatives" || (logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "initiatives";
+          const removedInitiative = this.initiativeId && !snapshot.initiatives.some(initiative => initiative.id === this.initiativeId);
+          const removedTicket = this.ticketId && !this.tickets.has(this.ticketId);
+          if (removedInitiative && initiativeView) {
+            this.notice = "Selected initiative was removed. Returned to initiatives.";
+            this.screen = "home";
+            this.focus = "list";
+          }
+          if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
+          // A remembered child is not the active target in home or queue action menus.
+          const removedTarget = selected?.kind === "ticket" && !snapshot.tickets.some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
+          if (removedTarget) {
+            this.notice = "Selected item was removed. Selected a nearby item or its parent.";
+            if (this.screen === "tickets" || this.screen === "receipts" || this.screen === "actions") {
+              this.screen = logicalScreen === "queues" ? "queues" : this.itemOrigin;
+              this.focus = "list";
+            }
+          }
+          const children = this.initiative()?.ticketIds ?? [];
+          if (initiativeView && !removedInitiative && this.ticketId && !children.includes(this.ticketId)) {
+            this.notice = "Selected item was removed from this collection. Selected a nearby item or its parent.";
+            this.screen = "initiatives";
+            this.focus = "list";
+            this.receiptId = undefined;
+            this.ticketId = children[Math.min(previousChildIndex, children.length - 1)];
+            if (this.initiativeId) {
+              if (this.ticketId) this.childSelections.set(this.initiativeId, this.ticketId);
+              else this.childSelections.delete(this.initiativeId);
+            }
+          }
+          if (!this.ticketId || removedTicket) this.ticketId = this.initiative()?.ticketIds[Math.min(previousChildIndex, (this.initiative()?.ticketIds.length ?? 0) - 1)];
           this.scopeKey = "";
           this.updateWatchScope();
           this.ticketStates.clear();
@@ -214,11 +251,7 @@ export class GraphExplorer {
         };
         await Promise.all(Array.from({ length: Math.min(3, tickets.length) }, worker));
         if (this.disposed) return;
-        if (initial) {
-          const rows = this.homeRows();
-          const index = rows.findIndex(row => row.target?.kind === "ticket" && row.target.ticket.id === this.ticketId);
-          this.homeIndex = index >= 0 ? index : Math.max(0, Math.min(this.homeIndex, rows.length - 1));
-        }
+        if (initial) this.restoreHomeSelection(undefined);
         if (graph) this.graphError = "";
         this.refreshError = this.routeError || this.graphError;
         this.updateWatchScope();
@@ -227,7 +260,7 @@ export class GraphExplorer {
         this.refreshFailed(error);
         if (routes) this.routeError = this.refreshError;
         if (graph) this.graphError = this.refreshError;
-        if (!this.snapshot) this.error = this.refreshError;
+        if (!this.snapshot) this.error = `Tracker unreadable: ${error instanceof Error ? error.message : String(error)}`;
         this.loading = false;
       }
       if (!this.disposed) this.options.requestRender();
@@ -235,11 +268,15 @@ export class GraphExplorer {
   }
 
   private restoreHomeSelection(target: ExplorerTarget | undefined): void {
-    if (!target || this.screen !== "home" && !(this.screen === "actions" && this.returnScreen === "home")) return;
-    const ref = target.kind === "ticket" ? target.ticket.ref : target.initiative.ref;
-    const rows = this.homeRows();
-    const index = rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref : row.target.initiative.ref) === ref);
-    this.homeIndex = index >= 0 ? index : Math.max(0, Math.min(this.homeIndex, rows.length - 1));
+    const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+    if (screen !== "home" && screen !== "queues") return;
+    const rows = screen === "home" ? this.homeRows() : this.queueRows();
+    const index = target ? rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref === (target.kind === "ticket" && target.ticket.ref) : row.target.initiative.ref === (target.kind === "initiative" && target.initiative.ref))) : -1;
+    const previous = screen === "home" ? this.homeIndex : this.queueIndex;
+    const next = index >= 0 ? index : Math.max(0, Math.min(previous, rows.length - 1));
+    if (target && index < 0) this.notice = "Selected record was removed from this view. Selected a nearby record.";
+    if (screen === "home") this.homeIndex = next;
+    else this.queueIndex = next;
   }
 
   private refreshFailed(error: unknown): void {
@@ -329,10 +366,18 @@ export class GraphExplorer {
   }
 
   moveFocus(reverse: boolean): boolean {
+    if (this.focus === "breadcrumb") {
+      const nextCrumb = this.breadcrumbIndex + (reverse ? -1 : 1);
+      if (nextCrumb >= 0 && nextCrumb < this.breadcrumbs().length - 1) {
+        this.breadcrumbIndex = nextCrumb;
+        return true;
+      }
+    }
     const order = this.focusOrder();
     const next = order.indexOf(this.focus) + (reverse ? -1 : 1);
     if (next < 0 || next >= order.length) return false;
     this.focus = order[next]!;
+    if (this.focus === "breadcrumb") this.breadcrumbIndex = reverse ? this.breadcrumbs().length - 2 : 0;
     this.options.requestRender();
     return true;
   }
@@ -340,12 +385,43 @@ export class GraphExplorer {
   enterFocus(reverse: boolean): void {
     const order = this.focusOrder();
     this.focus = reverse ? order[order.length - 1]! : order[0]!;
+    if (this.focus === "breadcrumb") this.breadcrumbIndex = reverse ? this.breadcrumbs().length - 2 : 0;
     this.options.requestRender();
   }
 
   private focusOrder(): ExplorerNavigation["focus"][] {
-    return this.panes().length < 2 ? ["list"]
+    const panes: ExplorerNavigation["focus"][] = this.panes().length < 2 ? ["list"]
       : this.screen === "receipts" && this.neighborhoodRows().length ? ["list", "detail", "neighborhood"] : ["list", "detail"];
+    return this.breadcrumbs().length > 1 ? ["breadcrumb", ...panes] : panes;
+  }
+
+  setActive(active: boolean): void { this.active = active; }
+
+  private breadcrumbs(): { label: string; screen: Screen }[] {
+    const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+    const crumbs: { label: string; screen: Screen }[] = [{ label: "Initiatives", screen: "home" }];
+    if (screen === "home") return crumbs;
+    if (screen === "queues" || (screen === "tickets" || screen === "receipts") && this.itemOrigin === "queues") crumbs.push({ label: "Queues", screen: "queues" });
+    else crumbs.push({ label: this.initiative()?.title ?? "Initiative", screen: "initiatives" });
+    if (screen === "tickets" || screen === "receipts") crumbs.push({ label: this.ticketId ?? "Item", screen: "tickets" });
+    if (screen === "receipts") crumbs.push({ label: "Events", screen: "receipts" });
+    return crumbs;
+  }
+
+  private activateBreadcrumb(index: number): void {
+    const crumb = this.breadcrumbs()[index];
+    if (!crumb || index >= this.breadcrumbs().length - 1) return;
+    this.screen = crumb.screen;
+    this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
+    this.options.requestRender();
+  }
+
+  handleMouse(event: TuiMouseEvent): TuiMouseEventResult | undefined {
+    if (event.type !== "click" || event.button !== "left") return;
+    const hit = this.breadcrumbHits.find(hit => hit.y === event.y && event.x >= hit.x && event.x < hit.x + hit.width);
+    if (!hit) return;
+    this.activateBreadcrumb(hit.index);
+    return { handled: true };
   }
 
   suspend(): void {
@@ -384,14 +460,15 @@ export class GraphExplorer {
       this.options.requestRender();
       return;
     }
-    if (matchesKey(data, "escape") || matchesKey(data, "left") || matchesKey(data, "backspace")) {
-      const compact = this.lastWidth < 70 || this.options.height() < 16;
-      let focus: "list" | "detail" | "neighborhood" = "list";
+    if (matchesKey(data, "escape") || matchesKey(data, "left") && this.focus !== "breadcrumb" || matchesKey(data, "backspace")) {
+      let focus: ExplorerNavigation["focus"] = "list";
       if (this.screen === "actions") { this.screen = this.returnScreen; focus = this.returnFocus; }
-      else if (compact && this.focus === "detail" && this.screen !== "home") focus = "list";
-      else if (this.screen === "receipts") { this.screen = "tickets"; focus = compact ? "detail" : "list"; }
-      else if (this.screen === "tickets") this.screen = "initiatives";
-      else if (this.screen === "initiatives") this.screen = "home";
+      else if (this.screen === "receipts") {
+        this.screen = "tickets";
+        focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
+      }
+      else if (this.screen === "tickets") this.screen = this.itemOrigin;
+      else if (this.screen === "initiatives" || this.screen === "queues") this.screen = "home";
       else { if (matchesKey(data, "escape") && this.options.projects) this.options.projects(); else this.options.done(undefined); return; }
       this.focus = focus;
       this.notice = "";
@@ -399,14 +476,23 @@ export class GraphExplorer {
       return;
     }
     if (this.loading || this.error || !this.snapshot) return;
-    if (this.screen === "home") {
+    if (this.screen === "home" || this.screen === "queues") {
       const filter = ([["5", "ready"], ["6", "review"], ["7", "blocked"], ["8", "all"]] as const).find(([key]) => matchesKey(data, key))?.[1];
       if (filter) {
         this.queue = filter;
-        this.homeIndex = 0;
+        this.screen = "queues";
+        this.queueIndex = 0;
         this.options.requestRender();
         return;
       }
+    }
+    if (this.focus === "breadcrumb" && !matchesKey(data, "tab") && !matchesKey(data, "shift+tab")) {
+      const lastAncestor = this.breadcrumbs().length - 2;
+      if (matchesKey(data, "right") || matchesKey(data, "down")) this.breadcrumbIndex = Math.min(lastAncestor, this.breadcrumbIndex + 1);
+      else if (matchesKey(data, "left") || matchesKey(data, "up")) this.breadcrumbIndex = Math.max(0, this.breadcrumbIndex - 1);
+      else if (matchesKey(data, "enter") || data === " ") this.activateBreadcrumb(this.breadcrumbIndex);
+      this.options.requestRender();
+      return;
     }
     if (matchesKey(data, "tab") || matchesKey(data, "shift+tab")) {
       const reverse = matchesKey(data, "shift+tab");
@@ -419,11 +505,7 @@ export class GraphExplorer {
       const up = matchesKey(data, "pageUp");
       const compact = this.lastWidth < 70 || this.options.height() < 16;
       const step = Math.max(1, Math.min(30, this.options.height() - (compact ? 4 : 8)));
-      if (compact && this.focus === "list" && pane && (pane.id.startsWith("ticket:") || pane.id.startsWith("receipt:"))) {
-        this.offsets.set(pane.id, Math.max(0, (this.offsets.get(pane.id) ?? 0) + (up ? -step : step)));
-      } else {
-        for (let index = 0; index < step; index++) this.handleInput(up ? "\x1b[A" : "\x1b[B");
-      }
+      if (pane) this.offsets.set(pane.id, Math.max(0, (this.offsets.get(pane.id) ?? 0) + (up ? -step : step)));
       this.notice = "";
       this.options.requestRender();
       return;
@@ -439,15 +521,12 @@ export class GraphExplorer {
         this.neighborhoodIndex = Math.max(0, Math.min(this.neighborhoodRows().length - 1, this.neighborhoodIndex + delta));
       } else if (this.screen === "home") {
         this.homeIndex = Math.max(0, Math.min(this.homeRows().length - 1, this.homeIndex + delta));
-        const target = this.homeRows()[this.homeIndex]?.target;
-        if (target?.kind === "ticket") this.ticketId = target.ticket.id;
-      } else if (this.screen === "initiatives") {
-        const index = this.snapshot.initiatives.findIndex(initiative => initiative.id === this.initiativeId);
-        this.initiativeId = this.snapshot.initiatives[Math.max(0, Math.min(this.snapshot.initiatives.length - 1, index + delta))]?.id;
-        if (!this.initiative()?.ticketIds.includes(this.ticketId ?? "")) this.ticketId = this.initiative()?.ticketIds[0];
-      } else if (this.screen === "tickets") {
+      } else if (this.screen === "queues") {
+        this.queueIndex = Math.max(0, Math.min(this.queueRows().length - 1, this.queueIndex + delta));
+      } else if (this.screen === "initiatives" || this.screen === "tickets") {
         const ids = this.scopes.get(this.initiativeId ?? "") ?? [];
         this.ticketId = ids[Math.max(0, Math.min(ids.length - 1, ids.indexOf(this.ticketId ?? "") + delta))];
+        if (this.ticketId && this.initiativeId) this.childSelections.set(this.initiativeId, this.ticketId);
       } else {
         const receipts = this.history();
         const index = Math.max(0, receipts.findIndex(receipt => receipt.id === this.receiptId));
@@ -460,12 +539,12 @@ export class GraphExplorer {
     if (matchesKey(data, "enter") || matchesKey(data, "right")) {
       if (this.screen === "actions") { this.chooseAction(this.choices()[this.actionIndex]); return; }
       const compact = this.lastWidth < 70 || this.options.height() < 16;
-      if (compact && this.focus === "list" && (this.screen === "tickets" || this.screen === "receipts")) {
+      if (compact && this.focus === "list" && this.screen === "receipts") {
         this.focus = "detail";
         this.options.requestRender();
         return;
       }
-      let focus: "list" | "detail" | "neighborhood" = this.focus;
+      let focus: ExplorerNavigation["focus"] = this.focus;
       if (this.focus === "neighborhood") {
         const target = this.neighborhoodRows()[this.neighborhoodIndex]?.target;
         if (target?.kind === "ticket") {
@@ -476,16 +555,26 @@ export class GraphExplorer {
         }
       } else if (this.screen === "home") {
         const target = this.homeRows()[this.homeIndex]?.target;
-        if (target?.kind === "initiative") { this.initiativeId = target.initiative.id; this.screen = "initiatives"; focus = "list"; }
+        if (target?.kind === "initiative") {
+          this.initiativeId = target.initiative.id;
+          const saved = this.childSelections.get(this.initiativeId);
+          this.ticketId = saved && target.initiative.ticketIds.includes(saved) ? saved : target.initiative.ticketIds[0];
+          this.screen = "initiatives";
+          focus = "list";
+        }
+      } else if (this.screen === "queues") {
+        const target = this.queueRows()[this.queueIndex]?.target;
         if (target?.kind === "ticket") {
           this.ticketId = target.ticket.id;
+          this.itemOrigin = "queues";
           this.initiativeId = this.snapshot.initiatives.find(initiative => initiative.ticketIds.includes(target.ticket.id))?.id;
           this.screen = "tickets";
           focus = compact ? "detail" : "list";
         }
       } else if (this.screen === "initiatives" && this.ticket()) {
+        this.itemOrigin = "initiatives";
         this.screen = "tickets";
-        focus = "list";
+        focus = compact ? "detail" : "list";
       } else if (this.screen === "tickets") {
         this.screen = "receipts";
         focus = "list";
@@ -496,7 +585,7 @@ export class GraphExplorer {
       this.options.requestRender();
       return;
     }
-    if (matchesKey(data, "a") && this.screen !== "actions") {
+    if (matchesKey(data, "a") && this.screen !== "actions" && this.choices().length) {
       this.returnScreen = this.screen;
       this.returnFocus = this.focus;
       this.screen = "actions";
@@ -515,7 +604,7 @@ export class GraphExplorer {
     const inner = Math.max(1, width - 2);
     const compact = width < 70 || this.options.height() < 16;
     const height = Math.max(5, this.options.height());
-    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 8)));
+    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 9)));
     let panes = this.panes();
     if (compact && panes.length > 1) {
       panes = [this.focusedPane(panes) ?? panes[panes.length - 1]];
@@ -525,39 +614,45 @@ export class GraphExplorer {
     const sizes = proportions.map((proportion, index) => index === panes.length - 1 ? available - proportions.slice(0, index).reduce((sum, part) => sum + Math.floor(available * part), 0) : Math.floor(available * proportion));
     const rendered = panes.map((pane, index) => this.renderPane(pane, Math.max(1, sizes[index]), bodyHeight));
     const join = (parts: string[]) => parts.join(th.fg("border", "│"));
-    const headers = panes.map((pane, index) => this.pad(`${this.focusedPane(panes)?.id === pane.id ? ">" : " "} ${pane.title}`, sizes[index]));
+    const headers = panes.map((pane, index) => this.pad(`${this.active && this.focus !== "breadcrumb" && this.focusedPane(panes)?.id === pane.id ? ">" : " "} ${pane.title}`, sizes[index]));
     const body = Array.from({ length: bodyHeight }, (_, row) => join(rendered.map(lines => lines[row] ?? "")));
     const target = this.target();
-    let initiativeId = this.initiativeId;
-    let ticketId = this.screen === "initiatives" ? undefined : this.ticketId;
-    if (this.screen === "actions") {
-      if (target?.kind === "ticket") {
-        ticketId = target.ticket.id;
-        if (!this.initiative()?.ticketIds.includes(ticketId)) initiativeId = this.snapshot?.initiatives.find(initiative => initiative.ticketIds.includes(target.ticket.id))?.id;
-      } else {
-        initiativeId = target?.initiative.id;
-        ticketId = undefined;
-      }
-    }
-    const breadcrumb = ["Home", ...(this.screen === "home" ? [] : [initiativeId, ticketId, this.screen === "receipts" ? this.receiptId : undefined])].filter(Boolean).join(" > ");
+    const breadcrumb = this.renderBreadcrumbs(inner, compact);
     const checks = this.snapshot && this.receiptChecks < this.snapshot.tickets.length ? `Checking receipts ${this.receiptChecks}/${this.snapshot.tickets.length}` : "";
     const unavailable = this.options.context.checkoutAvailable === false
       ? Object.values(this.options.context.routes).some(route => route.store === "repository")
         ? "No checkout: repository records unavailable. Shared records remain readable."
         : "No checkout: context is readable; actions are disabled."
       : "";
-    const status = this.notice || this.error || this.refreshError || (this.loading ? "Loading tracker…" : checks) || unavailable || (target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
-    const keys = this.screen === "home" ? "5 ready 6 review 7 blocked 8 all  Enter open  a actions  R refresh  q close" : "← back → drill ↑↓ move Tab/Shift+Tab focus PgUp/Dn scroll a actions h home R reload q close";
-    if (compact) return [th.fg("accent", truncateToWidth(this.clean(breadcrumb), width)), join(headers), ...body, th.fg(this.error ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
+    const summary = this.screen === "initiatives" ? this.initiative()?.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line)) : undefined;
+    const status = this.notice || this.error || this.refreshError || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+    const keys = compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh";
+    if (compact) return [breadcrumb, join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
     const frame = (text: string) => th.fg("border", "│") + this.pad(text, inner) + th.fg("border", "│");
-    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(th.fg("accent", ` Shared context · ${this.clean(breadcrumb)}`)), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
+    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(breadcrumb), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error || this.refreshError ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
+  }
+
+  private renderBreadcrumbs(width: number, compact: boolean): string {
+    const crumbs = this.breadcrumbs();
+    const labelWidth = Math.max(3, Math.floor((width - (crumbs.length - 1) * 3) / crumbs.length));
+    this.breadcrumbHits = [];
+    let x = compact ? 0 : 1;
+    return crumbs.map((crumb, index) => {
+      const focused = this.active && this.focus === "breadcrumb" && index === this.breadcrumbIndex;
+      const label = truncateToWidth(this.clean(crumb.label), Math.max(1, labelWidth - 2), "…");
+      const text = focused ? `>${label}<` : ` ${label} `;
+      if (index < crumbs.length - 1) this.breadcrumbHits.push({ x, y: compact ? 0 : 1, width: visibleWidth(text), index });
+      x += visibleWidth(text) + 3;
+      return this.options.theme.fg(index < crumbs.length - 1 ? "accent" : "text", text);
+    }).join(this.options.theme.fg("muted", " > "));
   }
 
   private panes(): Pane[] {
     if (this.loading || this.error || !this.snapshot) return [{ id: "state", title: "Shared context", rows: [{ text: this.loading ? "Loading tracker records…" : this.error || "No snapshot loaded.", tone: this.error ? "error" : "muted" }, { text: "R reload · b browse files · q close", tone: "muted" }] }];
     if (this.screen === "actions") return [{ id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" : "text", selected: index === this.actionIndex })) }];
-    if (this.screen === "home") return [{ id: `home:${this.queue}`, title: `Ready-work Home · ${this.queue}`, rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
-    if (this.screen === "initiatives") return [{ id: "initiatives", title: "Initiatives / collections", rows: this.snapshot.initiatives.map(initiative => ({ text: `[${initiative.group ? "Collection" : "Initiative"}] ${initiative.id} ${initiative.title}`, selected: initiative.id === this.initiativeId })) }, this.graphPane()];
+    if (this.screen === "home") return [{ id: "home", title: "Initiatives · title / phase / Items", rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
+    if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
+    if (this.screen === "initiatives") return [this.graphPane()];
     if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: "Ticket / dependencies / receipts", rows: this.ticketRows() }];
     const workflow = this.workflow();
     const events = this.history();
@@ -583,34 +678,46 @@ export class GraphExplorer {
 
   private homeRows(): Row[] {
     if (!this.snapshot) return [];
+    return this.snapshot.initiatives.map(initiative => ({
+      text: "", target: { kind: "initiative", initiative },
+      fields: { title: initiative.title, identity: initiative.group ? "Collection" : initiative.id, state: initiative.phase ?? "unavailable", count: initiative.ticketIds.length },
+    }));
+  }
+
+  private queueRows(): Row[] {
+    if (!this.snapshot) return [];
     const rows: Row[] = [];
     for (const ticket of this.snapshot.tickets) {
       if (this.queue !== "all" && this.receiptChecks < this.snapshot.tickets.length) continue;
       const state = this.ticketState(ticket);
       const inQueue = this.queue === "all" || this.queue === "ready" && state === "READY" || this.queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || this.queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
-      if (!inQueue) continue;
-      const blockers = ticket.blockedBy.filter(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!));
-      const detail = blockers.length ? ` · waiting for ${blockers.join(" + ")}` : this.workflows.get(ticket.id)?.error ? ` · ${this.workflows.get(ticket.id)!.error}` : "";
-      rows.push({ text: `[${this.ticketType(ticket)}] ${ticket.id} [${state}] ${ticket.title}${detail}`, target: { kind: "ticket", ticket }, tone: state === "ERROR" ? "warning" : "text" });
+      if (inQueue) rows.push(this.childRow(ticket, false));
     }
-    if (!rows.length) rows.push({ text: this.receiptChecks < this.snapshot.tickets.length ? "Checking workflow receipts before offering work…" : `No tickets in ${this.queue}. Choose 4 for all tickets.`, tone: "muted" });
-    for (const initiative of this.snapshot.initiatives) rows.push({ text: `+ [${initiative.group ? "Collection" : "Initiative"}] ${initiative.id} ${initiative.title} (${initiative.ticketIds.length} tickets)`, target: { kind: "initiative", initiative }, tone: "accent" });
+    if (!rows.length) rows.push({ text: this.receiptChecks < this.snapshot.tickets.length ? "Checking workflow receipts before offering work…" : `No tickets in ${this.queue}. Choose 8 for all tickets.`, tone: "muted" });
     return rows;
   }
 
+  private childRow(ticket: ExplorerTicket, selected: boolean): Row {
+    const blockers = ticket.blockedBy.filter(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!));
+    return {
+      text: "", selected, target: { kind: "ticket", ticket },
+      fields: { title: ticket.title, identity: ticket.id, type: this.ticketType(ticket), state: ticket.status || "unavailable",
+        supporting: blockers.length ? `Waiting for ${blockers.join(", ")}` : this.workflows.get(ticket.id)?.error ? `Workflow unreadable: ${this.workflows.get(ticket.id)!.error}` : ticket.ref },
+    };
+  }
+
   private graphPane(): Pane {
-    const rows: Row[] = [{ text: "A → B: B depends on A", tone: "muted" }];
-    const ids = this.scopes.get(this.initiativeId ?? "") ?? [];
-    for (const id of ids) {
+    const initiative = this.initiative();
+    const rows: Row[] = (this.scopes.get(this.initiativeId ?? "") ?? []).flatMap(id => {
       const ticket = this.tickets.get(id);
-      if (!ticket) continue;
-      rows.push({ text: `[${this.ticketType(ticket)}] ${id} [${this.ticketState(ticket)}] ${ticket.title}`, selected: this.screen === "tickets" && id === this.ticketId });
-      if (ticket.blockedBy.length) rows.push({ text: `  ← ${ticket.blockedBy.join(" + ")}`, tone: "muted" });
-      const dependents = ids.filter(other => this.tickets.get(other)?.blockedBy.includes(id));
-      if (dependents.length) rows.push({ text: `  → ${dependents.join(", ")}`, tone: "muted" });
+      return ticket ? [this.childRow(ticket, id === this.ticketId)] : [];
+    });
+    if (!rows.length) rows.push({ text: "This collection is empty. No child items.", tone: "muted" });
+    if (this.screen === "initiatives" && initiative && this.lastWidth >= 70 && this.options.height() >= 16) {
+      const summary = initiative.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
+      rows.unshift({ text: `${initiative.id} · Phase: ${initiative.phase ?? "unavailable"}`, tone: "accent" }, { text: `Summary: ${summary ?? "No recorded summary."}`, tone: "muted" });
     }
-    if (rows.length === 1) rows.push({ text: "No tickets in this initiative.", tone: "muted" });
-    return { id: `graph:${this.initiativeId}`, title: "Tickets / dependency graph", rows };
+    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Collection"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
   }
 
   private ticketRows(): Row[] {
@@ -635,6 +742,7 @@ export class GraphExplorer {
 
   private choices(): ExplorerActionChoice[] {
     const target = this.target();
+    if (target?.kind === "initiative" && target.initiative.group) return [];
     const choices = target && this.snapshot ? actionChoices(target, this.snapshot, target.kind === "ticket" ? this.workflows.get(target.ticket.id) : undefined, this.options.commands()) : [];
     const reason = this.options.context.checkoutAvailable === false ? "No usable checkout. Open this project from a checkout to run actions." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state; wait before a worktree transition." : "");
     return reason ? choices.map(choice => this.options.context.checkoutAvailable !== false && choice.action === "ask-matt" ? choice : { ...choice, disabledReason: reason }) : choices;
@@ -669,10 +777,7 @@ export class GraphExplorer {
 
   private target(): ExplorerTarget | undefined {
     if (this.screen === "home" || this.screen === "actions" && this.returnScreen === "home") return this.homeRows()[this.homeIndex]?.target;
-    if (this.screen === "initiatives" || this.screen === "actions" && this.returnScreen === "initiatives") {
-      const initiative = this.initiative();
-      return initiative ? { kind: "initiative", initiative } : undefined;
-    }
+    if (this.screen === "queues" || this.screen === "actions" && this.returnScreen === "queues") return this.queueRows()[this.queueIndex]?.target;
     const ticket = this.ticket();
     return ticket ? { kind: "ticket", ticket } : undefined;
   }
@@ -695,7 +800,7 @@ export class GraphExplorer {
   }
 
   private navigation(): ExplorerNavigation {
-    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets] };
+    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin };
   }
 
   private focusedPane(panes: Pane[]): Pane | undefined {
@@ -704,24 +809,72 @@ export class GraphExplorer {
 
   private renderPane(pane: Pane, width: number, height: number): string[] {
     const expanded = pane.rows.flatMap(row => {
-      const text = this.clean(row.text);
-      const contentWidth = Math.max(1, width - 1);
-      return (row.selected || pane.id.startsWith("graph:") || pane.id === "initiatives" || pane.id.startsWith("home:") || pane.id === "actions" ? [truncateToWidth(text, contentWidth, "…")] : wrapTextWithAnsi(text, contentWidth)).map(text => ({ ...row, text }));
+      if (row.fields) return this.fieldLines(row.fields, Math.max(1, width - 1)).map(text => ({ ...row, text, styled: true }));
+      return wrapTextWithAnsi(this.clean(row.text), Math.max(1, width - 1)).map(text => ({ ...row, text, styled: false }));
     });
     const selected = expanded.findIndex(row => row.selected);
     let offset = this.offsets.get(pane.id) ?? 0;
-    if (selected >= 0 && this.focus !== "detail") {
+    const selectedRow = expanded[selected];
+    const selection = selectedRow?.target?.kind === "ticket" ? selectedRow.target.ticket.ref : selectedRow?.target?.kind === "initiative" ? selectedRow.target.initiative.ref : String(selected);
+    const selectedEnd = expanded.findIndex((row, index) => index > selected && !row.selected);
+    const end = selectedEnd < 0 ? expanded.length : selectedEnd;
+    const previous = this.renderedLayout.get(pane.id);
+    const layoutChanged = !previous || previous.width !== width || previous.height !== height || previous.start !== selected || previous.end !== end;
+    // Paging survives unchanged renders; reflow must bring the selected record back into view.
+    if (selected >= 0 && (layoutChanged || this.renderedSelection.get(pane.id) !== selection)) {
       if (selected < offset) offset = selected;
-      if (selected >= offset + height) offset = selected - height + 1;
+      if (selected >= offset + height) offset = selected;
+      if (end - selected <= height && end > offset + height) offset = end - height;
     }
+    this.renderedSelection.set(pane.id, selection);
+    this.renderedLayout.set(pane.id, { width, height, start: selected, end });
     offset = Math.max(0, Math.min(offset, Math.max(0, expanded.length - height)));
     this.offsets.set(pane.id, offset);
     return Array.from({ length: height }, (_, index) => {
       const row = expanded[index + offset];
       if (!row) return " ".repeat(width);
-      const text = this.pad(`${row.selected ? ">" : " "}${row.text}`, width);
-      return row.selected ? this.options.theme.bg("selectedBg", this.options.theme.fg("text", text)) : this.options.theme.fg(row.tone ?? "text", text);
+      const focused = this.active && this.focus !== "breadcrumb" && this.focusedPane(this.panes())?.id === pane.id;
+      const text = this.pad(`${row.selected ? focused ? ">" : "◇" : " "}${row.styled ? row.text : this.options.theme.fg(row.tone ?? "text", row.text)}`, width);
+      return row.selected ? this.options.theme.bg("selectedBg", text) : text;
     });
+  }
+
+  private fieldLines(fields: NonNullable<Row["fields"]>, width: number): string[] {
+    const th = this.options.theme;
+    const title = this.clean(fields.title);
+    const state = this.clean(fields.state);
+    const isInitiative = fields.count !== undefined;
+    const stateTone: Tone = /^(done|completed|closed)$/i.test(state) ? "success" : /error|failed|blocked/i.test(state) ? "warning" : "accent";
+    const secondary = isInitiative ? `Phase: ${state}` : `State: ${state}`;
+    const count = isInitiative ? `Items: ${fields.count}` : "";
+    const identity = this.clean(fields.identity ?? "");
+    const lines: string[] = [];
+    if (width >= 65 && isInitiative) {
+      const phaseWidth = Math.min(24, Math.max(18, visibleWidth(secondary)));
+      const countWidth = 11;
+      const titleWidth = Math.max(1, width - phaseWidth - countWidth - 4);
+      for (const [index, line] of wrapTextWithAnsi(title, titleWidth).entries()) lines.push(th.fg("text", this.pad(line, titleWidth)) + "  " + th.fg(stateTone, this.pad(index === 0 ? secondary : "", phaseWidth)) + "  " + th.fg("muted", this.pad(index === 0 ? count : "", countWidth)));
+    } else if (width >= 85) {
+      const typeWidth = 14;
+      const idWidth = 16;
+      const stateWidth = 18;
+      const titleWidth = width - typeWidth - idWidth - stateWidth - 6;
+      for (const [index, line] of wrapTextWithAnsi(title, titleWidth).entries()) {
+        lines.push(th.fg("accent", this.pad(index === 0 ? this.clean(`[${fields.type}]`) : "", typeWidth)) + "  "
+          + th.fg("muted", this.pad(index === 0 ? identity : "", idWidth)) + "  "
+          + th.fg("text", this.pad(line, titleWidth)) + "  "
+          + th.fg(stateTone, this.pad(index === 0 ? secondary : "", stateWidth)));
+      }
+      if (visibleWidth(identity) > idWidth) lines.push(th.fg("muted", `ID: ${identity}`));
+    } else {
+      if (!isInitiative) lines.push(...wrapTextWithAnsi(this.clean(`[${fields.type}]`) + `  ID: ${identity}`, width).map(line => th.fg("accent", line)));
+      lines.push(...wrapTextWithAnsi(title, width).map(line => th.fg("text", line)));
+      lines.push(...wrapTextWithAnsi(secondary, width).map(line => th.fg(stateTone, line)));
+      if (count) lines.push(...wrapTextWithAnsi(count, width).map(line => th.fg("muted", line)));
+    }
+    if (isInitiative) lines.push(...wrapTextWithAnsi(identity, width).map(line => th.fg("muted", line)));
+    if (fields.supporting) lines.push(...wrapTextWithAnsi(this.clean(fields.supporting), width).map(line => th.fg("muted", line)));
+    return lines;
   }
 
   private clean(value: string): string {

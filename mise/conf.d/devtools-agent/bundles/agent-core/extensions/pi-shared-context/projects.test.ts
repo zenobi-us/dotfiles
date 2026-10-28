@@ -93,6 +93,7 @@ async function fixture() {
 test("Projects supports reverse focus, mouse breadcrumbs, canonical identities, and escape levels", async () => {
   const f = await fixture();
   await f.modal.handleInput("\x1b[Z");
+  await f.modal.handleInput("\x1b[Z");
   await f.modal.handleInput("\t");
   await f.modal.handleInput("\x1b[Z");
   await f.modal.handleInput("\r");
@@ -100,10 +101,12 @@ test("Projects supports reverse focus, mouse breadcrumbs, canonical identities, 
   expect(f.view()).toContain("github.com/beta/repo");
   expect(f.view()).not.toContain("duplicate identity");
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("8");
   expect(f.view()).toContain("alpha item");
   f.modal.handleMouse({ type: "click", button: "left", x: 3, y: 1 } as TuiMouseEvent);
   await until(() => f.view().includes("github.com/beta/repo"));
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("h");
   await f.modal.handleInput("\x1b");
   await until(() => f.view().includes("github.com/beta/repo"));
   await f.modal.handleInput("\x1b");
@@ -129,6 +132,7 @@ test("Projects filters names and identities by subsequence and opens the filtere
   expect(f.view()).toContain("> Query Board 12");
   await f.modal.handleInput("\r");
   expect(f.selected().canonicalOrigin).toBe(f.b.canonicalOrigin);
+  await f.modal.handleInput("8");
   expect(f.view()).toContain("beta item");
   await f.modal.handleInput("m");
   const result = f.result();
@@ -175,6 +179,7 @@ test("project switching owns tracker actions and Files while preserving each wor
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[B");
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("8");
   expect(f.view()).toContain("beta item");
   expect(f.view()).toContain("Shared");
   expect(f.view()).not.toContain("alpha item");
@@ -193,7 +198,7 @@ test("project switching owns tracker actions and Files while preserving each wor
   expect(f.view()).toContain(f.a.root);
   expect(f.view()).not.toContain(f.b.root);
   await f.modal.handleInput("1");
-  expect(f.view()).toContain("Ready-work Home · review");
+  expect(f.view()).toContain("Ticket queues · review");
   await f.modal.handleInput("2");
   await f.modal.handleInput("\x1b");
   expect(f.closed()).toBe(true);
@@ -206,6 +211,7 @@ test("stored projects remain readable without a checkout and disable action disp
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[B");
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("8");
   expect(f.view()).toContain("beta item");
   expect(f.view()).toContain("Shared");
   await f.modal.handleInput("m");
@@ -254,6 +260,7 @@ test("empty, unreadable, and unavailable project states retain the current proje
   expect(f.view()).toContain("Project unavailable: checkout missing");
   await f.modal.handleInput("\x1b[A");
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("8");
   expect(f.view()).toContain("alpha item");
 });
 
@@ -262,6 +269,7 @@ test("inactive project updates do not replace the selected view and return refre
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[B");
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("8");
   await put(join(f.a.root, "tracker/tickets/item.md"), "---\nid: item\ntitle: alpha changed\nwork_status: open\n---\n");
   await put(join(f.b.root, "tracker/tickets/item.md"), "---\nid: item\ntitle: beta changed\nwork_status: open\n---\n");
   await until(() => f.view().includes("beta changed"));
@@ -269,6 +277,7 @@ test("inactive project updates do not replace the selected view and return refre
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[A");
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("8");
   await until(() => f.view().includes("alpha changed"));
   await put(join(f.a.root, "tracker/tickets/item.md"), "---\nid: item\ntitle: alpha live again\nwork_status: open\n---\n");
   await until(() => f.view().includes("alpha live again"));
@@ -299,6 +308,7 @@ test("checkoutless mixed routes retain shared records with a Repo alignment indi
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[B");
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("8");
   expect(f.view()).toContain("beta item");
   expect(f.view()).toContain("Repo");
   expect(f.view()).toContain("repository records unavailable");
@@ -312,6 +322,7 @@ test("checkoutless mixed routes retain shared records with a Repo alignment indi
 
 test("returning to a project restores its ticket reader and scroll position", async () => {
   const f = await fixture();
+  await f.modal.handleInput("8");
   await put(join(f.a.root, "tracker/tickets/item.md"), `---\nid: item\ntitle: alpha long description\nwork_status: open\n---\n${Array.from({ length: 70 }, (_, index) => `Alpha description line ${index}`).join("\n")}`);
   await until(() => f.view().includes("alpha long description"));
   await f.modal.handleInput("\r");
@@ -322,6 +333,7 @@ test("returning to a project restores its ticket reader and scroll position", as
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[B");
   await f.modal.handleInput("\r");
+  await f.modal.handleInput("8");
   expect(f.view()).toContain("beta item");
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[A");
@@ -332,15 +344,20 @@ test("returning to a project restores its ticket reader and scroll position", as
 
 test("focus traversal re-enters the first or last tracker pane in traversal order", async () => {
   const f = await fixture();
+  await f.modal.handleInput("8");
   await put(join(f.a.root, "tracker/tickets/item.md"), `---\nid: item\ntitle: focus reader\nwork_status: open\n---\n${Array.from({ length: 90 }, (_, index) => `Focus description line ${index}`).join("\n")}`);
   await until(() => f.view().includes("focus reader"));
   await f.modal.handleInput("\r");
-  for (let index = 0; index < 6; index++) await f.modal.handleInput("\t");
+  await f.modal.handleInput("\t");
   await f.modal.handleInput("\x1b[6~");
-  expect(f.view()).toContain("Focus description line 25");
-  for (let index = 0; index < 5; index++) await f.modal.handleInput("\x1b[Z");
+  const firstPage = f.view().match(/Focus description line \d+/g)!;
+  for (let index = 0; index < 8; index++) await f.modal.handleInput("\t");
   await f.modal.handleInput("\x1b[6~");
-  expect(f.view()).toContain("Focus description line 47");
+  const secondPage = f.view().match(/Focus description line \d+/g)!;
+  expect(secondPage[0]).not.toBe(firstPage[0]);
+  for (let index = 0; index < 8; index++) await f.modal.handleInput("\x1b[Z");
+  await f.modal.handleInput("\x1b[5~");
+  expect(f.view().match(/Focus description line \d+/g)).toEqual(firstPage);
 });
 
 test("the live modal recovers the deduplicated current project after checkout removal", async () => {
@@ -373,12 +390,16 @@ test("the live modal recovers the deduplicated current project after checkout re
         await until(() => view().includes("(current)") && !view().includes("Loading projects"));
       };
       try {
+        await waitFor("Ungrouped");
+        component.handleInput("8");
         await waitFor("Surviving current item");
         component.handleInput("2");
         expect(view()).toContain(current.repositoryRoot);
         await projects();
         component.handleInput("\x1b[B");
         component.handleInput("\r");
+        await waitFor("Ungrouped");
+        component.handleInput("8");
         await waitFor("beta item");
         await rm(f.a.repositoryRoot, { recursive: true });
         await projects();
@@ -422,11 +443,15 @@ test("repository-only A can disappear while selected shared B keeps loading reco
       const component = factory({ terminal: { rows: 40 }, requestRender: () => {} }, theme, {}, () => {});
       const view = () => component.render(120).join("\n");
       try {
+        await until(() => view().includes("Ungrouped"));
+        component.handleInput("8");
         await until(() => view().includes("alpha item"));
         component.handleMouse({ type: "click", button: "left", x: 3, y: 1 });
         await until(() => view().includes(f.b.slug));
         component.handleInput("\x1b[B");
         component.handleInput("\r");
+        await until(() => view().includes("Ungrouped"));
+        component.handleInput("8");
         await until(() => view().includes("beta item"));
         await rm(f.a.repositoryRoot, { recursive: true });
         await put(join(f.b.root, "tracker/tickets/item.md"), "---\nid: item\ntitle: B survives A removal\nwork_status: open\n---\n");
@@ -496,11 +521,15 @@ for (const source of ["checkout", "remote"] as const) {
         const component = factory({ terminal: { rows: 40 }, requestRender: () => {} }, theme, {}, () => {});
         const view = () => component.render(120).join("\n");
         try {
+          await until(() => view().includes("Ungrouped"));
+          component.handleInput("8");
           await until(() => view().includes("alpha item"));
           component.handleMouse({ type: "click", button: "left", x: 3, y: 1 });
           await until(() => view().includes(f.b.slug));
           component.handleInput("\x1b[B");
           component.handleInput("\r");
+          await until(() => view().includes("Ungrouped"));
+          component.handleInput("8");
           await until(() => view().includes("Recovered legacy issue"));
           expect(requests.some(args => args.includes("beta/repo"))).toBe(true);
           component.handleInput("m");

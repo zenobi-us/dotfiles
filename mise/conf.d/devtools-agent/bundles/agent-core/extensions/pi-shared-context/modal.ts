@@ -10,6 +10,8 @@ interface TabContent {
   handleInput(data: string): void | Promise<void>;
   moveFocus?(reverse: boolean): boolean;
   enterFocus?(reverse: boolean): void;
+  setActive?(active: boolean): void;
+  handleMouse?(event: TuiMouseEvent): TuiMouseEventResult | undefined;
 }
 export interface ProjectEntry {
   id: string;
@@ -37,7 +39,7 @@ export interface ProjectOptions {
 
 export class SharedContextModal {
   private active: Tab;
-  private highlighted?: Tab | "projects";
+  private highlighted?: Tab | "projects" | "project";
   private projects = false;
   private entries: ProjectEntry[] = [];
   private filteredEntries: ProjectEntry[] = [];
@@ -51,6 +53,7 @@ export class SharedContextModal {
   private currentId: string;
   private currentWorkspace?: ProjectWorkspace;
   private projectName?: string;
+  private projectHit = { x: 0, width: 0 };
 
   constructor(
     private context: SharedAgentContext,
@@ -165,6 +168,15 @@ export class SharedContextModal {
       void this.showProjects();
       return { handled: true };
     }
+    if (!this.projects && this.active === "tracker") {
+      if (event.y === 1 && event.x >= this.projectHit.x && event.x < this.projectHit.x + this.projectHit.width) {
+        void this.tracker.handleInput("h");
+        this.highlighted = undefined;
+        this.requestRender();
+        return { handled: true };
+      }
+      return this.tracker.handleMouse?.({ ...event, y: event.y - 3 });
+    }
   }
 
   async handleInput(data: string): Promise<void> {
@@ -178,16 +190,17 @@ export class SharedContextModal {
       else await this.tracker.handleInput(data);
     } else if (matchesKey(data, "tab") || matchesKey(data, "shift+tab")) {
       const reverse = matchesKey(data, "shift+tab");
-      if (this.options && !this.projects && this.highlighted === undefined && this.active === "tracker" && this.tracker.moveFocus?.(reverse)) {
+      if (!this.projects && this.highlighted === undefined && this.active === "tracker" && this.tracker.moveFocus?.(reverse)) {
         this.requestRender();
         return;
       }
-      const controls: (Tab | "projects" | undefined)[] = this.options ? [undefined, "tracker", "files", "projects"] : [undefined, "tracker", "files"];
+      const controls: (Tab | "projects" | "project" | undefined)[] = this.options ? [undefined, "tracker", "files", "projects", "project"] : [undefined, "tracker", "files"];
       const index = controls.indexOf(this.highlighted);
       this.highlighted = controls[(index + (matchesKey(data, "tab") ? 1 : controls.length - 1)) % controls.length];
-      if (this.options && this.highlighted === undefined && !this.projects && this.active === "tracker") this.tracker.enterFocus?.(reverse);
+      if (this.highlighted === undefined && !this.projects && this.active === "tracker") this.tracker.enterFocus?.(reverse);
     } else if (this.highlighted !== undefined && (matchesKey(data, "enter") || data === " ")) {
       if (this.highlighted === "projects") await this.showProjects();
+      else if (this.highlighted === "project") { await this.tracker.handleInput("h"); this.active = "tracker"; this.projects = false; this.highlighted = undefined; }
       else { this.active = this.highlighted; this.projects = false; this.highlighted = undefined; }
     } else if (this.projects) {
       if (matchesKey(data, "escape")) this.options?.close();
@@ -219,7 +232,11 @@ export class SharedContextModal {
     };
     const storage = this.context.routes?.alignment.store === "shared" ? "Shared" : "Repo";
     const breadcrumb = this.highlighted === "projects" ? ">Projects<" : "Projects";
-    const title = safeTerminalText(`${breadcrumb} · ${storage} > ${this.projectName ?? path.basename(this.context.repositoryRoot)}`);
+    const project = safeTerminalText(this.projectName ?? path.basename(this.context.repositoryRoot));
+    const prefix = `${breadcrumb} · ${storage} > `;
+    const title = safeTerminalText(prefix) + (this.highlighted === "project" ? `>${project}<` : project);
+    this.projectHit = { x: 2 + visibleWidth(prefix), width: visibleWidth(project) };
+    this.tracker.setActive?.(!this.projects && this.active === "tracker" && this.highlighted === undefined);
     const tabs = (["tracker", "files"] as const).map((tab, index) => {
       const label = `${index + 1} ${tab === "tracker" ? "Tracker" : "Files"}`;
       const labelWithState = tab === this.active && !this.projects ? `[${label}]` : ` ${label} `;

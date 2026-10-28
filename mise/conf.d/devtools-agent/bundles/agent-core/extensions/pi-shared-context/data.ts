@@ -29,14 +29,12 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
   const assigned = new Set(snapshot.initiatives.flatMap(item => item.ticketIds));
   if (snapshot.backend === "github") for (const initiative of snapshot.initiatives) assigned.add(initiative.id);
   const unassigned = snapshot.tickets.filter(ticket => !assigned.has(ticket.id)).map(ticket => ticket.id);
-  if (unassigned.length) {
-    let groupId = "unassigned";
-    while (snapshot.initiatives.some(item => item.id === groupId)) groupId = `_${groupId}`;
-    const collectionRef = snapshot.backend === "local-markdown"
-      ? (await resolveContextRecord(context, { kind: "tickets" })).ref
-      : new URL(".", snapshot.tickets[0]!.ref).href;
-    snapshot.initiatives.push({ id: groupId, title: "Unassigned", ref: collectionRef, ticketIds: unassigned, body: "Tickets without an assigned initiative.", group: true });
-  }
+  let groupId = "unassigned";
+  while (snapshot.initiatives.some(item => item.id === groupId)) groupId = `_${groupId}`;
+  const collectionRef = snapshot.backend === "local-markdown"
+    ? (await resolveContextRecord(context, { kind: "tickets" })).ref
+    : `https://${context.canonicalOrigin.replace(/^https?:\/\//, "").replace(/\.git$/, "")}/issues`;
+  snapshot.initiatives.push({ id: groupId, title: "Ungrouped", ref: collectionRef, ticketIds: unassigned, body: "Tickets without an assigned initiative.", group: true });
   return snapshot;
 }
 
@@ -186,7 +184,7 @@ async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<E
       const errors = validateInitiativeMembership(id, ticketIds, tickets.map(ticket => ({ id: ticket.id, parent: parents.get(ticket.id) })));
       if (errors.length) throw new Error(errors.join(" "));
     }
-    initiatives.push({ id, title: doc.fields.title == null ? id : text(doc.fields.title, "initiative title"), ref: `${initiativesRecord.ref}/${id}/index.md`, ticketIds: [...new Set(ticketIds)], body: doc.body });
+    initiatives.push({ id, title: doc.fields.title == null ? id : text(doc.fields.title, "initiative title"), ref: `${initiativesRecord.ref}/${id}/index.md`, ticketIds: [...new Set(ticketIds)], body: doc.body, ...(typeof doc.fields.phase === "string" && doc.fields.phase.trim() ? { phase: doc.fields.phase } : {}) });
   }
   validateRelations([...parents].map(([id, parent]) => ({ id, blockedBy: parents.has(parent) ? [parent] : [] })), "ticket hierarchy");
   for (const [id, parent] of parents) {
@@ -280,7 +278,7 @@ async function document(file: string, root: string, exec: Exec): Promise<Documen
   await contained(root, file);
   const markdown = file.endsWith(".md");
   const query = markdown
-    ? `import "github.com/harehare/okf.mq" | import "section" | let source = . | let doc = okf::okf_parse(source) | { fields: doc["frontmatter"], body: source, links: ${INITIATIVE_LINKS_QUERY} }`
+    ? `import "github.com/harehare/okf.mq" | import "section" | let source = . | let doc = okf::okf_parse(source) | { fields: doc["frontmatter"], body: doc["body"], links: ${INITIATIVE_LINKS_QUERY} }`
     : 'import "github.com/harehare/okf.mq" | { fields: ., body: "", links: [] }';
   const parsed = object(JSON.parse(await run(exec, "mq", ["--allow-http-import", "--no-lockfile", `--allow-read=${root}`, "-I", markdown ? "raw" : file.endsWith(".json") ? "json" : "yaml", "-F", "json", query, file])), "mq document");
   return { fields: object(parsed.fields, "document fields"), body: string(parsed.body, "document body"), links: list(parsed.links, "document links") };

@@ -35,5 +35,5 @@ test("number shortcuts switch tabs without changing tracker queues or losing sel
   await modal.handleInput("2");
   expect(modal.render(100).at(-1)).toBe("File browser");
   await modal.handleInput("1");
-  expect(modal.render(100).join("\n")).toContain("Ready-work Home · review");
+  expect(modal.render(100).join("\n")).toContain("Ticket queues · review");
 });

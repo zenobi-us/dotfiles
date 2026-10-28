@@ -62,7 +62,9 @@ test("configured mixed stores preserve completed blockers and discover unassigne
 
 test("missing collections are empty but a missing tracker definition is actionable", async () => {
   const context = await fixture();
-  expect(await loadExplorerSnapshot(context, execute)).toEqual({ backend: "local-markdown", tickets: [], initiatives: [] });
+  const empty = await loadExplorerSnapshot(context, execute);
+  expect(empty.tickets).toEqual([]);
+  expect(empty.initiatives).toEqual([{ id: "unassigned", title: "Ungrouped", ref: "records/issues", ticketIds: [], body: "Tickets without an assigned initiative.", group: true }]);
   await rm(join(context.repositoryRoot, "docs/agents/issue-tracker.md"));
   await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow();
 });

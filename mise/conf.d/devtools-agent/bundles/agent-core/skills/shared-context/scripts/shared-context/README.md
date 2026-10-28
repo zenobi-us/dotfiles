@@ -251,7 +251,20 @@ instructions.
 
 ## Pi project navigation
 
-`/shared-context` opens the current project. `/shared-context files` opens its Files workspace.
+`/shared-context` opens the current project tracker with initiatives, then Ungrouped.
+Ungrouped is a synthetic collection and stays visible with zero items. It has no initiative planning actions.
+Initiative rows show the recorded phase and Items count separately from the title. Missing phases show unavailable; actions never supply a phase.
+Press Enter to open an initiative summary and its children. Press Enter on a child to open its existing detail view.
+Child rows separate type, stable ID, title, and recorded state. Supporting references and workflow warnings appear below the primary fields.
+Titles wrap. Narrow terminals wrap phase and Items on separate lines below the title. Use PgUp/PgDn to read long rows without changing selection. Resizing or row reflow brings the selected record back into view; unchanged layouts retain deliberate paging.
+The > marker identifies a focused selection. The ◇ marker identifies an inactive selection; both retain the selection background.
+Use Tab and Shift+Tab to focus ancestors, panes, and workspace controls. Press Enter or Space on an ancestor, or click it, to return directly.
+Esc returns one level and restores the parent selection and scroll position. In compact terminals, returning from Events with Esc or the ticket ancestor shows the overview at its saved reading position. Live updates retain canonical selection; removal explains the new selection. If a child leaves its initiative while a reader or action menu is open, return to a nearby child or the empty parent before another action. Removing an unrelated initiative does not change the active ticket queue. Removing an inactive remembered child also leaves unrelated queue and home initiative action menus open on their canonical targets.
+Press 5 for Ready, 6 for Review, 7 for Blocked, or 8 for All to open the separate ticket queues. Press h to return to initiatives.
+Uppercase R refreshes. Lowercase r retains its existing Review action. The a action menu and direct action keys keep their existing safety checks.
+Loading, empty collections, unreadable records, and refresh failures have distinct messages. A failed refresh retains readable content and blocks unsafe transitions.
+`/shared-context files` opens the independent Files workspace. Files keeps its path-insertion behavior.
+
 
 Use Tab and Shift+Tab to move between tracker panes, workspace tabs, and the Projects breadcrumb.
 Press Enter on Projects, or click Projects, to open the project list.

@@ -19,6 +19,7 @@ export interface ExplorerInitiative {
   ref: string;
   ticketIds: string[];
   body: string;
+  phase?: string;
   group?: true;
 }
 

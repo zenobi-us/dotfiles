@@ -702,7 +702,7 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
   });
 
   pi.registerShortcut("ctrl+shift+g", {
-    description: "Open shared-context Graph continuity explorer",
+    description: "Open shared-context initiatives, queues, receipts, and files",
     handler: async ctx => {
       // omp creates a command context for shortcuts, although the API declares a base context.
       const commandContext = ctx as ExtensionCommandContext;
@@ -711,7 +711,7 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
   });
 
   pi.registerCommand("shared-context", {
-    description: "Browse ready work, initiative dependency graphs, receipts, and shared files",
+    description: "Browse initiatives and Ungrouped, ticket queues, receipts, and shared files",
     getArgumentCompletions: (prefix): AutocompleteItem[] | null => {
       const subcommands: AutocompleteItem[] = [
         { value: "report", label: "report", description: "Show resolved context roots and routes" },
