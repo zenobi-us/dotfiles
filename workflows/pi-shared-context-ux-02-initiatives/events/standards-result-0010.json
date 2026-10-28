@@ -1,0 +1,184 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "standards-result-0010",
+  "workflow_id": "pi-shared-context-ux-02-initiatives",
+  "phase": "review-standards",
+  "event": "phase-result",
+  "attempt": 1,
+  "parent_receipt": "standards-start-0008",
+  "status": "completed",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "source_commit": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+  "created_at": "2026-10-27T23:49:50.970840Z",
+  "muxer": "herdr",
+  "pane_id": "w7F:p2",
+  "agent": "omp",
+  "agent_name": "ux02-standards-01",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-27T23-46-39-967Z_01a17fc2-42df-72f0-aa0f-feffdad54f0b.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-02-initiatives",
+    "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0015.yaml",
+  "agent_session_token_limit": 250000,
+  "cycle_number": 4,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/standards-start-0008.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/implementation-0005.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/implementation-complete-0006.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/continuation-approved-0013.yaml"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0015.yaml"
+    },
+    {
+      "kind": "standards",
+      "ref": "AGENTS.md"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "adr-index",
+      "ref": "docs/adr/index.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/standards-result-0010.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0014/standards-observations-0010.json"
+    }
+  ],
+  "native_goal_budget_ceiling": 241808,
+  "completion_margin_tokens": 8192,
+  "session_identity_source": "herdr agent get ux02-standards-01 -> result.agent.agent_session.value",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0014"
+  },
+  "verdict": "SUCCESS",
+  "hard_violations": [],
+  "findings": [
+    {
+      "id": "STD-J1",
+      "severity": "P3",
+      "blocking": false,
+      "classification": "judgement-call",
+      "baseline": "Duplicated Code",
+      "adr_ref": "NO ADR",
+      "adr_reason": "docs/adr/index.md contains no recorded architecture decision for this area.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 698,
+      "related_lines": [
+        608
+      ],
+      "standard_ref": "code-review smell baseline: Duplicated Code (heuristic; repository rules override)",
+      "description": "render() and graphPane() independently extract the initiative summary with the same split/trim/find expression. Changes to eligible summary lines must update both locations.",
+      "hunk_quote": "body.split(/\\r?\\n/).map(line => line.trim()).find(line => line && !/^#|^\\s*[-*]\\s*\\[/.test(line))",
+      "required_change": "Optional: extract one initiative-summary helper and use it in both locations. This smell alone does not block review.",
+      "validation_command": "git diff master...7c647581807920320efa191f946b8ce9183558b7 -- mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "validation_result": "Both newly added copies observed in the frozen diff at lines 608 and 698.",
+      "suggested_behavioral_validation": "Check initiative summary text in the status line and wide child pane after any extraction; parent owns behavioral validation."
+    }
+  ],
+  "blocking_findings": [],
+  "summary": "Standards verdict: SUCCESS. No blocking documented-standard violation was found in the ten-file frozen diff.\n\nHard violations: none. AGENTS.md requires short, plain language and routes Markdown work through mq. CONTEXT-MAP.md and docs/agents/domain.md define context ownership and domain entry points. docs/adr/index.md records no relevant decision; NO ADR applies. CONTEXT.md is absent. No CONTRIBUTING or CODING_STANDARDS document was found.\n\nJudgement call STD-J1 (P3, Duplicated Code): explorer.ts:608 and :698 both use body.split(/\\r?\\n/).map(line => line.trim()).find(...) to select the initiative summary. Consider one helper so summary-selection changes cannot diverge. This is nonblocking.\n\nReviewed all ten committed files, including tests and navigation documentation. Skipped tooling-enforced formatting and type trivia. No tests, compiler, formatter, or runtime acceptance ran in this axis. The main reviewer owns behavioral validation. LSP references were attempted but initialization failed because the workspace has no valid TypeScript installation. No source or tracker files changed.",
+  "reviewed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "native_goal_accounting": {
+    "native_goal_budget": 241808,
+    "native_goal_used_observed": 106035,
+    "native_goal_remaining_observed": 135773,
+    "session_ceiling": 250000,
+    "completion_margin_tokens": 8192,
+    "startup_budget_verified": 241808,
+    "observation": "goal.get before result preparation. This is an observed checkpoint, not final whole-session accounting. Goal remained active and was not reset or increased."
+  },
+  "validation": [
+    {
+      "kind": "frozen-source",
+      "command": "git rev-parse HEAD HEAD^{tree} refs/heads/feature/pi-shared-context-ux-02-initiatives",
+      "result": "Exact handoff commit/tree and branch tip match."
+    },
+    {
+      "kind": "source-preservation",
+      "command": "git diff --quiet 7c647581807920320efa191f946b8ce9183558b7 -- <all ten implementation changed_files>",
+      "exit_code": 0,
+      "result": "All reviewed source files match frozen commit; no local source differences were reviewed."
+    },
+    {
+      "kind": "static-review",
+      "command": "git diff master...7c647581807920320efa191f946b8ce9183558b7",
+      "result": "All ten files inspected. One nonblocking duplication smell; no hard violation."
+    },
+    {
+      "kind": "markdown-inputs",
+      "command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' <document paths>",
+      "result": "Read context map, domain rules, ADR index, and immutable implementation PR snapshot."
+    },
+    {
+      "kind": "lsp-references",
+      "result": "Attempted; initialization unavailable because workspace TypeScript installation could not be found."
+    },
+    {
+      "kind": "runtime-and-tests",
+      "result": "Not run in this axis, as required by the frozen handoff. Parent runs affected validation after both independent axes finish."
+    }
+  ],
+  "independence": {
+    "axis": "standards",
+    "spec_axis_report_read": false,
+    "main_review_body_read": false,
+    "subagents_launched": 0,
+    "source_changes": false,
+    "tracker_changes": false
+  }
+}

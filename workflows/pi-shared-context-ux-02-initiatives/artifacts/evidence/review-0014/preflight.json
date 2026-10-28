@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-10-27T23:48:31.877631+00:00",
+  "source_commit": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+  "source_status_observed": "clean",
+  "context_md_exists": false,
+  "adr": "NO ADR: docs/adr/index.md contains no decision entries.",
+  "workflow_store": "repository",
+  "workflow_ref": "workflows/pi-shared-context-ux-02-initiatives",
+  "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0014",
+  "language_server": "Configured TypeScript server could not initialize: no valid workspace TypeScript installation. No source dependency or configuration changes made.",
+  "recorded_implementation_evidence_inspected": [
+    "runtime-report.md",
+    "verified-dark-120x40-children.png",
+    "verified-mono-40x12-children.png",
+    "verified-mono-40x12-child-secondary.png",
+    "verified-dark-80x24-mouse-initiative-return.png"
+  ],
+  "recorded_evidence_limit": "Prior implementation observations, not this reviewer runtime. Images reconstruct recorded terminal text and RGB spans; native termscope SVG did not preserve colour/alignment."
+}

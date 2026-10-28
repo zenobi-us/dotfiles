@@ -1,0 +1,20 @@
+[
+  {
+    "kind": "focused-tests",
+    "command": "NODE_PATH=/tmp/ux02-deps/node_modules mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "started_at": "2026-10-27T23:52:27.640293+00:00",
+    "ended_at": "2026-10-27T23:52:30.447484+00:00",
+    "exit_code": 1,
+    "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0014/focused-tests.txt"
+  },
+  {
+    "kind": "scoped-typescript",
+    "command": "NODE_PATH=/tmp/ux02-deps/node_modules mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --project /tmp/ux02-review-0014-tsconfig.json --pretty false",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "started_at": "2026-10-27T23:52:27.641808+00:00",
+    "ended_at": "2026-10-27T23:52:30.607645+00:00",
+    "exit_code": 0,
+    "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0014/scoped-typescript.txt"
+  }
+]

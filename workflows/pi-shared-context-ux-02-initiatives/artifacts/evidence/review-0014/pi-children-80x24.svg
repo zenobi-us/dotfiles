@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)"> ▀▀█  v1.1.0</text>
+<text x="10" y="64" fill="rgb(255,255,255)"> █╭──────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="84" fill="rgb(255,255,255)"> c│ Projects · Repo &gt; feature-pi-shared-context-ux-02-initiatives            │</text>
+<text x="10" y="104" fill="rgb(255,255,255)"> P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="144" fill="rgb(255,255,255)"> P│ Initiatives  &gt;  Improve shared-context project n…                        │</text>
+<text x="10" y="164" fill="rgb(255,255,255)"> e│&gt; pi-shared-context-tui-ux-spec · Items 6                                 │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │&gt;[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   │</text>
+<text x="10" y="224" fill="rgb(255,255,255)">  │&gt;Browse initiatives through structured tracker rows                       │</text>
+<text x="10" y="244" fill="rgb(255,255,255)">  │&gt;State: claimed                                                           │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │&gt;tracker/tickets/pi-shared-context-ux-02-initiatives.md                   │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">  │ [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   │</text>
+<text x="10" y="304" fill="rgb(255,255,255)">  │ Browse research and tickets in the same initiative                       │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │ State: unclaimed                                                         │</text>
+<text x="10" y="344" fill="rgb(255,255,255)">  │ Waiting for pi-shared-context-ux-02-initiatives                          │</text>
+<text x="10" y="364" fill="rgb(255,255,255)">  │ [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──│ Summary: The shared-context terminal user interface makes records diffic…│──</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│</text>
+<text x="10" y="444" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...</text>
+<text x="10" y="484" fill="rgb(255,255,255)">$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 • medium</text>
+</svg>

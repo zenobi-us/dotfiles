@@ -1,0 +1,41 @@
+{
+  "id": 47,
+  "result": {
+    "cols": 80,
+    "rows": 24,
+    "cursor": [
+      19,
+      79
+    ],
+    "cursor_visible": false,
+    "cursor_style": "block",
+    "screen": "alternate",
+    "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+    "lines": [
+      "",
+      " \u2580\u2580\u2588  v1.1.0",
+      " \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+      " c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502",
+      " P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502",
+      "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+      " P\u2502 Initiatives  >  Queues                                                   \u2502",
+      " e\u2502> Ticket queues \u00b7 all                                                     \u2502",
+      "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+      "  \u2502>[Enhancement]  ID: pi-shared-context-ux-01-projects                      \u2502",
+      "  \u2502>Select shared-context projects through interactive breadcrumbs           \u2502",
+      "  \u2502>State: completed                                                         \u2502",
+      "  \u2502>Workflow unreadable:                                                     \u2502",
+      "  \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-0034.json:      \u2502",
+      "  \u2502>Receipt workflow.root does not match the resolved workflow store root    \u2502",
+      "  \u2502>(not the workflow directory).                                            \u2502",
+      "  \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-worktree-removed\u2502",
+      "  \u2502>-0033.json: Receipt workflow.root does not match the resolved workflow   \u2502",
+      "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+      "\u2500\u2500\u2502 tracker/tickets/pi-shared-context-ux-01-projects.md \u00b7 DONE               \u2502\u2500\u2500",
+      "  \u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R ref\u2026\u2502",
+      "\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...",
+      "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium"
+    ]
+  }
+}

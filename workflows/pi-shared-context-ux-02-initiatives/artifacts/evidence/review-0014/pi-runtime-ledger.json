@@ -1,0 +1,1320 @@
+{
+  "command": "termscope session --cols 120 --rows 40 -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools --no-themes --use-theme dark -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "fixture": false,
+  "source": "Frozen worktree real local records",
+  "operations": [
+    {
+      "request": {
+        "id": 1,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "v1.1.0",
+          "timeout": 15000
+        }
+      },
+      "response": {
+        "id": 1,
+        "result": {
+          "found": true,
+          "row": 1,
+          "col": 12
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 2,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 2,
+        "result": {
+          "cols": 120,
+          "rows": 40,
+          "cursor": [
+            36,
+            0
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more",
+            " Press ctrl+o to show full startup help.",
+            "",
+            " Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+            "",
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives (featur...",
+            "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 3,
+        "method": "type",
+        "params": {
+          "text": "/shared-context"
+        }
+      },
+      "response": {
+        "id": 3,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 4,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 4,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 5,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Ungrouped",
+          "timeout": 20000
+        }
+      },
+      "response": {
+        "id": 5,
+        "result": {
+          "found": true,
+          "row": 37,
+          "col": 47
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 6,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 6,
+        "result": {
+          "cols": 120,
+          "rows": 40,
+          "cursor": [
+            35,
+            15
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u2580 \u2588 escape interrupt \u00b7 ctrl+c/ctrl+d clear/exit \u00b7 / commands \u00b7 ! bash \u00b7 ctrl+o more",
+            " Press ctrl+o to show full startup help.",
+            "",
+            " Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+            "/shared-context",
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+            "\u2192 shared-context  [t] Browse initiatives and Ungrouped, ticket queues, receipts, and shared files",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives (featur...",
+            "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 7,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Initiatives \u00b7 title",
+          "timeout": 20000
+        }
+      },
+      "response": {
+        "id": 7,
+        "result": {
+          "found": true,
+          "row": 7,
+          "col": 8
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 8,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 8,
+        "result": {
+          "cols": 120,
+          "rows": 40,
+          "cursor": [
+            34,
+            119
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " Pr\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives                                                  \u2502",
+            "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+            " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 Initiatives                                                                                                    \u2502",
+            "   \u2502> Initiatives \u00b7 title / phase / Items                                                                           \u2502",
+            "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502>Improve shared-context project navigation and tracker readability               Phase: unavailable  Items: 6   \u2502",
+            "   \u2502>pi-shared-context-tui-ux-spec                                                                                  \u2502",
+            "   \u2502 Ungrouped                                                                       Phase: unavailable  Items: 0   \u2502",
+            "   \u2502 Collection                                                                                                     \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 tracker/initiatives/pi-shared-context-tui-ux-spec/index.md                                                     \u2502",
+            "\u2500\u2500\u2500\u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R refresh \u00b7 Esc back                        \u2502\u2500\u2500\u2500",
+            "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives (featur...",
+            "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 9,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 9,
+        "result": {
+          "cols": 120,
+          "rows": 40,
+          "cursor": [
+            34,
+            119
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " Pr\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives                                                  \u2502",
+            "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+            " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 Initiatives                                                                                                    \u2502",
+            "   \u2502> Initiatives \u00b7 title / phase / Items                                                                           \u2502",
+            "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502>Improve shared-context project navigation and tracker readability               Phase: unavailable  Items: 6   \u2502",
+            "   \u2502>pi-shared-context-tui-ux-spec                                                                                  \u2502",
+            "   \u2502 Ungrouped                                                                       Phase: unavailable  Items: 0   \u2502",
+            "   \u2502 Collection                                                                                                     \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u2502                                                                                                                \u2502",
+            "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 tracker/initiatives/pi-shared-context-tui-ux-spec/index.md                                                     \u2502",
+            "\u2500\u2500\u2500\u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R refresh \u00b7 Esc back                        \u2502\u2500\u2500\u2500",
+            "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives (featur...",
+            "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 10,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 10,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 11,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Summary:",
+          "timeout": 15000
+        }
+      },
+      "response": {
+        "id": 11,
+        "result": {
+          "found": true,
+          "row": 10,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 12,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 12,
+        "result": {
+          "cols": 120,
+          "rows": 40,
+          "cursor": [
+            35,
+            119
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " Pr\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives                                                  \u2502",
+            "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+            " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 Initiatives  >  Improve shared-context project navigation and track\u2026                                           \u2502",
+            "   \u2502> pi-shared-context-tui-ux-spec \u00b7 Items 6                                                                       \u2502",
+            "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 pi-shared-context-tui-ux-spec \u00b7 Phase: unavailable                                                             \u2502",
+            "   \u2502 Summary: The shared-context terminal user interface makes records difficult to read. Titles, types, states,    \u2502",
+            "   \u2502 counts, and references appear as similar text. Users cannot quickly identify the meaning of each field.        \u2502",
+            "   \u2502>[Enhancement]   pi-shared-conte\u2026  Select shared-context projects through interactive         State: completed  \u2502",
+            "   \u2502>                                  breadcrumbs                                                                  \u2502",
+            "   \u2502>ID: pi-shared-context-ux-01-projects                                                                           \u2502",
+            "   \u2502>Workflow unreadable: workflows/pi-shared-context-ux-01-projects/events/finish-0034.json: Receipt workflow.root \u2502",
+            "   \u2502>does not match the resolved workflow store root (not the workflow directory).                                  \u2502",
+            "   \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-worktree-removed-0033.json: Receipt workflow.root does\u2502",
+            "   \u2502>not match the resolved workflow store root (not the workflow directory).                                       \u2502",
+            "   \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-ticket-completed-0032.json: Receipt workflow.root does\u2502",
+            "   \u2502>not match the resolved workflow store root (not the workflow directory).                                       \u2502",
+            "   \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-pushed-0031.json: Receipt workflow.root does not match\u2502",
+            "   \u2502>the resolved workflow store root (not the workflow directory).                                                 \u2502",
+            "   \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-validated-0030.json: Receipt workflow.root does not   \u2502",
+            "   \u2502>match the resolved workflow store root (not the workflow directory).                                           \u2502",
+            "   \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-merged-0029.json: Receipt workflow.root does not match\u2502",
+            "   \u2502>the resolved workflow store root (not the workflow directory).                                                 \u2502",
+            "   \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-prepared-0028.json: Receipt workflow.root does not    \u2502",
+            "   \u2502>match the resolved workflow store root (not the workflow directory).                                           \u2502",
+            "   \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-waiting-0027.json: Receipt workflow.root does not     \u2502",
+            "   \u2502>match the resolved workflow store root (not the workflow directory).                                           \u2502",
+            "   \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-failed-0026.json: Receipt workflow.root does not match\u2502",
+            "   \u2502>the resolved workflow store root (not the workflow directory).                                                 \u2502",
+            "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 Summary: The shared-context terminal user interface makes records difficult to read. Titles, types, states, co\u2026\u2502",
+            "\u2500\u2500\u2500\u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u00b7 a actions \u00b7 h initiatives \u00b7 R refresh\u2502\u2500\u2500\u2500",
+            "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives (featur...",
+            "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 13,
+        "method": "press",
+        "params": {
+          "key": "<down>"
+        }
+      },
+      "response": {
+        "id": 13,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 14,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 14,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 15,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Ticket / dependencies",
+          "timeout": 15000
+        }
+      },
+      "response": {
+        "id": 15,
+        "result": {
+          "found": true,
+          "row": 7,
+          "col": 51
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 16,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 16,
+        "result": {
+          "cols": 120,
+          "rows": 40,
+          "cursor": [
+            34,
+            119
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " Pr\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives                                                  \u2502",
+            "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+            " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 Initiatives  >  Improve shared-context project n\u2026  >  pi-shared-context-ux-02-initiati\u2026                        \u2502",
+            "   \u2502> pi-shared-context-tui-ux-spec \u00b7 It\u2026\u2502  Ticket / dependencies / receipts                                        \u2502",
+            "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502>[Enhancement]  ID:                  \u2502 pi-shared-context-ux-02-initiatives Browse initiatives through structured\u2502",
+            "   \u2502>pi-shared-context-ux-02-initiatives \u2502 tracker rows                                                             \u2502",
+            "   \u2502>Browse initiatives through          \u2502 Type: Enhancement                                                        \u2502",
+            "   \u2502>structured tracker rows             \u2502 State: UNKNOWN                                                           \u2502",
+            "   \u2502>State: claimed                      \u2502 Reference: tracker/tickets/pi-shared-context-ux-02-initiatives.md        \u2502",
+            "   \u2502>tracker/tickets/pi-shared-context-ux\u2502 Current source: not recorded                                             \u2502",
+            "   \u2502>-02-initiatives.md                  \u2502 Dependencies:                                                            \u2502",
+            "   \u2502 [Enhancement]  ID:                  \u2502 \u2190 pi-shared-context-ux-01-projects [DONE] Select shared-context projects \u2502",
+            "   \u2502 pi-shared-context-ux-03-mixed-items \u2502 through interactive breadcrumbs                                          \u2502",
+            "   \u2502 Browse research and tickets in the  \u2502 \u2192 pi-shared-context-ux-03-mixed-items [BLOCKED] Browse research and      \u2502",
+            "   \u2502 same initiative                     \u2502 tickets in the same initiative                                           \u2502",
+            "   \u2502 State: unclaimed                    \u2502 \u2192 pi-shared-context-ux-05-events [BLOCKED] Inspect ticket events through \u2502",
+            "   \u2502 Waiting for                         \u2502 readable history and evidence views                                      \u2502",
+            "   \u2502 pi-shared-context-ux-02-initiatives \u2502 \u2192 pi-shared-context-ux-06-queues [BLOCKED] Find actionable tickets       \u2502",
+            "   \u2502 [Enhancement]  ID:                  \u2502 through clear work queues                                                \u2502",
+            "   \u2502 pi-shared-context-ux-04-descriptions\u2502 Receipts:                                                                \u2502",
+            "   \u2502 Read complete initiative and item   \u2502 \u2192 inspect receipts \u00b7 a actions                                           \u2502",
+            "   \u2502 descriptions                        \u2502 Ticket:                                                                  \u2502",
+            "   \u2502 State: unclaimed                    \u2502 ## What to build                                                         \u2502",
+            "   \u2502 Waiting for                         \u2502                                                                          \u2502",
+            "   \u2502 pi-shared-context-ux-03-mixed-items \u2502 Make the project tracker open with initiatives and an always-visible     \u2502",
+            "   \u2502 [Enhancement]  ID:                  \u2502 Ungrouped collection. Opening an initiative displays its summary and     \u2502",
+            "   \u2502 pi-shared-context-ux-05-events      \u2502 current child records.                                                   \u2502",
+            "   \u2502 Inspect ticket events through       \u2502                                                                          \u2502",
+            "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "   \u2502 tracker/tickets/pi-shared-context-ux-02-initiatives.md \u00b7 UNKNOWN                                               \u2502",
+            "\u2500\u2500\u2500\u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u00b7 a actions \u00b7 h initiatives \u00b7 R refresh\u2502\u2500\u2500\u2500",
+            "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+            "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives (featur...",
+            "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 17,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      },
+      "response": {
+        "id": 17,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 18,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Summary:",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 18,
+        "result": {
+          "found": true,
+          "row": 34,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 19,
+        "method": "resize",
+        "params": {
+          "cols": 40,
+          "rows": 12
+        }
+      },
+      "response": {
+        "id": 19,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 20,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 300
+        }
+      },
+      "response": {
+        "id": 20,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 21,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 21,
+        "result": {
+          "cols": 40,
+          "rows": 12,
+          "cursor": [
+            11,
+            39
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            " help.",
+            " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " \u2502 Projects \u00b7 Repo > feature-pi-share\u2026\u2502",
+            " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+            "  Initiatives  >  Improve share\u2026",
+            " > pi-shared-context-tui-ux-spec \u00b7 I\u2026",
+            "  directory).",
+            "\u2500 workflows/pi-shared-context-ux-01-p  \u2500",
+            "  rojects/events/review-0023.json:",
+            "\u2500Summary: The shared-context termina...\u2500",
+            "/Esc back  Enter open  Tab focus  R ....",
+            "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 22,
+        "method": "resize",
+        "params": {
+          "cols": 80,
+          "rows": 24
+        }
+      },
+      "response": {
+        "id": 22,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 23,
+        "method": "press",
+        "params": {
+          "key": "h"
+        }
+      },
+      "response": {
+        "id": 23,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 24,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Initiatives \u00b7 title",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 24,
+        "result": {
+          "found": true,
+          "row": 7,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 25,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 25,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            23,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502",
+            " P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            " P\u2502 Initiatives                                                              \u2502",
+            " e\u2502> Initiatives \u00b7 title / phase / Items                                     \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "  \u2502>Improve shared-context project            Phase: unavailable  Items: 6   \u2502",
+            "  \u2502>navigation and tracker readability                                       \u2502",
+            "  \u2502>pi-shared-context-tui-ux-spec                                            \u2502",
+            "  \u2502 Ungrouped                                 Phase: unavailable  Items: 0   \u2502",
+            "  \u2502 Collection                                                               \u2502",
+            "  \u2502                                                                          \u2502",
+            "  \u2502                                                                          \u2502",
+            "  \u2502                                                                          \u2502",
+            "  \u2502                                                                          \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "\u2500\u2500\u2502 tracker/initiatives/pi-shared-context-tui-ux-spec/index.md               \u2502\u2500\u2500",
+            "  \u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R ref\u2026\u2502",
+            "\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...",
+            "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 26,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 26,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 27,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Summary:",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 27,
+        "result": {
+          "found": true,
+          "row": 19,
+          "col": 10
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 28,
+        "method": "press",
+        "params": {
+          "key": "<down>"
+        }
+      },
+      "response": {
+        "id": 28,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 29,
+        "method": "press",
+        "params": {
+          "key": "<up>"
+        }
+      },
+      "response": {
+        "id": 29,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 30,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 250
+        }
+      },
+      "response": {
+        "id": 30,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 31,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 31,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            17,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502",
+            " P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            " P\u2502 Initiatives  >  Improve shared-context project n\u2026                        \u2502",
+            " e\u2502> pi-shared-context-tui-ux-spec \u00b7 Items 6                                 \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "  \u2502>[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   \u2502",
+            "  \u2502>Browse initiatives through structured tracker rows                       \u2502",
+            "  \u2502>State: claimed                                                           \u2502",
+            "  \u2502>tracker/tickets/pi-shared-context-ux-02-initiatives.md                   \u2502",
+            "  \u2502 [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   \u2502",
+            "  \u2502 Browse research and tickets in the same initiative                       \u2502",
+            "  \u2502 State: unclaimed                                                         \u2502",
+            "  \u2502 Waiting for pi-shared-context-ux-02-initiatives                          \u2502",
+            "  \u2502 [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "\u2500\u2500\u2502 Summary: The shared-context terminal user interface makes records diffic\u2026\u2502\u2500\u2500",
+            "  \u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u2026\u2502",
+            "\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...",
+            "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 32,
+        "method": "snapshot",
+        "params": {
+          "format": "spans"
+        }
+      },
+      "response": {
+        "id": 32,
+        "result": {
+          "format": "spans",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=17:79 screen=alternate title=\"\u03c0 - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n[004]  c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502\n[005]  P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502\n[006]   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[007]  P\u2502 Initiatives  >  Improve shared-context project n\u2026                        \u2502\n[008]  e\u2502> pi-shared-context-tui-ux-spec \u00b7 Items 6                                 \u2502\n[009]   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[010]   \u2502>[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   \u2502\n[011]   \u2502>Browse initiatives through structured tracker rows                       \u2502\n[012]   \u2502>State: claimed                                                           \u2502\n[013]   \u2502>tracker/tickets/pi-shared-context-ux-02-initiatives.md                   \u2502\n[014]   \u2502 [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   \u2502\n[015]   \u2502 Browse research and tickets in the same initiative                       \u2502\n[016]   \u2502 State: unclaimed                                                         \u2502\n[017]   \u2502 Waiting for pi-shared-context-ux-02-initiatives                          \u2502\n[018]   \u2502 [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  \u2502\n[019]   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[020] \u2500\u2500\u2502 Summary: The shared-context terminal user interface makes records diffic\u2026\u2502\u2500\u2500\n[021]   \u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u2026\u2502\n[022] \u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500\n[023] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...\n[024] $0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium\n\n=== SPANS ===\n[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142\n[003] 1:79,142,179 2-77:95,168,204 78-79:157,165,169\n[004] 1:126,136,142 2:95,168,204 3-64:167,152,215 77:95,168,204\n[005] 1:126,136,142 2:95,168,204 4-16:167,152,215 19-29:157,165,169 32-63:157,165,169 77:95,168,204\n[006] 2-77:95,168,204\n[007] 1:126,136,142 2:95,168,204 3-15:167,152,215 16-18:157,165,169 19-51:222,224,225 77:95,168,204 78-79:126,136,142\n[008] 1:126,136,142 2:95,168,204 77:95,168,204\n[009] 2-77:95,168,204\n[010] 2:95,168,204 3:33,59,73 4-57:167,152,215/33,59,73 58-76:33,59,73 77:95,168,204\n[011] 2:95,168,204 3:33,59,73 4-53:222,224,225/33,59,73 54-76:33,59,73 77:95,168,204\n[012] 2:95,168,204 3:33,59,73 4-17:167,152,215/33,59,73 18-76:33,59,73 77:95,168,204\n[013] 2:95,168,204 3:33,59,73 4-57:157,165,169/33,59,73 58-76:33,59,73 77:95,168,204\n[014] 2:95,168,204 4-57:167,152,215 77:95,168,204\n[015] 2:95,168,204 4-53:222,224,225 77:95,168,204\n[016] 2:95,168,204 4-19:167,152,215 77:95,168,204\n[017] 2:95,168,204 4-50:157,165,169 77:95,168,204\n[018] 2:95,168,204 4-58:167,152,215 77:95,168,204\n[019] 2-77:95,168,204\n[020] 0-1:97,133,204 2:95,168,204 3-75:157,165,169 77:95,168,204 78-79:97,133,204\n[021] 0:inverse 2:95,168,204 3-75:157,165,169 77:95,168,204\n[022] 0-1:97,133,204 2-77:95,168,204 78-79:97,133,204\n[023] 0-79:126,136,142\n[024] 0-79:126,136,142\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 33,
+        "method": "snapshot",
+        "params": {
+          "format": "svg"
+        }
+      },
+      "response": {
+        "id": 33,
+        "result": {
+          "format": "svg",
+          "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 740 500\" width=\"740\" height=\"500\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> \u2580\u2580\u2588  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> c\u2502 Projects \u00b7 Repo &gt; feature-pi-shared-context-ux-02-initiatives            \u2502</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\"> P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\">  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\"> P\u2502 Initiatives  &gt;  Improve shared-context project n\u2026                        \u2502</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\"> e\u2502&gt; pi-shared-context-tui-ux-spec \u00b7 Items 6                                 \u2502</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">  \u2502&gt;[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   \u2502</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">  \u2502&gt;Browse initiatives through structured tracker rows                       \u2502</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  \u2502&gt;State: claimed                                                           \u2502</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">  \u2502&gt;tracker/tickets/pi-shared-context-ux-02-initiatives.md                   \u2502</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">  \u2502 [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   \u2502</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">  \u2502 Browse research and tickets in the same initiative                       \u2502</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">  \u2502 State: unclaimed                                                         \u2502</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">  \u2502 Waiting for pi-shared-context-ux-02-initiatives                          \u2502</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">  \u2502 [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  \u2502</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">\u2500\u2500\u2502 Summary: The shared-context terminal user interface makes records diffic\u2026\u2502\u2500\u2500</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">  \u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u2026\u2502</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\">\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium</text>\n</svg>\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 34,
+        "method": "press",
+        "params": {
+          "key": "<backtab>"
+        }
+      },
+      "response": {
+        "id": 34,
+        "error": {
+          "code": "invalid_key",
+          "message": "invalid key notation"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 35,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 35,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            17,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502",
+            " P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            " P\u2502 Initiatives  >  Improve shared-context project n\u2026                        \u2502",
+            " e\u2502> pi-shared-context-tui-ux-spec \u00b7 Items 6                                 \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "  \u2502>[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   \u2502",
+            "  \u2502>Browse initiatives through structured tracker rows                       \u2502",
+            "  \u2502>State: claimed                                                           \u2502",
+            "  \u2502>tracker/tickets/pi-shared-context-ux-02-initiatives.md                   \u2502",
+            "  \u2502 [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   \u2502",
+            "  \u2502 Browse research and tickets in the same initiative                       \u2502",
+            "  \u2502 State: unclaimed                                                         \u2502",
+            "  \u2502 Waiting for pi-shared-context-ux-02-initiatives                          \u2502",
+            "  \u2502 [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "\u2500\u2500\u2502 Summary: The shared-context terminal user interface makes records diffic\u2026\u2502\u2500\u2500",
+            "  \u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u2026\u2502",
+            "\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...",
+            "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 36,
+        "method": "type",
+        "params": {
+          "text": "\u001b[Z"
+        }
+      },
+      "response": {
+        "id": 36,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 37,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": ">Initiatives<",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 37,
+        "result": {
+          "found": true,
+          "row": 6,
+          "col": 5
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 38,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 38,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            12,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502",
+            " P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            " P\u2502>Initiatives< >  Improve shared-context project n\u2026                        \u2502",
+            " e\u2502  pi-shared-context-tui-ux-spec \u00b7 Items 6                                 \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "  \u2502\u25c7[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   \u2502",
+            "  \u2502\u25c7Browse initiatives through structured tracker rows                       \u2502",
+            "  \u2502\u25c7State: claimed                                                           \u2502",
+            "  \u2502\u25c7tracker/tickets/pi-shared-context-ux-02-initiatives.md                   \u2502",
+            "  \u2502 [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   \u2502",
+            "  \u2502 Browse research and tickets in the same initiative                       \u2502",
+            "  \u2502 State: unclaimed                                                         \u2502",
+            "  \u2502 Waiting for pi-shared-context-ux-02-initiatives                          \u2502",
+            "  \u2502 [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "\u2500\u2500\u2502 Summary: The shared-context terminal user interface makes records diffic\u2026\u2502\u2500\u2500",
+            "  \u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u2026\u2502",
+            "\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...",
+            "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 39,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 39,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 40,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Initiatives \u00b7 title",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 40,
+        "result": {
+          "found": true,
+          "row": 7,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 41,
+        "method": "press",
+        "params": {
+          "key": "2"
+        }
+      },
+      "response": {
+        "id": 41,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 42,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "[2 Files]",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 42,
+        "result": {
+          "found": true,
+          "row": 4,
+          "col": 22
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 43,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 43,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            20,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502",
+            " P\u2502   1 Tracker     [2 Files]   Tab focus \u00b7 Space/Enter activate             \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            " P\u2502 Shared context  \u203a  feature-pi-shared-context-ux-02-initiatives  \u203a  Previ\u2026\u2502",
+            " e\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "  \u2502\u25b8 .github                                    \u2502Select a file to preview it.\u2502",
+            "  \u2502\u25b8 docs                                       \u2502                            \u2502",
+            "  \u2502\u25b8 mise                                       \u2502                            \u2502",
+            "  \u2502\u25b8 sources                                    \u2502                            \u2502",
+            "  \u2502\u25b8 tracker                                    \u2502                            \u2502",
+            "  \u2502\u25b8 workflows                                  \u2502                            \u2502",
+            "  \u2502  .context-routes.toml                       \u2502                            \u2502",
+            "  \u2502  .gitignore                                 \u2502                            \u2502",
+            "  \u2502  .gitmodules                                \u2502                            \u2502",
+            "  \u2502  .miserc.toml                               \u2502                            \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "\u2500\u2500\u2502 /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/featur\u2026\u2502\u2500\u2500",
+            "  \u2502 \u2190\u2192 browse  \u2191\u2193 move  Enter open  Backspace parent y insert  f format: sha\u2026\u2502",
+            "\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...",
+            "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 44,
+        "method": "press",
+        "params": {
+          "key": "1"
+        }
+      },
+      "response": {
+        "id": 44,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 45,
+        "method": "press",
+        "params": {
+          "key": "8"
+        }
+      },
+      "response": {
+        "id": 45,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 46,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Ticket queues",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 46,
+        "result": {
+          "found": true,
+          "row": 7,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 47,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 47,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            19,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+          "lines": [
+            "",
+            " \u2580\u2580\u2588  v1.1.0",
+            " \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+            " c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502",
+            " P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            " P\u2502 Initiatives  >  Queues                                                   \u2502",
+            " e\u2502> Ticket queues \u00b7 all                                                     \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "  \u2502>[Enhancement]  ID: pi-shared-context-ux-01-projects                      \u2502",
+            "  \u2502>Select shared-context projects through interactive breadcrumbs           \u2502",
+            "  \u2502>State: completed                                                         \u2502",
+            "  \u2502>Workflow unreadable:                                                     \u2502",
+            "  \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-0034.json:      \u2502",
+            "  \u2502>Receipt workflow.root does not match the resolved workflow store root    \u2502",
+            "  \u2502>(not the workflow directory).                                            \u2502",
+            "  \u2502>workflows/pi-shared-context-ux-01-projects/events/finish-worktree-removed\u2502",
+            "  \u2502>-0033.json: Receipt workflow.root does not match the resolved workflow   \u2502",
+            "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+            "\u2500\u2500\u2502 tracker/tickets/pi-shared-context-ux-01-projects.md \u00b7 DONE               \u2502\u2500\u2500",
+            "  \u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R ref\u2026\u2502",
+            "\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...",
+            "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 48,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      },
+      "response": {
+        "id": 48,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 49,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Initiatives \u00b7 title",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 49,
+        "result": {
+          "found": true,
+          "row": 7,
+          "col": 7
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 50,
+        "method": "press",
+        "params": {
+          "key": "q"
+        }
+      },
+      "response": {
+        "id": 50,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 51,
+        "method": "close"
+      },
+      "response": {
+        "id": 51,
+        "result": {
+          "exit_code": 0
+        }
+      }
+    }
+  ],
+  "stderr": "",
+  "exit_code": 0,
+  "limitations": [
+    "Initial pi-root-120x40.json predates settled modal; use pi-root-settled-120x40.json.",
+    "One unsupported backtab notation returned invalid_key; raw Shift+Tab sequence succeeded.",
+    "Existing ticket01 receipts report root mismatch in this source worktree; preserved, not repaired.",
+    "Own resize from 120x40 to 40x12 left selected ticket02 offscreen; next selection movement restored visibility.",
+    "Own runtime uses dark theme only. Monochrome observations come from explicitly identified implementation evidence."
+  ]
+}

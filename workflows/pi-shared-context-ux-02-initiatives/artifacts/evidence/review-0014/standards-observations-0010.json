@@ -1,0 +1,89 @@
+{
+  "schema": "review-axis-observations/v1",
+  "axis": "standards",
+  "agent_name": "ux02-standards-01",
+  "created_at": "2026-10-27T23:49:50.970840Z",
+  "source_commit": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "frozen_verification": {
+    "command": "git rev-parse HEAD HEAD^{tree} refs/heads/feature/pi-shared-context-ux-02-initiatives",
+    "observed": [
+      "7c647581807920320efa191f946b8ce9183558b7",
+      "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+      "7c647581807920320efa191f946b8ce9183558b7"
+    ],
+    "changed_files_match_frozen": true
+  },
+  "reviewed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "commit_list": [
+    "7c647581 feat(pi): implement pi-shared-context-ux-02-initiatives"
+  ],
+  "standards_sources": [
+    "AGENTS.md (provided repository rules)",
+    "CONTEXT-MAP.md",
+    "docs/agents/domain.md",
+    "docs/adr/index.md",
+    "code-review smell baseline in approved handoff"
+  ],
+  "markdown_access": {
+    "command_prefix": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw",
+    "module": "github.com/harehare/okf.mq",
+    "bundle_validation": "Not applicable: individual standards documents and a PR snapshot were read; no OKF bundle audit or mutation was requested.",
+    "coding_standard_discovery": {
+      "matching_standards": [],
+      "context_exists": false
+    },
+    "discovery_note": "Final absolute-path mq query succeeded. Earlier queries produced null, a syntax error, and a relative allow-read sandbox error; those results were not used as absence evidence."
+  },
+  "lsp": {
+    "action": "references",
+    "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "line": 19,
+    "symbol": "ExplorerNavigation",
+    "result": "Unavailable: initialize failed because a valid TypeScript installation was not found. No dependency or configuration changes were made."
+  },
+  "baseline_disposition": {
+    "Duplicated Code": "STD-J1, nonblocking",
+    "other_smells": "No actionable finding in the reviewed change; existing screen dispatch conventions were not treated as new hard violations."
+  },
+  "hard_violations": [],
+  "judgement_calls": [
+    {
+      "id": "STD-J1",
+      "severity": "P3",
+      "blocking": false,
+      "classification": "judgement-call",
+      "baseline": "Duplicated Code",
+      "adr_ref": "NO ADR",
+      "adr_reason": "docs/adr/index.md contains no recorded architecture decision for this area.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 698,
+      "related_lines": [
+        608
+      ],
+      "standard_ref": "code-review smell baseline: Duplicated Code (heuristic; repository rules override)",
+      "description": "render() and graphPane() independently extract the initiative summary with the same split/trim/find expression. Changes to eligible summary lines must update both locations.",
+      "hunk_quote": "body.split(/\\r?\\n/).map(line => line.trim()).find(line => line && !/^#|^\\s*[-*]\\s*\\[/.test(line))",
+      "required_change": "Optional: extract one initiative-summary helper and use it in both locations. This smell alone does not block review.",
+      "validation_command": "git diff master...7c647581807920320efa191f946b8ce9183558b7 -- mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "validation_result": "Both newly added copies observed in the frozen diff at lines 608 and 698.",
+      "suggested_behavioral_validation": "Check initiative summary text in the status line and wide child pane after any extraction; parent owns behavioral validation."
+    }
+  ],
+  "axis_prose": "Standards verdict: SUCCESS. No blocking documented-standard violation was found in the ten-file frozen diff.\n\nHard violations: none. AGENTS.md requires short, plain language and routes Markdown work through mq. CONTEXT-MAP.md and docs/agents/domain.md define context ownership and domain entry points. docs/adr/index.md records no relevant decision; NO ADR applies. CONTEXT.md is absent. No CONTRIBUTING or CODING_STANDARDS document was found.\n\nJudgement call STD-J1 (P3, Duplicated Code): explorer.ts:608 and :698 both use body.split(/\\r?\\n/).map(line => line.trim()).find(...) to select the initiative summary. Consider one helper so summary-selection changes cannot diverge. This is nonblocking.\n\nReviewed all ten committed files, including tests and navigation documentation. Skipped tooling-enforced formatting and type trivia. No tests, compiler, formatter, or runtime acceptance ran in this axis. The main reviewer owns behavioral validation. LSP references were attempted but initialization failed because the workspace has no valid TypeScript installation. No source or tracker files changed.",
+  "validation_scope": "Static standards review only. No tests, compiler, formatter, or runtime acceptance executed. Implementation receipt results are inputs, not newly executed verification.",
+  "source_preservation": "git diff --quiet against the frozen commit for all ten changed files exited 0 immediately before artifact preparation."
+}

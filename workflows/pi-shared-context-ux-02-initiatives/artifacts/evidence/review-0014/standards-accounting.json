@@ -1,0 +1,78 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-27T23-46-39-967Z_01a17fc2-42df-72f0-aa0f-feffdad54f0b.jsonl",
+  "session_id": "01a17fc2-42df-72f0-aa0f-feffdad54f0b",
+  "raw_usage": {
+    "input": 107871,
+    "output": 9245,
+    "cacheWrite": 0,
+    "cacheRead": 1541248,
+    "totalTokens": 1658364
+  },
+  "provider_work_tokens": 117116,
+  "cacheRead_excluded": true,
+  "assistant_messages_before_goal": 0,
+  "goal_id": "15b73df12d7cc476",
+  "first_bounded_goal": {
+    "type": "mode_change",
+    "id": "19213453",
+    "parentId": "81347cc6",
+    "timestamp": "2026-10-27T23:46:53.034Z",
+    "mode": "goal",
+    "data": {
+      "goal": {
+        "id": "15b73df12d7cc476",
+        "objective": "Read /tmp/ux02-standards-01.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget 241808 before substantive work. Do not interview or create another goal.",
+        "status": "active",
+        "tokenBudget": 241808,
+        "tokensUsed": 0,
+        "timeUsedSeconds": 0,
+        "createdAt": 1793144812725,
+        "updatedAt": 1793144813034
+      }
+    }
+  },
+  "last_goal_event": {
+    "type": "mode_change",
+    "id": "06cb05f9",
+    "parentId": "13cb002b",
+    "timestamp": "2026-10-27T23:50:12.417Z",
+    "mode": "goal",
+    "data": {
+      "goal": {
+        "id": "15b73df12d7cc476",
+        "objective": "Read /tmp/ux02-standards-01.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget 241808 before substantive work. Do not interview or create another goal.",
+        "status": "complete",
+        "tokenBudget": 241808,
+        "tokensUsed": 116805,
+        "timeUsedSeconds": 199,
+        "createdAt": 1793144812725,
+        "updatedAt": 1793145012417
+      }
+    }
+  },
+  "last_tool_call": [
+    "2026-10-27T23:50:12.416Z",
+    "goal",
+    {
+      "op": "complete",
+      "objective": null,
+      "token_budget": null
+    }
+  ],
+  "assistant_messages": 26,
+  "usage_records": 26,
+  "all_messages_have_usage": true,
+  "under_full_session_cap": true,
+  "reservation_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0015.yaml",
+  "completion_signal": {
+    "status": "done",
+    "completion_seq": 500,
+    "source": "herdr agent wait ux02-standards-01 --until done --until blocked --timeout 3600000"
+  },
+  "shutdown": {
+    "command": "herdr pane close w7F:p2",
+    "result": {
+      "type": "ok"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": 21,
+  "result": {
+    "cols": 40,
+    "rows": 12,
+    "cursor": [
+      11,
+      39
+    ],
+    "cursor_visible": false,
+    "cursor_style": "block",
+    "screen": "alternate",
+    "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+    "lines": [
+      " help.",
+      " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+      " \u2502 Projects \u00b7 Repo > feature-pi-share\u2026\u2502",
+      " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+      "  Initiatives  >  Improve share\u2026",
+      " > pi-shared-context-tui-ux-spec \u00b7 I\u2026",
+      "  directory).",
+      "\u2500 workflows/pi-shared-context-ux-01-p  \u2500",
+      "  rojects/events/review-0023.json:",
+      "\u2500Summary: The shared-context termina...\u2500",
+      "/Esc back  Enter open  Tab focus  R ....",
+      "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+    ]
+  }
+}

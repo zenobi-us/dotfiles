@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-10-27T23:58:08.466347+00:00",
+  "artifact_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0014.md",
+  "receipt_ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0014.json",
+  "report_body_verified": true,
+  "okf_errors": [],
+  "receipt_readback_verified": true,
+  "finding_envelopes_verified": true,
+  "output_refs_exist": true,
+  "source_audit_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0014/final-source-and-cleanup-audit.json",
+  "normalization_note": "mq removes trailing body newline; JSON serializes accounting tuple as list. Readback matches after format normalization.",
+  "verdict": "FAILURE"
+}

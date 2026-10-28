@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-10-27T23:56:00.627417+00:00",
+  "source_commit": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "source_branch_tip": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_status": "clean (git status --porcelain=v1 produced no output)",
+  "base_branch": "master",
+  "base_tip_initial": "4b149f5ac06a105f69bbd7df82bc6f93b4f560d2",
+  "base_tip_final": "1b662a14c312a07e21049410e9384973611dce14",
+  "base_tip_note": "master advanced outside this read-only review; frozen source commit/tree and branch tip stayed exact. Review compares master...frozen source at their merge base, not uncommitted canonical checkout edits.",
+  "commands": [
+    "git rev-parse HEAD HEAD^{tree} refs/heads/feature/pi-shared-context-ux-02-initiatives master",
+    "git symbolic-ref --short HEAD",
+    "git status --porcelain=v1"
+  ],
+  "temporary_files_removed": [
+    "/tmp/ux02-review-0014-smoke.ts",
+    "/tmp/ux02-review-0014-tsconfig.json"
+  ],
+  "runtime_shutdown": {
+    "termscope_close": {
+      "id": 51,
+      "result": {
+        "exit_code": 0
+      }
+    },
+    "termscope_exit": 0
+  },
+  "reserved_helper_shutdowns": {
+    "standards": {
+      "command": "herdr pane close w7F:p2",
+      "result": {
+        "type": "ok"
+      }
+    },
+    "spec": {
+      "command": "herdr pane close w7F:p3",
+      "result": {
+        "type": "ok"
+      }
+    }
+  },
+  "source_tests_config_tracker_generated_files_edited": false,
+  "commits_rebases_pushes": false
+}

@@ -1,0 +1,163 @@
+{
+  "schema": "spec-review-observations/v1",
+  "axis": "Spec",
+  "created_at": "2026-10-27T23:51:42.895Z",
+  "source_commit": "7c647581807920320efa191f946b8ce9183558b7",
+  "source_tree": "22cc10c0b34ecb19a066fcf2efce821a6a41cbe7",
+  "method": "Independent static review of frozen diff, implementation, public modal tests and existing implementation terminal evidence. No tests, compiler, formatter or new runtime acceptance run executed in this axis.",
+  "identity_observations": {
+    "branch": "feature/pi-shared-context-ux-02-initiatives",
+    "commit_matches": true,
+    "tree_matches": true,
+    "changed_paths_against_HEAD": [],
+    "source_commits": [
+      "7c647581 feat(pi): implement pi-shared-context-ux-02-initiatives"
+    ]
+  },
+  "criteria": {
+    "1": "implemented-static",
+    "2": "implemented-static",
+    "3": "implemented-static",
+    "4": "implemented-static",
+    "5": "implemented-static",
+    "6": [
+      "UX02-SPEC-004"
+    ],
+    "7": "implemented-static-and-existing-captures",
+    "8": "implemented-static",
+    "9": "implemented-static; collection-return edge covered by UX02-SPEC-001",
+    "10": [
+      "UX02-SPEC-001",
+      "UX02-SPEC-002",
+      "UX02-SPEC-003"
+    ],
+    "11": "implemented-static",
+    "12": "implemented-static",
+    "13": "implemented-static"
+  },
+  "inspected_captures": [
+    "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/verified-mono-40x12-children.png",
+    "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/verified-dark-120x40-children.png",
+    "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/verified-dark-40x12-root.png",
+    "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/implementation-0005/verified-mono-40x12-child-secondary.json"
+  ],
+  "test_scope_observation": {
+    "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "boundary": "SharedContextModal public input with existing GraphExplorer loader injection",
+    "covered_cases": [
+      "normal-entry",
+      "empty-Ungrouped",
+      "ancestor-input",
+      "selected-title-update",
+      "selected-ticket-deletion",
+      "stale-refresh-gate",
+      "Unicode-width-and-control-limits"
+    ],
+    "missing_scenarios": [
+      {
+        "finding_id": "UX02-SPEC-001",
+        "scenario": "Through SharedContextModal, open a child detail; reload a snapshot that moves that child to Ungrouped; press Esc, Enter and an action key. Check visible selection and canonical target."
+      },
+      {
+        "finding_id": "UX02-SPEC-002",
+        "scenario": "Load initiatives A and B; open All; select a surviving ticket in B without opening it; remove A; reload. The same queue, record and viewport must remain."
+      },
+      {
+        "finding_id": "UX02-SPEC-003",
+        "scenario": "At 40x12 select a later initiative. Reload after inserting a wrapped initiative before it. Check that the original selected identity and its marker remain visible; also resize from 120x40."
+      },
+      {
+        "finding_id": "UX02-SPEC-004",
+        "scenario": "Render the complete modal at 40x12 with a recorded phase awaiting-maintainer-review and a nonzero count. Page through the row and check the full recorded phase and Items value."
+      }
+    ]
+  },
+  "adr": {
+    "ref": "NO ADR",
+    "reason": "The canonical docs/adr/index.md has no ADR entries. The ticket and parent specification govern these findings."
+  },
+  "scope_exclusions": [
+    "mixed child records",
+    "full description readers",
+    "event redesign",
+    "queue presentation redesign",
+    "historical approved implementation accounting overage"
+  ],
+  "findings": [
+    {
+      "id": "UX02-SPEC-001",
+      "source": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 204,
+      "related_lines": [
+        201,
+        204,
+        205,
+        206,
+        447,
+        451,
+        555,
+        556,
+        759,
+        762,
+        763
+      ],
+      "verification": "static; parent runtime confirmation required"
+    },
+    {
+      "id": "UX02-SPEC-002",
+      "source": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 194,
+      "related_lines": [
+        109,
+        192,
+        194,
+        196,
+        198,
+        258,
+        460,
+        464,
+        505,
+        506,
+        549,
+        551
+      ],
+      "verification": "static; parent runtime confirmation required"
+    },
+    {
+      "id": "UX02-SPEC-003",
+      "source": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 800,
+      "related_lines": [
+        258,
+        260,
+        262,
+        588,
+        792,
+        796,
+        799,
+        800,
+        804,
+        807,
+        808
+      ],
+      "verification": "static; parent runtime confirmation required"
+    },
+    {
+      "id": "UX02-SPEC-004",
+      "source": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 849,
+      "related_lines": [
+        611,
+        793,
+        819,
+        825,
+        826,
+        846,
+        849,
+        860,
+        861
+      ],
+      "verification": "static; parent runtime confirmation required"
+    }
+  ]
+}

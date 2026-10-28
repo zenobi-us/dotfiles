@@ -1,0 +1,41 @@
+{
+  "id": 38,
+  "result": {
+    "cols": 80,
+    "rows": 24,
+    "cursor": [
+      12,
+      79
+    ],
+    "cursor_visible": false,
+    "cursor_style": "block",
+    "screen": "alternate",
+    "title": "\u03c0 - feature-pi-shared-context-ux-02-initiatives",
+    "lines": [
+      "",
+      " \u2580\u2580\u2588  v1.1.0",
+      " \u2588\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+      " c\u2502 Projects \u00b7 Repo > feature-pi-shared-context-ux-02-initiatives            \u2502",
+      " P\u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate             \u2502",
+      "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+      " P\u2502>Initiatives< >  Improve shared-context project n\u2026                        \u2502",
+      " e\u2502  pi-shared-context-tui-ux-spec \u00b7 Items 6                                 \u2502",
+      "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+      "  \u2502\u25c7[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   \u2502",
+      "  \u2502\u25c7Browse initiatives through structured tracker rows                       \u2502",
+      "  \u2502\u25c7State: claimed                                                           \u2502",
+      "  \u2502\u25c7tracker/tickets/pi-shared-context-ux-02-initiatives.md                   \u2502",
+      "  \u2502 [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   \u2502",
+      "  \u2502 Browse research and tickets in the same initiative                       \u2502",
+      "  \u2502 State: unclaimed                                                         \u2502",
+      "  \u2502 Waiting for pi-shared-context-ux-02-initiatives                          \u2502",
+      "  \u2502 [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  \u2502",
+      "  \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+      "\u2500\u2500\u2502 Summary: The shared-context terminal user interface makes records diffic\u2026\u2502\u2500\u2500",
+      "  \u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u2026\u2502",
+      "\u2500\u2500\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\u2500\u2500",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-...",
+      "$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 \u2022 medium"
+    ]
+  }
+}
