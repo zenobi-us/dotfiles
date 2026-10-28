@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    11,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "\u03c0 - ux02-fix-0029-fixture-3_gx9dcv",
+  "lines": [
+    " help.",
+    " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+    " \u2502 Projects \u00b7 Repo > ux02-fix-0029-fi\u2026\u2502",
+    " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+    "  Initiatives",
+    " > Initiatives \u00b7 title / phase / Ite\u2026",
+    " >Alpha validation initiative",
+    "\u2500>Phase: implementation                \u2500",
+    " >Items: 1",
+    "\u2500tracker/initiatives/alpha/index.md    \u2500",
+    "/Esc back  Enter open  Tab focus  R ....",
+    "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "native_goal_observation": {
+    "status": "active",
+    "used": 193857,
+    "budget": 241808,
+    "remaining": 47951
+  },
+  "activation": {
+    "first_tool_call": "goal.get",
+    "used": 0,
+    "budget": 241808,
+    "bounded_before_source_edits": true
+  },
+  "session_id": "01a17ff6-48d6-77e1-bc79-d87bd6dd1052",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-43-29-366Z_01a17ff6-48d6-77e1-bc79-d87bd6dd1052.jsonl",
+  "full_session_limit": 250000,
+  "exclude_cache_read": true,
+  "completion_margin": 8192,
+  "checkpoint_only_not_final_usage": true,
+  "goal_reset_replaced_or_increased": false,
+  "cycle_number": 10,
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0038.yaml",
+  "provider_usage_fields_sum": {
+    "input": 162897,
+    "output": 33180,
+    "cacheWrite": 0,
+    "cacheRead": 10570496,
+    "totalTokens": 10766573
+  },
+  "provider_work_excluding_cacheRead": 196077
+}

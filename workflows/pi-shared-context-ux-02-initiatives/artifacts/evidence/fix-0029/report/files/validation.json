@@ -1,0 +1,39 @@
+[
+  {
+    "kind": "complete affected suite",
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "exit_code": 1,
+    "output": "focused-tests-initial-failure.txt"
+  },
+  {
+    "kind": "complete affected suite after correcting mouse locator for truncated breadcrumb",
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "exit_code": 1,
+    "output": "focused-tests-mouse-coordinate-failure.txt"
+  },
+  {
+    "kind": "scoped TypeScript",
+    "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --project /tmp/ux02-fix-0029-tsconfig.json --pretty false",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "exit_code": 0,
+    "output": "scoped-typescript.txt",
+    "config": "scoped-tsconfig.json"
+  },
+  {
+    "kind": "complete affected suite; mouse uses terminal cell coordinates",
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "exit_code": 0,
+    "output": "focused-tests.txt"
+  },
+  {
+    "kind": "final scoped TypeScript",
+    "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --project /tmp/ux02-fix-0029-tsconfig.json --pretty false",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "exit_code": 0,
+    "output": "scoped-typescript.txt",
+    "config": "scoped-tsconfig.json"
+  }
+]

@@ -6,53 +6,66 @@ type: Report
 # Implementation and fix log
 
 ## Current state
-FIXED at `d1ad6dbabb7131de2910334f2b750f8586a0e4ca` / `80f4559a9f6cbe6e51d2e102480714703eac160f`. Fresh independent review required. Historical review-0014 FAILURE is not a verdict on this revision.
+FIXED at `66c988a405aa7b8b95cd2cb6d207f8147036e708` / `efaf06ba84cf0ed378de3405a799e0b298594b8f`. No SUCCESS covers this source. Historical review-0014 and review-0026 FAILURE verdicts apply only to their recorded commits.
+Parent must pause at cycle 10/10. Another independent review needs explicit cycle-limit extension.
 
-## Phase history
+## Receipt history
+| Receipt | Phase / event | Result | Source |
+|---|---|---|---|
+| [start-0001](../events/start-0001.json) | start / phase-start | started | `d621bd11bab5` |
+| [implementation-0002](../events/implementation-0002.json) | implementation / phase-result | blocked | `d621bd11bab5` |
+| [implementation-complete-0003](../events/implementation-complete-0003.json) | implementation / phase-complete | blocked | `d621bd11bab5` |
+| [start-0004](../events/start-0004.json) | start / phase-start | started | `d621bd11bab5` |
+| [implementation-0005](../events/implementation-0005.json) | implementation / phase-result | completed | `7c6475818079` |
+| [implementation-complete-0006](../events/implementation-complete-0006.json) | implementation / phase-complete | completed | `7c6475818079` |
+| [review-start-0007](../events/review-start-0007.json) | review / phase-start | started | `7c6475818079` |
+| [standards-start-0008](../events/standards-start-0008.json) | review-standards / phase-start | started | `7c6475818079` |
+| [spec-start-0009](../events/spec-start-0009.json) | review-spec / phase-start | started | `7c6475818079` |
+| [standards-result-0010](../events/standards-result-0010.json) | review-standards / phase-result | completed / SUCCESS | `7c6475818079` |
+| [spec-result-0011](../events/spec-result-0011.json) | review-spec / phase-result | completed / FAILURE | `7c6475818079` |
+| [standards-complete-0012](../events/standards-complete-0012.json) | review-standards / phase-complete | completed / SUCCESS | `7c6475818079` |
+| [spec-complete-0013](../events/spec-complete-0013.json) | review-spec / phase-complete | completed / FAILURE | `7c6475818079` |
+| [review-0014](../events/review-0014.json) | review / phase-result | completed / FAILURE | `7c6475818079` |
+| [review-complete-0015](../events/review-complete-0015.json) | review / phase-complete | completed / FAILURE | `7c6475818079` |
+| [fix-start-0016](../events/fix-start-0016.json) | fix / phase-start | started | `7c6475818079` |
+| [fix-0017](../events/fix-0017.json) | fix / phase-result | completed | `d1ad6dbabb71` |
+| [fix-complete-0018](../events/fix-complete-0018.json) | fix / phase-complete | completed | `d1ad6dbabb71` |
+| [review-start-0019](../events/review-start-0019.json) | review / phase-start | started | `d1ad6dbabb71` |
+| [standards-start-0020](../events/standards-start-0020.json) | review-standards / phase-start | started | `d1ad6dbabb71` |
+| [spec-start-0021](../events/spec-start-0021.json) | review-spec / phase-start | started | `d1ad6dbabb71` |
+| [standards-result-0022](../events/standards-result-0022.json) | review-standards / phase-result | completed / SUCCESS | `d1ad6dbabb71` |
+| [spec-result-0023](../events/spec-result-0023.json) | review-spec / phase-result | completed / FAILURE | `d1ad6dbabb71` |
+| [standards-complete-0024](../events/standards-complete-0024.json) | review-standards / phase-complete | completed / SUCCESS | `d1ad6dbabb71` |
+| [spec-complete-0025](../events/spec-complete-0025.json) | review-spec / phase-complete | completed / FAILURE | `d1ad6dbabb71` |
+| [review-0026](../events/review-0026.json) | review / phase-result | completed / FAILURE | `d1ad6dbabb71` |
+| [review-complete-0027](../events/review-complete-0027.json) | review / phase-complete | completed / FAILURE | `d1ad6dbabb71` |
+| [fix-start-0028](../events/fix-start-0028.json) | fix / phase-start | started | `d1ad6dbabb71` |
+| [fix-0029](../events/fix-0029.json) | fix / phase-result | completed | `66c988a405aa` |
 
-### fix-start-0016
-[Receipt](../events/fix-start-0016.json): started; phase fix; event phase-start.
-Source: `7c647581807920320efa191f946b8ce9183558b7`.
+## Implementation and fix details
 
 ### implementation-0002
-[Receipt](../events/implementation-0002.json): blocked; phase implementation; event phase-result.
+[Receipt](../events/implementation-0002.json): blocked; phase-result.
 Source: `d621bd11bab53ebf8267bb50150bba4b3931b9ea`.
-- Validation: : feature/pi-shared-context-ux-02-initiatives
-- Validation: : d621bd11bab53ebf8267bb50150bba4b3931b9ea cc4303111f2d17716d549ddb6aa514d4113c36d1
-- Validation: : not executable: native tool unavailable
-- Validation: : not executable: native tool unavailable
-- Validation: : not run: blocked before source work
-No source files changed; no tests or runtime checks ran. Native accounting prerequisite blocked this historical attempt.
-
-### implementation-0005
-[Receipt](../events/implementation-0005.json): completed; phase implementation; event phase-result.
-Source: `7c647581807920320efa191f946b8ce9183558b7`.
-Changed files:
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
-- Validation: tests: 128 pass, 0 fail, 1750 expectations across 11 files
-- Validation: typescript: Scoped extension, affected tests, imported shared-context modules and ambient types pass; broad bundle check was not run.
-- Validation: runtime: Actual Pi v1.1.0 loaded worktree extension. Verified 40x12, 80x24 and 120x40 with real dark-theme RGB runs and a greyscale theme fixture. Keyboard, SGR mouse ancestors, root/children/detail, return selection, Ungrouped zero, queues, Files, live updates, removal, stale safety, initial unreadable, recovery and loading exercised. No model or service requests.
+- **Validation:** feature/pi-shared-context-ux-02-initiatives
+- **Validation:** d621bd11bab53ebf8267bb50150bba4b3931b9ea cc4303111f2d17716d549ddb6aa514d4113c36d1
+- **Validation:** not executable: native tool unavailable
+- **Validation:** not executable: native tool unavailable
+- **Validation:** not run: blocked before source work
+Summary: Blocked before source work. No source, tracker, or user files changed. No source commit created. No formal review ran. Worktree preserved.
 
 ### implementation-complete-0003
-[Receipt](../events/implementation-complete-0003.json): blocked; phase implementation; event phase-complete.
+[Receipt](../events/implementation-complete-0003.json): blocked; phase-complete.
 Source: `d621bd11bab53ebf8267bb50150bba4b3931b9ea`.
-- Validation: : feature/pi-shared-context-ux-02-initiatives
-- Validation: : d621bd11bab53ebf8267bb50150bba4b3931b9ea cc4303111f2d17716d549ddb6aa514d4113c36d1
-- Validation: : not executable: native tool unavailable
-- Validation: : not executable: native tool unavailable
-- Validation: : not run: blocked before source work
+- **Validation:** feature/pi-shared-context-ux-02-initiatives
+- **Validation:** d621bd11bab53ebf8267bb50150bba4b3931b9ea cc4303111f2d17716d549ddb6aa514d4113c36d1
+- **Validation:** not executable: native tool unavailable
+- **Validation:** not executable: native tool unavailable
+- **Validation:** not run: blocked before source work
+Summary: Validated blocked implementation result and all output references; source work never began. Stopped pane closed. Native goal tools require entering goal/guided-goal mode before dispatch.
 
-### implementation-complete-0006
-[Receipt](../events/implementation-complete-0006.json): completed; phase implementation; event phase-complete.
+### implementation-0005
+[Receipt](../events/implementation-0005.json): completed; phase-result.
 Source: `7c647581807920320efa191f946b8ce9183558b7`.
 Changed files:
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts`
@@ -65,55 +78,83 @@ Changed files:
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
-- Validation: tests: 128 pass, 0 fail, 1750 expectations across 11 files
-- Validation: typescript: Scoped extension, affected tests, imported shared-context modules and ambient types pass; broad bundle check was not run.
-- Validation: runtime: Actual Pi v1.1.0 loaded worktree extension. Verified 40x12, 80x24 and 120x40 with real dark-theme RGB runs and a greyscale theme fixture. Keyboard, SGR mouse ancestors, root/children/detail, return selection, Ungrouped zero, queues, Files, live updates, removal, stale safety, initial unreadable, recovery and loading exercised. No model or service requests.
+- **Validation:** 128 pass, 0 fail, 1750 expectations across 11 files
+- **Validation:** Scoped extension, affected tests, imported shared-context modules and ambient types pass; broad bundle check was not run.
+- **Validation:** Actual Pi v1.1.0 loaded worktree extension. Verified 40x12, 80x24 and 120x40 with real dark-theme RGB runs and a greyscale theme fixture. Keyboard, SGR mouse ancestors, root/children/detail, return selection, Ungrouped zero, queues, Files, live updates, removal, stale safety, initial unreadable, recovery and loading exercised. No model or service requests.
+Summary: Implemented initiative-first Tracker navigation, synthetic Ungrouped, structured wrapping fields, ancestor focus/mouse navigation and stable live selection with explicit error states. Preserved existing details, actions, queues, Files and ticket 01 project navigation. Source committed; independent review and merge remain with coordinator.
 
-### review-0014
-[Receipt](../events/review-0014.json): completed; phase review; event phase-result.
+### implementation-complete-0006
+[Receipt](../events/implementation-complete-0006.json): completed; phase-complete.
 Source: `7c647581807920320efa191f946b8ce9183558b7`.
-- Validation: focused-tests: Recorded in receipt
-- Validation: scoped-typescript: Recorded in receipt
-- Validation: modal-reproductions: All four spec failures reproduced
-- Validation: actual-pi: Real worktree records: entry, children, detail, Esc, ancestor keyboard activation, Files and queues; 120x40,80x24,40x12; dark theme. Monochrome evidence is prior implementation evidence.
-- Validation: source-and-cleanup: {'timestamp': '2026-10-27T23:56:00.627417+00:00', 'source_commit': '7c647581807920320efa191f946b8ce9183558b7', 'source_tree': '22cc10c0b34ecb19a066fcf2efce821a6a41cbe7', 'source_branch': 'feature/pi-shared-context-ux-02-initiatives', 'source_branch_tip': '7c647581807920320efa191f946b8ce9183558b7', 'source_status': 'clean (git status --porcelain=v1 produced no output)', 'base_branch': 'master', 'base_tip_initial': '4b149f5ac06a105f69bbd7df82bc6f93b4f560d2', 'base_tip_final': '1b662a14c312a07e21049410e9384973611dce14', 'base_tip_note': 'master advanced outside this read-only review; frozen source commit/tree and branch tip stayed exact. Review compares master...frozen source at their merge base, not uncommitted canonical checkout edits.', 'commands': ['git rev-parse HEAD HEAD^{tree} refs/heads/feature/pi-shared-context-ux-02-initiatives master', 'git symbolic-ref --short HEAD', 'git status --porcelain=v1'], 'temporary_files_removed': ['/tmp/ux02-review-0014-smoke.ts', '/tmp/ux02-review-0014-tsconfig.json'], 'runtime_shutdown': {'termscope_close': {'id': 51, 'result': {'exit_code': 0}}, 'termscope_exit': 0}, 'reserved_helper_shutdowns': {'standards': {'command': 'herdr pane close w7F:p2', 'result': {'type': 'ok'}}, 'spec': {'command': 'herdr pane close w7F:p3', 'result': {'type': 'ok'}}}, 'source_tests_config_tracker_generated_files_edited': False, 'commits_rebases_pushes': False}
+Changed files:
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
+- **Validation:** 128 pass, 0 fail, 1750 expectations across 11 files
+- **Validation:** Scoped extension, affected tests, imported shared-context modules and ambient types pass; broad bundle check was not run.
+- **Validation:** Actual Pi v1.1.0 loaded worktree extension. Verified 40x12, 80x24 and 120x40 with real dark-theme RGB runs and a greyscale theme fixture. Keyboard, SGR mouse ancestors, root/children/detail, return selection, Ungrouped zero, queues, Files, live updates, removal, stale safety, initial unreadable, recovery and loading exercised. No model or service requests.
+Summary: Implementation result, referenced evidence, draft and projections exist. Exact committed source/tree match; no staged or unstaged source changes remain. Agent pane closed. Implementation is ready for independent review, but the full-session token ceiling was exceeded by 404 after native goal completion. Coordinator stops before review or merge.
 
-### review-complete-0015
-[Receipt](../events/review-complete-0015.json): completed; phase review; event phase-complete.
+### fix-start-0016
+[Receipt](../events/fix-start-0016.json): started; phase-start.
 Source: `7c647581807920320efa191f946b8ce9183558b7`.
-- Validation: focused-tests: Recorded in receipt
-- Validation: scoped-typescript: Recorded in receipt
-- Validation: modal-reproductions: All four spec failures reproduced
-- Validation: actual-pi: Real worktree records: entry, children, detail, Esc, ancestor keyboard activation, Files and queues; 120x40,80x24,40x12; dark theme. Monochrome evidence is prior implementation evidence.
-- Validation: source-and-cleanup: {'timestamp': '2026-10-27T23:56:00.627417+00:00', 'source_commit': '7c647581807920320efa191f946b8ce9183558b7', 'source_tree': '22cc10c0b34ecb19a066fcf2efce821a6a41cbe7', 'source_branch': 'feature/pi-shared-context-ux-02-initiatives', 'source_branch_tip': '7c647581807920320efa191f946b8ce9183558b7', 'source_status': 'clean (git status --porcelain=v1 produced no output)', 'base_branch': 'master', 'base_tip_initial': '4b149f5ac06a105f69bbd7df82bc6f93b4f560d2', 'base_tip_final': '1b662a14c312a07e21049410e9384973611dce14', 'base_tip_note': 'master advanced outside this read-only review; frozen source commit/tree and branch tip stayed exact. Review compares master...frozen source at their merge base, not uncommitted canonical checkout edits.', 'commands': ['git rev-parse HEAD HEAD^{tree} refs/heads/feature/pi-shared-context-ux-02-initiatives master', 'git symbolic-ref --short HEAD', 'git status --porcelain=v1'], 'temporary_files_removed': ['/tmp/ux02-review-0014-smoke.ts', '/tmp/ux02-review-0014-tsconfig.json'], 'runtime_shutdown': {'termscope_close': {'id': 51, 'result': {'exit_code': 0}}, 'termscope_exit': 0}, 'reserved_helper_shutdowns': {'standards': {'command': 'herdr pane close w7F:p2', 'result': {'type': 'ok'}}, 'spec': {'command': 'herdr pane close w7F:p3', 'result': {'type': 'ok'}}}, 'source_tests_config_tracker_generated_files_edited': False, 'commits_rebases_pushes': False}
 
-### review-start-0007
-[Receipt](../events/review-start-0007.json): started; phase review; event phase-start.
-Source: `7c647581807920320efa191f946b8ce9183558b7`.
-
-### start-0001
-[Receipt](../events/start-0001.json): started; phase start; event phase-start.
-Source: `d621bd11bab53ebf8267bb50150bba4b3931b9ea`.
-
-### start-0004
-[Receipt](../events/start-0004.json): started; phase start; event phase-start.
-Source: `d621bd11bab53ebf8267bb50150bba4b3931b9ea`.
-
-## Fix-0017
-[Fix receipt](../events/fix-0017.json). [Fix draft](../artifacts/snapshots/pr-draft-fix-0017.md).
-Reconcile child membership for reader/action return, preserve unrelated queues, reveal selection after reflow, and wrap narrow phase/count fields independently. Full affected suite and scoped types pass with temporary real-package ESM resolution. Actual Pi scenarios pass; source clean and committed. Fresh independent review required.
+### fix-0017
+[Receipt](../events/fix-0017.json): completed; phase-result.
+Source: `d1ad6dbabb7131de2910334f2b750f8586a0e4ca`.
 Changed files:
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
+- **Validation:** 133 pass, 0 fail, 1809 expectations across 11 files; full affected suite, one run with working ESM links
+- **Validation:** Scoped extension, affected tests, imported shared-context modules and ambient declarations passed
+- **Validation:** Actual Pi v1.1.0, explicit worktree index.ts, real record loaders/watchers/modal; no model/service requests
+Summary: Reconcile child membership for reader/action return, preserve unrelated queues, reveal selection after reflow, and wrap narrow phase/count fields independently. Full affected suite and scoped types pass with temporary real-package ESM resolution. Actual Pi scenarios pass; source clean and committed. Fresh independent review required.
 
-Validation: 133 pass / 0 fail across all 11 files; scoped TypeScript passed; actual Pi smoke passed. [Full results](../artifacts/evidence/fix-0017/validation.json).
-[Immutable review body](../artifacts/reviews/review-review-0014.md). [Prior accounting reconciliation](../artifacts/evidence/implementation-0005/session-accounting-reconciled.json).
+### fix-complete-0018
+[Receipt](../events/fix-complete-0018.json): completed; phase-complete.
+Source: `d1ad6dbabb7131de2910334f2b750f8586a0e4ca`.
+Changed files:
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
+- **Validation:** 133 pass, 0 fail, 1809 expectations across 11 files; full affected suite, one run with working ESM links
+- **Validation:** Scoped extension, affected tests, imported shared-context modules and ambient declarations passed
+- **Validation:** Actual Pi v1.1.0, explicit worktree index.ts, real record loaders/watchers/modal; no model/service requests
 
-## Unresolved questions
-None for the approved fix. Fresh independent review and parent-owned completion remain required. STD-J1 is advisory and unchanged.
+### fix-start-0028
+[Receipt](../events/fix-start-0028.json): started; phase-start.
+Source: `d1ad6dbabb7131de2910334f2b750f8586a0e4ca`.
 
+### fix-0029
+[Receipt](../events/fix-0029.json): completed; phase-result.
+Source: `66c988a405aa7b8b95cd2cb6d207f8147036e708`.
+Changed files:
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
+- **Validation:** 136 pass; 0 fail; 1871 expectations across 11 files
+- **Validation:** exit 0; external config includes extension, affected tests, imported shared-context modules and ambient declarations
+- **Validation:** Compact pagination and Esc/keyboard/mouse returns; 8 settled inactive deletion cases at 80x24/120x40, colour and monochrome; 6 size/mode overview views; independent Files and unsent insertion; active reparent and unrelated initiative removal safety. All 3 Pi sessions exited 0.
+- **Validation:** passed during source commit; no manifest, lockfile or version changes
+- **Validation:** report validation: ok
+Summary: Restore compact Events return to the saved ticket overview; navigate on removal only for the active canonical target. Inactive remembered child cleanup no longer closes unrelated queue or home action menus. Complete affected suite, scoped TypeScript and settled real Pi scenarios pass. Source committed and clean. Parent must pause at cycle 10/10.
 
-## Independent review attempt 2
+## Review history
+[review-0014 single immutable body](../artifacts/reviews/review-review-0014.md). FAILURE on `7c647581807920320efa191f946b8ce9183558b7`.
+[review-0026 single immutable body](../artifacts/reviews/review-review-0026.md). FAILURE on `d1ad6dbabb7131de2910334f2b750f8586a0e4ca`. Original blockers independently confirmed resolved; UX02-SPEC-005 and UX02-SPEC-006 corrected in fix-0029.
 
-Review FAILURE on source `d1ad6dbabb7131de2910334f2b750f8586a0e4ca`, recorded 2026-10-28T00:36:00.616232+00:00. [Single immutable review](../artifacts/reviews/review-review-0026.md). [Review result](../events/review-0026.json). [Parent completion](../events/review-complete-0027.json). The previous five blockers were independently confirmed resolved. A [fresh final-cycle fix](../events/fix-start-0028.json) is reserved for the two new blockers. Cycle10/10 is the last allowed session; another review requires explicit cycle-limit extension. No merge is authorized by this verdict.
+## Evidence and open questions
+[Current snapshot](../artifacts/snapshots/pr-draft-fix-0029.md) · [Current validation](../artifacts/evidence/fix-0029/validation.json) · [Runtime](../artifacts/evidence/fix-0029/runtime-summary.json) · [Cleanup](../artifacts/evidence/fix-0029/cleanup.json).
+No unresolved product question. STD-02-J1 is nonblocking and unchanged. No review, tracker mutation, merge, rebase, push or finish ran in this fix. Canonical artifact commits belong to the parent.
+
+## Coordinator cycle-limit checkpoint
+
+[Fix completion](../events/fix-complete-0030.json) verifies source `66c988a405aa7b8b95cd2cb6d207f8147036e708`, recorded validation and complete-session accounting. All10 authorized ticket02 sessions are consumed. The source worktree is preserved; no agents remain active. No independent SUCCESS covers this new source, so review, merge and ticket completion are paused. [Authoritative capped checkpoint](../../goal-pi-shared-context-tui-ux-spec/events/checkpoint-0043.yaml). Continuing with one formal review and its independent Standards/Spec axes requires explicit approval for3 additional sessions (total13 for ticket02 only), with250000 tokens/session and all existing consumption retained.

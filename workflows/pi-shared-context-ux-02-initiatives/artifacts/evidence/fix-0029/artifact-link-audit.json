@@ -1,0 +1,712 @@
+[
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../../../tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/focused-tests.txt",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/scoped-typescript.txt",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/scoped-tsconfig.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/runtime-summary.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/pi-runtime-ledger.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/report/index.html",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/focused-tests-initial-failure.txt",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/focused-tests-mouse-coordinate-failure.txt",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/review-0014.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../reviews/review-review-0014.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/review-0026.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../reviews/review-review-0026.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/start-0001.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/implementation-0002.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/implementation-complete-0003.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/start-0004.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/implementation-0005.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/implementation-complete-0006.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/review-start-0007.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/standards-start-0008.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/spec-start-0009.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/standards-result-0010.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/spec-result-0011.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/standards-complete-0012.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/spec-complete-0013.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/review-0014.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/review-complete-0015.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/fix-start-0016.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/fix-0017.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/fix-complete-0018.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/review-start-0019.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/standards-start-0020.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/spec-start-0021.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/standards-result-0022.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/spec-result-0023.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/standards-complete-0024.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/spec-complete-0025.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/review-0026.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/review-complete-0027.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/fix-start-0028.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/fix-0029.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "pr-draft-implementation-0005.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "pr-draft-fix-0017.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../../events/fix-0029.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/session-identity.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/goal-checkpoint.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/source-audit.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+    "ref": "../evidence/fix-0029/cleanup.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../../../tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/focused-tests.txt",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/scoped-typescript.txt",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/scoped-tsconfig.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/runtime-summary.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/pi-runtime-ledger.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/report/index.html",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/focused-tests-initial-failure.txt",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/focused-tests-mouse-coordinate-failure.txt",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/review-0014.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/reviews/review-review-0014.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/review-0026.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/reviews/review-review-0026.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/start-0001.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/implementation-0002.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/implementation-complete-0003.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/start-0004.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/implementation-0005.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/implementation-complete-0006.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/review-start-0007.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/standards-start-0008.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/spec-start-0009.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/standards-result-0010.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/spec-result-0011.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/standards-complete-0012.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/spec-complete-0013.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/review-0014.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/review-complete-0015.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/fix-start-0016.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/fix-0017.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/fix-complete-0018.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/review-start-0019.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/standards-start-0020.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/spec-start-0021.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/standards-result-0022.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/spec-result-0023.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/standards-complete-0024.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/spec-complete-0025.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/review-0026.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/review-complete-0027.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/fix-start-0028.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/fix-0029.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/snapshots/pr-draft-implementation-0005.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/snapshots/pr-draft-fix-0017.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../events/fix-0029.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/session-identity.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/goal-checkpoint.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/source-audit.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+    "ref": "../artifacts/evidence/fix-0029/cleanup.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/start-0001.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/implementation-0002.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/implementation-complete-0003.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/start-0004.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/implementation-0005.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/implementation-complete-0006.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/review-start-0007.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/standards-start-0008.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/spec-start-0009.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/standards-result-0010.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/spec-result-0011.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/standards-complete-0012.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/spec-complete-0013.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/review-0014.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/review-complete-0015.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-start-0016.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-0017.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-complete-0018.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/review-start-0019.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/standards-start-0020.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/spec-start-0021.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/standards-result-0022.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/spec-result-0023.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/standards-complete-0024.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/spec-complete-0025.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/review-0026.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/review-complete-0027.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-start-0028.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-0029.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/implementation-0002.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/implementation-complete-0003.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/implementation-0005.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/implementation-complete-0006.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-start-0016.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-0017.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-complete-0018.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-start-0028.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../events/fix-0029.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../artifacts/reviews/review-review-0014.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../artifacts/reviews/review-review-0026.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../artifacts/snapshots/pr-draft-fix-0029.md",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../artifacts/evidence/fix-0029/validation.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../artifacts/evidence/fix-0029/runtime-summary.json",
+    "exists": true
+  },
+  {
+    "from": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+    "ref": "../artifacts/evidence/fix-0029/cleanup.json",
+    "exists": true
+  }
+]

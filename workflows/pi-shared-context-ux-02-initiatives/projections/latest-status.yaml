@@ -6,28 +6,33 @@
     "id": "pi-shared-context-ux-02-initiatives",
     "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
   },
-  "state": "FIXING",
-  "latest_receipt": "fix-start-0028",
-  "latest_source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
-  "latest_source_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "state": "FIXED",
+  "latest_receipt": "fix-complete-0030",
+  "latest_source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "latest_source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
   "latest_review_verdict": "FAILURE",
   "latest_review_receipt": "review-0026",
   "latest_review_source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
-  "current_source_review_verdict": "FAILURE",
-  "current_source_review_valid": true,
-  "open_findings": ["UX02-SPEC-005", "UX02-SPEC-006"],
+  "current_source_review_verdict": null,
+  "current_source_review_valid": false,
+  "open_findings": [],
   "resolved_findings": [
     "UX02-SPEC-001",
     "UX02-SPEC-002",
     "UX02-SPEC-003",
     "UX02-SPEC-004",
-    "VAL-001"
+    "VAL-001",
+    "UX02-SPEC-005",
+    "UX02-SPEC-006"
   ],
   "advisory_findings": [
     "STD-02-J1"
   ],
-  "review_status": "Review-0026 failed; final allowed fix cycle 10 is reserved. Another review requires explicit cycle-limit extension.",
-  "merge_status": "not merged",
+  "review_status": "No SUCCESS covers this new source. Historical review-0026 FAILURE applies only to d1ad6dbabb7131de2910334f2b750f8586a0e4ca. No independent review ran.",
+  "merge_status": "not merged or pushed",
+  "next_action": "Parent must pause at cycle 10/10. A fresh independent review requires explicit cycle-limit extension; do not automatically dispatch.",
   "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
-  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0038.yaml"
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0038.yaml",
+  "cycle_number": 10,
+  "last_allowed_ticket_cycle": true
 }

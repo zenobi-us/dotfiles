@@ -1,0 +1,173 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+index 5039b0a6..38abf776 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+@@ -107,6 +107,113 @@ test("Esc, keyboard ancestors and mouse ancestors preserve child selection and q
+   expect(f.view()).toContain("Ticket queues");
+ });
+ 
++test("compact Events returns restore the paged overview through Esc and keyboard or mouse ancestors", async () => {
++  for (const route of ["escape", "keyboard", "mouse"] as const) {
++    const data = structuredClone(snapshot);
++    data.tickets[2].body = Array.from({ length: 30 }, (_, index) => `Reading position ${index + 1}`).join("\n");
++    const f = await fixture(data, 12);
++    f.view(40);
++    await f.modal.handleInput("\r");
++    await f.modal.handleInput("\x1b[B");
++    await f.modal.handleInput("\r");
++    const firstPage = f.view(40);
++    for (let page = 0; page < 4; page++) await f.modal.handleInput("\x1b[6~");
++    const savedPage = f.view(40);
++    expect(savedPage).toContain("Reading position");
++    expect(savedPage).not.toBe(firstPage);
++    await f.modal.handleInput("\r");
++    expect(f.view(40)).toContain("Events / newest first");
++    if (route === "escape") await f.modal.handleInput("\x1b");
++    else if (route === "keyboard") {
++      await f.modal.handleInput("\x1b[Z");
++      await f.modal.handleInput("\x1b[C");
++      await f.modal.handleInput("\x1b[C");
++      expect(f.view(40)).toContain(">T-3<");
++      await f.modal.handleInput("\r");
++    } else {
++      const lines = f.modal.render(40);
++      const y = lines.findIndex(line => line.includes("T-3") && line.includes(" > "));
++      const x = visibleWidth(stripTerminalSequences(lines[y]).split("T-3")[0]);
++      expect(f.modal.handleMouse({ type: "click", button: "left", x, y } as TuiMouseEvent)?.handled).toBe(true);
++    }
++    expect(f.view(40)).toBe(savedPage);
++    await f.modal.handleInput("m");
++    const result = f.result();
++    if (result?.kind !== "session" || result.request.target.kind !== "ticket") throw new Error("Expected restored overview target");
++    expect(result.request.target.ticket.ref).toBe("tracker/tickets/T-3.md");
++  }
++});
++
++test("removing an inactive remembered child preserves unrelated queue and home action contexts", async () => {
++  for (const screen of ["queues", "home"] as const) {
++    for (const [width, height] of [[40, 12], [80, 24], [120, 40]]) {
++      let data = structuredClone(snapshot);
++      const f = await fixture(data, height, async () => data);
++      f.view(width);
++      await f.modal.handleInput("\r");
++      await f.modal.handleInput("\r");
++      f.view(width);
++      await f.modal.handleInput("\x1b");
++      await f.modal.handleInput("\x1b");
++      if (screen === "queues") {
++        await f.modal.handleInput("8");
++        await f.modal.handleInput("\x1b[B");
++        await f.modal.handleInput("\x1b[B");
++      }
++      f.view(width);
++      await f.modal.handleInput("a");
++      const before = f.view(width);
++      expect(before).toContain("Open a fresh chat");
++      data = {
++        ...data,
++        tickets: data.tickets.filter(ticket => ticket.id !== "T-2"),
++        initiatives: data.initiatives.map(item => ({ ...item, ticketIds: item.ticketIds.filter(id => id !== "T-2") })),
++      };
++      await f.component.load();
++      expect(f.view(width)).toBe(before);
++      await f.modal.handleInput("\x1b");
++      expect(f.view(width)).not.toContain("Open a fresh chat");
++      expect(f.view(width)).toContain(screen === "queues" ? "Ticket queues" : "Ungrouped");
++      await f.modal.handleInput("m");
++      const result = f.result();
++      if (result?.kind !== "session") throw new Error("Expected surviving action context");
++      expect(result.navigation.screen).toBe(screen);
++      const target = result.request.target;
++      if (screen === "queues") {
++        if (target.kind !== "ticket") throw new Error("Expected queue ticket target");
++        expect(target.ticket.ref).toBe("tracker/tickets/T-3.md");
++        expect(result.navigation.queue).toBe("all");
++      } else {
++        if (target.kind !== "initiative") throw new Error("Expected home initiative target");
++        expect(target.initiative.ref).toBe("tracker/initiatives/plan/index.md");
++      }
++    }
++  }
++});
++
++test("removing the active queue action target closes its menu and selects a surviving canonical ticket", async () => {
++  let data = structuredClone(snapshot);
++  const f = await fixture(data, 40, async () => data);
++  await f.modal.handleInput("8");
++  await f.modal.handleInput("\x1b[B");
++  await f.modal.handleInput("a");
++  expect(f.view()).toContain("Open a fresh chat");
++  data = {
++    ...data,
++    tickets: data.tickets.filter(ticket => ticket.id !== "T-2"),
++    initiatives: data.initiatives.map(item => ({ ...item, ticketIds: item.ticketIds.filter(id => id !== "T-2") })),
++  };
++  await f.component.load();
++  expect(f.view()).not.toContain("Open a fresh chat");
++  expect(f.view()).toContain("Ticket queues");
++  expect(f.view()).toContain("removed");
++  await f.modal.handleInput("m");
++  const result = f.result();
++  if (result?.kind !== "session" || result.request.target.kind !== "ticket") throw new Error("Expected surviving queue target");
++  expect(result.request.target.ticket.ref).toBe("tracker/tickets/T-3.md");
++  expect(result.navigation.screen).toBe("queues");
++});
++
+ test("refresh preserves canonical selection and explains removal while stale content disables transitions", async () => {
+   let data = snapshot;
+   let failure = false;
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+index e40edda6..5640c772 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+@@ -200,9 +200,14 @@ export class GraphExplorer {
+             this.focus = "list";
+           }
+           if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
+-          if (removedTicket) {
++          // A remembered child is not the active target in home or queue action menus.
++          const removedTarget = selected?.kind === "ticket" && !snapshot.tickets.some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
++          if (removedTarget) {
+             this.notice = "Selected item was removed. Selected a nearby item or its parent.";
+-            if (this.screen === "tickets" || this.screen === "receipts" || this.screen === "actions") this.screen = this.itemOrigin;
++            if (this.screen === "tickets" || this.screen === "receipts" || this.screen === "actions") {
++              this.screen = logicalScreen === "queues" ? "queues" : this.itemOrigin;
++              this.focus = "list";
++            }
+           }
+           const children = this.initiative()?.ticketIds ?? [];
+           if (initiativeView && !removedInitiative && this.ticketId && !children.includes(this.ticketId)) {
+@@ -407,7 +412,7 @@ export class GraphExplorer {
+     const crumb = this.breadcrumbs()[index];
+     if (!crumb || index >= this.breadcrumbs().length - 1) return;
+     this.screen = crumb.screen;
+-    this.focus = "list";
++    this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
+     this.options.requestRender();
+   }
+ 
+@@ -458,7 +463,10 @@ export class GraphExplorer {
+     if (matchesKey(data, "escape") || matchesKey(data, "left") && this.focus !== "breadcrumb" || matchesKey(data, "backspace")) {
+       let focus: ExplorerNavigation["focus"] = "list";
+       if (this.screen === "actions") { this.screen = this.returnScreen; focus = this.returnFocus; }
+-      else if (this.screen === "receipts") this.screen = "tickets";
++      else if (this.screen === "receipts") {
++        this.screen = "tickets";
++        focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
++      }
+       else if (this.screen === "tickets") this.screen = this.itemOrigin;
+       else if (this.screen === "initiatives" || this.screen === "queues") this.screen = "home";
+       else { if (matchesKey(data, "escape") && this.options.projects) this.options.projects(); else this.options.done(undefined); return; }
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md b/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+index e1799c5b..33b9c3fb 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+@@ -259,7 +259,7 @@ Child rows separate type, stable ID, title, and recorded state. Supporting refer
+ Titles wrap. Narrow terminals wrap phase and Items on separate lines below the title. Use PgUp/PgDn to read long rows without changing selection. Resizing or row reflow brings the selected record back into view; unchanged layouts retain deliberate paging.
+ The > marker identifies a focused selection. The ◇ marker identifies an inactive selection; both retain the selection background.
+ Use Tab and Shift+Tab to focus ancestors, panes, and workspace controls. Press Enter or Space on an ancestor, or click it, to return directly.
+-Esc returns one level and restores the parent selection and scroll position. Live updates retain canonical selection; removal explains the new selection. If a child leaves its initiative while a reader or action menu is open, return to a nearby child or the empty parent before another action. Removing an unrelated initiative does not change the active ticket queue.
++Esc returns one level and restores the parent selection and scroll position. In compact terminals, returning from Events with Esc or the ticket ancestor shows the overview at its saved reading position. Live updates retain canonical selection; removal explains the new selection. If a child leaves its initiative while a reader or action menu is open, return to a nearby child or the empty parent before another action. Removing an unrelated initiative does not change the active ticket queue. Removing an inactive remembered child also leaves unrelated queue and home initiative action menus open on their canonical targets.
+ Press 5 for Ready, 6 for Review, 7 for Blocked, or 8 for All to open the separate ticket queues. Press h to return to initiatives.
+ Uppercase R refreshes. Lowercase r retains its existing Review action. The a action menu and direct action keys keep their existing safety checks.
+ Loading, empty collections, unreadable records, and refresh failures have distinct messages. A failed refresh retains readable content and blocks unsafe transitions.

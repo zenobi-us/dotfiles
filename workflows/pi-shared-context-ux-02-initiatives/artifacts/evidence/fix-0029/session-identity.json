@@ -1,0 +1,30 @@
+{
+  "id": "cli:agent:get",
+  "result": {
+    "agent": {
+      "agent": "omp",
+      "agent_session": {
+        "agent": "omp",
+        "kind": "path",
+        "source": "herdr:omp",
+        "value": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-43-29-366Z_01a17ff6-48d6-77e1-bc79-d87bd6dd1052.jsonl"
+      },
+      "agent_status": "working",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+      "focused": false,
+      "foreground_cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+      "interactive_ready": true,
+      "name": "ux02-fix-02",
+      "pane_id": "w7J:p1",
+      "revision": 9414,
+      "screen_detection_skipped": true,
+      "state_change_seq": 524,
+      "tab_id": "w7J:t1",
+      "terminal_id": "term_65edbcdb40a4d76",
+      "terminal_title": "\u03c0 \u280b \ud83d\udea7 UX02: Fix Two Approved Review Blockers",
+      "terminal_title_stripped": "\u03c0 \u280b \ud83d\udea7 UX02: Fix Two Approved Review Blockers",
+      "workspace_id": "w7J"
+    },
+    "type": "agent_info"
+  }
+}

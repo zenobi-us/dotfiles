@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-10-28T01:00:03.949712+00:00",
+  "objective": "Read /tmp/ux02-fix-02.txt and fix only the two already-approved blockers from review-0026. This is ticket cycle10/10, the final permitted session; no helpers or new review. First inspect goal.get; wait for native budget241808 before source edits. Do not interview, create another goal or reset usage. Complete all real validation, source commit, artifacts and cleanup before goal.complete, your last tool call.",
+  "native_goal_observation": {
+    "status": "active",
+    "used": 224965,
+    "budget": 241808,
+    "remaining": 16843
+  },
+  "provider_work_excluding_cacheRead_at_checkpoint": 226343,
+  "provider_session_limit": 250000,
+  "not_final_session_usage": true,
+  "parent_must_audit_through_final_response": true,
+  "session_id": "01a17ff6-48d6-77e1-bc79-d87bd6dd1052",
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0038.yaml",
+  "cycle_number": 10,
+  "all_deliverables_verified": "final-deliverable-audit.json",
+  "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+  "source_clean": true,
+  "all_todos_complete": true,
+  "goal_reset_replaced_increased": false,
+  "helpers_or_new_review": false,
+  "parent_next_action": "Pause. Explicit cycle-limit extension is required before independent review."
+}

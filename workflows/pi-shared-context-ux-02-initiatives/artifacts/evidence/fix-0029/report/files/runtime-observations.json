@@ -1,0 +1,203 @@
+{
+  "observations": {
+    "005": {
+      "escape_saved_lines_match": true,
+      "keyboard_saved_lines_match": true,
+      "mouse_saved_lines_match": true
+    },
+    "006": [
+      {
+        "size": "120x40",
+        "logical_screen": "queues",
+        "actions_unchanged": true,
+        "canonical_reference_after": "tracker/tickets/B1.md",
+        "evidence_before": "colour-006-queues-actions-before-120x40.json",
+        "evidence_after": "colour-006-queues-actions-after-120x40.json"
+      },
+      {
+        "size": "120x40",
+        "logical_screen": "home",
+        "actions_unchanged": true,
+        "canonical_reference_after": "tracker/initiatives/alpha/index.md",
+        "evidence_before": "colour-006-home-actions-before-120x40.json",
+        "evidence_after": "colour-006-home-actions-after-120x40.json"
+      },
+      {
+        "size": "80x24",
+        "logical_screen": "queues",
+        "actions_unchanged": true,
+        "canonical_reference_after": "tracker/tickets/B1.md",
+        "evidence_before": "colour-006-queues-actions-before-80x24.json",
+        "evidence_after": "colour-006-queues-actions-after-80x24.json"
+      },
+      {
+        "size": "80x24",
+        "logical_screen": "home",
+        "actions_unchanged": true,
+        "canonical_reference_after": "tracker/initiatives/alpha/index.md",
+        "evidence_before": "colour-006-home-actions-before-80x24.json",
+        "evidence_after": "colour-006-home-actions-after-80x24.json"
+      },
+      {
+        "mode": "monochrome",
+        "size": "120x40",
+        "logical_screen": "queues",
+        "actions_unchanged": true,
+        "canonical_reference_after": "tracker/tickets/B1.md"
+      },
+      {
+        "mode": "monochrome",
+        "size": "120x40",
+        "logical_screen": "home",
+        "actions_unchanged": true,
+        "canonical_reference_after": "tracker/initiatives/alpha/index.md"
+      },
+      {
+        "mode": "monochrome",
+        "size": "80x24",
+        "logical_screen": "queues",
+        "actions_unchanged": true,
+        "canonical_reference_after": "tracker/tickets/B1.md"
+      },
+      {
+        "mode": "monochrome",
+        "size": "80x24",
+        "logical_screen": "home",
+        "actions_unchanged": true,
+        "canonical_reference_after": "tracker/initiatives/alpha/index.md"
+      }
+    ],
+    "Files_insert": "Existing y path insertion closed modal and left path unsent in editor.",
+    "006_settled_authoritative": [
+      {
+        "mode": "colour",
+        "size": "120x40",
+        "logical_screen": "queues",
+        "wall_clock_watcher_wait_seconds": 2,
+        "actions_unchanged": true,
+        "canonical_ref_after": "tracker/tickets/B1.md",
+        "watcher_processed_alpha_count": 1,
+        "evidence_prefix": "colour-settled-006-queues"
+      },
+      {
+        "mode": "colour",
+        "size": "120x40",
+        "logical_screen": "home",
+        "wall_clock_watcher_wait_seconds": 2,
+        "actions_unchanged": true,
+        "canonical_ref_after": "tracker/initiatives/alpha/index.md",
+        "watcher_processed_alpha_count": 1,
+        "evidence_prefix": "colour-settled-006-home"
+      },
+      {
+        "mode": "colour",
+        "size": "80x24",
+        "logical_screen": "queues",
+        "wall_clock_watcher_wait_seconds": 2,
+        "actions_unchanged": true,
+        "canonical_ref_after": "tracker/tickets/B1.md",
+        "watcher_processed_alpha_count": 1,
+        "evidence_prefix": "colour-settled-006-queues"
+      },
+      {
+        "mode": "colour",
+        "size": "80x24",
+        "logical_screen": "home",
+        "wall_clock_watcher_wait_seconds": 2,
+        "actions_unchanged": true,
+        "canonical_ref_after": "tracker/initiatives/alpha/index.md",
+        "watcher_processed_alpha_count": 1,
+        "evidence_prefix": "colour-settled-006-home"
+      },
+      {
+        "mode": "monochrome",
+        "size": "120x40",
+        "logical_screen": "queues",
+        "wall_clock_watcher_wait_seconds": 2,
+        "actions_unchanged": true,
+        "canonical_ref_after": "tracker/tickets/B1.md",
+        "watcher_processed_alpha_count": 1,
+        "evidence_prefix": "monochrome-settled-006-queues"
+      },
+      {
+        "mode": "monochrome",
+        "size": "120x40",
+        "logical_screen": "home",
+        "wall_clock_watcher_wait_seconds": 2,
+        "actions_unchanged": true,
+        "canonical_ref_after": "tracker/initiatives/alpha/index.md",
+        "watcher_processed_alpha_count": 1,
+        "evidence_prefix": "monochrome-settled-006-home"
+      },
+      {
+        "mode": "monochrome",
+        "size": "80x24",
+        "logical_screen": "queues",
+        "wall_clock_watcher_wait_seconds": 2,
+        "actions_unchanged": true,
+        "canonical_ref_after": "tracker/tickets/B1.md",
+        "watcher_processed_alpha_count": 1,
+        "evidence_prefix": "monochrome-settled-006-queues"
+      },
+      {
+        "mode": "monochrome",
+        "size": "80x24",
+        "logical_screen": "home",
+        "wall_clock_watcher_wait_seconds": 2,
+        "actions_unchanged": true,
+        "canonical_ref_after": "tracker/initiatives/alpha/index.md",
+        "watcher_processed_alpha_count": 1,
+        "evidence_prefix": "monochrome-settled-006-home"
+      }
+    ],
+    "previous_corrections": {
+      "active_child_reparenting_closes_actions_and_selects_A1": true,
+      "unrelated_initiative_removal_keeps_B1_queue_lines": true,
+      "other_previous_corrections": "Full affected 136-test suite includes original reflow, count wrapping and safe empty-parent regressions."
+    }
+  },
+  "matrix": [
+    {
+      "mode": "colour",
+      "size": "40x12",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "colour-matrix-overview-returned-40x12.png"
+    },
+    {
+      "mode": "colour",
+      "size": "80x24",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "colour-matrix-overview-returned-80x24.png"
+    },
+    {
+      "mode": "colour",
+      "size": "120x40",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "colour-matrix-overview-returned-120x40.png"
+    },
+    {
+      "mode": "monochrome",
+      "size": "40x12",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "monochrome-matrix-overview-returned-40x12.png"
+    },
+    {
+      "mode": "monochrome",
+      "size": "80x24",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "monochrome-matrix-overview-returned-80x24.png"
+    },
+    {
+      "mode": "monochrome",
+      "size": "120x40",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "monochrome-matrix-overview-returned-120x40.png"
+    }
+  ]
+}

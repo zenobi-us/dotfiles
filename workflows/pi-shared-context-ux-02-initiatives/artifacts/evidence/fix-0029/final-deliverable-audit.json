@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-10-28T00:59:07.556719+00:00",
+  "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+  "source_clean": true,
+  "committed_source_files_match_exercised_files": {
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts": "00f485d9bb14869b837502cac065375da356a1876d937db004fd030ec16eecb4",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts": "a8c2759c5cfef997f59c01b2436b416ac0078f627f172358a906324783a87dc2",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md": "6d9beac923dd10c84c800e641e7703b9f6e77f9fb3f9be52d5138c192a5cc39a"
+  },
+  "selected_findings": [
+    "UX02-SPEC-005",
+    "UX02-SPEC-006"
+  ],
+  "selected_findings_resolved": true,
+  "previous_corrections_retained": true,
+  "full_suite": {
+    "pass": 136,
+    "fail": 0,
+    "expectations": 1871,
+    "files": 11
+  },
+  "TypeScript_exit": 0,
+  "real_Pi_exited_zero": 3,
+  "settled_watcher_cases": 8,
+  "matrix_views": 6,
+  "immutable_prior_receipts_retained": 28,
+  "all_markdown_reports_valid": true,
+  "okf_bundle_check": "Not applicable: individual workflow reports, not a bundle with an index. Each document validated with okf_validate.",
+  "markdown_link_count": 142,
+  "html_link_count": 23,
+  "all_output_links_exist": true,
+  "receipt_readback_matches": true,
+  "manifest_and_status_readback_match": true,
+  "new_source_review_verdict": null,
+  "parent_must_pause_at_cycle_10": true,
+  "no_helpers_or_new_review": true,
+  "cleanup_paths_absent": true,
+  "goal_completion_not_yet_called": true
+}

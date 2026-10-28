@@ -1,0 +1,91 @@
+{
+  "runtime": "Actual Pi v1.1.0 loaded the explicit source worktree index.ts through termscope 0.1.1; real loaders, modal and filesystem watcher.",
+  "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+  "scope": [
+    "UX02-SPEC-005",
+    "UX02-SPEC-006"
+  ],
+  "result": "passed",
+  "tests": {
+    "pass": 136,
+    "fail": 0,
+    "expectations": 1871,
+    "files": 11
+  },
+  "scoped_typescript_exit": 0,
+  "runtime_observations": "runtime-observations.json",
+  "authoritative_deletion_evidence": "*-settled-006-* (200ms settled input for final monochrome; two-second watcher delivery and alpha count check for all final cases)",
+  "compact_return_evidence": [
+    "colour-005-overview-saved-40x12.json",
+    "colour-005-escape-return-40x12.json",
+    "colour-005-keyboard-return-40x12.json",
+    "colour-005-mouse-return-40x12.json",
+    "monochrome-005-overview-saved-40x12.json",
+    "monochrome-005-escape-return-40x12.json",
+    "monochrome-005-keyboard-return-40x12.json",
+    "monochrome-005-mouse-return-40x12.json"
+  ],
+  "matrix": [
+    {
+      "mode": "colour",
+      "size": "40x12",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "colour-matrix-overview-returned-40x12.png"
+    },
+    {
+      "mode": "colour",
+      "size": "80x24",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "colour-matrix-overview-returned-80x24.png"
+    },
+    {
+      "mode": "colour",
+      "size": "120x40",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "colour-matrix-overview-returned-120x40.png"
+    },
+    {
+      "mode": "monochrome",
+      "size": "40x12",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "monochrome-matrix-overview-returned-40x12.png"
+    },
+    {
+      "mode": "monochrome",
+      "size": "80x24",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "monochrome-matrix-overview-returned-80x24.png"
+    },
+    {
+      "mode": "monochrome",
+      "size": "120x40",
+      "overview_reading_position_preserved": true,
+      "Files_return_unchanged": true,
+      "png": "monochrome-matrix-overview-returned-120x40.png"
+    }
+  ],
+  "previous_corrections": {
+    "active_child_reparenting_closes_actions_and_selects_A1": true,
+    "unrelated_initiative_removal_keeps_B1_queue_lines": true,
+    "other_previous_corrections": "Full affected 136-test suite includes original reflow, count wrapping and safe empty-parent regressions."
+  },
+  "Files": "Independent workspace switches preserve overview; y inserts shared://docs unsent.",
+  "limitations": [
+    "No model/service request or live skill action dispatch; runtime skills disabled. Complete-modal tests verify canonical dispatched targets and existing safeguards.",
+    "PNGs reconstruct native terminal JSON text and RGB spans. Background-only spans use recorded selection colour. Native JSON/spans are primary evidence.",
+    "Two initial test runs exposed locator errors (truncated breadcrumb and ANSI byte coordinate); both outputs retained. Final whole suite passed.",
+    "Exploratory immediate captures did not prove watcher delivery; settled-006 captures require a wall-clock wait and changed alpha count.",
+    "An initial optional retained-membership smoke used state changed by the other terminal; explicit settled A2 setup and two-second mutation wait later passed.",
+    "No independent review ran; parent must pause at cycle 10/10 pending explicit limit extension."
+  ],
+  "cleanup": "cleanup.json",
+  "source_audit": "source-audit.json",
+  "portable_report": "report/index.html",
+  "all_Pi_sessions_exited_zero": true
+}

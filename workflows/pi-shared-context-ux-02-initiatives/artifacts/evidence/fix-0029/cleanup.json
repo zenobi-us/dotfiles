@@ -1,0 +1,42 @@
+{
+  "Pi_sessions": [
+    {
+      "mode": "colour",
+      "termscope_exit_code": 0
+    },
+    {
+      "mode": "monochrome",
+      "termscope_exit_code": 0
+    },
+    {
+      "mode": "monochrome",
+      "termscope_exit_code": 0
+    }
+  ],
+  "removed_dependency_links": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@crustjs/core",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/core"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@crustjs/plugins",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@earendil-works/pi-tui",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@earendil-works/pi-coding-agent",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent"
+    }
+  ],
+  "removed_compiler_config": "/tmp/ux02-fix-0029-tsconfig.json",
+  "removed_monochrome_theme": "/tmp/ux02-fix-0029-mono.json",
+  "removed_fixture": "/tmp/ux02-fix-0029-fixture-3_gx9dcv",
+  "removed_mouse_probe": "/tmp/ux02-mouse-probe.ts",
+  "preexisting_external_dependency_cache_retained": "/tmp/ux02-deps",
+  "helpers_started": false,
+  "tracker_mutated": false,
+  "merge_rebase_push_finish": false
+}

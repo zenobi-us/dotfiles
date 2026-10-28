@@ -1,0 +1,17 @@
+{
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+  "starting_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "starting_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "source_status_porcelain": "",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "manifest_lockfile_version_changes": false,
+  "clean_after_commit": true,
+  "commit_subject": "fix(pi): pi-shared-context-ux-02-initiatives return context",
+  "no_merge_rebase_push": true
+}
