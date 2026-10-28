@@ -1,0 +1,237 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "standards-result-0034",
+  "workflow_id": "pi-shared-context-ux-02-initiatives",
+  "phase": "review-standards",
+  "event": "phase-result",
+  "attempt": 3,
+  "parent_receipt": "standards-start-0032",
+  "status": "completed",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+  "created_at": "2026-10-28T01:46:05.819Z",
+  "muxer": "herdr",
+  "pane_id": "w7N:p2",
+  "agent": "omp",
+  "agent_name": "ux02-standards-03",
+  "session_id": "01a1802a-f76e-72e1-8993-5c797fc5a9a9",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-02-initiatives",
+    "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0046.yaml",
+  "agent_session_token_limit": 250000,
+  "cycle_number": 12,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/standards-start-0032.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-0029.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-complete-0030.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0046.yaml"
+    },
+    {
+      "kind": "policy",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0044.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "standards",
+      "ref": "AGENTS.md"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "tracker-config",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "source",
+      "ref": "66c988a405aa7b8b95cd2cb6d207f8147036e708"
+    },
+    {
+      "kind": "historical-advisory",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0026.json",
+      "scope": "Read only after independent code inspection to preserve STD-02-J1 identity. Its verdict does not cover the frozen source."
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/standards-result-0034.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/standards-observations.json"
+    }
+  ],
+  "native_goal_budget_ceiling": 241808,
+  "completion_margin_tokens": 8192,
+  "approved_ticket_cycle_limit": 13,
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T01-41-01-934Z_01a1802a-f76e-72e1-8993-5c797fc5a9a9.jsonl",
+  "session_identity_source": "herdr agent get ux02-standards-03 -> result.agent.agent_session.value",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038"
+  },
+  "context_routes": {
+    "mode": "repository",
+    "alignment_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "alignment": "repository",
+    "tickets": "repository",
+    "initiatives": "repository",
+    "workflows": "repository",
+    "evidence": "workflows->repository",
+    "sources": "alignment->repository"
+  },
+  "native_goal_accounting": {
+    "first_snapshot": {
+      "status": "active",
+      "tokens_used": 0,
+      "token_budget": 241808,
+      "tokens_remaining": 241808
+    },
+    "review_snapshot": {
+      "status": "active",
+      "tokens_used": 139432,
+      "token_budget": 241808,
+      "tokens_remaining": 102376
+    },
+    "goal_created_by_this_session": false,
+    "goal_reset": false,
+    "budget_increased": false,
+    "full_session_metric": "input + output + cacheWrite across all provider assistant messages; cacheRead excluded",
+    "provider_snapshot": {
+      "captured_at": "2026-10-28T01:46:05.819Z",
+      "assistant_messages_with_usage": 35,
+      "input": 136940,
+      "output": 11076,
+      "cacheWrite": 0,
+      "cacheRead": 2407424,
+      "work_tokens": 148016,
+      "scope": "Pre-result snapshot only. Parent must audit final session log including this receipt write and final response."
+    },
+    "completion_margin_tokens": 8192
+  },
+  "verdict": "SUCCESS",
+  "axis": "Standards",
+  "axis_report": "SUCCESS — no blocking Standards findings for 66c988a405aa7b8b95cd2cb6d207f8147036e708. Reviewed all ten files in the complete master-to-frozen diff, not only the last fix.\n\nAGENTS.md requires plain technical language and mq/okf Markdown access. The loader retains that document boundary at data.ts:277–284. CONTEXT-MAP.md and docs/agents/domain.md define ownership and context rules. No changed hunk violates those rules. The changed behavioral tests use the complete modal and public input, as the ticket’s Testing decisions require. Tooling-enforced trivia is excluded.\n\nSTD-02-J1 remains optional: possible Duplicated Code at explorer.ts:627 and :717. Both repeat body.split/map/find to select the initiative summary. One helper could prevent drift. This is a judgement call, not a hard repository violation or required redesign. No other actionable baseline smell was found.\n\nNO ADR: docs/adr/index.md lists no decisions; CONTEXT.md is absent.\n\nValidation was static. Exact frozen commit/tree and clean source status were verified. Language Server Protocol initialization failed because it could not locate TypeScript. No suite, compiler, formatter, or Pi runtime ran in this axis. The main reviewer owns combined validation after both axes finish. This result does not decide the Spec axis.",
+  "axis_report_word_count": 178,
+  "findings": [],
+  "advisory_findings": [
+    {
+      "id": "STD-02-J1",
+      "severity": "low",
+      "blocking": false,
+      "classification": "judgement-call",
+      "baseline": "Duplicated Code",
+      "adr_ref": "NO ADR",
+      "adr_explanation": "docs/adr/index.md contains no architecture decisions. This is an optional smell heuristic, not a hard documented repository violation.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 717,
+      "related_lines": [
+        627
+      ],
+      "description": "render() and graphPane() repeat the same body.split/map/find summary selector. A summary-selection change must update both sites.",
+      "required_change": "None for approval. Optionally extract one summary selector. Do not require a redesign.",
+      "validation_command": "git show 66c988a405aa7b8b95cd2cb6d207f8147036e708:mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "validation_expectation": "Compare lines 627 and 717. Both select the same summary; any optional extraction should preserve both visible destinations.",
+      "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/standards-observations.json"
+    }
+  ],
+  "adr": {
+    "ref": "NO ADR",
+    "reason": "The canonical docs/adr/index.md lists no decisions. CONTEXT.md is absent."
+  },
+  "validation": [
+    {
+      "kind": "source-identity",
+      "command": "git rev-parse HEAD HEAD^{tree} master; git log master..66c988a405aa7b8b95cd2cb6d207f8147036e708 --oneline",
+      "result": "Exact frozen commit and tree matched. Five source commits observed. master resolved to b21d4346e94cf54fd1413569fbc70c5a151caa39."
+    },
+    {
+      "kind": "static-review",
+      "command": "git diff master...66c988a405aa7b8b95cd2cb6d207f8147036e708",
+      "result": "Reviewed all production and test hunks, and README content at current source and master through mq. No blocking Standards violation found."
+    },
+    {
+      "kind": "lsp",
+      "command": "xd://lsp symbols mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "result": "UNAVAILABLE: initialization failed because the workspace TypeScript installation could not be found. No symbol-reference claim relies on LSP. No dependencies or configuration were changed."
+    },
+    {
+      "kind": "source-preservation",
+      "command": "git rev-parse HEAD HEAD^{tree}; git symbolic-ref --short HEAD; git status --porcelain=v1; git diff --quiet; git diff --cached --quiet",
+      "result": "Exit 0. Frozen commit/tree and feature branch matched. Porcelain output was empty; staged and unstaged diffs were empty."
+    }
+  ],
+  "validation_scope": {
+    "suite_run": false,
+    "compiler_run": false,
+    "formatter_run": false,
+    "pi_runtime_run": false,
+    "reason": "Read-only Standards axis. Main reviewer owns the one combined suite/type run after both axes finish. No behavioral modification was made by this session."
+  },
+  "source_preservation": {
+    "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+    "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+    "branch": "feature/pi-shared-context-ux-02-initiatives",
+    "porcelain": "",
+    "staged_diff_empty": true,
+    "unstaged_diff_empty": true,
+    "checked_before_receipt_write": true
+  },
+  "cleanup": {
+    "temporary_probes_created": false,
+    "temporary_resources_created": false,
+    "source_edits": false,
+    "tracker_edits": false,
+    "canonical_unrelated_changes_touched": false
+  },
+  "next_action": "Main reviewer reads both axis results, runs the combined suite and scoped types once, and owns the single immutable review body. No tracker or projection update by this helper.",
+  "completion_marker": "AXIS_REVIEW_DONE"
+}

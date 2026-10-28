@@ -1,0 +1,422 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0038",
+  "workflow_id": "pi-shared-context-ux-02-initiatives",
+  "phase": "review",
+  "event": "phase-result",
+  "attempt": 3,
+  "parent_receipt": "review-start-0031",
+  "status": "completed",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+  "created_at": "2026-10-28T01:55:45.689352+00:00",
+  "muxer": "herdr",
+  "pane_id": "w7N:p1",
+  "agent": "omp",
+  "agent_name": "ux02-review-03",
+  "session_id": "01a1802a-2046-727a-b7d2-77600d18fcfd",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-02-initiatives",
+    "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0045.yaml",
+  "agent_session_token_limit": 250000,
+  "cycle_number": 11,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-complete-0030.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0045.yaml"
+    },
+    {
+      "kind": "policy",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0044.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-start-0031.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-0029.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/standards-result-0034.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/spec-result-0035.json"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "historical-review",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0014.json"
+    },
+    {
+      "kind": "historical-review",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0026.json"
+    },
+    {
+      "kind": "prior-evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0038.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038"
+    }
+  ],
+  "native_goal_budget_ceiling": 241808,
+  "completion_margin_tokens": 8192,
+  "approved_ticket_cycle_limit": 13,
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T01-40-06-854Z_01a1802a-2046-727a-b7d2-77600d18fcfd.jsonl",
+  "session_identity_source": "herdr agent get ux02-review-03 -> result.agent.agent_session.value",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038"
+  },
+  "artifact_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md",
+  "verdict": "SUCCESS",
+  "findings": [],
+  "advisory_findings": [
+    {
+      "id": "STD-02-J1",
+      "severity": "low",
+      "blocking": false,
+      "classification": "judgement-call",
+      "baseline": "Duplicated Code",
+      "adr_ref": "NO ADR",
+      "adr_explanation": "docs/adr/index.md contains no architecture decisions. This is an optional smell heuristic, not a hard documented repository violation.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 717,
+      "related_lines": [
+        627
+      ],
+      "description": "render() and graphPane() repeat the same body.split/map/find summary selector. A summary-selection change must update both sites.",
+      "required_change": "None for approval. Optionally extract one summary selector. Do not require a redesign.",
+      "validation_command": "git show 66c988a405aa7b8b95cd2cb6d207f8147036e708:mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "validation_expectation": "Compare lines 627 and 717. Both select the same summary; any optional extraction should preserve both visible destinations.",
+      "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/standards-observations.json"
+    }
+  ],
+  "context_routes": {
+    "mode": "repository",
+    "alignment_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "alignment": "repository",
+    "tickets": "repository",
+    "initiatives": "repository",
+    "workflows": "repository",
+    "evidence": "workflows->repository",
+    "sources": "alignment->repository"
+  },
+  "scope": {
+    "diff_command": "git diff master...66c988a405aa7b8b95cd2cb6d207f8147036e708",
+    "incremental_command": "git diff d1ad6dbabb7131de2910334f2b750f8586a0e4ca...66c988a405aa7b8b95cd2cb6d207f8147036e708",
+    "files_reviewed": 10,
+    "source_commits": [
+      "7c647581",
+      "d360076d",
+      "a3c89c7b",
+      "d1ad6dba",
+      "66c988a4"
+    ],
+    "full_ticket_reviewed": true,
+    "out_of_scope": [
+      "mixed-item expansion",
+      "new description readers",
+      "event presentation redesign",
+      "queue redesign",
+      "unrelated canonical checkout edits"
+    ]
+  },
+  "prior_findings": [
+    {
+      "id": "UX02-SPEC-001",
+      "status": "verified_resolved",
+      "assessment_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md#previous-blockers"
+    },
+    {
+      "id": "UX02-SPEC-002",
+      "status": "verified_resolved",
+      "assessment_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md#previous-blockers"
+    },
+    {
+      "id": "UX02-SPEC-003",
+      "status": "verified_resolved",
+      "assessment_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md#previous-blockers"
+    },
+    {
+      "id": "UX02-SPEC-004",
+      "status": "verified_resolved",
+      "assessment_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md#previous-blockers"
+    },
+    {
+      "id": "UX02-SPEC-005",
+      "status": "verified_resolved",
+      "assessment_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md#previous-blockers"
+    },
+    {
+      "id": "UX02-SPEC-006",
+      "status": "verified_resolved",
+      "assessment_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md#previous-blockers"
+    },
+    {
+      "id": "VAL-001",
+      "status": "verified_resolved",
+      "assessment_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md#previous-blockers"
+    }
+  ],
+  "validation": [
+    {
+      "kind": "focused-tests",
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+      "started_at": "2026-10-28T01:52:33.627382+00:00",
+      "ended_at": "2026-10-28T01:52:42.082822+00:00",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/focused-tests.txt"
+    },
+    {
+      "kind": "scoped-typescript",
+      "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --project /tmp/ux02-review0038-tsconfig.json --pretty false",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+      "started_at": "2026-10-28T01:52:33.627560+00:00",
+      "ended_at": "2026-10-28T01:52:35.680260+00:00",
+      "exit_code": 0,
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/scoped-typescript.txt"
+    },
+    {
+      "kind": "suite summary",
+      "result": "136 pass; 0 fail; 1871 expectations across 11 files; run once after both axes completed."
+    },
+    {
+      "kind": "actual Pi main runtime",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/runtime-observations.json",
+      "ledger_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/pi-runtime-complete-ledger.json",
+      "result": "Compact saved overview restored via Esc and keyboard/mouse ticket ancestor; unrelated queue/home actions preserved after inactive deletion; active reparent and unrelated initiative removal safe; Files state retained; Pi exit 0.",
+      "no_model_or_service_requests": true,
+      "no_action_dispatch": true
+    },
+    {
+      "kind": "prior visual evidence inspected",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/prior-evidence-inspected.json",
+      "result": "Inspected fix-0029 report, colour/monochrome native JSON/spans and reconstructed PNG child matrices at 40x12, 80x24, 120x40. Not a current monochrome runtime."
+    },
+    {
+      "kind": "LSP main",
+      "result": "Initial initialization failed without local TypeScript. After owned temporary real-package links, symbols and GraphExplorer references succeeded; no source edits."
+    },
+    {
+      "kind": "artifact validation",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/review-artifact-link-audit.json",
+      "result": "mq/okf Report validation returned no errors; complete axis reports read back; 45 extracted links verified."
+    }
+  ],
+  "helpers": [
+    {
+      "axis": "standards",
+      "name": "ux02-standards-03",
+      "pane_id": "w7N:p2",
+      "session_id": "01a1802a-f76e-72e1-8993-5c797fc5a9a9",
+      "goal_id": "15b75819cb5daa27",
+      "reservation_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0046.yaml",
+      "cycle_number": 12,
+      "result_ref": "workflows/pi-shared-context-ux-02-initiatives/events/standards-result-0034.json",
+      "status": "completed",
+      "verdict": "SUCCESS",
+      "native_final_tokens": 152454,
+      "native_budget": 241808,
+      "provider_work_tokens_including_final_response": 152966,
+      "provider_metric": "input + output + cacheWrite; cacheRead excluded",
+      "full_accounting_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/standards-full-session-accounting.json",
+      "bounded_at_zero": true,
+      "goal_complete_last_tool": true,
+      "shutdown": {
+        "agent_wait_status": "done",
+        "pane_close_result": "ok",
+        "closed": true
+      }
+    },
+    {
+      "axis": "spec",
+      "name": "ux02-spec-03",
+      "pane_id": "w7N:p3",
+      "session_id": "01a1802a-f76c-72a2-aec7-9ff39a398c0f",
+      "goal_id": "15b75819cb5fd813",
+      "reservation_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0047.yaml",
+      "cycle_number": 13,
+      "result_ref": "workflows/pi-shared-context-ux-02-initiatives/events/spec-result-0035.json",
+      "status": "completed",
+      "verdict": "SUCCESS",
+      "native_final_tokens": 195498,
+      "native_budget": 241808,
+      "provider_work_tokens_including_final_response": 195901,
+      "provider_metric": "input + output + cacheWrite; cacheRead excluded",
+      "full_accounting_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/spec-full-session-accounting.json",
+      "bounded_at_zero": true,
+      "goal_complete_last_tool": true,
+      "shutdown": {
+        "agent_wait_status": "done",
+        "pane_close_result": "ok",
+        "closed": true
+      }
+    }
+  ],
+  "native_goal_accounting": {
+    "goal_id": "15b757e5043cdca1",
+    "initial_snapshot": {
+      "tokens_used": 0,
+      "token_budget": 241808,
+      "tokens_remaining": 241808
+    },
+    "pre_receipt_snapshot": {
+      "tokens_used": 185741,
+      "token_budget": 241808,
+      "tokens_remaining": 56067
+    },
+    "pre_goal_assistant_messages": 0,
+    "goal_created_by_main": false,
+    "goal_reset": false,
+    "goal_replaced": false,
+    "budget_increased": false,
+    "full_session_metric": "input + output + cacheWrite across ALL provider assistant messages; cacheRead excluded",
+    "provider_checkpoint_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/main-accounting-checkpoint.json",
+    "completion_margin_tokens": 8192,
+    "final_audit_owner": "Parent must audit complete main provider log including final response; checkpoint is not a final total."
+  },
+  "allowance": {
+    "retained_prior_consumption": 10,
+    "approved_additional_review_sessions": 3,
+    "approved_ticket_total": 13,
+    "main_cycle": 11,
+    "standards_cycle": 12,
+    "spec_cycle": 13,
+    "other_ticket_limits_unchanged": true,
+    "no_fixer_or_extra_session": true,
+    "limits_renewed_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0044.yaml"
+  },
+  "source_audit": {
+    "commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+    "tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+    "branch": "feature/pi-shared-context-ux-02-initiatives",
+    "status_porcelain": "",
+    "tracked_source_clean": true,
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "created_at": "2026-10-28T01:53:06.488090+00:00",
+    "no_source_or_tracker_mutations": true
+  },
+  "cleanup": {
+    "removed_dependency_links": [
+      {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@crustjs/core",
+        "target": "/tmp/ux02-deps/node_modules/@crustjs/core",
+        "removed": true
+      },
+      {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@crustjs/plugins",
+        "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins",
+        "removed": true
+      },
+      {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@earendil-works/pi-tui",
+        "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui",
+        "removed": true
+      },
+      {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@earendil-works/pi-coding-agent",
+        "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent",
+        "removed": true
+      },
+      {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/typescript",
+        "target": "/tmp/ux02-deps/node_modules/typescript",
+        "removed": true
+      }
+    ],
+    "removed_compiler_config": "/tmp/ux02-review0038-tsconfig.json",
+    "compiler_config_absent": true,
+    "fixture_removed": true,
+    "termscope_exit_code": 0,
+    "helpers": {
+      "standards": {
+        "pane": "w7N:p2",
+        "status": "done",
+        "pane_close": "ok"
+      },
+      "spec": {
+        "pane": "w7N:p3",
+        "status": "done",
+        "pane_close": "ok"
+      }
+    },
+    "external_dependency_cache_retained": "/tmp/ux02-deps",
+    "source_edits": false,
+    "tracker_edits": false,
+    "no_extra_sessions": true
+  },
+  "limitations": [
+    "Skills disabled: real action dispatch was not executed; suite validates canonical targets.",
+    "First fixture used Children rather than Tickets heading; corrected before substantive runtime scenario. Initial unreadable-state capture is retained in ledger.",
+    "First keyboard probe used unsupported S-TAB and did not reach ancestor; confirmed raw reverse-focus capture supersedes it.",
+    "First home mutation removed ticket before slower mq membership update, causing transient ENOENT refresh failure. Staged replacement plus deletion settled successfully; preliminary capture remains.",
+    "Prior colour/monochrome size matrix inspected separately; current runtime uses colour only.",
+    "close protocol request met EOF because Pi had already exited on Ctrl+C; process wait confirms exit."
+  ],
+  "summary": "Fresh independent frozen review passed both axes. All seven prior blockers resolved; one optional low Standards advisory remains. Fresh complete affected suite and scoped compiler pass. No source fixes, tracker changes or extra sessions.",
+  "next_action": "Parent owns helper completion slots 0036/0037, main completion 0039, tracker/projections and already-approved finish. No further fix/review session authorized by this review-only renewal.",
+  "completion_marker": "WORKTREE_REVIEW_DONE"
+}

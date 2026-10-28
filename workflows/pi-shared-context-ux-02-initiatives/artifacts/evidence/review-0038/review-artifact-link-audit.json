@@ -1,0 +1,232 @@
+{
+  "mq_validation_errors": [],
+  "full_axis_reports_preserved": true,
+  "links": [
+    {
+      "url": "../../../../tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "exists": true
+    },
+    {
+      "url": "../../../../tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+      "exists": true
+    },
+    {
+      "url": "#scope",
+      "kind": "heading",
+      "present": true
+    },
+    {
+      "url": "#standards",
+      "kind": "heading",
+      "present": true
+    },
+    {
+      "url": "#spec",
+      "kind": "heading",
+      "present": true
+    },
+    {
+      "url": "#previous-blockers",
+      "kind": "heading",
+      "present": true
+    },
+    {
+      "url": "#validation",
+      "kind": "heading",
+      "present": true
+    },
+    {
+      "url": "#accounting",
+      "kind": "heading",
+      "present": true
+    },
+    {
+      "url": "#cleanup-and-next-step",
+      "kind": "heading",
+      "present": true
+    },
+    {
+      "url": "../../events/standards-result-0034.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/events/standards-result-0034.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/standards-observations.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/standards-observations.json",
+      "exists": true
+    },
+    {
+      "url": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts#L627",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "exists": true
+    },
+    {
+      "url": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts#L717",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "exists": true
+    },
+    {
+      "url": "../../events/spec-result-0035.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/events/spec-result-0035.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/spec-03-observations.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/spec-03-observations.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-active-reparent-empty-parent-80x24.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-active-reparent-empty-parent-80x24.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-empty-parent-no-actions-80x24.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-empty-parent-no-actions-80x24.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-B1-queue-before-alpha-removal-80x24.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-B1-queue-before-alpha-removal-80x24.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-B1-queue-after-alpha-removal-80x24.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-B1-queue-after-alpha-removal-80x24.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-selected-beta-resize-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-selected-beta-resize-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-long-phase-page0-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-long-phase-page0-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-long-phase-page1-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-long-phase-page1-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-colour-escape-return-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-colour-escape-return-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-colour-keyboard-return-confirmed-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-colour-keyboard-return-confirmed-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-colour-mouse-return-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-colour-mouse-return-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-colour-overview-saved-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-colour-overview-saved-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-unrelated-B1-actions-before-120x40.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-unrelated-B1-actions-before-120x40.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-unrelated-B1-actions-after-120x40.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-unrelated-B1-actions-after-120x40.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-home-actions-before-settled-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-home-actions-before-settled-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/actual-home-actions-after-settled-40x12.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/actual-home-actions-after-settled-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/focused-tests.txt",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/focused-tests.txt",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/scoped-typescript.txt",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/scoped-typescript.txt",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/scoped-tsconfig.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/scoped-tsconfig.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/validation.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/runtime-observations.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/runtime-observations.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/pi-runtime-complete-ledger.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/pi-runtime-complete-ledger.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/runtime-fixture-inputs.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/runtime-fixture-inputs.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/prior-evidence-inspected.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/prior-evidence-inspected.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0029/report/index.html",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/report/index.html",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/standards-full-session-accounting.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/standards-full-session-accounting.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/spec-full-session-accounting.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/spec-full-session-accounting.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/main-accounting-checkpoint.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/main-accounting-checkpoint.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/axis-launch-audit.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/axis-launch-audit.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/cleanup.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/cleanup.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0038/source-audit.json",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/source-audit.json",
+      "exists": true
+    }
+  ],
+  "bundle_check": "Not applicable: single standalone Report, not an OKF bundle."
+}

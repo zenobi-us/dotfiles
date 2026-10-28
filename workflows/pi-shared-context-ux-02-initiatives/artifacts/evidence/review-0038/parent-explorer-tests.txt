@@ -1,0 +1,24 @@
+bun test v1.4.3 (c6da4a4d3)
+
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts:
+(pass) normal entry separates initiative fields and opens canonical children and existing detail [16.33ms]
+(pass) zero-item Ungrouped remains visible and exposes no initiative planning controls [2.65ms]
+(pass) Esc, keyboard ancestors and mouse ancestors preserve child selection and queue access [7.75ms]
+(pass) compact Events returns restore the paged overview through Esc and keyboard or mouse ancestors [6.27ms]
+(pass) removing an inactive remembered child preserves unrelated queue and home action contexts [22.18ms]
+(pass) removing the active queue action target closes its menu and selects a surviving canonical ticket [3.23ms]
+(pass) refresh preserves canonical selection and explains removal while stale content disables transitions [4.58ms]
+(pass) membership changes close child readers and actions before selecting a nearby child or empty parent [30.64ms]
+(pass) removing a remembered initiative preserves an unrelated queue selection and viewport [0.87ms]
+(pass) layout changes reveal the selected identity while unchanged renders retain deliberate paging [1.60ms]
+(pass) resizing a child list keeps its selected canonical item visible [0.87ms]
+(pass) narrow paging exposes the full recorded phase and its distinct unique Items value [1.18ms]
+(pass) long Unicode titles wrap without terminal controls at all required dimensions [8.69ms]
+(pass) invalid events remain inspectable and source evidence remains reachable [4.35ms]
+(pass) ticket focus includes transitive dependents and direct blockers without visiting unrelated branches [0.22ms]
+
+ 15 pass
+ 0 fail
+ 1283 expect() calls
+Ran 15 tests across 1 file. [147.00ms]

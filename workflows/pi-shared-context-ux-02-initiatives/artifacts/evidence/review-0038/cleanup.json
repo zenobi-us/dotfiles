@@ -1,0 +1,49 @@
+{
+  "removed_dependency_links": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@crustjs/core",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/core",
+      "removed": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@crustjs/plugins",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins",
+      "removed": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@earendil-works/pi-tui",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui",
+      "removed": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@earendil-works/pi-coding-agent",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent",
+      "removed": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/typescript",
+      "target": "/tmp/ux02-deps/node_modules/typescript",
+      "removed": true
+    }
+  ],
+  "removed_compiler_config": "/tmp/ux02-review0038-tsconfig.json",
+  "compiler_config_absent": true,
+  "fixture_removed": true,
+  "termscope_exit_code": 0,
+  "helpers": {
+    "standards": {
+      "pane": "w7N:p2",
+      "status": "done",
+      "pane_close": "ok"
+    },
+    "spec": {
+      "pane": "w7N:p3",
+      "status": "done",
+      "pane_close": "ok"
+    }
+  },
+  "external_dependency_cache_retained": "/tmp/ux02-deps",
+  "source_edits": false,
+  "tracker_edits": false,
+  "no_extra_sessions": true
+}

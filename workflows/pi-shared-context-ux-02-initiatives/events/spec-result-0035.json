@@ -1,0 +1,322 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "spec-result-0035",
+  "workflow_id": "pi-shared-context-ux-02-initiatives",
+  "phase": "review-spec",
+  "event": "phase-result",
+  "attempt": 3,
+  "parent_receipt": "spec-start-0033",
+  "status": "completed",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+  "created_at": "2026-10-28T01:51:10.669491+00:00",
+  "muxer": "herdr",
+  "pane_id": "w7N:p3",
+  "agent": "omp",
+  "agent_name": "ux02-spec-03",
+  "session_id": "01a1802a-f76c-72a2-aec7-9ff39a398c0f",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-02-initiatives",
+    "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0047.yaml",
+  "agent_session_token_limit": 250000,
+  "cycle_number": 13,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/spec-start-0033.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-start-0031.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0047.yaml"
+    },
+    {
+      "kind": "policy",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0044.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-0029.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-complete-0030.json"
+    },
+    {
+      "kind": "historical_review",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0014.md"
+    },
+    {
+      "kind": "historical_review",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0026.md"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "adr_index",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "tracker_config",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/focused-tests.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/scoped-typescript.txt"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/spec-result-0035.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/spec-03-observations.json"
+    }
+  ],
+  "native_goal_budget_ceiling": 241808,
+  "completion_margin_tokens": 8192,
+  "approved_ticket_cycle_limit": 13,
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T01-41-01-932Z_01a1802a-f76c-72a2-aec7-9ff39a398c0f.jsonl",
+  "session_identity_source": "herdr agent get ux02-spec-03 -> result.agent.agent_session.value",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038"
+  },
+  "axis": "Spec",
+  "verdict": "SUCCESS",
+  "findings": [],
+  "report": "SUCCESS — Spec axis only. No blocking specification gap or scope creep remains in the frozen ten-file diff. Actual Pi restored the paged compact overview through Events Esc, keyboard ticket-ancestor activation, and mouse activation. Inactive remembered-child deletion preserved unrelated queue and home action menus on their canonical targets. Active removal and reparenting closed stale action contexts. Unrelated initiative removal preserved the queue selection. Resize and preceding-row reflow kept the selected initiative visible. Narrow paging exposed the full recorded phase and a separate Items value. Ungrouped remained visible at zero and exposed no planning menu. Initial unreadable state differed from refresh failure; refresh failure retained readable rows and disabled worktree transitions. Files remained independent and restored Tracker state. Existing dispatch, copy, workflow authority, and project-cwd contracts have no unrequested changes. The six prior Spec blockers are independently verified resolved. VAL-001 has a readable passing historical suite log; the main reviewer owns current suite/type validation. Mixed items, description readers, event presentation, and queue redesign remain outside this slice. NO ADR applies because the canonical ADR index records no decision for this area. LSP initialization failed because TypeScript was unavailable. No tests, compiler, formatter, source edits, or helper sessions ran in this axis.",
+  "report_word_count": 200,
+  "adr": {
+    "ref": "NO ADR",
+    "reason": "Canonical docs/adr/index.md contains no recorded decision for this area; CONTEXT.md is absent."
+  },
+  "scope": {
+    "ticket": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+    "parent_spec": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+    "diff_command": "git diff master...66c988a405aa7b8b95cd2cb6d207f8147036e708",
+    "incremental_command": "git diff d1ad6dbabb7131de2910334f2b750f8586a0e4ca...66c988a405aa7b8b95cd2cb6d207f8147036e708",
+    "commit_list": [
+      "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+      "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+      "a3c89c7b",
+      "d360076d",
+      "7c647581"
+    ],
+    "files_reviewed": 10,
+    "out_of_scope": [
+      "mixed-item expansion",
+      "description readers",
+      "event presentation redesign",
+      "queue redesign",
+      "canonical unrelated user edits"
+    ]
+  },
+  "context_routes": {
+    "mode": "repository",
+    "alignment_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "alignment": "repository",
+    "tickets": "repository",
+    "initiatives": "repository",
+    "workflows": "repository",
+    "evidence": "workflows->repository",
+    "sources": "alignment->repository",
+    "backend": "local-markdown"
+  },
+  "native_goal_accounting": {
+    "status": "active",
+    "tokens_used": 179320,
+    "token_budget": 241808,
+    "tokens_remaining": 62488,
+    "observed_via": "goal.get",
+    "initial_tokens_used": 0,
+    "initial_token_budget": 241808,
+    "completion_margin_tokens": 8192,
+    "reset_or_replacement": false,
+    "full_session_metric": "input + output + cacheWrite; cacheRead excluded",
+    "final_full_session_audit_owner": "parent; includes final response"
+  },
+  "prior_findings": [
+    {
+      "id": "UX02-SPEC-001",
+      "status": "verified_resolved",
+      "evidence": [
+        "settled-active-a2-before-reparent120",
+        "settled-active-a2-reparented-empty-alpha120"
+      ],
+      "source": "explorer.ts:193-224"
+    },
+    {
+      "id": "UX02-SPEC-002",
+      "status": "verified_resolved",
+      "evidence": [
+        "settled-queue-before-unrelated-initiative-removal120",
+        "settled-queue-after-unrelated-initiative-removal120"
+      ],
+      "source": "explorer.ts:193-202"
+    },
+    {
+      "id": "UX02-SPEC-003",
+      "status": "verified_resolved",
+      "evidence": [
+        "selected-beta-wide120",
+        "selected-beta-resized40",
+        "selected-beta-after-preceding-reflow40"
+      ],
+      "source": "explorer.ts:810-832"
+    },
+    {
+      "id": "UX02-SPEC-004",
+      "status": "verified_resolved",
+      "evidence": [
+        "long-phase-page3-40",
+        "long-phase-page4-40"
+      ],
+      "source": "explorer.ts:869-875"
+    },
+    {
+      "id": "UX02-SPEC-005",
+      "status": "verified_resolved",
+      "evidence": [
+        "overview-paged40",
+        "events-escape-return40",
+        "events-keyboard-return40",
+        "events-mouse-return40"
+      ],
+      "source": "explorer.ts:411-416,463-475"
+    },
+    {
+      "id": "UX02-SPEC-006",
+      "status": "verified_resolved",
+      "evidence": [
+        "settled-queue-b1-actions-before80",
+        "settled-queue-b1-actions-after-inactive-delete80",
+        "home-beta-actions-before120",
+        "home-beta-actions-after-inactive-delete120"
+      ],
+      "source": "explorer.ts:203-224"
+    },
+    {
+      "id": "VAL-001",
+      "status": "historical_pass_log_inspected_current_run_owned_by_main",
+      "log_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/focused-tests.txt",
+      "observation": "Actual log ends 136 pass, 0 fail, 1871 expect() calls, 11 files. No suite/compiler run by this axis. Main must record the one fresh affected suite/type run after both axes finish."
+    }
+  ],
+  "validation": [
+    {
+      "kind": "frozen identity",
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain=v1; git diff --quiet; git diff --cached --quiet",
+      "result": "Exact frozen commit and tree before/after; clean source; both final diff checks exited 0."
+    },
+    {
+      "kind": "independent actual Pi",
+      "command": [
+        "termscope",
+        "session",
+        "--cols",
+        "40",
+        "--rows",
+        "12",
+        "--",
+        "pi",
+        "--offline",
+        "--no-session",
+        "--no-extensions",
+        "--no-mcp",
+        "--no-skills",
+        "--no-prompt-templates",
+        "--no-context-files",
+        "--no-tools",
+        "--no-themes",
+        "--use-theme",
+        "dark",
+        "-e",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+      ],
+      "cwd": "/tmp/ux02-spec-03-runtime-j14bcwou",
+      "result": "54 terminal observations; 147 request/response entries; all six prior Spec blocker paths exercised with settled observations. Pi exit 0. Temporary repository removed.",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/spec-03-observations.json"
+    },
+    {
+      "kind": "historical dependency validation evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/focused-tests.txt",
+      "result": "Read final log: 136 pass, 0 fail, 1871 expectations, 11 files. Not a fresh axis run."
+    },
+    {
+      "kind": "fresh suite/type validation",
+      "status": "owned_by_main_after_both_axes",
+      "result": "Not run by this independent axis; not an aggregate or merge approval."
+    },
+    {
+      "kind": "LSP",
+      "command": "xd://lsp references GraphExplorer explorer.ts:54",
+      "result": "Initialization failed: Could not find a valid TypeScript installation. Direct source review and actual modal input/render used instead."
+    }
+  ],
+  "cleanup": {
+    "termscope_exit_code": 0,
+    "close_result": "Pi exited after Ctrl+C; subsequent close request found closed stdin.",
+    "fixture_removed": true,
+    "source_probe_files_created": false,
+    "dependency_links_created": false,
+    "helper_sessions_started": false,
+    "service_or_model_calls": false
+  },
+  "source_clean": true,
+  "source_changed": false,
+  "tracker_changed": false,
+  "current_standards_or_main_body_read": false,
+  "limitations": [
+    "No suite, build, compiler or formatter ran in this axis. Main owns the single fresh suite/type run.",
+    "LSP references initialization failed: no valid TypeScript installation. Used direct source and public-modal observations; no symbol-edit operation attempted.",
+    "Runtime skills disabled; no model/service call, action dispatch or fresh-chat execution. Canonical targets observed in modal status; existing action/copy execution inspected but not re-executed.",
+    "Own runtime used dark theme. Monochrome meaning assessed from text labels/markers and theme-token source; no separate monochrome terminal session.",
+    "Exploratory captures with queue-b1 or watcher-root labels before the settled prefix did not reach the intended inactive-deletion setup. Fast adjacent Escape keys coalesced. They show active deletion, not failure of inactive deletion.",
+    "Exploratory active-a2-before-reparent120 and subsequent unprefixed reparent/removal captures observed temporary multi-file membership inconsistency. Only settled-prefixed captures after full watcher reconciliation establish those paths.",
+    "An unsupported S-TAB request returned invalid_key; raw ESC[Z subsequently exercised Shift+Tab. Pi exited cleanly before final close request; closed stdin is not a runtime failure."
+  ],
+  "completion_marker": "AXIS_REVIEW_DONE"
+}

@@ -1,0 +1,44 @@
+{
+  "docs/agents/issue-tracker.md": {
+    "frontmatter": {
+      "backend": "local-markdown",
+      "type": "Configuration"
+    },
+    "body": "# Issue tracker\n\nReview-only disposable tracker."
+  },
+  "tracker/initiatives/beta/index.md": {
+    "frontmatter": {
+      "id": "beta",
+      "schema": "tracker-initiative/v1",
+      "title": "Beta review fixture",
+      "triage": "ready-for-agent",
+      "type": "enhancement"
+    },
+    "body": "## Problem Statement\n\nLabelled review fixture beta summary.\n\n## Tickets\n\n- [B1](../../tickets/B1.md)"
+  },
+  "tracker/tickets/A1.md": {
+    "frontmatter": {
+      "blocked_by": [],
+      "id": "A1",
+      "schema": "tracker-ticket/v1",
+      "title": "A1 review fixture long readable ticket title",
+      "triage": "ready-for-agent",
+      "type": "enhancement",
+      "work_status": "unclaimed"
+    },
+    "body": "## What to build\n\nDisposable reparented record."
+  },
+  "tracker/tickets/B1.md": {
+    "frontmatter": {
+      "blocked_by": [],
+      "id": "B1",
+      "parent": "beta",
+      "schema": "tracker-ticket/v1",
+      "title": "B1 review fixture long readable ticket title",
+      "triage": "ready-for-agent",
+      "type": "enhancement",
+      "work_status": "unclaimed"
+    },
+    "body": "## What to build\n\nReview-only disposable fixture. No action dispatch.\n\nParagraph 0: unique saved overview reading context.\n\nParagraph 1: unique saved overview reading context.\n\nParagraph 2: unique saved overview reading context.\n\nParagraph 3: unique saved overview reading context.\n\nParagraph 4: unique saved overview reading context.\n\nParagraph 5: unique saved overview reading context.\n\nParagraph 6: unique saved overview reading context.\n\nParagraph 7: unique saved overview reading context.\n\nParagraph 8: unique saved overview reading context.\n\nParagraph 9: unique saved overview reading context.\n\nParagraph 10: unique saved overview reading context.\n\nParagraph 11: unique saved overview reading context.\n\nParagraph 12: unique saved overview reading context.\n\nParagraph 13: unique saved overview reading context.\n\nParagraph 14: unique saved overview reading context.\n\nParagraph 15: unique saved overview reading context.\n\nParagraph 16: unique saved overview reading context.\n\nParagraph 17: unique saved overview reading context.\n\nParagraph 18: unique saved overview reading context.\n\nParagraph 19: unique saved overview reading context.\n\nParagraph 20: unique saved overview reading context.\n\nParagraph 21: unique saved overview reading context.\n\nParagraph 22: unique saved overview reading context.\n\nParagraph 23: unique saved overview reading context.\n\nParagraph 24: unique saved overview reading context.\n\nParagraph 25: unique saved overview reading context.\n\nParagraph 26: unique saved overview reading context.\n\nParagraph 27: unique saved overview reading context.\n\nParagraph 28: unique saved overview reading context.\n\nParagraph 29: unique saved overview reading context."
+  }
+}

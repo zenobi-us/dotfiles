@@ -1,0 +1,24 @@
+[
+  {
+    "kind": "focused-tests",
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "started_at": "2026-10-28T01:52:33.627382+00:00",
+    "ended_at": "2026-10-28T01:52:42.082822+00:00",
+    "exit_code": 0,
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/focused-tests.txt",
+    "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+    "stderr": "ymlink escapes before copying files [10.04ms]\n(pass) collection selectors expose typed CLI records without changing machine configuration [121.69ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/api.test.ts:\n(pass) repository setup reopens locally, preserves authored files, and never creates shared storage [32.23ms]\n(pass) shared setup reopens without changing authored repository files [30.87ms]\n(pass) repository tracker configuration rejects shared setup before writing a shared policy [15.41ms]\n(pass) hosted-shared setup preserves external tickets after explicit shared initialization [17.22ms]\n(pass) setup refuses opposite configured storage before creating files [58.90ms]\n(pass) same-store mixed setup preserves routes and shared policies take precedence [46.59ms]\n(pass) setup requires an explicit store and validates presets without writes [86.78ms]\n(pass) repository registration keeps an external ticket adapter [15.08ms]\n(pass) legacy repository routes reject shared setup without rewriting the policy [14.53ms]\n(pass) repository-aligned mixed setup preserves shared record routes [32.77ms]\n(pass) shared initialization preserves mixed routes from a repository manifest [19.30ms]\n(pass) layout-only repository context rejects shared setup without changing routing [16.23ms]\n(pass) resolver errors stop setup before repository files are created [12.64ms]\n\n 136 pass\n 0 fail\n 1871 expect() calls\nRan 136 tests across 11 files. [8.09s]\n"
+  },
+  {
+    "kind": "scoped-typescript",
+    "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --project /tmp/ux02-review0038-tsconfig.json --pretty false",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "started_at": "2026-10-28T01:52:33.627560+00:00",
+    "ended_at": "2026-10-28T01:52:35.680260+00:00",
+    "exit_code": 0,
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/scoped-typescript.txt",
+    "stdout": "",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  }
+]

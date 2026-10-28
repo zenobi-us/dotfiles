@@ -1,0 +1,110 @@
+[
+  {
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/colour-matrix-children-40x12",
+    "native_keys": [
+      "cols",
+      "rows",
+      "cursor",
+      "cursor_visible",
+      "cursor_style",
+      "screen",
+      "title",
+      "lines"
+    ],
+    "spans_keys": [
+      "format",
+      "content"
+    ],
+    "interpretation": "Inspected prior native terminal text/spans and reconstructed PNG; not a current runtime capture."
+  },
+  {
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/colour-matrix-children-80x24",
+    "native_keys": [
+      "cols",
+      "rows",
+      "cursor",
+      "cursor_visible",
+      "cursor_style",
+      "screen",
+      "title",
+      "lines"
+    ],
+    "spans_keys": [
+      "format",
+      "content"
+    ],
+    "interpretation": "Inspected prior native terminal text/spans and reconstructed PNG; not a current runtime capture."
+  },
+  {
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/colour-matrix-children-120x40",
+    "native_keys": [
+      "cols",
+      "rows",
+      "cursor",
+      "cursor_visible",
+      "cursor_style",
+      "screen",
+      "title",
+      "lines"
+    ],
+    "spans_keys": [
+      "format",
+      "content"
+    ],
+    "interpretation": "Inspected prior native terminal text/spans and reconstructed PNG; not a current runtime capture."
+  },
+  {
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/monochrome-matrix-children-40x12",
+    "native_keys": [
+      "cols",
+      "rows",
+      "cursor",
+      "cursor_visible",
+      "cursor_style",
+      "screen",
+      "title",
+      "lines"
+    ],
+    "spans_keys": [
+      "format",
+      "content"
+    ],
+    "interpretation": "Inspected prior native terminal text/spans and reconstructed PNG; not a current runtime capture."
+  },
+  {
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/monochrome-matrix-children-80x24",
+    "native_keys": [
+      "cols",
+      "rows",
+      "cursor",
+      "cursor_visible",
+      "cursor_style",
+      "screen",
+      "title",
+      "lines"
+    ],
+    "spans_keys": [
+      "format",
+      "content"
+    ],
+    "interpretation": "Inspected prior native terminal text/spans and reconstructed PNG; not a current runtime capture."
+  },
+  {
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029/monochrome-matrix-children-120x40",
+    "native_keys": [
+      "cols",
+      "rows",
+      "cursor",
+      "cursor_visible",
+      "cursor_style",
+      "screen",
+      "title",
+      "lines"
+    ],
+    "spans_keys": [
+      "format",
+      "content"
+    ],
+    "interpretation": "Inspected prior native terminal text/spans and reconstructed PNG; not a current runtime capture."
+  }
+]

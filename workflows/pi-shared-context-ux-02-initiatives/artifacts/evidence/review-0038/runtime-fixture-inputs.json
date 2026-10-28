@@ -1,0 +1,66 @@
+{
+  "label": "Disposable actual Pi review fixture; no original repository records mutated.",
+  "repository_path": "/tmp/ux02-review0038-fixture-5vphqcvv",
+  "origin": "https://example.invalid/ux02-review0038-fixture.git",
+  "routes": "schema = 2\n\n[records.alignment]\nadapter = \"markdown\"\nstore = \"repository\"\n\n[records.tickets]\nadapter = \"local-markdown\"\nstore = \"repository\"\n\n[records.initiatives]\nadapter = \"markdown\"\nstore = \"repository\"\n\n[records.workflows]\nadapter = \"files\"\nstore = \"repository\"\n\n[records.evidence]\nadapter = \"files\"\nstore = \"inherit:workflows\"\n\n[records.sources]\nadapter = \"files\"\nstore = \"inherit:alignment\"\n",
+  "initial_membership": {
+    "alpha": [
+      "A1",
+      "A2"
+    ],
+    "beta": [
+      "B1"
+    ],
+    "Ungrouped": []
+  },
+  "ticket_state": "unclaimed",
+  "ticket_type": "enhancement",
+  "ticket_schema": "tracker-ticket/v1",
+  "initiative_schema": "tracker-initiative/v1",
+  "alpha_phase": "awaiting-maintainer-review-and-recorded-confirmation",
+  "mutation_sequence": [
+    "remove remembered A2 while B1 queue actions selected; Alpha count 2 -> 1",
+    "recreate A2 then remove while beta home actions selected; first noncoherent mutation exposed safe refresh error",
+    "recreate A2; staged coherent alpha membership replacement and ticket deletion while beta actions selected, count 2 -> 1",
+    "reparent active A1 to Ungrouped with staged ticket and initiative replacements; empty alpha closes actions",
+    "delete unrelated empty alpha while B1 queue selected"
+  ],
+  "input_ledger": "pi-runtime-complete-ledger.json",
+  "captures": [
+    "actual-colour-root-40x12",
+    "actual-colour-children-40x12",
+    "actual-colour-overview-first-40x12",
+    "actual-colour-overview-saved-40x12",
+    "actual-colour-events-40x12",
+    "actual-colour-escape-return-40x12",
+    "actual-colour-keyboard-return-40x12",
+    "actual-colour-focused-ticket-ancestor-40x12",
+    "actual-colour-keyboard-return-confirmed-40x12",
+    "actual-colour-mouse-return-40x12",
+    "actual-remembered-A2-overview-120x40",
+    "actual-unrelated-B1-actions-before-120x40",
+    "actual-unrelated-B1-actions-after-120x40",
+    "actual-alpha-count-after-deletion-120x40",
+    "actual-home-remembered-A2-120x40",
+    "actual-unrelated-beta-actions-before-120x40",
+    "actual-unrelated-beta-actions-after-120x40",
+    "actual-home-alpha-count-after-120x40",
+    "actual-selected-beta-resize-40x12",
+    "actual-long-phase-page0-40x12",
+    "actual-long-phase-page1-40x12",
+    "actual-long-phase-page2-40x12",
+    "actual-home-remembered-A2-settled-120x40",
+    "actual-home-actions-before-settled-40x12",
+    "actual-home-actions-after-settled-40x12",
+    "actual-count-watcher-proof-80x24",
+    "actual-children-80x24",
+    "actual-overview-80x24",
+    "actual-independent-files-80x24",
+    "actual-files-return-overview-80x24",
+    "actual-active-A1-actions-before-reparent-80x24",
+    "actual-active-reparent-empty-parent-80x24",
+    "actual-empty-parent-no-actions-80x24",
+    "actual-B1-queue-before-alpha-removal-80x24",
+    "actual-B1-queue-after-alpha-removal-80x24"
+  ]
+}

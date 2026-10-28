@@ -1,0 +1,12 @@
+{
+  "path": "/tmp/ux02-review0038-fixture-5vphqcvv",
+  "label": "review-only disposable store",
+  "records": [
+    "alpha",
+    "beta",
+    "A1",
+    "A2",
+    "B1"
+  ],
+  "no_dispatch": true
+}

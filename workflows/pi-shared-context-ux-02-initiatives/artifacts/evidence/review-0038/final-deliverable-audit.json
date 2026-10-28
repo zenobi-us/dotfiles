@@ -1,0 +1,179 @@
+{
+  "created_at": "2026-10-28T01:56:38.821763+00:00",
+  "receipt_envelope_complete": true,
+  "receipt_verdict": "SUCCESS",
+  "review_artifact": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md",
+  "mq_report_validation_errors": [],
+  "axis_reports_preserved_verbatim": true,
+  "prior_7_blockers_resolved": true,
+  "all_receipt_refs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-complete-0030.json",
+      "exists": true
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0029.md",
+      "exists": true
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0045.yaml",
+      "exists": true
+    },
+    {
+      "kind": "policy",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0044.yaml",
+      "exists": true
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-start-0031.json",
+      "exists": true
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-0029.json",
+      "exists": true
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "exists": true
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+      "exists": true
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/standards-result-0034.json",
+      "exists": true
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/spec-result-0035.json",
+      "exists": true
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md",
+      "exists": true
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/domain.md",
+      "exists": true
+    },
+    {
+      "kind": "context",
+      "ref": "docs/adr/index.md",
+      "exists": true
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/issue-tracker.md",
+      "exists": true
+    },
+    {
+      "kind": "historical-review",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0014.json",
+      "exists": true
+    },
+    {
+      "kind": "historical-review",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0026.json",
+      "exists": true
+    },
+    {
+      "kind": "prior-evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0029",
+      "exists": true
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0038.json",
+      "exists": true
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0038.md",
+      "exists": true
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038",
+      "exists": true
+    }
+  ],
+  "all_artifact_links_valid": true,
+  "test_scope": "136 tests; 11 files; 1871 expectations; no omitted files; one run after axes",
+  "scoped_typescript_exit": 0,
+  "actual_runtime_verified": {
+    "runtime": "Actual Pi v1.1.0 with exact worktree extension, real loaders and filesystem watcher; termscope protocol.",
+    "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+    "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+    "no_model_or_service_requests": true,
+    "no_action_dispatch": true,
+    "size_scope": [
+      "40x12",
+      "80x24",
+      "120x40"
+    ],
+    "overview_return": {
+      "escape": true,
+      "keyboard": true,
+      "mouse": true
+    },
+    "inactive_deletion": {
+      "queue_B1_menu_preserved": true,
+      "home_beta_menu_preserved": true,
+      "watcher_delivery": "Alpha Items count changed 2 to 1; settled captures retained."
+    },
+    "active_reparent": "A1 moved to Ungrouped; empty alpha explanation replaced action menu; a did not open an empty menu.",
+    "unrelated_initiative_removal": true,
+    "Files_overview_retained": true,
+    "narrow_phase_count": "Full long phase and Items: 1 visible across pages; selected Beta remained visible after resize.",
+    "limitations": [
+      "Skills disabled: real action dispatch was not executed; suite validates canonical targets.",
+      "First fixture used Children rather than Tickets heading; corrected before substantive runtime scenario. Initial unreadable-state capture is retained in ledger.",
+      "First keyboard probe used unsupported S-TAB and did not reach ancestor; confirmed raw reverse-focus capture supersedes it.",
+      "First home mutation removed ticket before slower mq membership update, causing transient ENOENT refresh failure. Staged replacement plus deletion settled successfully; preliminary capture remains.",
+      "Prior colour/monochrome size matrix inspected separately; current runtime uses colour only.",
+      "close protocol request met EOF because Pi had already exited on Ctrl+C; process wait confirms exit."
+    ],
+    "termscope_exit_code": 0
+  },
+  "source_identity_audit_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0038/source-audit.json",
+  "source_clean_exact": true,
+  "cleanup": {
+    "fixture_absent": true,
+    "compiler_config_absent": true,
+    "all_own_links_removed": true,
+    "own_mq_lock_removed": true,
+    "both_helper_panes_closed": true,
+    "main_pane_retained": true
+  },
+  "session_limits": {
+    "retained_consumption": 10,
+    "main_cycle": 11,
+    "standards_cycle": 12,
+    "spec_cycle": 13,
+    "total_limit": 13,
+    "extra_sessions": 0,
+    "standards_provider_work": 152966,
+    "spec_provider_work": 195901,
+    "main_checkpoint_work": 191957,
+    "main_goal_id": "15b757e5043cdca1",
+    "main_final_audit_owner": "Parent; include final response."
+  },
+  "parent_owned_slots_untouched": [
+    "standards-complete-0036",
+    "spec-complete-0037",
+    "review-complete-0039"
+  ],
+  "no_source_fixes_or_tracker_projection_manifest_changes": true,
+  "goal_complete_must_be_last_tool": true
+}

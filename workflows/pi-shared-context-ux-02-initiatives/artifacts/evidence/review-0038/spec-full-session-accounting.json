@@ -1,0 +1,51 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T01-41-01-932Z_01a1802a-f76c-72a2-aec7-9ff39a398c0f.jsonl",
+  "session_id": "01a1802a-f76c-72a2-aec7-9ff39a398c0f",
+  "goal_id": "15b75819cb5fd813",
+  "native_bounded_at_zero": true,
+  "provider_usage": {
+    "input": 176908,
+    "output": 18993,
+    "cacheWrite": 0,
+    "cacheRead": 5522688,
+    "work_tokens": 195901
+  },
+  "native_final": {
+    "id": "15b75819cb5fd813",
+    "objective": "Read /tmp/ux02-spec-03.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive work. Do not interview, create another goal or reset usage.",
+    "status": "complete",
+    "tokenBudget": 241808,
+    "tokensUsed": 195498,
+    "timeUsedSeconds": 650,
+    "createdAt": 1793151670061,
+    "updatedAt": 1793152320240
+  },
+  "native_completion_observed": true,
+  "last_tool_call": {
+    "type": "toolCall",
+    "id": "call_4fb14d7a138e4e219fd8c071207840ca|fc_0b83e41fbe296a56016ae1553fe68c8191a18c3447548fdef0",
+    "name": "goal",
+    "arguments": {
+      "op": "complete",
+      "objective": null,
+      "token_budget": null
+    }
+  },
+  "assistant_message_count": 50,
+  "final_response_included": true,
+  "first_goal_get": {
+    "op": "get",
+    "goal": {
+      "id": "15b75819cb5fd813",
+      "objective": "Read /tmp/ux02-spec-03.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive work. Do not interview, create another goal or reset usage.",
+      "status": "active",
+      "tokenBudget": 241808,
+      "tokensUsed": 0,
+      "timeUsedSeconds": 0,
+      "createdAt": 1793151670061,
+      "updatedAt": 1793151670370
+    },
+    "remainingTokens": 241808,
+    "completionBudgetReport": null
+  }
+}

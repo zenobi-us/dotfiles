@@ -1,0 +1,48 @@
+{
+  "standards": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T01-41-01-934Z_01a1802a-f76e-72e1-8993-5c797fc5a9a9.jsonl",
+    "bounded_at_zero": true,
+    "bounded_mode_change": {
+      "type": "mode_change",
+      "id": "d6104fe6",
+      "parentId": "0436082e",
+      "timestamp": "2026-10-28T01:41:10.370Z",
+      "mode": "goal",
+      "data": {
+        "goal": {
+          "id": "15b75819cb5daa27",
+          "objective": "Read /tmp/ux02-standards-03.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive work. Do not interview, create another goal or reset usage.",
+          "status": "active",
+          "tokenBudget": 241808,
+          "tokensUsed": 0,
+          "timeUsedSeconds": 0,
+          "createdAt": 1793151670061,
+          "updatedAt": 1793151670370
+        }
+      }
+    }
+  },
+  "spec": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T01-41-01-932Z_01a1802a-f76c-72a2-aec7-9ff39a398c0f.jsonl",
+    "bounded_at_zero": true,
+    "bounded_mode_change": {
+      "type": "mode_change",
+      "id": "67c52593",
+      "parentId": "5a5f40fc",
+      "timestamp": "2026-10-28T01:41:10.371Z",
+      "mode": "goal",
+      "data": {
+        "goal": {
+          "id": "15b75819cb5fd813",
+          "objective": "Read /tmp/ux02-spec-03.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive work. Do not interview, create another goal or reset usage.",
+          "status": "active",
+          "tokenBudget": 241808,
+          "tokensUsed": 0,
+          "timeUsedSeconds": 0,
+          "createdAt": 1793151670061,
+          "updatedAt": 1793151670370
+        }
+      }
+    }
+  }
+}

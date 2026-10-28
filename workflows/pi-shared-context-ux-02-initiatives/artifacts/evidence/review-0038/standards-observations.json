@@ -1,0 +1,176 @@
+{
+  "schema": "worktree-standards-observations/v1",
+  "created_at": "2026-10-28T01:45:14.397Z",
+  "axis": "Standards",
+  "review_attempt": 3,
+  "source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
+  "reviewer": {
+    "agent_name": "ux02-standards-03",
+    "session_id": "01a1802a-f76e-72e1-8993-5c797fc5a9a9",
+    "pane_id": "w7N:p2"
+  },
+  "scope": {
+    "diff_command": "git diff master...66c988a405aa7b8b95cd2cb6d207f8147036e708",
+    "source_commits": [
+      "7c647581807920320efa191f946b8ce9183558b7",
+      "d360076d",
+      "a3c89c7b",
+      "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+      "66c988a405aa7b8b95cd2cb6d207f8147036e708"
+    ],
+    "changed_files": [
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+    ],
+    "source_scope": "All ten changed files in the complete five-commit branch diff. No source modifications. No Spec verdict."
+  },
+  "repository_rules": [
+    {
+      "ref": "AGENTS.md",
+      "rule": "Local Markdown content uses mise mq, okf import, and explicit formats.",
+      "observations": [
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts:277-284 retains mq/okf parsing at the document boundary.",
+        "Review Markdown reads used mise exec -- mq with the required import and explicit input/output formats."
+      ]
+    },
+    {
+      "ref": "AGENTS.md",
+      "rule": "Use short sentences, active voice, plain technical terms, and stable terminology.",
+      "observations": [
+        "The changed command descriptions and navigation documentation use Initiatives, Ungrouped, Items, Tracker, and Files consistently. No hard violation found."
+      ]
+    },
+    {
+      "ref": "docs/agents/domain.md",
+      "rule": "Read context and relevant architecture decisions; use resolved domain terms.",
+      "observations": [
+        "Read CONTEXT-MAP.md, docs/agents/domain.md and docs/adr/index.md from the canonical alignment root. CONTEXT.md is absent. The ADR index contains no decisions; NO ADR applies."
+      ]
+    },
+    {
+      "ref": "CONTEXT-MAP.md#ownership",
+      "rule": "Workflow events are append-only; artifacts are immutable; tracker records belong to the ticket skill.",
+      "observations": [
+        "Only this axis receipt and supporting JSON are written in the canonical repository. No tracker, manifest, projection, or source-copy workflow writes."
+      ]
+    },
+    {
+      "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md#testing-decisions",
+      "rule": "Use the complete modal, public input, visible behavior and canonical targets. Reuse loader injection and temporary stores.",
+      "observations": [
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts changed tests construct SharedContextModal and drive public keyboard/mouse input; loader refresh setup uses existing injection.",
+        "New assertions cover saved viewport return, active versus inactive removal, canonical action targets, reflow, sanitization, and empty synthetic collection behavior. Existing project fixtures continue to use temporary stores. No new navigation-only interface was introduced."
+      ]
+    }
+  ],
+  "baseline_assessment": [
+    {
+      "smell": "Mysterious Name",
+      "result": "No additional finding. Existing home/graph terminology is retained within the established explorer. New itemOrigin, queueIndex and renderedLayout names describe their state."
+    },
+    {
+      "smell": "Duplicated Code",
+      "result": "Nonblocking STD-02-J1 remains: explorer.ts:627 and :717 repeat the same summary selector. childRow() already shares ticket-row construction between queue and child lists."
+    },
+    {
+      "smell": "Feature Envy",
+      "result": "No additional finding. Modal owns workspace focus and mouse translation; explorer owns tracker navigation and rows."
+    },
+    {
+      "smell": "Data Clumps",
+      "result": "No additional finding. Navigation state remains in ExplorerNavigation; row fields and layout measurements are grouped objects."
+    },
+    {
+      "smell": "Primitive Obsession",
+      "result": "No additional finding. Screen, queue, focus and origin use finite literal unions; canonical record IDs and refs retain existing model types."
+    },
+    {
+      "smell": "Repeated Switches",
+      "result": "No new blocking finding. Screen branches update the existing controller. There is no documented requirement for a new dispatch framework or polymorphic screen hierarchy."
+    },
+    {
+      "smell": "Shotgun Surgery",
+      "result": "No additional finding. The changes stay in the existing loader/model, explorer, modal, command descriptions, corresponding tests, and user documentation."
+    },
+    {
+      "smell": "Divergent Change",
+      "result": "No additional finding. Navigation, visible tracker rows and state retention are related responsibilities in the existing explorer, not an unrelated feature."
+    },
+    {
+      "smell": "Speculative Generality",
+      "result": "No additional finding. Added optional mouse and active-focus hooks have a concrete modal/explorer consumer. No new framework or registry appears in the diff."
+    },
+    {
+      "smell": "Message Chains",
+      "result": "No additional finding. Resolver and model access follow existing boundaries; no new cross-component navigation chain warrants a helper."
+    },
+    {
+      "smell": "Middle Man",
+      "result": "No additional finding. Modal mouse forwarding translates coordinates; setActive communicates outer focus. These are concrete boundary functions, not redundant services."
+    },
+    {
+      "smell": "Refused Bequest",
+      "result": "Not applicable. The change adds no inheritance hierarchy or inherited implementation."
+    }
+  ],
+  "advisory": {
+    "id": "STD-02-J1",
+    "classification": "judgement-call",
+    "blocking": false,
+    "baseline": "Duplicated Code",
+    "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "lines": [
+      627,
+      717
+    ],
+    "quote": "body.split(/\\r?\\n/).map(line => line.trim()).find(line => line && !/^#|^\\s*[-*]\\s*\\[/.test(line))",
+    "disposition": "Optional only. One summary selector could prevent drift. No redesign or required change for approval."
+  },
+  "validation": [
+    {
+      "kind": "source-identity",
+      "command": "git rev-parse HEAD HEAD^{tree} master; git log master..66c988a405aa7b8b95cd2cb6d207f8147036e708 --oneline",
+      "result": "Exact frozen commit and tree matched. Five source commits observed. master resolved to b21d4346e94cf54fd1413569fbc70c5a151caa39."
+    },
+    {
+      "kind": "static-review",
+      "command": "git diff master...66c988a405aa7b8b95cd2cb6d207f8147036e708",
+      "result": "Reviewed all production and test hunks, and README content at current source and master through mq. No blocking Standards violation found."
+    },
+    {
+      "kind": "lsp",
+      "command": "xd://lsp symbols mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "result": "UNAVAILABLE: initialization failed because the workspace TypeScript installation could not be found. No symbol-reference claim relies on LSP. No dependencies or configuration were changed."
+    },
+    {
+      "kind": "source-preservation",
+      "command": "git rev-parse HEAD HEAD^{tree}; git symbolic-ref --short HEAD; git status --porcelain=v1; git diff --quiet; git diff --cached --quiet",
+      "result": "Exit 0. Frozen commit/tree and feature branch matched. Porcelain output was empty; staged and unstaged diffs were empty."
+    }
+  ],
+  "execution_limits": {
+    "suite_run": false,
+    "compiler_run": false,
+    "formatter_run": false,
+    "pi_runtime_run": false,
+    "reason": "Read-only Standards axis. Main reviewer owns the one combined suite/type run after both axes finish. No behavioral modification was made by this session."
+  },
+  "cleanup": {
+    "temporary_probes_created": false,
+    "temporary_resources_created": false,
+    "source_edits": false,
+    "tracker_edits": false,
+    "canonical_unrelated_changes_touched": false
+  },
+  "result": "SUCCESS",
+  "blocking_findings": []
+}

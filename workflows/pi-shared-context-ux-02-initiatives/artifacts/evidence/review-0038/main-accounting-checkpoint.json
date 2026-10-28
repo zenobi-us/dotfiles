@@ -1,0 +1,56 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T01-40-06-854Z_01a1802a-2046-727a-b7d2-77600d18fcfd.jsonl",
+  "session_id": "01a1802a-2046-727a-b7d2-77600d18fcfd",
+  "goal_id": "15b757e5043cdca1",
+  "native_bounded_at_zero": true,
+  "provider_usage": {
+    "input": 160273,
+    "output": 18628,
+    "cacheWrite": 0,
+    "cacheRead": 8605312,
+    "work_tokens": 178901
+  },
+  "native_final": {
+    "id": "15b757e5043cdca1",
+    "objective": "Read /tmp/ux02-review-03.txt and perform the already-approved fresh frozen review of66c988a4. User approved exactly3 review sessions, ticket02 total13; retained consumption10, no source fixes or extra sessions. First inspect goal.get; wait for native budget241808 before substantive review and launching exactly the two reserved axes. Do not interview, create another goal, reset usage or edit source. Complete all artifacts and cleanup before goal.complete, your last tool call.",
+    "status": "active",
+    "tokenBudget": 241808,
+    "tokensUsed": 178406,
+    "timeUsedSeconds": 775,
+    "createdAt": 1793151616016,
+    "updatedAt": 1793152391272
+  },
+  "native_completion_observed": false,
+  "last_tool_call": {
+    "type": "toolCall",
+    "id": "call_403640ffa99948b9b4df29a0ea6808b1|fc_097007bc4cc8cfb5016ae1558a85988191b3730160108b612d",
+    "name": "eval",
+    "arguments": {
+      "language": "py",
+      "code": "main_session='/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T01-40-06-854Z_01a1802a-2046-727a-b7d2-77600d18fcfd.jsonl'\nmain_account=session_audit(main_session)\nassert main_account['native_bounded_at_zero']\nmain_account['snapshot_not_final']=True;main_account['final_full_session_audit_owner']='Parent must include receipt/artifact writes, goal.complete and final response.'\nwith (E/'main-accounting-checkpoint.json').open('x') as f:json.dump(main_account,f,indent=2)\nprint(main_account['session_id'],main_account['goal_id'],main_account['provider_usage']['work_tokens']);print(spec['report'])\n",
+      "title": "Recording main pre-delivery accounting checkpoint",
+      "timeout": 30,
+      "reset": false
+    },
+    "intent": "Recording main pre-delivery accounting checkpoint"
+  },
+  "assistant_message_count": 80,
+  "final_response_included": false,
+  "first_goal_get": {
+    "op": "get",
+    "goal": {
+      "id": "15b757e5043cdca1",
+      "objective": "Read /tmp/ux02-review-03.txt and perform the already-approved fresh frozen review of66c988a4. User approved exactly3 review sessions, ticket02 total13; retained consumption10, no source fixes or extra sessions. First inspect goal.get; wait for native budget241808 before substantive review and launching exactly the two reserved axes. Do not interview, create another goal, reset usage or edit source. Complete all artifacts and cleanup before goal.complete, your last tool call.",
+      "status": "active",
+      "tokenBudget": 241808,
+      "tokensUsed": 0,
+      "timeUsedSeconds": 0,
+      "createdAt": 1793151616016,
+      "updatedAt": 1793151616326
+    },
+    "remainingTokens": 241808,
+    "completionBudgetReport": null
+  },
+  "snapshot_not_final": true,
+  "final_full_session_audit_owner": "Parent must include receipt/artifact writes, goal.complete and final response."
+}
