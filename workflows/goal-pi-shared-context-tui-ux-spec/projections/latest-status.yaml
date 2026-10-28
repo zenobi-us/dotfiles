@@ -3,7 +3,7 @@
   "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
   "initiative": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
   "state": "running",
-  "latest_event": "dispatch-observed-0089",
+  "latest_event": "dispatch-reconciled-0092",
   "phase_dispatches_reserved": 24,
   "agent_sessions_reserved": 22,
   "cycles_consumed": {
@@ -29,42 +29,13 @@
   "completion_margin_tokens": 50000,
   "configured_outer_goal_token_budget": 12500000,
   "current_ticket": "pi-shared-context-ux-04-descriptions",
-  "current_phase": "review",
-  "latest_ticket_receipt": "workflows/pi-shared-context-ux-04-descriptions/events/review-start-0004.json",
+  "current_phase": "review-complete",
+  "latest_ticket_receipt": "workflows/pi-shared-context-ux-04-descriptions/events/review-complete-0012.json",
   "latest_source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
   "latest_source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
-  "latest_review_receipt": null,
-  "latest_review_verdict": null,
-  "active_child_agents": [
-    {
-      "name": "ux04-review-main-c2",
-      "pane_id": "w70:p1",
-      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-29-36-784Z_01a1846b-2510-7790-b3cd-ef0fb19c8547.jsonl",
-      "native_goal_id": "15b868205e50b5e2",
-      "native_goal_budget": 200000,
-      "complete_session_limit": 250000
-    },
-    {
-      "name": "ux04-review-std-c3",
-      "pane_id": "w70:p2",
-      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-29-36-765Z_01a1846b-24fd-73ab-9110-bfdb91e53762.jsonl",
-      "native_goal_id": "15b868205b45ea27",
-      "native_goal_budget": 200000,
-      "complete_session_limit": 250000
-    },
-    {
-      "name": "ux04-review-spec-c4",
-      "pane_id": "w70:p3",
-      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-29-36-770Z_01a1846b-2502-73d5-87f2-aad71c1fd6bc.jsonl",
-      "native_goal_id": "15b868206ae18ba0",
-      "native_goal_budget": 200000,
-      "complete_session_limit": 250000
-    }
-  ],
-  "outstanding_dispatches": [
-    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0084.yaml",
-    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0085.yaml",
-    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0086.yaml"
-  ],
-  "next_action": "Wait for independent Standards/Spec and aggregate review results."
+  "latest_review_receipt": "workflows/pi-shared-context-ux-04-descriptions/events/review-0011.json",
+  "latest_review_verdict": "SUCCESS",
+  "active_child_agents": [],
+  "outstanding_dispatches": [],
+  "next_action": "Finish ticket04 through source-preserving integration and primary-workspace verification."
 }
