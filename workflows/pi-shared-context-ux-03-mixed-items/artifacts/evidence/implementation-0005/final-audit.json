@@ -1,0 +1,356 @@
+{
+  "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "reports": [
+    {
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/snapshots/pr-draft-implementation-0005.md",
+      "type": "Report",
+      "validation_errors": [],
+      "local_links_checked": [
+        "../../../../tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "../evidence/implementation-0005/validation.json",
+        "../evidence/implementation-0005/acceptance.json",
+        "../../events/start-0001.json",
+        "../../events/implementation-0002.json",
+        "../../events/implementation-complete-0003.json",
+        "../../events/start-0004.json",
+        "../../events/implementation-0005.json",
+        "pr-draft-implementation-0002.md",
+        "pr-draft-parent-0003.md",
+        "../evidence/implementation-complete-0003/uncommitted-source.patch",
+        "../evidence/implementation-0005/native-color-session.json",
+        "../evidence/implementation-0005/native-monochrome-session.json",
+        "../evidence/implementation-0005/palette-verification.json",
+        "../evidence/implementation-0005/cleanup.json"
+      ]
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/projections/pr-draft.md",
+      "type": "Report",
+      "validation_errors": [],
+      "local_links_checked": [
+        "../../../tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "../artifacts/evidence/implementation-0005/validation.json",
+        "../artifacts/evidence/implementation-0005/acceptance.json",
+        "../events/start-0001.json",
+        "../events/implementation-0002.json",
+        "../events/implementation-complete-0003.json",
+        "../events/start-0004.json",
+        "../events/implementation-0005.json",
+        "../artifacts/snapshots/pr-draft-implementation-0002.md",
+        "../artifacts/snapshots/pr-draft-parent-0003.md",
+        "../artifacts/evidence/implementation-complete-0003/uncommitted-source.patch",
+        "../artifacts/evidence/implementation-0005/native-color-session.json",
+        "../artifacts/evidence/implementation-0005/native-monochrome-session.json",
+        "../artifacts/evidence/implementation-0005/palette-verification.json",
+        "../artifacts/evidence/implementation-0005/cleanup.json"
+      ]
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/projections/implementation-log.md",
+      "type": "Report",
+      "validation_errors": [],
+      "local_links_checked": [
+        "../events/start-0001.json",
+        "../events/implementation-0002.json",
+        "../events/implementation-complete-0003.json",
+        "../artifacts/evidence/implementation-complete-0003/session-cap-violation.json",
+        "../artifacts/evidence/implementation-complete-0003/uncommitted-source.patch",
+        "../events/start-0004.json",
+        "../events/implementation-0005.json",
+        "../artifacts/evidence/implementation-0005/validation.json",
+        "../artifacts/evidence/implementation-0005/acceptance.json",
+        "../artifacts/snapshots/pr-draft-implementation-0005.md",
+        "../artifacts/evidence/implementation-0005/cleanup.json"
+      ]
+    }
+  ],
+  "matrix": [
+    {
+      "mode": "color",
+      "size": "40x12",
+      "screen": "mixed",
+      "formats": [
+        "color-40x12-mixed.txt",
+        "color-40x12-mixed.spans.txt",
+        "color-40x12-mixed.html",
+        "color-40x12-mixed.svg"
+      ]
+    },
+    {
+      "mode": "color",
+      "size": "40x12",
+      "screen": "research",
+      "formats": [
+        "color-40x12-research.txt",
+        "color-40x12-research.spans.txt",
+        "color-40x12-research.html",
+        "color-40x12-research.svg"
+      ]
+    },
+    {
+      "mode": "color",
+      "size": "80x24",
+      "screen": "mixed",
+      "formats": [
+        "color-80x24-mixed.txt",
+        "color-80x24-mixed.spans.txt",
+        "color-80x24-mixed.html",
+        "color-80x24-mixed.svg"
+      ]
+    },
+    {
+      "mode": "color",
+      "size": "80x24",
+      "screen": "research",
+      "formats": [
+        "color-80x24-research.txt",
+        "color-80x24-research.spans.txt",
+        "color-80x24-research.html",
+        "color-80x24-research.svg"
+      ]
+    },
+    {
+      "mode": "color",
+      "size": "120x40",
+      "screen": "mixed",
+      "formats": [
+        "color-120x40-mixed.txt",
+        "color-120x40-mixed.spans.txt",
+        "color-120x40-mixed.html",
+        "color-120x40-mixed.svg"
+      ]
+    },
+    {
+      "mode": "color",
+      "size": "120x40",
+      "screen": "research",
+      "formats": [
+        "color-120x40-research.txt",
+        "color-120x40-research.spans.txt",
+        "color-120x40-research.html",
+        "color-120x40-research.svg"
+      ]
+    },
+    {
+      "mode": "mono",
+      "size": "40x12",
+      "screen": "mixed",
+      "formats": [
+        "mono-40x12-mixed.txt",
+        "mono-40x12-mixed.spans.txt",
+        "mono-40x12-mixed.html",
+        "mono-40x12-mixed.svg"
+      ]
+    },
+    {
+      "mode": "mono",
+      "size": "40x12",
+      "screen": "research",
+      "formats": [
+        "mono-40x12-research.txt",
+        "mono-40x12-research.spans.txt",
+        "mono-40x12-research.html",
+        "mono-40x12-research.svg"
+      ]
+    },
+    {
+      "mode": "mono",
+      "size": "80x24",
+      "screen": "mixed",
+      "formats": [
+        "mono-80x24-mixed.txt",
+        "mono-80x24-mixed.spans.txt",
+        "mono-80x24-mixed.html",
+        "mono-80x24-mixed.svg"
+      ]
+    },
+    {
+      "mode": "mono",
+      "size": "80x24",
+      "screen": "research",
+      "formats": [
+        "mono-80x24-research.txt",
+        "mono-80x24-research.spans.txt",
+        "mono-80x24-research.html",
+        "mono-80x24-research.svg"
+      ]
+    },
+    {
+      "mode": "mono",
+      "size": "120x40",
+      "screen": "mixed",
+      "formats": [
+        "mono-120x40-mixed.txt",
+        "mono-120x40-mixed.spans.txt",
+        "mono-120x40-mixed.html",
+        "mono-120x40-mixed.svg"
+      ]
+    },
+    {
+      "mode": "mono",
+      "size": "120x40",
+      "screen": "research",
+      "formats": [
+        "mono-120x40-research.txt",
+        "mono-120x40-research.spans.txt",
+        "mono-120x40-research.html",
+        "mono-120x40-research.svg"
+      ]
+    }
+  ],
+  "receipt_checks": {
+    "schema": "worktree-receipt/v1",
+    "status": "completed",
+    "parent": "start-0004",
+    "exact_source_identity": true,
+    "coordinator_reservation_input": true,
+    "all_output_targets_exist": true,
+    "projection_schemas_valid": true
+  },
+  "cleanup_verified": true,
+  "source_sha256": {
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts": "a8242dfb2cd10ce836d781bca8bca67fc7e167a6c3f368fb4905425584c42a6a",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts": "b32814cca62a73017118b3dac6717125ba467d3a6a86c905add7a979c4b7622c",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts": "7d2fccbea4fd31626854ddca1d39a707f8c821efc9e0eb73b592e3e4e4e45bd8",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts": "ce46d5ac8ac92a86b3db6e511fb7e36fba9af94556c17be90e5899db7319ca33",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts": "a13e5e932cadc265ee40136ab30eb991e6c8ff56c506a525f44c97cddd777b90",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts": "bdfc0b7954d4f583526f241e664ac541c1323948ec69dec16bae9df40e1090cc",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts": "51460e4cb63cc691eb3194bd4d99250fc594ca70dcf7b0bb96bfa1d328db5f35",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts": "1766b289f266b0c1344dcc97c25c8c03305a893d70554aa77c353e549f13e933"
+  },
+  "evidence_sha256": {
+    "acceptance.json": "fdc52f9a5b348232dc37b865488ea92cfc6680e008878c2e0244ce62c908b60a",
+    "cleanup.json": "43c7cafd16ad6f9fecd5094103b1b0004ab35e91a7550e52c58ab32538423e6d",
+    "color-120x40-disabled-actions.html": "fadf1baa14742bab5a4ea12035f4fc4c98385a017bc541d40861094f831ca721",
+    "color-120x40-disabled-actions.spans.txt": "e2fe8a4df3af93c4bfbd7042b0ca66c6e2a5f5cd3117aee7c15f3f95e6ab0ae9",
+    "color-120x40-disabled-actions.svg": "70b176311fecfebc2fd5a6c926f4ad1d09c51ec55c8810a84a08d6cebb5dcac6",
+    "color-120x40-disabled-actions.txt": "d8b72b92fc54fdb2be8c145be861f4960d7b7c6a45a731c3e970f9b4eafee27b",
+    "color-120x40-initiatives.html": "7e3d108bab1c0df1ffe411d301cd3bf543f6d358c7a5ae9fc3b669cc2621c92e",
+    "color-120x40-initiatives.spans.txt": "fe1528d2a50da9863afc2a15885bf3864a977133aa0473c302642680fd69e10a",
+    "color-120x40-initiatives.svg": "59b7c8353f3f68dccc73d3e9be8863ca51fc34cf6c75b13f5686ec08e28f7c69",
+    "color-120x40-initiatives.txt": "6b77c3914eaa42e932b203bbadeb0da252c1bf767cfd0d74beaafaeba462da7e",
+    "color-120x40-mixed.html": "3aa2284330f9b0194060e55ac580841854c95da7294495171891129bed63a2d6",
+    "color-120x40-mixed.spans.txt": "ef327ba475b76b94573d8bd41995d034bbcc26f10b17a70aaab7fa5cfd579afd",
+    "color-120x40-mixed.svg": "bd8245340197d09ca6e17b43deb0712a078918c5d25bfbd432c51795eef200de",
+    "color-120x40-mixed.txt": "8d23114912cebcaf02da161785e6fad009c5b95ff0307014d0ca696dd6157e54",
+    "color-120x40-research.html": "071fd2af1dc8e1f368c0226e9abe6cd953cd2aa49c3dce5ba1cf75615215f055",
+    "color-120x40-research.spans.txt": "4c2d288f8caf14947388cfc549e3977c02ff5a345f978877219521634904a39f",
+    "color-120x40-research.svg": "b79b83e6d559114f5ef4542d565b0d6236a9c18a792fe547d371d15e91a5f50e",
+    "color-120x40-research.txt": "c9e668ef7230545d87f6cde328ac851c42f9f060b058732d4d75ad709645f7ce",
+    "color-40x12-mixed.html": "69982c1bd02f46aefface4ab1cce5c551600ec7fb6c152b44a405c25ed3fea0f",
+    "color-40x12-mixed.spans.txt": "d604fc8da91265be9ddcad6b1ce0c811c4cce560ac559235b5df42d591ff1371",
+    "color-40x12-mixed.svg": "388c287f4a1ae90434000590d254217a0ddf5845cde413ae0a6935c5b48811c1",
+    "color-40x12-mixed.txt": "2fbfa19b75f0fc43b2dea0f7416180a2cbc13eb343359060cf51ee62424fabac",
+    "color-40x12-research.html": "3b69f55d60e023901125bbdbe9bc1c6dc1fcfc2bcdd7481fbb06051516cef184",
+    "color-40x12-research.spans.txt": "7a7a760b972a66d5e81723f25b4faed0f494a26fa26cf4c03b431ff6dd280bd4",
+    "color-40x12-research.svg": "34b1eacc9381e11d5e00aa71b6d0bad821c3c2d5f3ddfbd53d8600f5867747ea",
+    "color-40x12-research.txt": "6de01a73cc102474f0220ecc63631fee839085b1279cd615f8657b907443a0a4",
+    "color-80x24-mixed.html": "5061da4dd767ae7dbf76ce84128c4f3862578d305224aea6a2415c458215fedd",
+    "color-80x24-mixed.spans.txt": "b5a8e4847a88a7265eb033a701452a809fa453363cd1d3c209db02eb058deaf0",
+    "color-80x24-mixed.svg": "184d9c1346f32ed2bb7afd30d7cdb6e32fb1580535c4f5d4f8311aa54d1b5dc4",
+    "color-80x24-mixed.txt": "9b371b60d2f9eb0cdef984020d02c4923bf0944f30fc5abd24055466c5b7308a",
+    "color-80x24-research.html": "b6e9326e0e1b7234a9e829c878edb26d222c38f2ce06caa092f9bbbe8cd4df9c",
+    "color-80x24-research.spans.txt": "c247b8e120e9670581ab8168eb9aacdd34615e186090d9a8478828b4ea2a0963",
+    "color-80x24-research.svg": "20e87ddc473cad8ba60315ea8d167e9fe93f3722147bec3b574f984e945a2c69",
+    "color-80x24-research.txt": "b5d778d2074996f8593f8acfed12ddfd0d32fa7c4639b89d2e755574135ff874",
+    "mono-120x40-mixed.html": "621b33075e7494fdd0838d2f8fba57b28f68a9b6b40a8e62e774a7e460e040f0",
+    "mono-120x40-mixed.spans.txt": "a7f01fb4d04cbd499899743248c8a1b955d524bef3594fa9ad26c228af996005",
+    "mono-120x40-mixed.svg": "453297cd597bd44fb17596c91a7c083c6ad09d96a00156aed8fe46c45275b7e5",
+    "mono-120x40-mixed.txt": "0873666de991111dc60dba1cc06e1ef1278301b39b1402ef400502aadc4df41f",
+    "mono-120x40-research.html": "d4f6773d15041d84dad6681965dbdc9039fe3aa798d436bd3845250eedabefb8",
+    "mono-120x40-research.spans.txt": "0055f307f1116ef7e73cadd840d92163bd934e2ad2e340d72ffcdf7682be813f",
+    "mono-120x40-research.svg": "5f124893e303d899a8ffff5efd0fec9f729e9fd70c6c257e3a9c9a57cb9ff3de",
+    "mono-120x40-research.txt": "5695fb35da50c0c83e40691bf0fce57c19272d2a3516d60576d2a3d1b6f52cf0",
+    "mono-40x12-mixed.html": "47c213856449e984b92aebc55d3170d68fcf8ac880876bfc6ee45d30e0cd7d1a",
+    "mono-40x12-mixed.spans.txt": "3a2ed9babb3db82c87eecb61591d4c14ebdf2a55ecbd765a32d973fc991dfa0c",
+    "mono-40x12-mixed.svg": "388c287f4a1ae90434000590d254217a0ddf5845cde413ae0a6935c5b48811c1",
+    "mono-40x12-mixed.txt": "2fbfa19b75f0fc43b2dea0f7416180a2cbc13eb343359060cf51ee62424fabac",
+    "mono-40x12-research.html": "ba2dfd634fca836a521eb56576820ed2e1e9b5428c547657603b3b47d050035a",
+    "mono-40x12-research.spans.txt": "114ec58ed3df46ae6cbc059735a744d1a8408db3019d51b1ed479b2e9a726593",
+    "mono-40x12-research.svg": "34b1eacc9381e11d5e00aa71b6d0bad821c3c2d5f3ddfbd53d8600f5867747ea",
+    "mono-40x12-research.txt": "6de01a73cc102474f0220ecc63631fee839085b1279cd615f8657b907443a0a4",
+    "mono-80x24-mixed.html": "13cb429bef5e540a802f3f3ef1442cf725abec276551bd29dd4c131ac467044e",
+    "mono-80x24-mixed.spans.txt": "159c643e9ef36157ae8eefb6599e61bd173486bb069a0191834852c44f3e47a8",
+    "mono-80x24-mixed.svg": "184d9c1346f32ed2bb7afd30d7cdb6e32fb1580535c4f5d4f8311aa54d1b5dc4",
+    "mono-80x24-mixed.txt": "9b371b60d2f9eb0cdef984020d02c4923bf0944f30fc5abd24055466c5b7308a",
+    "mono-80x24-research.html": "6a3e6126f09dae2ae7ec1d223a7287b1caf68b59e97a575533d025e0d2216087",
+    "mono-80x24-research.spans.txt": "26cbd09b039c3ff872daee542c38b3f72faf347f102a3b77b77a08dcb47998f4",
+    "mono-80x24-research.svg": "20e87ddc473cad8ba60315ea8d167e9fe93f3722147bec3b574f984e945a2c69",
+    "mono-80x24-research.txt": "b5d778d2074996f8593f8acfed12ddfd0d32fa7c4639b89d2e755574135ff874",
+    "monochrome-theme.json": "d2a8772515fce7b20b34515d2e642871e6dc9a858d3983156d892b28d919e89e",
+    "native-color-session.json": "a89d78ba584163692b270e1302d91c9cdddebea2217ed580129115aeb45f5dcd",
+    "native-dependency-safety.html": "dbcd99be93eec7ecaa6bcda217c86bf794e2246ed9c4f527707b13c52c8eef9c",
+    "native-dependency-safety.spans.txt": "abb0a6845d3ae912350453f348cd1fcb711a09de04aa6c7582fcd84ae5d6c298",
+    "native-dependency-safety.svg": "3bc073f89af533aa3ee330f4a79f615d7eeda2dacf264ea04d553c6272164776",
+    "native-dependency-safety.txt": "95578531d7ab59016ded8d9e2c0523093431223f59ff0935d8e406f68b45eb2e",
+    "native-files-independent.html": "3a30a5d113a3d05d12907484fa112f48cb0addad6cbbfe76a51c2eb024d35442",
+    "native-files-independent.spans.txt": "fce9b5e77e8a59ad3decb41b7449fc61e0a93c78da70cd5621e0c5a0dd9babca",
+    "native-files-independent.svg": "f2032d7a4b8d19148632ec3ba58ca2a864c3c44e8a6b79d3cc7820d246a8d733",
+    "native-files-independent.txt": "5120962950040f449604d66d7adf1ae473aad72f87b4884b1579e32e5b0c5bab",
+    "native-files-selection.html": "f93793c3d55a1d7aca9629b5f72112cba9a2197b26534672c5e73c9705fcb46c",
+    "native-files-selection.spans.txt": "9d130187e1bc15e5ce846e6984725e5a211ae333915aa45110090805b19f7cb1",
+    "native-files-selection.svg": "d776a93e7de23742f485f751b092623a57acfa647f77b81606d293cd8d5b1d7d",
+    "native-files-selection.txt": "544a5d977297c982af38d2c218b0c43e00a67c54d9f0ec382d5d91b23bde1bd0",
+    "native-files-unsent-insertion.html": "37d818fe8462feb619f16caeadb9564d6c241286aac6cf1e77afd08e1468be99",
+    "native-files-unsent-insertion.spans.txt": "90be67cd63bc7620bf66e634a5cd221fb01235c10daffdf9fa22261d2046b79f",
+    "native-files-unsent-insertion.svg": "1ef3ffb45fcd5325c951c70dd8a76c2ba14ee8fb3eea346e71a563d09654fcc8",
+    "native-files-unsent-insertion.txt": "64fafaf5843020267126f9a40ac7c81afebd2ba39c4b327fd920087a15e27f66",
+    "native-fresh-chat-confirmation.html": "de2f9af4af637fba39cdc04b54717e2b0a2fe979855aea77f9a4d0041e8770fa",
+    "native-fresh-chat-confirmation.spans.txt": "f0c4fe888e1af1d847a1a9e07c4ad8b144fa626baa1169d41061eb32f7c44743",
+    "native-fresh-chat-confirmation.svg": "bd464433118d18ea320ccff633e286f86cbeb3394ed599d455cedbcc440a00c7",
+    "native-fresh-chat-confirmation.txt": "42808f461a29b74dc1a2211c3bcde450c34397b59274dd4df94f18ad74327608",
+    "native-keyboard-ancestor-focus.html": "323da307da94f0dd97e01768a599ac0803bd31f2b0302866fd650f5996ebbcad",
+    "native-keyboard-ancestor-focus.spans.txt": "18ff93fd24d336283ee01152e5386bfbbbbdf6563d0c621ac02448cb22646223",
+    "native-keyboard-ancestor-focus.svg": "d7880883df21e20c5efbd003e6496cd2426aa676c5687f2a518c277a3baa7ca5",
+    "native-keyboard-ancestor-focus.txt": "7a4d956452338184c39604e0b593755e70a83aa912974b8a5f4c590ec3a8f098",
+    "native-live-research.html": "4ff609ed1e28b632684e730dfc549db5329cd64aec6f70a5345f31dc872752a0",
+    "native-live-research.spans.txt": "f5da9ab1b158444c6b647f2190a2dcbb68cef956e2823068eb0948c9bfd17362",
+    "native-live-research.svg": "11421c7b8e93a08274446e4f1d66d815da887b933cf2a6cbce7a13588ad611d1",
+    "native-live-research.txt": "1448ac401c6f74f490bf1d448d8178582eed555682cb0657151f9b6c6533f637",
+    "native-live-ticket.html": "4228f3ec8097e1de7663f41ca5804cbd568ce10727e474f2250a2d427811893c",
+    "native-live-ticket.spans.txt": "c8d754c1bdf9ae34b4e1f25fc4a4f675bc34bf81603add7c59a460b9e935d665",
+    "native-live-ticket.svg": "5a7ed942fbe94a83f0eb22da1711bad4bae182beaeb77325caad50f8f98ab3c3",
+    "native-live-ticket.txt": "a3226c798290cff138a39b120a3bab4cda02a80a0ca3726c09ad6b262d77c302",
+    "native-membership-removal.html": "f36d080a0866ad8259ec95ae4e4474af53169ec7b7e896766b79fdb937e6898a",
+    "native-membership-removal.spans.txt": "853fe4783228ba7d5622fd1c16d83814068be3714a3de9780ec4c67ca967d539",
+    "native-membership-removal.svg": "6abcd2715eed571d07bf2254d66bf56d276cb3355643803dba11063a81184007",
+    "native-membership-removal.txt": "75dfe8a32002233b85f61f9150d6d16f56cd772afb9eca6c162c5ac53d668a13",
+    "native-missing-parent.html": "501d72bffb91d151b87ed40b18b531fc5f583d0812a2f2b9780f62144c9164de",
+    "native-missing-parent.spans.txt": "8360b0017296c9b87c637558e9190ce37e93bb5ad57bf87748fe0723bc5b0be8",
+    "native-missing-parent.svg": "c9be9f42c195c98a7a0055dba2c8cf1a8efe1c424879505e8734912cf1262d7a",
+    "native-missing-parent.txt": "a34c4ae4e110b33a9422fa86579f3ce2d8e1b9a9b28bca327169b06111c32e0d",
+    "native-monochrome-session.json": "db88a47a81994a08de5579da7d03ac5b3719d102f55f04a7b0d0e5f72013285d",
+    "native-mouse-ancestor-return.html": "3aa2284330f9b0194060e55ac580841854c95da7294495171891129bed63a2d6",
+    "native-mouse-ancestor-return.spans.txt": "48cae8da8faf819a6dad139f2bce046e2db445efa43279b4cbc2f588b26db354",
+    "native-mouse-ancestor-return.svg": "bd8245340197d09ca6e17b43deb0712a078918c5d25bfbd432c51795eef200de",
+    "native-mouse-ancestor-return.txt": "cce0849db363418b0dbe40b36ff7237f4ec5b44a675a09f479c445d3ee4baf14",
+    "native-registered-research-actions.html": "f1b35d896dbbf0135574fd742491587dba80f0161990082ec978ad199e7123b3",
+    "native-registered-research-actions.spans.txt": "fb87301a18b33a0907119148c61d14026277a84c4cf2575a81609e199ce22b97",
+    "native-registered-research-actions.svg": "300c0c81ff9b5b792ad563724063c94a8b9e20a469fc55d7ea3d85be80b1ecfc",
+    "native-registered-research-actions.txt": "fb12762131cf21e19e4fb69de6cbd93c5be94eca98eb47fc5681ea826e21b35d",
+    "native-ticket-actions.html": "421f6a382f125dec4a8cf4ca7707c838b8d41c6b371247b5becc774c10a4d45d",
+    "native-ticket-actions.spans.txt": "5b4be5b2ca61f5b855f23bc3f40ee7fe005faeeb1e5c8b3d7b2c1ee1596c0b65",
+    "native-ticket-actions.svg": "48ddaaf46562ce57c56634c7ee05776dada0120c92e64b8158a9b9dad9a7e64e",
+    "native-ticket-actions.txt": "b39a8fe9a5685455170f7df4bba2b9ada30e7cc8968fb5420e16da3ff699b665",
+    "native-ungrouped.html": "1548b3bff2114049f1937e5ebb02fcc69732a7b9d36a809b1e767a56d8952423",
+    "native-ungrouped.spans.txt": "9830628562126dc7c572fbd5fa4506a959f1da9fc0af6256972796bc0fcd8b91",
+    "native-ungrouped.svg": "6293481cbb755229aea2539ba1ca56297c3205f54e32495ba7fb1e06ecfdad4a",
+    "native-ungrouped.txt": "efe0d4664d6be31aa64e752f217ecd7ef9c68a09ccd144224f99d90de22f1e71",
+    "native-unreadable-record-expanded.html": "b4233d61cc89d0ee56379109f61c0750355a183779f7ac0f211e02ed93e47d38",
+    "native-unreadable-record-expanded.spans.txt": "179ca0a857fc92363a7e9206e8ac41a951e6a630c55c592f0880bd089b3e9bcf",
+    "native-unreadable-record-expanded.svg": "e5da80c6cae7ef9addd2cbe838055ab00ac0f238f2fef3d5ff76b56cf4bcd41f",
+    "native-unreadable-record-expanded.txt": "27bb2116e75f78bd53249839bc2e1417c57e3edd0ac4f6d9cc316b4c7f2a5a87",
+    "native-unreadable-record.html": "ec05941e44871ddbc599e01e90a293b08ba640545908d8f6b59fd79aafcf96c8",
+    "native-unreadable-record.spans.txt": "1bc98b4d86a4e46b893f377e6fd778ae11b513849bb3e5215fb89dca203b3869",
+    "native-unreadable-record.svg": "18c56c215fb6bcce96e57e4b4b85c0711c8ade31b32e7b6b6d7096328a3f0528",
+    "native-unreadable-record.txt": "e9277d10af4dd36528e919c875c1268bef9bbe777a598afe6a716ff0ea3523bb",
+    "native-unsent-planning-editor.html": "7e37138528bd082266ceb08c2e37612e1490d87a61c723e0b488f20b51e3ab03",
+    "native-unsent-planning-editor.spans.txt": "5b58a90fb65aa8798fffd565ae75698c801bb177539edbbe6e3929b6fcfc7408",
+    "native-unsent-planning-editor.svg": "816bedc26db411d069c0b34a39d3bac098af0de39d8747d7e4032bcdc83319aa",
+    "native-unsent-planning-editor.txt": "f35ceb7cfbccb0c1d2e4bc81d9740f3bbe2f4108cf2b635306429638757d8c05",
+    "palette-verification.json": "fe80b0d44e280662a734c720f27c1223ce7a288de567ddaab8807fe0b4bd45dd",
+    "scoped-tsconfig.json": "b4ffb5a0f19075d7226952ba012569e4d10a73a22f58c84d028203f2c48a5e7f",
+    "validation.json": "8143f1e300e9e43894adf307833e5ef1f744d5ca025159ad3a42970d15efef73"
+  }
+}

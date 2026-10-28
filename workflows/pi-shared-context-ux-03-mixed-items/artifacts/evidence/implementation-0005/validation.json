@@ -1,0 +1,88 @@
+{
+  "focused": {
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+    "exit_code": 0,
+    "result": "7 pass, 0 fail; 68 expect calls"
+  },
+  "suite": {
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+    "exit_code": 0,
+    "result": "139 pass, 0 fail; 1921 expect calls; 11 files"
+  },
+  "typecheck": {
+    "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc -p /tmp/ux03-scoped-tsconfig.json",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+    "exit_code": 0,
+    "result": "No diagnostics"
+  },
+  "native": {
+    "color_command": [
+      "mise",
+      "exec",
+      "--",
+      "termscope",
+      "session",
+      "--",
+      "env",
+      "HOME=/tmp/ux03-native-aldPV6/home",
+      "PI_CODING_AGENT_DIR=/tmp/ux03-native-aldPV6/config",
+      "PI_TELEMETRY=0",
+      "COLORTERM=truecolor",
+      "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+      "--offline",
+      "--no-session",
+      "--no-extensions",
+      "--no-mcp",
+      "--no-skills",
+      "--no-prompt-templates",
+      "--no-context-files",
+      "--no-tools",
+      "--no-themes",
+      "--use-theme",
+      "dark",
+      "-e",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+    ],
+    "monochrome_command": [
+      "mise",
+      "exec",
+      "--",
+      "termscope",
+      "session",
+      "--",
+      "env",
+      "HOME=/tmp/ux03-native-aldPV6/home",
+      "PI_CODING_AGENT_DIR=/tmp/ux03-native-aldPV6/config",
+      "PI_TELEMETRY=0",
+      "COLORTERM=truecolor",
+      "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+      "--offline",
+      "--no-session",
+      "--no-extensions",
+      "--no-mcp",
+      "--no-skills",
+      "--no-prompt-templates",
+      "--no-context-files",
+      "--no-tools",
+      "--no-themes",
+      "--use-theme",
+      "ux03-monochrome",
+      "-e",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "--theme",
+      "/tmp/ux03-native-aldPV6/monochrome.json",
+      "--skill",
+      "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/to-tickets/SKILL.md",
+      "--skill",
+      "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/SKILL.md"
+    ],
+    "cwd": "/tmp/ux03-native-aldPV6/repo",
+    "process_exit_codes": [
+      0,
+      0
+    ],
+    "note": "No model prompt or workflow action dispatched. Skill commands and file paths stayed in the editor. Native Pi emits an existing ctrl+shift+g shortcut conflict. Long refresh errors truncate at 120 columns; an expanded capture records the complete schema error."
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+  "criteria": [
+    {
+      "criterion": 1,
+      "proof": [
+        "modal.test.ts: mixed items and canonical planning/other records",
+        "live.test.ts: mixed canonical records",
+        "color-120x40-mixed.txt"
+      ]
+    },
+    {
+      "criterion": 2,
+      "proof": [
+        "live.test.ts: R, U and D in Ungrouped; T excluded",
+        "modal.test.ts: Spec and Report in Ungrouped",
+        "native-ungrouped.txt"
+      ]
+    },
+    {
+      "criterion": 3,
+      "proof": [
+        "live.test.ts: Items 3 and Items 2, then unassigned Items 3",
+        "color-120x40-initiatives.txt"
+      ]
+    },
+    {
+      "criterion": 4,
+      "proof": [
+        "color-120x40-mixed.spans.txt",
+        "color-80x24-mixed.txt",
+        "mono-120x40-mixed.txt"
+      ]
+    },
+    {
+      "criterion": 5,
+      "proof": [
+        "modal.test.ts: research metadata and body, no receipts",
+        "native-live-research.txt",
+        "color-120x40-research.txt"
+      ]
+    },
+    {
+      "criterion": 6,
+      "proof": [
+        "modal.test.ts: planning, research and Report action boundaries",
+        "native-registered-research-actions.txt",
+        "color-120x40-disabled-actions.txt",
+        "native-ticket-actions.txt"
+      ]
+    },
+    {
+      "criterion": 7,
+      "proof": [
+        "native-fresh-chat-confirmation.txt",
+        "native-unsent-planning-editor.txt",
+        "modal.test.ts: canonical to-tickets and grill commands"
+      ]
+    },
+    {
+      "criterion": 8,
+      "proof": [
+        "existing action and source/evidence safety tests in full suite",
+        "native-dependency-safety.txt",
+        "native-ticket-actions.txt"
+      ]
+    },
+    {
+      "criterion": 9,
+      "proof": [
+        "live.test.ts: type changes while selected and Files retention",
+        "native-live-ticket.txt",
+        "native-live-research.txt",
+        "native-membership-removal.txt"
+      ]
+    },
+    {
+      "criterion": 10,
+      "proof": [
+        "native-missing-parent.txt",
+        "native-unreadable-record.txt",
+        "native-unreadable-record-expanded.txt",
+        "native-ungrouped.txt",
+        "data.test.ts: invalid schema, membership and dependency validation"
+      ]
+    },
+    {
+      "criterion": 11,
+      "proof": [
+        "modal.test.ts: ancestor mouse return, Esc and Files selection",
+        "native-keyboard-ancestor-focus.txt",
+        "native-mouse-ancestor-return.txt",
+        "native-files-independent.txt"
+      ]
+    },
+    {
+      "criterion": 12,
+      "proof": [
+        "existing Unicode width and terminal sanitization tests in full suite",
+        "color and mono matrix in text, spans, HTML and SVG",
+        "palette-verification.json"
+      ]
+    }
+  ],
+  "observations": [
+    "Native Pi 1.1.0 loaded the worktree extension. Both owned termscope/Pi processes exited 0.",
+    "120x40 uses distinct type, ID, title and state columns. 80x24 wraps secondary fields. 40x12 shows one scrollable compact pane; long titles and states require paging.",
+    "Research shows canonical metadata and body without workflow state. Ticket-to-research changes exit Events and retain R.",
+    "Keyboard Shift+Tab and Enter activated the initiative ancestor. Raw SGR mouse clicks activated the same ancestor. Return reopened the same R.",
+    "Files y inserted shared://docs/agents/issue-tracker.md into the existing editor. To tickets opened a confirmed fresh chat with an unsent canonical command.",
+    "Native SVG output does not preserve colour. Spans and HTML preserve RGB; palette verification checks modal columns and excludes the fixed-colour Pi logo outside the modal.",
+    "Unreadable refresh text truncates at 120 columns. A 200-column capture shows the complete schema explanation; last readable content stays visible.",
+    "Pi reports its existing ctrl+shift+g shortcut conflict. No model is configured in the isolated fixture; no prompt or live workflow command was sent.",
+    "Some exploratory captures occurred before asynchronous updates settled. Final named evidence was recaptured after idle or text waits. No model execution is claimed."
+  ],
+  "self_review": {
+    "standards": "No blocking issue found in the complete source diff. Existing loader, modal, watcher and theme patterns reused. No new backend or command.",
+    "spec": "All twelve ticket03 criteria covered by the mapped public-modal tests and native evidence. Descriptions, event redesign, queue redesign and formal review remain outside this slice.",
+    "formal_review": "Not performed; parent owns formal review and publication."
+  },
+  "unchanged_surfaces": [
+    "Shared-context CLI source and schema authority",
+    "index.ts fresh-chat revalidation, confirmation and file insertion semantics",
+    "modal.ts project/workspace navigation",
+    "ticket transition restrictions and receipt identity/source comparison"
+  ]
+}

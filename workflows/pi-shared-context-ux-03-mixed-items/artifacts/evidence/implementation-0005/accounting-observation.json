@@ -1,0 +1,16 @@
+{
+  "schema": "implementation-accounting-observation/v1",
+  "cycle_number": 2,
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0064.yaml",
+  "native_goal_tokens_observed": 192030,
+  "native_goal_budget": 200000,
+  "completion_reserve": 50000,
+  "complete_session_ceiling": 250000,
+  "stage": "After completed implementation, source commit, native acceptance, cleanup and successful final artifact audit; before this observation write and goal completion.",
+  "prior_cycle_provider_work_tokens": 251637,
+  "prior_cycle_ceiling": 250000,
+  "prior_cycle_overrun": 1637,
+  "accounting_reset_or_increase": false,
+  "final_provider_accounting": "Pending parent audit after shutdown. Sum provider input, output and cacheWrite; exclude cacheRead. This observation is not a final session total."
+}

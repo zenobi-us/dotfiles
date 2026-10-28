@@ -1,0 +1,63 @@
+{
+  "owned_processes": [
+    {
+      "kind": "colour termscope/Pi",
+      "exit_code": 0
+    },
+    {
+      "kind": "monochrome termscope/Pi",
+      "exit_code": 0
+    }
+  ],
+  "removed_links": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/typescript",
+      "target": "/tmp/ux02-deps/node_modules/typescript"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@earendil-works/pi-tui",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@earendil-works/pi-coding-agent",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@crustjs/core",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/core"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@crustjs/plugins",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@types/bun",
+      "target": "/tmp/ux02-deps/node_modules/@types/bun"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@types/node",
+      "target": "/tmp/ux02-deps/node_modules/@types/node"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/bun-types",
+      "target": "/tmp/ux02-deps/node_modules/bun-types"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/yaml",
+      "target": "/tmp/ux02-deps/node_modules/yaml"
+    }
+  ],
+  "removed_paths": [
+    "/tmp/ux03-scoped-tsconfig.json",
+    "/tmp/ux03-mq.lock",
+    "/tmp/ux03-native-aldPV6",
+    "/tmp/ux03-native-stderr",
+    "/tmp/ux03-native-mono-stderr"
+  ],
+  "preserved": [
+    "All prior receipts, evidence and snapshots",
+    "/tmp/ux02-deps dependency cache",
+    "Canonical ticket and coordinator records",
+    "Source worktree and committed branch"
+  ]
+}

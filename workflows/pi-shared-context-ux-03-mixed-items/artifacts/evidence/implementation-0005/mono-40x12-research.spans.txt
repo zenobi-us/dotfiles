@@ -1,0 +1,29 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=9:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]  nstalls/github-earendil-works-pi/1.1.0
+[002]  ╭────────────────────────────────────╮
+[003]  │ Projects · Repo > repo             │
+[004]  │  [1 Tracker]     2 Files    Tab fo…│
+[005]   Initiat…  >  Mixed i…  >  R
+[006]  > research / recorded details
+[007]   ID: R
+[008] ─ Title: Research 界: compare          ─
+[009]   canonical sources and retain a long
+[010] ─tracker/tickets/R.md · draft          ─
+[011] /Esc back  Enter open  Tab focus  R ...
+[012] 0.0%/0 (auto)                    unknown
+
+=== SPANS ===
+[001] 1-39:221,221,221
+[002] 1-39:221,221,221
+[003] 1-24:221,221,221 38-39:221,221,221
+[004] 1:221,221,221 3-15:221,221,221 18-28:221,221,221 31-36:221,221,221 38-39:221,221,221
+[005] 1-8:221,221,221 11-21:221,221,221 24-29:221,221,221 39:221,221,221
+[007] 2-6:221,221,221
+[008] 0:221,221,221 2-28:221,221,221 39:221,221,221
+[009] 0:inverse 2-36:221,221,221
+[010] 0-28:221,221,221 39:221,221,221
+[011] 0-35:221,221,221
+[012] 0-39:221,221,221

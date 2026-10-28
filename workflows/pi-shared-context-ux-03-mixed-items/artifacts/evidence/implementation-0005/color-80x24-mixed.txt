@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=23:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha
+[004] re│ Projects · Repo > repo                                                   │te
+[005] ns│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤ha
+[007] re│ Initiatives  >  Mixed initiative                                         │te
+[008] ns│> I · Items 3                                                             │
+[009]   ├──────────────────────────────────────────────────────────────────────────┤
+[010]   │ I · Phase: research                                                      │
+[011]  W│ Summary: Recorded mixed scope.                                           │
+[012]  A│>[research]  ID: R                                                        │
+[013]   │>Research 界: compare canonical sources and retain a long wrapped title   │
+[014]  /│>without mixing its state                                                 │d
+[015]  o│>State: draft                                                             │
+[016]   │>tracker/tickets/R.md                                                     │
+[017]  /│ [enhancement]  ID: T                                                     │d
+[018]  o│ Executable ticket                                                        │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ Summary: Recorded mixed scope.                                           │──
+[021]   │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/ux03-native-aldPV6/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown

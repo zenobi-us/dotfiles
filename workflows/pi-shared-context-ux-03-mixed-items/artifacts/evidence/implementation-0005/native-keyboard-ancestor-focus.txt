@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=14:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  > >Mixed initiative< >  R                                                                         │
+[008] [Ex│  I · Items 3                        │  research / recorded details                                             │
+[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │◇[research]  ID: R                   │ ID: R                                                                    │
+[011] [Ex│◇Research 界: compare canonical      │ Title: Research 界: compare canonical sources and retain a long wrapped  │
+[012]   p│◇sources and retain a long wrapped   │ title without mixing its state                                           │
+[013] /ru│◇title without mixing its state      │ Type: research                                                           │nf.
+[014] d/d│◇State: draft                        │ State: draft                                                             │
+[015]    │◇tracker/tickets/R.md                │ Reference: tracker/tickets/R.md                                          │
+[016] /ru│ [enhancement]  ID: T                │ author: Native reader                                                    │nf.
+[017] d/d│ Executable ticket                   │ source: sources/study                                                    │
+[018] /ru│ State: open                         │ Recorded details:                                                        │nf.
+[019] d/d│ tracker/tickets/T.md                │ Recorded finding: preserve canonical identity.                           │
+[020]    │ [Report]  ID: N                     │ Evidence: sources/study.                                                 │
+[021]    │ Canonical report                    │ a actions · Esc return                                                   │
+[022]  Wa│ State: unavailable                  │                                                                          │
+[023]    │ tracker/tickets/N.md                │                                                                          │
+[024]    │                                     │                                                                          │
+[025]    │                                     │                                                                          │
+[026]    │                                     │                                                                          │
+[027]    │                                     │                                                                          │
+[028]    │                                     │                                                                          │
+[029]    │                                     │                                                                          │
+[030]    │                                     │                                                                          │
+[031]    │                                     │                                                                          │
+[032]    │                                     │                                                                          │
+[033]    │                                     │                                                                          │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/R.md · draft                                                                                   │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux03-native-aldPV6/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

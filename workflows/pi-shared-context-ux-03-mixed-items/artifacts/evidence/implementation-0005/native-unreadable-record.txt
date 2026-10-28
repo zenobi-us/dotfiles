@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=34:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Mixed initiative                                                                               │
+[008] [Sk│> I · Items 3                                                                                                   │
+[009]   t├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │ I · Phase: research                                                                                            │
+[011] [Ex│ Summary: Recorded mixed scope.                                                                                 │
+[012]   p│ [research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │
+[013]    │                                   wrapped title without mixing its state                                       │
+[014] [Ex│ tracker/tickets/R.md                                                                                           │
+[015]   p│>[enhancement]   T                 Executable ticket                                          State: open       │
+[016] /ru│>tracker/tickets/T.md                                                                                           │nf.
+[017] d/d│ [Report]        N                 Canonical report                                           State: unavailable│
+[018]    │ tracker/tickets/N.md                                                                                           │
+[019] /ru│                                                                                                                │nf.
+[020] d/d│                                                                                                                │
+[021] /ru│                                                                                                                │nf.
+[022] d/d│                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]    │                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Live refresh failed: Unreadable record /tmp/ux03-native-aldPV6/repo/tracker/tickets/R.md: Invalid ticket recor…│
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux03-native-aldPV6/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

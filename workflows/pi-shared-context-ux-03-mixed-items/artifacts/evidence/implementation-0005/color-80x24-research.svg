@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="24" fill="rgb(255,255,255)">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for</text>
+<text x="10" y="44" fill="rgb(255,255,255)">tui.altScreen.searchPrevious and</text>
+<text x="10" y="64" fill="rgb(255,255,255)">/r╭──────────────────────────────────────────────────────────────────────────╮ha</text>
+<text x="10" y="84" fill="rgb(255,255,255)">re│ Projects · Repo &gt; repo                                                   │te</text>
+<text x="10" y="104" fill="rgb(255,255,255)">ns│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">/r├──────────────────────────────────────────────────────────────────────────┤ha</text>
+<text x="10" y="144" fill="rgb(255,255,255)">re│ Initiatives  &gt;  Mixed initiative  &gt;  R                                   │te</text>
+<text x="10" y="164" fill="rgb(255,255,255)">ns│&gt; I · Items 3           │  research / recorded details                    │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │&gt;[research]  ID: R      │ ID: R                                           │</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> W│&gt;Research 界: compare   │ Title: Research 界: compare canonical sources   │</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> A│&gt;canonical sources and  │ and retain a long wrapped title without mixing  │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │&gt;retain a long wrapped  │ its state                                       │</text>
+<text x="10" y="284" fill="rgb(255,255,255)"> /│&gt;title without mixing   │ Type: research                                  │d</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> o│&gt;its state              │ State: draft                                    │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │&gt;State: draft           │ Reference: tracker/tickets/R.md                 │</text>
+<text x="10" y="344" fill="rgb(255,255,255)"> /│&gt;tracker/tickets/R.md   │ author: Native reader                           │d</text>
+<text x="10" y="364" fill="rgb(255,255,255)"> o│ [enhancement]  ID: T   │ source: sources/study                           │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──│ tracker/tickets/R.md · draft                                             │──</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│</text>
+<text x="10" y="444" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/tmp/ux03-native-aldPV6/repo (master)</text>
+<text x="10" y="484" fill="rgb(255,255,255)">0.0%/0 (auto)                                                            unknown</text>
+</svg>

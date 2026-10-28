@@ -1,18 +1,21 @@
 ---
-title: Ticket03 blocked implementation status
+title: Ticket03 implementation candidate
 type: Report
 ---
 
 # Mixed initiative child records
 
-## Ticket and problem
-[Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-03-mixed-items.md). Research and tickets must share initiative lists with canonical identities and type-specific details and actions.
+## Ticket summary
+[Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-03-mixed-items.md) implements mixed research, tickets, planning records, and other supported records inside initiative child lists and Ungrouped.
 
-## Current state
-IMPLEMENTING in approved fresh cycle2. Prior cycle1 stopped incomplete. The complete session used251637 work tokens against the250000 limit (1637 over). The configured native budget241808 and8192 reserve did not prevent the overrun. [Parent cap evidence](../artifacts/evidence/implementation-complete-0003/session-cap-violation.json). The user approved fresh cycle2. Limits and prior consumption remain unchanged.
+## Problem statement
+Research must retain canonical identity, recorded details, and existing planning commands without inheriting ticket workflow states or changing membership authority.
 
-## Implementation and source
-The source worktree contains eight uncommitted edits on `feature/pi-shared-context-ux-03-mixed-items`. Committed HEAD remains `c451731d51127974110d0747ca2342babecb2ced` / `1dfff49f6adb9af90670c5a12ab510b8654d651f`. This is partial work, not an implementation pass. [Preserved patch](../artifacts/evidence/implementation-complete-0003/uncommitted-source.patch) has SHA-256 `7a12af0ae550cfa64d519b1efc9755df6956c803987d160bc40bbdfb3d39b602`.
+## Implementation summary
+Canonical type selects recorded details and applicable actions. All associated records count as Items. Ungrouped contains only unassociated records. Live type changes discard ticket evidence and leave Events for recorded details. Live membership updates retain canonical selection where membership permits. The implementation preserves ticket safeguards, structured wrapping, terminal sanitization, ancestor return, and independent Files state.
+
+## Source
+Branch: `feature/pi-shared-context-ux-03-mixed-items`. Commit: `5af9909464805f3d59bd5946cc006d5371aa2405`. Tree: `83c96d2dc2b2d40f438e79d698bae53b5d7658ac`. Tracked source is clean. Shared-context CLI and evidence authority remain unchanged.
 
 ## Changed files
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts`
@@ -23,24 +26,34 @@ The source worktree contains eight uncommitted edits on `feature/pi-shared-conte
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
 
-## Validation
-The implementation reported3 passing public-modal checks, a corrected mixed live scenario with1 pass and24 assertions, and scoped TypeScript exit0. An earlier combined focused run had31 pass and1 fail before that correction. The combined run and full affected suite did not run after the correction. Native Pi captured partial colour scenarios at the three sizes. Some frames were not settled. Monochrome, the complete matrix, remaining live/action/return checks, documentation, final source commit, and cleanup remain incomplete. No model prompt or live workflow action was submitted. [Exact reported commands/results](../events/implementation-0002.json).
+## Validation results
+The full affected suite passed: 139 tests, 0 failures, 1921 assertions across 11 files. Scoped TypeScript checking exited 0. Focused modal/live checks passed: 7 tests, 68 assertions. Real Pi acceptance exercised keyboard and mouse ancestors, mixed types, registered and disabled actions, dependency gates, live type/membership changes, missing-parent and unreadable-record errors, Files return and insertion, and unsent fresh-chat planning commands. Colour and monochrome evidence covers 40x12, 80x24 and 120x40. [Exact commands and results](../artifacts/evidence/implementation-0005/validation.json). [Criterion coverage and limitations](../artifacts/evidence/implementation-0005/acceptance.json).
 
-## Review history and findings
-No ticket03 independent review exists. Latest verdict: unavailable. No formal findings are resolved or dismissed. The implementation, acceptance, and session-cap blockers remain open.
+## Review history
+No independent ticket03 review exists. Source self-review found no blocking issue. The parent owns formal review and publication.
 
-## Questions and remaining work
-No product decision is blocked. The user approved fresh cycle2 after the cap violation. The blocked result lists all remaining implementation and acceptance work. Do not shrink that scope.
+## Resolved findings
+No formal reviewer findings exist. The prior incomplete implementation and acceptance work is now completed. Prior failed checks and accounting history remain preserved in the earlier receipts.
+
+## Remaining findings
+No known blocking implementation issue. Latest reviewer verdict: unavailable. Long refresh errors truncate at standard widths; expanded native evidence preserves the full schema reason. Native Pi emits its existing shortcut conflict. No model or live workflow execution is claimed.
 
 ## Merge status
-No ticket03 implementation source commit exists. Its candidate is not reviewed, merged, or pushed. The canonical ticket remains claimed. The first agent pane is closed. A fresh cycle2 pane is ready. The source worktree, dependency links, config, and fixture remain preserved for recovery.
+Not reviewed, merged, pushed, or ticket-completed. The canonical ticket remains claimed. The isolated source branch and worktree remain for the parent.
 
-## Receipts and artifacts
-[Start](../events/start-0001.json), [blocked child result](../events/implementation-0002.json), [parent completion](../events/implementation-complete-0003.json), [original immutable draft](../artifacts/snapshots/pr-draft-implementation-0002.md), [parent blocked snapshot](../artifacts/snapshots/pr-draft-parent-0003.md), [native observations](../artifacts/evidence/implementation-0002/native-session.json), [preserved resources](../artifacts/evidence/implementation-0002/preserved-resources.json), and [actual closure/source observation](../artifacts/evidence/implementation-complete-0003/resource-observation.json).
+## Receipt and accounting history
+[Cycle1 start](../events/start-0001.json), [Cycle1 blocked result](../events/implementation-0002.json), [Cycle1 parent completion](../events/implementation-complete-0003.json), [Cycle2 start](../events/start-0004.json), [Cycle2 implementation result](../events/implementation-0005.json). Cycle1 consumed251637 provider work tokens against250000 (1637 over). That history is unchanged. Cycle2 keeps the approved200000 working budget,50000 completion reserve and250000 complete-session ceiling. No allowance was reset or increased. The parent audits final session accounting after shutdown.
+
+## Supporting artifacts
+[Original immutable draft](../artifacts/snapshots/pr-draft-implementation-0002.md), [Parent immutable draft](../artifacts/snapshots/pr-draft-parent-0003.md), [Preserved recovery patch](../artifacts/evidence/implementation-complete-0003/uncommitted-source.patch), [Native colour protocol](../artifacts/evidence/implementation-0005/native-color-session.json), [Native monochrome protocol](../artifacts/evidence/implementation-0005/native-monochrome-session.json), [Palette verification](../artifacts/evidence/implementation-0005/palette-verification.json), [Cleanup evidence](../artifacts/evidence/implementation-0005/cleanup.json).
+
+## Open questions
+No product decision is blocked. Formal review and publication are the parent’s next actions.
 
 
 
-## Approved continuation, cycle2
+## Parent implementation verification
 
-The user approved a fresh implementation session after the cap stop. [Start receipt](../events/start-0004.json) preserves the prior result and exact dirty-patch identity. The10-cycle total and250000-session ceiling remain unchanged. The native working budget is200000 with50000 completion headroom. All earlier consumption and remaining acceptance work remain recorded.
+[Parent completion](../events/implementation-complete-0006.json) verifies the clean committed source and required artifacts. Cycle2 used194388 complete-session work tokens, within250000. The native goal completed before the final response. The agent pane is closed. Independent review remains required.

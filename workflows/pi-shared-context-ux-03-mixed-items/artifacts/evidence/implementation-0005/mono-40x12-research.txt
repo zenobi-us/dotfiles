@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=9:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]  nstalls/github-earendil-works-pi/1.1.0
+[002]  ╭────────────────────────────────────╮
+[003]  │ Projects · Repo > repo             │
+[004]  │  [1 Tracker]     2 Files    Tab fo…│
+[005]   Initiat…  >  Mixed i…  >  R
+[006]  > research / recorded details
+[007]   ID: R
+[008] ─ Title: Research 界: compare          ─
+[009]   canonical sources and retain a long
+[010] ─tracker/tickets/R.md · draft          ─
+[011] /Esc back  Enter open  Tab focus  R ...
+[012] 0.0%/0 (auto)                    unknown

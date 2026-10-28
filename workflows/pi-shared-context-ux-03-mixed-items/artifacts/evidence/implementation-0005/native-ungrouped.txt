@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=35:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Ungrouped                                                                                      │
+[008] [Ex│> unassigned · Items 2                                                                                          │
+[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │ unassigned · Phase: unavailable                                                                                │
+[011] [Ex│ Summary: Records without an assigned initiative.                                                               │
+[012]   p│>[task]          D                 Unassociated dependent                                     State: open       │
+[013] /ru│>Waiting for T                                                                                                  │nf.
+[014] d/d│ [research]      U                 Unassociated research                                      State: reviewed   │
+[015]    │ tracker/tickets/U.md                                                                                           │
+[016] /ru│                                                                                                                │nf.
+[017] d/d│                                                                                                                │
+[018] /ru│                                                                                                                │nf.
+[019] d/d│                                                                                                                │
+[020]    │                                                                                                                │
+[021]    │                                                                                                                │
+[022]  Wa│                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]    │                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Summary: Records without an assigned initiative.                                                               │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux03-native-aldPV6/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

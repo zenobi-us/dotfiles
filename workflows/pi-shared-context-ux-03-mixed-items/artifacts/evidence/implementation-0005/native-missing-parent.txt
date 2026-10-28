@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=34:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Mixed initiative  >  R                                                                         │
+[008] [Ex│> I · Items 3                        │  research / recorded details                                             │
+[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │>[research]  ID: R                   │ ID: R                                                                    │
+[011] [Ex│>Research restored                   │ Title: Research restored                                                 │
+[012]   p│>State: reviewed                     │ Type: research                                                           │
+[013] /ru│>tracker/tickets/R.md                │ State: reviewed                                                          │nf.
+[014] d/d│ [enhancement]  ID: T                │ Reference: tracker/tickets/R.md                                          │
+[015]    │ Executable ticket                   │ source: sources/study                                                    │
+[016] /ru│ State: open                         │ Recorded details:                                                        │nf.
+[017] d/d│ tracker/tickets/T.md                │ Native live research restored.                                           │
+[018] /ru│ [Report]  ID: N                     │ a actions · Esc return                                                   │nf.
+[019] d/d│ Canonical report                    │                                                                          │
+[020]    │ State: unavailable                  │                                                                          │
+[021]    │ tracker/tickets/N.md                │                                                                          │
+[022]  Wa│                                     │                                                                          │
+[023]    │                                     │                                                                          │
+[024]    │                                     │                                                                          │
+[025]    │                                     │                                                                          │
+[026]    │                                     │                                                                          │
+[027]    │                                     │                                                                          │
+[028]    │                                     │                                                                          │
+[029]    │                                     │                                                                          │
+[030]    │                                     │                                                                          │
+[031]    │                                     │                                                                          │
+[032]    │                                     │                                                                          │
+[033]    │                                     │                                                                          │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Live refresh failed: Record R refers to missing parent missing-initiative.                                     │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux03-native-aldPV6/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

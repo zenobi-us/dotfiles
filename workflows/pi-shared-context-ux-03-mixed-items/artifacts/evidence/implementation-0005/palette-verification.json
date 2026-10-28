@@ -1,0 +1,152 @@
+{
+  "mono-80x24-mixed.spans.txt": {
+    "modal_rgb": [
+      [
+        34,
+        34,
+        34
+      ],
+      [
+        221,
+        221,
+        221
+      ]
+    ],
+    "excludes": "Fixed-colour Pi startup logo and text outside modal columns"
+  },
+  "color-120x40-mixed.spans.txt": {
+    "modal_rgb": [
+      [
+        33,
+        59,
+        73
+      ],
+      [
+        95,
+        168,
+        204
+      ],
+      [
+        108,
+        118,
+        123
+      ],
+      [
+        126,
+        136,
+        142
+      ],
+      [
+        157,
+        165,
+        169
+      ],
+      [
+        167,
+        152,
+        215
+      ],
+      [
+        222,
+        224,
+        225
+      ]
+    ],
+    "excludes": "Fixed-colour Pi startup logo and text outside modal columns"
+  },
+  "color-40x12-mixed.spans.txt": {
+    "modal_rgb": [
+      [
+        33,
+        59,
+        73
+      ],
+      [
+        126,
+        136,
+        142
+      ],
+      [
+        157,
+        165,
+        169
+      ],
+      [
+        167,
+        152,
+        215
+      ],
+      [
+        222,
+        224,
+        225
+      ]
+    ],
+    "excludes": "Fixed-colour Pi startup logo and text outside modal columns"
+  },
+  "mono-120x40-mixed.spans.txt": {
+    "modal_rgb": [
+      [
+        34,
+        34,
+        34
+      ],
+      [
+        221,
+        221,
+        221
+      ]
+    ],
+    "excludes": "Fixed-colour Pi startup logo and text outside modal columns"
+  },
+  "mono-40x12-mixed.spans.txt": {
+    "modal_rgb": [
+      [
+        34,
+        34,
+        34
+      ],
+      [
+        221,
+        221,
+        221
+      ]
+    ],
+    "excludes": "Fixed-colour Pi startup logo and text outside modal columns"
+  },
+  "color-80x24-mixed.spans.txt": {
+    "modal_rgb": [
+      [
+        33,
+        59,
+        73
+      ],
+      [
+        95,
+        168,
+        204
+      ],
+      [
+        126,
+        136,
+        142
+      ],
+      [
+        157,
+        165,
+        169
+      ],
+      [
+        167,
+        152,
+        215
+      ],
+      [
+        222,
+        224,
+        225
+      ]
+    ],
+    "excludes": "Fixed-colour Pi startup logo and text outside modal columns"
+  }
+}

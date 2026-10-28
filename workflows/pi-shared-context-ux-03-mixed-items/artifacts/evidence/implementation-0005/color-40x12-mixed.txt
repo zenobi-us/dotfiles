@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=11:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]  nstalls/github-earendil-works-pi/1.1.0
+[002]  ╭────────────────────────────────────╮
+[003]  │ Projects · Repo > repo             │
+[004]  │  [1 Tracker]     2 Files    Tab fo…│
+[005]   Initiatives  >  Mixed initiat…
+[006]  > I · Items 3
+[007]  >[research]  ID: R
+[008] ─>Research 界: compare canonical       ─
+[009]  >sources and retain a long wrapped
+[010] ─Summary: Recorded mixed scope.        ─
+[011] /Esc back  Enter open  Tab focus  R ...
+[012] 0.0%/0 (auto)                    unknown
