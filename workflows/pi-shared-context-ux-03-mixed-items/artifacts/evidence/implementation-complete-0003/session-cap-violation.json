@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-10-28T03:23:09.949Z",
+  "session_id": "01a18070-1b11-7544-b037-b7dcbb2e9ee9",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-03-mixed-items--/2026-10-28T02-56-33-041Z_01a18070-1b11-7544-b037-b7dcbb2e9ee9.jsonl",
+  "native_goal_id": "15b7695dbde30a83",
+  "native_goal_budget": 241808,
+  "completion_reserve": 8192,
+  "source_reported_budget_reached_at": 243387,
+  "complete_session_work_tokens": 251637,
+  "complete_session_ceiling": 250000,
+  "over_by": 1637,
+  "audit_error": "Session cap reached: 251637",
+  "method": "Sum provider input + output + cacheWrite. Exclude cacheRead. Post-shutdown audit; no reset or increase.",
+  "status": "exceeded",
+  "control_gap": "The configured native budget and reserve did not bound the complete session to 250000.",
+  "agent_pane_closed": true,
+  "source_worktree_preserved": true
+}

@@ -1,0 +1,163 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-complete-0003",
+  "workflow_id": "pi-shared-context-ux-03-mixed-items",
+  "phase": "implementation",
+  "attempt": 1,
+  "parent_receipt": "implementation-0002",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "source_branch": "feature/pi-shared-context-ux-03-mixed-items",
+  "base_branch": "master",
+  "source_commit": "c451731d51127974110d0747ca2342babecb2ced",
+  "source_tree": "1dfff49f6adb9af90670c5a12ab510b8654d651f",
+  "created_at": "2026-10-28T03:25:44.478Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-03-mixed-items",
+    "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0059.yaml",
+  "event": "phase-complete",
+  "status": "blocked",
+  "cycle_number": 1,
+  "token_limit": 250000,
+  "native_goal_budget": 241808,
+  "completion_margin_tokens": 8192,
+  "claim_publication_commit": "c451731d51127974110d0747ca2342babecb2ced",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/implementation-0002.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/start-0001.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/implementation-0002/preserved-resources.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0059.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/implementation-complete-0003.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/implementation-complete-0003"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/snapshots/pr-draft-parent-0003.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/projections/implementation-log.md"
+    }
+  ],
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-03-mixed-items/events/implementation-0002.json",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/implementation-complete-0003"
+  },
+  "source_dirty": true,
+  "source_committed": false,
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts"
+  ],
+  "source_patch_ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/implementation-complete-0003/uncommitted-source.patch",
+  "source_patch_sha256": "7a12af0ae550cfa64d519b1efc9755df6956c803987d160bc40bbdfb3d39b602",
+  "result_agent": {
+    "name": "ux03-implement-c1",
+    "pane_id": "w7P:p1",
+    "session_id": "01a18070-1b11-7544-b037-b7dcbb2e9ee9",
+    "native_goal_id": "15b7695dbde30a83",
+    "closed": true
+  },
+  "complete_session_work_tokens": 251637,
+  "session_token_limit": 250000,
+  "cap_violation": true,
+  "cap_excess": 1637,
+  "summary": "Implementation remains partial and uncommitted. Full-session audit exceeded the250000 ceiling. Required acceptance, docs, source commit, cleanup and independent review remain incomplete. Pane closed; worktree and recovery resources preserved. No further source dispatch before user approval.",
+  "validation": {
+    "kind": "Artifact integrity and post-shutdown accounting only; no source checks rerun",
+    "result": "Required child artifacts exist and generated Report views pass OKF validation. Source acceptance is incomplete.",
+    "child_reported_results": [
+      {
+        "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+        "result": "3 pass, 0 fail; initial pre-change run failed as recorded in session."
+      },
+      {
+        "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts --test-name-pattern 'mixed canonical'",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+        "result": "1 pass, 2 filtered out, 0 fail; 24 assertions. Prior runs exposed stale notice masking refresh errors; fixed."
+      },
+      {
+        "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc -p /tmp/ux03-scoped-tsconfig.json",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+        "result": "exit 0"
+      },
+      {
+        "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+        "result": "31 pass, 1 fail before live test correction. Combined focused suite not rerun after correction."
+      },
+      {
+        "command": "mise exec -- termscope session -- env HOME=/tmp/ux03-native-aldPV6/home PI_CODING_AGENT_DIR=/tmp/ux03-native-aldPV6/config PI_TELEMETRY=0 COLORTERM=truecolor /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools --no-themes --use-theme dark -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+        "cwd": "/tmp/ux03-native-aldPV6/repo",
+        "result": "Real Pi 1.1.0 loaded the worktree extension. Mixed rows, research details, disabled actions, 120x40/80x24/40x12 colour snapshots captured. Matrix incomplete. Some immediate snapshots precede settled render. No monochrome run. No model prompt or live workflow action dispatched."
+      }
+    ]
+  },
+  "remaining_work": [
+    "Audit canonical type classification, all ticket compatibility and source changes.",
+    "Complete public-modal boundary tests, native live/error/membership/type scenarios, keyboard and mouse ancestors, Files return and unsent insertion checks.",
+    "Complete settled colour and monochrome acceptance at 40x12, 80x24 and 120x40. Native SVG alone does not prove colour; RGB spans and HTML are available.",
+    "Run full affected suite once after final changes and final scoped typecheck.",
+    "Update existing README, self-review, commit complete clean source with ticket reference.",
+    "Remove preserved owned dependency links/config/fixtures after acceptance, and produce a later immutable completed implementation receipt and views."
+  ]
+}

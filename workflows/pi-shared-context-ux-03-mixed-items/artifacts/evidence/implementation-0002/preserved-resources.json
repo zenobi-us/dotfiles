@@ -1,0 +1,18 @@
+{
+  "owned_dependency_links": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/typescript",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@earendil-works/pi-tui",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@earendil-works/pi-coding-agent",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@crustjs/core",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@crustjs/plugins",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@types/bun",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@types/node",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/bun-types",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/yaml"
+  ],
+  "scoped_config": "/tmp/ux03-scoped-tsconfig.json",
+  "mq_lock": "/tmp/ux03-mq.lock",
+  "native_fixture": "/tmp/ux03-native-aldPV6",
+  "owned_pi_process": "closed through termscope; exit 0",
+  "cleanup": "Temporary links, config and fixture preserved for parent handoff. No tools installed. Source left uncommitted."
+}

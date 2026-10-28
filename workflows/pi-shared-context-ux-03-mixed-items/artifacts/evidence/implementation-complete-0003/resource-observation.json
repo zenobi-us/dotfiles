@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-28T03:23:09.956Z",
+  "pane_close": {
+    "stdout": "{\"id\":\"cli:pane:close\",\"result\":{\"type\":\"ok\"}}\n",
+    "stderr": "",
+    "code": 0
+  },
+  "source_worktree": {
+    "branch": "feature/pi-shared-context-ux-03-mixed-items",
+    "is_bare": false,
+    "is_detached": false,
+    "is_linked_worktree": true,
+    "is_prunable": false,
+    "label": "Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items"
+  },
+  "source_commit": "c451731d51127974110d0747ca2342babecb2ced",
+  "source_tree": "1dfff49f6adb9af90670c5a12ab510b8654d651f",
+  "source_dirty": true,
+  "source_committed": false,
+  "partial_patch_sha256": "7a12af0ae550cfa64d519b1efc9755df6956c803987d160bc40bbdfb3d39b602",
+  "source_agent_active": false
+}
