@@ -8,7 +8,7 @@ sequence: 4
 title: Read complete initiative and item descriptions
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 ## What to build
@@ -57,3 +57,5 @@ Record the focused behavior checks and terminal observations. Include evidence f
 
 The user approved this slice and its direct blockers during ticket decomposition.
 
+
+- 2026-10-28T21:01:04.812Z: Claimed for implementation by coordinator run `ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135`, cycle1. [Reservation](../../workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml). Direct blocker pi-shared-context-ux-03-mixed-items is completed and published.
