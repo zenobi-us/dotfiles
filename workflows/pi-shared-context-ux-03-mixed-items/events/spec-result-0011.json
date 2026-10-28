@@ -1,0 +1,158 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "spec-result-0011",
+  "workflow_id": "pi-shared-context-ux-03-mixed-items",
+  "phase": "review-spec",
+  "attempt": 1,
+  "parent_receipt": "spec-start-0009",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "source_branch": "feature/pi-shared-context-ux-03-mixed-items",
+  "base_branch": "master",
+  "fixed_point": "c451731d51127974110d0747ca2342babecb2ced",
+  "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "created_at": "2026-10-28T20:26:31.139592488Z",
+  "muxer": "herdr",
+  "pane_id": "w7Y:p3",
+  "agent": "omp",
+  "agent_name": "ux03-review-spec-c5",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-03-mixed-items",
+    "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/spec-0011"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0069.yaml",
+  "cycle_number": 5,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "c451731d51127974110d0747ca2342babecb2ced",
+  "event": "phase-result",
+  "status": "completed",
+  "verdict": "SUCCESS",
+  "axis": "spec",
+  "scope": "Independent assessment of the pinned three-dot diff only. No fixes, source mutations, commits, agents, or publication actions.",
+  "inputs": [
+    { "kind": "ticket", "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md" },
+    { "kind": "initiative", "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md" },
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/implementation-complete-0006.json" },
+    { "kind": "snapshot", "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/snapshots/pr-draft-implementation-0005.md" },
+    { "kind": "coordinator", "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0069.yaml" },
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/spec-start-0009.json" }
+  ],
+  "outputs": [
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/spec-result-0011.json" },
+    { "kind": "evidence", "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/spec-0011/verification.json" }
+  ],
+  "findings": [],
+  "axis_report": "No blocking spec defect found in the pinned diff. All twelve acceptance criteria were assessed against the canonical ticket and initiative decisions. Mixed records keep canonical membership, type, reference, state and separate row fields. Research and planning bypass ticket evidence and worktree actions. Registered planning commands retain their canonical targets. Ticket transition and evidence checks remain intact.\n\nFresh validation: 139 tests passed, with 1921 assertions. A separate isolated smoke probe exercised the real loader and public modal handlers. It covered versioned research and tickets, versioned planning, readable legacy reports, Ungrouped membership, recorded research metadata, canonical planning commands, workspace retention, and type changes into and out of ticket event history.\n\nExisting native evidence was inspected for colour spans, monochrome field separation, compact research navigation, unreadable-record errors and unsent planning commands. This axis did not run a fresh native Pi matrix. Long diagnostic footers remain truncated; that observation does not establish a new blocking defect in this slice. No new workspace, backend, reassignment control, command, or evidence-authority change was found. Source commit and tree matched before and after assessment. Owned probe files and fixtures were removed.",
+  "acceptance_coverage": [
+    {
+      "criterion": 1,
+      "requirement": "An initiative child list displays associated research and tickets together. Other supported types retain their canonical identity and type.",
+      "assessment": "satisfied",
+      "evidence": "Fresh suite: modal.test.ts mixed and planning/other cases; fresh real-loader smoke: v1 R research and T enhancement in I; canonical P Spec and legacy N Report preserved. data.ts retains documentType and ref; explorer.ts childRow renders each field."
+    },
+    {
+      "criterion": 2,
+      "requirement": "Every supported record without initiative membership appears in Ungrouped. An associated record does not also appear there.",
+      "assessment": "satisfied",
+      "evidence": "data.ts assigned-set complement; fresh smoke found only N and P in Ungrouped, with R and T associated. Fresh live.test.ts covers research and dependency-only ticket membership separation."
+    },
+    {
+      "criterion": 3,
+      "requirement": "Initiative Items counts include all associated child records. Ungrouped counts all supported unassociated records.",
+      "assessment": "satisfied",
+      "evidence": "Fresh modal/live suite checks Items 3 and Items 2, then Items 3 after membership removal. Counts use canonical child IDs rather than executable-only workflow records. Existing colour spans show Mixed initiative Items 3."
+    },
+    {
+      "criterion": 4,
+      "requirement": "Type markers distinguish research from tickets. IDs, titles, states, and references remain separate fields.",
+      "assessment": "satisfied",
+      "evidence": "explorer.ts childRow and fieldLines preserve separate structured fields and wrapped overflow. Existing color-120x40-mixed.spans.txt and mono-80x24-mixed.txt show type, ID, title, state and reference separation. Fresh Unicode/width tests passed."
+    },
+    {
+      "criterion": 5,
+      "requirement": "Selecting research opens relevant recorded details. Research does not display invented ticket events, review counts, or worktree states.",
+      "assessment": "satisfied",
+      "evidence": "Fresh suite and real-loader smoke show recorded source metadata and body without Current source or event history. data.ts loadTicketWorkflow returns before record access for non-executable types; explorer.ts ticketRows uses recorded fields and body."
+    },
+    {
+      "criterion": 6,
+      "requirement": "Available actions reflect the selected record type and registered commands. Disabled reasons remain readable.",
+      "assessment": "satisfied",
+      "evidence": "actions.ts selects ticket, research/planning, or generic-record menus and checks skill registration. Fresh modal/live tests cover unavailable grill, research planning actions, Report-only Ask Matt and ticket blocker reasons. Action rows wrap reasons in the scrollable pane."
+    },
+    {
+      "criterion": 7,
+      "requirement": "Existing research and planning actions retain their established command and fresh-chat behavior. No new conversion command is necessary.",
+      "assessment": "satisfied",
+      "evidence": "Fresh smoke stages /skill:to-tickets with tracker/tickets/R.md. Fresh suite covers canonical grill and session safety. Existing native-unsent-planning-editor.txt shows canonical research type/ref and an unsent planning command. index.ts confirmation and actions.ts newSession editor staging remain intact."
+    },
+    {
+      "criterion": 8,
+      "requirement": "Selecting a ticket retains its existing action targets, dependencies, and workflow safeguards.",
+      "assessment": "satisfied",
+      "evidence": "Fresh full scoped suite passed existing transition, direct blocker, stale-source, invalid-event and receipt identity checks. actions.ts transitionReason is unchanged; recordKind retains enhancement/task/bug and other listed executable types on that path. Fresh smoke enters ticket event history after a research-to-task change."
+    },
+    {
+      "criterion": 9,
+      "requirement": "Membership or type changes appear through live updates. The selected canonical record remains selected where its current membership permits.",
+      "assessment": "satisfied",
+      "evidence": "Fresh real-watcher live.test.ts covers type changes, Files retention, missing parents and membership removal. Separate manual-reload smoke confirms R identity survives type changes and ticket event history exits when R becomes research. explorer.ts invalidates non-ticket workflows and clamps action selection."
+    },
+    {
+      "criterion": 10,
+      "requirement": "Unreadable records and missing relationships display useful explanations. The interface does not silently fabricate membership.",
+      "assessment": "satisfied",
+      "evidence": "Fresh loader/live tests cover schema and relation failures, missing-parent explanation and retained readable content. data.ts adds record path or missing-parent identity to failures. Existing native-unreadable-record-expanded.txt shows retained content and unsupported-schema explanation; long footer text truncates. Canonical membership remains independent of blocked_by edges."
+    },
+    {
+      "criterion": 11,
+      "requirement": "Breadcrumbs and Esc return through the correct initiative or Ungrouped context. Workspace changes preserve the selected item.",
+      "assessment": "satisfied",
+      "evidence": "Fresh modal tests cover ancestor mouse return, Esc and canonical Ungrouped selection. Fresh live suite and separate smoke cover Tracker/Files retention of R. Mixed records reuse the existing itemOrigin, initiative selection and breadcrumb paths."
+    },
+    {
+      "criterion": 12,
+      "requirement": "Mixed lists preserve structured fields, wrapped titles, colour-independent meaning, and small-screen navigation.",
+      "assessment": "satisfied",
+      "evidence": "Fresh scoped suite passed Unicode-width and terminal sanitization coverage. Smoke renders selected identity at 40, 80 and 120 columns. Existing wide colour spans show field roles and selected background; monochrome 80x24 shows explicit labels; compact 40x12 research retains identity and navigation hints. No fresh native matrix claimed."
+    }
+  ],
+  "initiative_decisions_checked": [
+    "Synthetic Ungrouped stays in the existing initiative hierarchy; no planning actions on the collection.",
+    "Canonical parent/index membership remains separate from dependency edges; current adapters and schema validator remain authoritative.",
+    "Research/planning and generic recorded details do not consume ticket workflow evidence; no conversion workflow added.",
+    "Ready, Review, Blocked and All remain ticket-only queues; mixed child lists are separate.",
+    "Fresh-chat confirmation, canonical record revalidation and unsent editor staging remain in the established paths.",
+    "Fields retain terminal sanitization, Unicode display widths, theme tokens, monochrome meaning and compact scrolling.",
+    "No Research workspace, reassignment control, new backend, Files/Tracker cross-link, receipt-authority change or unrelated source cleanup was introduced."
+  ],
+  "validation": {
+    "evidence_ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/spec-0011/verification.json",
+    "fresh_suite": { "passed": 139, "failed": 0, "assertions": 1921, "files": 11 },
+    "fresh_boundary_smoke": "passed",
+    "fresh_native_matrix": false,
+    "tracked_source_and_index_unchanged": true,
+    "owned_temporary_files_removed": true,
+    "parent_dependencies_preserved": true,
+    "real_record_actions_or_model_prompts_submitted": false
+  },
+  "adr": "NO ADR: docs/adr/index.md lists no applicable decision record. Canonical ticket, initiative and tracker schema rules govern this assessment."
+}

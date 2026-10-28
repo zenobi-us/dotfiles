@@ -1,0 +1,71 @@
+{
+  "axis": "spec",
+  "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "source_identity": {
+    "initial_and_final_match": true,
+    "tracked_worktree_and_index_diff": "empty",
+    "fixed_point": "c451731d51127974110d0747ca2342babecb2ced",
+    "diff_command": "git diff c451731d51127974110d0747ca2342babecb2ced...5af9909464805f3d59bd5946cc006d5371aa2405"
+  },
+  "fresh_checks": [
+    {
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+      "exit_code": 0,
+      "stdout": "bun test v1.4.3 (c6da4a4d3)\n139 pass\n0 fail\n1921 expect() calls\nRan 139 tests across 11 files. [9.67s]"
+    },
+    {
+      "command": "mise exec -- bun /tmp/ux03-spec-c5-probe.ts",
+      "exit_code": 0,
+      "kind": "Throwaway boundary smoke through real canonical loader and public modal handlers",
+      "observations": [
+        "Versioned research and ticket share canonical initiative membership",
+        "Legacy report and versioned planning record appear only in Ungrouped",
+        "Versioned research details contain metadata without ticket workflow state",
+        "Research planning action retains canonical command target",
+        "Workspace switch retains research identity",
+        "Reload replaces research details with executable ticket details",
+        "Executable ticket can enter event history",
+        "Reload exits event history when selected canonical type becomes research",
+        "Selected canonical identity remains rendered at 40 columns",
+        "Selected canonical identity remains rendered at 80 columns",
+        "Selected canonical identity remains rendered at 120 columns"
+      ],
+      "limits": "Manual reload in this probe, not a separate watcher acceptance run. Renderer checks are not native terminal visual proof. The fresh full suite includes the real watcher test.",
+      "fixture": "/tmp/ux03-spec-c5-5XeQJg"
+    }
+  ],
+  "existing_evidence_inspected": {
+    "base_ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/implementation-0005",
+    "files": [
+      "acceptance.json",
+      "cleanup.json",
+      "color-120x40-mixed.spans.txt",
+      "color-40x12-research.txt",
+      "mono-80x24-mixed.txt",
+      "native-unreadable-record-expanded.txt",
+      "native-unsent-planning-editor.txt"
+    ],
+    "observations": [
+      "Wide colour spans separate research type, muted ID, primary wrapped title and state. Selection uses a marker and background.",
+      "The monochrome 80x24 capture retains explicit type, ID, title, state and reference lines.",
+      "The compact 40x12 research capture retains identity and keyboard hints; details need scrolling.",
+      "The expanded unreadable-record capture retains the previous readable list and shows the unsupported-schema failure in its footer. Long diagnostic text is still truncated.",
+      "The recorded unsent editor contains /skill:to-tickets with tracker/tickets/R.md and research type metadata. This is existing implementation evidence, not a fresh launch by this axis."
+    ],
+    "limits": "No fresh native Pi session or full terminal matrix was run by this axis. No SVG colour claims. The implementation acceptance mapping was inspected, not independently rerun in full."
+  },
+  "cleanup": {
+    "owned_probe_removed": "/tmp/ux03-spec-c5-probe.ts",
+    "owned_fixture_removed": "/tmp/ux03-spec-c5-5XeQJg",
+    "absence_verified": true,
+    "owned_long_lived_processes": [],
+    "source_tests_config_manifests_tickets_existing_receipts_unchanged": true,
+    "parent_dependencies_preserved": true,
+    "model_prompts_or_real_workflow_actions_submitted": false
+  },
+  "accounting_milestones": [
+    { "tokens_used": 73443, "working_budget": 200000 },
+    { "tokens_used": 111099, "working_budget": 200000 }
+  ]
+}

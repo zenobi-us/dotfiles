@@ -1,0 +1,83 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "standards-complete-0012",
+  "workflow_id": "pi-shared-context-ux-03-mixed-items",
+  "phase": "review-standards",
+  "attempt": 1,
+  "parent_receipt": "standards-result-0010",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "source_branch": "feature/pi-shared-context-ux-03-mixed-items",
+  "base_branch": "master",
+  "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "created_at": "2026-10-28T20:26:54.004Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-03-mixed-items",
+    "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0068.yaml",
+  "event": "phase-complete",
+  "status": "completed",
+  "cycle_number": 4,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "c451731d51127974110d0747ca2342babecb2ced",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/standards-result-0010.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0068.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/standards-complete-0012.json"
+    }
+  ],
+  "fixed_point": "c451731d51127974110d0747ca2342babecb2ced",
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-03-mixed-items/events/standards-result-0010.json",
+  "verdict": "SUCCESS",
+  "findings": [],
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-03-mixed-items--/2026-10-28T20-21-45-750Z_01a1842d-0696-708e-a9aa-76070184edb8.jsonl",
+    "session_id": "01a1842d-0696-708e-a9aa-76070184edb8",
+    "goal_id": "15b85898b18d1c1c",
+    "native_status": "complete",
+    "native_goal_used": 118314,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 108011,
+      "output": 10592,
+      "cacheWrite": 0,
+      "cacheRead": 2510976
+    },
+    "provider_work_tokens": 118603,
+    "session_ceiling": 250000,
+    "under_cap": true
+  },
+  "agent_closed": true,
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/standards-0010"
+  }
+}

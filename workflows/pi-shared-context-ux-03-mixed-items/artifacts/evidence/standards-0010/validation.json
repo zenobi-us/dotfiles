@@ -1,0 +1,56 @@
+{
+  "schema": "review-axis-evidence/v1",
+  "axis": "standards",
+  "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "fixed_point": "c451731d51127974110d0747ca2342babecb2ced",
+  "diff_command": "git diff c451731d51127974110d0747ca2342babecb2ced...5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_audit": {
+    "initial": "HEAD and tree matched the assignment; git status --porcelain returned no entries.",
+    "final_command": "git rev-parse HEAD HEAD^{tree} && git diff --exit-code HEAD && git diff --cached --exit-code",
+    "final_exit_code": 0,
+    "final_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+    "final_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+    "tracked_edits": false
+  },
+  "standards": {
+    "repository": ["AGENTS.md (provided context)", "CONTEXT-MAP.md", "docs/agents/domain.md", "docs/agents/issue-tracker.md", "docs/adr/index.md"],
+    "canonical_records": ["tracker/tickets/pi-shared-context-ux-03-mixed-items.md", "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"],
+    "skills": ["code-review", "typescript", "code-comments", "termscope", "iso-24495-1", "iso-24495-3", "mq-query", "shared-context", "reading-and-writing-tickets"],
+    "markdown_access": "MQ with okf.mq, explicit raw input and JSON output, and a reviewer-owned external lockfile.",
+    "adr": "NO ADR: the canonical ADR index contains no decision entries.",
+    "context_md": "Absent; checked before proceeding.",
+    "exclusions": "No lint, format, compiler, cosmetic, or pre-existing findings. No spec-axis verdict. No changes requested from optional smells."
+  },
+  "focused_checks": {
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "exit_code": 0,
+    "tests_passed": 48,
+    "tests_failed": 0,
+    "expect_calls": 1471,
+    "files": 5
+  },
+  "fresh_smoke": {
+    "command": "mise exec -- bun /tmp/ux03-review-std-c4-smoke.ts",
+    "exit_code": 0,
+    "result": "PASS",
+    "boundary": "Isolated public SharedContextModal input/render calls with the actual GraphExplorer; monochrome theme adapter; synthetic records. Not a native Pi acceptance run.",
+    "observed": ["Research and task appeared together with distinct type markers.", "Research displayed recorded source metadata and body without Current source or Receipts fields.", "Only the executable T record requested workflow loading.", "ESC and BEL terminal-control bytes in metadata did not reach rendered output.", "Rendered maximum visible widths were 40, 80, and 120 for the respective widths.", "Files switch retained the selected research ID R.", "Research offered To tickets and did not offer Start worktree."],
+    "limits": "Only width limits were asserted for the three sizes. This adapter does not prove native overlay height or native colours.",
+    "probe_setup_failure": "The first probe supplied an incomplete routes fixture and failed in unchanged modal.ts. Adding the required alignment route produced the reported passing run.",
+    "temporary_probe": "Removed after execution; no permanent test or source change."
+  },
+  "recorded_native_evidence_inspected": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/implementation-0005",
+    "files": ["acceptance.json", "validation.json", "palette-verification.json", "color-120x40-mixed.spans.txt", "mono-80x24-mixed.spans.txt"],
+    "observed": "Recorded colour spans separate the primary title, muted ID/reference, accent type/state, and selected background. Recorded monochrome spans preserve labelled type, ID, title, state, and selection marker.",
+    "limits": "Historical implementation evidence for the same pinned commit/tree, not a fresh reviewer matrix. No SVG-based colour claim. The implementation validation ledger is not substituted for this reviewer's focused checks."
+  },
+  "cleanup": {
+    "owned_processes": "None remain; synchronous probe disposed GraphExplorer in finally.",
+    "owned_temporary_files": ["/tmp/ux03-review-std-c4-smoke.ts", "/tmp/ux03-review-std-c4-mq.lock"],
+    "parent_dependencies": "Unchanged.",
+    "canonical_records_and_existing_receipts": "Unchanged."
+  }
+}

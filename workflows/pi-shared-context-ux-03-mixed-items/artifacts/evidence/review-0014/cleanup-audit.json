@@ -1,0 +1,75 @@
+{
+  "created_at": "2026-10-28T20:29:53.795Z",
+  "source": {
+    "commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+    "tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+    "command": "git rev-parse HEAD HEAD^{tree} && git diff --exit-code && git diff --cached --exit-code && git status --porcelain",
+    "exit_code": 0,
+    "stdout": "5af9909464805f3d59bd5946cc006d5371aa2405\n83c96d2dc2b2d40f438e79d698bae53b5d7658ac\n",
+    "tracked_diff": "empty",
+    "index_diff": "empty",
+    "status": "clean"
+  },
+  "owned_native_process": {
+    "name": "ux03-review-0014-native",
+    "exit_code": 0,
+    "close_request": 52
+  },
+  "owned_fixture": {
+    "path": "/tmp/ux03-review-0014-8ShQqx",
+    "removed": true
+  },
+  "owned_pending_jobs": 0,
+  "parent_dependency_links": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/typescript",
+      "target": "/tmp/ux02-deps/node_modules/typescript",
+      "preserved": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@earendil-works/pi-tui",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui",
+      "preserved": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@earendil-works/pi-coding-agent",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent",
+      "preserved": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@crustjs/core",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/core",
+      "preserved": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@crustjs/plugins",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins",
+      "preserved": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@types/bun",
+      "target": "/tmp/ux02-deps/node_modules/@types/bun",
+      "preserved": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/@types/node",
+      "target": "/tmp/ux02-deps/node_modules/@types/node",
+      "preserved": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/bun-types",
+      "target": "/tmp/ux02-deps/node_modules/bun-types",
+      "preserved": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/node_modules/yaml",
+      "target": "/tmp/ux02-deps/node_modules/yaml",
+      "preserved": true
+    }
+  ],
+  "parent_compiler_config_preserved": true,
+  "report_mq_validation": [],
+  "other_workflow_state_modified": false,
+  "canonical_records_modified": false,
+  "real_record_actions_submitted": false
+}

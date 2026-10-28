@@ -1,0 +1,91 @@
+{
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+    "source_branch": "feature/pi-shared-context-ux-03-mixed-items",
+    "base_branch": "master",
+    "fixed_point": "c451731d51127974110d0747ca2342babecb2ced",
+    "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+    "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+    "diff_command": "git diff c451731d51127974110d0747ca2342babecb2ced...5af9909464805f3d59bd5946cc006d5371aa2405",
+    "commit_list": "5af99094 feat: browse tracker/tickets/pi-shared-context-ux-03-mixed-items.md\n"
+  },
+  "reviewer": "ux03-review-main-c3",
+  "created_at": "2026-10-28T20:28:37.574Z",
+  "suite": {
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "exit_code": 0,
+    "stdout": "bun test v1.4.3 (c6da4a4d3)\n139 pass\n0 fail\n1921 expect() calls\nRan 139 tests across 11 files. [9.76s]",
+    "wall_seconds": 10.14
+  },
+  "typecheck": {
+    "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc -p /tmp/ux03-review-0014-tsconfig.json",
+    "exit_code": 0,
+    "stdout": "",
+    "wall_seconds": 2.03,
+    "scope": "All pi-shared-context extension TypeScript files and agent-core type declarations through the parent-owned scoped config."
+  },
+  "native": {
+    "command": "mise exec -- termscope session -- env HOME=<owned fixture>/home PI_CODING_AGENT_DIR=<owned fixture>/config PI_TELEMETRY=0 COLORTERM=truecolor /home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools --no-themes --use-theme dark -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "pi_version": "1.1.0",
+    "exit_code": 0,
+    "fixture": "/tmp/ux03-review-0014-8ShQqx",
+    "fresh_colour_dimensions": [
+      "120x40",
+      "80x24",
+      "40x12"
+    ],
+    "fresh_monochrome": false,
+    "observed": [
+      "Associated research R and executable T shown with separate fields and Items 2",
+      "Research source metadata and body without workflow history",
+      "Tracker/Files retained R",
+      "Research menu displayed unavailable registered-command reasons and no worktree actions",
+      "Changing R to task updated open action menu and allowed Events navigation",
+      "Changing R back to research exited Events and retained R",
+      "Compact Tab reached recorded details",
+      "Missing parent identified R and missing-initiative while preserving last readable content",
+      "Removing R membership returned to initiative child list and Items 1",
+      "Ungrouped showed R and U with Items 2, excluding T"
+    ],
+    "limits": [
+      "No fresh monochrome native matrix; historical spans/HTML inspected separately",
+      "No model prompts, real-record actions, or workflow transitions submitted",
+      "Skill availability was deliberately absent in fresh native smoke; historical registered planning/editor evidence and suite cover that path",
+      "Initial fixture generation used the wrong MQ JSON selector; the fixture was corrected through raw MQ, then parsed and reloaded before behavioral acceptance",
+      "Native Pi emitted existing shortcut conflict; no change attributed to this diff",
+      "Service readiness regex was not emitted; the session still accepted protocol input and exited 0"
+    ],
+    "protocol_refs": [
+      "native-protocol-part1.json",
+      "native-protocol-part2.json",
+      "native-protocol-part3.json",
+      "native-protocol-part4.json",
+      "native-close.json"
+    ]
+  },
+  "historical_evidence": {
+    "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+    "base_ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/implementation-0005",
+    "inspected": [
+      "acceptance.json",
+      "validation.json",
+      "palette-verification.json",
+      "color-120x40-mixed.spans.txt",
+      "mono-40x12-mixed.spans.txt",
+      "color-80x24-mixed.html"
+    ],
+    "note": "Existing implementation evidence, not a fresh review matrix."
+  },
+  "axis_inputs": [
+    {
+      "receipt": "standards-result-0010",
+      "verdict": "SUCCESS",
+      "findings": []
+    },
+    {
+      "receipt": "spec-result-0011",
+      "verdict": "SUCCESS",
+      "findings": []
+    }
+  ]
+}

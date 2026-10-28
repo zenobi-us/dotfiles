@@ -1,0 +1,17 @@
+bun test v1.4.3 (c6da4a4d3)
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts:
+(pass) the open modal refreshes focused DAG history and discovers a new dependent outside its scope [2071.53ms]
+(pass) file previews follow atomic replacement without moving selection to an inserted sibling [228.23ms]
+(pass) mixed canonical records refresh type and membership without inventing workflows or dependency membership [1468.44ms]
+
+mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts:
+(pass) tab highlighting does not activate content until Space or Enter [1.47ms]
+(pass) number shortcuts switch tabs without changing tracker queues or losing selection [1.02ms]
+(pass) mixed items retain canonical details, planning commands, and independent Files selection [9.30ms]
+(pass) canonical planning and other records keep their own details and action boundaries [12.57ms]
+
+ 7 pass
+ 0 fail
+ 68 expect() calls
+Ran 7 tests across 2 files. [3.83s]

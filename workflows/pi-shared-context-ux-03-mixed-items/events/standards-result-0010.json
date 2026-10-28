@@ -1,0 +1,102 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "standards-result-0010",
+  "workflow_id": "pi-shared-context-ux-03-mixed-items",
+  "phase": "review-standards",
+  "attempt": 1,
+  "parent_receipt": "standards-start-0008",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "source_branch": "feature/pi-shared-context-ux-03-mixed-items",
+  "base_branch": "master",
+  "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "fixed_point": "c451731d51127974110d0747ca2342babecb2ced",
+  "claim_publication_commit": "c451731d51127974110d0747ca2342babecb2ced",
+  "created_at": "2026-10-28T20:25:55.737Z",
+  "muxer": "herdr",
+  "pane_id": "w7Y:p2",
+  "agent": "omp",
+  "agent_name": "ux03-review-std-c4",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-03-mixed-items",
+    "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0068.yaml",
+  "event": "phase-result",
+  "status": "completed",
+  "verdict": "SUCCESS",
+  "cycle_number": 4,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/implementation-complete-0006.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0068.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/standards-start-0008.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/standards-result-0010.json"
+    },
+    {
+      "kind": "evidence",
+      "store": "repository",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/standards-0010/validation.json"
+    }
+  ],
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/standards-0010",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/standards-0010",
+    "publication": "repository"
+  },
+  "axis": "standards",
+  "assessment_complete": true,
+  "findings": [],
+  "optional_smells": [],
+  "axis_report": "No blocking documented-standard breach found in the pinned nine-file diff. No optional smell warrants a finding. The repository has no applicable ADR entry (NO ADR). Existing tracker adapters, modal input, watcher, terminal sanitization, and theme-token patterns remain in use. The new recordKind helper centralizes executable-record classification. The changed tests use the public modal boundary and temporary-store live-update patterns required by the canonical testing decisions.\n\nFresh focused verification passed: 48 tests, zero failures, 1471 assertions across five files. An isolated public-modal smoke exercised mixed records, recorded research details, workflow exclusion, metadata sanitization, width bounds, Files selection retention, and research action boundaries.\n\nI inspected historical colour and monochrome terminal spans and the implementation acceptance ledger for the same source. This review does not claim a fresh native Pi matrix, native height validation, or a new spec-axis assessment. Tooling-enforced and cosmetic matters are excluded. No tracked source, canonical record, existing receipt, or parent dependency was changed.",
+  "validation_ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/standards-0010/validation.json",
+  "cleanup": {
+    "owned_temporary_files_removed": true,
+    "owned_processes_remaining": 0,
+    "tracked_edits": false,
+    "parent_dependencies_preserved": true
+  },
+  "assessment_scope": "Independent standards axis only. SUCCESS means no blocking standards finding in the exact pinned diff, not overall feature approval."
+}
