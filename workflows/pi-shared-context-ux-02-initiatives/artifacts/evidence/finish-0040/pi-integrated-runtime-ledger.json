@@ -1,0 +1,749 @@
+{
+  "coverage": "Acceptance ledger begins with selection of ticket02 in its canonical initiative; preliminary autocomplete and unrelated initiative previews are not acceptance evidence.",
+  "entries": [
+    {
+      "time": "2026-10-28T02:16:49.307Z",
+      "request": {
+        "id": 21,
+        "method": "press",
+        "params": {
+          "key": "<down>"
+        }
+      },
+      "response": {
+        "id": 21,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:16:49.790Z",
+      "request": {
+        "id": 22,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 300
+        }
+      },
+      "response": {
+        "id": 22,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:16:49.791Z",
+      "request": {
+        "id": 23,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 23,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            17,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "π - Dotfiles",
+          "lines": [
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age",
+            "nt/bundles/agent-core/extensions/pi-shared-context/index.ts",
+            "  ╭──────────────────────────────────────────────────────────────────────────╮",
+            "tu│ Projects · Repo > Dotfiles                                               │",
+            "/r│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │ge",
+            "nt├──────────────────────────────────────────────────────────────────────────┤",
+            "/r│ Initiatives  >  Improve shared-context project n…                        │ge",
+            "nt│> pi-shared-context-tui-ux-spec · Items 6                                 │",
+            "  ├──────────────────────────────────────────────────────────────────────────┤",
+            "  │>[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   │",
+            " W│>Browse initiatives through structured tracker rows                       │",
+            " A│>State: claimed                                                           │",
+            "  │>tracker/tickets/pi-shared-context-ux-02-initiatives.md                   │",
+            " /│ [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   │d",
+            " o│ Browse research and tickets in the same initiative                       │",
+            "  │ State: unclaimed                                                         │",
+            " /│ Waiting for pi-shared-context-ux-02-initiatives                          │d",
+            " o│ [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  │",
+            "  ├──────────────────────────────────────────────────────────────────────────┤",
+            "──│ Summary: The shared-context terminal user interface makes records diffic…│──",
+            "  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│",
+            "──╰──────────────────────────────────────────────────────────────────────────╯──",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)",
+            "0.0%/0 (auto)                                                            unknown"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:16:49.791Z",
+      "request": {
+        "id": 24,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 24,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:16:50.100Z",
+      "request": {
+        "id": 25,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 300
+        }
+      },
+      "response": {
+        "id": 25,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:16:50.100Z",
+      "request": {
+        "id": 26,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 26,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            19,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "π - Dotfiles",
+          "lines": [
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age",
+            "nt/bundles/agent-core/extensions/pi-shared-context/index.ts",
+            "  ╭──────────────────────────────────────────────────────────────────────────╮",
+            "tu│ Projects · Repo > Dotfiles                                               │",
+            "/r│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │ge",
+            "nt├──────────────────────────────────────────────────────────────────────────┤",
+            "/r│ Initiatives  >  Improve shared-cont…  >  pi-shared-context-u…            │ge",
+            "nt│> pi-shared-context-tui…│  Ticket / dependencies / receipts               │",
+            "  ├──────────────────────────────────────────────────────────────────────────┤",
+            "  │>[Enhancement]  ID:     │ pi-shared-context-ux-02-initiatives Browse      │",
+            " W│>pi-shared-context-ux-02│ initiatives through structured tracker rows     │",
+            " A│>-initiatives           │ Type: Enhancement                               │",
+            "  │>Browse initiatives     │ State: ACTIVE                                   │",
+            " /│>through structured     │ Reference:                                      │d",
+            " o│>tracker rows           │ tracker/tickets/pi-shared-context-ux-02-initiati│",
+            "  │>State: claimed         │ ves.md                                          │",
+            " /│>tracker/tickets/pi-shar│ Current source:                                 │d",
+            " o│>ed-context-ux-02-initia│ 66c988a405aa7b8b95cd2cb6d207f8147036e708        │",
+            "  ├──────────────────────────────────────────────────────────────────────────┤",
+            "──│ tracker/tickets/pi-shared-context-ux-02-initiatives.md · ACTIVE          │──",
+            "  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│",
+            "──╰──────────────────────────────────────────────────────────────────────────╯──",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)",
+            "0.0%/0 (auto)                                                            unknown"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:16:50.100Z",
+      "request": {
+        "id": 27,
+        "method": "resize",
+        "params": {
+          "cols": 40,
+          "rows": 12
+        }
+      },
+      "response": {
+        "id": 27,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:16:50.404Z",
+      "request": {
+        "id": 28,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 300
+        }
+      },
+      "response": {
+        "id": 28,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:16:50.404Z",
+      "request": {
+        "id": 29,
+        "method": "snapshot",
+        "params": {
+          "format": "text"
+        }
+      },
+      "response": {
+        "id": 29,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=11:39 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > Dotfiles         │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > pi-shared-context-tui-ux-spec · I…\n[007]  >[Enhancement]  ID:\n[008] ─>pi-shared-context-ux-02-initiatives  ─\n[009]  >Browse initiatives through\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:05.546Z",
+      "request": {
+        "id": 30,
+        "method": "press",
+        "params": {
+          "key": "TAB"
+        }
+      },
+      "response": {
+        "id": 30,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:05.850Z",
+      "request": {
+        "id": 31,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 250
+        }
+      },
+      "response": {
+        "id": 31,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:05.850Z",
+      "request": {
+        "id": 32,
+        "method": "snapshot",
+        "params": {
+          "format": "text"
+        }
+      },
+      "response": {
+        "id": 32,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > Dotfiles         │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > Ticket / dependencies / receipts\n[007]   pi-shared-context-ux-02-initiatives\n[008] ─ Browse initiatives through           ─\n[009]   structured tracker rows\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:30.097Z",
+      "request": {
+        "id": 33,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 33,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:30.301Z",
+      "request": {
+        "id": 34,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 34,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:30.301Z",
+      "request": {
+        "id": 35,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 35,
+        "result": {
+          "cols": 40,
+          "rows": 12,
+          "cursor": [
+            8,
+            39
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "π - Dotfiles",
+          "lines": [
+            " nstalls/github-earendil-works-pi/1.1.0",
+            " ╭────────────────────────────────────╮",
+            " │ Projects · Repo > Dotfiles         │",
+            " │  [1 Tracker]     2 Files    Tab fo…│",
+            "  Initiat…  >  Improve…  >  pi-shar…",
+            " > Ticket / dependencies / receipts",
+            "  Type: Enhancement",
+            "─ State: ACTIVE                        ─",
+            "  Reference:",
+            "─tracker/tickets/pi-shared-context-u...─",
+            "/Esc back  Enter open  Tab focus  R ....",
+            "0.0%/0 (auto)                    unknown"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:30.301Z",
+      "request": {
+        "id": 36,
+        "method": "type",
+        "params": {
+          "text": "e"
+        }
+      },
+      "response": {
+        "id": 36,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:30.605Z",
+      "request": {
+        "id": 37,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 250
+        }
+      },
+      "response": {
+        "id": 37,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:17:30.605Z",
+      "request": {
+        "id": 38,
+        "method": "snapshot",
+        "params": {
+          "format": "text"
+        }
+      },
+      "response": {
+        "id": 38,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > Dotfiles         │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > Ticket / dependencies / receipts\n[007]   Type: Enhancement\n[008] ─ State: ACTIVE                        ─\n[009]   Reference:\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:32.400Z",
+      "request": {
+        "id": 39,
+        "method": "snapshot",
+        "params": {
+          "format": "text"
+        }
+      },
+      "response": {
+        "id": 39,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > Dotfiles         │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > Ticket / dependencies / receipts\n[007]   Type: Enhancement\n[008] ─ State: ACTIVE                        ─\n[009]   Reference:\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:32.400Z",
+      "request": {
+        "id": 40,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 40,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:32.703Z",
+      "request": {
+        "id": 41,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 250
+        }
+      },
+      "response": {
+        "id": 41,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:32.704Z",
+      "request": {
+        "id": 42,
+        "method": "snapshot",
+        "params": {
+          "format": "text"
+        }
+      },
+      "response": {
+        "id": 42,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > Dotfiles         │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Ini…  >  Imp…  >  pi-…  >  Eve…\n[006]  > Events / newest first\n[007]  >finish-merged-0042 finish\n[008] ─>[FINISHING]                          ─\n[009]   finish-prepared-0041 finish\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:32.704Z",
+      "request": {
+        "id": 43,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 43,
+        "result": {
+          "cols": 40,
+          "rows": 12,
+          "cursor": [
+            8,
+            39
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "π - Dotfiles",
+          "lines": [
+            " nstalls/github-earendil-works-pi/1.1.0",
+            " ╭────────────────────────────────────╮",
+            " │ Projects · Repo > Dotfiles         │",
+            " │  [1 Tracker]     2 Files    Tab fo…│",
+            "  Ini…  >  Imp…  >  pi-…  >  Eve…",
+            " > Events / newest first",
+            " >finish-merged-0042 finish",
+            "─>[FINISHING]                          ─",
+            "  finish-prepared-0041 finish",
+            "─tracker/tickets/pi-shared-context-u...─",
+            "/Esc back  Enter open  Tab focus  R ....",
+            "0.0%/0 (auto)                    unknown"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:32.704Z",
+      "request": {
+        "id": 44,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      },
+      "response": {
+        "id": 44,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:33.034Z",
+      "request": {
+        "id": 45,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 250
+        }
+      },
+      "response": {
+        "id": 45,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:33.034Z",
+      "request": {
+        "id": 46,
+        "method": "snapshot",
+        "params": {
+          "format": "text"
+        }
+      },
+      "response": {
+        "id": 46,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > Dotfiles         │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > Ticket / dependencies / receipts\n[007]   Type: Enhancement\n[008] ─ State: ACTIVE                        ─\n[009]   Reference:\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:18:33.035Z",
+      "request": {
+        "id": 47,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 47,
+        "result": {
+          "cols": 40,
+          "rows": 12,
+          "cursor": [
+            8,
+            39
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "π - Dotfiles",
+          "lines": [
+            " nstalls/github-earendil-works-pi/1.1.0",
+            " ╭────────────────────────────────────╮",
+            " │ Projects · Repo > Dotfiles         │",
+            " │  [1 Tracker]     2 Files    Tab fo…│",
+            "  Initiat…  >  Improve…  >  pi-shar…",
+            " > Ticket / dependencies / receipts",
+            "  Type: Enhancement",
+            "─ State: ACTIVE                        ─",
+            "  Reference:",
+            "─tracker/tickets/pi-shared-context-u...─",
+            "/Esc back  Enter open  Tab focus  R ....",
+            "0.0%/0 (auto)                    unknown"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:12.457Z",
+      "request": {
+        "id": 48,
+        "method": "resize",
+        "params": {
+          "cols": 80,
+          "rows": 24
+        }
+      },
+      "response": {
+        "id": 48,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:12.457Z",
+      "request": {
+        "id": 49,
+        "method": "type",
+        "params": {
+          "text": "b"
+        }
+      },
+      "response": {
+        "id": 49,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:12.762Z",
+      "request": {
+        "id": 50,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 300
+        }
+      },
+      "response": {
+        "id": 50,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:12.763Z",
+      "request": {
+        "id": 51,
+        "method": "snapshot",
+        "params": {
+          "format": "text"
+        }
+      },
+      "response": {
+        "id": 51,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=23:79 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age\n[002] nt/bundles/agent-core/extensions/pi-shared-context/index.ts\n[003]   ╭──────────────────────────────────────────────────────────────────────────╮\n[004] tu│ Projects · Repo > Dotfiles                                               │\n[005] /r│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │ge\n[006] nt├──────────────────────────────────────────────────────────────────────────┤\n[007] /r│ Shared context  ›  Dotfiles  ›  Preview                                  │ge\n[008] nt├──────────────────────────────────────────────────────────────────────────┤\n[009]   │▸ .codemapper                                │Select a file to preview it.│\n[010]   │▸ .github                                    │                            │\n[011]  W│▸ .pi                                        │                            │\n[012]  A│▸ docs                                       │                            │\n[013]   │▸ mise                                       │                            │\n[014]  /│▸ node_modules                               │                            │d\n[015]  o│▸ sources                                    │                            │\n[016]   │▸ tracker                                    │                            │\n[017]  /│▸ workflows                                  │                            │d\n[018]  o│  .context-routes.toml                       │                            │\n[019]   ├──────────────────────────────────────────────────────────────────────────┤\n[020] ──│ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.codemapper      │──\n[021]   │ ←→ browse  ↑↓ move  Enter open  Backspace parent y insert  f format: sha…│\n[022] ──╰──────────────────────────────────────────────────────────────────────────╯──\n[023] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:33.685Z",
+      "request": {
+        "id": 52,
+        "method": "type",
+        "params": {
+          "text": "1"
+        }
+      },
+      "response": {
+        "id": 52,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:34.092Z",
+      "request": {
+        "id": 53,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 350
+        }
+      },
+      "response": {
+        "id": 53,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:34.093Z",
+      "request": {
+        "id": 54,
+        "method": "snapshot",
+        "params": {
+          "format": "text"
+        }
+      },
+      "response": {
+        "id": 54,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=20:79 screen=alternate title=\"π - Dotfiles\"\n\n=== TEXT ===\n[001] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age\n[002] nt/bundles/agent-core/extensions/pi-shared-context/index.ts\n[003]   ╭──────────────────────────────────────────────────────────────────────────╮\n[004] tu│ Projects · Repo > Dotfiles                                               │\n[005] /r│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │ge\n[006] nt├──────────────────────────────────────────────────────────────────────────┤\n[007] /r│ Initiatives  >  Improve shared-cont…  >  pi-shared-context-u…            │ge\n[008] nt│  pi-shared-context-tui…│> Ticket / dependencies / receipts               │\n[009]   ├──────────────────────────────────────────────────────────────────────────┤\n[010]   │ unavailable; current   │ State: ACTIVE                                   │\n[011]  W│ source freshness cannot│ Reference:                                      │\n[012]  A│ be established.        │ tracker/tickets/pi-shared-context-ux-02-initiati│\n[013]   │◇[Enhancement]  ID:     │ ves.md                                          │\n[014]  /│◇pi-shared-context-ux-02│ Current source:                                 │d\n[015]  o│◇-initiatives           │ 66c988a405aa7b8b95cd2cb6d207f8147036e708        │\n[016]   │◇Browse initiatives     │ Dependencies:                                   │\n[017]  /│◇through structured     │ ← pi-shared-context-ux-01-projects [DONE] Select│d\n[018]  o│◇tracker rows           │ shared-context projects through interactive     │\n[019]   ├──────────────────────────────────────────────────────────────────────────┤\n[020] ──│ tracker/tickets/pi-shared-context-ux-02-initiatives.md · ACTIVE          │──\n[021]   │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│\n[022] ──╰──────────────────────────────────────────────────────────────────────────╯──\n[023] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:34.093Z",
+      "request": {
+        "id": 55,
+        "method": "snapshot",
+        "params": {
+          "format": "json"
+        }
+      },
+      "response": {
+        "id": 55,
+        "result": {
+          "cols": 80,
+          "rows": 24,
+          "cursor": [
+            20,
+            79
+          ],
+          "cursor_visible": false,
+          "cursor_style": "block",
+          "screen": "alternate",
+          "title": "π - Dotfiles",
+          "lines": [
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age",
+            "nt/bundles/agent-core/extensions/pi-shared-context/index.ts",
+            "  ╭──────────────────────────────────────────────────────────────────────────╮",
+            "tu│ Projects · Repo > Dotfiles                                               │",
+            "/r│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │ge",
+            "nt├──────────────────────────────────────────────────────────────────────────┤",
+            "/r│ Initiatives  >  Improve shared-cont…  >  pi-shared-context-u…            │ge",
+            "nt│  pi-shared-context-tui…│> Ticket / dependencies / receipts               │",
+            "  ├──────────────────────────────────────────────────────────────────────────┤",
+            "  │ unavailable; current   │ State: ACTIVE                                   │",
+            " W│ source freshness cannot│ Reference:                                      │",
+            " A│ be established.        │ tracker/tickets/pi-shared-context-ux-02-initiati│",
+            "  │◇[Enhancement]  ID:     │ ves.md                                          │",
+            " /│◇pi-shared-context-ux-02│ Current source:                                 │d",
+            " o│◇-initiatives           │ 66c988a405aa7b8b95cd2cb6d207f8147036e708        │",
+            "  │◇Browse initiatives     │ Dependencies:                                   │",
+            " /│◇through structured     │ ← pi-shared-context-ux-01-projects [DONE] Select│d",
+            " o│◇tracker rows           │ shared-context projects through interactive     │",
+            "  ├──────────────────────────────────────────────────────────────────────────┤",
+            "──│ tracker/tickets/pi-shared-context-ux-02-initiatives.md · ACTIVE          │──",
+            "  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│",
+            "──╰──────────────────────────────────────────────────────────────────────────╯──",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)",
+            "0.0%/0 (auto)                                                            unknown"
+          ]
+        }
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:34.094Z",
+      "request": {
+        "id": 56,
+        "method": "type",
+        "params": {
+          "text": "q"
+        }
+      },
+      "response": {
+        "id": 56,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:34.296Z",
+      "request": {
+        "id": 57,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 200
+        }
+      },
+      "response": {
+        "id": 57,
+        "result": {}
+      }
+    },
+    {
+      "time": "2026-10-28T02:19:34.396Z",
+      "request": {
+        "id": 58,
+        "method": "close",
+        "params": {}
+      },
+      "response": {
+        "id": 58,
+        "result": {
+          "exit_code": 0
+        }
+      }
+    }
+  ]
+}

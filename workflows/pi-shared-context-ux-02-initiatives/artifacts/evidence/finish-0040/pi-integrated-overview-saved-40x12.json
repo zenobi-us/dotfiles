@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    8,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - Dotfiles",
+  "lines": [
+    " nstalls/github-earendil-works-pi/1.1.0",
+    " ╭────────────────────────────────────╮",
+    " │ Projects · Repo > Dotfiles         │",
+    " │  [1 Tracker]     2 Files    Tab fo…│",
+    "  Initiat…  >  Improve…  >  pi-shar…",
+    " > Ticket / dependencies / receipts",
+    "  Type: Enhancement",
+    "─ State: ACTIVE                        ─",
+    "  Reference:",
+    "─tracker/tickets/pi-shared-context-u...─",
+    "/Esc back  Enter open  Tab focus  R ....",
+    "0.0%/0 (auto)                    unknown"
+  ]
+}

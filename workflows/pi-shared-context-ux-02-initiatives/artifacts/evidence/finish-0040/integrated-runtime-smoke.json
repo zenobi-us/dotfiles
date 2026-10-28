@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-10-28T02:22:42.014Z",
+  "status": "passed",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "integrated_commit": "55f5336dbeb72d383ce818d8d8ddcdfd127b55e7",
+  "reviewed_source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
+  "command": [
+    "termscope",
+    "session",
+    "--cols",
+    "80",
+    "--rows",
+    "24",
+    "--",
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-mcp",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-tools",
+    "--no-themes",
+    "--use-theme",
+    "dark",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+  ],
+  "canonical_data": true,
+  "project_trust": "this session only",
+  "isolated_home_removed": true,
+  "temporary_package_links_removed": 5,
+  "process_exit_code": 0,
+  "checks": [
+    "Canonical initiative rendered six child items and selected ticket02",
+    "Live ticket02 overview rendered at 80x24 and 40x12",
+    "Events opened with Enter from the paged compact overview; Escape restored the exact visible overview body and offset",
+    "Files opened the repository tree independently; key 1 restored the same ticket02 Tracker context"
+  ],
+  "limits": [
+    "Native terminal JSON/text captures do not prove theme colours",
+    "No model prompt or live workflow action was submitted",
+    "The earlier pi-integrated-root.json captured an autocomplete hint and is not acceptance evidence"
+  ],
+  "evidence": [
+    "pi-integrated-ticket02-children.json",
+    "pi-integrated-ticket02-overview-80x24.json",
+    "pi-integrated-before-events-40x12.txt",
+    "pi-integrated-events-40x12.json",
+    "pi-integrated-returned-overview-40x12.json",
+    "pi-integrated-files-80x24.txt",
+    "pi-integrated-tracker-return-80x24.json",
+    "pi-integrated-runtime-ledger.json"
+  ]
+}

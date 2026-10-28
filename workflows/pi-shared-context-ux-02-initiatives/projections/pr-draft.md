@@ -11,7 +11,7 @@ type: Report
 
 ## Current state
 
-REVIEW_PASSED for source `66c988a405aa7b8b95cd2cb6d207f8147036e708`, tree `efaf06ba84cf0ed378de3405a799e0b298594b8f`, branch `feature/pi-shared-context-ux-02-initiatives`. Fresh review [review-0038](../events/review-0038.json) and [parent completion](../events/review-complete-0039.json) cover this exact source. Not merged or source-pushed yet.
+FINISHED for reviewed source `66c988a405aa7b8b95cd2cb6d207f8147036e708`, tree `efaf06ba84cf0ed378de3405a799e0b298594b8f`, branch `feature/pi-shared-context-ux-02-initiatives`. Fresh review [review-0038](../events/review-0038.json) and [parent completion](../events/review-complete-0039.json) cover this exact source. Integration `55f5336dbeb72d383ce818d8d8ddcdfd127b55e7` is published to origin/master. The canonical ticket is completed and published at `a86b841e948fceebc8fc5f1a2777c279ac0437d0`; both recorded worktrees are removed.
 
 ## Implementation
 
@@ -48,7 +48,7 @@ UX02-SPEC-001 through UX02-SPEC-006 and VAL-001 are independently verified resol
 
 ## Accounting
 
-User-approved total13 ticket02 sessions are consumed. [Review-only renewal](../../goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0044.yaml) retains all10 prior cycles. All3 renewed sessions are below250000 complete-session tokens. [Parent accounting](../artifacts/evidence/review-0038/parent-session-accounting.json). No source fix or extra session is authorized by that renewal; already-approved finish remains next.
+User-approved total13 ticket02 sessions are consumed. [Review-only renewal](../../goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0044.yaml) retains all10 prior cycles. All3 renewed sessions are below250000 complete-session tokens. [Parent accounting](../artifacts/evidence/review-0038/parent-session-accounting.json). No source fix or extra session is authorized by that renewal; already-approved coordinator finish is complete without another agent session.
 
 ## Workflow history
 
@@ -93,8 +93,26 @@ User-approved total13 ticket02 sessions are consumed. [Review-only renewal](../.
 | [spec-complete-0037](../events/spec-complete-0037.json) | review-spec/phase-complete | completed / SUCCESS | `66c988a405aa` |
 | [review-0038](../events/review-0038.json) | review/phase-result | completed / SUCCESS | `66c988a405aa` |
 | [review-complete-0039](../events/review-complete-0039.json) | review/phase-complete | completed / SUCCESS | `66c988a405aa` |
+| [finish-start-0040](../events/finish-start-0040.json) | finish/phase-start | started | `66c988a405aa` |
+| [finish-prepared-0041](../events/finish-prepared-0041.json) | finish/checkpoint | FINISHING | `66c988a405aa` |
+| [finish-merged-0042](../events/finish-merged-0042.json) | finish/checkpoint | FINISHING | `66c988a405aa` |
+| [finish-validated-0043](../events/finish-validated-0043.json) | finish/validation-complete | FINISHING | `66c988a405aa` |
+| [finish-pushed-0044](../events/finish-pushed-0044.json) | finish/remote-published | FINISHING | `66c988a405aa` |
+| [finish-ticket-completed-0045](../events/finish-ticket-completed-0045.json) | finish/ticket-completed | FINISHING | `66c988a405aa` |
+| [finish-worktree-removed-0046](../events/finish-worktree-removed-0046.json) | finish/resources-removed | FINISHING | `66c988a405aa` |
+| [finish-result-0047](../events/finish-result-0047.json) | finish/phase-result | FINISHED | `66c988a405aa` |
+| [finish-complete-0048](../events/finish-complete-0048.json) | finish/phase-complete | FINISHED | `66c988a405aa` |
 
 ## Merge status and supporting snapshots
 
-Finish must preserve reviewed source and verify integration tree/parent, validation, remote publication and tracker completion before resource removal. [Implementation snapshot](../artifacts/snapshots/pr-draft-implementation-0005.md), [first fix snapshot](../artifacts/snapshots/pr-draft-fix-0017.md), [last fix snapshot](../artifacts/snapshots/pr-draft-fix-0029.md). No earlier receipt or review body was overwritten.
+Integration, publication, ticket completion, and recorded-resource removal are verified. [Implementation snapshot](../artifacts/snapshots/pr-draft-implementation-0005.md), [first fix snapshot](../artifacts/snapshots/pr-draft-fix-0017.md), [last fix snapshot](../artifacts/snapshots/pr-draft-fix-0029.md). No earlier receipt or review body was overwritten.
 
+
+
+## Published finish
+
+Reviewed source `66c988a405aa7b8b95cd2cb6d207f8147036e708` / `efaf06ba84cf0ed378de3405a799e0b298594b8f` maps to integration `55f5336dbeb72d383ce818d8d8ddcdfd127b55e7`, tree `7019327761bc6aa7844aa22407ea32d58c319ae7`, with sole parent/base `91124b1f73d8076148730ef815a6dd3c5e6e81f8`. The prepared expected tree matches. Integration and ticket completion `a86b841e948fceebc8fc5f1a2777c279ac0437d0` are published to origin/master; remote reachability was verified before cleanup.
+
+The surviving primary checkout passed136 tests (1871 expectations,11 files) and scoped TypeScript. Live Pi confirmed canonical initiative/child navigation, compact Events return at the same overview offset, independent Files, and restored Tracker context. Native JSON/text captures do not prove colours; the exact-source review inspected the earlier colour/monochrome matrix.
+
+Both recorded worktrees are removed. The reviewed feature branch is retained for provenance; the source workspace was already absent after its agent panes closed. [Finish result](../events/finish-result-0047.json) and [parent completion](../events/finish-complete-0048.json) are authoritative. [Integrated checks](../artifacts/evidence/finish-0040/integrated-validation.json), [live Pi observations](../artifacts/evidence/finish-0040/integrated-runtime-smoke.json), [ticket publication](../artifacts/evidence/finish-0040/ticket-completion-result.json), and [resource cleanup](../artifacts/evidence/finish-0040/resource-cleanup.json) record the exercised boundaries. No unresolved product question or blocking finding remains.

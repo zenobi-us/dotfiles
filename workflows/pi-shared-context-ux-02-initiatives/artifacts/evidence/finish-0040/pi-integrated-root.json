@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    19,
+    15
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - Dotfiles",
+  "lines": [
+    "nt/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for",
+    "tui.altScreen.searchPrevious and",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age",
+    "nt/bundles/agent-core/extensions/pi-shared-context/index.ts. Using",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age",
+    "nt/bundles/agent-core/extensions/pi-shared-context/index.ts.",
+    "",
+    "",
+    " Warning: No models available. Use /login to log into a provider via OAuth or",
+    " API key. See:",
+    "",
+    " /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/d",
+    " ocs/providers.md",
+    "",
+    " /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/d",
+    " ocs/models.md",
+    "",
+    "────────────────────────────────────────────────────────────────────────────────",
+    "/shared-context",
+    "────────────────────────────────────────────────────────────────────────────────",
+    "→ shared-context  [t] Browse initiatives and Ungrouped, ticket queues, receipt",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)",
+    "0.0%/0 (auto)                                                            unknown"
+  ]
+}

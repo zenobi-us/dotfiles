@@ -1,0 +1,46 @@
+{
+  "schema": "tracker-result/v1",
+  "operation": "complete",
+  "backend": "local-markdown",
+  "initiatives": [],
+  "tickets": [
+    {
+      "id": "pi-shared-context-ux-02-initiatives",
+      "title": "Browse initiatives through structured tracker rows",
+      "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "state": "completed",
+      "blocked_by": [
+        "pi-shared-context-ux-01-projects"
+      ]
+    }
+  ],
+  "changes": {
+    "fields": {
+      "work_status": {
+        "before": "claimed",
+        "after": "completed"
+      },
+      "comment": "Completion evidence appended"
+    },
+    "dependency_edges_added": [],
+    "dependency_edges_removed": []
+  },
+  "validation": {
+    "status": "passed",
+    "details": [
+      "Exact-source review SUCCESS for 66c988a405aa7b8b95cd2cb6d207f8147036e708",
+      "Integrated 136 tests and scoped TypeScript passed",
+      "Live Pi compact return and Files navigation passed",
+      "Integration 55f5336dbeb72d383ce818d8d8ddcdfd127b55e7 published before completion",
+      "Canonical v1 ticket read back completed and validated"
+    ]
+  },
+  "publication": {
+    "status": "published",
+    "ref": "a86b841e948fceebc8fc5f1a2777c279ac0437d0",
+    "remote": "origin",
+    "remote_ref": "refs/heads/master",
+    "observed_commit": "a86b841e948fceebc8fc5f1a2777c279ac0437d0"
+  },
+  "rendered": null
+}

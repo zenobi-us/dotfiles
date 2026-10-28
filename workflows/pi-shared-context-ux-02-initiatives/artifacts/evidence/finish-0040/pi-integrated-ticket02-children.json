@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    17,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - Dotfiles",
+  "lines": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age",
+    "nt/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "  ╭──────────────────────────────────────────────────────────────────────────╮",
+    "tu│ Projects · Repo > Dotfiles                                               │",
+    "/r│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │ge",
+    "nt├──────────────────────────────────────────────────────────────────────────┤",
+    "/r│ Initiatives  >  Improve shared-context project n…                        │ge",
+    "nt│> pi-shared-context-tui-ux-spec · Items 6                                 │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "  │>[Enhancement]  ID: pi-shared-context-ux-02-initiatives                   │",
+    " W│>Browse initiatives through structured tracker rows                       │",
+    " A│>State: claimed                                                           │",
+    "  │>tracker/tickets/pi-shared-context-ux-02-initiatives.md                   │",
+    " /│ [Enhancement]  ID: pi-shared-context-ux-03-mixed-items                   │d",
+    " o│ Browse research and tickets in the same initiative                       │",
+    "  │ State: unclaimed                                                         │",
+    " /│ Waiting for pi-shared-context-ux-02-initiatives                          │d",
+    " o│ [Enhancement]  ID: pi-shared-context-ux-04-descriptions                  │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ Summary: The shared-context terminal user interface makes records diffic…│──",
+    "  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)",
+    "0.0%/0 (auto)                                                            unknown"
+  ]
+}

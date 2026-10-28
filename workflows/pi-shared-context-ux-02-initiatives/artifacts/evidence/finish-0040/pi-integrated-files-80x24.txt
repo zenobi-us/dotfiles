@@ -1,0 +1,29 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=23:79 screen=alternate title="π - Dotfiles"
+
+=== TEXT ===
+[001] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age
+[002] nt/bundles/agent-core/extensions/pi-shared-context/index.ts
+[003]   ╭──────────────────────────────────────────────────────────────────────────╮
+[004] tu│ Projects · Repo > Dotfiles                                               │
+[005] /r│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │ge
+[006] nt├──────────────────────────────────────────────────────────────────────────┤
+[007] /r│ Shared context  ›  Dotfiles  ›  Preview                                  │ge
+[008] nt├──────────────────────────────────────────────────────────────────────────┤
+[009]   │▸ .codemapper                                │Select a file to preview it.│
+[010]   │▸ .github                                    │                            │
+[011]  W│▸ .pi                                        │                            │
+[012]  A│▸ docs                                       │                            │
+[013]   │▸ mise                                       │                            │
+[014]  /│▸ node_modules                               │                            │d
+[015]  o│▸ sources                                    │                            │
+[016]   │▸ tracker                                    │                            │
+[017]  /│▸ workflows                                  │                            │d
+[018]  o│  .context-routes.toml                       │                            │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.codemapper      │──
+[021]   │ ←→ browse  ↑↓ move  Enter open  Backspace parent y insert  f format: sha…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles (master)
+[024] 0.0%/0 (auto)                                                            unknown
+

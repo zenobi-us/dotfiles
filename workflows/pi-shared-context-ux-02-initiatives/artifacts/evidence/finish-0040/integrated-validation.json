@@ -1,0 +1,30 @@
+{
+  "merged_commit": "55f5336dbeb72d383ce818d8d8ddcdfd127b55e7",
+  "validation": [
+    {
+      "kind": "integrated-tests",
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "started_at": "2026-10-28T02:12:11.632Z",
+      "ended_at": "2026-10-28T02:12:20.009Z",
+      "exit_code": 0,
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/finish-0040/integrated-tests.txt"
+    },
+    {
+      "kind": "integrated-typescript",
+      "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --project /tmp/ux02-finish0040-tsconfig.json --pretty false",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "started_at": "2026-10-28T02:12:11.633Z",
+      "ended_at": "2026-10-28T02:12:13.664Z",
+      "exit_code": 0,
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/finish-0040/integrated-typescript.txt"
+    }
+  ],
+  "owned_dependency_links": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/node_modules/@crustjs/core",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/node_modules/@crustjs/plugins",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/node_modules/@earendil-works/pi-tui",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/node_modules/@earendil-works/pi-coding-agent",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/node_modules/typescript"
+  ]
+}

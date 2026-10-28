@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-10-28T02:30:26.547Z",
+  "remote_observed_commit": "a86b841e948fceebc8fc5f1a2777c279ac0437d0",
+  "integration_reachability": {
+    "command": [
+      "git",
+      "merge-base",
+      "--is-ancestor",
+      "55f5336dbeb72d383ce818d8d8ddcdfd127b55e7",
+      "a86b841e948fceebc8fc5f1a2777c279ac0437d0"
+    ],
+    "exit_code": 0
+  },
+  "ticket_state": "completed",
+  "source_workspace_absent_before_cleanup": true,
+  "source_removal": {
+    "stdout": "[\n  {\n    \"branch\": \"feature/pi-shared-context-ux-02-initiatives\",\n    \"branch_checked_out_at\": null,\n    \"branch_outcome\": \"not_attempted\",\n    \"kind\": \"worktree\",\n    \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives\"\n  }\n]\n",
+    "stderr": "◎ Running pre-remove user:server @ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives\n  lsof -ti :19088 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n◎ Removing feature/pi-shared-context-ux-02-initiatives worktree...\n✓ Removed feature/pi-shared-context-ux-02-initiatives worktree (3,181 files · 27.7 MiB)\n↳ Branch integrated (all changes in master, ⊂); retained with --no-delete-branch\n",
+    "code": 0
+  },
+  "integration_removal": {
+    "stdout": "[\n  {\n    \"branch\": \"integrate/pi-shared-context-ux-02-initiatives\",\n    \"branch_checked_out_at\": null,\n    \"branch_outcome\": \"deleted\",\n    \"kind\": \"worktree\",\n    \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-02-initiatives\"\n  }\n]\n",
+    "stderr": "◎ Running pre-remove user:server @ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-02-initiatives\n  lsof -ti :15144 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n◎ Removing integrate/pi-shared-context-ux-02-initiatives worktree...\n✓ Removed integrate/pi-shared-context-ux-02-initiatives worktree & branch (ancestor of master, ⊂) (4,420 files · 54.3 MiB)\n",
+    "code": 0
+  },
+  "remaining_herdr_worktrees": {
+    "id": "cli:worktree:list",
+    "result": {
+      "source": {
+        "repo_key": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git",
+        "repo_name": "Dotfiles",
+        "repo_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source_checkout_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source_workspace_id": "w64"
+      },
+      "type": "worktree_list",
+      "worktrees": [
+        {
+          "branch": "master",
+          "is_bare": false,
+          "is_detached": false,
+          "is_linked_worktree": false,
+          "is_prunable": false,
+          "label": "Dotfiles",
+          "open_workspace_id": "w64",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+        }
+      ]
+    }
+  }
+}

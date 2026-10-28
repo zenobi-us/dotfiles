@@ -1,0 +1,17 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=8:39 screen=alternate title="π - Dotfiles"
+
+=== TEXT ===
+[001]  nstalls/github-earendil-works-pi/1.1.0
+[002]  ╭────────────────────────────────────╮
+[003]  │ Projects · Repo > Dotfiles         │
+[004]  │  [1 Tracker]     2 Files    Tab fo…│
+[005]   Initiat…  >  Improve…  >  pi-shar…
+[006]  > Ticket / dependencies / receipts
+[007]   Type: Enhancement
+[008] ─ State: ACTIVE                        ─
+[009]   Reference:
+[010] ─tracker/tickets/pi-shared-context-u...─
+[011] /Esc back  Enter open  Tab focus  R ....
+[012] 0.0%/0 (auto)                    unknown
+
