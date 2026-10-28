@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=32:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Events initiative  >  T  >  Events                                                             │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   a│Ticket: T · State: claimed                                                                                      │
+[010]    │Reviews: 2 · Fixes: 0 (receipts)                                                                                │
+[011] [Ex│> Events / newest first                                                                                         │
+[012]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[013]    │>Event: review-2 · Phase: review                                                                                │
+[014] [Ex│>Execution: completed                                                                                           │
+[015]   p│>Verdict: FAILURE                                                                                               │
+[016] /ru│>Source commit: e738a948688a                                                                                    │dev
+[017] too│ Event: review-1 · Phase: review                                                                                │
+[018]    │ Execution: failed                                                                                              │
+[019] /ru│ Source commit: e738a948688a                                                                                    │dev
+[020] too│ Event: implementation-1 · Phase: implementation                                                                │
+[021] /ru│ Execution: completed                                                                                           │dev
+[022] too│ Source commit: e738a948688a                                                                                    │
+[023]    │ Dependencies / unresolved blockers:                                                                            │
+[024]    │ No dependency edges.                                                                                           │
+[025]  Wa│                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/T.md · FIX                                                                                     │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux05-native-dhkkfu73/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

@@ -1,0 +1,17 @@
+{
+  "worktree_preserved": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "herdr_worktree": {
+    "branch": "feature/pi-shared-context-ux-05-events",
+    "is_bare": false,
+    "is_detached": false,
+    "is_linked_worktree": true,
+    "is_prunable": false,
+    "label": "Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events"
+  },
+  "pane_closed": "w81:p1",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "recovery_fixture": "/tmp/ux05-native-dhkkfu73",
+  "further_dispatches_blocked": true
+}

@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=32:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Events initiative  >  T  >  Events  >  invalid-review                                          │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   a│> Event detail · outcome / body / exact evidence                                                                │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│ Execution: completed                                                                                           │
+[012]   p│ INVALID / unvalidated evidence: Receipt ticket identity or ref does not match the selected ticket.             │
+[013]    │ Recorded body:                                                                                                 │
+[014] [Ex│ Invalid event body remains readable.                                                                           │
+[015]   p│ Evidence details:                                                                                              │
+[016] /ru│ Source: unavailable                                                                                            │dev
+[017] too│ Workflow warning: workflows/T/events/invalid-review.json: Receipt ticket identity or ref does not match the    │
+[018]    │ selected ticket.                                                                                               │
+[019] /ru│ Ticket action target: tracker/tickets/T.md                                                                     │dev
+[020] too│ Event reference: workflows/T/events/invalid-review.json                                                        │
+[021] /ru│ Commit: e738a948688a6e0a8378be226bd0c912340e090e                                                               │dev
+[022] too│ Tree: 4b825dc642cb6eb9a060e54bf8d69288fbee4904                                                                 │
+[023]    │ Current commit: unavailable                                                                                    │
+[024]    │ Current tree: unavailable                                                                                      │
+[025]  Wa│ Workspace: /tmp/ux05-native-dhkkfu73/repository                                                                │
+[026]    │ Branch: feature/fixture                                                                                        │
+[027]    │ Session: fixture-session                                                                                       │
+[028]    │ Raw recorded fields:                                                                                           │
+[029]    │ {                                                                                                              │
+[030]    │   "schema": "worktree-receipt/v1",                                                                             │
+[031]    │   "workflow_id": "T",                                                                                          │
+[032]    │   "phase": "review",                                                                                           │
+[033]    │   "status": "completed",                                                                                       │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ workflows/T/events/invalid-review.json: Receipt ticket identity or ref does not match the selected ticket.     │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux05-native-dhkkfu73/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

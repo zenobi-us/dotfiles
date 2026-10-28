@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=32:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Events initiative  >  T  >  Events  >  unavailable                                             │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   a│> Event detail · outcome / body / exact evidence                                                                │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│ Execution: completed                                                                                           │
+[012]   p│ Recorded body:                                                                                                 │
+[013]    │ Source worktree is unavailable.                                                                                │
+[014] [Ex│ Evidence details:                                                                                              │
+[015]   p│ Source: unavailable                                                                                            │
+[016] /ru│ Workflow warning: Recorded worktree is unavailable; current source freshness cannot be established.            │dev
+[017] too│ Ticket action target: tracker/tickets/T.md                                                                     │
+[018]    │ Event reference: workflows/T/events/unavailable.json                                                           │
+[019] /ru│ Commit: e738a948688a6e0a8378be226bd0c912340e090e                                                               │dev
+[020] too│ Tree: 4b825dc642cb6eb9a060e54bf8d69288fbee4904                                                                 │
+[021] /ru│ Current commit: unavailable                                                                                    │dev
+[022] too│ Current tree: unavailable                                                                                      │
+[023]    │ Workspace: /tmp/ux05-native-dhkkfu73/absent                                                                    │
+[024]    │ Branch: feature/fixture                                                                                        │
+[025]  Wa│ Session: fixture-session                                                                                       │
+[026]    │ Raw recorded fields:                                                                                           │
+[027]    │ {                                                                                                              │
+[028]    │   "schema": "worktree-receipt/v1",                                                                             │
+[029]    │   "workflow_id": "T",                                                                                          │
+[030]    │   "phase": "implementation",                                                                                   │
+[031]    │   "status": "completed",                                                                                       │
+[032]    │   "attempt": 1,                                                                                                │
+[033]    │   "parent_receipt": null,                                                                                      │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Recorded worktree is unavailable; current source freshness cannot be established.                              │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux05-native-dhkkfu73/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

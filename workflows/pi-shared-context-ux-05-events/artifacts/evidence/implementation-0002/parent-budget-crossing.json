@@ -1,0 +1,700 @@
+{
+  "configured_native_budget": 200000,
+  "full_session_ceiling": 250000,
+  "first_working_budget_crossing": {
+    "message_index": 78,
+    "timestamp": "2026-10-28T22:21:42.362Z",
+    "before": 196059,
+    "after": 354884,
+    "input": 157367,
+    "output": 1458,
+    "cacheWrite": 0,
+    "cacheRead": 0,
+    "work": 158825
+  },
+  "first_session_ceiling_crossing": {
+    "message_index": 78,
+    "timestamp": "2026-10-28T22:21:42.362Z",
+    "before": 196059,
+    "after": 354884,
+    "input": 157367,
+    "output": 1458,
+    "cacheWrite": 0,
+    "cacheRead": 0,
+    "work": 158825
+  },
+  "largest_responses": [
+    {
+      "message_index": 78,
+      "timestamp": "2026-10-28T22:21:42.362Z",
+      "before": 196059,
+      "after": 354884,
+      "input": 157367,
+      "output": 1458,
+      "cacheWrite": 0,
+      "cacheRead": 0,
+      "work": 158825
+    },
+    {
+      "message_index": 0,
+      "timestamp": "2026-10-28T22:06:45.125Z",
+      "before": 0,
+      "after": 13871,
+      "input": 13816,
+      "output": 55,
+      "cacheWrite": 0,
+      "cacheRead": 0,
+      "work": 13871
+    },
+    {
+      "message_index": 9,
+      "timestamp": "2026-10-28T22:07:22.513Z",
+      "before": 45471,
+      "after": 57460,
+      "input": 11677,
+      "output": 312,
+      "cacheWrite": 0,
+      "cacheRead": 43136,
+      "work": 11989
+    },
+    {
+      "message_index": 32,
+      "timestamp": "2026-10-28T22:10:24.747Z",
+      "before": 106467,
+      "after": 117092,
+      "input": 9878,
+      "output": 747,
+      "cacheWrite": 0,
+      "cacheRead": 93312,
+      "work": 10625
+    },
+    {
+      "message_index": 79,
+      "timestamp": "2026-10-28T22:22:49.576Z",
+      "before": 354884,
+      "after": 365112,
+      "input": 9321,
+      "output": 907,
+      "cacheWrite": 0,
+      "cacheRead": 158720,
+      "work": 10228
+    }
+  ],
+  "complete_session_total": 371234,
+  "goal_modes": [
+    {
+      "timestamp": "2026-10-28T22:06:42.820Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokensUsed": 0
+    },
+    {
+      "timestamp": "2026-10-28T22:06:45.133Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokensUsed": 13871
+    },
+    {
+      "timestamp": "2026-10-28T22:06:45.441Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 13871
+    },
+    {
+      "timestamp": "2026-10-28T22:06:48.864Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 14833
+    },
+    {
+      "timestamp": "2026-10-28T22:06:52.095Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 19593
+    },
+    {
+      "timestamp": "2026-10-28T22:06:57.218Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 28695
+    },
+    {
+      "timestamp": "2026-10-28T22:07:01.014Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 29407
+    },
+    {
+      "timestamp": "2026-10-28T22:07:04.911Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 36401
+    },
+    {
+      "timestamp": "2026-10-28T22:07:08.633Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 36915
+    },
+    {
+      "timestamp": "2026-10-28T22:07:12.830Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 38897
+    },
+    {
+      "timestamp": "2026-10-28T22:07:17.422Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 45471
+    },
+    {
+      "timestamp": "2026-10-28T22:07:22.520Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 57460
+    },
+    {
+      "timestamp": "2026-10-28T22:07:26.354Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 64491
+    },
+    {
+      "timestamp": "2026-10-28T22:07:28.545Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 68905
+    },
+    {
+      "timestamp": "2026-10-28T22:07:45.096Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 71505
+    },
+    {
+      "timestamp": "2026-10-28T22:07:47.404Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 73900
+    },
+    {
+      "timestamp": "2026-10-28T22:07:50.381Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 74291
+    },
+    {
+      "timestamp": "2026-10-28T22:07:52.257Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 74610
+    },
+    {
+      "timestamp": "2026-10-28T22:07:56.400Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 74884
+    },
+    {
+      "timestamp": "2026-10-28T22:08:05.823Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 76863
+    },
+    {
+      "timestamp": "2026-10-28T22:08:10.123Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 78661
+    },
+    {
+      "timestamp": "2026-10-28T22:08:12.809Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 79702
+    },
+    {
+      "timestamp": "2026-10-28T22:08:21.529Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 81521
+    },
+    {
+      "timestamp": "2026-10-28T22:08:57.065Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 85341
+    },
+    {
+      "timestamp": "2026-10-28T22:09:02.735Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 89680
+    },
+    {
+      "timestamp": "2026-10-28T22:09:08.208Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 91852
+    },
+    {
+      "timestamp": "2026-10-28T22:09:16.930Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 94700
+    },
+    {
+      "timestamp": "2026-10-28T22:09:19.639Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 96681
+    },
+    {
+      "timestamp": "2026-10-28T22:09:38.340Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 99799
+    },
+    {
+      "timestamp": "2026-10-28T22:09:41.524Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 101291
+    },
+    {
+      "timestamp": "2026-10-28T22:09:47.750Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 103496
+    },
+    {
+      "timestamp": "2026-10-28T22:09:55.426Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 105405
+    },
+    {
+      "timestamp": "2026-10-28T22:09:57.552Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 105820
+    },
+    {
+      "timestamp": "2026-10-28T22:10:02.210Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 106467
+    },
+    {
+      "timestamp": "2026-10-28T22:10:24.752Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 117092
+    },
+    {
+      "timestamp": "2026-10-28T22:10:28.599Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 118455
+    },
+    {
+      "timestamp": "2026-10-28T22:11:03.544Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 122228
+    },
+    {
+      "timestamp": "2026-10-28T22:11:06.155Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 125494
+    },
+    {
+      "timestamp": "2026-10-28T22:11:16.958Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 127797
+    },
+    {
+      "timestamp": "2026-10-28T22:11:22.353Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 130107
+    },
+    {
+      "timestamp": "2026-10-28T22:11:29.169Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 131055
+    },
+    {
+      "timestamp": "2026-10-28T22:11:31.705Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 134896
+    },
+    {
+      "timestamp": "2026-10-28T22:11:36.026Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 138277
+    },
+    {
+      "timestamp": "2026-10-28T22:11:47.689Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 138985
+    },
+    {
+      "timestamp": "2026-10-28T22:11:56.326Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 140919
+    },
+    {
+      "timestamp": "2026-10-28T22:11:58.935Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 141816
+    },
+    {
+      "timestamp": "2026-10-28T22:12:01.825Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 142483
+    },
+    {
+      "timestamp": "2026-10-28T22:12:04.245Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 143249
+    },
+    {
+      "timestamp": "2026-10-28T22:12:26.169Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 144276
+    },
+    {
+      "timestamp": "2026-10-28T22:12:31.614Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 146885
+    },
+    {
+      "timestamp": "2026-10-28T22:12:36.414Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 148050
+    },
+    {
+      "timestamp": "2026-10-28T22:12:58.588Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 151104
+    },
+    {
+      "timestamp": "2026-10-28T22:13:03.802Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 152030
+    },
+    {
+      "timestamp": "2026-10-28T22:13:06.867Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 152645
+    },
+    {
+      "timestamp": "2026-10-28T22:13:28.195Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 153443
+    },
+    {
+      "timestamp": "2026-10-28T22:13:31.200Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 154589
+    },
+    {
+      "timestamp": "2026-10-28T22:13:36.528Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 155276
+    },
+    {
+      "timestamp": "2026-10-28T22:13:42.284Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 156407
+    },
+    {
+      "timestamp": "2026-10-28T22:14:05.499Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 158259
+    },
+    {
+      "timestamp": "2026-10-28T22:14:12.210Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 160253
+    },
+    {
+      "timestamp": "2026-10-28T22:14:19.748Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 161593
+    },
+    {
+      "timestamp": "2026-10-28T22:14:25.392Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 162123
+    },
+    {
+      "timestamp": "2026-10-28T22:14:32.477Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 164305
+    },
+    {
+      "timestamp": "2026-10-28T22:14:41.390Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 166463
+    },
+    {
+      "timestamp": "2026-10-28T22:15:01.431Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 167654
+    },
+    {
+      "timestamp": "2026-10-28T22:15:51.266Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 169755
+    },
+    {
+      "timestamp": "2026-10-28T22:17:16.736Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 172127
+    },
+    {
+      "timestamp": "2026-10-28T22:17:25.886Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 173951
+    },
+    {
+      "timestamp": "2026-10-28T22:17:41.519Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 178205
+    },
+    {
+      "timestamp": "2026-10-28T22:18:42.317Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 180327
+    },
+    {
+      "timestamp": "2026-10-28T22:19:29.201Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 182995
+    },
+    {
+      "timestamp": "2026-10-28T22:19:37.520Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 184593
+    },
+    {
+      "timestamp": "2026-10-28T22:19:58.091Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 185624
+    },
+    {
+      "timestamp": "2026-10-28T22:20:01.110Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 186904
+    },
+    {
+      "timestamp": "2026-10-28T22:20:03.853Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 187488
+    },
+    {
+      "timestamp": "2026-10-28T22:20:13.483Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 188598
+    },
+    {
+      "timestamp": "2026-10-28T22:20:27.018Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 191783
+    },
+    {
+      "timestamp": "2026-10-28T22:20:30.516Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 192904
+    },
+    {
+      "timestamp": "2026-10-28T22:21:07.527Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 194327
+    },
+    {
+      "timestamp": "2026-10-28T22:21:12.666Z",
+      "id": "15b8709b210e0115",
+      "status": "active",
+      "tokenBudget": 200000,
+      "tokensUsed": 196059
+    },
+    {
+      "timestamp": "2026-10-28T22:22:28.449Z",
+      "id": "15b8709b210e0115",
+      "status": "budget-limited",
+      "tokenBudget": 200000,
+      "tokensUsed": 354884
+    },
+    {
+      "timestamp": "2026-10-28T22:22:52.065Z",
+      "id": "15b8709b210e0115",
+      "status": "budget-limited",
+      "tokenBudget": 200000,
+      "tokensUsed": 365112
+    },
+    {
+      "timestamp": "2026-10-28T22:23:27.574Z",
+      "id": "15b8709b210e0115",
+      "status": "budget-limited",
+      "tokenBudget": 200000,
+      "tokensUsed": 367872
+    },
+    {
+      "timestamp": "2026-10-28T22:23:34.107Z",
+      "id": "15b8709b210e0115",
+      "status": "budget-limited",
+      "tokenBudget": 200000,
+      "tokensUsed": 368554
+    },
+    {
+      "timestamp": "2026-10-28T22:23:45.726Z",
+      "id": "15b8709b210e0115",
+      "status": "budget-limited",
+      "tokenBudget": 200000,
+      "tokensUsed": 369828
+    },
+    {
+      "timestamp": "2026-10-28T22:23:54.750Z",
+      "id": "15b8709b210e0115",
+      "status": "budget-limited",
+      "tokenBudget": 200000,
+      "tokensUsed": 370250
+    },
+    {
+      "timestamp": "2026-10-28T22:23:59.202Z",
+      "id": "15b8709b210e0115",
+      "status": "budget-limited",
+      "tokenBudget": 200000,
+      "tokensUsed": 370697
+    },
+    {
+      "timestamp": "2026-10-28T22:24:03.399Z",
+      "id": "15b8709b210e0115",
+      "status": "budget-limited",
+      "tokenBudget": 200000,
+      "tokensUsed": 371234
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "mode": "color",
+    "cols": 40,
+    "rows": 12,
+    "list": true,
+    "detail": true
+  },
+  {
+    "mode": "color",
+    "cols": 80,
+    "rows": 24,
+    "list": true,
+    "detail": true
+  },
+  {
+    "mode": "color",
+    "cols": 120,
+    "rows": 40,
+    "list": true,
+    "detail": true
+  },
+  {
+    "mode": "mono",
+    "cols": 40,
+    "rows": 12,
+    "list": true,
+    "detail": true
+  },
+  {
+    "mode": "mono",
+    "cols": 80,
+    "rows": 24,
+    "list": true,
+    "detail": true
+  },
+  {
+    "mode": "mono",
+    "cols": 120,
+    "rows": 40,
+    "list": true,
+    "detail": true
+  }
+]

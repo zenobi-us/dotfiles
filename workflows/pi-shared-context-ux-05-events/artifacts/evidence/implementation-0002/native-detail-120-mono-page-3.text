@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=32:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Events initiative  >  T  >  Events  >  review-2                                                │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   a│> Event detail · outcome / body / exact evidence                                                                │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│   "session_id": "fixture-session",                                                                             │
+[012]   p│   "ticket": {                                                                                                  │
+[013]    │     "backend": "local-markdown",                                                                               │
+[014] [Ex│     "id": "T",                                                                                                 │
+[015]   p│     "ref": "tracker/tickets/T.md"                                                                              │
+[016] /ru│   },                                                                                                           │dev
+[017] too│   "ticket_ref": "tracker/tickets/T.md",                                                                        │
+[018]    │   "workflow": {                                                                                                │
+[019] /ru│     "store": "repository",                                                                                     │dev
+[020] too│     "root": "/tmp/ux05-native-dhkkfu73/repository",                                                            │
+[021] /ru│     "ref": "workflows/T"                                                                                       │dev
+[022] too│   },                                                                                                           │
+[023]    │   "evidence": {                                                                                                │
+[024]    │     "store": "repository",                                                                                     │
+[025]  Wa│     "ref": "workflows/T/artifacts/evidence/native"                                                             │
+[026]    │   },                                                                                                           │
+[027]    │   "inputs": [],                                                                                                │
+[028]    │   "outputs": [],                                                                                               │
+[029]    │   "receipt_id": "review-2",                                                                                    │
+[030]    │   "verdict": "FAILURE",                                                                                        │
+[031]    │   "summary": "Completed review found a defect. This is not a process failure.\nExact evidence follows the      │
+[032]    │ body."                                                                                                         │
+[033]    │ }                                                                                                              │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/T.md · FIX                                                                                     │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux05-native-dhkkfu73/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

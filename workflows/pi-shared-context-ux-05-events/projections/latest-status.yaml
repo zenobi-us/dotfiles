@@ -6,13 +6,48 @@
     "id": "pi-shared-context-ux-05-events",
     "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
   },
-  "state": "STARTED",
-  "latest_receipt": "start-0001",
-  "latest_source_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
-  "latest_source_tree": "ac50142b0e7f4fdaee8f607a15d526e93b58aca3",
+  "state": "BLOCKED",
+  "latest_receipt": "implementation-complete-0003",
+  "latest_source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "latest_source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
   "latest_review_verdict": null,
   "open_findings": [],
   "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
   "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0097.yaml",
-  "cycle_number": 1
+  "cycle_number": 1,
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-05-events/events/implementation-0002.json",
+  "complete_session_accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-28T22-06-39-672Z_01a1848d-1038-77e1-8fa6-dfa1b59402ee.jsonl",
+    "session_id": "01a1848d-1038-77e1-8fa6-dfa1b59402ee",
+    "native_goal_id": "15b8709b210e0115",
+    "native_status": "budget-limited",
+    "native_goal_used": 371234,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 337067,
+      "output": 34167,
+      "cacheWrite": 0,
+      "cacheRead": 9121536
+    },
+    "provider_work_tokens": 371234,
+    "session_ceiling": 250000,
+    "under_cap": false,
+    "accounting": "input + output + cacheWrite; cacheRead excluded",
+    "budget_was_event_verified": true
+  },
+  "blocker_kind": "cycle-token-limit-exceeded",
+  "agent_sessions_consumed": 1,
+  "agent_session_limit": 10,
+  "active_agents": [],
+  "worktree_preserved": true,
+  "agent_workspace_closed": true,
+  "canonical_work_status": "claimed",
+  "missing_acceptance": [
+    "Actual Pi loading-history state remains unobserved."
+  ],
+  "required_before_continuation": [
+    "Explicit user authorization after the cycle ceiling breach.",
+    "Verified pre-request hard-cap enforcement; post-response native goal budgeting alone is insufficient.",
+    "A fresh independently accounted session; preserve cycle1 and all historical usage."
+  ]
 }

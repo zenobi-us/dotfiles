@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=17:79 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha
+[004] re│ Projects · Repo > repository                                             │on
+[005] s/│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤ha
+[007] re│ Initiativ…  >  Events in…  >  T  >  Events  >  automatic…                │on
+[008] s/│ [d] Full description                                                     │
+[009]   │> Event detail · outcome / body / exact evidence                          │
+[010]   ├──────────────────────────────────────────────────────────────────────────┤
+[011]  W│ Execution: completed                                                     │
+[012]  A│ Recorded body:                                                           │
+[013]   │ Automatically discovered fix.                                            │
+[014]  /│ Evidence details:                                                        │d
+[015]  o│ Source: stale                                                            │
+[016]   │ Ticket action target: tracker/tickets/T.md                               │
+[017]  /│ Event reference: workflows/T/events/automatic-fix.json                   │d
+[018]  o│ Commit: e738a948688a6e0a8378be226bd0c912340e090e                         │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ tracker/tickets/T.md · REVIEW                                            │──
+[021]   │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/ux05-native-dhkkfu73/repository (master)
+[024] 0.0%/0 (auto)                                                            unknown

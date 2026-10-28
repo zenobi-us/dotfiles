@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=20:79 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha
+[004] re│ Projects · Repo > repository                                             │on
+[005] s/│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤ha
+[007] re│ Shared context  ›  repository  ›  Preview                                │on
+[008] s/├──────────────────────────────────────────────────────────────────────────┤
+[009]   │▸ docs                                       │Select a file to preview it.│
+[010]   │▸ tracker                                    │                            │
+[011]  W│▸ workflows                                  │                            │
+[012]  A│  .context-routes.toml                       │                            │
+[013]   │                                             │                            │
+[014]  /│                                             │                            │d
+[015]  o│                                             │                            │
+[016]   │                                             │                            │
+[017]  /│                                             │                            │d
+[018]  o│                                             │                            │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ /tmp/ux05-native-dhkkfu73/repository/docs                                │──
+[021]   │ ←→ browse  ↑↓ move  Enter open  Backspace parent y insert  f format: sha…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/ux05-native-dhkkfu73/repository (master)
+[024] 0.0%/0 (auto)                                                            unknown

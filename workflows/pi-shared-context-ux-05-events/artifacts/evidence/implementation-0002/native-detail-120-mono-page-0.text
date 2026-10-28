@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=32:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Events initiative  >  T  >  Events  >  review-2                                                │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   a│> Event detail · outcome / body / exact evidence                                                                │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│   "parent_receipt": "implementation-1",                                                                        │
+[012]   p│   "created_at": "2026-10-21T10:00:00Z",                                                                        │
+[013]    │   "repository": "/tmp/ux05-native-dhkkfu73/repository",                                                        │
+[014] [Ex│   "worktree": "/tmp/ux05-native-dhkkfu73/repository",                                                          │
+[015]   p│   "workspace_path": "/tmp/ux05-native-dhkkfu73/repository",                                                    │
+[016] /ru│   "source_commit": "e738a948688a6e0a8378be226bd0c912340e090e",                                                 │dev
+[017] too│   "source_tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",                                                   │
+[018]    │   "source_branch": "feature/fixture",                                                                          │
+[019] /ru│   "base_branch": "main",                                                                                       │dev
+[020] too│   "muxer": "herdr",                                                                                            │
+[021] /ru│   "pane_id": "fixture",                                                                                        │dev
+[022] too│   "agent": "omp",                                                                                              │
+[023]    │   "session_id": "fixture-session",                                                                             │
+[024]    │   "ticket": {                                                                                                  │
+[025]  Wa│     "backend": "local-markdown",                                                                               │
+[026]    │     "id": "T",                                                                                                 │
+[027]    │     "ref": "tracker/tickets/T.md"                                                                              │
+[028]    │   },                                                                                                           │
+[029]    │   "ticket_ref": "tracker/tickets/T.md",                                                                        │
+[030]    │   "workflow": {                                                                                                │
+[031]    │     "store": "repository",                                                                                     │
+[032]    │     "root": "/tmp/ux05-native-dhkkfu73/repository",                                                            │
+[033]    │     "ref": "workflows/T"                                                                                       │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/T.md · FIX                                                                                     │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux05-native-dhkkfu73/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

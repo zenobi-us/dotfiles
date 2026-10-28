@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="24" fill="rgb(255,255,255)">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for</text>
+<text x="10" y="44" fill="rgb(255,255,255)">tui.altScreen.searchPrevious and</text>
+<text x="10" y="64" fill="rgb(255,255,255)">/r╭──────────────────────────────────────────────────────────────────────────╮ha</text>
+<text x="10" y="84" fill="rgb(255,255,255)">re│ Projects · Repo &gt; repository                                             │on</text>
+<text x="10" y="104" fill="rgb(255,255,255)">s/│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">/r├──────────────────────────────────────────────────────────────────────────┤ha</text>
+<text x="10" y="144" fill="rgb(255,255,255)">re│ Initiatives  &gt;  Events initia…  &gt;  T  &gt;  Events                          │on</text>
+<text x="10" y="164" fill="rgb(255,255,255)">s/│ [d] Full description                                                     │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  │Ticket: T · State: claimed                                                │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │Reviews: 2 · Fixes: 2 (receipts)                                          │</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> W│&gt; Events / newest first                                                   │</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> A├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │&gt;Event: automatic-fix · Phase: fix                                        │</text>
+<text x="10" y="284" fill="rgb(255,255,255)"> /│&gt;Execution: completed                                                     │d</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> o│&gt;Source commit: e738a948688a                                              │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │ Event: fix-new · Phase: fix                                              │</text>
+<text x="10" y="344" fill="rgb(255,255,255)"> /│ Execution: completed                                                     │d</text>
+<text x="10" y="364" fill="rgb(255,255,255)"> o│ Source commit: e738a948688a                                              │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──│ tracker/tickets/T.md · REVIEW                                            │──</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│</text>
+<text x="10" y="444" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/tmp/ux05-native-dhkkfu73/repository (master)</text>
+<text x="10" y="484" fill="rgb(255,255,255)">0.0%/0 (auto)                                                            unknown</text>
+</svg>

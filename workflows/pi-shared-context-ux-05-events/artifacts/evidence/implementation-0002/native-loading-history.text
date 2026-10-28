@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=13:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives                                                                                                    │
+[008] [Sk│> Shared context                                                                                                │
+[009]   a├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │ Tracker unreadable: mq failed (exit 1): /tmp/ux05-native-dhkkfu73/bin/mq: line 3:                              │
+[011] [Ex│ AGENT_BUNDLE_STORAGE_PATH_PATTERN: command not found mise ERROR no tasks defined in                            │
+[012]   p│ /tmp/ux05-native-dhkkfu73/repository. Are you in a project directory? mise ERROR Version: 2026.10.5 linux-x64  │
+[013]    │ (2026-10-08) mise ERROR Run with --verbose or MISE_VERBOSE=1 for more information                              │
+[014] [Ex│ R reload · b browse files · q close                                                                            │
+[015]   p│                                                                                                                │
+[016] /ru│                                                                                                                │dev
+[017] too│                                                                                                                │
+[018]    │                                                                                                                │
+[019] /ru│                                                                                                                │dev
+[020] too│                                                                                                                │
+[021] /ru│                                                                                                                │dev
+[022] too│                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]  Wa│                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Tracker unreadable: mq failed (exit 1): /tmp/ux05-native-dhkkfu73/bin/mq: line 3: AGENT_BUNDLE_STORAGE_PATH_PA…│
+[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux05-native-dhkkfu73/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

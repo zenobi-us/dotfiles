@@ -1,0 +1,32 @@
+[
+  {
+    "name": "suite",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "--install=fallback",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+    "exit_code": 0
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "-p",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/implementation-0002/scoped-tsconfig.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+    "exit_code": 0
+  }
+]

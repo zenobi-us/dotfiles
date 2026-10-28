@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=10:39 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001]  ╭────────────────────────────────────╮
+[002]  │ Projects · Repo > repository       │
+[003]  │   1 Tracker     [2 Files]   Tab fo…│
+[004]  ├────────────────────────────────────┤
+[005]  │ Shared context  ›  repository  ›  …│
+[006]  ├────────────────────────────────────┤
+[007]  │▸ docs                │Select a fil…│
+[008] ─├────────────────────────────────────┤─
+[009]  │ /tmp/ux05-native-dhkkfu73/reposito…│
+[010] ─│ ←→ browse  ↑↓ move  Enter open  Ba…│─
+[011] /╰────────────────────────────────────╯.
+[012] 0.0%/0 (auto)                    unknown

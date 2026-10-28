@@ -1,0 +1,77 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "termscope",
+    "session",
+    "--",
+    "env",
+    "HOME=/tmp/ux05-native-dhkkfu73/home",
+    "PI_CODING_AGENT_DIR=/tmp/ux05-native-dhkkfu73/pi",
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-mcp",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-tools",
+    "--no-themes",
+    "--use-theme",
+    "dark",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "--skill",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/mise/conf.d/devtools-agent/bundles/matt-pocock/skills/ask-matt",
+    "--skill",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree"
+  ],
+  "cwd": "/tmp/ux05-native-dhkkfu73/repository",
+  "sizes": [
+    {
+      "mode": "color",
+      "cols": 40,
+      "rows": 12,
+      "list": true,
+      "detail": true
+    },
+    {
+      "mode": "color",
+      "cols": 80,
+      "rows": 24,
+      "list": true,
+      "detail": true
+    },
+    {
+      "mode": "color",
+      "cols": 120,
+      "rows": 40,
+      "list": true,
+      "detail": true
+    },
+    {
+      "mode": "mono",
+      "cols": 40,
+      "rows": 12,
+      "list": true,
+      "detail": true
+    },
+    {
+      "mode": "mono",
+      "cols": 80,
+      "rows": 24,
+      "list": true,
+      "detail": true
+    },
+    {
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "list": true,
+      "detail": true
+    }
+  ],
+  "note": "Only temporary canonical stores were used. No model prompt or workflow dispatch was sent."
+}
