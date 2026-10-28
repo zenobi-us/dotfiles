@@ -9,7 +9,7 @@ type: Report
 [Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-03-mixed-items.md). Research and tickets must share initiative lists with canonical identities and type-specific details and actions.
 
 ## Current state
-BLOCKED after implementation cycle1. The complete session used251637 work tokens against the250000 limit (1637 over). The configured native budget241808 and8192 reserve did not prevent the overrun. [Parent cap evidence](../artifacts/evidence/implementation-complete-0003/session-cap-violation.json). No new source-agent cycle is authorized until the user approves continuation after this stop.
+IMPLEMENTING in approved fresh cycle2. Prior cycle1 stopped incomplete. The complete session used251637 work tokens against the250000 limit (1637 over). The configured native budget241808 and8192 reserve did not prevent the overrun. [Parent cap evidence](../artifacts/evidence/implementation-complete-0003/session-cap-violation.json). The user approved fresh cycle2. Limits and prior consumption remain unchanged.
 
 ## Implementation and source
 The source worktree contains eight uncommitted edits on `feature/pi-shared-context-ux-03-mixed-items`. Committed HEAD remains `c451731d51127974110d0747ca2342babecb2ced` / `1dfff49f6adb9af90670c5a12ab510b8654d651f`. This is partial work, not an implementation pass. [Preserved patch](../artifacts/evidence/implementation-complete-0003/uncommitted-source.patch) has SHA-256 `7a12af0ae550cfa64d519b1efc9755df6956c803987d160bc40bbdfb3d39b602`.
@@ -31,11 +31,16 @@ The implementation reported3 passing public-modal checks, a corrected mixed live
 No ticket03 independent review exists. Latest verdict: unavailable. No formal findings are resolved or dismissed. The implementation, acceptance, and session-cap blockers remain open.
 
 ## Questions and remaining work
-No product decision is blocked. The user must approve continuation after the cap violation. The blocked result lists all remaining implementation and acceptance work. Do not shrink that scope.
+No product decision is blocked. The user approved fresh cycle2 after the cap violation. The blocked result lists all remaining implementation and acceptance work. Do not shrink that scope.
 
 ## Merge status
-No ticket03 implementation source commit exists. Its candidate is not reviewed, merged, or pushed. The canonical ticket remains claimed. The agent pane is closed. The source worktree, dependency links, config, and fixture remain preserved for recovery.
+No ticket03 implementation source commit exists. Its candidate is not reviewed, merged, or pushed. The canonical ticket remains claimed. The first agent pane is closed. A fresh cycle2 pane is ready. The source worktree, dependency links, config, and fixture remain preserved for recovery.
 
 ## Receipts and artifacts
 [Start](../events/start-0001.json), [blocked child result](../events/implementation-0002.json), [parent completion](../events/implementation-complete-0003.json), [original immutable draft](../artifacts/snapshots/pr-draft-implementation-0002.md), [parent blocked snapshot](../artifacts/snapshots/pr-draft-parent-0003.md), [native observations](../artifacts/evidence/implementation-0002/native-session.json), [preserved resources](../artifacts/evidence/implementation-0002/preserved-resources.json), and [actual closure/source observation](../artifacts/evidence/implementation-complete-0003/resource-observation.json).
 
+
+
+## Approved continuation, cycle2
+
+The user approved a fresh implementation session after the cap stop. [Start receipt](../events/start-0004.json) preserves the prior result and exact dirty-patch identity. The10-cycle total and250000-session ceiling remain unchanged. The native working budget is200000 with50000 completion headroom. All earlier consumption and remaining acceptance work remain recorded.
