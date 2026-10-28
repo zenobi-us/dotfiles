@@ -1,0 +1,199 @@
+{
+  "artifact_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0026.md",
+  "receipt_ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0026.json",
+  "markdown_validation_errors": [],
+  "body_readback_matches": true,
+  "receipt_readback_matches": true,
+  "links": [
+    {
+      "url": "../../../../tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "exists": true
+    },
+    {
+      "url": "#scope",
+      "exists": true
+    },
+    {
+      "url": "#standards",
+      "exists": true
+    },
+    {
+      "url": "#spec",
+      "exists": true
+    },
+    {
+      "url": "#previous-blockers",
+      "exists": true
+    },
+    {
+      "url": "#validation",
+      "exists": true
+    },
+    {
+      "url": "#accounting",
+      "exists": true
+    },
+    {
+      "url": "#next-step",
+      "exists": true
+    },
+    {
+      "url": "../../../../tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/frozen-source.diff",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/correction.diff",
+      "exists": true
+    },
+    {
+      "url": "../../events/standards-result-0022.json",
+      "exists": true
+    },
+    {
+      "url": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts#L619",
+      "exists": true
+    },
+    {
+      "url": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts#L709",
+      "exists": true
+    },
+    {
+      "url": "../../events/spec-result-0023.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-005-overview-before-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-005-events-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-005-returned-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-006-b1-actions-before-removal-120x40.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-006-b1-actions-after-removal-120x40.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-runtime-ledger.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-001-reader-reconciled-120x40.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-002-queue-before-initiative-removal-120x40.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-002-queue-after-initiative-removal-120x40.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-selected-beta-resized-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-phase-page-0-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/pi-phase-page-1-40x12.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/focused-tests.txt",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/scoped-typescript.txt",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/scoped-tsconfig.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/dependency-links.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0017/rgb-children-40x12.png",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0017/rgb-children-80x24.png",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0017/rgb-children-120x40.png",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0017/verified-mono-children-40x12.png",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0017/verified-mono-children-80x24.png",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0017/verified-mono-children-120x40.png",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0017/runtime-summary.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/fix-0017/pi-runtime-ledger.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/validation.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/runtime-observations.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/cleanup-and-source-audit.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/standards-accounting.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/spec-accounting.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/main-accounting-checkpoint.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/activation-accounting.json",
+      "exists": true
+    },
+    {
+      "url": "../evidence/review-0026/axis-shutdown.json",
+      "exists": true
+    }
+  ],
+  "receipt_inputs_outputs_exist": true,
+  "bundle_check": "Not applicable. This is one standalone Report, not an OKF bundle."
+}

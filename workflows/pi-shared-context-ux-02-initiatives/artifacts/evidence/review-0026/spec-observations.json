@@ -1,0 +1,610 @@
+{
+  "schema": "review-spec-observations/v1",
+  "created_at": "2026-10-28T00:31:54.014188+00:00",
+  "agent_name": "ux02-spec-02",
+  "source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "source_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "scope": "Spec axis only; full master merge-base diff; ten changed files; no Standards report or final review body read.",
+  "adr": "NO ADR: docs/adr/index.md contains no recorded decisions.",
+  "source_audit": {
+    "branch": "feature/pi-shared-context-ux-02-initiatives",
+    "head_and_tree_match": true,
+    "tracked_reviewed_paths_match_frozen_commit": true,
+    "audit_command": "git rev-parse --abbrev-ref HEAD; git rev-parse HEAD HEAD^{tree}; git diff --exit-code d1ad6dbabb7131de2910334f2b750f8586a0e4ca -- <all ten reviewed paths>",
+    "exit_code": 0
+  },
+  "correction_inspection": [
+    {
+      "id": "UX02-SPEC-001",
+      "observation": "Lines 193-219 reconcile initiative-origin readers and action menus after membership loss, select a neighboring child or empty parent, and clear stale receipt selection. Public-modal cases cover reader/action origins and both neighbor outcomes. Static inspection; not rerun."
+    },
+    {
+      "id": "UX02-SPEC-002",
+      "observation": "Lines 193-202 scope initiative-removal navigation to initiative-dependent logical screens. The original unrelated-initiative queue path is guarded. Ticket removal remains unscoped: new finding UX02-SPEC-006."
+    },
+    {
+      "id": "UX02-SPEC-003",
+      "observation": "Lines 807-824 compare selection bounds, width and height before revealing selection; unchanged geometry retains deliberate paging. Public-modal resize and expanded-preceding-title cases exist. Static inspection; not rerun."
+    },
+    {
+      "id": "UX02-SPEC-004",
+      "observation": "Lines 861-865 wrap secondary phase and Items on independent lines. Public-modal long-phase paging case checks both fields. Static inspection; not rerun."
+    },
+    {
+      "id": "VAL-001",
+      "observation": "Read fixer receipt and snapshot claims. No test/compiler run permitted in this axis. Main reviewer must independently validate the full affected suite; fixer success is not adopted as this axis validation."
+    }
+  ],
+  "other_acceptance_inspection": [
+    "data.ts always appends synthetic Ungrouped after authored initiatives and protects its ID from collisions. Group actions are suppressed.",
+    "Local phase is read only from nonempty recorded frontmatter. Missing phases remain unavailable; action-derived phase inference was not added.",
+    "Rows use separate title, identity, type/state and count fields; the selected background remains while > and diamond markers distinguish active and inactive selections.",
+    "Initial loader errors and refresh failures have separate visible states; graph refresh failure retains the prior snapshot and choices disable unsafe transitions.",
+    "Files remains a separate workspace; index.ts path insertion and action revalidation/confirmation were not changed by the ticket.",
+    "Most added navigation checks use public modal input and visible targets. Missing compact return coverage corresponds to UX02-SPEC-005; missing unrelated-ticket deletion coverage corresponds to UX02-SPEC-006."
+  ],
+  "runtime": {
+    "kind": "manual actual-program terminal inspection; no automated tests or assertions",
+    "command": [
+      "termscope",
+      "session",
+      "--cols",
+      "40",
+      "--rows",
+      "12",
+      "--",
+      "pi",
+      "--offline",
+      "--no-session",
+      "--no-extensions",
+      "--no-mcp",
+      "--no-skills",
+      "--no-prompt-templates",
+      "--no-context-files",
+      "--no-tools",
+      "-e",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "terminal_dimensions": {
+      "cols": 40,
+      "rows": 12
+    },
+    "context": "Existing read-only source-worktree tracker; no generated fixture records; no action dispatch or editor insertion.",
+    "observed": [
+      "Child entry displayed Ticket / dependencies / receipts.",
+      "Entering events displayed Events / newest first.",
+      "Esc displayed the initiative child-list pane while the breadcrumb still named the ticket.",
+      "Tab recovered the ticket overview. Paging showed Type/State/Reference.",
+      "The focused ticket ancestor from Events also returned to the child-list pane instead of the saved overview.",
+      "Inactive receipt selection used a diamond marker while the ticket breadcrumb had focus."
+    ],
+    "limits": "No claim for 80x24, 120x40, mouse input, monochrome inspection or unrelated-ticket deletion runtime in this axis. Existing worktree receipts displayed INVALID; this review did not alter or adjudicate historical ticket01 receipts.",
+    "non_success_requests": [
+      {
+        "id": 5,
+        "reason": "Waited for Ungrouped, which was below the first selected wrapped initiative; timeout, not a tracker-load failure."
+      },
+      {
+        "id": 24,
+        "reason": "S-TAB is not valid termscope key notation. Used raw Shift+Tab sequence in request 27."
+      }
+    ],
+    "ledger": [
+      {
+        "request": {
+          "id": 1,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 1000
+          }
+        },
+        "response": {
+          "id": 1,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 2,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 2,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:0 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002] \n[003]  Pi can explain its own features and\n[004]  look up its docs. Ask it how to use or\n[005]  extend Pi.\n[006] \n[007] \n[008] ────────────────────────────────────────\n[009] \n[010] ────────────────────────────────────────\n[011] /run/media/zenobius/Store/Projects/Mi...\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 3,
+          "method": "type",
+          "params": {
+            "text": "/shared-context"
+          }
+        },
+        "response": {
+          "id": 3,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 4,
+          "method": "press",
+          "params": {
+            "key": "RET"
+          }
+        },
+        "response": {
+          "id": 4,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 5,
+          "method": "wait_for_text",
+          "params": {
+            "pattern": "Ungrouped",
+            "timeout": 30000
+          }
+        },
+        "response": {
+          "id": 5,
+          "error": {
+            "code": "timeout",
+            "message": "timed out after 30000ms"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 6,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 6,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=9:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiatives\n[006]  > Initiatives · title / phase / Ite…\n[007]  >Improve shared-context project\n[008] ─>navigation and tracker readability   ─\n[009]  >Phase: unavailable\n[010] ─tracker/initiatives/pi-shared-conte...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 7,
+          "method": "press",
+          "params": {
+            "key": "RET"
+          }
+        },
+        "response": {
+          "id": 7,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 8,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 500
+          }
+        },
+        "response": {
+          "id": 8,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 9,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 9,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=9:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiatives  >  Improve share…\n[006]  > pi-shared-context-tui-ux-spec · I…\n[007]  >[Enhancement]  ID:\n[008] ─>pi-shared-context-ux-01-projects     ─\n[009]  >Select shared-context projects\n[010] ─Summary: The shared-context termina...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 10,
+          "method": "press",
+          "params": {
+            "key": "RET"
+          }
+        },
+        "response": {
+          "id": 10,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 11,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 500
+          }
+        },
+        "response": {
+          "id": 11,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 12,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 12,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=9:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > Ticket / dependencies / receipts\n[007]   pi-shared-context-ux-01-projects\n[008] ─ Select shared-context projects       ─\n[009]   through interactive breadcrumbs\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 13,
+          "method": "press",
+          "params": {
+            "key": "RET"
+          }
+        },
+        "response": {
+          "id": 13,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 14,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 300
+          }
+        },
+        "response": {
+          "id": 14,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 15,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 15,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Ini…  >  Imp…  >  pi-…  >  Eve…\n[006]  > Events / newest first\n[007]  >finish-0034 finish [INVALID]\n[008] ─ finish-worktree-removed-0033 finish  ─\n[009]   [INVALID]\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 16,
+          "method": "press",
+          "params": {
+            "key": "ESC"
+          }
+        },
+        "response": {
+          "id": 16,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 17,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 300
+          }
+        },
+        "response": {
+          "id": 17,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 18,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 18,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > pi-shared-context-tui-ux-spec · I…\n[007]  >[Enhancement]  ID:\n[008] ─>pi-shared-context-ux-01-projects     ─\n[009]  >Select shared-context projects\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 19,
+          "method": "press",
+          "params": {
+            "key": "TAB"
+          }
+        },
+        "response": {
+          "id": 19,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 20,
+          "method": "press",
+          "params": {
+            "key": "<next>"
+          }
+        },
+        "response": {
+          "id": 20,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 21,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 250
+          }
+        },
+        "response": {
+          "id": 21,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 22,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 22,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > Ticket / dependencies / receipts\n[007]   Type: Enhancement\n[008] ─ State: DONE                          ─\n[009]   Reference:\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 23,
+          "method": "press",
+          "params": {
+            "key": "RET"
+          }
+        },
+        "response": {
+          "id": 23,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 24,
+          "method": "press",
+          "params": {
+            "key": "S-TAB"
+          }
+        },
+        "response": {
+          "id": 24,
+          "error": {
+            "code": "invalid_key",
+            "message": "invalid key notation"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 25,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 250
+          }
+        },
+        "response": {
+          "id": 25,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 26,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 26,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Ini…  >  Imp…  >  pi-…  >  Eve…\n[006]  > Events / newest first\n[007]  >finish-0034 finish [INVALID]\n[008] ─ finish-worktree-removed-0033 finish  ─\n[009]   [INVALID]\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 27,
+          "method": "type",
+          "params": {
+            "text": "\u001b[Z"
+          }
+        },
+        "response": {
+          "id": 27,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 28,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 200
+          }
+        },
+        "response": {
+          "id": 28,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 29,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 29,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=6:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Ini…  >  Imp…  > >pi-…< >  Eve…\n[006]    Events / newest first\n[007]  ◇finish-0034 finish [INVALID]\n[008] ─ finish-worktree-removed-0033 finish  ─\n[009]   [INVALID]\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 30,
+          "method": "press",
+          "params": {
+            "key": "RET"
+          }
+        },
+        "response": {
+          "id": 30,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 31,
+          "method": "wait_for_idle",
+          "params": {
+            "duration": 200
+          }
+        },
+        "response": {
+          "id": 31,
+          "result": {}
+        }
+      },
+      {
+        "request": {
+          "id": 32,
+          "method": "snapshot",
+          "params": {}
+        },
+        "response": {
+          "id": 32,
+          "result": {
+            "format": "text",
+            "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - feature-pi-shared-context-ux-02-initiatives\"\n\n=== TEXT ===\n[001]  help.\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > feature-pi-share…│\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Improve…  >  pi-shar…\n[006]  > pi-shared-context-tui-ux-spec · I…\n[007]  >[Enhancement]  ID:\n[008] ─>pi-shared-context-ux-01-projects     ─\n[009]  >Select shared-context projects\n[010] ─tracker/tickets/pi-shared-context-u...─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] $0.000 (sub) 0.0%/272k (auto)  gpt-5.5 •\n"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 33,
+          "method": "close",
+          "params": {}
+        },
+        "response": {
+          "id": 33,
+          "result": {
+            "exit_code": 0
+          }
+        }
+      }
+    ],
+    "closed": true,
+    "close_exit_code": 0
+  },
+  "findings": [
+    {
+      "id": "UX02-SPEC-005",
+      "severity": "P2",
+      "adr_ref": "NO ADR",
+      "adr_explanation": "The ADR index lists no decisions. Ticket acceptance criterion 9 governs this behavior.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 461,
+      "related_lines": [
+        406,
+        410,
+        459,
+        465,
+        601,
+        648,
+        798
+      ],
+      "title": "Restore the compact ticket overview when returning from events",
+      "requirement": "Esc returns one level and restores selection and scroll position.",
+      "requirement_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md#acceptance-criteria (9)",
+      "description": "Actual Pi at 40x12 opened the child ticket overview, then Events. Esc returned to the child-list pane, not the overview. Activating the ticket ancestor did the same. Both paths force list focus; compact rendering therefore hides the saved ticket overview and scroll position. Tab is needed to recover the overview.",
+      "required_change": "Restore the ticket overview pane and its saved scroll position on compact Esc and ticket-ancestor return. Do not unconditionally reset those destinations to list focus.",
+      "validation_command": "termscope session --cols 40 --rows 12 -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "validation_scenario": "Open /shared-context. Enter an initiative, then a child. Page the ticket overview. Enter Events and press Esc. The ticket overview must reappear at its saved position. Repeat through the focused ticket ancestor. Assert the canonical ticket remains unchanged.",
+      "validation_status": "Reproduced in actual Pi v1.1.0; ledger requests 9,12,15,18,22,29,32.",
+      "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json"
+    },
+    {
+      "id": "UX02-SPEC-006",
+      "severity": "P2",
+      "adr_ref": "NO ADR",
+      "adr_explanation": "The ADR index lists no decisions. Ticket acceptance criteria 10 and 13 govern retained selection and actions.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 205,
+      "related_lines": [
+        179,
+        193,
+        203,
+        219,
+        265,
+        517,
+        581,
+        772
+      ],
+      "title": "Do not redirect an unrelated action menu when a remembered ticket disappears",
+      "requirement": "Live updates preserve selection by record identity.",
+      "requirement_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md#acceptance-criteria (10)",
+      "description": "[INFERENCE] Read A through an initiative, return home, open All, select B, and open B actions. Queue selection does not update remembered ticketId A. If A disappears, the unconditional removedTicket branch changes the actions screen to the old itemOrigin. B still exists, but its queue and action menu are replaced by A’s child collection.",
+      "required_change": "Gate removal navigation on the active logical screen and selected canonical target. Reconcile inactive remembered ticket state without closing or redirecting an unrelated queue or initiative action menu.",
+      "validation_command": "termscope session --cols 120 --rows 40 -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "validation_scenario": "Use an external temporary store with tickets A and B. Read A from its initiative, Esc twice, press 8, select B, press a. Remove only A and update membership consistently. Wait for the watcher. B actions, queue selection, scroll position and canonical target must remain unchanged. Also cover a home initiative action menu while its remembered child disappears.",
+      "validation_status": "Static control-flow finding. This removal scenario was not runtime exercised in this axis.",
+      "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json"
+    }
+  ],
+  "preservation": {
+    "source_changes": false,
+    "tracker_changes": false,
+    "config_changes": false,
+    "test_changes": false,
+    "commits": false,
+    "subagents": false,
+    "standards_report_read": false,
+    "final_review_body_read": false
+  },
+  "validation_deferred": "The main reviewer runs affected tests and types after both axes. No test/compiler/formatter commands ran here."
+}

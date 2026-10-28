@@ -1,0 +1,205 @@
+{
+  "schema": "review-axis-observations/v1",
+  "axis": "Standards",
+  "created_at": "2026-10-28T00:27:30.918103+00:00",
+  "source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "source_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "base_branch": "master",
+  "base_observed_commit": "188c33ed1dcbd7614b72060f74e3114244d5fc66",
+  "diff_command": "git diff master...d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "scope": "All ten changed files; committed source only. No Spec report or main review body read.",
+  "files_reviewed": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "standards_sources": [
+    {
+      "ref": "AGENTS.md",
+      "rules": "Short sentences, active voice, one term per concept; preserve identifiers; use mq for local Markdown; respect domain and tracker ownership."
+    },
+    {
+      "ref": "CONTEXT-MAP.md",
+      "rules": "Stable context entry points; append-only workflow events; immutable artifacts; tracker skill owns canonical tickets."
+    },
+    {
+      "ref": "docs/agents/domain.md",
+      "rules": "Read context and relevant ADRs; continue when a domain document is absent; use stable domain terms."
+    },
+    {
+      "ref": "docs/adr/index.md",
+      "rules": "NO ADR: index contains no decision entries."
+    },
+    {
+      "ref": "approved-review-handoff",
+      "rules": "Twelve named Fowler smell heuristics; repository rules override; smells do not automatically block; skip tooling-enforced trivia."
+    }
+  ],
+  "hard_violations": [],
+  "judgement_calls": [
+    {
+      "id": "STD-02-J1",
+      "severity": "low",
+      "blocking": false,
+      "classification": "judgement-call",
+      "baseline": "Duplicated Code",
+      "adr_ref": "NO ADR",
+      "adr_reason": "docs/adr/index.md lists no architecture decisions; no relevant ADR applies.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 709,
+      "related_lines": [
+        619
+      ],
+      "description": "render() and graphPane() repeat the same body.split/map/find summary selector. A summary-selection change must update both sites.",
+      "code_observation": "body.split(/\\r?\\n/).map(line => line.trim()).find(line => line && !/^#|^\\s*[-*]\\s*\\[/.test(line))",
+      "standard_ref": "Approved Standards baseline: Duplicated Code. This is a heuristic, not a documented repository prohibition.",
+      "required_change": "None for approval. Optionally extract one initiative-summary helper and call it from both sites.",
+      "validation_command": "git show d1ad6dbabb7131de2910334f2b750f8586a0e4ca:mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "validation_expectation": "Compare render() and graphPane(): both contain the same summary selector. If refactored, both should use one selector without changing output."
+    }
+  ],
+  "code_observations": [
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+      "description": "Always appends the synthetic collection, retains collision-safe IDs, obtains local ticket collection through resolveContextRecord, reads frontmatter through mq/okf, and adds optional recorded phase."
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "lines": [
+        193,
+        194,
+        197,
+        208,
+        213,
+        215
+      ],
+      "description": "Refresh distinguishes logical screen and item origin. Membership changes return initiative-owned readers/actions to a nearby child or empty parent; unrelated queue views do not take the removed-initiative redirect. Static inspection only."
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "lines": [
+        813,
+        814,
+        815,
+        816,
+        821,
+        822
+      ],
+      "description": "Selection reconciliation compares pane geometry and selected span before changing offset. Unchanged layout retains deliberate paging. Static inspection only."
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "lines": [
+        861,
+        864,
+        865
+      ],
+      "description": "Narrow field layout wraps secondary phase/state and count in separate calls. Static inspection only."
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "lines": [
+        692,
+        703,
+        705
+      ],
+      "description": "Queue and collection rows reuse childRow rather than duplicate ticket field construction."
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+      "lines": [
+        165,
+        178,
+        191,
+        203,
+        239
+      ],
+      "description": "Existing modal owns project/header input. Tracker receives translated mouse coordinates and active-focus state; no second navigation module was added."
+    },
+    {
+      "files": [
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts"
+      ],
+      "description": "Reviewed changed tests as source, including canonical action targets after membership changes, preserved queue target, reflow/paging, narrow phase/count, project switching and independent Files. Did not execute tests."
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+      "description": "README updates the existing Pi project navigation section; no second documentation convention or source artifact was added."
+    }
+  ],
+  "verification": [
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} master",
+      "exit_code": 0,
+      "observed": [
+        "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+        "80f4559a9f6cbe6e51d2e102480714703eac160f",
+        "188c33ed1dcbd7614b72060f74e3114244d5fc66"
+      ]
+    },
+    {
+      "command": "git log master..d1ad6dbabb7131de2910334f2b750f8586a0e4ca --oneline",
+      "exit_code": 0,
+      "observed_commits": [
+        "d1ad6dba",
+        "a3c89c7b",
+        "d360076d",
+        "7c647581"
+      ]
+    },
+    {
+      "command": "git diff --stat master...d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+      "exit_code": 0,
+      "result": "10 files changed, 557 insertions(+), 243 deletions(-)"
+    },
+    {
+      "command": "git symbolic-ref --short HEAD",
+      "exit_code": 0,
+      "result": "feature/pi-shared-context-ux-02-initiatives"
+    },
+    {
+      "command": "git diff --exit-code HEAD -- mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+      "exit_code": 0,
+      "result": "No staged or unstaged differences in the ten reviewed files."
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F raw 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | get(\"body\")' CONTEXT-MAP.md docs/agents/domain.md docs/adr/index.md workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0017.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "Read required context, ADR index and immutable fix snapshot."
+    },
+    {
+      "command": "xd://lsp status; symbols explorer.ts",
+      "result": "Server configured. Symbols initialization failed: Could not find a valid TypeScript installation. No configuration or dependency changes made."
+    },
+    {
+      "command": "herdr agent get ux02-standards-02",
+      "exit_code": 0,
+      "result": "Observed omp agent, pane w7H:p2, session path ending 01a17fe4-d859-713a-83f5-4ffc463c69ee.jsonl."
+    }
+  ],
+  "limitations": [
+    "Standards-only static review. No compiler, tests, formatter, build or runtime scenarios executed by this axis. Main reviewer owns affected validation after both axes finish.",
+    "Fix receipt validation is historical input, not an independently reproduced result. VAL-001 runtime/dependency validation is not certified by this axis.",
+    "LSP navigation unavailable because initialization cannot locate TypeScript; inspected frozen source and local context directly.",
+    "CONTEXT.md absent per approved handoff. No relevant ADR exists; no full OKF bundle audit applies to this source-diff review."
+  ],
+  "native_goal_accounting": {
+    "native_goal_budget": 241808,
+    "native_goal_used_observed": 97692,
+    "native_goal_remaining_observed": 144116,
+    "completion_margin_tokens": 8192,
+    "session_ceiling": 250000,
+    "observation": "goal.get immediately before result preparation; this is not final whole-provider-session usage. Goal and usage were not reset."
+  }
+}

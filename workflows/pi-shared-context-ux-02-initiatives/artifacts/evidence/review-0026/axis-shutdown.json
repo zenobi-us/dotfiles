@@ -1,0 +1,15 @@
+{
+  "standards": {
+    "state": "done",
+    "pane": "w7H:p2",
+    "closed": true,
+    "completion_seq": 518
+  },
+  "spec": {
+    "state": "done",
+    "pane": "w7H:p3",
+    "closed": true,
+    "completion_seq": 520
+  },
+  "parent_completion_receipts": "Owned by coordinator; not written by reviewer."
+}

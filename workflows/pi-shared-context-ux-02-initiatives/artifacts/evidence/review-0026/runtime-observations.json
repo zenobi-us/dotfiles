@@ -1,0 +1,122 @@
+{
+  "runtime": "Actual Pi v1.1.0",
+  "frozen_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "frozen_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "new_findings": [
+    {
+      "id": "UX02-SPEC-005",
+      "severity": "P2",
+      "adr_ref": "NO ADR",
+      "adr_explanation": "The ADR index lists no decisions. Ticket acceptance criterion 9 governs this behavior.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 461,
+      "related_lines": [
+        406,
+        410,
+        459,
+        465,
+        601,
+        648,
+        798
+      ],
+      "title": "Restore the compact ticket overview when returning from events",
+      "requirement": "Esc returns one level and restores selection and scroll position.",
+      "requirement_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md#acceptance-criteria (9)",
+      "description": "Actual Pi at 40x12 opened the child ticket overview, then Events. Esc returned to the child-list pane, not the overview. Activating the ticket ancestor did the same. Both paths force list focus; compact rendering therefore hides the saved ticket overview and scroll position. Tab is needed to recover the overview.",
+      "required_change": "Restore the ticket overview pane and its saved scroll position on compact Esc and ticket-ancestor return. Do not unconditionally reset those destinations to list focus.",
+      "validation_command": "termscope session --cols 40 --rows 12 -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "validation_scenario": "Open /shared-context. Enter an initiative, then a child. Page the ticket overview. Enter Events and press Esc. The ticket overview must reappear at its saved position. Repeat through the focused ticket ancestor. Assert the canonical ticket remains unchanged.",
+      "validation_status": "Reproduced independently in main actual Pi: pi-005-overview-before-40x12.json, pi-005-events-40x12.json, pi-005-returned-40x12.json. Axis also exercised ticket-ancestor return.",
+      "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json"
+    },
+    {
+      "id": "UX02-SPEC-006",
+      "severity": "P2",
+      "adr_ref": "NO ADR",
+      "adr_explanation": "The ADR index lists no decisions. Ticket acceptance criteria 10 and 13 govern retained selection and actions.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 205,
+      "related_lines": [
+        179,
+        193,
+        203,
+        219,
+        265,
+        517,
+        581,
+        772
+      ],
+      "title": "Do not redirect an unrelated action menu when a remembered ticket disappears",
+      "requirement": "Live updates preserve selection by record identity.",
+      "requirement_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md#acceptance-criteria (10)",
+      "description": "Read A2 in alpha, return home, select B1 in All and open B1 actions. Removing only remembered A2 and updating membership consistently closes B1 actions and redirects to empty alpha. B1 still exists; visible status changes from tracker/tickets/B1.md to the empty collection. Main actual Pi reproduced the static axis finding.",
+      "required_change": "Gate removal navigation on the active logical screen and selected canonical target. Reconcile inactive remembered ticket state without closing or redirecting an unrelated queue or initiative action menu.",
+      "validation_command": "termscope session --cols 120 --rows 40 -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "validation_scenario": "Use an external temporary store with tickets A and B. Read A from its initiative, Esc twice, press 8, select B, press a. Remove only A and update membership consistently. Wait for the watcher. B actions, queue selection, scroll position and canonical target must remain unchanged. Also cover a home initiative action menu while its remembered child disappears.",
+      "validation_status": "Reproduced in actual Pi v1.1.0 with real filesystem watcher. B1 action menu before and empty alpha after are recorded.",
+      "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-runtime-ledger.json"
+    }
+  ],
+  "prior_blockers": [
+    {
+      "id": "UX02-SPEC-001",
+      "assessment": "resolved",
+      "checks": [
+        "Public complete-modal regression covers detail, receipts, actions and reader-actions with a neighbor and empty parent; canonical surviving T-3 ref or no dispatch.",
+        "Actual Pi A1 moved to Ungrouped; reader closed, explained collection removal, selected A2."
+      ],
+      "source": "explorer.ts:193-219",
+      "regression": "explorer.test.ts:133-167"
+    },
+    {
+      "id": "UX02-SPEC-002",
+      "assessment": "resolved",
+      "checks": [
+        "Complete-modal regression preserves unrelated queue viewport and canonical T-2 target.",
+        "Actual Pi selected B1 remains in All after remembered alpha initiative disappears."
+      ],
+      "source": "explorer.ts:193-202",
+      "regression": "explorer.test.ts:169-188"
+    },
+    {
+      "id": "UX02-SPEC-003",
+      "assessment": "resolved",
+      "checks": [
+        "Complete-modal regressions preserve selected identities after resize and preceding-title expansion while allowing unchanged-layout paging.",
+        "Actual Pi selected Beta remains visible across 40x12 to 120x40 to 40x12."
+      ],
+      "source": "explorer.ts:802-824",
+      "regression": "explorer.test.ts:190-222"
+    },
+    {
+      "id": "UX02-SPEC-004",
+      "assessment": "resolved",
+      "checks": [
+        "Complete-modal regression sees full long recorded phase and distinct unique Items: 2 through paging.",
+        "Actual Pi 40x12 phase pages 0/1 show awaiting-maintainer-review-and-recorded-confirmation and separate Items: 2."
+      ],
+      "source": "explorer.ts:861-865",
+      "regression": "explorer.test.ts:224-237"
+    },
+    {
+      "id": "VAL-001",
+      "assessment": "resolved",
+      "checks": [
+        "Complete affected suite: 133 pass, 0 fail, 1809 expectations across 11 files.",
+        "Scoped TypeScript exits 0 with actual external dependencies and disposable ESM links."
+      ],
+      "evidence": [
+        "focused-tests.txt",
+        "scoped-typescript.txt",
+        "dependency-links.json",
+        "scoped-tsconfig.json"
+      ]
+    }
+  ],
+  "limitations": [
+    "Skills disabled; menus and navigation exercised without action dispatch. Full affected suite asserts canonical dispatched targets.",
+    "An initial compact probe began with inherited list focus. It was not used as proof; the subsequent settled-key 005 probe established the overview first.",
+    "Initial fixture type is Concept as generated by okf::okf_new; navigation and record identities use real versioned records.",
+    "Prior fix colour/monochrome matrix is reused inspection, not a new six-size/theme run. The PNGs reconstruct native recorded text and RGB spans; original termscope JSON/spans remain the primary record."
+  ]
+}

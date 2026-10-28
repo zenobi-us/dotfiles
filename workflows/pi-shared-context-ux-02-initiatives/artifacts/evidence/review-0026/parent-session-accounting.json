@@ -1,0 +1,57 @@
+{
+  "created_at": "2026-10-28T00:39:49.690Z",
+  "sessions": {
+    "standards": {
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-24-26-457Z_01a17fe4-d859-713a-83f5-4ffc463c69ee.jsonl",
+      "session_id": "01a17fe4-d859-713a-83f5-4ffc463c69ee",
+      "goal_id": "15b746956460bfcb",
+      "native_status": "complete",
+      "native_goal_used": 104407,
+      "native_goal_budget": 241808,
+      "raw_usage": {
+        "input": 96715,
+        "output": 8113,
+        "cacheWrite": 0,
+        "cacheRead": 1477120
+      },
+      "provider_work_tokens": 104828,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    "spec": {
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-24-26-464Z_01a17fe4-d860-7643-a852-a649144d1670.jsonl",
+      "session_id": "01a17fe4-d860-7643-a852-a649144d1670",
+      "goal_id": "15b7469566692f42",
+      "native_status": "complete",
+      "native_goal_used": 149004,
+      "native_goal_budget": 241808,
+      "raw_usage": {
+        "input": 134165,
+        "output": 15273,
+        "cacheWrite": 0,
+        "cacheRead": 4237824
+      },
+      "provider_work_tokens": 149438,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    "main": {
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-23-50-663Z_01a17fe4-4c87-749c-8e09-6a09e726e0da.jsonl",
+      "session_id": "01a17fe4-4c87-749c-8e09-6a09e726e0da",
+      "goal_id": "15b7466f55195dc5",
+      "native_status": "complete",
+      "native_goal_used": 186142,
+      "native_goal_budget": 241808,
+      "raw_usage": {
+        "input": 161670,
+        "output": 24982,
+        "cacheWrite": 0,
+        "cacheRead": 6564352
+      },
+      "provider_work_tokens": 186652,
+      "session_ceiling": 250000,
+      "under_cap": true
+    }
+  },
+  "method": "All assistant provider usage: input+output+cacheWrite, cacheRead excluded; final responses included."
+}

@@ -1,0 +1,625 @@
+{
+  "standards": {
+    "mode_changes": [
+      {
+        "type": "mode_change",
+        "id": "aa97b925",
+        "parentId": "4745216b",
+        "timestamp": "2026-10-28T00:24:38.033Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b746956460bfcb",
+            "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokensUsed": 0,
+            "timeUsedSeconds": 0,
+            "createdAt": 1793147078033,
+            "updatedAt": 1793147078033
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "0bcc3c7f",
+        "parentId": "2ba7cb93",
+        "timestamp": "2026-10-28T00:24:38.342Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b746956460bfcb",
+            "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 0,
+            "timeUsedSeconds": 0,
+            "createdAt": 1793147078033,
+            "updatedAt": 1793147078342
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "e9d56415",
+        "parentId": "a2e7193d",
+        "timestamp": "2026-10-28T00:24:39.726Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b746956460bfcb",
+            "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 13790,
+            "timeUsedSeconds": 1,
+            "createdAt": 1793147078033,
+            "updatedAt": 1793147079726
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "fcd329ac",
+        "parentId": "39891746",
+        "timestamp": "2026-10-28T00:24:41.750Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b746956460bfcb",
+            "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 13997,
+            "timeUsedSeconds": 3,
+            "createdAt": 1793147078033,
+            "updatedAt": 1793147081750
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "4f13655b",
+        "parentId": "5a8a8edb",
+        "timestamp": "2026-10-28T00:24:43.251Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b746956460bfcb",
+            "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 15747,
+            "timeUsedSeconds": 5,
+            "createdAt": 1793147078033,
+            "updatedAt": 1793147083251
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "12018e74",
+        "parentId": "551f665a",
+        "timestamp": "2026-10-28T00:24:46.628Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b746956460bfcb",
+            "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 17660,
+            "timeUsedSeconds": 8,
+            "createdAt": 1793147078033,
+            "updatedAt": 1793147086628
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "1c03a429",
+        "parentId": "9ff4b9d1",
+        "timestamp": "2026-10-28T00:24:50.292Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b746956460bfcb",
+            "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 29905,
+            "timeUsedSeconds": 12,
+            "createdAt": 1793147078033,
+            "updatedAt": 1793147090292
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "6f85fb43",
+        "parentId": "77643eed",
+        "timestamp": "2026-10-28T00:24:55.607Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b746956460bfcb",
+            "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 30479,
+            "timeUsedSeconds": 17,
+            "createdAt": 1793147078033,
+            "updatedAt": 1793147095607
+          }
+        }
+      }
+    ],
+    "pre_goal_assistant_messages": 0,
+    "pre_goal_provider_work": 0
+  },
+  "spec": {
+    "mode_changes": [
+      {
+        "type": "mode_change",
+        "id": "9bb764a9",
+        "parentId": "f3bf7a67",
+        "timestamp": "2026-10-28T00:24:38.041Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokensUsed": 0,
+            "timeUsedSeconds": 0,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147078041
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "6c92343f",
+        "parentId": "ba2a0116",
+        "timestamp": "2026-10-28T00:24:38.444Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 0,
+            "timeUsedSeconds": 0,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147078444
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "d564c8cd",
+        "parentId": "1e99093b",
+        "timestamp": "2026-10-28T00:24:39.960Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 13786,
+            "timeUsedSeconds": 1,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147079960
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "15b64853",
+        "parentId": "ed05395c",
+        "timestamp": "2026-10-28T00:24:41.543Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 13985,
+            "timeUsedSeconds": 3,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147081543
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "150d7983",
+        "parentId": "a41afdf3",
+        "timestamp": "2026-10-28T00:24:43.728Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 15504,
+            "timeUsedSeconds": 5,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147083728
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "7ff862c3",
+        "parentId": "08a1d6bc",
+        "timestamp": "2026-10-28T00:24:46.992Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 17413,
+            "timeUsedSeconds": 8,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147086992
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "f86af4eb",
+        "parentId": "9bafd1e0",
+        "timestamp": "2026-10-28T00:24:49.990Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 25774,
+            "timeUsedSeconds": 11,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147089990
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "ae69cc77",
+        "parentId": "04f031db",
+        "timestamp": "2026-10-28T00:24:52.742Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 26307,
+            "timeUsedSeconds": 14,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147092742
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "baad39b8",
+        "parentId": "671a0c0d",
+        "timestamp": "2026-10-28T00:24:55.406Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7469566692f42",
+            "objective": "Read /tmp/ux02-spec-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 38552,
+            "timeUsedSeconds": 17,
+            "createdAt": 1793147078041,
+            "updatedAt": 1793147095406
+          }
+        }
+      }
+    ],
+    "pre_goal_assistant_messages": 0,
+    "pre_goal_provider_work": 0
+  },
+  "own": {
+    "mode_changes": [
+      {
+        "type": "mode_change",
+        "id": "c897e9f7",
+        "parentId": "c4e5ca66",
+        "timestamp": "2026-10-28T00:23:59.060Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokensUsed": 0,
+            "timeUsedSeconds": 0,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147039060
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "9dc8a4c3",
+        "parentId": "b010b525",
+        "timestamp": "2026-10-28T00:23:59.370Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 0,
+            "timeUsedSeconds": 0,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147039370
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "6b3eacf1",
+        "parentId": "547ab8ce",
+        "timestamp": "2026-10-28T00:24:00.594Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 13846,
+            "timeUsedSeconds": 1,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147040594
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "c5e95f64",
+        "parentId": "4ff69cf8",
+        "timestamp": "2026-10-28T00:24:01.981Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 14137,
+            "timeUsedSeconds": 2,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147041981
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "c3800f23",
+        "parentId": "6e4c57f2",
+        "timestamp": "2026-10-28T00:24:04.030Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 16396,
+            "timeUsedSeconds": 4,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147044030
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "c8f66d83",
+        "parentId": "e6e7ea0a",
+        "timestamp": "2026-10-28T00:24:06.707Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 19161,
+            "timeUsedSeconds": 7,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147046707
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "74266873",
+        "parentId": "9f48e4c9",
+        "timestamp": "2026-10-28T00:24:11.614Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 29301,
+            "timeUsedSeconds": 12,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147051614
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "a62d2d89",
+        "parentId": "83dea9c1",
+        "timestamp": "2026-10-28T00:24:16.160Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 30133,
+            "timeUsedSeconds": 17,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147056160
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "cff1d6d7",
+        "parentId": "57fa2511",
+        "timestamp": "2026-10-28T00:24:20.202Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 39125,
+            "timeUsedSeconds": 21,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147060202
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "49788ea2",
+        "parentId": "58745b5a",
+        "timestamp": "2026-10-28T00:24:26.190Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 43803,
+            "timeUsedSeconds": 27,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147066190
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "bf54d3e3",
+        "parentId": "e4d80482",
+        "timestamp": "2026-10-28T00:24:31.503Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 50867,
+            "timeUsedSeconds": 32,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147071503
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "94e26f73",
+        "parentId": "0c1c7e77",
+        "timestamp": "2026-10-28T00:24:37.722Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 56529,
+            "timeUsedSeconds": 38,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147077722
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "d4f4008b",
+        "parentId": "4435139c",
+        "timestamp": "2026-10-28T00:24:44.857Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 63600,
+            "timeUsedSeconds": 45,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147084857
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "ec297c62",
+        "parentId": "c1427bc4",
+        "timestamp": "2026-10-28T00:24:47.282Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 71905,
+            "timeUsedSeconds": 48,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147087282
+          }
+        }
+      },
+      {
+        "type": "mode_change",
+        "id": "ce06dad2",
+        "parentId": "66edc076",
+        "timestamp": "2026-10-28T00:24:53.433Z",
+        "mode": "goal",
+        "data": {
+          "goal": {
+            "id": "15b7466f55195dc5",
+            "objective": "Read /tmp/ux02-review-02.txt and perform this already-approved fresh frozen review of d1ad6dba. First inspect goal.get; wait for native budget241808 before substantive review or launching exactly two reserved independent axes. Do not interview, create another goal, reset usage or edit source. Finish all artifacts and cleanup before goal.complete, your last tool call.",
+            "status": "active",
+            "tokenBudget": 241808,
+            "tokensUsed": 72827,
+            "timeUsedSeconds": 54,
+            "createdAt": 1793147039060,
+            "updatedAt": 1793147093433
+          }
+        }
+      }
+    ],
+    "pre_goal_assistant_messages": 0,
+    "pre_goal_provider_work": 0
+  }
+}

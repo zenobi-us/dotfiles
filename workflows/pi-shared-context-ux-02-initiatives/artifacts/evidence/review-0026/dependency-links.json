@@ -1,0 +1,22 @@
+{
+  "temporary": true,
+  "links": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@crustjs/core",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/core"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@crustjs/plugins",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@earendil-works/pi-tui",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/node_modules/@earendil-works/pi-coding-agent",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent"
+    }
+  ],
+  "cleanup_required": true
+}

@@ -1,0 +1,300 @@
+{
+  "created_at": "2026-10-28T00:37:12.075824+00:00",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "source_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "source_status": "",
+  "all_required_deliverables_verified": true,
+  "canonical_paths_verified": true,
+  "artifact_and_receipt_readback_verified": true,
+  "artifact_links_verified": 47,
+  "exactly_two_reserved_axes_completed_and_closed": true,
+  "affected_suite_runs": 1,
+  "affected_suite_result": "133 pass, 0 fail, 1809 expectations, 11 files",
+  "scoped_typescript_exit_code": 0,
+  "actual_pi_exit_code": 0,
+  "actual_pi_exercised": [
+    "root->initiative->child",
+    "40x12 selection and long phase/Items paging",
+    "120x40<->40x12 selected-row resize",
+    "A1 reparenting to Ungrouped",
+    "unrelated initiative removal preserves B1 queue",
+    "UX02-SPEC-005 compact Events return reproduces",
+    "UX02-SPEC-006 inactive remembered-ticket deletion reproduces"
+  ],
+  "prior_fix_matrix_inspected_not_rerun": true,
+  "original_blocker_ids_resolved": [
+    "UX02-SPEC-001",
+    "UX02-SPEC-002",
+    "UX02-SPEC-003",
+    "UX02-SPEC-004",
+    "VAL-001"
+  ],
+  "remaining_spec_blockers": [
+    "UX02-SPEC-005",
+    "UX02-SPEC-006"
+  ],
+  "standards_blockers": [],
+  "standards_advisories": [
+    "STD-02-J1"
+  ],
+  "temporary_resources_removed": true,
+  "runtime_and_helper_sessions_closed": true,
+  "tracker_and_source_edits_performed": false,
+  "parent_owned_phase_complete_or_projection_writes_performed": false,
+  "main_provider_checkpoint": 185015,
+  "main_native_checkpoint": 182804,
+  "main_checkpoint_is_not_final_accounting": true,
+  "inventory": [
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/activation-accounting.json",
+      "bytes": 26024,
+      "sha256": "2f068a1b39757f5d4b852830ffcb38ada483491ae7ec9bd7f7568f353997d487"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/artifact-link-validation.json",
+      "bytes": 5255,
+      "sha256": "4b90bd6337a15a4efd0b3d41440aaf098a0689477984edce2dda831bed278a43"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/axis-shutdown.json",
+      "bytes": 302,
+      "sha256": "e9bc46735c626891c3eca4c3fa35bc958305d00b3937f94e323d158f553df9b4"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/cleanup-and-source-audit.json",
+      "bytes": 768,
+      "sha256": "34906f4c5bffff35b2ddc0095be49362aea76bf4e09b36dcb05ceca27eabee34"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/correction.diff",
+      "bytes": 17093,
+      "sha256": "4e5067fb3237a35f723593fa7919e5c9866da868257879bac80546ab825ff7e2"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/dependency-links.json",
+      "bytes": 1037,
+      "sha256": "412d8372655a346233f69f0ea575c56165ea61e94cfe26ca2fa4ad7e24bf997d"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/fixture-description.json",
+      "bytes": 239,
+      "sha256": "ad3f378ae01d8c1449698b92055e87540777a0ee3c46d2e68085d8b9403307b4"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/focused-tests.txt",
+      "bytes": 14446,
+      "sha256": "5fddf4db68e787ea7089e0843397c8e0b6329475b97d42b55d5956721fb52abd"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/frozen-source.diff",
+      "bytes": 91898,
+      "sha256": "3c6b57888a9fe091459128d8a7f168d26bac2ceeb03c470986e1e847fa72aafe"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/main-accounting-checkpoint.json",
+      "bytes": 748,
+      "sha256": "e47ea54125526b01d08083d4f057c7c4ae858dfc1007f4664402cbf4eaf988ff"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-001-reader-before-move-120x40.json",
+      "bytes": 8947,
+      "sha256": "a84a58c7d564a734877c88ad3f07140c5a16999079ef06ddd7718138d5570616"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-001-reader-reconciled-120x40.json",
+      "bytes": 8812,
+      "sha256": "293369cd5e78d1a2ed7c4949d677625b8999d84c21c0950113cf61c1dfe98fb0"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-002-queue-after-initiative-removal-120x40.json",
+      "bytes": 8787,
+      "sha256": "e530fe2bf99158128b5ddb23a5058d599ea7b145fad096a70ae5b61d64e0c95a"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-002-queue-before-initiative-removal-120x40.json",
+      "bytes": 8787,
+      "sha256": "e530fe2bf99158128b5ddb23a5058d599ea7b145fad096a70ae5b61d64e0c95a"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-005-events-40x12.json",
+      "bytes": 939,
+      "sha256": "c12339013a89683bb55564f7db3cf0e88d9efa15e46ac0bb552f54afeb423ca8"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-005-overview-before-40x12.json",
+      "bytes": 964,
+      "sha256": "0d5b457766e844f7858da8bcff6b4ae7b8daa87ed68d2b2bee2aaf011596384d"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-005-returned-40x12.json",
+      "bytes": 949,
+      "sha256": "3ae50fa7c6898acd58e40c16465fabc720c3f162a664bcd74035c9cf56f54268"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-006-b1-actions-after-removal-120x40.json",
+      "bytes": 8812,
+      "sha256": "588b44f616b4efd7f6a81c60aff7b3f617733572566436e4fae44fba92556e58"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-006-b1-actions-before-removal-120x40.json",
+      "bytes": 8842,
+      "sha256": "f4090ff58995979a6189fe55e841d5cbc848a00cc301b71b3fbbdef5c622f946"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-children-120x40.json",
+      "bytes": 8812,
+      "sha256": "94652070d46eb4f720829b06943436b6f03022a4e22d8cea80e235c8e015869c"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-events-40x12.json",
+      "bytes": 939,
+      "sha256": "c12339013a89683bb55564f7db3cf0e88d9efa15e46ac0bb552f54afeb423ca8"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-final-120x40.svg",
+      "bytes": 8283,
+      "sha256": "bd593c0631c0e52a474a91efc5861af74ea971841f5cc03817b8013c7640fca9"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-final-spans.json",
+      "bytes": 10624,
+      "sha256": "e532bc9fc3deb2253006b47a142088710d74d32518791e5224090387e5ca8728"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-final-svg-response.json",
+      "bytes": 10937,
+      "sha256": "a19b93581e653fef26ff61f987659d73f67c77010fffacb25b62d000e7130dc3"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-phase-page-0-40x12.json",
+      "bytes": 968,
+      "sha256": "9103504595ab66d57e1ae1718ffadf07d675950b2a9370794406e1afe97e9e95"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-phase-page-1-40x12.json",
+      "bytes": 932,
+      "sha256": "34dc61a64424ebbb3d1d4f0beb0b31fd3846b006773d933fcd24631f095197fe"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-phase-page-2-40x12.json",
+      "bytes": 940,
+      "sha256": "38c195673054777b523d0508cab929fa81f05f6606f37b875ca2274868293847"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-phase-page-3-40x12.json",
+      "bytes": 932,
+      "sha256": "b8f499cf358def8bb4ba0abd5359866ebdf98f1ff8851532389e6fe047a57b70"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-phase-page-4-40x12.json",
+      "bytes": 938,
+      "sha256": "cb11f825ac2984fc6227a3f5de16988962e3a5f14913bb97a960ac97818ccfa3"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-phase-page-5-40x12.json",
+      "bytes": 938,
+      "sha256": "cb11f825ac2984fc6227a3f5de16988962e3a5f14913bb97a960ac97818ccfa3"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-root-120x40.json",
+      "bytes": 8787,
+      "sha256": "78f07458d427b7659930480763a3ad57763636bdbc2795f531ad22ebf62c9119"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-runtime-ledger.json",
+      "bytes": 150533,
+      "sha256": "da686adcd04911eea11148b2e762d39035fa57cd1ebbcaffb147a93a23375fb1"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-selected-beta-120x40.json",
+      "bytes": 8787,
+      "sha256": "473c2d4dfb02148f81c7f50c89893b30c11375e995e8eb4092a21093115f5131"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-selected-beta-40x12.json",
+      "bytes": 940,
+      "sha256": "57f2b82dfaad7a24c17d3a94da009ae4f380a42419141042a729961dc24e36e6"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-selected-beta-resized-40x12.json",
+      "bytes": 941,
+      "sha256": "e677523a4abbe5f49ca10b68b7b45843a7458045b9346537217487c437038c20"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-ticket-120x40.json",
+      "bytes": 8947,
+      "sha256": "a84a58c7d564a734877c88ad3f07140c5a16999079ef06ddd7718138d5570616"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-ticket-after-events-40x12.json",
+      "bytes": 949,
+      "sha256": "3ae50fa7c6898acd58e40c16465fabc720c3f162a664bcd74035c9cf56f54268"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/pi-ticket-before-events-40x12.json",
+      "bytes": 950,
+      "sha256": "d0b3251ea1f6b3fdbe5ceb7261cdbfa376e3401ffbe26d42bb7dcc050edbf353"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/prior-blocker-assessments.json",
+      "bytes": 2011,
+      "sha256": "d889790d3fb7239b1ddec250c0faacad71b09b149f324997f4dd3b9daa29141f"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/runtime-observations.json",
+      "bytes": 7662,
+      "sha256": "b0ab7d5840148256a8b55b8b311bb85a72ddd2f7af29334e43834d4b75c76d46"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/scoped-tsconfig.json",
+      "bytes": 677,
+      "sha256": "d4d39e1f319ff7b5c1fcba2a7f5c1f47fda489351bc5705bf246dc600c44330c"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/scoped-typescript.txt",
+      "bytes": 373,
+      "sha256": "6c8c9351b8aedc41bc50dd737bd3d19a552d153e6959bd2975d2fd77adca5568"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/source-baseline.json",
+      "bytes": 559,
+      "sha256": "b3c3456a5a15b605e6a9efaf75579b8bbee886b7b636aa99733f09ca1f2d1bd7"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-accounting.json",
+      "bytes": 2731,
+      "sha256": "4bc82975d4d7b7c47ea789ca52b7ad60955ce6045442305f11bb6df50f6dfb21"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json",
+      "bytes": 26028,
+      "sha256": "02a75f2560b4a793d2b200a124af0e92251a0f587769b08a73d310b278166612"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/standards-accounting.json",
+      "bytes": 2669,
+      "sha256": "ade1cacd4708ab2bb082215672d37460aa15a95728846b658b695363632aa84f"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/standards-observations.json",
+      "bytes": 10821,
+      "sha256": "479c3372cbe38b1ca317abe53cead7fdd71095a3dc0ea81077a240917b9f000d"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/validation.json",
+      "bytes": 2538,
+      "sha256": "093c29fb02febce38cf2e72dbedf2c2eb0c884fabd415a921254a2e041b0cb27"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/reviews/review-review-0026.md",
+      "bytes": 17496,
+      "sha256": "62e55bb41d7b49d20064109291bba375251a311318bcc4e7e379f1e0c8ce0543"
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/review-0026.json",
+      "bytes": 31481,
+      "sha256": "7691ad5305d6436955f2e27da83f93fe45eb565e111cde8d4183be1747278a1e"
+    }
+  ]
+}

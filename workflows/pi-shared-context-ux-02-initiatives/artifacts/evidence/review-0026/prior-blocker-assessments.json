@@ -1,0 +1,56 @@
+[
+  {
+    "id": "UX02-SPEC-001",
+    "assessment": "resolved",
+    "checks": [
+      "Public complete-modal regression covers detail, receipts, actions and reader-actions with a neighbor and empty parent; canonical surviving T-3 ref or no dispatch.",
+      "Actual Pi A1 moved to Ungrouped; reader closed, explained collection removal, selected A2."
+    ],
+    "source": "explorer.ts:193-219",
+    "regression": "explorer.test.ts:133-167"
+  },
+  {
+    "id": "UX02-SPEC-002",
+    "assessment": "resolved",
+    "checks": [
+      "Complete-modal regression preserves unrelated queue viewport and canonical T-2 target.",
+      "Actual Pi selected B1 remains in All after remembered alpha initiative disappears."
+    ],
+    "source": "explorer.ts:193-202",
+    "regression": "explorer.test.ts:169-188"
+  },
+  {
+    "id": "UX02-SPEC-003",
+    "assessment": "resolved",
+    "checks": [
+      "Complete-modal regressions preserve selected identities after resize and preceding-title expansion while allowing unchanged-layout paging.",
+      "Actual Pi selected Beta remains visible across 40x12 to 120x40 to 40x12."
+    ],
+    "source": "explorer.ts:802-824",
+    "regression": "explorer.test.ts:190-222"
+  },
+  {
+    "id": "UX02-SPEC-004",
+    "assessment": "resolved",
+    "checks": [
+      "Complete-modal regression sees full long recorded phase and distinct unique Items: 2 through paging.",
+      "Actual Pi 40x12 phase pages 0/1 show awaiting-maintainer-review-and-recorded-confirmation and separate Items: 2."
+    ],
+    "source": "explorer.ts:861-865",
+    "regression": "explorer.test.ts:224-237"
+  },
+  {
+    "id": "VAL-001",
+    "assessment": "resolved",
+    "checks": [
+      "Complete affected suite: 133 pass, 0 fail, 1809 expectations across 11 files.",
+      "Scoped TypeScript exits 0 with actual external dependencies and disposable ESM links."
+    ],
+    "evidence": [
+      "focused-tests.txt",
+      "scoped-typescript.txt",
+      "dependency-links.json",
+      "scoped-tsconfig.json"
+    ]
+  }
+]

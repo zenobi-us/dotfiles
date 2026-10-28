@@ -1,0 +1,2399 @@
+[
+  {
+    "command": [
+      "termscope",
+      "session",
+      "--cols",
+      "120",
+      "--rows",
+      "40",
+      "--",
+      "pi",
+      "--offline",
+      "--no-session",
+      "--no-extensions",
+      "--no-mcp",
+      "--no-skills",
+      "--no-prompt-templates",
+      "--no-context-files",
+      "--no-tools",
+      "--no-themes",
+      "--use-theme",
+      "dark",
+      "-e",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+    ],
+    "cwd": "/tmp/ux02-review-0026-fixture-mnb0jvud",
+    "fixture": true
+  },
+  {
+    "request": {
+      "id": 1,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "v1.1.0",
+        "timeout": 15000
+      }
+    },
+    "response": {
+      "id": 1,
+      "result": {
+        "found": true,
+        "row": 1,
+        "col": 12
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 2,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    },
+    "response": {
+      "id": 2,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 3,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 3,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 4,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Alpha review initiative",
+        "timeout": 15000
+      }
+    },
+    "response": {
+      "id": 4,
+      "result": {
+        "found": true,
+        "row": 9,
+        "col": 7
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 5,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 5,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 6,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 6,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives                                                                                                    \u2502",
+          "   \u2502> Initiatives \u00b7 title / phase / Items                                                                           \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502>Alpha review initiative                                                   Phase: awaiting-maintai\u2026  Items: 2   \u2502",
+          "   \u2502>alpha                                                                                                          \u2502",
+          "   \u2502 Beta review initiative                                                       Phase: implementation  Items: 1   \u2502",
+          "   \u2502 beta                                                                                                           \u2502",
+          "   \u2502 Ungrouped                                                                       Phase: unavailable  Items: 0   \u2502",
+          "   \u2502 Collection                                                                                                     \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 tracker/initiatives/alpha/index.md                                                                             \u2502",
+          "\u2500\u2500\u2500\u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R refresh \u00b7 Esc back                        \u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 7,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 7,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 8,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Alpha first child",
+        "timeout": 15000
+      }
+    },
+    "response": {
+      "id": 8,
+      "result": {
+        "found": true,
+        "row": 11,
+        "col": 41
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 9,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 9,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 10,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 10,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          35,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives  >  Alpha review initiative                                                                        \u2502",
+          "   \u2502> alpha \u00b7 Items 2                                                                                               \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 alpha \u00b7 Phase: awaiting-maintainer-review-and-recorded-confirmation                                            \u2502",
+          "   \u2502 Summary: Recorded alpha summary.                                                                               \u2502",
+          "   \u2502>[Concept]       A1                Alpha first child                                          State: claimed    \u2502",
+          "   \u2502>tracker/tickets/A1.md                                                                                          \u2502",
+          "   \u2502 [Concept]       A2                Alpha second child                                         State: unclaimed  \u2502",
+          "   \u2502 tracker/tickets/A2.md                                                                                          \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Summary: Recorded alpha summary.                                                                               \u2502",
+          "\u2500\u2500\u2500\u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u00b7 a actions \u00b7 h initiatives \u00b7 R refresh\u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 11,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 11,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 12,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 12,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 13,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 13,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives  >  Alpha review initiative  >  A1                                                                 \u2502",
+          "   \u2502> alpha \u00b7 Items 2                    \u2502  Ticket / dependencies / receipts                                        \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502>[Concept]  ID: A1                   \u2502 A1 Alpha first child                                                     \u2502",
+          "   \u2502>Alpha first child                   \u2502 Type: Concept                                                            \u2502",
+          "   \u2502>State: claimed                      \u2502 State: UNKNOWN                                                           \u2502",
+          "   \u2502>tracker/tickets/A1.md               \u2502 Reference: tracker/tickets/A1.md                                         \u2502",
+          "   \u2502 [Concept]  ID: A2                   \u2502 Current source: not recorded                                             \u2502",
+          "   \u2502 Alpha second child                  \u2502 Dependencies:                                                            \u2502",
+          "   \u2502 State: unclaimed                    \u2502 No dependency edges.                                                     \u2502",
+          "   \u2502 tracker/tickets/A2.md               \u2502 Receipts:                                                                \u2502",
+          "   \u2502                                     \u2502 \u2192 inspect receipts \u00b7 a actions                                           \u2502",
+          "   \u2502                                     \u2502 Ticket:                                                                  \u2502",
+          "   \u2502                                     \u2502 ## What to build                                                         \u2502",
+          "   \u2502                                     \u2502 Detail for A1.                                                           \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 tracker/tickets/A1.md \u00b7 UNKNOWN                                                                                \u2502",
+          "\u2500\u2500\u2500\u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u00b7 a actions \u00b7 h initiatives \u00b7 R refresh\u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 14,
+      "method": "resize",
+      "params": {
+        "cols": 40,
+        "rows": 12
+      }
+    },
+    "response": {
+      "id": 14,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 15,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "response": {
+      "id": 15,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 16,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 16,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 17,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 17,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 18,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 18,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          11,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiat\u2026  >  Alpha r\u2026  >  A1",
+          " > alpha \u00b7 Items 2",
+          " >[Concept]  ID: A1",
+          "\u2500>Alpha first child                    \u2500",
+          " >State: claimed",
+          "\u2500tracker/tickets/A1.md \u00b7 UNKNOWN       \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 19,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 19,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 20,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 20,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 21,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 21,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Ini\u2026  >  Alp\u2026  >  A1  >  Eve\u2026",
+          " > Events / newest first",
+          "  No receipts yet.",
+          "\u2500                                      \u2500",
+          "",
+          "\u2500tracker/tickets/A1.md \u00b7 UNKNOWN       \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 22,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "response": {
+      "id": 22,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 23,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 23,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 24,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 24,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiat\u2026  >  Alpha r\u2026  >  A1",
+          " > alpha \u00b7 Items 2",
+          " >[Concept]  ID: A1",
+          "\u2500>Alpha first child                    \u2500",
+          " >State: claimed",
+          "\u2500tracker/tickets/A1.md \u00b7 UNKNOWN       \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 25,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "response": {
+      "id": 25,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 26,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 26,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 27,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 27,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          9,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiatives",
+          " > Initiatives \u00b7 title / phase / Ite\u2026",
+          " >Alpha review initiative",
+          "\u2500>Phase:                               \u2500",
+          " >awaiting-maintainer-review-and-reco",
+          "\u2500tracker/initiatives/alpha/index.md    \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 28,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "response": {
+      "id": 28,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 29,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 29,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 30,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 30,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiatives",
+          " > Initiatives \u00b7 title / phase / Ite\u2026",
+          " >rded-confirmation",
+          "\u2500>Items: 2                             \u2500",
+          " >alpha",
+          "\u2500tracker/initiatives/alpha/index.md    \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 31,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "response": {
+      "id": 31,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 32,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 32,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 33,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 33,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiatives",
+          " > Initiatives \u00b7 title / phase / Ite\u2026",
+          "  Beta review initiative",
+          "\u2500 Phase: implementation                \u2500",
+          "  Items: 1",
+          "\u2500tracker/initiatives/alpha/index.md    \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 34,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "response": {
+      "id": 34,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 35,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 35,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 36,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 36,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiatives",
+          " > Initiatives \u00b7 title / phase / Ite\u2026",
+          "  beta",
+          "\u2500 Ungrouped                            \u2500",
+          "  Phase: unavailable",
+          "\u2500tracker/initiatives/alpha/index.md    \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 37,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "response": {
+      "id": 37,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 38,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 38,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 39,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 39,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiatives",
+          " > Initiatives \u00b7 title / phase / Ite\u2026",
+          "  Phase: unavailable",
+          "\u2500 Items: 0                             \u2500",
+          "  Collection",
+          "\u2500tracker/initiatives/alpha/index.md    \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 40,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "response": {
+      "id": 40,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 41,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 41,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 42,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 42,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiatives",
+          " > Initiatives \u00b7 title / phase / Ite\u2026",
+          "  Phase: unavailable",
+          "\u2500 Items: 0                             \u2500",
+          "  Collection",
+          "\u2500tracker/initiatives/alpha/index.md    \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 43,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    "response": {
+      "id": 43,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 44,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "response": {
+      "id": 44,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 45,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 45,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 46,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 46,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          9,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiatives",
+          " > Initiatives \u00b7 title / phase / Ite\u2026",
+          " >Beta review initiative",
+          "\u2500>Phase: implementation                \u2500",
+          " >Items: 1",
+          "\u2500tracker/initiatives/beta/index.md     \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 47,
+      "method": "resize",
+      "params": {
+        "cols": 120,
+        "rows": 40
+      }
+    },
+    "response": {
+      "id": 47,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 48,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 48,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 49,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 49,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          39,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives                                                                                                    \u2502",
+          "   \u2502> Initiatives \u00b7 title / phase / Items                                                                           \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Alpha review initiative                                                   Phase: awaiting-maintai\u2026  Items: 2   \u2502",
+          "   \u2502 alpha                                                                                                          \u2502",
+          "   \u2502>Beta review initiative                                                       Phase: implementation  Items: 1   \u2502",
+          "   \u2502>beta                                                                                                           \u2502",
+          "   \u2502 Ungrouped                                                                       Phase: unavailable  Items: 0   \u2502",
+          "   \u2502 Collection                                                                                                     \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 tracker/initiatives/beta/index.md                                                                              \u2502",
+          "\u2500\u2500\u2500\u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R refresh \u00b7 Esc back                        \u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 50,
+      "method": "resize",
+      "params": {
+        "cols": 40,
+        "rows": 12
+      }
+    },
+    "response": {
+      "id": 50,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 51,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 51,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 52,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 52,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          11,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiatives",
+          " > Initiatives \u00b7 title / phase / Ite\u2026",
+          " >Beta review initiative",
+          "\u2500>Phase: implementation                \u2500",
+          " >Items: 1",
+          "\u2500tracker/initiatives/beta/index.md     \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 53,
+      "method": "press",
+      "params": {
+        "key": "<up>"
+      }
+    },
+    "response": {
+      "id": 53,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 54,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 54,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 55,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 55,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 56,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 56,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 57,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 57,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 58,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 58,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 59,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 59,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 60,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 60,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          9,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiat\u2026  >  Alpha r\u2026  >  A1",
+          " > Ticket / dependencies / receipts",
+          "  A1 Alpha first child",
+          "\u2500 Type: Concept                        \u2500",
+          "  State: UNKNOWN",
+          "\u2500tracker/tickets/A1.md \u00b7 UNKNOWN       \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 61,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 61,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 62,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 62,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 63,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 63,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 64,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 64,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Ini\u2026  >  Alp\u2026  >  A1  >  Eve\u2026",
+          " > Events / newest first",
+          "  No receipts yet.",
+          "\u2500                                      \u2500",
+          "",
+          "\u2500tracker/tickets/A1.md \u00b7 UNKNOWN       \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 65,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "response": {
+      "id": 65,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 66,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 66,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 67,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 67,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 68,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 68,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          " help.",
+          " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+          " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+          "  Initiat\u2026  >  Alpha r\u2026  >  A1",
+          " > alpha \u00b7 Items 2",
+          " >[Concept]  ID: A1",
+          "\u2500>Alpha first child                    \u2500",
+          " >State: claimed",
+          "\u2500tracker/tickets/A1.md \u00b7 UNKNOWN       \u2500",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 69,
+      "method": "resize",
+      "params": {
+        "cols": 120,
+        "rows": 40
+      }
+    },
+    "response": {
+      "id": 69,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 70,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 70,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 71,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "response": {
+      "id": 71,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 72,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 72,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 73,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 73,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 74,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 74,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 75,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 75,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 76,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 76,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 77,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 77,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 78,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 78,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives  >  Alpha review initiative  >  A1                                                                 \u2502",
+          "   \u2502> alpha \u00b7 Items 2                    \u2502  Ticket / dependencies / receipts                                        \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502>[Concept]  ID: A1                   \u2502 A1 Alpha first child                                                     \u2502",
+          "   \u2502>Alpha first child                   \u2502 Type: Concept                                                            \u2502",
+          "   \u2502>State: claimed                      \u2502 State: UNKNOWN                                                           \u2502",
+          "   \u2502>tracker/tickets/A1.md               \u2502 Reference: tracker/tickets/A1.md                                         \u2502",
+          "   \u2502 [Concept]  ID: A2                   \u2502 Current source: not recorded                                             \u2502",
+          "   \u2502 Alpha second child                  \u2502 Dependencies:                                                            \u2502",
+          "   \u2502 State: unclaimed                    \u2502 No dependency edges.                                                     \u2502",
+          "   \u2502 tracker/tickets/A2.md               \u2502 Receipts:                                                                \u2502",
+          "   \u2502                                     \u2502 \u2192 inspect receipts \u00b7 a actions                                           \u2502",
+          "   \u2502                                     \u2502 Ticket:                                                                  \u2502",
+          "   \u2502                                     \u2502 ## What to build                                                         \u2502",
+          "   \u2502                                     \u2502 Detail for A1.                                                           \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u2502                                     \u2502                                                                          \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 tracker/tickets/A1.md \u00b7 UNKNOWN                                                                                \u2502",
+          "\u2500\u2500\u2500\u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u00b7 a actions \u00b7 h initiatives \u00b7 R refresh\u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 79,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "removed from this collection",
+        "timeout": 15000
+      }
+    },
+    "response": {
+      "id": 79,
+      "result": {
+        "found": true,
+        "row": 34,
+        "col": 25
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 80,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 80,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 81,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 81,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives  >  Alpha review initiative                                                                        \u2502",
+          "   \u2502> alpha \u00b7 Items 1                                                                                               \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 alpha \u00b7 Phase: awaiting-maintainer-review-and-recorded-confirmation                                            \u2502",
+          "   \u2502 Summary: Recorded alpha summary.                                                                               \u2502",
+          "   \u2502>[Concept]       A2                Alpha second child                                         State: unclaimed  \u2502",
+          "   \u2502>tracker/tickets/A2.md                                                                                          \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Selected item was removed from this collection. Selected a nearby item or its parent.                          \u2502",
+          "\u2500\u2500\u2500\u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u00b7 a actions \u00b7 h initiatives \u00b7 R refresh\u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 82,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "response": {
+      "id": 82,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 83,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 83,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 84,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "response": {
+      "id": 84,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 85,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 85,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 86,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "response": {
+      "id": 86,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 87,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 87,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 88,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "response": {
+      "id": 88,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 89,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 89,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 90,
+      "method": "press",
+      "params": {
+        "key": "a"
+      }
+    },
+    "response": {
+      "id": 90,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 91,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 91,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 92,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 92,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 93,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 93,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          35,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives  >  Queues                                                                                         \u2502",
+          "   \u2502> Open a fresh chat \u00b7 commands are staged, not auto-sent                                                        \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502>[m] Ask Matt \u2014 Required skill:ask-matt command is unavailable.                                                 \u2502",
+          "   \u2502 [s] Start worktree \u2014 Required skill:worktree command is unavailable.                                           \u2502",
+          "   \u2502 [r] Review \u2014 Required skill:worktree command is unavailable.                                                   \u2502",
+          "   \u2502 [x] Fix \u2014 Required skill:worktree command is unavailable.                                                      \u2502",
+          "   \u2502 [f] Finish \u2014 Required skill:worktree command is unavailable.                                                   \u2502",
+          "   \u2502 [u] Submit \u2014 Required skill:worktree command is unavailable.                                                   \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 tracker/tickets/B1.md \u00b7 READY                                                                                  \u2502",
+          "\u2500\u2500\u2500\u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u00b7 a actions \u00b7 h initiatives \u00b7 R refresh\u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 94,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Selected item was removed",
+        "timeout": 15000
+      }
+    },
+    "response": {
+      "id": 94,
+      "result": {
+        "found": true,
+        "row": 34,
+        "col": 7
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 95,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 95,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 96,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 96,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives  >  Alpha review initiative                                                                        \u2502",
+          "   \u2502> alpha \u00b7 Items 0                                                                                               \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 alpha \u00b7 Phase: awaiting-maintainer-review-and-recorded-confirmation                                            \u2502",
+          "   \u2502 Summary: Recorded alpha summary.                                                                               \u2502",
+          "   \u2502 This collection is empty. No child items.                                                                      \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Selected item was removed. Selected a nearby item or its parent.                                               \u2502",
+          "\u2500\u2500\u2500\u2502 Esc back \u00b7 Enter drill \u00b7 \u2191\u2193 move \u00b7 Tab/Shift+Tab focus \u00b7 PgUp/Dn scroll \u00b7 a actions \u00b7 h initiatives \u00b7 R refresh\u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 97,
+      "method": "press",
+      "params": {
+        "key": "h"
+      }
+    },
+    "response": {
+      "id": 97,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 98,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 98,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 99,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    },
+    "response": {
+      "id": 99,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 100,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 100,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 101,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "response": {
+      "id": 101,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 102,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 102,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 103,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 103,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 104,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 104,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives  >  Queues                                                                                         \u2502",
+          "   \u2502> Ticket queues \u00b7 all                                                                                           \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 [Concept]       A1                Alpha first child                                          State: claimed    \u2502",
+          "   \u2502 tracker/tickets/A1.md                                                                                          \u2502",
+          "   \u2502>[Concept]       B1                Beta surviving child                                       State: unclaimed  \u2502",
+          "   \u2502>tracker/tickets/B1.md                                                                                          \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 tracker/tickets/B1.md \u00b7 READY                                                                                  \u2502",
+          "\u2500\u2500\u2500\u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R refresh \u00b7 Esc back                        \u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 105,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 105,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 106,
+      "method": "press",
+      "params": {
+        "key": "R"
+      }
+    },
+    "response": {
+      "id": 106,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 107,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 107,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 108,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 108,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 109,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 109,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+        "lines": [
+          "",
+          " \u2580\u2580\u2588  v1.1.0",
+          " \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+          " Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502",
+          "   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502",
+          " Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 Initiatives  >  Queues                                                                                         \u2502",
+          "   \u2502> Ticket queues \u00b7 all                                                                                           \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 [Concept]       A1                Alpha first child                                          State: claimed    \u2502",
+          "   \u2502 tracker/tickets/A1.md                                                                                          \u2502",
+          "   \u2502>[Concept]       B1                Beta surviving child                                       State: unclaimed  \u2502",
+          "   \u2502>tracker/tickets/B1.md                                                                                          \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u2502                                                                                                                \u2502",
+          "   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524",
+          "   \u2502 tracker/tickets/B1.md \u00b7 READY                                                                                  \u2502",
+          "\u2500\u2500\u2500\u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R refresh \u00b7 Esc back                        \u2502\u2500\u2500\u2500",
+          "   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f",
+          "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+          "/tmp/ux02-review-0026-fixture-mnb0jvud (master)",
+          "$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 110,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    },
+    "response": {
+      "id": 110,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> \u2580\u2580\u2588  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Pr\u2502 Projects \u00b7 Repo &gt; ux02-review-0026-fixture-mnb0jvud                                                            \u2502</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\">   \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\">   \u2502 Initiatives  &gt;  Queues                                                                                         \u2502</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">   \u2502&gt; Ticket queues \u00b7 all                                                                                           \u2502</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">   \u2502 [Concept]       A1                Alpha first child                                          State: claimed    \u2502</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">   \u2502 tracker/tickets/A1.md                                                                                          \u2502</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">   \u2502&gt;[Concept]       B1                Beta surviving child                                       State: unclaimed  \u2502</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">   \u2502&gt;tracker/tickets/B1.md                                                                                          \u2502</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"504\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"524\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"544\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"564\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"584\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"604\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"624\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"644\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"664\" fill=\"rgb(255,255,255)\">   \u2502                                                                                                                \u2502</text>\n<text x=\"10\" y=\"684\" fill=\"rgb(255,255,255)\">   \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">   \u2502 tracker/tickets/B1.md \u00b7 READY                                                                                  \u2502</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">\u2500\u2500\u2500\u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R refresh \u00b7 Esc back                        \u2502\u2500\u2500\u2500</text>\n<text x=\"10\" y=\"744\" fill=\"rgb(255,255,255)\">   \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux02-review-0026-fixture-mnb0jvud (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">$0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium</text>\n</svg>\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 111,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    },
+    "response": {
+      "id": 111,
+      "result": {
+        "format": "spans",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=34:119 screen=alternate title=\"\u03c0 - ux02-review-0026-fixture-mnb0jvud\"\n\n=== TEXT ===\n[001] \n[002]  \u2580\u2580\u2588  v1.1.0\n[003]  \u2588\u2580\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n[004]  Pr\u2502 Projects \u00b7 Repo > ux02-review-0026-fixture-mnb0jvud                                                            \u2502\n[005]    \u2502  [1 Tracker]     2 Files    Tab focus \u00b7 Space/Enter activate                                                   \u2502\n[006]  Pi\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[007]    \u2502 Initiatives  >  Queues                                                                                         \u2502\n[008]    \u2502> Ticket queues \u00b7 all                                                                                           \u2502\n[009]    \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[010]    \u2502 [Concept]       A1                Alpha first child                                          State: claimed    \u2502\n[011]    \u2502 tracker/tickets/A1.md                                                                                          \u2502\n[012]    \u2502>[Concept]       B1                Beta surviving child                                       State: unclaimed  \u2502\n[013]    \u2502>tracker/tickets/B1.md                                                                                          \u2502\n[014]    \u2502                                                                                                                \u2502\n[015]    \u2502                                                                                                                \u2502\n[016]    \u2502                                                                                                                \u2502\n[017]    \u2502                                                                                                                \u2502\n[018]    \u2502                                                                                                                \u2502\n[019]    \u2502                                                                                                                \u2502\n[020]    \u2502                                                                                                                \u2502\n[021]    \u2502                                                                                                                \u2502\n[022]    \u2502                                                                                                                \u2502\n[023]    \u2502                                                                                                                \u2502\n[024]    \u2502                                                                                                                \u2502\n[025]    \u2502                                                                                                                \u2502\n[026]    \u2502                                                                                                                \u2502\n[027]    \u2502                                                                                                                \u2502\n[028]    \u2502                                                                                                                \u2502\n[029]    \u2502                                                                                                                \u2502\n[030]    \u2502                                                                                                                \u2502\n[031]    \u2502                                                                                                                \u2502\n[032]    \u2502                                                                                                                \u2502\n[033]    \u2502                                                                                                                \u2502\n[034]    \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n[035]    \u2502 tracker/tickets/B1.md \u00b7 READY                                                                                  \u2502\n[036] \u2500\u2500\u2500\u2502 5 Ready 6 Review 7 Blocked 8 All queues \u00b7 Enter open \u00b7 a actions \u00b7 R refresh \u00b7 Esc back                        \u2502\u2500\u2500\u2500\n[037]    \u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n[038] \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n[039] /tmp/ux02-review-0026-fixture-mnb0jvud (master)\n[040] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 \u2022 medium\n\n=== SPANS ===\n[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142\n[003] 1-2:79,142,179 3-116:95,168,204\n[004] 1-2:126,136,142 3:95,168,204 4-55:167,152,215 116:95,168,204\n[005] 3:95,168,204 5-17:167,152,215 20-30:157,165,169 33-64:157,165,169 116:95,168,204\n[006] 1-2:126,136,142 3-116:95,168,204\n[007] 3:95,168,204 4-16:167,152,215 17-19:157,165,169 20-27:222,224,225 116:95,168,204\n[008] 3:95,168,204 116:95,168,204\n[009] 3-116:95,168,204\n[010] 3:95,168,204 5-18:167,152,215 21-36:157,165,169 39-95:222,224,225 98-115:167,152,215 116:95,168,204\n[011] 3:95,168,204 5-25:157,165,169 116:95,168,204\n[012] 3:95,168,204 4:33,59,73 5-18:167,152,215/33,59,73 19-20:33,59,73 21-36:157,165,169/33,59,73 37-38:33,59,73 39-95:222,224,225/33,59,73 96-97:33,59,73 98-115:167,152,215/33,59,73 116:95,168,204\n[013] 3:95,168,204 4:33,59,73 5-25:157,165,169/33,59,73 26-115:33,59,73 116:95,168,204\n[014] 3:95,168,204 116:95,168,204\n[015] 3:95,168,204 116:95,168,204\n[016] 3:95,168,204 116:95,168,204\n[017] 3:95,168,204 116:95,168,204\n[018] 3:95,168,204 116:95,168,204\n[019] 3:95,168,204 116:95,168,204\n[020] 3:95,168,204 116:95,168,204\n[021] 3:95,168,204 116:95,168,204\n[022] 3:95,168,204 116:95,168,204\n[023] 3:95,168,204 116:95,168,204\n[024] 3:95,168,204 116:95,168,204\n[025] 3:95,168,204 116:95,168,204\n[026] 3:95,168,204 116:95,168,204\n[027] 3:95,168,204 116:95,168,204\n[028] 3:95,168,204 116:95,168,204\n[029] 3:95,168,204 116:95,168,204\n[030] 3:95,168,204 116:95,168,204\n[031] 3:95,168,204 116:95,168,204\n[032] 3:95,168,204 116:95,168,204\n[033] 3:95,168,204 116:95,168,204\n[034] 3-116:95,168,204\n[035] 3:95,168,204 4-33:157,165,169 116:95,168,204\n[036] 0-2:97,133,204 3:95,168,204 4-91:157,165,169 116:95,168,204 117-119:97,133,204\n[037] 0:inverse 3-116:95,168,204\n[038] 0-119:97,133,204\n[039] 0-46:126,136,142\n[040] 0-119:126,136,142\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 112,
+      "method": "close"
+    },
+    "response": {
+      "id": 112,
+      "result": {
+        "exit_code": 0
+      }
+    }
+  }
+]

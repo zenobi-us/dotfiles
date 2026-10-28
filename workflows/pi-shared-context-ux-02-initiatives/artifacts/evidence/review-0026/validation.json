@@ -1,0 +1,72 @@
+[
+  {
+    "kind": "tests",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "--install=fallback",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "exit_code": 0,
+    "evidence": "focused-tests.txt",
+    "result": [
+      " 133 pass",
+      " 0 fail",
+      " 1809 expect() calls",
+      "Ran 133 tests across 11 files. [8.00s]"
+    ]
+  },
+  {
+    "kind": "typescript",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+      "--project",
+      "/tmp/ux02-review-0026-tsconfig.json",
+      "--pretty",
+      "false"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+    "exit_code": 0,
+    "evidence": "scoped-typescript.txt",
+    "result": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  },
+  {
+    "kind": "runtime",
+    "command": [
+      "termscope",
+      "session",
+      "--cols",
+      "120",
+      "--rows",
+      "40",
+      "--",
+      "pi",
+      "--offline",
+      "--no-session",
+      "--no-extensions",
+      "--no-mcp",
+      "--no-skills",
+      "--no-prompt-templates",
+      "--no-context-files",
+      "--no-tools",
+      "--no-themes",
+      "--use-theme",
+      "dark",
+      "-e",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+    ],
+    "cwd": "/tmp/ux02-review-0026-fixture-mnb0jvud",
+    "exit_code": 0,
+    "evidence": "pi-runtime-ledger.json",
+    "result": "Actual Pi v1.1.0 with the frozen worktree extension. Root, initiative, child, compact selection, resize, long phase and separate Items passed. Reparenting and unrelated initiative-removal corrections passed. UX02-SPEC-005 and UX02-SPEC-006 reproduced. No model request or action dispatch."
+  }
+]

@@ -1,0 +1,220 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "spec-result-0023",
+  "workflow_id": "pi-shared-context-ux-02-initiatives",
+  "phase": "review-spec",
+  "event": "phase-result",
+  "attempt": 2,
+  "parent_receipt": "spec-start-0021",
+  "status": "completed",
+  "verdict": "FAILURE",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "base_branch": "master",
+  "source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "source_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "created_at": "2026-10-28T00:31:54.014188+00:00",
+  "muxer": "herdr",
+  "pane_id": "w7H:p3",
+  "agent": "omp",
+  "agent_name": "ux02-spec-02",
+  "session_id": "01a17fe4-d860-7643-a852-a649144d1670",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-24-26-464Z_01a17fe4-d860-7643-a852-a649144d1670.jsonl",
+  "session_identity_source": "herdr agent get ux02-spec-02 -> agent_session.value",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-02-initiatives",
+    "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0030.yaml",
+  "cycle_number": 9,
+  "agent_session_token_limit": 250000,
+  "native_goal_budget_ceiling": 241808,
+  "completion_margin_tokens": 8192,
+  "native_goal_accounting": {
+    "initial_budget": 241808,
+    "initial_used": 0,
+    "checkpoint_used": 134575,
+    "checkpoint_remaining": 107233,
+    "status_at_checkpoint": "active",
+    "checkpoint_note": "Observed goal.get before preparing result. Not final provider-session usage. Parent audits the complete session including final response. No reset/replacement/increase."
+  },
+  "axis_prose": "FAILURE. Two specification gaps remain. UX02-SPEC-005: actual Pi at 40x12 returns from Events to a child-list pane instead of the saved ticket overview. Esc and the ticket ancestor both lose the visible reading context. UX02-SPEC-006: static control flow redirects an unrelated action menu when a remembered ticket disappears. The selected queue ticket can still exist. Both findings violate retained navigation or selection requirements. The four original correction paths are present, but ticket-removal handling still lacks active-target scoping. No scope creep was found. Mixed items, description readers, event redesign and queue redesign remain outside this slice. No tests, compiler or formatter ran in this axis. The main reviewer owns the single affected validation run, including VAL-001.",
+  "findings": [
+    {
+      "id": "UX02-SPEC-005",
+      "severity": "P2",
+      "adr_ref": "NO ADR",
+      "adr_explanation": "The ADR index lists no decisions. Ticket acceptance criterion 9 governs this behavior.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 461,
+      "related_lines": [
+        406,
+        410,
+        459,
+        465,
+        601,
+        648,
+        798
+      ],
+      "title": "Restore the compact ticket overview when returning from events",
+      "requirement": "Esc returns one level and restores selection and scroll position.",
+      "requirement_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md#acceptance-criteria (9)",
+      "description": "Actual Pi at 40x12 opened the child ticket overview, then Events. Esc returned to the child-list pane, not the overview. Activating the ticket ancestor did the same. Both paths force list focus; compact rendering therefore hides the saved ticket overview and scroll position. Tab is needed to recover the overview.",
+      "required_change": "Restore the ticket overview pane and its saved scroll position on compact Esc and ticket-ancestor return. Do not unconditionally reset those destinations to list focus.",
+      "validation_command": "termscope session --cols 40 --rows 12 -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "validation_scenario": "Open /shared-context. Enter an initiative, then a child. Page the ticket overview. Enter Events and press Esc. The ticket overview must reappear at its saved position. Repeat through the focused ticket ancestor. Assert the canonical ticket remains unchanged.",
+      "validation_status": "Reproduced in actual Pi v1.1.0; ledger requests 9,12,15,18,22,29,32.",
+      "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json"
+    },
+    {
+      "id": "UX02-SPEC-006",
+      "severity": "P2",
+      "adr_ref": "NO ADR",
+      "adr_explanation": "The ADR index lists no decisions. Ticket acceptance criteria 10 and 13 govern retained selection and actions.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 205,
+      "related_lines": [
+        179,
+        193,
+        203,
+        219,
+        265,
+        517,
+        581,
+        772
+      ],
+      "title": "Do not redirect an unrelated action menu when a remembered ticket disappears",
+      "requirement": "Live updates preserve selection by record identity.",
+      "requirement_ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md#acceptance-criteria (10)",
+      "description": "[INFERENCE] Read A through an initiative, return home, open All, select B, and open B actions. Queue selection does not update remembered ticketId A. If A disappears, the unconditional removedTicket branch changes the actions screen to the old itemOrigin. B still exists, but its queue and action menu are replaced by A’s child collection.",
+      "required_change": "Gate removal navigation on the active logical screen and selected canonical target. Reconcile inactive remembered ticket state without closing or redirecting an unrelated queue or initiative action menu.",
+      "validation_command": "termscope session --cols 120 --rows 40 -- pi --offline --no-session --no-extensions --no-mcp --no-skills --no-prompt-templates --no-context-files --no-tools -e /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+      "validation_scenario": "Use an external temporary store with tickets A and B. Read A from its initiative, Esc twice, press 8, select B, press a. Remove only A and update membership consistently. Wait for the watcher. B actions, queue selection, scroll position and canonical target must remain unchanged. Also cover a home initiative action menu while its remembered child disappears.",
+      "validation_status": "Static control-flow finding. This removal scenario was not runtime exercised in this axis.",
+      "evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json"
+    }
+  ],
+  "validation": [
+    {
+      "kind": "frozen-source",
+      "command": "git rev-parse HEAD HEAD^{tree}; git log master..d1ad6dbabb7131de2910334f2b750f8586a0e4ca --oneline",
+      "result": "Exact frozen commit/tree and four expected source commits verified."
+    },
+    {
+      "kind": "specification-read",
+      "command": "mise exec -- mq --allow-http-import --lockfile /tmp/ux02-spec-02-mq.lock -I raw -F raw import-okf-and-identity <canonical documents>",
+      "result": "Read complete canonical ticket, parent specification, context map, domain rules, ADR index, tracker rules and fix snapshot through mq. No applicable ADR."
+    },
+    {
+      "kind": "runtime",
+      "command": [
+        "termscope",
+        "session",
+        "--cols",
+        "40",
+        "--rows",
+        "12",
+        "--",
+        "pi",
+        "--offline",
+        "--no-session",
+        "--no-extensions",
+        "--no-mcp",
+        "--no-skills",
+        "--no-prompt-templates",
+        "--no-context-files",
+        "--no-tools",
+        "-e",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-02-initiatives/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+      ],
+      "result": "Actual Pi v1.1.0; compact Esc and focused ticket-ancestor return defect reproduced. Session closed with exit 0. No model request or action dispatch.",
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json"
+    },
+    {
+      "kind": "static",
+      "command": "Inspect frozen explorer.ts control flow at lines 179-224, 265-274, 515-521, 580-587 and 770-775",
+      "result": "Unrelated remembered-ticket deletion redirects an action menu; runtime reproduction remains for main reviewer.",
+      "evidence": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json"
+    },
+    {
+      "kind": "deferred-tests",
+      "command": null,
+      "result": "No tests, compiler or formatter ran. Main reviewer owns the affected validation run after both axes."
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/spec-start-0021.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-0017.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/fix-complete-0018.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0017.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "adr-index",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "tracker-config",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/continuation-approved-0013.yaml"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0030.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/events/spec-result-0023.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/spec-observations.json"
+    }
+  ],
+  "completion_marker": "AXIS_REVIEW_DONE"
+}

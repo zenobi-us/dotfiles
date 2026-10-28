@@ -1,0 +1,53 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-24-26-457Z_01a17fe4-d859-713a-83f5-4ffc463c69ee.jsonl",
+  "totals": {
+    "input": 96715,
+    "output": 8113,
+    "cacheWrite": 0,
+    "cacheRead": 1477120
+  },
+  "provider_work": 104828,
+  "last_tool_call": {
+    "name": "goal",
+    "arguments": {
+      "op": "complete",
+      "objective": null,
+      "token_budget": null
+    }
+  },
+  "final_goal": {
+    "id": "15b746956460bfcb",
+    "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+    "status": "complete",
+    "tokenBudget": 241808,
+    "tokensUsed": 104407,
+    "timeUsedSeconds": 187,
+    "createdAt": 1793147078033,
+    "updatedAt": 1793147265785
+  },
+  "final_response": [
+    "AXIS_REVIEW_DONE\n\nStandards: **SUCCESS** for frozen commit `d1ad6dbabb7131de2910334f2b750f8586a0e4ca`. No blocking violations.\n\nNonblocking `STD-02-J1`: `explorer.ts:619,709` duplicates summary selection. Optional change: extract one shared helper.\n\nReceipt: `workflows/pi-shared-context-ux-02-initiatives/events/standards-result-0022.json`\n\nEvidence: `workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/review-0026/standards-observations.json`\n\nStatic review only. No tests, compiler, formatter or runtime checks ran in this axis. LSP initialization failed because TypeScript was unavailable.\n\nNative usage: **104407 / 241808 tokens**; **187 seconds**."
+  ],
+  "activation": {
+    "first": {
+      "id": "15b746956460bfcb",
+      "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+      "status": "active",
+      "tokensUsed": 0,
+      "timeUsedSeconds": 0,
+      "createdAt": 1793147078033,
+      "updatedAt": 1793147078033
+    },
+    "bounded_at_zero": {
+      "id": "15b746956460bfcb",
+      "objective": "Read /tmp/ux02-standards-02.txt and perform the approved frozen independent review. First inspect goal.get; wait for native budget241808 before substantive review. Do not interview, create another goal or reset usage.",
+      "status": "active",
+      "tokenBudget": 241808,
+      "tokensUsed": 0,
+      "timeUsedSeconds": 0,
+      "createdAt": 1793147078033,
+      "updatedAt": 1793147078342
+    },
+    "pre_goal_assistant_messages": 0
+  }
+}

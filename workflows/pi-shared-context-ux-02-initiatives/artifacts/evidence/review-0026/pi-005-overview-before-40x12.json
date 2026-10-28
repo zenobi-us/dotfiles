@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    9,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "\u03c0 - ux02-review-0026-fixture-mnb0jvud",
+  "lines": [
+    " help.",
+    " \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+    " \u2502 Projects \u00b7 Repo > ux02-review-0026\u2026\u2502",
+    " \u2502  [1 Tracker]     2 Files    Tab fo\u2026\u2502",
+    "  Initiat\u2026  >  Alpha r\u2026  >  A1",
+    " > Ticket / dependencies / receipts",
+    "  A1 Alpha first child",
+    "\u2500 Type: Concept                        \u2500",
+    "  State: UNKNOWN",
+    "\u2500tracker/tickets/A1.md \u00b7 UNKNOWN       \u2500",
+    "/Esc back  Enter open  Tab focus  R ....",
+    "$0.000 (sub) 0.0%/272k (auto)  gpt-5.5 \u2022"
+  ]
+}

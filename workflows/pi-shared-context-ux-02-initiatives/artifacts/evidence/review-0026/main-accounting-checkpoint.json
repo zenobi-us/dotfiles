@@ -1,0 +1,16 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-23-50-663Z_01a17fe4-4c87-749c-8e09-6a09e726e0da.jsonl",
+  "session_id": "01a17fe4-4c87-749c-8e09-6a09e726e0da",
+  "goal_id": "15b7466f55195dc5",
+  "native_tokens_used": 165196,
+  "token_budget": 241808,
+  "provider_work_checkpoint": 165920,
+  "totals": {
+    "input": 150752,
+    "output": 15168,
+    "cacheWrite": 0,
+    "cacheRead": 4342784
+  },
+  "pre_goal_assistant_messages": 0,
+  "note": "Checkpoint before result preparation. Not final-session accounting. Coordinator audits final response and final goal.complete. No goal reset, replacement or increase."
+}

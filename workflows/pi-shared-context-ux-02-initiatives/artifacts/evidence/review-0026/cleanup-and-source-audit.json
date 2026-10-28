@@ -1,0 +1,28 @@
+{
+  "source_status": "",
+  "source_clean": true,
+  "identity": [
+    "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+    "80f4559a9f6cbe6e51d2e102480714703eac160f",
+    "d1ad6dbabb7131de2910334f2b750f8586a0e4ca"
+  ],
+  "temporary_links_removed": true,
+  "root_node_modules_removed": true,
+  "external_tsconfig_removed": true,
+  "fixture_removed": true,
+  "pi_session_closed": true,
+  "helper_panes_closed": [
+    "w7H:p2",
+    "w7H:p3"
+  ],
+  "canonical_tracker_writes_performed": false,
+  "source_edits_performed": false,
+  "manifests_lockfiles_changed": false,
+  "shared_dependency_cache_preserved": "/tmp/ux02-deps",
+  "native_snapshot_before_result": {
+    "tokens_used": 160427,
+    "token_budget": 241808,
+    "remaining_tokens": 81381,
+    "status": "active"
+  }
+}
