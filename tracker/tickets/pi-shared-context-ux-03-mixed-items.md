@@ -8,7 +8,7 @@ sequence: 3
 title: Browse research and tickets in the same initiative
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 ## What to build
@@ -61,3 +61,5 @@ Record the focused behavior checks and terminal observations. Include evidence f
 
 The user approved this slice and its direct blockers during ticket decomposition.
 
+
+- 2026-10-28T02:45:56.357Z: Claimed for implementation by coordinator run `ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135`. Direct blocker pi-shared-context-ux-02-initiatives is completed and published.
