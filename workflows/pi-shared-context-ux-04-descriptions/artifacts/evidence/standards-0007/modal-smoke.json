@@ -1,0 +1,136 @@
+{
+  "status": "passed",
+  "scope": "Fresh public-modal smoke with injected records; not a native Pi or colour acceptance run.",
+  "dimensions": [
+    40,
+    12
+  ],
+  "checks": [
+    "mouse open and return preserve origin",
+    "page to full Unicode body end",
+    "terminal controls sanitized",
+    "Files restoration",
+    "live shrink clamp",
+    "empty and unreadable states distinct"
+  ],
+  "frames": {
+    "origin": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│  [1 Tracker]     2 Files    Tab focu\u001b[0m…\u001b[0m│",
+      " Initiat\u001b[0m…\u001b[0m  >  Smoke i\u001b[0m…\u001b[0m  >  R ",
+      " [d] Full description ",
+      "> research / recorded details         ",
+      " ID: R                                ",
+      " Title: Smoke research                ",
+      " Type: research                       ",
+      " State: draft                         ",
+      "tracker/tickets/R.md · draft",
+      "Esc back  Enter open  Tab focus  R re\u001b[0m...\u001b[0m"
+    ],
+    "opened": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│  [1 Tracker]     2 Files    Tab focu\u001b[0m…\u001b[0m│",
+      "│ Init\u001b[0m…\u001b[0m  >  Smok\u001b[0m…\u001b[0m  >  R  >  Desc\u001b[0m…\u001b[0m      │",
+      "│> Smoke research · Description        │",
+      "│ Paragraph 0 界 é 👩‍💻                  │",
+      "│ longlonglonglonglonglonglonglonglongl│",
+      "│ onglonglong                          │",
+      "│ Paragraph 1 界 é 👩‍💻                  │",
+      "│ longlonglonglonglonglonglonglonglongl│",
+      "│ [Return]  [PgUp] [PgDn]              │",
+      "│↑↓ scroll · PgUp/Dn page · Esc return │"
+    ],
+    "end": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│  [1 Tracker]     2 Files    Tab focu\u001b[0m…\u001b[0m│",
+      "│ Init\u001b[0m…\u001b[0m  >  Smok\u001b[0m…\u001b[0m  >  R  >  Desc\u001b[0m…\u001b[0m      │",
+      "│> Smoke research · Description        │",
+      "│ onglonglong                          │",
+      "│ Paragraph 49 界 é 👩‍💻                 │",
+      "│ longlonglonglonglonglonglonglonglongl│",
+      "│ onglonglong                          │",
+      "│ FINAL 界                             │",
+      "│ [Return]  [PgUp] [PgDn]              │",
+      "│↑↓ scroll · PgUp/Dn page · Esc return │"
+    ],
+    "files": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│   1 Tracker     [2 Files]   Tab focu\u001b[0m…\u001b[0m│",
+      "Files independent"
+    ],
+    "restored": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│  [1 Tracker]     2 Files    Tab focu\u001b[0m…\u001b[0m│",
+      "│ Init\u001b[0m…\u001b[0m  >  Smok\u001b[0m…\u001b[0m  >  R  >  Desc\u001b[0m…\u001b[0m      │",
+      "│> Smoke research · Description        │",
+      "│ onglonglong                          │",
+      "│ Paragraph 49 界 é 👩‍💻                 │",
+      "│ longlonglonglonglonglonglonglonglongl│",
+      "│ onglonglong                          │",
+      "│ FINAL 界                             │",
+      "│ [Return]  [PgUp] [PgDn]              │",
+      "│↑↓ scroll · PgUp/Dn page · Esc return │"
+    ],
+    "returned": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│  [1 Tracker]     2 Files    Tab focu\u001b[0m…\u001b[0m│",
+      " Initiat\u001b[0m…\u001b[0m  >  Smoke i\u001b[0m…\u001b[0m  >  R ",
+      " [d] Full description ",
+      "> research / recorded details         ",
+      " ID: R                                ",
+      " Title: Smoke research                ",
+      " Type: research                       ",
+      " State: draft                         ",
+      "tracker/tickets/R.md · draft",
+      "Esc back  Enter open  Tab focus  R re\u001b[0m...\u001b[0m"
+    ],
+    "short": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│  [1 Tracker]     2 Files    Tab focu\u001b[0m…\u001b[0m│",
+      "│ Init\u001b[0m…\u001b[0m  >  Smok\u001b[0m…\u001b[0m  >  R  >  Desc\u001b[0m…\u001b[0m      │",
+      "│> Smoke research · Description        │",
+      "│ Short replacement                    │",
+      "│                                      │",
+      "│                                      │",
+      "│                                      │",
+      "│                                      │",
+      "│ [Return]  [PgUp] [PgDn]              │",
+      "│↑↓ scroll · PgUp/Dn page · Esc return │"
+    ],
+    "empty": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│  [1 Tracker]     2 Files    Tab focu\u001b[0m…\u001b[0m│",
+      "│ Init\u001b[0m…\u001b[0m  >  Smok\u001b[0m…\u001b[0m  >  R  >  Desc\u001b[0m…\u001b[0m      │",
+      "│> Smoke research · Description        │",
+      "│ No description recorded.             │",
+      "│                                      │",
+      "│                                      │",
+      "│                                      │",
+      "│                                      │",
+      "│ [Return]  [PgUp] [PgDn]              │",
+      "│↑↓ scroll · PgUp/Dn page · Esc return │"
+    ],
+    "unreadable": [
+      "╭──────────────────────────────────────╮",
+      "│ Projects · Repo > standards-review   │",
+      "│  [1 Tracker]     2 Files    Tab focu\u001b[0m…\u001b[0m│",
+      "│ Init\u001b[0m…\u001b[0m  >  Smok\u001b[0m…\u001b[0m  >  R  >  Desc\u001b[0m…\u001b[0m      │",
+      "│> Smoke research · Description        │",
+      "│ Description unreadable after refresh.│",
+      "│ Showing the last readable body. Live │",
+      "│ refresh failed: Record cannot be read│",
+      "│ No description recorded.             │",
+      "│                                      │",
+      "│ [Return]  [PgUp] [PgDn]              │",
+      "│Description unreadable · last reada\u001b[0m...\u001b[0m│"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-29-36-784Z_01a1846b-2510-7790-b3cd-ef0fb19c8547.jsonl",
+  "session_id": "01a1846b-2510-7790-b3cd-ef0fb19c8547",
+  "goal_id": "15b868205e50b5e2",
+  "native_status": "complete",
+  "native_goal_used": 145076,
+  "native_goal_budget": 200000,
+  "raw_usage": {
+    "input": 129777,
+    "output": 15728,
+    "cacheWrite": 0,
+    "cacheRead": 5362176
+  },
+  "provider_work_tokens": 145505,
+  "session_ceiling": 250000,
+  "under_cap": true
+}

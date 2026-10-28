@@ -1,55 +1,54 @@
 ---
-title: Ticket04 workflow
+title: Description readers review
 type: Report
 ---
 
-# Complete record descriptions
+# Description readers — reviewed
 
-## Ticket and problem
-[Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-04-descriptions.md). Read full recorded descriptions without losing tracker context.
+## Overview
 
-## Current state
-IMPLEMENTED. Independent review and publication remain with the parent. The tracker ticket remains claimed.
+Review SUCCESS for the pinned description-reader source. All three independent axes found no blocker. Integration and canonical ticket completion remain pending.
 
 ## Source
-Commit: `946996c7bef540090de2c500e573cae3543b84f4`. Tree: `ef2bd18cfd82d286abbbf2c58c5d58c6524e5017`.
 
-## Changed files
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
+- [Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-04-descriptions.md).
+- [Initiative](../../../tracker/initiatives/pi-shared-context-tui-ux-spec/index.md).
+- Branch: `feature/pi-shared-context-ux-04-descriptions` against `master`.
+- Reviewed commit: `946996c7bef540090de2c500e573cae3543b84f4`.
+- Reviewed tree: `ef2bd18cfd82d286abbbf2c58c5d58c6524e5017`.
+- [Immutable review](../artifacts/reviews/review-review-0011.md).
 
 ## Validation
-144 affected tests pass. Scoped TypeScript check passes. Actual Pi checks cover all three required terminal sizes in dark and monochrome.
 
-## History
-[Start receipt](../events/start-0001.json). [Versioned draft with start and implementation history](../artifacts/snapshots/pr-draft-implementation-0002.md).
+The main and Spec reviews each passed the144-test affected suite and scoped TypeScript check. Main native Pi exercised the full-body reader, small-terminal return controls, and Files restoration; Spec exercised actual Pi at all three sizes. Recorded implementation colour/monochrome evidence was inspected separately, not claimed as a fresh review matrix. The parent focused modal/live check passed12 tests and119 assertions.
 
+| Session | Cycle | Complete provider work tokens | Limit |
+|---|---:|---:|---:|
+| Implementation |1|208557|250000|
+| main review | 2 | 145505 |250000|
+| standards review | 3 | 128694 |250000|
+| spec review | 4 | 178805 |250000|
 
-## Implementation 0002
+Four of ten source-agent cycles are consumed. All review panes, owned probes and parent dependency links are closed or removed.
 
-Source commit: `946996c7bef540090de2c500e573cae3543b84f4`. Source tree: `ef2bd18cfd82d286abbbf2c58c5d58c6524e5017`.
+## Receipt history
 
-- **Reader behavior:** Full initiative and type-specific item bodies replace content in place. Keyboard and mouse controls share the reader. Return navigation retains canonical selection and pane positions.
-- **Live state:** Body changes clamp scroll. Empty and unreadable states differ. Removal returns to an available parent. Project and Files state stay independent.
-- **Validation:** Scoped TypeScript check passes. The final affected suite passes 144 tests with 1975 assertions.
-- **Native evidence:** Actual Pi passed the 40x12, 80x24, and 120x40 dark and monochrome matrix. Keyboard, SGR mouse, project changes, live failures, event returns, planning-prompt cancellation, and unsent Files insertion were exercised. Native spans and HTML preserve colours; SVG fallback glyphs do not prove colour.
-- **Review boundary:** The implementation self-check covered standards and all ticket criteria. The parent owns independent review, tracker updates, and publication. No merge, push, rebase, or workflow dispatch ran.
+| Receipt | Phase | Status | Verdict |
+|---|---|---|---|
+| [start-0001](../events/start-0001.json) | start | started | — |
+| [implementation-0002](../events/implementation-0002.json) | implementation | completed | — |
+| [implementation-complete-0003](../events/implementation-complete-0003.json) | implementation | completed | — |
+| [review-start-0004](../events/review-start-0004.json) | review | started | — |
+| [standards-start-0005](../events/standards-start-0005.json) | review-standards | started | — |
+| [spec-start-0006](../events/spec-start-0006.json) | review-spec | started | — |
+| [standards-result-0007](../events/standards-result-0007.json) | review-standards | completed | SUCCESS |
+| [standards-complete-0009](../events/standards-complete-0009.json) | review-standards | completed | SUCCESS |
+| [spec-result-0008](../events/spec-result-0008.json) | review-spec | completed | SUCCESS |
+| [spec-complete-0010](../events/spec-complete-0010.json) | review-spec | completed | SUCCESS |
+| [review-0011](../events/review-0011.json) | review | completed | SUCCESS |
+| [review-complete-0012](../events/review-complete-0012.json) | review | completed | SUCCESS |
 
-[Implementation receipt](../events/implementation-0002.json). [Validation](../artifacts/evidence/implementation-0002/validation.json). [Native observations](../artifacts/evidence/implementation-0002/native-observations.json). [Cleanup](../artifacts/evidence/implementation-0002/cleanup.json).
+## Next action
 
-## Findings and questions
-No open implementation finding or product question. Native SVG fallback glyphs do not prove colour; inspect the saved native HTML and spans.
+Integrate the exact reviewed source through the source-preserving finish workflow, validate it in master, publish, complete the ticket, and remove the owned workspace.
 
-## Merge status
-Not merged, pushed, rebased, or completed in the tracker.
-
-
-
-## Parent implementation verification
-
-[Parent completion](../events/implementation-complete-0003.json) verifies clean source `946996c7bef540090de2c500e573cae3543b84f4` / `ef2bd18cfd82d286abbbf2c58c5d58c6524e5017`, required artifacts and Report validity. The complete session used208557 work tokens, within250000. The agent pane is closed. Independent review remains required.

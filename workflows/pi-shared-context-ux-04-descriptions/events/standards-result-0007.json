@@ -1,0 +1,118 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "standards-result-0007",
+  "workflow_id": "pi-shared-context-ux-04-descriptions",
+  "phase": "review-standards",
+  "attempt": 1,
+  "parent_receipt": "standards-start-0005",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "source_branch": "feature/pi-shared-context-ux-04-descriptions",
+  "base_branch": "master",
+  "source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "fixed_point": "564329b54ae70757545966d1945ded1a53a5512a",
+  "created_at": "2026-10-28T21:32:23Z",
+  "muxer": "herdr",
+  "pane_id": "w70:p2",
+  "agent": "omp",
+  "agent_name": "ux04-review-std-c3",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-04-descriptions",
+    "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-04-descriptions"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0085.yaml",
+  "event": "phase-result",
+  "status": "completed",
+  "verdict": "SUCCESS",
+  "cycle_number": 3,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "564329b54ae70757545966d1945ded1a53a5512a",
+  "inputs": [
+    { "kind": "ticket", "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md" },
+    { "kind": "initiative", "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md" },
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-04-descriptions/events/implementation-complete-0003.json" },
+    { "kind": "snapshot", "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/snapshots/pr-draft-implementation-0002.md" },
+    { "kind": "coordinator", "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0085.yaml" },
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-04-descriptions/events/standards-start-0005.json" }
+  ],
+  "outputs": [
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-04-descriptions/events/standards-result-0007.json" },
+    { "kind": "evidence", "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/standards-0007/modal-smoke.json" }
+  ],
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/standards-0007"
+  },
+  "axis": "standards",
+  "findings": [],
+  "optional_smells": [],
+  "axis_report": "No blocking documented-standard breaches found in the pinned seven-file diff. Repository rules take precedence over the smell baseline. No optional smell warrants a consumer-visible finding. The ADR index lists no applicable decision. The change keeps the existing modal boundary, loader injection, stable record references, theme tokens, and terminal text sanitizer. Reader comments explain the return-state invariant. Added tests use public modal input and visible behavior, including real temporary stores for live refresh. Documentation describes the new controls and reader recovery. Tooling-enforced matters were excluded. Fresh verification passed 44 tests with 1502 assertions across the four affected test files. A separate public-modal smoke exercised mouse opening and return, Unicode body-end paging, sanitization, Files restoration, live shrink, and distinct empty and unreadable states at 40 by 12. Existing native observations and one HTML capture were inspected as historical evidence only. This standards verdict is not a fresh native Pi, colour-matrix, or complete specification acceptance verdict.",
+  "standards_reviewed": [
+    "Loaded repository AGENTS.md: Local Markdown, communication, and domain rules",
+    "Canonical docs/agents/domain.md and CONTEXT-MAP.md",
+    "Canonical docs/adr/index.md: no decision entries; CONTEXT.md absent",
+    "Canonical ticket and initiative: Testing decisions and Implementation Decisions",
+    "TypeScript skill: module organization, type safety, memory, and runtime guidance",
+    "Code-comments skill: document contracts and explain non-obvious decisions",
+    "Supplied smell baseline: optional judgments only; repository rules override"
+  ],
+  "validation": [
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} 564329b54ae70757545966d1945ded1a53a5512a",
+      "result": "Matched the supplied source commit, source tree, and fixed point. Initial git status was clean."
+    },
+    {
+      "command": "git diff 564329b54ae70757545966d1945ded1a53a5512a...946996c7bef540090de2c500e573cae3543b84f4",
+      "result": "Read all changed hunks across seven files; source scope only."
+    },
+    {
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "result": "44 pass, 0 fail, 1502 expect() calls; 8.54 seconds."
+    },
+    {
+      "command": "mise exec -- bun --install=fallback /tmp/ux04-standards-c3-smoke.ts",
+      "result": "Passed; saved the actual JSON output and rendered frames in modal-smoke.json. The external probe was removed after execution."
+    },
+    {
+      "command": "git diff --quiet 946996c7bef540090de2c500e573cae3543b84f4 -- mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+      "result": "Exit 0. Final HEAD and tree still match the pinned source."
+    }
+  ],
+  "historical_evidence_inspected": [
+    "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/native-observations.json",
+    "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/native-live-short-body.html"
+  ],
+  "limitations": [
+    "No fresh native Pi or colour acceptance matrix was run for this independent standards axis.",
+    "The focused test run is not the full suite or compiler command.",
+    "No other review axis was assessed or combined with this verdict."
+  ],
+  "cleanup": {
+    "temporary_probe_removed": true,
+    "owned_processes_remaining": 0,
+    "tracked_source_modified": false,
+    "canonical_records_modified": false,
+    "parent_dependencies_preserved": true,
+    "agents_launched": 0
+  },
+  "budget_observation": {
+    "goal_tool_used_tokens_at_reporting_milestone": 120200,
+    "working_budget": 200000,
+    "completion_reserve": 50000,
+    "whole_session_ceiling": 250000
+  }
+}

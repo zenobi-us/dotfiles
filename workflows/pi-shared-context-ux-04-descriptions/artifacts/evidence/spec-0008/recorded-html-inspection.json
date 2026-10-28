@@ -1,0 +1,95 @@
+{
+  "scope": "Inspection of implementation evidence, not a fresh matrix. All expected controls/headings visible. Colour captures contain RGB styles. Monochrome 120x40 includes styled Pi startup logo outside the uncoloured modal; direct HTML inspection confirms uncoloured heading/body/controls. SVG not used as colour proof.",
+  "captures": [
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-40x12-initiative-control.html",
+      "expected_visible": true,
+      "color_style_count": 10
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-40x12-initiative-reader.html",
+      "expected_visible": true,
+      "color_style_count": 7
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-40x12-return-focus.html",
+      "expected_visible": true,
+      "color_style_count": 7
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-80x24-initiative-control.html",
+      "expected_visible": true,
+      "color_style_count": 11
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-80x24-initiative-reader.html",
+      "expected_visible": true,
+      "color_style_count": 7
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-80x24-return-focus.html",
+      "expected_visible": true,
+      "color_style_count": 7
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-120x40-initiative-control.html",
+      "expected_visible": true,
+      "color_style_count": 14
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-120x40-initiative-reader.html",
+      "expected_visible": true,
+      "color_style_count": 10
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/colour-120x40-return-focus.html",
+      "expected_visible": true,
+      "color_style_count": 10
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-40x12-initiative-control.html",
+      "expected_visible": true,
+      "color_style_count": 0
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-40x12-initiative-reader.html",
+      "expected_visible": true,
+      "color_style_count": 0
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-40x12-return-focus.html",
+      "expected_visible": true,
+      "color_style_count": 0
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-80x24-initiative-control.html",
+      "expected_visible": true,
+      "color_style_count": 0
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-80x24-initiative-reader.html",
+      "expected_visible": true,
+      "color_style_count": 0
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-80x24-return-focus.html",
+      "expected_visible": true,
+      "color_style_count": 0
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-120x40-initiative-control.html",
+      "expected_visible": true,
+      "color_style_count": 3
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-120x40-initiative-reader.html",
+      "expected_visible": true,
+      "color_style_count": 3
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/mono-120x40-return-focus.html",
+      "expected_visible": true,
+      "color_style_count": 3
+    }
+  ]
+}

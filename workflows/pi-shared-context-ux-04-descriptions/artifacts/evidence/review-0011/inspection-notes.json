@@ -1,0 +1,37 @@
+{
+  "recordedSessionRequests": 624,
+  "recordedProtocolErrors": [
+    {
+      "id": 89,
+      "error": {
+        "code": "invalid_key",
+        "message": "invalid key notation"
+      }
+    },
+    {
+      "id": 112,
+      "error": {
+        "code": "invalid_key",
+        "message": "invalid key notation"
+      }
+    },
+    {
+      "id": 135,
+      "error": {
+        "code": "invalid_key",
+        "message": "invalid key notation"
+      }
+    },
+    {
+      "id": 485,
+      "error": {
+        "code": "invalid_key",
+        "message": "invalid key notation"
+      }
+    }
+  ],
+  "errorExplanation": "Four S-TAB key-notation attempts failed. A later raw ESC[Z sequence succeeded. These protocol errors are not product failures.",
+  "monochromeQualification": "The 120x40 captures retain RGB Pi logo pixels outside the modal. The reader and its focus controls use default colours.",
+  "freshMatrix": false,
+  "fullBundleValidation": "Not applicable: review output is a standalone immutable Report, not an OKF bundle."
+}

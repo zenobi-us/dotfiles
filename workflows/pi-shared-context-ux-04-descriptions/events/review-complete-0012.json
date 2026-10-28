@@ -1,0 +1,86 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0012",
+  "workflow_id": "pi-shared-context-ux-04-descriptions",
+  "phase": "review",
+  "attempt": 1,
+  "parent_receipt": "review-0011",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "source_branch": "feature/pi-shared-context-ux-04-descriptions",
+  "base_branch": "master",
+  "source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "created_at": "2026-10-28T21:39:03.821Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-04-descriptions",
+    "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-04-descriptions"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0084.yaml",
+  "event": "phase-complete",
+  "status": "completed",
+  "cycle_number": 2,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "564329b54ae70757545966d1945ded1a53a5512a",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/events/review-0011.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0084.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/events/review-complete-0012.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/review-0011/parent-session-audit.json"
+    }
+  ],
+  "fixed_point": "564329b54ae70757545966d1945ded1a53a5512a",
+  "parent_validation_ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/review-0011/parent-review-verification.json",
+  "source_dirty": false,
+  "source_committed": true,
+  "parent_owned_dependencies_removed": true,
+  "verdict": "SUCCESS",
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-04-descriptions/events/review-0011.json",
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-29-36-784Z_01a1846b-2510-7790-b3cd-ef0fb19c8547.jsonl",
+    "session_id": "01a1846b-2510-7790-b3cd-ef0fb19c8547",
+    "goal_id": "15b868205e50b5e2",
+    "native_status": "complete",
+    "native_goal_used": 145076,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 129777,
+      "output": 15728,
+      "cacheWrite": 0,
+      "cacheRead": 5362176
+    },
+    "provider_work_tokens": 145505,
+    "session_ceiling": 250000,
+    "under_cap": true
+  },
+  "summary": "Independently completed main review is bound to the frozen source. Fresh agent pane closed and full provider work-token accounting verified below250000."
+}

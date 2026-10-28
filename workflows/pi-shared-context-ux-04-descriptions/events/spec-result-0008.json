@@ -1,0 +1,167 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "spec-result-0008",
+  "workflow_id": "pi-shared-context-ux-04-descriptions",
+  "phase": "review-spec",
+  "attempt": 1,
+  "parent_receipt": "spec-start-0006",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "source_branch": "feature/pi-shared-context-ux-04-descriptions",
+  "base_branch": "master",
+  "source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "fixed_point": "564329b54ae70757545966d1945ded1a53a5512a",
+  "created_at": "2026-10-28T21:35:17Z",
+  "muxer": "herdr",
+  "pane_id": "w70:p3",
+  "agent": "omp",
+  "agent_name": "ux04-review-spec-c4",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-04-descriptions",
+    "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-04-descriptions"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0086.yaml",
+  "event": "phase-result",
+  "status": "completed",
+  "verdict": "SUCCESS",
+  "cycle_number": 4,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "564329b54ae70757545966d1945ded1a53a5512a",
+  "inputs": [
+    { "kind": "ticket", "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md" },
+    { "kind": "initiative", "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md" },
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-04-descriptions/events/implementation-complete-0003.json" },
+    { "kind": "snapshot", "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/snapshots/pr-draft-implementation-0002.md" },
+    { "kind": "coordinator", "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0086.yaml" },
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-04-descriptions/events/spec-start-0006.json" }
+  ],
+  "outputs": [
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-04-descriptions/events/spec-result-0008.json" },
+    { "kind": "evidence", "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/spec-0008" }
+  ],
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/spec-0008"
+  },
+  "axis": "spec",
+  "findings": [],
+  "blocking_findings": [],
+  "axis_report": "The pinned diff satisfies all ten ticket04 acceptance criteria. No missing requirement, incorrect behavior, or consumer-visible scope expansion was found. Initiative, research, and ticket descriptions use the complete recorded body. The reader preserves its heading, scroll controls, and visible return control. Keyboard and mouse activation share the reader path, including clicks while workspace controls own focus. Return navigation retains the selected child or event and the original viewport. Breadcrumb navigation clears the reader. Project and Files switches retain independent state without displaying another project's body. Live replacement clamps scrolling; empty, unreadable-refresh, recovery, and removal paths remain distinct and recoverable. Existing action, copy, canonical-target, source-evidence, and fresh-chat safeguards remain covered. No Files cross-links, editing, additional overlay, event redesign, or queue redesign were added. Fresh verification passed 144 tests and the supplied compiler check. An isolated actual-Pi probe exercised the exact-source modal at all three sizes in the dark theme. The implementation's colour and monochrome HTML matrix was inspected separately; it is not claimed as a fresh full matrix.",
+  "acceptance_assessment": [
+    {
+      "criterion": 1,
+      "status": "satisfied",
+      "evidence": "modal.test.ts:178-204,292-307 passed. The complete modal exercises focus, keyboard activation, mouse activation, and transfer from workspace controls. Recorded HTML exposes the labelled control at all three terminal sizes."
+    },
+    {
+      "criterion": 2,
+      "status": "satisfied",
+      "evidence": "explorer.ts:688-710,732-760 selects the canonical record and renders its body, not its summary. Modal tests reach the last initiative paragraph and research/ticket readers. The settled actual-Pi probe reaches BODY-END."
+    },
+    {
+      "criterion": 3,
+      "status": "satisfied",
+      "evidence": "explorer.ts:535-539,725-744,972-975 handles arrows/pages, wraps sanitized text, and clamps the viewport. The modal reflow/sanitization test passed. Fresh native captures show Unicode and long-line wrapping at 40x12, 80x24, and 120x40."
+    },
+    {
+      "criterion": 4,
+      "status": "satisfied",
+      "evidence": "modal.test.ts:178-242 compares the complete originating view after Escape and checks the visible return control. Child, event, and viewport restoration passed. Recorded native-event-restored.txt retains older; the fresh settled probe returns to the originating initiative screen."
+    },
+    {
+      "criterion": 5,
+      "status": "satisfied",
+      "evidence": "explorer.ts:421-439 adds Description to the breadcrumb path and clears reader state on ancestor activation. Modal keyboard and mouse ancestor checks passed without an orphaned return control."
+    },
+    {
+      "criterion": 6,
+      "status": "satisfied",
+      "evidence": "projects.test.ts project-reader restoration and project-body isolation checks passed. Modal tests and the settled actual-Pi probe retain reader scrolling across independent Files switches. Existing per-project workspaces retain their own GraphExplorer instances."
+    },
+    {
+      "criterion": 7,
+      "status": "satisfied",
+      "evidence": "The live description test uses real temporary canonical stores and watchers. Long-to-short replacement, deletion, and return to the valid collection passed. explorer.ts:203-243 clears the reader after selected-record removal; renderPane clamps offsets."
+    },
+    {
+      "criterion": 8,
+      "status": "satisfied",
+      "evidence": "The real-store live test passed empty, malformed/unreadable refresh, and recovery transitions. explorer.ts:739-741,759 distinguishes No description recorded from Description unreadable and retains the last readable body after refresh failure."
+    },
+    {
+      "criterion": 9,
+      "status": "satisfied",
+      "evidence": "Fresh actual-Pi captures at 40x12, 80x24, and 120x40 retain the heading, body, and Return. Eighteen recorded HTML captures were inspected for the control, reader, and return focus in colour and monochrome. Text markers identify focus without colour."
+    },
+    {
+      "criterion": 10,
+      "status": "satisfied",
+      "evidence": "The full 144-test suite passed, including existing workflow safety, canonical planning targets, workspace shortcuts, and Files behavior. The pinned production diff changes only description presentation/state and mouse-focus transfer. No action execution, clipboard contract, or Files cross-links were added."
+    }
+  ],
+  "initiative_decisions": {
+    "navigation": "Single content replacement; existing modal boundary, focus traversal, ancestor navigation, and retained workspace state remain intact.",
+    "record_types": "Research and other non-executable items keep type-specific details and planning actions. Tickets keep dependency and event access.",
+    "workflow_safety": "Action collection, fresh-chat confirmation, canonical target revalidation, source commit/tree checks, invalid evidence, and unsent editor behavior were not changed by this diff.",
+    "exceptional_states": "Refresh failure retains the last readable body. Removal explains the change and returns to a valid collection.",
+    "adr": "NO ADR: docs/adr/index.md lists no architecture decisions. The canonical ticket and initiative supply the applicable requirements."
+  },
+  "validation": [
+    {
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+      "exit_code": 0,
+      "result": "29 pass, 0 fail, 223 expect() calls; 3 files"
+    },
+    {
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+      "exit_code": 0,
+      "result": "144 pass, 0 fail, 1975 expect() calls; 11 files"
+    },
+    {
+      "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc -p /tmp/ux04-review-0011-tsconfig.json",
+      "exit_code": 0,
+      "result": "No compiler diagnostics."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} && git diff --exit-code 946996c7bef540090de2c500e573cae3543b84f4 -- mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+      "exit_code": 0,
+      "result": "HEAD and tree match the supplied source. Reviewed source directories have no changes against the pinned commit."
+    }
+  ],
+  "native_evidence": {
+    "fresh": [
+      "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/spec-0008/fresh-native-session.json",
+      "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/spec-0008/fresh-native-settled-session.json"
+    ],
+    "recorded_inspection": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/spec-0008/recorded-html-inspection.json",
+    "scope": "Actual Pi rendered the exact-source GraphExplorer and SharedContextModal with an injected synthetic snapshot. This fresh probe did not use the production route loader or execute workflow actions. Fresh size checks used the dark theme. Existing real-store tests exercised production loaders and watchers.",
+    "timing_limit": "The first native session captured some interaction snapshots before Pi processed the input. Those premature false checks are preserved, not treated as product failures. The second session waits for terminal idle after each key and confirms full-body scrolling, Files independence, reader restoration, and Escape return.",
+    "visual_limit": "Recorded colour and monochrome captures are implementation evidence, not a fresh full matrix. The monochrome 120x40 captures retain a coloured Pi startup logo outside the uncoloured modal. SVG is not used as proof of colours."
+  },
+  "cleanup": {
+    "owned_native_processes_closed": true,
+    "owned_temporary_probe_removed": true,
+    "owned_isolated_home_removed": true,
+    "owned_mq_lock_removed": true,
+    "parent_dependencies_preserved": true,
+    "tracked_source_edited": false,
+    "canonical_records_edited": false,
+    "agents_launched": false,
+    "model_prompts_submitted": false,
+    "commits_merges_or_pushes": false
+  }
+}

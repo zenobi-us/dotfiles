@@ -1,0 +1,110 @@
+{
+  "sourceCommit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "sourceTree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "sourceAudit": "Final HEAD/tree matched; git diff --exit-code and git diff --cached --exit-code against the pinned commit both exited 0.",
+  "report": {
+    "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/reviews/review-review-0011.md",
+    "sha256": "f777a73202f0fa0dc77c0a48f1678376af0ce604b9580534db7f9e9dafdf3b4d",
+    "mqValidationErrors": []
+  },
+  "receipt": {
+    "ref": "workflows/pi-shared-context-ux-04-descriptions/events/review-0011.json",
+    "sha256": "41f6db626e5dbaaed80230ea0dff38030e4846972b49639faba8082f4664edc4",
+    "startLinked": true,
+    "reservationInputsPreserved": true,
+    "bothAxisResultsRead": true
+  },
+  "allTenCriteriaAssessed": true,
+  "evidenceFiles": [
+    {
+      "file": "cleanup.json",
+      "bytes": 217,
+      "sha256": "6ffae3c904a33c159fdf8017c8d26f07ba6e875215198ae36a3bc4f1f16c193c"
+    },
+    {
+      "file": "fresh-escape-origin-small.html",
+      "bytes": 2837,
+      "sha256": "cfbb6b426e5c950ce4dc94fa301b41c58f6238a46eb5df5c61e15c6d3e2fbc93"
+    },
+    {
+      "file": "fresh-initiative-origin-small.html",
+      "bytes": 3058,
+      "sha256": "78c726074c785b7a348f8f051c75f91606fcbe838a384ac825f66c8d11eb0396"
+    },
+    {
+      "file": "fresh-initiative-paged.html",
+      "bytes": 9251,
+      "sha256": "d80283293f188962a0629790d2e63e3e7f8fae4debb7785172542957e3246cf2"
+    },
+    {
+      "file": "fresh-initiative-reader.html",
+      "bytes": 9239,
+      "sha256": "8af0031061c0c69593679bb0f43356c17fef406821259af70f56b0fe57baa182"
+    },
+    {
+      "file": "fresh-initiative-small.html",
+      "bytes": 3901,
+      "sha256": "8a253bda9ad8b51a86c45f1ed133d6097fb54960d5c0da43329f3d15516d7221"
+    },
+    {
+      "file": "fresh-initiative-tail-repeat.html",
+      "bytes": 9239,
+      "sha256": "e3a369068b1460f0014ef5656ad5c470a73cf5bd0d15d0df73c3e88d531ba93d"
+    },
+    {
+      "file": "fresh-initiative-tail.html",
+      "bytes": 9239,
+      "sha256": "e3a369068b1460f0014ef5656ad5c470a73cf5bd0d15d0df73c3e88d531ba93d"
+    },
+    {
+      "file": "fresh-item-reader-small.html",
+      "bytes": 3992,
+      "sha256": "4d7eea583a937c24a4195897771d75d0e60e097db03a248d676ddf516d6abb11"
+    },
+    {
+      "file": "fresh-native-session.json",
+      "bytes": 107107,
+      "sha256": "66932a932507202990a10d04a1d9c51e796a6b75b51b3547236e5d97671bfb16"
+    },
+    {
+      "file": "fresh-native-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "fresh-research-arrow-small.html",
+      "bytes": 3992,
+      "sha256": "3cf4399ea140c6a5f08515c5d244b9de5b62de4779382c82b4470270f2bc3164"
+    },
+    {
+      "file": "fresh-return-focus-small.html",
+      "bytes": 3904,
+      "sha256": "2d64267e5805c2531f71f302be9de6bb76e21cca3c350b62fd1669c712b69551"
+    },
+    {
+      "file": "fresh-workspace-restoration.html",
+      "bytes": 9251,
+      "sha256": "d80283293f188962a0629790d2e63e3e7f8fae4debb7785172542957e3246cf2"
+    },
+    {
+      "file": "inspection-notes.json",
+      "bytes": 1021,
+      "sha256": "f7903f05ecebff50d3d6922fcd5eb1ed027adb3d177b5aec224fad6aad842990"
+    },
+    {
+      "file": "recorded-evidence-inspection.json",
+      "bytes": 131819,
+      "sha256": "247b389e2f7878a8160066e39fa60c90f33a8132a9a0db7ba6a405989cccdeb0"
+    },
+    {
+      "file": "validation.json",
+      "bytes": 1551,
+      "sha256": "13e8ba3ab0100cfd37abb7b12df4b093ff030010906f0b954d9a9136c857d6fa"
+    }
+  ],
+  "cleanupVerified": true,
+  "parentPackageLinksPreserved": true,
+  "parentCompilerConfigPreserved": true,
+  "reportCreation": "Exactly one immutable Markdown report; --no-clobber.",
+  "receiptCreation": "Exclusive create; no overwrite."
+}

@@ -1,0 +1,966 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "termscope",
+    "session",
+    "--cols",
+    "80",
+    "--rows",
+    "24",
+    "--",
+    "env",
+    "HOME=/tmp/ux04-spec-c4-home-hwl787ek",
+    "PI_CODING_AGENT_DIR=/tmp/ux04-spec-c4-home-hwl787ek/pi",
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-mcp",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-tools",
+    "--no-themes",
+    "--use-theme",
+    "dark",
+    "-e",
+    "/tmp/ux04-spec-c4-native.ts"
+  ],
+  "scope": "Settled-input actual Pi probe. Prior rapid-input session had premature snapshots; this sequence waits for terminal idle after each key. Injected synthetic records; dark theme only.",
+  "full_body_end": true,
+  "files_independent": true,
+  "reader_retained": true,
+  "origin_restored": true,
+  "protocol": [
+    {
+      "request": {
+        "id": 1,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 1000
+        }
+      },
+      "response": {
+        "id": 1,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 2,
+        "method": "type",
+        "params": {
+          "text": "/review-reader"
+        }
+      },
+      "response": {
+        "id": 2,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 3,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 3,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 4,
+        "method": "wait_for_text",
+        "params": {
+          "pattern": "Initiatives",
+          "timeout": 10000
+        }
+      },
+      "response": {
+        "id": 4,
+        "result": {
+          "found": true,
+          "row": 6,
+          "col": 6
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 5,
+        "method": "press",
+        "params": {
+          "key": "RET"
+        }
+      },
+      "response": {
+        "id": 5,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 6,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 6,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 7,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 7,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=20:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  Press ctrl+o to show full startup help and loaded resources.\n[003]   ╭──────────────────────────────────────────────────────────────────────────╮\n[004]  P│ Projects · Repo > ux04-spec-c4-native                                    │\n[005]  e│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[006]   ├──────────────────────────────────────────────────────────────────────────┤\n[007] [E│ Initiatives  >  Spec reader                                              │\n[008]   │ [d] Full description                                                     │\n[009]   │> I · Items 1                                                             │\n[010]   ├──────────────────────────────────────────────────────────────────────────┤\n[011]  W│ I · Phase: unavailable                                                   │\n[012]  A│ Summary: LINE-00 界 é 👩‍💻\n[013]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[014]  /│ onglong                                                                  │d\n[015]  o│>[research]  ID: R                                                        │\n[016]   │>Research reader                                                          │\n[017]  /│>State: draft                                                             │d\n[018]  o│>tracker/tickets/R.md                                                     │\n[019]   ├──────────────────────────────────────────────────────────────────────────┤\n[020] ──│ Summary: LINE-00 界 é 👩‍💻 longlonglonglonglonglonglonglonglonglonglonglon…─\n[021]   │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│\n[022] ──╰──────────────────────────────────────────────────────────────────────────╯──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 8,
+        "method": "press",
+        "params": {
+          "key": "d"
+        }
+      },
+      "response": {
+        "id": 8,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 9,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 9,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 10,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 10,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=21:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ LINE-00 界 é 👩‍💻\n[008]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[009]   │ onglong                                                                  │\n[010]   │ LINE-01 界 é 👩‍💻\n[011]  W│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[012]  A│ onglong                                                                  │\n[013]   │ LINE-02 界 é 👩‍💻\n[014]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[015]  o│ onglong                                                                  │\n[016]   │ LINE-03 界 é 👩‍💻\n[017]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[018]  o│ onglong                                                                  │\n[019]   │ LINE-04 界 é 👩‍💻\n[020] ──│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 11,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 11,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 12,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 12,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 13,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 13,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ onglong                                                                  │\n[008]   │ LINE-05 界 é 👩‍💻\n[009]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[010]   │ onglong                                                                  │\n[011]  W│ LINE-06 界 é 👩‍💻\n[012]  A│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[013]   │ onglong                                                                  │\n[014]  /│ LINE-07 界 é 👩‍💻\n[015]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[016]   │ onglong                                                                  │\n[017]  /│ LINE-08 界 é 👩‍💻\n[018]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[019]   │ onglong                                                                  │\n[020] ──│ LINE-09 界 é 👩‍💻                                                          ─\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 14,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 14,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 15,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 15,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 16,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 16,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[008]   │ onglong                                                                  │\n[009]   │ LINE-10 界 é 👩‍💻\n[010]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[011]  W│ onglong                                                                  │\n[012]  A│ LINE-11 界 é 👩‍💻\n[013]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[014]  /│ onglong                                                                  │d\n[015]  o│ LINE-12 界 é 👩‍💻\n[016]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[017]  /│ onglong                                                                  │d\n[018]  o│ LINE-13 界 é 👩‍💻\n[019]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[020] ──│ onglong                                                                  │──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 17,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 17,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 18,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 18,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 19,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 19,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ LINE-14 界 é 👩‍💻\n[008]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[009]   │ onglong                                                                  │\n[010]   │ LINE-15 界 é 👩‍💻\n[011]  W│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[012]  A│ onglong                                                                  │\n[013]   │ LINE-16 界 é 👩‍💻\n[014]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[015]  o│ onglong                                                                  │\n[016]   │ LINE-17 界 é 👩‍💻\n[017]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[018]  o│ onglong                                                                  │\n[019]   │ LINE-18 界 é 👩‍💻\n[020] ──│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 20,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 20,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 21,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 21,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 22,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 22,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ onglong                                                                  │\n[008]   │ LINE-19 界 é 👩‍💻\n[009]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[010]   │ onglong                                                                  │\n[011]  W│ LINE-20 界 é 👩‍💻\n[012]  A│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[013]   │ onglong                                                                  │\n[014]  /│ LINE-21 界 é 👩‍💻\n[015]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[016]   │ onglong                                                                  │\n[017]  /│ LINE-22 界 é 👩‍💻\n[018]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[019]   │ onglong                                                                  │\n[020] ──│ LINE-23 界 é 👩‍💻                                                          ─\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 23,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 23,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 24,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 24,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 25,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 25,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[008]   │ onglong                                                                  │\n[009]   │ LINE-24 界 é 👩‍💻\n[010]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[011]  W│ onglong                                                                  │\n[012]  A│ LINE-25 界 é 👩‍💻\n[013]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[014]  /│ onglong                                                                  │d\n[015]  o│ LINE-26 界 é 👩‍💻\n[016]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[017]  /│ onglong                                                                  │d\n[018]  o│ LINE-27 界 é 👩‍💻\n[019]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[020] ──│ onglong                                                                  │──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 26,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 26,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 27,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 27,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 28,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 28,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ LINE-28 界 é 👩‍💻\n[008]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[009]   │ onglong                                                                  │\n[010]   │ LINE-29 界 é 👩‍💻\n[011]  W│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[012]  A│ onglong                                                                  │\n[013]   │ LINE-30 界 é 👩‍💻\n[014]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[015]  o│ onglong                                                                  │\n[016]   │ LINE-31 界 é 👩‍💻\n[017]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[018]  o│ onglong                                                                  │\n[019]   │ LINE-32 界 é 👩‍💻\n[020] ──│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 29,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 29,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 30,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 30,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 31,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 31,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ onglong                                                                  │\n[008]   │ LINE-33 界 é 👩‍💻\n[009]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[010]   │ onglong                                                                  │\n[011]  W│ LINE-34 界 é 👩‍💻\n[012]  A│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[013]   │ onglong                                                                  │\n[014]  /│ LINE-35 界 é 👩‍💻\n[015]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[016]   │ onglong                                                                  │\n[017]  /│ LINE-36 界 é 👩‍💻\n[018]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[019]   │ onglong                                                                  │\n[020] ──│ LINE-37 界 é 👩‍💻                                                          ─\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 32,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 32,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 33,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 33,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 34,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 34,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[008]   │ onglong                                                                  │\n[009]   │ LINE-38 界 é 👩‍💻\n[010]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[011]  W│ onglong                                                                  │\n[012]  A│ LINE-39 界 é 👩‍💻\n[013]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[014]  /│ onglong                                                                  │d\n[015]  o│ LINE-40 界 é 👩‍💻\n[016]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[017]  /│ onglong                                                                  │d\n[018]  o│ LINE-41 界 é 👩‍💻\n[019]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[020] ──│ onglong                                                                  │──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 35,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 35,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 36,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 36,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 37,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 37,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ LINE-42 界 é 👩‍💻\n[008]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[009]   │ onglong                                                                  │\n[010]   │ LINE-43 界 é 👩‍💻\n[011]  W│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[012]  A│ onglong                                                                  │\n[013]   │ LINE-44 界 é 👩‍💻\n[014]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[015]  o│ onglong                                                                  │\n[016]   │ LINE-45 界 é 👩‍💻\n[017]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[018]  o│ onglong                                                                  │\n[019]   │ LINE-46 界 é 👩‍💻\n[020] ──│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 38,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 38,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 39,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 39,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 40,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 40,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ onglong                                                                  │\n[008]   │ LINE-47 界 é 👩‍💻\n[009]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[010]   │ onglong                                                                  │\n[011]  W│ LINE-48 界 é 👩‍💻\n[012]  A│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[013]   │ onglong                                                                  │\n[014]  /│ LINE-49 界 é 👩‍💻\n[015]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[016]   │ onglong                                                                  │\n[017]  /│ LINE-50 界 é 👩‍💻\n[018]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[019]   │ onglong                                                                  │\n[020] ──│ LINE-51 界 é 👩‍💻                                                          ─\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 41,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 41,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 42,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 42,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 43,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 43,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[008]   │ onglong                                                                  │\n[009]   │ LINE-52 界 é 👩‍💻\n[010]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[011]  W│ onglong                                                                  │\n[012]  A│ LINE-53 界 é 👩‍💻\n[013]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[014]  /│ onglong                                                                  │d\n[015]  o│ LINE-54 界 é 👩‍💻\n[016]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[017]  /│ onglong                                                                  │d\n[018]  o│ LINE-55 界 é 👩‍💻\n[019]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[020] ──│ onglong                                                                  │──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 44,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 44,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 45,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 45,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 46,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 46,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ LINE-56 界 é 👩‍💻\n[008]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[009]   │ onglong                                                                  │\n[010]   │ LINE-57 界 é 👩‍💻\n[011]  W│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[012]  A│ onglong                                                                  │\n[013]   │ LINE-58 界 é 👩‍💻\n[014]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[015]  o│ onglong                                                                  │\n[016]   │ LINE-59 界 é 👩‍💻\n[017]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[018]  o│ onglong                                                                  │\n[019]   │ LINE-60 界 é 👩‍💻\n[020] ──│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 47,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 47,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 48,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 48,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 49,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 49,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ onglong                                                                  │\n[008]   │ LINE-61 界 é 👩‍💻\n[009]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[010]   │ onglong                                                                  │\n[011]  W│ LINE-62 界 é 👩‍💻\n[012]  A│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[013]   │ onglong                                                                  │\n[014]  /│ LINE-63 界 é 👩‍💻\n[015]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[016]   │ onglong                                                                  │\n[017]  /│ LINE-64 界 é 👩‍💻\n[018]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[019]   │ onglong                                                                  │\n[020] ──│ LINE-65 界 é 👩‍💻                                                          ─\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 50,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 50,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 51,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 51,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 52,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 52,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[008]   │ onglong                                                                  │\n[009]   │ LINE-66 界 é 👩‍💻\n[010]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[011]  W│ onglong                                                                  │\n[012]  A│ LINE-67 界 é 👩‍💻\n[013]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[014]  /│ onglong                                                                  │d\n[015]  o│ LINE-68 界 é 👩‍💻\n[016]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[017]  /│ onglong                                                                  │d\n[018]  o│ LINE-69 界 é 👩‍💻\n[019]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[020] ──│ onglong                                                                  │──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 53,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 53,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 54,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 54,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 55,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 55,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ LINE-70 界 é 👩‍💻\n[008]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[009]   │ onglong                                                                  │\n[010]   │ LINE-71 界 é 👩‍💻\n[011]  W│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[012]  A│ onglong                                                                  │\n[013]   │ LINE-72 界 é 👩‍💻\n[014]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[015]  o│ onglong                                                                  │\n[016]   │ LINE-73 界 é 👩‍💻\n[017]  /│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│d\n[018]  o│ onglong                                                                  │\n[019]   │ LINE-74 界 é 👩‍💻\n[020] ──│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 56,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 56,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 57,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 57,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 58,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 58,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ onglong                                                                  │\n[008]   │ LINE-75 界 é 👩‍💻\n[009]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[010]   │ onglong                                                                  │\n[011]  W│ LINE-76 界 é 👩‍💻\n[012]  A│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[013]   │ onglong                                                                  │\n[014]  /│ LINE-77 界 é 👩‍💻\n[015]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[016]   │ onglong                                                                  │\n[017]  /│ LINE-78 界 é 👩‍💻\n[018]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[019]   │ onglong                                                                  │\n[020] ──│ LINE-79 界 é 👩‍💻                                                          ─\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 59,
+        "method": "press",
+        "params": {
+          "key": "<next>"
+        }
+      },
+      "response": {
+        "id": 59,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 60,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 60,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 61,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 61,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=19:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ onglong                                                                  │\n[008]   │ LINE-76 界 é 👩‍💻\n[009]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[010]   │ onglong                                                                  │\n[011]  W│ LINE-77 界 é 👩‍💻\n[012]  A│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[013]   │ onglong                                                                  │\n[014]  /│ LINE-78 界 é 👩‍💻\n[015]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[016]   │ onglong                                                                  │\n[017]  /│ LINE-79 界 é 👩‍💻\n[018]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[019]   │ onglong                                                                  │\n[020] ──│ BODY-END                                                                 │──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 62,
+        "method": "press",
+        "params": {
+          "key": "2"
+        }
+      },
+      "response": {
+        "id": 62,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 63,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 63,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 64,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 64,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=21:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  Press ctrl+o to show full startup help and loaded resources.\n[003] \n[004]  Pi can explain its own features and look up its docs. Ask it how to use or\n[005]  extend Pi.\n[006] \n[007] [Extensions]\n[008]   ux04-spec-c4-native.ts\n[009] \n[010] \n[011]  W╭──────────────────────────────────────────────────────────────────────────╮\n[012]  A│ Projects · Repo > ux04-spec-c4-native                                    │\n[013]   │   1 Tracker     [2 Files]   Tab focus · Space/Enter activate             │\n[014]  /Independent Files                                                           d\n[015]  ocs/providers.md\n[016] \n[017]  /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/d\n[018]  ocs/models.md\n[019] \n[020] ────────────────────────────────────────────────────────────────────────────────\n[021] \n[022] ────────────────────────────────────────────────────────────────────────────────\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 65,
+        "method": "press",
+        "params": {
+          "key": "1"
+        }
+      },
+      "response": {
+        "id": 65,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 66,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 66,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 67,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 67,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=21:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  P╭──────────────────────────────────────────────────────────────────────────╮\n[003]   │ Projects · Repo > ux04-spec-c4-native                                    │\n[004]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[005]  e│ Initiatives  >  Spec reader  >  Description                              │\n[006]   │> Spec reader · Description                                               │\n[007] [E│ onglong                                                                  │\n[008]   │ LINE-76 界 é 👩‍💻\n[009]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[010]   │ onglong                                                                  │\n[011]  W│ LINE-77 界 é 👩‍💻\n[012]  A│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[013]   │ onglong                                                                  │\n[014]  /│ LINE-78 界 é 👩‍💻\n[015]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[016]   │ onglong                                                                  │\n[017]  /│ LINE-79 界 é 👩‍💻\n[018]  o│ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[019]   │ onglong                                                                  │\n[020] ──│ BODY-END                                                                 │──\n[021]   │ [Return]  [PgUp] [PgDn]                                                  │\n[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 68,
+        "method": "press",
+        "params": {
+          "key": "ESC"
+        }
+      },
+      "response": {
+        "id": 68,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 69,
+        "method": "wait_for_idle",
+        "params": {
+          "duration": 160
+        }
+      },
+      "response": {
+        "id": 69,
+        "result": {}
+      }
+    },
+    {
+      "request": {
+        "id": 70,
+        "method": "snapshot"
+      },
+      "response": {
+        "id": 70,
+        "result": {
+          "format": "text",
+          "content": "=== TERMSCOPE ===\ncols=80 rows=24 cursor=21:79 screen=alternate title=\"π - tmp\"\n\n=== TEXT ===\n[001]  ctrl+o more\n[002]  Press ctrl+o to show full startup help and loaded resources.\n[003]   ╭──────────────────────────────────────────────────────────────────────────╮\n[004]  P│ Projects · Repo > ux04-spec-c4-native                                    │\n[005]  e│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │\n[006]   ├──────────────────────────────────────────────────────────────────────────┤\n[007] [E│ Initiatives  >  Spec reader                                              │\n[008]   │ [d] Full description                                                     │\n[009]   │> I · Items 1                                                             │\n[010]   ├──────────────────────────────────────────────────────────────────────────┤\n[011]  W│ I · Phase: unavailable                                                   │\n[012]  A│ Summary: LINE-00 界 é 👩‍💻\n[013]   │ longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglongl│\n[014]  /│ onglong                                                                  │d\n[015]  o│>[research]  ID: R                                                        │\n[016]   │>Research reader                                                          │\n[017]  /│>State: draft                                                             │d\n[018]  o│>tracker/tickets/R.md                                                     │\n[019]   ├──────────────────────────────────────────────────────────────────────────┤\n[020] ──│ Summary: LINE-00 界 é 👩‍💻 longlonglonglonglonglonglonglonglonglonglonglon…─\n[021]   │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│\n[022] ──╰──────────────────────────────────────────────────────────────────────────╯──\n[023] /tmp\n[024] 0.0%/0 (auto)                                                            unknown\n"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 71,
+        "method": "close"
+      },
+      "response": {
+        "id": 71,
+        "result": {
+          "exit_code": 0
+        }
+      }
+    }
+  ],
+  "exit_code": 0
+}

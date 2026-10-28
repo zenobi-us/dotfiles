@@ -6,6 +6,6 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "review-start-0004",
-  "state": "REVIEWING"
+  "latest_receipt": "review-complete-0012",
+  "state": "REVIEW_PASSED"
 }

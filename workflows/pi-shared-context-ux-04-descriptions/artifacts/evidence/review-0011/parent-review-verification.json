@@ -1,0 +1,40 @@
+{
+  "source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "source_identity": {
+    "stdout": "946996c7bef540090de2c500e573cae3543b84f4\nef2bd18cfd82d286abbbf2c58c5d58c6524e5017\n",
+    "stderr": "",
+    "code": 0
+  },
+  "source_status": {
+    "stdout": "",
+    "stderr": "",
+    "code": 0
+  },
+  "review_report_validation": {
+    "stdout": "[]\n",
+    "stderr": "",
+    "code": 0
+  },
+  "review_commit_binding": {
+    "stdout": "true",
+    "stderr": "",
+    "code": 0
+  },
+  "smoke": {
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "--install=fallback",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+    "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+    "stderr": "\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts:\n(pass) the open modal refreshes focused DAG history and discovers a new dependent outside its scope [2111.95ms]\n(pass) file previews follow atomic replacement without moving selection to an inserted sibling [230.68ms]\n(pass) mixed canonical records refresh type and membership without inventing workflows or dependency membership [1531.95ms]\n(pass) a live description reader follows canonical body updates and returns safely after record removal [1151.60ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts:\n(pass) tab highlighting does not activate content until Space or Enter [1.82ms]\n(pass) number shortcuts switch tabs without changing tracker queues or losing selection [0.93ms]\n(pass) mixed items retain canonical details, planning commands, and independent Files selection [10.79ms]\n(pass) canonical planning and other records keep their own details and action boundaries [14.97ms]\n(pass) initiative descriptions open by focus and mouse, scroll fully, and return to the same child and viewport [41.49ms]\n(pass) type-specific item readers retain event selection, overview scroll, and independent Files state [14.84ms]\n(pass) reader reflow, terminal sanitization, live shrinking, empty bodies, unreadable refresh, and removal stay recoverable [411.21ms]\n(pass) clicking a description transfers keyboard focus from workspace controls into its reader [4.35ms]\n\n 12 pass\n 0 fail\n 119 expect() calls\nRan 12 tests across 2 files. [5.57s]\n",
+    "code": 0
+  }
+}

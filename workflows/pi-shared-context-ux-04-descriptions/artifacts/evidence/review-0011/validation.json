@@ -1,0 +1,42 @@
+{
+  "sourceCommit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "sourceTree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "affectedSuite": {
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "exitCode": 0,
+    "observed": "144 pass; 0 fail; 1975 expect() calls; 11 files; 10.95s"
+  },
+  "compiler": {
+    "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc -p /tmp/ux04-review-0011-tsconfig.json",
+    "exitCode": 0,
+    "observed": "No diagnostics."
+  },
+  "native": {
+    "exitCode": 0,
+    "sizes": [
+      [
+        80,
+        24
+      ],
+      [
+        40,
+        12
+      ]
+    ],
+    "theme": "dark",
+    "scope": [
+      "Initiative reader first body and final body",
+      "PageDown and retained heading",
+      "Files switch and retained reader scroll",
+      "Return focus marker and activation at 40x12",
+      "Research reader full heading at 40x12",
+      "Down arrow scroll",
+      "Escape returns to research overview"
+    ],
+    "limits": [
+      "Not a new full terminal matrix. The recorded implementation matrix provides the 120x40 and monochrome observations.",
+      "A rapid ESC/RET/d sequence did not reach research; a later deliberate sequence did. The ledger and capture names retain that distinction.",
+      "Existing ctrl+shift+g startup conflict warning; no model configured; no prompts dispatched."
+    ]
+  }
+}
