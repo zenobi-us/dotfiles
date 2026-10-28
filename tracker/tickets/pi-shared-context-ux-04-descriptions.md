@@ -8,7 +8,7 @@ sequence: 4
 title: Read complete initiative and item descriptions
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 ## What to build
@@ -61,3 +61,5 @@ The user approved this slice and its direct blockers during ticket decomposition
 - 2026-10-28T21:01:04.812Z: Claimed for implementation by coordinator run `ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135`, cycle1. [Reservation](../../workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml). Direct blocker pi-shared-context-ux-03-mixed-items is completed and published.
 
 - 2026-10-28T21:40:48.630Z: Review SUCCESS for `946996c7bef540090de2c500e573cae3543b84f4`. [Immutable review](../../workflows/pi-shared-context-ux-04-descriptions/artifacts/reviews/review-review-0011.md).
+
+- 2026-10-28T21:54:15.746Z: Completed after reviewed source `946996c7bef540090de2c500e573cae3543b84f4` was integrated as `2c653468027cfb0bfd099b7d12ce85c4e4db8c75` and observed at `origin/master`. Primary-workspace validation passed144 tests and the scoped compiler check. Actual Pi verified full-body paging and compact Return. [Review](../../workflows/pi-shared-context-ux-04-descriptions/artifacts/reviews/review-review-0011.md). [Integrated evidence](../../workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/finish-0013/report/index.html).
