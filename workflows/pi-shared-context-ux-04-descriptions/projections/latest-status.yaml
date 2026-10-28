@@ -6,8 +6,8 @@
     "id": "pi-shared-context-ux-04-descriptions",
     "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
   },
-  "state": "REVIEW_PASSED",
-  "latest_receipt": "review-complete-0012",
+  "state": "FINISHING",
+  "latest_receipt": "finish-start-0013",
   "latest_source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
   "latest_source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
   "latest_review_verdict": "SUCCESS",
@@ -84,5 +84,6 @@
       }
     }
   ],
-  "active_agents": []
+  "active_agents": [],
+  "finish_checkpoint": "started"
 }

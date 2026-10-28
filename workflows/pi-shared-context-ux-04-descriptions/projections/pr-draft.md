@@ -52,3 +52,7 @@ Four of ten source-agent cycles are consumed. All review panes, owned probes and
 
 Integrate the exact reviewed source through the source-preserving finish workflow, validate it in master, publish, complete the ticket, and remove the owned workspace.
 
+
+## Finish started
+
+Coordinator finish began at 2026-10-28T21:44:35.585Z. [Start receipt](../events/finish-start-0013.json). This consumes no source-agent cycle. Exact-source review remains valid. Integration, primary-workspace verification, publication and canonical completion are pending.
