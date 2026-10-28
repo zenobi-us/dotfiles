@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=37:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Initiative reader                                                                              │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   a│> I · Items 1                                                                                                   │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│ I · Phase: unavailable                                                                                         │
+[012]   p│ Summary: Initiative paragraph 0: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping      │
+[013]    │>[task]          T                 Ticket description reader                                  State: open       │
+[014] [Ex│>tracker/tickets/T.md                                                                                           │
+[015]   p│                                                                                                                │
+[016] /ru│                                                                                                                │onf
+[017] .d/│                                                                                                                │
+[018]    │                                                                                                                │
+[019] /ru│                                                                                                                │onf
+[020] .d/│                                                                                                                │
+[021] /ru│                                                                                                                │onf
+[022] .d/│                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]  Wa│                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Selected item was removed from this collection. Selected a nearby item or its parent.                          │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux04-native-NKKqDy/alpha/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown
+
+=== SPANS ===
+[002] 1:228,138,122/79,142,179 2-3:228,138,122
+[003] 1-2:79,142,179
+[037] 0:inverse

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="24" fill="rgb(255,255,255)">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for</text>
+<text x="10" y="44" fill="rgb(255,255,255)">tui.altScreen.searchPrevious and</text>
+<text x="10" y="64" fill="rgb(255,255,255)">/r╭──────────────────────────────────────────────────────────────────────────╮ha</text>
+<text x="10" y="84" fill="rgb(255,255,255)">re│ Projects · Repo &gt; repo                                                   │xt</text>
+<text x="10" y="104" fill="rgb(255,255,255)">en│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">/r├──────────────────────────────────────────────────────────────────────────┤ha</text>
+<text x="10" y="144" fill="rgb(255,255,255)">re│ Initiatives  &gt;  Initiative reader                                        │xt</text>
+<text x="10" y="164" fill="rgb(255,255,255)">en│&gt;[d] Full description&lt;                                                    │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  │  I · Items 2                                                             │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> W│ I · Phase: approved                                                      │</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> A│ Summary: Initiative paragraph 0: 界 é 👩‍💻</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │ wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping         │</text>
+<text x="10" y="284" fill="rgb(255,255,255)"> /│◇[research]  ID: R                                                        │d</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> o│◇Research 界 reader                                                       │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │◇State: draft                                                             │</text>
+<text x="10" y="344" fill="rgb(255,255,255)"> /│◇tracker/tickets/R.md                                                     │d</text>
+<text x="10" y="364" fill="rgb(255,255,255)"> o│ [task]  ID: T                                                            │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──│ Summary: Initiative paragraph 0: 界 é 👩‍💻 wrappingwrappingwrappingwrappin…─</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│</text>
+<text x="10" y="444" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/tmp/ux04-native-NKKqDy/alpha/repo (master)</text>
+<text x="10" y="484" fill="rgb(255,255,255)">0.0%/0 (auto)                                                            unknown</text>
+</svg>

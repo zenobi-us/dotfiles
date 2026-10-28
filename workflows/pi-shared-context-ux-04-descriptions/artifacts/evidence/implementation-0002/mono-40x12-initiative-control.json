@@ -1,0 +1,19 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=8:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]  nstalls/github-earendil-works-pi/1.1.0
+[002]  ╭────────────────────────────────────╮
+[003]  │ Projects · Repo > repo             │
+[004]  │  [1 Tracker]     2 Files    Tab fo…│
+[005]   Initiatives  >  Initiative re…
+[006]  >[d] Full description<
+[007]    I · Items 2
+[008] ─◇[research]  ID: R                    ─
+[009]  ◇Research 界 reader
+[010] ─Summary: Initiative paragraph 0: 界...─
+[011] /Esc back  Enter open  Tab focus  R ....
+[012] 0.0%/0 (auto)                    unknown
+
+=== SPANS ===
+[009] 0:inverse

@@ -1,0 +1,50 @@
+{
+  "cwd": "/tmp/ux04-native-NKKqDy/alpha/repo",
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "termscope",
+    "session",
+    "--cols",
+    "80",
+    "--rows",
+    "24",
+    "--",
+    "env",
+    "HOME=/tmp/ux04-native-NKKqDy/home",
+    "PI_CODING_AGENT_DIR=/tmp/ux04-native-NKKqDy/home/pi",
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-mcp",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-tools",
+    "--no-themes",
+    "--use-theme",
+    "dark",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "--skill",
+    "/tmp/ux04-native-NKKqDy/skills/ask-matt/SKILL.md",
+    "--skill",
+    "/tmp/ux04-native-NKKqDy/skills/to-tickets/SKILL.md",
+    "--skill",
+    "/tmp/ux04-native-NKKqDy/skills/grill-with-docs/SKILL.md",
+    "--skill",
+    "/tmp/ux04-native-NKKqDy/skills/worktree/SKILL.md"
+  ],
+  "monochrome": {
+    "replacementTheme": "acceptance-mono",
+    "additionalFlags": [
+      "--theme",
+      "/tmp/ux04-native-NKKqDy/mono.json"
+    ]
+  },
+  "sourceCommit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "sourceTree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "exitCode": 0
+}

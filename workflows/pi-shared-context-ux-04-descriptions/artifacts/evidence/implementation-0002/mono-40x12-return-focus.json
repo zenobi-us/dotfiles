@@ -1,0 +1,19 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=9:39 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]  nstalls/github-earendil-works-pi/1.1.0
+[002]  ╭────────────────────────────────────╮
+[003]  │ Projects · Repo > repo             │
+[004]  │  [1 Tracker]     2 Files    Tab fo…│
+[005]  │ Initiat…  >  Initiat…  >  Descrip… │
+[006]  │  Initiative reader · Description   │
+[007]  │ wrappingwrappingwrappingwrappingwra│
+[008] ─│ ppingwrappingwrappingwrapping      │─
+[009]  │                                    │
+[010] ─│>[Return]< [PgUp] [PgDn]            │─
+[011] /│↑↓ scroll · PgUp/Dn page · Esc re...│.
+[012] 0.0%/0 (auto)                    unknown
+
+=== SPANS ===
+[009] 0:inverse

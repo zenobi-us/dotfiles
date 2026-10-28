@@ -6,13 +6,30 @@
     "id": "pi-shared-context-ux-04-descriptions",
     "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
   },
-  "state": "IMPLEMENTING",
-  "latest_receipt": "start-0001",
-  "latest_source_commit": "564329b54ae70757545966d1945ded1a53a5512a",
-  "latest_source_tree": "7dd571db1351f45d15e49ec96e8cbcebc1e249a0",
+  "state": "IMPLEMENTED",
+  "latest_receipt": "implementation-complete-0003",
+  "latest_source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "latest_source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
   "latest_review_verdict": null,
   "open_findings": [],
   "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
   "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml",
-  "cycle_number": 1
+  "cycle_number": 1,
+  "complete_session_accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-05-16-895Z_01a18454-de5f-7469-8e6e-4134decc7dc4.jsonl",
+    "session_id": "01a18454-de5f-7469-8e6e-4134decc7dc4",
+    "goal_id": "15b8628eab8151a0",
+    "native_status": "complete",
+    "native_goal_used": 208177,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 172602,
+      "output": 35955,
+      "cacheWrite": 0,
+      "cacheRead": 14926592
+    },
+    "provider_work_tokens": 208557,
+    "session_ceiling": 250000,
+    "under_cap": true
+  }
 }

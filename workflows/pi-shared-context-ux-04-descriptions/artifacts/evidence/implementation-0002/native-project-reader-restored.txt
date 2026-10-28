@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=37:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi│ Initiatives  >  Initiative reader  >  R  >  Description                                                        │
+[007]    │> Research 界 reader · Description                                                                              │
+[008] [Sk│                                                                                                                │
+[009]   a│ Research paragraph 14: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[010]    │                                                                                                                │
+[011] [Ex│ Research paragraph 15: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[012]   p│                                                                                                                │
+[013]    │ Research paragraph 16: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[014] [Ex│                                                                                                                │
+[015]   p│ Research paragraph 17: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[016] /ru│                                                                                                                │onf
+[017] .d/│ Research paragraph 18: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[018]    │                                                                                                                │
+[019] /ru│ Research paragraph 19: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │f
+[020] .d/│                                                                                                                │
+[021] /ru│ Research paragraph 20: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │f
+[022] .d/│                                                                                                                │
+[023]    │ Research paragraph 21: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[024]    │                                                                                                                │
+[025]  Wa│ Research paragraph 22: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[026]    │                                                                                                                │
+[027]    │ Research paragraph 23: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[028]    │                                                                                                                │
+[029]    │ Research paragraph 24: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[030]    │                                                                                                                │
+[031]    │ Research paragraph 25: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[032]    │                                                                                                                │
+[033]    │ Research paragraph 26: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[034]    │                                                                                                                │
+[035]    │ Research paragraph 27: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping                │
+[036] ───│                                                                                                                │───
+[037]    │ [Return]  [PgUp] [PgDn]                                                                                        │
+[038] ───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───
+[039] /tmp/ux04-native-NKKqDy/alpha/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

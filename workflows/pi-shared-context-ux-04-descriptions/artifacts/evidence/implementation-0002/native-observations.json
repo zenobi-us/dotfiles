@@ -1,0 +1,298 @@
+{
+  "checks": [
+    {
+      "label": "colour control",
+      "observed": ">[d] Full description<",
+      "cols": 40,
+      "rows": 12
+    },
+    {
+      "label": "colour reader",
+      "observed": "Initiative reader · Description",
+      "cols": 40,
+      "rows": 12
+    },
+    {
+      "label": "colour return",
+      "observed": ">[Return]<",
+      "cols": 40,
+      "rows": 12
+    },
+    {
+      "label": "colour origin",
+      "observed": "Full description",
+      "cols": 40,
+      "rows": 12
+    },
+    {
+      "label": "colour control",
+      "observed": ">[d] Full description<",
+      "cols": 80,
+      "rows": 24
+    },
+    {
+      "label": "colour reader",
+      "observed": "Initiative reader · Description",
+      "cols": 80,
+      "rows": 24
+    },
+    {
+      "label": "colour return",
+      "observed": ">[Return]<",
+      "cols": 80,
+      "rows": 24
+    },
+    {
+      "label": "colour origin",
+      "observed": "Full description",
+      "cols": 80,
+      "rows": 24
+    },
+    {
+      "label": "colour control",
+      "observed": ">[d] Full description<",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "colour reader",
+      "observed": "Initiative reader · Description",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "colour return",
+      "observed": ">[Return]<",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "colour origin",
+      "observed": "Full description",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "mono control",
+      "observed": ">[d] Full description<",
+      "cols": 40,
+      "rows": 12
+    },
+    {
+      "label": "mono reader",
+      "observed": "Initiative reader · Description",
+      "cols": 40,
+      "rows": 12
+    },
+    {
+      "label": "mono return",
+      "observed": ">[Return]<",
+      "cols": 40,
+      "rows": 12
+    },
+    {
+      "label": "mono origin",
+      "observed": "Full description",
+      "cols": 40,
+      "rows": 12
+    },
+    {
+      "label": "mono control",
+      "observed": ">[d] Full description<",
+      "cols": 80,
+      "rows": 24
+    },
+    {
+      "label": "mono reader",
+      "observed": "Initiative reader · Description",
+      "cols": 80,
+      "rows": 24
+    },
+    {
+      "label": "mono return",
+      "observed": ">[Return]<",
+      "cols": 80,
+      "rows": 24
+    },
+    {
+      "label": "mono origin",
+      "observed": "Full description",
+      "cols": 80,
+      "rows": 24
+    },
+    {
+      "label": "mono control",
+      "observed": ">[d] Full description<",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "mono reader",
+      "observed": "Initiative reader · Description",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "mono return",
+      "observed": ">[Return]<",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "mono origin",
+      "observed": "Full description",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "mouse initiative open",
+      "observed": "[Return]",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "mouse return",
+      "observed": "Full description",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "research reader",
+      "observed": "Research 界 reader",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "workspace reader restoration",
+      "observed": "Research 界 reader",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "project ancestor",
+      "observed": "native-beta",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "project body isolation",
+      "observed": "Ungrouped",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "beta reader",
+      "observed": "Beta private project body.",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "restored alpha reader",
+      "observed": "Research 界 reader",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "research type actions",
+      "observed": "To tickets",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "existing planning prompt",
+      "observed": "Additional prompt",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "selected event",
+      "observed": "older",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "ticket reader",
+      "observed": "Ticket description reader",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "event restored",
+      "observed": "older",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "research live origin",
+      "observed": "Research 界 reader",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "complete native body",
+      "observed": "Ticket FINAL recorded body.",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "Files preview independence",
+      "observed": "Independent Files preview",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "reader scroll after Files",
+      "observed": "Ticket FINAL recorded body.",
+      "cols": 120,
+      "rows": 40
+    },
+    {
+      "label": "existing editor insertion",
+      "observed": "shared://notes.txt",
+      "cols": 120,
+      "rows": 40
+    }
+  ],
+  "liveStates": [
+    "short replacement clamped",
+    "empty explanation",
+    "unreadable refresh retained",
+    "recovery",
+    "removal parent"
+  ],
+  "matrix": {
+    "sizes": [
+      [
+        40,
+        12
+      ],
+      [
+        80,
+        24
+      ],
+      [
+        120,
+        40
+      ]
+    ],
+    "modes": [
+      "dark theme with native RGB spans",
+      "monochrome theme with default colors"
+    ]
+  },
+  "colorStyles": [
+    "color: rgb(205, 154, 34)",
+    "color: rgb(95, 168, 204)",
+    "color: rgb(167, 152, 215)",
+    "color: rgb(157, 165, 169)",
+    "color: rgb(222, 224, 225)",
+    "color: rgb(108, 118, 123)",
+    "color: rgb(126, 136, 142)"
+  ],
+  "monoStyles": [],
+  "limits": [
+    "SVG renderer uses fallback glyphs and does not prove colors. Native HTML and spans preserve color and text.",
+    "Fixture skills register commands only. Planning prompt was cancelled. No workflow service or model prompt was dispatched.",
+    "Pi startup reports an existing ctrl+shift+g conflict with its built-in search shortcut."
+  ]
+}

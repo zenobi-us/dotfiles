@@ -1,0 +1,21 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--no-lockfile",
+    "-I",
+    "raw",
+    "-F",
+    "json",
+    "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-04-descriptions/projections/pr-draft.md",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-04-descriptions/projections/implementation-log.md",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-04-descriptions/artifacts/snapshots/pr-draft-implementation-0002.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "code": 0,
+  "stdout": "[]\n[]\n[]\n"
+}

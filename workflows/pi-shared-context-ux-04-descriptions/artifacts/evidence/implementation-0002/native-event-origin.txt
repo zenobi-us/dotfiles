@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=29:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Initiative reader  >  T  >  Events                                                             │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   a│  Dependency context    │> Events / newest first      │  Receipt / exact evidence                               │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│ No dependency edges.   │ newest implementation       │ Ticket: tracker/tickets/T.md                            │
+[012]   p│                        │ [blocked]                   │ Receipt: older                                          │
+[013]    │                        │>older implementation        │ Phase: implementation · blocked                         │
+[014] [Ex│                        │>[blocked]                   │ Parent: none                                            │
+[015]   p│                        │                             │ Commit: db43fb73b04a7e5b388d4013e55834991444de3a        │
+[016] /ru│                        │                             │ Tree: 4b825dc642cb6eb9a060e54bf8d69288fbee4904          │onf
+[017] .d/│                        │                             │ Current: db43fb73b04a7e5b388d4013e55834991444de3a       │
+[018]    │                        │                             │ Current tree: 4b825dc642cb6eb9a060e54bf8d69288fbee4904  │
+[019] /ru│                        │                             │ Source: matched                                         │onf
+[020] .d/│                        │                             │ Workspace: /tmp/ux04-native-NKKqDy/alpha/repo           │
+[021] /ru│                        │                             │ Branch: master · base master                            │onf
+[022] .d/│                        │                             │ Session: not recorded                                   │
+[023]    │                        │                             │ Created: 2026-10-20T10:00:00Z                           │
+[024]    │                        │                             │ Reference: workflows/T/events/older.json                │
+[025]  Wa│                        │                             │ Outputs:                                                │
+[026]    │                        │                             │ Receipt fields:                                         │
+[027]    │                        │                             │ {                                                       │
+[028]    │                        │                             │   "schema": "worktree-receipt/v1",                      │
+[029]    │                        │                             │   "workflow_id": "T",                                   │
+[030]    │                        │                             │   "receipt_id": "older",                                │
+[031]    │                        │                             │   "phase": "implementation",                            │
+[032]    │                        │                             │   "status": "blocked",                                  │
+[033]    │                        │                             │   "attempt": 1,                                         │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/T.md · ACTIVE                                                                                  │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux04-native-NKKqDy/alpha/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

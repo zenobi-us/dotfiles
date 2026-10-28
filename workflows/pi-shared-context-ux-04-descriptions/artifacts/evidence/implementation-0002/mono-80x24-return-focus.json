@@ -1,0 +1,31 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=20:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tu╭──────────────────────────────────────────────────────────────────────────╮
+[003] /r│ Projects · Repo > repo                                                   │ha
+[004] re│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │xt
+[005] en│ Initiatives  >  Initiative reader  >  Description                        │
+[006] /r│  Initiative reader · Description                                         │ha
+[007] re│ Initiative paragraph 5: 界 é 👩‍💻                                          t
+[008] en│ wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping         │
+[009]   │                                                                          │
+[010]   │ Initiative paragraph 6: 界 é 👩‍💻
+[011]  W│ wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping         │
+[012]  A│                                                                          │
+[013]   │ Initiative paragraph 7: 界 é 👩‍💻
+[014]  /│ wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping         │d
+[015]  o│                                                                          │
+[016]   │ Initiative paragraph 8: 界 é 👩‍💻
+[017]  /│ wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping         │d
+[018]  o│                                                                          │
+[019]   │ Initiative paragraph 9: 界 é 👩‍💻
+[020] ──│ wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping         │──
+[021]   │>[Return]< [PgUp] [PgDn]                                                  │
+[022] ──│↑↓ scroll · PgUp/Dn page · Esc return                                     │──
+[023] /tmp/ux04-native-NKKqDy/alpha/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown
+
+=== SPANS ===
+[021] 0:inverse

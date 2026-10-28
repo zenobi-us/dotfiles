@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=33:2 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Press ctrl+o to show full startup help and loaded resources.
+[005] 
+[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.
+[007] 
+[008] [Skills]
+[009]   ask-matt, grill-with-docs, to-tickets, worktree
+[010] 
+[011] [Extensions]
+[012]   pi-shared-context
+[013] 
+[014] [Extension issues]
+[015]   path (temp)
+[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions/mise/conf
+[017] .d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts
+[018]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and
+[019] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions/mise/conf
+[020] .d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts. Using
+[021] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions/mise/conf
+[022] .d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts.
+[023] 
+[024] 
+[025]  Warning: No models available. Use /login to log into a provider via OAuth or API key. See:
+[026]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md
+[027]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md
+[028] 
+[029] 
+[030] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[031] 
+[032]  Additional prompt (optional)
+[033] 
+[034] >
+[035] 
+[036]  enter submit  escape/ctrl+c cancel
+[037] 
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux04-native-NKKqDy/alpha/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

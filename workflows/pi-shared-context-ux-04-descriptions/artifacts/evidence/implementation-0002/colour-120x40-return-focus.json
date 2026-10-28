@@ -1,0 +1,85 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=36:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi│ Initiatives  >  Initiative reader  >  Description                                                              │
+[007]    │  Initiative reader · Description                                                                               │
+[008] [Sk│ Initiative paragraph 22: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[009]   a│                                                                                                                │
+[010]    │ Initiative paragraph 23: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[011] [Ex│                                                                                                                │
+[012]   p│ Initiative paragraph 24: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[013]    │                                                                                                                │
+[014] [Ex│ Initiative paragraph 25: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[015]   p│                                                                                                                │
+[016] /ru│ Initiative paragraph 26: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │f
+[017] .d/│                                                                                                                │
+[018]    │ Initiative paragraph 27: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[019] /ru│                                                                                                                │onf
+[020] .d/│ Initiative paragraph 28: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[021] /ru│                                                                                                                │onf
+[022] .d/│ Initiative paragraph 29: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[023]    │                                                                                                                │
+[024]    │ Initiative paragraph 30: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[025]  Wa│                                                                                                                │
+[026]    │ Initiative paragraph 31: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[027]    │                                                                                                                │
+[028]    │ Initiative paragraph 32: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[029]    │                                                                                                                │
+[030]    │ Initiative paragraph 33: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[031]    │                                                                                                                │
+[032]    │ Initiative paragraph 34: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[033]    │                                                                                                                │
+[034]    │ Initiative paragraph 35: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │
+[035]    │                                                                                                                │
+[036] ───│ Initiative paragraph 36: 界 é 👩‍💻 wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping              │─
+[037]    │>[Return]< [PgUp] [PgDn]                                                                                        │
+[038] ───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───
+[039] /tmp/ux04-native-NKKqDy/alpha/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown
+
+=== SPANS ===
+[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142
+[003] 1-2:79,142,179 3-116:95,168,204
+[004] 1-2:126,136,142 3:95,168,204 4-26:167,152,215 116:95,168,204
+[005] 3:95,168,204 5-17:167,152,215 20-30:157,165,169 33-64:157,165,169 116:95,168,204
+[006] 1-2:126,136,142 3:95,168,204 4-16:167,152,215 17-19:157,165,169 20-38:167,152,215 39-41:157,165,169 42-54:222,224,225 116:95,168,204
+[007] 3:95,168,204 4-36:167,152,215 116:95,168,204
+[008] 0-2:205,154,34 3:95,168,204 5-103:222,224,225 118:95,168,204
+[009] 0-2:126,136,142 3:95,168,204 116:95,168,204
+[010] 3:95,168,204 5-103:222,224,225 118:95,168,204
+[011] 0-2:205,154,34 3:95,168,204 116:95,168,204
+[012] 0-2:126,136,142 3:95,168,204 5-103:222,224,225 118:95,168,204
+[013] 3:95,168,204 116:95,168,204
+[014] 0-2:205,154,34 3:95,168,204 5-103:222,224,225 118:95,168,204
+[015] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34
+[016] 0-2:205,154,34 3:95,168,204 5-103:222,224,225 118:95,168,204 119:205,154,34
+[017] 0-2:205,154,34 3:95,168,204 116:95,168,204
+[018] 0-2:205,154,34 3:95,168,204 5-103:222,224,225 118:95,168,204 119:205,154,34
+[019] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34
+[020] 0-2:205,154,34 3:95,168,204 5-103:222,224,225 118:95,168,204 119:205,154,34
+[021] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34
+[022] 0-2:205,154,34 3:95,168,204 5-103:222,224,225 118:95,168,204
+[023] 3:95,168,204 116:95,168,204
+[024] 3:95,168,204 5-103:222,224,225 118:95,168,204
+[025] 1-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34
+[026] 1-2:205,154,34 3:95,168,204 5-103:222,224,225 118:95,168,204 119:205,154,34
+[027] 1-2:205,154,34 3:95,168,204 116:95,168,204
+[028] 3:95,168,204 5-103:222,224,225 118:95,168,204
+[029] 3:95,168,204 116:95,168,204
+[030] 3:95,168,204 5-103:222,224,225 118:95,168,204
+[031] 3:95,168,204 116:95,168,204
+[032] 3:95,168,204 5-103:222,224,225 118:95,168,204
+[033] 3:95,168,204 116:95,168,204
+[034] 3:95,168,204 5-103:222,224,225 118:95,168,204
+[035] 3:95,168,204 116:95,168,204
+[036] 0-2:108,118,123 3:95,168,204 5-103:222,224,225 118:95,168,204 119:108,118,123
+[037] 0:inverse 3:95,168,204 4-27:167,152,215 116:95,168,204
+[038] 0-2:108,118,123 3:95,168,204 4-40:157,165,169 116:95,168,204 117-119:108,118,123
+[039] 0-42:126,136,142
+[040] 0-119:126,136,142

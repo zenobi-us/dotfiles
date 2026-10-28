@@ -1,0 +1,25 @@
+{
+  "piAndTermscopeClosed": true,
+  "exitCode": 0,
+  "removedFixtureRoot": "/tmp/ux04-native-NKKqDy",
+  "removedOwnedLinks": [
+    "typescript",
+    "@earendil-works",
+    "yaml",
+    "@crustjs"
+  ],
+  "removedOwnedNodeModulesDirectory": true,
+  "trackedSourceClean": true,
+  "sourceCommit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "sourceTree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "changedFiles": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "completedAt": "2026-10-28T21:18:11.379Z"
+}

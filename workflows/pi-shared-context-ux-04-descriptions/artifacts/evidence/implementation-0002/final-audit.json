@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "sourceTree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "trackedSourceClean": true,
+  "allReceiptOutputsExist": true,
+  "evidenceHashesVerified": 163,
+  "reportValidation": "three Report documents valid",
+  "workflowState": "IMPLEMENTED",
+  "ticketState": "claimed; unchanged",
+  "immutableReceipt": "implementation-0002",
+  "ownedPiAndTermscopeExitCode": 0,
+  "ownedFixturesAndLinksRemoved": true,
+  "allTenCriteriaMapped": true,
+  "independentReview": "Parent-owned, not claimed",
+  "timestamp": "2026-10-28T21:20:01.820Z"
+}

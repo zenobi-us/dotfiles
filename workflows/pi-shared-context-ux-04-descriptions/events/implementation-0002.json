@@ -1,0 +1,211 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0002",
+  "workflow_id": "pi-shared-context-ux-04-descriptions",
+  "phase": "implementation",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+  "source_branch": "feature/pi-shared-context-ux-04-descriptions",
+  "base_branch": "master",
+  "source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
+  "created_at": "2026-10-28T21:19:20.023Z",
+  "muxer": "herdr",
+  "pane_id": "w7Z:p1",
+  "agent": "omp",
+  "agent_name": "ux04-implement-c1",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-04-descriptions",
+    "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-04-descriptions"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml",
+  "event": "phase-result",
+  "status": "completed",
+  "cycle_number": 1,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "564329b54ae70757545966d1945ded1a53a5512a",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-complete-0024.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0081.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/events/start-0001.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/events/implementation-0002.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/projections/latest-status.yaml"
+    }
+  ],
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002"
+  },
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "summary": [
+    "Added labelled keyboard-focusable and clickable description controls for initiatives and type-specific item overviews.",
+    "Full recorded bodies replace the content view with persistent heading, scroll controls, and Return.",
+    "Reader state retains its origin screen, canonical selection, scroll, project, and workspace. Breadcrumbs clear reader state.",
+    "Live bodies clamp scroll; empty, unreadable-refresh, and removal states explain their condition.",
+    "Existing actions, Files insertion, workflow safety, and completed ticket01–03 behavior remain covered. No event or queue redesign."
+  ],
+  "validation": [
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+        "--project",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/scoped-tsconfig.json",
+        "--noEmit"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--install=fallback",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+      "exit_code": 0,
+      "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+      "stderr": "\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts:\n(pass) the open modal refreshes focused DAG history and discovers a new dependent outside its scope [2083.00ms]\n(pass) file previews follow atomic replacement without moving selection to an inserted sibling [229.03ms]\n(pass) mixed canonical records refresh type and membership without inventing workflows or dependency membership [1481.00ms]\n(pass) a live description reader follows canonical body updates and returns safely after record removal [1158.11ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts:\n(pass) worktree receipt transitions > start rejects missing blockers, existing workflows, closed tickets, and unknown state [0.40ms]\n(pass) worktree receipt transitions > review can freeze a new revision after an earlier implementation or review [0.22ms]\n(pass) worktree receipt transitions > latest rejected review enables fix and supersedes an older success [0.24ms]\n(pass) worktree receipt transitions > a phase-start event cannot inherit an older verdict [0.19ms]\n(pass) worktree receipt transitions > finish and submit each require the current successful review [0.30ms]\n(pass) worktree receipt transitions > timezone offsets and equal timestamps cannot revive an older successful review [0.15ms]\n(pass) worktree receipt transitions > read errors and unknown current source cannot masquerade as freshness [0.13ms]\n(pass) fresh-session boundaries > missing skills disable their actions; synthetic groups cannot become planning initiatives [0.11ms]\n(pass) fresh-session boundaries > untrusted record and prompt text cannot inject another skill or XML instruction [0.35ms]\n(pass) fresh-session boundaries > a fresh chat stages the selected command through the replacement context without sending it [0.32ms]\n(pass) fresh-session boundaries > session creation and editor failures retain the cause and distinguish an opened session [0.22ms]\n(pass) fresh-session boundaries > cancelling session creation preserves the old editor draft [0.13ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts:\n(pass) Projects supports reverse focus, mouse breadcrumbs, canonical identities, and escape levels [99.18ms]\n(pass) Projects filters names and identities by subsequence and opens the filtered action target [77.17ms]\n(pass) Projects zero results cannot open a stale selection and editing restores a valid target [72.72ms]\n(pass) Escape closes Projects with an active filter even when a breadcrumb has focus [49.24ms]\n(pass) project switching owns tracker actions and Files while preserving each workspace [101.70ms]\n(pass) stored projects remain readable without a checkout and disable action dispatch [71.31ms]\n(pass) stored GitHub projects retain their remote identity after checkout removal [61.61ms]\n(pass) empty, unreadable, and unavailable project states retain the current project [72.03ms]\n(pass) inactive project updates do not replace the selected view and return refreshes its state [530.30ms]\n(pass) cached Files follows newly resolved alignment routes before reading records [86.58ms]\n(pass) checkoutless mixed routes retain shared records with a Repo alignment indicator [61.62ms]\n(pass) returning to a project restores its ticket reader and scroll position [325.32ms]\n(pass) the live modal recovers the deduplicated current project after checkout removal [567.00ms]\n(pass) repository-only A can disappear while selected shared B keeps loading records [332.90ms]\n(pass) legacy hosted identity recovery from checkout opens the complete modal without a checkout [163.97ms]\n(pass) legacy hosted identity recovery from remote opens the complete modal without a checkout [171.11ms]\n(pass) each project retains its reader and Files context without leaking another project's body [101.52ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts:\n(pass) tab highlighting does not activate content until Space or Enter [1.60ms]\n(pass) number shortcuts switch tabs without changing tracker queues or losing selection [0.78ms]\n(pass) mixed items retain canonical details, planning commands, and independent Files selection [9.86ms]\n(pass) canonical planning and other records keep their own details and action boundaries [15.02ms]\n(pass) initiative descriptions open by focus and mouse, scroll fully, and return to the same child and viewport [39.47ms]\n(pass) type-specific item readers retain event selection, overview scroll, and independent Files state [10.81ms]\n(pass) reader reflow, terminal sanitization, live shrinking, empty bodies, unreadable refresh, and removal stay recoverable [368.04ms]\n(pass) clicking a description transfers keyboard focus from workspace controls into its reader [4.02ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/watch.test.ts:\n(pass) directory watches discover missing paths, survive replacement, and drop old subscriptions [362.75ms]\n(pass) changes arriving during refresh receive another serialized pass [70.89ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts:\n(pass) configured mixed stores preserve completed blockers and discover unassigned tickets [35.69ms]\n(pass) missing collections are empty but a missing tracker definition is actionable [9.70ms]\n(pass) missing blockers, dependency cycles, and duplicate ticket IDs fail instead of reporting readiness [77.87ms]\n(pass) initiative links cannot hide missing tickets or escape through collection symlinks [34.83ms]\n(pass) versioned records render direct members and descendants without treating specification links as members [39.32ms]\n(pass) versioned UI reader rejects future ticket schemas, malformed fields, and filename identity mismatches [69.93ms]\n(pass) versioned UI initiative indexes enforce schemas and exact direct-parent membership [134.84ms]\n(pass) receipt identity and timestamps govern history, not filenames or projections [74.54ms]\n(pass) invalid events remain inspectable without hiding valid receipts or permitting transitions [37.61ms]\n(pass) phase-start and phase-complete envelopes do not require invented evidence [64.55ms]\n(pass) missing source worktrees and invalid source trees never borrow repository freshness [43.79ms]\n(pass) orphaned and cyclic receipt parents are invalid workflow history [29.50ms]\n(pass) GitHub pagination includes later pages and recursive prerequisite closure without parsing body references [10.17ms]\n(pass) GitHub failures and unsupported backends are errors, not empty or guessed graphs [18.56ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts:\n(pass) normal entry separates initiative fields and opens canonical children and existing detail [8.37ms]\n(pass) zero-item Ungrouped remains visible and exposes no initiative planning controls [2.76ms]\n(pass) Esc, keyboard ancestors and mouse ancestors preserve child selection and queue access [7.32ms]\n(pass) compact Events returns restore the paged overview through Esc and keyboard or mouse ancestors [4.88ms]\n(pass) removing an inactive remembered child preserves unrelated queue and home action contexts [20.03ms]\n(pass) removing the active queue action target closes its menu and selects a surviving canonical ticket [3.61ms]\n(pass) refresh preserves canonical selection and explains removal while stale content disables transitions [3.81ms]\n(pass) membership changes close child readers and actions before selecting a nearby child or empty parent [27.55ms]\n(pass) removing a remembered initiative preserves an unrelated queue selection and viewport [0.77ms]\n(pass) layout changes reveal the selected identity while unchanged renders retain deliberate paging [1.65ms]\n(pass) resizing a child list keeps its selected canonical item visible [0.87ms]\n(pass) narrow paging exposes the full recorded phase and its distinct unique Items value [0.73ms]\n(pass) long Unicode titles wrap without terminal controls at all required dimensions [7.72ms]\n(pass) invalid events remain inspectable and source evidence remains reachable [4.51ms]\n(pass) ticket focus includes transitive dependents and direct blockers without visiting unrelated branches [0.10ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/onboarding.test.ts:\n(pass) repository setup is explicit, persists on reopen and preserves existing instructions [4.62ms]\n(pass) shared setup is explicit, persists on reopen and preserves existing instructions [3.10ms]\n(pass) cancel after choosing shared storage performs no initialization [1.08ms]\n(pass) existing repository tracker or layout routes are ready without shared registration [4.87ms]\n(pass) repository routes ignore an invalid unused shared base and optional collections [1.83ms]\n(pass) mixed and inherited routes require only selected roots, external tickets have no file store [4.12ms]\n(pass) required root errors are actionable and resolver errors propagate [1.09ms]\n(pass) established missing store offers check only, retries errors and never rewrites policy [2.42ms]\n(pass) pending setup rejects duplicate input and disposal prevents late completion [1.27ms]\n(pass) successful setup with unavailable roots transitions to check rather than initializing twice [1.09ms]\n(pass) narrow layouts retain bounded actions and keyboard cancellation [2.12ms]\n(pass) raw SGR mouse guards drags, stale bounds, right clicks and duplicate releases [1.61ms]\n(pass) detected shared choice survives setup failure and retries only on explicit apply [2.35ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/shared-context.test.ts:\n(pass) git origin normalization > SSH, SCP, and HTTPS forms resolve to one canonical origin and slug [0.09ms]\n(pass) context resolution > falls back to repository storage when shared AGENTS.md is absent [1.20ms]\n(pass) context resolution > uses shared storage and reloads changed instructions on each resolution [1.85ms]\n(pass) context resolution > resolves each record through an origin-scoped route manifest [1.54ms]\n(pass) context resolution > maps a legacy storage marker to routes without moving external tickets [0.91ms]\n(pass) context resolution > migrates the legacy preference to a route manifest and removes the marker [1.09ms]\n(pass) context resolution > initializes the external candidate without writing into the repository [1.46ms]\n(pass) context resolution > initialization preserves an authored context map [0.49ms]\n(pass) context resolution > initialization preserves an existing route manifest [0.38ms]\n(pass) context resolution > copies the typed context areas in both directions and ignores legacy layouts [9.08ms]\n(pass) context resolution > returns no context when origin is missing [0.21ms]\n(pass) lists shared contexts alphabetically with storage preferences [0.37ms]\n(pass) the CLI is directly executable and exposes help [316.66ms]\n(pass) hosted-shared init rejects local tickets and routes external tickets [74.08ms]\n(pass) repository XML points root and shared-root at the repository [0.21ms]\n(pass) rendered XML identifies provenance and escapes injected instructions [0.06ms]\n(pass) typed context paths > resolves every stable record type [1.36ms]\n(pass) typed context paths > refuses invalid or incomplete typed paths [0.19ms]\n(pass) frontmatter > reads quoted, bare, and numeric fields and ignores the body [0.04ms]\n(pass) frontmatter > a file with no frontmatter yields no fields [0.01ms]\n(pass) index rebuild > lists every sibling markdown file, links the url when present, and excludes itself [1.03ms]\n(pass) index rebuild > refuses to clobber a hand-written index and keeps text around a managed block [0.77ms]\n(pass) index rebuild > rebuilding twice produces the same entries [0.61ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/layout.test.ts:\n(pass) layout resolves collection roots, files, refs, unchanged workflows and indexed source content [11.76ms]\n(pass) explicit local tracker roots override layout defaults independently [10.58ms]\n(pass) invalid layout fails closed: \"schema = 2\" [10.03ms]\n(pass) invalid layout fails closed: \"schema = 1\\nunknown = true\" [9.25ms]\n(pass) invalid layout fails closed: \"schema = 1\\n[paths]\\nworkflows = \\\"docs/workflows\\\"\" [9.06ms]\n(pass) invalid layout fails closed: \"schema = 1\\npaths = \\\"docs\\\"\" [9.41ms]\n(pass) invalid layout fails closed: \"schema = 1\\n[paths]\\ntracker = 42\" [9.53ms]\n(pass) invalid layout fails closed: \"schema = 1\\n[paths]\\ntracker = \\\"\\\"\" [9.01ms]\n(pass) invalid layout fails closed: \"schema = 1\\n[paths]\\ntracker = \\\"/tmp/tracker\\\"\" [9.00ms]\n(pass) invalid layout fails closed: \"schema = 1\\n[paths]\\nsources = \\\"../sources\\\"\" [8.97ms]\n(pass) invalid layout fails closed: \"schema = 1\\n[paths]\\ntracker = \\\"docs/../tracker\\\"\" [9.04ms]\n(pass) invalid layout fails closed: \"schema = 1\\n[paths]\\ntracker = [\" [8.91ms]\n(pass) invalid layout fails closed: \"schema = 1\\n[paths]\\ntracker = \\\"C:/tracker\\\"\" [9.01ms]\n(pass) invalid explicit issue-root fails closed [9.16ms]\n(pass) invalid explicit initiative-root fails closed [8.97ms]\n(pass) configured and subsequently introduced symlink escapes are rejected [14.25ms]\n(pass) symlinked configuration never silently falls back [9.51ms]\n(pass) mixed routes interpret layout against selected stores and retain configured data through migrations [33.57ms]\n(pass) initialization carries layout and explicit roots to the new active alignment root [14.65ms]\n(pass) linked worktrees share origin routes but load repository layout from their own active root [22.10ms]\n(pass) absent layout preserves default collection paths [10.82ms]\n(pass) migration refuses configured destination symlink escapes before copying files [10.66ms]\n(pass) collection selectors expose typed CLI records without changing machine configuration [114.70ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/api.test.ts:\n(pass) repository setup reopens locally, preserves authored files, and never creates shared storage [31.10ms]\n(pass) shared setup reopens without changing authored repository files [31.45ms]\n(pass) repository tracker configuration rejects shared setup before writing a shared policy [15.87ms]\n(pass) hosted-shared setup preserves external tickets after explicit shared initialization [17.61ms]\n(pass) setup refuses opposite configured storage before creating files [65.74ms]\n(pass) same-store mixed setup preserves routes and shared policies take precedence [49.70ms]\n(pass) setup requires an explicit store and validates presets without writes [86.95ms]\n(pass) repository registration keeps an external ticket adapter [15.03ms]\n(pass) legacy repository routes reject shared setup without rewriting the policy [14.45ms]\n(pass) repository-aligned mixed setup preserves shared record routes [33.08ms]\n(pass) shared initialization preserves mixed routes from a repository manifest [18.09ms]\n(pass) layout-only repository context rejects shared setup without changing routing [16.53ms]\n(pass) resolver errors stop setup before repository files are created [12.62ms]\n\n 144 pass\n 0 fail\n 1975 expect() calls\nRan 144 tests across 11 files. [10.83s]\n"
+    }
+  ],
+  "focused_validation": {
+    "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/projects.test.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-04-descriptions",
+    "result": "29 pass, 0 fail, 223 expect() calls"
+  },
+  "acceptance_evidence": [
+    {
+      "criteria": [
+        1,
+        2,
+        3,
+        4,
+        9
+      ],
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/native-observations.json",
+      "scope": "Actual Pi controls/readers at 40x12, 80x24, 120x40 in dark and monochrome; public-modal full-body and sanitized Unicode boundary checks."
+    },
+    {
+      "criteria": [
+        4,
+        5,
+        6
+      ],
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/native-session.json",
+      "scope": "Native Escape, keyboard and SGR mouse ancestors, event return, project reader restoration, and Files switches."
+    },
+    {
+      "criteria": [
+        7,
+        8
+      ],
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/native-live-short-body.html",
+      "scope": "Native short replacement, empty body, unreadable refresh, recovery, and canonical item removal; related native-* captures."
+    },
+    {
+      "criteria": [
+        10
+      ],
+      "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/native-editor-unsent-path.html",
+      "scope": "Native Files y insertion stages shared://notes.txt without sending. Research To tickets prompt was opened and cancelled. Existing automated workflow safety suite passes."
+    }
+  ],
+  "self_check": {
+    "standards": "Reviewed the complete source diff. Existing loaders, watchers, sanitization, wrapping, action, and modal patterns are reused. LSP references ran before extending ExplorerNavigation.",
+    "spec": "All ten acceptance criteria map to passing public-modal checks and saved native evidence.",
+    "independent_review": "Not performed here. Parent owns independent review and publication.",
+    "notes": [
+      "The editor reformatted existing blocks in projects.test.ts during save. The complete diff was reviewed; those changes are formatting-only.",
+      "Removed an incidental excerpt assertion and hard-coded focus-traversal test instead of repinning implementation details. Retained behavior-focused return regressions."
+    ]
+  },
+  "limits": [
+    "Native SVG uses fallback glyphs and does not prove colours. Native spans and HTML preserve actual text and RGB styles.",
+    "Fixture skills prove command registration and prompt cancellation, not live service execution. No model prompt or real workflow action was dispatched.",
+    "Pi reports an existing ctrl+shift+g conflict with its built-in search shortcut."
+  ],
+  "open_questions": [],
+  "cleanup": {
+    "ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/implementation-0002/cleanup.json",
+    "owned_resources_removed": true,
+    "tracked_source_clean": true
+  },
+  "tracker_unchanged": true,
+  "publication": "Not merged, pushed, rebased, reviewed independently, or completed in the tracker."
+}

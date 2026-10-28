@@ -1,0 +1,31 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=16:79 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha
+[004] re│ Projects · Repo > repo                                                   │xt
+[005] en│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤ha
+[007] re│ Initiatives  >  Initiative reader                                        │xt
+[008] en│>[d] Full description<                                                    │
+[009]   │  I · Items 2                                                             │
+[010]   ├──────────────────────────────────────────────────────────────────────────┤
+[011]  W│ I · Phase: approved                                                      │
+[012]  A│ Summary: Initiative paragraph 0: 界 é 👩‍💻
+[013]   │ wrappingwrappingwrappingwrappingwrappingwrappingwrappingwrapping         │
+[014]  /│◇[research]  ID: R                                                        │d
+[015]  o│◇Research 界 reader                                                       │
+[016]   │◇State: draft                                                             │
+[017]  /│◇tracker/tickets/R.md                                                     │d
+[018]  o│ [task]  ID: T                                                            │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ Summary: Initiative paragraph 0: 界 é 👩‍💻 wrappingwrappingwrappingwrappin…─
+[021]   │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/ux04-native-NKKqDy/alpha/repo (master)
+[024] 0.0%/0 (auto)                                                            unknown
+
+=== SPANS ===
+[021] 0:inverse

@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=37:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi│ Initiatives  >  Initiative reader  >  R  >  Description                                                        │
+[007]    │> Research 界 reader · Description                                                                              │
+[008] [Sk│ Recovered complete native body.                                                                                │
+[009]   a│                                                                                                                │
+[010]    │                                                                                                                │
+[011] [Ex│                                                                                                                │
+[012]   p│                                                                                                                │
+[013]    │                                                                                                                │
+[014] [Ex│                                                                                                                │
+[015]   p│                                                                                                                │
+[016] /ru│                                                                                                                │onf
+[017] .d/│                                                                                                                │
+[018]    │                                                                                                                │
+[019] /ru│                                                                                                                │onf
+[020] .d/│                                                                                                                │
+[021] /ru│                                                                                                                │onf
+[022] .d/│                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]  Wa│                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    │                                                                                                                │
+[035]    │                                                                                                                │
+[036] ───│                                                                                                                │───
+[037]    │ [Return]  [PgUp] [PgDn]                                                                                        │
+[038] ───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───
+[039] /tmp/ux04-native-NKKqDy/alpha/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown
