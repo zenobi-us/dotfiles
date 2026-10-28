@@ -6,8 +6,8 @@
     "id": "pi-shared-context-ux-05-events",
     "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
   },
-  "state": "BLOCKED",
-  "latest_receipt": "implementation-complete-0003",
+  "state": "GUARD_VALIDATING",
+  "latest_receipt": "guard-start-0004",
   "latest_source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
   "latest_source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
   "latest_review_verdict": null,
@@ -36,7 +36,7 @@
     "budget_was_event_verified": true
   },
   "blocker_kind": "cycle-token-limit-exceeded",
-  "agent_sessions_consumed": 1,
+  "agent_sessions_consumed": 2,
   "agent_session_limit": 10,
   "active_agents": [],
   "worktree_preserved": true,
@@ -46,8 +46,9 @@
     "Actual Pi loading-history state remains unobserved."
   ],
   "required_before_continuation": [
-    "Explicit user authorization after the cycle ceiling breach.",
-    "Verified pre-request hard-cap enforcement; post-response native goal budgeting alone is insufficient.",
-    "A fresh independently accounted session; preserve cycle1 and all historical usage."
-  ]
+    "Verify hard pre-request enforcement in the fresh counted guard session.",
+    "Resume only in subsequent fresh counted sessions; preserve cycle1 usage."
+  ],
+  "guard_work_authorized": true,
+  "further_feature_work_blocked": true
 }

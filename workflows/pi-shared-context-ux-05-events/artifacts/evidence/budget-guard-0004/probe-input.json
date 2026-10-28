@@ -1,0 +1,4 @@
+{
+  "purpose": "hard pre-request budget guard probe",
+  "ceiling": 250000
+}
