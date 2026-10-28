@@ -1,0 +1,32 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "termscope",
+    "session",
+    "--cols",
+    "120",
+    "--rows",
+    "40",
+    "--",
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-mcp",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-tools",
+    "--no-themes",
+    "--use-theme",
+    "dark",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+  ],
+  "cwd": "/tmp/ux03-integrated-VZQ3AV/repo",
+  "exit_code": 1,
+  "stderr": "mise ERROR termscope is not a valid shim. This likely means you uninstalled a tool and the shim does not point to anything. Run `mise use <TOOL>` to reinstall the tool.\nmise ERROR Version: 2026.10.5 linux-x64 (2026-10-08)\nmise ERROR Run with --verbose or MISE_VERBOSE=1 for more information\n",
+  "failure": "Isolated HOME was incorrectly applied to mise as well as Pi; no Pi process started."
+}

@@ -1,0 +1,43 @@
+{
+  "merged_commit": "51ae716c8908a8ee6ded8f79e6eb5054d1109fd9",
+  "merged_tree": "760e4817211931ad462bca0b34ce44f79d224323",
+  "results": [
+    {
+      "kind": "full-affected-suite",
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--install=fallback",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "started_at": "2026-10-28T20:40:32.647Z",
+      "ended_at": "2026-10-28T20:40:42.419Z",
+      "exit_code": 0,
+      "evidence": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/integrated-tests.txt"
+    },
+    {
+      "kind": "scoped-typescript",
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+        "-p",
+        "/tmp/ux03-integrated-tsconfig.json",
+        "--pretty",
+        "false"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "started_at": "2026-10-28T20:40:32.648Z",
+      "ended_at": "2026-10-28T20:40:34.653Z",
+      "exit_code": 0,
+      "evidence": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/integrated-typescript.txt"
+    }
+  ]
+}

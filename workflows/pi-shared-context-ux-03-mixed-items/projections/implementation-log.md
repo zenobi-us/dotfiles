@@ -60,3 +60,12 @@ No product question is blocked. Parent formal review is next. All cycle1 account
 ## Independent review passed
 
 [review-0014](../events/review-0014.json) and [parent completion](../events/review-complete-0015.json) cover source `5af9909464805f3d59bd5946cc006d5371aa2405` / `83c96d2dc2b2d40f438e79d698bae53b5d7658ac`. Both independent axes report no blockers. Full affected suite and scoped types passed; parent modal/live checks passed7 tests. Native review smoke passed. Recorded monochrome evidence was inspected, not represented as a fresh review matrix. All three sessions are closed and under250000 complete-session tokens. Integration remains next.
+
+
+## Published finish
+
+Reviewed source `5af9909464805f3d59bd5946cc006d5371aa2405` / `83c96d2dc2b2d40f438e79d698bae53b5d7658ac` maps to integration `51ae716c8908a8ee6ded8f79e6eb5054d1109fd9`, expected tree `760e4817211931ad462bca0b34ce44f79d224323`, with sole base parent `f8d7aa5af0489244eeaba00376f9375767d7358d`. Integration and canonical ticket completion `80556493c2826a3615ab067fe8e7888ecf3be781` are published to origin/master. Reachability was verified before resource removal.
+
+The surviving primary checkout passed the139-test affected suite and scoped TypeScript. Real Pi loaded the merged extension with owned mixed canonical fixtures. It displayed the3 associated research/ticket/report records,2 exclusive Ungrouped records, research metadata/body without invented ticket history, compact research, independent Files return, and settled Escape navigation. The integration smoke does not claim a new full colour/monochrome matrix. [Integrated checks](../artifacts/evidence/finish-0016/integrated-validation.json), [native smoke](../artifacts/evidence/finish-0016/integrated-native-smoke.json), [ticket publication](../artifacts/evidence/finish-0016/ticket-completion-result.json), [resource removal](../artifacts/evidence/finish-0016/resource-cleanup.json).
+
+Both recorded worktrees are removed. The reviewed feature branch remains for provenance. All review panes were closed before integration. [Finish result](../events/finish-result-0023.json), [parent completion](../events/finish-complete-0024.json), and [final draft snapshot](../artifacts/snapshots/pr-draft-finish-0024.md) preserve the completed boundaries. Finish consumed no additional agent session.

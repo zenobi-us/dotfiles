@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    10,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repo",
+  "lines": [
+    " ╭────────────────────────────────────╮",
+    " │ Projects · Repo > repo             │",
+    " │   1 Tracker     [2 Files]   Tab fo…│",
+    " ├────────────────────────────────────┤",
+    " │ Shared context  ›  repo  ›  Preview│",
+    " ├────────────────────────────────────┤",
+    " │▸ docs                │Select a fil…│",
+    "─├────────────────────────────────────┤─",
+    " │ /tmp/ux03-integrated-VZQ3AV/repo/d…│",
+    "─│ ←→ browse  ↑↓ move  Enter open  Ba…│─",
+    "/╰────────────────────────────────────╯.",
+    "0.0%/0 (auto)                    unknown"
+  ]
+}

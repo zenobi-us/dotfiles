@@ -1,0 +1,46 @@
+{
+  "schema": "tracker-result/v1",
+  "operation": "complete",
+  "backend": "local-markdown",
+  "initiatives": [],
+  "tickets": [
+    {
+      "id": "pi-shared-context-ux-03-mixed-items",
+      "title": "Browse research and tickets in the same initiative",
+      "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+      "state": "completed",
+      "blocked_by": [
+        "pi-shared-context-ux-02-initiatives"
+      ]
+    }
+  ],
+  "changes": {
+    "fields": {
+      "work_status": {
+        "before": "claimed",
+        "after": "completed"
+      },
+      "comment": "Completion evidence appended"
+    },
+    "dependency_edges_added": [],
+    "dependency_edges_removed": []
+  },
+  "validation": {
+    "status": "passed",
+    "details": [
+      "Exact-source review SUCCESS",
+      "Expected integration tree and sole base parent verified",
+      "Integrated139 tests and scoped TypeScript passed",
+      "Real merged Pi mixed-record smoke passed",
+      "Canonical ticket read back completed"
+    ]
+  },
+  "publication": {
+    "status": "published",
+    "ref": "80556493c2826a3615ab067fe8e7888ecf3be781",
+    "remote": "origin",
+    "remote_ref": "refs/heads/master",
+    "observed_commit": "80556493c2826a3615ab067fe8e7888ecf3be781"
+  },
+  "rendered": null
+}

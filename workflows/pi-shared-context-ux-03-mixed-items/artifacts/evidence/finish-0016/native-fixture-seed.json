@@ -1,0 +1,83 @@
+[
+  [
+    "docs/agents/issue-tracker.md",
+    "Config",
+    {
+      "backend": "local-markdown",
+      "issue-root": "tracker/tickets",
+      "initiative-root": "tracker/initiatives"
+    },
+    "Native acceptance tracker."
+  ],
+  [
+    "tracker/tickets/R.md",
+    "research",
+    {
+      "id": "R",
+      "title": "Research 界: compare canonical sources and retain a long wrapped title without mixing its state",
+      "status": "draft",
+      "source": "sources/study",
+      "author": "Native reader",
+      "parent": "I"
+    },
+    "Recorded finding: preserve canonical identity.\nEvidence: sources/study."
+  ],
+  [
+    "tracker/tickets/T.md",
+    "enhancement",
+    {
+      "id": "T",
+      "title": "Executable ticket",
+      "work_status": "unclaimed",
+      "blocked_by": [],
+      "schema": "tracker-ticket/v1",
+      "parent": "I"
+    },
+    "Ticket acceptance details."
+  ],
+  [
+    "tracker/tickets/N.md",
+    "Report",
+    {
+      "id": "N",
+      "title": "Canonical report",
+      "parent": "I"
+    },
+    "Recorded report body."
+  ],
+  [
+    "tracker/tickets/U.md",
+    "research",
+    {
+      "id": "U",
+      "title": "Unassociated research",
+      "status": "reviewed"
+    },
+    "Ungrouped research details."
+  ],
+  [
+    "tracker/tickets/D.md",
+    "task",
+    {
+      "id": "D",
+      "title": "Unassociated dependent",
+      "work_status": "unclaimed",
+      "blocked_by": [
+        "T"
+      ],
+      "schema": "tracker-ticket/v1"
+    },
+    "Dependency does not imply initiative membership."
+  ],
+  [
+    "tracker/initiatives/I/index.md",
+    "Spec",
+    {
+      "title": "Mixed initiative",
+      "phase": "research",
+      "schema": "tracker-initiative/v1",
+      "id": "I"
+    },
+    "## Problem Statement\nIntegrated mixed-record smoke.\n\n## Solution\nRead canonical mixed child records.\n\n## Tickets\n- [Research](../../tickets/R.md)\n- [Ticket](../../tickets/T.md)\n- [Report](../../tickets/N.md)\n\n## Comments\nOwned temporary smoke fixture."
+  ]
+]

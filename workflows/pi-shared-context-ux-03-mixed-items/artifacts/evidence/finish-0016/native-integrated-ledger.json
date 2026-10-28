@@ -1,0 +1,1108 @@
+[
+  {
+    "time": "2026-10-28T20:45:19.796Z",
+    "request": {
+      "id": 1,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 700
+      }
+    },
+    "response": {
+      "id": 1,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:19.796Z",
+    "request": {
+      "id": 2,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 2,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=36:0 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[017] ed-context/index.ts. Using\n[018] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[019] ed-context/index.ts.\n[020] \n[021] \n[022]  Warning: No models available. Use /login to log into a provider via OAuth or API key. See:\n[023]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md\n[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] \n[036] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux03-integrated-VZQ3AV/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:34.122Z",
+    "request": {
+      "id": 3,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    },
+    "response": {
+      "id": 3,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:34.122Z",
+    "request": {
+      "id": 4,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 4,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:35.474Z",
+    "request": {
+      "id": 5,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 800
+      }
+    },
+    "response": {
+      "id": 5,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:35.474Z",
+    "request": {
+      "id": 6,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 6,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=34:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives                                                                                                    │\n[008] [Ex│> Initiatives · title / phase / Items                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>Mixed initiative                                                                Phase: research     Items: 3   │\n[011] [Ex│>I                                                                                                              │\n[012]   p│ Ungrouped                                                                       Phase: unavailable  Items: 2   │\n[013] /ru│ Collection                                                                                                     │har\n[014] ed-│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │har\n[017] ed-│                                                                                                                │\n[018] /ru│                                                                                                                │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/initiatives/I/index.md                                                                                 │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux03-integrated-VZQ3AV/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:44.532Z",
+    "request": {
+      "id": 7,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 7,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repo                                                                                         │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives                                                                                                    │",
+          "[Ex│> Initiatives · title / phase / Items                                                                           │",
+          "  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │>Mixed initiative                                                                Phase: research     Items: 3   │",
+          "[Ex│>I                                                                                                              │",
+          "  p│ Ungrouped                                                                       Phase: unavailable  Items: 2   │",
+          "/ru│ Collection                                                                                                     │har",
+          "ed-│                                                                                                                │",
+          "   │                                                                                                                │",
+          "/ru│                                                                                                                │har",
+          "ed-│                                                                                                                │",
+          "/ru│                                                                                                                │har",
+          "ed-│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          " Wa│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ tracker/initiatives/I/index.md                                                                                 │",
+          "───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───",
+          "   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux03-integrated-VZQ3AV/repo (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:44.532Z",
+    "request": {
+      "id": 8,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 8,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:44.840Z",
+    "request": {
+      "id": 9,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 9,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:44.841Z",
+    "request": {
+      "id": 10,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 10,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Mixed initiative                                                                               │\n[008] [Ex│> I · Items 3                                                                                                   │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │ I · Phase: research                                                                                            │\n[011] [Ex│ Summary: Integrated mixed-record smoke.                                                                        │\n[012]   p│>[research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │\n[013] /ru│>                                  wrapped title without mixing its state                                       │har\n[014] ed-│>tracker/tickets/R.md                                                                                           │\n[015]    │ [enhancement]   T                 Executable ticket                                          State: unclaimed  │\n[016] /ru│ tracker/tickets/T.md                                                                                           │har\n[017] ed-│ [Report]        N                 Canonical report                                           State: unavailable│\n[018] /ru│ tracker/tickets/N.md                                                                                           │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ Summary: Integrated mixed-record smoke.                                                                        │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux03-integrated-VZQ3AV/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:53.615Z",
+    "request": {
+      "id": 11,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 11,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          35,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repo                                                                                         │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives  >  Mixed initiative                                                                               │",
+          "[Ex│> I · Items 3                                                                                                   │",
+          "  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ I · Phase: research                                                                                            │",
+          "[Ex│ Summary: Integrated mixed-record smoke.                                                                        │",
+          "  p│>[research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │",
+          "/ru│>                                  wrapped title without mixing its state                                       │har",
+          "ed-│>tracker/tickets/R.md                                                                                           │",
+          "   │ [enhancement]   T                 Executable ticket                                          State: unclaimed  │",
+          "/ru│ tracker/tickets/T.md                                                                                           │har",
+          "ed-│ [Report]        N                 Canonical report                                           State: unavailable│",
+          "/ru│ tracker/tickets/N.md                                                                                           │har",
+          "ed-│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          " Wa│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Summary: Integrated mixed-record smoke.                                                                        │",
+          "───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───",
+          "   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux03-integrated-VZQ3AV/repo (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:53.616Z",
+    "request": {
+      "id": 12,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 12,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:53.924Z",
+    "request": {
+      "id": 13,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 13,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:53.925Z",
+    "request": {
+      "id": 14,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 14,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=34:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Mixed initiative  >  R                                                                         │\n[008] [Ex│> I · Items 3                        │  research / recorded details                                             │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[research]  ID: R                   │ ID: R                                                                    │\n[011] [Ex│>Research 界: compare canonical      │ Title: Research 界: compare canonical sources and retain a long wrapped  │\n[012]   p│>sources and retain a long wrapped   │ title without mixing its state                                           │\n[013] /ru│>title without mixing its state      │ Type: research                                                           │har\n[014] ed-│>State: draft                        │ State: draft                                                             │\n[015]    │>tracker/tickets/R.md                │ Reference: tracker/tickets/R.md                                          │\n[016] /ru│ [enhancement]  ID: T                │ Parent: I                                                                │har\n[017] ed-│ Executable ticket                   │ author: Native reader                                                    │\n[018] /ru│ State: unclaimed                    │ source: sources/study                                                    │har\n[019] ed-│ tracker/tickets/T.md                │ Recorded details:                                                        │\n[020]    │ [Report]  ID: N                     │ Recorded finding: preserve canonical identity.                           │\n[021]    │ Canonical report                    │ Evidence: sources/study.                                                 │\n[022]  Wa│ State: unavailable                  │ a actions · Esc return                                                   │\n[023]    │ tracker/tickets/N.md                │                                                                          │\n[024]    │                                     │                                                                          │\n[025]    │                                     │                                                                          │\n[026]    │                                     │                                                                          │\n[027]    │                                     │                                                                          │\n[028]    │                                     │                                                                          │\n[029]    │                                     │                                                                          │\n[030]    │                                     │                                                                          │\n[031]    │                                     │                                                                          │\n[032]    │                                     │                                                                          │\n[033]    │                                     │                                                                          │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/R.md · draft                                                                                   │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux03-integrated-VZQ3AV/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:53.926Z",
+    "request": {
+      "id": 15,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 15,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          34,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repo                                                                                         │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives  >  Mixed initiative  >  R                                                                         │",
+          "[Ex│> I · Items 3                        │  research / recorded details                                             │",
+          "  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │>[research]  ID: R                   │ ID: R                                                                    │",
+          "[Ex│>Research 界: compare canonical      │ Title: Research 界: compare canonical sources and retain a long wrapped  │",
+          "  p│>sources and retain a long wrapped   │ title without mixing its state                                           │",
+          "/ru│>title without mixing its state      │ Type: research                                                           │har",
+          "ed-│>State: draft                        │ State: draft                                                             │",
+          "   │>tracker/tickets/R.md                │ Reference: tracker/tickets/R.md                                          │",
+          "/ru│ [enhancement]  ID: T                │ Parent: I                                                                │har",
+          "ed-│ Executable ticket                   │ author: Native reader                                                    │",
+          "/ru│ State: unclaimed                    │ source: sources/study                                                    │har",
+          "ed-│ tracker/tickets/T.md                │ Recorded details:                                                        │",
+          "   │ [Report]  ID: N                     │ Recorded finding: preserve canonical identity.                           │",
+          "   │ Canonical report                    │ Evidence: sources/study.                                                 │",
+          " Wa│ State: unavailable                  │ a actions · Esc return                                                   │",
+          "   │ tracker/tickets/N.md                │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ tracker/tickets/R.md · draft                                                                                   │",
+          "───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───",
+          "   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux03-integrated-VZQ3AV/repo (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:53.926Z",
+    "request": {
+      "id": 16,
+      "method": "resize",
+      "params": {
+        "cols": 40,
+        "rows": 12
+      }
+    },
+    "response": {
+      "id": 16,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:54.129Z",
+    "request": {
+      "id": 17,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    },
+    "response": {
+      "id": 17,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:45:54.130Z",
+    "request": {
+      "id": 18,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 18,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=11:39 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > repo             │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Mixed i…  >  R\n[006]  > I · Items 3\n[007]  >[research]  ID: R\n[008] ─>Research 界: compare canonical       ─\n[009]  >sources and retain a long wrapped\n[010] ─tracker/tickets/R.md · draft          ─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.037Z",
+    "request": {
+      "id": 19,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 19,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          11,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          " nstalls/github-earendil-works-pi/1.1.0",
+          " ╭────────────────────────────────────╮",
+          " │ Projects · Repo > repo             │",
+          " │  [1 Tracker]     2 Files    Tab fo…│",
+          "  Initiat…  >  Mixed i…  >  R",
+          " > I · Items 3",
+          " >[research]  ID: R",
+          "─>Research 界: compare canonical       ─",
+          " >sources and retain a long wrapped",
+          "─tracker/tickets/R.md · draft          ─",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "0.0%/0 (auto)                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.037Z",
+    "request": {
+      "id": 20,
+      "method": "press",
+      "params": {
+        "key": "TAB"
+      }
+    },
+    "response": {
+      "id": 20,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.349Z",
+    "request": {
+      "id": 21,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 150
+      }
+    },
+    "response": {
+      "id": 21,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.350Z",
+    "request": {
+      "id": 22,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 22,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=8:39 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > repo             │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Mixed i…  >  R\n[006]  > research / recorded details\n[007]   ID: R\n[008] ─ Title: Research 界: compare          ─\n[009]   canonical sources and retain a long\n[010] ─tracker/tickets/R.md · draft          ─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.350Z",
+    "request": {
+      "id": 23,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 23,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          8,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          " nstalls/github-earendil-works-pi/1.1.0",
+          " ╭────────────────────────────────────╮",
+          " │ Projects · Repo > repo             │",
+          " │  [1 Tracker]     2 Files    Tab fo…│",
+          "  Initiat…  >  Mixed i…  >  R",
+          " > research / recorded details",
+          "  ID: R",
+          "─ Title: Research 界: compare          ─",
+          "  canonical sources and retain a long",
+          "─tracker/tickets/R.md · draft          ─",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "0.0%/0 (auto)                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.350Z",
+    "request": {
+      "id": 24,
+      "method": "type",
+      "params": {
+        "text": "b"
+      }
+    },
+    "response": {
+      "id": 24,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.553Z",
+    "request": {
+      "id": 25,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    },
+    "response": {
+      "id": 25,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.553Z",
+    "request": {
+      "id": 26,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 26,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=10:39 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001]  ╭────────────────────────────────────╮\n[002]  │ Projects · Repo > repo             │\n[003]  │   1 Tracker     [2 Files]   Tab fo…│\n[004]  ├────────────────────────────────────┤\n[005]  │ Shared context  ›  repo  ›  Preview│\n[006]  ├────────────────────────────────────┤\n[007]  │▸ docs                │Select a fil…│\n[008] ─├────────────────────────────────────┤─\n[009]  │ /tmp/ux03-integrated-VZQ3AV/repo/d…│\n[010] ─│ ←→ browse  ↑↓ move  Enter open  Ba…│─\n[011] /╰────────────────────────────────────╯.\n[012] 0.0%/0 (auto)                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.553Z",
+    "request": {
+      "id": 27,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 27,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          10,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          " ╭────────────────────────────────────╮",
+          " │ Projects · Repo > repo             │",
+          " │   1 Tracker     [2 Files]   Tab fo…│",
+          " ├────────────────────────────────────┤",
+          " │ Shared context  ›  repo  ›  Preview│",
+          " ├────────────────────────────────────┤",
+          " │▸ docs                │Select a fil…│",
+          "─├────────────────────────────────────┤─",
+          " │ /tmp/ux03-integrated-VZQ3AV/repo/d…│",
+          "─│ ←→ browse  ↑↓ move  Enter open  Ba…│─",
+          "/╰────────────────────────────────────╯.",
+          "0.0%/0 (auto)                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.554Z",
+    "request": {
+      "id": 28,
+      "method": "type",
+      "params": {
+        "text": "1"
+      }
+    },
+    "response": {
+      "id": 28,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.756Z",
+    "request": {
+      "id": 29,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    },
+    "response": {
+      "id": 29,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.756Z",
+    "request": {
+      "id": 30,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 30,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=10:39 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > repo             │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]   Initiat…  >  Mixed i…  >  R\n[006]  > research / recorded details\n[007]   ID: R\n[008] ─ Title: Research 界: compare          ─\n[009]   canonical sources and retain a long\n[010] ─tracker/tickets/R.md · draft          ─\n[011] /Esc back  Enter open  Tab focus  R ....\n[012] 0.0%/0 (auto)                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.756Z",
+    "request": {
+      "id": 31,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 31,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          10,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          " nstalls/github-earendil-works-pi/1.1.0",
+          " ╭────────────────────────────────────╮",
+          " │ Projects · Repo > repo             │",
+          " │  [1 Tracker]     2 Files    Tab fo…│",
+          "  Initiat…  >  Mixed i…  >  R",
+          " > research / recorded details",
+          "  ID: R",
+          "─ Title: Research 界: compare          ─",
+          "  canonical sources and retain a long",
+          "─tracker/tickets/R.md · draft          ─",
+          "/Esc back  Enter open  Tab focus  R ....",
+          "0.0%/0 (auto)                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.756Z",
+    "request": {
+      "id": 32,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "response": {
+      "id": 32,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.756Z",
+    "request": {
+      "id": 33,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "response": {
+      "id": 33,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.959Z",
+    "request": {
+      "id": 34,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    },
+    "response": {
+      "id": 34,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.959Z",
+    "request": {
+      "id": 35,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "response": {
+      "id": 35,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.959Z",
+    "request": {
+      "id": 36,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 36,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:54.959Z",
+    "request": {
+      "id": 37,
+      "method": "resize",
+      "params": {
+        "cols": 120,
+        "rows": 40
+      }
+    },
+    "response": {
+      "id": 37,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:55.267Z",
+    "request": {
+      "id": 38,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 38,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:46:55.268Z",
+    "request": {
+      "id": 39,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 39,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=39:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Mixed initiative  >  R                                                                         │\n[008] [Ex│  I · Items 3                        │> research / recorded details                                             │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │◇[research]  ID: R                   │ ID: R                                                                    │\n[011] [Ex│◇Research 界: compare canonical      │ Title: Research 界: compare canonical sources and retain a long wrapped  │\n[012]   p│◇sources and retain a long wrapped   │ title without mixing its state                                           │\n[013] /ru│◇title without mixing its state      │ Type: research                                                           │har\n[014] ed-│◇State: draft                        │ State: draft                                                             │\n[015]    │◇tracker/tickets/R.md                │ Reference: tracker/tickets/R.md                                          │\n[016] /ru│ [enhancement]  ID: T                │ Parent: I                                                                │har\n[017] ed-│ Executable ticket                   │ author: Native reader                                                    │\n[018] /ru│ State: unclaimed                    │ source: sources/study                                                    │har\n[019] ed-│ tracker/tickets/T.md                │ Recorded details:                                                        │\n[020]    │ [Report]  ID: N                     │ Recorded finding: preserve canonical identity.                           │\n[021]    │ Canonical report                    │ Evidence: sources/study.                                                 │\n[022]  Wa│ State: unavailable                  │ a actions · Esc return                                                   │\n[023]    │ tracker/tickets/N.md                │                                                                          │\n[024]    │                                     │                                                                          │\n[025]    │                                     │                                                                          │\n[026]    │                                     │                                                                          │\n[027]    │                                     │                                                                          │\n[028]    │                                     │                                                                          │\n[029]    │                                     │                                                                          │\n[030]    │                                     │                                                                          │\n[031]    │                                     │                                                                          │\n[032]    │                                     │                                                                          │\n[033]    │                                     │                                                                          │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/R.md · draft                                                                                   │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux03-integrated-VZQ3AV/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:47:45.717Z",
+    "request": {
+      "id": 40,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "response": {
+      "id": 40,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:47:46.049Z",
+    "request": {
+      "id": 41,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 41,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:47:46.050Z",
+    "request": {
+      "id": 42,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 42,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=34:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Mixed initiative                                                                               │\n[008] [Ex│> I · Items 3                                                                                                   │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │ I · Phase: research                                                                                            │\n[011] [Ex│ Summary: Integrated mixed-record smoke.                                                                        │\n[012]   p│>[research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │\n[013] /ru│>                                  wrapped title without mixing its state                                       │har\n[014] ed-│>tracker/tickets/R.md                                                                                           │\n[015]    │ [enhancement]   T                 Executable ticket                                          State: unclaimed  │\n[016] /ru│ tracker/tickets/T.md                                                                                           │har\n[017] ed-│ [Report]        N                 Canonical report                                           State: unavailable│\n[018] /ru│ tracker/tickets/N.md                                                                                           │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ Summary: Integrated mixed-record smoke.                                                                        │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux03-integrated-VZQ3AV/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:02.411Z",
+    "request": {
+      "id": 43,
+      "method": "press",
+      "params": {
+        "key": "ESC"
+      }
+    },
+    "response": {
+      "id": 43,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:02.936Z",
+    "request": {
+      "id": 44,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 44,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:02.936Z",
+    "request": {
+      "id": 45,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 45,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives                                                                                                    │\n[008] [Ex│> Initiatives · title / phase / Items                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>Mixed initiative                                                                Phase: research     Items: 3   │\n[011] [Ex│>I                                                                                                              │\n[012]   p│ Ungrouped                                                                       Phase: unavailable  Items: 2   │\n[013] /ru│ Collection                                                                                                     │har\n[014] ed-│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │har\n[017] ed-│                                                                                                                │\n[018] /ru│                                                                                                                │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/initiatives/I/index.md                                                                                 │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux03-integrated-VZQ3AV/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:02.936Z",
+    "request": {
+      "id": 46,
+      "method": "press",
+      "params": {
+        "key": "<down>"
+      }
+    },
+    "response": {
+      "id": 46,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:03.057Z",
+    "request": {
+      "id": 47,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    "response": {
+      "id": 47,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:03.057Z",
+    "request": {
+      "id": 48,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    "response": {
+      "id": 48,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:03.449Z",
+    "request": {
+      "id": 49,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    "response": {
+      "id": 49,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:03.449Z",
+    "request": {
+      "id": 50,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    "response": {
+      "id": 50,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Ungrouped                                                                                      │\n[008] [Ex│> unassigned · Items 2                                                                                          │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │ unassigned · Phase: unavailable                                                                                │\n[011] [Ex│ Summary: Records without an assigned initiative.                                                               │\n[012]   p│>[task]          D                 Unassociated dependent                                     State: unclaimed  │\n[013] /ru│>Waiting for T                                                                                                  │har\n[014] ed-│ [research]      U                 Unassociated research                                      State: reviewed   │\n[015]    │ tracker/tickets/U.md                                                                                           │\n[016] /ru│                                                                                                                │har\n[017] ed-│                                                                                                                │\n[018] /ru│                                                                                                                │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ Summary: Records without an assigned initiative.                                                               │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux03-integrated-VZQ3AV/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:03.450Z",
+    "request": {
+      "id": 51,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    "response": {
+      "id": 51,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          35,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repo                                                                                         │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives  >  Ungrouped                                                                                      │",
+          "[Ex│> unassigned · Items 2                                                                                          │",
+          "  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ unassigned · Phase: unavailable                                                                                │",
+          "[Ex│ Summary: Records without an assigned initiative.                                                               │",
+          "  p│>[task]          D                 Unassociated dependent                                     State: unclaimed  │",
+          "/ru│>Waiting for T                                                                                                  │har",
+          "ed-│ [research]      U                 Unassociated research                                      State: reviewed   │",
+          "   │ tracker/tickets/U.md                                                                                           │",
+          "/ru│                                                                                                                │har",
+          "ed-│                                                                                                                │",
+          "/ru│                                                                                                                │har",
+          "ed-│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          " Wa│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Summary: Records without an assigned initiative.                                                               │",
+          "───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───",
+          "   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux03-integrated-VZQ3AV/repo (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:03.450Z",
+    "request": {
+      "id": 52,
+      "method": "type",
+      "params": {
+        "text": "q"
+      }
+    },
+    "response": {
+      "id": 52,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:03.653Z",
+    "request": {
+      "id": 53,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 150
+      }
+    },
+    "response": {
+      "id": 53,
+      "result": {}
+    }
+  },
+  {
+    "time": "2026-10-28T20:48:03.753Z",
+    "request": {
+      "id": 54,
+      "method": "close",
+      "params": {}
+    },
+    "response": {
+      "id": 54,
+      "result": {
+        "exit_code": 0
+      }
+    }
+  }
+]

@@ -1,0 +1,161 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-03-mixed-items",
+  "phase": "finish",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items",
+  "source_branch": "feature/pi-shared-context-ux-03-mixed-items",
+  "base_branch": "master",
+  "source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-03-mixed-items",
+    "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0076.yaml",
+  "consumes_agent_session_cycle": false,
+  "ticket_agent_cycles_consumed": 5,
+  "review_receipt": "review-0014",
+  "review_receipt_ref": "workflows/pi-shared-context-ux-03-mixed-items/events/review-0014.json",
+  "reviewed_source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
+  "reviewed_source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
+  "review_artifact_ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/reviews/review-review-0014.md",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "receipt_id": "finish-result-0023",
+  "parent_receipt": "finish-worktree-removed-0022",
+  "created_at": "2026-10-28T20:52:15.710Z",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-prepared-0017.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-merged-0018.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-validated-0019.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-pushed-0020.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-ticket-completed-0021.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-worktree-removed-0022.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/review-0014.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/review-complete-0015.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0076.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-03-mixed-items/events/finish-result-0023.json"
+    }
+  ],
+  "base_before": "f8d7aa5af0489244eeaba00376f9375767d7358d",
+  "expected_merge_tree": "760e4817211931ad462bca0b34ce44f79d224323",
+  "merged_commit": "51ae716c8908a8ee6ded8f79e6eb5054d1109fd9",
+  "merged_tree": "760e4817211931ad462bca0b34ce44f79d224323",
+  "merged_parents": [
+    "f8d7aa5af0489244eeaba00376f9375767d7358d"
+  ],
+  "pushed": true,
+  "ticket_completed": true,
+  "ticket_completion_commit": "80556493c2826a3615ab067fe8e7888ecf3be781",
+  "ticket_publication": {
+    "status": "published",
+    "ref": "80556493c2826a3615ab067fe8e7888ecf3be781",
+    "remote": "origin",
+    "remote_ref": "refs/heads/master",
+    "observed_commit": "80556493c2826a3615ab067fe8e7888ecf3be781"
+  },
+  "remote_observed_commit": "80556493c2826a3615ab067fe8e7888ecf3be781",
+  "integration_reachable_from_remote": true,
+  "worktree_removed": true,
+  "integration_worktree_removed": true,
+  "workspace_closed": true,
+  "source_branch_preserved": true,
+  "ticket_state": "completed",
+  "validation": {
+    "automated": [
+      {
+        "kind": "full-affected-suite",
+        "command": [
+          "mise",
+          "exec",
+          "--",
+          "bun",
+          "--install=fallback",
+          "test",
+          "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+          "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "started_at": "2026-10-28T20:40:32.647Z",
+        "ended_at": "2026-10-28T20:40:42.419Z",
+        "exit_code": 0,
+        "evidence": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/integrated-tests.txt"
+      },
+      {
+        "kind": "scoped-typescript",
+        "command": [
+          "mise",
+          "exec",
+          "--",
+          "bun",
+          "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+          "-p",
+          "/tmp/ux03-integrated-tsconfig.json",
+          "--pretty",
+          "false"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "started_at": "2026-10-28T20:40:32.648Z",
+        "ended_at": "2026-10-28T20:40:34.653Z",
+        "exit_code": 0,
+        "evidence": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/integrated-typescript.txt"
+      }
+    ],
+    "native_ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/integrated-native-smoke.json"
+  },
+  "cleanup_ref": "workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/resource-cleanup.json",
+  "event": "phase-result",
+  "status": "FINISHED",
+  "summary": "Reviewed source integrated once with matching expected tree and sole base parent. Integrated suite, scoped types and real mixed-record Pi smoke passed. Integration and canonical completion published; both recorded worktrees removed and source workspace closed."
+}

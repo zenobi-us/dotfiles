@@ -6,8 +6,8 @@
     "id": "pi-shared-context-ux-03-mixed-items",
     "ref": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md"
   },
-  "state": "FINISHING",
-  "latest_receipt": "finish-start-0016",
+  "state": "FINISHED",
+  "latest_receipt": "finish-complete-0024",
   "latest_source_commit": "5af9909464805f3d59bd5946cc006d5371aa2405",
   "latest_source_tree": "83c96d2dc2b2d40f438e79d698bae53b5d7658ac",
   "latest_review_verdict": "SUCCESS",
@@ -19,7 +19,16 @@
   "source_dirty": false,
   "cycles_consumed": 5,
   "approved_ticket_cycle_limit": 10,
-  "next_action": "Finish the reviewed integration, publication, canonical completion, and cleanup.",
+  "next_action": "None for this ticket; continue with ticket04.",
+  "merged_commit": "51ae716c8908a8ee6ded8f79e6eb5054d1109fd9",
+  "merged_tree": "760e4817211931ad462bca0b34ce44f79d224323",
+  "base_before": "f8d7aa5af0489244eeaba00376f9375767d7358d",
+  "remote_observed_commit": "80556493c2826a3615ab067fe8e7888ecf3be781",
+  "ticket_completion_commit": "80556493c2826a3615ab067fe8e7888ecf3be781",
+  "ticket_completed": true,
+  "worktree_removed": true,
+  "integration_worktree_removed": true,
+  "workspace_closed": true,
   "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0076.yaml",
   "consumes_agent_session_cycle": false
 }

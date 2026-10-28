@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "integrated_commit": "51ae716c8908a8ee6ded8f79e6eb5054d1109fd9",
+  "integrated_tree": "760e4817211931ad462bca0b34ce44f79d224323",
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "termscope",
+    "session",
+    "--cols",
+    "120",
+    "--rows",
+    "40",
+    "--",
+    "env",
+    "HOME=/tmp/ux03-integrated-VZQ3AV/home",
+    "PI_CODING_AGENT_DIR=/tmp/ux03-integrated-VZQ3AV/config",
+    "PI_TELEMETRY=0",
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-mcp",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-tools",
+    "--no-themes",
+    "--use-theme",
+    "dark",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+  ],
+  "cwd": "/tmp/ux03-integrated-VZQ3AV/repo",
+  "fixture": "Owned temporary repository with v1 initiative/executable tickets and supported legacy research/report records.",
+  "checks": [
+    "Initiative Items3 contains researchR, executableT and reportN; Ungrouped Items2 contains only U and dependentD",
+    "Research displays recorded draft state, metadata and body, without ticket event history",
+    "Research remains readable at120x40 and40x12",
+    "Independent Files and key1 return preserve the canonical research detail",
+    "Settled Escape returns one level; Ungrouped excludes associated R,T,N"
+  ],
+  "limits": [
+    "No fresh full colour/monochrome matrix claimed by this integration smoke; the implementation/review evidence supplies that coverage",
+    "Rapid navigation attempt1 did not establish Ungrouped and is not acceptance evidence",
+    "First launch failed before Pi because isolated HOME hid mise configuration; corrected by scoping HOME only to Pi"
+  ],
+  "process_exit_code": 0,
+  "stderr": "",
+  "no_model_prompt_or_live_workflow_action_submitted": true,
+  "created_at": "2026-10-28T20:48:03.755Z"
+}

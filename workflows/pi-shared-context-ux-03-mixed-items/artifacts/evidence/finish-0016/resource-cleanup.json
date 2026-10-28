@@ -1,0 +1,42 @@
+{
+  "observed_at": "2026-10-28T20:50:09.000Z",
+  "remote_observed_commit": "80556493c2826a3615ab067fe8e7888ecf3be781",
+  "integration_reachable": true,
+  "ticket_state": "completed",
+  "source_workspace_absent_before_cleanup": true,
+  "source_removal": {
+    "stdout": "[\n  {\n    \"branch\": \"feature/pi-shared-context-ux-03-mixed-items\",\n    \"branch_checked_out_at\": null,\n    \"branch_outcome\": \"not_attempted\",\n    \"kind\": \"worktree\",\n    \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items\"\n  }\n]\n",
+    "stderr": "◎ Running pre-remove user:server @ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-03-mixed-items\n  lsof -ti :14062 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n◎ Removing feature/pi-shared-context-ux-03-mixed-items worktree...\n✓ Removed feature/pi-shared-context-ux-03-mixed-items worktree (4,448 files · 54.5 MiB)\n↳ Branch integrated (all changes in master, ⊂); retained with --no-delete-branch\n",
+    "code": 0
+  },
+  "integration_removal": {
+    "stdout": "[\n  {\n    \"branch\": \"integrate/pi-shared-context-ux-03-mixed-items\",\n    \"branch_checked_out_at\": null,\n    \"branch_outcome\": \"deleted\",\n    \"kind\": \"worktree\",\n    \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-03-mixed-items\"\n  }\n]\n",
+    "stderr": "◎ Running pre-remove user:server @ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-03-mixed-items\n  lsof -ti :14299 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n◎ Removing integrate/pi-shared-context-ux-03-mixed-items worktree...\n✓ Removed integrate/pi-shared-context-ux-03-mixed-items worktree & branch (ancestor of master, ⊂) (4,673 files · 59.2 MiB)\n",
+    "code": 0
+  },
+  "remaining_worktrees": {
+    "id": "cli:worktree:list",
+    "result": {
+      "source": {
+        "repo_key": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git",
+        "repo_name": "Dotfiles",
+        "repo_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source_checkout_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source_workspace_id": "w64"
+      },
+      "type": "worktree_list",
+      "worktrees": [
+        {
+          "branch": "master",
+          "is_bare": false,
+          "is_detached": false,
+          "is_linked_worktree": false,
+          "is_prunable": false,
+          "label": "Dotfiles",
+          "open_workspace_id": "w64",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+        }
+      ]
+    }
+  }
+}

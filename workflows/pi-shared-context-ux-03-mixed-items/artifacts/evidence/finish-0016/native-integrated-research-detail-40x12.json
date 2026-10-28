@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    8,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repo",
+  "lines": [
+    " nstalls/github-earendil-works-pi/1.1.0",
+    " ╭────────────────────────────────────╮",
+    " │ Projects · Repo > repo             │",
+    " │  [1 Tracker]     2 Files    Tab fo…│",
+    "  Initiat…  >  Mixed i…  >  R",
+    " > research / recorded details",
+    "  ID: R",
+    "─ Title: Research 界: compare          ─",
+    "  canonical sources and retain a long",
+    "─tracker/tickets/R.md · draft          ─",
+    "/Esc back  Enter open  Tab focus  R ....",
+    "0.0%/0 (auto)                    unknown"
+  ]
+}
