@@ -7,7 +7,7 @@
     "ref": "tracker/tickets/pi-shared-context-ux-02-initiatives.md"
   },
   "state": "FINISHED",
-  "latest_receipt": "finish-complete-0048",
+  "latest_receipt": "finish-artifact-correction-0049",
   "latest_source_commit": "66c988a405aa7b8b95cd2cb6d207f8147036e708",
   "latest_source_tree": "efaf06ba84cf0ed378de3405a799e0b298594b8f",
   "latest_review_verdict": "SUCCESS",
@@ -45,5 +45,7 @@
   "worktree_removed": true,
   "integration_worktree_removed": true,
   "workspace_closed": true,
-  "integration_evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/events/finish-complete-0048.json"
+  "integration_evidence_ref": "workflows/pi-shared-context-ux-02-initiatives/events/finish-complete-0048.json",
+  "artifact_correction_ref": "workflows/pi-shared-context-ux-02-initiatives/events/finish-artifact-correction-0049.json",
+  "latest_draft_snapshot_ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-0049.md"
 }

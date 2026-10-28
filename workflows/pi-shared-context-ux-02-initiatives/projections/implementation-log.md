@@ -170,3 +170,8 @@ Reviewed source `66c988a405aa7b8b95cd2cb6d207f8147036e708` / `efaf06ba84cf0ed378
 The surviving primary checkout passed136 tests (1871 expectations,11 files) and scoped TypeScript. Live Pi confirmed canonical initiative/child navigation, compact Events return at the same overview offset, independent Files, and restored Tracker context. Native JSON/text captures do not prove colours; the exact-source review inspected the earlier colour/monochrome matrix.
 
 Both recorded worktrees are removed. The reviewed feature branch is retained for provenance; the source workspace was already absent after its agent panes closed. [Finish result](../events/finish-result-0047.json) and [parent completion](../events/finish-complete-0048.json) are authoritative. [Integrated checks](../artifacts/evidence/finish-0040/integrated-validation.json), [live Pi observations](../artifacts/evidence/finish-0040/integrated-runtime-smoke.json), [ticket publication](../artifacts/evidence/finish-0040/ticket-completion-result.json), and [resource cleanup](../artifacts/evidence/finish-0040/resource-cleanup.json) record the exercised boundaries. No unresolved product question or blocking finding remains.
+
+
+## Finish snapshot link correction
+
+The original finish snapshot retained the projection-relative links. [Corrected finish snapshot](../artifacts/snapshots/pr-draft-0049.md) rebases those links for its snapshot directory. [Correction receipt](../events/finish-artifact-correction-0049.json) preserves the original artifact. Source, review, integration, ticket completion, and resource cleanup remain unchanged.
