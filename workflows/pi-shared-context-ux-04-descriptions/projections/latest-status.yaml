@@ -6,8 +6,8 @@
     "id": "pi-shared-context-ux-04-descriptions",
     "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md"
   },
-  "state": "FINISHING",
-  "latest_receipt": "finish-start-0013",
+  "state": "FINISHED",
+  "latest_receipt": "finish-complete-0021",
   "latest_source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
   "latest_source_tree": "ef2bd18cfd82d286abbbf2c58c5d58c6524e5017",
   "latest_review_verdict": "SUCCESS",
@@ -85,5 +85,30 @@
     }
   ],
   "active_agents": [],
-  "finish_checkpoint": "started"
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-04-descriptions/events/finish-result-0020.json",
+  "finish_checkpoint": "finished",
+  "base_before": "f9d3af6d7572de7d664b7040e9fdc2a3f30215f9",
+  "expected_merge_tree": "b5b4270cd1d69de529e180350e6296e72187e580",
+  "merged_commit": "2c653468027cfb0bfd099b7d12ce85c4e4db8c75",
+  "merged_tree": "b5b4270cd1d69de529e180350e6296e72187e580",
+  "merged_parents": [
+    "f9d3af6d7572de7d664b7040e9fdc2a3f30215f9"
+  ],
+  "review_source_mapping_verified": true,
+  "pushed": true,
+  "ticket_completed": true,
+  "worktree_removed": true,
+  "workspace_closed": true,
+  "source_branch_preserved": true,
+  "integration_branch_removed": true,
+  "ticket_completion_commit": "965f13f614317c9de0eb2baa6e68421be27f6309",
+  "remote_observed_head": "965f13f614317c9de0eb2baa6e68421be27f6309",
+  "remote_contains_merged_commit": true,
+  "canonical_ticket_ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+  "canonical_work_status": "completed",
+  "validation_ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/finish-0013/integrated-checks.json",
+  "native_smoke_ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/finish-0013/native-session.json",
+  "report_ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/finish-0013/report/index.html",
+  "report_validation_ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/finish-0013/report-validation.json",
+  "cleanup_ref": "workflows/pi-shared-context-ux-04-descriptions/artifacts/evidence/finish-0013/workspace-cleanup.json"
 }

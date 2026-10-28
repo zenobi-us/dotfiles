@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=39:119 screen=alternate title="π - repo"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repo                                                                                         │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Mixed initiative                                                                               │
+[008] [Ex│ [d] Full description                                                                                           │
+[009]   p│> I · Items 3                                                                                                   │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│ I · Phase: research                                                                                            │
+[012]   p│ Summary: Integrated mixed-record smoke.                                                                        │
+[013] /ru│>[research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │har
+[014] ed-│>                                  wrapped title without mixing its state                                       │
+[015]    │>tracker/tickets/R.md                                                                                           │
+[016] /ru│ [enhancement]   T                 Executable ticket                                          State: unclaimed  │har
+[017] ed-│ tracker/tickets/T.md                                                                                           │
+[018] /ru│ [Report]        N                 Canonical report                                           State: unavailable│har
+[019] ed-│ tracker/tickets/N.md                                                                                           │
+[020]    │                                                                                                                │
+[021]    │                                                                                                                │
+[022]  Wa│                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]    │                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Summary: Integrated mixed-record smoke.                                                                        │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux04-finish-native-EHwTHz/repo (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

@@ -1,0 +1,12 @@
+{
+  "ref": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+  "state": "completed",
+  "validation": {
+    "status": "passed",
+    "details": [
+      "Validated the selected record through the normal graph and tracker explorer readers."
+    ]
+  },
+  "recordSchema": "tracker-ticket/v1",
+  "rendered_graph_is_not_canonical_status": true
+}

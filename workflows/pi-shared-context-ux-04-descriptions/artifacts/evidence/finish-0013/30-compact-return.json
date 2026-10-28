@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    9,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repo",
+  "lines": [
+    " nstalls/github-earendil-works-pi/1.1.0",
+    " ╭────────────────────────────────────╮",
+    " │ Projects · Repo > repo             │",
+    " │  [1 Tracker]     2 Files    Tab fo…│",
+    " │ Initiat…  >  Mixed i…  >  Descrip… │",
+    " │  Mixed initiative · Description    │",
+    " │ Recorded paragraph 29: 界 é 👩‍💻 ful",
+    "─│ body content beyond the overview   │─",
+    " │ excerpt.                           │",
+    "─│>[Return]< [PgUp] [PgDn]            │─",
+    "/│↑↓ scroll · PgUp/Dn page · Esc re...│.",
+    "0.0%/0 (auto)                    unknown"
+  ]
+}

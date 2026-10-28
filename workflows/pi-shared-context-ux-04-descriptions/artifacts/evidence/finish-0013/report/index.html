@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pi-shared-context-ux-04-descriptions — integrated reader evidence</title>
+
+<!--
+  This report is self-contained. The assets/ directory is a sibling of this
+  file, so the report keeps working when it is moved, zipped, or attached to a
+  ticket. Do not change these paths to ../ or ../../.
+  Load order is tokens, base, then report. Do not add a <style> block.
+  See the writing-reports skill.
+-->
+<link rel="stylesheet" href="assets/theme/v1/tokens.css">
+<link rel="stylesheet" href="assets/theme/v1/base.css">
+<link rel="stylesheet" href="assets/report/v1/report.css">
+<script src="assets/lightbox/v1/lightbox.js"
+        data-figures=".figure"
+        data-caption=".figure__caption"
+        data-hint="Click image to zoom &middot; Esc to close"
+        data-label="Screenshot viewer"
+        defer></script>
+</head>
+<body>
+
+<!--
+  Strict BEM: every styled node carries a class. A node with no class is a node
+  with no style. The vocabulary is fixed - see references/markup.md in the
+  writing-reports skill. Do not invent a class.
+-->
+<div class="report">
+
+<h1 class="report__title">pi-shared-context-ux-04-descriptions — integrated reader evidence</h1>
+<p class="report__subtitle">Actual Pi loaded the integrated primary-workspace extension. The reader opened the full initiative body, reached its final line, retained compact return controls, and restored the selected child.</p>
+<p class="report__meta">28 October 2026 · Pi 1.1.0 · Termscope · dark theme · isolated temporary records.</p>
+
+<div class="card">
+  <h3 class="card__title">Result summary</h3>
+  <div class="summary"><table class="summary__grid">
+    <tr class="summary__row"><th class="summary__head">#</th><th class="summary__head">Check</th><th class="summary__head">Result</th></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#open">1</a></td><td class="summary__cell"><a class="summary__link" href="#open">Open the complete recorded body</a></td><td class="summary__cell"><a class="summary__link" href="#open"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#end">2</a></td><td class="summary__cell"><a class="summary__link" href="#end">Reach the final recorded line</a></td><td class="summary__cell"><a class="summary__link" href="#end"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#compact">3</a></td><td class="summary__cell"><a class="summary__link" href="#compact">Retain heading and focused Return at 40×12</a></td><td class="summary__cell"><a class="summary__link" href="#compact"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#origin">4</a></td><td class="summary__cell"><a class="summary__link" href="#origin">Restore the selected canonical child</a></td><td class="summary__cell"><a class="summary__link" href="#origin"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#notdone">5</a></td><td class="summary__cell"><a class="summary__link" href="#notdone">Full matrix and glyph conformance</a></td><td class="summary__cell"><a class="summary__link" href="#notdone"><span class="badge badge--info">Not repeated</span></a></td></tr>
+  </table></div>
+  <p class="card__meta">This is a focused post-integration smoke. It does not replace the independent exact-source reviews.</p>
+</div>
+
+<h2 class="report__section" id="method">Source and method</h2>
+<p class="report__text">Reviewed source <code class="code">946996c7bef540090de2c500e573cae3543b84f4</code> mapped to integration <code class="code">2c653468027cfb0bfd099b7d12ce85c4e4db8c75</code>. The integrated tree matched the prepared merge tree, with the recorded base as its sole parent.</p>
+<p class="report__text">The production extension loaded from the surviving primary checkout. The fixture contained a versioned initiative with three direct children and a long recorded body. Page Down reached the final sentinel. After resizing, Tab visibly focused Return; Enter restored the original initiative and selected research child.</p>
+<p class="report__text">The affected suite passed 144 tests and 1975 assertions across 11 files. The scoped TypeScript check exited 0. Commands and output travel in <a class="link" href="files/integrated-checks.json">integrated-checks.json</a>.</p>
+
+<h2 class="report__section" id="open">1 — Full recorded body <span class="badge badge--pass">Pass</span></h2>
+<figure class="figure">
+  <img class="figure__image" src="shots/10-reader-open.png" alt="Initiative description reader showing recorded sections and the beginning of its long body" width="1100" height="820">
+  <figcaption class="figure__caption"><strong class="figure__label">Beyond the summary.</strong> The reader showed the recorded sections, child links as text, and the body paragraphs under a persistent initiative heading.</figcaption>
+</figure>
+
+<h2 class="report__section" id="end">2 — Final recorded line <span class="badge badge--pass">Pass</span></h2>
+<figure class="figure">
+  <img class="figure__image" src="shots/20-reader-end.png" alt="Description reader showing paragraphs 57 through 70 and the final body marker" width="1100" height="820">
+  <figcaption class="figure__caption"><strong class="figure__label">Complete body reached.</strong> Page Down exposed “INTEGRATED DESCRIPTION FINAL LINE.” The reader did not stop at the overview excerpt.</figcaption>
+</figure>
+
+<h2 class="report__section" id="compact">3 — Compact return control <span class="badge badge--pass">Pass</span></h2>
+<figure class="figure">
+  <img class="figure__image" src="shots/30-compact-return.png" alt="40 by 12 terminal with the initiative description heading, body rows and a marked Return control" width="380" height="260">
+  <figcaption class="figure__caption"><strong class="figure__label">Usable return path.</strong> At 40×12, the heading and body remained reachable. The greater-than and less-than markers identified the focused Return control without relying on colour.</figcaption>
+</figure>
+
+<h2 class="report__section" id="origin">4 — Origin restored <span class="badge badge--pass">Pass</span></h2>
+<figure class="figure">
+  <img class="figure__image" src="shots/40-origin-restored.png" alt="Initiative overview with three child rows and research record R selected" width="1100" height="820">
+  <figcaption class="figure__caption"><strong class="figure__label">Same canonical child.</strong> Enter on Return restored the initiative overview with research record R still selected. The reader did not reset the child selection.</figcaption>
+</figure>
+
+<h2 class="report__section" id="notdone">Not covered</h2>
+<ul class="report__list">
+  <li class="report__item">This fresh smoke used the dark theme at 120×40 and 40×12. It did not repeat the complete colour/monochrome matrix. The implementation and independent reviews retain that separate evidence.</li>
+  <li class="report__item">PNG captures were rasterized from native Termscope SVG. Fallback fonts omit or alter some complex Unicode glyphs. These images prove the stated controls and navigation, not colour or Unicode glyph conformance. Native JSON and HTML remain in the original evidence directory.</li>
+  <li class="report__item">Live replacement, empty/unreadable recovery, project isolation and event restoration were not repeated manually here. They remain covered by the passing affected suite and exact-source review evidence.</li>
+  <li class="report__item">No provider prompt, workflow action or live user record was dispatched or changed. Offline startup notices and the existing shortcut conflict were not changed.</li>
+</ul>
+
+<h2 class="report__section" id="cleanup">Test data left behind</h2>
+<p class="report__text">The native process exited 0. The owned temporary repository and isolated configuration were removed. All nine parent-created dependency links were removed after ownership checks. No cleanup command remains for the fixture.</p>
+
+<h2 class="report__section" id="files">Related files</h2>
+<p class="report__text">These copies travel with the report. Their original paths describe the environment used for verification.</p>
+<ul class="report__list">
+  <li class="report__item"><a class="link" href="files/integration.json">Exact source-to-integration mapping</a></li>
+  <li class="report__item"><a class="link" href="files/integrated-checks.json">Affected suite and compiler output</a></li>
+  <li class="report__item"><a class="link" href="files/native-session.json">Native command, request ledger and observations</a></li>
+  <li class="report__item"><a class="link" href="files/cleanup.json">Owned-resource cleanup</a></li>
+</ul>
+
+</div>
+
+</body>
+</html>

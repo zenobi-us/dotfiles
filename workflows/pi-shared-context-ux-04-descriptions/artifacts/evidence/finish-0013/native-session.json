@@ -1,0 +1,1059 @@
+{
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "termscope",
+    "session",
+    "--cols",
+    "120",
+    "--rows",
+    "40",
+    "--",
+    "env",
+    "HOME=/tmp/ux04-finish-native-EHwTHz/home",
+    "PI_CODING_AGENT_DIR=/tmp/ux04-finish-native-EHwTHz/pi",
+    "PI_TELEMETRY=0",
+    "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "--offline",
+    "--no-session",
+    "--no-extensions",
+    "--no-mcp",
+    "--no-skills",
+    "--no-prompt-templates",
+    "--no-context-files",
+    "--no-tools",
+    "--no-themes",
+    "--use-theme",
+    "dark",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+  ],
+  "cwd": "/tmp/ux04-finish-native-EHwTHz/repo",
+  "source_commit": "946996c7bef540090de2c500e573cae3543b84f4",
+  "integrated_commit": "2c653468027cfb0bfd099b7d12ce85c4e4db8c75",
+  "integrated_tree": "b5b4270cd1d69de529e180350e6296e72187e580",
+  "ledger": [
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:47:34.797Z",
+      "id": 1,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 1000
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:47:36.549Z",
+      "id": 1,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:47:36.549Z",
+      "id": 2,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:47:36.549Z",
+      "id": 2,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:47:36.549Z",
+      "id": 3,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:47:36.549Z",
+      "id": 3,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:47:36.549Z",
+      "id": 4,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 600
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:47:37.705Z",
+      "id": 4,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:47:37.705Z",
+      "id": 5,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:47:37.706Z",
+      "id": 5,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=34:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives                                                                                                    │\n[008] [Ex│> Initiatives · title / phase / Items                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>Mixed initiative                                                                Phase: research     Items: 3   │\n[011] [Ex│>I                                                                                                              │\n[012]   p│ Ungrouped                                                                       Phase: unavailable  Items: 2   │\n[013] /ru│ Collection                                                                                                     │har\n[014] ed-│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │har\n[017] ed-│                                                                                                                │\n[018] /ru│                                                                                                                │har\n[019] ed-│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/initiatives/I/index.md                                                                                 │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux04-finish-native-EHwTHz/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:05.135Z",
+      "id": 6,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:05.135Z",
+      "id": 6,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:05.135Z",
+      "id": 7,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:05.443Z",
+      "id": 7,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:05.443Z",
+      "id": 8,
+      "method": "type",
+      "params": {
+        "text": "d"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:05.443Z",
+      "id": 8,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:05.443Z",
+      "id": 9,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:05.770Z",
+      "id": 9,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:05.770Z",
+      "id": 10,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:05.770Z",
+      "id": 10,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=37:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi│ Initiatives  >  Mixed initiative  >  Description                                                               │\n[007]    │> Mixed initiative · Description                                                                                │\n[008] [Ex│ ## Problem Statement                                                                                           │\n[009]   p│ Integrated mixed-record smoke.                                                                                 │\n[010]    │                                                                                                                │\n[011] [Ex│ ## Solution                                                                                                    │\n[012]   p│ Read canonical mixed child records.                                                                            │\n[013] /ru│                                                                                                                │har\n[014] ed-│ ## Tickets                                                                                                     │\n[015]    │ - [Research](../../tickets/R.md)                                                                               │\n[016] /ru│ - [Ticket](../../tickets/T.md)                                                                                 │har\n[017] ed-│ - [Report](../../tickets/N.md)                                                                                 │\n[018] /ru│                                                                                                                │har\n[019] ed-│ ## Comments                                                                                                    │\n[020]    │ Owned temporary smoke fixture.                                                                                 │\n[021]    │                                                                                                                │\n[022]  Wa│ ## Full reader body                                                                                            │\n[023]    │                                                                                                                │\n[024]    │ Recorded paragraph 1: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[025]    │                                                                                                                │\n[026]    │ Recorded paragraph 2: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[027]    │                                                                                                                │\n[028]    │ Recorded paragraph 3: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[029]    │                                                                                                                │\n[030]    │ Recorded paragraph 4: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[031]    │                                                                                                                │\n[032]    │ Recorded paragraph 5: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[033]    │                                                                                                                │\n[034]    │ Recorded paragraph 6: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[035]    │                                                                                                                │\n[036] ───│ Recorded paragraph 7: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │─\n[037]    │ [Return]  [PgUp] [PgDn]                                                                                        │\n[038] ───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───\n[039] /tmp/ux04-finish-native-EHwTHz/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:36.790Z",
+      "id": 11,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:36.790Z",
+      "id": 11,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=37:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi│ Initiatives  >  Mixed initiative  >  Description                                                               │\n[007]    │> Mixed initiative · Description                                                                                │\n[008] [Ex│ ## Problem Statement                                                                                           │\n[009]   p│ Integrated mixed-record smoke.                                                                                 │\n[010]    │                                                                                                                │\n[011] [Ex│ ## Solution                                                                                                    │\n[012]   p│ Read canonical mixed child records.                                                                            │\n[013] /ru│                                                                                                                │har\n[014] ed-│ ## Tickets                                                                                                     │\n[015]    │ - [Research](../../tickets/R.md)                                                                               │\n[016] /ru│ - [Ticket](../../tickets/T.md)                                                                                 │har\n[017] ed-│ - [Report](../../tickets/N.md)                                                                                 │\n[018] /ru│                                                                                                                │har\n[019] ed-│ ## Comments                                                                                                    │\n[020]    │ Owned temporary smoke fixture.                                                                                 │\n[021]    │                                                                                                                │\n[022]  Wa│ ## Full reader body                                                                                            │\n[023]    │                                                                                                                │\n[024]    │ Recorded paragraph 1: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[025]    │                                                                                                                │\n[026]    │ Recorded paragraph 2: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[027]    │                                                                                                                │\n[028]    │ Recorded paragraph 3: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[029]    │                                                                                                                │\n[030]    │ Recorded paragraph 4: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[031]    │                                                                                                                │\n[032]    │ Recorded paragraph 5: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[033]    │                                                                                                                │\n[034]    │ Recorded paragraph 6: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │\n[035]    │                                                                                                                │\n[036] ───│ Recorded paragraph 7: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │─\n[037]    │ [Return]  [PgUp] [PgDn]                                                                                        │\n[038] ───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───\n[039] /tmp/ux04-finish-native-EHwTHz/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:36.790Z",
+      "id": 12,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:36.791Z",
+      "id": 12,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          37,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repo                                                                                         │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi│ Initiatives  >  Mixed initiative  >  Description                                                               │",
+          "   │> Mixed initiative · Description                                                                                │",
+          "[Ex│ ## Problem Statement                                                                                           │",
+          "  p│ Integrated mixed-record smoke.                                                                                 │",
+          "   │                                                                                                                │",
+          "[Ex│ ## Solution                                                                                                    │",
+          "  p│ Read canonical mixed child records.                                                                            │",
+          "/ru│                                                                                                                │har",
+          "ed-│ ## Tickets                                                                                                     │",
+          "   │ - [Research](../../tickets/R.md)                                                                               │",
+          "/ru│ - [Ticket](../../tickets/T.md)                                                                                 │har",
+          "ed-│ - [Report](../../tickets/N.md)                                                                                 │",
+          "/ru│                                                                                                                │har",
+          "ed-│ ## Comments                                                                                                    │",
+          "   │ Owned temporary smoke fixture.                                                                                 │",
+          "   │                                                                                                                │",
+          " Wa│ ## Full reader body                                                                                            │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 1: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 2: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 3: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 4: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 5: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 6: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │",
+          "   │                                                                                                                │",
+          "───│ Recorded paragraph 7: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │─",
+          "   │ [Return]  [PgUp] [PgDn]                                                                                        │",
+          "───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───",
+          "/tmp/ux04-finish-native-EHwTHz/repo (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:36.791Z",
+      "id": 13,
+      "method": "snapshot",
+      "params": {
+        "format": "html"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:36.791Z",
+      "id": 13,
+      "result": {
+        "format": "html",
+        "content": "<div style=\"font-family: monospace; white-space: pre;\">\n <div style=\"display: inline;color: rgb(228, 138, 122);background-color: rgb(79, 142, 179);\">&#9600;</div><div style=\"display: inline;color: rgb(228, 138, 122);\">&#9600;&#9608;</div>  <div style=\"display: inline;color: rgb(126, 136, 142);\">v1.1.0</div>                                                                                                            \n <div style=\"display: inline;color: rgb(79, 142, 179);\">&#9608;&#9600;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9581;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9582;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pr</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Projects &#183; Repo &gt; repo</div>                                                                                         <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\"> [1 Tracker] </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">  2 Files  </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">Tab focus &#183; Space/Enter activate</div>                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pi</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Initiatives </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Mixed initiative </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(222, 224, 225);\"> Description </div>                                                              <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\">&gt; Mixed initiative &#183; Description</div>                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">## Problem Statement</div>                                                                                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(126, 136, 142);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Integrated mixed-record smoke.</div>                                                                                 <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">## Solution</div>                                                                                                    <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Read canonical mixed child records.</div>                                                                            <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">har</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">## Tickets</div>                                                                                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">   </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">- [Research](../../tickets/R.md)</div>                                                                               <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">- [Ticket](../../tickets/T.md)</div>                                                                                 <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">har</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">- [Report](../../tickets/N.md)</div>                                                                                 <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">har</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">## Comments</div>                                                                                                    <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Owned temporary smoke fixture.</div>                                                                                 <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(205, 154, 34);\">Wa</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">## Full reader body</div>                                                                                            <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 1: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 2: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 3: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 4: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 5: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 6: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 7: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;</div>\n<div style=\"display: inline;filter: invert(100%);\"> </div>  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> [Return]  [PgUp] [PgDn]</div>                                                                                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\">&#8593;&#8595; scroll &#183; PgUp/Dn page &#183; Esc return</div>                                                                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">/tmp/ux04-finish-native-EHwTHz/repo (master)</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">0.0%/0 (auto)                                                                                                    unknown</div></div>"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:36.791Z",
+      "id": 14,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:36.792Z",
+      "id": 14,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ▀▀█  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Pr│ Projects · Repo &gt; repo                                                                                         │</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi│ Initiatives  &gt;  Mixed initiative  &gt;  Description                                                               │</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\">   │&gt; Mixed initiative · Description                                                                                │</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">[Ex│ ## Problem Statement                                                                                           │</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  p│ Integrated mixed-record smoke.                                                                                 │</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">[Ex│ ## Solution                                                                                                    │</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  p│ Read canonical mixed child records.                                                                            │</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │har</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">ed-│ ## Tickets                                                                                                     │</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">   │ - [Research](../../tickets/R.md)                                                                               │</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">/ru│ - [Ticket](../../tickets/T.md)                                                                                 │har</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">ed-│ - [Report](../../tickets/N.md)                                                                                 │</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │har</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">ed-│ ## Comments                                                                                                    │</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">   │ Owned temporary smoke fixture.                                                                                 │</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\"> Wa│ ## Full reader body                                                                                            │</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 1: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │</text>\n<text x=\"10\" y=\"504\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"524\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 2: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │</text>\n<text x=\"10\" y=\"544\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"564\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 3: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │</text>\n<text x=\"10\" y=\"584\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"604\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 4: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │</text>\n<text x=\"10\" y=\"624\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"644\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 5: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │</text>\n<text x=\"10\" y=\"664\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"684\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 6: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">───│ Recorded paragraph 7: 界 é 👩‍💻 full body content beyond the overview excerpt.                                   │─</text>\n<text x=\"10\" y=\"744\" fill=\"rgb(255,255,255)\">   │ [Return]  [PgUp] [PgDn]                                                                                        │</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux04-finish-native-EHwTHz/repo (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                                                                                                    unknown</text>\n</svg>\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.212Z",
+      "id": 15,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.212Z",
+      "id": 15,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.212Z",
+      "id": 16,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.322Z",
+      "id": 16,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.322Z",
+      "id": 17,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.322Z",
+      "id": 17,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.322Z",
+      "id": 18,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.430Z",
+      "id": 18,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.430Z",
+      "id": 19,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.430Z",
+      "id": 19,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.430Z",
+      "id": 20,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.537Z",
+      "id": 20,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.537Z",
+      "id": 21,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.537Z",
+      "id": 21,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.537Z",
+      "id": 22,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.645Z",
+      "id": 22,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.645Z",
+      "id": 23,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.645Z",
+      "id": 23,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.645Z",
+      "id": 24,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.752Z",
+      "id": 24,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.752Z",
+      "id": 25,
+      "method": "press",
+      "params": {
+        "key": "<next>"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.753Z",
+      "id": 25,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.753Z",
+      "id": 26,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 100
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.859Z",
+      "id": 26,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.859Z",
+      "id": 27,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.860Z",
+      "id": 27,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi│ Initiatives  >  Mixed initiative  >  Description                                                               │\n[007]    │> Mixed initiative · Description                                                                                │\n[008] [Ex│ Recorded paragraph 57: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[009]   p│                                                                                                                │\n[010]    │ Recorded paragraph 58: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[011] [Ex│                                                                                                                │\n[012]   p│ Recorded paragraph 59: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[013] /ru│                                                                                                                │har\n[014] ed-│ Recorded paragraph 60: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[015]    │                                                                                                                │\n[016] /ru│ Recorded paragraph 61: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │r\n[017] ed-│                                                                                                                │\n[018] /ru│ Recorded paragraph 62: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │r\n[019] ed-│                                                                                                                │\n[020]    │ Recorded paragraph 63: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[021]    │                                                                                                                │\n[022]  Wa│ Recorded paragraph 64: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[023]    │                                                                                                                │\n[024]    │ Recorded paragraph 65: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[025]    │                                                                                                                │\n[026]    │ Recorded paragraph 66: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[027]    │                                                                                                                │\n[028]    │ Recorded paragraph 67: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[029]    │                                                                                                                │\n[030]    │ Recorded paragraph 68: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[031]    │                                                                                                                │\n[032]    │ Recorded paragraph 69: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[033]    │                                                                                                                │\n[034]    │ Recorded paragraph 70: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[035]    │                                                                                                                │\n[036] ───│ INTEGRATED DESCRIPTION FINAL LINE.                                                                             │───\n[037]    │ [Return]  [PgUp] [PgDn]                                                                                        │\n[038] ───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───\n[039] /tmp/ux04-finish-native-EHwTHz/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.860Z",
+      "id": 28,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.861Z",
+      "id": 28,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi│ Initiatives  >  Mixed initiative  >  Description                                                               │\n[007]    │> Mixed initiative · Description                                                                                │\n[008] [Ex│ Recorded paragraph 57: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[009]   p│                                                                                                                │\n[010]    │ Recorded paragraph 58: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[011] [Ex│                                                                                                                │\n[012]   p│ Recorded paragraph 59: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[013] /ru│                                                                                                                │har\n[014] ed-│ Recorded paragraph 60: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[015]    │                                                                                                                │\n[016] /ru│ Recorded paragraph 61: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │r\n[017] ed-│                                                                                                                │\n[018] /ru│ Recorded paragraph 62: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │r\n[019] ed-│                                                                                                                │\n[020]    │ Recorded paragraph 63: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[021]    │                                                                                                                │\n[022]  Wa│ Recorded paragraph 64: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[023]    │                                                                                                                │\n[024]    │ Recorded paragraph 65: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[025]    │                                                                                                                │\n[026]    │ Recorded paragraph 66: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[027]    │                                                                                                                │\n[028]    │ Recorded paragraph 67: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[029]    │                                                                                                                │\n[030]    │ Recorded paragraph 68: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[031]    │                                                                                                                │\n[032]    │ Recorded paragraph 69: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[033]    │                                                                                                                │\n[034]    │ Recorded paragraph 70: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │\n[035]    │                                                                                                                │\n[036] ───│ INTEGRATED DESCRIPTION FINAL LINE.                                                                             │───\n[037]    │ [Return]  [PgUp] [PgDn]                                                                                        │\n[038] ───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───\n[039] /tmp/ux04-finish-native-EHwTHz/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.861Z",
+      "id": 29,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.861Z",
+      "id": 29,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          35,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repo                                                                                         │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi│ Initiatives  >  Mixed initiative  >  Description                                                               │",
+          "   │> Mixed initiative · Description                                                                                │",
+          "[Ex│ Recorded paragraph 57: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "  p│                                                                                                                │",
+          "   │ Recorded paragraph 58: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "[Ex│                                                                                                                │",
+          "  p│ Recorded paragraph 59: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "/ru│                                                                                                                │har",
+          "ed-│ Recorded paragraph 60: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          "/ru│ Recorded paragraph 61: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │r",
+          "ed-│                                                                                                                │",
+          "/ru│ Recorded paragraph 62: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │r",
+          "ed-│                                                                                                                │",
+          "   │ Recorded paragraph 63: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          " Wa│ Recorded paragraph 64: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 65: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 66: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 67: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 68: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 69: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          "   │ Recorded paragraph 70: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │",
+          "   │                                                                                                                │",
+          "───│ INTEGRATED DESCRIPTION FINAL LINE.                                                                             │───",
+          "   │ [Return]  [PgUp] [PgDn]                                                                                        │",
+          "───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───",
+          "/tmp/ux04-finish-native-EHwTHz/repo (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.861Z",
+      "id": 30,
+      "method": "snapshot",
+      "params": {
+        "format": "html"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.862Z",
+      "id": 30,
+      "result": {
+        "format": "html",
+        "content": "<div style=\"font-family: monospace; white-space: pre;\">\n <div style=\"display: inline;color: rgb(228, 138, 122);background-color: rgb(79, 142, 179);\">&#9600;</div><div style=\"display: inline;color: rgb(228, 138, 122);\">&#9600;&#9608;</div>  <div style=\"display: inline;color: rgb(126, 136, 142);\">v1.1.0</div>                                                                                                            \n <div style=\"display: inline;color: rgb(79, 142, 179);\">&#9608;&#9600;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9581;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9582;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pr</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Projects &#183; Repo &gt; repo</div>                                                                                         <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\"> [1 Tracker] </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">  2 Files  </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">Tab focus &#183; Space/Enter activate</div>                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pi</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Initiatives </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Mixed initiative </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(222, 224, 225);\"> Description </div>                                                              <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\">&gt; Mixed initiative &#183; Description</div>                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 57: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n<div style=\"display: inline;color: rgb(126, 136, 142);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 58: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 59: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\"> </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">har</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 60: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n<div style=\"display: inline;color: rgb(205, 154, 34);\">   </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 61: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">r</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 62: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">r</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 63: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(205, 154, 34);\">Wa</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 64: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\"> </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 65: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 66: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 67: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 68: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 69: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 70: &#30028; e&#769; &#128105;&#8205;&#128187; full body content beyond the overview excerpt.</div>                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">INTEGRATED DESCRIPTION FINAL LINE.</div>                                                                             <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;filter: invert(100%);\"> </div>  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> [Return]  [PgUp] [PgDn]</div>                                                                                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\">&#8593;&#8595; scroll &#183; PgUp/Dn page &#183; Esc return</div>                                                                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">/tmp/ux04-finish-native-EHwTHz/repo (master)</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">0.0%/0 (auto)                                                                                                    unknown</div></div>"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:37.862Z",
+      "id": 31,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:37.862Z",
+      "id": 31,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ▀▀█  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Pr│ Projects · Repo &gt; repo                                                                                         │</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi│ Initiatives  &gt;  Mixed initiative  &gt;  Description                                                               │</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\">   │&gt; Mixed initiative · Description                                                                                │</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">[Ex│ Recorded paragraph 57: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  p│                                                                                                                │</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 58: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">[Ex│                                                                                                                │</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  p│ Recorded paragraph 59: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │har</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">ed-│ Recorded paragraph 60: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">/ru│ Recorded paragraph 61: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │r</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">ed-│                                                                                                                │</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">/ru│ Recorded paragraph 62: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │r</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">ed-│                                                                                                                │</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 63: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\"> Wa│ Recorded paragraph 64: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 65: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"504\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"524\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 66: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"544\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"564\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 67: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"584\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"604\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 68: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"624\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"644\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 69: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"664\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"684\" fill=\"rgb(255,255,255)\">   │ Recorded paragraph 70: 界 é 👩‍💻 full body content beyond the overview excerpt.                                  │</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">───│ INTEGRATED DESCRIPTION FINAL LINE.                                                                             │───</text>\n<text x=\"10\" y=\"744\" fill=\"rgb(255,255,255)\">   │ [Return]  [PgUp] [PgDn]                                                                                        │</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">───│↑↓ scroll · PgUp/Dn page · Esc return                                                                           │───</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux04-finish-native-EHwTHz/repo (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                                                                                                    unknown</text>\n</svg>\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:38.276Z",
+      "id": 32,
+      "method": "resize",
+      "params": {
+        "cols": 40,
+        "rows": 12
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:38.276Z",
+      "id": 32,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:38.276Z",
+      "id": 33,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:38.583Z",
+      "id": 33,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:38.583Z",
+      "id": 34,
+      "method": "press",
+      "params": {
+        "key": "TAB"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:38.583Z",
+      "id": 34,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:38.583Z",
+      "id": 35,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:38.787Z",
+      "id": 35,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:49:38.787Z",
+      "id": 36,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:49:38.788Z",
+      "id": 36,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=9:39 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > repo             │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]  │ Initiat…  >  Mixed i…  >  Descrip… │\n[006]  │  Mixed initiative · Description    │\n[007]  │ Recorded paragraph 29: 界 é 👩‍💻 ful\n[008] ─│ body content beyond the overview   │─\n[009]  │ excerpt.                           │\n[010] ─│>[Return]< [PgUp] [PgDn]            │─\n[011] /│↑↓ scroll · PgUp/Dn page · Esc re...│.\n[012] 0.0%/0 (auto)                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:05.404Z",
+      "id": 37,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:05.404Z",
+      "id": 37,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=9:39 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > repo             │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]  │ Initiat…  >  Mixed i…  >  Descrip… │\n[006]  │  Mixed initiative · Description    │\n[007]  │ Recorded paragraph 29: 界 é 👩‍💻 ful\n[008] ─│ body content beyond the overview   │─\n[009]  │ excerpt.                           │\n[010] ─│>[Return]< [PgUp] [PgDn]            │─\n[011] /│↑↓ scroll · PgUp/Dn page · Esc re...│.\n[012] 0.0%/0 (auto)                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:05.404Z",
+      "id": 38,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:05.404Z",
+      "id": 38,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=40 rows=12 cursor=9:39 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001]  nstalls/github-earendil-works-pi/1.1.0\n[002]  ╭────────────────────────────────────╮\n[003]  │ Projects · Repo > repo             │\n[004]  │  [1 Tracker]     2 Files    Tab fo…│\n[005]  │ Initiat…  >  Mixed i…  >  Descrip… │\n[006]  │  Mixed initiative · Description    │\n[007]  │ Recorded paragraph 29: 界 é 👩‍💻 ful\n[008] ─│ body content beyond the overview   │─\n[009]  │ excerpt.                           │\n[010] ─│>[Return]< [PgUp] [PgDn]            │─\n[011] /│↑↓ scroll · PgUp/Dn page · Esc re...│.\n[012] 0.0%/0 (auto)                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:05.404Z",
+      "id": 39,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:05.405Z",
+      "id": 39,
+      "result": {
+        "cols": 40,
+        "rows": 12,
+        "cursor": [
+          9,
+          39
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          " nstalls/github-earendil-works-pi/1.1.0",
+          " ╭────────────────────────────────────╮",
+          " │ Projects · Repo > repo             │",
+          " │  [1 Tracker]     2 Files    Tab fo…│",
+          " │ Initiat…  >  Mixed i…  >  Descrip… │",
+          " │  Mixed initiative · Description    │",
+          " │ Recorded paragraph 29: 界 é 👩‍💻 ful",
+          "─│ body content beyond the overview   │─",
+          " │ excerpt.                           │",
+          "─│>[Return]< [PgUp] [PgDn]            │─",
+          "/│↑↓ scroll · PgUp/Dn page · Esc re...│.",
+          "0.0%/0 (auto)                    unknown"
+        ]
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:05.405Z",
+      "id": 40,
+      "method": "snapshot",
+      "params": {
+        "format": "html"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:05.405Z",
+      "id": 40,
+      "result": {
+        "format": "html",
+        "content": "<div style=\"font-family: monospace; white-space: pre;\"> <div style=\"display: inline;color: rgb(205, 154, 34);\">nstalls/github-earendil-works-pi/1.1.0 </div>\n <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9581;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9582;</div><div style=\"display: inline;color: rgb(205, 154, 34);\"> </div>\n <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Projects &#183; Repo &gt; repo</div>             <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\"> </div>\n <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\"> [1 Tracker] </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">  2 Files  </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">Tab fo</div>&#8230;<div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\"> </div>\n <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Initiat</div>&#8230; <div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Mixed i</div>&#8230; <div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(222, 224, 225);\"> Descrip</div>&#8230; <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\"> </div>\n <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\">  Mixed initiative &#183; Description</div>    <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Recorded paragraph 29: &#30028; e&#769; &#128105;&#8205;&#128187; ful</div> \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">body content beyond the overview</div>   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;</div>\n<div style=\"display: inline;filter: invert(100%);\"> </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">excerpt.</div>                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\">&gt;[Return]&lt; [PgUp] [PgDn]</div>            <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">/</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\">&#8593;&#8595; scroll &#183; PgUp/Dn page &#183; Esc re</div>...<div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(126, 136, 142);\">.</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">0.0%/0 (auto)                    unknown</div></div>"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:05.405Z",
+      "id": 41,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:05.405Z",
+      "id": 41,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 380 260\" width=\"380\" height=\"260\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"24\" fill=\"rgb(255,255,255)\"> nstalls/github-earendil-works-pi/1.1.0</text>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ╭────────────────────────────────────╮</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> │ Projects · Repo &gt; repo             │</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> │  [1 Tracker]     2 Files    Tab fo…│</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\"> │ Initiat…  &gt;  Mixed i…  &gt;  Descrip… │</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> │  Mixed initiative · Description    │</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\"> │ Recorded paragraph 29: 界 é 👩‍💻 ful</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">─│ body content beyond the overview   │─</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\"> │ excerpt.                           │</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">─│&gt;[Return]&lt; [PgUp] [PgDn]            │─</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">/│↑↓ scroll · PgUp/Dn page · Esc re...│.</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                    unknown</text>\n</svg>\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:05.795Z",
+      "id": 42,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:05.795Z",
+      "id": 42,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:05.795Z",
+      "id": 43,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.098Z",
+      "id": 43,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:06.098Z",
+      "id": 44,
+      "method": "resize",
+      "params": {
+        "cols": 120,
+        "rows": 40
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.098Z",
+      "id": 44,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:06.098Z",
+      "id": 45,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 250
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.405Z",
+      "id": 45,
+      "result": {}
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:06.405Z",
+      "id": 46,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.406Z",
+      "id": 46,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=39:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Mixed initiative                                                                               │\n[008] [Ex│ [d] Full description                                                                                           │\n[009]   p│> I · Items 3                                                                                                   │\n[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[011] [Ex│ I · Phase: research                                                                                            │\n[012]   p│ Summary: Integrated mixed-record smoke.                                                                        │\n[013] /ru│>[research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │har\n[014] ed-│>                                  wrapped title without mixing its state                                       │\n[015]    │>tracker/tickets/R.md                                                                                           │\n[016] /ru│ [enhancement]   T                 Executable ticket                                          State: unclaimed  │har\n[017] ed-│ tracker/tickets/T.md                                                                                           │\n[018] /ru│ [Report]        N                 Canonical report                                           State: unavailable│har\n[019] ed-│ tracker/tickets/N.md                                                                                           │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ Summary: Integrated mixed-record smoke.                                                                        │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux04-finish-native-EHwTHz/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:06.407Z",
+      "id": 47,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.407Z",
+      "id": 47,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=39:119 screen=alternate title=\"π - repo\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repo                                                                                         │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Mixed initiative                                                                               │\n[008] [Ex│ [d] Full description                                                                                           │\n[009]   p│> I · Items 3                                                                                                   │\n[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[011] [Ex│ I · Phase: research                                                                                            │\n[012]   p│ Summary: Integrated mixed-record smoke.                                                                        │\n[013] /ru│>[research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │har\n[014] ed-│>                                  wrapped title without mixing its state                                       │\n[015]    │>tracker/tickets/R.md                                                                                           │\n[016] /ru│ [enhancement]   T                 Executable ticket                                          State: unclaimed  │har\n[017] ed-│ tracker/tickets/T.md                                                                                           │\n[018] /ru│ [Report]        N                 Canonical report                                           State: unavailable│har\n[019] ed-│ tracker/tickets/N.md                                                                                           │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ Summary: Integrated mixed-record smoke.                                                                        │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux04-finish-native-EHwTHz/repo (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:06.407Z",
+      "id": 48,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.408Z",
+      "id": 48,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          39,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repo",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repo                                                                                         │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives  >  Mixed initiative                                                                               │",
+          "[Ex│ [d] Full description                                                                                           │",
+          "  p│> I · Items 3                                                                                                   │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "[Ex│ I · Phase: research                                                                                            │",
+          "  p│ Summary: Integrated mixed-record smoke.                                                                        │",
+          "/ru│>[research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │har",
+          "ed-│>                                  wrapped title without mixing its state                                       │",
+          "   │>tracker/tickets/R.md                                                                                           │",
+          "/ru│ [enhancement]   T                 Executable ticket                                          State: unclaimed  │har",
+          "ed-│ tracker/tickets/T.md                                                                                           │",
+          "/ru│ [Report]        N                 Canonical report                                           State: unavailable│har",
+          "ed-│ tracker/tickets/N.md                                                                                           │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          " Wa│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Summary: Integrated mixed-record smoke.                                                                        │",
+          "───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───",
+          "   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux04-finish-native-EHwTHz/repo (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:06.408Z",
+      "id": 49,
+      "method": "snapshot",
+      "params": {
+        "format": "html"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.409Z",
+      "id": 49,
+      "result": {
+        "format": "html",
+        "content": "<div style=\"font-family: monospace; white-space: pre;\">\n <div style=\"display: inline;color: rgb(228, 138, 122);background-color: rgb(79, 142, 179);\">&#9600;</div><div style=\"display: inline;color: rgb(228, 138, 122);\">&#9600;&#9608;</div>  <div style=\"display: inline;color: rgb(126, 136, 142);\">v1.1.0</div>                                                                                                            \n <div style=\"display: inline;color: rgb(79, 142, 179);\">&#9608;&#9600;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9581;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9582;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pr</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Projects &#183; Repo &gt; repo</div>                                                                                         <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\"> [1 Tracker] </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">  2 Files  </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">Tab focus &#183; Space/Enter activate</div>                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pi</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Initiatives </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(222, 224, 225);\"> Mixed initiative </div>                                                                              <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> [d] Full description </div>                                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(126, 136, 142);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>&gt; I &#183; Items 3                                                                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\">I &#183; Phase: research</div>                                                                                            <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(157, 165, 169);\">Summary: Integrated mixed-record smoke.</div>                                                                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">[research]    </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">R               </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(222, 224, 225);background-color: rgb(33, 59, 73);\">Research &#30028;: compare canonical sources and retain a long </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">State: draft      </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">har</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">              </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">                </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(222, 224, 225);background-color: rgb(33, 59, 73);\">wrapped title without mixing its state                   </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">                  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">   </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">tracker/tickets/R.md</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                                                                                           </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\">[enhancement] </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">T               </div>  <div style=\"display: inline;color: rgb(222, 224, 225);\">Executable ticket                                        </div>  <div style=\"display: inline;color: rgb(167, 152, 215);\">State: unclaimed  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">har</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(157, 165, 169);\">tracker/tickets/T.md</div>                                                                                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\">[Report]      </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">N               </div>  <div style=\"display: inline;color: rgb(222, 224, 225);\">Canonical report                                         </div>  <div style=\"display: inline;color: rgb(167, 152, 215);\">State: unavailable</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">har</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(157, 165, 169);\">tracker/tickets/N.md</div>                                                                                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(205, 154, 34);\">Wa</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> Summary: Integrated mixed-record smoke.</div>                                                                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> Esc back &#183; Enter drill &#183; &#8593;&#8595; move &#183; Tab/Shift+Tab focus &#183; PgUp/Dn scroll &#183; a actions &#183; h initiatives &#183; R refresh</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;filter: invert(100%);\"> </div>  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9584;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9583;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">/tmp/ux04-finish-native-EHwTHz/repo (master)</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">0.0%/0 (auto)                                                                                                    unknown</div></div>"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:06.409Z",
+      "id": 50,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.409Z",
+      "id": 50,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ▀▀█  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Pr│ Projects · Repo &gt; repo                                                                                         │</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\">   │ Initiatives  &gt;  Mixed initiative                                                                               │</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">[Ex│ [d] Full description                                                                                           │</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  p│&gt; I · Items 3                                                                                                   │</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">[Ex│ I · Phase: research                                                                                            │</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  p│ Summary: Integrated mixed-record smoke.                                                                        │</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">/ru│&gt;[research]      R                 Research 界: compare canonical sources and retain a long   State: draft      │har</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">ed-│&gt;                                  wrapped title without mixing its state                                       │</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">   │&gt;tracker/tickets/R.md                                                                                           │</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">/ru│ [enhancement]   T                 Executable ticket                                          State: unclaimed  │har</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">ed-│ tracker/tickets/T.md                                                                                           │</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">/ru│ [Report]        N                 Canonical report                                           State: unavailable│har</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">ed-│ tracker/tickets/N.md                                                                                           │</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\"> Wa│                                                                                                                │</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"504\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"524\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"544\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"564\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"584\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"604\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"624\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"644\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"664\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"684\" fill=\"rgb(255,255,255)\">   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">   │ Summary: Integrated mixed-record smoke.                                                                        │</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───</text>\n<text x=\"10\" y=\"744\" fill=\"rgb(255,255,255)\">   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux04-finish-native-EHwTHz/repo (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                                                                                                    unknown</text>\n</svg>\n"
+      }
+    },
+    {
+      "kind": "request",
+      "at": "2026-10-28T21:51:06.844Z",
+      "id": 51,
+      "method": "close",
+      "params": {}
+    },
+    {
+      "kind": "response",
+      "at": "2026-10-28T21:51:06.945Z",
+      "id": 51,
+      "result": {
+        "exit_code": 0
+      }
+    }
+  ],
+  "close": {
+    "exit_code": 0
+  },
+  "exit_code": 0,
+  "stderr": "",
+  "observations": [
+    "Full recorded initiative body opens",
+    "PageDown reaches INTEGRATED DESCRIPTION FINAL LINE.",
+    "40x12 retains heading and visibly focused Return",
+    "Return activates and restores the original initiative with selected research child"
+  ],
+  "limits": [
+    "Dark-theme structural smoke only, not a fresh full colour/monochrome matrix.",
+    "Native SVG uses fallback glyphs; complex Unicode glyph rendering is not a conformance claim. Native JSON and HTML are retained.",
+    "Existing Pi startup shortcut conflict and no-model notices are outside this change. No prompt or workflow action was dispatched."
+  ]
+}

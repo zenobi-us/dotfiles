@@ -1,0 +1,25 @@
+{
+  "id": "cli:worktree:list",
+  "result": {
+    "source": {
+      "repo_key": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git",
+      "repo_name": "Dotfiles",
+      "repo_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "source_checkout_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "source_workspace_id": "w64"
+    },
+    "type": "worktree_list",
+    "worktrees": [
+      {
+        "branch": "master",
+        "is_bare": false,
+        "is_detached": false,
+        "is_linked_worktree": false,
+        "is_prunable": false,
+        "label": "Dotfiles",
+        "open_workspace_id": "w64",
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      }
+    ]
+  }
+}

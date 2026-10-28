@@ -1,0 +1,83 @@
+[
+  [
+    "docs/agents/issue-tracker.md",
+    "Config",
+    {
+      "backend": "local-markdown",
+      "issue-root": "tracker/tickets",
+      "initiative-root": "tracker/initiatives"
+    },
+    "Native acceptance tracker."
+  ],
+  [
+    "tracker/tickets/R.md",
+    "research",
+    {
+      "id": "R",
+      "title": "Research 界: compare canonical sources and retain a long wrapped title without mixing its state",
+      "status": "draft",
+      "source": "sources/study",
+      "author": "Native reader",
+      "parent": "I"
+    },
+    "Recorded finding: preserve canonical identity.\nEvidence: sources/study.\n\nRESEARCH COMPLETE BODY MARKER."
+  ],
+  [
+    "tracker/tickets/T.md",
+    "enhancement",
+    {
+      "id": "T",
+      "title": "Executable ticket",
+      "work_status": "unclaimed",
+      "blocked_by": [],
+      "schema": "tracker-ticket/v1",
+      "parent": "I"
+    },
+    "Ticket acceptance details."
+  ],
+  [
+    "tracker/tickets/N.md",
+    "Report",
+    {
+      "id": "N",
+      "title": "Canonical report",
+      "parent": "I"
+    },
+    "Recorded report body."
+  ],
+  [
+    "tracker/tickets/U.md",
+    "research",
+    {
+      "id": "U",
+      "title": "Unassociated research",
+      "status": "reviewed"
+    },
+    "Ungrouped research details."
+  ],
+  [
+    "tracker/tickets/D.md",
+    "task",
+    {
+      "id": "D",
+      "title": "Unassociated dependent",
+      "work_status": "unclaimed",
+      "blocked_by": [
+        "T"
+      ],
+      "schema": "tracker-ticket/v1"
+    },
+    "Dependency does not imply initiative membership."
+  ],
+  [
+    "tracker/initiatives/I/index.md",
+    "Spec",
+    {
+      "title": "Mixed initiative",
+      "phase": "research",
+      "schema": "tracker-initiative/v1",
+      "id": "I"
+    },
+    "## Problem Statement\nIntegrated mixed-record smoke.\n\n## Solution\nRead canonical mixed child records.\n\n## Tickets\n- [Research](../../tickets/R.md)\n- [Ticket](../../tickets/T.md)\n- [Report](../../tickets/N.md)\n\n## Comments\nOwned temporary smoke fixture.\n\n## Full reader body\n\nRecorded paragraph 1: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 2: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 3: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 4: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 5: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 6: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 7: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 8: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 9: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 10: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 11: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 12: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 13: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 14: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 15: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 16: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 17: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 18: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 19: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 20: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 21: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 22: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 23: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 24: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 25: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 26: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 27: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 28: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 29: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 30: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 31: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 32: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 33: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 34: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 35: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 36: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 37: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 38: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 39: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 40: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 41: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 42: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 43: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 44: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 45: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 46: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 47: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 48: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 49: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 50: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 51: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 52: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 53: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 54: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 55: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 56: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 57: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 58: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 59: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 60: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 61: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 62: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 63: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 64: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 65: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 66: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 67: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 68: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 69: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nRecorded paragraph 70: 界 é 👩‍💻 full body content beyond the overview excerpt.\n\nINTEGRATED DESCRIPTION FINAL LINE.\n"
+  ]
+]
