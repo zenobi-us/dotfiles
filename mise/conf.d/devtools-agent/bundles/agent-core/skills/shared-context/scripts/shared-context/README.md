@@ -255,6 +255,10 @@ instructions.
 Ungrouped is a synthetic collection and stays visible with zero items. It has no initiative planning actions.
 Initiative rows show the recorded phase and Items count separately from the title. Missing phases show unavailable; actions never supply a phase.
 Press Enter to open an initiative summary and its children. Press Enter on a child to open its existing detail view.
+Initiative and item overviews show a short summary and a Full description control. Press d, focus the control with Tab and press Enter or Space, or click the control to read the complete recorded body. Research, planning, and other item types keep their own overview and action controls.
+The description reader replaces the content view. Its heading and Return control stay visible. Use Up/Down, PgUp/PgDn, or the visible page controls to scroll wrapped text. The > marker identifies reader or Return focus without colour.
+Esc or Return restores the originating screen, selected child or event, and pane scroll position. Ancestor breadcrumbs leave the reader directly. Each project and workspace retains its own reader position. Files remains independent and keeps its existing insertion behavior.
+Live body changes clamp the reader position to readable content. Empty descriptions say that no description is recorded. A failed refresh identifies the description as unreadable and retains the last readable body. Removal explains the change and returns to an available parent.
 Child rows separate type, stable ID, title, and recorded state. Supporting references and workflow warnings appear below the primary fields.
 Initiative child lists include research, executable tickets, planning records, and other supported canonical records. Items counts include every member. Ungrouped includes every record without initiative membership; dependency edges do not create membership.
 Research and planning details show the recorded state, metadata, and body without ticket events, review counts, or worktree state. Research and planning use the existing To tickets and Grill commands when registered. Other non-executable types offer Ask Matt only. Missing commands explain why an action is disabled. Fresh-chat confirmation and unsent commands remain unchanged.
@@ -296,3 +300,4 @@ Files can still browse the stored shared directory. Checkout-dependent actions d
 Open the command from that project's checkout to use those actions. The modal does not search other repositories or create a project registry.
 
 Fresh-chat actions use Pi's replacement session context to stage the command. The command stays unsent until you press Enter.
+

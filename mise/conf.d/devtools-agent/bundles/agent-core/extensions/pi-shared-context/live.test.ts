@@ -197,3 +197,32 @@ test("mixed canonical records refresh type and membership without inventing work
   await modal.handleInput("\x1b");
   expect(view()).toContain("unassigned");
 }, 30_000);
+
+test("a live description reader follows canonical body updates and returns safely after record removal", async () => {
+  const f = await fixture();
+  const file = join(f.root, "tracker/tickets/R.md");
+  const record = (body: string) => put(file, `---\nid: R\ntitle: Live research\ntype: research\n---\n${body}\n`);
+  await record(Array.from({ length: 80 }, (_, index) => `Recorded paragraph ${index}`).join("\n"));
+  const graph = new GraphExplorer({ context: f.context, exec: execute, theme, done: () => { }, requestRender: () => { }, height: () => 20, commands: () => [], live: true });
+  cleanups.push(() => graph.dispose());
+  await graph.load();
+  const modal = new SharedContextModal(f.context, theme, graph, { render: () => ["Files"], handleInput: () => { } }, () => { });
+  const view = () => modal.render(100).join("\n");
+  await modal.handleInput("\r");
+  await modal.handleInput("\r");
+  await modal.handleInput("d");
+  for (let index = 0; index < 8; index++) { await modal.handleInput("\x1b[6~"); view(); }
+  expect(view()).toContain("Recorded paragraph 79");
+  await record("Short replacement body.");
+  await until(() => view().includes("Short replacement body."), "reader clamps after a live body replacement");
+  expect(view()).toContain("[Return]");
+  await record("");
+  await until(() => view().includes("No description recorded."), "empty body is not loading");
+  await put(file, "---\nid: R\n---\n");
+  await until(() => view().includes("Description unreadable"), "failed body refresh explains retained data");
+  await record("Recovered full description.");
+  await until(() => view().includes("Recovered full description.") && !view().includes("Description unreadable"), "reader recovers");
+  await rm(file);
+  await until(() => !view().includes("[Return]") && view().includes("removed"), "reader removal returns to its collection");
+  expect(view()).toContain("No child items");
+}, 20_000);

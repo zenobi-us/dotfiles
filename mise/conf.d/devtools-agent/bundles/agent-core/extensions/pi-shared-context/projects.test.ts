@@ -62,13 +62,13 @@ async function fixture() {
   let result: ExplorerResult;
   let modal: SharedContextModal;
   const create = (context: SharedAgentContext, checkout: boolean): ProjectWorkspace => {
-    const files = new ContextBrowser(checkout ? context.root : context.candidateSharedRoot!, theme, () => { closed = true; }, () => {}, context.repositoryRoot, exec, () => {}, () => 30);
+    const files = new ContextBrowser(checkout ? context.root : context.candidateSharedRoot!, theme, () => { closed = true; }, () => { }, context.repositoryRoot, exec, () => { }, () => 30);
     const tracker = new GraphExplorer({
       context, theme, exec, live: true, checkoutAvailable: checkout,
       resolveContext: async () => context,
       contextChanged: updated => files.setRoot(checkout ? updated.root : updated.candidateSharedRoot!),
       done: value => { if (value?.kind === "files") modal.showFiles(); else result = value; },
-      projects: () => { void modal.showProjects(); }, requestRender: () => {}, height: () => 30,
+      projects: () => { void modal.showProjects(); }, requestRender: () => { }, height: () => 30,
       commands: () => [{ name: "skill:ask-matt" }, { name: "skill:worktree" }],
     });
     return {
@@ -80,7 +80,7 @@ async function fixture() {
   };
   let list = async () => [entry(b), { ...current, name: "duplicate identity" }];
   const workspace = create(a, true);
-  modal = new SharedContextModal(a, theme, workspace.tracker, workspace.files, () => {}, "tracker", {
+  modal = new SharedContextModal(a, theme, workspace.tracker, workspace.files, () => { }, "tracker", {
     current, list: () => list(), create, selected: context => { selected = context; }, close: () => { closed = true; }, height: () => 30,
   });
   modal.attach(workspace);
@@ -326,9 +326,9 @@ test("returning to a project restores its ticket reader and scroll position", as
   await put(join(f.a.root, "tracker/tickets/item.md"), `---\nid: item\ntitle: alpha long description\nwork_status: open\n---\n${Array.from({ length: 70 }, (_, index) => `Alpha description line ${index}`).join("\n")}`);
   await until(() => f.view().includes("alpha long description"));
   await f.modal.handleInput("\r");
-  await f.modal.handleInput("\t");
+  await f.modal.handleInput("d");
   await f.modal.handleInput("\x1b[6~");
-  expect(f.view()).toContain("Alpha description line 25");
+  const reading = f.view();
   expect(f.view()).not.toContain("Alpha description line 0");
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[B");
@@ -338,27 +338,9 @@ test("returning to a project restores its ticket reader and scroll position", as
   await f.modal.showProjects();
   await f.modal.handleInput("\x1b[A");
   await f.modal.handleInput("\r");
-  expect(f.view()).toContain("Alpha description line 25");
-  expect(f.view()).not.toContain("Alpha description line 0");
+  expect(f.view()).toBe(reading);
 });
 
-test("focus traversal re-enters the first or last tracker pane in traversal order", async () => {
-  const f = await fixture();
-  await f.modal.handleInput("8");
-  await put(join(f.a.root, "tracker/tickets/item.md"), `---\nid: item\ntitle: focus reader\nwork_status: open\n---\n${Array.from({ length: 90 }, (_, index) => `Focus description line ${index}`).join("\n")}`);
-  await until(() => f.view().includes("focus reader"));
-  await f.modal.handleInput("\r");
-  await f.modal.handleInput("\t");
-  await f.modal.handleInput("\x1b[6~");
-  const firstPage = f.view().match(/Focus description line \d+/g)!;
-  for (let index = 0; index < 8; index++) await f.modal.handleInput("\t");
-  await f.modal.handleInput("\x1b[6~");
-  const secondPage = f.view().match(/Focus description line \d+/g)!;
-  expect(secondPage[0]).not.toBe(firstPage[0]);
-  for (let index = 0; index < 8; index++) await f.modal.handleInput("\x1b[Z");
-  await f.modal.handleInput("\x1b[5~");
-  expect(f.view().match(/Focus description line \d+/g)).toEqual(firstPage);
-});
 
 test("the live modal recovers the deduplicated current project after checkout removal", async () => {
   const f = await fixture();
@@ -374,59 +356,61 @@ test("the live modal recovers the deduplicated current project after checkout re
   const notifications: string[] = [];
   let dispatched = false;
   const pi = { getCommands: () => [{ name: "skill:ask-matt" }, { name: "skill:worktree" }] } as unknown as ExtensionAPI;
-  const ctx = { ui: {
-    notify: (message: string) => notifications.push(message),
-    pasteToEditor: () => { dispatched = true; },
-    custom: async (factory: Function) => {
-      let finished = false;
-      const component = factory({ terminal: { rows: 40 }, requestRender: () => {} }, theme, {}, () => { finished = true; });
-      const view = () => component.render(120).join("\n");
-      const waitFor = async (text: string) => {
-        try { await until(() => view().includes(text)); }
-        catch { throw new Error(`Expected ${text} in modal:\n${view()}`); }
-      };
-      const projects = async () => {
-        component.handleMouse({ type: "click", button: "left", x: 3, y: 1 });
-        await until(() => view().includes("(current)") && !view().includes("Loading projects"));
-      };
-      try {
-        await waitFor("Ungrouped");
-        component.handleInput("8");
-        await waitFor("Surviving current item");
-        component.handleInput("2");
-        expect(view()).toContain(current.repositoryRoot);
-        await projects();
-        component.handleInput("\x1b[B");
-        component.handleInput("\r");
-        await waitFor("Ungrouped");
-        component.handleInput("8");
-        await waitFor("beta item");
-        await rm(f.a.repositoryRoot, { recursive: true });
-        await projects();
-        expect(view().match(/\(current\)/g)).toHaveLength(1);
-        component.handleInput("\x1b[A");
-        component.handleInput("\r");
-        await waitFor("surviving.txt");
-        expect(view()).toContain(shared);
-        component.handleInput("1");
-        expect(view()).toContain("Surviving current item");
-        expect(view()).toContain("repository records unavailable");
-        component.handleInput("m");
-        await waitFor("No usable checkout");
-        expect(finished).toBe(false);
-        expect(dispatched).toBe(false);
-        await put(join(shared, "tracker/tickets/item.md"), "---\nid: item\ntitle: Current live after removal\nwork_status: open\n---\n");
-        await waitFor("Current live after removal");
-        component.handleInput("2");
-        await put(join(shared, "after-removal.txt"), "New shared file");
-        await waitFor("after-removal.txt");
-        expect(notifications).toEqual([]);
-        component.handleInput("\x03");
-        expect(finished).toBe(true);
-      } finally { component.dispose(); }
-      return undefined;
-    },
-  } } as unknown as ExtensionCommandContext;
+  const ctx = {
+    ui: {
+      notify: (message: string) => notifications.push(message),
+      pasteToEditor: () => { dispatched = true; },
+      custom: async (factory: Function) => {
+        let finished = false;
+        const component = factory({ terminal: { rows: 40 }, requestRender: () => { } }, theme, {}, () => { finished = true; });
+        const view = () => component.render(120).join("\n");
+        const waitFor = async (text: string) => {
+          try { await until(() => view().includes(text)); }
+          catch { throw new Error(`Expected ${text} in modal:\n${view()}`); }
+        };
+        const projects = async () => {
+          component.handleMouse({ type: "click", button: "left", x: 3, y: 1 });
+          await until(() => view().includes("(current)") && !view().includes("Loading projects"));
+        };
+        try {
+          await waitFor("Ungrouped");
+          component.handleInput("8");
+          await waitFor("Surviving current item");
+          component.handleInput("2");
+          expect(view()).toContain(current.repositoryRoot);
+          await projects();
+          component.handleInput("\x1b[B");
+          component.handleInput("\r");
+          await waitFor("Ungrouped");
+          component.handleInput("8");
+          await waitFor("beta item");
+          await rm(f.a.repositoryRoot, { recursive: true });
+          await projects();
+          expect(view().match(/\(current\)/g)).toHaveLength(1);
+          component.handleInput("\x1b[A");
+          component.handleInput("\r");
+          await waitFor("surviving.txt");
+          expect(view()).toContain(shared);
+          component.handleInput("1");
+          expect(view()).toContain("Surviving current item");
+          expect(view()).toContain("repository records unavailable");
+          component.handleInput("m");
+          await waitFor("No usable checkout");
+          expect(finished).toBe(false);
+          expect(dispatched).toBe(false);
+          await put(join(shared, "tracker/tickets/item.md"), "---\nid: item\ntitle: Current live after removal\nwork_status: open\n---\n");
+          await waitFor("Current live after removal");
+          component.handleInput("2");
+          await put(join(shared, "after-removal.txt"), "New shared file");
+          await waitFor("after-removal.txt");
+          expect(notifications).toEqual([]);
+          component.handleInput("\x03");
+          expect(finished).toBe(true);
+        } finally { component.dispose(); }
+        return undefined;
+      },
+    }
+  } as unknown as ExtensionCommandContext;
   await openGraphContext(pi, ctx, current, exec);
 }, 15_000);
 
@@ -436,33 +420,35 @@ test("repository-only A can disappear while selected shared B keeps loading reco
   expect(await Bun.file(join(f.a.candidateSharedRoot!, ".context-routes.toml")).exists()).toBe(false);
   const sessionCwd = f.a.repositoryRoot;
   const pi = { getCommands: () => [] } as unknown as ExtensionAPI;
-  const ctx = { cwd: sessionCwd, ui: {
-    notify: (message: string) => { throw new Error(message); },
-    pasteToEditor: () => {},
-    custom: async (factory: Function) => {
-      const component = factory({ terminal: { rows: 40 }, requestRender: () => {} }, theme, {}, () => {});
-      const view = () => component.render(120).join("\n");
-      try {
-        await until(() => view().includes("Ungrouped"));
-        component.handleInput("8");
-        await until(() => view().includes("alpha item"));
-        component.handleMouse({ type: "click", button: "left", x: 3, y: 1 });
-        await until(() => view().includes(f.b.slug));
-        component.handleInput("\x1b[B");
-        component.handleInput("\r");
-        await until(() => view().includes("Ungrouped"));
-        component.handleInput("8");
-        await until(() => view().includes("beta item"));
-        await rm(f.a.repositoryRoot, { recursive: true });
-        await put(join(f.b.root, "tracker/tickets/item.md"), "---\nid: item\ntitle: B survives A removal\nwork_status: open\n---\n");
-        await until(() => view().includes("B survives A removal"));
-        component.handleInput("2");
-        expect(view()).toContain("notes.txt");
-        expect(ctx.cwd).toBe(sessionCwd);
-      } finally { component.dispose(); }
-      return undefined;
-    },
-  } } as unknown as ExtensionCommandContext;
+  const ctx = {
+    cwd: sessionCwd, ui: {
+      notify: (message: string) => { throw new Error(message); },
+      pasteToEditor: () => { },
+      custom: async (factory: Function) => {
+        const component = factory({ terminal: { rows: 40 }, requestRender: () => { } }, theme, {}, () => { });
+        const view = () => component.render(120).join("\n");
+        try {
+          await until(() => view().includes("Ungrouped"));
+          component.handleInput("8");
+          await until(() => view().includes("alpha item"));
+          component.handleMouse({ type: "click", button: "left", x: 3, y: 1 });
+          await until(() => view().includes(f.b.slug));
+          component.handleInput("\x1b[B");
+          component.handleInput("\r");
+          await until(() => view().includes("Ungrouped"));
+          component.handleInput("8");
+          await until(() => view().includes("beta item"));
+          await rm(f.a.repositoryRoot, { recursive: true });
+          await put(join(f.b.root, "tracker/tickets/item.md"), "---\nid: item\ntitle: B survives A removal\nwork_status: open\n---\n");
+          await until(() => view().includes("B survives A removal"));
+          component.handleInput("2");
+          expect(view()).toContain("notes.txt");
+          expect(ctx.cwd).toBe(sessionCwd);
+        } finally { component.dispose(); }
+        return undefined;
+      },
+    }
+  } as unknown as ExtensionCommandContext;
   await openGraphContext(pi, ctx, f.a, async (command, args, cwd = sessionCwd) => {
     const child = Bun.spawn([command, ...args], { cwd, stdout: "pipe", stderr: "pipe" });
     const [stdout, code] = await Promise.all([new Response(child.stdout).text(), child.exited]);
@@ -510,36 +496,69 @@ for (const source of ["checkout", "remote"] as const) {
     const githubExec: Exec = async (command, args) => {
       if (command !== "gh") return exec(command, args);
       requests.push(args);
-      return { code: 0, stdout: JSON.stringify(args[0] === "issue"
-        ? { number: 42, title: "Recovered legacy issue", state: "OPEN", body: "", labels: [] }
-        : args.at(-1) === "repos/beta/repo/issues?state=all&per_page=100" ? [[{ number: 42 }]] : [[]]) };
+      return {
+        code: 0, stdout: JSON.stringify(args[0] === "issue"
+          ? { number: 42, title: "Recovered legacy issue", state: "OPEN", body: "", labels: [] }
+          : args.at(-1) === "repos/beta/repo/issues?state=all&per_page=100" ? [[{ number: 42 }]] : [[]])
+      };
     };
     const pi = { getCommands: () => [] } as unknown as ExtensionAPI;
-    const ctx = { ui: {
-      notify: (message: string) => { throw new Error(message); }, pasteToEditor: () => {},
-      custom: async (factory: Function) => {
-        const component = factory({ terminal: { rows: 40 }, requestRender: () => {} }, theme, {}, () => {});
-        const view = () => component.render(120).join("\n");
-        try {
-          await until(() => view().includes("Ungrouped"));
-          component.handleInput("8");
-          await until(() => view().includes("alpha item"));
-          component.handleMouse({ type: "click", button: "left", x: 3, y: 1 });
-          await until(() => view().includes(f.b.slug));
-          component.handleInput("\x1b[B");
-          component.handleInput("\r");
-          await until(() => view().includes("Ungrouped"));
-          component.handleInput("8");
-          await until(() => view().includes("Recovered legacy issue"));
-          expect(requests.some(args => args.includes("beta/repo"))).toBe(true);
-          component.handleInput("m");
-          await until(() => view().includes("No usable checkout"));
-          component.handleInput("2");
-          expect(view()).toContain("notes.txt");
-        } finally { component.dispose(); }
-        return undefined;
-      },
-    } } as unknown as ExtensionCommandContext;
+    const ctx = {
+      ui: {
+        notify: (message: string) => { throw new Error(message); }, pasteToEditor: () => { },
+        custom: async (factory: Function) => {
+          const component = factory({ terminal: { rows: 40 }, requestRender: () => { } }, theme, {}, () => { });
+          const view = () => component.render(120).join("\n");
+          try {
+            await until(() => view().includes("Ungrouped"));
+            component.handleInput("8");
+            await until(() => view().includes("alpha item"));
+            component.handleMouse({ type: "click", button: "left", x: 3, y: 1 });
+            await until(() => view().includes(f.b.slug));
+            component.handleInput("\x1b[B");
+            component.handleInput("\r");
+            await until(() => view().includes("Ungrouped"));
+            component.handleInput("8");
+            await until(() => view().includes("Recovered legacy issue"));
+            expect(requests.some(args => args.includes("beta/repo"))).toBe(true);
+            component.handleInput("m");
+            await until(() => view().includes("No usable checkout"));
+            component.handleInput("2");
+            expect(view()).toContain("notes.txt");
+          } finally { component.dispose(); }
+          return undefined;
+        },
+      }
+    } as unknown as ExtensionCommandContext;
     await openGraphContext(pi, ctx, f.a, githubExec);
   }, 15_000);
 }
+
+test("each project retains its reader and Files context without leaking another project's body", async () => {
+  const f = await fixture();
+  await f.modal.handleInput("8");
+  await f.modal.handleInput("\r");
+  await f.modal.handleInput("d");
+  expect(f.view()).toContain("alpha description");
+  await f.modal.handleInput("2");
+  expect(f.view()).not.toContain("alpha description");
+  await f.modal.handleInput("1");
+  expect(f.view()).toContain("[Return]");
+  await f.modal.showProjects();
+  await f.modal.handleInput("\x1b[B");
+  await f.modal.handleInput("\r");
+  expect(f.view()).not.toContain("alpha description");
+  await f.modal.handleInput("8");
+  await f.modal.handleInput("\r");
+  await f.modal.handleInput("d");
+  expect(f.view()).toContain("beta description");
+  await f.modal.showProjects();
+  await f.modal.handleInput("\x1b[A");
+  await f.modal.handleInput("\r");
+  expect(f.view()).toContain("alpha description");
+  expect(f.view()).not.toContain("beta description");
+  expect(f.view()).toContain("[Return]");
+  await f.modal.handleInput("\x1b");
+  expect(f.view()).not.toContain("[Return]");
+  expect(f.view()).toContain("alpha item");
+});

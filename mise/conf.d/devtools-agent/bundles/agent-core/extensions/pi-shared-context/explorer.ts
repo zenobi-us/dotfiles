@@ -15,17 +15,22 @@ type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
 type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
 type Pane = { id: string; title: string; rows: Row[] };
 
+// The reader replaces content, not navigation. Keep its origin intact so returning
+// cannot move the selected child, event, or an underlying pane's scroll position.
+type DescriptionReader = { kind: "initiative" | "ticket"; ref: string; focus: ExplorerNavigation["focus"] };
+
 export interface ExplorerNavigation {
   screen: Screen;
   initiativeId?: string;
   ticketId?: string;
   receiptId?: string;
   queue: Queue;
-  focus: "list" | "detail" | "neighborhood" | "breadcrumb";
+  focus: "list" | "detail" | "neighborhood" | "breadcrumb" | "description" | "return";
   offsets: [string, number][];
   homeIndex?: number;
   itemOrigin?: "initiatives" | "queues";
   queueIndex?: number;
+  reader?: DescriptionReader;
 }
 
 export type ExplorerResult =
@@ -71,6 +76,8 @@ export class GraphExplorer {
   private breadcrumbIndex = 0;
   private breadcrumbHits: { x: number; y: number; width: number; index: number }[] = [];
   private active = true;
+  private reader?: DescriptionReader;
+  private controlHits: { x: number; y: number; width: number; action: "description" | "return" | "up" | "down" }[] = [];
   private renderedSelection = new Map<string, string>();
   private renderedLayout = new Map<string, { width: number; height: number; start: number; end: number }>();
   private neighborhoodIndex = 0;
@@ -113,6 +120,7 @@ export class GraphExplorer {
     this.homeIndex = navigation?.homeIndex ?? 0;
     this.queueIndex = navigation?.queueIndex ?? 0;
     this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
+    this.reader = navigation?.reader;
   }
 
   async load(): Promise<void> {
@@ -229,6 +237,10 @@ export class GraphExplorer {
             this.notice = "Record type changed. Showing its recorded details.";
           }
           if (this.screen === "actions") this.actionIndex = Math.min(this.actionIndex, Math.max(0, this.choices().length - 1));
+          if (this.reader && (!this.descriptionRecord() || this.screen === "home" || this.screen === "queues" || this.reader.kind === "ticket" && this.screen === "initiatives")) {
+            this.reader = undefined;
+            this.focus = "list";
+          }
           this.scopeKey = "";
           this.updateWatchScope();
           this.ticketStates.clear();
@@ -397,9 +409,11 @@ export class GraphExplorer {
   }
 
   private focusOrder(): ExplorerNavigation["focus"][] {
+    if (this.reader) return ["breadcrumb", "detail", "return"];
     const panes: ExplorerNavigation["focus"][] = this.panes().length < 2 ? ["list"]
       : this.screen === "receipts" && this.neighborhoodRows().length ? ["list", "detail", "neighborhood"] : ["list", "detail"];
-    return this.breadcrumbs().length > 1 ? ["breadcrumb", ...panes] : panes;
+    const controls = this.descriptionTarget() ? [...panes, "description" as const] : panes;
+    return this.breadcrumbs().length > 1 ? ["breadcrumb", ...controls] : controls;
   }
 
   setActive(active: boolean): void { this.active = active; }
@@ -412,12 +426,14 @@ export class GraphExplorer {
     else crumbs.push({ label: this.initiative()?.title ?? "Initiative", screen: "initiatives" });
     if (screen === "tickets" || screen === "receipts") crumbs.push({ label: this.ticketId ?? "Item", screen: "tickets" });
     if (screen === "receipts") crumbs.push({ label: "Events", screen: "receipts" });
+    if (this.reader) crumbs.push({ label: "Description", screen });
     return crumbs;
   }
 
   private activateBreadcrumb(index: number): void {
     const crumb = this.breadcrumbs()[index];
     if (!crumb || index >= this.breadcrumbs().length - 1) return;
+    this.reader = undefined;
     this.screen = crumb.screen;
     this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
     this.options.requestRender();
@@ -425,6 +441,14 @@ export class GraphExplorer {
 
   handleMouse(event: TuiMouseEvent): TuiMouseEventResult | undefined {
     if (event.type !== "click" || event.button !== "left") return;
+    const control = this.controlHits.find(hit => hit.y === event.y && event.x >= hit.x && event.x < hit.x + hit.width);
+    if (control) {
+      if (control.action === "description") this.openDescription();
+      else if (control.action === "return") this.closeDescription();
+      else this.scrollDescription(control.action === "up" ? -1 : 1, true);
+      this.options.requestRender();
+      return { handled: true };
+    }
     const hit = this.breadcrumbHits.find(hit => hit.y === event.y && event.x >= hit.x && event.x < hit.x + hit.width);
     if (!hit) return;
     this.activateBreadcrumb(hit.index);
@@ -461,6 +485,7 @@ export class GraphExplorer {
       return;
     }
     if (matchesKey(data, "home") || matchesKey(data, "h")) {
+      this.reader = undefined;
       this.screen = "home";
       this.focus = "list";
       this.notice = "";
@@ -468,6 +493,7 @@ export class GraphExplorer {
       return;
     }
     if (matchesKey(data, "escape") || matchesKey(data, "left") && this.focus !== "breadcrumb" || matchesKey(data, "backspace")) {
+      if (this.reader) { this.closeDescription(); return; }
       let focus: ExplorerNavigation["focus"] = "list";
       if (this.screen === "actions") { this.screen = this.returnScreen; focus = this.returnFocus; }
       else if (this.screen === "receipts") {
@@ -504,6 +530,18 @@ export class GraphExplorer {
     if (matchesKey(data, "tab") || matchesKey(data, "shift+tab")) {
       const reverse = matchesKey(data, "shift+tab");
       if (!this.moveFocus(reverse)) this.enterFocus(reverse);
+      return;
+    }
+    if (this.reader) {
+      if (this.focus === "return" && (matchesKey(data, "enter") || data === " ")) this.closeDescription();
+      else if (matchesKey(data, "up") || matchesKey(data, "down") || matchesKey(data, "pageUp") || matchesKey(data, "pageDown")) {
+        this.scrollDescription(matchesKey(data, "up") || matchesKey(data, "pageUp") ? -1 : 1, matchesKey(data, "pageUp") || matchesKey(data, "pageDown"));
+      }
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "d") || this.focus === "description" && (matchesKey(data, "enter") || data === " ")) {
+      this.openDescription();
       return;
     }
     if (matchesKey(data, "pageUp") || matchesKey(data, "pageDown")) {
@@ -607,11 +645,14 @@ export class GraphExplorer {
 
   render(width: number): string[] {
     this.lastWidth = width;
+    this.controlHits = [];
+    if (this.reader) return this.renderDescription(width);
     const th = this.options.theme;
     const inner = Math.max(1, width - 2);
     const compact = width < 70 || this.options.height() < 16;
     const height = Math.max(5, this.options.height());
-    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 9)));
+    const control = this.descriptionTarget() ? this.descriptionControl(width) : undefined;
+    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 9) - Number(control !== undefined)));
     let panes = this.panes();
     if (compact && panes.length > 1) {
       panes = [this.focusedPane(panes) ?? panes[panes.length - 1]];
@@ -621,7 +662,7 @@ export class GraphExplorer {
     const sizes = proportions.map((proportion, index) => index === panes.length - 1 ? available - proportions.slice(0, index).reduce((sum, part) => sum + Math.floor(available * part), 0) : Math.floor(available * proportion));
     const rendered = panes.map((pane, index) => this.renderPane(pane, Math.max(1, sizes[index]), bodyHeight));
     const join = (parts: string[]) => parts.join(th.fg("border", "│"));
-    const headers = panes.map((pane, index) => this.pad(`${this.active && this.focus !== "breadcrumb" && this.focusedPane(panes)?.id === pane.id ? ">" : " "} ${pane.title}`, sizes[index]));
+    const headers = panes.map((pane, index) => this.pad(`${this.active && ["list", "detail", "neighborhood"].includes(this.focus) && this.focusedPane(panes)?.id === pane.id ? ">" : " "} ${pane.title}`, sizes[index]));
     const body = Array.from({ length: bodyHeight }, (_, row) => join(rendered.map(lines => lines[row] ?? "")));
     const target = this.target();
     const breadcrumb = this.renderBreadcrumbs(inner, compact);
@@ -635,9 +676,88 @@ export class GraphExplorer {
     const summary = this.screen === "initiatives" ? this.initiative()?.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line)) : undefined;
     const status = this.error || this.refreshError || this.notice || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
     const keys = compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh";
-    if (compact) return [breadcrumb, join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
+    if (compact) {
+      if (control) this.controlHits.push({ x: 0, y: 1, width: visibleWidth(control), action: "description" });
+      return [breadcrumb, ...(control ? [control] : []), join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
+    }
     const frame = (text: string) => th.fg("border", "│") + this.pad(text, inner) + th.fg("border", "│");
-    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(breadcrumb), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error || this.refreshError ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
+    if (control) this.controlHits.push({ x: 1, y: 2, width: visibleWidth(control), action: "description" });
+    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(breadcrumb), ...(control ? [frame(control)] : []), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error || this.refreshError ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
+  }
+
+  private descriptionTarget(): ExplorerTarget | undefined {
+    if (this.screen === "initiatives") {
+      const initiative = this.initiative();
+      return initiative && !initiative.group ? { kind: "initiative", initiative } : undefined;
+    }
+    const ticket = this.ticket();
+    return (this.screen === "tickets" || this.screen === "receipts") && ticket ? { kind: "ticket", ticket } : undefined;
+  }
+
+  private descriptionRecord(): ExplorerInitiative | ExplorerTicket | undefined {
+    if (!this.reader) return;
+    return this.reader.kind === "initiative"
+      ? this.snapshot?.initiatives.find(item => item.ref === this.reader!.ref)
+      : this.snapshot?.tickets.find(item => item.ref === this.reader!.ref);
+  }
+
+  private descriptionControl(width: number): string {
+    const label = "[d] Full description";
+    return this.options.theme.fg("accent", truncateToWidth(this.active && this.focus === "description" ? `>${label}<` : ` ${label} `, Math.max(1, width - 2)));
+  }
+
+  private openDescription(): void {
+    const target = this.descriptionTarget();
+    if (!target) return;
+    const record = target.kind === "initiative" ? target.initiative : target.ticket;
+    this.reader = { kind: target.kind, ref: record.ref, focus: this.focus };
+    this.focus = "detail";
+    this.options.requestRender();
+  }
+
+  private closeDescription(): void {
+    if (!this.reader) return;
+    this.focus = this.reader.focus;
+    this.reader = undefined;
+    this.options.requestRender();
+  }
+
+  private scrollDescription(direction: number, page: boolean): void {
+    if (!this.reader) return;
+    const key = `description:${this.reader.kind}:${this.reader.ref}`;
+    const step = page ? Math.max(1, this.options.height() - 4) : 1;
+    this.offsets.set(key, Math.max(0, (this.offsets.get(key) ?? 0) + direction * step));
+  }
+
+  private renderDescription(width: number): string[] {
+    const record = this.descriptionRecord();
+    const th = this.options.theme;
+    const inner = Math.max(1, width - 2);
+    const height = Math.max(5, this.options.height());
+    const bodyHeight = height - 4;
+    const body = record?.body ?? "";
+    const rows: Row[] = [
+      ...(this.refreshError ? [{ text: `Description unreadable after refresh. Showing the last readable body. ${this.refreshError}`, tone: "error" as const }] : []),
+      ...(body.trim() ? body.split(/\r?\n/).map(text => ({ text })) : [{ text: "No description recorded.", tone: "muted" as const }]),
+    ];
+    const pane = { id: `description:${this.reader!.kind}:${this.reader!.ref}`, title: "Description", rows };
+    const lines = this.renderPane(pane, inner, bodyHeight);
+    const back = this.active && this.focus === "return" ? ">[Return]<" : " [Return] ";
+    const controls = `${back} [PgUp] [PgDn]`;
+    this.controlHits = [
+      { x: 1, y: height - 2, width: visibleWidth(back), action: "return" },
+      { x: visibleWidth(back) + 2, y: height - 2, width: 6, action: "up" },
+      { x: visibleWidth(back) + 9, y: height - 2, width: 6, action: "down" },
+    ];
+    const breadcrumb = this.renderBreadcrumbs(inner, true);
+    for (const hit of this.breadcrumbHits) hit.x++;
+    return [
+      breadcrumb,
+      th.fg("accent", truncateToWidth(this.clean(`${this.active && this.focus === "detail" ? ">" : " "} ${record?.title ?? "Record"} · Description`), inner)),
+      ...lines,
+      th.fg("accent", truncateToWidth(controls, inner)),
+      th.fg(this.refreshError ? "error" : "muted", truncateToWidth(this.refreshError ? "Description unreadable · last readable body" : "↑↓ scroll · PgUp/Dn page · Esc return", inner)),
+    ].map(line => th.fg("border", "│") + this.pad(line, inner) + th.fg("border", "│"));
   }
 
   private renderBreadcrumbs(width: number, compact: boolean): string {
@@ -745,12 +865,26 @@ export class GraphExplorer {
         { text: `Reference: ${ticket.ref}` },
         ...(ticket.fields?.parent ? [{ text: `Parent: ${String(ticket.fields.parent)}` }] : []),
         ...fields.map(([key, value]) => ({ text: `${key}: ${typeof value === "string" ? value : JSON.stringify(value)}` })),
-        { text: "Recorded details:", tone: "accent" }, ...ticket.body.split(/\r?\n/).map(text => ({ text })),
+        { text: `Summary: ${this.descriptionSummary(ticket.body)}`, tone: "muted" },
         { text: "a actions · Esc return", tone: "muted" },
       ];
     }
     const workflow = this.workflow();
-    return [{ text: `${ticket.id} ${ticket.title}`, tone: "accent" }, { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${this.ticketState(ticket)}` }, { text: `Reference: ${ticket.ref}` }, { text: `Current source: ${workflow?.sourceCommit ?? "not recorded"}` }, { text: "Dependencies:", tone: "accent" }, ...this.neighborhoodRows(), { text: "Receipts:", tone: "accent" }, ...(workflow?.receipts.map(receipt => ({ text: `${receipt.id} ${receipt.phase} [${receipt.verdict ?? receipt.status}] @${receipt.sourceCommit}` })) ?? []), ...(workflow?.error ? [{ text: workflow.error, tone: "warning" as const }] : []), { text: workflow ? "→ inspect receipts · a actions" : "Checking receipts…", tone: "muted" }, { text: "Ticket:", tone: "accent" }, ...ticket.body.split(/\r?\n/).map(text => ({ text }))];
+    return [
+      { text: `${ticket.id} ${ticket.title}`, tone: "accent" },
+      { text: `Summary: ${this.descriptionSummary(ticket.body)}`, tone: "muted" },
+      { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${this.ticketState(ticket)}` },
+      { text: `Reference: ${ticket.ref}` }, { text: `Current source: ${workflow?.sourceCommit ?? "not recorded"}` },
+      { text: "Dependencies:", tone: "accent" }, ...this.neighborhoodRows(), { text: "Receipts:", tone: "accent" },
+      ...(workflow?.receipts.map(receipt => ({ text: `${receipt.id} ${receipt.phase} [${receipt.verdict ?? receipt.status}] @${receipt.sourceCommit}` })) ?? []),
+      ...(workflow?.error ? [{ text: workflow.error, tone: "warning" as const }] : []),
+      { text: workflow ? "→ inspect receipts · a actions" : "Checking receipts…", tone: "muted" },
+    ];
+  }
+
+  private descriptionSummary(body: string): string {
+    const line = body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
+    return truncateToWidth(this.clean(line ?? "No description recorded."), 160, "…");
   }
 
   private neighborhoodRows(): Row[] {
@@ -828,7 +962,7 @@ export class GraphExplorer {
   }
 
   private navigation(): ExplorerNavigation {
-    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin };
+    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };
   }
 
   private focusedPane(panes: Pane[]): Pane | undefined {
@@ -861,7 +995,7 @@ export class GraphExplorer {
     return Array.from({ length: height }, (_, index) => {
       const row = expanded[index + offset];
       if (!row) return " ".repeat(width);
-      const focused = this.active && this.focus !== "breadcrumb" && this.focusedPane(this.panes())?.id === pane.id;
+      const focused = this.active && ["list", "detail", "neighborhood"].includes(this.focus) && this.focusedPane(this.panes())?.id === pane.id;
       const text = this.pad(`${row.selected ? focused ? ">" : "◇" : " "}${row.styled ? row.text : this.options.theme.fg(row.tone ?? "text", row.text)}`, width);
       return row.selected ? this.options.theme.bg("selectedBg", text) : text;
     });

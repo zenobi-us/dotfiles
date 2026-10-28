@@ -175,7 +175,12 @@ export class SharedContextModal {
         this.requestRender();
         return { handled: true };
       }
-      return this.tracker.handleMouse?.({ ...event, y: event.y - 3 });
+      const result = this.tracker.handleMouse?.({ ...event, y: event.y - 3 });
+      if (result?.handled) {
+        this.highlighted = undefined;
+        this.requestRender();
+      }
+      return result;
     }
   }
 

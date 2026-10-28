@@ -109,7 +109,6 @@ test("Esc, keyboard ancestors and mouse ancestors preserve child selection and q
 test("compact Events returns restore the paged overview through Esc and keyboard or mouse ancestors", async () => {
   for (const route of ["escape", "keyboard", "mouse"] as const) {
     const data = structuredClone(snapshot);
-    data.tickets[2].body = Array.from({ length: 30 }, (_, index) => `Reading position ${index + 1}`).join("\n");
     const f = await fixture(data, 12);
     f.view(40);
     await f.modal.handleInput("\r");
@@ -118,7 +117,6 @@ test("compact Events returns restore the paged overview through Esc and keyboard
     const firstPage = f.view(40);
     for (let page = 0; page < 4; page++) await f.modal.handleInput("\x1b[6~");
     const savedPage = f.view(40);
-    expect(savedPage).toContain("Reading position");
     expect(savedPage).not.toBe(firstPage);
     await f.modal.handleInput("\r");
     expect(f.view(40)).toContain("Events / newest first");
