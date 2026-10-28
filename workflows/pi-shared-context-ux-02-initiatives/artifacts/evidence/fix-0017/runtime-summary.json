@@ -1,0 +1,44 @@
+{
+  "runtime": "Actual Pi v1.1.0, explicit worktree index.ts, real record loaders/watchers/modal; no model/service requests",
+  "fixture": "Disposable local Markdown records generated with mise mq+okf; removed",
+  "scenarios": {
+    "UX02-SPEC-001": [
+      "dark-move-return-120x40.json",
+      "safety-actions-reconciled-120x40.png",
+      "safety-empty-parent-safe-120x40.png"
+    ],
+    "UX02-SPEC-002": [
+      "dark-queue-before-removal-120x40.json",
+      "dark-queue-after-removal-120x40.json"
+    ],
+    "UX02-SPEC-003": [
+      "dark-selected-B-120x40.json",
+      "dark-selected-B-resized-40x12.json",
+      "dark-selected-B-after-expansion-40x12.png"
+    ],
+    "UX02-SPEC-004": [
+      "verified-mono-long-phase-page-3-40x12.png",
+      "verified-mono-long-phase-page-4-40x12.png"
+    ]
+  },
+  "matrix": {
+    "colour": [
+      "rgb-children-40x12.png",
+      "rgb-children-80x24.png",
+      "rgb-children-120x40.png"
+    ],
+    "monochrome": [
+      "verified-mono-children-40x12.png",
+      "verified-mono-children-80x24.png",
+      "verified-mono-children-120x40.png"
+    ],
+    "shortcuts": "1 Tracker / 2 Files preserve A2 at all sizes and both verified modes; queue 8 and h remain usable; Files y inserts an unsent path."
+  },
+  "limitations": [
+    "Actual Pi ran with skills disabled. Action menus and safe Enter/m targets were exercised without dispatch. Public-modal suite asserts canonical dispatched targets and workflow safeguards.",
+    "Native termscope SVG loses RGB and aligned spacing. Final PNGs reconstruct recorded text at fixed cells with captured RGB spans; background-only selection cells use the recorded selection token. Native JSON/spans retained.",
+    "Runs named mono used an incorrect theme selector and are exploratory, not monochrome proof. Only verified-mono captures prove greyscale; RGB spans contain 221,221,221 and 48,48,48.",
+    "An initial four-page probe did not reach Items after the expanded title; continued paging exposed both full phase and unique Items: 2. This was a probe-depth error, not a source failure."
+  ],
+  "sessions_closed": true
+}

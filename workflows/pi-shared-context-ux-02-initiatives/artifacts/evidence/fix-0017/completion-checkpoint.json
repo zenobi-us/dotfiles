@@ -1,0 +1,15 @@
+{
+  "observed_goal_used": 234255,
+  "observed_goal_budget": 241808,
+  "observed_goal_remaining": 7553,
+  "session_id": "01a17fd1-756b-75d6-89be-9841da1b6bab",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-02-initiatives--/2026-10-28T00-03-15-947Z_01a17fd1-756b-75d6-89be-9841da1b6bab.jsonl",
+  "source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "source_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "status": "All deliverables validated; awaiting final marker and goal completion. Observation precedes final audit/tool overhead.",
+  "authoritative_fix_receipt": "workflows/pi-shared-context-ux-02-initiatives/events/fix-0017.json",
+  "artifact_verification": "workflows/pi-shared-context-ux-02-initiatives/artifacts/evidence/fix-0017/artifact-verification.json",
+  "no_goal_reset": true,
+  "coordinator_must_audit_final_full_session_jsonl": true,
+  "standalone_reports_validated": "All three Markdown reports pass OKF validation. No OKF bundle was created, so bundle validation is not applicable."
+}

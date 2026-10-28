@@ -1,0 +1,62 @@
+{
+  "verified_at": "2026-10-28T00:18:20.149778+00:00",
+  "receipt_read_back_equal": true,
+  "required_receipt_fields": [
+    "schema",
+    "receipt_id",
+    "workflow_id",
+    "phase",
+    "event",
+    "attempt",
+    "parent_receipt",
+    "status",
+    "repository",
+    "worktree",
+    "source_branch",
+    "base_branch",
+    "source_commit",
+    "source_tree",
+    "created_at",
+    "muxer",
+    "workspace_path",
+    "agent",
+    "pane_id",
+    "session_id",
+    "ticket",
+    "workflow",
+    "evidence",
+    "inputs",
+    "outputs",
+    "consumed_review_receipt_ids",
+    "resolved_finding_ids",
+    "unresolved_finding_ids",
+    "validation",
+    "summary",
+    "questions",
+    "goal_run_id",
+    "goal_dispatch_ref"
+  ],
+  "inputs_and_outputs_exist": true,
+  "all_historical_receipts_linked_in_current_draft": true,
+  "single_immutable_review_link_retained": true,
+  "markdown_okf_errors": [],
+  "relative_link_errors": [],
+  "current_source_requires_fresh_review": true,
+  "source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "source_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "cleanup_verified": true,
+  "markdown_documents": [
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/artifacts/snapshots/pr-draft-fix-0017.md",
+      "link_count": 34
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/projections/pr-draft.md",
+      "link_count": 34
+    },
+    {
+      "ref": "workflows/pi-shared-context-ux-02-initiatives/projections/implementation-log.md",
+      "link_count": 15
+    }
+  ]
+}

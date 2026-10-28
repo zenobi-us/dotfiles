@@ -1,0 +1,14 @@
+{
+  "source_commit": "d1ad6dbabb7131de2910334f2b750f8586a0e4ca",
+  "source_tree": "80f4559a9f6cbe6e51d2e102480714703eac160f",
+  "source_branch": "feature/pi-shared-context-ux-02-initiatives",
+  "status_porcelain": "",
+  "diff_check_exit": 0,
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "no_merge_rebase_push_or_tracker_mutation": true,
+  "validation_note": "The final source differs from the exercised revision only by docs and discarded tool-generated whitespace. Behavior and regression tests are unchanged."
+}

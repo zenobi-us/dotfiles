@@ -1,0 +1,8 @@
+{
+  "fixture_removed": true,
+  "source_node_modules_removed": true,
+  "temporary_compiler_config_removed": true,
+  "termscope_sessions_closed": true,
+  "external_dependency_install_preserved": "/tmp/ux02-deps",
+  "no_source_manifest_or_lockfile_changes": true
+}

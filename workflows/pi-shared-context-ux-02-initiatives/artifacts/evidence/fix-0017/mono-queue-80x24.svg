@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)"> ▀▀█  v1.1.0</text>
+<text x="10" y="64" fill="rgb(255,255,255)"> █╭──────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="84" fill="rgb(255,255,255)"> c│ Projects · Repo &gt; ux02-fix-0017-fixture-1019ossq                         │</text>
+<text x="10" y="104" fill="rgb(255,255,255)"> P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="144" fill="rgb(255,255,255)"> P│ Initiatives  &gt;  Queues                                                   │</text>
+<text x="10" y="164" fill="rgb(255,255,255)"> e│&gt; Ticket queues · all                                                     │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │ tracker/tickets/A1.md                                                    │</text>
+<text x="10" y="224" fill="rgb(255,255,255)">  │ [Enhancement]  ID: A2                                                    │</text>
+<text x="10" y="244" fill="rgb(255,255,255)">  │ Nearby child A2                                                          │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │ State: unclaimed                                                         │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">  │ tracker/tickets/A2.md                                                    │</text>
+<text x="10" y="304" fill="rgb(255,255,255)">  │&gt;[Enhancement]  ID: B1                                                    │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │&gt;Surviving child B1                                                       │</text>
+<text x="10" y="344" fill="rgb(255,255,255)">  │&gt;State: unclaimed                                                         │</text>
+<text x="10" y="364" fill="rgb(255,255,255)">  │&gt;tracker/tickets/B1.md                                                    │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──│ tracker/tickets/B1.md · READY                                            │──</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R ref…│</text>
+<text x="10" y="444" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/tmp/ux02-fix-0017-fixture-1019ossq (master)</text>
+<text x="10" y="484" fill="rgb(255,255,255)">$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 • medium</text>
+</svg>

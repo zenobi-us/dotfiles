@@ -6,6 +6,6 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "fix-start-0016",
-  "state": "FIXING"
+  "latest_receipt": "review-start-0019",
+  "state": "REVIEWING"
 }

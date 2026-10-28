@@ -1,0 +1,19 @@
+{
+  "label": "Disposable terminal fixture, not production records",
+  "root": "/tmp/ux02-fix-0017-fixture-1019ossq",
+  "tickets": {
+    "A1": "Moved child A1",
+    "A2": "Nearby child A2",
+    "B1": "Surviving child B1"
+  },
+  "initial_membership": {
+    "A": [
+      "A1",
+      "A2"
+    ],
+    "B": [
+      "B1"
+    ]
+  },
+  "package_links": "Root ignored node_modules directory with package symlinks to /tmp/ux02-deps/node_modules; removed before commit"
+}

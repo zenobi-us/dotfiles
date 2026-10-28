@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)"> ▀▀█  v1.1.0</text>
+<text x="10" y="64" fill="rgb(255,255,255)"> █╭──────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="84" fill="rgb(255,255,255)"> c│ Projects · Repo &gt; ux02-fix-0017-fixture-1019ossq                         │</text>
+<text x="10" y="104" fill="rgb(255,255,255)"> P│ &gt;[1 Tracker]&lt;    2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="144" fill="rgb(255,255,255)"> P│ Initiatives  &gt;  Initiative A                                             │</text>
+<text x="10" y="164" fill="rgb(255,255,255)"> e│  A · Items 0                                                             │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │ A · Phase: awaiting-maintainer-review                                    │</text>
+<text x="10" y="224" fill="rgb(255,255,255)">  │ Summary: Disposable terminal fixture summary.                            │</text>
+<text x="10" y="244" fill="rgb(255,255,255)">  │ This collection is empty. No child items.                                │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │                                                                          │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">  │                                                                          │</text>
+<text x="10" y="304" fill="rgb(255,255,255)">  │                                                                          │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │                                                                          │</text>
+<text x="10" y="344" fill="rgb(255,255,255)">  │                                                                          │</text>
+<text x="10" y="364" fill="rgb(255,255,255)">  │                                                                          │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──│ Summary: Disposable terminal fixture summary.                            │──</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│</text>
+<text x="10" y="444" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/tmp/ux02-fix-0017-fixture-1019ossq (master)</text>
+<text x="10" y="484" fill="rgb(255,255,255)">$0.000 (sub) 0.0%/272k (auto)                                   gpt-5.5 • medium</text>
+</svg>

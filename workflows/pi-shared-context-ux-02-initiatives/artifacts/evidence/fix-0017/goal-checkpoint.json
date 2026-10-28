@@ -1,0 +1,11 @@
+{
+  "objective": "Read /tmp/ux02-fix-01.txt and fix only the already-approved blocking findings in review-0014. First inspect goal.get; wait for coordinator budget241808 before source edits. Do not interview, create another goal or reset usage. Complete all validation, artifacts and cleanup before goal.complete, your last tool call.",
+  "initial_budget": 241808,
+  "initial_used": 0,
+  "status": "active",
+  "checkpoint_used": 222918,
+  "checkpoint_remaining": 18890,
+  "checkpoint_note": "Observed goal.get before final source/artifact preparation; not final usage. Coordinator audits full session JSONL. No goal reset/replacement/increase.",
+  "completion_margin_tokens": 8192,
+  "session_ceiling": 250000
+}
