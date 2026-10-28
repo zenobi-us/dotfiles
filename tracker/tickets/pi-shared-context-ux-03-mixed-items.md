@@ -8,7 +8,7 @@ sequence: 3
 title: Browse research and tickets in the same initiative
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 ## What to build
@@ -65,3 +65,5 @@ The user approved this slice and its direct blockers during ticket decomposition
 - 2026-10-28T02:45:56.357Z: Claimed for implementation by coordinator run `ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135`. Direct blocker pi-shared-context-ux-02-initiatives is completed and published.
 
 - 2026-10-28T20:35:23.602Z: Review **SUCCESS** for source `5af9909464805f3d59bd5946cc006d5371aa2405`. [Immutable review](../../workflows/pi-shared-context-ux-03-mixed-items/artifacts/reviews/review-review-0014.md).
+
+- 2026-10-28T20:49:38.175Z: Completed after exact-source review SUCCESS for `5af9909464805f3d59bd5946cc006d5371aa2405`, integration `51ae716c8908a8ee6ded8f79e6eb5054d1109fd9` published to origin/master,139 integrated tests and scoped TypeScript passed, and live Pi mixed-record/research/Files/Ungrouped smoke passed. [Review](../../workflows/pi-shared-context-ux-03-mixed-items/artifacts/reviews/review-review-0014.md). [Integrated checks](../../workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/integrated-validation.json). [Native smoke](../../workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/integrated-native-smoke.json). [Published integration](../../workflows/pi-shared-context-ux-03-mixed-items/events/finish-pushed-0020.json). Resource cleanup remains in progress at this checkpoint.
