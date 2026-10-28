@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-latest-status/v1",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "state": "STARTED",
+  "latest_receipt": "start-0001",
+  "latest_source_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "latest_source_tree": "ac50142b0e7f4fdaee8f607a15d526e93b58aca3",
+  "latest_review_verdict": null,
+  "open_findings": [],
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0097.yaml",
+  "cycle_number": 1
+}
