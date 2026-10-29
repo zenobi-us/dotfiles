@@ -1,25 +1,17 @@
 ---
-title: Ticket06 review budget decision required
+title: Ticket06 approved review-only exception in progress
 type: Report
 ---
 
 ## Current status
 
-Ticket06 source is implemented and runtime-verified, but independent review is incomplete. Source `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`, remains clean and private. The canonical ticket remains claimed. Tickets02–05 are completed and published.
+The user explicitly approved3freshreviews at300000tokens each,18totalTicket06cycles and65totaldispatches. Earlier session limits and all historical counts are unchanged. Source `20968ee4f907c6f74bc77702fcef09578b41c6b8` / `5f64cf06e76dba7e015b9cd54088bc73ae88771f` remains frozen and clean; canonicalstatus remainsclaimed.
 
-## Budget boundary
+FreshStandards16 andSpec17 retain completecanonicalticket/initiative, all4changedpaths/allchangedlines, all12criteria/heuristics and every matchingfirstskill. The conventionalunified3patch removes only unchanged context. Full128000output and4096framing reserves, cachemiss/stateless/single-call/nohelper/noreset controls are unchanged. A six-case isolated probe passed; actual fresh-session admission/accounting and verdicts remain to be observed.
 
-Cycle15 used55415settledworktokens. The next request projected255703tokens because the guard reserves full uncached context and128000possibleoutputtokens. It was denied before dispatch. No cap breach occurred. The smaller patch preserved every changed line, but additional requested source context still reached the admission boundary. No assessment or valid verdict exists. All15authorizedcycles remain consumed;61of62dispatches are reserved.
+- [Explicit exception56](../events/review-exception-approved-0056.json)
+- [Standards16start57](../events/review-standards-start-0057.json)
+- [Spec17start60](../events/review-spec-start-0060.json)
 
-## Required decision
-
-Keep250000 and hold furtherAIwork for a revised input/transport plan, or explicitly authorize a300000review-only exception and18totalcycles/65dispatches. Three independent fresh reviews and coordinator finish remain. No exception or extra cycle has been activated. Prior ceilings/accounting remain unchanged.
-
-- [Final incomplete Standards attempt](../events/review-standards-complete-0054.json)
-- [Decision boundary](../events/review-budget-decision-required-0055.json)
-- [Exact accounting and alternatives](../artifacts/evidence/review-budget-boundary-0055/budget-boundary.json)
-
-## Preservation
-
-Only the stopped owned reviewer pane was closed. Source worktree and owned rootworkspacew8P remain. No source, claim, status or completed ticket was changed. All test/browser processes are closed.
+17of18cycles and63of65dispatches are reserved. One freshmainreview and coordinatorfinish remain after both complete axes pass. No independent verdict or ticketcompletion is claimed. Sourceworkspacew8P rootshell remains owned and preserved.
 

@@ -1,0 +1,112 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-06-queues",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues"
+  },
+  "receipt_id": "review-exception-approved-0056",
+  "parent_receipt": "review-budget-decision-required-0055",
+  "phase": "review",
+  "attempt": 4,
+  "event": "operator-approval",
+  "created_at": "2026-10-29T21:43:33.483Z",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "status": "approved",
+  "muxer": "herdr",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "pane_id": "w64:pT",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "review_role": "standards",
+  "fixed_point": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "source_dirty": false,
+  "source_committed": true,
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-exception-approved-0056",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-exception-approved-0056",
+    "publication": "repository"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "cycle_number": 15,
+  "token_limit": 300000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 100000,
+  "guard_sha256": "fec08eb63867a87ca9727b179462e19b8a27854ab9d0e559319f8c25df794c0f",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/review-budget-decision-required-0055.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/operator-approval-0243.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/review-exception-approved-0056.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-exception-approved-0056/probe.json"
+    },
+    {
+      "kind": "guard",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-exception-approved-0056/work-token-guard-review-300k.ts"
+    }
+  ],
+  "approved_ticket_cycle_limit": 15,
+  "approval_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/operator-approval-0232.yaml",
+  "single_call_control": true,
+  "budget_scope": "coordinator",
+  "agent_session_cycle_consumption": 0,
+  "code_stage_completed": true,
+  "valid_source_verdict": false,
+  "independent_source_reviews_completed": 0,
+  "current_ticket_cycles_consumed": 15,
+  "current_ticket_cycle_limit": 18,
+  "current_dispatches_reserved": 61,
+  "current_dispatch_cap": 65,
+  "source_worktree_preserved": true,
+  "source_workspace_preserved": true,
+  "source_workspace_id": "w8P",
+  "active_ai_agents": [],
+  "claim_and_status_unchanged": true,
+  "canonical_work_status": "claimed",
+  "per_session_work_cap_unchanged": false,
+  "required_user_authority": null,
+  "pending_gate": "three_fresh_full_scope_reviews_then_finish_if_success",
+  "approved_review_cycles": [
+    16,
+    17,
+    18
+  ],
+  "approved_review_session_ceiling": 300000,
+  "implementation_fix_validation_ceiling": 250000,
+  "prior_limits_and_usage_unchanged": true,
+  "previous_guard_sha256": "5ebdb66415a5efb5eb549f84b1465216f8d2448faa13bd19b15e17afa58d81f0",
+  "full_output_reserve": 128000,
+  "framing_reserve": 4096,
+  "guard_controls_other_than_explicit_review_ceiling_unchanged": true,
+  "live_provider_verified": false,
+  "isolated_probe_status": "passed"
+}

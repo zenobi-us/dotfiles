@@ -1,0 +1,36 @@
+{
+  "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workflow": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+  "evidence": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0061",
+  "evidenceRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0061",
+  "role": "spec",
+  "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "smells": [
+    "Mysterious Name",
+    "Duplicated Code",
+    "Feature Envy",
+    "Data Clumps",
+    "Primitive Obsession",
+    "Repeated Switches",
+    "Shotgun Surgery",
+    "Divergent Change",
+    "Speculative Generality",
+    "Message Chains",
+    "Middle Man",
+    "Refused Bequest"
+  ],
+  "artifact": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0061.md",
+  "artifactRef": "workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0061.md",
+  "result": "review-spec-0061",
+  "checksRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+  "nativeRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json"
+}
