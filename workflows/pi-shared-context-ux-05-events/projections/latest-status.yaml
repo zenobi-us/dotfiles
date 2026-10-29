@@ -6,8 +6,8 @@
     "id": "pi-shared-context-ux-05-events",
     "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
   },
-  "state": "GUARD_VALIDATING",
-  "latest_receipt": "guard-start-0004",
+  "state": "IMPLEMENTATION_BLOCKED",
+  "latest_receipt": "guard-complete-0006",
   "latest_source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
   "latest_source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
   "latest_review_verdict": null,
@@ -46,9 +46,11 @@
     "Actual Pi loading-history state remains unobserved."
   ],
   "required_before_continuation": [
-    "Verify hard pre-request enforcement in the fresh counted guard session.",
-    "Resume only in subsequent fresh counted sessions; preserve cycle1 usage."
+    "Complete native loading-history acceptance in a fresh guarded counted session."
   ],
   "guard_work_authorized": true,
-  "further_feature_work_blocked": true
+  "hard_guard_verified": true,
+  "guard_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0004/work-token-guard.ts",
+  "guard_sha256": "eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65",
+  "further_feature_work_blocked": false
 }

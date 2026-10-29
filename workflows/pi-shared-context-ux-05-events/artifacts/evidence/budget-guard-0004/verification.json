@@ -1,0 +1,36 @@
+{
+  "schema": "work-token-guard-verification/v1",
+  "guard_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0004/work-token-guard.ts",
+  "guard_sha256": "eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-28T23-42-52-197Z_01a184e5-2525-74df-b664-0a0c79e6c913.jsonl",
+  "session_id": "01a184e5-2525-74df-b664-0a0c79e6c913",
+  "cycle_number": 2,
+  "ceiling": 250000,
+  "accounting": {
+    "raw_usage": {
+      "input": 3552,
+      "output": 74,
+      "cacheWrite": 0,
+      "cacheRead": 3328
+    },
+    "provider_work_tokens": 3626,
+    "auxiliary_entries": 0,
+    "under_cap": true
+  },
+  "native_observations": {
+    "actual_tool_read": true,
+    "final_reply": "GUARD_ALLOWED",
+    "allowed_network_requests": 2,
+    "settled_responses": 2,
+    "oversized_request_denied_before_network": true,
+    "subsequent_small_request_denied": true,
+    "usage_unchanged_after_denials": true
+  },
+  "input_bound": "Full uncompressed stateless text-payload UTF-8 bytes plus4096 framing tokens. No cache-hit assumption.",
+  "output_bound": "Unmodified model catalog maximum128000; Codex does not accept caller output caps.",
+  "unsupported": "Image input, stateful/chained requests, another simultaneous inference, other models and repeated network attempts fail closed.",
+  "telemetry_limit": "--no-extensions removed Herdr completion telemetry in this controlled probe. Its wait timed out. Parent verified the native transcript and numeric guard ledger, then closed the pane. Future work agents must retain ambient extensions.",
+  "guard_closed": true,
+  "source_commit_unchanged": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree_unchanged": "870eee2ea7f04671913f447ff64c3608ad6c1906"
+}

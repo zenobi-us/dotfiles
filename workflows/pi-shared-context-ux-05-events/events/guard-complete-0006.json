@@ -1,0 +1,90 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "guard-complete-0006",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "phase": "validate",
+  "attempt": 1,
+  "parent_receipt": "guard-result-0005",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "source_branch": "feature/pi-shared-context-ux-05-events",
+  "base_branch": "master",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "created_at": "2026-10-29T00:02:33.011Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0102.yaml",
+  "event": "phase-complete",
+  "status": "completed",
+  "cycle_number": 2,
+  "token_limit": 250000,
+  "native_goal_budget": null,
+  "completion_margin_tokens": null,
+  "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/guard-result-0005.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0102.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/guard-complete-0006.json"
+    }
+  ],
+  "validation_purpose": "Hard pre-request guard; no feature work",
+  "guard_sha256": "eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65",
+  "verdict": "SUCCESS",
+  "validation_agent": {
+    "name": "ux05-guard-validate-c2",
+    "pane_id": "w82:p1",
+    "session_id": "01a184e5-2525-74df-b664-0a0c79e6c913",
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-28T23-42-52-197Z_01a184e5-2525-74df-b664-0a0c79e6c913.jsonl"
+  },
+  "feature_complete": false,
+  "guard_verified": true,
+  "accounting": {
+    "raw_usage": {
+      "input": 3552,
+      "output": 74,
+      "cacheWrite": 0,
+      "cacheRead": 3328
+    },
+    "provider_work_tokens": 3626,
+    "auxiliary_entries": 0,
+    "under_cap": true
+  },
+  "verification_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0004/verification.json",
+  "summary": "Actual guarded Codex inference preserved a native read tool and final reply. Two admitted responses used3626 work tokens. An oversized payload and a subsequent small request were denied before additional network dispatch or provider work. The exact loaded guard hash is pinned.",
+  "limitations": [
+    "--no-extensions removed Herdr completion telemetry in this controlled probe. Its wait timed out. Parent verified the native transcript and numeric guard ledger, then closed the pane. Future work agents must retain ambient extensions.",
+    "Conservative text-only admission reserves the advertised128000 output maximum and full payload bytes; it can stop well below250000 actual tokens. Unsupported requests fail closed."
+  ],
+  "source_committed": true,
+  "source_dirty": false,
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-05-events/events/guard-result-0005.json",
+  "agent_closed": true,
+  "temporary_config_removed": true
+}

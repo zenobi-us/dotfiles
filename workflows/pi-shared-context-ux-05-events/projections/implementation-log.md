@@ -50,3 +50,9 @@ Cache read is excluded. At196059 accumulated work tokens, one uncached provider 
 
 Obtain explicit user authorization after the cap breach and verify a hard pre-request budget guard. A fresh session must complete the missing native loading-history acceptance without resetting or transferring cycle1 usage. Preserve the implementation and historical evidence. Independent exact-source Standards and Spec reviews remain subsequent phases. Ticket06 has not started.
 
+
+## Guard recovery verified
+
+User approval authorized the guard work. [guard-start-0004](../events/guard-start-0004.json), [guard-result-0005](../events/guard-result-0005.json) and [guard-complete-0006](../events/guard-complete-0006.json) record cycle2. The exact guard `eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65` allowed an actual read and reply, then rejected an oversized payload and a later small request with provider work unchanged at3626. [Verification](../artifacts/evidence/budget-guard-0004/verification.json).
+
+The native probe closed. Its disabled ambient extensions removed Herdr completion telemetry; future work agents must retain ambient extensions. No installed runtime or global settings changed. Cycle1 and its371234-token breach remain recorded. The implementation is still incomplete until the missing loading-history acceptance passes in a fresh guarded session. Two of ten sessions are consumed.

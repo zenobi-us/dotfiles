@@ -1,0 +1,8 @@
+{"at":"2026-10-28T23:42:52.269Z","event":"ready","spent":0,"ceiling":250000,"model":"gpt-6.1-sol","outputMaximum":128000,"transport":"stateless SSE"}
+{"at":"2026-10-28T23:49:49.581Z","event":"admitted","spent":0,"inputBytes":15109,"framingReserve":4096,"outputMaximum":128000,"reservation":147205,"ceiling":250000}
+{"at":"2026-10-28T23:49:52.313Z","event":"settled","work":3457,"spent":3457,"reservation":147205,"ceiling":250000}
+{"at":"2026-10-28T23:49:52.343Z","event":"admitted","spent":3457,"inputBytes":15787,"framingReserve":4096,"outputMaximum":128000,"reservation":147883,"ceiling":250000}
+{"at":"2026-10-28T23:49:54.156Z","event":"settled","work":169,"spent":3626,"reservation":147883,"ceiling":250000}
+{"at":"2026-10-28T23:55:08.911Z","event":"denied","reason":"full uncached input and maximum output exceed the remaining ceiling","spent":3626,"ceiling":250000}
+{"at":"2026-10-28T23:55:08.912Z","event":"uncertain-response","spent":3626,"reservation":348355,"observedWork":0}
+{"at":"2026-10-28T23:59:58.844Z","event":"denied","reason":"guard unavailable, stopped, or another inference is pending","spent":3626,"ceiling":250000}
