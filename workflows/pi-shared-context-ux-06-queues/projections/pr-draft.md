@@ -1,18 +1,25 @@
 ---
-title: Ticket06 final authorized Standards review
+title: Ticket06 review budget decision required
 type: Report
 ---
 
 ## Current status
 
-Code and native acceptance are recorded for `20968ee4f907c6f74bc77702fcef09578b41c6b8` / `5f64cf06e76dba7e015b9cd54088bc73ae88771f`. No valid independent verdict exists yet. Fresh Standards cycle15 is prepared, preserving all4changedpaths/allchangedlines/all12heuristics and all11mandatoryskills. The conventionalunified3patch has33318bytes versus46023with8contextlines. The Standards-only packet does not preload the separate Spec-axis body; canonical ticket, every repo rule and required authorities remain.
+Ticket06 source is implemented and runtime-verified, but independent review is incomplete. Source `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`, remains clean and private. The canonical ticket remains claimed. Tickets02–05 are completed and published.
 
-Single-callAPIcontrol was verified in realcycles13/14, but both were incomplete:55927/56496settledwork; projectedfull-outputadmissions255457/252606were deniedbefore dispatch. Neither breached250000. Historicalattempts remain consumed. Their ownedworkspacew8N was observedalreadyabsent; sourceworktree remains. Fresh ownedworkspacew8P preserves rootshell.
+## Budget boundary
 
-- [BlockedStandards47](../events/review-standards-complete-0047.json)
-- [BlockedSpec50](../events/review-spec-complete-0050.json)
-- [Losslessboundedinputs51](../events/bounded-review-inputs-prepared-0051.json)
-- [FinalauthorizedStandardsstart52](../events/review-standards-start-0052.json)
+Cycle15 used55415settledworktokens. The next request projected255703tokens because the guard reserves full uncached context and128000possibleoutputtokens. It was denied before dispatch. No cap breach occurred. The smaller patch preserved every changed line, but additional requested source context still reached the admission boundary. No assessment or valid verdict exists. All15authorizedcycles remain consumed;61of62dispatches are reserved.
 
-15of15cycles and61of62dispatches are reserved. Do not infer authorization for furthercycles. Spec and freshmain remain mandatory after a validStandards verdict. Canonicalclaim/status/source are unchanged.
+## Required decision
+
+Keep250000 and hold furtherAIwork for a revised input/transport plan, or explicitly authorize a300000review-only exception and18totalcycles/65dispatches. Three independent fresh reviews and coordinator finish remain. No exception or extra cycle has been activated. Prior ceilings/accounting remain unchanged.
+
+- [Final incomplete Standards attempt](../events/review-standards-complete-0054.json)
+- [Decision boundary](../events/review-budget-decision-required-0055.json)
+- [Exact accounting and alternatives](../artifacts/evidence/review-budget-boundary-0055/budget-boundary.json)
+
+## Preservation
+
+Only the stopped owned reviewer pane was closed. Source worktree and owned rootworkspacew8P remain. No source, claim, status or completed ticket was changed. All test/browser processes are closed.
 

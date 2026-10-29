@@ -1,0 +1,35 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T21-18-55-042Z_01a18987-b642-70db-bd0a-66b2da8a8dad.jsonl",
+  "session_id": "01a18987-b642-70db-bd0a-66b2da8a8dad",
+  "goal_id": "15b9af53b71d802b",
+  "native_status": "active",
+  "native_goal_used": 55415,
+  "native_goal_budget": 200000,
+  "raw_usage": {
+    "input": 54449,
+    "output": 966,
+    "cacheWrite": 0,
+    "cacheRead": 590080
+  },
+  "assistant_entries": 21,
+  "auxiliary_model_usage_entries": 0,
+  "provider_work_tokens": 55415,
+  "session_ceiling": 250000,
+  "under_cap": true,
+  "reported_provider_work_tokens": 55415,
+  "accounting_complete": true,
+  "unsettled_request": null,
+  "conservative_work_upper_bound": 55415,
+  "under_cap_basis": "All admitted requests settled with reported usage.",
+  "bound_violation": false,
+  "transport": {
+    "guard_sha256": "5ebdb66415a5efb5eb549f84b1465216f8d2448faa13bd19b15e17afa58d81f0",
+    "all_admissions_parallel_false": true,
+    "maximum_tool_calls_per_assistant": 1,
+    "stopped_next_reservation": 200288,
+    "stopped_next_total": 255703,
+    "ceiling": 250000,
+    "trigger": "A single read requested two source ranges730–820 and920–1005; the combined new wiretail15850bytes exceeded the conservative remaining admission. The requested context was returned by the tool but no model request admitted it.",
+    "valid_source_verdict": false
+  }
+}

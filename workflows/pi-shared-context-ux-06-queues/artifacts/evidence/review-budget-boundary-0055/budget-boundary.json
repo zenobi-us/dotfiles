@@ -1,0 +1,75 @@
+{
+  "observed_at": "2026-10-29T21:31:23.448Z",
+  "source": {
+    "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+    "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+    "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+    "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+  },
+  "canonical_ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "canonical_work_status": "claimed",
+  "canonical_record_unchanged": true,
+  "source_clean": true,
+  "valid_independent_reviews": 0,
+  "cycles_consumed": 15,
+  "approved_cycle_limit": 15,
+  "dispatches_reserved": 61,
+  "approved_dispatch_cap": 62,
+  "per_session_limit": 250000,
+  "full_possible_output_reserve": 128000,
+  "framing_reserve": 4096,
+  "single_call_verified": true,
+  "latest_cycles": [
+    {
+      "cycle": 13,
+      "role": "standards",
+      "work": 55927,
+      "accounting_complete": true,
+      "under_cap": true,
+      "denied_projection": 255457,
+      "assessment_complete": false,
+      "valid_source_verdict": false
+    },
+    {
+      "cycle": 14,
+      "role": "spec",
+      "work": 56496,
+      "accounting_complete": true,
+      "under_cap": true,
+      "denied_projection": 252606,
+      "assessment_complete": false,
+      "valid_source_verdict": false
+    },
+    {
+      "cycle": 15,
+      "role": "standards",
+      "work": 55415,
+      "accounting_complete": true,
+      "under_cap": true,
+      "denied_projection": 255703,
+      "assessment_complete": false,
+      "valid_source_verdict": false
+    }
+  ],
+  "all_historical_attempts_preserved": true,
+  "minimum_remaining_fresh_reviews": [
+    "Standards",
+    "Spec",
+    "main"
+  ],
+  "minimum_total_cycles": 18,
+  "minimum_total_dispatches_including_finish": 65,
+  "active_owned_ai_agents": [],
+  "source_workspace_id": "w8P",
+  "source_root_pane": "w8P:p1",
+  "source_workspace_preserved": true,
+  "owned_browser_or_native_test_processes": [],
+  "choice_required": {
+    "keep_existing_250000": "No furtherAIcycles until a separately justified input/transport plan and cycle authority exist. Preserve source/status and published checkpoint.",
+    "review_only_300000_exception": "Requires explicit user approval:18totalTicket06cycles/65totaldispatches, three fresh review sessions capped300000 each. Implementation/fix/validation and all prior session ceilings stay250000. Preserve full128000output/4096framing/single-call/cachemiss/stateless/full-session accounting, model/provider and review scope. No retrospective recategorization. A larger ceiling permits the observed deniedrequests arithmetically but does not guarantee complete review or a SUCCESS verdict."
+  },
+  "provider_limit_evidence": {
+    "url": "https://github.com/openai/codex/issues/4138",
+    "scope": "OpenAI maintainer states CodexCLI max_output_tokens support was removed. This is not proof of every current backend parameter; no supported hard per-request output cap has been verified for this installed provider. Do not lower the128000possible-outputreserve by assumption."
+  }
+}
