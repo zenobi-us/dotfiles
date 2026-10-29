@@ -1,0 +1,78 @@
+{
+  "task": "Implement a complete compiling queue STATE/NAVIGATION slice in GraphExplorer, not the entire ticket in this one cycle. Commit real source progress and prove the state path with a small public-modal smoke plus affected automated suite/compiler. Save actual assessment and honest pending-gate result. No stubs or fake completed ticket. The remaining source presentation/tests and native/docs/review slices continue immediately in fresh sessions.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "canonical_initiative_ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "branch": "feature/pi-shared-context-ux-06-queues",
+  "source_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "source_tree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b",
+  "scope": [
+    "Separate queue navigation from initiative navigation; queues contain tickets only. Preserve initiative position/state when entering/leaving queues. Keep original Ready/Review/Blocked/All membership predicates unchanged.",
+    "Centralize queue selection/update logic rather than duplicate keyboard/mouse/recovery paths. Preserve selected ticket by canonical identity across live changes; explain departure and select a valid nearest row. Keep selection/scroll stable on Return.",
+    "Opening a queue ticket resolves its real initiative or Ungrouped canonical context; Esc returns logically to the selected queue. Keep per-project/workspace navigation serializable through existing ExplorerNavigation.",
+    "Uppercase R refreshes; lowercase r remains Review. Preserve workspace number shortcuts. No empty action menu without a valid selected target; preserve disabled reasons and safe current canonical targets.",
+    "Retain last readable data on refresh failure and continue blocking unsafe transitions. Keep loading distinct from empty. Preserve existing readers, events, Files, copy/actions, Unicode/sanitization and source/evidence authority."
+  ],
+  "outstanding_scope": "All12ticket criteria remain required overall. Next source slice owns structured row fields, recorded activity display, responsive queue controls and complete public-modal behavior tests. Then fresh native40x12/80x24/120x40 colour+mono acceptance and post-smoke existing README update. Then independent Standards/Spec/main reviews. Do not implement unrelated functionality or pretend those later gates passed.",
+  "constraints": [
+    "Only authorized extension/shared-context CLI source and relevant tests in this owned checkout; no tracker/ownership/queue semantics/backend/transition/schema changes. No helpers, other models, merge/push/rebase/finish, provider/config/guard/ceiling changes or session reset.",
+    "Matching skills first. MQ+okf.mq/explicit formats for all local Markdown. LSP for intelligence/exported references; parent repaired real missing TypeScript via owned ignored cache links. Use read/edit/write correctly.",
+    "Frozen relevant code is preloaded. Do not reread entire files or large native harness. Acquire only narrow current anchors needed to edit. Do not open full modal.ts or broad documentation for this state-only slice: public boundary fixture/API is provided. Additional needed symbols get narrow LSP/range reads.",
+    "Use boring existing state/watcher/navigation patterns. No second framework. All existing action/receipt restrictions and queue predicates are authoritative.",
+    "No mid-flight build/lint/test/formatter. After final source changes run affected suite and scoped compiler, recording full outputs to evidence and printing concise genuine outcomes; never suppress errors. Migrate broken callers/tests; delete obsolete incidental wording tests instead of repinning them.",
+    "Add no permanent presentation tests or docs in this slice; next source/native slices own those. Keep source compiling and provide an actual tiny complete-public-modal state smoke. Do not dispatch a real workflow or send a provider prompt."
+  ],
+  "validation": {
+    "suite": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "compiler": "Create an external scoped JSON config extending /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/tsconfig.base.json, include /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/**/*.ts and /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/types/**/*.d.ts, typeRoots /tmp/ux02-deps/node_modules/@types. Run mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --noEmit -p CONFIG.",
+    "dependencies": "/tmp/ux02-deps/node_modules; nine coordinator-owned ignored worktree links already present; leave them intact"
+  },
+  "workflow": {
+    "kind": "workflow",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+    "ref": "workflows/pi-shared-context-ux-06-queues",
+    "publication": "repository"
+  },
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0008",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0008",
+    "publication": "repository"
+  },
+  "result_template": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0008/result-template.json",
+  "result_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/events/implementation-0008.json",
+  "assessment_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0008/assessment.json",
+  "snapshot_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/snapshots/pr-draft-implementation-0008.md",
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0198.yaml",
+  "session": {
+    "name": "ux06-state-c3",
+    "pane_id": "w8G:p2",
+    "workspace_id": "w8G"
+  },
+  "limits": {
+    "cycle": 3,
+    "total_cycles": 10,
+    "full_session_ceiling": 250000,
+    "native_work_budget": 200000,
+    "maximum_output_reserve": 128000,
+    "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237"
+  },
+  "completion": [
+    "Save actual assessment promptly after source progress. Commit complete state code and necessary caller repairs with the resolved ticket reference in title; leave tracked source clean. Record exact final commit/tree/changed files and actual validation commands/cwd/results.",
+    "Populate the provided template via structured data with actual source/summary/checks, set code_stage_completed=true only for the full state slice, keep status=blocked and pending_gate for the still-required rest of ticket. Write result exclusively/no-clobber with readback; preserve goal_run_id/dispatch input, actual session/pane identity and resolved store/root/ref.",
+    "Create the versioned draft snapshot and regenerate manifest/latest-status/pr-draft/implementation-log using MQ for Markdown, retaining all earlier receipts. Recreate removed empty directories. Keep summaries concise and truthful.",
+    "Close own temporary smoke resources. Do every tool/write/cleanup before goal.complete. Complete only this full state-code/check/commit/record objective, never full-ticket acceptance. Final reply under100words; WORKTREE_STATE_STAGE_DONE only for the finished state scope."
+  ]
+}

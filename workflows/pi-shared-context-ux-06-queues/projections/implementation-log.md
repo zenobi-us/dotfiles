@@ -15,7 +15,11 @@ BLOCKED first implementation cycle; source unchanged and clean. No implementatio
 
 Next: fresh independent implementation cycle2 with a compact contract and preloaded mapped source, then separate native validation before independent reviews. All12ticket criteria and required terminal observations remain required. No guard relaxation, allowance reset, source workaround, or ownership change.
 
-## Fresh code cycle2
+## Cycle2
 
-[Exclusive start](../events/implementation-start-0004.json). All12source criteria and public-modal automated checks remain required. The full native Pi matrix and post-smoke documentation use the next fresh validation cycle before any accepted implementation or review. This is phase separation, not a smaller ticket.
+[Result](../events/implementation-0005.json), [parent](../events/implementation-complete-0006.json), [whole-session audit](../artifacts/evidence/implementation-0005/full-session-audit.json). The second fresh session also stopped before source changes at50725work tokens, all admitted requests settled and under cap. No code, automated validation or acceptance passed. Source remains `6f959f8c380efe378f4a0f2eeffcd3660c803859`.
+
+## Fresh state cycle3
+
+[State start](../events/implementation-start-0007.json). Complete queue state/navigation and safe refresh/identity/key behavior first. A subsequent source slice retains structured activity/field presentation and full public-modal tests; a fresh native/docs cycle and independent reviews remain mandatory. All12ticket criteria are retained. No allowance or guard change.
 
