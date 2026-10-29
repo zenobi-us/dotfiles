@@ -1,0 +1,321 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0065",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "phase": "review",
+  "attempt": 5,
+  "parent_receipt": "review-start-0064",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "source_branch": "feature/pi-shared-context-ux-05-events",
+  "base_branch": "master",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "created_at": "2026-10-29T06:04:22.820Z",
+  "muxer": "herdr",
+  "pane_id": "w8D:p2",
+  "agent": "omp",
+  "agent_name": "ux05-review-main-c20",
+  "session_id": "01a18635-a8d0-739e-bba2-65518f316e51",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0182.yaml",
+  "event": "phase-result",
+  "status": "completed",
+  "cycle_number": 20,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/review-complete-0062.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/standards-result-recovery-0049.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/spec-result-0058.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/snapshots/pr-draft-review-blocked-0063.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0182.yaml"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0181.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/run-native-review-v3.mjs"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/native-config-v3.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/review-input-ready-0067.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/assessment.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/launch-session.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/report/files/parent-focused-check.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/review-0065.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0065.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065"
+    }
+  ],
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "review_role": "main",
+  "guard_verification_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0028/verification.json",
+  "preloaded_inputs": true,
+  "partial_spec_scope": null,
+  "preparation": "Parent completes corrected real terminal verification before the fresh main receives full current evidence and both accepted axes. No extra AI session or product/source change.",
+  "verdict": "SUCCESS",
+  "findings": [],
+  "summary": "Completed the independent main review of all eight changed files and all 13 criteria. The pinned source implements the approved ticket-event inspection slice. No consumer-visible blocker or documented-standard breach was found. Standards49 and Spec58 both completed with SUCCESS on this exact source. Recorded suite, compiler and corrected native verification passed. This verdict does not authorize integration or ticket completion.",
+  "scope": {
+    "ticket": "tracker/tickets/pi-shared-context-ux-05-events.md",
+    "branch": "feature/pi-shared-context-ux-05-events",
+    "base_branch": "master",
+    "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+    "diff_sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460",
+    "inspection": "Independently inspected the complete supplied eight-file frozen diff. Read bounded loader, keyboard-navigation and scroll-rendering context where needed. Reconciled actual recorded validation and both completed independent reports. No later checkout was substituted.",
+    "files": [
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+    ],
+    "adr": "NO ADR: The supplied canonical architecture decision record index has no decision entries."
+  },
+  "standards_assessment": {
+    "receipt_ref": "workflows/pi-shared-context-ux-05-events/events/standards-result-recovery-0049.json",
+    "status": "completed",
+    "verdict": "SUCCESS",
+    "source_matches": true,
+    "reconciliation": "The actual Standards49 report covers all eight changed files and all 12 smell checks. Independent main inspection agrees with its validation-boundary, sanitization, feature-scope and public-modal test conclusions. The model comment accurately limits count availability to receipt identity and parent-graph validation. README wording agrees with the implemented receipt-count meaning and canonical action targets. No hard breach was identified.",
+    "optional_observations": [
+      {
+        "name": "Possible Duplicated Code",
+        "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+        "line": 846,
+        "blocking": false,
+        "description": "Event labels repeat in list, detail and ticket-summary presentation. The labels currently agree, and the layouts differ. Extraction is optional, not a required change."
+      }
+    ]
+  },
+  "spec_assessment": {
+    "receipt_ref": "workflows/pi-shared-context-ux-05-events/events/spec-result-0058.json",
+    "status": "completed",
+    "verdict": "SUCCESS",
+    "source_matches": true,
+    "reconciliation": "The actual Spec58 report assesses the canonical initiative and all 13 ticket criteria. Main independently assessed each criterion against the frozen diff and necessary context. The implementation keeps receipt validity, recorded attempts, source freshness and transition safety separate. No missing approved requirement or unrelated feature expansion was found.",
+    "acceptance_coverage": [
+      {
+        "number": 1,
+        "status": "PASS",
+        "evidence": "explorer.ts:687-695,719-723 places canonical ticket identity, tracker state and recorded phase totals above the event list."
+      },
+      {
+        "number": 2,
+        "status": "PASS",
+        "evidence": "data.ts:113-130 publishes review/fix counts only after receipt identity and parent-graph validation. Invalid fields do not contribute. data.test.ts:219-231 covers phase totals and orphaned/cyclic histories. model.ts:68-69 and explorer.ts:963 explain the count boundary and attempt meaning."
+      },
+      {
+        "number": 3,
+        "status": "PASS",
+        "evidence": "explorer.ts:846-855 renders separately labelled event identity, phase, execution, verdict and source commit. A commit never occupies the execution field."
+      },
+      {
+        "number": 4,
+        "status": "PASS",
+        "evidence": "explorer.ts:851-852,871-872 separates execution from review verdict. events.test.ts covers completed/FAILURE and failed execution. Corrected native evidence observes completed/FAILURE explicitly."
+      },
+      {
+        "number": 5,
+        "status": "PASS",
+        "evidence": "explorer.ts:616-620,823,858-876 opens a dedicated event detail with outcome, warnings and readable body before extended metadata. Public-modal tests and corrected native observations confirm the order."
+      },
+      {
+        "number": 6,
+        "status": "PASS",
+        "evidence": "explorer.ts:876-895 retains full source identities, current identities, workspace, branch, session, event reference and raw fields. explorer.ts:1058-1088 wraps and scrolls detail content. events.test.ts exercises paging at narrow widths."
+      },
+      {
+        "number": 7,
+        "status": "PASS",
+        "evidence": "explorer.ts:860-878 distinguishes matched, stale and unavailable source evidence, with invalid/unvalidated and workflow warnings. data.ts:115-151 preserves validation and freshness boundaries. Invalid events remain inspectable."
+      },
+      {
+        "number": 8,
+        "status": "PASS",
+        "evidence": "explorer.ts:835-836 retains dependency and unresolved-blocker rows. Existing actions.ts:118-122 rejects workflow errors before worktree transitions. No transition policy or receipt schema was changed."
+      },
+      {
+        "number": 9,
+        "status": "PASS",
+        "evidence": "explorer.ts:868-869,881 accepts changed-file totals only from structured changed_files or nonnegative integer changed_file_count fields. It does not parse prose."
+      },
+      {
+        "number": 10,
+        "status": "PASS",
+        "evidence": "explorer.ts:272-280,522-527,841-844,1051,1067-1080 preserves stable event identity, navigation state and pane offsets. events.test.ts covers live insertion, Files switching and ancestor return. Native evidence confirms selected-event return."
+      },
+      {
+        "number": 11,
+        "status": "PASS",
+        "evidence": "explorer.ts:267-270,833-834 distinguishes retained failed-refresh content, unreadable history, empty history and loading history. Workflow error remains set, current source is cleared and unsafe transitions remain blocked. Tests cover failure/empty states; native evidence covers held real reads at all three required sizes."
+      },
+      {
+        "number": 12,
+        "status": "PASS",
+        "evidence": "Event inspection adds no historical action target. explorer.ts:879 explicitly identifies the canonical ticket action target. events.test.ts checks canonical fresh-chat routing while inspecting an event and checks unresolved-blocker action restrictions."
+      },
+      {
+        "number": 13,
+        "status": "PASS",
+        "evidence": "Event text uses the existing clean and Unicode-aware wrapping path in explorer.ts:854,1058-1062. Explicit labels preserve field meanings without colour. Public-modal tests cover control removal, Unicode widths and Files independence. Existing copy, fresh-chat, workspace and description paths remain unchanged; the complete recorded regression suite passed."
+      }
+    ]
+  },
+  "validation": {
+    "source_identity": {
+      "executed_by": "this reviewer",
+      "command": "git rev-parse HEAD HEAD^{tree} b1e4b80769490af4896785bc2ea3699c22b346f6 && git status --porcelain=v1 && git diff --no-ext-diff --unified=0 b1e4b80769490af4896785bc2ea3699c22b346f6...eeb4e4f920bc5b556c515c63bb99af60e4a099d9 | sha256sum",
+      "exit_code": 0,
+      "result": "Commit, tree, fixed point and diff hash matched the frozen contract. Git status emitted no changes."
+    },
+    "suite": {
+      "executed_by": "prior main19 on the same unchanged source; not rerun by this reviewer",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/checks-result.json",
+      "command": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+      "exit_code": 0,
+      "pass": 147,
+      "fail": 0,
+      "assertions": 2061,
+      "files": 12
+    },
+    "compiler": {
+      "executed_by": "prior main19 on the same unchanged source; not rerun by this reviewer",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/checks-result.json",
+      "command": "mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --noEmit -p /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/scoped-tsconfig.json",
+      "exit_code": 0,
+      "result": "No compiler diagnostics were recorded."
+    },
+    "native": {
+      "executed_by": "parent before this review session; not rerun by this reviewer",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/native-check-result.json",
+      "verification_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/verification.json",
+      "status": "passed",
+      "result": "Corrected actual modal verification covers color and mono modes. Held real history reads show Loading history at 40x12, 80x24 and 120x40. Ready, completed review with FAILURE verdict, body-first detail and selected-event return were observed at 120x40 in both modes. All jobs finished.",
+      "earlier_failure_reconciliation": "review-0061/checks-result.json has aggregate status failed because its earlier native harness exited 1 at rejection-detail inspection. Its suite and compiler entries independently exited 0. The corrected review-0065 native result passed on the same commit/tree and explicitly records execution completed, verdict FAILURE and body-before-metadata. The earlier native attempt is not counted as a passing check."
+    }
+  },
+  "limitations": [
+    "This reviewer executed source-identity checks, not the suite, compiler or native harness. Runtime results are attributed to their actual executors.",
+    "Native loading observations cover all three required dimensions in both modes. Recorded ready/detail/return observations cover 120x40; narrow detail reflow and paging are covered by automated modal tests.",
+    "Native text, JSON, HTML, spans and SVG evidence do not establish full glyph or colour conformance. SVG fallback glyphs are not proof of terminal glyph rendering.",
+    "No provider prompt or workflow action was sent during native acceptance. Source inspection and automated tests cover canonical targeting and transition restrictions.",
+    "No additional build, lint or formatter result is claimed. No applicable architecture decision record exists.",
+    "Parent owns immutable reports and receipts. This assessment does not authorize integration, change tracker state or complete the ticket."
+  ],
+  "cleanup": {
+    "reviewer": "No source, test, configuration, dependency, tracker, prior receipt, artifact or projection was modified. The only reviewer write is this assessment JSON. No helper, agent, service or fixture was created.",
+    "parent_native": "Supplied actual cleanup reports native/gate/close exit 0 in both modes and removal of the owned fixture. No verification job is pending."
+  },
+  "native_goal_id": "15b8dac13c9b93ba",
+  "assessment_complete": true,
+  "valid_source_verdict": true,
+  "code_inspection_complete": true,
+  "source_dirty": false,
+  "source_committed": true,
+  "agent_closed": true,
+  "native_goal_completed": true,
+  "review_artifact": "workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0065.md",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065"
+  },
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T05-50-26-000Z_01a18635-a8d0-739e-bba2-65518f316e51.jsonl",
+    "session_id": "01a18635-a8d0-739e-bba2-65518f316e51",
+    "goal_id": "15b8dac13c9b93ba",
+    "native_status": "complete",
+    "native_goal_used": 52216,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 47879,
+      "output": 4845,
+      "cacheWrite": 0,
+      "cacheRead": 541184
+    },
+    "assistant_entries": 16,
+    "auxiliary_model_usage_entries": 0,
+    "provider_work_tokens": 52724,
+    "session_ceiling": 250000,
+    "under_cap": true,
+    "reported_provider_work_tokens": 52724,
+    "accounting_complete": true,
+    "unsettled_request": null,
+    "conservative_work_upper_bound": 52724,
+    "under_cap_basis": "All admitted requests settled with reported usage.",
+    "bound_violation": false
+  },
+  "result_author": "Parent persisted the actual complete independent main assessment and rendered the immutable report through MQ."
+}

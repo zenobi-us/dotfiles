@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/projections/pr-draft.md",
+    "valid": true,
+    "links": 79,
+    "unicode_label_extraction_workaround": true
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/projections/implementation-log.md",
+    "valid": true,
+    "links": 79,
+    "unicode_label_extraction_workaround": true
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/snapshots/pr-draft-review-passed-0066.md",
+    "valid": true,
+    "links": 79,
+    "unicode_label_extraction_workaround": true
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0065.md",
+    "valid": true,
+    "links": 9,
+    "unicode_label_extraction_workaround": true
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/pi-shared-context-ux-05-events.md",
+    "valid": true,
+    "links": 1,
+    "unicode_label_extraction_workaround": true
+  }
+]

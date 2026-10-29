@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:44985/",
+  "viewport": {
+    "width": 1200,
+    "height": 900
+  },
+  "four_images_loaded_at_official_dimensions": true,
+  "horizontal_overflow": false,
+  "lightbox_opened": true,
+  "caption_observed": "40 by12 held real read proves loading rather than false empty history",
+  "close_previous_next_controls_observed": true,
+  "escape_closed": true,
+  "browser_errors": {
+    "entries": [],
+    "nextSeq": 0,
+    "dropped": 0
+  },
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "report_scope": "Portable evidence surface only, not the live Pi application",
+  "tab_closed": true,
+  "loopback_server_stopped": true
+}

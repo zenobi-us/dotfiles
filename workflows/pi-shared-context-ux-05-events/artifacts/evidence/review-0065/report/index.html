@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pi-shared-context-ux-05-events — actual event-history terminal evidence</title>
+
+<!--
+  This report is self-contained. The assets/ directory is a sibling of this
+  file, so the report keeps working when it is moved, zipped, or attached to a
+  ticket. Do not change these paths to ../ or ../../.
+  Load order is tokens, base, then report. Do not add a <style> block.
+  See the writing-reports skill.
+-->
+<link rel="stylesheet" href="assets/theme/v1/tokens.css">
+<link rel="stylesheet" href="assets/theme/v1/base.css">
+<link rel="stylesheet" href="assets/report/v1/report.css">
+<script src="assets/lightbox/v1/lightbox.js"
+        data-figures=".figure"
+        data-caption=".figure__caption"
+        data-hint="Click image to zoom &middot; Esc to close"
+        data-label="Screenshot viewer"
+        defer></script>
+</head>
+<body>
+
+<!--
+  Strict BEM: every styled node carries a class. A node with no class is a node
+  with no style. The vocabulary is fixed - see references/markup.md in the
+  writing-reports skill. Do not invent a class.
+-->
+<div class="report">
+
+<h1 class="report__title">pi-shared-context-ux-05-events — actual event-history terminal evidence</h1>
+<p class="report__subtitle">
+  Real Pi event-history acceptance, captured through Termscope on 29 October 2026.
+  Frozen source <code class="code">eeb4e4f920bc5b556c515c63bb99af60e4a099d9</code>.
+  This report proves terminal behavior, not ticket completion or integration.
+</p>
+
+<div class="card">
+  <h3 class="card__title">Result summary</h3>
+  <div class="summary"><table class="summary__grid">
+    <tr class="summary__row"><th class="summary__head">#</th><th class="summary__head">Check</th><th class="summary__head">Result</th></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#loading">1</a></td><td class="summary__cell"><a class="summary__link" href="#loading">Loading remains distinct from empty history</a></td><td class="summary__cell"><a class="summary__link" href="#loading"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#detail">2</a></td><td class="summary__cell"><a class="summary__link" href="#detail">Completed execution, rejected review, body-first detail</a></td><td class="summary__cell"><a class="summary__link" href="#detail"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#return">3</a></td><td class="summary__cell"><a class="summary__link" href="#return">Return preserves the selected event</a></td><td class="summary__cell"><a class="summary__link" href="#return"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#commands">4</a></td><td class="summary__cell"><a class="summary__link" href="#commands">Recorded automated and independent-review evidence</a></td><td class="summary__cell"><a class="summary__link" href="#commands"><span class="badge badge--info">Recorded results</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#notdone">5</a></td><td class="summary__cell"><a class="summary__link" href="#notdone">Glyph, colour and live-transition limits</a></td><td class="summary__cell"><a class="summary__link" href="#notdone"><span class="badge badge--info">Not covered</span></a></td></tr>
+  </table></div>
+  <p class="card__meta">Twelve actual observations: six loading frames, two released histories, two details and two selected-event returns. Both native processes and gates exited cleanly.</p>
+</div>
+
+<h2 class="report__section" id="method">How the test was built</h2>
+<p class="report__text">An isolated repository contained canonical ticket T, initiative I and real workflow receipts. Its completed review recorded a FAILURE verdict. A filesystem lock held actual MQ history reads while the modal loaded. No provider prompt or workflow transition was sent.</p>
+<p class="report__meta">Pi v1.1.0 loaded the production extension from the frozen source checkout. Loading was captured at 40 by 12, 80 by 24 and 120 by 40 in colour and monochrome modes. Detail and return observations used 120 by 40.</p>
+
+<h2 class="report__section" id="loading">Loading is not empty history <span class="badge badge--pass">Pass</span></h2>
+<div class="figures figures--pair">
+  <figure class="figure">
+    <img class="figure__image" src="shots/10-color-loading.png" alt="Small colour-mode terminal showing ticket T and loading history" width="380" height="260">
+    <figcaption class="figure__caption"><strong class="figure__label">40 by 12.</strong> The held real read produces a loading explanation rather than a false empty-history result.</figcaption>
+  </figure>
+  <figure class="figure">
+    <img class="figure__image" src="shots/20-mono-loading.png" alt="Monochrome terminal showing the history-loading state" width="740" height="500">
+    <figcaption class="figure__caption"><strong class="figure__label">80 by 24.</strong> Explicit text retains the loading meaning without relying on colour.</figcaption>
+  </figure>
+</div>
+<p class="report__text">The companion native result records all six size-and-mode loading observations, not just the two illustrated here.</p>
+
+<h2 class="report__section" id="detail">Outcome and body precede evidence <span class="badge badge--pass">Pass</span></h2>
+<figure class="figure">
+  <img class="figure__image" src="shots/30-event-detail.png" alt="Event detail with completed execution, failed review verdict, recorded body and exact metadata" width="1100" height="820">
+  <figcaption class="figure__caption"><strong class="figure__label">Two different outcomes.</strong> Execution completed, but the review rejected the source. The recorded body appears before full commit, tree, workspace, branch, session and raw fields.</figcaption>
+</figure>
+<div class="note"><p class="note__text"><strong class="note__label">Semantic check.</strong> The harness reads actual rendered execution and verdict fields without requiring incidental label capitalisation. Both modes reported completed execution and FAILURE verdict, with body before extended metadata. Earlier failed harness attempts remain preserved in the workflow.</p></div>
+
+<h2 class="report__section" id="return">Return retains event identity <span class="badge badge--pass">Pass</span></h2>
+<figure class="figure">
+  <img class="figure__image" src="shots/40-event-return.png" alt="Monochrome event list with the previously opened review-rejected event selected" width="1100" height="820">
+  <figcaption class="figure__caption"><strong class="figure__label">Esc returns to the same event.</strong> The list preserves review-rejected selection instead of moving to a different historical record.</figcaption>
+</figure>
+<p class="report__text">The list and detail retain the current canonical ticket target. No historical workspace or event reference was used as an action target during this read-only run.</p>
+
+<h2 class="report__section" id="commands">Recorded checks and independent assessment <span class="badge badge--info">Recorded results</span></h2>
+<p class="report__text">On this unchanged source, the affected suite passed 147 tests with zero failures and 2061 assertions across 12 files. Scoped TypeScript exited zero. The parent acceptance check passed 18 focused tests with 141 assertions. These command results are machine evidence, not screenshot-based claims.</p>
+<p class="report__text">Fresh independent Standards and complete Spec assessments passed. The final independent main assessed all eight changed files and all 13 criteria, reconciled those reports and the completed runtime proof, and saved SUCCESS with no blocking findings. Runtime execution is attributed to the prior main and parent, not falsely claimed as rerun by that final reviewer.</p>
+
+<h2 class="report__section" id="notdone">Not covered <span class="badge badge--info">Limits</span></h2>
+<ul class="report__list">
+  <li class="report__item">PNG previews were rasterised from captured SVG output. Fallback glyphs and rasterisation do not establish full terminal glyph or colour conformance. Text, structured observations and original capture provenance remain the evidence.</li>
+  <li class="report__item">This run did not send a provider prompt or execute a worktree transition. Automated modal checks and source review cover canonical targeting and safety restrictions.</li>
+  <li class="report__item">Fresh narrow captures prove loading. Detail and return captures use 120 by 40; narrow detail paging, sanitisation and Unicode widths are covered by automated modal tests, not new narrow detail screenshots.</li>
+  <li class="report__item">No integration, push, canonical ticket completion or source-worktree removal is proved by this report. Those require separate finish receipts.</li>
+</ul>
+
+<h2 class="report__section" id="cleanup">Test data left behind</h2>
+<p class="report__text">Both colour and monochrome native processes, lock gates and Termscope close operations exited zero. The owned temporary repository was removed and its absence was checked. No provider prompt, real tracker mutation, global configuration change or workflow action occurred.</p>
+
+<h2 class="report__section" id="files">Portable companion evidence</h2>
+<p class="report__text">Every linked companion is copied inside this directory. Captured checkout paths are provenance; replaying the harness requires an appropriate checkout and the recorded tools.</p>
+<ul class="report__list">
+  <li class="report__item"><a class="link" href="files/native-check-result.json">Actual native observations, commands and cleanup</a></li>
+  <li class="report__item"><a class="link" href="files/verification.json">Exact-source suite, compiler and native verification</a></li>
+  <li class="report__item"><a class="link" href="files/parent-focused-check.json">Parent focused acceptance command</a></li>
+  <li class="report__item"><a class="link" href="files/main-assessment.json">Complete independent main assessment</a></li>
+  <li class="report__item"><a class="link" href="files/standards-assessment.json">Independent Standards assessment</a></li>
+  <li class="report__item"><a class="link" href="files/spec-assessment.json">Complete independent Spec assessment</a></li>
+  <li class="report__item"><a class="link" href="files/color-detail.txt">Original colour detail text</a></li>
+  <li class="report__item"><a class="link" href="files/mono-return.txt">Original monochrome return text</a></li>
+  <li class="report__item"><a class="link" href="files/run-native-review-v3.mjs">Executed semantic native harness</a></li>
+  <li class="report__item"><a class="link" href="files/native-config-v3.json">Recorded native configuration</a></li>
+</ul>
+
+</div>
+
+</body>
+</html>

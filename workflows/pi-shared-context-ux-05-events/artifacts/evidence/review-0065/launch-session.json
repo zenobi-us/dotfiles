@@ -1,0 +1,29 @@
+{
+  "agent": "ux05-review-main-c20",
+  "pane": "w8D:p2",
+  "workspace": "w8D",
+  "session_id": "01a18635-a8d0-739e-bba2-65518f316e51",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T05-50-26-000Z_01a18635-a8d0-739e-bba2-65518f316e51.jsonl",
+  "goal_id": "15b8dac13c9b93ba",
+  "native_goal_budget": 200000,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "guard_audit": "/tmp/ux05-review-main-c20-4832202b-e7b1-49e6-8d31-5080781f174f.jsonl",
+  "guard_ready": {
+    "at": "2026-10-29T05:50:26.218Z",
+    "event": "ready",
+    "spent": 0,
+    "ceiling": 250000,
+    "model": "gpt-6.1-sol",
+    "outputMaximum": 128000,
+    "transport": "stateless SSE"
+  },
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "reservation_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0182.yaml",
+  "renewal_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0181.yaml",
+  "start_publication": "aabae4ebf2199638bc14bbde6c216963683d86e6",
+  "preload_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/review-preload.txt",
+  "input_ready_ref": "workflows/pi-shared-context-ux-05-events/events/review-input-ready-0067.json",
+  "all_runtime_complete_before_start": true,
+  "parent_finalizes": true
+}
