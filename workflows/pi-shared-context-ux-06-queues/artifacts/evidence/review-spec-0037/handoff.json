@@ -1,0 +1,107 @@
+{
+  "contract": {
+    "role": "spec",
+    "task": "You are the independent spec axis sub-agent of the coordinator’s two-axis exact-source review. Review the complete four-path diff. Do not orchestrate/spawn other agents or read sibling/earlier reviews.",
+    "source": {
+      "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+      "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+      "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+    },
+    "ticket": {
+      "id": "pi-shared-context-ux-06-queues",
+      "backend": "local-markdown",
+      "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+    },
+    "branch": "feature/pi-shared-context-ux-06-queues",
+    "base_branch": "master",
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+    "all_changed_paths": [
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+    ],
+    "read_plan": {
+      "diff_command": "git diff 6f959f8c380efe378f4a0f2eeffcd3660c803859...20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "complete_diff_chunks": [
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/source-diff-01.diff",
+          "start_line": 1,
+          "end_line": 187,
+          "bytes": 11978
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/source-diff-02.diff",
+          "start_line": 188,
+          "end_line": 404,
+          "bytes": 11989
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/source-diff-03.diff",
+          "start_line": 405,
+          "end_line": 543,
+          "bytes": 11826
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/source-diff-04.diff",
+          "start_line": 544,
+          "end_line": 708,
+          "bytes": 10231
+        }
+      ],
+      "existing_authorities": {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json",
+        "queries": [
+          "?q=.actions&raw=true",
+          "?q=.receipt_validation&raw=true",
+          "?q=.model&raw=true"
+        ]
+      },
+      "navigation_references": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/navigation-references.json",
+      "canonical_initiative_index": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+      "implementation_result": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/events/implementation-0022.json",
+      "review_ready_snapshot": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/snapshots/pr-draft-validation-0024.md",
+      "final_native_proof": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json",
+      "report": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/report/index.html",
+      "checks": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+      "final_smoke": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/post-source-check/command.json"
+    },
+    "axis_brief": "Inspect ALL12canonical ticket acceptance criteria and applicable initiative/cross-cutting rules; identify missing/partial/wrong behavior and scope creep with exact criterion/spec quote and source location. Include12criterion coverage in the sole artifact. No narrowed subset.",
+    "workflow": {
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "ref": "workflows/pi-shared-context-ux-06-queues"
+    },
+    "evidence": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0037",
+    "artifact": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0037.md",
+    "artifact_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0037.md",
+    "result": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/events/review-spec-0037.json",
+    "finalize": [
+      "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0037/finalize-review.mjs",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0037/finalizer-config.json"
+    ],
+    "rules": [
+      "Matching skills first: code-review, ASD-STE100/ISO plain language, relevant TypeScript/code-comments/ISO-code; MQtask+upstream for localMarkdown. You are an AXIS reviewer, not the code-review orchestrator; sibling is already separately counted. No helpers. Canonical ticket and domain docs below were already read through MQ; do not repeat broad preflight or directories.",
+      "Read ALL4complete diff chunks in the read_plan. Each is≤12000bytes. Read required related authority queries/narrow source and canonical initiative with MQ. Keep any one new tool-output batch under20000bytes; never emit all diff/spec/authorities together. This changes transfer size, never review scope. LSP for code intelligence/exported references. Do not inspect metadata templates/finalizer source.",
+      "Product source is READ ONLY. No edit/format/config/test/generated/lockfile changes, commits, merge/push/rebase/finish, canonical tracker or projection writes. Do not run tests/build/lint mid-flight. Parent supplied recorded152tests/compiler0,35exact-source native observations/cleanup0,8final-source queue/event tests; distinguish observed records from personally executed commands.",
+      "Create exactly one immutable MQReport artifact at artifact, with --no-clobber and frontmatter title,reviewed_commit,reviewed_tree,review_role,verdict. Body: ticketref,branches,fixedbase,exactcommit/tree,timestamp,all4fullpaths,Standards/Spec headings (otheraxis notassessedbythisrole),assignedaxis reasoning/findings,validationrefs,limitations,nextstep. Standards must name/assess ALL12smells; Spec all12criteria. Blocking findings: ADRorNO ADR, filename:line, violatedrule/criterion and why blocking. Do not copy artifactbody into anotherfile/tracker/reply.",
+      "After actual full-axis inspection, exclusively save evidence/assessment.json with assessment_complete:true,code_inspection_complete:true,verdict:SUCCESSorFAILURE,findings:[{blocking,location,rule,impact}],summary,reviewed_files:[all4paths],standards_assessment_complete:boolean,spec_assessment_complete:boolean. This is minimal structured result metadata, not a second reviewbody. Never declareSUCCESS while blockingfindings remain; never fabricatecompletion if stopped.",
+      "Run supplied finalizer; it checks unchanged clean exactsource, complete scope and soleartifact, then writes exclusive result. Complete nativegoal as FINAL toolcall only after actual artifact/result/cleanup. Reply<100words with verdict/commit/artifactref, notbody. No acceptance/integration/completion claim.",
+      "Own complete-session input+output+cacheWrite≤250000; cacheRead excluded; finalreply/auxusage included. Nativeworkinggoal200000. Unchangedguard128000output+4096framing. No guard/provider/model/ceiling changes, reset/restart/resume, skillcatalogfilter or transferred allowance. Currentcycle11of12."
+    ],
+    "validation_summary": {
+      "suite": "152pass0fail2145assertions13files",
+      "compiler": 0,
+      "native": "35passed24matrixcases40x12/80x24/120x40colour+mono",
+      "consumer_smoke": "8pass0fail171assertions2files",
+      "limits": "SVGfallbackcannotproveexactglyph/colourpixelfidelity."
+    }
+  },
+  "canonical_ticket": "---\nschema: tracker-ticket/v1\nblocked_by: \n  - pi-shared-context-ux-02-initiatives\nid: pi-shared-context-ux-06-queues\nparent: pi-shared-context-tui-ux-spec\nsequence: 6\ntitle: Find actionable tickets through clear work queues\ntriage: ready-for-agent\ntype: enhancement\nwork_status: claimed\n---\n\n## What to build\n\nDisplay Ready, Review, Blocked, and All in a distinct ticket queue mode or view. Keep these queues separate from initiative navigation.\n\nSeparate canonical ticket status, recorded workflow activity, and the next available action. A Review action means ready for review, not that a review currently runs.\n\n## Acceptance criteria\n\n1. Users can select Ready, Review, Blocked, and All without losing initiative navigation state.\n2. Queue headings and active controls identify the selected queue. Initiative rows do not mix into the filtered ticket list.\n3. Queue rows separate type, ID, title, ticket status, and next action. Blocking information remains subordinate but readable.\n4. The interface displays active workflow activity only when recorded data supports that activity. Readiness alone does not imply active execution.\n5. Opening a queue ticket reaches the correct canonical ticket and initiative or Ungrouped context. Return navigation restores queue selection and scroll position.\n6. Existing queue membership and workflow safety rules remain authoritative. Display changes do not weaken action restrictions.\n7. Empty queues display accurate recovery controls. The All shortcut matches its actual input behavior.\n8. No selection means no empty action menu. Available actions display their target and disabled reasons.\n9. Uppercase R refreshes. Lowercase r retains the existing Review action. Workspace shortcuts remain unchanged.\n10. Live updates preserve the selected ticket by identity. If the ticket leaves the queue, the interface explains the change and selects a valid row.\n11. A refresh failure retains readable content and blocks unsafe transitions. Loading and empty states remain distinct.\n12. Structured fields remain readable at small terminal sizes and without colour. Existing action, copy, and Files behavior remains unchanged.\n\n## Out of scope\n\nDo not add search, new queue semantics, a new tracker backend, or new workflow transitions.\n\n## Specification\n\nThe parent specification defines the complete product intent. This ticket implements only the approved slice.\n\n\n## Testing decisions\n\nUse the complete modal as the main automated test boundary. Send input through its public interface. Assert visible behavior and canonical targets.\n\nUse the existing modal, explorer, and live-update test patterns. Use temporary stores for record and watcher behavior. Avoid assertions about private arrays or incidental text formatting.\n\nRun the actual Pi modal for terminal acceptance. Inspect 40 by 12, 80 by 24, and 120 by 40 terminals. Inspect colour and monochrome presentation.\n\nKeep existing action, copy, workspace shortcut, and workflow safety behavior intact. Preserve terminal-control sanitization and Unicode display widths.\n\n## Completion evidence\n\nRecord the focused behavior checks and terminal observations. Include evidence for the changed screens and relevant failure states.\n\n## Comments\n\nThe user approved this slice and its direct blockers during ticket decomposition.\n\n\n\n- Claimed 2026-10-29T06:53:47.924Z by the authorized initiative coordinator for fresh bounded implementation cycle1 (maximum250000 complete-session work tokens;10sessions maximum for this ticket). Direct blocker ticket02 is completed. Ticket05 terminal finish is published; no dependency field was added.\n",
+  "domain_docs": {
+    "CONTEXT-MAP.md": "---\ndescription: Stable entry points and ownership for repository context\ntitle: Context map\ntype: Index\n---\n\n# Context map\n\nUse this file for stable entry points. Do not list individual workflow receipts here.\n\n## Entry points\n\n- [Agent configuration](docs/agents/)\n- [Architecture decisions](docs/adr/index.md)\n- [Issue tracker configuration](docs/agents/issue-tracker.md)\n- [Domain configuration](docs/agents/domain.md)\n\nThe issue tracker uses Local Markdown. Read the [tracker index](tracker/index.md) for ticket and initiative navigation. Read `CONTEXT.md` when it exists. Keep architecture decisions under `docs/adr/`. Resolve workflow and source paths through the shared-context CLI when needed.\n\n## Ownership\n\n| Area | Owner | Property |\n|---|---|---|\n| `docs/agents/` | Repository agent configuration | Authored configuration |\n| `docs/adr/` | Domain and architecture skills | Canonical decisions |\n| `tracker/` | Matt Pocock ticket skill | Canonical local tickets when configured |\n| `workflows/*/events/` | Worktree skill | Authoritative and append-only |\n| `workflows/*/artifacts/` | Worktree skill | Immutable outputs |\n| `workflows/*/projections/` | Worktree skill | Generated and replaceable |\n| `sources/` | Shared-context skill | External and local source copies |\n| `domains/` | Domain skill | Stable domain vocabulary and rules |\n\n",
+    "docs/agents/domain.md": "# Domain docs\n\nThis repository uses one context.\n\n## Read before exploration\n\n1. Read `CONTEXT-MAP.md` at the active alignment root.\n2. Read `CONTEXT.md` when it exists.\n3. Read `docs/adr/index.md` and ADRs that affect the current area.\n\nIf a domain document does not exist, continue without it. Use the `domain-modeling` skill to record terms and decisions when they are resolved.\n\n## Document layout\n\nKeep the glossary and domain rules in `CONTEXT.md`. Keep architecture decisions under `docs/adr/`. Keep stable entry points in `CONTEXT-MAP.md`.\n\nUse the glossary's terms in ticket titles, code proposals, hypotheses, and tests. Update domain documents when a resolved decision changes a term or rule.\n\n",
+    "docs/adr/index.md": "# Architecture decisions\n\nUse this directory for ADRs that record resolved architecture decisions. Use the shared-context CLI to resolve an ADR path before writing it. Add a link here when an ADR is created.\n\nRead the [domain configuration](../agents/domain.md) for domain document rules.\n\n"
+  }
+}
