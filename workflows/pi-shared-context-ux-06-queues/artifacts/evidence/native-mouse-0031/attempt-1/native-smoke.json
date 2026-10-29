@@ -1,0 +1,214 @@
+{
+  "status": "passed",
+  "error": null,
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "observations": [
+    {
+      "state": "all_queue",
+      "canonical_ticket": "tracker/tickets/T.md",
+      "ticket_status": "unclaimed",
+      "field_roles_visible": true
+    },
+    {
+      "state": "canonical_ticket_open",
+      "canonical_ticket": "tracker/tickets/T.md",
+      "initiative": "I"
+    },
+    {
+      "state": "actual_terminal_mouse_input",
+      "encoding": "SGR left-button press/release",
+      "target": "Queues ancestor breadcrumb",
+      "row": 7,
+      "column": 23
+    },
+    {
+      "state": "queue_return",
+      "selected_ticket": "T",
+      "queue": "all",
+      "via": "actual SGR mouse ancestor click"
+    }
+  ],
+  "cleanup": {
+    "close": {
+      "exit_code": 0
+    },
+    "native_exit": 0,
+    "stderr": "",
+    "temporary_root": "/tmp/ux06-queue-smoke-ukXomV",
+    "temporary_root_exists": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "stdout": "20968ee4f907c6f74bc77702fcef09578b41c6b8\n5f64cf06e76dba7e015b9cd54088bc73ae88771f\n",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-queue-smoke-ukXomV/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Owned native acceptance tracker.",
+        "--output",
+        "/tmp/ux06-queue-smoke-ukXomV/repository/docs/agents/issue-tracker.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"Config\", {\"backend\":\"local-markdown\",\"issue-root\":\"tracker/tickets\",\"initiative-root\":\"tracker/initiatives\"}, body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-queue-smoke-ukXomV/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Real queue fixture target.",
+        "--output",
+        "/tmp/ux06-queue-smoke-ukXomV/repository/tracker/tickets/T.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\", {\"schema\":\"tracker-ticket/v1\",\"id\":\"T\",\"title\":\"Native queue target Ω\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"}, body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-queue-smoke-ukXomV/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "## Problem Statement\nObserve the queue surface.\n\n## Solution\nKeep canonical fields distinct.\n\n## Tickets\n- [Target](../../tickets/T.md)\n\n## Comments\nOwned fixture.",
+        "--output",
+        "/tmp/ux06-queue-smoke-ukXomV/repository/tracker/initiatives/I/index.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"Spec\", {\"schema\":\"tracker-initiative/v1\",\"id\":\"I\",\"title\":\"Native queue initiative\",\"phase\":\"research\"}, body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "-b",
+        "master",
+        "--quiet"
+      ],
+      "cwd": "/tmp/ux06-queue-smoke-ukXomV/repository",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/native-validation/ticket06-queue.git"
+      ],
+      "cwd": "/tmp/ux06-queue-smoke-ukXomV/repository",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "add",
+        "--all"
+      ],
+      "cwd": "/tmp/ux06-queue-smoke-ukXomV/repository",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "user.name=Native fixture",
+        "-c",
+        "user.email=native@example.invalid",
+        "commit",
+        "--quiet",
+        "-m",
+        "test: tracker/tickets/pi-shared-context-ux-06-queues.md native queue fixture"
+      ],
+      "cwd": "/tmp/ux06-queue-smoke-ukXomV/repository",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "stdout": "20968ee4f907c6f74bc77702fcef09578b41c6b8\n5f64cf06e76dba7e015b9cd54088bc73ae88771f\n",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    }
+  ],
+  "limits": [
+    "Actual offline Pi with production extension and real MQ fixture records; no model prompt or workflow action.",
+    "This independent native run exercises real SGR mouse ancestor activation; the full colour/mono matrix is separately recorded.",
+    "SVG fallback alone does not establish glyph or colour conformance."
+  ]
+}

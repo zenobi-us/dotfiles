@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=35:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Queues  >  T                                                                                   │
+[008] [Ex│ [d] Full description                                                                                           │
+[009]   p│> I · Items 1                        │  Ticket / dependencies / receipts                                        │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│>[enhancement]  ID: T                │ T Native queue target Ω                                                  │
+[012]   p│>Native queue target Ω               │ Summary: Real queue fixture target.                                      │
+[013] /ru│>State: unclaimed                    │ Type: enhancement                                                        │dev
+[014] too│>tracker/tickets/T.md                │ State: READY                                                             │
+[015]    │                                     │ Reference: tracker/tickets/T.md                                          │
+[016] /ru│                                     │ Current source: not recorded                                             │dev
+[017] too│                                     │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not  │
+[018] /ru│                                     │ quality or completion)                                                   │dev
+[019] too│                                     │ Dependencies:                                                            │
+[020]    │                                     │ No dependency edges.                                                     │
+[021]    │                                     │ Receipts:                                                                │
+[022]  Wa│                                     │ → inspect receipts · a actions                                           │
+[023]    │                                     │                                                                          │
+[024]    │                                     │                                                                          │
+[025]    │                                     │                                                                          │
+[026]    │                                     │                                                                          │
+[027]    │                                     │                                                                          │
+[028]    │                                     │                                                                          │
+[029]    │                                     │                                                                          │
+[030]    │                                     │                                                                          │
+[031]    │                                     │                                                                          │
+[032]    │                                     │                                                                          │
+[033]    │                                     │                                                                          │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/T.md · READY                                                                                   │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

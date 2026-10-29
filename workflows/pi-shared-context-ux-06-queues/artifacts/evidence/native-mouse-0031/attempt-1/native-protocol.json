@@ -1,0 +1,776 @@
+[
+  {
+    "launch": {
+      "argv": [
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "termscope",
+        "session",
+        "--cols",
+        "120",
+        "--rows",
+        "40",
+        "--",
+        "env",
+        "HOME=/tmp/ux06-queue-smoke-ukXomV/home",
+        "PI_CODING_AGENT_DIR=/tmp/ux06-queue-smoke-ukXomV/pi",
+        "PI_TELEMETRY=0",
+        "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+        "--offline",
+        "--no-session",
+        "--no-extensions",
+        "--no-mcp",
+        "--no-skills",
+        "--no-prompt-templates",
+        "--no-context-files",
+        "--no-tools",
+        "--no-themes",
+        "--use-theme",
+        "dark",
+        "-e",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+      ],
+      "cwd": "/tmp/ux06-queue-smoke-ukXomV/repository"
+    }
+  },
+  {
+    "request": {
+      "id": 1,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "No models available",
+        "timeout": 15000
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 1,
+      "result": {
+        "found": true,
+        "row": 21,
+        "col": 10
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 2,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 2,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 3,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 3,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 4,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "/shared-context",
+        "timeout": 10000
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 4,
+      "result": {
+        "found": true,
+        "row": 35,
+        "col": 0
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 5,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 5,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 6,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 6,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 7,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Native queue initiative",
+        "timeout": 20000
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 7,
+      "result": {
+        "found": true,
+        "row": 9,
+        "col": 7
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 8,
+      "method": "press",
+      "params": {
+        "key": "8"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 8,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 9,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Native queue target",
+        "timeout": 10000
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 9,
+      "result": {
+        "found": true,
+        "row": 9,
+        "col": 41
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 10,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 10,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 11,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 11,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=10:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues                                                                                         │\n[008] [Ex│> Ticket queues · all                                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │\n[011] [Ex│>Next: No worktree transition available                                                                         │\n[012]   p│>Recorded: No validated activity recorded                                                                       │\n[013] /ru│>tracker/tickets/T.md                                                                                           │dev\n[014] too│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │dev\n[017] too│                                                                                                                │\n[018] /ru│                                                                                                                │dev\n[019] too│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 12,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 12,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=10:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues                                                                                         │\n[008] [Ex│> Ticket queues · all                                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │\n[011] [Ex│>Next: No worktree transition available                                                                         │\n[012]   p│>Recorded: No validated activity recorded                                                                       │\n[013] /ru│>tracker/tickets/T.md                                                                                           │dev\n[014] too│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │dev\n[017] too│                                                                                                                │\n[018] /ru│                                                                                                                │dev\n[019] too│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 13,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 13,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          10,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repository",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repository                                                                                   │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives  >  Queues                                                                                         │",
+          "[Ex│> Ticket queues · all                                                                                           │",
+          "  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │>[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │",
+          "[Ex│>Next: No worktree transition available                                                                         │",
+          "  p│>Recorded: No validated activity recorded                                                                       │",
+          "/ru│>tracker/tickets/T.md                                                                                           │dev",
+          "too│                                                                                                                │",
+          "   │                                                                                                                │",
+          "/ru│                                                                                                                │dev",
+          "too│                                                                                                                │",
+          "/ru│                                                                                                                │dev",
+          "too│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          " Wa│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ tracker/tickets/T.md · READY                                                                                   │",
+          "───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───",
+          "   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux06-queue-smoke-ukXomV/repository (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 14,
+      "method": "snapshot",
+      "params": {
+        "format": "html"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 14,
+      "result": {
+        "format": "html",
+        "content": "<div style=\"font-family: monospace; white-space: pre;\">\n <div style=\"display: inline;color: rgb(228, 138, 122);background-color: rgb(79, 142, 179);\">&#9600;</div><div style=\"display: inline;color: rgb(228, 138, 122);\">&#9600;&#9608;</div>  <div style=\"display: inline;color: rgb(126, 136, 142);\">v1.1.0</div>                                                                                                            \n <div style=\"display: inline;color: rgb(79, 142, 179);\">&#9608;&#9600;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9581;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9582;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pr</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Projects &#183; Repo &gt; repository</div>                                                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\"> [1 Tracker] </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">  2 Files  </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">Tab focus &#183; Space/Enter activate</div>                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pi</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Initiatives </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(222, 224, 225);\"> Queues </div>                                                                                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>&gt; Ticket queues &#183; all                                                                                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(126, 136, 142);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">[enhancement] </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">T               </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(222, 224, 225);background-color: rgb(33, 59, 73);\">Native queue target &#937;                                    </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">State: unclaimed  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">Next: No worktree transition available</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                                                                         </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">Recorded: No validated activity recorded</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                                                                       </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">tracker/tickets/T.md</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                                                                                           </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">   </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(205, 154, 34);\">Wa</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> tracker/tickets/T.md &#183; READY</div>                                                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> 5 Ready 6 Review 7 Blocked 8 All queues &#183; Enter open &#183; a actions &#183; R refresh &#183; Esc back</div>                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;filter: invert(100%);\"> </div>  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9584;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9583;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">/tmp/ux06-queue-smoke-ukXomV/repository (master)</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">0.0%/0 (auto)                                                                                                    unknown</div></div>"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 15,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 15,
+      "result": {
+        "format": "spans",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=10:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues                                                                                         │\n[008] [Ex│> Ticket queues · all                                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │\n[011] [Ex│>Next: No worktree transition available                                                                         │\n[012]   p│>Recorded: No validated activity recorded                                                                       │\n[013] /ru│>tracker/tickets/T.md                                                                                           │dev\n[014] too│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │dev\n[017] too│                                                                                                                │\n[018] /ru│                                                                                                                │dev\n[019] too│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n\n=== SPANS ===\n[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142\n[003] 1-2:79,142,179 3-116:95,168,204\n[004] 1-2:126,136,142 3:95,168,204 4-32:167,152,215 116:95,168,204\n[005] 3:95,168,204 5-17:167,152,215 20-30:157,165,169 33-64:157,165,169 116:95,168,204\n[006] 1-2:126,136,142 3-116:95,168,204\n[007] 3:95,168,204 4-16:167,152,215 17-19:157,165,169 20-27:222,224,225 116:95,168,204\n[008] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[009] 0-2:126,136,142 3-116:95,168,204\n[010] 3:95,168,204 4:33,59,73 5-18:167,152,215/33,59,73 19-20:33,59,73 21-36:157,165,169/33,59,73 37-38:33,59,73 39-95:222,224,225/33,59,73 96-97:33,59,73 98-115:167,152,215/33,59,73 116:95,168,204\n[011] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-42:167,152,215/33,59,73 43-115:33,59,73 116:95,168,204\n[012] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-44:157,165,169/33,59,73 45-115:33,59,73 116:95,168,204 117-119:205,154,34\n[013] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-24:157,165,169/33,59,73 25-115:33,59,73 116:95,168,204 117-119:205,154,34\n[014] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[015] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[016] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[017] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[018] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[019] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[020] 3:95,168,204 116:95,168,204\n[021] 3:95,168,204 116:95,168,204\n[022] 1-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[023] 1-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[024] 1-2:205,154,34 3:95,168,204 116:95,168,204\n[025] 3:95,168,204 116:95,168,204\n[026] 3:95,168,204 116:95,168,204\n[027] 3:95,168,204 116:95,168,204\n[028] 3:95,168,204 116:95,168,204\n[029] 3:95,168,204 116:95,168,204\n[030] 3:95,168,204 116:95,168,204\n[031] 3:95,168,204 116:95,168,204\n[032] 3:95,168,204 116:95,168,204\n[033] 3:95,168,204 116:95,168,204\n[034] 3-116:95,168,204\n[035] 3:95,168,204 4-32:157,165,169 116:95,168,204\n[036] 0-2:108,118,123 3:95,168,204 4-91:157,165,169 116:95,168,204 117-119:108,118,123\n[037] 0:inverse 3-116:95,168,204\n[038] 0-119:108,118,123\n[039] 0-47:126,136,142\n[040] 0-119:126,136,142\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 16,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 16,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ▀▀█  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Pr│ Projects · Repo &gt; repository                                                                                   │</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\">   │ Initiatives  &gt;  Queues                                                                                         │</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">[Ex│&gt; Ticket queues · all                                                                                           │</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">   │&gt;[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">[Ex│&gt;Next: No worktree transition available                                                                         │</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  p│&gt;Recorded: No validated activity recorded                                                                       │</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">/ru│&gt;tracker/tickets/T.md                                                                                           │dev</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │dev</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │dev</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\"> Wa│                                                                                                                │</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"504\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"524\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"544\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"564\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"584\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"604\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"624\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"644\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"664\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"684\" fill=\"rgb(255,255,255)\">   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">   │ tracker/tickets/T.md · READY                                                                                   │</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───</text>\n<text x=\"10\" y=\"744\" fill=\"rgb(255,255,255)\">   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux06-queue-smoke-ukXomV/repository (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                                                                                                    unknown</text>\n</svg>\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 17,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 17,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 18,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "tracker/tickets/T.md",
+        "timeout": 10000
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 18,
+      "result": {
+        "found": true,
+        "row": 13,
+        "col": 7
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 19,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 19,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 20,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 20,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues  >  T                                                                                   │\n[008] [Ex│ [d] Full description                                                                                           │\n[009]   p│> I · Items 1                        │  Ticket / dependencies / receipts                                        │\n[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[011] [Ex│>[enhancement]  ID: T                │ T Native queue target Ω                                                  │\n[012]   p│>Native queue target Ω               │ Summary: Real queue fixture target.                                      │\n[013] /ru│>State: unclaimed                    │ Type: enhancement                                                        │dev\n[014] too│>tracker/tickets/T.md                │ State: READY                                                             │\n[015]    │                                     │ Reference: tracker/tickets/T.md                                          │\n[016] /ru│                                     │ Current source: not recorded                                             │dev\n[017] too│                                     │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not  │\n[018] /ru│                                     │ quality or completion)                                                   │dev\n[019] too│                                     │ Dependencies:                                                            │\n[020]    │                                     │ No dependency edges.                                                     │\n[021]    │                                     │ Receipts:                                                                │\n[022]  Wa│                                     │ → inspect receipts · a actions                                           │\n[023]    │                                     │                                                                          │\n[024]    │                                     │                                                                          │\n[025]    │                                     │                                                                          │\n[026]    │                                     │                                                                          │\n[027]    │                                     │                                                                          │\n[028]    │                                     │                                                                          │\n[029]    │                                     │                                                                          │\n[030]    │                                     │                                                                          │\n[031]    │                                     │                                                                          │\n[032]    │                                     │                                                                          │\n[033]    │                                     │                                                                          │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 21,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 21,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues  >  T                                                                                   │\n[008] [Ex│ [d] Full description                                                                                           │\n[009]   p│> I · Items 1                        │  Ticket / dependencies / receipts                                        │\n[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[011] [Ex│>[enhancement]  ID: T                │ T Native queue target Ω                                                  │\n[012]   p│>Native queue target Ω               │ Summary: Real queue fixture target.                                      │\n[013] /ru│>State: unclaimed                    │ Type: enhancement                                                        │dev\n[014] too│>tracker/tickets/T.md                │ State: READY                                                             │\n[015]    │                                     │ Reference: tracker/tickets/T.md                                          │\n[016] /ru│                                     │ Current source: not recorded                                             │dev\n[017] too│                                     │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not  │\n[018] /ru│                                     │ quality or completion)                                                   │dev\n[019] too│                                     │ Dependencies:                                                            │\n[020]    │                                     │ No dependency edges.                                                     │\n[021]    │                                     │ Receipts:                                                                │\n[022]  Wa│                                     │ → inspect receipts · a actions                                           │\n[023]    │                                     │                                                                          │\n[024]    │                                     │                                                                          │\n[025]    │                                     │                                                                          │\n[026]    │                                     │                                                                          │\n[027]    │                                     │                                                                          │\n[028]    │                                     │                                                                          │\n[029]    │                                     │                                                                          │\n[030]    │                                     │                                                                          │\n[031]    │                                     │                                                                          │\n[032]    │                                     │                                                                          │\n[033]    │                                     │                                                                          │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 22,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 22,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          35,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repository",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repository                                                                                   │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives  >  Queues  >  T                                                                                   │",
+          "[Ex│ [d] Full description                                                                                           │",
+          "  p│> I · Items 1                        │  Ticket / dependencies / receipts                                        │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "[Ex│>[enhancement]  ID: T                │ T Native queue target Ω                                                  │",
+          "  p│>Native queue target Ω               │ Summary: Real queue fixture target.                                      │",
+          "/ru│>State: unclaimed                    │ Type: enhancement                                                        │dev",
+          "too│>tracker/tickets/T.md                │ State: READY                                                             │",
+          "   │                                     │ Reference: tracker/tickets/T.md                                          │",
+          "/ru│                                     │ Current source: not recorded                                             │dev",
+          "too│                                     │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not  │",
+          "/ru│                                     │ quality or completion)                                                   │dev",
+          "too│                                     │ Dependencies:                                                            │",
+          "   │                                     │ No dependency edges.                                                     │",
+          "   │                                     │ Receipts:                                                                │",
+          " Wa│                                     │ → inspect receipts · a actions                                           │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   │                                     │                                                                          │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ tracker/tickets/T.md · READY                                                                                   │",
+          "───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───",
+          "   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux06-queue-smoke-ukXomV/repository (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 23,
+      "method": "snapshot",
+      "params": {
+        "format": "html"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 23,
+      "result": {
+        "format": "html",
+        "content": "<div style=\"font-family: monospace; white-space: pre;\">\n <div style=\"display: inline;color: rgb(228, 138, 122);background-color: rgb(79, 142, 179);\">&#9600;</div><div style=\"display: inline;color: rgb(228, 138, 122);\">&#9600;&#9608;</div>  <div style=\"display: inline;color: rgb(126, 136, 142);\">v1.1.0</div>                                                                                                            \n <div style=\"display: inline;color: rgb(79, 142, 179);\">&#9608;&#9600;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9581;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9582;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pr</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Projects &#183; Repo &gt; repository</div>                                                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\"> [1 Tracker] </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">  2 Files  </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">Tab focus &#183; Space/Enter activate</div>                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pi</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Initiatives </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Queues </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(222, 224, 225);\"> T </div>                                                                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> [d] Full description </div>                                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(126, 136, 142);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>&gt; I &#183; Items 1                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>  Ticket / dependencies / receipts                                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">[enhancement]  ID: T</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\">T Native queue target &#937;</div>                                                  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(222, 224, 225);background-color: rgb(33, 59, 73);\">Native queue target &#937;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">               </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(157, 165, 169);\">Summary: Real queue fixture target.</div>                                      <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">State: unclaimed</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                    </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Type: enhancement</div>                                                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">tracker/tickets/T.md</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">State: READY</div>                                                             <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">   </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Reference: tracker/tickets/T.md</div>                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(222, 224, 225);\">Current source: not recorded</div>                                             <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(157, 165, 169);\">Reviews: 0 &#183; Fixes: 0 (validated phase receipts; recorded attempts, not</div>  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(157, 165, 169);\">quality or completion)</div>                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\">Dependencies:</div>                                                            <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(157, 165, 169);\">No dependency edges.</div>                                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\">Receipts:</div>                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(205, 154, 34);\">Wa</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(157, 165, 169);\">&#8594; inspect receipts &#183; a actions</div>                                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                     <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                          <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> tracker/tickets/T.md &#183; READY</div>                                                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> Esc back &#183; Enter drill &#183; &#8593;&#8595; move &#183; Tab/Shift+Tab focus &#183; PgUp/Dn scroll &#183; a actions &#183; h initiatives &#183; R refresh</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;filter: invert(100%);\"> </div>  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9584;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9583;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">/tmp/ux06-queue-smoke-ukXomV/repository (master)</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">0.0%/0 (auto)                                                                                                    unknown</div></div>"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 24,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 24,
+      "result": {
+        "format": "spans",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues  >  T                                                                                   │\n[008] [Ex│ [d] Full description                                                                                           │\n[009]   p│> I · Items 1                        │  Ticket / dependencies / receipts                                        │\n[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[011] [Ex│>[enhancement]  ID: T                │ T Native queue target Ω                                                  │\n[012]   p│>Native queue target Ω               │ Summary: Real queue fixture target.                                      │\n[013] /ru│>State: unclaimed                    │ Type: enhancement                                                        │dev\n[014] too│>tracker/tickets/T.md                │ State: READY                                                             │\n[015]    │                                     │ Reference: tracker/tickets/T.md                                          │\n[016] /ru│                                     │ Current source: not recorded                                             │dev\n[017] too│                                     │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not  │\n[018] /ru│                                     │ quality or completion)                                                   │dev\n[019] too│                                     │ Dependencies:                                                            │\n[020]    │                                     │ No dependency edges.                                                     │\n[021]    │                                     │ Receipts:                                                                │\n[022]  Wa│                                     │ → inspect receipts · a actions                                           │\n[023]    │                                     │                                                                          │\n[024]    │                                     │                                                                          │\n[025]    │                                     │                                                                          │\n[026]    │                                     │                                                                          │\n[027]    │                                     │                                                                          │\n[028]    │                                     │                                                                          │\n[029]    │                                     │                                                                          │\n[030]    │                                     │                                                                          │\n[031]    │                                     │                                                                          │\n[032]    │                                     │                                                                          │\n[033]    │                                     │                                                                          │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n\n=== SPANS ===\n[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142\n[003] 1-2:79,142,179 3-116:95,168,204\n[004] 1-2:126,136,142 3:95,168,204 4-32:167,152,215 116:95,168,204\n[005] 3:95,168,204 5-17:167,152,215 20-30:157,165,169 33-64:157,165,169 116:95,168,204\n[006] 1-2:126,136,142 3-116:95,168,204\n[007] 3:95,168,204 4-16:167,152,215 17-19:157,165,169 20-27:167,152,215 28-30:157,165,169 31-33:222,224,225 116:95,168,204\n[008] 0-2:205,154,34 3:95,168,204 4-25:167,152,215 116:95,168,204\n[009] 0-2:126,136,142 3:95,168,204 41:95,168,204 116:95,168,204\n[010] 3-116:95,168,204\n[011] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-24:167,152,215/33,59,73 25-40:33,59,73 41:95,168,204 43-65:167,152,215 116:95,168,204\n[012] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-25:222,224,225/33,59,73 26-40:33,59,73 41:95,168,204 43-77:157,165,169 116:95,168,204 117-119:205,154,34\n[013] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-20:167,152,215/33,59,73 21-40:33,59,73 41:95,168,204 43-59:222,224,225 116:95,168,204 117-119:205,154,34\n[014] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-24:157,165,169/33,59,73 25-40:33,59,73 41:95,168,204 43-54:222,224,225 116:95,168,204\n[015] 0-2:205,154,34 3:95,168,204 41:95,168,204 43-73:222,224,225 116:95,168,204 117-119:205,154,34\n[016] 0-2:205,154,34 3:95,168,204 41:95,168,204 43-70:222,224,225 116:95,168,204 117-119:205,154,34\n[017] 0-2:205,154,34 3:95,168,204 41:95,168,204 43-113:157,165,169 116:95,168,204 117-119:205,154,34\n[018] 0-2:205,154,34 3:95,168,204 41:95,168,204 43-64:157,165,169 116:95,168,204 117-119:205,154,34\n[019] 0-2:205,154,34 3:95,168,204 41:95,168,204 43-55:167,152,215 116:95,168,204\n[020] 3:95,168,204 41:95,168,204 43-62:157,165,169 116:95,168,204\n[021] 3:95,168,204 41:95,168,204 43-51:167,152,215 116:95,168,204\n[022] 1-2:205,154,34 3:95,168,204 41:95,168,204 43-72:157,165,169 116:95,168,204 117-119:205,154,34\n[023] 1-2:205,154,34 3:95,168,204 41:95,168,204 116:95,168,204 117-119:205,154,34\n[024] 1-2:205,154,34 3:95,168,204 41:95,168,204 116:95,168,204\n[025] 3:95,168,204 41:95,168,204 116:95,168,204\n[026] 3:95,168,204 41:95,168,204 116:95,168,204\n[027] 3:95,168,204 41:95,168,204 116:95,168,204\n[028] 3:95,168,204 41:95,168,204 116:95,168,204\n[029] 3:95,168,204 41:95,168,204 116:95,168,204\n[030] 3:95,168,204 41:95,168,204 116:95,168,204\n[031] 3:95,168,204 41:95,168,204 116:95,168,204\n[032] 3:95,168,204 41:95,168,204 116:95,168,204\n[033] 3:95,168,204 41:95,168,204 116:95,168,204\n[034] 3-116:95,168,204\n[035] 3:95,168,204 4-32:157,165,169 116:95,168,204\n[036] 0-2:108,118,123 3:95,168,204 4-115:157,165,169 116:95,168,204 117-119:108,118,123\n[037] 0:inverse 3-116:95,168,204\n[038] 0-119:108,118,123\n[039] 0-47:126,136,142\n[040] 0-119:126,136,142\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 25,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 25,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ▀▀█  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Pr│ Projects · Repo &gt; repository                                                                                   │</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\">   │ Initiatives  &gt;  Queues  &gt;  T                                                                                   │</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">[Ex│ [d] Full description                                                                                           │</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  p│&gt; I · Items 1                        │  Ticket / dependencies / receipts                                        │</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">[Ex│&gt;[enhancement]  ID: T                │ T Native queue target Ω                                                  │</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  p│&gt;Native queue target Ω               │ Summary: Real queue fixture target.                                      │</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">/ru│&gt;State: unclaimed                    │ Type: enhancement                                                        │dev</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">too│&gt;tracker/tickets/T.md                │ State: READY                                                             │</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">   │                                     │ Reference: tracker/tickets/T.md                                          │</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">/ru│                                     │ Current source: not recorded                                             │dev</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">too│                                     │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not  │</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">/ru│                                     │ quality or completion)                                                   │dev</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">too│                                     │ Dependencies:                                                            │</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">   │                                     │ No dependency edges.                                                     │</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">   │                                     │ Receipts:                                                                │</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\"> Wa│                                     │ → inspect receipts · a actions                                           │</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"504\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"524\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"544\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"564\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"584\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"604\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"624\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"644\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"664\" fill=\"rgb(255,255,255)\">   │                                     │                                                                          │</text>\n<text x=\"10\" y=\"684\" fill=\"rgb(255,255,255)\">   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">   │ tracker/tickets/T.md · READY                                                                                   │</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───</text>\n<text x=\"10\" y=\"744\" fill=\"rgb(255,255,255)\">   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux06-queue-smoke-ukXomV/repository (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                                                                                                    unknown</text>\n</svg>\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 26,
+      "method": "type",
+      "params": {
+        "text": "\u001b[<0;23;7M\u001b[<0;23;7m"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 26,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 27,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 27,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 28,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 28,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues                                                                                         │\n[008] [Ex│> Ticket queues · all                                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │\n[011] [Ex│>Next: No worktree transition available                                                                         │\n[012]   p│>Recorded: No validated activity recorded                                                                       │\n[013] /ru│>tracker/tickets/T.md                                                                                           │dev\n[014] too│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │dev\n[017] too│                                                                                                                │\n[018] /ru│                                                                                                                │dev\n[019] too│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 29,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 29,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues                                                                                         │\n[008] [Ex│> Ticket queues · all                                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │\n[011] [Ex│>Next: No worktree transition available                                                                         │\n[012]   p│>Recorded: No validated activity recorded                                                                       │\n[013] /ru│>tracker/tickets/T.md                                                                                           │dev\n[014] too│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │dev\n[017] too│                                                                                                                │\n[018] /ru│                                                                                                                │dev\n[019] too│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 30,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 30,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          35,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repository",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repository                                                                                   │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives  >  Queues                                                                                         │",
+          "[Ex│> Ticket queues · all                                                                                           │",
+          "  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │>[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │",
+          "[Ex│>Next: No worktree transition available                                                                         │",
+          "  p│>Recorded: No validated activity recorded                                                                       │",
+          "/ru│>tracker/tickets/T.md                                                                                           │dev",
+          "too│                                                                                                                │",
+          "   │                                                                                                                │",
+          "/ru│                                                                                                                │dev",
+          "too│                                                                                                                │",
+          "/ru│                                                                                                                │dev",
+          "too│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          " Wa│                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   │                                                                                                                │",
+          "   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ tracker/tickets/T.md · READY                                                                                   │",
+          "───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───",
+          "   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux06-queue-smoke-ukXomV/repository (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 31,
+      "method": "snapshot",
+      "params": {
+        "format": "html"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 31,
+      "result": {
+        "format": "html",
+        "content": "<div style=\"font-family: monospace; white-space: pre;\">\n <div style=\"display: inline;color: rgb(228, 138, 122);background-color: rgb(79, 142, 179);\">&#9600;</div><div style=\"display: inline;color: rgb(228, 138, 122);\">&#9600;&#9608;</div>  <div style=\"display: inline;color: rgb(126, 136, 142);\">v1.1.0</div>                                                                                                            \n <div style=\"display: inline;color: rgb(79, 142, 179);\">&#9608;&#9600;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9581;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9582;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pr</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Projects &#183; Repo &gt; repository</div>                                                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div> <div style=\"display: inline;color: rgb(167, 152, 215);\"> [1 Tracker] </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">  2 Files  </div>  <div style=\"display: inline;color: rgb(157, 165, 169);\">Tab focus &#183; Space/Enter activate</div>                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pi</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(167, 152, 215);\"> Initiatives </div><div style=\"display: inline;color: rgb(157, 165, 169);\"> &gt; </div><div style=\"display: inline;color: rgb(222, 224, 225);\"> Queues </div>                                                                                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>&gt; Ticket queues &#183; all                                                                                           <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(126, 136, 142);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">[enhancement] </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">T               </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(222, 224, 225);background-color: rgb(33, 59, 73);\">Native queue target &#937;                                    </div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">  </div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">State: unclaimed  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Ex</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(167, 152, 215);background-color: rgb(33, 59, 73);\">Next: No worktree transition available</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                                                                         </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">  p</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">Recorded: No validated activity recorded</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                                                                       </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">&gt;</div><div style=\"display: inline;color: rgb(157, 165, 169);background-color: rgb(33, 59, 73);\">tracker/tickets/T.md</div><div style=\"display: inline;background-color: rgb(33, 59, 73);\">                                                                                           </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(205, 154, 34);\">   </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/ru</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">dev</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">too</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n <div style=\"display: inline;color: rgb(205, 154, 34);\">Wa</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(205, 154, 34);\">   </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  </div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>                                                                                                                <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;</div>   \n   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> tracker/tickets/T.md &#183; READY</div>                                                                                   <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div><div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> 5 Ready 6 Review 7 Blocked 8 All queues &#183; Enter open &#183; a actions &#183; R refresh &#183; Esc back</div>                        <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9474;</div><div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;filter: invert(100%);\"> </div>  <div style=\"display: inline;color: rgb(95, 168, 204);\">&#9584;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9583;</div>   \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">/tmp/ux06-queue-smoke-ukXomV/repository (master)</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">0.0%/0 (auto)                                                                                                    unknown</div></div>"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 32,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 32,
+      "result": {
+        "format": "spans",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=35:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives  >  Queues                                                                                         │\n[008] [Ex│> Ticket queues · all                                                                                           │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │>[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │\n[011] [Ex│>Next: No worktree transition available                                                                         │\n[012]   p│>Recorded: No validated activity recorded                                                                       │\n[013] /ru│>tracker/tickets/T.md                                                                                           │dev\n[014] too│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │dev\n[017] too│                                                                                                                │\n[018] /ru│                                                                                                                │dev\n[019] too│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ tracker/tickets/T.md · READY                                                                                   │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux06-queue-smoke-ukXomV/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n\n=== SPANS ===\n[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142\n[003] 1-2:79,142,179 3-116:95,168,204\n[004] 1-2:126,136,142 3:95,168,204 4-32:167,152,215 116:95,168,204\n[005] 3:95,168,204 5-17:167,152,215 20-30:157,165,169 33-64:157,165,169 116:95,168,204\n[006] 1-2:126,136,142 3-116:95,168,204\n[007] 3:95,168,204 4-16:167,152,215 17-19:157,165,169 20-27:222,224,225 116:95,168,204\n[008] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[009] 0-2:126,136,142 3-116:95,168,204\n[010] 3:95,168,204 4:33,59,73 5-18:167,152,215/33,59,73 19-20:33,59,73 21-36:157,165,169/33,59,73 37-38:33,59,73 39-95:222,224,225/33,59,73 96-97:33,59,73 98-115:167,152,215/33,59,73 116:95,168,204\n[011] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-42:167,152,215/33,59,73 43-115:33,59,73 116:95,168,204\n[012] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-44:157,165,169/33,59,73 45-115:33,59,73 116:95,168,204 117-119:205,154,34\n[013] 0-2:205,154,34 3:95,168,204 4:33,59,73 5-24:157,165,169/33,59,73 25-115:33,59,73 116:95,168,204 117-119:205,154,34\n[014] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[015] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[016] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[017] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[018] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[019] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[020] 3:95,168,204 116:95,168,204\n[021] 3:95,168,204 116:95,168,204\n[022] 1-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[023] 1-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[024] 1-2:205,154,34 3:95,168,204 116:95,168,204\n[025] 3:95,168,204 116:95,168,204\n[026] 3:95,168,204 116:95,168,204\n[027] 3:95,168,204 116:95,168,204\n[028] 3:95,168,204 116:95,168,204\n[029] 3:95,168,204 116:95,168,204\n[030] 3:95,168,204 116:95,168,204\n[031] 3:95,168,204 116:95,168,204\n[032] 3:95,168,204 116:95,168,204\n[033] 3:95,168,204 116:95,168,204\n[034] 3-116:95,168,204\n[035] 3:95,168,204 4-32:157,165,169 116:95,168,204\n[036] 0-2:108,118,123 3:95,168,204 4-91:157,165,169 116:95,168,204 117-119:108,118,123\n[037] 0:inverse 3-116:95,168,204\n[038] 0-119:108,118,123\n[039] 0-47:126,136,142\n[040] 0-119:126,136,142\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 33,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 33,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ▀▀█  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Pr│ Projects · Repo &gt; repository                                                                                   │</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\">   │ Initiatives  &gt;  Queues                                                                                         │</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">[Ex│&gt; Ticket queues · all                                                                                           │</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">   │&gt;[enhancement]   T                 Native queue target Ω                                      State: unclaimed  │</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">[Ex│&gt;Next: No worktree transition available                                                                         │</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  p│&gt;Recorded: No validated activity recorded                                                                       │</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">/ru│&gt;tracker/tickets/T.md                                                                                           │dev</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │dev</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │dev</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\"> Wa│                                                                                                                │</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"504\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"524\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"544\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"564\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"584\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"604\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"624\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"644\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"664\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"684\" fill=\"rgb(255,255,255)\">   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">   │ tracker/tickets/T.md · READY                                                                                   │</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───</text>\n<text x=\"10\" y=\"744\" fill=\"rgb(255,255,255)\">   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux06-queue-smoke-ukXomV/repository (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                                                                                                    unknown</text>\n</svg>\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 34,
+      "method": "close",
+      "params": {}
+    }
+  },
+  {
+    "response": {
+      "id": 34,
+      "result": {
+        "exit_code": 0
+      }
+    }
+  }
+]

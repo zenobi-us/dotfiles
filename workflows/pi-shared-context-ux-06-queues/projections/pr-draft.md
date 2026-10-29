@@ -1,20 +1,19 @@
 ---
-title: Ticket06 renewed independent exact-source review
+title: Ticket06 full-scope Spec review after actual MQ transfer repair
 type: Report
 ---
 
 ## Current status
 
-Source code/documentation at `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`, passed the recorded152-test suite/compiler0,35actual final-source native observations and8final-source consumer tests. No independent source verdict exists yet.
+Source `20968ee4f907c6f74bc77702fcef09578b41c6b8` remains clean, with recorded152tests/compiler0,35actualcolour/monoPiobservations,8consumer tests and a separate passed actualSGRmouse ancestor activation. No independent source verdict exists yet.
 
-The user approved12totalTicket06cycles and59totalrun dispatches. Historical9consumed cycles/55dispatches were not reset. Two fresh compact independent review axes are now reserved as cycles10and11, dispatches56and57. The250000whole-session ceiling and guard remain unchanged.
+Fresh cycles10and11 read all source diffchunks but stopped during repeated/truncated canonicalinitiative MQ reads. They consumed54631and55653settledworktokens, respectively, under250000; no reset or source change. The final currently approvedcycle12 is a genuinely fresh complete Spec review with the FULLcanonicalinitiative preloaded once and a tested deterministic artifactwriter. Standards and main remain mandatory after Spec; they are not dropped.
 
-- [User renewal receipt](../events/review-renewal-approved-0032.json)
-- [Fresh Standards start](../events/review-standards-start-0033.json)
-- [Fresh Spec start](../events/review-spec-start-0036.json)
-- [Full-scope bounded handoff plan](../artifacts/evidence/review-launch-recovery-0031/compact-handoff-plan.json)
-- [Actual source implementation/docs](../events/implementation-0022.json)
-- [Native evidence report](../artifacts/evidence/native-matrix-0023/report/index.html)
+- [Standards stopped result](../events/review-standards-0034.json)
+- [Spec stopped result](../events/review-spec-0037.json)
+- [Fresh final approved Spec start](../events/review-spec-start-0039.json)
+- [Actual native mouse proof](../artifacts/evidence/native-mouse-0031/attempt-1/native-smoke.json)
+- [Artifactwriter actual smoke](../artifacts/evidence/review-spec-0040/artifact-helper-smoke.json)
 
-The prior0-inference launches remain consumed and blocked, not successful reviews. Each new initial packet is below24000bytes; all4changedpaths, every diff hunk and all12criteria/heuristics remain required through bounded external reads. No source changes, tracker changes, integration or completion is authorized by a review role. Fresh main review and coordinator finish remain after the two axes pass.
+No new allowance is granted beyond12totalcycles/59dispatches. After cycle12 settles, any remaining fresh AI reviews require explicit renewed authority.
 

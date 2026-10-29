@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "command": {
+    "stdout": "{\"artifact\":\"/tmp/ux06-artifact-helper-gnNXog/helper-only-not-a-review.md\",\"verdict\":\"FAILURE\",\"source_commit\":\"20968ee4f907c6f74bc77702fcef09578b41c6b8\"}\n",
+    "stderr": "",
+    "code": 0
+  },
+  "scope": "Only deterministic MQ writer syntax/metadata/atomic-create behavior. Not a source review or source verdict.",
+  "temporary_root_removed": true
+}

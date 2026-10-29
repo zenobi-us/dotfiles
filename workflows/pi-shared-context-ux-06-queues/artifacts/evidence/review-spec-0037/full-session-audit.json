@@ -1,0 +1,25 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T19-12-29-326Z_01a18913-f68e-70d5-bdce-4409e5aa554f.jsonl",
+  "session_id": "01a18913-f68e-70d5-bdce-4409e5aa554f",
+  "goal_id": "15b9928d67fdb2ba",
+  "native_status": "active",
+  "native_goal_used": 55653,
+  "native_goal_budget": 200000,
+  "raw_usage": {
+    "input": 53854,
+    "output": 1799,
+    "cacheWrite": 0,
+    "cacheRead": 635008
+  },
+  "assistant_entries": 19,
+  "auxiliary_model_usage_entries": 0,
+  "provider_work_tokens": 55653,
+  "session_ceiling": 250000,
+  "under_cap": true,
+  "reported_provider_work_tokens": 55653,
+  "accounting_complete": true,
+  "unsettled_request": null,
+  "conservative_work_upper_bound": 55653,
+  "under_cap_basis": "All admitted requests settled with reported usage.",
+  "bound_violation": false
+}

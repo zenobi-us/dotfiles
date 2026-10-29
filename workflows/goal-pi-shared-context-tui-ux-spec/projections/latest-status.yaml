@@ -3,15 +3,15 @@
   "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
   "initiative": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
   "state": "running",
-  "latest_event": "dispatch-reserved-0222",
-  "phase_dispatches_reserved": 57,
-  "agent_sessions_reserved": 53,
+  "latest_event": "dispatch-reserved-0227",
+  "phase_dispatches_reserved": 58,
+  "agent_sessions_reserved": 54,
   "cycles_consumed": {
     "pi-shared-context-ux-02-initiatives": 13,
     "pi-shared-context-ux-03-mixed-items": 5,
     "pi-shared-context-ux-04-descriptions": 4,
     "pi-shared-context-ux-05-events": 20,
-    "pi-shared-context-ux-06-queues": 11
+    "pi-shared-context-ux-06-queues": 12
   },
   "approved_total_cycle_limits": {
     "pi-shared-context-ux-02-initiatives": 13,
@@ -31,29 +31,16 @@
   "completion_margin_tokens": 50000,
   "configured_outer_goal_token_budget": 12500000,
   "current_ticket": "pi-shared-context-ux-06-queues",
-  "current_phase": "review-peers",
-  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-start-0036.json",
+  "current_phase": "review-spec",
+  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-start-0039.json",
   "latest_source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
   "latest_source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
   "latest_review_receipt": null,
   "latest_review_verdict": null,
   "active_child_agents": [],
   "outstanding_dispatches": [],
-  "active_agents": [
-    {
-      "name": "ux06-standards-c10",
-      "pane": "w8N:p4",
-      "role": "standards",
-      "cycle": 10
-    },
-    {
-      "name": "ux06-spec-c11",
-      "pane": "w8N:p5",
-      "role": "spec",
-      "cycle": 11
-    }
-  ],
+  "active_agent": "ux06-spec-c12",
+  "active_pane": "w8N:p6",
   "coordinator_dispatch_cap": 59,
-  "approval_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/operator-approval-0220.yaml",
-  "pending_gate": "fresh_standards_spec_then_fresh_main_and_finish"
+  "pending_gate": "complete_spec_then_renew_remaining_standards_and_main_if_needed"
 }
