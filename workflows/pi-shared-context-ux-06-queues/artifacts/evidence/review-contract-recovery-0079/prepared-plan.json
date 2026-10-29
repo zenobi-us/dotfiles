@@ -1,0 +1,44 @@
+{
+  "status": "prepared_not_live_verified",
+  "source": {
+    "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+    "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+    "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+    "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+  },
+  "accepted_standards_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-standards-0070.json",
+  "accepted_standards_parent": "workflows/pi-shared-context-ux-06-queues/events/review-standards-complete-0071.json",
+  "accepted_standards_verdict": "SUCCESS",
+  "all4changedpaths_all273added29deletedlines_allmodifiedmethods_all12criteria_preserved": true,
+  "complete_changed_declaration_packets": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-packets.json",
+  "complete_known_safety_context": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0077",
+  "additional_complete_known_row_viewport_context": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-contract-recovery-0079/known-row-viewport-01.txt",
+      "lines": 14,
+      "bytes": 790
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-contract-recovery-0079/known-row-viewport-02.txt",
+      "lines": 40,
+      "bytes": 2918
+    }
+  ],
+  "upfront_writer_contract": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-contract-recovery-0079/exact-writer-contract.json",
+  "avoid_unbounded_symbol_dump": "Required contexts are now directly named and supplied. If any other definition is actually needed, use narrowLSP at a known location or targetedquery, not unbounded document-symbol inventory. No context needed for a real judgement is forbidden.",
+  "ceiling_unchanged": 300000,
+  "no_larger_ceiling_proposed": true,
+  "prior_cycle_limit": 21,
+  "cycles_consumed": 21,
+  "dispatches_reserved": 67,
+  "prior_dispatch_cap": 68,
+  "minimum_remaining_fresh_reviews": [
+    "Spec",
+    "main"
+  ],
+  "minimum_total_cycles": 23,
+  "minimum_total_dispatches_including_finish": 70,
+  "new_AI_cycles_started": 0,
+  "live_fit_verified": false,
+  "source_code_and_ticket_status_unchanged": true
+}

@@ -1,0 +1,6 @@
+{
+  "id": "cli:pane:close",
+  "result": {
+    "type": "ok"
+  }
+}

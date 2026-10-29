@@ -1,0 +1,13 @@
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 988-999; complete unchangedmethods childRow
+  }
+
+  private childRow(ticket: ExplorerTicket, selected: boolean): Row {
+    const blockers = ticket.blockedBy.filter(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!));
+    return {
+      text: "", selected, target: { kind: "ticket", ticket },
+      fields: {
+        title: ticket.title, identity: ticket.id, type: this.ticketType(ticket), state: ticket.status || "unavailable",
+        supporting: recordKind(ticket) === "ticket" && blockers.length ? `Waiting for ${blockers.join(", ")}` : this.workflows.get(ticket.id)?.error ? `Workflow unreadable: ${this.workflows.get(ticket.id)!.error}` : ticket.ref
+      },
+    };
+  }
