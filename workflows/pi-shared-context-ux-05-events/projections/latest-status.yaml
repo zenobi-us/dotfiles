@@ -7,15 +7,15 @@
     "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
   },
   "state": "VALIDATING",
-  "latest_receipt": "validation-start-0007",
+  "latest_receipt": "validation-start-0010",
   "latest_source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
   "latest_source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
   "latest_review_verdict": null,
   "open_findings": [],
   "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
-  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0106.yaml",
-  "cycle_number": 3,
-  "agent_sessions_consumed": 3,
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0110.yaml",
+  "cycle_number": 4,
+  "agent_sessions_consumed": 4,
   "agent_session_limit": 10,
   "hard_guard_verified": true,
   "guard_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0004/work-token-guard.ts",
@@ -27,8 +27,9 @@
   ],
   "active_agents": [
     {
-      "name": "ux05-loading-validate-c3",
-      "pane_id": "w83:p1"
+      "name": "ux05-native-check-c4",
+      "pane_id": "w84:p1"
     }
-  ]
+  ],
+  "program_sha256": "5d6e4cc53b768273a212fb9aaae7151677d88d01d310253539339f771d55cc77"
 }

@@ -1,0 +1,4 @@
+{"at":"2026-10-29T00:12:05.574Z","event":"ready","spent":0,"ceiling":250000,"model":"gpt-6.1-sol","outputMaximum":128000,"transport":"stateless SSE"}
+{"at":"2026-10-29T00:12:09.080Z","event":"admitted","spent":0,"inputBytes":44921,"framingReserve":4096,"outputMaximum":128000,"reservation":177017,"ceiling":250000}
+{"at":"2026-10-29T00:12:11.180Z","event":"settled","work":9702,"spent":9702,"reservation":177017,"ceiling":250000}
+{"at":"2026-10-29T00:12:11.195Z","event":"admitted","spent":9702,"inputBytes":47573,"framingReserve":4096,"outputMaximum":128000,"reservation":179669,"ceiling":250000}

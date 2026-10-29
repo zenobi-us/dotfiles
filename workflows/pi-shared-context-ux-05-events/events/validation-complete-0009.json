@@ -1,0 +1,91 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "validation-complete-0009",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "phase": "validate",
+  "attempt": 2,
+  "parent_receipt": "validation-0008",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "source_branch": "feature/pi-shared-context-ux-05-events",
+  "base_branch": "master",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "created_at": "2026-10-29T00:26:19.666Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0106.yaml",
+  "event": "phase-complete",
+  "status": "failed",
+  "cycle_number": 3,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/validation-start-0007.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0106.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/validation-complete-0009.json"
+    }
+  ],
+  "guard_sha256": "eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65",
+  "validation_purpose": "Native loading-history acceptance only; source remains unchanged",
+  "result_author": "Parent recovery: the hard guard prevented the validator from producing its own result.",
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T00-12-05-409Z_01a184ff-e5a1-73e0-bf9a-bb5420c70c6a.jsonl",
+    "session_id": "01a184ff-e5a1-73e0-bf9a-bb5420c70c6a",
+    "goal_id": "15b88d50edbcee91",
+    "native_status": "active",
+    "native_goal_used": 26928,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 26384,
+      "output": 544,
+      "cacheWrite": 0,
+      "cacheRead": 47360
+    },
+    "provider_work_tokens": 26928,
+    "session_ceiling": 250000,
+    "under_cap": true,
+    "hard_guard_denied": true,
+    "accounting": "input + output + cacheWrite from assistant and model_usage entries; cacheRead excluded"
+  },
+  "source_dirty": false,
+  "source_committed": true,
+  "validation_complete": false,
+  "missing_acceptance": [
+    "Actual Pi loading-history state remains unobserved."
+  ],
+  "blocker_kind": "conservative-request-admission",
+  "cycle_limit_breached": false,
+  "summary": "The hard guard stopped this session at26928 work tokens before another request exceeded its conservative full-input/output reservation. No ceiling breach occurred. Only read and todo tools ran; no source change or native Pi launch occurred. The loading-history acceptance remains pending.",
+  "next_action": "Use a compact mechanical native-check program in a fresh counted session. Keep live guard telemetry outside the repository.",
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-05-events/events/validation-0008.json",
+  "agent_closed": true
+}

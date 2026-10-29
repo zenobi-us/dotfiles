@@ -56,3 +56,13 @@ Obtain explicit user authorization after the cap breach and verify a hard pre-re
 User approval authorized the guard work. [guard-start-0004](../events/guard-start-0004.json), [guard-result-0005](../events/guard-result-0005.json) and [guard-complete-0006](../events/guard-complete-0006.json) record cycle2. The exact guard `eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65` allowed an actual read and reply, then rejected an oversized payload and a later small request with provider work unchanged at3626. [Verification](../artifacts/evidence/budget-guard-0004/verification.json).
 
 The native probe closed. Its disabled ambient extensions removed Herdr completion telemetry; future work agents must retain ambient extensions. No installed runtime or global settings changed. Cycle1 and its371234-token breach remain recorded. The implementation is still incomplete until the missing loading-history acceptance passes in a fresh guarded session. Two of ten sessions are consumed.
+
+## Focused validation recovery
+
+[validation-start-0007](../events/validation-start-0007.json), [validation-0008](../events/validation-0008.json), and [validation-complete-0009](../events/validation-complete-0009.json) record cycle3. The hard guard stopped documentation-heavy context at26928 work tokens before a conservatively oversized request. This was not a250000-token breach. The session used only read/todo tools; no source changed and no native Pi fixture started. Native loading acceptance remains pending.
+
+The hook auto-stash split the live audit. Both disjoint fragments were preserved and concatenated in timestamp order; their final total matches provider usage. [Recovery proof](../artifacts/evidence/validation-0007/hook-recovery.json). The hook stash remains preserved. Future live logs will stay outside the repository until the agent closes. The next session will execute a compact deterministic native-check program instead of broad exploration. Three of ten sessions are consumed.
+
+## Mechanical validation started
+
+[validation-start-0010](../events/validation-start-0010.json) reserves cycle4 to run the syntax-checked [native loading scenario](../artifacts/evidence/native-loading-0010/run-native-loading.mjs). Source remains `eeb4e4f920bc5b556c515c63bb99af60e4a099d9`. The scenario uses an actual Pi modal and real MQ workflow reads held behind flock. No pass is claimed before execution. Live guard telemetry stays in a temporary path until the session closes.

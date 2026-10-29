@@ -1,0 +1,16 @@
+{
+  "hook_stash": "1e89555dcd3ecaddb8a12f3c18464e50adc557d2",
+  "affected_owned_path": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/validation-0007/agent-guard-audit.jsonl",
+  "prefix_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/validation-0007/agent-guard-audit-stashed-prefix.jsonl",
+  "live_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/validation-0007/agent-guard-audit-live-fragment.jsonl",
+  "recovered_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/validation-0007/agent-guard-audit.jsonl",
+  "prefix_rows": 4,
+  "live_rows": 10,
+  "combined_rows": 14,
+  "ordered": true,
+  "disjoint": true,
+  "provider_work_tokens": 26928,
+  "all_other_paths": "hk reported all other stashed paths restored; no manual pop/apply was run",
+  "stash_preserved": true,
+  "prevention": "Future live guard logs stay outside the repository until the agent closes. Defer artifact publication while a writer is active."
+}

@@ -1,0 +1,14 @@
+{"at":"2026-10-29T00:12:05.574Z","event":"ready","spent":0,"ceiling":250000,"model":"gpt-6.1-sol","outputMaximum":128000,"transport":"stateless SSE"}
+{"at":"2026-10-29T00:12:09.080Z","event":"admitted","spent":0,"inputBytes":44921,"framingReserve":4096,"outputMaximum":128000,"reservation":177017,"ceiling":250000}
+{"at":"2026-10-29T00:12:11.180Z","event":"settled","work":9702,"spent":9702,"reservation":177017,"ceiling":250000}
+{"at":"2026-10-29T00:12:11.195Z","event":"admitted","spent":9702,"inputBytes":47573,"framingReserve":4096,"outputMaximum":128000,"reservation":179669,"ceiling":250000}
+{"at":"2026-10-29T00:12:13.528Z","event":"settled","work":892,"spent":10594,"reservation":179669,"ceiling":250000}
+{"at":"2026-10-29T00:12:13.558Z","event":"admitted","spent":10594,"inputBytes":60966,"framingReserve":4096,"outputMaximum":128000,"reservation":193062,"ceiling":250000}
+{"at":"2026-10-29T00:12:16.268Z","event":"settled","work":9644,"spent":20238,"reservation":193062,"ceiling":250000}
+{"at":"2026-10-29T00:12:16.320Z","event":"admitted","spent":20238,"inputBytes":88464,"framingReserve":4096,"outputMaximum":128000,"reservation":220560,"ceiling":250000}
+{"at":"2026-10-29T00:12:19.675Z","event":"settled","work":6228,"spent":26466,"reservation":220560,"ceiling":250000}
+{"at":"2026-10-29T00:12:19.705Z","event":"admitted","spent":26466,"inputBytes":90070,"framingReserve":4096,"outputMaximum":128000,"reservation":222166,"ceiling":250000}
+{"at":"2026-10-29T00:12:24.123Z","event":"settled","work":462,"spent":26928,"reservation":222166,"ceiling":250000}
+{"at":"2026-10-29T00:12:24.156Z","event":"denied","reason":"full uncached input and maximum output exceed the remaining ceiling","spent":26928,"ceiling":250000}
+{"at":"2026-10-29T00:12:24.157Z","event":"uncertain-response","spent":26928,"reservation":244740,"observedWork":0}
+{"at":"2026-10-29T00:12:24.997Z","event":"denied","reason":"guard unavailable, stopped, or another inference is pending","spent":26928,"ceiling":250000}
