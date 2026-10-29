@@ -1,0 +1,12 @@
+{"at":"2026-10-29T04:06:45.454Z","event":"ready","spent":0,"ceiling":250000,"model":"gpt-6.1-sol","outputMaximum":128000,"transport":"stateless SSE"}
+{"at":"2026-10-29T04:07:09.554Z","event":"admitted","spent":0,"inputBytes":48385,"inputBound":{"tokens":48385,"mode":"wire"},"framingReserve":4096,"outputMaximum":128000,"reservation":180481,"fullWireReservation":180481,"fullWireWouldReject":false,"ceiling":250000}
+{"at":"2026-10-29T04:07:12.513Z","event":"settled","work":10408,"spent":10408,"reservation":180481,"observedInputTokens":10334,"observedOutputTokens":74,"ceiling":250000}
+{"at":"2026-10-29T04:07:12.547Z","event":"admitted","spent":10408,"inputBytes":74868,"inputBound":{"tokens":36893,"mode":"observed-prefix","tailBytes":26485,"retainedItems":2,"changedControlBytes":0},"framingReserve":4096,"outputMaximum":128000,"reservation":168989,"fullWireReservation":206964,"fullWireWouldReject":false,"ceiling":250000}
+{"at":"2026-10-29T04:07:15.858Z","event":"settled","work":6094,"spent":16502,"reservation":168989,"observedInputTokens":16195,"observedOutputTokens":139,"ceiling":250000}
+{"at":"2026-10-29T04:07:15.924Z","event":"admitted","spent":16502,"inputBytes":114601,"inputBound":{"tokens":56069,"mode":"observed-prefix","tailBytes":39735,"retainedItems":4,"changedControlBytes":0},"framingReserve":4096,"outputMaximum":128000,"reservation":188165,"fullWireReservation":246697,"fullWireWouldReject":true,"ceiling":250000}
+{"at":"2026-10-29T04:07:22.126Z","event":"settled","work":9143,"spent":25645,"reservation":188165,"observedInputTokens":24962,"observedOutputTokens":309,"ceiling":250000}
+{"at":"2026-10-29T04:07:22.204Z","event":"admitted","spent":25645,"inputBytes":159213,"inputBound":{"tokens":69885,"mode":"observed-prefix","tailBytes":44614,"retainedItems":14,"changedControlBytes":0},"framingReserve":4096,"outputMaximum":128000,"reservation":201981,"fullWireReservation":291309,"fullWireWouldReject":true,"ceiling":250000}
+{"at":"2026-10-29T04:07:31.006Z","event":"settled","work":11642,"spent":37287,"reservation":201981,"observedInputTokens":36349,"observedOutputTokens":381,"ceiling":250000}
+{"at":"2026-10-29T04:07:31.046Z","event":"denied","reason":"uncached context bound and maximum output exceed the remaining ceiling","spent":37287,"ceiling":250000}
+{"at":"2026-10-29T04:07:31.047Z","event":"uncertain-response","spent":37287,"reservation":247725,"observedWork":0}
+{"at":"2026-10-29T04:07:31.886Z","event":"denied","reason":"guard unavailable, stopped, or another inference is pending","spent":37287,"ceiling":250000}

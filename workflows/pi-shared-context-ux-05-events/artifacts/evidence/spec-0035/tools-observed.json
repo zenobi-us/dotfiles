@@ -1,0 +1,113 @@
+[
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read canonical review contract",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0035/review-inputs.json:1-1000:raw"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read review skill",
+      "path": "skill://code-review"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read TypeScript skill",
+      "path": "skill://typescript"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read comment review skill",
+      "path": "skill://code-comments"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read plain language skill",
+      "path": "skill://iso-24495-1"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read initiative input",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0035/canonical-initiative.json:1-1000:raw"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read pinned patch",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0035/exact-source-diff.patch:1-1000:raw"
+    }
+  },
+  {
+    "name": "bash",
+    "arguments": {
+      "i": "Verify pinned source and diff digest",
+      "command": "git rev-parse HEAD HEAD^{tree} b1e4b80769490af4896785bc2ea3699c22b346f6 && git status --porcelain && git diff --no-ext-diff --unified=0 b1e4b80769490af4896785bc2ea3699c22b346f6...eeb4e4f920bc5b556c515c63bb99af60e4a099d9 -- mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md | sha256sum",
+      "timeout": 30,
+      "cwd": null,
+      "pty": false,
+      "async": false,
+      "name": null,
+      "ready": null
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read workflow loader context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts:1-165"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read explorer navigation and refresh",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:180-330,410-665"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read explorer layout and event details",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:665-930,1020-1130"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read recorded loading check",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/native-loading-0010/native-check-result.json"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read finalizer configuration",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0035/finalizer-config.json"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read technical language skill",
+      "path": "skill://iso-24495-3"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read document design skill",
+      "path": "skill://iso-24495-5"
+    }
+  }
+]
