@@ -1,0 +1,170 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "source-message-correction-0019",
+  "workflow_id": "pi-shared-context-ux-06-queues",
+  "phase": "implementation",
+  "attempt": 6,
+  "parent_receipt": "implementation-complete-0018",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "source_commit": "4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9",
+  "source_tree": "4f8a1fe707b5c8bfa520de1e42fdef416f2c6326",
+  "created_at": "2026-10-29T09:59:26.825Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0207.yaml",
+  "event": "source-metadata-correction",
+  "status": "blocked",
+  "cycle_number": 6,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "claim_publication_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-complete-0018.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0207.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/native-basic-1/native-smoke.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/source-message-correction-0019.json"
+    }
+  ],
+  "phase_scope": "Repair actual parent145pass7fail/compiler0 snapshot; finish complete code and behavior tests, commit, actual initial native queue smoke, then existing README. Full final-source native matrix and independent reviews remain required.",
+  "source_dirty": false,
+  "working_tree_patch_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/working-tree.patch",
+  "working_tree_patch_sha256": "22cbcbdfab7e1b0698eca9886c50da20413c6909fac806db63c606902eeb8f67",
+  "untracked_source_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/untracked-source.json",
+  "working_tree_snapshot_sha256": "a54d307bcd0cff81655ea87f0319dfdb052f4dc45a8ab910179186fba179e952",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017"
+  },
+  "pending_gate": "post_smoke_readme_full_final_source_matrix_independent_reviews",
+  "issued_by": "Parent coordinator after actual saved retry/native evidence and whole-session audit; no child final assessment/result was written before its guard stop.",
+  "source_committed": true,
+  "code_stage_completed": false,
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts"
+  ],
+  "implementation_summary": "Actual repairs are committed. checks-1 preserved151pass1fail/compiler0, then checks-2 passed152tests/2145assertions/13files and compiler0. Actual offline Pi wide-colour queue fields/canonical T-I drill/All return passed with cleanup. Guard stopped while loading documentation guidance; README, final record, full matrix and reviews remain pending.",
+  "validation": [
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--install=fallback",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "exit_code": 0,
+      "executor": "ux06-repair-c6",
+      "evidence_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/suite-command.json"
+    },
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/scoped-tsconfig.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "exit_code": 0,
+      "executor": "ux06-repair-c6",
+      "evidence_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/compiler-command.json"
+    }
+  ],
+  "prior_failed_validation_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-1/checks.json",
+  "passing_validation_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+  "native_smoke_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/native-basic-1/native-smoke.json",
+  "native_smoke_source_commit": "dafc86c64a2004c98479c97c180d25f89b4564d0",
+  "native_smoke_source_tree": "4f8a1fe707b5c8bfa520de1e42fdef416f2c6326",
+  "native_smoke_observations": [
+    {
+      "state": "all_queue",
+      "canonical_ticket": "tracker/tickets/T.md",
+      "ticket_status": "unclaimed",
+      "field_roles_visible": true
+    },
+    {
+      "state": "canonical_ticket_open",
+      "canonical_ticket": "tracker/tickets/T.md",
+      "initiative": "I"
+    },
+    {
+      "state": "queue_return",
+      "selected_ticket": "T",
+      "queue": "all"
+    }
+  ],
+  "native_cleanup_verified": true,
+  "observed_commit_subject": "fix(shared-context): repair queues pi-shared-context-ux-06-queues",
+  "commit_subject_note": "The private unreviewed source commit used the ticket ID, not its supplied full canonical ref. Correct the message only before review; preserve old evidence and verify unchanged tree.",
+  "full_session_work": 56637,
+  "accounting_complete": true,
+  "under_cap": true,
+  "auxiliary_model_usage_entries": 0,
+  "observed_implementation_session": {
+    "agent_name": "ux06-repair-c6",
+    "pane_id": "w8K:p2",
+    "workspace_id": "w8K",
+    "session_id": "01a1870b-f964-743a-857a-d848cad6d56c",
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T09-44-31-332Z_01a1870b-f964-743a-857a-d848cad6d56c.jsonl",
+    "native_goal_id": "15b910555e7c8bfa",
+    "native_goal_status": "active",
+    "pane_closed": true
+  },
+  "open_questions": [
+    "Update existing README only after actual native proof, with a canonical-reference commit title.",
+    "Full final-source narrow/mono/native matrix and three fresh independent review axes remain required.",
+    "Source code is not reviewed, integrated, pushed or completed."
+  ],
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0017.json",
+  "previous_source_commit": "dafc86c64a2004c98479c97c180d25f89b4564d0",
+  "previous_source_tree": "4f8a1fe707b5c8bfa520de1e42fdef416f2c6326",
+  "previous_commit_subject": "fix(shared-context): repair queues pi-shared-context-ux-06-queues",
+  "corrected_commit_subject": "feat: implement tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "correction_scope": "Only the message of the owned private unreviewed source commit. No code/tree change, review verdict, ownership change, cycle reset, or token allowance change.",
+  "tree_unchanged_verified": true,
+  "source_branch_remote_absent_verified": true
+}

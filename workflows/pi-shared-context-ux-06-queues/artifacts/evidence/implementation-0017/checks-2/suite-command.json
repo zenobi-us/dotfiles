@@ -1,0 +1,17 @@
+{
+  "name": "suite",
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "--install=fallback",
+    "test",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "code": 0,
+  "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+  "stderr": "\n 152 pass\n 0 fail\n 2145 expect() calls\nRan 152 tests across 13 files. [12.34s]\n"
+}

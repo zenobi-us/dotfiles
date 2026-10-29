@@ -1,0 +1,7 @@
+{
+  "stage_completed": false,
+  "checks": "checks-1: 151 passed, 1 failed; compiler passed",
+  "finding": "The wide queue row shows the ticket ID in a column without the narrow-layout ID label. The new test incorrectly required that label at every width.",
+  "repair": "Assert the visible canonical ticket ref across widths instead. Keep width, sanitization, status, next-action and recorded-activity checks.",
+  "remaining_gates": ["checks-2", "Source/test commit", "Actual native-v2 smoke", "Post-smoke README commit", "Final assessment, finalizer and cleanup", "Parent full native matrix and independent reviews"]
+}

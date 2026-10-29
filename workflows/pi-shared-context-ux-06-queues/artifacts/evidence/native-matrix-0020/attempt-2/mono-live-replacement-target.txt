@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=35:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Queues                                                                                         │
+[008] [Sk│> Open a fresh chat · commands are staged, not auto-sent                                                        │
+[009]   w├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │ Target: A19 · tracker/tickets/A19.md                                                                           │
+[011] [Ex│>[m] Ask Matt — Required skill:ask-matt command is unavailable.                                                 │
+[012]   p│ [s] Start worktree                                                                                             │
+[013]    │ [r] Review — Current source commit and tree are unknown; refresh the worktree source.                          │
+[014] [Ex│ [x] Fix — Current source commit and tree are unknown; refresh the worktree source.                             │
+[015]   p│ [f] Finish — Current source commit and tree are unknown; refresh the worktree source.                          │
+[016] /ru│ [u] Submit — Current source commit and tree are unknown; refresh the worktree source.                          │dev
+[017] too│                                                                                                                │
+[018]    │                                                                                                                │
+[019] /ru│                                                                                                                │dev
+[020] too│                                                                                                                │
+[021] /ru│                                                                                                                │dev
+[022] too│                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]  Wa│                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Selected ticket left this queue. Selected a nearby ticket or an empty queue.                                   │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux06-native-matrix-gIF5h3/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

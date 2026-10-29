@@ -1,0 +1,11 @@
+{
+  "previous_commit": "dafc86c64a2004c98479c97c180d25f89b4564d0",
+  "previous_tree": "4f8a1fe707b5c8bfa520de1e42fdef416f2c6326",
+  "previous_message": "fix(shared-context): repair queues pi-shared-context-ux-06-queues\n\nPreserve queue navigation and canonical targets. Separate recorded activity from next actions. Keep returned invalid evidence visible; retain old history only when an error response has no readable events or receipts, without borrowing current-source facts.\n\n",
+  "corrected_commit": "4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9",
+  "corrected_tree": "4f8a1fe707b5c8bfa520de1e42fdef416f2c6326",
+  "tree_unchanged": true,
+  "remote_source_branch_absent": true,
+  "no_review_existed": true,
+  "source_receipt_ref": "workflows/pi-shared-context-ux-06-queues/events/source-message-correction-0019.json"
+}

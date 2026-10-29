@@ -1,0 +1,12 @@
+{
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workflow": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+  "evidence": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0022",
+  "evidenceRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0022",
+  "codeCommit": "4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9",
+  "documentationPath": "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+  "checks": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+  "checksRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+  "matrix": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020/attempt-2/native-matrix.json",
+  "matrixRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020/attempt-2/native-matrix.json"
+}

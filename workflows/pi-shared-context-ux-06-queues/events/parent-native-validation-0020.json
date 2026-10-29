@@ -1,0 +1,110 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-06-queues",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues"
+  },
+  "receipt_id": "parent-native-validation-0020",
+  "parent_receipt": "source-message-correction-0019",
+  "phase": "implementation",
+  "attempt": 6,
+  "event": "parent-validation",
+  "created_at": "2026-10-29T10:09:09.892Z",
+  "muxer": "herdr",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "pane_id": "w64:pT",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "source_commit": "4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9",
+  "source_tree": "4f8a1fe707b5c8bfa520de1e42fdef416f2c6326",
+  "source_dirty": false,
+  "source_committed": true,
+  "status": "blocked",
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020",
+    "publication": "repository"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/source-message-correction-0019.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020/attempt-1/native-matrix.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020/attempt-2/native-matrix.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0207.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/parent-native-validation-0020.json"
+    }
+  ],
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0207.yaml",
+  "cycle_number": 6,
+  "agent_session_cycle_consumption": 0,
+  "budget_scope": "coordinator",
+  "full_native_matrix_passed": true,
+  "native_matrix_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020/attempt-2/native-matrix.json",
+  "native_matrix_frames": 24,
+  "native_observations": 35,
+  "native_modes": [
+    "colour",
+    "monochrome"
+  ],
+  "native_sizes": [
+    [
+      40,
+      12
+    ],
+    [
+      80,
+      24
+    ],
+    [
+      120,
+      40
+    ]
+  ],
+  "owned_native_cleanup_verified": true,
+  "previous_controller_attempt_preserved": true,
+  "previous_controller_failure": "Only Termscope cursor metadata changed between otherwise identical screen cells; v2 compares screen content, not cursor metadata. Production source was not changed.",
+  "code_stage_completed": false,
+  "pending_gate": "existing_readme_then_final_source_matrix_and_independent_reviews",
+  "limitations": [
+    "Actual offline Pi production extension and MQ records, real validated implementation receipt and registered worktree skill; no AI inference or workflow dispatch.",
+    "SVG fallback alone does not establish exact glyph/colour pixel fidelity.",
+    "Native transitions additionally exercised insertion identity, departure/replacement, Ungrouped context, empty Review without actions, unreadable refresh retention/restriction, and recovery."
+  ]
+}

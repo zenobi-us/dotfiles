@@ -1,0 +1,5 @@
+{
+  "stage_completed": false,
+  "repairs": ["Use the existing repository-context modal fixture pattern", "Remove only the incidental removed-word assertion", "Retain previous history only for empty error responses; preserve returned invalid events and use only newly returned current-source facts"],
+  "remaining_gates": ["Captured full suite and compiler", "Resolve any surfaced behavior failures", "Source/test commit", "Actual native-v2 smoke", "Post-smoke existing README update and separate commit", "Final assessment, finalizer and cleanup", "Parent full final-source native matrix and independent reviews"]
+}

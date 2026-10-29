@@ -1,0 +1,17 @@
+{
+  "name": "compiler",
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+    "--noEmit",
+    "-p",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/scoped-tsconfig.json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "code": 0,
+  "stdout": "",
+  "stderr": ""
+}
