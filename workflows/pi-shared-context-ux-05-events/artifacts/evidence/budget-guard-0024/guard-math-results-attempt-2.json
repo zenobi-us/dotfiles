@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "candidate": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/work-token-guard-delta.ts",
+  "candidate_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "cases": [
+    {
+      "name": "first request uses the full-wire bound",
+      "result": "passed"
+    },
+    {
+      "name": "exact retained prefix reuses measured input and reserves prior output",
+      "result": "passed"
+    },
+    {
+      "name": "replacement controls add their complete serialized byte bound",
+      "result": "passed"
+    },
+    {
+      "name": "removed controls never subtract previously observed input",
+      "result": "passed"
+    },
+    {
+      "name": "changed or removed retained inputs fall back instead of reusing a stale anchor",
+      "result": "passed"
+    },
+    {
+      "name": "another model cannot inherit measured context",
+      "result": "passed"
+    },
+    {
+      "name": "UTF-8 suffixes use bytes rather than character counts",
+      "result": "passed"
+    },
+    {
+      "name": "the independent wire bound wins when it is smaller",
+      "result": "passed"
+    },
+    {
+      "name": "cached input is excluded from work but retained in uncached-context reservations",
+      "result": "passed"
+    },
+    {
+      "name": "a changed runtime reminder charges the complete replacement tail without subtracting the old one",
+      "result": "passed"
+    }
+  ],
+  "scope": "Pure input reservation and accounting invariants. This is not the native transport/admission verification."
+}

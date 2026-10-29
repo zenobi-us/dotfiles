@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-guard-validation/v1",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "candidate": {
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/work-token-guard-delta.ts",
+    "sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237"
+  },
+  "cycle": 8,
+  "total_limit": 11,
+  "session_ceiling": 250000,
+  "native_working_budget": 200000,
+  "native_goal_mode": true,
+  "planning_correction": "Supersedes the no-goal proposal in guard-start-0024 before any native session/inference. Goal mode matches future reviewers; no session/goal allowance is reset.",
+  "steps": [
+    "Launch a fresh native OMP session with the candidate only; retain Herdr telemetry; require ready spent0.",
+    "Set a fresh native validation goal and budget200000. Read ISO24495-1 plus three bounded inert JSON fixtures, then printf GUARD_PHASE_READY. Do not finish the goal before the controlled rejection.",
+    "Require an admitted observed-prefix request that the old full-wire reservation would reject, and check observed context/output against each reservation.",
+    "Send an oversized quoted prompt; require denial before another admitted HTTP request. Send a subsequent small prompt; require permanent denial and unchanged provider usage.",
+    "Close the probe, audit the entire session including auxiliary model_usage, and append truthful parent-authored guard-result/completion receipts. Intentional guard denial leaves the native goal active; no completion acknowledgement is claimed."
+  ],
+  "no_source_changes": true,
+  "no_global_runtime_changes": true,
+  "fixtures": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/probe-data-1.json",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/probe-data-2.json",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/probe-data-3.json"
+  ],
+  "live_audit": "/tmp/ux05-guard-v2-95296b76-f323-4c84-8820-a4170671b60a.jsonl"
+}
