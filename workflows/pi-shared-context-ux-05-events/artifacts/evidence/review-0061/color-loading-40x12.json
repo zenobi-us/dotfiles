@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    11,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repository",
+  "lines": [
+    " ╭────────────────────────────────────╮",
+    " │ Projects · Repo > repository       │",
+    " │  [1 Tracker]     2 Files    Tab fo…│",
+    "  Ini…  >  Loa…  >  T  >  Eve…",
+    "  [d] Full description",
+    " Ticket: T · State: unclaimed",
+    " Reviews: ? · Fixes: ? (receipts)",
+    "─> Events / newest first               ─",
+    "  Loading history…",
+    "─Checking receipts 0/1                 ─",
+    "/Esc back  Enter open  Tab focus  R ....",
+    "0.0%/0 (auto)                    unknown"
+  ]
+}

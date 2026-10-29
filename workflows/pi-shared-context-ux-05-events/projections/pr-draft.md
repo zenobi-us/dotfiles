@@ -1,81 +1,61 @@
 ---
-title: Ticket05 recovered Standards and blocked main/Spec
+title: Ticket05 completed axes and blocked main acceptance
 type: Report
 ---
 
 # Execution outcome
 
-FAILURE — overall execution blocked; no valid main or Spec verdict. Independent Standards is SUCCESS, recovered from the actual saved assessment.
+BLOCKED — no valid completed main verdict. Independent Standards49 and complete Spec58 are SUCCESS for the same frozen source.
 
 ## Scope
 
 - Ticket: tracker/tickets/pi-shared-context-ux-05-events.md
-- Source: `eeb4e4f920bc5b556c515c63bb99af60e4a099d9`
+- Commit: `eeb4e4f920bc5b556c515c63bb99af60e4a099d9`
 - Tree: `870eee2ea7f04671913f447ff64c3608ad6c1906`
-- Review base: `b1e4b80769490af4896785bc2ea3699c22b346f6`
+- Base: `b1e4b80769490af4896785bc2ea3699c22b346f6`
 
-## Findings
+## Actual main assessment
 
-No completed main/Spec assessment. Execution failures are not product-code rejection.
+The independent main source inspection found no consumer-visible source blocker in the frozen eight-file change. Automated tests and compilation pass. The required native acceptance run stopped at a case-sensitive harness label mismatch. Full terminal acceptance is therefore unavailable. The supplied runner has not yet returned its complete Spec58 report, so reconciliation remains pending. This is a blocked assessment, not a completed source FAILURE or permission to integrate.
 
-## Independent Standards
+No blocking product-source finding was assessed. Do not reinterpret the saved blocked assessment as approval or source rejection.
 
-SUCCESS. Standards: SUCCESS. I assessed all eight files in the frozen diff against the supplied repository rules and all 12 smell checks. The ADR index contains no decisions, so no ADR applies. I found no documented-standard breach or consumer-visible standards blocker. The receipt-count comment states its validation boundary. The loader preserves identity and parent-graph validation before publishing counts. Navigation and display changes stay within the event-history feature. Event text passes through the existing sanitization and Unicode wrapping path. Tests use the complete modal interface for event behavior, with loader tests for receipt validation. The README explains execution, verdict, source freshness, unknown counts, and canonical action targets without treating review failure as process failure. Possible Duplicated Code remains an optional observation: event identity, execution, and verdict labels appear in several presentation methods. Their different layouts justify separate formatting for now. This assessment does not require a refactor. Git checks matched the pinned commit, tree, and exact diff hash. The tracked checkout was clean. I did not run tests, the compiler, or native terminal checks. Main owns those checks. This standards verdict does not establish spec acceptance, authorize integration, or complete the ticket.
+- [Actual saved main assessment](../artifacts/evidence/review-0061/assessment.json)
+- [Accepted Standards](../events/standards-result-recovery-0049.json)
+- [Complete independent Spec](../events/spec-result-0058.json)
+- [Spec criterion1–6 peer](../events/spec-slice-a-result-0053.json)
+- [Spec criterion7–13 peer](../events/spec-slice-b-result-0054.json)
 
-- [Actual saved assessment](../artifacts/evidence/standards-0043/assessment.json)
-- [Recovered valid Standards result](../events/standards-result-recovery-0049.json)
-- [Correcting parent](../events/standards-recovery-complete-0050.json)
+The actual saved main assessment still awaited Spec output when written. The [runner result](../artifacts/evidence/review-0061/checks-result.json) subsequently received both successful axes, but the stopped main was not resumed to consume them.
 
-43/45 incorrectly inferred no assessment from missing finalization;49/50 correct that inference without changing earlier records or reusing the reviewer.
+## Fresh verification
 
-## Actual fresh checks
+147 tests passed;0failed;2061assertions across12files. Scoped TypeScript exit0. Corrected native initialization succeeded. The real colour modal produced loading views at40x12,80x24,120x40 and a released120x40 event list. The captured detail visibly separates `Execution: completed` and `Review verdict: FAILURE` and puts recorded body before extended evidence. The harness instead asserted case-sensitive `Verdict: FAILURE` and failed at its completed-review detail stage. This is an incidental wording assertion, not evidence of a product execution/verdict bug. No later detail-return or monochrome observation completed in this run.
 
-[Complete execution](../artifacts/evidence/review-0047/checks-result.json):147pass,0fail,2061assertions across12files; scoped TypeScript exit0. Owned native harness failed during initialization: `ReferenceError: review is not defined`. Zero frames, no Pi launch. Its line52 contains `review-start-0040` instead of the original `undefined`; a parent metadata remapper incorrectly replaced literal undefined in copied programs. This is not a product-source defect. Failed evidence is preserved and its temporary root removed. No fresh native pass is claimed.
+- [Actual native result](../artifacts/evidence/review-0061/native-check-result.json)
+- [Captured real detail](../artifacts/evidence/review-0061/color-failure.txt)
 
-## Actual session usage
+Native process, gate and termscope close exited0; temporary fixture root removed. The failed case is retained, not rerun merely to confirm it. A corrected version must remove the incidental case-sensitive expectation without repinning product copy, retain actual semantic outcome/body/navigation checks, and preserve this attempt.
 
-| Role | Cycle | Exact work tokens | Assessment |
-|---|---:|---:|---|
-| main | 13 | 57247 | Unavailable |
-| standards | 14 | 54190 | SUCCESS saved and recovered |
-| spec | 15 | 56910 | Unavailable |
+## Accounting and recovery
 
-- [Main audit](../artifacts/evidence/review-0047/parent-session-audit.json)
-- [Standards audit](../artifacts/evidence/standards-0043/parent-session-audit.json)
-- [Spec audit](../artifacts/evidence/spec-0044/parent-session-audit.json)
-- [Blocked Spec result](../events/spec-result-0044.json)
+Actual complete-session work53441; input47761,output5680,cacheWrite0,auxiliary model usage0; cacheRead748288 excluded. Every admission settled, no bound violation or cap breach. The guard stopped after the saved blocked assessment; native goal stayed active and the session is now closed. No session reuse.
 
-Preloaded inputs reached actual provider admission with untouched diff hashes. All admitted requests settled; all sessions remained under250000 with no unknown usage or bound violation. The conservative guard later stopped main/Spec before assessments, and Standards after saving its assessment but before finalization. Native goals stayed active; all sessions are closed and will not be reused.
+All19 approved sessions are consumed. Remaining work is corrected owned terminal verification and one fresh main review reconciling the already completed independent axes. Preserve Standards49 and Spec58 while source stays identical. No source, claim, ownership, canonical status, merge or completion change was made.
 
-All15 approved sessions are consumed. The guard remains safe but its128000-token maximum-reply reservation is too restrictive for this practical workflow. Another identical packaging retry is not justified. Need a genuinely bounded per-response strategy verified against the actual provider, corrected owned verification programs, and explicit renewal before further AI sessions. Source, claim, ownership and canonical status remain unchanged.
-
-## Canonical scope and implementation
+## Canonical implementation and preserved evidence
 
 - [Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-05-events.md)
 - [Canonical initiative](../../../tracker/initiatives/pi-shared-context-tui-ux-spec/index.md)
 - [Accepted implementation/loading recovery](../events/validation-complete-0014.json)
-- [Original implementation evidence](../artifacts/evidence/implementation-0002/)
-- [Real Pi loading matrix from cycle4](../artifacts/evidence/native-loading-0010/)
-- [Exact diagnosis and proposed decomposition](../artifacts/evidence/review-0047/recovery-diagnosis.json)
+- [Prior real Pi complete loading matrix](../artifacts/evidence/native-loading-0010/)
+- [Immutable current main report](../artifacts/reviews/review-review-0061.md)
 
-Changed source files remain:
+All eight changed source files remain unchanged at the frozen commit. The ticket stays claimed, unmerged and not completed. Source worktree remains available; all review agent workspaces are closed. No ownership, claim, canonical status or unrelated user edit changed. Earlier immutable failures, the371234 implementation breach, cycle8 unknown usage/167734 upper bound, and corrected receipt fields remain preserved.
 
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
+## Remaining approval
 
-The ticket is still claimed and unmerged, not completed. The branch and source worktree are preserved. All review agent workspaces are closed; unrelated user changes and hk backups are untouched. Inherited cycle4 native loading proof remains valid for unchanged source, but does not substitute for the failed new native review case.
-
-## Explicit next approval boundary
-
-Do not launch another identical full Spec review. Proposed19total cycles provide four smaller review sessions: criteria1–6, criteria7–13, independent Spec consolidation, and main. Preserve the recovered Standards SUCCESS while the source stays identical. Keep provider, guard and250000 ceiling unchanged. Parent creates receipts from actual saved assessments rather than requiring another model turn for formatting. Regenerate owned verification programs from original complete assets, without global executable-text metadata replacement. No additional AI session is authorized until the user renews.
-
-Historical implementation371234 breach, cycle8 unknown usage/167734 conservative upper bound, corrected13/14 and43/45→49/50 remain immutable. Repeated usage on result/parent/recovery records is one session, not extra spending.
+Proposed20total ticket05 sessions: correct the owned incidental-case assertion without repinning product copy, complete actual terminal verification, then one fresh independent main session that receives both already completed axes. Preserve Standards49, Spec58 and both successful slices. Keep source, provider, hard guard and250000 maximum unchanged. Parent formats the actual saved review assessment. No further AI session until explicit renewal.
 
 ## Full phase history
 
@@ -131,4 +111,17 @@ Historical implementation371234 breach, cycle8 unknown usage/167734 conservative
 | [review-complete-0048](../events/review-complete-0048.json) | review | phase-complete | failed |
 | [standards-result-recovery-0049](../events/standards-result-recovery-0049.json) | review-standards | phase-result | completed |
 | [standards-recovery-complete-0050](../events/standards-recovery-complete-0050.json) | review-standards | phase-complete | completed |
+| [spec-slice-a-start-0051](../events/spec-slice-a-start-0051.json) | review-spec | phase-start | started |
+| [spec-slice-b-start-0052](../events/spec-slice-b-start-0052.json) | review-spec | phase-start | started |
+| [spec-slice-a-result-0053](../events/spec-slice-a-result-0053.json) | review-spec | phase-result | completed |
+| [spec-slice-b-result-0054](../events/spec-slice-b-result-0054.json) | review-spec | phase-result | completed |
+| [spec-slice-a-complete-0055](../events/spec-slice-a-complete-0055.json) | review-spec | phase-complete | completed |
+| [spec-slice-b-complete-0056](../events/spec-slice-b-complete-0056.json) | review-spec | phase-complete | completed |
+| [spec-start-0057](../events/spec-start-0057.json) | review-spec | phase-start | started |
+| [spec-result-0058](../events/spec-result-0058.json) | review-spec | phase-result | completed |
+| [spec-complete-0059](../events/spec-complete-0059.json) | review-spec | phase-complete | completed |
+| [review-start-0060](../events/review-start-0060.json) | review | phase-start | started |
+| [review-0061](../events/review-0061.json) | review | phase-result | blocked |
+| [review-complete-0062](../events/review-complete-0062.json) | review | phase-complete | failed |
+| [review-input-ready-0063](../events/review-input-ready-0063.json) | review | phase-input-ready | started |
 

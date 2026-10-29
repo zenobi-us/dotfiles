@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=23:79 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha
+[004] re│ Projects · Repo > repository                                             │on
+[005] s/│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤ha
+[007] re│ Initiatives  >  Loading initi…  >  T  >  Events                          │on
+[008] s/│ [d] Full description                                                     │
+[009]   │Ticket: T · State: unclaimed                                              │
+[010]   │Reviews: ? · Fixes: ? (receipts)                                          │
+[011]  W│> Events / newest first                                                   │
+[012]  A├──────────────────────────────────────────────────────────────────────────┤
+[013]   │ Loading history…                                                         │
+[014]  /│ Dependencies / unresolved blockers:                                      │d
+[015]  o│ No dependency edges.                                                     │
+[016]   │                                                                          │
+[017]  /│                                                                          │d
+[018]  o│                                                                          │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ Checking receipts 0/1                                                    │──
+[021]   │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/ux05-loading-check-zDypOZ/repository (master)
+[024] 0.0%/0 (auto)                                                            unknown

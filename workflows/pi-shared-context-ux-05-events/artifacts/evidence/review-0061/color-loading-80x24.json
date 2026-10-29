@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    23,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repository",
+  "lines": [
+    "    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for",
+    "tui.altScreen.searchPrevious and",
+    "/r╭──────────────────────────────────────────────────────────────────────────╮ha",
+    "re│ Projects · Repo > repository                                             │on",
+    "s/│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │",
+    "/r├──────────────────────────────────────────────────────────────────────────┤ha",
+    "re│ Initiatives  >  Loading initi…  >  T  >  Events                          │on",
+    "s/│ [d] Full description                                                     │",
+    "  │Ticket: T · State: unclaimed                                              │",
+    "  │Reviews: ? · Fixes: ? (receipts)                                          │",
+    " W│> Events / newest first                                                   │",
+    " A├──────────────────────────────────────────────────────────────────────────┤",
+    "  │ Loading history…                                                         │",
+    " /│ Dependencies / unresolved blockers:                                      │d",
+    " o│ No dependency edges.                                                     │",
+    "  │                                                                          │",
+    " /│                                                                          │d",
+    " o│                                                                          │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ Checking receipts 0/1                                                    │──",
+    "  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/tmp/ux05-loading-check-zDypOZ/repository (master)",
+    "0.0%/0 (auto)                                                            unknown"
+  ]
+}

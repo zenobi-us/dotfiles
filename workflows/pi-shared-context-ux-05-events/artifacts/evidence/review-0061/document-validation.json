@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/projections/pr-draft.md",
+    "valid": true,
+    "links": 76,
+    "link_extraction_workaround": "MQ extractor mis-handles UTF8 en-dash labels; normalized label punctuation only in extraction input, never in original artifact. All target URLs are ASCII.",
+    "original_document_unchanged": true
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/projections/implementation-log.md",
+    "valid": true,
+    "links": 76,
+    "link_extraction_workaround": "MQ extractor mis-handles UTF8 en-dash labels; normalized label punctuation only in extraction input, never in original artifact. All target URLs are ASCII.",
+    "original_document_unchanged": true
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/snapshots/pr-draft-review-blocked-0063.md",
+    "valid": true,
+    "links": 76,
+    "link_extraction_workaround": "MQ extractor mis-handles UTF8 en-dash labels; normalized label punctuation only in extraction input, never in original artifact. All target URLs are ASCII.",
+    "original_document_unchanged": true
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0061.md",
+    "valid": true,
+    "links": 8,
+    "link_extraction_workaround": "MQ extractor mis-handles UTF8 en-dash labels; normalized label punctuation only in extraction input, never in original artifact. All target URLs are ASCII.",
+    "original_document_unchanged": true
+  }
+]

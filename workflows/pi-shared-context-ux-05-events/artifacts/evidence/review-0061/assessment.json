@@ -1,0 +1,87 @@
+{
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "status": "blocked",
+  "verdict": "FAILURE",
+  "findings": [],
+  "summary": "The independent main source inspection found no consumer-visible source blocker in the frozen eight-file change. Automated tests and compilation pass. The required native acceptance run stopped at a case-sensitive harness label mismatch. Full terminal acceptance is therefore unavailable. The supplied runner has not yet returned its complete Spec58 report, so reconciliation remains pending. This is a blocked assessment, not a completed source FAILURE or permission to integrate.",
+  "scope": {
+    "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+    "diff_sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460",
+    "files_assessed": 8,
+    "criteria_assessed": 13,
+    "source_inspection": "Assessed the complete supplied pinned diff. Read focused loader validation, event navigation, stable-offset rendering, and history-refresh context. The commit, tree, fixed point, and diff hash matched before checks. The commit, tree, diff hash, and clean tracked status matched again after the native run."
+  },
+  "criteria_assessment": [
+    { "number": 1, "assessment": "Implemented in source and covered by the modal tests. The event list has a canonical ticket identity, tracker state, and receipt counts above it." },
+    { "number": 2, "assessment": "Implemented. Identity-valid receipts pass duplicate-ID and parent-graph validation before counts become available. Review and fix phases are counted separately. Invalid fields do not contribute. Orphaned and cyclic graphs leave counts unavailable. Counts explicitly describe recorded receipts, not quality or completion." },
+    { "number": 3, "assessment": "Implemented. Event rows label event identity, phase, execution, optional verdict, and source commit separately. Source commits never occupy the execution field." },
+    { "number": 4, "assessment": "Implemented and covered by automated tests. The fresh native failure frame also shows Execution: completed and Review verdict: FAILURE as separate labels. The native assertion expects a different case-sensitive label and stops, so its acceptance gate is not satisfied." },
+    { "number": 5, "assessment": "Implemented. Enter opens a dedicated detail view. Execution, optional review verdict, warnings, and readable body precede extended evidence. The fresh native failure frame confirms this ordering at 120 by 40 in colour." },
+    { "number": 6, "assessment": "Implemented in source and automated scrolling checks. Full recorded commit/tree values, current source values, workspace, branch, session, event reference, and raw recorded fields remain scrollable. Native coverage of all required terminal layouts remains incomplete." },
+    { "number": 7, "assessment": "Implemented. Source comparison distinguishes matched, stale, and unavailable. Invalid events remain inspectable. Source authority and validation rules are not changed. Refresh failure removes current source values from retained content." },
+    { "number": 8, "assessment": "Implemented. Dependencies and unresolved blockers remain below the event rows and reachable by scrolling. Existing transition guards remain unchanged. Automated tests cover blocked actions from event detail and failed refresh." },
+    { "number": 9, "assessment": "Implemented. Changed-file counts come only from structured changed_files or a nonnegative integer changed_file_count. There is no prose inference." },
+    { "number": 10, "assessment": "Implemented and covered by modal/live tests. Stable event IDs retain selection after insertion. Detail and list use separate pane offsets. Esc and the Events ancestor return to the selected event list." },
+    { "number": 11, "assessment": "Implemented in source and automated checks. Empty, loading, unreadable, and failed-refresh histories have distinct messages. Failed refresh retains previous readable events, invalidates source freshness, and keeps unsafe transitions blocked. Fresh native output records loading at all three required sizes in colour." },
+    { "number": 12, "assessment": "Implemented and covered by canonical fresh-chat/action tests. Event inspection retains the current ticket target rather than the historical event or recorded workspace." },
+    { "number": 13, "assessment": "The changed rendering uses the existing sanitization and Unicode wrapping path. Explicit field labels preserve meaning without colour. Files, copy, fresh-chat, descriptions, workspace shortcuts, and action targeting remain independent. The affected suite passes. Full fresh colour/monochrome terminal acceptance remains unavailable because the harness stops early." }
+  ],
+  "standards_assessment": {
+    "receipt_ref": "workflows/pi-shared-context-ux-05-events/events/standards-result-recovery-0049.json",
+    "verdict": "SUCCESS",
+    "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+    "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+    "basis": "Complete independent Standards49 report supplied in the frozen input.",
+    "reconciliation": "Main agrees that there is no documented-standard blocker. No ADR applies because the canonical ADR index has no decisions. Repeated presentation labels are an optional maintenance observation, not a required refactor. The existing test and rendering boundaries support the approved event-history slice. Runner confirmation of both axes remains pending."
+  },
+  "spec_assessment": {
+    "receipt_ref": "workflows/pi-shared-context-ux-05-events/events/spec-result-0058.json",
+    "status": "pending_runner_output",
+    "reconciliation": "Main independently assessed all 13 supplied criteria, but has not yet received the complete Spec58 output from the supplied running verification process. No Spec verdict is invented."
+  },
+  "validation": {
+    "command": [
+      "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/run-review-checks.mjs",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/checks-config.json"
+    ],
+    "runs": 1,
+    "runner_status": "running; waiting for complete Spec output",
+    "suite": { "exit_code": 0, "pass": 147, "fail": 0, "assertions": 2061 },
+    "compiler": { "exit_code": 0 },
+    "native": {
+      "exit_code": 1,
+      "status": "failed",
+      "stage": "color: completed review rejection detail",
+      "reported_error": "Error: Review rejection was confused with execution failure.",
+      "observed_reason": "run-native-review-v2.mjs:144 requires the exact substring Verdict: FAILURE. The actual colour detail frame contains Review verdict: FAILURE with a lowercase v. It separately contains Execution: completed. This assertion mismatch does not establish a product execution/verdict defect.",
+      "evidence_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/native-check-result.json",
+      "frame_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/color-failure.txt",
+      "observed_frames": "Three real held-read loading frames in colour at 40x12, 80x24, and 120x40; one released history frame at 120x40; captured failure detail at 120x40.",
+      "not_verified": "The runner did not reach the later detail/return observations or the monochrome sequence. No full native pass is claimed.",
+      "rerun": false
+    },
+    "source_verification": {
+      "command": "git rev-parse HEAD HEAD^{tree} b1e4b80769490af4896785bc2ea3699c22b346f6 && git status --short --untracked-files=no && git diff --no-ext-diff --unified=0 b1e4b80769490af4896785bc2ea3699c22b346f6...eeb4e4f920bc5b556c515c63bb99af60e4a099d9 | sha256sum",
+      "result": "Pinned commit, tree, fixed point, and diff hash matched. Tracked checkout was clean. Commit, tree, diff hash, and tracked cleanliness were checked again after the native run and still matched."
+    }
+  },
+  "limitations": [
+    "The required fresh native acceptance matrix did not complete. Existing earlier native-loading evidence does not replace the missing fresh coverage.",
+    "The supplied check process has not yet returned Spec58. Complete independent Spec reconciliation remains pending.",
+    "No source defect is asserted from a failed harness text assertion. There is no fabricated blocking source finding.",
+    "This assessment does not authorize integration, workflow transitions, or ticket completion."
+  ],
+  "cleanup": {
+    "source_modified": false,
+    "tests_or_configuration_modified": false,
+    "tracker_or_prior_receipts_modified": false,
+    "native_gate_exit": 0,
+    "native_process_exit": 0,
+    "native_close_exit": 0,
+    "native_temporary_root_removed": "/tmp/ux05-loading-check-zDypOZ",
+    "owned_write": "Only this assessment JSON. Supplied verification produced its own check and terminal evidence.",
+    "runner": "Still awaiting its automatic completion output. No poll, rerun, helper, finalizer, or integration action was used."
+  }
+}

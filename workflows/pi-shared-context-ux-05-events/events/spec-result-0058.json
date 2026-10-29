@@ -1,0 +1,244 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "spec-result-0058",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "phase": "review-spec",
+  "attempt": 4,
+  "parent_receipt": "spec-start-0057",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "source_branch": "feature/pi-shared-context-ux-05-events",
+  "base_branch": "master",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "created_at": "2026-10-29T05:13:44.253Z",
+  "muxer": "herdr",
+  "pane_id": "w8C:p2",
+  "agent": "omp",
+  "agent_name": "ux05-spec-consolidate-c18",
+  "session_id": "01a1860f-d056-7578-a9ba-b78e83eb7a3d",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0172.yaml",
+  "event": "phase-result",
+  "status": "completed",
+  "cycle_number": 18,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/spec-slice-a-result-0053.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/spec-slice-b-result-0054.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/snapshots/pr-draft-review-blocked-0050.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0172.yaml"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0164.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0058/review-preload.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0058/review-inputs.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/spec-start-0057.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0058/assessment.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0058/launch-session.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/spec-result-0058.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0058"
+    }
+  ],
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "review_role": "spec",
+  "guard_verification_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0028/verification.json",
+  "preloaded_inputs": true,
+  "partial_spec_scope": null,
+  "verdict": "SUCCESS",
+  "findings": [],
+  "axis_report": "The frozen production diff implements the approved event-history slice. I independently compared all changed production hunks with the 13 criteria and the canonical initiative. I reconciled both bounded assessments rather than treating their verdicts as proof. Ticket summaries precede history. Explicit labels separate execution, review verdict and source identity. Dedicated details put readable content before evidence metadata. Stable event identity and retained pane offsets support return navigation and live updates. Invalid history remains inspectable without granting transition authority. I checked the loader validation/count boundary directly: individual invalid events remain visible, accepted receipts pass identity and parent-graph checks before totals become available, and freshness failures do not redefine recorded attempts. This resolves the main cross-slice distinction between receipt validity, source freshness and action safety. No documented blocker, contradictory behavior or unrelated feature expansion was identified. Source identity, clean worktree status and the exact production diff hash were freshly verified. Behavioral test and native observations below are prior evidence, not fresh execution by this reviewer. Fresh suite, compiler and native verification remain with the main reviewer. This Spec verdict does not authorize integration or ticket completion.",
+  "acceptance_assessment": [
+    {
+      "number": 1,
+      "status": "PASS",
+      "evidence": "Independently inspected frozen explorer.ts:687-723: canonical ticket ID/state and receipt totals precede history pane headers and rows. explorer.ts:963 explains count meaning in ticket detail. Slice A reports public-modal assertions in events.test.ts:48-57; these are prior inspected assertions, not a fresh run."
+    },
+    {
+      "number": 2,
+      "status": "PASS",
+      "evidence": "Fresh focused source inspection of data.ts:92-150 confirms receipt construction, retained event errors, duplicate-ID and parent-graph validation, then phase-specific totals at 122-125. Graph-validation failure removes totals; individual invalid events never enter accepted receipts. Source freshness checks occur after totals, so stale or unavailable source does not erase validated recorded attempts. The frozen explorer.ts:963 explicitly distinguishes attempts from quality/completion. Slice A supplies schema/identity validation context at data.ts:42-91 and assertions at data.test.ts:219-229."
+    },
+    {
+      "number": 3,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:846-859 uses separate labelled Event/Phase, Execution, optional Verdict and Source commit lines. No source value enters the Execution field. explorer.ts:1060 wraps these fields separately. Slice A cites events.test.ts:48-57 for visible modal coverage."
+    },
+    {
+      "number": 4,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:850-853 and 876-877 separately render execution status and review verdict in list and detail. A completed review FAILURE therefore differs textually from failed execution without relying on colour. Slice A cites events.test.ts:54-56 and 76-81 for these separate cases."
+    },
+    {
+      "number": 5,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:615-622 opens event detail; 823 selects a dedicated pane. The eventRows implementation at 861-891 places Execution, Review verdict, validation warning and Recorded body before Evidence details. A structured summary supplies readable content when the body is absent. Slice A cites public-modal ordering checks at events.test.ts:58-67."
+    },
+    {
+      "number": 6,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:861-891 retains full recorded/current commit and tree IDs, event reference, workspace, branch, session and JSON fields after readable content. The list's short source reference does not replace full detail evidence. Slice A reports width-aware expanded-row scrolling at explorer.ts:1058-1088 and page/line input at 577-591. Its cited events.test.ts:120-143 checks raw-field reachability at widths 40, 80 and 120; 64-67 checks full IDs/session. No fresh terminal run was performed here."
+    },
+    {
+      "number": 7,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:861-891 first requires a validated receipt and available current commit/tree, then compares both identities to distinguish unavailable, matched and stale. Invalid/unvalidated details have explicit warnings and raw fields. Fresh inspection of data.ts:109-148 confirms invalid events remain present and current source is established only after repository and Git-object checks. Slices cite events.test.ts:63-65 and 120-147 plus prior unchanged-source native observations."
+    },
+    {
+      "number": 8,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:835-836 appends dependency and unresolved-blocker rows to scrollable history. The complete production diff does not change action policy, receipt schemas or transition rules. Slice B supplies unchanged actions.ts:118-121 checks rejecting workflow errors and mismatched ticket authority, with public-modal restrictions at events.test.ts:69-73 and 109-115. Retaining history does not remove workflow.error."
+    },
+    {
+      "number": 9,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:867-868 derives a count only from structured changed_files containing strings or a non-negative integer changed_file_count. The detail omits Changed files otherwise. No body/prose parsing supplies counts. Slice B cites events.test.ts:66 and 81 for presence and omission cases."
+    },
+    {
+      "number": 10,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:272-280 preserves receiptId while it exists, and handles removal with an explicit notice. selectedEvent at 841-844 resolves that identity rather than an index. Detail return at 454-462 and 522-527 preserves list state; 1051 persists eventDetail/navigation offsets, and 1067 keys expanded selection by receiptId. Slice B cites public-modal live insertion, Files return, mouse breadcrumb and Esc checks at events.test.ts:85-108, plus prior unchanged-source native keyboard/mouse observations."
+    },
+    {
+      "number": 11,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:833 has different loading, empty and unreadable history messages. At 267-270 an empty failed refresh retains previous readable history while setting an explicit refresh warning and clearing current source identities. Warnings remain in list/detail and workflow.error continues to block transitions. Slice B cites events.test.ts:109-115 and 149-156. Supplied native-loading-0010 evidence reports six loading frames at 40x12, 80x24 and 120x40 in colour/monochrome, two released event frames and Pi/gate exit 0. This is prior evidence."
+    },
+    {
+      "number": 12,
+      "status": "PASS",
+      "evidence": "Frozen explorer.ts:879 labels Ticket action target separately from Event reference. No production hunk changes canonical action resolution. Slice B supplies unchanged explorer.ts:1025-1037 resolving the current ticket map/ticketId, not receiptId, and events.test.ts:68-73 asserting the canonical tracker/tickets/T.md command target from event detail."
+    },
+    {
+      "number": 13,
+      "status": "PASS",
+      "evidence": "The complete frozen production diff does not alter copy, fresh-chat confirmation, workspace shortcuts or Files implementations. explorer.ts:1051 retains description-reader navigation and adds detail state. explorer.ts:846-859 sanitizes and width-wraps labelled fields, and 1060 uses that path for event rows. Slice B cites Files return at events.test.ts:97-101 and terminal-control/Unicode/narrow evidence checks at 120-143. Supplied prior native observations cover colour/monochrome sizes, unsent prompt cancellation and Files insertion. These observations were not rerun here."
+    }
+  ],
+  "verification": {
+    "fresh": [
+      "git rev-parse HEAD HEAD^{tree}: matched the pinned commit and tree.",
+      "git status --porcelain=v1: empty output before assessment write; no source changes were present.",
+      "git diff --no-ext-diff --unified=0 b1e4b80769490af4896785bc2ea3699c22b346f6...eeb4e4f920bc5b556c515c63bb99af60e4a099d9 -- <the four supplied production paths> | sha256sum: 84338e9ded069981832801aeb09f3d3ca9d39d349d3845a719936360c14ec2b9.",
+      "Inspected the complete supplied production diff and one focused local source range, data.ts:92-150."
+    ],
+    "prior": [
+      "Spec slices spec-slice-a-result-0053.json and spec-slice-b-result-0054.json cover the same pinned commit/tree. Their criterion-specific assertions were reconciled with the production changes.",
+      "Supplied review-0047/checks-result.json summary reports 147 passed, 0 failed, 2061 assertions in 12 files and compiler exit 0. Its native harness failed initialization and supplies no new product frames.",
+      "Supplied native-loading-0010 summary reports actual loading/released frames and Pi/gate exit 0. Other unchanged-source native observations are attributed to the supplied bounded assessments."
+    ]
+  },
+  "limitations": [
+    "No tests, compiler, native modal, build, lint or formatter commands were run by this Spec reviewer. The contract assigns fresh execution to the main reviewer.",
+    "Prior suite/native summaries and bounded test inspections are supplied evidence, not independently repeated runtime results.",
+    "No applicable architecture decision record exists in the supplied canonical ADR index. No blocking findings require an ADR citation.",
+    "This is a whole-ticket Spec assessment only. Standards was already assessed independently and was not repeated.",
+    "SUCCESS describes the assessed frozen source and approved slice. It does not complete the ticket or authorize integration."
+  ],
+  "cleanup": {
+    "source_modified": false,
+    "tests_or_configuration_modified": false,
+    "tracker_or_history_modified": false,
+    "services_started": false,
+    "temporary_files_created": false,
+    "owned_output": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0058/assessment.json",
+    "note": "Only the assigned assessment JSON was written. No finalizer, receipt, report, commit or integration operation was performed."
+  },
+  "native_goal_id": "15b8d14b1ff103df",
+  "axis": "spec",
+  "assessment_complete": true,
+  "valid_source_verdict": true,
+  "whole_ticket_spec_complete": true,
+  "agent_closed": true,
+  "native_goal_completed": true,
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0058"
+  },
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T05-09-05-751Z_01a1860f-d056-7578-a9ba-b78e83eb7a3d.jsonl",
+    "session_id": "01a1860f-d056-7578-a9ba-b78e83eb7a3d",
+    "goal_id": "15b8d14b1ff103df",
+    "native_status": "complete",
+    "native_goal_used": 46159,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 42887,
+      "output": 3712,
+      "cacheWrite": 0,
+      "cacheRead": 371584
+    },
+    "assistant_entries": 12,
+    "auxiliary_model_usage_entries": 0,
+    "provider_work_tokens": 46599,
+    "session_ceiling": 250000,
+    "under_cap": true,
+    "reported_provider_work_tokens": 46599,
+    "accounting_complete": true,
+    "unsettled_request": null,
+    "conservative_work_upper_bound": 46599,
+    "under_cap_basis": "All admitted requests settled with reported usage.",
+    "bound_violation": false
+  },
+  "result_author": "Parent finalized the actual independently consolidated assessment; all13 criteria complete."
+}
