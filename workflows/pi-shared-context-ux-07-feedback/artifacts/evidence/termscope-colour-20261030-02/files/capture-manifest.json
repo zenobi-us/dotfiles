@@ -1,0 +1,50 @@
+{
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "operation": "read-only full-colour evidence capture",
+  "command": [
+    "termscope",
+    "session",
+    "--",
+    "omp",
+    "--no-session",
+    "--no-tools",
+    "--no-title"
+  ],
+  "environment": {
+    "TERM": "xterm-256color",
+    "COLORTERM": "truecolor",
+    "FORCE_COLOR": "3"
+  },
+  "terminal": {
+    "cols": 140,
+    "rows": 50
+  },
+  "source": "1e6b0eb8c952532b7b6a1b3756266aad9b7ade00 e6165b78a3c2a6c3de53e58e2a082c4ef1f0771e HEAD -> master, origin/master, origin/HEAD",
+  "modified_source_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+  ],
+  "sha256": {
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts": "304a508afb58e24e93d59b904a91519622a9be5a58db98dbe082c691c33f6e3c",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts": "72dd21f8a145dfb4e6d6dc36c23d04c9dac9823a91c9cefcfb903880da64b93b",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts": "7f96ef698e55a750ebbb6b39cbf1c6952863b23fdcecd9d371993df5c69e23e5",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts": "19fdb4e39e0c591b437cfe9d0594453d0d09f9071954a073b581de84268402d8",
+    "mise/conf.d/devtools-omp/extensions/shared-context/index.ts": "297953a2b6b4ccb89cb81410b9389c6ceeeb14898eedfb52abdcf9612aedeee5"
+  },
+  "formats": [
+    "text",
+    "spans",
+    "html",
+    "json"
+  ],
+  "rendering": "termscope HTML snapshot rendered by Chromium; screenshot uses real captured span foreground and background RGB values. Default terminal canvas black and foreground white. No SVG conversion. Browser fonts may differ from a desktop terminal.",
+  "limitations": [
+    "No compact loading-state capture",
+    "Clipboard bytes not checked",
+    "No implementation or acceptance pass claimed"
+  ],
+  "shutdown": {
+    "child_exit_code": 129,
+    "termscope_exit_code": 0
+  }
+}

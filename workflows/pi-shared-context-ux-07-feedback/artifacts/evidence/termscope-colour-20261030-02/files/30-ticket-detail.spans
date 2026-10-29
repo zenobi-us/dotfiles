@@ -1,0 +1,97 @@
+=== TERMSCOPE ===
+cols=140 rows=50 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                          ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[006]    │ Projects · Repo > Dotfiles                                                                                                        │
+[007]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[008]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[009]    │ Initiatives  >  Improve shared-context project navigati  >  pi-shared-context-ux-01-projects                                      │
+[010]  Wa│ [d] Full description                                                                                                              │
+[011]  '/│> pi-shared-context-tui-ux-spec · Items 7   │  Ticket / dependencies / receipts                                                    │
+[012]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[013] ───│>[enhancement]  ID:                         │ pi-shared-context-ux-01-projects Select shared-context projects through interactive  │────
+[014]  Up│>pi-shared-context-ux-01-projects           │ breadcrumbs                                                                          │
+[015]  Ne│>Select shared-context projects through     │ Summary: Add the Projects view to the shared-context modal. Users open this view     │
+[016] ───│>interactive breadcrumbs                    │ through a focusable, clickable Projects breadcrumb. Users select a project and browse│────
+[017]    │>State: completed                           │ it                                                                                   │
+[018] ───│>Workflow unreadable: Recorded worktree is  │ Type: enhancement                                                                    │ ⟲ ─
+[019] ❯  │>unavailable; current source freshness      │ State: DONE                                                                          │
+[020] ───│>cannot be established.                     │ Reference: tracker/tickets/pi-shared-context-ux-01-projects.md                       │────
+[021]  ◑ │ [enhancement]  ID:                         │ Current source: not recorded                                                         │
+[022]    │ pi-shared-context-ux-02-initiatives        │ Reviews: 12 · Fixes: 9 (validated phase receipts; recorded attempts, not quality or  │
+[023]    │ Browse initiatives through structured      │ completion)                                                                          │
+[024]    │ tracker rows                               │ Dependencies:                                                                        │
+[025]    │ State: completed                           │ → pi-shared-context-ux-02-initiatives [DONE] Browse initiatives through structured   │
+[026]    │ Workflow unreadable: Recorded worktree is  │ tracker rows                                                                         │
+[027]    │ unavailable; current source freshness      │ Receipts:                                                                            │
+[028]    │ cannot be established.                     │ Event: finish-0034 · Execution: FINISHED                                             │
+[029]    │ [enhancement]  ID:                         │ Event: finish-worktree-removed-0033 · Execution: FINISHING                           │
+[030]    │ pi-shared-context-ux-03-mixed-items        │ Event: finish-ticket-completed-0032 · Execution: FINISHING                           │
+[031]    │ Browse research and tickets in the same    │ Event: finish-pushed-0031 · Execution: FINISHING                                     │
+[032]    │ initiative                                 │ Event: finish-validated-0030 · Execution: FINISHING                                  │
+[033]    │ State: completed                           │ Event: finish-merged-0029 · Execution: FINISHING                                     │
+[034]    │ Workflow unreadable: Recorded worktree is  │ Event: finish-prepared-0028 · Execution: FINISHING                                   │
+[035]    │ unavailable; current source freshness      │ Event: finish-waiting-0027 · Execution: FINISH_FAILED                                │
+[036]    │ cannot be established.                     │ Event: finish-failed-0026 · Execution: FINISH_FAILED                                 │
+[037]    │ [enhancement]  ID:                         │ Event: finish-start-0025 · Execution: FINISHING                                      │
+[038]    │ pi-shared-context-ux-04-descriptions       │ Event: review-complete-0024 · Execution: completed · Verdict: SUCCESS                │
+[039]    │ Read complete initiative and item          │ Event: review-0023 · Execution: completed · Verdict: SUCCESS                         │
+[040]    │ descriptions                               │ Event: review-start-0022 · Execution: started                                        │
+[041]    │ State: completed                           │ Event: fix-complete-0021 · Execution: completed                                      │
+[042]    │ Workflow unreadable: Recorded worktree is  │ Event: fix-0020 · Execution: completed                                               │
+[043]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[044]    │ Recorded worktree is unavailable; current source freshness cannot be established.                                                 │
+[045]    │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                   │
+[046]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+=== SPANS ===
+[002] 54:248,79,204 55:239,81,208 56:230,82,211 57:220,84,215 58:211,86,219 59:202,88,222 60:193,89,226 61:184,91,229 62:175,93,233 63:165,95,237 64:156,96,240 65:147,98,244
+[003] 57:195,89,225 58:186,91,229 61:158,96,239 62:149,98,243 70-84:bold
+[004] 57:170,94,235 58:161,95,239 61:127,114,242 62:114,126,240 70-84:bold
+[005] 3-135:49,116,143
+[006] 3:49,116,143 4-30:196,167,231 135:49,116,143
+[007] 3:49,116,143 5-17:196,167,231 20-30:110,106,134 33-64:110,106,134 135:49,116,143
+[008] 3-135:49,116,143
+[009] 3:49,116,143 4-16:196,167,231 17-19:110,106,134 20-60:196,167,231 61-63:110,106,134 135:49,116,143
+[010] 1-2:246,193,119 3:49,116,143 4-25:196,167,231 135:49,116,143 136-139:246,193,119
+[011] 1-2:246,193,119 3:49,116,143 48:49,116,143 135:49,116,143
+[012] 3-135:49,116,143
+[013] 0-2:246,193,119 3:49,116,143 4:38,35,58 5-22:196,167,231/38,35,58 23-47:38,35,58 48:49,116,143 50-132:196,167,231 135:49,116,143 136-139:246,193,119
+[014] 1-2:246,193,119+bold 3:49,116,143 4:38,35,58 5-36:196,167,231/38,35,58 37-47:38,35,58 48:49,116,143 50-60:196,167,231 135:49,116,143
+[015] 1-2:110,106,134 3:49,116,143 4-47:38,35,58 48:49,116,143 50-129:110,106,134 135:49,116,143
+[016] 0-2:246,193,119 3:49,116,143 4-47:38,35,58 48:49,116,143 50-134:110,106,134 135:49,116,143 136-139:246,193,119
+[017] 3:49,116,143 4:38,35,58 5-20:156,207,216/38,35,58 21-47:38,35,58 48:49,116,143 50-51:110,106,134 135:49,116,143
+[018] 0-2:156,207,216 3:49,116,143 4:38,35,58 5-45:110,106,134/38,35,58 46-47:38,35,58 48:49,116,143 135:49,116,143 137:144,140,170 139:156,207,216
+[019] 3:49,116,143 4:38,35,58 5-41:110,106,134/38,35,58 42-47:38,35,58 48:49,116,143 135:49,116,143
+[020] 0-2:156,207,216 3:49,116,143 4:38,35,58 5-26:110,106,134/38,35,58 27-47:38,35,58 48:49,116,143 135:49,116,143 136-139:156,207,216
+[021] 1-2:196,167,231 3:49,116,143 5-22:196,167,231 48:49,116,143 135:49,116,143
+[022] 3:49,116,143 5-39:196,167,231 48:49,116,143 50-132:110,106,134 135:49,116,143
+[023] 3:49,116,143 48:49,116,143 50-60:110,106,134 135:49,116,143
+[024] 3:49,116,143 48:49,116,143 50-62:196,167,231 135:49,116,143
+[025] 3:49,116,143 5-20:156,207,216 48:49,116,143 135:49,116,143
+[026] 3:49,116,143 5-45:110,106,134 48:49,116,143 135:49,116,143
+[027] 3:49,116,143 5-41:110,106,134 48:49,116,143 50-58:196,167,231 135:49,116,143
+[028] 3:49,116,143 5-26:110,106,134 48:49,116,143 135:49,116,143
+[029] 3:49,116,143 5-22:196,167,231 48:49,116,143 135:49,116,143
+[030] 3:49,116,143 5-39:196,167,231 48:49,116,143 135:49,116,143
+[031] 3:49,116,143 48:49,116,143 135:49,116,143
+[032] 3:49,116,143 48:49,116,143 135:49,116,143
+[033] 3:49,116,143 5-20:156,207,216 48:49,116,143 135:49,116,143
+[034] 3:49,116,143 5-45:110,106,134 48:49,116,143 135:49,116,143
+[035] 3:49,116,143 5-41:110,106,134 48:49,116,143 135:49,116,143
+[036] 3:49,116,143 5-26:110,106,134 48:49,116,143 135:49,116,143
+[037] 3:49,116,143 5-22:196,167,231 48:49,116,143 135:49,116,143
+[038] 3:49,116,143 5-40:196,167,231 48:49,116,143 135:49,116,143
+[039] 3:49,116,143 48:49,116,143 135:49,116,143
+[040] 3:49,116,143 48:49,116,143 135:49,116,143
+[041] 3:49,116,143 5-20:156,207,216 48:49,116,143 135:49,116,143
+[042] 3:49,116,143 5-45:110,106,134 48:49,116,143 135:49,116,143
+[043] 3-135:49,116,143
+[044] 3:49,116,143 4-85:110,106,134 135:49,116,143
+[045] 3:49,116,143 4-115:110,106,134 135:49,116,143
+[046] 3-135:49,116,143

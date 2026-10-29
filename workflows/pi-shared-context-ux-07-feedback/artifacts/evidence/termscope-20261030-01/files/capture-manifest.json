@@ -1,0 +1,28 @@
+{
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "evidence_ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/termscope-20261030-01",
+  "store": "repository",
+  "alignment_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "workflow_ref": "workflows/pi-shared-context-ux-07-feedback",
+  "parent_receipt": null,
+  "operation": "read-only evidence capture; not a mutating worktree phase",
+  "command": ["termscope", "session", "--", "omp", "--no-session", "--no-tools", "--no-title"],
+  "versions": {"termscope": "0.1.1", "omp": "18.10.3"},
+  "terminal": {"initial_cols": 80, "initial_rows": 24, "capture_cols": 140, "capture_rows": 50},
+  "source_commit": "8568ad62159d6c6a46f8ce403fb90e865a77163f",
+  "source_tree": "39e14b848cda15ac7639aed26b8e86070214af35",
+  "source_branch": "master",
+  "working_copy_clean": false,
+  "observed_modified_extension_files": ["actions.test.ts", "actions.ts", "index.ts"],
+  "source_sha256": {
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts": "304a508afb58e24e93d59b904a91519622a9be5a58db98dbe082c691c33f6e3c",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts": "72dd21f8a145dfb4e6d6dc36c23d04c9dac9823a91c9cefcfb903880da64b93b",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts": "7f96ef698e55a750ebbb6b39cbf1c6952863b23fdcecd9d371993df5c69e23e5",
+    "mise/conf.d/devtools-omp/extensions/shared-context/index.ts": "297953a2b6b4ccb89cb81410b9389c6ceeeb14898eedfb52abdcf9612aedeee5"
+  },
+  "recording": "Discrete text, JSON, and SVG snapshots plus request/response log; not continuous video or raw PTY byte recording",
+  "preview_transform": "Original SVG retained. Raster input adds xml:space=preserve and explicit DejaVu Sans Mono 14px text attributes. ImageMagick converts raster input to PNG.",
+  "limitations": ["First ticket snapshot already loaded receipts", "SVG output does not preserve UI colours or backgrounds", "Clipboard bytes not inspected", "Existing working-copy changes present", "Startup hooks/pre extension warning"],
+  "termscope_close_exit_code": 129,
+  "publication": "local-only; uncommitted"
+}

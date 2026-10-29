@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1020" width="1280" height="1020">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)">                                                      ████████████</text>
+<text x="10" y="64" fill="rgb(255,255,255)">   ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="84" fill="rgb(255,255,255)">   │ Projects · Repo &gt; Dotfiles                                                                                                        │</text>
+<text x="10" y="104" fill="rgb(255,255,255)">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">   │ Initiatives  &gt;  Improve shared-context proje  &gt;  pi-shared-context-ux-01-proj  &gt;  Description                                     │</text>
+<text x="10" y="144" fill="rgb(255,255,255)">   │&gt; Select shared-context projects through interactive breadcrumbs · Description                                                     │</text>
+<text x="10" y="164" fill="rgb(255,255,255)">   │ ## What to build                                                                                                                  │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">   │ Add the Projects view to the shared-context modal. Users open this view through a focusable, clickable Projects breadcrumb. Users │</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> Wa│ select a project and browse its existing tracker and Files workspace.                                                             │</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> '/│                                                                                                                                   │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">   │ Reuse shared-context enumeration and route resolution. Include the current project. Deduplicate entries by canonical identity. Do │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">───│ not scan unrelated repositories or add another project registry.                                                                  │────</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> Up│                                                                                                                                   │</text>
+<text x="10" y="324" fill="rgb(255,255,255)"> Ne│ Establish the breadcrumb and focus contract for later tracker screens. The current command still opens the current project.       │</text>
+<text x="10" y="344" fill="rgb(255,255,255)">───│ Selecting another project changes only the modal context.                                                                         │────</text>
+<text x="10" y="364" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">───│ ## Acceptance criteria                                                                                                            │ ⟲ ─</text>
+<text x="10" y="404" fill="rgb(255,255,255)">❯  │                                                                                                                                   │</text>
+<text x="10" y="424" fill="rgb(255,255,255)">───│ 1. The project list displays a name and origin or stable identity for each project. Equal repository names remain distinguishable.│────</text>
+<text x="10" y="444" fill="rgb(255,255,255)"> ◑ │ 2. Keyboard focus reaches the Projects breadcrumb. Enter activates it. A mouse click activates the same control.                  │</text>
+<text x="10" y="464" fill="rgb(255,255,255)">   │ 3. Selecting a project resolves its routes before record access. The selected project owns tracker reads, Files reads, and action │</text>
+<text x="10" y="484" fill="rgb(255,255,255)">   │ targets.                                                                                                                          │</text>
+<text x="10" y="504" fill="rgb(255,255,255)">   │ 4. The header displays Shared or Repo from the selected alignment route. The indicator is read-only.                              │</text>
+<text x="10" y="524" fill="rgb(255,255,255)">   │ 5. Project selection does not change the active Pi session directory or system instructions.                                      │</text>
+<text x="10" y="544" fill="rgb(255,255,255)">   │ 6. Returning to a project restores its navigation, selection, and scroll position. Each workspace retains independent state.      │</text>
+<text x="10" y="564" fill="rgb(255,255,255)">   │ 7. Project changes dispose of old watchers and attach the correct new watchers. Old project updates do not change the selected    │</text>
+<text x="10" y="584" fill="rgb(255,255,255)">   │ project view.                                                                                                                     │</text>
+<text x="10" y="604" fill="rgb(255,255,255)">   │ 8. A project without a usable checkout retains readable context. Checkout-dependent actions display a clear disabled reason.      │</text>
+<text x="10" y="624" fill="rgb(255,255,255)">   │ 9. No action runs against the previous project after selection changes. Existing action revalidation and fresh-chat behavior      │</text>
+<text x="10" y="644" fill="rgb(255,255,255)">   │ remain intact.                                                                                                                    │</text>
+<text x="10" y="664" fill="rgb(255,255,255)">   │ 10. Tab and Shift+Tab move focus forward and backward. Existing workspace number shortcuts remain unchanged.                      │</text>
+<text x="10" y="684" fill="rgb(255,255,255)">   │ 11. Esc from the tracker root opens Projects. Esc from Projects closes the modal. Existing Files escape behavior remains          │</text>
+<text x="10" y="704" fill="rgb(255,255,255)">   │ unchanged.                                                                                                                        │</text>
+<text x="10" y="724" fill="rgb(255,255,255)">   │ 12. Empty, unreadable, and unavailable project states display distinct explanations. The current project remains reachable.       │</text>
+<text x="10" y="744" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="764" fill="rgb(255,255,255)">   │ ## Out of scope                                                                                                                   │</text>
+<text x="10" y="784" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="804" fill="rgb(255,255,255)">   │ Do not change tracker hierarchy in this ticket. Do not clone repositories, migrate storage, or change session instructions.       │</text>
+<text x="10" y="824" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="844" fill="rgb(255,255,255)">   │ ## Specification                                                                                                                  │</text>
+<text x="10" y="864" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="884" fill="rgb(255,255,255)">   │ The parent specification defines the complete product intent. This ticket implements only the approved slice.                     │</text>
+<text x="10" y="904" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="924" fill="rgb(255,255,255)">   │ [Return]  [PgUp] [PgDn]                                                                                                           │</text>
+<text x="10" y="944" fill="rgb(255,255,255)">   │↑↓ scroll · PgUp/Dn page · Esc return                                                                                              │</text>
+</svg>

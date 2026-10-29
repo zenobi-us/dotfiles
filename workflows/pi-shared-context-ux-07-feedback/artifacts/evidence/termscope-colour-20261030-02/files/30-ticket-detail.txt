@@ -1,0 +1,50 @@
+=== TERMSCOPE ===
+cols=140 rows=50 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                          ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[006]    │ Projects · Repo > Dotfiles                                                                                                        │
+[007]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[008]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[009]    │ Initiatives  >  Improve shared-context project navigati  >  pi-shared-context-ux-01-projects                                      │
+[010]  Wa│ [d] Full description                                                                                                              │
+[011]  '/│> pi-shared-context-tui-ux-spec · Items 7   │  Ticket / dependencies / receipts                                                    │
+[012]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[013] ───│>[enhancement]  ID:                         │ pi-shared-context-ux-01-projects Select shared-context projects through interactive  │────
+[014]  Up│>pi-shared-context-ux-01-projects           │ breadcrumbs                                                                          │
+[015]  Ne│>Select shared-context projects through     │ Summary: Add the Projects view to the shared-context modal. Users open this view     │
+[016] ───│>interactive breadcrumbs                    │ through a focusable, clickable Projects breadcrumb. Users select a project and browse│────
+[017]    │>State: completed                           │ it                                                                                   │
+[018] ───│>Workflow unreadable: Recorded worktree is  │ Type: enhancement                                                                    │ ⟲ ─
+[019] ❯  │>unavailable; current source freshness      │ State: DONE                                                                          │
+[020] ───│>cannot be established.                     │ Reference: tracker/tickets/pi-shared-context-ux-01-projects.md                       │────
+[021]  ◑ │ [enhancement]  ID:                         │ Current source: not recorded                                                         │
+[022]    │ pi-shared-context-ux-02-initiatives        │ Reviews: 12 · Fixes: 9 (validated phase receipts; recorded attempts, not quality or  │
+[023]    │ Browse initiatives through structured      │ completion)                                                                          │
+[024]    │ tracker rows                               │ Dependencies:                                                                        │
+[025]    │ State: completed                           │ → pi-shared-context-ux-02-initiatives [DONE] Browse initiatives through structured   │
+[026]    │ Workflow unreadable: Recorded worktree is  │ tracker rows                                                                         │
+[027]    │ unavailable; current source freshness      │ Receipts:                                                                            │
+[028]    │ cannot be established.                     │ Event: finish-0034 · Execution: FINISHED                                             │
+[029]    │ [enhancement]  ID:                         │ Event: finish-worktree-removed-0033 · Execution: FINISHING                           │
+[030]    │ pi-shared-context-ux-03-mixed-items        │ Event: finish-ticket-completed-0032 · Execution: FINISHING                           │
+[031]    │ Browse research and tickets in the same    │ Event: finish-pushed-0031 · Execution: FINISHING                                     │
+[032]    │ initiative                                 │ Event: finish-validated-0030 · Execution: FINISHING                                  │
+[033]    │ State: completed                           │ Event: finish-merged-0029 · Execution: FINISHING                                     │
+[034]    │ Workflow unreadable: Recorded worktree is  │ Event: finish-prepared-0028 · Execution: FINISHING                                   │
+[035]    │ unavailable; current source freshness      │ Event: finish-waiting-0027 · Execution: FINISH_FAILED                                │
+[036]    │ cannot be established.                     │ Event: finish-failed-0026 · Execution: FINISH_FAILED                                 │
+[037]    │ [enhancement]  ID:                         │ Event: finish-start-0025 · Execution: FINISHING                                      │
+[038]    │ pi-shared-context-ux-04-descriptions       │ Event: review-complete-0024 · Execution: completed · Verdict: SUCCESS                │
+[039]    │ Read complete initiative and item          │ Event: review-0023 · Execution: completed · Verdict: SUCCESS                         │
+[040]    │ descriptions                               │ Event: review-start-0022 · Execution: started                                        │
+[041]    │ State: completed                           │ Event: fix-complete-0021 · Execution: completed                                      │
+[042]    │ Workflow unreadable: Recorded worktree is  │ Event: fix-0020 · Execution: completed                                               │
+[043]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[044]    │ Recorded worktree is unavailable; current source freshness cannot be established.                                                 │
+[045]    │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                   │
+[046]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

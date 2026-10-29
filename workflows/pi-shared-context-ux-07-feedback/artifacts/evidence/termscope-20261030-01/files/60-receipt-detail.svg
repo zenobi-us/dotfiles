@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1020" width="1280" height="1020">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)">                                                      ████████████</text>
+<text x="10" y="64" fill="rgb(255,255,255)">                                                         ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄</text>
+<text x="10" y="84" fill="rgb(255,255,255)">                                                         ██  ██       ▀▄▄▀ █ █ █ █▄▄▀</text>
+<text x="10" y="104" fill="rgb(255,255,255)">   ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="124" fill="rgb(255,255,255)">   │ Projects · Repo &gt; Dotfiles                                                                                                        │</text>
+<text x="10" y="144" fill="rgb(255,255,255)">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │</text>
+<text x="10" y="164" fill="rgb(255,255,255)">   ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="184" fill="rgb(255,255,255)">   │ Initiatives  &gt;  Improve shared-contex  &gt;  pi-shared-context-ux-  &gt;  Events  &gt;  finish-0034                                        │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">   │ [d] Full description                                                                                                              │</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> Wa│&gt; Event detail · outcome / body / exact evidence                                                                                   │</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> '/├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="264" fill="rgb(255,255,255)">   │ Execution: FINISHED                                                                                                               │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">───│ Recorded body:                                                                                                                    │────</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> Up│ No readable body recorded.                                                                                                        │</text>
+<text x="10" y="324" fill="rgb(255,255,255)"> Ne│ Evidence details:                                                                                                                 │</text>
+<text x="10" y="344" fill="rgb(255,255,255)">───│ Source: unavailable                                                                                                               │────</text>
+<text x="10" y="364" fill="rgb(255,255,255)">   │ Workflow warning: Recorded worktree is unavailable; current source freshness cannot be established.                               │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">───│ Ticket action target: tracker/tickets/pi-shared-context-ux-01-projects.md                                                         │ ⟲ ─</text>
+<text x="10" y="404" fill="rgb(255,255,255)">❯  │ Event reference: workflows/pi-shared-context-ux-01-projects/events/finish-0034.json                                               │</text>
+<text x="10" y="424" fill="rgb(255,255,255)">───│ Commit: fa5c5427d3b541d80b17d3acfc16b518d111e724                                                                                  │────</text>
+<text x="10" y="444" fill="rgb(255,255,255)"> ◑ │ Tree: 58a4e85a43a983575f385d96c8e18cc8ada8b328                                                                                    │</text>
+<text x="10" y="464" fill="rgb(255,255,255)">   │ Current commit: unavailable                                                                                                       │</text>
+<text x="10" y="484" fill="rgb(255,255,255)">   │ Current tree: unavailable                                                                                                         │</text>
+<text x="10" y="504" fill="rgb(255,255,255)">   │ Workspace: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects             │</text>
+<text x="10" y="524" fill="rgb(255,255,255)">   │ Branch: feature/pi-shared-context-ux-01-projects                                                                                  │</text>
+<text x="10" y="544" fill="rgb(255,255,255)">   │ Session: 01a17af1-75e3-7666-a181-6c52c2834cb2                                                                                     │</text>
+<text x="10" y="564" fill="rgb(255,255,255)">   │ Raw recorded fields:                                                                                                              │</text>
+<text x="10" y="584" fill="rgb(255,255,255)">   │ {                                                                                                                                 │</text>
+<text x="10" y="604" fill="rgb(255,255,255)">   │   &quot;schema&quot;: &quot;worktree-receipt/v1&quot;,                                                                                                │</text>
+<text x="10" y="624" fill="rgb(255,255,255)">   │   &quot;receipt_id&quot;: &quot;finish-0034&quot;,                                                                                                    │</text>
+<text x="10" y="644" fill="rgb(255,255,255)">   │   &quot;workflow_id&quot;: &quot;pi-shared-context-ux-01-projects&quot;,                                                                              │</text>
+<text x="10" y="664" fill="rgb(255,255,255)">   │   &quot;phase&quot;: &quot;finish&quot;,                                                                                                              │</text>
+<text x="10" y="684" fill="rgb(255,255,255)">   │   &quot;event&quot;: &quot;phase-complete&quot;,                                                                                                      │</text>
+<text x="10" y="704" fill="rgb(255,255,255)">   │   &quot;attempt&quot;: 2,                                                                                                                   │</text>
+<text x="10" y="724" fill="rgb(255,255,255)">   │   &quot;parent_receipt&quot;: &quot;finish-worktree-removed-0033&quot;,                                                                               │</text>
+<text x="10" y="744" fill="rgb(255,255,255)">   │   &quot;status&quot;: &quot;FINISHED&quot;,                                                                                                           │</text>
+<text x="10" y="764" fill="rgb(255,255,255)">   │   &quot;repository&quot;: &quot;/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles&quot;,                                                        │</text>
+<text x="10" y="784" fill="rgb(255,255,255)">   │   &quot;worktree&quot;: &quot;/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects&quot;,       │</text>
+<text x="10" y="804" fill="rgb(255,255,255)">   │   &quot;workspace_path&quot;: &quot;/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects&quot;, │</text>
+<text x="10" y="824" fill="rgb(255,255,255)">   │   &quot;source_branch&quot;: &quot;feature/pi-shared-context-ux-01-projects&quot;,                                                                    │</text>
+<text x="10" y="844" fill="rgb(255,255,255)">   │   &quot;base_branch&quot;: &quot;master&quot;,                                                                                                        │</text>
+<text x="10" y="864" fill="rgb(255,255,255)">   ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="884" fill="rgb(255,255,255)">   │ Recorded worktree is unavailable; current source freshness cannot be established.                                                 │</text>
+<text x="10" y="904" fill="rgb(255,255,255)">   │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                   │</text>
+<text x="10" y="924" fill="rgb(255,255,255)">   ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</text>
+</svg>

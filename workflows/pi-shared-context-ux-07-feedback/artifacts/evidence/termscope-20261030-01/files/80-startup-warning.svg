@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1020" width="1280" height="1020">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)">                                                      ████████████</text>
+<text x="10" y="64" fill="rgb(255,255,255)">                                                         ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄</text>
+<text x="10" y="84" fill="rgb(255,255,255)">                                                         ██  ██       ▀▄▄▀ █ █ █ █▄▄▀</text>
+<text x="10" y="104" fill="rgb(255,255,255)">                                                         ▒▒  ██                  █</text>
+<text x="10" y="124" fill="rgb(255,255,255)">                                                             ██       v18.10.3</text>
+<text x="10" y="164" fill="rgb(255,255,255)">                                   Tip: `/copy code` grabs the last code block to your clipboard — `/copy</text>
+<text x="10" y="184" fill="rgb(255,255,255)">                                                  cmd` grabs the last shell/python command</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> Warning: Failed to load extension ~/.omp/agent/hooks/pre: Failed to load extension: Cannot find module</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> '/home/zenobius/.omp/agent/hooks/pre?mtime=17933086987…</text>
+<text x="10" y="284" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> Update Available</text>
+<text x="10" y="324" fill="rgb(255,255,255)"> New version 18.14.0 is available. Run: omp update</text>
+<text x="10" y="344" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="384" fill="rgb(255,255,255)">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── (sub) · ◫ 0.6%/500K ⟲ ─</text>
+<text x="10" y="404" fill="rgb(255,255,255)">❯                                                                                                               ⇧⇥ to change thinking effort</text>
+<text x="10" y="424" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="444" fill="rgb(255,255,255)"> ◑ GPT-6.1-Sol · 📁 …ius/Store/Projects/Mine/Github/Dotfiles</text>
+<rect x="28" y="390" width="9" height="20" fill="rgb(255,255,255)" opacity="0.5"/>
+</svg>

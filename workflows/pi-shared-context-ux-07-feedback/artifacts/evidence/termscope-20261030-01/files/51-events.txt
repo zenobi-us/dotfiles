@@ -1,0 +1,51 @@
+=== TERMSCOPE ===
+cols=140 rows=50 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  Improve shared-context proje  >  pi-shared-context-ux-01-proj  >  Events                                          │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │Ticket: pi-shared-context-ux-01-projects · State: completed                                                                        │
+[011]  Wa│Reviews: 12 · Fixes: 9 (receipts)                                                                                                  │
+[012]  '/│> Events / newest first                                                                                                            │
+[013]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[014] ───│>Event: finish-0034 · Phase: finish                                                                                                │────
+[015]  Up│>Execution: FINISHED                                                                                                               │
+[016]  Ne│>Source commit: fa5c5427d3b5                                                                                                       │
+[017] ───│ Event: finish-worktree-removed-0033 · Phase: finish                                                                               │────
+[018]    │ Execution: FINISHING                                                                                                              │
+[019] ───│ Source commit: fa5c5427d3b5                                                                                                       │ ⟲ ─
+[020] ❯  │ Event: finish-ticket-completed-0032 · Phase: finish                                                                               │
+[021] ───│ Execution: FINISHING                                                                                                              │────
+[022]  ◑ │ Source commit: fa5c5427d3b5                                                                                                       │
+[023]    │ Event: finish-pushed-0031 · Phase: finish                                                                                         │
+[024]    │ Execution: FINISHING                                                                                                              │
+[025]    │ Source commit: fa5c5427d3b5                                                                                                       │
+[026]    │ Event: finish-validated-0030 · Phase: finish                                                                                      │
+[027]    │ Execution: FINISHING                                                                                                              │
+[028]    │ Source commit: fa5c5427d3b5                                                                                                       │
+[029]    │ Event: finish-merged-0029 · Phase: finish                                                                                         │
+[030]    │ Execution: FINISHING                                                                                                              │
+[031]    │ Source commit: fa5c5427d3b5                                                                                                       │
+[032]    │ Event: finish-prepared-0028 · Phase: finish                                                                                       │
+[033]    │ Execution: FINISHING                                                                                                              │
+[034]    │ Source commit: fa5c5427d3b5                                                                                                       │
+[035]    │ Event: finish-waiting-0027 · Phase: finish                                                                                        │
+[036]    │ Execution: FINISH_FAILED                                                                                                          │
+[037]    │ Source commit: fa5c5427d3b5                                                                                                       │
+[038]    │ Event: finish-failed-0026 · Phase: finish                                                                                         │
+[039]    │ Execution: FINISH_FAILED                                                                                                          │
+[040]    │ Source commit: fa5c5427d3b5                                                                                                       │
+[041]    │ Event: finish-start-0025 · Phase: finish                                                                                          │
+[042]    │ Execution: FINISHING                                                                                                              │
+[043]    │ Source commit: fa5c5427d3b5                                                                                                       │
+[044]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[045]    │ Recorded worktree is unavailable; current source freshness cannot be established.                                                 │
+[046]    │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                   │
+[047]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

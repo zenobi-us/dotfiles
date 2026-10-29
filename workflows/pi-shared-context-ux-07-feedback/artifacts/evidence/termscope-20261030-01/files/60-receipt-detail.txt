@@ -1,0 +1,50 @@
+=== TERMSCOPE ===
+cols=140 rows=50 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                          ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[006]    │ Projects · Repo > Dotfiles                                                                                                        │
+[007]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[008]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[009]    │ Initiatives  >  Improve shared-contex  >  pi-shared-context-ux-  >  Events  >  finish-0034                                        │
+[010]    │ [d] Full description                                                                                                              │
+[011]  Wa│> Event detail · outcome / body / exact evidence                                                                                   │
+[012]  '/├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[013]    │ Execution: FINISHED                                                                                                               │
+[014] ───│ Recorded body:                                                                                                                    │────
+[015]  Up│ No readable body recorded.                                                                                                        │
+[016]  Ne│ Evidence details:                                                                                                                 │
+[017] ───│ Source: unavailable                                                                                                               │────
+[018]    │ Workflow warning: Recorded worktree is unavailable; current source freshness cannot be established.                               │
+[019] ───│ Ticket action target: tracker/tickets/pi-shared-context-ux-01-projects.md                                                         │ ⟲ ─
+[020] ❯  │ Event reference: workflows/pi-shared-context-ux-01-projects/events/finish-0034.json                                               │
+[021] ───│ Commit: fa5c5427d3b541d80b17d3acfc16b518d111e724                                                                                  │────
+[022]  ◑ │ Tree: 58a4e85a43a983575f385d96c8e18cc8ada8b328                                                                                    │
+[023]    │ Current commit: unavailable                                                                                                       │
+[024]    │ Current tree: unavailable                                                                                                         │
+[025]    │ Workspace: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects             │
+[026]    │ Branch: feature/pi-shared-context-ux-01-projects                                                                                  │
+[027]    │ Session: 01a17af1-75e3-7666-a181-6c52c2834cb2                                                                                     │
+[028]    │ Raw recorded fields:                                                                                                              │
+[029]    │ {                                                                                                                                 │
+[030]    │   "schema": "worktree-receipt/v1",                                                                                                │
+[031]    │   "receipt_id": "finish-0034",                                                                                                    │
+[032]    │   "workflow_id": "pi-shared-context-ux-01-projects",                                                                              │
+[033]    │   "phase": "finish",                                                                                                              │
+[034]    │   "event": "phase-complete",                                                                                                      │
+[035]    │   "attempt": 2,                                                                                                                   │
+[036]    │   "parent_receipt": "finish-worktree-removed-0033",                                                                               │
+[037]    │   "status": "FINISHED",                                                                                                           │
+[038]    │   "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",                                                        │
+[039]    │   "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects",       │
+[040]    │   "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-01-projects", │
+[041]    │   "source_branch": "feature/pi-shared-context-ux-01-projects",                                                                    │
+[042]    │   "base_branch": "master",                                                                                                        │
+[043]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[044]    │ Recorded worktree is unavailable; current source freshness cannot be established.                                                 │
+[045]    │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                   │
+[046]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
