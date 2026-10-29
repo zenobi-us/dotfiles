@@ -1,0 +1,260 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "standards-result-recovery-0049",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "phase": "review-standards",
+  "attempt": 3,
+  "parent_receipt": "standards-complete-0045",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "source_branch": "feature/pi-shared-context-ux-05-events",
+  "base_branch": "master",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "created_at": "2026-10-29T04:41:03.571Z",
+  "muxer": "herdr",
+  "pane_id": "w8A:p3",
+  "agent": "omp",
+  "agent_name": "ux05-review-std-c14",
+  "session_id": "01a185ec-c2f1-7661-b4f8-31853af0592d",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0152.yaml",
+  "event": "phase-result",
+  "status": "completed",
+  "cycle_number": 14,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/implementation-0002.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/validation-complete-0014.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/review-complete-0039.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/guard-retry-complete-0030.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/snapshots/pr-draft-review-blocked-0039.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0152.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/review-inputs.json",
+      "sha256": "7d209d7995eb15891d816dcf2d996a3a2d4be331bbd86dd7d9f6c8880b2b30f0"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/review-agent-system.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/exact-source-diff.patch",
+      "sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/standards-complete-0045.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/assessment.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/standards-result-recovery-0049.json"
+    }
+  ],
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "review_role": "standards",
+  "guard_verification_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0028/verification.json",
+  "preloaded_inputs": true,
+  "verdict": "SUCCESS",
+  "findings": [],
+  "axis_report": "Standards: SUCCESS. I assessed all eight files in the frozen diff against the supplied repository rules and all 12 smell checks. The ADR index contains no decisions, so no ADR applies. I found no documented-standard breach or consumer-visible standards blocker. The receipt-count comment states its validation boundary. The loader preserves identity and parent-graph validation before publishing counts. Navigation and display changes stay within the event-history feature. Event text passes through the existing sanitization and Unicode wrapping path. Tests use the complete modal interface for event behavior, with loader tests for receipt validation. The README explains execution, verdict, source freshness, unknown counts, and canonical action targets without treating review failure as process failure. Possible Duplicated Code remains an optional observation: event identity, execution, and verdict labels appear in several presentation methods. Their different layouts justify separate formatting for now. This assessment does not require a refactor. Git checks matched the pinned commit, tree, and exact diff hash. The tracked checkout was clean. I did not run tests, the compiler, or native terminal checks. Main owns those checks. This standards verdict does not establish spec acceptance, authorize integration, or complete the ticket.",
+  "standards_reviewed": [
+    "Supplied AGENTS.md: short active sentences, consistent terms, plain technical language, and Markdown access rules.",
+    "Supplied CONTEXT-MAP.md and docs/agents/domain.md: canonical domain ownership and applicable architecture decisions.",
+    "Supplied docs/adr/index.md: no ADR entries and no applicable ADR.",
+    "Supplied docs/agents/issue-tracker.md: canonical ticket authority, immutable review evidence, and completion restrictions.",
+    "Required code-review skill: documented rules override smell judgments, skip tooling-enforced nits, and distinguish standards from spec.",
+    "Required TypeScript and code-comments guidance: explicit validation boundaries, safe optional data handling, clear purpose comments, and local module organization.",
+    "Plain-language guidance: readable labels and clear distinctions between event identity, execution, verdict, and source.",
+    "Complete supplied eight-file diff, including new modal tests, removed superseded explorer test, live-test updates, model comment, and README addition."
+  ],
+  "smells_checked": [
+    {
+      "name": "Mysterious Name",
+      "classification": "not_found",
+      "explanation": "recordedAttempts, historyValidated, eventDetail, selectedEvent, eventLines, and eventRows describe their roles. Short test fixture names do not create a consumer-visible defect."
+    },
+    {
+      "name": "Duplicated Code",
+      "classification": "optional",
+      "explanation": "explorer.ts:846-852, 871-872, and 965 repeat some event-field labels and outcome presentation. The list, detail, and ticket summary use different layouts. Consolidation is optional, not a completion blocker."
+    },
+    {
+      "name": "Feature Envy",
+      "classification": "not_found",
+      "explanation": "The explorer reads event and receipt data to build its own presentation. The loader retains receipt identity and graph validation. Moving formatting onto stored records has no demonstrated benefit."
+    },
+    {
+      "name": "Data Clumps",
+      "classification": "not_found",
+      "explanation": "Review and fix counts travel together in recordedAttempts. Existing ExplorerEvent, ExplorerReceipt, TicketWorkflow, and ExplorerNavigation types already group the relevant data."
+    },
+    {
+      "name": "Primitive Obsession",
+      "classification": "not_found",
+      "explanation": "Raw evidence fields intentionally retain their stored shape. Narrowed string and numeric values support display without changing receipt schemas. No new primitive misuse causes a demonstrated defect."
+    },
+    {
+      "name": "Repeated Switches",
+      "classification": "not_found",
+      "explanation": "The added conditions distinguish event detail, receipt validation, and source comparison. They do not introduce repeated type-dispatch cascades that require a shared mapping."
+    },
+    {
+      "name": "Shotgun Surgery",
+      "classification": "not_found",
+      "explanation": "The eight files cover the loader, model, explorer, directly affected tests, and user documentation. This is bounded feature work, not evidence that one concern lacks an owner."
+    },
+    {
+      "name": "Divergent Change",
+      "classification": "not_found",
+      "explanation": "The explorer changes navigation, refresh preservation, and event rendering for the same event-inspection feature. The change does not add an unrelated module responsibility."
+    },
+    {
+      "name": "Speculative Generality",
+      "classification": "not_found",
+      "explanation": "The new detail flag, count field, and selected-event helper serve current behavior. The diff adds no unused extension mechanism or future-only abstraction."
+    },
+    {
+      "name": "Message Chains",
+      "classification": "not_found",
+      "explanation": "Array filtering and mapping are local data transformations. selectedEvent hides history selection. The diff adds no problematic chain through multiple object owners."
+    },
+    {
+      "name": "Middle Man",
+      "classification": "not_found",
+      "explanation": "selectedEvent provides stable selection fallback. eventLines and eventRows add distinct presentation logic. None is a forwarding-only module."
+    },
+    {
+      "name": "Refused Bequest",
+      "classification": "not_found",
+      "explanation": "The diff adds no inheritance relationship or implementation that rejects inherited behavior."
+    }
+  ],
+  "optional_smells": [
+    {
+      "name": "Duplicated Code",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 846,
+      "locations": [
+        "846-852",
+        "871-872",
+        "965"
+      ],
+      "description": "Event identity, execution, and verdict formatting repeat across list, detail, and ticket summary views.",
+      "suggestion": "If these labels begin to drift, consider a small shared presentation helper. Preserve the distinct layouts and raw evidence handling.",
+      "blocking": false,
+      "reason": "The current labels agree. Separate layouts provide value, and no consumer-visible defect or hard-standard breach requires extraction."
+    }
+  ],
+  "verification": {
+    "git_commit_tree": "Matched pinned HEAD and tree using git rev-parse.",
+    "diff_sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460",
+    "tracked_status_before": "git status --porcelain=v1 --untracked-files=no returned no output.",
+    "code_inspection": "Inspected the full preloaded diff and focused unchanged loader, refresh, input, pane-selection, and rendering context.",
+    "tests": "Not run. The contract assigns fresh suite, compiler, and native checks to main."
+  },
+  "limitations": [
+    "This is the independent Standards axis, not the Spec axis or main review.",
+    "Implementation test and terminal results in the contract are prior recorded evidence, not fresh checks by this reviewer.",
+    "No runtime reproduction, build, formatter, compiler, or test command was run by this axis."
+  ],
+  "cleanup": {
+    "source_tests_configuration": "Unmodified.",
+    "dependency_links": "Untouched.",
+    "owned_processes_or_temporary_files": "None created.",
+    "authored_outputs": "Only this assessment JSON. The supplied exclusive finalizer owns its result outputs.",
+    "unrelated_user_changes_and_backups": "Untouched."
+  },
+  "native_goal_id": "15b8c8991eb16c1d",
+  "axis": "standards",
+  "assessment_complete": true,
+  "valid_source_verdict": true,
+  "agent_closed": true,
+  "native_goal_completed": false,
+  "recovery_author": "goal-coordinator",
+  "recovery_note": "The independent reviewer actually saved a complete exact-source SUCCESS assessment before guard denial blocked finalizer invocation. Results43/45 incorrectly inferred assessment absence from missing finalization. This append-only recovery preserves the actual judgment without resuming an agent or consuming a cycle.",
+  "supersedes": [
+    "workflows/pi-shared-context-ux-05-events/events/standards-result-0043.json",
+    "workflows/pi-shared-context-ux-05-events/events/standards-complete-0045.json"
+  ],
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043"
+  },
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T04-30-48-561Z_01a185ec-c2f1-7661-b4f8-31853af0592d.jsonl",
+    "session_id": "01a185ec-c2f1-7661-b4f8-31853af0592d",
+    "goal_id": "15b8c8991eb16c1d",
+    "native_status": "active",
+    "native_goal_used": 54190,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 50735,
+      "output": 3455,
+      "cacheWrite": 0,
+      "cacheRead": 610432
+    },
+    "assistant_entries": 19,
+    "auxiliary_model_usage_entries": 0,
+    "provider_work_tokens": 54190,
+    "session_ceiling": 250000,
+    "under_cap": true,
+    "reported_provider_work_tokens": 54190,
+    "accounting_complete": true,
+    "unsettled_request": null,
+    "conservative_work_upper_bound": 54190,
+    "under_cap_basis": "All admitted requests settled with reported usage.",
+    "bound_violation": false
+  }
+}

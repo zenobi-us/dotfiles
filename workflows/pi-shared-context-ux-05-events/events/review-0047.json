@@ -1,0 +1,202 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0047",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "phase": "review",
+  "attempt": 3,
+  "parent_receipt": "review-start-0040",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "source_branch": "feature/pi-shared-context-ux-05-events",
+  "base_branch": "master",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "created_at": "2026-10-29T04:41:03.953Z",
+  "muxer": "herdr",
+  "pane_id": "w8A:p2",
+  "agent": "omp",
+  "agent_name": "ux05-review-main-c13",
+  "session_id": "01a185ec-c2fc-77fb-91ee-f1af94248f58",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0151.yaml",
+  "event": "phase-result",
+  "status": "blocked",
+  "cycle_number": 13,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/implementation-0002.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/validation-complete-0014.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/review-complete-0039.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/guard-retry-complete-0030.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/snapshots/pr-draft-review-blocked-0039.md"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0151.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/review-inputs.json",
+      "sha256": "52ce578b514511dcb2157b1d89a6dd3ade739f8dc82ace7b2138bfeedb30ae6d"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/review-agent-system.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/exact-source-diff.patch",
+      "sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/review-start-0040.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/standards-result-recovery-0049.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/spec-result-0044.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/launch-session.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/review-0047.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0047.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047"
+    }
+  ],
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "review_role": "main",
+  "guard_verification_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0028/verification.json",
+  "preloaded_inputs": true,
+  "verdict": "FAILURE",
+  "native_goal_id": "15b8c8991e851ce8",
+  "assessment_complete": false,
+  "valid_source_verdict": false,
+  "findings": [],
+  "review_artifact": "workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0047.md",
+  "summary": "Main/Spec assessments unavailable after guard stop. Actual Standards SUCCESS recovered49/50. Fresh suite147pass/compiler0; owned native harness failed initialization because parent metadata remapping replaced undefined with an invalid expression. No product defect or native pass is claimed.",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047"
+  },
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T04-30-48-572Z_01a185ec-c2fc-77fb-91ee-f1af94248f58.jsonl",
+    "session_id": "01a185ec-c2fc-77fb-91ee-f1af94248f58",
+    "goal_id": "15b8c8991e851ce8",
+    "native_status": "active",
+    "native_goal_used": 57247,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 54446,
+      "output": 2801,
+      "cacheWrite": 0,
+      "cacheRead": 1057792
+    },
+    "assistant_entries": 30,
+    "auxiliary_model_usage_entries": 0,
+    "provider_work_tokens": 57247,
+    "session_ceiling": 250000,
+    "under_cap": true,
+    "reported_provider_work_tokens": 57247,
+    "accounting_complete": true,
+    "unsettled_request": null,
+    "conservative_work_upper_bound": 57247,
+    "under_cap_basis": "All admitted requests settled with reported usage.",
+    "bound_violation": false
+  },
+  "agent_closed": true,
+  "native_goal_completed": false,
+  "validation": [
+    {
+      "name": "suite",
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--install=fallback",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "compiler",
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/scoped-tsconfig.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "native",
+      "command": [
+        "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/run-native-review.mjs",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/native-config.json"
+      ],
+      "exit_code": 1
+    }
+  ]
+}

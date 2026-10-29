@@ -1,0 +1,10 @@
+{
+  "role": "standards",
+  "native_session_id": "01a185ec-c2f1-7661-b4f8-31853af0592d",
+  "first_input_wire_bytes": 112721,
+  "first_reservation": 244817,
+  "hard_ceiling": 250000,
+  "preload_sha256": "512d54c4c8d27a94e36790e0da6eed553fa33be1b596f0567cb985b24d437d08",
+  "exact_diff_sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460",
+  "expected_diff_sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460"
+}

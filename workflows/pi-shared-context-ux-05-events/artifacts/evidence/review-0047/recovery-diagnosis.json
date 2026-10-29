@@ -1,0 +1,80 @@
+{
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "source_unchanged": true,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "guard_unchanged": true,
+  "main_assessment": null,
+  "spec_assessment": null,
+  "standards": {
+    "verdict": "SUCCESS",
+    "assessment_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/assessment.json",
+    "valid_recovery_ref": "workflows/pi-shared-context-ux-05-events/events/standards-result-recovery-0049.json"
+  },
+  "fresh_checks": {
+    "suite": {
+      "pass": 147,
+      "fail": 0,
+      "assertions": 2061,
+      "files": 12,
+      "exit": 0
+    },
+    "compiler": {
+      "exit": 0
+    },
+    "native": {
+      "exit": 1,
+      "stage": "initialization",
+      "error": "ReferenceError: review is not defined",
+      "frames": 0,
+      "product_pi_launched": false,
+      "temporary_root_removed": true
+    }
+  },
+  "owned_program_copy_error": {
+    "native_path": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/run-native-review.mjs",
+    "line": 52,
+    "bad_expression": "review-start-0040",
+    "original_literal": "undefined",
+    "cause": "Initial metadata remapping used old.start.receipt_id while old.start was a string. replaceAll(undefined, replacement) replaced literal undefined in copied programs. Source snapshots were integrity-checked and restored unchanged before launch, but the copied harness/finalizer were not regenerated.",
+    "affected_programs": [
+      "run-native-review.mjs",
+      "finalize-review.mjs"
+    ],
+    "recovery": "Preserve broken copies and failure evidence; create new versioned programs directly from the original complete attempt1 assets, with no global metadata replacement on executable text."
+  },
+  "provider_limit_research": {
+    "supports_current_backend_output_cap": "not established; do not assume",
+    "sources": [
+      {
+        "url": "https://github.com/openai/codex/issues/4138",
+        "maintainer_note": "OpenAI maintainer stated support for max_output_tokens was dropped."
+      },
+      {
+        "url": "https://github.com/openai/codex/pull/4139#issuecomment-3563874077",
+        "maintainer_note": "The change was reverted after breaking mainstream flagship-model use."
+      },
+      {
+        "url": "https://github.com/openai/codex/issues/36180",
+        "scope": "Custom Responses proxies; does not prove the current Codex backend supports the field."
+      }
+    ]
+  },
+  "proposed_recovery": {
+    "total_ticket_cycles": 19,
+    "new_sessions": 4,
+    "roles": [
+      "Spec criteria1–6",
+      "Spec criteria7–13",
+      "Spec consolidation of both complete slice reports",
+      "Main exact-source review combining recovered Standards and complete Spec"
+    ],
+    "guard_unchanged": true,
+    "provider_unchanged": true,
+    "hard_session_cap": 250000,
+    "parent_finalizes_actual_saved_assessments": true,
+    "fix_owned_program_copy_before_native_check": true,
+    "no_source_change_planned": true,
+    "no_new_AI_before_user_renewal": true
+  }
+}
