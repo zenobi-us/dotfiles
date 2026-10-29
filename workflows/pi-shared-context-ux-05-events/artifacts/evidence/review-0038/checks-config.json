@@ -1,0 +1,46 @@
+{
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "sourceCommit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "sourceTree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "evidenceDir": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0038",
+  "checks": [
+    {
+      "name": "suite",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--install=fallback",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+      ]
+    },
+    {
+      "name": "compiler",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0038/scoped-tsconfig.json"
+      ]
+    },
+    {
+      "name": "native",
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0038/run-native-review.mjs",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0038/native-config.json"
+      ]
+    }
+  ],
+  "axisReceipts": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/events/standards-result-0034.json",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/events/spec-result-0035.json"
+  ]
+}

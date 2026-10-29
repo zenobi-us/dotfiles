@@ -1,0 +1,222 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts
+index 70d244d8..96c7ef6b 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts
+@@ -42 +42,2 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
+-  const result: TicketWorkflow = { ticketId: ticket.id, receipts: [], events: [] };
++  const result: TicketWorkflow = { ticketId: ticket.id, receipts: [], events: [], recordedAttempts: { review: 0, fix: 0 } };
++  let historyValidated = false;
+@@ -114,4 +115 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
+-    if (errors.length) {
+-      result.error = errors.join("\n");
+-      return result;
+-    }
++    delete result.recordedAttempts;
+@@ -123,0 +122,9 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
++    result.recordedAttempts = {
++      review: result.receipts.filter(receipt => receipt.phase === "review").length,
++      fix: result.receipts.filter(receipt => receipt.phase === "fix").length,
++    };
++    historyValidated = true;
++    if (errors.length) {
++      result.error = errors.join("\n");
++      return result;
++    }
+@@ -142,0 +150 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
++    if (!historyValidated) delete result.recordedAttempts;
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+index 3d1fe9c3..8bf6e9b0 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+@@ -15 +15 @@ type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
+-type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
++type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
+@@ -26,0 +27 @@ export interface ExplorerNavigation {
++  eventDetail?: boolean;
+@@ -70,0 +72 @@ export class GraphExplorer {
++  private eventDetail = false;
+@@ -117,0 +120 @@ export class GraphExplorer {
++    this.eventDetail = navigation?.eventDetail ?? false;
+@@ -263,0 +267,4 @@ export class GraphExplorer {
++            const previous = this.workflows.get(ticket.id);
++            if (workflow.error && !workflow.events?.length && previous?.events?.length) {
++              workflow = { ...previous, sourceCommit: undefined, sourceTree: undefined, error: `History refresh failed; showing last readable history. ${workflow.error}` };
++            }
+@@ -264,0 +272,9 @@ export class GraphExplorer {
++            if (ticket.id === this.ticketId && (!this.receiptId || !(workflow.events ?? workflow.receipts).some(event => event.id === this.receiptId))) {
++              const removed = Boolean(this.receiptId);
++              this.receiptId = (workflow.events ?? workflow.receipts)[0]?.id;
++              if (removed) {
++                this.eventDetail = false;
++                this.focus = "list";
++                this.notice = "Selected event was removed. Showing the nearest available history.";
++              }
++            }
+@@ -412,0 +429 @@ export class GraphExplorer {
++    if (this.screen === "receipts" && this.eventDetail) return ["breadcrumb", "detail"];
+@@ -428,0 +446,4 @@ export class GraphExplorer {
++    if (screen === "receipts" && this.eventDetail) {
++      const identity = this.selectedEvent()?.fields?.receipt_id;
++      crumbs.push({ label: typeof identity === "string" ? identity : "Event", screen: "receipts" });
++    }
+@@ -436,0 +458 @@ export class GraphExplorer {
++    this.eventDetail = false;
+@@ -488,0 +511 @@ export class GraphExplorer {
++      this.eventDetail = false;
+@@ -498,0 +522,6 @@ export class GraphExplorer {
++      else if (this.screen === "receipts" && this.eventDetail) {
++        this.eventDetail = false;
++        this.focus = "list";
++        this.options.requestRender();
++        return;
++      }
+@@ -552 +581 @@ export class GraphExplorer {
+-      const step = Math.max(1, Math.min(30, this.options.height() - (compact ? 4 : 8)));
++      const step = pane ? this.renderedLayout.get(pane.id)?.height ?? 1 : Math.max(1, Math.min(30, this.options.height() - (compact ? 4 : 8)));
+@@ -587 +616,3 @@ export class GraphExplorer {
+-      if (compact && this.focus === "list" && this.screen === "receipts") {
++      if (this.screen === "receipts" && !this.eventDetail && this.selectedEvent()) {
++        this.receiptId = this.selectedEvent()!.id;
++        this.eventDetail = true;
+@@ -624,0 +656 @@ export class GraphExplorer {
++        this.eventDetail = false;
+@@ -655 +687,7 @@ export class GraphExplorer {
+-    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 9) - Number(control !== undefined)));
++    const attempts = this.workflow()?.recordedAttempts;
++    const ticket = this.ticket();
++    const eventSummary = this.screen === "receipts" && !this.eventDetail && ticket ? [
++      th.fg("accent", truncateToWidth(this.clean(`Ticket: ${ticket.id} · State: ${ticket.status}`), inner)),
++      th.fg("muted", `Reviews: ${attempts?.review ?? "?"} · Fixes: ${attempts?.fix ?? "?"} (receipts)`),
++    ] : [];
++    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 9) - Number(control !== undefined) - eventSummary.length));
+@@ -677 +715 @@ export class GraphExplorer {
+-    const status = this.error || this.refreshError || this.notice || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
++    const status = this.error || this.refreshError || this.workflow()?.error || this.notice || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+@@ -681 +719 @@ export class GraphExplorer {
+-      return [breadcrumb, ...(control ? [control] : []), join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
++      return [breadcrumb, ...(control ? [control] : []), ...eventSummary, join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
+@@ -685 +723 @@ export class GraphExplorer {
+-    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(breadcrumb), ...(control ? [frame(control)] : []), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error || this.refreshError ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
++    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(breadcrumb), ...(control ? [frame(control)] : []), ...eventSummary.map(frame), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error || this.refreshError ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
+@@ -784,0 +823 @@ export class GraphExplorer {
++    if (this.eventDetail) return [{ id: `receipt:${this.ticketId}:${this.selectedEvent()?.id ?? "none"}`, title: "Event detail · outcome / body / exact evidence", rows: this.eventRows() }];
+@@ -787,3 +826,2 @@ export class GraphExplorer {
+-    const event = events.find(event => event.id === this.receiptId) ?? events[0];
+-    const receipt = event && !event.error ? workflow?.receipts.find(receipt => receipt.ref === event.ref) : undefined;
+-    return [{ id: `neighbors:${this.ticketId}`, title: "Dependency context", rows: this.neighborhoodRows().map((row, index) => ({ ...row, selected: this.focus === "neighborhood" && index === this.neighborhoodIndex })) }, {
++    const selected = this.selectedEvent();
++    return [{
+@@ -791,15 +829,9 @@ export class GraphExplorer {
+-      rows: events.length ? events.map(item => ({
+-        text: `${typeof item.fields?.receipt_id === "string" ? item.fields.receipt_id : item.ref.split("/").at(-1)} ${typeof item.fields?.phase === "string" ? item.fields.phase : ""} [${item.error ? "INVALID" : typeof item.fields?.status === "string" ? item.fields.status : "recorded"}]`,
+-        selected: item.id === event?.id, tone: item.error ? "warning" : "text",
+-      })) : [{ text: workflow?.error ?? (workflow ? "No receipts yet." : "Loading receipts…"), tone: workflow?.error ? "error" : "muted" }],
+-    }, {
+-      id: `receipt:${this.ticketId}:${event?.id ?? "none"}`, title: "Receipt / exact evidence", rows: receipt ? [
+-        { text: `Ticket: ${this.ticket()?.ref ?? ""}`, tone: "accent" }, { text: `Receipt: ${receipt.id}` }, { text: `Phase: ${receipt.phase} · ${receipt.status}${receipt.verdict ? ` · ${receipt.verdict}` : ""}` }, { text: `Parent: ${receipt.parentReceipt ?? "none"}` }, { text: `Commit: ${receipt.sourceCommit}` }, { text: `Tree: ${receipt.sourceTree}` }, { text: `Current: ${workflow?.sourceCommit ?? "unavailable"}` }, { text: `Current tree: ${workflow?.sourceTree ?? "unavailable"}` }, { text: workflow?.error ?? (receipt.sourceCommit === workflow?.sourceCommit && receipt.sourceTree === workflow?.sourceTree ? "Source: matched" : "Source: stale / unavailable"), tone: workflow?.error || receipt.sourceCommit !== workflow?.sourceCommit || receipt.sourceTree !== workflow?.sourceTree ? "warning" : "accent" }, { text: `Workspace: ${receipt.workspacePath}` }, { text: `Branch: ${receipt.sourceBranch} · base ${receipt.baseBranch}` }, { text: `Session: ${receipt.sessionId ?? "not recorded"}` }, { text: `Created: ${receipt.createdAt}` }, { text: `Reference: ${receipt.ref}` }, { text: "Outputs:", tone: "accent" }, ...receipt.outputs.map(output => ({ text: `  ${output}` })), { text: "Receipt fields:", tone: "accent" }, ...JSON.stringify(receipt.fields, null, 2).split("\n").map(text => ({ text })), ...receipt.body.split(/\r?\n/).map(text => ({ text }))
+-      ] : event ? [
+-        { text: `Reference: ${event.ref}`, tone: "accent" },
+-        { text: event.error ?? workflow?.error ?? "Unvalidated event.", tone: "error" },
+-        { text: "Not valid workflow evidence. Worktree transitions remain blocked.", tone: "warning" },
+-        { text: "Recorded fields:", tone: "accent" },
+-        ...JSON.stringify(event.fields ?? null, null, 2).split("\n").map(text => ({ text })),
+-        ...(event.body ?? "").split(/\r?\n/).map(text => ({ text })),
+-      ] : [{ text: workflow?.error ?? (workflow ? "No receipt exists for this ticket." : "Loading workflow…"), tone: workflow?.error ? "error" : "muted" }, { text: "Chat output is not workflow evidence." }]
++      rows: [
++        ...(events.length ? events.map(event => ({
++          text: "", event, receiptId: event.id,
++          selected: event.id === selected?.id, tone: event.error ? "warning" as const : "text" as const,
++        })) : [{ text: workflow?.error ? `History unreadable: ${workflow.error}` : workflow ? "No events recorded." : "Loading history…", tone: workflow?.error ? "error" as const : "muted" as const }]),
++        ...(workflow?.error && events.length ? [{ text: `History warning: ${workflow.error}`, tone: "warning" as const }] : []),
++        { text: "Dependencies / unresolved blockers:", tone: "accent" },
++        ...this.neighborhoodRows(),
++      ],
+@@ -808,0 +841,53 @@ export class GraphExplorer {
++  private selectedEvent(): ExplorerEvent | undefined {
++    const events = this.history();
++    return events.find(event => event.id === this.receiptId) ?? events[0];
++  }
++
++  private eventLines(event: ExplorerEvent, width: number): string[] {
++    const fields = event.fields;
++    const value = (key: string): string => typeof fields?.[key] === "string" ? fields[key] : "unavailable";
++    const parts: { text: string; tone: Tone }[] = [
++      { text: `Event: ${typeof fields?.receipt_id === "string" ? fields.receipt_id : event.ref.split("/").at(-1)} · Phase: ${value("phase")}`, tone: "text" },
++      { text: `Execution: ${value("status")}${event.error ? " · INVALID" : ""}`, tone: event.error || fields?.status === "failed" ? "error" : "accent" },
++      ...(typeof fields?.verdict === "string" ? [{ text: `Verdict: ${fields.verdict}`, tone: fields.verdict === "FAILURE" ? "warning" as const : "success" as const }] : []),
++      { text: `Source commit: ${typeof fields?.source_commit === "string" ? fields.source_commit.slice(0, 12) : "unavailable"}`, tone: "muted" },
++    ];
++    return parts.flatMap(part => wrapTextWithAnsi(this.clean(part.text), width).map(line => this.options.theme.fg(part.tone, line)));
++  }
++
++  private eventRows(): Row[] {
++    const event = this.selectedEvent();
++    if (!event) return [{ text: "No event selected." }];
++    const workflow = this.workflow();
++    const receipt = !event.error ? workflow?.receipts.find(receipt => receipt.ref === event.ref) : undefined;
++    const fields = event.fields ?? {};
++    const recorded = (value: unknown): string => typeof value === "string" ? value : JSON.stringify(value, null, 2) ?? "unavailable";
++    const body = event.body?.trim() || (fields.summary != null ? recorded(fields.summary) : "No readable body recorded.");
++    const source = !receipt || !workflow?.sourceCommit || !workflow.sourceTree ? "unavailable"
++      : receipt.sourceCommit === workflow.sourceCommit && receipt.sourceTree === workflow.sourceTree ? "matched" : "stale";
++    const changed = Array.isArray(fields.changed_files) && fields.changed_files.every(file => typeof file === "string") ? fields.changed_files.length
++      : Number.isInteger(fields.changed_file_count) && Number(fields.changed_file_count) >= 0 ? Number(fields.changed_file_count) : undefined;
++    return [
++      { text: `Execution: ${recorded(fields.status)}`, tone: fields.status === "failed" ? "error" : "accent" },
++      ...(fields.verdict != null ? [{ text: `Review verdict: ${recorded(fields.verdict)}`, tone: fields.verdict === "FAILURE" ? "warning" as const : "success" as const }] : []),
++      ...(event.error || !receipt || workflow?.error && !workflow.recordedAttempts ? [{ text: `INVALID / unvalidated evidence: ${event.error ?? workflow?.error ?? "Not a validated receipt."}`, tone: "warning" as const }] : []),
++      { text: "Recorded body:", tone: "accent" },
++      ...body.split(/\r?\n/).map(text => ({ text })),
++      { text: "Evidence details:", tone: "accent" },
++      { text: `Source: ${source}`, tone: source === "matched" ? "success" : "warning" },
++      ...(workflow?.error ? [{ text: `Workflow warning: ${workflow.error}`, tone: "warning" as const }] : []),
++      { text: `Ticket action target: ${this.ticket()?.ref}` },
++      { text: `Event reference: ${event.ref}` },
++      ...(changed !== undefined ? [{ text: `Changed files: ${changed} (recorded)` }] : []),
++      { text: `Commit: ${recorded(fields.source_commit)}` },
++      { text: `Tree: ${recorded(fields.source_tree)}` },
++      { text: `Current commit: ${workflow?.sourceCommit ?? "unavailable"}` },
++      { text: `Current tree: ${workflow?.sourceTree ?? "unavailable"}` },
++      { text: `Workspace: ${recorded(fields.workspace_path)}` },
++      { text: `Branch: ${recorded(fields.source_branch)}` },
++      { text: `Session: ${recorded(fields.session_id)}` },
++      { text: "Raw recorded fields:", tone: "accent" },
++      ...JSON.stringify(fields, null, 2).split("\n").map(text => ({ text })),
++    ];
++  }
++
+@@ -877,0 +963 @@ export class GraphExplorer {
++      { text: workflow?.recordedAttempts ? `Reviews: ${workflow.recordedAttempts.review} · Fixes: ${workflow.recordedAttempts.fix} (validated phase receipts; recorded attempts, not quality or completion)` : "Review/fix receipt counts unavailable until history validation completes.", tone: "muted" },
+@@ -879 +965 @@ export class GraphExplorer {
+-      ...(workflow?.receipts.map(receipt => ({ text: `${receipt.id} ${receipt.phase} [${receipt.verdict ?? receipt.status}] @${receipt.sourceCommit}` })) ?? []),
++      ...this.history().map(event => ({ text: `Event: ${event.fields?.receipt_id ?? event.id} · Execution: ${event.fields?.status ?? "unavailable"}${event.fields?.verdict ? ` · Verdict: ${event.fields.verdict}` : ""}` })),
+@@ -965 +1051 @@ export class GraphExplorer {
+-    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };
++    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };
+@@ -973,0 +1060 @@ export class GraphExplorer {
++      if (row.event) return this.eventLines(row.event, Math.max(1, width - 1)).map(text => ({ ...row, text, styled: true }));
+@@ -980 +1067 @@ export class GraphExplorer {
+-    const selection = selectedRow?.target?.kind === "ticket" ? selectedRow.target.ticket.ref : selectedRow?.target?.kind === "initiative" ? selectedRow.target.initiative.ref : String(selected);
++    const selection = selectedRow?.receiptId ?? (selectedRow?.target?.kind === "ticket" ? selectedRow.target.ticket.ref : selectedRow?.target?.kind === "initiative" ? selectedRow.target.initiative.ref : String(selected));
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts
+index d7b748a8..1812df59 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts
+@@ -67,0 +68,2 @@ export interface TicketWorkflow {
++  // Counts are available only after receipt identity and parent-graph validation.
++  recordedAttempts?: { review: number; fix: number };
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md b/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+index 672474b8..590bfde8 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+@@ -303,0 +304,10 @@ Fresh-chat actions use Pi's replacement session context to stage the command. Th
++
++## Ticket event history
++
++Ticket history shows the canonical ticket ID, recorded tracker state, and review/fix totals above the event list. Totals count validated receipts for each phase. They describe recorded attempts, not quality or completion. Unknown totals use `?` when history validation is unavailable.
++
++Each event separates identity, execution status, review verdict, and source commit. A completed review with verdict `FAILURE` is not a failed process. Press Enter to open the dedicated event detail. Its execution outcome and recorded body or structured summary precede evidence metadata.
++
++Use Up/Down or Page Up/Page Down to reach full commit/tree IDs, workspace, branch, session, raw recorded fields, and dependency blockers. `matched`, `stale`, and `unavailable` source labels have distinct meanings. Invalid events remain readable with warnings. Changed-file counts use only structured `changed_files` or `changed_file_count` evidence.
++
++Esc or the Events breadcrumb returns to the selected event and its list position. Live updates retain stable event identity. A failed history refresh keeps the last readable history, displays the failure, and blocks unsafe worktree transitions. Empty, loading, and unreadable histories have separate messages. Actions continue to target the current canonical ticket, not the historical event. Files, description readers, and unsent fresh-chat and path-insertion behavior remain independent. At short heights, scroll to read each labelled event field.
