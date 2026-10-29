@@ -1,0 +1,270 @@
+{
+  "task": "Implement the complete approved ticket06 work-queue slice, validate the actual changed path, commit the source and save an honest immutable implementation result. This is a fresh bounded implementation cycle, not a review.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "initiative": {
+    "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+  },
+  "context": {
+    "mode": "repository",
+    "alignment_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "repository_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "routes": {
+      "alignment": "repository",
+      "tickets": "repository",
+      "initiatives": "repository",
+      "workflows": "repository",
+      "evidence": "workflows -> repository",
+      "sources": "alignment -> repository"
+    },
+    "workflow": {
+      "kind": "workflow",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+      "ref": "workflows/pi-shared-context-ux-06-queues",
+      "publication": "repository"
+    },
+    "evidence": {
+      "kind": "evidence",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0002",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0002",
+      "publication": "repository"
+    }
+  },
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+    "branch": "feature/pi-shared-context-ux-06-queues",
+    "base_branch": "master",
+    "initial_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+    "initial_tree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b",
+    "claim_publication_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859"
+  },
+  "session": {
+    "agent": "omp",
+    "agent_name": "ux06-implement-c1",
+    "muxer": "herdr",
+    "pane_id": "w8E:p2",
+    "workspace_id": "w8E",
+    "depth": 1
+  },
+  "goal": {
+    "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+    "dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0192.yaml",
+    "cycle_number": 1,
+    "ticket_total_cycle_limit": 10,
+    "complete_session_token_limit": 250000,
+    "native_goal_budget": 200000,
+    "completion_margin_tokens": 50000,
+    "accounting": "Full provider input + output + cacheWrite, including final reply and any auxiliary model_usage. CacheRead excluded. No helpers are authorized. Parent audits the complete stopped session; guard enforces the full ceiling before each request."
+  },
+  "authority": [
+    "The canonical v1 claim is validated and published. Do not claim again, edit tracker records, alter ownership, or reopen completed tickets01–05.",
+    "Implement only ticket06. No search, new queue semantics, new tracker backend, receipt schema changes, workflow transitions, or unrelated redesign.",
+    "Source writes/commits stay in this isolated checkout, limited to the pi-shared-context extension and shared-context CLI, their relevant tests and existing docs. Required changes outside this boundary are a blocker.",
+    "Use only the resolved primary workflow/evidence paths for your own durable artifacts. Never overwrite earlier receipts/reviews/evidence. Do not merge, push, rebase, finish, complete tickets, or launch helpers/reviewers/other models.",
+    "Do not change provider/model, transport, guard, token limit, goal allowance, global tool configuration, root manifest, lockfile or broad tsconfig. No retries/fallback sessions after guard or provider uncertainty.",
+    "Parent publishes the initial handoff and start before inference, then avoids primary commits while you write evidence. Keep live guard logs and temporary process/config state outside the repository."
+  ],
+  "requirements": [
+    "Select Ready, Review, Blocked and All in a separate ticket queue view without losing initiative navigation state.",
+    "Queue headings and active controls identify the queue; initiative rows never mix into filtered ticket lists.",
+    "Separate type, ID, title, canonical ticket status and next action in rows; keep blockers subordinate but readable.",
+    "Show active workflow activity only with recorded support; Review readiness is not running execution.",
+    "Open the exact canonical queue ticket with its initiative or Ungrouped context; Return restores queue identity, selection and scroll.",
+    "Preserve authoritative queue membership and workflow safety restrictions.",
+    "Use accurate empty-queue recovery controls; All shortcut must match its actual input.",
+    "No selected ticket means no empty action menu; actions show canonical target and disabled reasons.",
+    "Uppercase R refreshes; lowercase r retains Review; workspace shortcuts are unchanged.",
+    "Live updates preserve selected ticket identity; a departed ticket is explained and a valid row selected.",
+    "Refresh failure retains readable content and blocks unsafe transitions; loading and empty remain distinct.",
+    "Keep structured fields readable at narrow sizes and without colour; action, copy, Files, terminal sanitization and Unicode widths remain intact."
+  ],
+  "starting_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+  ],
+  "engineering": [
+    "Load matching skills before work. Use implement, TypeScript, code-comments, and the relevant TUI/testing skills. Follow commit for each source commit.",
+    "Use LSP references before exported-symbol changes. Reuse existing loader, adapter, document-type, modal, and watcher patterns. Use a clean cutover.",
+    "Use the complete public modal as the main automated boundary. Add consumer-visible behavior tests and boundary cases. Do not test private arrays, mock echoes, wiring, source text, or incidental wording.",
+    "Skip build/lint/test/formatter runs mid-flight. After final source changes, run the full affected suite once and the scoped compiler check. Exercise the actual changed native path separately.",
+    "Run actual offline Pi with this worktree extension against temporary canonical fixture stores. Exercise queues, exact ticket/initiative/Ungrouped targets, empty/action safety, return identity and scroll, live membership change and retained-content refresh failure. Never dispatch a real workflow or send a provider prompt.",
+    "Inspect 40x12,80x24,120x40 in colour and monochrome. Preserve actual text/JSON/HTML/spans/SVG captures and describe limits; SVG fallback does not prove glyph/colour conformance.",
+    "Preserve existing project/workspace/initiative navigation, description readers, event views, Files independence, copy/editor insertion and action safety. Reuse current loader/watcher/modal patterns; do not introduce competing conventions.",
+    "Update the existing relevant README or changelog only after actual feature proof. No unrelated documentation or architecture report.",
+    "Use full public modal input as the main automated behavior boundary; exercise real canonical targets and transitions. Keep consumer-visible edge tests, never private arrays, copies, mock echoes, source-text or incidental wording tests."
+  ],
+  "known_validation": {
+    "suite": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "typecheck": "Create an external scoped JSON config extending /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/tsconfig.base.json, include /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/**/*.ts and /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/types/**/*.d.ts, typeRoots /tmp/ux02-deps/node_modules/@types. Run mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --noEmit -p CONFIG.",
+    "dependency_cache": "/tmp/ux02-deps/node_modules",
+    "dependency_note": "Bun ESM does not resolve NODE_PATH-only packages. Create only missing, owned symlinks to real cached packages when required. Remove only those links before completion. Do not hide a real compiler error.",
+    "pi_executable": "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+    "pi_flags": [
+      "--offline",
+      "--no-session",
+      "--no-extensions",
+      "--no-mcp",
+      "--no-skills",
+      "--no-prompt-templates",
+      "--no-context-files",
+      "--no-tools",
+      "--no-themes",
+      "--use-theme",
+      "dark",
+      "-e",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+    ],
+    "native_readiness": "Wait for actual offline startup readiness, then after type(/shared-context) wait for the rendered command and input quiescence before one Return. Immediate type+Return previously left a draft/newline rather than invoking the command. Do not blind-retry Return or relax semantic assertions.",
+    "native_reference": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/run-native-review-v4.mjs",
+    "reference_scope": "The reference demonstrates real fixture/MQ/Pi/Termscope lifecycle and cleanup, not ticket06 behavior. Adapt data/interaction semantically; never global-replace metadata or undefined across executable text."
+  },
+  "workflow": {
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+    "start_receipt": "workflows/pi-shared-context-ux-06-queues/events/start-0001.json",
+    "result_receipt_id": "implementation-0002",
+    "result_receipt_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/events/implementation-0002.json",
+    "draft_snapshot": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/snapshots/pr-draft-implementation-0002.md",
+    "projections": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/manifest.yaml",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/projections/pr-draft.md",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/projections/implementation-log.md",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/projections/latest-status.yaml"
+    ],
+    "receipt_template": {
+      "schema": "worktree-receipt/v1",
+      "receipt_id": "start-0001",
+      "workflow_id": "pi-shared-context-ux-06-queues",
+      "phase": "start",
+      "attempt": 1,
+      "parent_receipt": null,
+      "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "source_branch": "feature/pi-shared-context-ux-06-queues",
+      "base_branch": "master",
+      "source_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+      "source_tree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b",
+      "created_at": "2026-10-29T06:55:58.445Z",
+      "muxer": "herdr",
+      "pane_id": "w8E:p2",
+      "agent": "omp",
+      "agent_name": "ux06-implement-c1",
+      "session_id": null,
+      "ticket": {
+        "backend": "local-markdown",
+        "id": "pi-shared-context-ux-06-queues",
+        "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+      },
+      "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "workflow": {
+        "store": "repository",
+        "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "ref": "workflows/pi-shared-context-ux-06-queues"
+      },
+      "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+      "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0192.yaml",
+      "event": "phase-start",
+      "status": "started",
+      "cycle_number": 1,
+      "token_limit": 250000,
+      "native_goal_budget": 200000,
+      "completion_margin_tokens": 50000,
+      "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+      "claim_publication_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+      "inputs": [
+        {
+          "kind": "ticket",
+          "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+        },
+        {
+          "kind": "initiative",
+          "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+        },
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-05-events/events/finish-complete-0078.json"
+        },
+        {
+          "kind": "coordinator",
+          "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0192.yaml"
+        }
+      ],
+      "outputs": [
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/start-0001.json"
+        },
+        {
+          "kind": "projection",
+          "ref": "workflows/pi-shared-context-ux-06-queues/manifest.yaml"
+        },
+        {
+          "kind": "projection",
+          "ref": "workflows/pi-shared-context-ux-06-queues/projections/latest-status.yaml"
+        },
+        {
+          "kind": "projection",
+          "ref": "workflows/pi-shared-context-ux-06-queues/projections/pr-draft.md"
+        },
+        {
+          "kind": "projection",
+          "ref": "workflows/pi-shared-context-ux-06-queues/projections/implementation-log.md"
+        }
+      ]
+    },
+    "evidence": {
+      "kind": "evidence",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0002",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0002",
+      "publication": "repository"
+    }
+  },
+  "completion": [
+    "Create needed directories again before writing. Git hooks remove empty untracked directories.",
+    "Commit the complete source feature in the isolated branch. Use the resolved ticket reference in each commit title. Leave tracked source clean.",
+    "Write one exclusive immutable phase-result receipt implementation-0002. Set phase=implementation, parent_receipt=start-0001, event=phase-result, and status=completed only after all required checks pass.",
+    "Record the exact final source commit/tree, changed files, exact validation commands/cwd/results, summary, open questions, and durable evidence references. Copy workflow store/root/ref from the supplied resolver. Include the resolved evidence store/ref.",
+    "Preserve goal_run_id and goal_dispatch_ref. Include the reservation in inputs. Use your actual session identity if available. Otherwise retain the known pane/agent identity and use session_id=null. Do not copy the coordinator session ID.",
+    "Create the versioned draft snapshot and regenerate the required views. Preserve history. Use mq with okf.mq and explicit formats for all local Markdown operations. Validate generated Report documents.",
+    "Close all owned Pi/termscope processes and remove owned temporary links/config/fixtures. Keep durable evidence. Do this before native goal completion.",
+    "Run all tools and cleanup before goal.complete. Call goal.complete only if this implementation objective is actually complete. Make it the final tool call.",
+    "Keep the final response within100 words. End with WORKTREE_IMPLEMENTATION_DONE only when implementation and required validation pass.",
+    "If a real prerequisite or verification gap blocks completion, write a truthful blocked result and preserve resources. Do not fake a pass or complete an unfinished native goal."
+  ],
+  "prior_finish": {
+    "ticket05": "workflows/pi-shared-context-ux-05-events/events/finish-complete-0078.json",
+    "metadata_correction": "workflows/pi-shared-context-ux-05-events/events/finish-artifact-correction-0079.json",
+    "integration": "9511dc0c0319dca997575eedc0e4c6423c93a80d",
+    "review": "workflows/pi-shared-context-ux-05-events/events/review-0065.json",
+    "note": "Tickets01–05 are finished. Preserve their completed source behavior; do not reopen their workflow or canonical records."
+  },
+  "runtime_control": [
+    "Load matching skills first. Canonical Markdown is already resolved and supplied below through MQ; use MQ for any further local Markdown operation. Use LSP references before exported symbol changes.",
+    "Work economically under the verified pre-request guard. Native200000 is a working meter, not permission to exceed250000 full-session work. The guard reserves full model output128000 plus framing and input; it may stop earlier than the native budget. Save actual progress and a truthful result before resource exhaustion, never assert completion to exit.",
+    "Prefer focused symbol/range reads and reuse existing code. Do not reread complete preloaded inputs or dump giant files/transcripts into model context. No helper agents, alternative models or secondary sessions.",
+    "Keep a running evidence/assessment JSON at /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0002/assessment.json with actual completed work, changed paths, commands/results, observations/limits and remaining blockers. Write an honest blocked result if truly blocked; never silently narrow acceptance.",
+    "Close every owned Pi/Termscope process and temporary fixture/config/link before goal.complete. Keep durable proof. Preserve the Git source checkout for independent review.",
+    "Use worktree-latest-status/v1 for latest-status.yaml. Create all directories before writing; primary hooks can remove empty directories. Immutable receipts use exclusive no-clobber writes with readback. Snapshot relative links need one extra parent level.",
+    "Do every tool operation and cleanup before goal.complete; call it only when the full implementation and mandatory validation are complete, as the final tool call. Keep final reply below100words, with WORKTREE_IMPLEMENTATION_DONE only for a completed implementation."
+  ]
+}
