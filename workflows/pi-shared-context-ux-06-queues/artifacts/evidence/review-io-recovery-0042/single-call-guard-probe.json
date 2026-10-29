@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "scope": "Deterministic execution of the real candidate with an isolated SDK/validation-facade adapter; no model inference or real network. Proves payload control and preserved guard decisions in these scenarios, not live provider acceptance.",
+  "candidate": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-io-recovery-0042/work-token-guard-single-call.ts",
+  "cases": [
+    {
+      "name": "single_call_wire",
+      "status": "passed",
+      "adapter_calls": 1,
+      "wire_parallel_tool_calls": false,
+      "error": null,
+      "audit": [
+        {
+          "at": "2026-10-29T20:05:22.940Z",
+          "event": "ready",
+          "spent": 0,
+          "ceiling": 250000,
+          "model": "gpt-6.1-sol",
+          "outputMaximum": 128000,
+          "transport": "stateless SSE",
+          "parallelToolCalls": false
+        },
+        {
+          "at": "2026-10-29T20:05:22.940Z",
+          "event": "admitted",
+          "spent": 0,
+          "inputBytes": 103,
+          "inputBound": {
+            "tokens": 103,
+            "mode": "wire"
+          },
+          "framingReserve": 4096,
+          "outputMaximum": 128000,
+          "reservation": 132199,
+          "fullWireReservation": 132199,
+          "fullWireWouldReject": false,
+          "ceiling": 250000,
+          "parallelToolCalls": false
+        },
+        {
+          "at": "2026-10-29T20:05:22.941Z",
+          "event": "settled",
+          "work": 25,
+          "spent": 25,
+          "reservation": 132199,
+          "observedInputTokens": 20,
+          "observedOutputTokens": 5,
+          "ceiling": 250000
+        }
+      ]
+    },
+    {
+      "name": "tampered_wire_rejected",
+      "status": "passed",
+      "adapter_calls": 0,
+      "wire_parallel_tool_calls": null,
+      "error": "Work-token guard stopped this request: single-tool-call control is missing from the serialized request. Preserve the session and report the blocker.",
+      "audit": [
+        {
+          "at": "2026-10-29T20:05:22.941Z",
+          "event": "ready",
+          "spent": 0,
+          "ceiling": 250000,
+          "model": "gpt-6.1-sol",
+          "outputMaximum": 128000,
+          "transport": "stateless SSE",
+          "parallelToolCalls": false
+        },
+        {
+          "at": "2026-10-29T20:05:22.941Z",
+          "event": "denied",
+          "reason": "single-tool-call control is missing from the serialized request",
+          "spent": 0,
+          "ceiling": 250000
+        },
+        {
+          "at": "2026-10-29T20:05:22.941Z",
+          "event": "unsettled-response",
+          "spent": 0,
+          "reservation": 0
+        }
+      ]
+    },
+    {
+      "name": "full_output_reserve_preserved",
+      "status": "passed",
+      "adapter_calls": 0,
+      "wire_parallel_tool_calls": null,
+      "error": "Work-token guard stopped this request: uncached context bound and maximum output exceed the remaining ceiling. Preserve the session and report the blocker.",
+      "audit": [
+        {
+          "at": "2026-10-29T20:05:22.941Z",
+          "event": "ready",
+          "spent": 0,
+          "ceiling": 250000,
+          "model": "gpt-6.1-sol",
+          "outputMaximum": 128000,
+          "transport": "stateless SSE",
+          "parallelToolCalls": false
+        },
+        {
+          "at": "2026-10-29T20:05:22.942Z",
+          "event": "denied",
+          "reason": "uncached context bound and maximum output exceed the remaining ceiling",
+          "spent": 0,
+          "ceiling": 250000
+        },
+        {
+          "at": "2026-10-29T20:05:22.942Z",
+          "event": "unsettled-response",
+          "spent": 0,
+          "reservation": 262181
+        }
+      ]
+    },
+    {
+      "name": "spent_session_not_reset",
+      "status": "passed",
+      "adapter_calls": 0,
+      "wire_parallel_tool_calls": null,
+      "error": "Work-token guard stopped this request: uncached context bound and maximum output exceed the remaining ceiling. Preserve the session and report the blocker.",
+      "audit": [
+        {
+          "at": "2026-10-29T20:05:22.942Z",
+          "event": "ready",
+          "spent": 249000,
+          "ceiling": 250000,
+          "model": "gpt-6.1-sol",
+          "outputMaximum": 128000,
+          "transport": "stateless SSE",
+          "parallelToolCalls": false
+        },
+        {
+          "at": "2026-10-29T20:05:22.942Z",
+          "event": "denied",
+          "reason": "uncached context bound and maximum output exceed the remaining ceiling",
+          "spent": 249000,
+          "ceiling": 250000
+        },
+        {
+          "at": "2026-10-29T20:05:22.942Z",
+          "event": "unsettled-response",
+          "spent": 249000,
+          "reservation": 132199
+        }
+      ]
+    },
+    {
+      "name": "unsupported_model_rejected",
+      "status": "passed",
+      "adapter_calls": 0,
+      "wire_parallel_tool_calls": null,
+      "error": "Work-token guard stopped this request: unsupported initial model. Preserve the session and report the blocker.",
+      "audit": [
+        {
+          "at": "2026-10-29T20:05:22.942Z",
+          "event": "denied",
+          "reason": "unsupported initial model",
+          "spent": 0,
+          "ceiling": 250000
+        }
+      ]
+    }
+  ],
+  "temporary_root_removed": true,
+  "live_provider_verified": false
+}
