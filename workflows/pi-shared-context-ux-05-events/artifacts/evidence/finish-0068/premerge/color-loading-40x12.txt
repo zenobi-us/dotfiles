@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=11:39 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001]  ╭────────────────────────────────────╮
+[002]  │ Projects · Repo > repository       │
+[003]  │  [1 Tracker]     2 Files    Tab fo…│
+[004]   Ini…  >  Loa…  >  T  >  Eve…
+[005]   [d] Full description
+[006]  Ticket: T · State: unclaimed
+[007]  Reviews: ? · Fixes: ? (receipts)
+[008] ─> Events / newest first               ─
+[009]   Loading history…
+[010] ─Checking receipts 0/1                 ─
+[011] /Esc back  Enter open  Tab focus  R ....
+[012] 0.0%/0 (auto)                    unknown

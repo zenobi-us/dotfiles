@@ -1,0 +1,19 @@
+{
+  "base_before": "e363e0244c4a1c5b32559bf15cfa28b6dfc19f62",
+  "expected_merge_tree": "8e8cf0aa4d247a0577dd9bd8d8e9d2a8a71c9d08",
+  "tracked_diff_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/live.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "reviewed_new_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts"
+  ],
+  "correction": "git diff against a reset base index excludes untracked newly added files. Include the clean tree delta additions; the final staged-tree hash is the authoritative complete-scope gate.",
+  "source_changed": false,
+  "integration_commit_created_before_correction": false
+}

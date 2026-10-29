@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "merged_commit": "9511dc0c0319dca997575eedc0e4c6423c93a80d",
+  "merged_tree": "8e8cf0aa4d247a0577dd9bd8d8e9d2a8a71c9d08",
+  "reviewed_source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "reviewed_source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "review_source_mapping_verified": true,
+  "commands": [
+    {
+      "name": "suite",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--install=fallback",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "code": 0,
+      "result_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/suite-command.json"
+    },
+    {
+      "name": "compiler",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary/scoped-tsconfig.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "code": 0,
+      "result_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/compiler-command.json"
+    },
+    {
+      "name": "native",
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/run-native-review-v4.mjs",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/native-config.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "code": 0,
+      "result_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/native-command.json"
+    }
+  ],
+  "tests": {
+    "passed": 147,
+    "failed": 0,
+    "assertions": 2061,
+    "files": 12
+  },
+  "native_observations": 12,
+  "native_result_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/native-check-result.json",
+  "prior_failed_attempt_ref": "workflows/pi-shared-context-ux-05-events/events/finish-failed-0071.json",
+  "recovery_change_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/readiness-change.json",
+  "runtime_source_scopes_clean": true,
+  "unrelated_primary_changes_preserved": true,
+  "report_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/report/index.html",
+  "report_scope": "Existing visually verified portable report is for the exact reviewed source. Integrated-primary native captures and results are separately linked; do not misattribute the older report captures to this run."
+}

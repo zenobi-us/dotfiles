@@ -1,0 +1,287 @@
+{
+  "status": "passed",
+  "stage": "mono: completed review rejection detail",
+  "error": null,
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "observations": [
+    {
+      "mode": "color",
+      "cols": 40,
+      "rows": 12,
+      "state": "loading",
+      "label": "Loading history…",
+      "canonicalTicket": "T",
+      "realReadHeld": true
+    },
+    {
+      "mode": "color",
+      "cols": 80,
+      "rows": 24,
+      "state": "loading",
+      "label": "Loading history…",
+      "canonicalTicket": "T",
+      "realReadHeld": true
+    },
+    {
+      "mode": "color",
+      "cols": 120,
+      "rows": 40,
+      "state": "loading",
+      "label": "Loading history…",
+      "canonicalTicket": "T",
+      "realReadHeld": true
+    },
+    {
+      "mode": "color",
+      "cols": 120,
+      "rows": 40,
+      "state": "ready",
+      "canonicalTicket": "T",
+      "event": "review-rejected"
+    },
+    {
+      "mode": "color",
+      "cols": 120,
+      "rows": 40,
+      "state": "detail",
+      "execution": "completed",
+      "verdict": "FAILURE",
+      "bodyBeforeExtendedMetadata": true
+    },
+    {
+      "mode": "color",
+      "cols": 120,
+      "rows": 40,
+      "state": "return",
+      "selectedEvent": "review-rejected"
+    },
+    {
+      "mode": "mono",
+      "cols": 40,
+      "rows": 12,
+      "state": "loading",
+      "label": "Loading history…",
+      "canonicalTicket": "T",
+      "realReadHeld": true
+    },
+    {
+      "mode": "mono",
+      "cols": 80,
+      "rows": 24,
+      "state": "loading",
+      "label": "Loading history…",
+      "canonicalTicket": "T",
+      "realReadHeld": true
+    },
+    {
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "state": "loading",
+      "label": "Loading history…",
+      "canonicalTicket": "T",
+      "realReadHeld": true
+    },
+    {
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "state": "ready",
+      "canonicalTicket": "T",
+      "event": "review-rejected"
+    },
+    {
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "state": "detail",
+      "execution": "completed",
+      "verdict": "FAILURE",
+      "bodyBeforeExtendedMetadata": true
+    },
+    {
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "state": "return",
+      "selectedEvent": "review-rejected"
+    }
+  ],
+  "cleanup": [
+    {
+      "mode": "color",
+      "gateExit": 0,
+      "nativeExit": 0,
+      "close": {
+        "exit_code": 0
+      }
+    },
+    {
+      "mode": "mono",
+      "gateExit": 0,
+      "nativeExit": 0,
+      "close": {
+        "exit_code": 0
+      }
+    }
+  ],
+  "temporary_root_removed": "/tmp/ux05-loading-check-5pnzj4",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "code": 0,
+      "stdout": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9\n870eee2ea7f04671913f447ff64c3608ad6c1906\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Native acceptance tracker.",
+        "--output",
+        "/tmp/ux05-loading-check-5pnzj4/repository/docs/agents/issue-tracker.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"Config\", {\"backend\":\"local-markdown\",\"issue-root\":\"tracker/tickets\",\"initiative-root\":\"tracker/initiatives\"}, body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Ticket acceptance details.",
+        "--output",
+        "/tmp/ux05-loading-check-5pnzj4/repository/tracker/tickets/T.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\", {\"id\":\"T\",\"title\":\"Loading target T\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"schema\":\"tracker-ticket/v1\",\"parent\":\"I\"}, body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "## Problem Statement\nObserve real workflow loading.\n\n## Solution\nKeep history loading distinct.\n\n## Tickets\n- [Target](../../tickets/T.md)\n\n## Comments\nOwned native fixture.",
+        "--output",
+        "/tmp/ux05-loading-check-5pnzj4/repository/tracker/initiatives/I/index.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"Spec\", {\"title\":\"Loading initiative\",\"phase\":\"research\",\"schema\":\"tracker-initiative/v1\",\"id\":\"I\"}, body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "-b",
+        "master",
+        "--quiet"
+      ],
+      "cwd": "/tmp/ux05-loading-check-5pnzj4/repository",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/native-validation/ticket05-loading.git"
+      ],
+      "cwd": "/tmp/ux05-loading-check-5pnzj4/repository",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "add",
+        "--all"
+      ],
+      "cwd": "/tmp/ux05-loading-check-5pnzj4/repository",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "user.name=Native fixture",
+        "-c",
+        "user.email=native@example.invalid",
+        "commit",
+        "--quiet",
+        "-m",
+        "test: tracker/tickets/pi-shared-context-ux-05-events.md loading fixture"
+      ],
+      "cwd": "/tmp/ux05-loading-check-5pnzj4/repository",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/tmp/ux05-loading-check-5pnzj4/repository",
+      "code": 0,
+      "stdout": "5749f9c5dacb95a91625020941bd3447d4bee4cb\naed42591c63b8616b989b721725ad6da78b788a5\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "code": 0,
+      "stdout": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9\n870eee2ea7f04671913f447ff64c3608ad6c1906\n",
+      "stderr": ""
+    }
+  ],
+  "limits": [
+    "No provider prompt or workflow action was sent.",
+    "Native text/JSON/HTML/spans/SVG are retained; SVG fallback glyphs do not prove glyph or colour conformance.",
+    "This check covers loading, release, completed review rejection, body-first detail and selected-event return. Suite/compiler results are recorded separately."
+  ]
+}

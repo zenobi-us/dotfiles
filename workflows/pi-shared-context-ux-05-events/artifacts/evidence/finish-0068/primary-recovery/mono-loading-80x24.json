@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    23,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repository",
+  "lines": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-age",
+    "nt/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "  ╭──────────────────────────────────────────────────────────────────────────╮",
+    "tu│ Projects · Repo > repository                                             │",
+    "/r│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │ge",
+    "nt├──────────────────────────────────────────────────────────────────────────┤",
+    "/r│ Initiatives  >  Loading initi…  >  T  >  Events                          │ge",
+    "nt│ [d] Full description                                                     │",
+    "  │Ticket: T · State: unclaimed                                              │",
+    "  │Reviews: ? · Fixes: ? (receipts)                                          │",
+    " W│> Events / newest first                                                   │",
+    " A├──────────────────────────────────────────────────────────────────────────┤",
+    "  │ Loading history…                                                         │",
+    " /│ Dependencies / unresolved blockers:                                      │d",
+    " o│ No dependency edges.                                                     │",
+    "  │                                                                          │",
+    " /│                                                                          │d",
+    " o│                                                                          │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ Checking receipts 0/1                                                    │──",
+    "  │ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll …│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/tmp/ux05-loading-check-NYETnJ/repository (master)",
+    "0.0%/0 (auto)                                                            unknown"
+  ]
+}

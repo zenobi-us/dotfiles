@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=36:0 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Press ctrl+o to show full startup help and loaded resources.
+[005] 
+[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.
+[007] 
+[008] [Extensions]
+[009]   pi-shared-context
+[010] 
+[011] [Extension issues]
+[012]   path (temp)
+[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar
+[014] ed-context/index.ts
+[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and
+[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar
+[017] ed-context/index.ts. Using
+[018] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar
+[019] ed-context/index.ts.
+[020] 
+[021] 
+[022]  Warning: No models available. Use /login to log into a provider via OAuth or API key. See:
+[023]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md
+[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md
+[025] 
+[026] 
+[027] 
+[028] 
+[029] 
+[030] 
+[031] 
+[032] 
+[033] 
+[034] 
+[035] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[036] /shared-context
+[037] 
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux05-loading-check-CqWic2/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

@@ -1,0 +1,9 @@
+{
+  "prior_failure_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary/native-check-result.json",
+  "prior_protocol_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary/protocol-0.json",
+  "observed": "Only a fixed idle wait separated launch from typing, and no acknowledgement or idle wait separated typing from Return. The captured draft contains the command and a following empty editor line; the command never reached a workflow read.",
+  "hypothesis": "Startup/input coalescing allowed Return to remain in the editor rather than invoke the slash command. The existing evidence does not distinguish those timing mechanisms.",
+  "change": "Wait for the actual offline startup warning, then acknowledge the rendered command and input quiescence before Return. No repeated Return, retries, feature changes, relaxed acceptance assertions, or extra AI session.",
+  "source_unchanged": true,
+  "semantic_matrix_unchanged": true
+}

@@ -1,0 +1,241 @@
+[
+  {
+    "launch": {
+      "argv": [
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "termscope",
+        "session",
+        "--cols",
+        "120",
+        "--rows",
+        "40",
+        "--",
+        "env",
+        "HOME=/tmp/ux05-loading-check-CqWic2/color/home",
+        "PI_CODING_AGENT_DIR=/tmp/ux05-loading-check-CqWic2/color/pi",
+        "PI_TELEMETRY=0",
+        "PATH=/tmp/ux05-loading-check-CqWic2/bin:/home/zenobius/.local/share/mise/installs/github-cantino-mcfly/0.9.4:/home/zenobius/.local/share/mise/installs/worktrunk/0.80.0/.mise-bins:/home/zenobius/.local/share/mise/installs/usage/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/starship/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/act/latest:/home/zenobius/.local/share/mise/installs/action-validator/latest:/home/zenobius/.local/share/mise/installs/actionlint/latest:/home/zenobius/.local/share/mise/installs/age/latest/age:/home/zenobius/.local/share/mise/installs/aqua-tree-sitter-tree-sitter/latest:/home/zenobius/.local/share/mise/installs/ast-grep/latest:/home/zenobius/.local/share/mise/installs/awscli/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/bats/latest/bats-core-1.14.0/bin:/home/zenobius/.local/share/mise/installs/btop/latest/btop/bin:/home/zenobius/.local/share/mise/installs/bun/latest/bin:/home/zenobius/.local/share/mise/installs/cargo-p1rallels-codemapper/latest/bin:/home/zenobius/.local/share/mise/installs/cargo-rustledger/0.21.0/bin:/home/zenobius/.local/share/mise/installs/claude/latest:/home/zenobius/.local/share/mise/installs/claude-code/latest:/home/zenobius/.local/share/mise/installs/cloudflared/latest:/home/zenobius/.local/share/mise/installs/cmake/latest/cmake-4.4.4-linux-x86_64/bin:/home/zenobius/.local/share/mise/installs/deno/2.9.7/bin:/home/zenobius/.local/share/mise/installs/deno/2.9.7/.deno/bin:/home/zenobius/.local/share/mise/dotnet-root:/home/zenobius/.local/share/mise/installs/fd/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/fzf/latest:/home/zenobius/.local/share/mise/installs/github-cli/latest/gh_2.102.0_linux_amd64/bin:/home/zenobius/.local/share/mise/installs/github-alexs-jones-llmfit/latest:/home/zenobius/.local/share/mise/installs/github-alexs-jones-llmserve/latest:/home/zenobius/.local/share/mise/installs/github-feel-ix-343-markdown-oxide/latest:/home/zenobius/.local/share/mise/installs/github-just-vugg-colibri/latest:/home/zenobius/.local/share/mise/installs/github-nvidia-open-shell/latest:/home/zenobius/.local/share/mise/installs/github-afshinm-zerobox/0.3.3:/home/zenobius/.local/share/mise/installs/github-alacritty-alacritty/latest:/home/zenobius/.local/share/mise/installs/github-aristocratos-btop/latest/bin:/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest:/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest:/home/zenobius/.local/share/mise/installs/github-finefindus-artem/latest:/home/zenobius/.local/share/mise/installs/github-gopasspw-gopass/latest:/home/zenobius/.local/share/mise/installs/github-graykode-abtop/latest:/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest:/home/zenobius/.local/share/mise/installs/github-hmarr-codeowners/latest:/home/zenobius/.local/share/mise/installs/github-jarun-nnn/latest:/home/zenobius/.local/share/mise/installs/github-kurama-dealve-tui/latest:/home/zenobius/.local/share/mise/installs/github-margin-lab-evals/latest:/home/zenobius/.local/share/mise/installs/github-max-sixty-worktrunk/0.52.0:/home/zenobius/.local/share/mise/installs/github-mexirica-aptui/latest:/home/zenobius/.local/share/mise/installs/github-moonrepo-moon/latest:/home/zenobius/.local/share/mise/installs/github-moonrepo-proto/latest:/home/zenobius/.local/share/mise/installs/github-mwunsch-termscope/latest:/home/zenobius/.local/share/mise/installs/github-sockheadrps-llmctl/0.2.2:/home/zenobius/.local/share/mise/installs/github-terrastruct-d2/latest/bin:/home/zenobius/.local/share/mise/installs/github-valentjn-lsp-cli/latest/bin:/home/zenobius/.local/share/mise/installs/github-vercel-labs-agent-browser/latest:/home/zenobius/.local/share/mise/installs/glab/latest/bin:/home/zenobius/.local/share/mise/installs/glow/latest/glow_3.0.0_Linux_x86_64:/home/zenobius/.local/share/mise/installs/go-github-com-crosse-font-install/latest/bin:/home/zenobius/.local/share/mise/installs/go/1.25.0/bin:/home/zenobius/.local/share/mise/installs/granted/latest:/home/zenobius/.local/share/mise/installs/grype/latest:/home/zenobius/.local/share/mise/installs/herdr/latest:/home/zenobius/.local/share/mise/installs/hk/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/hrdx/latest:/home/zenobius/.local/share/mise/installs/java/latest/bin:/home/zenobius/.local/share/mise/installs/jq/latest:/home/zenobius/.local/share/mise/installs/lazydocker/0.25.2:/home/zenobius/.local/share/mise/installs/lazygit/latest:/home/zenobius/.local/share/mise/installs/lua/latest/bin:/home/zenobius/.local/share/mise/installs/lua/latest/luarocks/bin:/home/zenobius/.local/share/mise/installs/mc/RELEASE.2025-08-13T08-35-41Z:/home/zenobius/.local/share/mise/installs/micro/latest/micro-2.0.15:/home/zenobius/.local/share/mise/installs/neovim/latest/bin:/home/zenobius/.local/share/mise/installs/npm/latest/package/bin:/home/zenobius/.local/share/mise/installs/pnpm/latest:/home/zenobius/.local/share/mise/installs/node/22/bin:/home/zenobius/.local/share/mise/installs/npm-earendil-works-gondolin/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-mermaid-js-mermaid-cli/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-agent-browser/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-chrome-devtools-mcp/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-firefox-devtools-mcp/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-gh-actions-language-server/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-kandev/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-mcporter/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-neofetch/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-portless/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-poster-ai/0.5.0/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-release-please/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-semver/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-serve/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-surf-cli/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-takumi-js/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-tempomat/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-typescript-language-server/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/pdm/latest/bin:/home/zenobius/.local/share/mise/installs/pipx/latest:/home/zenobius/.local/share/mise/installs/pipx-comfy-cli/latest/bin:/home/zenobius/.local/share/mise/installs/pipx-itch-dl/latest/bin:/home/zenobius/.local/share/mise/installs/pitchfork/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/pkl/latest:/home/zenobius/.local/share/mise/installs/python/latest/bin:/home/zenobius/.local/share/mise/installs/ripgrep/latest/ripgrep-15.2.0-x86_64-unknown-linux-musl:/home/zenobius/.local/share/mise/installs/semver/latest:/home/zenobius/.local/share/mise/installs/shellcheck/latest/shellcheck-v0.11.0:/home/zenobius/.local/share/mise/installs/shfmt/latest:/home/zenobius/.local/share/mise/installs/terraform/latest:/home/zenobius/.local/share/mise/installs/tombi/latest/tombi-cli-1.7.3-x86_64-unknown-linux-musl:/home/zenobius/.local/share/mise/installs/traefik/latest:/home/zenobius/.local/share/mise/installs/trufflehog/latest:/home/zenobius/.local/share/mise/installs/uv/0.12.17/.mise-bins:/home/zenobius/.local/share/mise/installs/watchexec/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/yarn/latest/bin:/home/zenobius/.local/share/mise/installs/youtube-dl/latest/youtube-dl:/home/zenobius/.local/share/mise/installs/yq/latest:/home/zenobius/.local/share/mise/installs/yt-dlp/latest:/home/zenobius/.local/share/mise/installs/zig/0.17.0/bin:/home/zenobius/.local/share/mise/installs/zot/latest:/home/zenobius/.local/share/mise/installs/fnox/1.39.0/.mise-bins:/home/zenobius/.local/share/mise/installs/github-smol-machines-smolvm/latest:/home/zenobius/.local/share/mise/installs/github-ktreharrison-tkmd/latest:/home/zenobius/.local/share/mise/installs/npm-termdraw-app/latest/node_modules/.bin:/home/zenobius/.local/share/mise/shims:/home/zenobius/Applications:/home/zenobius/.local/bin:/home/zenobius/Applications:/home/zenobius/.local/bin:/home/zenobius/.local/share/zinit/plugins/starship---starship:/home/zenobius/.local/share/zinit/plugins/junegunn---fzf:/home/zenobius/.local/share/zinit/polaris/bin:/tmp/.mount_ghostremp3807702296412614370/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/zenobius/.cargo/bin",
+        "LOADING_EVENT_ROOT=/tmp/ux05-loading-check-CqWic2/repository/workflows/T/events",
+        "LOADING_GATE_LOCK=/tmp/ux05-loading-check-CqWic2/color.lock",
+        "LOADING_GATE_SEEN=/tmp/ux05-loading-check-CqWic2/color.seen",
+        "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+        "--offline",
+        "--no-session",
+        "--no-extensions",
+        "--no-mcp",
+        "--no-skills",
+        "--no-prompt-templates",
+        "--no-context-files",
+        "--no-tools",
+        "--no-themes",
+        "--use-theme",
+        "dark",
+        "-e",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+      ],
+      "cwd": "/tmp/ux05-loading-check-CqWic2/repository"
+    }
+  },
+  {
+    "request": {
+      "id": 1,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 800
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 1,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 2,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 2,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 3,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 3,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 4,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 4,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=36:0 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[017] ed-context/index.ts. Using\n[018] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[019] ed-context/index.ts.\n[020] \n[021] \n[022]  Warning: No models available. Use /login to log into a provider via OAuth or API key. See:\n[023]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md\n[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[036] /shared-context\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux05-loading-check-CqWic2/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 5,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 5,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          36,
+          0
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repository",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more",
+          " Press ctrl+o to show full startup help and loaded resources.",
+          "",
+          " Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.",
+          "",
+          "[Extensions]",
+          "  pi-shared-context",
+          "",
+          "[Extension issues]",
+          "  path (temp)",
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar",
+          "ed-context/index.ts",
+          "    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and",
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar",
+          "ed-context/index.ts. Using",
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar",
+          "ed-context/index.ts.",
+          "",
+          "",
+          " Warning: No models available. Use /login to log into a provider via OAuth or API key. See:",
+          "   /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md",
+          "   /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/shared-context",
+          "",
+          "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────",
+          "/tmp/ux05-loading-check-CqWic2/repository (master)",
+          "0.0%/0 (auto)                                                                                                    unknown"
+        ]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 6,
+      "method": "snapshot",
+      "params": {
+        "format": "html"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 6,
+      "result": {
+        "format": "html",
+        "content": "<div style=\"font-family: monospace; white-space: pre;\">\n <div style=\"display: inline;color: rgb(228, 138, 122);background-color: rgb(79, 142, 179);\">&#9600;</div><div style=\"display: inline;color: rgb(228, 138, 122);\">&#9600;&#9608;</div>  <div style=\"display: inline;color: rgb(126, 136, 142);\">v1.1.0</div>                                                                                                            \n <div style=\"display: inline;color: rgb(79, 142, 179);\">&#9608;&#9600;</div> <div style=\"display: inline;color: rgb(234, 182, 93);\">&#9608;</div> <div style=\"display: inline;color: rgb(126, 136, 142);\">escape</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> interrupt &#183; </div><div style=\"display: inline;color: rgb(126, 136, 142);\">ctrl+c/ctrl+d</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> clear/exit &#183; </div><div style=\"display: inline;color: rgb(126, 136, 142);\">/</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> commands &#183; </div><div style=\"display: inline;color: rgb(126, 136, 142);\">!</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> bash &#183; </div><div style=\"display: inline;color: rgb(126, 136, 142);\">ctrl+o</div><div style=\"display: inline;color: rgb(157, 165, 169);\"> more</div>                                   \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Press ctrl+o to show full startup help and loaded resources.</div>                                                           \n                                                                                                                        \n <div style=\"display: inline;color: rgb(126, 136, 142);\">Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.</div>                                  \n\n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Extensions]</div>                                                                                                            \n<div style=\"display: inline;color: rgb(126, 136, 142);\">  pi-shared-context</div>                                                                                                     \n\n<div style=\"display: inline;color: rgb(205, 154, 34);\">[Extension issues]</div>                                                                                                      \n<div style=\"display: inline;color: rgb(205, 154, 34);\">  path (temp)                                                                                                           </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-context/index.ts</div>                                                                                                     \n<div style=\"display: inline;color: rgb(205, 154, 34);\">    Extension shortcut conflict: &#39;ctrl+shift+g&#39; is built-in shortcut for tui.altScreen.searchPrevious and               </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-context/index.ts. Using                                                                                              </div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</div>\n<div style=\"display: inline;color: rgb(205, 154, 34);\">ed-context/index.ts.</div>                                                                                                    \n\n\n <div style=\"display: inline;color: rgb(205, 154, 34);\">Warning: No models available. Use /login to log into a provider via OAuth or API key. See:                             </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md                       </div>\n <div style=\"display: inline;color: rgb(205, 154, 34);\">  /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md</div>                          \n\n\n\n\n\n\n\n\n\n\n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>\n/shared-context                                                                                                         \n<div style=\"display: inline;filter: invert(100%);\"> </div>                                                                                                                       \n<div style=\"display: inline;color: rgb(108, 118, 123);\">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">/tmp/ux05-loading-check-CqWic2/repository (master)</div>\n<div style=\"display: inline;color: rgb(126, 136, 142);\">0.0%/0 (auto)                                                                                                    unknown</div></div>"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 7,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 7,
+      "result": {
+        "format": "spans",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=36:0 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more\n[004]  Press ctrl+o to show full startup help and loaded resources.\n[005] \n[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.\n[007] \n[008] [Extensions]\n[009]   pi-shared-context\n[010] \n[011] [Extension issues]\n[012]   path (temp)\n[013] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[014] ed-context/index.ts\n[015]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and\n[016] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[017] ed-context/index.ts. Using\n[018] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar\n[019] ed-context/index.ts.\n[020] \n[021] \n[022]  Warning: No models available. Use /login to log into a provider via OAuth or API key. See:\n[023]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md\n[024]    /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md\n[025] \n[026] \n[027] \n[028] \n[029] \n[030] \n[031] \n[032] \n[033] \n[034] \n[035] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[036] /shared-context\n[037] \n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux05-loading-check-CqWic2/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n\n=== SPANS ===\n[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142\n[003] 1-2:79,142,179 4:234,182,93 6-11:126,136,142 12-24:157,165,169 25-37:126,136,142 38-51:157,165,169 52:126,136,142 53-64:157,165,169 65:126,136,142 66-73:157,165,169 74-79:126,136,142 80-84:157,165,169\n[004] 1-60:126,136,142\n[006] 1-85:126,136,142\n[008] 0-11:205,154,34\n[009] 0-18:126,136,142\n[011] 0-17:205,154,34\n[012] 0-119:205,154,34\n[013] 0-119:205,154,34\n[014] 0-18:205,154,34\n[015] 0-119:205,154,34\n[016] 0-119:205,154,34\n[017] 0-119:205,154,34\n[018] 0-119:205,154,34\n[019] 0-19:205,154,34\n[022] 1-119:205,154,34\n[023] 1-119:205,154,34\n[024] 1-93:205,154,34\n[035] 0-119:108,118,123\n[037] 0:inverse\n[038] 0-119:108,118,123\n[039] 0-49:126,136,142\n[040] 0-119:126,136,142\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 8,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 8,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ▀▀█  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Press ctrl+o to show full startup help and loaded resources.</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">[Extensions]</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  pi-shared-context</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">[Extension issues]</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  path (temp)</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">ed-context/index.ts</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">ed-context/index.ts. Using</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">ed-context/index.ts.</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\"> Warning: No models available. Use /login to log into a provider via OAuth or API key. See:</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">/shared-context</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux05-loading-check-CqWic2/repository (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                                                                                                    unknown</text>\n</svg>\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 9,
+      "method": "close",
+      "params": {}
+    }
+  },
+  {
+    "response": {
+      "id": 9,
+      "result": {
+        "exit_code": 0
+      }
+    }
+  }
+]

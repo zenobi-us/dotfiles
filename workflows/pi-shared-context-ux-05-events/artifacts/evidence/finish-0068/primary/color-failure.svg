@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820" width="1100" height="820">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)"> ▀▀█  v1.1.0</text>
+<text x="10" y="64" fill="rgb(255,255,255)"> █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more</text>
+<text x="10" y="84" fill="rgb(255,255,255)"> Press ctrl+o to show full startup help and loaded resources.</text>
+<text x="10" y="124" fill="rgb(255,255,255)"> Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.</text>
+<text x="10" y="164" fill="rgb(255,255,255)">[Extensions]</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  pi-shared-context</text>
+<text x="10" y="224" fill="rgb(255,255,255)">[Extension issues]</text>
+<text x="10" y="244" fill="rgb(255,255,255)">  path (temp)</text>
+<text x="10" y="264" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</text>
+<text x="10" y="284" fill="rgb(255,255,255)">ed-context/index.ts</text>
+<text x="10" y="304" fill="rgb(255,255,255)">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for tui.altScreen.searchPrevious and</text>
+<text x="10" y="324" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</text>
+<text x="10" y="344" fill="rgb(255,255,255)">ed-context/index.ts. Using</text>
+<text x="10" y="364" fill="rgb(255,255,255)">/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shar</text>
+<text x="10" y="384" fill="rgb(255,255,255)">ed-context/index.ts.</text>
+<text x="10" y="444" fill="rgb(255,255,255)"> Warning: No models available. Use /login to log into a provider via OAuth or API key. See:</text>
+<text x="10" y="464" fill="rgb(255,255,255)">   /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/providers.md</text>
+<text x="10" y="484" fill="rgb(255,255,255)">   /var/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/1.1.0/docs/models.md</text>
+<text x="10" y="704" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="724" fill="rgb(255,255,255)">/shared-context</text>
+<text x="10" y="764" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="784" fill="rgb(255,255,255)">/tmp/ux05-loading-check-CqWic2/repository (master)</text>
+<text x="10" y="804" fill="rgb(255,255,255)">0.0%/0 (auto)                                                                                                    unknown</text>
+</svg>

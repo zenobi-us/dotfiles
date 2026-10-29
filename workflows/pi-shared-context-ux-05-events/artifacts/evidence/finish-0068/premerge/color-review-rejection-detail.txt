@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=32:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Loading initiative  >  T  >  Events  >  review-rejected                                        │
+[008] [Ex│ [d] Full description                                                                                           │
+[009]   p│> Event detail · outcome / body / exact evidence                                                                │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│ Execution: completed                                                                                           │
+[012]   p│ Review verdict: FAILURE                                                                                        │
+[013] /ru│ Recorded body:                                                                                                 │dev
+[014] too│ Recorded review found a required change.                                                                       │
+[015]    │ Evidence details:                                                                                              │
+[016] /ru│ Source: matched                                                                                                │dev
+[017] too│ Ticket action target: tracker/tickets/T.md                                                                     │
+[018] /ru│ Event reference: workflows/T/events/review-rejected.json                                                       │dev
+[019] too│ Commit: 5749f9c5dacb95a91625020941bd3447d4bee4cb                                                               │
+[020]    │ Tree: aed42591c63b8616b989b721725ad6da78b788a5                                                                 │
+[021]    │ Current commit: 5749f9c5dacb95a91625020941bd3447d4bee4cb                                                       │
+[022]  Wa│ Current tree: aed42591c63b8616b989b721725ad6da78b788a5                                                         │
+[023]    │ Workspace: /tmp/ux05-loading-check-5pnzj4/repository                                                           │
+[024]    │ Branch: master                                                                                                 │
+[025]    │ Session: null                                                                                                  │
+[026]    │ Raw recorded fields:                                                                                           │
+[027]    │ {                                                                                                              │
+[028]    │   "schema": "worktree-receipt/v1",                                                                             │
+[029]    │   "receipt_id": "review-rejected",                                                                             │
+[030]    │   "workflow_id": "T",                                                                                          │
+[031]    │   "phase": "review",                                                                                           │
+[032]    │   "attempt": 1,                                                                                                │
+[033]    │   "parent_receipt": "implementation-record",                                                                   │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/T.md · FIX                                                                                     │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux05-loading-check-5pnzj4/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

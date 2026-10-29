@@ -1,0 +1,12 @@
+{
+  "name": "native",
+  "argv": [
+    "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/run-native-review-v4.mjs",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/native-config.json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "stdout": "{\"status\":\"passed\",\"stage\":\"mono: completed review rejection detail\",\"error\":null,\"loadingFrames\":6,\"releasedFrames\":2,\"evidence\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery\"}\n",
+  "stderr": "",
+  "code": 0
+}

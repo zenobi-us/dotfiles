@@ -1,0 +1,17 @@
+{
+  "name": "compiler",
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+    "--noEmit",
+    "-p",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary/scoped-tsconfig.json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "stdout": "",
+  "stderr": "",
+  "code": 0
+}

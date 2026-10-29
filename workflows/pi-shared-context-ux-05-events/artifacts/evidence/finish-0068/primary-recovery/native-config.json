@@ -1,0 +1,13 @@
+{
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "expectedCommit": "9511dc0c0319dca997575eedc0e4c6423c93a80d",
+  "expectedTree": "8e8cf0aa4d247a0577dd9bd8d8e9d2a8a71c9d08",
+  "evidenceDir": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery",
+  "mq": "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+  "mise": "/home/zenobius/.local/bin/mise",
+  "pi": "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+  "monoTheme": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/implementation-0002/monochrome-theme.json",
+  "seed": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/native-fixture-seed.json",
+  "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "resultReceipt": null
+}

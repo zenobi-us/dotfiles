@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "source_worktree_removed": true,
+  "integration_worktree_removed": true,
+  "source_branch_preserved": true,
+  "source_branch_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_workspace_closed": true,
+  "source_workspace": "w8D",
+  "active_source_agents": [],
+  "native_cleanup": [
+    {
+      "mode": "color",
+      "gateExit": 0,
+      "nativeExit": 0,
+      "close": {
+        "exit_code": 0
+      }
+    },
+    {
+      "mode": "mono",
+      "gateExit": 0,
+      "nativeExit": 0,
+      "close": {
+        "exit_code": 0
+      }
+    }
+  ],
+  "temporary_paths": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "exists": false
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-05-events-review-0065",
+      "exists": false
+    },
+    {
+      "path": "/tmp/ux05-loading-check-NYETnJ",
+      "exists": false
+    }
+  ],
+  "removed_owned_dependency_links": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/typescript",
+      "target": "/tmp/ux02-deps/node_modules/typescript"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/@earendil-works/pi-tui",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/@earendil-works/pi-coding-agent",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/@crustjs/core",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/core"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/@crustjs/plugins",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/@types/bun",
+      "target": "/tmp/ux02-deps/node_modules/@types/bun"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/@types/node",
+      "target": "/tmp/ux02-deps/node_modules/@types/node"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/bun-types",
+      "target": "/tmp/ux02-deps/node_modules/bun-types"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/node_modules/yaml",
+      "target": "/tmp/ux02-deps/node_modules/yaml"
+    }
+  ],
+  "source_removal": {
+    "stdout": "[\n  {\n    \"branch\": \"feature/pi-shared-context-ux-05-events\",\n    \"branch_checked_out_at\": null,\n    \"branch_outcome\": \"not_attempted\",\n    \"kind\": \"worktree\",\n    \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events\"\n  }\n]\n",
+    "stderr": "◎ Running pre-remove user:server @ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events\n  lsof -ti :13050 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n◎ Removing feature/pi-shared-context-ux-05-events worktree...\n✓ Removed feature/pi-shared-context-ux-05-events worktree (4,989 files · 63.3 MiB)\n↳ Branch integrated (all changes in master, ⊂); retained with --no-delete-branch\n",
+    "code": 0
+  },
+  "integration_removal": {
+    "stdout": "[\n  {\n    \"branch\": \"integrate/pi-shared-context-ux-05-events-review-0065\",\n    \"branch_checked_out_at\": null,\n    \"branch_outcome\": \"deleted\",\n    \"kind\": \"worktree\",\n    \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-05-events-review-0065\"\n  }\n]\n",
+    "stderr": "◎ Running pre-remove user:server @ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-05-events-review-0065\n  lsof -ti :14532 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n◎ Removing integrate/pi-shared-context-ux-05-events-review-0065 worktree...\n✓ Removed integrate/pi-shared-context-ux-05-events-review-0065 worktree & branch (ancestor of master, ⊂) (5,674 files · 70.9 MiB)\n",
+    "code": 0
+  },
+  "unrelated_worktrees_workspaces_and_primary_changes_untouched": true
+}

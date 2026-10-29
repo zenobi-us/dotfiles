@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "receipt_count": 78,
+  "snapshot_link_count": 94,
+  "all_relative_links_resolved": true,
+  "mq_validation": [],
+  "link_extraction_limit": "Known MQ Unicode label-offset bug avoided by normalizing extraction input only; original artifacts unchanged."
+}
