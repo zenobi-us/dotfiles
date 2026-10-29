@@ -1,0 +1,14 @@
+{
+  "command": "omp usage --provider openai-codex --json --redact --no-extensions",
+  "exit_code": 0,
+  "generated_at": 1793245709713,
+  "report_fetched_at": 1793245501021,
+  "provider": "openai-codex",
+  "allowed": true,
+  "limit_reached": false,
+  "limit_statuses": [
+    "ok"
+  ],
+  "inference_endpoint_not_proven": true,
+  "account_identifiers_omitted": true
+}
