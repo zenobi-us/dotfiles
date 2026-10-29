@@ -22,6 +22,10 @@ Keep this task as the ongoing feedback log for the shared-context UX initiative.
 4. **Detail spacing and body background:** Add spacing around fields in ticket details (image 5) and receipt details (image 4). Give the actual ticket Markdown body its own background and padding, separate from metadata and receipt diagnostics (image 6).
 5. **Initiative path copy:** Add a keymap in the initiative list to copy the selected initiative's file path, matching the existing ticket path-copy behavior. Make the keymap discoverable.
 
+## Feedback — 2026-10-30
+
+6. **Initiative progress:** The initiative list does not make overall ticket progress easy to identify. Show `completed` when all tickets are completed. Show `todo` when no tickets have started. Otherwise, show `X/Y completed`, where X is the number of completed tickets and Y is the total number of tickets in the initiative. This includes `0/Y completed` when work has started but no tickets are completed.
+
 ## Acceptance criteria
 
 1. Receipt loading still works. Loaded receipt warnings do not expand ticket rows into walls of diagnostics; full diagnostics remain inspectable.
@@ -30,6 +34,8 @@ Keep this task as the ongoing feedback log for the shared-context UX initiative.
 4. Ticket and receipt detail fields have visible spacing. The ticket Markdown body has a separate background and padding.
 5. The initiative list exposes a keymap that copies the selected initiative's canonical index.md file path, consistent with ticket path-copy behavior.
 6. All six original screenshots remain linked from this task. Further user feedback can be appended here without losing earlier feedback.
+
+7. Each initiative row shows ticket progress: `completed` when all tickets are completed; `todo` when none have started; otherwise, `X/Y completed` using the completed and total ticket counts.
 
 ## Screenshots
 
