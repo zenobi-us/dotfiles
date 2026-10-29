@@ -39,7 +39,8 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
 }
 
 export async function loadTicketWorkflow(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec): Promise<TicketWorkflow> {
-  const result: TicketWorkflow = { ticketId: ticket.id, receipts: [], events: [] };
+  const result: TicketWorkflow = { ticketId: ticket.id, receipts: [], events: [], recordedAttempts: { review: 0, fix: 0 } };
+  let historyValidated = false;
   if (recordKind(ticket) !== "ticket") return result;
   try {
     const workflowId = ticket.backend === "github" ? `GH-${ticket.id}` : ticket.id;
@@ -111,16 +112,22 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
     });
     result.receipts = chronologicalReceipts(result.receipts).reverse();
     const errors = result.events!.filter(event => event.error).map(event => `${event.ref}: ${event.error}`);
-    if (errors.length) {
-      result.error = errors.join("\n");
-      return result;
-    }
+    delete result.recordedAttempts;
     const byId = new Map<string, ExplorerReceipt>();
     for (const receipt of result.receipts) {
       if (byId.has(receipt.id)) throw new Error("Duplicate receipt ID.");
       byId.set(receipt.id, receipt);
     }
     validateRelations([...byId.values()].map(item => ({ id: item.id, blockedBy: item.parentReceipt ? [item.parentReceipt] : [] })), "receipt parent");
+    result.recordedAttempts = {
+      review: result.receipts.filter(receipt => receipt.phase === "review").length,
+      fix: result.receipts.filter(receipt => receipt.phase === "fix").length,
+    };
+    historyValidated = true;
+    if (errors.length) {
+      result.error = errors.join("\n");
+      return result;
+    }
     const newest = result.receipts[0];
     if (newest) {
       if (!await exists(newest.workspacePath)) throw new Error("Recorded worktree is unavailable; current source freshness cannot be established.");
@@ -140,6 +147,7 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
       result.sourceTree = tree;
     }
   } catch (error) {
+    if (!historyValidated) delete result.recordedAttempts;
     result.error = error instanceof Error ? error.message : String(error);
     delete result.sourceCommit;
     delete result.sourceTree;

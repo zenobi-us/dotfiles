@@ -216,6 +216,19 @@ test("orphaned and cyclic receipt parents are invalid workflow history", async (
   expect((await loadTicketWorkflow(context, selected, execute)).error).toBeDefined();
 });
 
+test("recorded attempts exclude invalid fields and do not validate orphaned or cyclic review history", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  for (const [id, phase, status] of [["review-1", "review", "completed"], ["review-2", "review", "failed"], ["fix-1", "fix", "blocked"], ["implementation", "implementation", "completed"]]) {
+    await put(join(events, `${id}.json`), JSON.stringify({ ...fields, receipt_id: id, parent_receipt: "start-1", phase, status }));
+  }
+  await put(join(events, "invalid.json"), JSON.stringify({ ...fields, receipt_id: "invalid", phase: "review", ticket_ref: "wrong" }));
+  expect((await loadTicketWorkflow(context, selected, execute)).recordedAttempts).toEqual({ review: 2, fix: 1 });
+  await put(join(events, "review-1.json"), JSON.stringify({ ...fields, receipt_id: "review-1", phase: "review", parent_receipt: "absent" }));
+  expect((await loadTicketWorkflow(context, selected, execute)).recordedAttempts).toBeUndefined();
+  await put(join(events, "review-1.json"), JSON.stringify({ ...fields, receipt_id: "review-1", phase: "review", parent_receipt: "review-1" }));
+  expect((await loadTicketWorkflow(context, selected, execute)).recordedAttempts).toBeUndefined();
+});
+
 test("GitHub pagination includes later pages and recursive prerequisite closure without parsing body references", async () => {
   const context = await fixture("github");
   const base = "https://github.com/example/continuity/issues/";

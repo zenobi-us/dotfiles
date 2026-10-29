@@ -301,3 +301,13 @@ Open the command from that project's checkout to use those actions. The modal do
 
 Fresh-chat actions use Pi's replacement session context to stage the command. The command stays unsent until you press Enter.
 
+
+## Ticket event history
+
+Ticket history shows the canonical ticket ID, recorded tracker state, and review/fix totals above the event list. Totals count validated receipts for each phase. They describe recorded attempts, not quality or completion. Unknown totals use `?` when history validation is unavailable.
+
+Each event separates identity, execution status, review verdict, and source commit. A completed review with verdict `FAILURE` is not a failed process. Press Enter to open the dedicated event detail. Its execution outcome and recorded body or structured summary precede evidence metadata.
+
+Use Up/Down or Page Up/Page Down to reach full commit/tree IDs, workspace, branch, session, raw recorded fields, and dependency blockers. `matched`, `stale`, and `unavailable` source labels have distinct meanings. Invalid events remain readable with warnings. Changed-file counts use only structured `changed_files` or `changed_file_count` evidence.
+
+Esc or the Events breadcrumb returns to the selected event and its list position. Live updates retain stable event identity. A failed history refresh keeps the last readable history, displays the failure, and blocks unsafe worktree transitions. Empty, loading, and unreadable histories have separate messages. Actions continue to target the current canonical ticket, not the historical event. Files, description readers, and unsent fresh-chat and path-insertion behavior remain independent. At short heights, scroll to read each labelled event field.

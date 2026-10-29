@@ -65,6 +65,8 @@ export interface TicketWorkflow {
   sourceCommit?: string;
   sourceTree?: string;
   error?: string;
+  // Counts are available only after receipt identity and parent-graph validation.
+  recordedAttempts?: { review: number; fix: number };
 }
 
 export type ExplorerTarget =

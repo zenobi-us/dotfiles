@@ -12,7 +12,7 @@ import { DirectoryMonitor, type WatchTarget } from "./watch";
 type Screen = "home" | "queues" | "initiatives" | "tickets" | "receipts" | "actions";
 type Queue = "ready" | "review" | "blocked" | "all";
 type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
-type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
+type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
 type Pane = { id: string; title: string; rows: Row[] };
 
 // The reader replaces content, not navigation. Keep its origin intact so returning
@@ -24,6 +24,7 @@ export interface ExplorerNavigation {
   initiativeId?: string;
   ticketId?: string;
   receiptId?: string;
+  eventDetail?: boolean;
   queue: Queue;
   focus: "list" | "detail" | "neighborhood" | "breadcrumb" | "description" | "return";
   offsets: [string, number][];
@@ -68,6 +69,7 @@ export class GraphExplorer {
   private initiativeId?: string;
   private ticketId?: string;
   private receiptId?: string;
+  private eventDetail = false;
   private homeIndex = 0;
   private actionIndex = 0;
   private queueIndex = 0;
@@ -115,6 +117,7 @@ export class GraphExplorer {
     this.initiativeId = navigation?.initiativeId;
     this.ticketId = navigation?.ticketId;
     this.receiptId = navigation?.receiptId;
+    this.eventDetail = navigation?.eventDetail ?? false;
     this.focus = navigation?.focus ?? "list";
     this.offsets = new Map(navigation?.offsets ?? []);
     this.homeIndex = navigation?.homeIndex ?? 0;
@@ -261,7 +264,20 @@ export class GraphExplorer {
             }
             if (this.disposed) return;
             const selected = initial ? undefined : this.target();
+            const previous = this.workflows.get(ticket.id);
+            if (workflow.error && !workflow.events?.length && previous?.events?.length) {
+              workflow = { ...previous, sourceCommit: undefined, sourceTree: undefined, error: `History refresh failed; showing last readable history. ${workflow.error}` };
+            }
             this.workflows.set(ticket.id, workflow);
+            if (ticket.id === this.ticketId && (!this.receiptId || !(workflow.events ?? workflow.receipts).some(event => event.id === this.receiptId))) {
+              const removed = Boolean(this.receiptId);
+              this.receiptId = (workflow.events ?? workflow.receipts)[0]?.id;
+              if (removed) {
+                this.eventDetail = false;
+                this.focus = "list";
+                this.notice = "Selected event was removed. Showing the nearest available history.";
+              }
+            }
             this.ticketStates.clear();
             this.receiptChecks = this.workflows.size;
             this.restoreHomeSelection(selected);
@@ -410,6 +426,7 @@ export class GraphExplorer {
 
   private focusOrder(): ExplorerNavigation["focus"][] {
     if (this.reader) return ["breadcrumb", "detail", "return"];
+    if (this.screen === "receipts" && this.eventDetail) return ["breadcrumb", "detail"];
     const panes: ExplorerNavigation["focus"][] = this.panes().length < 2 ? ["list"]
       : this.screen === "receipts" && this.neighborhoodRows().length ? ["list", "detail", "neighborhood"] : ["list", "detail"];
     const controls = this.descriptionTarget() ? [...panes, "description" as const] : panes;
@@ -426,6 +443,10 @@ export class GraphExplorer {
     else crumbs.push({ label: this.initiative()?.title ?? "Initiative", screen: "initiatives" });
     if (screen === "tickets" || screen === "receipts") crumbs.push({ label: this.ticketId ?? "Item", screen: "tickets" });
     if (screen === "receipts") crumbs.push({ label: "Events", screen: "receipts" });
+    if (screen === "receipts" && this.eventDetail) {
+      const identity = this.selectedEvent()?.fields?.receipt_id;
+      crumbs.push({ label: typeof identity === "string" ? identity : "Event", screen: "receipts" });
+    }
     if (this.reader) crumbs.push({ label: "Description", screen });
     return crumbs;
   }
@@ -434,6 +455,7 @@ export class GraphExplorer {
     const crumb = this.breadcrumbs()[index];
     if (!crumb || index >= this.breadcrumbs().length - 1) return;
     this.reader = undefined;
+    this.eventDetail = false;
     this.screen = crumb.screen;
     this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
     this.options.requestRender();
@@ -486,6 +508,7 @@ export class GraphExplorer {
     }
     if (matchesKey(data, "home") || matchesKey(data, "h")) {
       this.reader = undefined;
+      this.eventDetail = false;
       this.screen = "home";
       this.focus = "list";
       this.notice = "";
@@ -496,6 +519,12 @@ export class GraphExplorer {
       if (this.reader) { this.closeDescription(); return; }
       let focus: ExplorerNavigation["focus"] = "list";
       if (this.screen === "actions") { this.screen = this.returnScreen; focus = this.returnFocus; }
+      else if (this.screen === "receipts" && this.eventDetail) {
+        this.eventDetail = false;
+        this.focus = "list";
+        this.options.requestRender();
+        return;
+      }
       else if (this.screen === "receipts") {
         this.screen = "tickets";
         focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
@@ -549,7 +578,7 @@ export class GraphExplorer {
       const pane = this.focusedPane(panes);
       const up = matchesKey(data, "pageUp");
       const compact = this.lastWidth < 70 || this.options.height() < 16;
-      const step = Math.max(1, Math.min(30, this.options.height() - (compact ? 4 : 8)));
+      const step = pane ? this.renderedLayout.get(pane.id)?.height ?? 1 : Math.max(1, Math.min(30, this.options.height() - (compact ? 4 : 8)));
       if (pane) this.offsets.set(pane.id, Math.max(0, (this.offsets.get(pane.id) ?? 0) + (up ? -step : step)));
       this.notice = "";
       this.options.requestRender();
@@ -584,7 +613,9 @@ export class GraphExplorer {
     if (matchesKey(data, "enter") || matchesKey(data, "right")) {
       if (this.screen === "actions") { this.chooseAction(this.choices()[this.actionIndex]); return; }
       const compact = this.lastWidth < 70 || this.options.height() < 16;
-      if (compact && this.focus === "list" && this.screen === "receipts") {
+      if (this.screen === "receipts" && !this.eventDetail && this.selectedEvent()) {
+        this.receiptId = this.selectedEvent()!.id;
+        this.eventDetail = true;
         this.focus = "detail";
         this.options.requestRender();
         return;
@@ -622,6 +653,7 @@ export class GraphExplorer {
         focus = compact ? "detail" : "list";
       } else if (this.screen === "tickets" && this.ticket() && recordKind(this.ticket()!) === "ticket") {
         this.screen = "receipts";
+        this.eventDetail = false;
         focus = "list";
         if (!this.history().some(receipt => receipt.id === this.receiptId)) this.receiptId = this.history()[0]?.id;
       }
@@ -652,7 +684,13 @@ export class GraphExplorer {
     const compact = width < 70 || this.options.height() < 16;
     const height = Math.max(5, this.options.height());
     const control = this.descriptionTarget() ? this.descriptionControl(width) : undefined;
-    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 9) - Number(control !== undefined)));
+    const attempts = this.workflow()?.recordedAttempts;
+    const ticket = this.ticket();
+    const eventSummary = this.screen === "receipts" && !this.eventDetail && ticket ? [
+      th.fg("accent", truncateToWidth(this.clean(`Ticket: ${ticket.id} · State: ${ticket.status}`), inner)),
+      th.fg("muted", `Reviews: ${attempts?.review ?? "?"} · Fixes: ${attempts?.fix ?? "?"} (receipts)`),
+    ] : [];
+    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 9) - Number(control !== undefined) - eventSummary.length));
     let panes = this.panes();
     if (compact && panes.length > 1) {
       panes = [this.focusedPane(panes) ?? panes[panes.length - 1]];
@@ -674,15 +712,15 @@ export class GraphExplorer {
         : "No checkout: context is readable; actions are disabled."
       : "";
     const summary = this.screen === "initiatives" ? this.initiative()?.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line)) : undefined;
-    const status = this.error || this.refreshError || this.notice || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+    const status = this.error || this.refreshError || this.workflow()?.error || this.notice || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
     const keys = compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh";
     if (compact) {
       if (control) this.controlHits.push({ x: 0, y: 1, width: visibleWidth(control), action: "description" });
-      return [breadcrumb, ...(control ? [control] : []), join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
+      return [breadcrumb, ...(control ? [control] : []), ...eventSummary, join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
     }
     const frame = (text: string) => th.fg("border", "│") + this.pad(text, inner) + th.fg("border", "│");
     if (control) this.controlHits.push({ x: 1, y: 2, width: visibleWidth(control), action: "description" });
-    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(breadcrumb), ...(control ? [frame(control)] : []), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error || this.refreshError ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
+    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(breadcrumb), ...(control ? [frame(control)] : []), ...eventSummary.map(frame), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error || this.refreshError ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
   }
 
   private descriptionTarget(): ExplorerTarget | undefined {
@@ -782,28 +820,75 @@ export class GraphExplorer {
     if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
     if (this.screen === "initiatives") return [this.graphPane()];
     if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: this.ticket() && recordKind(this.ticket()!) !== "ticket" ? `${this.ticketType(this.ticket()!)} / recorded details` : "Ticket / dependencies / receipts", rows: this.ticketRows() }];
+    if (this.eventDetail) return [{ id: `receipt:${this.ticketId}:${this.selectedEvent()?.id ?? "none"}`, title: "Event detail · outcome / body / exact evidence", rows: this.eventRows() }];
     const workflow = this.workflow();
     const events = this.history();
-    const event = events.find(event => event.id === this.receiptId) ?? events[0];
-    const receipt = event && !event.error ? workflow?.receipts.find(receipt => receipt.ref === event.ref) : undefined;
-    return [{ id: `neighbors:${this.ticketId}`, title: "Dependency context", rows: this.neighborhoodRows().map((row, index) => ({ ...row, selected: this.focus === "neighborhood" && index === this.neighborhoodIndex })) }, {
+    const selected = this.selectedEvent();
+    return [{
       id: `receipts:${this.ticketId}`, title: "Events / newest first",
-      rows: events.length ? events.map(item => ({
-        text: `${typeof item.fields?.receipt_id === "string" ? item.fields.receipt_id : item.ref.split("/").at(-1)} ${typeof item.fields?.phase === "string" ? item.fields.phase : ""} [${item.error ? "INVALID" : typeof item.fields?.status === "string" ? item.fields.status : "recorded"}]`,
-        selected: item.id === event?.id, tone: item.error ? "warning" : "text",
-      })) : [{ text: workflow?.error ?? (workflow ? "No receipts yet." : "Loading receipts…"), tone: workflow?.error ? "error" : "muted" }],
-    }, {
-      id: `receipt:${this.ticketId}:${event?.id ?? "none"}`, title: "Receipt / exact evidence", rows: receipt ? [
-        { text: `Ticket: ${this.ticket()?.ref ?? ""}`, tone: "accent" }, { text: `Receipt: ${receipt.id}` }, { text: `Phase: ${receipt.phase} · ${receipt.status}${receipt.verdict ? ` · ${receipt.verdict}` : ""}` }, { text: `Parent: ${receipt.parentReceipt ?? "none"}` }, { text: `Commit: ${receipt.sourceCommit}` }, { text: `Tree: ${receipt.sourceTree}` }, { text: `Current: ${workflow?.sourceCommit ?? "unavailable"}` }, { text: `Current tree: ${workflow?.sourceTree ?? "unavailable"}` }, { text: workflow?.error ?? (receipt.sourceCommit === workflow?.sourceCommit && receipt.sourceTree === workflow?.sourceTree ? "Source: matched" : "Source: stale / unavailable"), tone: workflow?.error || receipt.sourceCommit !== workflow?.sourceCommit || receipt.sourceTree !== workflow?.sourceTree ? "warning" : "accent" }, { text: `Workspace: ${receipt.workspacePath}` }, { text: `Branch: ${receipt.sourceBranch} · base ${receipt.baseBranch}` }, { text: `Session: ${receipt.sessionId ?? "not recorded"}` }, { text: `Created: ${receipt.createdAt}` }, { text: `Reference: ${receipt.ref}` }, { text: "Outputs:", tone: "accent" }, ...receipt.outputs.map(output => ({ text: `  ${output}` })), { text: "Receipt fields:", tone: "accent" }, ...JSON.stringify(receipt.fields, null, 2).split("\n").map(text => ({ text })), ...receipt.body.split(/\r?\n/).map(text => ({ text }))
-      ] : event ? [
-        { text: `Reference: ${event.ref}`, tone: "accent" },
-        { text: event.error ?? workflow?.error ?? "Unvalidated event.", tone: "error" },
-        { text: "Not valid workflow evidence. Worktree transitions remain blocked.", tone: "warning" },
-        { text: "Recorded fields:", tone: "accent" },
-        ...JSON.stringify(event.fields ?? null, null, 2).split("\n").map(text => ({ text })),
-        ...(event.body ?? "").split(/\r?\n/).map(text => ({ text })),
-      ] : [{ text: workflow?.error ?? (workflow ? "No receipt exists for this ticket." : "Loading workflow…"), tone: workflow?.error ? "error" : "muted" }, { text: "Chat output is not workflow evidence." }]
+      rows: [
+        ...(events.length ? events.map(event => ({
+          text: "", event, receiptId: event.id,
+          selected: event.id === selected?.id, tone: event.error ? "warning" as const : "text" as const,
+        })) : [{ text: workflow?.error ? `History unreadable: ${workflow.error}` : workflow ? "No events recorded." : "Loading history…", tone: workflow?.error ? "error" as const : "muted" as const }]),
+        ...(workflow?.error && events.length ? [{ text: `History warning: ${workflow.error}`, tone: "warning" as const }] : []),
+        { text: "Dependencies / unresolved blockers:", tone: "accent" },
+        ...this.neighborhoodRows(),
+      ],
     }];
+  }
+
+  private selectedEvent(): ExplorerEvent | undefined {
+    const events = this.history();
+    return events.find(event => event.id === this.receiptId) ?? events[0];
+  }
+
+  private eventLines(event: ExplorerEvent, width: number): string[] {
+    const fields = event.fields;
+    const value = (key: string): string => typeof fields?.[key] === "string" ? fields[key] : "unavailable";
+    const parts: { text: string; tone: Tone }[] = [
+      { text: `Event: ${typeof fields?.receipt_id === "string" ? fields.receipt_id : event.ref.split("/").at(-1)} · Phase: ${value("phase")}`, tone: "text" },
+      { text: `Execution: ${value("status")}${event.error ? " · INVALID" : ""}`, tone: event.error || fields?.status === "failed" ? "error" : "accent" },
+      ...(typeof fields?.verdict === "string" ? [{ text: `Verdict: ${fields.verdict}`, tone: fields.verdict === "FAILURE" ? "warning" as const : "success" as const }] : []),
+      { text: `Source commit: ${typeof fields?.source_commit === "string" ? fields.source_commit.slice(0, 12) : "unavailable"}`, tone: "muted" },
+    ];
+    return parts.flatMap(part => wrapTextWithAnsi(this.clean(part.text), width).map(line => this.options.theme.fg(part.tone, line)));
+  }
+
+  private eventRows(): Row[] {
+    const event = this.selectedEvent();
+    if (!event) return [{ text: "No event selected." }];
+    const workflow = this.workflow();
+    const receipt = !event.error ? workflow?.receipts.find(receipt => receipt.ref === event.ref) : undefined;
+    const fields = event.fields ?? {};
+    const recorded = (value: unknown): string => typeof value === "string" ? value : JSON.stringify(value, null, 2) ?? "unavailable";
+    const body = event.body?.trim() || (fields.summary != null ? recorded(fields.summary) : "No readable body recorded.");
+    const source = !receipt || !workflow?.sourceCommit || !workflow.sourceTree ? "unavailable"
+      : receipt.sourceCommit === workflow.sourceCommit && receipt.sourceTree === workflow.sourceTree ? "matched" : "stale";
+    const changed = Array.isArray(fields.changed_files) && fields.changed_files.every(file => typeof file === "string") ? fields.changed_files.length
+      : Number.isInteger(fields.changed_file_count) && Number(fields.changed_file_count) >= 0 ? Number(fields.changed_file_count) : undefined;
+    return [
+      { text: `Execution: ${recorded(fields.status)}`, tone: fields.status === "failed" ? "error" : "accent" },
+      ...(fields.verdict != null ? [{ text: `Review verdict: ${recorded(fields.verdict)}`, tone: fields.verdict === "FAILURE" ? "warning" as const : "success" as const }] : []),
+      ...(event.error || !receipt || workflow?.error && !workflow.recordedAttempts ? [{ text: `INVALID / unvalidated evidence: ${event.error ?? workflow?.error ?? "Not a validated receipt."}`, tone: "warning" as const }] : []),
+      { text: "Recorded body:", tone: "accent" },
+      ...body.split(/\r?\n/).map(text => ({ text })),
+      { text: "Evidence details:", tone: "accent" },
+      { text: `Source: ${source}`, tone: source === "matched" ? "success" : "warning" },
+      ...(workflow?.error ? [{ text: `Workflow warning: ${workflow.error}`, tone: "warning" as const }] : []),
+      { text: `Ticket action target: ${this.ticket()?.ref}` },
+      { text: `Event reference: ${event.ref}` },
+      ...(changed !== undefined ? [{ text: `Changed files: ${changed} (recorded)` }] : []),
+      { text: `Commit: ${recorded(fields.source_commit)}` },
+      { text: `Tree: ${recorded(fields.source_tree)}` },
+      { text: `Current commit: ${workflow?.sourceCommit ?? "unavailable"}` },
+      { text: `Current tree: ${workflow?.sourceTree ?? "unavailable"}` },
+      { text: `Workspace: ${recorded(fields.workspace_path)}` },
+      { text: `Branch: ${recorded(fields.source_branch)}` },
+      { text: `Session: ${recorded(fields.session_id)}` },
+      { text: "Raw recorded fields:", tone: "accent" },
+      ...JSON.stringify(fields, null, 2).split("\n").map(text => ({ text })),
+    ];
   }
 
   private homeRows(): Row[] {
@@ -875,8 +960,9 @@ export class GraphExplorer {
       { text: `Summary: ${this.descriptionSummary(ticket.body)}`, tone: "muted" },
       { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${this.ticketState(ticket)}` },
       { text: `Reference: ${ticket.ref}` }, { text: `Current source: ${workflow?.sourceCommit ?? "not recorded"}` },
+      { text: workflow?.recordedAttempts ? `Reviews: ${workflow.recordedAttempts.review} · Fixes: ${workflow.recordedAttempts.fix} (validated phase receipts; recorded attempts, not quality or completion)` : "Review/fix receipt counts unavailable until history validation completes.", tone: "muted" },
       { text: "Dependencies:", tone: "accent" }, ...this.neighborhoodRows(), { text: "Receipts:", tone: "accent" },
-      ...(workflow?.receipts.map(receipt => ({ text: `${receipt.id} ${receipt.phase} [${receipt.verdict ?? receipt.status}] @${receipt.sourceCommit}` })) ?? []),
+      ...this.history().map(event => ({ text: `Event: ${event.fields?.receipt_id ?? event.id} · Execution: ${event.fields?.status ?? "unavailable"}${event.fields?.verdict ? ` · Verdict: ${event.fields.verdict}` : ""}` })),
       ...(workflow?.error ? [{ text: workflow.error, tone: "warning" as const }] : []),
       { text: workflow ? "→ inspect receipts · a actions" : "Checking receipts…", tone: "muted" },
     ];
@@ -962,7 +1048,7 @@ export class GraphExplorer {
   }
 
   private navigation(): ExplorerNavigation {
-    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };
+    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };
   }
 
   private focusedPane(panes: Pane[]): Pane | undefined {
@@ -971,13 +1057,14 @@ export class GraphExplorer {
 
   private renderPane(pane: Pane, width: number, height: number): string[] {
     const expanded = pane.rows.flatMap(row => {
+      if (row.event) return this.eventLines(row.event, Math.max(1, width - 1)).map(text => ({ ...row, text, styled: true }));
       if (row.fields) return this.fieldLines(row.fields, Math.max(1, width - 1)).map(text => ({ ...row, text, styled: true }));
       return wrapTextWithAnsi(this.clean(row.text), Math.max(1, width - 1)).map(text => ({ ...row, text, styled: false }));
     });
     const selected = expanded.findIndex(row => row.selected);
     let offset = this.offsets.get(pane.id) ?? 0;
     const selectedRow = expanded[selected];
-    const selection = selectedRow?.target?.kind === "ticket" ? selectedRow.target.ticket.ref : selectedRow?.target?.kind === "initiative" ? selectedRow.target.initiative.ref : String(selected);
+    const selection = selectedRow?.receiptId ?? (selectedRow?.target?.kind === "ticket" ? selectedRow.target.ticket.ref : selectedRow?.target?.kind === "initiative" ? selectedRow.target.initiative.ref : String(selected));
     const selectedEnd = expanded.findIndex((row, index) => index > selected && !row.selected);
     const end = selectedEnd < 0 ? expanded.length : selectedEnd;
     const previous = this.renderedLayout.get(pane.id);
