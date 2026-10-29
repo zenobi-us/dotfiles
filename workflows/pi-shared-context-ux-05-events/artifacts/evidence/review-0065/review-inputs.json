@@ -1,0 +1,235 @@
+{
+  "task": "Independently complete the final exact-source main review of all eight changed files and all13 criteria. Both independent axes are already completed and supplied. Parent finishes actual corrected terminal verification before this session starts; no verification process is pending. Reconcile the recorded exact-source tests/compiler/native evidence with source inspection and the two actual axis reports. Save the real completed or blocked assessment promptly; parent owns immutable report/receipt formatting. Do not redo already passed exact-source commands or fix source.",
+  "role": "main",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+    "document": {
+      "frontmatter": {
+        "schema": "tracker-ticket/v1",
+        "blocked_by": [
+          "pi-shared-context-ux-02-initiatives"
+        ],
+        "id": "pi-shared-context-ux-05-events",
+        "parent": "pi-shared-context-tui-ux-spec",
+        "sequence": 5,
+        "title": "Inspect ticket events through readable history and evidence views",
+        "triage": "ready-for-agent",
+        "type": "enhancement",
+        "work_status": "claimed"
+      },
+      "body": "## What to build\n\nDisplay a ticket summary above its event history. Opening an event displays a dedicated detail view. Lead with the outcome and readable body before extended evidence metadata.\n\nKeep event identity, execution outcome, review verdict, source identity, and evidence validity distinct. Preserve the current evidence authority and transition restrictions.\n\n## Acceptance criteria\n\n1. Ticket detail displays its identity, available state, and recorded review and fix counts above the event list.\n2. Review and fix totals count validated receipts for the respective phases. They describe recorded attempts, not quality or completion.\n3. Event rows display distinct identity, outcome, and source fields. A commit reference does not occupy the outcome field for another event type.\n4. A completed review with a failure verdict remains distinguishable from a process execution failure.\n5. Opening an event displays its outcome and readable body before extended source, workspace, branch, session, and raw-field details.\n6. All exact evidence remains reachable through scrolling or an explicit details control. Long source IDs remain readable.\n7. Source commit and tree comparisons identify matched, stale, or unavailable evidence. Invalid events remain inspectable with explicit warnings.\n8. Dependency information and unresolved blockers remain reachable. Existing workflow transition restrictions remain unchanged.\n9. Changed-file counts appear only when durable evidence supplies them. The interface does not infer counts from prose.\n10. Event selection survives live history updates. Esc and breadcrumb navigation restore the previous list position.\n11. No events, loading history, unreadable history, and refresh failures display distinct explanations.\n12. Existing action targets remain explicit. Event inspection does not redirect ticket actions to a historical record.\n13. Existing copy and fresh-chat behavior remains unchanged. Colour-independent labels and narrow layouts preserve each field meaning.\n\n## Out of scope\n\nDo not change receipt schemas, evidence validity rules, immutable events, or workflow transition rules.\n\n## Specification\n\nThe parent specification defines the complete product intent. This ticket implements only the approved slice.\n\n\n## Testing decisions\n\nUse the complete modal as the main automated test boundary. Send input through its public interface. Assert visible behavior and canonical targets.\n\nUse the existing modal, explorer, and live-update test patterns. Use temporary stores for record and watcher behavior. Avoid assertions about private arrays or incidental text formatting.\n\nRun the actual Pi modal for terminal acceptance. Inspect 40 by 12, 80 by 24, and 120 by 40 terminals. Inspect colour and monochrome presentation.\n\nKeep existing action, copy, workspace shortcut, and workflow safety behavior intact. Preserve terminal-control sanitization and Unicode display widths.\n\n## Completion evidence\n\nRecord the focused behavior checks and terminal observations. Include evidence for the changed screens and relevant failure states.\n\n## Comments\n\nThe user approved this slice and its direct blockers during ticket decomposition.\n\n\n- 2026-10-28T22:02:23.042Z: Claimed by coordinator session01a17af1-75e3-7666-a181-6c52c2834cb2 for the approved event-history slice. Direct blocker pi-shared-context-ux-02-initiatives is completed. Existing per-session and per-ticket limits remain unchanged."
+    }
+  },
+  "context": {
+    "mode": "repository",
+    "alignment_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "repository_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "routes": {
+      "alignment": "repository",
+      "tickets": "repository",
+      "initiatives": "repository",
+      "workflows": "repository",
+      "evidence": "workflows -> repository",
+      "sources": "alignment -> repository"
+    },
+    "workflow": {
+      "kind": "workflow",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events",
+      "ref": "workflows/pi-shared-context-ux-05-events",
+      "publication": "repository"
+    },
+    "evidence": {
+      "kind": "evidence",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065",
+      "publication": "repository"
+    }
+  },
+  "domain": {
+    "context_map": {
+      "ref": "CONTEXT-MAP.md",
+      "doc": {
+        "frontmatter": {
+          "description": "Stable entry points and ownership for repository context",
+          "title": "Context map",
+          "type": "Index"
+        },
+        "body": "# Context map\n\nUse this file for stable entry points. Do not list individual workflow receipts here.\n\n## Entry points\n\n- [Agent configuration](docs/agents/)\n- [Architecture decisions](docs/adr/index.md)\n- [Issue tracker configuration](docs/agents/issue-tracker.md)\n- [Domain configuration](docs/agents/domain.md)\n\nThe issue tracker uses Local Markdown. Read the [tracker index](tracker/index.md) for ticket and initiative navigation. Read `CONTEXT.md` when it exists. Keep architecture decisions under `docs/adr/`. Resolve workflow and source paths through the shared-context CLI when needed.\n\n## Ownership\n\n| Area | Owner | Property |\n|---|---|---|\n| `docs/agents/` | Repository agent configuration | Authored configuration |\n| `docs/adr/` | Domain and architecture skills | Canonical decisions |\n| `tracker/` | Matt Pocock ticket skill | Canonical local tickets when configured |\n| `workflows/*/events/` | Worktree skill | Authoritative and append-only |\n| `workflows/*/artifacts/` | Worktree skill | Immutable outputs |\n| `workflows/*/projections/` | Worktree skill | Generated and replaceable |\n| `sources/` | Shared-context skill | External and local source copies |\n| `domains/` | Domain skill | Stable domain vocabulary and rules |"
+      }
+    },
+    "context_md_exists": false,
+    "documents": [
+      {
+        "ref": "docs/agents/domain.md",
+        "doc": {
+          "frontmatter": {},
+          "body": "# Domain docs\n\nThis repository uses one context.\n\n## Read before exploration\n\n1. Read `CONTEXT-MAP.md` at the active alignment root.\n2. Read `CONTEXT.md` when it exists.\n3. Read `docs/adr/index.md` and ADRs that affect the current area.\n\nIf a domain document does not exist, continue without it. Use the `domain-modeling` skill to record terms and decisions when they are resolved.\n\n## Document layout\n\nKeep the glossary and domain rules in `CONTEXT.md`. Keep architecture decisions under `docs/adr/`. Keep stable entry points in `CONTEXT-MAP.md`.\n\nUse the glossary's terms in ticket titles, code proposals, hypotheses, and tests. Update domain documents when a resolved decision changes a term or rule.\n\n"
+        }
+      },
+      {
+        "ref": "docs/adr/index.md",
+        "doc": {
+          "frontmatter": {},
+          "body": "# Architecture decisions\n\nUse this directory for ADRs that record resolved architecture decisions. Use the shared-context CLI to resolve an ADR path before writing it. Add a link here when an ADR is created.\n\nRead the [domain configuration](../agents/domain.md) for domain document rules.\n\n"
+        }
+      }
+    ],
+    "applicable_adrs": [],
+    "adr_note": "The canonical ADR index has no decision entries.",
+    "tracker_context": "Already resolved and checked by the ticket skill; no tracker operations are delegated."
+  },
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+    "branch": "feature/pi-shared-context-ux-05-events",
+    "base_branch": "master",
+    "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+    "commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+    "tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+    "diff_command": [
+      "git",
+      "diff",
+      "--no-ext-diff",
+      "--unified=0",
+      "b1e4b80769490af4896785bc2ea3699c22b346f6...eeb4e4f920bc5b556c515c63bb99af60e4a099d9"
+    ],
+    "diff_sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460"
+  },
+  "criteria": [
+    {
+      "number": 1,
+      "text": "Ticket summary above event history shows canonical identity, available state and recorded review/fix counts."
+    },
+    {
+      "number": 2,
+      "text": "Review and fix totals count validated receipts for their respective phases, not invalid raw fields, prose, quality, completion or inferred activity. Keep the approved receipt-based meaning explicit."
+    },
+    {
+      "number": 3,
+      "text": "Event rows separate event identity, execution outcome and source reference with stable field roles; a commit is never an outcome."
+    },
+    {
+      "number": 4,
+      "text": "A completed review with verdict FAILURE is visibly distinct from process execution failure. Keep execution and verdict labels separate."
+    },
+    {
+      "number": 5,
+      "text": "Opening an event produces a dedicated detail view with outcome and readable recorded body before extended evidence metadata."
+    },
+    {
+      "number": 6,
+      "text": "All exact evidence remains reachable through scrolling or explicit details, including full long commit/tree IDs, workspace, branch, session and raw fields."
+    },
+    {
+      "number": 7,
+      "text": "Matched, stale and unavailable source evidence are distinct. Invalid events remain inspectable with warnings; preserve existing authority."
+    },
+    {
+      "number": 8,
+      "text": "Dependencies and unresolved blockers remain reachable. Existing worktree transition restrictions remain unchanged."
+    },
+    {
+      "number": 9,
+      "text": "Changed-file counts appear only from durable structured evidence; never infer them from prose."
+    },
+    {
+      "number": 10,
+      "text": "Stable event selection survives live insertions/updates. Esc and keyboard/mouse ancestors restore the previous event-list position."
+    },
+    {
+      "number": 11,
+      "text": "No events, loading, unreadable history and refresh failure have distinct explanations; retain last readable content after failure without unsafe actions."
+    },
+    {
+      "number": 12,
+      "text": "Action targets remain the current canonical ticket, never the historical event being inspected."
+    },
+    {
+      "number": 13,
+      "text": "Preserve copy, fresh-chat, sanitization, Unicode widths, workspace shortcuts, description readers and Files independence. Explicit labels retain meaning at narrow widths and without colour."
+    }
+  ],
+  "implementation": {
+    "source_result_ref": "workflows/pi-shared-context-ux-05-events/events/implementation-0002.json",
+    "accepted_parent_ref": "workflows/pi-shared-context-ux-05-events/events/validation-complete-0014.json",
+    "native_evidence_root": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/implementation-0002",
+    "loading_evidence_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/native-loading-0010/native-check-result.json"
+  },
+  "actual_evidence": {
+    "completed_exact_source_verification_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/verification.json",
+    "suite": {
+      "pass": 147,
+      "fail": 0,
+      "assertions": 2061,
+      "files": 12,
+      "exit": 0,
+      "executed_in": "prior main19 same unchanged source",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/checks-result.json"
+    },
+    "compiler": {
+      "exit": 0,
+      "executed_in": "prior main19 same unchanged source",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/checks-result.json"
+    },
+    "native": {
+      "status": "passed",
+      "executed_by": "parent before this fresh review",
+      "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/native-check-result.json",
+      "all_modes_and_states_in": "completed_runtime_verification.native_observations",
+      "cleanup": "Both modes native/gate/close exit0; owned fixture removed.",
+      "limits": [
+        "No provider prompt or workflow action was sent.",
+        "Native text/JSON/HTML/spans/SVG are retained; SVG fallback glyphs do not prove glyph or colour conformance.",
+        "This check covers loading, release, completed review rejection, body-first detail and selected-event return. Suite/compiler results are recorded separately."
+      ]
+    }
+  },
+  "rules": [
+    "Preloaded source diff and canonical data are complete. Verify source commit/tree and diff hash with real commands, without printing another full diff. Keep source fixed; stop if it changes.",
+    "Read matching skills first, each separately. Local Markdown documents already parsed via MQ are supplied as JSON. Any additional local Markdown operation must use MQ with matching references.",
+    "Readonly: no source/tests/config/dependency/tracker/workflow-history changes, commits, pushes, models, helpers, reloads, forks, resets or switches. Preserve parent-owned links and unrelated user changes.",
+    "Only write your own assessment JSON. Parent validates it and writes receipts/review artifacts. Do not read or run a finalizer and do not spend a model turn formatting receipts.",
+    "The parent supplies completed actual exact-source suite, compiler and corrected native verification before startup. No job is pending. Independently inspect their evidence and both actual completed axes; do not repeat unchanged-source passing commands or run the previous failed harness. Verify commit/tree/diff identity with real commands. Follow-up source/evidence reads: one necessary range at most60lines per turn, combined output below8000bytes. Do not batch or reread preloaded data.",
+    "Independently assess the full eight-file source, relevant invariants and all13 criteria; reconcile the actual independent Standards and complete Spec reports printed by the runner. No ticket06 design or optional-style blockers.",
+    "Each blocking finding requires id,severity,adr or NO ADR,file,line,description,required_change,validation_command,blocking_reason. A completed FAILURE needs an actual blocker; unavailable analysis is blocked, not an empty completed FAILURE.",
+    "Once assigned analysis is complete, immediately write its actual assessment JSON. No extra exploratory reads afterward. Then goal.complete only if the scope is actually complete; finish all owned writes before it. Do not fake completion.",
+    "Hard full-session ceiling250000 includes all input+output+cacheWrite and auxiliary model_usage, excludes cacheRead. The verified guard is unchanged; native working budget200000 is not extra allowance."
+  ],
+  "assessment": {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/assessment.json",
+    "fields": [
+      "source_commit",
+      "source_tree",
+      "status: completed or blocked",
+      "verdict: SUCCESS or FAILURE",
+      "findings with required blocker metadata",
+      "summary",
+      "standards_assessment: actual49 reconciled",
+      "spec_assessment: actual58 reconciled",
+      "validation: reviewed actual recorded commands/outcomes, clearly attribute parent execution",
+      "limitations",
+      "cleanup"
+    ],
+    "note": "SUCCESS requires completed independent source inspection, both exact-source axes SUCCESS and completed passing real suite/compiler/native proof. Parent execution is actual evidence, not a command run by this reviewer. Do not invent unavailable verification or source blockers. Write actual assessment immediately when complete; parent handles formatting."
+  },
+  "goal": {
+    "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+    "dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0182.yaml",
+    "cycle_number": 20,
+    "session_ceiling": 250000,
+    "working_budget": 200000,
+    "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237"
+  },
+  "session": {
+    "name": "ux05-review-main-c20",
+    "pane": "w8D:p2",
+    "workspace": "w8D"
+  }
+}

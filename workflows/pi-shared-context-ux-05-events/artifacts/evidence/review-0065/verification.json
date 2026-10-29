@@ -1,0 +1,188 @@
+{
+  "status": "passed",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "source_unchanged": true,
+  "executed_by": {
+    "suite_compiler": "Independent main review cycle19 through its actual runner",
+    "native": "Parent coordinator before fresh final main cycle20; no provider or helper AI prompt"
+  },
+  "suite": {
+    "source_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/checks-result.json",
+    "name": "suite",
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "--install=fallback",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+    "exit_code": 0,
+    "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+    "stderr": "\n 147 pass\n 0 fail\n 2061 expect() calls\nRan 147 tests across 12 files. [11.57s]\n"
+  },
+  "compiler": {
+    "source_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/checks-result.json",
+    "name": "compiler",
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "-p",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/scoped-tsconfig.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "native": {
+    "command": [
+      "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/run-native-review-v3.mjs",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/native-config-v3.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+    "exit_code": 0,
+    "source_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/native-check-result.json",
+    "status": "passed",
+    "observations": [
+      {
+        "mode": "color",
+        "cols": 40,
+        "rows": 12,
+        "state": "loading",
+        "label": "Loading history…",
+        "canonicalTicket": "T",
+        "realReadHeld": true
+      },
+      {
+        "mode": "color",
+        "cols": 80,
+        "rows": 24,
+        "state": "loading",
+        "label": "Loading history…",
+        "canonicalTicket": "T",
+        "realReadHeld": true
+      },
+      {
+        "mode": "color",
+        "cols": 120,
+        "rows": 40,
+        "state": "loading",
+        "label": "Loading history…",
+        "canonicalTicket": "T",
+        "realReadHeld": true
+      },
+      {
+        "mode": "color",
+        "cols": 120,
+        "rows": 40,
+        "state": "ready",
+        "canonicalTicket": "T",
+        "event": "review-rejected"
+      },
+      {
+        "mode": "color",
+        "cols": 120,
+        "rows": 40,
+        "state": "detail",
+        "execution": "completed",
+        "verdict": "FAILURE",
+        "bodyBeforeExtendedMetadata": true
+      },
+      {
+        "mode": "color",
+        "cols": 120,
+        "rows": 40,
+        "state": "return",
+        "selectedEvent": "review-rejected"
+      },
+      {
+        "mode": "mono",
+        "cols": 40,
+        "rows": 12,
+        "state": "loading",
+        "label": "Loading history…",
+        "canonicalTicket": "T",
+        "realReadHeld": true
+      },
+      {
+        "mode": "mono",
+        "cols": 80,
+        "rows": 24,
+        "state": "loading",
+        "label": "Loading history…",
+        "canonicalTicket": "T",
+        "realReadHeld": true
+      },
+      {
+        "mode": "mono",
+        "cols": 120,
+        "rows": 40,
+        "state": "loading",
+        "label": "Loading history…",
+        "canonicalTicket": "T",
+        "realReadHeld": true
+      },
+      {
+        "mode": "mono",
+        "cols": 120,
+        "rows": 40,
+        "state": "ready",
+        "canonicalTicket": "T",
+        "event": "review-rejected"
+      },
+      {
+        "mode": "mono",
+        "cols": 120,
+        "rows": 40,
+        "state": "detail",
+        "execution": "completed",
+        "verdict": "FAILURE",
+        "bodyBeforeExtendedMetadata": true
+      },
+      {
+        "mode": "mono",
+        "cols": 120,
+        "rows": 40,
+        "state": "return",
+        "selectedEvent": "review-rejected"
+      }
+    ],
+    "cleanup": [
+      {
+        "mode": "color",
+        "gateExit": 0,
+        "nativeExit": 0,
+        "close": {
+          "exit_code": 0
+        }
+      },
+      {
+        "mode": "mono",
+        "gateExit": 0,
+        "nativeExit": 0,
+        "close": {
+          "exit_code": 0
+        }
+      }
+    ],
+    "temporary_root_removed": "/tmp/ux05-loading-check-V77w13"
+  },
+  "prior_failures_preserved": [
+    "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0061/native-check-result.json"
+  ],
+  "limitations": [
+    "No provider prompt or workflow action was sent.",
+    "Native text/JSON/HTML/spans/SVG are retained; SVG fallback glyphs do not prove glyph or colour conformance.",
+    "This check covers loading, release, completed review rejection, body-first detail and selected-event return. Suite/compiler results are recorded separately."
+  ]
+}
