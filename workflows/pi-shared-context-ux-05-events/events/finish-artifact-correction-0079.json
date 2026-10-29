@@ -1,0 +1,107 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "phase": "finish",
+  "attempt": 2,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "source_branch": "feature/pi-shared-context-ux-05-events",
+  "base_branch": "master",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0188.yaml",
+  "consumes_agent_session_cycle": false,
+  "ticket_agent_cycles_consumed": 20,
+  "review_receipt": "review-0065",
+  "review_receipt_ref": "workflows/pi-shared-context-ux-05-events/events/review-0065.json",
+  "reviewed_source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "reviewed_source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "review_artifact_ref": "workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0065.md",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "base_before": "e363e0244c4a1c5b32559bf15cfa28b6dfc19f62",
+  "expected_merge_tree": "8e8cf0aa4d247a0577dd9bd8d8e9d2a8a71c9d08",
+  "merged_commit": "9511dc0c0319dca997575eedc0e4c6423c93a80d",
+  "merged_tree": "8e8cf0aa4d247a0577dd9bd8d8e9d2a8a71c9d08",
+  "merged_parents": [
+    "e363e0244c4a1c5b32559bf15cfa28b6dfc19f62"
+  ],
+  "review_source_mapping_verified": true,
+  "validation_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/integrated-checks.json",
+  "native_smoke_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/primary-recovery/native-check-result.json",
+  "report_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/report/index.html",
+  "report_validation_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0065/report-browser-proof.json",
+  "receipt_id": "finish-artifact-correction-0079",
+  "parent_receipt": "finish-complete-0078",
+  "created_at": "2026-10-29T06:50:14.639Z",
+  "event": "artifact-correction",
+  "status": "FINISHED",
+  "checkpoint": "finished",
+  "next_step": null,
+  "pushed": true,
+  "ticket_completed": true,
+  "worktree_removed": true,
+  "workspace_closed": true,
+  "source_branch_preserved": true,
+  "integration_branch_removed": true,
+  "ticket_completion_commit": "45613305f56c7d093f51507a5acad5808f8ad628",
+  "remote_observed_head": "45613305f56c7d093f51507a5acad5808f8ad628",
+  "remote_contains_merged_commit": true,
+  "canonical_ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "canonical_work_status": "completed",
+  "cleanup_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/workspace-cleanup.json",
+  "summary": "Exact reviewed source integrated once with verified tree and sole parent. The first primary native input run failed and is preserved; readiness-only recovery passed 147 tests, scoped compiler and twelve actual Pi observations. Integration and canonical completion are on origin/master; owned worktrees and workspace are closed.",
+  "corrects_receipt_ref": "workflows/pi-shared-context-ux-05-events/events/finish-failed-0071.json",
+  "terminal_finish_ref": "workflows/pi-shared-context-ux-05-events/events/finish-complete-0078.json",
+  "correction_scope": "Supply the exact required failure-field names omitted by checkpoint71. No source, execution, review, integration, publication, ticket state, cleanup, or allowance change.",
+  "corrected_failure_fields": {
+    "failure_step": "integrated-native-validation",
+    "failure_reason": "Error: No real workflow read reached the gate.",
+    "worktree_preserved": true,
+    "workspace_preserved": false,
+    "workspace_observation": "Source agent workspace was already closed before finish began; no workspace was stopped or removed by the failed check. Both owned Git worktrees were preserved at failure."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/finish-complete-0078.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/review-0065.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0188.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/finish-artifact-correction-0079.json"
+    }
+  ]
+}

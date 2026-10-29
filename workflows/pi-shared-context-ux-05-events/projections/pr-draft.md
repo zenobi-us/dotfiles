@@ -125,4 +125,9 @@ Standards, complete Spec and final main review passed for the exact reviewed sou
 | [finish-worktree-removed-0076](../events/finish-worktree-removed-0076.json) | finish | FINISHING |
 | [finish-result-0077](../events/finish-result-0077.json) | finish | FINISHED |
 | [finish-complete-0078](../events/finish-complete-0078.json) | finish | FINISHED |
+| [finish-artifact-correction-0079](../events/finish-artifact-correction-0079.json) | finish | FINISHED |
+
+## Failure metadata correction
+
+[Artifact correction79](../events/finish-artifact-correction-0079.json) supplies the required field names omitted by failed checkpoint71. Both owned Git worktrees were preserved at that boundary; the source agent workspace was already closed before finish began. This corrects metadata only. Terminal execution evidence remains [finish-complete78](../events/finish-complete-0078.json).
 
