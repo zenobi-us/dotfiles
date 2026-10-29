@@ -1,5 +1,6 @@
 import { spawn } from "node:child_process";
-import { readRun, waitForRunSignal, writeRunSignal, type RunSignal } from "./signals.ts";
+import { rm } from "node:fs/promises";
+import { readRun, runPromptPath, waitForRunSignal, writeRunSignal, type RunSignal } from "./signals.ts";
 
 export interface WaitOptions {
   runId: string;
@@ -62,13 +63,21 @@ async function waitForHerdr(options: WaitOptions, current: RunSignal): Promise<R
   }
 }
 
+function isTerminal(signal: RunSignal): boolean {
+  return signal.state === "completed" || signal.state === "failed" || signal.state === "cancelled";
+}
+
+// The run has ended, so the agent no longer needs its prompt file.
+async function removePromptWhenEnded(signal: RunSignal | null): Promise<RunSignal | null> {
+  if (signal && isTerminal(signal)) await rm(runPromptPath(signal.runId), { force: true });
+  return signal;
+}
+
 export async function waitForAgent(options: WaitOptions): Promise<RunSignal | null> {
   const { manifest, signal } = await readRun(options.runId);
-  if (signal.sequence > options.afterSequence &&
-      (signal.state === "blocked" || signal.state === "completed" ||
-        signal.state === "failed" || signal.state === "cancelled")) {
-    return signal;
+  if (signal.sequence > options.afterSequence && (signal.state === "blocked" || isTerminal(signal))) {
+    return removePromptWhenEnded(signal);
   }
-  if (manifest.muxer === "herdr") return waitForHerdr(options, signal);
+  if (manifest.muxer === "herdr") return removePromptWhenEnded(await waitForHerdr(options, signal));
   return waitForRunSignal(options.runId, options.afterSequence, options.timeoutMs);
 }

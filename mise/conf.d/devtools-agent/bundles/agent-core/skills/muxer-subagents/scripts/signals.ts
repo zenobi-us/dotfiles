@@ -59,6 +59,12 @@ export function runSignalPath(runId: string): string {
   return join(runDirectory(runId), "signal.json");
 }
 
+// Herdr starts the agent itself, so no launch script deletes the prompt when
+// the agent exits. Keeping it in the run directory ties it to the run's life.
+export function runPromptPath(runId: string): string {
+  return join(runDirectory(runId), "prompt.md");
+}
+
 async function readJson(path: string): Promise<Record<string, unknown>> {
   const parsed: unknown = JSON.parse(await readFile(path, "utf8"));
   if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {

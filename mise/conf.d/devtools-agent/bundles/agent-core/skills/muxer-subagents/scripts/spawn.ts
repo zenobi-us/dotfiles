@@ -7,6 +7,7 @@ import type { Agent, Muxer } from "./types.ts";
 import {
   createRun,
   removeRun,
+  runPromptPath,
   runSignalPath,
   updateRunTarget,
   writeRunSignal,
@@ -264,9 +265,16 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
   const signalFile = runSignalPath(run.runId);
   let directory: string | undefined;
   try {
-    directory = mkdtempSync(join(tmpdir(), "muxer-subagents-"));
-    const handoffFile = join(directory, "prompt.md");
-    writeFileSync(handoffFile, options.prompt, "utf8");
+    // The agent reads `@<prompt>` after it starts. Herdr keeps the prompt until
+    // the run ends; the shell launch of the other muxers deletes it on exit.
+    let handoffFile: string;
+    if (options.muxer === "herdr") {
+      handoffFile = runPromptPath(run.runId);
+    } else {
+      directory = mkdtempSync(join(tmpdir(), "muxer-subagents-"));
+      handoffFile = join(directory, "prompt.md");
+    }
+    writeFileSync(handoffFile, options.prompt, { encoding: "utf8", mode: 0o600 });
     let target: string;
     let agentName: string | undefined;
     if (options.muxer === "herdr") {
@@ -274,7 +282,6 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
       target = herdrTarget.target;
       agentName = herdrTarget.agentName;
       await writeRunSignal(run.runId, "running", "launcher");
-      rmSync(directory, { recursive: true, force: true });
     } else if (options.muxer === "tmux") {
       target = spawnTmux(options.agent, options.cwd, handoffFile, options.depth, run.runId, signalFile);
     } else if (options.muxer === "zellij") {
