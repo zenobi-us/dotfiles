@@ -1,0 +1,38 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T20-55-16-292Z_01a18972-1044-7195-8013-abf5f69ed6b7.jsonl",
+  "session_id": "01a18972-1044-7195-8013-abf5f69ed6b7",
+  "goal_id": "15b9aa0846cbe8e3",
+  "native_status": "active",
+  "native_goal_used": 56496,
+  "native_goal_budget": 200000,
+  "raw_usage": {
+    "input": 55758,
+    "output": 738,
+    "cacheWrite": 0,
+    "cacheRead": 506496
+  },
+  "assistant_entries": 18,
+  "auxiliary_model_usage_entries": 0,
+  "provider_work_tokens": 56496,
+  "session_ceiling": 250000,
+  "under_cap": true,
+  "reported_provider_work_tokens": 56496,
+  "accounting_complete": true,
+  "unsettled_request": null,
+  "conservative_work_upper_bound": 56496,
+  "under_cap_basis": "All admitted requests settled with reported usage.",
+  "bound_violation": false,
+  "transport": {
+    "guard_sha256": "5ebdb66415a5efb5eb549f84b1465216f8d2448faa13bd19b15e17afa58d81f0",
+    "live_provider_accepted": true,
+    "all_actual_admissions_serialized_parallel_false": true,
+    "maximum_tool_calls_per_assistant": 1,
+    "admitted": 16,
+    "settled": 16,
+    "stopped_next_reservation": 196110,
+    "stopped_next_total": 252606,
+    "ceiling": 250000,
+    "assessment_complete": false,
+    "valid_source_verdict": false
+  }
+}

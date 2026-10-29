@@ -1,0 +1,503 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+index 56ff3033..bfb9ff69 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+@@ -203,7 +203,6 @@ test("removing the active queue action target closes its menu and selects a surv
+   await f.component.load();
+   expect(f.view()).not.toContain("Open a fresh chat");
+   expect(f.view()).toContain("Ticket queues");
+-  expect(f.view()).toContain("removed");
+   await f.modal.handleInput("m");
+   const result = f.result();
+   if (result?.kind !== "session" || result.request.target.kind !== "ticket") throw new Error("Expected surviving queue target");
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+index 8bf6e9b0..1db09b22 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+@@ -4,7 +4,7 @@ import type { Theme } from "@earendil-works/pi-coding-agent";
+ import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
+ import { actionChoices } from "./actions";
+ import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+-import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
++import { chronologicalReceipts, isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+ import { safeTerminalText } from "./terminal-text";
+ import type { ExplorerEvent } from "./model";
+ import { DirectoryMonitor, type WatchTarget } from "./watch";
+@@ -12,7 +12,7 @@ import { DirectoryMonitor, type WatchTarget } from "./watch";
+ type Screen = "home" | "queues" | "initiatives" | "tickets" | "receipts" | "actions";
+ type Queue = "ready" | "review" | "blocked" | "all";
+ type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
+-type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
++type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string; next?: string; activity?: string } };
+ type Pane = { id: string; title: string; rows: Row[] };
+ 
+ // The reader replaces content, not navigation. Keep its origin intact so returning
+@@ -31,6 +31,9 @@ export interface ExplorerNavigation {
+   homeIndex?: number;
+   itemOrigin?: "initiatives" | "queues";
+   queueIndex?: number;
++  queueSelections?: [Queue, { identity?: string; index: number }][];
++  initiativeMemory?: { initiativeId?: string; ticketId?: string; receiptId?: string };
++  childSelections?: [string, string][];
+   reader?: DescriptionReader;
+ }
+ 
+@@ -75,6 +78,8 @@ export class GraphExplorer {
+   private queueIndex = 0;
+   private itemOrigin: "initiatives" | "queues" = "initiatives";
+   private childSelections = new Map<string, string>();
++  private queueSelections = new Map<Queue, { identity?: string; index: number }>();
++  private initiativeMemory?: ExplorerNavigation["initiativeMemory"];
+   private breadcrumbIndex = 0;
+   private breadcrumbHits: { x: number; y: number; width: number; index: number }[] = [];
+   private active = true;
+@@ -124,6 +129,9 @@ export class GraphExplorer {
+     this.queueIndex = navigation?.queueIndex ?? 0;
+     this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
+     this.reader = navigation?.reader;
++    this.queueSelections = new Map(navigation?.queueSelections ?? []);
++    this.initiativeMemory = navigation?.initiativeMemory;
++    this.childSelections = new Map(navigation?.childSelections ?? []);
+   }
+ 
+   async load(): Promise<void> {
+@@ -210,7 +218,8 @@ export class GraphExplorer {
+             this.screen = "home";
+             this.focus = "list";
+           }
+-          if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
++          if ((logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "queues") this.initiativeId = snapshot.initiatives.find(initiative => initiative.ticketIds.includes(this.ticketId ?? ""))?.id;
++          else if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
+           // A remembered child is not the active target in home or queue action menus.
+           const removedTarget = selected?.kind === "ticket" && !snapshot.tickets.some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
+           if (removedTarget) {
+@@ -246,7 +255,9 @@ export class GraphExplorer {
+           }
+           this.scopeKey = "";
+           this.updateWatchScope();
++          this.receiptChecks = this.workflows.size;
+           this.ticketStates.clear();
++          this.reconcileQueues();
+           this.restoreHomeSelection(selected);
+         }
+         this.loading = false;
+@@ -265,8 +276,8 @@ export class GraphExplorer {
+             if (this.disposed) return;
+             const selected = initial ? undefined : this.target();
+             const previous = this.workflows.get(ticket.id);
+-            if (workflow.error && !workflow.events?.length && previous?.events?.length) {
+-              workflow = { ...previous, sourceCommit: undefined, sourceTree: undefined, error: `History refresh failed; showing last readable history. ${workflow.error}` };
++            if (workflow.error && !workflow.events?.length && !workflow.receipts.length && previous && (previous.events?.length || previous.receipts.length)) {
++              workflow = { ...previous, sourceCommit: workflow.sourceCommit, sourceTree: workflow.sourceTree, error: `History refresh failed; showing last readable history. ${workflow.error}` };
+             }
+             this.workflows.set(ticket.id, workflow);
+             if (ticket.id === this.ticketId && (!this.receiptId || !(workflow.events ?? workflow.receipts).some(event => event.id === this.receiptId))) {
+@@ -280,6 +291,7 @@ export class GraphExplorer {
+             }
+             this.ticketStates.clear();
+             this.receiptChecks = this.workflows.size;
++            this.reconcileQueues();
+             this.restoreHomeSelection(selected);
+             this.options.requestRender();
+           }
+@@ -304,14 +316,56 @@ export class GraphExplorer {
+ 
+   private restoreHomeSelection(target: ExplorerTarget | undefined): void {
+     const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+-    if (screen !== "home" && screen !== "queues") return;
+-    const rows = screen === "home" ? this.homeRows() : this.queueRows();
++    if (screen === "queues") { this.reconcileQueues(); return; }
++    if (screen !== "home") return;
++    const rows = this.homeRows();
+     const index = target ? rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref === (target.kind === "ticket" && target.ticket.ref) : row.target.initiative.ref === (target.kind === "initiative" && target.initiative.ref))) : -1;
+-    const previous = screen === "home" ? this.homeIndex : this.queueIndex;
++    const previous = this.homeIndex;
+     const next = index >= 0 ? index : Math.max(0, Math.min(previous, rows.length - 1));
+     if (target && index < 0) this.notice = "Selected record was removed from this view. Selected a nearby record.";
+-    if (screen === "home") this.homeIndex = next;
+-    else this.queueIndex = next;
++    this.homeIndex = next;
++  }
++
++  private queueIdentity(target: ExplorerTarget | undefined): string | undefined {
++    return target?.kind === "ticket" ? JSON.stringify([target.ticket.backend, target.ticket.ref]) : undefined;
++  }
++
++  private selectQueue(index: number): void {
++    const rows = this.queueRows();
++    this.queueIndex = Math.max(0, Math.min(index, rows.length - 1));
++    this.queueSelections.set(this.queue, { index: this.queueIndex, identity: this.queueIdentity(rows[this.queueIndex]?.target) });
++  }
++
++  private reconcileQueues(): void {
++    for (const [queue, saved] of this.queueSelections) {
++      if (queue !== "all" && this.snapshot && this.receiptChecks < this.snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").length) continue;
++      const rows = this.queueRows(queue);
++      const index = saved.identity ? rows.findIndex(row => this.queueIdentity(row.target) === saved.identity) : -1;
++      const next = index >= 0 ? index : Math.max(0, Math.min(saved.index, rows.length - 1));
++      if (saved.identity && index < 0 && queue === this.queue) this.notice = "Selected ticket left this queue. Selected a nearby ticket or an empty queue.";
++      this.queueSelections.set(queue, { index: next, identity: this.queueIdentity(rows[next]?.target) });
++      if (queue === this.queue) this.queueIndex = next;
++    }
++  }
++
++  private openQueue(queue: Queue): void {
++    if (!this.initiativeMemory) this.initiativeMemory = { initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId };
++    this.queue = queue;
++    this.screen = "queues";
++    this.focus = "list";
++    this.reconcileQueues();
++    this.selectQueue(this.queueSelections.get(queue)?.index ?? 0);
++  }
++
++  private returnHome(): void {
++    if (this.initiativeMemory) {
++      this.initiativeId = this.initiativeMemory.initiativeId;
++      this.ticketId = this.initiativeMemory.ticketId;
++      this.receiptId = this.initiativeMemory.receiptId;
++      this.initiativeMemory = undefined;
++    }
++    this.screen = "home";
++    this.itemOrigin = "initiatives";
+   }
+ 
+   private refreshFailed(error: unknown): void {
+@@ -456,7 +510,8 @@ export class GraphExplorer {
+     if (!crumb || index >= this.breadcrumbs().length - 1) return;
+     this.reader = undefined;
+     this.eventDetail = false;
+-    this.screen = crumb.screen;
++    if (crumb.screen === "home") this.returnHome();
++    else this.screen = crumb.screen;
+     this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
+     this.options.requestRender();
+   }
+@@ -502,14 +557,14 @@ export class GraphExplorer {
+       this.options.done({ kind: "files", navigation: this.navigation() });
+       return;
+     }
+-    if (matchesKey(data, "shift+r")) {
++    if (data === "R" || matchesKey(data, "shift+r")) {
+       void this.load();
+       return;
+     }
+     if (matchesKey(data, "home") || matchesKey(data, "h")) {
+       this.reader = undefined;
+       this.eventDetail = false;
+-      this.screen = "home";
++      this.returnHome();
+       this.focus = "list";
+       this.notice = "";
+       this.options.requestRender();
+@@ -530,10 +585,10 @@ export class GraphExplorer {
+         focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
+       }
+       else if (this.screen === "tickets") this.screen = this.itemOrigin;
+-      else if (this.screen === "initiatives" || this.screen === "queues") this.screen = "home";
++      else if (this.screen === "initiatives" || this.screen === "queues") this.returnHome();
+       else { if (matchesKey(data, "escape") && this.options.projects) this.options.projects(); else this.options.done(undefined); return; }
+       this.focus = focus;
+-      this.notice = "";
++      if (this.screen !== "queues") this.notice = "";
+       this.options.requestRender();
+       return;
+     }
+@@ -541,9 +596,7 @@ export class GraphExplorer {
+     if (this.screen === "home" || this.screen === "queues") {
+       const filter = ([["5", "ready"], ["6", "review"], ["7", "blocked"], ["8", "all"]] as const).find(([key]) => matchesKey(data, key))?.[1];
+       if (filter) {
+-        this.queue = filter;
+-        this.screen = "queues";
+-        this.queueIndex = 0;
++        this.openQueue(filter);
+         this.options.requestRender();
+         return;
+       }
+@@ -596,11 +649,11 @@ export class GraphExplorer {
+       } else if (this.screen === "home") {
+         this.homeIndex = Math.max(0, Math.min(this.homeRows().length - 1, this.homeIndex + delta));
+       } else if (this.screen === "queues") {
+-        this.queueIndex = Math.max(0, Math.min(this.queueRows().length - 1, this.queueIndex + delta));
++        this.selectQueue(this.queueIndex + delta);
+       } else if (this.screen === "initiatives" || this.screen === "tickets") {
+         const ids = this.scopes.get(this.initiativeId ?? "") ?? [];
+         this.ticketId = ids[Math.max(0, Math.min(ids.length - 1, ids.indexOf(this.ticketId ?? "") + delta))];
+-        if (this.ticketId && this.initiativeId) this.childSelections.set(this.initiativeId, this.ticketId);
++        if (this.ticketId && this.initiativeId && this.itemOrigin !== "queues") this.childSelections.set(this.initiativeId, this.ticketId);
+       } else {
+         const receipts = this.history();
+         const index = Math.max(0, receipts.findIndex(receipt => receipt.id === this.receiptId));
+@@ -634,6 +687,7 @@ export class GraphExplorer {
+         if (target?.kind === "initiative") {
+           this.initiativeId = target.initiative.id;
+           const saved = this.childSelections.get(this.initiativeId);
++          this.itemOrigin = "initiatives";
+           this.ticketId = saved && target.initiative.ticketIds.includes(saved) ? saved : target.initiative.ticketIds[0];
+           this.screen = "initiatives";
+           focus = "list";
+@@ -815,7 +869,16 @@ export class GraphExplorer {
+ 
+   private panes(): Pane[] {
+     if (this.loading || this.error || !this.snapshot) return [{ id: "state", title: "Shared context", rows: [{ text: this.loading ? "Loading tracker records…" : this.error || "No snapshot loaded.", tone: this.error ? "error" : "muted" }, { text: "R reload · b browse files · q close", tone: "muted" }] }];
+-    if (this.screen === "actions") return [{ id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" : "text", selected: index === this.actionIndex })) }];
++    if (this.screen === "actions") {
++      const target = this.target();
++      const record = target?.kind === "ticket" ? target.ticket : target?.initiative;
++      return [{
++        id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: [
++          { text: record ? `Target: ${record.id} · ${record.ref}` : "No selection", tone: "accent" },
++          ...this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" as const : "text" as const, selected: index === this.actionIndex })),
++        ]
++      }];
++    }
+     if (this.screen === "home") return [{ id: "home", title: "Initiatives · title / phase / Items", rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
+     if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
+     if (this.screen === "initiatives") return [this.graphPane()];
+@@ -899,18 +962,28 @@ export class GraphExplorer {
+     }));
+   }
+ 
+-  private queueRows(): Row[] {
++  private queueRows(queue: Queue = this.queue): Row[] {
+     if (!this.snapshot) return [];
+     const rows: Row[] = [];
+     const ticketCount = this.snapshot.tickets.reduce((count, ticket) => count + Number(recordKind(ticket) === "ticket"), 0);
+     for (const ticket of this.snapshot.tickets) {
+       if (recordKind(ticket) !== "ticket") continue;
+-      if (this.queue !== "all" && this.receiptChecks < ticketCount) continue;
++      if (queue !== "all" && this.receiptChecks < ticketCount) continue;
+       const state = this.ticketState(ticket);
+-      const inQueue = this.queue === "all" || this.queue === "ready" && state === "READY" || this.queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || this.queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
+-      if (inQueue) rows.push(this.childRow(ticket, false));
++      const inQueue = queue === "all" || queue === "ready" && state === "READY" || queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
++      if (inQueue) {
++        const row = this.childRow(ticket, false);
++        const workflow = this.workflows.get(ticket.id);
++        const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot, workflow, this.options.commands());
++        const reason = this.options.context.checkoutAvailable === false ? "No usable checkout." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state." : "");
++        const next = choices.find(choice => choice.action !== "ask-matt" && !choice.disabledReason);
++        row.fields!.next = reason ? `Unavailable: ${reason}` : next?.label ?? (workflow ? "No worktree transition available" : "Checking workflow receipts");
++        const latest = workflow?.recordedAttempts && !workflow.error && workflow.ticketId === ticket.id ? chronologicalReceipts(workflow.receipts).at(-1) : undefined;
++        row.fields!.activity = latest ? `${latest.phase} · ${latest.status} (${latest.id})` : workflow?.error ? "Unavailable; refresh workflow receipts" : workflow ? "No validated activity recorded" : "Checking workflow receipts";
++        rows.push(row);
++      }
+     }
+-    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : `No tickets in ${this.queue}. Choose 8 for all tickets.`, tone: "muted" });
++    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : queue === "all" ? "No tickets recorded. R refresh · h initiatives · b Files." : `No tickets in ${queue}. Choose 8 for all tickets · R refresh · h initiatives.`, tone: "muted" });
+     return rows;
+   }
+ 
+@@ -936,7 +1009,7 @@ export class GraphExplorer {
+       const summary = initiative.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
+       rows.unshift({ text: `${initiative.id} · Phase: ${initiative.phase ?? "unavailable"}`, tone: "accent" }, { text: `Summary: ${summary ?? "No recorded summary."}`, tone: "muted" });
+     }
+-    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Collection"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
++    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Ungrouped"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
+   }
+ 
+   private ticketRows(): Row[] {
+@@ -1048,7 +1121,7 @@ export class GraphExplorer {
+   }
+ 
+   private navigation(): ExplorerNavigation {
+-    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };
++    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader, queueSelections: [...this.queueSelections], initiativeMemory: this.initiativeMemory, childSelections: [...this.childSelections] };
+   }
+ 
+   private focusedPane(panes: Pane[]): Pane | undefined {
+@@ -1124,6 +1197,8 @@ export class GraphExplorer {
+       if (count) lines.push(...wrapTextWithAnsi(count, width).map(line => th.fg("muted", line)));
+     }
+     if (isInitiative) lines.push(...wrapTextWithAnsi(identity, width).map(line => th.fg("muted", line)));
++    if (fields.next) lines.push(...wrapTextWithAnsi(this.clean(`Next: ${fields.next}`), width).map(line => th.fg("accent", line)));
++    if (fields.activity) lines.push(...wrapTextWithAnsi(this.clean(`Recorded: ${fields.activity}`), width).map(line => th.fg("muted", line)));
+     if (fields.supporting) lines.push(...wrapTextWithAnsi(this.clean(fields.supporting), width).map(line => th.fg("muted", line)));
+     return lines;
+   }
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts
+new file mode 100644
+index 00000000..bab51f78
+--- /dev/null
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts
+@@ -0,0 +1,166 @@
++// Exercise queue behavior through the complete modal, including canonical action targets.
++import { expect, test } from "bun:test";
++import type { Theme } from "@earendil-works/pi-coding-agent";
++import { stripTerminalSequences, visibleWidth } from "@earendil-works/pi-tui";
++import { GraphExplorer, type ExplorerResult } from "./explorer";
++import { SharedContextModal } from "./modal";
++import type { ExplorerReceipt, ExplorerSnapshot, SharedAgentContext, TicketWorkflow } from "./model";
++
++const theme = { fg: (_: string, text: string) => text, bg: (_: string, text: string) => text } as Theme;
++const context = { repositoryRoot: "/projects/example", mode: "repository" } as SharedAgentContext;
++const ticket = (id: string, status = "open", blockedBy: string[] = []) => ({ id, title: `Work ${id} 界 👩‍💻`, status, blockedBy, documentType: "enhancement", backend: "local-markdown", ref: `tracker/tickets/${id}.md`, body: `Canonical body ${id}` });
++const receipt = (id: string, phase = "implementation", status = "completed"): ExplorerReceipt => ({ id, phase, status, ref: `workflows/T/events/${id}.yaml`, workflowId: "T", sourceCommit: "abc", sourceTree: "def", createdAt: "2026-10-29T01:00:00Z", workspacePath: "/work/T", sourceBranch: "feature/T", baseBranch: "main", outputs: [], fields: {}, body: "" });
++
++async function fixture() {
++  let snapshot: ExplorerSnapshot = { backend: "local-markdown", tickets: [ticket("A"), ticket("T", "claimed"), ticket("B", "open", ["missing"]), ticket("U")], initiatives: [{ id: "I", title: "Initiative only", ref: "tracker/initiatives/I/index.md", ticketIds: ["A", "T", "B"], body: "Initiative scope" }] };
++  const workflows = new Map<string, TicketWorkflow>(snapshot.tickets.map(t => [t.id, { ticketId: t.id, receipts: [], recordedAttempts: { review: 0, fix: 0 } }]));
++  workflows.set("T", { ticketId: "T", receipts: [receipt("implemented")], recordedAttempts: { review: 0, fix: 0 }, sourceCommit: "abc", sourceTree: "def" });
++  let failure = false;
++  let loads = 0;
++  let height = 40;
++  let result: ExplorerResult;
++  const graph = new GraphExplorer({
++    context, theme, exec: async () => ({ stdout: "", code: 0 }), done: value => { result = value; }, requestRender: () => { }, height: () => height, live: false,
++    commands: () => [{ name: "skill:worktree" }, { name: "skill:ask-matt" }], loadSnapshot: async () => { loads++; if (failure) throw new Error("store unavailable"); return structuredClone(snapshot); }, loadWorkflow: async (_, t) => structuredClone(workflows.get(t.id) ?? { ticketId: t.id, receipts: [] }),
++  });
++  await graph.load();
++  const modal = new SharedContextModal(context, theme, graph, { render: () => ["Independent Files cursor"], handleInput: () => { } }, () => { });
++  return { graph, modal, workflows, snapshot: () => snapshot, replace: (next: ExplorerSnapshot) => { snapshot = next; }, fail: (value: boolean) => { failure = value; }, loads: () => loads, result: () => result, height: (value: number) => { height = value; }, view: (width = 120) => modal.render(width).map(stripTerminalSequences).join("\n"), key: (key: string) => modal.handleInput(key) };
++}
++
++test("four queues separate status, next action, recorded activity, and canonical targets", async () => {
++  const f = await fixture();
++  try {
++    await f.key("5");
++    expect(f.view()).toContain("Ticket queues · ready");
++    expect(f.view()).toContain("Work A");
++    expect(f.view()).not.toContain("Initiative only");
++    expect(f.view()).not.toContain("Work T");
++    expect(f.view()).toContain("Next: Start worktree");
++    await f.key("6");
++    expect(f.view()).toContain("Ticket queues · review");
++    expect(f.view()).toContain("State: claimed");
++    expect(f.view()).toContain("Next: Review");
++    expect(f.view()).toContain("Recorded: implementation · completed");
++    expect(f.view()).not.toContain("review · running");
++    await f.key("a");
++    expect(f.view()).toContain("Target: T · tracker/tickets/T.md");
++    await f.key("r");
++    const result = f.result();
++    expect(result?.kind).toBe("session");
++    if (result?.kind !== "session") throw new Error("Missing Review request");
++    expect(result.request.action).toBe("review");
++    expect(result.request.target).toMatchObject({ kind: "ticket", ticket: { id: "T", ref: "tracker/tickets/T.md" } });
++    await f.key("\x1b");
++    await f.key("7");
++    expect(f.view()).toContain("Work B");
++    expect(f.view()).toContain("Waiting for missing");
++    await f.key("a");
++    expect(f.view()).toContain("Unresolved or missing direct blockers");
++    await f.key("\x1b");
++    await f.key("8");
++    for (const id of ["A", "T", "B", "U"]) expect(f.view()).toContain(`Work ${id}`);
++  } finally { f.graph.dispose(); }
++});
++
++test("queue drill and Return retain selection, viewport, initiative child, and Files state", async () => {
++  const f = await fixture();
++  try {
++    await f.key("\r");
++    await f.key("\x1b[B");
++    await f.key("h");
++    await f.key("8");
++    await f.key("\x1b[B");
++    const origin = f.view();
++    await f.key("\r");
++    expect(f.view()).toContain("Canonical body T");
++    expect(f.view()).toContain("I");
++    await f.key("\x1b");
++    expect(f.view()).toBe(origin);
++    await f.key("2");
++    expect(f.view()).toContain("Independent Files cursor");
++    await f.key("1");
++    expect(f.view()).toBe(origin);
++    await f.key("\x1b[B");
++    await f.key("\x1b[B");
++    await f.key("\r");
++    expect(f.view()).toContain("Ungrouped");
++    expect(f.view()).toContain("Canonical body U");
++    await f.key("h");
++    await f.key("\r");
++    await f.key("\r");
++    expect(f.view()).toContain("Canonical body T");
++  } finally { f.graph.dispose(); }
++});
++
++test("live queue membership preserves identity and explains departure; refresh errors retain data and restrict actions", async () => {
++  const f = await fixture();
++  try {
++    await f.key("5");
++    await f.key("\x1b[B");
++    f.snapshot().tickets.unshift(ticket("NEW"));
++    await f.graph.load();
++    await f.key("a");
++    expect(f.view()).toContain("Target: U · tracker/tickets/U.md");
++    await f.key("\x1b");
++    f.snapshot().tickets.find(t => t.id === "U")!.status = "completed";
++    await f.graph.load();
++    expect(f.view()).toContain("left this queue");
++    await f.key("a");
++    expect(f.view()).toContain("Target: A · tracker/tickets/A.md");
++    await f.key("\x1b");
++    f.fail(true);
++    await f.key("R");
++    await new Promise(resolve => setTimeout(resolve, 0));
++    expect(f.view()).toContain("Work A");
++    expect(f.view()).toContain("store unavailable");
++    await f.key("a");
++    expect(f.view()).toContain("Live refresh failed");
++    await f.key("s");
++    expect(f.result()).toBeUndefined();
++    expect(f.loads()).toBeGreaterThan(2);
++  } finally { f.graph.dispose(); }
++});
++
++test("empty queues have recovery but no action menu and All uses 8", async () => {
++  const f = await fixture();
++  try {
++    f.replace({ backend: "local-markdown", tickets: [], initiatives: [] });
++    await f.graph.load();
++    await f.key("6");
++    expect(f.view()).toContain("No tickets in review");
++    expect(f.view()).toContain("Choose 8");
++    await f.key("a");
++    expect(f.view()).not.toContain("Open a fresh chat");
++    await f.key("8");
++    expect(f.view()).toContain("No tickets recorded");
++    expect(f.view()).not.toContain("Loading");
++    await f.key("r");
++    expect(f.result()).toBeUndefined();
++  } finally { f.graph.dispose(); }
++});
++
++test("queue fields reflow in monochrome with Unicode and terminal-control sanitization", async () => {
++  const f = await fixture();
++  try {
++    f.snapshot().tickets[0]!.title += "\x1b[2J\x1b]0;hostile\x07 END";
++    await f.graph.load();
++    await f.key("5");
++    for (const [width, height] of [[40, 9], [80, 21], [120, 37]]) {
++      f.height(height!);
++      const pages: string[] = [];
++      for (let page = 0; page < 5; page++) {
++        const view = f.view(width);
++        expect(view.split("\n").every(line => visibleWidth(line) <= width!)).toBe(true);
++        expect(view).not.toContain("hostile");
++        pages.push(view);
++        await f.key("\x1b[6~");
++      }
++      const content = pages.join("\n");
++      expect(content).toContain("tracker/tickets/A.md");
++      expect(content).toContain("State: open");
++      expect(content).toContain("Next: Start worktree");
++      expect(content).toContain("Recorded:");
++    }
++  } finally { f.graph.dispose(); }
++});
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md b/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+index 590bfde8..c318f440 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+@@ -268,6 +268,10 @@ The > marker identifies a focused selection. The ◇ marker identifies an inacti
+ Use Tab and Shift+Tab to focus ancestors, panes, and workspace controls. Press Enter or Space on an ancestor, or click it, to return directly.
+ Esc returns one level and restores the parent selection and scroll position. In compact terminals, returning from Events with Esc or the ticket ancestor shows the overview at its saved reading position. Live updates retain canonical selection; removal explains the new selection. If a child leaves its initiative while a reader or action menu is open, return to a nearby child or the empty parent before another action. Removing an unrelated initiative does not change the active ticket queue. Removing an inactive remembered child also leaves unrelated queue and home initiative action menus open on their canonical targets.
+ Press 5 for Ready, 6 for Review, 7 for Blocked, or 8 for All to open the separate ticket queues. Press h to return to initiatives.
++Queue headings and active controls identify the selected queue. Queues contain tickets only; initiative navigation keeps its own selection and scroll position.
++Queue rows separate type, stable ID, title, and canonical ticket state. Next shows the eligible action; Recorded shows the phase and status from a validated workflow receipt. Review readiness does not mean a review is running.
++Press Enter on a queue ticket to open its canonical detail in its initiative or Ungrouped context. Return navigation restores the queue selection and scroll position.
++In an empty filtered queue, press 8 to open All or h to return to initiatives. Empty queues offer no ticket actions. Available actions identify their canonical target and explain disabled reasons.
+ Uppercase R refreshes. Lowercase r retains its existing Review action. The a action menu and direct action keys keep their existing safety checks.
+ Loading, empty collections, unreadable records, and refresh failures have distinct messages. A failed refresh retains readable content and blocks unsafe transitions.
+ `/shared-context files` opens the independent Files workspace. Files keeps its path-insertion behavior.

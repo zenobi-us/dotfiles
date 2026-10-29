@@ -1,0 +1,162 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-06-queues",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues"
+  },
+  "receipt_id": "bounded-review-inputs-prepared-0051",
+  "parent_receipt": "review-spec-complete-0050",
+  "phase": "review",
+  "attempt": 3,
+  "event": "bounded-review-inputs-prepared",
+  "created_at": "2026-10-29T21:16:16.748Z",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "source_dirty": false,
+  "source_committed": true,
+  "status": "prepared",
+  "muxer": "herdr",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "pane_id": "w64:pT",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051",
+    "publication": "repository"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "budget_scope": "coordinator",
+  "agent_session_cycle_consumption": 0,
+  "code_stage_completed": true,
+  "valid_source_verdict": false,
+  "independent_source_reviews_completed": 0,
+  "current_ticket_cycles_consumed": 14,
+  "current_ticket_cycle_limit": 15,
+  "current_dispatches_reserved": 60,
+  "current_dispatch_cap": 62,
+  "required_user_authority": null,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "per_session_work_cap_unchanged": 250000,
+  "pending_gate": "explicit_15cycle_62dispatch_renewal_and_single_call_guard_activation",
+  "source_worktree_preserved": true,
+  "source_workspace_preserved": false,
+  "source_workspace_id": null,
+  "owned_dependency_links_preserved": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/typescript",
+      "target": "/tmp/ux02-deps/node_modules/typescript"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@earendil-works/pi-tui",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@earendil-works/pi-coding-agent",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@crustjs/core",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/core"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@crustjs/plugins",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@types/bun",
+      "target": "/tmp/ux02-deps/node_modules/@types/bun"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@types/node",
+      "target": "/tmp/ux02-deps/node_modules/@types/node"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/bun-types",
+      "target": "/tmp/ux02-deps/node_modules/bun-types"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/yaml",
+      "target": "/tmp/ux02-deps/node_modules/yaml"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/node_modules/typescript",
+      "target": "/tmp/ux02-deps/node_modules/typescript"
+    }
+  ],
+  "claim_and_status_unchanged": true,
+  "canonical_work_status": "claimed",
+  "implementation_result_ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0022.json",
+  "passing_suite_and_compiler_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+  "final_source_native_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json",
+  "final_source_consumer_smoke_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/post-source-check/command.json",
+  "final_source_consumer_smoke_result": "8pass0fail171assertions2files",
+  "report_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/report/index.html",
+  "report_validation_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/report-validation-final.json",
+  "report_browser_validation_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/report-browser-validation.json",
+  "all_owned_native_test_processes_closed": true,
+  "all_owned_test_fixture_roots_removed": true,
+  "owned_browser_tab_closed": true,
+  "owned_report_server_stopped": true,
+  "active_ai_agents": [],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/review-standards-complete-0047.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/review-spec-complete-0050.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/single-call-review-renewal-approved-0044.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/bounded-review-inputs-prepared-0051.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/preflight.json"
+    }
+  ],
+  "native_mouse_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-mouse-0031/attempt-1/native-smoke.json",
+  "inspection_status": "Fresh Standards and Spec13/14 remain incomplete; successful single-call control did not avoid the full-output admission stop. Only currently authorizedcycle15 will be used for Standards; no further cycles are authorized.",
+  "active_guard_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/work-token-guard-delta.ts",
+  "active_guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "candidate_guard_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-io-recovery-0042/work-token-guard-single-call.ts",
+  "candidate_guard_sha256": "5ebdb66415a5efb5eb549f84b1465216f8d2448faa13bd19b15e17afa58d81f0",
+  "candidate_activated": true,
+  "activation_approved": true,
+  "budget_reservation_policy_unchanged": true,
+  "model_provider_identity_unchanged": true,
+  "proposal": "Versioned candidate forces documented parallel_tool_calls=false, rejects serialized requests if that control is absent, and records it in admission audit. All250000ceiling/128000output/4096framing/cache-miss/stateless/no-reset/no-helper controls remain unchanged.",
+  "primary_source": {
+    "url": "https://developers.openai.com/api/docs/guides/function-calling#parallel-function-calling",
+    "contract": "The documented parallel_tool_calls=false control ensures exactly zero or one tool call.",
+    "verified_documentation": true
+  },
+  "isolated_probe_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-io-recovery-0042/single-call-guard-probe.json",
+  "isolated_probe_result": "5scenarios passed with isolated SDK/validation adapters and no model/network; live provider acceptance is not verified yet.",
+  "live_provider_verified": true
+}

@@ -1,0 +1,137 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+index 56ff3033..bfb9ff69 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+@@ -203,7 +203,6 @@ test("removing the active queue action target closes its menu and selects a surv
+   await f.component.load();
+   expect(f.view()).not.toContain("Open a fresh chat");
+   expect(f.view()).toContain("Ticket queues");
+-  expect(f.view()).toContain("removed");
+   await f.modal.handleInput("m");
+   const result = f.result();
+   if (result?.kind !== "session" || result.request.target.kind !== "ticket") throw new Error("Expected surviving queue target");
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+index 8bf6e9b0..1db09b22 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+@@ -4,7 +4,7 @@ import type { Theme } from "@earendil-works/pi-coding-agent";
+ import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
+ import { actionChoices } from "./actions";
+ import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+-import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
++import { chronologicalReceipts, isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+ import { safeTerminalText } from "./terminal-text";
+ import type { ExplorerEvent } from "./model";
+ import { DirectoryMonitor, type WatchTarget } from "./watch";
+@@ -12,7 +12,7 @@ import { DirectoryMonitor, type WatchTarget } from "./watch";
+ type Screen = "home" | "queues" | "initiatives" | "tickets" | "receipts" | "actions";
+ type Queue = "ready" | "review" | "blocked" | "all";
+ type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
+-type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
++type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string; next?: string; activity?: string } };
+ type Pane = { id: string; title: string; rows: Row[] };
+ 
+ // The reader replaces content, not navigation. Keep its origin intact so returning
+@@ -31,6 +31,9 @@ export interface ExplorerNavigation {
+   homeIndex?: number;
+   itemOrigin?: "initiatives" | "queues";
+   queueIndex?: number;
++  queueSelections?: [Queue, { identity?: string; index: number }][];
++  initiativeMemory?: { initiativeId?: string; ticketId?: string; receiptId?: string };
++  childSelections?: [string, string][];
+   reader?: DescriptionReader;
+ }
+ 
+@@ -75,6 +78,8 @@ export class GraphExplorer {
+   private queueIndex = 0;
+   private itemOrigin: "initiatives" | "queues" = "initiatives";
+   private childSelections = new Map<string, string>();
++  private queueSelections = new Map<Queue, { identity?: string; index: number }>();
++  private initiativeMemory?: ExplorerNavigation["initiativeMemory"];
+   private breadcrumbIndex = 0;
+   private breadcrumbHits: { x: number; y: number; width: number; index: number }[] = [];
+   private active = true;
+@@ -124,6 +129,9 @@ export class GraphExplorer {
+     this.queueIndex = navigation?.queueIndex ?? 0;
+     this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
+     this.reader = navigation?.reader;
++    this.queueSelections = new Map(navigation?.queueSelections ?? []);
++    this.initiativeMemory = navigation?.initiativeMemory;
++    this.childSelections = new Map(navigation?.childSelections ?? []);
+   }
+ 
+   async load(): Promise<void> {
+@@ -210,7 +218,8 @@ export class GraphExplorer {
+             this.screen = "home";
+             this.focus = "list";
+           }
+-          if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
++          if ((logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "queues") this.initiativeId = snapshot.initiatives.find(initiative => initiative.ticketIds.includes(this.ticketId ?? ""))?.id;
++          else if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
+           // A remembered child is not the active target in home or queue action menus.
+           const removedTarget = selected?.kind === "ticket" && !snapshot.tickets.some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
+           if (removedTarget) {
+@@ -246,7 +255,9 @@ export class GraphExplorer {
+           }
+           this.scopeKey = "";
+           this.updateWatchScope();
++          this.receiptChecks = this.workflows.size;
+           this.ticketStates.clear();
++          this.reconcileQueues();
+           this.restoreHomeSelection(selected);
+         }
+         this.loading = false;
+@@ -265,8 +276,8 @@ export class GraphExplorer {
+             if (this.disposed) return;
+             const selected = initial ? undefined : this.target();
+             const previous = this.workflows.get(ticket.id);
+-            if (workflow.error && !workflow.events?.length && previous?.events?.length) {
+-              workflow = { ...previous, sourceCommit: undefined, sourceTree: undefined, error: `History refresh failed; showing last readable history. ${workflow.error}` };
++            if (workflow.error && !workflow.events?.length && !workflow.receipts.length && previous && (previous.events?.length || previous.receipts.length)) {
++              workflow = { ...previous, sourceCommit: workflow.sourceCommit, sourceTree: workflow.sourceTree, error: `History refresh failed; showing last readable history. ${workflow.error}` };
+             }
+             this.workflows.set(ticket.id, workflow);
+             if (ticket.id === this.ticketId && (!this.receiptId || !(workflow.events ?? workflow.receipts).some(event => event.id === this.receiptId))) {
+@@ -280,6 +291,7 @@ export class GraphExplorer {
+             }
+             this.ticketStates.clear();
+             this.receiptChecks = this.workflows.size;
++            this.reconcileQueues();
+             this.restoreHomeSelection(selected);
+             this.options.requestRender();
+           }
+@@ -304,14 +316,56 @@ export class GraphExplorer {
+ 
+   private restoreHomeSelection(target: ExplorerTarget | undefined): void {
+     const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+-    if (screen !== "home" && screen !== "queues") return;
+-    const rows = screen === "home" ? this.homeRows() : this.queueRows();
++    if (screen === "queues") { this.reconcileQueues(); return; }
++    if (screen !== "home") return;
++    const rows = this.homeRows();
+     const index = target ? rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref === (target.kind === "ticket" && target.ticket.ref) : row.target.initiative.ref === (target.kind === "initiative" && target.initiative.ref))) : -1;
+-    const previous = screen === "home" ? this.homeIndex : this.queueIndex;
++    const previous = this.homeIndex;
+     const next = index >= 0 ? index : Math.max(0, Math.min(previous, rows.length - 1));
+     if (target && index < 0) this.notice = "Selected record was removed from this view. Selected a nearby record.";
+-    if (screen === "home") this.homeIndex = next;
+-    else this.queueIndex = next;
++    this.homeIndex = next;
++  }
++
++  private queueIdentity(target: ExplorerTarget | undefined): string | undefined {
++    return target?.kind === "ticket" ? JSON.stringify([target.ticket.backend, target.ticket.ref]) : undefined;
++  }
++
++  private selectQueue(index: number): void {
++    const rows = this.queueRows();
++    this.queueIndex = Math.max(0, Math.min(index, rows.length - 1));
++    this.queueSelections.set(this.queue, { index: this.queueIndex, identity: this.queueIdentity(rows[this.queueIndex]?.target) });
++  }
++
++  private reconcileQueues(): void {
++    for (const [queue, saved] of this.queueSelections) {
++      if (queue !== "all" && this.snapshot && this.receiptChecks < this.snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").length) continue;
++      const rows = this.queueRows(queue);
++      const index = saved.identity ? rows.findIndex(row => this.queueIdentity(row.target) === saved.identity) : -1;
++      const next = index >= 0 ? index : Math.max(0, Math.min(saved.index, rows.length - 1));

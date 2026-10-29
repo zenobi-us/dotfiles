@@ -1,0 +1,52 @@
+{
+  "status": "prepared",
+  "source": {
+    "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+    "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+    "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+    "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+  },
+  "all_changed_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "changed_content_sha256": "0b0e08ee0f1f4151643dcded65d05de99bfa33bb6c1af4ae9797a104bac2bcfc",
+  "all_added_deleted_lines_identical": true,
+  "old_diff_bytes": 46023,
+  "new_diff_bytes": 33318,
+  "chunks": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-01.diff",
+      "lines": 138,
+      "bytes": 9422
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-02.diff",
+      "lines": 149,
+      "bytes": 9372
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-03.diff",
+      "lines": 141,
+      "bytes": 9434
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-04.diff",
+      "lines": 79,
+      "bytes": 5090
+    }
+  ],
+  "scope": "All changed paths, all added/deleted lines and complete hunks retained; conventional3contextlines instead of8. Full original8-contextpatch and unchanged authority inputs remain available. Standards retains all12heuristics, repo rules, canonical ticket and every mandatory skill. The full initiative body is the separate Spec axis input, not a Standards requirement; its reference is retained. No code or requirement is removed.",
+  "guard_sha256": "5ebdb66415a5efb5eb549f84b1465216f8d2448faa13bd19b15e17afa58d81f0",
+  "full_output_reserve": 128000,
+  "framing_reserve": 4096,
+  "session_limit": 250000,
+  "next_authorized_cycle": 15,
+  "ticket_limit": 15,
+  "dispatches_reserved": 60,
+  "dispatch_cap": 62,
+  "single_call_live_verified": true,
+  "live_fit_of_reduced_packet": "Not yet observed; no claim of success or guaranteed fit."
+}

@@ -1,19 +1,18 @@
 ---
-title: Ticket06 approved enforced independent review in progress
+title: Ticket06 final authorized Standards review
 type: Report
 ---
 
 ## Current status
 
-The user approved15totalTicket06cycles/62totaldispatches and activation of the versioned single-call guard. Historicalcounts remain unchanged. Fullscope independent Standards and Spec roles are freshly reserved as13and14; no source verdict is claimed yet.
+Code and native acceptance are recorded for `20968ee4f907c6f74bc77702fcef09578b41c6b8` / `5f64cf06e76dba7e015b9cd54088bc73ae88771f`. No valid independent verdict exists yet. Fresh Standards cycle15 is prepared, preserving all4changedpaths/allchangedlines/all12heuristics and all11mandatoryskills. The conventionalunified3patch has33318bytes versus46023with8contextlines. The Standards-only packet does not preload the separate Spec-axis body; canonical ticket, every repo rule and required authorities remain.
 
-Source `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`, remains clean with recorded152tests/compiler0,35nativecolour/monocases,8consumer tests and actualSGRmouse return proof.
+Single-callAPIcontrol was verified in realcycles13/14, but both were incomplete:55927/56496settledwork; projectedfull-outputadmissions255457/252606were deniedbefore dispatch. Neither breached250000. Historicalattempts remain consumed. Their ownedworkspacew8N was observedalreadyabsent; sourceworktree remains. Fresh ownedworkspacew8P preserves rootshell.
 
-- [Explicit renewal/activation](../events/single-call-review-renewal-approved-0044.json)
-- [Fresh Standards start](../events/review-standards-start-0045.json)
-- [Fresh Spec start](../events/review-spec-start-0048.json)
-- [Approved single-call guard](../artifacts/evidence/review-io-recovery-0042/work-token-guard-single-call.ts)
-- [Five isolated candidate probes](../artifacts/evidence/review-io-recovery-0042/single-call-guard-probe.json)
+- [BlockedStandards47](../events/review-standards-complete-0047.json)
+- [BlockedSpec50](../events/review-spec-complete-0050.json)
+- [Losslessboundedinputs51](../events/bounded-review-inputs-prepared-0051.json)
+- [FinalauthorizedStandardsstart52](../events/review-standards-start-0052.json)
 
-Every outgoing request must contain `parallel_tool_calls=false` on its actual serializedwire. AllmatchingSkills come first; eachtoolcall is single andsourcechunks bounded. The250000ceiling/full128000output/4096framing/cachemiss/stateless/no-reset/no-helper controls and model/provideridentity are unchanged. Liveprovider verification will be observed inside these counted reviews, not a helpermodel. All4paths/all12criteria/all12heuristics remain required. Fresh main and finish remain after validaxes.
+15of15cycles and61of62dispatches are reserved. Do not infer authorization for furthercycles. Spec and freshmain remain mandatory after a validStandards verdict. Canonicalclaim/status/source are unchanged.
 

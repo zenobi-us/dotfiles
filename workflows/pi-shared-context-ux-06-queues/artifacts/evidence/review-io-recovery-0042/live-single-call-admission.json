@@ -1,0 +1,67 @@
+{
+  "status": "passed_initial_live_admission",
+  "guard_sha256": "5ebdb66415a5efb5eb549f84b1465216f8d2448faa13bd19b15e17afa58d81f0",
+  "events": [
+    {
+      "role": "standards",
+      "admitted": {
+        "at": "2026-10-29T20:56:05.729Z",
+        "event": "admitted",
+        "spent": 0,
+        "inputBytes": 84693,
+        "inputBound": {
+          "tokens": 84693,
+          "mode": "wire"
+        },
+        "framingReserve": 4096,
+        "outputMaximum": 128000,
+        "reservation": 216789,
+        "fullWireReservation": 216789,
+        "fullWireWouldReject": false,
+        "ceiling": 250000,
+        "parallelToolCalls": false
+      },
+      "settled": {
+        "at": "2026-10-29T20:56:07.780Z",
+        "event": "settled",
+        "work": 18342,
+        "spent": 18342,
+        "reservation": 216789,
+        "observedInputTokens": 18314,
+        "observedOutputTokens": 28,
+        "ceiling": 250000
+      }
+    },
+    {
+      "role": "spec",
+      "admitted": {
+        "at": "2026-10-29T20:56:05.727Z",
+        "event": "admitted",
+        "spent": 0,
+        "inputBytes": 82725,
+        "inputBound": {
+          "tokens": 82725,
+          "mode": "wire"
+        },
+        "framingReserve": 4096,
+        "outputMaximum": 128000,
+        "reservation": 214821,
+        "fullWireReservation": 214821,
+        "fullWireWouldReject": false,
+        "ceiling": 250000,
+        "parallelToolCalls": false
+      },
+      "settled": {
+        "at": "2026-10-29T20:56:07.787Z",
+        "event": "settled",
+        "work": 17938,
+        "spent": 17938,
+        "reservation": 214821,
+        "observedInputTokens": 17911,
+        "observedOutputTokens": 27,
+        "ceiling": 250000
+      }
+    }
+  ],
+  "scope": "Both real guarded provider requests carried serializedparallel_tool_calls=false and returned settled usage. Full source reviews and all-response single-call checks remain pending."
+}

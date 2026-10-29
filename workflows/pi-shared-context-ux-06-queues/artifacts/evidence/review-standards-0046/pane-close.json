@@ -1,0 +1,18 @@
+{
+  "status": "observed_already_absent",
+  "observed_at": "2026-10-29T21:08:50.970Z",
+  "workspace_id": "w8N",
+  "workspace_present": false,
+  "owned_reviewer_panes": [
+    "w8N:p7",
+    "w8N:p8"
+  ],
+  "pane_close_attempt": {
+    "pane": "w8N:p7",
+    "error": "pane_not_found"
+  },
+  "source_worktree_present": true,
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "cause": "Unknown. The coordinator did not close this workspace. No unrelated workspace was touched."
+}
