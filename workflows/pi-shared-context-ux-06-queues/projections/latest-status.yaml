@@ -2,7 +2,7 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "pi-shared-context-ux-06-queues",
   "state": "BLOCKED",
-  "latest_receipt": "review-io-recovery-prepared-0042",
+  "latest_receipt": "single-call-guard-proposed-0043",
   "latest_source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
   "latest_source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
   "source_dirty": false,
@@ -11,7 +11,12 @@
   "valid_independent_reviews": 0,
   "cycles_consumed": 12,
   "approved_ticket_cycle_limit": 12,
-  "pending_gate": "explicit_15cycle_62dispatch_review_only_renewal",
+  "dispatches_reserved": 58,
+  "approved_dispatch_limit": 59,
+  "active_guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "candidate_guard_sha256": "5ebdb66415a5efb5eb549f84b1465216f8d2448faa13bd19b15e17afa58d81f0",
+  "candidate_activated": false,
+  "live_provider_verified": false,
   "required_user_authority": {
     "approved": false,
     "current_cycles_consumed": 12,
@@ -23,6 +28,9 @@
     "requested_dispatch_limit": 62,
     "additional_dispatch_capacity": 3,
     "remaining_work": "3fresh independent source review sessions plus1coordinator-onlyfinish",
-    "scope": "Review-only renewal; blocking code findings need a further decision. No source/claim/status/guard/provider/model changes or historical resets/transfers."
-  }
+    "scope": "Review-only renewal; blocking code findings need a further decision. No source/claim/status/guard/provider/model changes or historical resets/transfers.",
+    "activate_single_call_candidate": true,
+    "candidate_guard_sha256": "5ebdb66415a5efb5eb549f84b1465216f8d2448faa13bd19b15e17afa58d81f0"
+  },
+  "pending_gate": "explicit_15cycle_62dispatch_renewal_and_single_call_activation"
 }
