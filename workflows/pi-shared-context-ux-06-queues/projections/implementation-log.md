@@ -19,7 +19,11 @@ Next: fresh independent implementation cycle2 with a compact contract and preloa
 
 [Result](../events/implementation-0005.json), [parent](../events/implementation-complete-0006.json), [whole-session audit](../artifacts/evidence/implementation-0005/full-session-audit.json). The second fresh session also stopped before source changes at50725work tokens, all admitted requests settled and under cap. No code, automated validation or acceptance passed. Source remains `6f959f8c380efe378f4a0f2eeffcd3660c803859`.
 
-## Fresh state cycle3
+## Cycle3
 
-[State start](../events/implementation-start-0007.json). Complete queue state/navigation and safe refresh/identity/key behavior first. A subsequent source slice retains structured activity/field presentation and full public-modal tests; a fresh native/docs cycle and independent reviews remain mandatory. All12ticket criteria are retained. No allowance or guard change.
+[Result](../events/implementation-0008.json), [parent](../events/implementation-complete-0009.json), [full audit](../artifacts/evidence/implementation-0008/full-session-audit.json).47662settled work tokens; source unchanged. The next205676-token reservation would total253338 and was denied before inference. No stage or acceptance passed.
+
+## Fresh cycle4
+
+[State start](../events/implementation-start-0010.json). Source/claim/routes/context preflight is already resolved. Deterministic CI capture and result formatting replace repeated directory/template reads and large result dumps. No guard/criteria/allowance change. State source work first; all later presentation/tests/native/docs/review gates retained.
 

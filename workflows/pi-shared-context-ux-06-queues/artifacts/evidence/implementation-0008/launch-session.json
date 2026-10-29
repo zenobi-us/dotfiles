@@ -1,0 +1,32 @@
+{
+  "agent_name": "ux06-state-c3",
+  "session_id": "01a186a1-8ba7-7334-b617-3dbbce2c8838",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T07-48-16-423Z_01a186a1-8ba7-7334-b617-3dbbce2c8838.jsonl",
+  "pane_id": "w8G:p2",
+  "workspace_id": "w8G",
+  "goal_id": "15b8f5b9edd2d77b",
+  "native_goal_budget": 200000,
+  "full_session_token_limit": 250000,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "guard_audit": "/tmp/ux06-state-c3-ecf0cccc-4b2c-4582-a18d-00ac73568040.jsonl",
+  "guard_ready": {
+    "at": "2026-10-29T07:48:16.610Z",
+    "event": "ready",
+    "spent": 0,
+    "ceiling": 250000,
+    "model": "gpt-6.1-sol",
+    "outputMaximum": 128000,
+    "transport": "stateless SSE"
+  },
+  "reservation_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0198.yaml",
+  "start_publication": "a3f5a42a40c3fa80c811aa57a6ab708b01e67737",
+  "source_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "source_tree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b",
+  "scope": [
+    "Separate queue navigation from initiative navigation; queues contain tickets only. Preserve initiative position/state when entering/leaving queues. Keep original Ready/Review/Blocked/All membership predicates unchanged.",
+    "Centralize queue selection/update logic rather than duplicate keyboard/mouse/recovery paths. Preserve selected ticket by canonical identity across live changes; explain departure and select a valid nearest row. Keep selection/scroll stable on Return.",
+    "Opening a queue ticket resolves its real initiative or Ungrouped canonical context; Esc returns logically to the selected queue. Keep per-project/workspace navigation serializable through existing ExplorerNavigation.",
+    "Uppercase R refreshes; lowercase r remains Review. Preserve workspace number shortcuts. No empty action menu without a valid selected target; preserve disabled reasons and safe current canonical targets.",
+    "Retain last readable data on refresh failure and continue blocking unsafe transitions. Keep loading distinct from empty. Preserve existing readers, events, Files, copy/actions, Unicode/sanitization and source/evidence authority."
+  ]
+}

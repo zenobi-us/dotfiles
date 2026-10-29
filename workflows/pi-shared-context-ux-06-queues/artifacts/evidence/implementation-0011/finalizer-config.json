@@ -1,0 +1,15 @@
+{
+  "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workflow": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+  "workflowRef": "workflows/pi-shared-context-ux-06-queues",
+  "evidence": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0011",
+  "evidenceRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0011",
+  "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "template": "result-template.json",
+  "assessment": "assessment.json",
+  "launch": "launch-session.json",
+  "result": "implementation-0011",
+  "snapshot": "pr-draft-implementation-0011.md"
+}
