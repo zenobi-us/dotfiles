@@ -1,0 +1,233 @@
+{
+  "status": "passed",
+  "candidate_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/work-token-guard-delta.ts",
+  "candidate_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "math_verification": {
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/guard-math-results-attempt-2.json",
+    "cases": 10,
+    "inherited_unchanged": true
+  },
+  "native_goal_mode": true,
+  "native_goal_id": "15b8c04333c53541",
+  "native_goal_completed": false,
+  "native_goal_note": "The final intentional admission denial prevents a model acknowledgement. Actual verification is complete and the closed session is not reused.",
+  "successful_requests": 11,
+  "reservations": [
+    {
+      "admitted_at": "2026-10-29T03:54:44.369Z",
+      "mode": "wire",
+      "input_bound": 16416,
+      "framing": 4096,
+      "observed_input": 3363,
+      "observed_output": 32,
+      "full_wire_would_reject": false
+    },
+    {
+      "admitted_at": "2026-10-29T03:54:46.747Z",
+      "mode": "observed-prefix",
+      "input_bound": 12183,
+      "framing": 4096,
+      "observed_input": 5258,
+      "observed_output": 11,
+      "full_wire_would_reject": false
+    },
+    {
+      "admitted_at": "2026-10-29T03:54:48.916Z",
+      "mode": "observed-prefix",
+      "input_bound": 8014,
+      "framing": 4096,
+      "observed_input": 5636,
+      "observed_output": 74,
+      "full_wire_would_reject": false
+    },
+    {
+      "admitted_at": "2026-10-29T03:54:51.885Z",
+      "mode": "observed-prefix",
+      "input_bound": 42384,
+      "framing": 4096,
+      "observed_input": 12112,
+      "observed_output": 10,
+      "full_wire_would_reject": false
+    },
+    {
+      "admitted_at": "2026-10-29T03:54:54.239Z",
+      "mode": "observed-prefix",
+      "input_bound": 14863,
+      "framing": 4096,
+      "observed_input": 12489,
+      "observed_output": 74,
+      "full_wire_would_reject": false
+    },
+    {
+      "admitted_at": "2026-10-29T03:54:57.949Z",
+      "mode": "observed-prefix",
+      "input_bound": 49238,
+      "framing": 4096,
+      "observed_input": 18965,
+      "observed_output": 10,
+      "full_wire_would_reject": false
+    },
+    {
+      "admitted_at": "2026-10-29T03:55:01.287Z",
+      "mode": "observed-prefix",
+      "input_bound": 21718,
+      "framing": 4096,
+      "observed_input": 19342,
+      "observed_output": 74,
+      "full_wire_would_reject": true
+    },
+    {
+      "admitted_at": "2026-10-29T03:55:03.948Z",
+      "mode": "observed-prefix",
+      "input_bound": 32091,
+      "framing": 4096,
+      "observed_input": 21568,
+      "observed_output": 10,
+      "full_wire_would_reject": true
+    },
+    {
+      "admitted_at": "2026-10-29T03:55:06.990Z",
+      "mode": "observed-prefix",
+      "input_bound": 24132,
+      "framing": 4096,
+      "observed_input": 21891,
+      "observed_output": 55,
+      "full_wire_would_reject": true
+    },
+    {
+      "admitted_at": "2026-10-29T03:55:10.350Z",
+      "mode": "observed-prefix",
+      "input_bound": 22534,
+      "framing": 4096,
+      "observed_input": 21961,
+      "observed_output": 8,
+      "full_wire_would_reject": true
+    },
+    {
+      "admitted_at": "2026-10-29T03:55:13.376Z",
+      "mode": "observed-prefix",
+      "input_bound": 26359,
+      "framing": 4096,
+      "observed_input": 22661,
+      "observed_output": 49,
+      "full_wire_would_reject": true
+    }
+  ],
+  "large_context_legacy_rejected_admissions": 4,
+  "all_fixture_markers": [
+    {
+      "fixture": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/probe-data-1.json",
+      "marker": "GUARD9_DATA1_READY",
+      "message_id": "2f6624d5",
+      "usage": {
+        "input": 6608,
+        "output": 10,
+        "cacheRead": 5504,
+        "cacheWrite": 0,
+        "totalTokens": 12122,
+        "cost": {
+          "input": 0.013215999999999999,
+          "output": 0.0001,
+          "cacheRead": 0.0005504,
+          "cacheWrite": 0,
+          "total": 0.013866399999999997
+        },
+        "premiumRequests": 0
+      }
+    },
+    {
+      "fixture": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/probe-data-2.json",
+      "marker": "GUARD9_DATA2_READY",
+      "message_id": "3a3aa0d1",
+      "usage": {
+        "input": 6549,
+        "output": 10,
+        "cacheRead": 12416,
+        "cacheWrite": 0,
+        "totalTokens": 18975,
+        "cost": {
+          "input": 0.013098,
+          "output": 0.0001,
+          "cacheRead": 0.0012416,
+          "cacheWrite": 0,
+          "total": 0.0144396
+        },
+        "premiumRequests": 0
+      }
+    },
+    {
+      "fixture": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/probe-data-3.json",
+      "marker": "GUARD9_DATA3_READY",
+      "message_id": "0f3b726b",
+      "usage": {
+        "input": 2240,
+        "output": 10,
+        "cacheRead": 19328,
+        "cacheWrite": 0,
+        "totalTokens": 21578,
+        "cost": {
+          "input": 0.00448,
+          "output": 0.0001,
+          "cacheRead": 0.0019328000000000001,
+          "cacheWrite": 0,
+          "total": 0.0065128
+        },
+        "premiumRequests": 0
+      }
+    }
+  ],
+  "oversized_input": {
+    "bytes": 110000,
+    "denied_before_http": true,
+    "denial": {
+      "at": "2026-10-29T03:56:18.573Z",
+      "event": "denied",
+      "reason": "uncached context bound and maximum output exceed the remaining ceiling",
+      "spent": 24213,
+      "ceiling": 250000
+    }
+  },
+  "permanent_stop": {
+    "small_prompt_denied": true,
+    "denial": {
+      "at": "2026-10-29T03:56:18.921Z",
+      "event": "denied",
+      "reason": "guard unavailable, stopped, or another inference is pending",
+      "spent": 24213,
+      "ceiling": 250000
+    }
+  },
+  "network_admissions_after_rejection": 0,
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T03-54-41-162Z_01a185cb-b08a-7535-be52-0b411354461d.jsonl",
+    "session_id": "01a185cb-b08a-7535-be52-0b411354461d",
+    "goal_id": "15b8c04333c53541",
+    "native_status": "active",
+    "native_goal_used": 24213,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 23806,
+      "output": 407,
+      "cacheWrite": 0,
+      "cacheRead": 141440
+    },
+    "assistant_entries": 13,
+    "auxiliary_model_usage_entries": 0,
+    "provider_work_tokens": 24213,
+    "session_ceiling": 250000,
+    "under_cap": true,
+    "reported_provider_work_tokens": 24213,
+    "accounting_complete": true,
+    "unsettled_request": null,
+    "conservative_work_upper_bound": 24213,
+    "under_cap_basis": "All admitted requests settled with reported usage.",
+    "bound_violation": false
+  },
+  "prior_cycle8_conservative_upper_bound": 167734,
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "source_unchanged": true,
+  "agent_closed": true,
+  "global_runtime_changes": false,
+  "guard_verified_for_future_sessions": true
+}

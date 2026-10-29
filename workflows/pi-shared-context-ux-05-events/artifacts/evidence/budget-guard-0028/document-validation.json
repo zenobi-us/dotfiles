@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/projections/pr-draft.md",
+    "valid": true,
+    "relative_links": 49
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/projections/implementation-log.md",
+    "valid": true,
+    "relative_links": 49
+  },
+  {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/snapshots/pr-draft-guard-verified-0030.md",
+    "valid": true,
+    "relative_links": 49
+  }
+]
