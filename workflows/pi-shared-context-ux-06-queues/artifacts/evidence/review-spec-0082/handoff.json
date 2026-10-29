@@ -1,0 +1,372 @@
+{
+  "contract": {
+    "role": "spec",
+    "source": {
+      "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+      "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+      "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+    },
+    "ticket": {
+      "id": "pi-shared-context-ux-06-queues",
+      "backend": "local-markdown",
+      "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+    },
+    "branch": "feature/pi-shared-context-ux-06-queues",
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+    "all_changed_paths": [
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+    ],
+    "required_skill_first_order": [
+      "skill://code-review",
+      "skill://iso-24495-1",
+      "skill://asd-ste100",
+      "skill://code-comments",
+      "skill://typescript",
+      "skill://mq-query",
+      "skill://mq-query/references/tasks/creating.md",
+      "skill://mq-query/references/docs/cli.md",
+      "skill://iso-24495-3",
+      "skill://iso-24495-5",
+      "skill://review-documentation",
+      "skill://mq-query/references/tasks/reading.md",
+      "skill://shared-context"
+    ],
+    "read_plan": {
+      "early_existing_authorities": {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json",
+        "queries": [
+          "?q=.actions&raw=true",
+          "?q=.receipt_validation&raw=true",
+          "?q=.model&raw=true"
+        ]
+      },
+      "early_complete_unmodified_safety_ancestor_render_context": [
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0077/known-safety-01.txt",
+          "selector": ":1-19:raw",
+          "bytes": 1280
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0077/known-safety-02.txt",
+          "selector": ":1-60:raw",
+          "bytes": 5329
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0077/known-safety-03.txt",
+          "selector": ":1-64:raw",
+          "bytes": 3811
+        }
+      ],
+      "all_complete_modified_declaration_packets": [
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-01.txt",
+          "selector": ":1-89:raw",
+          "bytes": 4858
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-02.txt",
+          "selector": ":1-135:raw",
+          "bytes": 8052
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-03.txt",
+          "selector": ":1-88:raw",
+          "bytes": 4323
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-04.txt",
+          "selector": ":1-161:raw",
+          "bytes": 8101
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-05.txt",
+          "selector": ":1-116:raw",
+          "bytes": 8142
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-06.txt",
+          "selector": ":1-46:raw",
+          "bytes": 3305
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-07.txt",
+          "selector": ":1-169:raw",
+          "bytes": 8460
+        }
+      ],
+      "complete_old_deleted_lines_new_changed_ranges": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/complete-change-ledger.txt",
+      "full_diff_command": "git diff 6f959f8c380efe378f4a0f2eeffcd3660c803859...20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "proof_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/coverage-proof.json",
+      "early_complete_known_row_and_viewport_methods": [
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-contract-recovery-0079/known-row-viewport-01.txt",
+          "lines": 14,
+          "bytes": 790
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-contract-recovery-0079/known-row-viewport-02.txt",
+          "lines": 40,
+          "bytes": 2918
+        }
+      ]
+    },
+    "evidence": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082",
+    "artifact": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0082.md",
+    "artifact_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0082.md",
+    "create_artifact": [
+      "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082/create-artifact.mjs",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082/artifact-writer-config.json",
+      "SUCCESS or FAILURE",
+      "ActualcompleteSpecreportasONEsafelyquotedargument"
+    ],
+    "finalize": [
+      "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082/finalize-review.mjs",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082/finalizer-config.json"
+    ],
+    "rules": [
+      "Independent ENTIRESpecaxis/all12criteria/sharedconstraints/all4paths. ReadALLmatching skillsFIRST, then givenauthorities and completeknownsafety/row/viewportmethodsEARLY, then ALL7completechanged-methodpackets/fullledger. All273added/29deletedlines/fullmodifiedmethods/testcases remain. Additionalunseencontext is allowed ifactuallyneeded. Knownrequiredmethods are supplied; do not request an unbounded fullfileLSPsymbolinventory tolocatethem. Otherdefinitions/refs use narrowLSP atknownlocation or targetedquery.",
+      "Canonicalrequirements/initiative/routes/domain/changedREADMEsection are completeMQreads preloaded. Ticketrequirements snapshot predates only a metadata-only reviewcomment; canonicalv1/claimed/intent/criteria remain unchanged. Otheraxisreport/verdict is not an input. Do not reread/parse/discover these inputs or exploreMQsyntax.",
+      "Same300000input+output+cacheWritecap;cacheReadexcluded. Full128000output+4096framing/stateless/cachemiss/singlecall controls unchanged. Workinggoal200000. Cycle22of23. ONEboundedcontiguousread/turn. No helpers, source/tracker/config edits, tests/build/lint, Git mutations, resets/resumes, otherreviewers or largerceiling.",
+      "Actualreport≤400words plusautometadata: missing/partial/wrong/scopecreep and all12criterionjudgements. Findings citerule/criterion/source:line/impact/ADRorNOADR. After completeinspection invoke soleartifactwriter, then exclusively write assessment.json:{assessment_complete:true,code_inspection_complete:true,verdict:\"SUCCESS\"or\"FAILURE\",findings:[{blocking,location,rule,impact}],summary,reviewed_files:[ALL4fullpaths],standards_assessment_complete:false,spec_assessment_complete:true}. No reportbodycopies. Runfinalizer, then complete nativegoal and reply<100wordsverdict/SHA/link. No integration/ticketcompletionclaim.",
+      "Exact trustedartifactwriter/finalizer CODE, CONFIGS and phaseTEMPLATE are preloaded below for upfront command-safety inspection. They are actualcurrent files/configurations, not inferredcontracts. Do not reread them through tools. The only finalizerchange is --no-lockfile to preventMQ lockwrites. Actualassessment/report must still be yours, allcompletecriteria; no presetverdict."
+    ]
+  },
+  "canonical_ticket_requirements_snapshot": "---\nschema: tracker-ticket/v1\nblocked_by: \n  - pi-shared-context-ux-02-initiatives\nid: pi-shared-context-ux-06-queues\nparent: pi-shared-context-tui-ux-spec\nsequence: 6\ntitle: Find actionable tickets through clear work queues\ntriage: ready-for-agent\ntype: enhancement\nwork_status: claimed\n---\n\n## What to build\n\nDisplay Ready, Review, Blocked, and All in a distinct ticket queue mode or view. Keep these queues separate from initiative navigation.\n\nSeparate canonical ticket status, recorded workflow activity, and the next available action. A Review action means ready for review, not that a review currently runs.\n\n## Acceptance criteria\n\n1. Users can select Ready, Review, Blocked, and All without losing initiative navigation state.\n2. Queue headings and active controls identify the selected queue. Initiative rows do not mix into the filtered ticket list.\n3. Queue rows separate type, ID, title, ticket status, and next action. Blocking information remains subordinate but readable.\n4. The interface displays active workflow activity only when recorded data supports that activity. Readiness alone does not imply active execution.\n5. Opening a queue ticket reaches the correct canonical ticket and initiative or Ungrouped context. Return navigation restores queue selection and scroll position.\n6. Existing queue membership and workflow safety rules remain authoritative. Display changes do not weaken action restrictions.\n7. Empty queues display accurate recovery controls. The All shortcut matches its actual input behavior.\n8. No selection means no empty action menu. Available actions display their target and disabled reasons.\n9. Uppercase R refreshes. Lowercase r retains the existing Review action. Workspace shortcuts remain unchanged.\n10. Live updates preserve the selected ticket by identity. If the ticket leaves the queue, the interface explains the change and selects a valid row.\n11. A refresh failure retains readable content and blocks unsafe transitions. Loading and empty states remain distinct.\n12. Structured fields remain readable at small terminal sizes and without colour. Existing action, copy, and Files behavior remains unchanged.\n\n## Out of scope\n\nDo not add search, new queue semantics, a new tracker backend, or new workflow transitions.\n\n## Specification\n\nThe parent specification defines the complete product intent. This ticket implements only the approved slice.\n\n\n## Testing decisions\n\nUse the complete modal as the main automated test boundary. Send input through its public interface. Assert visible behavior and canonical targets.\n\nUse the existing modal, explorer, and live-update test patterns. Use temporary stores for record and watcher behavior. Avoid assertions about private arrays or incidental text formatting.\n\nRun the actual Pi modal for terminal acceptance. Inspect 40 by 12, 80 by 24, and 120 by 40 terminals. Inspect colour and monochrome presentation.\n\nKeep existing action, copy, workspace shortcut, and workflow safety behavior intact. Preserve terminal-control sanitization and Unicode display widths.\n\n## Completion evidence\n\nRecord the focused behavior checks and terminal observations. Include evidence for the changed screens and relevant failure states.\n\n## Comments\n\nThe user approved this slice and its direct blockers during ticket decomposition.\n\n\n\n- Claimed 2026-10-29T06:53:47.924Z by the authorized initiative coordinator for fresh bounded implementation cycle1 (maximum250000 complete-session work tokens;10sessions maximum for this ticket). Direct blocker ticket02 is completed. Ticket05 terminal finish is published; no dependency field was added.\n",
+  "current_canonical_metadata_verified": {
+    "schema": "tracker-ticket/v1",
+    "state": "claimed",
+    "requirements_unchanged": true,
+    "only_new_comment": "Metadata-only review history; other-axis judgement intentionally not preloaded."
+  },
+  "canonical_initiative_FULL_MQ": "---\nschema: tracker-initiative/v1\nid: pi-shared-context-tui-ux-spec\ntitle: Improve shared-context project navigation and tracker readability\ntriage: ready-for-agent\ntype: enhancement\n---\n\n## Problem Statement\n\nThe shared-context terminal user interface makes records difficult to read. Titles, types, states, counts, and references appear as similar text. Users cannot quickly identify the meaning of each field.\n\nThe current tracker starts with work queues and uses several dependency and evidence panes. Users need a clear project, initiative, item, and event hierarchy. Research needs a place beside tickets, not a separate workspace.\n\nUsers also need direct navigation through interactive breadcrumbs. They need a project list for shared context. The interface must preserve existing actions, copy behavior, workflow safeguards, and live updates.\n\n## Solution\n\nDisplay a project tracker with initiatives and an always-visible Ungrouped collection. Display research, tickets, and other supported records together within each initiative. Display unassociated records in Ungrouped.\n\nSeparate record types, titles, states, counts, and secondary information with alignment, spacing, and theme colours. Use short summaries and dedicated description readers. Keep detailed workflow evidence available without letting it dominate each screen.\n\nProvide focusable and clickable breadcrumbs. The Projects breadcrumb opens the shared-context project list. Keep Files independent from the tracker. Do not add a Research tab.\n\n## User Stories\n\n1. As a user, I want a Projects view, so that I can select a project from shared context.\n2. As a user, I want distinct project identities, so that I can distinguish repositories with the same name.\n3. As a user, I want the current project in the project list, so that I can return to its tracker.\n4. As a user, I want an interactive Projects breadcrumb, so that I can return directly to the project list.\n5. As a keyboard user, I want focusable breadcrumbs, so that I can select an ancestor without a mouse.\n6. As a mouse user, I want clickable breadcrumbs, so that I can select an ancestor directly.\n7. As a user, I want readable breadcrumb labels, so that I can identify my location.\n8. As a user, I want Esc to return one level, so that I can recover my previous context.\n9. As a user, I want my previous selection and scroll position, so that return navigation does not lose my place.\n10. As a user, I want a visible Shared or Repo indicator, so that I know the context storage location.\n11. As a user, I want an initiative-first tracker, so that I can understand how work belongs together.\n12. As a user, I want separate initiative titles, phases, and counts, so that I can read each field correctly.\n13. As a user, I want an always-visible Ungrouped collection, so that I can find records without an initiative.\n14. As a user, I want research and tickets in Ungrouped, so that no unassociated record disappears.\n15. As a user, I want an initiative summary above its child list, so that I can understand the initiative before I select work.\n16. As a user, I want a full initiative description reader, so that I can read the complete context.\n17. As a user, I want research beside tickets, so that I can browse all initiative records in one list.\n18. As a user, I want record type markers, so that I can distinguish research from tickets.\n19. As a user, I want stable record IDs, so that I can identify records with similar titles.\n20. As a user, I want wrapped titles, so that long titles remain readable.\n21. As a user, I want separate status fields, so that status does not look like part of a title.\n22. As a user, I want muted secondary information, so that titles remain easy to find.\n23. As a user, I want visible child counts, so that I can understand the size of an initiative.\n24. As a user, I want recorded review and fix counts, so that I can understand ticket history.\n25. As a user, I want research-specific details, so that research does not inherit unrelated ticket controls.\n26. As a user, I want existing research actions, so that research can lead to specs or initiatives.\n27. As a user, I want a ticket summary above its event list, so that I can understand the selected ticket.\n28. As a user, I want a full item description reader, so that I can read the complete record.\n29. As a user, I want a description reader to restore my selection, so that I can continue from the same child or event.\n30. As a user, I want distinct event types and outcomes, so that I can understand implementation, review, and fix history.\n31. As a user, I want an event detail reader, so that I can inspect the selected evidence.\n32. As a user, I want commit references separate from outcomes, so that I do not confuse source identity with success.\n33. As a user, I want explicit evidence warnings, so that invalid or stale evidence does not appear current.\n34. As a user, I want ticket status separate from the next action, so that readiness does not imply active execution.\n35. As a user, I want dependency information, so that I can understand blocked work.\n36. As a user, I want Ready, Review, Blocked, and All queues, so that I can find actionable tickets.\n37. As a user, I want queues separate from initiative navigation, so that I can understand the current list scope.\n38. As a user, I want the existing action menu, so that I can continue the established agent workflows.\n39. As a user, I want action targets and disabled reasons, so that I know what each action affects.\n40. As a user, I want existing copy behavior, so that the redesign does not change an established operation.\n41. As a user, I want an independent Files workspace, so that file navigation remains separate from tracker navigation.\n42. As a user, I want each workspace to retain its state, so that tab changes do not lose my place.\n43. As a user, I want visible focus and selection, so that I know which control receives input.\n44. As a user, I want complete keyboard navigation, so that mouse support remains optional.\n45. As a user, I want readable small-screen layouts, so that essential fields and controls remain available.\n46. As a user, I want meaning without colour, so that the interface works with limited terminal colours.\n47. As a user, I want live updates without selection jumps, so that I can continue to read the same record.\n48. As a user, I want distinct empty, loading, and error states, so that I know why records are absent.\n49. As a user, I want an explanation after record removal, so that a refresh does not silently change my context.\n50. As a user, I want accurate keyboard hints, so that the displayed recovery instructions work.\n\n## Implementation Decisions\n\n### Navigation and screens\n\n- The modal remains the main interface boundary. The modal coordinates project selection, breadcrumbs, workspace tabs, tracker content, and focus.\n- The normal command opens the current project tracker. The Projects breadcrumb opens the project list. The existing Files command continues to open Files.\n- The tracker hierarchy is Projects, project initiatives, initiative child items, item overview, and event detail. A description reader returns to its originating screen.\n- Ancestor breadcrumbs accept keyboard focus and mouse clicks. Enter activates a focused ancestor. The current breadcrumb identifies the current location.\n- Esc returns one logical level. At the project tracker, Esc returns to Projects. At Projects, Esc closes the modal. Existing Files escape behavior remains unchanged.\n- The modal does not create stacked navigation overlays. Each view retains selection and scroll position by stable record identity.\n- Mouse support must cover breadcrumbs. Keyboard navigation must reach every breadcrumb, tab, list, reader, and existing action control.\n- Use Tab and Shift+Tab for forward and reverse focus. Keep the existing Tracker and Files number shortcuts. Do not add a Research shortcut.\n- Preserve existing action shortcuts. Keep uppercase R for refresh. Lowercase r must not replace the existing Review shortcut.\n\n### Project discovery and context\n\n- Reuse the shared-context enumeration and route resolver. Do not scan unrelated repositories or introduce a second project registry.\n- Include available shared-context projects and the current project. Deduplicate entries by canonical project identity, not display name.\n- Display the project name and a secondary origin or stable context identity. This information distinguishes equal repository names.\n- Selecting a project changes the modal context. It does not change the active Pi session directory or its system instructions.\n- Resolve the selected project routes before record access. Replace old watchers when the selected project changes. Restore per-project navigation on return.\n- If a project lacks a usable repository checkout, keep its readable context available. Disable checkout-dependent actions with an explicit reason.\n- Display Shared or Repo from the selected context alignment route. The indicator describes context storage, not every independent record route.\n- The storage indicator is read-only. It does not migrate records or change routes.\n\n### Initiatives and mixed child items\n\n- The project tracker displays initiatives before the always-visible Ungrouped collection. Ungrouped remains visible with zero items.\n- Ungrouped is a synthetic collection. It does not require an authored initiative record or expose initiative planning actions.\n- Initiative membership uses canonical record relationships. Records without initiative membership appear in Ungrouped. Preserve direct dependency relationships separately.\n- Display supported research, ticket, and other child record types in the same initiative list. Preserve their canonical type and reference.\n- Reuse current tracker adapters and document-type information. Extend the explorer snapshot only where mixed records require additional data.\n- Each child item has a stable identity, canonical reference, type, title, available status, body, and applicable relationships.\n- Item details and available actions depend on the record type. Research does not inherit ticket-only workflow states, review counts, or worktree actions.\n- Existing research and planning commands can lead to specs or initiatives. This feature does not define a new conversion workflow.\n- An initiative summary displays its recorded phase only if authoritative data provides that phase. Otherwise, the interface displays an unavailable value.\n- The interface must not infer an initiative phase from an action such as To tickets.\n- An initiative count represents its associated child items. A column heading identifies the count as Items.\n- Review and fix totals count validated receipts for their respective phases. They describe recorded attempts, not quality or completion.\n- Ready, Review, Blocked, and All remain a distinct ticket queue view or mode within Tracker. Initiative navigation remains separate from queue rows.\n\n### Row structure and visual presentation\n\n- Render row fields separately. Do not create one title-like string from a type, title, state, count, and reference.\n- Initiative rows separate the title, phase, and item count. Child rows separate the type, ID, title, and status.\n- Event rows separate the event identity, outcome, and source reference. Keep each field role stable across event types.\n- Titles use primary text. Secondary descriptions, counts, timestamps, and references use muted text.\n- Theme colours distinguish navigation, success, warning, and error states. Use existing theme tokens instead of fixed terminal colours.\n- A selected row uses a marker and a background. A focused control remains distinguishable from an inactive selection.\n- Status words and type markers carry meaning without colour. Alignment and spacing preserve the same distinction in monochrome output.\n- Long titles wrap under the title field. Wrapped titles do not enter the status or count fields.\n- At narrow widths, move secondary fields to another line. Preserve the title, identity, and status without a concatenated fallback.\n- At short heights, reduce decorative space and help text. Keep the selected row and essential navigation controls visible.\n- Preserve terminal-control sanitization and display-width handling for all record text.\n\n### Descriptions, events, and workflow safety\n\n- Initiative and item overviews display short description summaries. A keyboard-accessible and clickable control opens the full description.\n- Full descriptions use a scrollable reader with a persistent record heading. Esc or the return control restores the previous screen state.\n- Ticket overviews display a summary above event history. Research overviews display relevant recorded details without fabricated ticket events.\n- Event detail displays the outcome and readable body before extended evidence metadata. Full evidence remains reachable.\n- Preserve source commit and tree comparisons, invalid-event details, dependency blockers, and transition restrictions.\n- Distinguish tracker status, recorded workflow activity, next available action, review verdict, and evidence validity.\n- An available Review action means ready for review. It does not mean that a review currently runs.\n- Display changed-file counts only when durable evidence supplies them. Do not infer counts from prose.\n- Retain the current action menu, prompt collection, fresh-chat confirmation, record revalidation, and unsent command behavior.\n- Preserve existing copy and editor-insertion behavior. Do not create a tracker clipboard contract from the sketch alone.\n- Files remains independent. Do not add tracker-to-file links or file-to-tracker links.\n\n### Live updates and exceptional states\n\n- Preserve live updates for the selected project. Retain selection by record identity across updates and tab changes.\n- Distinguish loading, empty collections, empty queues, unreadable records, and refresh failures.\n- If a refresh fails, retain the last readable content and display the failure. Do not enable unsafe workflow transitions.\n- If the selected record disappears, display an explanation and select the nearest available record or its parent.\n- If no actionable record exists, do not open an empty action menu.\n- All visible keyboard hints must match actual input behavior. Correct the existing empty-queue hint for the All shortcut.\n\n## Testing Decisions\n\n- The user approved modal behavior tests and terminal checks. The complete shared-context modal is the primary automated test boundary.\n- Send keyboard and mouse input through the public modal interface. Assert visible records, navigation results, action targets, and externally visible state.\n- Prefer existing loader injection and temporary-store fixtures. Do not introduce another navigation-only test interface.\n- Existing modal tests provide precedent for workspace activation and retained state. Existing explorer tests provide precedent for navigation, width limits, and evidence access.\n- Existing live tests provide precedent for temporary repositories, real record loaders, watchers, and visible updates through the complete modal.\n- Use representative projects with duplicate display names, initiatives with mixed child types, and an empty Ungrouped collection.\n- Cover project changes, breadcrumb activation, Esc return paths, description return paths, per-project state, and independent Files state.\n- Cover associated and unassociated research and tickets. Assert that each record appears in the correct collection with its canonical identity.\n- Cover type-specific actions and the distinction between next action and active execution. Preserve consumer-visible workflow safety tests.\n- Cover long titles, Unicode widths, terminal controls, monochrome meaning, and fields that move between lines.\n- Cover live record updates, selected-record removal, refresh failure, and watcher replacement after project selection.\n- Assert that unavailable repository-dependent actions explain their restriction. Do not execute an action against the original project after a project change.\n- Avoid tests that compare implementation strings, internal row arrays, incidental whitespace, or forwarded mock values.\n- Run the actual Pi modal for terminal acceptance. Exercise keyboard focus, clickable breadcrumbs, selection, description readers, and tab changes.\n- Inspect representative terminal sizes of 40 by 12, 80 by 24, and 120 by 40. Inspect both colour and monochrome presentation.\n- Keep visual evidence for title wrapping, separate status fields, counts, focus, and small-screen navigation. Renderer tests alone do not prove these visual requirements.\n- Check the existing action and copy paths without changing their established semantics.\n\n## Out of Scope\n\n- A Research workspace or Research tab.\n- Cross-links between Files and Tracker.\n- A new clipboard or editor-insertion contract.\n- New agent commands, research conversion commands, or workflow transition rules.\n- Changes to receipt authority, evidence validity rules, or immutable workflow records.\n- Storage migration, route changes, or a storage toggle.\n- A global repository scan, a new project registry, or automatic repository cloning.\n- Changes to the active Pi session directory or system instructions after project selection.\n- New record editing, deletion, or reassignment controls.\n- A separate search feature, new tracker backend, or unrelated extension cleanup.\n\n## Further Notes\n\nThe user sketch and later corrections define the product intent. The later corrections remove the Research tab and require mixed initiative child lists.\n\nThe main visual requirement is field separation. Identity comes first. State occupies a separate field. Supporting information occupies a subordinate line.\n\nThe specification preserves current Tracker and Files number shortcuts. The sketch does not require a shortcut migration.\n\nThe prior inspection exercised real render and input handlers at 100-column and 60-column widths. The repository-backed snapshot returned no records. Populated navigation used fixtures.\n\nThose checks did not constitute a complete Pi terminal acceptance run. Implementation must supply that run before delivery.\n\nThis record is the specification, not an implementation claim. Its triage is ready-for-agent and its work status remains unclaimed.\n\n## Comments\n\nThe user approved the test boundary: modal behavior tests and terminal checks.\n\n\n## Tickets\n\n- [Select shared-context projects through interactive breadcrumbs](../../tickets/pi-shared-context-ux-01-projects.md)\n- [Browse initiatives through structured tracker rows](../../tickets/pi-shared-context-ux-02-initiatives.md)\n- [Browse research and tickets in the same initiative](../../tickets/pi-shared-context-ux-03-mixed-items.md)\n- [Read complete initiative and item descriptions](../../tickets/pi-shared-context-ux-04-descriptions.md)\n- [Inspect ticket events through readable history and evidence views](../../tickets/pi-shared-context-ux-05-events.md)\n- [Find actionable tickets through clear work queues](../../tickets/pi-shared-context-ux-06-queues.md)\n\n- [Track ongoing shared-context UX feedback](../../tickets/pi-shared-context-ux-07-feedback.md)\n\n",
+  "canonical_routes": "mode: repository\nroot: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\nshared root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\nshared candidate: /home/zenobius/Notes/SharedAgentContext/github-com-zenobi-us-dotfiles--cf0ba890\norigin: git@github.com:zenobi-us/dotfiles.git\nslug: github-com-zenobi-us-dotfiles--cf0ba890\n\n\nalignment: repository\ntickets: repository\ninitiatives: repository\nworkflows: repository\nevidence: workflows -> repository\nsources: alignment -> repository\n",
+  "domain_docs": {
+    "CONTEXT-MAP.md": "---\ndescription: Stable entry points and ownership for repository context\ntitle: Context map\ntype: Index\n---\n\n# Context map\n\nUse this file for stable entry points. Do not list individual workflow receipts here.\n\n## Entry points\n\n- [Agent configuration](docs/agents/)\n- [Architecture decisions](docs/adr/index.md)\n- [Issue tracker configuration](docs/agents/issue-tracker.md)\n- [Domain configuration](docs/agents/domain.md)\n\nThe issue tracker uses Local Markdown. Read the [tracker index](tracker/index.md) for ticket and initiative navigation. Read `CONTEXT.md` when it exists. Keep architecture decisions under `docs/adr/`. Resolve workflow and source paths through the shared-context CLI when needed.\n\n## Ownership\n\n| Area | Owner | Property |\n|---|---|---|\n| `docs/agents/` | Repository agent configuration | Authored configuration |\n| `docs/adr/` | Domain and architecture skills | Canonical decisions |\n| `tracker/` | Matt Pocock ticket skill | Canonical local tickets when configured |\n| `workflows/*/events/` | Worktree skill | Authoritative and append-only |\n| `workflows/*/artifacts/` | Worktree skill | Immutable outputs |\n| `workflows/*/projections/` | Worktree skill | Generated and replaceable |\n| `sources/` | Shared-context skill | External and local source copies |\n| `domains/` | Domain skill | Stable domain vocabulary and rules |\n\n",
+    "docs/agents/domain.md": "# Domain docs\n\nThis repository uses one context.\n\n## Read before exploration\n\n1. Read `CONTEXT-MAP.md` at the active alignment root.\n2. Read `CONTEXT.md` when it exists.\n3. Read `docs/adr/index.md` and ADRs that affect the current area.\n\nIf a domain document does not exist, continue without it. Use the `domain-modeling` skill to record terms and decisions when they are resolved.\n\n## Document layout\n\nKeep the glossary and domain rules in `CONTEXT.md`. Keep architecture decisions under `docs/adr/`. Keep stable entry points in `CONTEXT-MAP.md`.\n\nUse the glossary's terms in ticket titles, code proposals, hypotheses, and tests. Update domain documents when a resolved decision changes a term or rule.\n\n",
+    "docs/adr/index.md": "# Architecture decisions\n\nUse this directory for ADRs that record resolved architecture decisions. Use the shared-context CLI to resolve an ADR path before writing it. Add a link here when an ADR is created.\n\nRead the [domain configuration](../agents/domain.md) for domain document rules.\n\n"
+  },
+  "complete_changed_README_section_MQ": "## Pi project navigation\n\n`/shared-context` opens the current project tracker with initiatives, then Ungrouped.\nUngrouped is a synthetic collection and stays visible with zero items. It has no initiative planning actions.\nInitiative rows show the recorded phase and Items count separately from the title. Missing phases show unavailable; actions never supply a phase.\nPress Enter to open an initiative summary and its children. Press Enter on a child to open its existing detail view.\nInitiative and item overviews show a short summary and a Full description control. Press d, focus the control with Tab and press Enter or Space, or click the control to read the complete recorded body. Research, planning, and other item types keep their own overview and action controls.\nThe description reader replaces the content view. Its heading and Return control stay visible. Use Up/Down, PgUp/PgDn, or the visible page controls to scroll wrapped text. The > marker identifies reader or Return focus without colour.\nEsc or Return restores the originating screen, selected child or event, and pane scroll position. Ancestor breadcrumbs leave the reader directly. Each project and workspace retains its own reader position. Files remains independent and keeps its existing insertion behavior.\nLive body changes clamp the reader position to readable content. Empty descriptions say that no description is recorded. A failed refresh identifies the description as unreadable and retains the last readable body. Removal explains the change and returns to an available parent.\nChild rows separate type, stable ID, title, and recorded state. Supporting references and workflow warnings appear below the primary fields.\nInitiative child lists include research, executable tickets, planning records, and other supported canonical records. Items counts include every member. Ungrouped includes every record without initiative membership; dependency edges do not create membership.\nResearch and planning details show the recorded state, metadata, and body without ticket events, review counts, or worktree state. Research and planning use the existing To tickets and Grill commands when registered. Other non-executable types offer Ask Matt only. Missing commands explain why an action is disabled. Fresh-chat confirmation and unsent commands remain unchanged.\nLive type changes replace ticket-only details and actions. Live membership changes retain the selected canonical record when it remains in the collection. Tracker/Files switches and ancestor navigation preserve selection.\nTitles wrap. Narrow terminals wrap phase and Items on separate lines below the title. Use PgUp/PgDn to read long rows without changing selection. Resizing or row reflow brings the selected record back into view; unchanged layouts retain deliberate paging.\nThe > marker identifies a focused selection. The ◇ marker identifies an inactive selection; both retain the selection background.\nUse Tab and Shift+Tab to focus ancestors, panes, and workspace controls. Press Enter or Space on an ancestor, or click it, to return directly.\nEsc returns one level and restores the parent selection and scroll position. In compact terminals, returning from Events with Esc or the ticket ancestor shows the overview at its saved reading position. Live updates retain canonical selection; removal explains the new selection. If a child leaves its initiative while a reader or action menu is open, return to a nearby child or the empty parent before another action. Removing an unrelated initiative does not change the active ticket queue. Removing an inactive remembered child also leaves unrelated queue and home initiative action menus open on their canonical targets.\nPress 5 for Ready, 6 for Review, 7 for Blocked, or 8 for All to open the separate ticket queues. Press h to return to initiatives.\nQueue headings and active controls identify the selected queue. Queues contain tickets only; initiative navigation keeps its own selection and scroll position.\nQueue rows separate type, stable ID, title, and canonical ticket state. Next shows the eligible action; Recorded shows the phase and status from a validated workflow receipt. Review readiness does not mean a review is running.\nPress Enter on a queue ticket to open its canonical detail in its initiative or Ungrouped context. Return navigation restores the queue selection and scroll position.\nIn an empty filtered queue, press 8 to open All or h to return to initiatives. Empty queues offer no ticket actions. Available actions identify their canonical target and explain disabled reasons.\nUppercase R refreshes. Lowercase r retains its existing Review action. The a action menu and direct action keys keep their existing safety checks.\nLoading, empty collections, unreadable records, and refresh failures have distinct messages. A failed refresh retains readable content and blocks unsafe transitions.\n`/shared-context files` opens the independent Files workspace. Files keeps its path-insertion behavior.\n\nUse Tab and Shift+Tab to move between tracker panes, workspace tabs, and the Projects breadcrumb.\nPress Enter on Projects, or click Projects, to open the project list.\nType to filter project names and identities. Matching ignores case and accepts substrings or characters in order. Projects shows the filtered/total count and active query. Use Backspace to edit or Ctrl+U to clear. A zero-result list cannot open a project. Use the arrow keys to select a result. Press Enter to open it. Printable keys, including q, 1 and 2, enter search text while the Projects list has focus.\nThe list includes stored shared-context projects and the current project. Stable identities distinguish equal names and remove duplicate projects.\n\nThe header displays Shared or Repo from the selected alignment route. The indicator does not change storage.\nProject selection changes only the modal. It does not change the Pi session directory or system instructions.\nEach project keeps its tracker navigation, selection, scroll position, and independent Files state.\nProject changes stop the old watchers. Return navigation resolves routes before it starts the selected project's watchers and reads.\n\nOutside Projects, press 1 for Tracker or 2 for Files. At the tracker root, Esc opens Projects. At Projects, Esc closes the modal even with an active filter.\nFiles keeps its existing escape and path-insertion behavior.\n\nStored projects do not contain checkout locations. Shared initialization and route migration save the credential-free canonical remote in `.context-project.json`. Stored project resolution uses this identity for hosted trackers; it never treats the directory slug as a remote. Older stores without this file can still read local records. Hosted trackers need explicit identity recovery. Run `scripts/shared-context/cli.ts list`, then use exactly one authoritative source:\n\n```text\nscripts/shared-context/cli.ts recover-identity SLUG --checkout /verified/checkout\nscripts/shared-context/cli.ts recover-identity SLUG --remote https://github.com/OWNER/REPO.git\n```\n\nThe checkout command reads that checkout’s Git origin. The remote command works without a checkout. Both require an existing store whose slug matches the supplied origin. Recovery writes only missing credential-free identity metadata. It preserves existing metadata, routes, records, and session instructions. Reopen Projects after recovery. If neither the authoritative remote nor a verified checkout is available, hosted tickets remain unavailable; the directory slug cannot recover that identity. No repository scan, initialization, migration, or clone runs.\nIf the current checkout disappears while the modal is open, its existing shared directory remains reachable through the deduplicated current entry. Returning to a cached workspace refreshes checkout capability, disabled actions, Files roots, and watcher targets before it reads records. Selected-project reads use a verified surviving directory from that project, even if the original repository-only session checkout disappears. The Pi session directory stays unchanged.\nFor mixed routes, repository-backed records remain unavailable until a checkout is known.\nFiles can still browse the stored shared directory. Checkout-dependent actions display a disabled reason.\nOpen the command from that project's checkout to use those actions. The modal does not search other repositories or create a project registry.\n\nFresh-chat actions use Pi's replacement session context to stage the command. The command stays unsent until you press Enter.\n",
+  "recorded_validation": {
+    "provenance": "Coordinator executed these real checks; this reviewer must not claim personally rerunning them.",
+    "exact_source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+    "exact_source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+    "full_suite": {
+      "result": "152pass0fail2145assertions13files; scopedcompiler0",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json"
+    },
+    "native_matrix": {
+      "result": "35passedobservations;24queuecases over40x12/80x24/120x40 andcolour/mono; canonicaldrill/Return,liveidentity/departure,emptyrecovery,errorretention/safety;cleanup0",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json"
+    },
+    "consumer": {
+      "result": "8pass0fail171assertions2files",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/post-source-check/command.json"
+    },
+    "mouse": {
+      "result": "ActualSGRleftpress/release atQueuesancestor returned tocanonicalAllticket;4observations;cleanup0",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-mouse-0031/attempt-1/native-smoke.json"
+    },
+    "visual_limit": "SVGfallback does not establish exactglyph/colourpixel fidelity."
+  },
+  "upfront_exact_writer_contract": {
+    "artifact_writer_source": "import * as fs from 'node:fs/promises';\nconst c = JSON.parse(await fs.readFile(Bun.argv[2], 'utf8')); const verdict = Bun.argv[3], report = Bun.argv[4]; if (!['SUCCESS', 'FAILURE'].includes(verdict) || !report?.trim()) throw Error('Supply actual verdict and complete assigned-axis report');\nconst timestamp = new Date().toISOString(); const body = '## Verdict\\n\\n' + verdict + '\\n\\n## Scope\\n\\nTicket ' + c.ticketRef + '; branch ' + c.branch + '; base master at ' + c.base + '; frozen source ' + c.commit + '; tree ' + c.tree + '. Timestamp ' + timestamp + '.\\n\\n' + c.files.map(p => '- ' + p).join('\\n') + '\\n\\n## Standards\\n\\n' + (c.role === 'standards' ? report : 'Not assessed by this independent Spec role; separate Standards and main reviews remain required.') + '\\n\\n## Spec\\n\\n' + (c.role === 'spec' ? report : 'Not assessed by this independent Standards role; separate Spec and main reviews remain required.') + '\\n\\n## Findings\\n\\nThe assigned-axis report above records its findings. Structured result metadata records each blocking finding separately.\\n\\n## Validation\\n\\nPreviously recorded full Bun suite152pass0fail2145assertions13files and scopedcompiler0: ' + c.checksRef + '. Actual exact-source native matrix35passed24cases and owned cleanup0: ' + c.nativeRef + '. Final-source public-modal/event consumer smoke8pass0fail171assertions: ' + c.consumerRef + '. Real SGR mouse ancestor activation passed: ' + c.mouseRef + '. These are recorded observations, not tests personally executed by this reviewer.\\n\\n## Limits\\n\\nThis role assesses its complete assigned axis, not the other independent axis or final acceptance. SVGfallback does not establish exact glyph/colour pixel fidelity. No integration/push/canonical completion claim.\\n\\n## Next step\\n\\n' + (verdict === 'SUCCESS' ? 'Complete remaining independent reviews before finish.' : 'Fix blocking findings in a fresh authorized session, then obtain a new exact-source review.') + '\\n';\nconst fields = { title: 'Ticket06 independent ' + c.role + ' review', reviewed_commit: c.commit, reviewed_tree: c.tree, review_role: c.role, verdict, timestamp }; const p = Bun.spawn(['mise', 'exec', '--', 'mq', '--allow-http-import', '--no-lockfile', '-I', 'null', '-F', 'text', '--args', 'body', body, '--no-clobber', '--output', c.artifact, 'import \"github.com/harehare/okf.mq\" | okf::okf_new(\"Report\",' + JSON.stringify(fields) + ',body) | okf::okf_stringify(.)'], { cwd: c.root, stdout: 'pipe', stderr: 'pipe' }); const [stdout, stderr, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]); if (code) throw Error(stderr); console.log(JSON.stringify({ artifact: c.artifact, verdict, source_commit: c.commit }));\n",
+    "artifact_writer_config": {
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "workflow": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+      "evidence": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082",
+      "evidenceRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082",
+      "role": "spec",
+      "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+      "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+      "files": [
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+      ],
+      "smells": [
+        "Mysterious Name",
+        "Duplicated Code",
+        "Feature Envy",
+        "Data Clumps",
+        "Primitive Obsession",
+        "Repeated Switches",
+        "Shotgun Surgery",
+        "Divergent Change",
+        "Speculative Generality",
+        "Message Chains",
+        "Middle Man",
+        "Refused Bequest"
+      ],
+      "artifact": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0082.md",
+      "artifactRef": "workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0082.md",
+      "result": "review-spec-0082",
+      "checksRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+      "nativeRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json",
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "branch": "feature/pi-shared-context-ux-06-queues",
+      "consumerRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/post-source-check/command.json",
+      "mouseRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-mouse-0031/attempt-1/native-smoke.json"
+    },
+    "finalizer_source": "import * as fs from 'node:fs/promises';\nconst c = JSON.parse(await fs.readFile(Bun.argv[2], 'utf8')); const j = async p => JSON.parse(await fs.readFile(p, 'utf8')); const a = await j(c.evidence + '/assessment.json'), t = await j(c.evidence + '/result-template.json'), l = await j(c.evidence + '/launch-session.json');\nasync function cmd(argv, cwd = c.worktree) { const p = Bun.spawn(argv, { cwd, stdout: 'pipe', stderr: 'pipe' }); const [stdout, stderr, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]); if (code) throw Error(stderr); return stdout.trim(); }\nconst tuple = (await cmd(['git', 'rev-parse', 'HEAD', 'HEAD^{tree}'])).split('\\n'); if (tuple[0] !== c.commit || tuple[1] !== c.tree || await cmd(['git', 'status', '--porcelain'])) throw Error('Frozen source changed or dirty'); if (a.assessment_complete !== true || a.code_inspection_complete !== true || !['SUCCESS', 'FAILURE'].includes(a.verdict) || !Array.isArray(a.findings) || JSON.stringify([...a.reviewed_files].sort()) !== JSON.stringify([...c.files].sort())) throw Error('Complete exact-scope assessment missing'); if (a.verdict === 'SUCCESS' && a.findings.some(f => f.blocking !== false)) throw Error('Blocking findings cannot produce SUCCESS'); if (c.role === 'standards' && a.standards_assessment_complete !== true || c.role === 'spec' && a.spec_assessment_complete !== true) throw Error('Assigned independent axis incomplete');\nconst doc = JSON.parse(await cmd(['mise', 'exec', '--', 'mq', '--allow-http-import', '--no-lockfile', '-I', 'raw', '-F', 'json', 'import \"github.com/harehare/okf.mq\" | let d = okf::okf_parse(.) | {fields:d[\"frontmatter\"],body:d[\"body\"]}', c.artifact], c.root)); if (doc.fields.reviewed_commit !== c.commit || doc.fields.reviewed_tree !== c.tree || doc.fields.verdict !== a.verdict || doc.fields.review_role !== c.role || !doc.body.includes(c.commit) || !doc.body.includes(t.ticket_ref) || c.files.some(p => !doc.body.includes(p))) throw Error('Sole immutable review artifact omits actual identity/scope'); if (c.role === 'standards' && c.smells.some(name => !doc.body.includes(name))) throw Error('All12smell heuristics must be assessed, not omitted');\nconst result = { ...t, created_at: new Date().toISOString(), session_id: l.session_id, pane_id: l.pane_id, status: a.verdict === 'SUCCESS' ? 'completed' : 'failed', verdict: a.verdict, findings: a.findings, summary: a.summary, assessment_complete: true, code_inspection_complete: true, valid_source_verdict: true, standards_assessment_complete: a.standards_assessment_complete === true, spec_assessment_complete: a.spec_assessment_complete === true, scope: { fixed_point: c.base, source_commit: c.commit, source_tree: c.tree, reviewed_files: c.files, all_changed_paths_reviewed: true }, validation: [{ command: 'Recorded full Bun suite and scoped compiler', result: '152pass0fail2145assertions13files;compiler0', evidence_ref: c.checksRef }, { command: 'Actual offline production Pi queue matrix on exact source', result: '35passedobservations24framescolour+mono40x12/80x24/120x40;cleanup0', evidence_ref: c.nativeRef }], review_artifact: c.artifactRef, source_dirty: false, source_committed: true, limitations: ['This independent role assesses only its named axis; a separate fresh main review must inspect both axes before finish.', 'SVG fallback does not establish exact glyph/colour pixel fidelity.'], outputs: [...t.outputs, { kind: 'review', ref: c.artifactRef }], inputs: [...t.inputs, { kind: 'evidence', ref: c.evidenceRef + '/assessment.json' }] }; await fs.writeFile(c.workflow + '/events/' + c.result + '.json', JSON.stringify(result, null, 2) + '\\n', { flag: 'wx' }); console.log(JSON.stringify({ receipt: c.result, verdict: result.verdict, source_commit: c.commit, artifact: c.artifactRef, blocking_findings: a.findings.filter(f => f.blocking !== false).length }));\n",
+    "finalizer_config": {
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "workflow": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+      "evidence": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082",
+      "evidenceRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082",
+      "role": "spec",
+      "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+      "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+      "files": [
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+      ],
+      "smells": [
+        "Mysterious Name",
+        "Duplicated Code",
+        "Feature Envy",
+        "Data Clumps",
+        "Primitive Obsession",
+        "Repeated Switches",
+        "Shotgun Surgery",
+        "Divergent Change",
+        "Speculative Generality",
+        "Message Chains",
+        "Middle Man",
+        "Refused Bequest"
+      ],
+      "artifact": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0082.md",
+      "artifactRef": "workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0082.md",
+      "result": "review-spec-0082",
+      "checksRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+      "nativeRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json"
+    },
+    "result_template": {
+      "schema": "worktree-receipt/v1",
+      "workflow_id": "pi-shared-context-ux-06-queues",
+      "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "source_branch": "feature/pi-shared-context-ux-06-queues",
+      "base_branch": "master",
+      "ticket": {
+        "backend": "local-markdown",
+        "id": "pi-shared-context-ux-06-queues",
+        "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+      },
+      "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "workflow": {
+        "store": "repository",
+        "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "ref": "workflows/pi-shared-context-ux-06-queues"
+      },
+      "receipt_id": "review-spec-0082",
+      "parent_receipt": "review-spec-start-0081",
+      "phase": "review",
+      "attempt": 9,
+      "event": "phase-result",
+      "created_at": "2026-10-29T22:56:39.574Z",
+      "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+      "status": "blocked",
+      "muxer": "herdr",
+      "agent": "omp",
+      "agent_name": "ux06-spec-c22-complete-contract",
+      "pane_id": "w8P:p9",
+      "session_id": null,
+      "review_role": "spec",
+      "fixed_point": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+      "source_dirty": false,
+      "source_committed": true,
+      "evidence": {
+        "kind": "evidence",
+        "adapter": "files",
+        "store": "repository",
+        "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082",
+        "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0082",
+        "publication": "repository"
+      },
+      "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+      "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0266.yaml",
+      "cycle_number": 22,
+      "token_limit": 300000,
+      "native_goal_budget": 200000,
+      "completion_margin_tokens": 100000,
+      "guard_sha256": "fec08eb63867a87ca9727b179462e19b8a27854ab9d0e559319f8c25df794c0f",
+      "inputs": [
+        {
+          "kind": "ticket",
+          "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+        },
+        {
+          "kind": "initiative",
+          "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+        },
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0022.json"
+        },
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/single-call-review-renewal-approved-0044.json"
+        },
+        {
+          "kind": "evidence",
+          "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json"
+        },
+        {
+          "kind": "evidence",
+          "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-mouse-0031/attempt-1/native-smoke.json"
+        },
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/review-exception-approved-0056.json"
+        },
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/same-ceiling-review-renewal-approved-0068.json"
+        },
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/review-spec-complete-0074.json"
+        },
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/remaining-reviews-approved-0080.json"
+        },
+        {
+          "kind": "coordinator",
+          "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0266.yaml"
+        },
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/review-spec-start-0081.json"
+        }
+      ],
+      "outputs": [
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-06-queues/events/review-spec-0082.json"
+        }
+      ],
+      "approved_ticket_cycle_limit": 23,
+      "approval_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/operator-approval-0265.yaml",
+      "single_call_control": true,
+      "workspace_id": "w8P",
+      "review_only_exception": true
+    }
+  }
+}

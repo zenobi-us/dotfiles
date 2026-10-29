@@ -1,0 +1,108 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-06-queues",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues"
+  },
+  "receipt_id": "remaining-reviews-approved-0080",
+  "parent_receipt": "review-contract-recovery-prepared-0079",
+  "phase": "review",
+  "event": "operator-approval",
+  "attempt": 0,
+  "created_at": "2026-10-29T22:56:39.206Z",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "source_dirty": false,
+  "source_committed": true,
+  "status": "approved",
+  "muxer": "herdr",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "pane_id": "w64:pT",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-contract-recovery-0079",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-contract-recovery-0079",
+    "publication": "repository"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "budget_scope": "coordinator",
+  "agent_session_cycle_consumption": 0,
+  "current_ticket_cycles_consumed": 21,
+  "current_ticket_cycle_limit": 23,
+  "current_dispatches_reserved": 67,
+  "current_dispatch_cap": 70,
+  "valid_source_verdict": false,
+  "independent_source_reviews_completed": 1,
+  "current_review_exception_cycles": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "current_review_exception_ceiling": 300000,
+  "earlier_limits_unchanged": true,
+  "proposed_fresh_review_cycles": [
+    22,
+    23
+  ],
+  "proposed_ticket_cycle_limit": 23,
+  "proposed_dispatch_cap": 70,
+  "proposed_review_exception_ceiling": 300000,
+  "larger_ceiling_proposed": false,
+  "new_AI_sessions_started": 0,
+  "source_worktree_preserved": true,
+  "source_workspace_preserved": true,
+  "source_workspace_id": "w8P",
+  "source_root_pane": "w8P:p1",
+  "canonical_work_status": "claimed",
+  "claim_and_status_unchanged": true,
+  "active_ai_agents": [],
+  "prepared_plan": "PreserveStandards70SUCCESS. Existing completechanged-methodpack is unchanged. Supply complete childRow/focusedPane/renderPane context directly instead of the fullLSPsymbolinventory, and preload exact trusted artifactwriter/finalizer source/config beforeinspection. Fullcriteria/source/skills unchanged. Same300000ceiling, no largerlimit proposed.",
+  "live_plan_fit_verified": false,
+  "required_user_authority": null,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/review-contract-recovery-prepared-0079.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/operator-approval-0265.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/remaining-reviews-approved-0080.json"
+    }
+  ],
+  "accepted_standards_verdict": "SUCCESS",
+  "accepted_standards_receipt_ref": "workflows/pi-shared-context-ux-06-queues/events/review-standards-0070.json",
+  "accepted_standards_parent_ref": "workflows/pi-shared-context-ux-06-queues/events/review-standards-complete-0071.json",
+  "approved_fresh_review_cycles": [
+    22,
+    23
+  ],
+  "approved_review_session_ceiling": 300000,
+  "pending_gate": "freshSpec22_then_freshmain23_then_finish_if_success"
+}
