@@ -1,0 +1,141 @@
+    if (this.screen === "home" || this.screen === "actions" && this.returnScreen === "home") return this.homeRows()[this.homeIndex]?.target;
+    if (this.screen === "queues" || this.screen === "actions" && this.returnScreen === "queues") return this.queueRows()[this.queueIndex]?.target;
+    const ticket = this.ticket();
+    return ticket ? { kind: "ticket", ticket } : undefined;
+  }
+
+  private initiative(): ExplorerInitiative | undefined {
+    return this.snapshot?.initiatives.find(initiative => initiative.id === this.initiativeId);
+  }
+
+  private ticket(): ExplorerTicket | undefined {
+    return this.ticketId ? this.tickets.get(this.ticketId) : undefined;
+  }
+
+  private history(): ExplorerEvent[] {
+    const workflow = this.workflow();
+    return workflow?.events ?? workflow?.receipts ?? [];
+  }
+
+  private workflow(): TicketWorkflow | undefined {
+    const ticket = this.ticket();
+    return ticket && recordKind(ticket) === "ticket" ? this.workflows.get(ticket.id) : undefined;
+  }
+
+  private navigation(): ExplorerNavigation {
+    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader, queueSelections: [...this.queueSelections], initiativeMemory: this.initiativeMemory, childSelections: [...this.childSelections] };
+  }
+
+  private focusedPane(panes: Pane[]): Pane | undefined {
+    return this.focus === "neighborhood" ? panes.find(pane => pane.id.startsWith("neighbors:")) : this.focus === "detail" ? panes[panes.length - 1] : this.screen === "receipts" ? panes.find(pane => pane.id.startsWith("receipts:")) ?? panes[0] : panes[0];
+  }
+
+  private renderPane(pane: Pane, width: number, height: number): string[] {
+    const expanded = pane.rows.flatMap(row => {
+      if (row.event) return this.eventLines(row.event, Math.max(1, width - 1)).map(text => ({ ...row, text, styled: true }));
+      if (row.fields) return this.fieldLines(row.fields, Math.max(1, width - 1)).map(text => ({ ...row, text, styled: true }));
+      return wrapTextWithAnsi(this.clean(row.text), Math.max(1, width - 1)).map(text => ({ ...row, text, styled: false }));
+    });
+    const selected = expanded.findIndex(row => row.selected);
+    let offset = this.offsets.get(pane.id) ?? 0;
+    const selectedRow = expanded[selected];
+    const selection = selectedRow?.receiptId ?? (selectedRow?.target?.kind === "ticket" ? selectedRow.target.ticket.ref : selectedRow?.target?.kind === "initiative" ? selectedRow.target.initiative.ref : String(selected));
+    const selectedEnd = expanded.findIndex((row, index) => index > selected && !row.selected);
+    const end = selectedEnd < 0 ? expanded.length : selectedEnd;
+    const previous = this.renderedLayout.get(pane.id);
+    const layoutChanged = !previous || previous.width !== width || previous.height !== height || previous.start !== selected || previous.end !== end;
+    // Paging survives unchanged renders; reflow must bring the selected record back into view.
+    if (selected >= 0 && (layoutChanged || this.renderedSelection.get(pane.id) !== selection)) {
+      if (selected < offset) offset = selected;
+      if (selected >= offset + height) offset = selected;
+      if (end - selected <= height && end > offset + height) offset = end - height;
+    }
+    this.renderedSelection.set(pane.id, selection);
+    this.renderedLayout.set(pane.id, { width, height, start: selected, end });
+    offset = Math.max(0, Math.min(offset, Math.max(0, expanded.length - height)));
+    this.offsets.set(pane.id, offset);
+    return Array.from({ length: height }, (_, index) => {
+      const row = expanded[index + offset];
+      if (!row) return " ".repeat(width);
+      const focused = this.active && ["list", "detail", "neighborhood"].includes(this.focus) && this.focusedPane(this.panes())?.id === pane.id;
+      const text = this.pad(`${row.selected ? focused ? ">" : "◇" : " "}${row.styled ? row.text : this.options.theme.fg(row.tone ?? "text", row.text)}`, width);
+      return row.selected ? this.options.theme.bg("selectedBg", text) : text;
+    });
+  }
+
+  private fieldLines(fields: NonNullable<Row["fields"]>, width: number): string[] {
+    const th = this.options.theme;
+    const title = this.clean(fields.title);
+    const state = this.clean(fields.state);
+    const isInitiative = fields.count !== undefined;
+    const stateTone: Tone = /^(done|completed|closed)$/i.test(state) ? "success" : /error|failed|blocked/i.test(state) ? "warning" : "accent";
+    const secondary = isInitiative ? `Phase: ${state}` : `State: ${state}`;
+    const count = isInitiative ? `Items: ${fields.count}` : "";
+    const identity = this.clean(fields.identity ?? "");
+    const lines: string[] = [];
+    if (width >= 65 && isInitiative) {
+      const phaseWidth = Math.min(24, Math.max(18, visibleWidth(secondary)));
+      const countWidth = 11;
+      const titleWidth = Math.max(1, width - phaseWidth - countWidth - 4);
+      for (const [index, line] of wrapTextWithAnsi(title, titleWidth).entries()) lines.push(th.fg("text", this.pad(line, titleWidth)) + "  " + th.fg(stateTone, this.pad(index === 0 ? secondary : "", phaseWidth)) + "  " + th.fg("muted", this.pad(index === 0 ? count : "", countWidth)));
+    } else if (width >= 85) {
+      const typeWidth = 14;
+      const idWidth = 16;
+      const stateWidth = 18;
+      const titleWidth = width - typeWidth - idWidth - stateWidth - 6;
+      for (const [index, line] of wrapTextWithAnsi(title, titleWidth).entries()) {
+        lines.push(th.fg("accent", this.pad(index === 0 ? this.clean(`[${fields.type}]`) : "", typeWidth)) + "  "
+          + th.fg("muted", this.pad(index === 0 ? identity : "", idWidth)) + "  "
+          + th.fg("text", this.pad(line, titleWidth)) + "  "
+          + th.fg(stateTone, this.pad(index === 0 ? secondary : "", stateWidth)));
+      }
+      if (visibleWidth(identity) > idWidth) lines.push(...wrapTextWithAnsi(`ID: ${identity}`, width).map(line => th.fg("muted", line)));
+      if (visibleWidth(this.clean(`[${fields.type}]`)) > typeWidth) lines.push(...wrapTextWithAnsi(this.clean(`Type: ${fields.type}`), width).map(line => th.fg("accent", line)));
+      if (visibleWidth(secondary) > stateWidth) lines.push(...wrapTextWithAnsi(secondary, width).map(line => th.fg(stateTone, line)));
+    } else {
+      if (!isInitiative) lines.push(...wrapTextWithAnsi(this.clean(`[${fields.type}]`) + `  ID: ${identity}`, width).map(line => th.fg("accent", line)));
+      lines.push(...wrapTextWithAnsi(title, width).map(line => th.fg("text", line)));
+      lines.push(...wrapTextWithAnsi(secondary, width).map(line => th.fg(stateTone, line)));
+      if (count) lines.push(...wrapTextWithAnsi(count, width).map(line => th.fg("muted", line)));
+    }
+    if (isInitiative) lines.push(...wrapTextWithAnsi(identity, width).map(line => th.fg("muted", line)));
+    if (fields.next) lines.push(...wrapTextWithAnsi(this.clean(`Next: ${fields.next}`), width).map(line => th.fg("accent", line)));
+    if (fields.activity) lines.push(...wrapTextWithAnsi(this.clean(`Recorded: ${fields.activity}`), width).map(line => th.fg("muted", line)));
+    if (fields.supporting) lines.push(...wrapTextWithAnsi(this.clean(fields.supporting), width).map(line => th.fg("muted", line)));
+    return lines;
+  }
+
+  private clean(value: string): string {
+    return safeTerminalText(value);
+  }
+
+  private pad(value: string, width: number): string {
+    const text = truncateToWidth(value, Math.max(1, width), "…");
+    return text + " ".repeat(Math.max(0, width - visibleWidth(text)));
+  }
+}
+
+export function focusedTicketIds(snapshot: ExplorerSnapshot | undefined, target: ExplorerTarget | undefined): Set<string> {
+  const included = new Set<string>();
+  if (!snapshot || !target) return included;
+  const tickets = new Map(snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").map(ticket => [ticket.id, ticket]));
+  if (target.kind === "initiative") {
+    const visit = (id: string) => {
+      if (included.has(id) || !tickets.has(id)) return;
+      included.add(id);
+      for (const blocker of tickets.get(id)!.blockedBy) visit(blocker);
+    };
+    for (const id of target.initiative.ticketIds) visit(id);
+  } else {
+    const dependents = new Map<string, string[]>();
+    for (const ticket of tickets.values()) for (const blocker of ticket.blockedBy) {
+      const children = dependents.get(blocker) ?? [];
+      children.push(ticket.id);
+      dependents.set(blocker, children);
+    }
+    const visit = (id: string) => {
+      if (included.has(id) || !tickets.has(id)) return;
+      included.add(id);
+      for (const child of dependents.get(id) ?? []) visit(child);
+    };
+    visit(target.ticket.id);

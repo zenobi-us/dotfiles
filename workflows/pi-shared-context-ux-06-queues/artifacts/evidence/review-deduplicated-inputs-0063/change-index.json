@@ -1,0 +1,743 @@
+[
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "old_start": 206,
+    "old_count": 1,
+    "new_start": 205,
+    "new_count": 0,
+    "removed": [
+      {
+        "line": 206,
+        "text": "  expect(f.view()).toContain(\"removed\");"
+      }
+    ],
+    "added_new_line_numbers": []
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 7,
+    "old_count": 1,
+    "new_start": 7,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 7,
+        "text": "import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from \"./model\";"
+      }
+    ],
+    "added_new_line_numbers": [
+      7
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 15,
+    "old_count": 1,
+    "new_start": 15,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 15,
+        "text": "type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };"
+      }
+    ],
+    "added_new_line_numbers": [
+      15
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 33,
+    "old_count": 0,
+    "new_start": 34,
+    "new_count": 3,
+    "removed": [],
+    "added_new_line_numbers": [
+      34,
+      35,
+      36
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 77,
+    "old_count": 0,
+    "new_start": 81,
+    "new_count": 2,
+    "removed": [],
+    "added_new_line_numbers": [
+      81,
+      82
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 126,
+    "old_count": 0,
+    "new_start": 132,
+    "new_count": 3,
+    "removed": [],
+    "added_new_line_numbers": [
+      132,
+      133,
+      134
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 213,
+    "old_count": 1,
+    "new_start": 221,
+    "new_count": 2,
+    "removed": [
+      {
+        "line": 213,
+        "text": "          if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;"
+      }
+    ],
+    "added_new_line_numbers": [
+      221,
+      222
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 248,
+    "old_count": 0,
+    "new_start": 258,
+    "new_count": 1,
+    "removed": [],
+    "added_new_line_numbers": [
+      258
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 249,
+    "old_count": 0,
+    "new_start": 260,
+    "new_count": 1,
+    "removed": [],
+    "added_new_line_numbers": [
+      260
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 268,
+    "old_count": 2,
+    "new_start": 279,
+    "new_count": 2,
+    "removed": [
+      {
+        "line": 268,
+        "text": "            if (workflow.error && !workflow.events?.length && previous?.events?.length) {"
+      },
+      {
+        "line": 269,
+        "text": "              workflow = { ...previous, sourceCommit: undefined, sourceTree: undefined, error: `History refresh failed; showing last readable history. ${workflow.error}` };"
+      }
+    ],
+    "added_new_line_numbers": [
+      279,
+      280
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 282,
+    "old_count": 0,
+    "new_start": 294,
+    "new_count": 1,
+    "removed": [],
+    "added_new_line_numbers": [
+      294
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 307,
+    "old_count": 2,
+    "new_start": 319,
+    "new_count": 3,
+    "removed": [
+      {
+        "line": 307,
+        "text": "    if (screen !== \"home\" && screen !== \"queues\") return;"
+      },
+      {
+        "line": 308,
+        "text": "    const rows = screen === \"home\" ? this.homeRows() : this.queueRows();"
+      }
+    ],
+    "added_new_line_numbers": [
+      319,
+      320,
+      321
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 310,
+    "old_count": 1,
+    "new_start": 323,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 310,
+        "text": "    const previous = screen === \"home\" ? this.homeIndex : this.queueIndex;"
+      }
+    ],
+    "added_new_line_numbers": [
+      323
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 313,
+    "old_count": 2,
+    "new_start": 326,
+    "new_count": 43,
+    "removed": [
+      {
+        "line": 313,
+        "text": "    if (screen === \"home\") this.homeIndex = next;"
+      },
+      {
+        "line": 314,
+        "text": "    else this.queueIndex = next;"
+      }
+    ],
+    "added_new_line_numbers": [
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334,
+      335,
+      336,
+      337,
+      338,
+      339,
+      340,
+      341,
+      342,
+      343,
+      344,
+      345,
+      346,
+      347,
+      348,
+      349,
+      350,
+      351,
+      352,
+      353,
+      354,
+      355,
+      356,
+      357,
+      358,
+      359,
+      360,
+      361,
+      362,
+      363,
+      364,
+      365,
+      366,
+      367,
+      368
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 459,
+    "old_count": 1,
+    "new_start": 513,
+    "new_count": 2,
+    "removed": [
+      {
+        "line": 459,
+        "text": "    this.screen = crumb.screen;"
+      }
+    ],
+    "added_new_line_numbers": [
+      513,
+      514
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 505,
+    "old_count": 1,
+    "new_start": 560,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 505,
+        "text": "    if (matchesKey(data, \"shift+r\")) {"
+      }
+    ],
+    "added_new_line_numbers": [
+      560
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 512,
+    "old_count": 1,
+    "new_start": 567,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 512,
+        "text": "      this.screen = \"home\";"
+      }
+    ],
+    "added_new_line_numbers": [
+      567
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 533,
+    "old_count": 1,
+    "new_start": 588,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 533,
+        "text": "      else if (this.screen === \"initiatives\" || this.screen === \"queues\") this.screen = \"home\";"
+      }
+    ],
+    "added_new_line_numbers": [
+      588
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 536,
+    "old_count": 1,
+    "new_start": 591,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 536,
+        "text": "      this.notice = \"\";"
+      }
+    ],
+    "added_new_line_numbers": [
+      591
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 544,
+    "old_count": 3,
+    "new_start": 599,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 544,
+        "text": "        this.queue = filter;"
+      },
+      {
+        "line": 545,
+        "text": "        this.screen = \"queues\";"
+      },
+      {
+        "line": 546,
+        "text": "        this.queueIndex = 0;"
+      }
+    ],
+    "added_new_line_numbers": [
+      599
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 599,
+    "old_count": 1,
+    "new_start": 652,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 599,
+        "text": "        this.queueIndex = Math.max(0, Math.min(this.queueRows().length - 1, this.queueIndex + delta));"
+      }
+    ],
+    "added_new_line_numbers": [
+      652
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 603,
+    "old_count": 1,
+    "new_start": 656,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 603,
+        "text": "        if (this.ticketId && this.initiativeId) this.childSelections.set(this.initiativeId, this.ticketId);"
+      }
+    ],
+    "added_new_line_numbers": [
+      656
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 636,
+    "old_count": 0,
+    "new_start": 690,
+    "new_count": 1,
+    "removed": [],
+    "added_new_line_numbers": [
+      690
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 818,
+    "old_count": 1,
+    "new_start": 872,
+    "new_count": 10,
+    "removed": [
+      {
+        "line": 818,
+        "text": "    if (this.screen === \"actions\") return [{ id: \"actions\", title: \"Open a fresh chat · commands are staged, not auto-sent\", rows: this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : \"\"}`, tone: choice.disabledReason ? \"warning\" : \"text\", selected: index === this.actionIndex })) }];"
+      }
+    ],
+    "added_new_line_numbers": [
+      872,
+      873,
+      874,
+      875,
+      876,
+      877,
+      878,
+      879,
+      880,
+      881
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 902,
+    "old_count": 1,
+    "new_start": 965,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 902,
+        "text": "  private queueRows(): Row[] {"
+      }
+    ],
+    "added_new_line_numbers": [
+      965
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 908,
+    "old_count": 1,
+    "new_start": 971,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 908,
+        "text": "      if (this.queue !== \"all\" && this.receiptChecks < ticketCount) continue;"
+      }
+    ],
+    "added_new_line_numbers": [
+      971
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 910,
+    "old_count": 2,
+    "new_start": 973,
+    "new_count": 12,
+    "removed": [
+      {
+        "line": 910,
+        "text": "      const inQueue = this.queue === \"all\" || this.queue === \"ready\" && state === \"READY\" || this.queue === \"review\" && [\"REVIEW\", \"FIX\", \"FINISH\", \"SUBMIT\"].includes(state) || this.queue === \"blocked\" && [\"BLOCKED\", \"ERROR\", \"UNKNOWN\"].includes(state);"
+      },
+      {
+        "line": 911,
+        "text": "      if (inQueue) rows.push(this.childRow(ticket, false));"
+      }
+    ],
+    "added_new_line_numbers": [
+      973,
+      974,
+      975,
+      976,
+      977,
+      978,
+      979,
+      980,
+      981,
+      982,
+      983,
+      984
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 913,
+    "old_count": 1,
+    "new_start": 986,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 913,
+        "text": "    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? \"Checking workflow receipts before offering work…\" : `No tickets in ${this.queue}. Choose 8 for all tickets.`, tone: \"muted\" });"
+      }
+    ],
+    "added_new_line_numbers": [
+      986
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 939,
+    "old_count": 1,
+    "new_start": 1012,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 939,
+        "text": "    return { id: `${this.screen === \"initiatives\" ? \"children\" : \"graph\"}:${this.initiativeId}`, title: `${initiative?.id ?? \"Collection\"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };"
+      }
+    ],
+    "added_new_line_numbers": [
+      1012
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 1051,
+    "old_count": 1,
+    "new_start": 1124,
+    "new_count": 1,
+    "removed": [
+      {
+        "line": 1051,
+        "text": "    return { screen: this.screen === \"actions\" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === \"actions\" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };"
+      }
+    ],
+    "added_new_line_numbers": [
+      1124
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "old_start": 1126,
+    "old_count": 0,
+    "new_start": 1200,
+    "new_count": 2,
+    "removed": [],
+    "added_new_line_numbers": [
+      1200,
+      1201
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+    "old_start": 0,
+    "old_count": 0,
+    "new_start": 1,
+    "new_count": 166,
+    "removed": [],
+    "added_new_line_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166
+    ]
+  },
+  {
+    "path": "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+    "old_start": 270,
+    "old_count": 0,
+    "new_start": 271,
+    "new_count": 4,
+    "removed": [],
+    "added_new_line_numbers": [
+      271,
+      272,
+      273,
+      274
+    ]
+  }
+]

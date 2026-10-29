@@ -1,0 +1,260 @@
+[
+  {
+    "name": "read",
+    "args": {
+      "i": "Load mandatory review skill",
+      "path": "skill://code-review"
+    },
+    "ctx": 18158
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load plain language rules",
+      "path": "skill://iso-24495-1"
+    },
+    "ctx": 20276
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load technical English rules",
+      "path": "skill://asd-ste100"
+    },
+    "ctx": 22170
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load comment review rules",
+      "path": "skill://code-comments"
+    },
+    "ctx": 26884
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load TypeScript review rules",
+      "path": "skill://typescript"
+    },
+    "ctx": 28490
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load Markdown handling rules",
+      "path": "skill://mq-query"
+    },
+    "ctx": 30801
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load required artifact creation procedure",
+      "path": "skill://mq-query/references/tasks/creating.md"
+    },
+    "ctx": 31647
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load required MQ command reference",
+      "path": "skill://mq-query/references/docs/cli.md"
+    },
+    "ctx": 32250
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load technical analysis language rules",
+      "path": "skill://iso-24495-3"
+    },
+    "ctx": 35155
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load report design rules",
+      "path": "skill://iso-24495-5"
+    },
+    "ctx": 36658
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load mandatory code clarity rules",
+      "path": "skill://iso-24495-code"
+    },
+    "ctx": 39968
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete first bounded diff",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-01.diff:1-138:raw"
+    },
+    "ctx": 41489
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete second bounded diff",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-02.diff:1-149:raw"
+    },
+    "ctx": 43837
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete third bounded diff",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-03.diff:1-141:raw"
+    },
+    "ctx": 46293
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete fourth bounded diff",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-04.diff:1-79:raw"
+    },
+    "ctx": 48956
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read unchanged action authority",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.actions&raw=true"
+    },
+    "ctx": 50268
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read receipt validation authority",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.receipt_validation&raw=true"
+    },
+    "ctx": 52940
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read workflow model authority",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.model&raw=true"
+    },
+    "ctx": 55047
+  },
+  {
+    "name": "bash",
+    "args": {
+      "i": "Verify pinned commit tree and unchanged worktree source",
+      "command": "git rev-parse HEAD HEAD^{tree} 20968ee4f907c6f74bc77702fcef09578b41c6b8^{tree} 6f959f8c380efe378f4a0f2eeffcd3660c803859^{tree} && git status --short && git diff --stat 6f959f8c380efe378f4a0f2eeffcd3660c803859...20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "timeout": 30,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "pty": false,
+      "async": false,
+      "name": null,
+      "ready": null
+    },
+    "ctx": 56082
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer loading and navigation context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:1-315:raw"
+    },
+    "ctx": 56507
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect queue memory and watcher ownership context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:316-555:raw"
+    },
+    "ctx": 60160
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect input routing action boundary and viewport",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:556-868:raw"
+    },
+    "ctx": 63069
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect queue presentation and action restrictions context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:869-1128:raw"
+    },
+    "ctx": 67773
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect renderer field and viewport behavior",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:1129-1244:raw"
+    },
+    "ctx": 72518
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect changed existing regression test in context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts:1-225:raw"
+    },
+    "ctx": 74462
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load README review guidance",
+      "path": "skill://review-documentation"
+    },
+    "ctx": 77617
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load Markdown read procedure for README context",
+      "path": "skill://mq-query/references/tasks/reading.md"
+    },
+    "ctx": 78340
+  },
+  {
+    "name": "bash",
+    "args": {
+      "i": "Read README tracker section through MQ without modifying locks",
+      "command": "mise exec -- mq --allow-http-import --frozen -I raw -F text 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | .body' mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+      "timeout": 30,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "pty": false,
+      "async": false,
+      "name": null,
+      "ready": null
+    },
+    "ctx": 78875
+  },
+  {
+    "name": "bash",
+    "args": {
+      "i": "Read README with documented MQ parse procedure",
+      "command": "mise exec -- mq --allow-http-import --frozen -I raw -F json 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.)' mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+      "timeout": 30,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "pty": false,
+      "async": false,
+      "name": null,
+      "ready": null
+    },
+    "ctx": 79182
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete MQ-extracted README output",
+      "path": "artifact://3:1-4:raw"
+    },
+    "ctx": 79426
+  }
+]

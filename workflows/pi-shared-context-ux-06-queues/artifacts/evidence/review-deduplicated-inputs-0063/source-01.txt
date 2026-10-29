@@ -1,0 +1,21 @@
+test("removing the active queue action target closes its menu and selects a surviving canonical ticket", async () => {
+  let data = structuredClone(snapshot);
+  const f = await fixture(data, 40, async () => data);
+  await f.modal.handleInput("8");
+  await f.modal.handleInput("\x1b[B");
+  await f.modal.handleInput("a");
+  expect(f.view()).toContain("Open a fresh chat");
+  data = {
+    ...data,
+    tickets: data.tickets.filter(ticket => ticket.id !== "T-2"),
+    initiatives: data.initiatives.map(item => ({ ...item, ticketIds: item.ticketIds.filter(id => id !== "T-2") })),
+  };
+  await f.component.load();
+  expect(f.view()).not.toContain("Open a fresh chat");
+  expect(f.view()).toContain("Ticket queues");
+  await f.modal.handleInput("m");
+  const result = f.result();
+  if (result?.kind !== "session" || result.request.target.kind !== "ticket") throw new Error("Expected surviving queue target");
+  expect(result.request.target.ticket.ref).toBe("tracker/tickets/T-3.md");
+  expect(result.navigation.screen).toBe("queues");
+});

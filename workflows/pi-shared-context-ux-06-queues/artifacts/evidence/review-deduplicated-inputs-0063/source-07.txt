@@ -1,0 +1,125 @@
+    ].map(line => th.fg("border", "│") + this.pad(line, inner) + th.fg("border", "│"));
+  }
+
+  private renderBreadcrumbs(width: number, compact: boolean): string {
+    const crumbs = this.breadcrumbs();
+    const labelWidth = Math.max(3, Math.floor((width - (crumbs.length - 1) * 3) / crumbs.length));
+    this.breadcrumbHits = [];
+    let x = compact ? 0 : 1;
+    return crumbs.map((crumb, index) => {
+      const focused = this.active && this.focus === "breadcrumb" && index === this.breadcrumbIndex;
+      const label = truncateToWidth(this.clean(crumb.label), Math.max(1, labelWidth - 2), "…");
+      const text = focused ? `>${label}<` : ` ${label} `;
+      if (index < crumbs.length - 1) this.breadcrumbHits.push({ x, y: compact ? 0 : 1, width: visibleWidth(text), index });
+      x += visibleWidth(text) + 3;
+      return this.options.theme.fg(index < crumbs.length - 1 ? "accent" : "text", text);
+    }).join(this.options.theme.fg("muted", " > "));
+  }
+
+  private panes(): Pane[] {
+    if (this.loading || this.error || !this.snapshot) return [{ id: "state", title: "Shared context", rows: [{ text: this.loading ? "Loading tracker records…" : this.error || "No snapshot loaded.", tone: this.error ? "error" : "muted" }, { text: "R reload · b browse files · q close", tone: "muted" }] }];
+    if (this.screen === "actions") {
+      const target = this.target();
+      const record = target?.kind === "ticket" ? target.ticket : target?.initiative;
+      return [{
+        id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: [
+          { text: record ? `Target: ${record.id} · ${record.ref}` : "No selection", tone: "accent" },
+          ...this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" as const : "text" as const, selected: index === this.actionIndex })),
+        ]
+      }];
+    }
+    if (this.screen === "home") return [{ id: "home", title: "Initiatives · title / phase / Items", rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
+    if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
+    if (this.screen === "initiatives") return [this.graphPane()];
+    if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: this.ticket() && recordKind(this.ticket()!) !== "ticket" ? `${this.ticketType(this.ticket()!)} / recorded details` : "Ticket / dependencies / receipts", rows: this.ticketRows() }];
+    if (this.eventDetail) return [{ id: `receipt:${this.ticketId}:${this.selectedEvent()?.id ?? "none"}`, title: "Event detail · outcome / body / exact evidence", rows: this.eventRows() }];
+    const workflow = this.workflow();
+    const events = this.history();
+    const selected = this.selectedEvent();
+    return [{
+      id: `receipts:${this.ticketId}`, title: "Events / newest first",
+      rows: [
+        ...(events.length ? events.map(event => ({
+          text: "", event, receiptId: event.id,
+          selected: event.id === selected?.id, tone: event.error ? "warning" as const : "text" as const,
+        })) : [{ text: workflow?.error ? `History unreadable: ${workflow.error}` : workflow ? "No events recorded." : "Loading history…", tone: workflow?.error ? "error" as const : "muted" as const }]),
+        ...(workflow?.error && events.length ? [{ text: `History warning: ${workflow.error}`, tone: "warning" as const }] : []),
+        { text: "Dependencies / unresolved blockers:", tone: "accent" },
+        ...this.neighborhoodRows(),
+      ],
+    }];
+  }
+
+  private selectedEvent(): ExplorerEvent | undefined {
+    const events = this.history();
+    return events.find(event => event.id === this.receiptId) ?? events[0];
+  }
+
+  private eventLines(event: ExplorerEvent, width: number): string[] {
+    const fields = event.fields;
+    const value = (key: string): string => typeof fields?.[key] === "string" ? fields[key] : "unavailable";
+    const parts: { text: string; tone: Tone }[] = [
+      { text: `Event: ${typeof fields?.receipt_id === "string" ? fields.receipt_id : event.ref.split("/").at(-1)} · Phase: ${value("phase")}`, tone: "text" },
+      { text: `Execution: ${value("status")}${event.error ? " · INVALID" : ""}`, tone: event.error || fields?.status === "failed" ? "error" : "accent" },
+      ...(typeof fields?.verdict === "string" ? [{ text: `Verdict: ${fields.verdict}`, tone: fields.verdict === "FAILURE" ? "warning" as const : "success" as const }] : []),
+      { text: `Source commit: ${typeof fields?.source_commit === "string" ? fields.source_commit.slice(0, 12) : "unavailable"}`, tone: "muted" },
+    ];
+    return parts.flatMap(part => wrapTextWithAnsi(this.clean(part.text), width).map(line => this.options.theme.fg(part.tone, line)));
+  }
+
+  private eventRows(): Row[] {
+    const event = this.selectedEvent();
+    if (!event) return [{ text: "No event selected." }];
+    const workflow = this.workflow();
+    const receipt = !event.error ? workflow?.receipts.find(receipt => receipt.ref === event.ref) : undefined;
+    const fields = event.fields ?? {};
+    const recorded = (value: unknown): string => typeof value === "string" ? value : JSON.stringify(value, null, 2) ?? "unavailable";
+    const body = event.body?.trim() || (fields.summary != null ? recorded(fields.summary) : "No readable body recorded.");
+    const source = !receipt || !workflow?.sourceCommit || !workflow.sourceTree ? "unavailable"
+      : receipt.sourceCommit === workflow.sourceCommit && receipt.sourceTree === workflow.sourceTree ? "matched" : "stale";
+    const changed = Array.isArray(fields.changed_files) && fields.changed_files.every(file => typeof file === "string") ? fields.changed_files.length
+      : Number.isInteger(fields.changed_file_count) && Number(fields.changed_file_count) >= 0 ? Number(fields.changed_file_count) : undefined;
+    return [
+      { text: `Execution: ${recorded(fields.status)}`, tone: fields.status === "failed" ? "error" : "accent" },
+      ...(fields.verdict != null ? [{ text: `Review verdict: ${recorded(fields.verdict)}`, tone: fields.verdict === "FAILURE" ? "warning" as const : "success" as const }] : []),
+      ...(event.error || !receipt || workflow?.error && !workflow.recordedAttempts ? [{ text: `INVALID / unvalidated evidence: ${event.error ?? workflow?.error ?? "Not a validated receipt."}`, tone: "warning" as const }] : []),
+      { text: "Recorded body:", tone: "accent" },
+      ...body.split(/\r?\n/).map(text => ({ text })),
+      { text: "Evidence details:", tone: "accent" },
+      { text: `Source: ${source}`, tone: source === "matched" ? "success" : "warning" },
+      ...(workflow?.error ? [{ text: `Workflow warning: ${workflow.error}`, tone: "warning" as const }] : []),
+      { text: `Ticket action target: ${this.ticket()?.ref}` },
+      { text: `Event reference: ${event.ref}` },
+      ...(changed !== undefined ? [{ text: `Changed files: ${changed} (recorded)` }] : []),
+      { text: `Commit: ${recorded(fields.source_commit)}` },
+      { text: `Tree: ${recorded(fields.source_tree)}` },
+      { text: `Current commit: ${workflow?.sourceCommit ?? "unavailable"}` },
+      { text: `Current tree: ${workflow?.sourceTree ?? "unavailable"}` },
+      { text: `Workspace: ${recorded(fields.workspace_path)}` },
+      { text: `Branch: ${recorded(fields.source_branch)}` },
+      { text: `Session: ${recorded(fields.session_id)}` },
+      { text: "Raw recorded fields:", tone: "accent" },
+      ...JSON.stringify(fields, null, 2).split("\n").map(text => ({ text })),
+    ];
+  }
+
+  private homeRows(): Row[] {
+    if (!this.snapshot) return [];
+    return this.snapshot.initiatives.map(initiative => ({
+      text: "", target: { kind: "initiative", initiative },
+      fields: { title: initiative.title, identity: initiative.group ? "Collection" : initiative.id, state: initiative.phase ?? "unavailable", count: initiative.ticketIds.length },
+    }));
+  }
+
+  private queueRows(queue: Queue = this.queue): Row[] {
+    if (!this.snapshot) return [];
+    const rows: Row[] = [];
+    const ticketCount = this.snapshot.tickets.reduce((count, ticket) => count + Number(recordKind(ticket) === "ticket"), 0);
+    for (const ticket of this.snapshot.tickets) {
+      if (recordKind(ticket) !== "ticket") continue;
+      if (queue !== "all" && this.receiptChecks < ticketCount) continue;
+      const state = this.ticketState(ticket);
+      const inQueue = queue === "all" || queue === "ready" && state === "READY" || queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
+      if (inQueue) {
+        const row = this.childRow(ticket, false);
+        const workflow = this.workflows.get(ticket.id);

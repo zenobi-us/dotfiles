@@ -1,0 +1,122 @@
+        const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot, workflow, this.options.commands());
+        const reason = this.options.context.checkoutAvailable === false ? "No usable checkout." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state." : "");
+        const next = choices.find(choice => choice.action !== "ask-matt" && !choice.disabledReason);
+        row.fields!.next = reason ? `Unavailable: ${reason}` : next?.label ?? (workflow ? "No worktree transition available" : "Checking workflow receipts");
+        const latest = workflow?.recordedAttempts && !workflow.error && workflow.ticketId === ticket.id ? chronologicalReceipts(workflow.receipts).at(-1) : undefined;
+        row.fields!.activity = latest ? `${latest.phase} · ${latest.status} (${latest.id})` : workflow?.error ? "Unavailable; refresh workflow receipts" : workflow ? "No validated activity recorded" : "Checking workflow receipts";
+        rows.push(row);
+      }
+    }
+    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : queue === "all" ? "No tickets recorded. R refresh · h initiatives · b Files." : `No tickets in ${queue}. Choose 8 for all tickets · R refresh · h initiatives.`, tone: "muted" });
+    return rows;
+  }
+
+  private childRow(ticket: ExplorerTicket, selected: boolean): Row {
+    const blockers = ticket.blockedBy.filter(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!));
+    return {
+      text: "", selected, target: { kind: "ticket", ticket },
+      fields: {
+        title: ticket.title, identity: ticket.id, type: this.ticketType(ticket), state: ticket.status || "unavailable",
+        supporting: recordKind(ticket) === "ticket" && blockers.length ? `Waiting for ${blockers.join(", ")}` : this.workflows.get(ticket.id)?.error ? `Workflow unreadable: ${this.workflows.get(ticket.id)!.error}` : ticket.ref
+      },
+    };
+  }
+
+  private graphPane(): Pane {
+    const initiative = this.initiative();
+    const rows: Row[] = (this.scopes.get(this.initiativeId ?? "") ?? []).flatMap(id => {
+      const ticket = this.tickets.get(id);
+      return ticket ? [this.childRow(ticket, id === this.ticketId)] : [];
+    });
+    if (!rows.length) rows.push({ text: "This collection is empty. No child items.", tone: "muted" });
+    if (this.screen === "initiatives" && initiative && this.lastWidth >= 70 && this.options.height() >= 16) {
+      const summary = initiative.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
+      rows.unshift({ text: `${initiative.id} · Phase: ${initiative.phase ?? "unavailable"}`, tone: "accent" }, { text: `Summary: ${summary ?? "No recorded summary."}`, tone: "muted" });
+    }
+    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Ungrouped"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
+  }
+
+  private ticketRows(): Row[] {
+    const ticket = this.ticket();
+    if (!ticket) return [{ text: "Select a ticket.", tone: "muted" }];
+    if (recordKind(ticket) !== "ticket") {
+      const fields = Object.entries(ticket.fields ?? {}).filter(([key]) => !["schema", "id", "title", "type", "work_status", "status", "blocked_by", "parent"].includes(key));
+      return [
+        { text: `ID: ${ticket.id}`, tone: "accent" }, { text: `Title: ${ticket.title}` },
+        { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${ticket.status || "unavailable"}` },
+        { text: `Reference: ${ticket.ref}` },
+        ...(ticket.fields?.parent ? [{ text: `Parent: ${String(ticket.fields.parent)}` }] : []),
+        ...fields.map(([key, value]) => ({ text: `${key}: ${typeof value === "string" ? value : JSON.stringify(value)}` })),
+        { text: `Summary: ${this.descriptionSummary(ticket.body)}`, tone: "muted" },
+        { text: "a actions · Esc return", tone: "muted" },
+      ];
+    }
+    const workflow = this.workflow();
+    return [
+      { text: `${ticket.id} ${ticket.title}`, tone: "accent" },
+      { text: `Summary: ${this.descriptionSummary(ticket.body)}`, tone: "muted" },
+      { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${this.ticketState(ticket)}` },
+      { text: `Reference: ${ticket.ref}` }, { text: `Current source: ${workflow?.sourceCommit ?? "not recorded"}` },
+      { text: workflow?.recordedAttempts ? `Reviews: ${workflow.recordedAttempts.review} · Fixes: ${workflow.recordedAttempts.fix} (validated phase receipts; recorded attempts, not quality or completion)` : "Review/fix receipt counts unavailable until history validation completes.", tone: "muted" },
+      { text: "Dependencies:", tone: "accent" }, ...this.neighborhoodRows(), { text: "Receipts:", tone: "accent" },
+      ...this.history().map(event => ({ text: `Event: ${event.fields?.receipt_id ?? event.id} · Execution: ${event.fields?.status ?? "unavailable"}${event.fields?.verdict ? ` · Verdict: ${event.fields.verdict}` : ""}` })),
+      ...(workflow?.error ? [{ text: workflow.error, tone: "warning" as const }] : []),
+      { text: workflow ? "→ inspect receipts · a actions" : "Checking receipts…", tone: "muted" },
+    ];
+  }
+
+  private descriptionSummary(body: string): string {
+    const line = body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
+    return truncateToWidth(this.clean(line ?? "No description recorded."), 160, "…");
+  }
+
+  private neighborhoodRows(): Row[] {
+    const ticket = this.ticket();
+    if (!ticket) return [];
+    const rows: Row[] = [];
+    for (const blocker of ticket.blockedBy) {
+      const dependency = this.tickets.get(blocker);
+      rows.push({ text: `← ${blocker} [${dependency ? this.ticketState(dependency) : "MISSING"}] ${dependency?.title ?? ""}`, ...(dependency ? { target: { kind: "ticket" as const, ticket: dependency } } : {}), tone: dependency ? "text" : "warning" });
+    }
+    for (const dependent of this.snapshot?.tickets ?? []) if (dependent.blockedBy.includes(ticket.id)) rows.push({ text: `→ ${dependent.id} [${this.ticketState(dependent)}] ${dependent.title}`, target: { kind: "ticket", ticket: dependent } });
+    if (!rows.length) rows.push({ text: "No dependency edges.", tone: "muted" });
+    return rows;
+  }
+
+  private choices(): ExplorerActionChoice[] {
+    const target = this.target();
+    if (target?.kind === "initiative" && target.initiative.group) return [];
+    const choices = target && this.snapshot ? actionChoices(target, this.snapshot, target.kind === "ticket" ? this.workflows.get(target.ticket.id) : undefined, this.options.commands()) : [];
+    const reason = this.options.context.checkoutAvailable === false ? "No usable checkout. Open this project from a checkout to run actions." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state; wait before a worktree transition." : "");
+    return reason ? choices.map(choice => this.options.context.checkoutAvailable !== false && choice.action === "ask-matt" ? choice : { ...choice, disabledReason: reason }) : choices;
+  }
+
+  private chooseAction(choice: ExplorerActionChoice | undefined): void {
+    const target = this.target();
+    if (!choice || !target || !this.snapshot) return;
+    if (choice.disabledReason) { this.notice = choice.disabledReason; this.options.requestRender(); return; }
+    this.options.done({ kind: "session", request: { action: choice.action, target, snapshot: this.snapshot, ...(target.kind === "ticket" ? { workflow: this.workflows.get(target.ticket.id) } : {}), prompt: "" }, navigation: this.navigation() });
+  }
+
+  private ticketType(ticket: ExplorerTicket): string {
+    const type = ticket.documentType;
+    return type || "Ticket · type unspecified";
+  }
+
+  private ticketState(ticket: ExplorerTicket): string {
+    if (recordKind(ticket) !== "ticket") return ticket.status || "unavailable";
+    if (isCompleted(ticket)) return "DONE";
+    if (ticket.blockedBy.some(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!))) return "BLOCKED";
+    const workflow = this.workflows.get(ticket.id);
+    if (!workflow) return "CHECKING";
+    if (workflow.error) return "ERROR";
+    const cached = this.ticketStates.get(ticket.id);
+    if (cached) return cached;
+    const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot!, workflow, [{ name: "skill:ask-matt" }, { name: "skill:worktree" }]);
+    const next = ["start", "fix", "finish", "submit", "review"].find(action => choices.some(choice => choice.action === action && !choice.disabledReason));
+    const state = next === "start" ? "READY" : next?.toUpperCase() ?? (workflow.receipts.length ? "ACTIVE" : "UNKNOWN");
+    this.ticketStates.set(ticket.id, state);
+    return state;
+  }
+
+  private target(): ExplorerTarget | undefined {

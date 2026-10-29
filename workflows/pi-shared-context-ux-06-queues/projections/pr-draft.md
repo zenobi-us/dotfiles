@@ -1,17 +1,18 @@
 ---
-title: Ticket06 approved review-only exception in progress
+title: Ticket06 final source-once Spec review in progress
 type: Report
 ---
 
 ## Current status
 
-The user explicitly approved3freshreviews at300000tokens each,18totalTicket06cycles and65totaldispatches. Earlier session limits and all historical counts are unchanged. Source `20968ee4f907c6f74bc77702fcef09578b41c6b8` / `5f64cf06e76dba7e015b9cd54088bc73ae88771f` remains frozen and clean; canonicalstatus remainsclaimed.
+All18authorizedcycles are reserved. FreshSpec18 uses the same approved300000review-onlyguard. There is no completed independent verdict yet. Standards16/Spec17 stayed undercap but stopped after reading both the full diff and the same full source. Their usage and incomplete outcomes are preserved, not reclassified.
 
-FreshStandards16 andSpec17 retain completecanonicalticket/initiative, all4changedpaths/allchangedlines, all12criteria/heuristics and every matchingfirstskill. The conventionalunified3patch removes only unchanged context. Full128000output and4096framing reserves, cachemiss/stateless/single-call/nohelper/noreset controls are unchanged. A six-case isolated probe passed; actual fresh-session admission/accounting and verdicts remain to be observed.
+## Presentation repair
 
-- [Explicit exception56](../events/review-exception-approved-0056.json)
-- [Standards16start57](../events/review-standards-start-0057.json)
-- [Spec17start60](../events/review-spec-start-0060.json)
+The new reviewer receives the entire1244lineexplorer once, complete newqueue tests, the complete changedexistingtestcase, every olddeletedline and exact newchangedpositions. Every addedline was checked against the pinned source and included. The entire changedREADME navigationsection is preloaded throughMQ; every newdocumentationline is present. Full canonicalticket/initiative and all12criteria remain. Allmatching skills, including documentation/MQreading, come first. No source, scope, criterion, model, guardcontrol or ceiling was changed.
 
-17of18cycles and63of65dispatches are reserved. One freshmainreview and coordinatorfinish remain after both complete axes pass. No independent verdict or ticketcompletion is claimed. Sourceworkspacew8P rootshell remains owned and preserved.
+- [Source-once coverage63](../events/source-once-review-inputs-prepared-0063.json)
+- [FinalauthorizedSpecstart64](../events/review-spec-start-0064.json)
+
+18of18cycles and64of65dispatches are reserved. No furtherAIcycle or budgetincrease is authorized. Source `20968ee4f907c6f74bc77702fcef09578b41c6b8` / `5f64cf06e76dba7e015b9cd54088bc73ae88771f` remains clean; canonicalstatus remainsclaimed. Sourceworktree and ownedw8Prootshell are preserved.
 

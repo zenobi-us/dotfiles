@@ -1,0 +1,130 @@
+{
+  "source": {
+    "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+    "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+    "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+    "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+  },
+  "all_changed_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "all_added_lines_verified_against_exact_source": true,
+  "all_added_code_lines_in_packets": true,
+  "all_added_markdown_lines_in_full_MQ_read": true,
+  "all_old_deleted_lines_present": true,
+  "complete_new_explorer_module": true,
+  "complete_new_queue_test_file": true,
+  "complete_changed_existing_test_cases": [
+    {
+      "start": 191,
+      "end": 211
+    }
+  ],
+  "source_packet_bytes": 81174,
+  "source_packets": [
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+      "start_line": 191,
+      "end_line": 211,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-01.txt",
+      "selector": ":1-22:raw",
+      "bytes": 1034
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 1,
+      "end_line": 199,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-02.txt",
+      "selector": ":1-200:raw",
+      "bytes": 8994
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 200,
+      "end_line": 343,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-03.txt",
+      "selector": ":1-145:raw",
+      "bytes": 8916
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 344,
+      "end_line": 524,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-04.txt",
+      "selector": ":1-182:raw",
+      "bytes": 8957
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 525,
+      "end_line": 711,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-05.txt",
+      "selector": ":1-188:raw",
+      "bytes": 8887
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 712,
+      "end_line": 851,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-06.txt",
+      "selector": ":1-141:raw",
+      "bytes": 8979
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 852,
+      "end_line": 976,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-07.txt",
+      "selector": ":1-126:raw",
+      "bytes": 8999
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 977,
+      "end_line": 1098,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-08.txt",
+      "selector": ":1-123:raw",
+      "bytes": 8989
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 1099,
+      "end_line": 1239,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-09.txt",
+      "selector": ":1-142:raw",
+      "bytes": 8950
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "start_line": 1240,
+      "end_line": 1243,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-10.txt",
+      "selector": ":1-5:raw",
+      "bytes": 125
+    },
+    {
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+      "start_line": 1,
+      "end_line": 166,
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-11.txt",
+      "selector": ":1-167:raw",
+      "bytes": 8344
+    }
+  ],
+  "readme_bytes": 21096,
+  "old_deleted_lines": 29,
+  "added_lines": 273,
+  "source_guard_ceiling_unchanged": 300000,
+  "review_scope_unchanged": true,
+  "scope": "Entire1244lineexplorer is supplied ONCE, complete new queue tests and complete changed existingtestcases are supplied ONCE; every deletedoldline and addednewposition is explicit. Full changedREADME is preloaded through MQ. Original full diff remains available but re-reading it duplicates supplied complete changedcode. No requirement, code change, standard or criterion is omitted.",
+  "readme_presentation": "CompletePi projectnavigation section, extracted throughMQ, all changedREADME lines verified present; unrelated unchangedCLIsections are not duplicated.",
+  "readme_section_bytes": 8583,
+  "mandatory_prerequisites": "Existing full review prerequisites plus review-documentation andMQreading loadedFIRST, avoiding late skill/parse exploration.",
+  "original_complete_diff_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-unified3.diff",
+  "comparison": "Every new added line is read in its exact full new source context; every removed old line and exact new positions are supplied inchange-index.json. This is the entire change, not a subset. Originalpatch remains available if an actual ambiguity needs it.",
+  "new_source_code_copied_once": true,
+  "old_deleted_source_copied_once": true
+}

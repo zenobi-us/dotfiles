@@ -1,0 +1,144 @@
+          for (const [id] of this.workflows) {
+            const before = this.tickets.get(id);
+            const after = snapshot.tickets.find(ticket => ticket.id === id);
+            if (!after || before?.ref !== after.ref || before?.backend !== after.backend || recordKind(after) !== "ticket") this.workflows.delete(id);
+          }
+          this.snapshot = snapshot;
+          this.tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
+          this.scopes.clear();
+          for (const initiative of snapshot.initiatives) {
+            const ids = initiative.ticketIds.filter(id => this.tickets.has(id));
+            this.scopes.set(initiative.id, ids);
+          }
+          const logicalScreen = this.screen === "actions" ? this.returnScreen : this.screen;
+          const initiativeView = logicalScreen === "initiatives" || (logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "initiatives";
+          const removedInitiative = this.initiativeId && !snapshot.initiatives.some(initiative => initiative.id === this.initiativeId);
+          const removedTicket = this.ticketId && !this.tickets.has(this.ticketId);
+          if (removedInitiative && initiativeView) {
+            this.notice = "Selected initiative was removed. Returned to initiatives.";
+            this.screen = "home";
+            this.focus = "list";
+          }
+          if ((logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "queues") this.initiativeId = snapshot.initiatives.find(initiative => initiative.ticketIds.includes(this.ticketId ?? ""))?.id;
+          else if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
+          // A remembered child is not the active target in home or queue action menus.
+          const removedTarget = selected?.kind === "ticket" && !snapshot.tickets.some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
+          if (removedTarget) {
+            this.notice = "Selected item was removed. Selected a nearby item or its parent.";
+            if (this.screen === "tickets" || this.screen === "receipts" || this.screen === "actions") {
+              this.screen = logicalScreen === "queues" ? "queues" : this.itemOrigin;
+              this.focus = "list";
+            }
+          }
+          const children = this.initiative()?.ticketIds ?? [];
+          if (initiativeView && !removedInitiative && this.ticketId && !children.includes(this.ticketId)) {
+            this.notice = "Selected item was removed from this collection. Selected a nearby item or its parent.";
+            this.screen = "initiatives";
+            this.focus = "list";
+            this.receiptId = undefined;
+            this.ticketId = children[Math.min(previousChildIndex, children.length - 1)];
+            if (this.initiativeId) {
+              if (this.ticketId) this.childSelections.set(this.initiativeId, this.ticketId);
+              else this.childSelections.delete(this.initiativeId);
+            }
+          }
+          if (!this.ticketId || removedTicket) this.ticketId = this.initiative()?.ticketIds[Math.min(previousChildIndex, (this.initiative()?.ticketIds.length ?? 0) - 1)];
+          if (this.ticket() && recordKind(this.ticket()!) !== "ticket" && (this.screen === "receipts" || this.screen === "actions" && this.returnScreen === "receipts")) {
+            this.screen = "tickets";
+            this.focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
+            this.receiptId = undefined;
+            this.notice = "Record type changed. Showing its recorded details.";
+          }
+          if (this.screen === "actions") this.actionIndex = Math.min(this.actionIndex, Math.max(0, this.choices().length - 1));
+          if (this.reader && (!this.descriptionRecord() || this.screen === "home" || this.screen === "queues" || this.reader.kind === "ticket" && this.screen === "initiatives")) {
+            this.reader = undefined;
+            this.focus = "list";
+          }
+          this.scopeKey = "";
+          this.updateWatchScope();
+          this.receiptChecks = this.workflows.size;
+          this.ticketStates.clear();
+          this.reconcileQueues();
+          this.restoreHomeSelection(selected);
+        }
+        this.loading = false;
+        this.error = "";
+        const tickets = this.snapshot!.tickets.filter(ticket => recordKind(ticket) === "ticket" && (all || ids.has(ticket.id) || !this.workflows.has(ticket.id)));
+        let index = 0;
+        const worker = async () => {
+          while (index < tickets.length && !this.disposed) {
+            const ticket = tickets[index++];
+            let workflow: TicketWorkflow;
+            try {
+              workflow = await (this.options.loadWorkflow ?? loadTicketWorkflow)(this.options.context, ticket, this.options.exec);
+            } catch (error) {
+              workflow = { ticketId: ticket.id, receipts: [], error: error instanceof Error ? error.message : String(error) };
+            }
+            if (this.disposed) return;
+            const selected = initial ? undefined : this.target();
+            const previous = this.workflows.get(ticket.id);
+            if (workflow.error && !workflow.events?.length && !workflow.receipts.length && previous && (previous.events?.length || previous.receipts.length)) {
+              workflow = { ...previous, sourceCommit: workflow.sourceCommit, sourceTree: workflow.sourceTree, error: `History refresh failed; showing last readable history. ${workflow.error}` };
+            }
+            this.workflows.set(ticket.id, workflow);
+            if (ticket.id === this.ticketId && (!this.receiptId || !(workflow.events ?? workflow.receipts).some(event => event.id === this.receiptId))) {
+              const removed = Boolean(this.receiptId);
+              this.receiptId = (workflow.events ?? workflow.receipts)[0]?.id;
+              if (removed) {
+                this.eventDetail = false;
+                this.focus = "list";
+                this.notice = "Selected event was removed. Showing the nearest available history.";
+              }
+            }
+            this.ticketStates.clear();
+            this.receiptChecks = this.workflows.size;
+            this.reconcileQueues();
+            this.restoreHomeSelection(selected);
+            this.options.requestRender();
+          }
+        };
+        await Promise.all(Array.from({ length: Math.min(3, tickets.length) }, worker));
+        if (this.disposed) return;
+        if (initial) this.restoreHomeSelection(undefined);
+        if (graph) this.graphError = "";
+        this.refreshError = this.routeError || this.graphError;
+        this.updateWatchScope();
+      } catch (error) {
+        if (this.disposed) return;
+        this.refreshFailed(error);
+        if (routes) this.routeError = this.refreshError;
+        if (graph) this.graphError = this.refreshError;
+        if (!this.snapshot) this.error = `Tracker unreadable: ${error instanceof Error ? error.message : String(error)}`;
+        this.loading = false;
+      }
+      if (!this.disposed) this.options.requestRender();
+    }
+  }
+
+  private restoreHomeSelection(target: ExplorerTarget | undefined): void {
+    const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+    if (screen === "queues") { this.reconcileQueues(); return; }
+    if (screen !== "home") return;
+    const rows = this.homeRows();
+    const index = target ? rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref === (target.kind === "ticket" && target.ticket.ref) : row.target.initiative.ref === (target.kind === "initiative" && target.initiative.ref))) : -1;
+    const previous = this.homeIndex;
+    const next = index >= 0 ? index : Math.max(0, Math.min(previous, rows.length - 1));
+    if (target && index < 0) this.notice = "Selected record was removed from this view. Selected a nearby record.";
+    this.homeIndex = next;
+  }
+
+  private queueIdentity(target: ExplorerTarget | undefined): string | undefined {
+    return target?.kind === "ticket" ? JSON.stringify([target.ticket.backend, target.ticket.ref]) : undefined;
+  }
+
+  private selectQueue(index: number): void {
+    const rows = this.queueRows();
+    this.queueIndex = Math.max(0, Math.min(index, rows.length - 1));
+    this.queueSelections.set(this.queue, { index: this.queueIndex, identity: this.queueIdentity(rows[this.queueIndex]?.target) });
+  }
+
+  private reconcileQueues(): void {
+    for (const [queue, saved] of this.queueSelections) {
+      if (queue !== "all" && this.snapshot && this.receiptChecks < this.snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").length) continue;
+      const rows = this.queueRows(queue);
+      const index = saved.identity ? rows.findIndex(row => this.queueIdentity(row.target) === saved.identity) : -1;

@@ -1,0 +1,181 @@
+      const next = index >= 0 ? index : Math.max(0, Math.min(saved.index, rows.length - 1));
+      if (saved.identity && index < 0 && queue === this.queue) this.notice = "Selected ticket left this queue. Selected a nearby ticket or an empty queue.";
+      this.queueSelections.set(queue, { index: next, identity: this.queueIdentity(rows[next]?.target) });
+      if (queue === this.queue) this.queueIndex = next;
+    }
+  }
+
+  private openQueue(queue: Queue): void {
+    if (!this.initiativeMemory) this.initiativeMemory = { initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId };
+    this.queue = queue;
+    this.screen = "queues";
+    this.focus = "list";
+    this.reconcileQueues();
+    this.selectQueue(this.queueSelections.get(queue)?.index ?? 0);
+  }
+
+  private returnHome(): void {
+    if (this.initiativeMemory) {
+      this.initiativeId = this.initiativeMemory.initiativeId;
+      this.ticketId = this.initiativeMemory.ticketId;
+      this.receiptId = this.initiativeMemory.receiptId;
+      this.initiativeMemory = undefined;
+    }
+    this.screen = "home";
+    this.itemOrigin = "initiatives";
+  }
+
+  private refreshFailed(error: unknown): void {
+    if (this.disposed) return;
+    this.refreshError = `Live refresh failed: ${error instanceof Error ? error.message : String(error)}`;
+    this.options.requestRender();
+  }
+
+  private async startWatching(): Promise<void> {
+    this.monitor = new DirectoryMonitor(keys => this.refresh(keys), error => this.refreshFailed(error));
+    const monitor = this.monitor;
+    await this.configureTargets();
+    if (this.disposed || this.monitor !== monitor) return;
+    this.sourceTimer = setInterval(() => { void this.pollSources(); }, 5_000);
+    this.sourceTimer.unref();
+    this.remoteTimer = setInterval(() => {
+      if (this.snapshot?.backend === "github") void this.refresh(new Set(["graph"]));
+    }, 60_000);
+    this.remoteTimer.unref();
+  }
+
+  private stopWatching(): void {
+    this.monitor?.dispose();
+    this.monitor = undefined;
+    clearInterval(this.sourceTimer);
+    clearInterval(this.remoteTimer);
+  }
+
+  private async pollSources(): Promise<void> {
+    if (this.disposed || this.pollingSource) return;
+    this.pollingSource = true;
+    try {
+      for (const id of this.focusedIds) {
+        const workflow = this.workflows.get(id);
+        const workspace = workflow?.receipts[0]?.workspacePath;
+        if (!workspace) continue;
+        const current = await this.options.exec("git", ["-C", workspace, "rev-parse", "--verify", "HEAD"]);
+        if (this.disposed) return;
+        if (current.code || current.stdout.trim() !== workflow?.sourceCommit) this.pendingIds.add(id);
+      }
+      await this.drainRefresh();
+    } catch (error) { this.refreshFailed(error); }
+    finally { this.pollingSource = false; }
+  }
+
+  private async configureTargets(): Promise<void> {
+    const context = this.options.context;
+    const alignment = await resolveContextRecord(context, { kind: "alignment" });
+    const targets: WatchTarget[] = [
+      ...(context.checkoutAvailable === false ? [] : [{ key: "routes", path: join(context.repositoryRoot, ".context-routes.toml") }]),
+      { key: "routes", path: join(context.candidateSharedRoot ?? context.repositoryRoot, ".context-routes.toml") },
+    ];
+    if (alignment.path && !(context.checkoutAvailable === false && alignment.store === "repository")) for (const file of ["issue-tracker.md", "context-layout.toml"]) targets.push({ key: "routes", path: join(alignment.path, "docs/agents", file) });
+    for (const kind of ["tickets", "initiatives"] as const) {
+      if (kind === "tickets" && context.routes.tickets.adapter !== "local-markdown") continue;
+      const record = await resolveContextRecord(context, { kind });
+      if (record.path && !(context.checkoutAvailable === false && record.store === "repository")) targets.push({ key: "graph", path: record.path, recursive: true, suffixes: [".md"] });
+    }
+    if (this.disposed) return;
+    this.liveTargets = targets;
+    this.updateWatchScope();
+  }
+
+  private updateWatchScope(): void {
+    if (!this.monitor || this.disposed) return;
+    const target = this.target();
+    const key = `${target?.kind}:${target?.kind === "ticket" ? target.ticket.id : target?.initiative.id}`;
+    if (key === this.scopeKey) return;
+    this.scopeKey = key;
+    const previous = this.focusedIds;
+    this.focusedIds = focusedTicketIds(this.snapshot, target);
+    for (const id of this.focusedIds) if (!previous.has(id)) this.pendingIds.add(id);
+    void this.bindScope(++this.scopeRevision).catch(error => this.refreshFailed(error));
+  }
+
+  private async bindScope(revision: number): Promise<void> {
+    const targets = [...this.liveTargets];
+    for (const id of this.focusedIds) {
+      const ticket = this.tickets.get(id);
+      if (!ticket) continue;
+      const record = await resolveContextRecord(this.options.context, { kind: "workflow", id: ticket.backend === "github" ? `GH-${id}` : id });
+      if (record.path && !(this.options.context.checkoutAvailable === false && record.store === "repository")) targets.push({ key: `workflow:${id}`, path: join(record.path, "events"), recursive: true, suffixes: [".md", ".json", ".yaml", ".yml"] });
+    }
+    if (this.disposed || this.scopeRevision !== revision) return;
+    this.monitor?.setTargets(targets);
+    if (this.pendingIds.size) await this.drainRefresh();
+  }
+
+  moveFocus(reverse: boolean): boolean {
+    if (this.focus === "breadcrumb") {
+      const nextCrumb = this.breadcrumbIndex + (reverse ? -1 : 1);
+      if (nextCrumb >= 0 && nextCrumb < this.breadcrumbs().length - 1) {
+        this.breadcrumbIndex = nextCrumb;
+        return true;
+      }
+    }
+    const order = this.focusOrder();
+    const next = order.indexOf(this.focus) + (reverse ? -1 : 1);
+    if (next < 0 || next >= order.length) return false;
+    this.focus = order[next]!;
+    if (this.focus === "breadcrumb") this.breadcrumbIndex = reverse ? this.breadcrumbs().length - 2 : 0;
+    this.options.requestRender();
+    return true;
+  }
+
+  enterFocus(reverse: boolean): void {
+    const order = this.focusOrder();
+    this.focus = reverse ? order[order.length - 1]! : order[0]!;
+    if (this.focus === "breadcrumb") this.breadcrumbIndex = reverse ? this.breadcrumbs().length - 2 : 0;
+    this.options.requestRender();
+  }
+
+  private focusOrder(): ExplorerNavigation["focus"][] {
+    if (this.reader) return ["breadcrumb", "detail", "return"];
+    if (this.screen === "receipts" && this.eventDetail) return ["breadcrumb", "detail"];
+    const panes: ExplorerNavigation["focus"][] = this.panes().length < 2 ? ["list"]
+      : this.screen === "receipts" && this.neighborhoodRows().length ? ["list", "detail", "neighborhood"] : ["list", "detail"];
+    const controls = this.descriptionTarget() ? [...panes, "description" as const] : panes;
+    return this.breadcrumbs().length > 1 ? ["breadcrumb", ...controls] : controls;
+  }
+
+  setActive(active: boolean): void { this.active = active; }
+
+  private breadcrumbs(): { label: string; screen: Screen }[] {
+    const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+    const crumbs: { label: string; screen: Screen }[] = [{ label: "Initiatives", screen: "home" }];
+    if (screen === "home") return crumbs;
+    if (screen === "queues" || (screen === "tickets" || screen === "receipts") && this.itemOrigin === "queues") crumbs.push({ label: "Queues", screen: "queues" });
+    else crumbs.push({ label: this.initiative()?.title ?? "Initiative", screen: "initiatives" });
+    if (screen === "tickets" || screen === "receipts") crumbs.push({ label: this.ticketId ?? "Item", screen: "tickets" });
+    if (screen === "receipts") crumbs.push({ label: "Events", screen: "receipts" });
+    if (screen === "receipts" && this.eventDetail) {
+      const identity = this.selectedEvent()?.fields?.receipt_id;
+      crumbs.push({ label: typeof identity === "string" ? identity : "Event", screen: "receipts" });
+    }
+    if (this.reader) crumbs.push({ label: "Description", screen });
+    return crumbs;
+  }
+
+  private activateBreadcrumb(index: number): void {
+    const crumb = this.breadcrumbs()[index];
+    if (!crumb || index >= this.breadcrumbs().length - 1) return;
+    this.reader = undefined;
+    this.eventDetail = false;
+    if (crumb.screen === "home") this.returnHome();
+    else this.screen = crumb.screen;
+    this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
+    this.options.requestRender();
+  }
+
+  handleMouse(event: TuiMouseEvent): TuiMouseEventResult | undefined {
+    if (event.type !== "click" || event.button !== "left") return;
+    const control = this.controlHits.find(hit => hit.y === event.y && event.x >= hit.x && event.x < hit.x + hit.width);
+    if (control) {
+      if (control.action === "description") this.openDescription();
+      else if (control.action === "return") this.closeDescription();

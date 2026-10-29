@@ -1,0 +1,199 @@
+import { join } from "node:path";
+import { resolveContextRecord, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
+import type { Theme } from "@earendil-works/pi-coding-agent";
+import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
+import { actionChoices } from "./actions";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+import { chronologicalReceipts, isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+import { safeTerminalText } from "./terminal-text";
+import type { ExplorerEvent } from "./model";
+import { DirectoryMonitor, type WatchTarget } from "./watch";
+
+type Screen = "home" | "queues" | "initiatives" | "tickets" | "receipts" | "actions";
+type Queue = "ready" | "review" | "blocked" | "all";
+type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
+type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string; next?: string; activity?: string } };
+type Pane = { id: string; title: string; rows: Row[] };
+
+// The reader replaces content, not navigation. Keep its origin intact so returning
+// cannot move the selected child, event, or an underlying pane's scroll position.
+type DescriptionReader = { kind: "initiative" | "ticket"; ref: string; focus: ExplorerNavigation["focus"] };
+
+export interface ExplorerNavigation {
+  screen: Screen;
+  initiativeId?: string;
+  ticketId?: string;
+  receiptId?: string;
+  eventDetail?: boolean;
+  queue: Queue;
+  focus: "list" | "detail" | "neighborhood" | "breadcrumb" | "description" | "return";
+  offsets: [string, number][];
+  homeIndex?: number;
+  itemOrigin?: "initiatives" | "queues";
+  queueIndex?: number;
+  queueSelections?: [Queue, { identity?: string; index: number }][];
+  initiativeMemory?: { initiativeId?: string; ticketId?: string; receiptId?: string };
+  childSelections?: [string, string][];
+  reader?: DescriptionReader;
+}
+
+export type ExplorerResult =
+  | { kind: "files"; navigation: ExplorerNavigation }
+  | { kind: "session"; request: ExplorerSessionRequest; navigation: ExplorerNavigation }
+  | undefined;
+
+interface ExplorerOptions {
+  context: SharedAgentContext;
+  exec: Exec;
+  theme: Theme;
+  done: (result: ExplorerResult) => void;
+  requestRender: () => void;
+  height: () => number;
+  commands: () => readonly { name: string }[];
+  navigation?: ExplorerNavigation;
+  loadSnapshot?: typeof loadExplorerSnapshot;
+  loadWorkflow?: typeof loadTicketWorkflow;
+  live?: boolean;
+  contextChanged?: (context: SharedAgentContext) => void;
+  projects?: () => void;
+  checkoutAvailable?: boolean;
+  resolveContext?: () => Promise<SharedAgentContext>;
+}
+
+export class GraphExplorer {
+  private snapshot?: ExplorerSnapshot;
+  private tickets = new Map<string, ExplorerTicket>();
+  private workflows = new Map<string, TicketWorkflow>();
+  private scopes = new Map<string, string[]>();
+  private ticketStates = new Map<string, string>();
+  private screen: Screen;
+  private returnScreen: Screen = "home";
+  private queue: Queue;
+  private initiativeId?: string;
+  private ticketId?: string;
+  private receiptId?: string;
+  private eventDetail = false;
+  private homeIndex = 0;
+  private actionIndex = 0;
+  private queueIndex = 0;
+  private itemOrigin: "initiatives" | "queues" = "initiatives";
+  private childSelections = new Map<string, string>();
+  private queueSelections = new Map<Queue, { identity?: string; index: number }>();
+  private initiativeMemory?: ExplorerNavigation["initiativeMemory"];
+  private breadcrumbIndex = 0;
+  private breadcrumbHits: { x: number; y: number; width: number; index: number }[] = [];
+  private active = true;
+  private reader?: DescriptionReader;
+  private controlHits: { x: number; y: number; width: number; action: "description" | "return" | "up" | "down" }[] = [];
+  private renderedSelection = new Map<string, string>();
+  private renderedLayout = new Map<string, { width: number; height: number; start: number; end: number }>();
+  private neighborhoodIndex = 0;
+  private focus: ExplorerNavigation["focus"] = "list";
+  private returnFocus: ExplorerNavigation["focus"] = "list";
+  private offsets: Map<string, number>;
+  private loading = false;
+  private error = "";
+  private notice = "";
+  private disposed = false;
+  private receiptChecks = 0;
+  private lastWidth = 120;
+  private monitor?: DirectoryMonitor;
+  private liveTargets: WatchTarget[] = [];
+  private scopeKey = "";
+  private scopeRevision = 0;
+  private focusedIds = new Set<string>();
+  private pendingGraph = false;
+  private pendingRoutes = false;
+  private pendingAll = false;
+  private pendingIds = new Set<string>();
+  private refreshing?: Promise<void>;
+  private refreshError = "";
+  private graphError = "";
+  private routeError = "";
+  private sourceTimer?: NodeJS.Timeout;
+  private remoteTimer?: NodeJS.Timeout;
+  private pollingSource = false;
+
+  constructor(private options: ExplorerOptions) {
+    options.context.checkoutAvailable ??= options.checkoutAvailable ?? true;
+    const navigation = options.navigation;
+    this.screen = navigation?.screen ?? "home";
+    this.queue = navigation?.queue ?? "ready";
+    this.initiativeId = navigation?.initiativeId;
+    this.ticketId = navigation?.ticketId;
+    this.receiptId = navigation?.receiptId;
+    this.eventDetail = navigation?.eventDetail ?? false;
+    this.focus = navigation?.focus ?? "list";
+    this.offsets = new Map(navigation?.offsets ?? []);
+    this.homeIndex = navigation?.homeIndex ?? 0;
+    this.queueIndex = navigation?.queueIndex ?? 0;
+    this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
+    this.reader = navigation?.reader;
+    this.queueSelections = new Map(navigation?.queueSelections ?? []);
+    this.initiativeMemory = navigation?.initiativeMemory;
+    this.childSelections = new Map(navigation?.childSelections ?? []);
+  }
+
+  async load(): Promise<void> {
+    if (this.disposed) return;
+    if (this.options.live && this.monitor) { await this.refresh(new Set(["routes"])); return; }
+    if (this.options.live && !this.monitor) {
+      try { await this.startWatching(); }
+      catch (error) { this.stopWatching(); this.refreshFailed(error); }
+    }
+    this.pendingGraph = true;
+    this.pendingAll = true;
+    await this.drainRefresh();
+  }
+
+  private async refresh(keys: Set<string>): Promise<void> {
+    if (keys.has("routes")) this.pendingRoutes = true;
+    if (keys.has("graph")) this.pendingGraph = true;
+    for (const key of keys) {
+      if (key.startsWith("workflow:") && this.focusedIds.has(key.slice(9))) this.pendingIds.add(key.slice(9));
+    }
+    await this.drainRefresh();
+  }
+
+  private drainRefresh(): Promise<void> {
+    if (this.disposed) return Promise.resolve();
+    if (this.refreshing) return this.refreshing;
+    this.refreshing = this.readChanges().finally(() => {
+      this.refreshing = undefined;
+      if (!this.disposed && (this.pendingRoutes || this.pendingGraph || this.pendingAll || this.pendingIds.size)) void this.drainRefresh();
+      if (!this.disposed) this.options.requestRender();
+    });
+    return this.refreshing;
+  }
+
+  private async readChanges(): Promise<void> {
+    while (!this.disposed && (this.pendingRoutes || this.pendingGraph || this.pendingAll || this.pendingIds.size)) {
+      const routes = this.pendingRoutes;
+      let graph = this.pendingGraph;
+      let all = this.pendingAll;
+      const ids = this.pendingIds;
+      this.pendingRoutes = false;
+      this.pendingGraph = false;
+      this.pendingAll = false;
+      this.pendingIds = new Set();
+      const initial = !this.snapshot;
+      this.loading = initial;
+      this.options.requestRender();
+      try {
+        if (routes) {
+          const context = await (this.options.resolveContext?.() ?? resolveSharedContext(this.options.exec, this.options.context.repositoryRoot));
+          if (!context || context.error) throw new Error(context?.error ?? "Repository context is unavailable.");
+          if (this.disposed) return;
+          Object.assign(this.options.context, context);
+          this.options.contextChanged?.(this.options.context);
+          this.scopeKey = "";
+          await this.configureTargets();
+          this.routeError = "";
+          graph = true;
+          all = true;
+        }
+        if (graph || !this.snapshot) {
+          const snapshot = await (this.options.loadSnapshot ?? loadExplorerSnapshot)(this.options.context, this.options.exec);
+          if (this.disposed) return;
+          const selected = this.target();
+          const previousChildIndex = Math.max(0, this.initiative()?.ticketIds.indexOf(this.ticketId ?? "") ?? 0);

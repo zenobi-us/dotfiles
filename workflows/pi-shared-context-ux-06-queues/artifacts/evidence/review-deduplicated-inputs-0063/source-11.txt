@@ -1,0 +1,166 @@
+// Exercise queue behavior through the complete modal, including canonical action targets.
+import { expect, test } from "bun:test";
+import type { Theme } from "@earendil-works/pi-coding-agent";
+import { stripTerminalSequences, visibleWidth } from "@earendil-works/pi-tui";
+import { GraphExplorer, type ExplorerResult } from "./explorer";
+import { SharedContextModal } from "./modal";
+import type { ExplorerReceipt, ExplorerSnapshot, SharedAgentContext, TicketWorkflow } from "./model";
+
+const theme = { fg: (_: string, text: string) => text, bg: (_: string, text: string) => text } as Theme;
+const context = { repositoryRoot: "/projects/example", mode: "repository" } as SharedAgentContext;
+const ticket = (id: string, status = "open", blockedBy: string[] = []) => ({ id, title: `Work ${id} 界 👩‍💻`, status, blockedBy, documentType: "enhancement", backend: "local-markdown", ref: `tracker/tickets/${id}.md`, body: `Canonical body ${id}` });
+const receipt = (id: string, phase = "implementation", status = "completed"): ExplorerReceipt => ({ id, phase, status, ref: `workflows/T/events/${id}.yaml`, workflowId: "T", sourceCommit: "abc", sourceTree: "def", createdAt: "2026-10-29T01:00:00Z", workspacePath: "/work/T", sourceBranch: "feature/T", baseBranch: "main", outputs: [], fields: {}, body: "" });
+
+async function fixture() {
+  let snapshot: ExplorerSnapshot = { backend: "local-markdown", tickets: [ticket("A"), ticket("T", "claimed"), ticket("B", "open", ["missing"]), ticket("U")], initiatives: [{ id: "I", title: "Initiative only", ref: "tracker/initiatives/I/index.md", ticketIds: ["A", "T", "B"], body: "Initiative scope" }] };
+  const workflows = new Map<string, TicketWorkflow>(snapshot.tickets.map(t => [t.id, { ticketId: t.id, receipts: [], recordedAttempts: { review: 0, fix: 0 } }]));
+  workflows.set("T", { ticketId: "T", receipts: [receipt("implemented")], recordedAttempts: { review: 0, fix: 0 }, sourceCommit: "abc", sourceTree: "def" });
+  let failure = false;
+  let loads = 0;
+  let height = 40;
+  let result: ExplorerResult;
+  const graph = new GraphExplorer({
+    context, theme, exec: async () => ({ stdout: "", code: 0 }), done: value => { result = value; }, requestRender: () => { }, height: () => height, live: false,
+    commands: () => [{ name: "skill:worktree" }, { name: "skill:ask-matt" }], loadSnapshot: async () => { loads++; if (failure) throw new Error("store unavailable"); return structuredClone(snapshot); }, loadWorkflow: async (_, t) => structuredClone(workflows.get(t.id) ?? { ticketId: t.id, receipts: [] }),
+  });
+  await graph.load();
+  const modal = new SharedContextModal(context, theme, graph, { render: () => ["Independent Files cursor"], handleInput: () => { } }, () => { });
+  return { graph, modal, workflows, snapshot: () => snapshot, replace: (next: ExplorerSnapshot) => { snapshot = next; }, fail: (value: boolean) => { failure = value; }, loads: () => loads, result: () => result, height: (value: number) => { height = value; }, view: (width = 120) => modal.render(width).map(stripTerminalSequences).join("\n"), key: (key: string) => modal.handleInput(key) };
+}
+
+test("four queues separate status, next action, recorded activity, and canonical targets", async () => {
+  const f = await fixture();
+  try {
+    await f.key("5");
+    expect(f.view()).toContain("Ticket queues · ready");
+    expect(f.view()).toContain("Work A");
+    expect(f.view()).not.toContain("Initiative only");
+    expect(f.view()).not.toContain("Work T");
+    expect(f.view()).toContain("Next: Start worktree");
+    await f.key("6");
+    expect(f.view()).toContain("Ticket queues · review");
+    expect(f.view()).toContain("State: claimed");
+    expect(f.view()).toContain("Next: Review");
+    expect(f.view()).toContain("Recorded: implementation · completed");
+    expect(f.view()).not.toContain("review · running");
+    await f.key("a");
+    expect(f.view()).toContain("Target: T · tracker/tickets/T.md");
+    await f.key("r");
+    const result = f.result();
+    expect(result?.kind).toBe("session");
+    if (result?.kind !== "session") throw new Error("Missing Review request");
+    expect(result.request.action).toBe("review");
+    expect(result.request.target).toMatchObject({ kind: "ticket", ticket: { id: "T", ref: "tracker/tickets/T.md" } });
+    await f.key("\x1b");
+    await f.key("7");
+    expect(f.view()).toContain("Work B");
+    expect(f.view()).toContain("Waiting for missing");
+    await f.key("a");
+    expect(f.view()).toContain("Unresolved or missing direct blockers");
+    await f.key("\x1b");
+    await f.key("8");
+    for (const id of ["A", "T", "B", "U"]) expect(f.view()).toContain(`Work ${id}`);
+  } finally { f.graph.dispose(); }
+});
+
+test("queue drill and Return retain selection, viewport, initiative child, and Files state", async () => {
+  const f = await fixture();
+  try {
+    await f.key("\r");
+    await f.key("\x1b[B");
+    await f.key("h");
+    await f.key("8");
+    await f.key("\x1b[B");
+    const origin = f.view();
+    await f.key("\r");
+    expect(f.view()).toContain("Canonical body T");
+    expect(f.view()).toContain("I");
+    await f.key("\x1b");
+    expect(f.view()).toBe(origin);
+    await f.key("2");
+    expect(f.view()).toContain("Independent Files cursor");
+    await f.key("1");
+    expect(f.view()).toBe(origin);
+    await f.key("\x1b[B");
+    await f.key("\x1b[B");
+    await f.key("\r");
+    expect(f.view()).toContain("Ungrouped");
+    expect(f.view()).toContain("Canonical body U");
+    await f.key("h");
+    await f.key("\r");
+    await f.key("\r");
+    expect(f.view()).toContain("Canonical body T");
+  } finally { f.graph.dispose(); }
+});
+
+test("live queue membership preserves identity and explains departure; refresh errors retain data and restrict actions", async () => {
+  const f = await fixture();
+  try {
+    await f.key("5");
+    await f.key("\x1b[B");
+    f.snapshot().tickets.unshift(ticket("NEW"));
+    await f.graph.load();
+    await f.key("a");
+    expect(f.view()).toContain("Target: U · tracker/tickets/U.md");
+    await f.key("\x1b");
+    f.snapshot().tickets.find(t => t.id === "U")!.status = "completed";
+    await f.graph.load();
+    expect(f.view()).toContain("left this queue");
+    await f.key("a");
+    expect(f.view()).toContain("Target: A · tracker/tickets/A.md");
+    await f.key("\x1b");
+    f.fail(true);
+    await f.key("R");
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(f.view()).toContain("Work A");
+    expect(f.view()).toContain("store unavailable");
+    await f.key("a");
+    expect(f.view()).toContain("Live refresh failed");
+    await f.key("s");
+    expect(f.result()).toBeUndefined();
+    expect(f.loads()).toBeGreaterThan(2);
+  } finally { f.graph.dispose(); }
+});
+
+test("empty queues have recovery but no action menu and All uses 8", async () => {
+  const f = await fixture();
+  try {
+    f.replace({ backend: "local-markdown", tickets: [], initiatives: [] });
+    await f.graph.load();
+    await f.key("6");
+    expect(f.view()).toContain("No tickets in review");
+    expect(f.view()).toContain("Choose 8");
+    await f.key("a");
+    expect(f.view()).not.toContain("Open a fresh chat");
+    await f.key("8");
+    expect(f.view()).toContain("No tickets recorded");
+    expect(f.view()).not.toContain("Loading");
+    await f.key("r");
+    expect(f.result()).toBeUndefined();
+  } finally { f.graph.dispose(); }
+});
+
+test("queue fields reflow in monochrome with Unicode and terminal-control sanitization", async () => {
+  const f = await fixture();
+  try {
+    f.snapshot().tickets[0]!.title += "\x1b[2J\x1b]0;hostile\x07 END";
+    await f.graph.load();
+    await f.key("5");
+    for (const [width, height] of [[40, 9], [80, 21], [120, 37]]) {
+      f.height(height!);
+      const pages: string[] = [];
+      for (let page = 0; page < 5; page++) {
+        const view = f.view(width);
+        expect(view.split("\n").every(line => visibleWidth(line) <= width!)).toBe(true);
+        expect(view).not.toContain("hostile");
+        pages.push(view);
+        await f.key("\x1b[6~");
+      }
+      const content = pages.join("\n");
+      expect(content).toContain("tracker/tickets/A.md");
+      expect(content).toContain("State: open");
+      expect(content).toContain("Next: Start worktree");
+      expect(content).toContain("Recorded:");
+    }
+  } finally { f.graph.dispose(); }
+});

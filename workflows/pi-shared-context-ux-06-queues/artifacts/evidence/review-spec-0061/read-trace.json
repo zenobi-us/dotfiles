@@ -1,0 +1,224 @@
+[
+  {
+    "name": "read",
+    "args": {
+      "i": "Load required review skill",
+      "path": "skill://code-review"
+    },
+    "ctx": 18127
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load plain language rules",
+      "path": "skill://iso-24495-1"
+    },
+    "ctx": 20245
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load STE rules",
+      "path": "skill://asd-ste100"
+    },
+    "ctx": 22139
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load comment review rules",
+      "path": "skill://code-comments"
+    },
+    "ctx": 26852
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load TypeScript review knowledge",
+      "path": "skill://typescript"
+    },
+    "ctx": 28458
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load required Markdown workflow",
+      "path": "skill://mq-query"
+    },
+    "ctx": 30769
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load artifact creation procedure",
+      "path": "skill://mq-query/references/tasks/creating.md"
+    },
+    "ctx": 31615
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load mq command reference",
+      "path": "skill://mq-query/references/docs/cli.md"
+    },
+    "ctx": 32217
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load technical analysis rules",
+      "path": "skill://iso-24495-3"
+    },
+    "ctx": 35121
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load report structure rules",
+      "path": "skill://iso-24495-5"
+    },
+    "ctx": 36623
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete first diff window",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-01.diff:1-138:raw"
+    },
+    "ctx": 39933
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete second diff window",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-02.diff:1-149:raw"
+    },
+    "ctx": 42281
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete third diff window",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-03.diff:1-141:raw"
+    },
+    "ctx": 44737
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete fourth diff window",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/bounded-review-inputs-0051/source-04.diff:1-79:raw"
+    },
+    "ctx": 47400
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read action authority references",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.actions&raw=true"
+    },
+    "ctx": 48712
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read receipt validation authority",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.receipt_validation&raw=true"
+    },
+    "ctx": 51433
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read model authority",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.model&raw=true"
+    },
+    "ctx": 53540
+  },
+  {
+    "name": "bash",
+    "args": {
+      "i": "Verify pinned source and working tree state",
+      "command": "git rev-parse HEAD HEAD^{tree} 6f959f8c380efe378f4a0f2eeffcd3660c803859^{tree} && git status --porcelain && git diff --stat 6f959f8c380efe378f4a0f2eeffcd3660c803859...20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "timeout": null,
+      "cwd": null,
+      "pty": null,
+      "async": null,
+      "name": null,
+      "ready": null
+    },
+    "ctx": 54574
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer loading and state context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:1-315:raw"
+    },
+    "ctx": 54892
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect navigation, watchers, and public input context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:316-640:raw"
+    },
+    "ctx": 58545
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect actions and rendering context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:641-961:raw"
+    },
+    "ctx": 62500
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect queue fields, transition guards, and viewport implementation",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:962-1244:raw"
+    },
+    "ctx": 67941
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read native acceptance evidence",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json"
+    },
+    "ctx": 72704
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read full native observation records",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json?q=.observations"
+    },
+    "ctx": 73386
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read recorded focused checks",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json"
+    },
+    "ctx": 75663
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read exact-source smoke receipt",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/post-source-check/command.json"
+    },
+    "ctx": 76119
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect complete modal integration context",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts:1-300:raw"
+    },
+    "ctx": 76691
+  }
+]

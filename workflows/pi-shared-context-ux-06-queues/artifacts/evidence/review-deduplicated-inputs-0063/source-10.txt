@@ -1,0 +1,4 @@
+    for (const blocker of target.ticket.blockedBy) if (tickets.has(blocker)) included.add(blocker);
+  }
+  return included;
+}

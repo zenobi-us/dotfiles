@@ -1,0 +1,140 @@
+        if (!this.history().some(receipt => receipt.id === this.receiptId)) this.receiptId = this.history()[0]?.id;
+      }
+      this.focus = focus;
+      this.notice = "";
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "a") && this.screen !== "actions" && this.choices().length) {
+      this.returnScreen = this.screen;
+      this.returnFocus = this.focus;
+      this.screen = "actions";
+      this.actionIndex = 0;
+      this.focus = "list";
+      this.options.requestRender();
+      return;
+    }
+    const choice = this.choices().find(action => matchesKey(data, action.key));
+    if (choice) this.chooseAction(choice);
+  }
+
+  render(width: number): string[] {
+    this.lastWidth = width;
+    this.controlHits = [];
+    if (this.reader) return this.renderDescription(width);
+    const th = this.options.theme;
+    const inner = Math.max(1, width - 2);
+    const compact = width < 70 || this.options.height() < 16;
+    const height = Math.max(5, this.options.height());
+    const control = this.descriptionTarget() ? this.descriptionControl(width) : undefined;
+    const attempts = this.workflow()?.recordedAttempts;
+    const ticket = this.ticket();
+    const eventSummary = this.screen === "receipts" && !this.eventDetail && ticket ? [
+      th.fg("accent", truncateToWidth(this.clean(`Ticket: ${ticket.id} · State: ${ticket.status}`), inner)),
+      th.fg("muted", `Reviews: ${attempts?.review ?? "?"} · Fixes: ${attempts?.fix ?? "?"} (receipts)`),
+    ] : [];
+    const bodyHeight = Math.max(1, Math.min(30, height - (compact ? 4 : 9) - Number(control !== undefined) - eventSummary.length));
+    let panes = this.panes();
+    if (compact && panes.length > 1) {
+      panes = [this.focusedPane(panes) ?? panes[panes.length - 1]];
+    }
+    const proportions = panes.length === 3 ? [0.22, 0.27, 0.51] : panes.length === 2 ? [0.34, 0.66] : [1];
+    const available = inner - Math.max(0, panes.length - 1);
+    const sizes = proportions.map((proportion, index) => index === panes.length - 1 ? available - proportions.slice(0, index).reduce((sum, part) => sum + Math.floor(available * part), 0) : Math.floor(available * proportion));
+    const rendered = panes.map((pane, index) => this.renderPane(pane, Math.max(1, sizes[index]), bodyHeight));
+    const join = (parts: string[]) => parts.join(th.fg("border", "│"));
+    const headers = panes.map((pane, index) => this.pad(`${this.active && ["list", "detail", "neighborhood"].includes(this.focus) && this.focusedPane(panes)?.id === pane.id ? ">" : " "} ${pane.title}`, sizes[index]));
+    const body = Array.from({ length: bodyHeight }, (_, row) => join(rendered.map(lines => lines[row] ?? "")));
+    const target = this.target();
+    const breadcrumb = this.renderBreadcrumbs(inner, compact);
+    const ticketCount = this.snapshot?.tickets.reduce((count, ticket) => count + Number(recordKind(ticket) === "ticket"), 0) ?? 0;
+    const checks = this.snapshot && this.receiptChecks < ticketCount ? `Checking receipts ${this.receiptChecks}/${ticketCount}` : "";
+    const unavailable = this.options.context.checkoutAvailable === false
+      ? Object.values(this.options.context.routes).some(route => route.store === "repository")
+        ? "No checkout: repository records unavailable. Shared records remain readable."
+        : "No checkout: context is readable; actions are disabled."
+      : "";
+    const summary = this.screen === "initiatives" ? this.initiative()?.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line)) : undefined;
+    const status = this.error || this.refreshError || this.workflow()?.error || this.notice || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+    const keys = compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh";
+    if (compact) {
+      if (control) this.controlHits.push({ x: 0, y: 1, width: visibleWidth(control), action: "description" });
+      return [breadcrumb, ...(control ? [control] : []), ...eventSummary, join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
+    }
+    const frame = (text: string) => th.fg("border", "│") + this.pad(text, inner) + th.fg("border", "│");
+    if (control) this.controlHits.push({ x: 1, y: 2, width: visibleWidth(control), action: "description" });
+    return [th.fg("border", `╭${"─".repeat(inner)}╮`), frame(breadcrumb), ...(control ? [frame(control)] : []), ...eventSummary.map(frame), frame(join(headers)), th.fg("border", `├${"─".repeat(inner)}┤`), ...body.map(frame), th.fg("border", `├${"─".repeat(inner)}┤`), frame(th.fg(this.error || this.refreshError ? "error" : "muted", ` ${this.clean(status)}`)), frame(th.fg("muted", ` ${keys}`)), th.fg("border", `╰${"─".repeat(inner)}╯`)];
+  }
+
+  private descriptionTarget(): ExplorerTarget | undefined {
+    if (this.screen === "initiatives") {
+      const initiative = this.initiative();
+      return initiative && !initiative.group ? { kind: "initiative", initiative } : undefined;
+    }
+    const ticket = this.ticket();
+    return (this.screen === "tickets" || this.screen === "receipts") && ticket ? { kind: "ticket", ticket } : undefined;
+  }
+
+  private descriptionRecord(): ExplorerInitiative | ExplorerTicket | undefined {
+    if (!this.reader) return;
+    return this.reader.kind === "initiative"
+      ? this.snapshot?.initiatives.find(item => item.ref === this.reader!.ref)
+      : this.snapshot?.tickets.find(item => item.ref === this.reader!.ref);
+  }
+
+  private descriptionControl(width: number): string {
+    const label = "[d] Full description";
+    return this.options.theme.fg("accent", truncateToWidth(this.active && this.focus === "description" ? `>${label}<` : ` ${label} `, Math.max(1, width - 2)));
+  }
+
+  private openDescription(): void {
+    const target = this.descriptionTarget();
+    if (!target) return;
+    const record = target.kind === "initiative" ? target.initiative : target.ticket;
+    this.reader = { kind: target.kind, ref: record.ref, focus: this.focus };
+    this.focus = "detail";
+    this.options.requestRender();
+  }
+
+  private closeDescription(): void {
+    if (!this.reader) return;
+    this.focus = this.reader.focus;
+    this.reader = undefined;
+    this.options.requestRender();
+  }
+
+  private scrollDescription(direction: number, page: boolean): void {
+    if (!this.reader) return;
+    const key = `description:${this.reader.kind}:${this.reader.ref}`;
+    const step = page ? Math.max(1, this.options.height() - 4) : 1;
+    this.offsets.set(key, Math.max(0, (this.offsets.get(key) ?? 0) + direction * step));
+  }
+
+  private renderDescription(width: number): string[] {
+    const record = this.descriptionRecord();
+    const th = this.options.theme;
+    const inner = Math.max(1, width - 2);
+    const height = Math.max(5, this.options.height());
+    const bodyHeight = height - 4;
+    const body = record?.body ?? "";
+    const rows: Row[] = [
+      ...(this.refreshError ? [{ text: `Description unreadable after refresh. Showing the last readable body. ${this.refreshError}`, tone: "error" as const }] : []),
+      ...(body.trim() ? body.split(/\r?\n/).map(text => ({ text })) : [{ text: "No description recorded.", tone: "muted" as const }]),
+    ];
+    const pane = { id: `description:${this.reader!.kind}:${this.reader!.ref}`, title: "Description", rows };
+    const lines = this.renderPane(pane, inner, bodyHeight);
+    const back = this.active && this.focus === "return" ? ">[Return]<" : " [Return] ";
+    const controls = `${back} [PgUp] [PgDn]`;
+    this.controlHits = [
+      { x: 1, y: height - 2, width: visibleWidth(back), action: "return" },
+      { x: visibleWidth(back) + 2, y: height - 2, width: 6, action: "up" },
+      { x: visibleWidth(back) + 9, y: height - 2, width: 6, action: "down" },
+    ];
+    const breadcrumb = this.renderBreadcrumbs(inner, true);
+    for (const hit of this.breadcrumbHits) hit.x++;
+    return [
+      breadcrumb,
+      th.fg("accent", truncateToWidth(this.clean(`${this.active && this.focus === "detail" ? ">" : " "} ${record?.title ?? "Record"} · Description`), inner)),
+      ...lines,
+      th.fg("accent", truncateToWidth(controls, inner)),
+      th.fg(this.refreshError ? "error" : "muted", truncateToWidth(this.refreshError ? "Description unreadable · last readable body" : "↑↓ scroll · PgUp/Dn page · Esc return", inner)),

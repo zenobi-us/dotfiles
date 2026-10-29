@@ -1,0 +1,13 @@
+{
+  "agent": "ux06-standards-c16",
+  "pane_id": "w8P:p3",
+  "workspace_id": "w8P",
+  "session_id": "01a189a0-5760-7167-99cc-d94ccfe020f5",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T21-45-49-152Z_01a189a0-5760-7167-99cc-d94ccfe020f5.jsonl",
+  "native_goal_id": "15b9b56ce99e688b",
+  "native_goal_budget": 200000,
+  "session_work_ceiling": 300000,
+  "guard_audit": "/tmp/ux06-standards-c16-guard-b2df2f54-d47c-48be-9ca5-ebc435d3a41a.jsonl",
+  "guard_sha256": "fec08eb63867a87ca9727b179462e19b8a27854ab9d0e559319f8c25df794c0f",
+  "single_call_control": true
+}
