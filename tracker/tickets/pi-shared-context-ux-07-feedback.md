@@ -52,3 +52,15 @@ When implementing this feedback, exercise the actual Pi modal with receipt loadi
 
 The user requested one shared-context feedback task, marked in progress, with all screenshots stored beside it. Keep this task available for additional feedback during the initiative. No implementation or completion is claimed.
 
+
+
+### 2026-10-30 — Headless terminal evidence
+
+Evidence is stored through the configured shared-context evidence route in this repository. These links do not depend on a running local server.
+
+- **Full-colour evidence:** [Report and screenshots](../../workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/termscope-colour-20261030-02/index.html). [Capture manifest](../../workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/termscope-colour-20261030-02/files/capture-manifest.json) records source identity, source hashes, environment, and capture limits. [Interaction log](../../workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/termscope-colour-20261030-02/files/protocol.json) retains terminal responses.
+- **Earlier evidence:** [Monochrome report and original snapshots](../../workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/termscope-20261030-01/index.html). Keep this run as capture history. Its colour-loss statement applies to termscope SVG export; HTML and style-span output preserve colours.
+
+The full-colour run shows a tinted selection background with an arrow on each of eight selected ticket lines. Loaded warnings remain in ticket rows. Items and detail fields have no blank separators. The description reader shows no distinct Markdown body background. The inspected initiative footer and action menu expose no copy shortcut.
+
+The captures use a fresh ephemeral omp process inside termscope. PNGs render captured HTML foreground and background colours in Chromium; they are not native desktop screenshots. The loading transition and clipboard bytes remain unverified. Existing source changes are recorded in each manifest. No UI fix, acceptance pass, review verdict, or completion is claimed. Keep work_status as claimed and retain all earlier feedback and six original screenshot links.
