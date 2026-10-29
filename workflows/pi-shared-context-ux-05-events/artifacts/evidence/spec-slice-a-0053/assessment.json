@@ -1,0 +1,61 @@
+{
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "status": "completed",
+  "verdict": "SUCCESS",
+  "findings": [],
+  "axis_report": "Assigned Spec slice only: criteria 1–6 pass source inspection. The ticket header precedes the history pane. Receipt totals come from validated phase receipts after identity and parent-graph checks. Invalid fields do not contribute, and graph failures leave totals unavailable. Event rows keep identity, execution, verdict, and source in separate labelled fields. Completed review FAILURE and execution failed remain distinct without colour. Enter opens a dedicated detail pane. Execution and readable body precede extended evidence. The detail includes full source IDs, workspace, branch, session, and raw fields. Wrapping and line/page scrolling preserve access to long evidence. Public modal tests cover these behaviors, including narrow evidence paging. No blocking mismatch was found for the assigned criteria. This is not a whole-ticket verdict and does not authorize integration or ticket completion.",
+  "acceptance_assessment": [
+    {
+      "number": 1,
+      "status": "PASS",
+      "evidence": "explorer.ts:687–723 builds Ticket ID/state and Reviews/Fixes summary lines before pane headers and history rows. Canonical supplied diff inspected. events.test.ts:48–57 asserts visible ticket identity and counts through the complete modal. Source inspection, not fresh execution."
+    },
+    {
+      "number": 2,
+      "status": "PASS",
+      "evidence": "data.ts:42–91 retains raw events but validates receipt schema, canonical ticket/workflow identity, execution fields, and evidence references before receipt construction. data.ts:92–130 constructs accepted receipts, rejects duplicate IDs and invalid parent graphs, then counts review/fix phases. data.ts:150 removes totals when history validation fails. explorer.ts:963 explicitly calls these validated phase receipts and recorded attempts, not quality or completion. data.test.ts:219–229 checks invalid-field exclusion and unavailable totals for invalid parent graphs. These assertions were inspected, not run."
+    },
+    {
+      "number": 3,
+      "status": "PASS",
+      "evidence": "explorer.ts:846–859 renders separate Event/Phase, Execution, optional Verdict, and Source commit lines. Source commit never fills Execution. explorer.ts:1060 wraps each labelled field. events.test.ts:48–57 asserts completed/failed execution, review verdict, and source reference in the modal."
+    },
+    {
+      "number": 4,
+      "status": "PASS",
+      "evidence": "explorer.ts:850–853 separates Execution from Verdict; explorer.ts:876–877 keeps separate Execution and Review verdict labels in detail. events.test.ts:54–56 and 76–81 check completed review FAILURE versus failed execution without a review verdict. These explicit labels do not depend on colour."
+    },
+    {
+      "number": 5,
+      "status": "PASS",
+      "evidence": "explorer.ts:615–622 opens eventDetail with detail focus on Enter. explorer.ts:823 returns a dedicated event detail pane. explorer.ts:876–891 places execution, review verdict, any validation warning, and Recorded body before Evidence details and source/workspace metadata. events.test.ts:58–67 checks public modal entry and outcome/body ordering."
+    },
+    {
+      "number": 6,
+      "status": "PASS",
+      "evidence": "explorer.ts:887–891 retains full commit/tree, current commit/tree, workspace, branch, session, and JSON raw fields. explorer.ts:1058–1088 wraps rows and clamps scrolling against the expanded line count without truncating stored IDs. explorer.ts:577–591 supports page and line scrolling in detail. events.test.ts:120–143 inspects raw-field reachability through public modal paging at widths 40, 80, and 120. events.test.ts:64–67 checks full commit/tree and session visibility."
+    }
+  ],
+  "verification": {
+    "fresh_readonly_commands": [
+      "git rev-parse HEAD HEAD^{tree}",
+      "git status --porcelain --untracked-files=no",
+      "git diff --no-ext-diff --unified=0 b1e4b80769490af4896785bc2ea3699c22b346f6...eeb4e4f920bc5b556c515c63bb99af60e4a099d9 -- mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md | sha256sum"
+    ],
+    "result": "HEAD and tree match the frozen source. Tracked worktree status was clean before review and before assessment write. Diff SHA-256 matches 84338e9ded069981832801aeb09f3d3ca9d39d349d3845a719936360c14ec2b9.",
+    "prior_evidence_only": "The supplied unchanged-source review-0047 checks report 147 passing tests, zero failures, 2061 assertions, and compiler exit 0. Supplied implementation evidence reports native colour/monochrome observations at 40x12, 80x24, and 120x40. These are prior results, not checks run by this reviewer. The failed review-0047 harness initialization is not fresh native product evidence. Main owns corrected fresh verification."
+  },
+  "limitations": [
+    "Only acceptance criteria 1–6 were assessed. Standards and criteria 7–13 were not reassessed.",
+    "No tests, compiler, native modal, build, lint, or formatter were run by this axis, as required by the review contract.",
+    "Native presentation claims rely on supplied prior observations. This assessment adds independent source and test inspection, not fresh terminal observations.",
+    "The canonical ADR index supplied no applicable decisions: NO ADR. No blocking finding requires an ADR citation."
+  ],
+  "cleanup": {
+    "source_changes": "None. No source, tests, configuration, dependencies, tracker records, receipts, projections, or prior artifacts were modified.",
+    "owned_output": "Only this assessment.json was written.",
+    "processes": "No agents, services, native harnesses, or background jobs were started.",
+    "handoff": "Parent owns receipts, reports, consolidation, and finalization."
+  }
+}
