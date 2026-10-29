@@ -1,0 +1,13 @@
+{
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "expectedCommit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "expectedTree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "evidenceDir": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047",
+  "mq": "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+  "mise": "/home/zenobius/.local/bin/mise",
+  "pi": "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+  "monoTheme": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/implementation-0002/monochrome-theme.json",
+  "seed": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/native-fixture-seed.json",
+  "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "resultReceipt": null
+}

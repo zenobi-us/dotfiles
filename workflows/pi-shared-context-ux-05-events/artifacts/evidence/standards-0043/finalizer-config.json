@@ -1,0 +1,135 @@
+{
+  "role": "standards",
+  "template": {
+    "schema": "worktree-receipt/v1",
+    "receipt_id": "standards-start-0041",
+    "workflow_id": "pi-shared-context-ux-05-events",
+    "phase": "review-standards",
+    "attempt": 3,
+    "parent_receipt": "review-complete-0039",
+    "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+    "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+    "source_branch": "feature/pi-shared-context-ux-05-events",
+    "base_branch": "master",
+    "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+    "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+    "created_at": "2026-10-29T04:28:59.117Z",
+    "muxer": "herdr",
+    "pane_id": "w8A:p3",
+    "agent": "omp",
+    "agent_name": "ux05-review-std-c14",
+    "session_id": null,
+    "ticket": {
+      "backend": "local-markdown",
+      "id": "pi-shared-context-ux-05-events",
+      "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+    },
+    "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+    "workflow": {
+      "store": "repository",
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "ref": "workflows/pi-shared-context-ux-05-events"
+    },
+    "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+    "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0152.yaml",
+    "event": "phase-start",
+    "status": "started",
+    "cycle_number": 14,
+    "token_limit": 250000,
+    "native_goal_budget": 200000,
+    "completion_margin_tokens": 50000,
+    "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+    "inputs": [
+      {
+        "kind": "ticket",
+        "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+      },
+      {
+        "kind": "initiative",
+        "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+      },
+      {
+        "kind": "receipt",
+        "ref": "workflows/pi-shared-context-ux-05-events/events/implementation-0002.json"
+      },
+      {
+        "kind": "receipt",
+        "ref": "workflows/pi-shared-context-ux-05-events/events/validation-complete-0014.json"
+      },
+      {
+        "kind": "receipt",
+        "ref": "workflows/pi-shared-context-ux-05-events/events/review-complete-0039.json"
+      },
+      {
+        "kind": "receipt",
+        "ref": "workflows/pi-shared-context-ux-05-events/events/guard-retry-complete-0030.json"
+      },
+      {
+        "kind": "snapshot",
+        "ref": "workflows/pi-shared-context-ux-05-events/artifacts/snapshots/pr-draft-review-blocked-0039.md"
+      },
+      {
+        "kind": "coordinator",
+        "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0152.yaml"
+      },
+      {
+        "kind": "artifact",
+        "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/review-inputs.json",
+        "sha256": "7d209d7995eb15891d816dcf2d996a3a2d4be331bbd86dd7d9f6c8880b2b30f0"
+      },
+      {
+        "kind": "artifact",
+        "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/review-agent-system.txt"
+      },
+      {
+        "kind": "artifact",
+        "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/exact-source-diff.patch",
+        "sha256": "86759fd03d7d359d75f4cb0775a0805caffb42f056fe12f3fcf34634021f7460"
+      }
+    ],
+    "outputs": [
+      {
+        "kind": "receipt",
+        "ref": "workflows/pi-shared-context-ux-05-events/events/standards-start-0041.json"
+      }
+    ],
+    "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+    "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+    "review_role": "standards",
+    "guard_verification_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0028/verification.json",
+    "preloaded_inputs": true
+  },
+  "sourceCommit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "sourceTree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "fixedPoint": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043",
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043",
+    "publication": "repository"
+  },
+  "mq": "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+  "launchPath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/launch-session.json",
+  "launchRef": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/launch-session.json",
+  "resultId": "standards-result-0043",
+  "resultPath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/events/standards-result-0043.json",
+  "resultRef": "workflows/pi-shared-context-ux-05-events/events/standards-result-0043.json",
+  "startRef": "workflows/pi-shared-context-ux-05-events/events/standards-start-0041.json",
+  "assessmentRef": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0043/assessment.json",
+  "checksPath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/checks-result.json",
+  "checksRef": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0047/checks-result.json",
+  "artifactPath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0047.md",
+  "artifactRef": "workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0047.md",
+  "axisReceiptPaths": [],
+  "axisReceiptRefs": [],
+  "axisArtifactLinks": [
+    "../../events/standards-result-0043.json",
+    "../../events/spec-result-0044.json"
+  ],
+  "checksArtifactLink": "../evidence/review-0047/checks-result.json"
+}
