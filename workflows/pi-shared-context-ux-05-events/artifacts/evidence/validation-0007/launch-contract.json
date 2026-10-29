@@ -1,0 +1,22 @@
+{
+  "kind": "planned-launch",
+  "agent_name": "ux05-loading-validate-c3",
+  "pane_id": "w83:p1",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "arguments": [
+    "--no-title",
+    "--no-prewalk",
+    "--skills",
+    "*implement*,*shared-context*,*reading-and-writing-tickets*,*mq-query*,*mise*,*termscope*,*typescript*,*code-comments*,*iso-24495*,*asd-ste100*,*commit*",
+    "--config",
+    "/tmp/ux05-validation-overlay-0b42bcbe-3ba5-46d8-b3b0-5799f46eab33.json",
+    "-e",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0004/work-token-guard.ts"
+  ],
+  "guard_sha256": "eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "cycle_number": 3,
+  "hard_ceiling": 250000,
+  "ambient_extensions_retained": true
+}
