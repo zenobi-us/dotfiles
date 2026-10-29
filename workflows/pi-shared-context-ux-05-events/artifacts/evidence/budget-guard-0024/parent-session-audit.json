@@ -1,0 +1,29 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T03-12-04-051Z_01a185a4-abd3-739d-889b-cd40c254119e.jsonl",
+  "session_id": "01a185a4-abd3-739d-889b-cd40c254119e",
+  "goal_id": "15b8b681fc9ed975",
+  "native_status": "active",
+  "native_goal_used": 19867,
+  "native_goal_budget": 200000,
+  "raw_usage": {
+    "input": 19694,
+    "output": 173,
+    "cacheWrite": 0,
+    "cacheRead": 14336
+  },
+  "assistant_entries": 8,
+  "auxiliary_model_usage_entries": 0,
+  "provider_work_tokens": null,
+  "session_ceiling": 250000,
+  "under_cap": true,
+  "reported_provider_work_tokens": 19867,
+  "accounting_complete": false,
+  "unsettled_request": {
+    "admitted_at": "2026-10-29T03:13:22.726Z",
+    "spent_before": 19867,
+    "reservation": 147867
+  },
+  "conservative_work_upper_bound": 167734,
+  "under_cap_basis": "Pre-request reservation ceiling; exact final provider usage unavailable.",
+  "bound_violation": false
+}

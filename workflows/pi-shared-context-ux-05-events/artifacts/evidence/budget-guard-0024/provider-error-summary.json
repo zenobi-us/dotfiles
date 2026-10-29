@@ -1,0 +1,11 @@
+{
+  "kind": "provider-origin-error",
+  "observed_error_reference": 520,
+  "title": "Web server is returning an unknown error",
+  "message": "The provider returned Cloudflare HTML describing an unknown connection issue between Cloudflare and the origin web server, instead of a model response.",
+  "exact_http_status_not_recorded": true,
+  "provider_usage_available": false,
+  "private_native_session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T03-12-04-051Z_01a185a4-abd3-739d-889b-cd40c254119e.jsonl",
+  "private_error_message_id": "668363aa",
+  "raw_html_not_published": "Contains network identifiers; only this redacted error summary is published."
+}

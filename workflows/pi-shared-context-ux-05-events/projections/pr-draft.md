@@ -1,5 +1,5 @@
 ---
-title: Ticket05 blocked independent review
+title: Ticket05 interrupted guard validation
 type: Report
 ---
 
@@ -45,7 +45,7 @@ Two failed fixture attempts are preserved. The successful v3 uses the actual mq 
 
 ## Review history
 
-Independent review attempt1 did not complete. All three fresh sessions were stopped by conservative request admission without a new cap breach. No valid source verdict or code finding was issued. See the [immutable execution report](../artifacts/reviews/review-review-0022.md).
+Independent review attempt1 did not complete; no valid source verdict or code finding exists. Its [immutable execution report](../artifacts/reviews/review-review-0022.md) is preserved. The revised guard subsequently passed10 arithmetic cases and five native response settlements before a provider-origin failure interrupted its full verification.
 
 ## Resolved findings
 
@@ -53,11 +53,11 @@ No formal code-review findings have been issued. The documented loading-history 
 
 ## Remaining findings
 
-Independent exact-source assessment remains unavailable. Seven cycles are consumed; a guard-validation session plus three fresh reviewers requires total11, beyond the approved10. Operator approval is required before further dispatch. No source integration or ticket completion is authorized.
+The revised guard is not yet cleared for feature reviews. Cloudflare error reference520 interrupted cycle8. A fresh validation retry plus three independent reviewers needs total12 cycles, beyond the approved11. No source integration or ticket completion is authorized.
 
 ## Latest reviewer verdict
 
-Not assessed. Review execution failed; this is not a source-code rejection.
+Not assessed. Guard validation and independent review remain incomplete.
 
 ## Merge status
 
@@ -90,6 +90,10 @@ Not merged. The canonical ticket remains claimed. Workflow evidence publication 
 | [spec-complete-0021](../events/spec-complete-0021.json) | review-spec | phase-complete | failed | 22744 |
 | [review-0022](../events/review-0022.json) | review | phase-result | blocked | 23451 |
 | [review-complete-0023](../events/review-complete-0023.json) | review | phase-complete | failed | 23451 |
+| [guard-start-0024](../events/guard-start-0024.json) | validate | phase-start | started | — |
+| [guard-input-ready-0025](../events/guard-input-ready-0025.json) | validate | phase-checkpoint | started | — |
+| [guard-result-0026](../events/guard-result-0026.json) | validate | phase-result | blocked | 19867 reported; ≤167734 reserved upper bound |
+| [guard-complete-0027](../events/guard-complete-0027.json) | validate | phase-complete | failed | 19867 reported; ≤167734 reserved upper bound |
 
 ## Supporting records
 
@@ -100,13 +104,17 @@ Not merged. The canonical ticket remains claimed. Workflow evidence publication 
 - [Released history](../artifacts/evidence/native-loading-0010/color-history-released.txt)
 - [Coordinator reservation](../../goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0110.yaml)
 
-## Approval boundary
+## Current recovery boundary
 
-- Current source remains clean at `eeb4e4f920bc5b556c515c63bb99af60e4a099d9`.
-- All review sessions and their Herdr workspace are closed; the source worktree is preserved.
-- Ticket status and ownership remain unchanged. No tracker review comment was appended because no valid code assessment exists.
-- Proposed recovery needs one dedicated guard validation and three fresh independent reviews, for total11cycles. The250000 per-session ceiling and outer goal ceiling remain unchanged.
-- No extra cycle or revised guard is authorized yet.
+Eight cycles are consumed; total11 is approved by [the explicit renewal](../../goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0126.yaml). One new validation and three fresh reviewers would require total12. That extra cycle is not approved yet.
 
-Session usage may appear on both result and parent receipts; do not sum the history column as distinct spending.
+The provider returned a Cloudflare520HTML error page, not a model response. Its final usage is unavailable. Do not treat the SDK error envelope's zero usage as a provider measurement. Cycle8 has19867 reported work tokens and a conservative167734 full-session upper bound from its admitted reservation. That bound stays below250000. A controlled subsequent prompt was rejected without another network admission.
+
+- [Partial native verification](../artifacts/evidence/budget-guard-0024/partial-verification.json)
+- [Full accounting and reserved upper bound](../artifacts/evidence/budget-guard-0024/parent-session-audit.json)
+- [Redacted provider error](../artifacts/evidence/budget-guard-0024/provider-error-summary.json)
+- [Actual guard ledger](../artifacts/evidence/budget-guard-0024/agent-guard-audit.jsonl)
+- [Ten arithmetic cases](../artifacts/evidence/budget-guard-0024/guard-math-results-attempt-2.json)
+
+The source, claim and ownership are unchanged. All child sessions are closed; the source worktree remains for recovery. No unused session allowance is transferred. Session usage can appear on both result and parent receipts; the history column is not summable as distinct spending.
 

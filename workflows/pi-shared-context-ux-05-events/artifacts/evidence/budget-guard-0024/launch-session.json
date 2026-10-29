@@ -1,0 +1,20 @@
+{
+  "agent": "ux05-guard-v2-c8",
+  "pane": "w86:p2",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T03-12-04-051Z_01a185a4-abd3-739d-889b-cd40c254119e.jsonl",
+  "session_id": "01a185a4-abd3-739d-889b-cd40c254119e",
+  "goal_id": "15b8b681fc9ed975",
+  "native_budget": 200000,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "guard_ready": {
+    "at": "2026-10-29T03:12:04.198Z",
+    "event": "ready",
+    "spent": 0,
+    "ceiling": 250000,
+    "model": "gpt-6.1-sol",
+    "outputMaximum": 128000,
+    "transport": "stateless SSE"
+  },
+  "source_start_publication": "54048f769cb9420b0a8efbcb4b635e92bfa1f4f2",
+  "live_audit": "/tmp/ux05-guard-v2-95296b76-f323-4c84-8820-a4170671b60a.jsonl"
+}

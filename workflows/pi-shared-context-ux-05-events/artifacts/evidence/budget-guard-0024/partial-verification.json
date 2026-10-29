@@ -1,0 +1,78 @@
+{
+  "status": "blocked",
+  "candidate_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "math_cases_passed": 10,
+  "native_goal_mode": true,
+  "goal_id": "15b8b681fc9ed975",
+  "successful_settlements": 5,
+  "network_admissions": 6,
+  "observed_prefix_admissions": 5,
+  "old_wire_would_reject_observed": false,
+  "data_fixture_markers": [
+    {
+      "fixture": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/probe-data-1.json",
+      "marker": "GUARD_DATA1_READY",
+      "message_id": "2de01e81",
+      "usage": {
+        "input": 7027,
+        "output": 9,
+        "cacheRead": 5888,
+        "cacheWrite": 0,
+        "totalTokens": 12924,
+        "cost": {
+          "input": 0.014053999999999999,
+          "output": 0.00009,
+          "cacheRead": 0.0005888,
+          "cacheWrite": 0,
+          "total": 0.014732799999999999
+        },
+        "premiumRequests": 0
+      }
+    }
+  ],
+  "permanent_stop_verified": true,
+  "controlled_refusal": {
+    "at": "2026-10-29T03:23:50.649Z",
+    "event": "denied",
+    "reason": "guard unavailable, stopped, or another inference is pending",
+    "spent": 19867,
+    "ceiling": 250000
+  },
+  "no_admission_after_controlled_refusal": true,
+  "bound_violations": [],
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T03-12-04-051Z_01a185a4-abd3-739d-889b-cd40c254119e.jsonl",
+    "session_id": "01a185a4-abd3-739d-889b-cd40c254119e",
+    "goal_id": "15b8b681fc9ed975",
+    "native_status": "active",
+    "native_goal_used": 19867,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 19694,
+      "output": 173,
+      "cacheWrite": 0,
+      "cacheRead": 14336
+    },
+    "assistant_entries": 8,
+    "auxiliary_model_usage_entries": 0,
+    "provider_work_tokens": null,
+    "session_ceiling": 250000,
+    "under_cap": true,
+    "reported_provider_work_tokens": 19867,
+    "accounting_complete": false,
+    "unsettled_request": {
+      "admitted_at": "2026-10-29T03:13:22.726Z",
+      "spent_before": 19867,
+      "reservation": 147867
+    },
+    "conservative_work_upper_bound": 167734,
+    "under_cap_basis": "Pre-request reservation ceiling; exact final provider usage unavailable.",
+    "bound_violation": false
+  },
+  "missing_acceptance": [
+    "Complete the large retained-context case that would be rejected by the old wire-byte reservation.",
+    "Exercise an oversized input admission denial before the transport becomes unavailable."
+  ],
+  "guard_verified_for_feature_reviews": false,
+  "provider_error_ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/budget-guard-0024/provider-error-summary.json"
+}
