@@ -1,0 +1,231 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+index 8bf6e9b0..504f27b7 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+@@ -31,6 +31,9 @@ export interface ExplorerNavigation {
+   homeIndex?: number;
+   itemOrigin?: "initiatives" | "queues";
+   queueIndex?: number;
++  queueSelections?: [Queue, { identity?: string; index: number }][];
++  initiativeMemory?: { initiativeId?: string; ticketId?: string; receiptId?: string };
++  childSelections?: [string, string][];
+   reader?: DescriptionReader;
+ }
+ 
+@@ -75,6 +78,8 @@ export class GraphExplorer {
+   private queueIndex = 0;
+   private itemOrigin: "initiatives" | "queues" = "initiatives";
+   private childSelections = new Map<string, string>();
++  private queueSelections = new Map<Queue, { identity?: string; index: number }>();
++  private initiativeMemory?: ExplorerNavigation["initiativeMemory"];
+   private breadcrumbIndex = 0;
+   private breadcrumbHits: { x: number; y: number; width: number; index: number }[] = [];
+   private active = true;
+@@ -124,6 +129,9 @@ export class GraphExplorer {
+     this.queueIndex = navigation?.queueIndex ?? 0;
+     this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
+     this.reader = navigation?.reader;
++    this.queueSelections = new Map(navigation?.queueSelections ?? []);
++    this.initiativeMemory = navigation?.initiativeMemory;
++    this.childSelections = new Map(navigation?.childSelections ?? []);
+   }
+ 
+   async load(): Promise<void> {
+@@ -210,7 +218,8 @@ export class GraphExplorer {
+             this.screen = "home";
+             this.focus = "list";
+           }
+-          if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
++          if ((logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "queues") this.initiativeId = snapshot.initiatives.find(initiative => initiative.ticketIds.includes(this.ticketId ?? ""))?.id;
++          else if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
+           // A remembered child is not the active target in home or queue action menus.
+           const removedTarget = selected?.kind === "ticket" && !snapshot.tickets.some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
+           if (removedTarget) {
+@@ -247,6 +256,7 @@ export class GraphExplorer {
+           this.scopeKey = "";
+           this.updateWatchScope();
+           this.ticketStates.clear();
++          this.reconcileQueues();
+           this.restoreHomeSelection(selected);
+         }
+         this.loading = false;
+@@ -280,6 +290,7 @@ export class GraphExplorer {
+             }
+             this.ticketStates.clear();
+             this.receiptChecks = this.workflows.size;
++            this.reconcileQueues();
+             this.restoreHomeSelection(selected);
+             this.options.requestRender();
+           }
+@@ -304,7 +315,8 @@ export class GraphExplorer {
+ 
+   private restoreHomeSelection(target: ExplorerTarget | undefined): void {
+     const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+-    if (screen !== "home" && screen !== "queues") return;
++    if (screen === "queues") { this.reconcileQueues(); return; }
++    if (screen !== "home") return;
+     const rows = screen === "home" ? this.homeRows() : this.queueRows();
+     const index = target ? rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref === (target.kind === "ticket" && target.ticket.ref) : row.target.initiative.ref === (target.kind === "initiative" && target.initiative.ref))) : -1;
+     const previous = screen === "home" ? this.homeIndex : this.queueIndex;
+@@ -314,6 +326,47 @@ export class GraphExplorer {
+     else this.queueIndex = next;
+   }
+ 
++  private queueIdentity(target: ExplorerTarget | undefined): string | undefined {
++    return target?.kind === "ticket" ? JSON.stringify([target.ticket.backend, target.ticket.ref]) : undefined;
++  }
++
++  private selectQueue(index: number): void {
++    const rows = this.queueRows();
++    this.queueIndex = Math.max(0, Math.min(index, rows.length - 1));
++    this.queueSelections.set(this.queue, { index: this.queueIndex, identity: this.queueIdentity(rows[this.queueIndex]?.target) });
++  }
++
++  private reconcileQueues(): void {
++    for (const [queue, saved] of this.queueSelections) {
++      if (queue !== "all" && this.snapshot && this.receiptChecks < this.snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").length) continue;
++      const rows = this.queueRows(queue);
++      const index = saved.identity ? rows.findIndex(row => this.queueIdentity(row.target) === saved.identity) : -1;
++      const next = index >= 0 ? index : Math.max(0, Math.min(saved.index, rows.length - 1));
++      if (saved.identity && index < 0 && queue === this.queue) this.notice = "Selected ticket left this queue. Selected a nearby ticket or an empty queue.";
++      this.queueSelections.set(queue, { index: next, identity: this.queueIdentity(rows[next]?.target) });
++      if (queue === this.queue) this.queueIndex = next;
++    }
++  }
++
++  private openQueue(queue: Queue): void {
++    if (!this.initiativeMemory) this.initiativeMemory = { initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId };
++    this.queue = queue;
++    this.screen = "queues";
++    this.focus = "list";
++    this.selectQueue(this.queueSelections.get(queue)?.index ?? 0);
++  }
++
++  private returnHome(): void {
++    if (this.initiativeMemory) {
++      this.initiativeId = this.initiativeMemory.initiativeId;
++      this.ticketId = this.initiativeMemory.ticketId;
++      this.receiptId = this.initiativeMemory.receiptId;
++      this.initiativeMemory = undefined;
++    }
++    this.screen = "home";
++    this.itemOrigin = "initiatives";
++  }
++
+   private refreshFailed(error: unknown): void {
+     if (this.disposed) return;
+     this.refreshError = `Live refresh failed: ${error instanceof Error ? error.message : String(error)}`;
+@@ -456,7 +509,8 @@ export class GraphExplorer {
+     if (!crumb || index >= this.breadcrumbs().length - 1) return;
+     this.reader = undefined;
+     this.eventDetail = false;
+-    this.screen = crumb.screen;
++    if (crumb.screen === "home") this.returnHome();
++    else this.screen = crumb.screen;
+     this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
+     this.options.requestRender();
+   }
+@@ -502,14 +556,14 @@ export class GraphExplorer {
+       this.options.done({ kind: "files", navigation: this.navigation() });
+       return;
+     }
+-    if (matchesKey(data, "shift+r")) {
++    if (data === "R" || matchesKey(data, "shift+r")) {
+       void this.load();
+       return;
+     }
+     if (matchesKey(data, "home") || matchesKey(data, "h")) {
+       this.reader = undefined;
+       this.eventDetail = false;
+-      this.screen = "home";
++      this.returnHome();
+       this.focus = "list";
+       this.notice = "";
+       this.options.requestRender();
+@@ -530,10 +584,10 @@ export class GraphExplorer {
+         focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
+       }
+       else if (this.screen === "tickets") this.screen = this.itemOrigin;
+-      else if (this.screen === "initiatives" || this.screen === "queues") this.screen = "home";
++      else if (this.screen === "initiatives" || this.screen === "queues") this.returnHome();
+       else { if (matchesKey(data, "escape") && this.options.projects) this.options.projects(); else this.options.done(undefined); return; }
+       this.focus = focus;
+-      this.notice = "";
++      if (this.screen !== "queues") this.notice = "";
+       this.options.requestRender();
+       return;
+     }
+@@ -541,9 +595,7 @@ export class GraphExplorer {
+     if (this.screen === "home" || this.screen === "queues") {
+       const filter = ([["5", "ready"], ["6", "review"], ["7", "blocked"], ["8", "all"]] as const).find(([key]) => matchesKey(data, key))?.[1];
+       if (filter) {
+-        this.queue = filter;
+-        this.screen = "queues";
+-        this.queueIndex = 0;
++        this.openQueue(filter);
+         this.options.requestRender();
+         return;
+       }
+@@ -596,11 +648,11 @@ export class GraphExplorer {
+       } else if (this.screen === "home") {
+         this.homeIndex = Math.max(0, Math.min(this.homeRows().length - 1, this.homeIndex + delta));
+       } else if (this.screen === "queues") {
+-        this.queueIndex = Math.max(0, Math.min(this.queueRows().length - 1, this.queueIndex + delta));
++        this.selectQueue(this.queueIndex + delta);
+       } else if (this.screen === "initiatives" || this.screen === "tickets") {
+         const ids = this.scopes.get(this.initiativeId ?? "") ?? [];
+         this.ticketId = ids[Math.max(0, Math.min(ids.length - 1, ids.indexOf(this.ticketId ?? "") + delta))];
+-        if (this.ticketId && this.initiativeId) this.childSelections.set(this.initiativeId, this.ticketId);
++        if (this.ticketId && this.initiativeId && this.itemOrigin !== "queues") this.childSelections.set(this.initiativeId, this.ticketId);
+       } else {
+         const receipts = this.history();
+         const index = Math.max(0, receipts.findIndex(receipt => receipt.id === this.receiptId));
+@@ -634,6 +686,7 @@ export class GraphExplorer {
+         if (target?.kind === "initiative") {
+           this.initiativeId = target.initiative.id;
+           const saved = this.childSelections.get(this.initiativeId);
++          this.itemOrigin = "initiatives";
+           this.ticketId = saved && target.initiative.ticketIds.includes(saved) ? saved : target.initiative.ticketIds[0];
+           this.screen = "initiatives";
+           focus = "list";
+@@ -899,18 +952,18 @@ export class GraphExplorer {
+     }));
+   }
+ 
+-  private queueRows(): Row[] {
++  private queueRows(queue: Queue = this.queue): Row[] {
+     if (!this.snapshot) return [];
+     const rows: Row[] = [];
+     const ticketCount = this.snapshot.tickets.reduce((count, ticket) => count + Number(recordKind(ticket) === "ticket"), 0);
+     for (const ticket of this.snapshot.tickets) {
+       if (recordKind(ticket) !== "ticket") continue;
+-      if (this.queue !== "all" && this.receiptChecks < ticketCount) continue;
++      if (queue !== "all" && this.receiptChecks < ticketCount) continue;
+       const state = this.ticketState(ticket);
+-      const inQueue = this.queue === "all" || this.queue === "ready" && state === "READY" || this.queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || this.queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
++      const inQueue = queue === "all" || queue === "ready" && state === "READY" || queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
+       if (inQueue) rows.push(this.childRow(ticket, false));
+     }
+-    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : `No tickets in ${this.queue}. Choose 8 for all tickets.`, tone: "muted" });
++    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : `No tickets in ${queue}. Choose 8 for all tickets.`, tone: "muted" });
+     return rows;
+   }
+ 
+@@ -936,7 +989,7 @@ export class GraphExplorer {
+       const summary = initiative.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
+       rows.unshift({ text: `${initiative.id} · Phase: ${initiative.phase ?? "unavailable"}`, tone: "accent" }, { text: `Summary: ${summary ?? "No recorded summary."}`, tone: "muted" });
+     }
+-    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Collection"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
++    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Ungrouped"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
+   }
+ 
+   private ticketRows(): Row[] {
+@@ -1048,7 +1101,7 @@ export class GraphExplorer {
+   }
+ 
+   private navigation(): ExplorerNavigation {
+-    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };
++    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader, queueSelections: [...this.queueSelections], initiativeMemory: this.initiativeMemory, childSelections: [...this.childSelections] };
+   }
+ 
+   private focusedPane(panes: Pane[]): Pane | undefined {

@@ -1,0 +1,65 @@
+{
+  "task": "Finish the entire ticket06 CODE implementation from the preserved owned dirty state patch: correct/finish state behavior, structured queue presentation and recorded activity, complete public-modal behavior tests, actual initial native queue smoke, and existing README update after that smoke. No reduced ticket scope. Parent performs the full final-source terminal matrix before independent reviews.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "branch": "feature/pi-shared-context-ux-06-queues",
+  "initial_head": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "initial_tree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b",
+  "owned_dirty_source": {
+    "paths": [
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts"
+    ],
+    "patch_sha256": "29cb34e2547e45b65949dbcf08eb7c1c3845201dd935597555c5a0b9212dd36b",
+    "patch_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0011/working-tree.patch",
+    "note": "These are authorized cycle4 edits, not user changes. Preserve and inspect them; they are unvalidated/uncommitted, not accepted. Finish/correct them rather than reverting or claiming done."
+  },
+  "scope": "Every numbered acceptance criterion and testing decision in canonical_ticket is required in source. Keep original queue membership and transition authority. Separate raw canonical ticket status, recorded workflow facts, and next available action; Review readiness is not running review. Recorded/active labels need validated recorded support. Preserve all project/initiative/reader/event/copy/Files/workspace and terminal safety behavior.",
+  "engineering": [
+    "Matching skills first; provided canonical/context Markdown was read via MQ already. Do not repeat administrative preflight, read workflow directories/templates, or dump large files. Use MQ+okf.mq/explicit formats for any further local Markdown; LSP for intelligence/exported changes and narrow read/edit anchors.",
+    "Only authorized extension/shared-context CLI source, relevant tests and the one existing README in this worktree. No tracker/ownership/backend/schema/queue-semantic/transition changes, helpers/other models, merge/push/rebase/finish, global config/manifests/lockfile or guard/provider/model/ceiling changes/reset. No retries after guard/provider uncertainty.",
+    "Use boring existing loader/cache/watcher/modal/field patterns. Fix genuine partial-state bugs and remove obsolete cutover branches. Derive row summaries from each explicit canonical ticket/workflow, never a different selected ticket or a recursive queueRows->choices->target->queueRows path. No new workflow queries just to draw rows.",
+    "Public complete modal is the main permanent behavior boundary. Cover four queues, exact associated/Ungrouped targets and Return/scroll, per-project/workspace preservation, safe actions/no selection, R vs r and1/2 workspace, live selected membership departure, retained data/disabled unsafe actions on error, loading/empty distinctions, narrow/mono fields/Unicode/sanitization. Assert visible behavior/canonical targets, not private arrays, wiring/mock echoes, source text/incidental copy. Delete obsolete incidental tests rather than repin.",
+    "After final code/tests run the supplied full-suite/compiler capture, fixing any real failure before rerun. Do not dump all successful logs. Commit complete code/tests with resolved ticket reference in every title, before actual native smoke.",
+    "Run supplied real offline Pi queue smoke on the clean committed source. It uses temporary canonical records and no model/workflow dispatch. If its automation itself fails, preserve it and create a new versioned corrected harness; do not hide failures or overwrite prior result. Genuine product failures need real source fixes, CI/commit and a new smoke run/output directory.",
+    "Only after successful actual queue smoke update the existing README using the supplied already-read anchor and MQ. Commit documentation separately. No runtime/test changes after the passing smoke unless you repeat CI/commit/smoke against the new source. Finalizer enforces docs-only differences.",
+    "Do not claim the full narrow/mono/native matrix is complete: coordinator does that on final source before reviews. All required sizes/modes remain mandatory; no ticket completion or acceptance claim."
+  ],
+  "commands": {
+    "ci": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/run-checks.mjs",
+    "native_smoke": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/native-queue-smoke.mjs /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/native-smoke-config.json",
+    "finalize": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/finalize-code.mjs"
+  },
+  "evidence_directory": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014",
+  "assessment_format": {
+    "stage_completed": "true only when all source criteria/tests and suite/compiler/native initial smoke/docs are genuinely complete",
+    "summary": "Actual implemented behavior and observed checks; full native matrix and independent reviews still pending"
+  },
+  "documentation": {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+    "already_read_anchor": "Press 5 for Ready, 6 for Review, 7 for Blocked, or 8 for All to open the separate ticket queues. Press h to return to initiatives.",
+    "instruction": "After actual native smoke, use MQ to replace/extend this exact existing paragraph with accurate queue fields/selection/activity/action/empty recovery behavior; preserve unrelated text. This excerpt was read via MQ from the actual README. Read a focused section only if further context is actually required."
+  },
+  "native_api": "The provided basic smoke drives real Pi at120x40 colour: slash startup,8All, canonical T/I drill and Esc return, separate role/status checks, capture5formats, source pin and cleanup. This is initial changed-path proof, not full matrix. Source must be committed/clean before run. All/Ready/Review/Blocked inputs are8/5/6/7; workspace1/2 remain unchanged. No q entry is assumed.",
+  "completion": [
+    "Create immutable progress-0001.json etc after substantial source progress with actual remaining work; do not overwrite earlier artifacts. Save final assessment.json once complete. Do not spend model context reading result templates or formatting workflow metadata: supplied finalizer owns it.",
+    "After complete code/tests CI commit, actual native smoke, documentation commit and cleanup, write assessment.json with true stage_completed and concrete summary. Run finalizer; it reads observed checks/native evidence and actual Git identity, creates exclusive implementation-0014 plus MQ snapshot/views, and truthfully keeps full native matrix/reviews pending.",
+    "Use resolved ticket reference tracker/tickets/pi-shared-context-ux-06-queues.md in each source/doc commit. No unrelated staging or manual stash/reset/discard. Leave tracked/untracked source clean; nine coordinator-owned ignored dependency links stay for later review.",
+    "Goal.complete only after this complete code/initial-native/docs/record objective and own resource cleanup. It is the final tool call; final response under100words, WORKTREE_CODE_STAGE_DONE only for the finished code scope. Never claim full ticket acceptance."
+  ],
+  "limits": {
+    "cycle": 5,
+    "total_cycles": 10,
+    "full_session_work": 250000,
+    "native_work_budget": 200000,
+    "output_reservation": 128000,
+    "measure": "input+output+cacheWrite; exclude cacheRead; include final reply and auxiliary usage",
+    "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+    "warning": "Guard may stop well below250000 because it reserves full model output and conservative new-context bytes. Avoid large batched reads and metadata preflight; save real progress early. Never bypass or resume a stopped guard."
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0204.yaml"
+}

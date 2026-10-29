@@ -23,7 +23,11 @@ Next: fresh independent implementation cycle2 with a compact contract and preloa
 
 [Result](../events/implementation-0008.json), [parent](../events/implementation-complete-0009.json), [full audit](../artifacts/evidence/implementation-0008/full-session-audit.json).47662settled work tokens; source unchanged. The next205676-token reservation would total253338 and was denied before inference. No stage or acceptance passed.
 
-## Fresh cycle4
+## Cycle4 actual source progress
 
-[State start](../events/implementation-start-0010.json). Source/claim/routes/context preflight is already resolved. Deterministic CI capture and result formatting replace repeated directory/template reads and large result dumps. No guard/criteria/allowance change. State source work first; all later presentation/tests/native/docs/review gates retained.
+[Result](../events/implementation-0011.json), [parent](../events/implementation-complete-0012.json), [full audit](../artifacts/evidence/implementation-0011/full-session-audit.json).54671settled work tokens, under cap. Real uncommitted state/navigation edits are preserved in [exact patch](../artifacts/evidence/implementation-0011/working-tree.patch), SHA256 `29cb34e2547e45b65949dbcf08eb7c1c3845201dd935597555c5a0b9212dd36b`. No smoke, suite/compiler run, source commit or implementation acceptance passed.
+
+## Fresh complete-source cycle5
+
+[Exclusive start](../events/implementation-start-0013.json). Preserve the owned dirty patch, complete all12source criteria and public-modal tests, run real captured checks and initial offline Pi queue smoke, then update the existing README. Parent final-source full terminal matrix and independent reviews remain mandatory. No allowance/guard reset or ownership change.
 
