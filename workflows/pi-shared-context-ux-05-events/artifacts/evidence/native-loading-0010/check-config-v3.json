@@ -1,0 +1,83 @@
+{
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "expectedCommit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "expectedTree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "evidenceDir": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/native-loading-0010",
+  "mq": "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+  "mise": "/home/zenobius/.local/bin/mise",
+  "pi": "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+  "monoTheme": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/implementation-0002/monochrome-theme.json",
+  "seed": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/native-fixture-seed.json",
+  "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "resultReceipt": {
+    "template": {
+      "schema": "worktree-receipt/v1",
+      "receipt_id": "validation-start-0010",
+      "workflow_id": "pi-shared-context-ux-05-events",
+      "phase": "validate",
+      "attempt": 3,
+      "parent_receipt": "validation-complete-0009",
+      "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "source_branch": "feature/pi-shared-context-ux-05-events",
+      "base_branch": "master",
+      "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+      "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+      "created_at": "2026-10-29T00:36:07.479Z",
+      "muxer": "herdr",
+      "pane_id": "w84:p1",
+      "agent": "omp",
+      "agent_name": "ux05-native-check-c4",
+      "session_id": null,
+      "ticket": {
+        "backend": "local-markdown",
+        "id": "pi-shared-context-ux-05-events",
+        "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+      },
+      "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "workflow": {
+        "store": "repository",
+        "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "ref": "workflows/pi-shared-context-ux-05-events"
+      },
+      "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+      "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0110.yaml",
+      "event": "phase-start",
+      "status": "started",
+      "cycle_number": 4,
+      "token_limit": 250000,
+      "native_goal_budget": 200000,
+      "completion_margin_tokens": 50000,
+      "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+      "inputs": [
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-05-events/events/validation-complete-0009.json"
+        },
+        {
+          "kind": "coordinator",
+          "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0110.yaml"
+        },
+        {
+          "kind": "artifact",
+          "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/native-loading-0010/run-native-loading.mjs"
+        }
+      ],
+      "outputs": [
+        {
+          "kind": "receipt",
+          "ref": "workflows/pi-shared-context-ux-05-events/events/validation-start-0010.json"
+        }
+      ],
+      "guard_sha256": "eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65",
+      "validation_purpose": "Mechanical real-Pi loading scenario only",
+      "program_sha256": "5d6e4cc53b768273a212fb9aaae7151677d88d01d310253539339f771d55cc77"
+    },
+    "sessionId": "01a1851c-ef2d-7479-97d5-034ab4c8141b",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/events/validation-0011.json",
+    "programSha256": "8eddfb9a390be4b631dabb2d463744421fa9f32c1e2fcbb41a7d368bf41e89e1",
+    "programRef": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/native-loading-0010/run-native-loading-v3.mjs",
+    "evidenceRef": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/native-loading-0010"
+  }
+}

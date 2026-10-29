@@ -1,0 +1,24 @@
+{"at":"2026-10-29T00:43:48.557Z","event":"ready","spent":0,"ceiling":250000,"model":"gpt-6.1-sol","outputMaximum":128000,"transport":"stateless SSE"}
+{"at":"2026-10-29T00:43:59.544Z","event":"admitted","spent":0,"inputBytes":44499,"framingReserve":4096,"outputMaximum":128000,"reservation":176595,"ceiling":250000}
+{"at":"2026-10-29T00:44:01.842Z","event":"settled","work":9598,"spent":9598,"reservation":176595,"ceiling":250000}
+{"at":"2026-10-29T00:44:01.876Z","event":"admitted","spent":9598,"inputBytes":49283,"framingReserve":4096,"outputMaximum":128000,"reservation":181379,"ceiling":250000}
+{"at":"2026-10-29T00:44:04.229Z","event":"settled","work":1403,"spent":11001,"reservation":181379,"ceiling":250000}
+{"at":"2026-10-29T00:44:04.258Z","event":"admitted","spent":11001,"inputBytes":57860,"framingReserve":4096,"outputMaximum":128000,"reservation":189956,"ceiling":250000}
+{"at":"2026-10-29T00:44:08.055Z","event":"settled","work":13256,"spent":24257,"reservation":189956,"ceiling":250000}
+{"at":"2026-10-29T00:44:24.960Z","event":"admitted","spent":24257,"inputBytes":59278,"framingReserve":4096,"outputMaximum":128000,"reservation":191374,"ceiling":250000}
+{"at":"2026-10-29T00:44:34.746Z","event":"settled","work":425,"spent":24682,"reservation":191374,"ceiling":250000}
+{"at":"2026-10-29T00:44:34.755Z","event":"admitted","spent":24682,"inputBytes":67858,"framingReserve":4096,"outputMaximum":128000,"reservation":199954,"ceiling":250000}
+{"at":"2026-10-29T00:44:43.252Z","event":"settled","work":1781,"spent":26463,"reservation":199954,"ceiling":250000}
+{"at":"2026-10-29T00:44:44.096Z","event":"admitted","spent":26463,"inputBytes":72428,"framingReserve":4096,"outputMaximum":128000,"reservation":204524,"ceiling":250000}
+{"at":"2026-10-29T00:44:53.266Z","event":"settled","work":1012,"spent":27475,"reservation":204524,"ceiling":250000}
+{"at":"2026-10-29T00:50:17.816Z","event":"admitted","spent":27475,"inputBytes":77824,"framingReserve":4096,"outputMaximum":128000,"reservation":209920,"ceiling":250000}
+{"at":"2026-10-29T00:50:23.221Z","event":"settled","work":896,"spent":28371,"reservation":209920,"ceiling":250000}
+{"at":"2026-10-29T00:50:39.779Z","event":"admitted","spent":28371,"inputBytes":79252,"framingReserve":4096,"outputMaximum":128000,"reservation":211348,"ceiling":250000}
+{"at":"2026-10-29T00:50:42.580Z","event":"settled","work":321,"spent":28692,"reservation":211348,"ceiling":250000}
+{"at":"2026-10-29T00:50:43.428Z","event":"admitted","spent":28692,"inputBytes":83708,"framingReserve":4096,"outputMaximum":128000,"reservation":215804,"ceiling":250000}
+{"at":"2026-10-29T00:50:47.099Z","event":"settled","work":1036,"spent":29728,"reservation":215804,"ceiling":250000}
+{"at":"2026-10-29T00:53:31.130Z","event":"admitted","spent":29728,"inputBytes":86624,"framingReserve":4096,"outputMaximum":128000,"reservation":218720,"ceiling":250000}
+{"at":"2026-10-29T00:53:34.716Z","event":"settled","work":7770,"spent":37498,"reservation":218720,"ceiling":250000}
+{"at":"2026-10-29T00:53:41.376Z","event":"denied","reason":"full uncached input and maximum output exceed the remaining ceiling","spent":37498,"ceiling":250000}
+{"at":"2026-10-29T00:53:41.377Z","event":"uncertain-response","spent":37498,"reservation":220524,"observedWork":0}
+{"at":"2026-10-29T00:53:42.214Z","event":"denied","reason":"guard unavailable, stopped, or another inference is pending","spent":37498,"ceiling":250000}

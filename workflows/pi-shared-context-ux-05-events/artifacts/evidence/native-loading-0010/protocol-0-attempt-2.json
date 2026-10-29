@@ -1,0 +1,219 @@
+[
+  {
+    "launch": {
+      "argv": [
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "termscope",
+        "session",
+        "--cols",
+        "120",
+        "--rows",
+        "40",
+        "--",
+        "env",
+        "HOME=/tmp/ux05-loading-check-uzV72j/color/home",
+        "PI_CODING_AGENT_DIR=/tmp/ux05-loading-check-uzV72j/color/pi",
+        "PI_TELEMETRY=0",
+        "PATH=/tmp/ux05-loading-check-uzV72j/bin:/home/zenobius/.local/share/mise/installs/github-cantino-mcfly/0.9.4:/home/zenobius/.local/share/mise/installs/worktrunk/0.80.0/.mise-bins:/home/zenobius/.local/share/mise/installs/usage/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/starship/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/act/latest:/home/zenobius/.local/share/mise/installs/action-validator/latest:/home/zenobius/.local/share/mise/installs/actionlint/latest:/home/zenobius/.local/share/mise/installs/age/latest/age:/home/zenobius/.local/share/mise/installs/aqua-tree-sitter-tree-sitter/latest:/home/zenobius/.local/share/mise/installs/ast-grep/latest:/home/zenobius/.local/share/mise/installs/awscli/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/bats/latest/bats-core-1.14.0/bin:/home/zenobius/.local/share/mise/installs/btop/latest/btop/bin:/home/zenobius/.local/share/mise/installs/bun/latest/bin:/home/zenobius/.local/share/mise/installs/cargo-p1rallels-codemapper/latest/bin:/home/zenobius/.local/share/mise/installs/cargo-rustledger/0.21.0/bin:/home/zenobius/.local/share/mise/installs/claude/latest:/home/zenobius/.local/share/mise/installs/claude-code/latest:/home/zenobius/.local/share/mise/installs/cloudflared/latest:/home/zenobius/.local/share/mise/installs/cmake/latest/cmake-4.4.4-linux-x86_64/bin:/home/zenobius/.local/share/mise/installs/deno/2.9.7/bin:/home/zenobius/.local/share/mise/installs/deno/2.9.7/.deno/bin:/home/zenobius/.local/share/mise/dotnet-root:/home/zenobius/.local/share/mise/installs/fd/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/fzf/latest:/home/zenobius/.local/share/mise/installs/github-cli/latest/gh_2.102.0_linux_amd64/bin:/home/zenobius/.local/share/mise/installs/github-alexs-jones-llmfit/latest:/home/zenobius/.local/share/mise/installs/github-alexs-jones-llmserve/latest:/home/zenobius/.local/share/mise/installs/github-feel-ix-343-markdown-oxide/latest:/home/zenobius/.local/share/mise/installs/github-just-vugg-colibri/latest:/home/zenobius/.local/share/mise/installs/github-nvidia-open-shell/latest:/home/zenobius/.local/share/mise/installs/github-afshinm-zerobox/0.3.3:/home/zenobius/.local/share/mise/installs/github-alacritty-alacritty/latest:/home/zenobius/.local/share/mise/installs/github-aristocratos-btop/latest/bin:/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest:/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest:/home/zenobius/.local/share/mise/installs/github-finefindus-artem/latest:/home/zenobius/.local/share/mise/installs/github-gopasspw-gopass/latest:/home/zenobius/.local/share/mise/installs/github-graykode-abtop/latest:/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest:/home/zenobius/.local/share/mise/installs/github-hmarr-codeowners/latest:/home/zenobius/.local/share/mise/installs/github-jarun-nnn/latest:/home/zenobius/.local/share/mise/installs/github-kurama-dealve-tui/latest:/home/zenobius/.local/share/mise/installs/github-margin-lab-evals/latest:/home/zenobius/.local/share/mise/installs/github-max-sixty-worktrunk/0.52.0:/home/zenobius/.local/share/mise/installs/github-mexirica-aptui/latest:/home/zenobius/.local/share/mise/installs/github-moonrepo-moon/latest:/home/zenobius/.local/share/mise/installs/github-moonrepo-proto/latest:/home/zenobius/.local/share/mise/installs/github-mwunsch-termscope/latest:/home/zenobius/.local/share/mise/installs/github-sockheadrps-llmctl/0.2.2:/home/zenobius/.local/share/mise/installs/github-terrastruct-d2/latest/bin:/home/zenobius/.local/share/mise/installs/github-valentjn-lsp-cli/latest/bin:/home/zenobius/.local/share/mise/installs/github-vercel-labs-agent-browser/latest:/home/zenobius/.local/share/mise/installs/glab/latest/bin:/home/zenobius/.local/share/mise/installs/glow/latest/glow_3.0.0_Linux_x86_64:/home/zenobius/.local/share/mise/installs/go-github-com-crosse-font-install/latest/bin:/home/zenobius/.local/share/mise/installs/go/1.25.0/bin:/home/zenobius/.local/share/mise/installs/granted/latest:/home/zenobius/.local/share/mise/installs/grype/latest:/home/zenobius/.local/share/mise/installs/herdr/latest:/home/zenobius/.local/share/mise/installs/hk/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/hrdx/latest:/home/zenobius/.local/share/mise/installs/java/latest/bin:/home/zenobius/.local/share/mise/installs/jq/latest:/home/zenobius/.local/share/mise/installs/lazydocker/0.25.2:/home/zenobius/.local/share/mise/installs/lazygit/latest:/home/zenobius/.local/share/mise/installs/lua/latest/bin:/home/zenobius/.local/share/mise/installs/lua/latest/luarocks/bin:/home/zenobius/.local/share/mise/installs/mc/RELEASE.2025-08-13T08-35-41Z:/home/zenobius/.local/share/mise/installs/micro/latest/micro-2.0.15:/home/zenobius/.local/share/mise/installs/neovim/latest/bin:/home/zenobius/.local/share/mise/installs/npm/latest/package/bin:/home/zenobius/.local/share/mise/installs/pnpm/latest:/home/zenobius/.local/share/mise/installs/node/22/bin:/home/zenobius/.local/share/mise/installs/npm-earendil-works-gondolin/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-mermaid-js-mermaid-cli/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-agent-browser/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-chrome-devtools-mcp/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-firefox-devtools-mcp/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-gh-actions-language-server/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-kandev/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-mcporter/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-neofetch/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-portless/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-poster-ai/0.5.0/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-release-please/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-semver/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-serve/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-surf-cli/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-takumi-js/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-tempomat/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-typescript-language-server/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/pdm/latest/bin:/home/zenobius/.local/share/mise/installs/pipx/latest:/home/zenobius/.local/share/mise/installs/pipx-comfy-cli/latest/bin:/home/zenobius/.local/share/mise/installs/pipx-itch-dl/latest/bin:/home/zenobius/.local/share/mise/installs/pitchfork/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/pkl/latest:/home/zenobius/.local/share/mise/installs/python/latest/bin:/home/zenobius/.local/share/mise/installs/ripgrep/latest/ripgrep-15.2.0-x86_64-unknown-linux-musl:/home/zenobius/.local/share/mise/installs/semver/latest:/home/zenobius/.local/share/mise/installs/shellcheck/latest/shellcheck-v0.11.0:/home/zenobius/.local/share/mise/installs/shfmt/latest:/home/zenobius/.local/share/mise/installs/terraform/latest:/home/zenobius/.local/share/mise/installs/tombi/latest/tombi-cli-1.7.3-x86_64-unknown-linux-musl:/home/zenobius/.local/share/mise/installs/traefik/latest:/home/zenobius/.local/share/mise/installs/trufflehog/latest:/home/zenobius/.local/share/mise/installs/uv/0.12.17/.mise-bins:/home/zenobius/.local/share/mise/installs/watchexec/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/yarn/latest/bin:/home/zenobius/.local/share/mise/installs/youtube-dl/latest/youtube-dl:/home/zenobius/.local/share/mise/installs/yq/latest:/home/zenobius/.local/share/mise/installs/yt-dlp/latest:/home/zenobius/.local/share/mise/installs/zig/0.17.0/bin:/home/zenobius/.local/share/mise/installs/zot/latest:/home/zenobius/.local/share/mise/installs/fnox/1.39.0/.mise-bins:/home/zenobius/.local/share/mise/installs/github-smol-machines-smolvm/latest:/home/zenobius/.local/share/mise/installs/github-ktreharrison-tkmd/latest:/home/zenobius/.local/share/mise/installs/npm-termdraw-app/latest/node_modules/.bin:/home/zenobius/.local/share/mise/shims:/home/zenobius/Applications:/home/zenobius/.local/bin:/home/zenobius/Applications:/home/zenobius/.local/bin:/home/zenobius/.local/share/zinit/plugins/starship---starship:/home/zenobius/.local/share/zinit/plugins/junegunn---fzf:/home/zenobius/.local/share/zinit/polaris/bin:/tmp/.mount_ghostremp3807702296412614370/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/zenobius/.cargo/bin",
+        "LOADING_EVENT_ROOT=/tmp/ux05-loading-check-uzV72j/repository/workflows/T/events",
+        "LOADING_GATE_LOCK=/tmp/ux05-loading-check-uzV72j/color.lock",
+        "LOADING_GATE_SEEN=/tmp/ux05-loading-check-uzV72j/color.seen",
+        "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+        "--offline",
+        "--no-session",
+        "--no-extensions",
+        "--no-mcp",
+        "--no-skills",
+        "--no-prompt-templates",
+        "--no-context-files",
+        "--no-tools",
+        "--no-themes",
+        "--use-theme",
+        "dark",
+        "-e",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+      ],
+      "cwd": "/tmp/ux05-loading-check-uzV72j/repository"
+    }
+  },
+  {
+    "request": {
+      "id": 1,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 800
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 1,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 2,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 2,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 3,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 3,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 4,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Loading initiative",
+        "timeout": 15000
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 4,
+      "error": {
+        "code": "timeout",
+        "message": "timed out after 15000ms"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 5,
+      "method": "snapshot",
+      "params": {
+        "format": "text"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 5,
+      "result": {
+        "format": "text",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=36:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives                                                                                                    │\n[008] [Ex│> Shared context                                                                                                │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │ Loading tracker records…                                                                                       │\n[011] [Ex│ R reload · b browse files · q close                                                                            │\n[012]   p│                                                                                                                │\n[013] /ru│                                                                                                                │dev\n[014] too│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │dev\n[017] too│                                                                                                                │\n[018] /ru│                                                                                                                │dev\n[019] too│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ Loading tracker…                                                                                               │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux05-loading-check-uzV72j/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 6,
+      "method": "snapshot",
+      "params": {
+        "format": "json"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 6,
+      "result": {
+        "cols": 120,
+        "rows": 40,
+        "cursor": [
+          36,
+          119
+        ],
+        "cursor_visible": false,
+        "cursor_style": "block",
+        "screen": "alternate",
+        "title": "π - repository",
+        "lines": [
+          "",
+          " ▀▀█  v1.1.0",
+          " █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮",
+          " Pr│ Projects · Repo > repository                                                                                   │",
+          "   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │",
+          " Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Initiatives                                                                                                    │",
+          "[Ex│> Shared context                                                                                                │",
+          "  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤",
+          "   │ Loading tracker records…                                                                                       │",
+          "[Ex│ R reload · b browse files · q close                                                                            │",
+          "  p│                                                                                                                │",
+          "/ru│                                                                                                                │dev",
+          "too│                                                                                                                │",
+[…45ln elided…]
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 8,
+      "method": "snapshot",
+      "params": {
+        "format": "spans"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 8,
+      "result": {
+        "format": "spans",
+        "content": "=== TERMSCOPE ===\ncols=120 rows=40 cursor=36:119 screen=alternate title=\"π - repository\"\n\n=== TEXT ===\n[001] \n[002]  ▀▀█  v1.1.0\n[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮\n[004]  Pr│ Projects · Repo > repository                                                                                   │\n[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │\n[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[007]    │ Initiatives                                                                                                    │\n[008] [Ex│> Shared context                                                                                                │\n[009]   p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[010]    │ Loading tracker records…                                                                                       │\n[011] [Ex│ R reload · b browse files · q close                                                                            │\n[012]   p│                                                                                                                │\n[013] /ru│                                                                                                                │dev\n[014] too│                                                                                                                │\n[015]    │                                                                                                                │\n[016] /ru│                                                                                                                │dev\n[017] too│                                                                                                                │\n[018] /ru│                                                                                                                │dev\n[019] too│                                                                                                                │\n[020]    │                                                                                                                │\n[021]    │                                                                                                                │\n[022]  Wa│                                                                                                                │\n[023]    │                                                                                                                │\n[024]    │                                                                                                                │\n[025]    │                                                                                                                │\n[026]    │                                                                                                                │\n[027]    │                                                                                                                │\n[028]    │                                                                                                                │\n[029]    │                                                                                                                │\n[030]    │                                                                                                                │\n[031]    │                                                                                                                │\n[032]    │                                                                                                                │\n[033]    │                                                                                                                │\n[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤\n[035]    │ Loading tracker…                                                                                               │\n[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───\n[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯\n[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n[039] /tmp/ux05-loading-check-uzV72j/repository (master)\n[040] 0.0%/0 (auto)                                                                                                    unknown\n\n=== SPANS ===\n[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142\n[003] 1-2:79,142,179 3-116:95,168,204\n[004] 1-2:126,136,142 3:95,168,204 4-32:167,152,215 116:95,168,204\n[005] 3:95,168,204 5-17:167,152,215 20-30:157,165,169 33-64:157,165,169 116:95,168,204\n[006] 1-2:126,136,142 3-116:95,168,204\n[007] 3:95,168,204 4-16:222,224,225 116:95,168,204\n[008] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[009] 0-2:126,136,142 3-116:95,168,204\n[010] 3:95,168,204 5-28:157,165,169 116:95,168,204\n[011] 0-2:205,154,34 3:95,168,204 5-39:157,165,169 116:95,168,204\n[012] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[013] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[014] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[015] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[016] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[017] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[018] 0-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[019] 0-2:205,154,34 3:95,168,204 116:95,168,204\n[020] 3:95,168,204 116:95,168,204\n[021] 3:95,168,204 116:95,168,204\n[022] 1-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[023] 1-2:205,154,34 3:95,168,204 116:95,168,204 117-119:205,154,34\n[024] 1-2:205,154,34 3:95,168,204 116:95,168,204\n[025] 3:95,168,204 116:95,168,204\n[026] 3:95,168,204 116:95,168,204\n[027] 3:95,168,204 116:95,168,204\n[028] 3:95,168,204 116:95,168,204\n[029] 3:95,168,204 116:95,168,204\n[030] 3:95,168,204 116:95,168,204\n[031] 3:95,168,204 116:95,168,204\n[032] 3:95,168,204 116:95,168,204\n[033] 3:95,168,204 116:95,168,204\n[034] 3-116:95,168,204\n[035] 3:95,168,204 4-20:157,165,169 116:95,168,204\n[036] 0-2:108,118,123 3:95,168,204 4-91:157,165,169 116:95,168,204 117-119:108,118,123\n[037] 0:inverse 3-116:95,168,204\n[038] 0-119:108,118,123\n[039] 0-49:126,136,142\n[040] 0-119:126,136,142\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 9,
+      "method": "snapshot",
+      "params": {
+        "format": "svg"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 9,
+      "result": {
+        "format": "svg",
+        "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1100 820\" width=\"1100\" height=\"820\">\n<style>text { font-family: \"JetBrains Mono\", \"Fira Code\", \"SF Mono\", monospace; font-size: 14px; white-space: pre; }</style>\n<rect width=\"100%\" height=\"100%\" fill=\"rgb(0,0,0)\"/>\n<text x=\"10\" y=\"44\" fill=\"rgb(255,255,255)\"> ▀▀█  v1.1.0</text>\n<text x=\"10\" y=\"64\" fill=\"rgb(255,255,255)\"> █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>\n<text x=\"10\" y=\"84\" fill=\"rgb(255,255,255)\"> Pr│ Projects · Repo &gt; repository                                                                                   │</text>\n<text x=\"10\" y=\"104\" fill=\"rgb(255,255,255)\">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │</text>\n<text x=\"10\" y=\"124\" fill=\"rgb(255,255,255)\"> Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"144\" fill=\"rgb(255,255,255)\">   │ Initiatives                                                                                                    │</text>\n<text x=\"10\" y=\"164\" fill=\"rgb(255,255,255)\">[Ex│&gt; Shared context                                                                                                │</text>\n<text x=\"10\" y=\"184\" fill=\"rgb(255,255,255)\">  p├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"204\" fill=\"rgb(255,255,255)\">   │ Loading tracker records…                                                                                       │</text>\n<text x=\"10\" y=\"224\" fill=\"rgb(255,255,255)\">[Ex│ R reload · b browse files · q close                                                                            │</text>\n<text x=\"10\" y=\"244\" fill=\"rgb(255,255,255)\">  p│                                                                                                                │</text>\n<text x=\"10\" y=\"264\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │dev</text>\n<text x=\"10\" y=\"284\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"304\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"324\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │dev</text>\n<text x=\"10\" y=\"344\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"364\" fill=\"rgb(255,255,255)\">/ru│                                                                                                                │dev</text>\n<text x=\"10\" y=\"384\" fill=\"rgb(255,255,255)\">too│                                                                                                                │</text>\n<text x=\"10\" y=\"404\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"424\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"444\" fill=\"rgb(255,255,255)\"> Wa│                                                                                                                │</text>\n<text x=\"10\" y=\"464\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"484\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"504\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"524\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"544\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"564\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"584\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"604\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"624\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"644\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"664\" fill=\"rgb(255,255,255)\">   │                                                                                                                │</text>\n<text x=\"10\" y=\"684\" fill=\"rgb(255,255,255)\">   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>\n<text x=\"10\" y=\"704\" fill=\"rgb(255,255,255)\">   │ Loading tracker…                                                                                               │</text>\n<text x=\"10\" y=\"724\" fill=\"rgb(255,255,255)\">───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───</text>\n<text x=\"10\" y=\"744\" fill=\"rgb(255,255,255)\">   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</text>\n<text x=\"10\" y=\"764\" fill=\"rgb(255,255,255)\">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>\n<text x=\"10\" y=\"784\" fill=\"rgb(255,255,255)\">/tmp/ux05-loading-check-uzV72j/repository (master)</text>\n<text x=\"10\" y=\"804\" fill=\"rgb(255,255,255)\">0.0%/0 (auto)                                                                                                    unknown</text>\n</svg>\n"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 10,
+      "method": "close",
+      "params": {}
+    }
+  },
+  {
+    "response": {
+      "id": 10,
+      "result": {
+        "exit_code": 0
+      }
+    }
+  }
+]
+
+
+[Showing lines 1-160 and 206-261 of 261; 45 middle lines (20.2KB) elided. Read artifact://780 for full output]

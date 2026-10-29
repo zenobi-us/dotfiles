@@ -1,0 +1,315 @@
+{
+  "scope": "14 saved session paths found in coordinator launch observations; not a claim that every historical cycle was re-audited",
+  "sessions": [
+    {
+      "ticket_id": "pi-shared-context-ux-05-events",
+      "event": "dispatch-observed-0112",
+      "phase": "validate",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T00-43-48-397Z_01a1851c-ef2d-7479-97d5-034ab4c8141b.jsonl",
+      "session_id": "01a1851c-ef2d-7479-97d5-034ab4c8141b",
+      "goal_id": "15b8949aa0bca64b",
+      "native_status": "active",
+      "native_goal_used": 37498,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 36386,
+        "output": 1112,
+        "cacheWrite": 0,
+        "cacheRead": 110848
+      },
+      "assistant_entries": 12,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 37498,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-05-events",
+      "event": "dispatch-observed-0107",
+      "phase": "validate",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T00-12-05-409Z_01a184ff-e5a1-73e0-bf9a-bb5420c70c6a.jsonl",
+      "session_id": "01a184ff-e5a1-73e0-bf9a-bb5420c70c6a",
+      "goal_id": "15b88d50edbcee91",
+      "native_status": "active",
+      "native_goal_used": 26928,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 26384,
+        "output": 544,
+        "cacheWrite": 0,
+        "cacheRead": 47360
+      },
+      "assistant_entries": 7,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 26928,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-05-events",
+      "event": "dispatch-observed-0103",
+      "phase": "validate",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-28T23-42-52-197Z_01a184e5-2525-74df-b664-0a0c79e6c913.jsonl",
+      "session_id": "01a184e5-2525-74df-b664-0a0c79e6c913",
+      "raw_usage": {
+        "input": 3552,
+        "output": 74,
+        "cacheWrite": 0,
+        "cacheRead": 3328
+      },
+      "assistant_entries": 4,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 3626,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-05-events",
+      "event": "dispatch-observed-0098",
+      "phase": "implementation",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-28T22-06-39-672Z_01a1848d-1038-77e1-8fa6-dfa1b59402ee.jsonl",
+      "session_id": "01a1848d-1038-77e1-8fa6-dfa1b59402ee",
+      "goal_id": "15b8709b210e0115",
+      "native_status": "budget-limited",
+      "native_goal_used": 371234,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 337067,
+        "output": 34167,
+        "cacheWrite": 0,
+        "cacheRead": 9121536
+      },
+      "assistant_entries": 86,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 371234,
+      "session_ceiling": 250000,
+      "under_cap": false
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-04-descriptions",
+      "event": "dispatch-observed-0089",
+      "phase": "review-spec",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-29-36-770Z_01a1846b-2502-73d5-87f2-aad71c1fd6bc.jsonl",
+      "session_id": "01a1846b-2502-73d5-87f2-aad71c1fd6bc",
+      "goal_id": "15b868206ae18ba0",
+      "native_status": "complete",
+      "native_goal_used": 178420,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 164495,
+        "output": 14310,
+        "cacheWrite": 0,
+        "cacheRead": 3364480
+      },
+      "assistant_entries": 43,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 178805,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-04-descriptions",
+      "event": "dispatch-observed-0088",
+      "phase": "review-standards",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-29-36-765Z_01a1846b-24fd-73ab-9110-bfdb91e53762.jsonl",
+      "session_id": "01a1846b-24fd-73ab-9110-bfdb91e53762",
+      "goal_id": "15b868205b45ea27",
+      "native_status": "complete",
+      "native_goal_used": 128298,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 119243,
+        "output": 9451,
+        "cacheWrite": 0,
+        "cacheRead": 1851904
+      },
+      "assistant_entries": 32,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 128694,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-04-descriptions",
+      "event": "dispatch-observed-0087",
+      "phase": "review",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-29-36-784Z_01a1846b-2510-7790-b3cd-ef0fb19c8547.jsonl",
+      "session_id": "01a1846b-2510-7790-b3cd-ef0fb19c8547",
+      "goal_id": "15b868205e50b5e2",
+      "native_status": "complete",
+      "native_goal_used": 145076,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 129777,
+        "output": 15728,
+        "cacheWrite": 0,
+        "cacheRead": 5362176
+      },
+      "assistant_entries": 59,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 145505,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-04-descriptions",
+      "event": "dispatch-observed-0082",
+      "phase": "implementation",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-04-descriptions--/2026-10-28T21-05-16-895Z_01a18454-de5f-7469-8e6e-4134decc7dc4.jsonl",
+      "session_id": "01a18454-de5f-7469-8e6e-4134decc7dc4",
+      "goal_id": "15b8628eab8151a0",
+      "native_status": "complete",
+      "native_goal_used": 208177,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 172602,
+        "output": 35955,
+        "cacheWrite": 0,
+        "cacheRead": 14926592
+      },
+      "assistant_entries": 123,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 208557,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-03-mixed-items",
+      "event": "dispatch-observed-0072",
+      "phase": "review-spec",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-03-mixed-items--/2026-10-28T20-21-45-735Z_01a1842d-0687-7222-a207-264af51599dd.jsonl",
+      "session_id": "01a1842d-0687-7222-a207-264af51599dd",
+      "goal_id": "15b85898b1bafbb3",
+      "native_status": "complete",
+      "native_goal_used": 126551,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 113007,
+        "output": 13960,
+        "cacheWrite": 0,
+        "cacheRead": 2756992
+      },
+      "assistant_entries": 36,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 126967,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-03-mixed-items",
+      "event": "dispatch-observed-0071",
+      "phase": "review-standards",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-03-mixed-items--/2026-10-28T20-21-45-750Z_01a1842d-0696-708e-a9aa-76070184edb8.jsonl",
+      "session_id": "01a1842d-0696-708e-a9aa-76070184edb8",
+      "goal_id": "15b85898b18d1c1c",
+      "native_status": "complete",
+      "native_goal_used": 118314,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 108011,
+        "output": 10592,
+        "cacheWrite": 0,
+        "cacheRead": 2510976
+      },
+      "assistant_entries": 39,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 118603,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-03-mixed-items",
+      "event": "dispatch-observed-0070",
+      "phase": "review",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-03-mixed-items--/2026-10-28T20-21-45-731Z_01a1842d-0683-75ad-85bf-adcf4f648306.jsonl",
+      "session_id": "01a1842d-0683-75ad-85bf-adcf4f648306",
+      "goal_id": "15b85898e684811a",
+      "native_status": "complete",
+      "native_goal_used": 155226,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 139089,
+        "output": 16541,
+        "cacheWrite": 0,
+        "cacheRead": 7413120
+      },
+      "assistant_entries": 78,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 155630,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-03-mixed-items",
+      "event": "dispatch-observed-0065",
+      "phase": "implementation",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-03-mixed-items--/2026-10-28T19-51-16-851Z_01a18411-1e73-7396-b838-bcb2bda66d5b.jsonl",
+      "session_id": "01a18411-1e73-7396-b838-bcb2bda66d5b",
+      "goal_id": "15b8519f0737c434",
+      "native_status": "complete",
+      "native_goal_used": 193859,
+      "native_goal_budget": 200000,
+      "raw_usage": {
+        "input": 164326,
+        "output": 30062,
+        "cacheWrite": 0,
+        "cacheRead": 10719360
+      },
+      "assistant_entries": 87,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 194388,
+      "session_ceiling": 250000,
+      "under_cap": true
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-03-mixed-items",
+      "event": "dispatch-observed-0060",
+      "phase": "implementation",
+      "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-03-mixed-items--/2026-10-28T02-56-33-041Z_01a18070-1b11-7544-b037-b7dcbb2e9ee9.jsonl",
+      "session_id": "01a18070-1b11-7544-b037-b7dcbb2e9ee9",
+      "goal_id": "15b7695dbde30a83",
+      "native_status": "budget-limited",
+      "native_goal_used": 251637,
+      "native_goal_budget": 241808,
+      "raw_usage": {
+        "input": 230066,
+        "output": 21571,
+        "cacheWrite": 0,
+        "cacheRead": 8993408
+      },
+      "assistant_entries": 90,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 251637,
+      "session_ceiling": 250000,
+      "under_cap": false
+    },
+    {
+      "ticket_id": "pi-shared-context-ux-05-events",
+      "event": "dispatch-observed-0107",
+      "phase": "validate",
+      "session_path": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/validation-0007/agent-guard-audit.jsonl",
+      "raw_usage": {
+        "input": 0,
+        "output": 0,
+        "cacheWrite": 0,
+        "cacheRead": 0
+      },
+      "assistant_entries": 0,
+      "auxiliary_model_usage_entries": 0,
+      "provider_work_tokens": 0,
+      "session_ceiling": 250000,
+      "under_cap": true
+    }
+  ],
+  "auxiliary_model_usage_entries": 0,
+  "known_approved_historical_breaches_preserved": [
+    {
+      "ticket": "pi-shared-context-ux-03-mixed-items",
+      "tokens": 251637
+    },
+    {
+      "ticket": "pi-shared-context-ux-05-events",
+      "tokens": 371234
+    }
+  ]
+}

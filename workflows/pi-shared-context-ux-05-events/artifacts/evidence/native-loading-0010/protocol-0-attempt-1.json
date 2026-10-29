@@ -1,0 +1,230 @@
+[
+  {
+    "launch": {
+      "argv": [
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "termscope",
+        "session",
+        "--cols",
+        "120",
+        "--rows",
+        "40",
+        "--",
+        "env",
+        "HOME=/tmp/ux05-loading-check-SCaYEz/color/home",
+        "PI_CODING_AGENT_DIR=/tmp/ux05-loading-check-SCaYEz/color/pi",
+        "PI_TELEMETRY=0",
+        "PATH=/tmp/ux05-loading-check-SCaYEz/bin:/home/zenobius/.local/share/mise/installs/github-cantino-mcfly/0.9.4:/home/zenobius/.local/share/mise/installs/worktrunk/0.80.0/.mise-bins:/home/zenobius/.local/share/mise/installs/usage/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/starship/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/act/latest:/home/zenobius/.local/share/mise/installs/action-validator/latest:/home/zenobius/.local/share/mise/installs/actionlint/latest:/home/zenobius/.local/share/mise/installs/age/latest/age:/home/zenobius/.local/share/mise/installs/aqua-tree-sitter-tree-sitter/latest:/home/zenobius/.local/share/mise/installs/ast-grep/latest:/home/zenobius/.local/share/mise/installs/awscli/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/bats/latest/bats-core-1.14.0/bin:/home/zenobius/.local/share/mise/installs/btop/latest/btop/bin:/home/zenobius/.local/share/mise/installs/bun/latest/bin:/home/zenobius/.local/share/mise/installs/cargo-p1rallels-codemapper/latest/bin:/home/zenobius/.local/share/mise/installs/cargo-rustledger/0.21.0/bin:/home/zenobius/.local/share/mise/installs/claude/latest:/home/zenobius/.local/share/mise/installs/claude-code/latest:/home/zenobius/.local/share/mise/installs/cloudflared/latest:/home/zenobius/.local/share/mise/installs/cmake/latest/cmake-4.4.4-linux-x86_64/bin:/home/zenobius/.local/share/mise/installs/deno/2.9.7/bin:/home/zenobius/.local/share/mise/installs/deno/2.9.7/.deno/bin:/home/zenobius/.local/share/mise/dotnet-root:/home/zenobius/.local/share/mise/installs/fd/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/fzf/latest:/home/zenobius/.local/share/mise/installs/github-cli/latest/gh_2.102.0_linux_amd64/bin:/home/zenobius/.local/share/mise/installs/github-alexs-jones-llmfit/latest:/home/zenobius/.local/share/mise/installs/github-alexs-jones-llmserve/latest:/home/zenobius/.local/share/mise/installs/github-feel-ix-343-markdown-oxide/latest:/home/zenobius/.local/share/mise/installs/github-just-vugg-colibri/latest:/home/zenobius/.local/share/mise/installs/github-nvidia-open-shell/latest:/home/zenobius/.local/share/mise/installs/github-afshinm-zerobox/0.3.3:/home/zenobius/.local/share/mise/installs/github-alacritty-alacritty/latest:/home/zenobius/.local/share/mise/installs/github-aristocratos-btop/latest/bin:/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest:/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest:/home/zenobius/.local/share/mise/installs/github-finefindus-artem/latest:/home/zenobius/.local/share/mise/installs/github-gopasspw-gopass/latest:/home/zenobius/.local/share/mise/installs/github-graykode-abtop/latest:/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest:/home/zenobius/.local/share/mise/installs/github-hmarr-codeowners/latest:/home/zenobius/.local/share/mise/installs/github-jarun-nnn/latest:/home/zenobius/.local/share/mise/installs/github-kurama-dealve-tui/latest:/home/zenobius/.local/share/mise/installs/github-margin-lab-evals/latest:/home/zenobius/.local/share/mise/installs/github-max-sixty-worktrunk/0.52.0:/home/zenobius/.local/share/mise/installs/github-mexirica-aptui/latest:/home/zenobius/.local/share/mise/installs/github-moonrepo-moon/latest:/home/zenobius/.local/share/mise/installs/github-moonrepo-proto/latest:/home/zenobius/.local/share/mise/installs/github-mwunsch-termscope/latest:/home/zenobius/.local/share/mise/installs/github-sockheadrps-llmctl/0.2.2:/home/zenobius/.local/share/mise/installs/github-terrastruct-d2/latest/bin:/home/zenobius/.local/share/mise/installs/github-valentjn-lsp-cli/latest/bin:/home/zenobius/.local/share/mise/installs/github-vercel-labs-agent-browser/latest:/home/zenobius/.local/share/mise/installs/glab/latest/bin:/home/zenobius/.local/share/mise/installs/glow/latest/glow_3.0.0_Linux_x86_64:/home/zenobius/.local/share/mise/installs/go-github-com-crosse-font-install/latest/bin:/home/zenobius/.local/share/mise/installs/go/1.25.0/bin:/home/zenobius/.local/share/mise/installs/granted/latest:/home/zenobius/.local/share/mise/installs/grype/latest:/home/zenobius/.local/share/mise/installs/herdr/latest:/home/zenobius/.local/share/mise/installs/hk/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/hrdx/latest:/home/zenobius/.local/share/mise/installs/java/latest/bin:/home/zenobius/.local/share/mise/installs/jq/latest:/home/zenobius/.local/share/mise/installs/lazydocker/0.25.2:/home/zenobius/.local/share/mise/installs/lazygit/latest:/home/zenobius/.local/share/mise/installs/lua/latest/bin:/home/zenobius/.local/share/mise/installs/lua/latest/luarocks/bin:/home/zenobius/.local/share/mise/installs/mc/RELEASE.2025-08-13T08-35-41Z:/home/zenobius/.local/share/mise/installs/micro/latest/micro-2.0.15:/home/zenobius/.local/share/mise/installs/neovim/latest/bin:/home/zenobius/.local/share/mise/installs/npm/latest/package/bin:/home/zenobius/.local/share/mise/installs/pnpm/latest:/home/zenobius/.local/share/mise/installs/node/22/bin:/home/zenobius/.local/share/mise/installs/npm-earendil-works-gondolin/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-mermaid-js-mermaid-cli/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-agent-browser/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-chrome-devtools-mcp/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-firefox-devtools-mcp/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-gh-actions-language-server/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-kandev/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-mcporter/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-neofetch/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-portless/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-poster-ai/0.5.0/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-release-please/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-semver/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-serve/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-surf-cli/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-takumi-js/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-tempomat/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/npm-typescript-language-server/latest/node_modules/.bin:/home/zenobius/.local/share/mise/installs/pdm/latest/bin:/home/zenobius/.local/share/mise/installs/pipx/latest:/home/zenobius/.local/share/mise/installs/pipx-comfy-cli/latest/bin:/home/zenobius/.local/share/mise/installs/pipx-itch-dl/latest/bin:/home/zenobius/.local/share/mise/installs/pitchfork/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/pkl/latest:/home/zenobius/.local/share/mise/installs/python/latest/bin:/home/zenobius/.local/share/mise/installs/ripgrep/latest/ripgrep-15.2.0-x86_64-unknown-linux-musl:/home/zenobius/.local/share/mise/installs/semver/latest:/home/zenobius/.local/share/mise/installs/shellcheck/latest/shellcheck-v0.11.0:/home/zenobius/.local/share/mise/installs/shfmt/latest:/home/zenobius/.local/share/mise/installs/terraform/latest:/home/zenobius/.local/share/mise/installs/tombi/latest/tombi-cli-1.7.3-x86_64-unknown-linux-musl:/home/zenobius/.local/share/mise/installs/traefik/latest:/home/zenobius/.local/share/mise/installs/trufflehog/latest:/home/zenobius/.local/share/mise/installs/uv/0.12.17/.mise-bins:/home/zenobius/.local/share/mise/installs/watchexec/latest/.mise-bins:/home/zenobius/.local/share/mise/installs/yarn/latest/bin:/home/zenobius/.local/share/mise/installs/youtube-dl/latest/youtube-dl:/home/zenobius/.local/share/mise/installs/yq/latest:/home/zenobius/.local/share/mise/installs/yt-dlp/latest:/home/zenobius/.local/share/mise/installs/zig/0.17.0/bin:/home/zenobius/.local/share/mise/installs/zot/latest:/home/zenobius/.local/share/mise/installs/fnox/1.39.0/.mise-bins:/home/zenobius/.local/share/mise/installs/github-smol-machines-smolvm/latest:/home/zenobius/.local/share/mise/installs/github-ktreharrison-tkmd/latest:/home/zenobius/.local/share/mise/installs/npm-termdraw-app/latest/node_modules/.bin:/home/zenobius/.local/share/mise/shims:/home/zenobius/Applications:/home/zenobius/.local/bin:/home/zenobius/Applications:/home/zenobius/.local/bin:/home/zenobius/.local/share/zinit/plugins/starship---starship:/home/zenobius/.local/share/zinit/plugins/junegunn---fzf:/home/zenobius/.local/share/zinit/polaris/bin:/tmp/.mount_ghostremp3807702296412614370/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/zenobius/.cargo/bin",
+        "LOADING_EVENT_ROOT=/tmp/ux05-loading-check-SCaYEz/repository/workflows/T/events",
+        "LOADING_GATE_LOCK=/tmp/ux05-loading-check-SCaYEz/color.lock",
+        "LOADING_GATE_SEEN=/tmp/ux05-loading-check-SCaYEz/color.seen",
+        "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+        "--offline",
+        "--no-session",
+        "--no-extensions",
+        "--no-mcp",
+        "--no-skills",
+        "--no-prompt-templates",
+        "--no-context-files",
+        "--no-tools",
+        "--no-themes",
+        "--use-theme",
+        "dark",
+        "-e",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts"
+      ],
+      "cwd": "/tmp/ux05-loading-check-SCaYEz/repository"
+    }
+  },
+  {
+    "request": {
+      "id": 1,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 800
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 1,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 2,
+      "method": "type",
+      "params": {
+        "text": "/shared-context"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 2,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 3,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 3,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 4,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Loading initiative",
+        "timeout": 15000
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 4,
+      "result": {
+        "found": true,
+        "row": 9,
+        "col": 7
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 5,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 5,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 6,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 6,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 7,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 7,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 8,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 8,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 9,
+      "method": "press",
+      "params": {
+        "key": "RET"
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 9,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 10,
+      "method": "wait_for_idle",
+      "params": {
+        "duration": 200
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 10,
+      "result": {}
+    }
+  },
+  {
+    "request": {
+      "id": 11,
+      "method": "wait_for_text",
+      "params": {
+        "pattern": "Loading history",
+        "timeout": 10000
+      }
+    }
+  },
+  {
+    "response": {
+      "id": 11,
+      "error": {
+        "code": "timeout",
+        "message": "timed out after 10000ms"
+      }
+    }
+  },
+  {
+    "request": {
+      "id": 12,
+      "method": "close",
+      "params": {}
+    }
+  },
+  {
+    "response": {
+      "id": 12,
+      "result": {
+        "exit_code": 0
+      }
+    }
+  }
+]
