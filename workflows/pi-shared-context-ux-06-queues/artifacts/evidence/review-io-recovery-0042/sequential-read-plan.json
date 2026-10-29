@@ -1,0 +1,73 @@
+{
+  "state": "prepared_waiting_user_authority",
+  "source": {
+    "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+    "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+    "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+    "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+  },
+  "scope_unchanged": {
+    "all_changed_paths": [
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+    ],
+    "all_ticket_criteria": 12,
+    "all_standards_heuristics": 12,
+    "full_canonical_initiative_preloaded": true
+  },
+  "schedule": {
+    "one_tool_call_per_assistant_message": true,
+    "parallel_or_batched_reads": false,
+    "all_matching_skills_before_source": true,
+    "largest_known_skill_response_bytes": 15110,
+    "all_source_chunks_bytes_at_most": 12000,
+    "never_reread_preloaded_canonical_records": true,
+    "already_tested_mq_artifact_writer": true
+  },
+  "known_actual_read_sizes": {
+    "skill://code-review": 9306,
+    "skill://mq-query": 3599,
+    "skill://iso-24495-1": 8345,
+    "skill://asd-ste100": 19085,
+    "skill://typescript": 9003,
+    "skill://code-comments": 7310,
+    "skill://iso-24495-code": 6686,
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/mq-query/references/tasks/reading.md": 1866,
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/mq-query/references/tasks/creating.md": 2154,
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/mq-query/references/docs/cli.md": 12127,
+    "skill://shared-context": 7457,
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/mq-query/references/tasks/querying.md": 1686,
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/mq-query/references/docs/types_and_values.md": 6443,
+    "skill://mq-query/references/tasks/creating.md": 2259,
+    "skill://iso-24495-3": 6614,
+    "skill://iso-24495-5": 15110
+  },
+  "recorded_admission_math_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-io-recovery-0042/recorded-io-admission-math.json",
+  "next_request_replay_under_unchanged_guard": {
+    "actual_rejected_batch_total": 254567,
+    "single_largest_result_with_all_batch_wrapper_overhead_total": 236691,
+    "ceiling": 250000,
+    "scope": "Only replayed admission arithmetic; no claim that a new model review has completed or that future wrapper/input growth is zero."
+  },
+  "unchanged_guard": {
+    "sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+    "output_reserve": 128000,
+    "framing_reserve": 4096,
+    "whole_session_limit": 250000
+  },
+  "required_user_authority": {
+    "approved": false,
+    "current_cycles_consumed": 12,
+    "current_ticket_limit": 12,
+    "requested_ticket_limit": 15,
+    "additional_ticket_cycles": 3,
+    "current_dispatches": 58,
+    "current_dispatch_limit": 59,
+    "requested_dispatch_limit": 62,
+    "additional_dispatch_capacity": 3,
+    "remaining_work": "3fresh independent source review sessions plus1coordinator-onlyfinish",
+    "scope": "Review-only renewal; blocking code findings need a further decision. No source/claim/status/guard/provider/model changes or historical resets/transfers."
+  }
+}

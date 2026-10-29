@@ -1,39 +1,40 @@
 ---
-title: Ticket06 validated code and blocked independent review launches
+title: Ticket06 verified code and fully preserved review stops
 type: Report
 ---
 
 ## Current status
 
-BLOCKED waiting for user budget authority, not a source-code finding. Source and existingREADME are committed and clean at `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`. The canonical ticket remains claimed; no independent review or ticket completion is claimed.
+BLOCKED at the approved12cycle ticket limit. Source andREADME remain committed/clean at `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`. The canonical ticket remains claimed. No complete independent source verdict exists. No token overrun or source change occurred.
 
 ## Exercised proof
 
-- [Actual code/documentation result](../events/implementation-0022.json)
+- [Actual source/docs result](../events/implementation-0022.json)
 - [152passing tests and scopedcompiler0](../artifacts/evidence/implementation-0017/checks-2/checks.json)
-- [35actual final-source native observations across24queue matrix cases](../artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json)
-- [Final-source consumer smoke:8pass0fail171assertions](../artifacts/evidence/native-matrix-0023/post-source-check/command.json)
-- [Portable screenshot report](../artifacts/evidence/native-matrix-0023/report/index.html)
-- [Official report validation](../artifacts/evidence/native-matrix-0023/report-validation-final.json)
-- [Actual Chromium report/lightbox proof and cleanup](../artifacts/evidence/native-matrix-0023/report-browser-validation.json)
+- [35actual final-source colour/mono observations](../artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json)
+- [8final-source consumer tests](../artifacts/evidence/native-matrix-0023/post-source-check/command.json)
+- [Actual SGRmouse ancestor activation and canonical queue return](../artifacts/evidence/native-mouse-0031/attempt-1/native-smoke.json)
+- [Portable native screenshot report](../artifacts/evidence/native-matrix-0023/report/index.html)
 
-## Review launch failure
+## Preserved incomplete review history
 
-The coordinator prepared oversized immutable startup packets. The Spec packet alone exceeded the first-request input allowance; the Standards packet left only3861bytes for mandatory runtime context. The coordinator withheld both launches before inference. Both owned processes closed with0providerwork and no source inspection/verdict. Their opened-session cycles remain conservatively consumed. No guard, token ceiling, model, cycle count or reservation was reset or transferred.
+Cycles8and9 were conservatively counted0-inference launches. Freshcycles10and11 read the entire diff but stopped during repeated/truncated canonicalinitiative MQ reads;54631and55653settledwork. Cycle12 preloaded the entire initiative and tested artifactwriter, then stopped after a late batch of4skillreads;43938settledwork. All admitted requests settled under250000; no actual source review, assessment or artifact was completed. Parent-issued blocked artifacts do not supply source verdicts.
 
-- [Standards blocked result](../events/review-standards-0026.json)
-- [Standards reconciliation](../events/review-standards-complete-0027.json)
-- [Spec blocked result](../events/review-spec-0029.json)
-- [Spec reconciliation](../events/review-spec-complete-0030.json)
-- [Prepared bounded full-scope recovery and authority request](../events/review-launch-recovery-prepared-0031.json)
+- [Standards cycle10 blocked result](../events/review-standards-0034.json)
+- [Spec cycle11 blocked result](../events/review-spec-0037.json)
+- [Spec cycle12 blocked result](../events/review-spec-0040.json)
+- [Cycle12 parent reconciliation](../events/review-spec-complete-0041.json)
+- [Measured I/O recovery checkpoint](../events/review-io-recovery-prepared-0042.json)
+- [Recorded admission arithmetic](../artifacts/evidence/review-io-recovery-0042/recorded-io-admission-math.json)
+- [Full-scope single-call skill-first plan](../artifacts/evidence/review-io-recovery-0042/sequential-read-plan.json)
 
-## Required authority and next work
+## Required authority
 
-Nine of10ticket cycles and55of55run dispatches are reserved/consumed. Three fresh independent reviews plus coordinator-only finish require a minimum12total ticket cycles and59total dispatches. The per-session250000work-token ceiling stays unchanged. No renewal is granted yet. The compact recovery keeps all4changedpaths, every diff hunk, all12acceptancecriteria and all12Standards heuristics, with bounded external reads instead of an oversized startup context.
+12of12ticketcycles and58of59run dispatches are consumed/reserved. Three fresh independent reviews plus coordinatorfinish need a minimum15total ticketcycles and62totaldispatches. This increase is NOT approved. The250000whole-session ceiling, full128000output reserve,4096framing reserve, model/provider and historical counts stay unchanged. Every changedpath/criterion/heuristic remains required.
 
-After explicit approval: fresh Standards, fresh Spec and fresh main reviews on the frozen source; only then exact-source integration, primary validation, non-force push, canonical completion and owned cleanup. If a review finds a blocking defect, do not invent a verdict or exceed renewed limits.
+Next workflow requires exactly one toolcall perassistantturn, no batchedreads, allmatchingSkillsFIRST, bounded source reads, preloadedcompletecanonicalrecords and the already-tested deterministic MQartifact writer. The recorded rejected batch needed254567conservative tokens; the largest single result with the same entirebatchwrapper overhead would need236691. This is arithmetic, not a claimed new successful review.
 
-## Preserved resources
+## Hold
 
-Owned source worktree/branch and review workspace remain available. Existing-cache links remain for LSP/reviews. No source AI, fixturePi process, report browser tab or report server is running. [Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-06-queues.md) remains unchanged.
+All owned source/reviewAI panes and testprocesses are closed; owned sourceworktree/branch, reviewworkspace and existing-cache dependencylinks remain preserved. No integration/pushofproductcode/ticketcompletion or validreview is claimed. [Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-06-queues.md) is unchanged.
 

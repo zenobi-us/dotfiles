@@ -1,0 +1,37 @@
+{
+  "scope": "Replay of recorded admission arithmetic only, not a new model call or a claimed completed source review.",
+  "spent": 43938,
+  "ceiling": 250000,
+  "output_reserve": 128000,
+  "framing_reserve": 4096,
+  "prior_observed_context_plus_output": 42005,
+  "actual_four_result_content_bytes": 32986,
+  "actual_new_tail_bytes": 36528,
+  "actual_rejected_total": 254567,
+  "largest_single_result_content_bytes": 15110,
+  "conservative_all_batch_wrapper_overhead": 3542,
+  "single_largest_result_plus_all_batch_overhead_total": 236691,
+  "late_skill_results": [
+    {
+      "tool": "read",
+      "content_bytes": 2259,
+      "skill": null
+    },
+    {
+      "tool": "read",
+      "content_bytes": 6614,
+      "skill": null
+    },
+    {
+      "tool": "read",
+      "content_bytes": 15110,
+      "skill": null
+    },
+    {
+      "tool": "read",
+      "content_bytes": 9003,
+      "skill": null
+    }
+  ],
+  "decision": "Exactly one toolcall per assistantturn; no parallel/batched reads. Load all matching skills first, then bounded source chunks. Full canonical spec stays preloaded; tested MQ writer retained. No guard/provider/model/ceiling change."
+}

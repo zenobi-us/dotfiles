@@ -1,0 +1,17 @@
+[
+  {
+    "ref": "workflows/pi-shared-context-ux-06-queues/projections/pr-draft.md",
+    "validation": [],
+    "links_checked": 14
+  },
+  {
+    "ref": "workflows/pi-shared-context-ux-06-queues/projections/implementation-log.md",
+    "validation": [],
+    "links_checked": 14
+  },
+  {
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/snapshots/pr-draft-io-recovery-0042.md",
+    "validation": [],
+    "links_checked": 14
+  }
+]
