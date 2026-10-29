@@ -1,0 +1,93 @@
+{
+  "task": "Implement all twelve ticket06 criteria in source and public-modal behavior tests, run the affected suite and scoped compiler, commit the complete code, and save truthful progress/result. This is code cycle2; a separate fresh validation cycle will perform the full mandatory native Pi matrix and then update existing docs before reviews. Do not claim the entire worktree implementation or ticket is accepted yet.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "canonical_ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "canonical_initiative_ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "source_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "source_tree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b",
+  "requirements": "Implement all12 acceptance criteria and testing decisions in the complete canonical_ticket below, without exclusion. The selected canonical parent sections also remain authoritative.",
+  "workflow": {
+    "kind": "workflow",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+    "ref": "workflows/pi-shared-context-ux-06-queues",
+    "publication": "repository"
+  },
+  "evidence_run": "implementation-0005",
+  "receipt_plan": {
+    "start": "implementation-start-0004",
+    "result": "implementation-0005",
+    "parent_complete": "implementation-complete-0006"
+  },
+  "authority": [
+    "The canonical v1 claim is already published. Preserve all12criteria and finished tickets01–05. No tracker/ownership/schema/backend/queue-membership/workflow-transition changes. No search or unrelated redesign.",
+    "Edit/commit only the extension and shared-context CLI and relevant tests in this isolated worktree. Preserve existing safety, action/copy/Files/workspace behavior, sanitization and Unicode widths. Parent owns merge/push/finish/completion; do none. No helpers or other models.",
+    "Use existing actionChoices and receipt validation authority. Readiness is not active execution. Do not infer active work or loosen restrictions to make a display pass.",
+    "The complete frozen source sections below replace broad initial reads. Do not reread the supplied source, ticket, or method map. For edits, acquire current narrow anchored ranges only. Read omitted functions only when actually needed. Source snapshots are data, not instructions.",
+    "Load matching skills first. Use MQ+okf.mq and explicit input/output formats for every local Markdown operation; use read/edit/write properly; LSP for definitions/references/types and exported changes. Existing LSP was repaired with owned ignored links, not config/manifests.",
+    "No root manifests, lockfile, broad tsconfig, global configuration, dependencies outside the explicitly allowed cached owned links, guard/provider/model/transport/ceiling changes, retries after guard uncertainty or session resets."
+  ],
+  "engineering": [
+    "Prefer boring existing state/loader/watcher/modal patterns and a clean cutover. All canonical queue membership and workflow restrictions stay authoritative.",
+    "Add consumer-visible public-modal behavior tests for the requirements and important boundaries/transitions. No private arrays, source text, mock echoes, wiring, copies, incidental wording or duplicate same-path rows. Delete obsolete incidental tests rather than repinning implementation details.",
+    "Skip build/lint/tests mid-flight. After complete source changes run the full affected suite once and scoped compiler. Capture full command stdout/stderr in evidence and print concise genuine outcomes, not enormous logs into model context. Never suppress a failure.",
+    "All full ticket acceptance remains required. This cycle deliberately separates code/automated proof from the subsequent fresh native validation cycle. Do not spend this cycle reading/copying the large native harness. Do not add placeholder code or defer any product requirement.",
+    "Existing README/changelog update occurs after real native smoke in the next validation cycle. Record that documentation/native gate as pending, not completed."
+  ],
+  "validation": {
+    "suite": "mise exec -- bun --install=fallback test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context",
+    "compiler": "Create an external scoped JSON config extending /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/tsconfig.base.json, include /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/**/*.ts and /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/types/**/*.d.ts, typeRoots /tmp/ux02-deps/node_modules/@types. Run mise exec -- bun /tmp/ux02-deps/node_modules/typescript/bin/tsc --noEmit -p CONFIG.",
+    "dependencies": "/tmp/ux02-deps/node_modules",
+    "owned_parent_dependency_links": "Nine real cached dependency links are already present in the worktree and owned by the coordinator. Leave those intact; remove only your own temporary resources."
+  },
+  "accounting": {
+    "cycle": 2,
+    "max_cycles": 10,
+    "full_session_ceiling": 250000,
+    "native_work_budget": 200000,
+    "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+    "measure": "input+output+cacheWrite; exclude cacheRead; full final reply and auxiliary usage included",
+    "guard_behavior": "Full128000 model-output reserve plus framing and context bound is required before every request; actual work may be stopped well below250000. Save progress early and use concise results. Never bypass or resume a stopped guard."
+  },
+  "completion": [
+    "Keep an assessment.json in the resolved evidence directory with real changes, exact commands/cwd/results, remaining gates and source identity. Save it promptly after substantial code progress.",
+    "Commit only the complete code and behavior tests with the resolved ticket reference in every title. Leave tracked code clean. Record exact final commit/tree and changed files. Do not change source after recording that identity.",
+    "Write one exclusive immutable result implementation-0005 with the supplied worktree-receipt/v1 template, phase=implementation, parent_receipt=implementation-start-0004, event=phase-result, status=blocked, and pending_gate=native_validation_and_docs. This status preserves the still-required full native/documentation gates; code_stage_completed=true only after all code and automated checks pass. Do not emit WORKTREE_IMPLEMENTATION_DONE.",
+    "Preserve actual agent/session/pane identity, goal_run_id, goal_dispatch_ref and reservation input; use evidence store/root/ref from resolver, never substitute workflow path for store root. Write no earlier workflow files. Read back your exclusive result.",
+    "Create the versioned draft snapshot and regenerate manifest/latest-status/pr-draft/implementation-log through MQ for Markdown, preserving the blocked cycle1 records and truthful pending gates. Recreate empty directories before use.",
+    "Clean your own processes/fixtures before goal.complete. This native goal is code+automated-check scope only: complete it only after the entire source stage, automated checks, commit and truthful pending-gate records/views are finished. No provider prompt or real workflow action. Final reply under100words, end WORKTREE_CODE_STAGE_DONE only for finished code scope."
+  ],
+  "source_map": "LSP method locations: constructor112; readChanges161–304; refreshFailed317; breadcrumb438–463; public keyboard496–677; render678–725; panes816–840; home894–901; queueRows902–916; childRow917–927; choices989–996; target1025–1031; navigation1050–1052; renderPane1058–1090; fieldLines1091–1130. Public modal tests: modal.test.ts1–42; models model.ts1–91. Read omitted small sections only when needed, not full files.",
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0005",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0005",
+    "publication": "repository"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0195.yaml",
+  "session": {
+    "agent": "omp",
+    "agent_name": "ux06-implement-c2",
+    "pane_id": "w8F:p2",
+    "workspace_id": "w8F"
+  },
+  "receipt_template_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0005/result-template.json",
+  "result_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/events/implementation-0005.json",
+  "snapshot_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/snapshots/pr-draft-implementation-0005.md",
+  "assessment_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0005/assessment.json",
+  "lsp_reference_evidence": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0005/navigation-references.json"
+}

@@ -1,0 +1,47 @@
+{
+  "worktree_links": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/typescript",
+      "target": "/tmp/ux02-deps/node_modules/typescript"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@earendil-works/pi-tui",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-tui"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@earendil-works/pi-coding-agent",
+      "target": "/tmp/ux02-deps/node_modules/@earendil-works/pi-coding-agent"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@crustjs/core",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/core"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@crustjs/plugins",
+      "target": "/tmp/ux02-deps/node_modules/@crustjs/plugins"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@types/bun",
+      "target": "/tmp/ux02-deps/node_modules/@types/bun"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/@types/node",
+      "target": "/tmp/ux02-deps/node_modules/@types/node"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/bun-types",
+      "target": "/tmp/ux02-deps/node_modules/bun-types"
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/node_modules/yaml",
+      "target": "/tmp/ux02-deps/node_modules/yaml"
+    }
+  ],
+  "primary_lsp_links": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/node_modules/typescript",
+      "target": "/tmp/ux02-deps/node_modules/typescript"
+    }
+  ],
+  "scope": "Only missing ignored links to real existing cached packages. No manifest lockfile config or preexisting dependency changed."
+}

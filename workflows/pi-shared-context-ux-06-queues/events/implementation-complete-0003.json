@@ -1,0 +1,91 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-complete-0003",
+  "workflow_id": "pi-shared-context-ux-06-queues",
+  "phase": "implementation",
+  "attempt": 1,
+  "parent_receipt": "implementation-0002",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "source_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "source_tree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b",
+  "created_at": "2026-10-29T07:06:39.301Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0192.yaml",
+  "event": "phase-complete",
+  "status": "blocked",
+  "cycle_number": 1,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "claim_publication_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0002.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0192.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-complete-0003.json"
+    }
+  ],
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0002"
+  },
+  "issued_by": "Parent coordinator after reading actual native completion, checking saved outputs and auditing the whole stopped session; not a fabricated child assessment.",
+  "observed_implementation_session": {
+    "agent_name": "ux06-implement-c1",
+    "pane_id": "w8E:p2",
+    "workspace_id": "w8E",
+    "session_id": "01a18675-4a48-74d2-abf9-90789fa8d6dd",
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T06-59-56-104Z_01a18675-4a48-74d2-abf9-90789fa8d6dd.jsonl",
+    "native_goal_id": "15b8eaa982f1f8fd",
+    "native_goal_status": "active",
+    "pane_closed": true
+  },
+  "changed_files": [],
+  "validation": [],
+  "validation_not_run": true,
+  "implementation_summary": "The fresh agent read skills and source but made no source changes before a conservative pre-request input/output reservation denial. No implementation, source commit, validation or saved assessment exists.",
+  "open_questions": [
+    "Reduce duplicated handoff material and preload a bounded relevant source map in a new independent implementation session; never resume or enlarge this stopped session."
+  ],
+  "blocker": "Next uncached input-context bound plus full128000 maximum output and framing exceeded remaining250000 ceiling. The guard stopped before inference; this is not a measured token breach.",
+  "full_session_work": 46143,
+  "full_session_work_upper_bound": 46143,
+  "accounting_complete": true,
+  "under_cap": true,
+  "auxiliary_model_usage_entries": 0,
+  "source_dirty": false,
+  "source_branch_preserved": true,
+  "workspace_closed": true,
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0002.json"
+}
