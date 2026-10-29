@@ -1,0 +1,87 @@
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 299-369
+        await Promise.all(Array.from({ length: Math.min(3, tickets.length) }, worker));
+        if (this.disposed) return;
+        if (initial) this.restoreHomeSelection(undefined);
+        if (graph) this.graphError = "";
+        this.refreshError = this.routeError || this.graphError;
+        this.updateWatchScope();
+      } catch (error) {
+        if (this.disposed) return;
+        this.refreshFailed(error);
+        if (routes) this.routeError = this.refreshError;
+        if (graph) this.graphError = this.refreshError;
+        if (!this.snapshot) this.error = `Tracker unreadable: ${error instanceof Error ? error.message : String(error)}`;
+        this.loading = false;
+      }
+      if (!this.disposed) this.options.requestRender();
+    }
+  }
+
+  private restoreHomeSelection(target: ExplorerTarget | undefined): void {
+    const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+    if (screen === "queues") { this.reconcileQueues(); return; }
+    if (screen !== "home") return;
+    const rows = this.homeRows();
+    const index = target ? rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref === (target.kind === "ticket" && target.ticket.ref) : row.target.initiative.ref === (target.kind === "initiative" && target.initiative.ref))) : -1;
+    const previous = this.homeIndex;
+    const next = index >= 0 ? index : Math.max(0, Math.min(previous, rows.length - 1));
+    if (target && index < 0) this.notice = "Selected record was removed from this view. Selected a nearby record.";
+    this.homeIndex = next;
+  }
+
+  private queueIdentity(target: ExplorerTarget | undefined): string | undefined {
+    return target?.kind === "ticket" ? JSON.stringify([target.ticket.backend, target.ticket.ref]) : undefined;
+  }
+
+  private selectQueue(index: number): void {
+    const rows = this.queueRows();
+    this.queueIndex = Math.max(0, Math.min(index, rows.length - 1));
+    this.queueSelections.set(this.queue, { index: this.queueIndex, identity: this.queueIdentity(rows[this.queueIndex]?.target) });
+  }
+
+  private reconcileQueues(): void {
+    for (const [queue, saved] of this.queueSelections) {
+      if (queue !== "all" && this.snapshot && this.receiptChecks < this.snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").length) continue;
+      const rows = this.queueRows(queue);
+      const index = saved.identity ? rows.findIndex(row => this.queueIdentity(row.target) === saved.identity) : -1;
+      const next = index >= 0 ? index : Math.max(0, Math.min(saved.index, rows.length - 1));
+      if (saved.identity && index < 0 && queue === this.queue) this.notice = "Selected ticket left this queue. Selected a nearby ticket or an empty queue.";
+      this.queueSelections.set(queue, { index: next, identity: this.queueIdentity(rows[next]?.target) });
+      if (queue === this.queue) this.queueIndex = next;
+    }
+  }
+
+  private openQueue(queue: Queue): void {
+    if (!this.initiativeMemory) this.initiativeMemory = { initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId };
+    this.queue = queue;
+    this.screen = "queues";
+    this.focus = "list";
+    this.reconcileQueues();
+    this.selectQueue(this.queueSelections.get(queue)?.index ?? 0);
+  }
+
+  private returnHome(): void {
+    if (this.initiativeMemory) {
+      this.initiativeId = this.initiativeMemory.initiativeId;
+      this.ticketId = this.initiativeMemory.ticketId;
+      this.receiptId = this.initiativeMemory.receiptId;
+      this.initiativeMemory = undefined;
+    }
+    this.screen = "home";
+    this.itemOrigin = "initiatives";
+  }
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 506-517
+  }
+
+  private activateBreadcrumb(index: number): void {
+    const crumb = this.breadcrumbs()[index];
+    if (!crumb || index >= this.breadcrumbs().length - 1) return;
+    this.reader = undefined;
+    this.eventDetail = false;
+    if (crumb.screen === "home") this.returnHome();
+    else this.screen = crumb.screen;
+    this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
+    this.options.requestRender();
+  }
+

@@ -1,0 +1,152 @@
+{
+  "status": "prepared_not_live_verified",
+  "source": {
+    "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+    "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+    "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+    "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+  },
+  "all_changed_lines_retained": true,
+  "all_complete_modified_declarations_retained": true,
+  "all_273_added_lines_and_29_old_deletions_retained": true,
+  "packets": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-01.txt",
+      "lines": 89,
+      "bytes": 4858,
+      "source_spans": [
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+          "from": 191,
+          "to": 211
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 1,
+          "to": 10
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 14,
+          "to": 15
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 20,
+          "to": 38
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 80,
+          "to": 82
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 115,
+          "to": 135
+        }
+      ]
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-02.txt",
+      "lines": 135,
+      "bytes": 8052,
+      "source_spans": [
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 167,
+          "to": 298
+        }
+      ]
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-03.txt",
+      "lines": 88,
+      "bytes": 4323,
+      "source_spans": [
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 299,
+          "to": 369
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 506,
+          "to": 517
+        }
+      ]
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-04.txt",
+      "lines": 161,
+      "bytes": 8101,
+      "source_spans": [
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 549,
+          "to": 706
+        }
+      ]
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-05.txt",
+      "lines": 116,
+      "bytes": 8142,
+      "source_spans": [
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 707,
+          "to": 730
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 868,
+          "to": 902
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 963,
+          "to": 988
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 999,
+          "to": 1013
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 1121,
+          "to": 1125
+        }
+      ]
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-06.txt",
+      "lines": 46,
+      "bytes": 3305,
+      "source_spans": [
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+          "from": 1162,
+          "to": 1204
+        }
+      ]
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-07.txt",
+      "lines": 169,
+      "bytes": 8460,
+      "source_spans": [
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+          "from": 1,
+          "to": 166
+        }
+      ]
+    }
+  ],
+  "complete_change_ledger": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/complete-change-ledger.txt",
+  "maximum_packet_bytes": 8460,
+  "unchanged_ceiling": 300000,
+  "new_AI_sessions": 0
+}

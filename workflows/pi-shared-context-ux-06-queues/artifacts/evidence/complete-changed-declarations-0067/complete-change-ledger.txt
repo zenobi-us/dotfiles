@@ -1,0 +1,72 @@
+Complete change ledger for 6f959f8c380efe378f4a0f2eeffcd3660c803859...20968ee4f907c6f74bc77702fcef09578b41c6b8
+Every added new line is supplied in complete current-source declarations/tests or the full changedMQREADMEsection. Every removedoldline appears verbatim below. This is a review index, not an applyable patch.
+
+FILE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+Old 206 count 1 -> New 205 count 0
+- oldline206:   expect(f.view()).toContain("removed");
+
+FILE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+Old 7 count 1 -> New 7 count 1
+- oldline7: import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+Old 15 count 1 -> New 15 count 1
+- oldline15: type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
+Old 33 count 0 -> New 34 count 3
+Old 77 count 0 -> New 81 count 2
+Old 126 count 0 -> New 132 count 3
+Old 213 count 1 -> New 221 count 2
+- oldline213:           if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
+Old 248 count 0 -> New 258 count 1
+Old 249 count 0 -> New 260 count 1
+Old 268 count 2 -> New 279 count 2
+- oldline268:             if (workflow.error && !workflow.events?.length && previous?.events?.length) {
+- oldline269:               workflow = { ...previous, sourceCommit: undefined, sourceTree: undefined, error: `History refresh failed; showing last readable history. ${workflow.error}` };
+Old 282 count 0 -> New 294 count 1
+Old 307 count 2 -> New 319 count 3
+- oldline307:     if (screen !== "home" && screen !== "queues") return;
+- oldline308:     const rows = screen === "home" ? this.homeRows() : this.queueRows();
+Old 310 count 1 -> New 323 count 1
+- oldline310:     const previous = screen === "home" ? this.homeIndex : this.queueIndex;
+Old 313 count 2 -> New 326 count 43
+- oldline313:     if (screen === "home") this.homeIndex = next;
+- oldline314:     else this.queueIndex = next;
+Old 459 count 1 -> New 513 count 2
+- oldline459:     this.screen = crumb.screen;
+Old 505 count 1 -> New 560 count 1
+- oldline505:     if (matchesKey(data, "shift+r")) {
+Old 512 count 1 -> New 567 count 1
+- oldline512:       this.screen = "home";
+Old 533 count 1 -> New 588 count 1
+- oldline533:       else if (this.screen === "initiatives" || this.screen === "queues") this.screen = "home";
+Old 536 count 1 -> New 591 count 1
+- oldline536:       this.notice = "";
+Old 544 count 3 -> New 599 count 1
+- oldline544:         this.queue = filter;
+- oldline545:         this.screen = "queues";
+- oldline546:         this.queueIndex = 0;
+Old 599 count 1 -> New 652 count 1
+- oldline599:         this.queueIndex = Math.max(0, Math.min(this.queueRows().length - 1, this.queueIndex + delta));
+Old 603 count 1 -> New 656 count 1
+- oldline603:         if (this.ticketId && this.initiativeId) this.childSelections.set(this.initiativeId, this.ticketId);
+Old 636 count 0 -> New 690 count 1
+Old 818 count 1 -> New 872 count 10
+- oldline818:     if (this.screen === "actions") return [{ id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" : "text", selected: index === this.actionIndex })) }];
+Old 902 count 1 -> New 965 count 1
+- oldline902:   private queueRows(): Row[] {
+Old 908 count 1 -> New 971 count 1
+- oldline908:       if (this.queue !== "all" && this.receiptChecks < ticketCount) continue;
+Old 910 count 2 -> New 973 count 12
+- oldline910:       const inQueue = this.queue === "all" || this.queue === "ready" && state === "READY" || this.queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || this.queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
+- oldline911:       if (inQueue) rows.push(this.childRow(ticket, false));
+Old 913 count 1 -> New 986 count 1
+- oldline913:     if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : `No tickets in ${this.queue}. Choose 8 for all tickets.`, tone: "muted" });
+Old 939 count 1 -> New 1012 count 1
+- oldline939:     return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Collection"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
+Old 1051 count 1 -> New 1124 count 1
+- oldline1051:     return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader };
+Old 1126 count 0 -> New 1200 count 2
+
+FILE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts
+Old 0 count 0 -> New 1 count 166
+
+FILE mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+Old 270 count 0 -> New 271 count 4

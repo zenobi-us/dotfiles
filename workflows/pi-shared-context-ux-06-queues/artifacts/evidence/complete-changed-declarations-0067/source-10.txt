@@ -1,0 +1,158 @@
+  }
+
+  private handleKey(data: string): void {
+    if (matchesKey(data, "q") || matchesKey(data, "ctrl+c")) {
+      this.options.done(undefined);
+      return;
+    }
+    if (matchesKey(data, "b")) {
+      this.options.done({ kind: "files", navigation: this.navigation() });
+      return;
+    }
+    if (data === "R" || matchesKey(data, "shift+r")) {
+      void this.load();
+      return;
+    }
+    if (matchesKey(data, "home") || matchesKey(data, "h")) {
+      this.reader = undefined;
+      this.eventDetail = false;
+      this.returnHome();
+      this.focus = "list";
+      this.notice = "";
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "escape") || matchesKey(data, "left") && this.focus !== "breadcrumb" || matchesKey(data, "backspace")) {
+      if (this.reader) { this.closeDescription(); return; }
+      let focus: ExplorerNavigation["focus"] = "list";
+      if (this.screen === "actions") { this.screen = this.returnScreen; focus = this.returnFocus; }
+      else if (this.screen === "receipts" && this.eventDetail) {
+        this.eventDetail = false;
+        this.focus = "list";
+        this.options.requestRender();
+        return;
+      }
+      else if (this.screen === "receipts") {
+        this.screen = "tickets";
+        focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
+      }
+      else if (this.screen === "tickets") this.screen = this.itemOrigin;
+      else if (this.screen === "initiatives" || this.screen === "queues") this.returnHome();
+      else { if (matchesKey(data, "escape") && this.options.projects) this.options.projects(); else this.options.done(undefined); return; }
+      this.focus = focus;
+      if (this.screen !== "queues") this.notice = "";
+      this.options.requestRender();
+      return;
+    }
+    if (this.loading || this.error || !this.snapshot) return;
+    if (this.screen === "home" || this.screen === "queues") {
+      const filter = ([["5", "ready"], ["6", "review"], ["7", "blocked"], ["8", "all"]] as const).find(([key]) => matchesKey(data, key))?.[1];
+      if (filter) {
+        this.openQueue(filter);
+        this.options.requestRender();
+        return;
+      }
+    }
+    if (this.focus === "breadcrumb" && !matchesKey(data, "tab") && !matchesKey(data, "shift+tab")) {
+      const lastAncestor = this.breadcrumbs().length - 2;
+      if (matchesKey(data, "right") || matchesKey(data, "down")) this.breadcrumbIndex = Math.min(lastAncestor, this.breadcrumbIndex + 1);
+      else if (matchesKey(data, "left") || matchesKey(data, "up")) this.breadcrumbIndex = Math.max(0, this.breadcrumbIndex - 1);
+      else if (matchesKey(data, "enter") || data === " ") this.activateBreadcrumb(this.breadcrumbIndex);
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "tab") || matchesKey(data, "shift+tab")) {
+      const reverse = matchesKey(data, "shift+tab");
+      if (!this.moveFocus(reverse)) this.enterFocus(reverse);
+      return;
+    }
+    if (this.reader) {
+      if (this.focus === "return" && (matchesKey(data, "enter") || data === " ")) this.closeDescription();
+      else if (matchesKey(data, "up") || matchesKey(data, "down") || matchesKey(data, "pageUp") || matchesKey(data, "pageDown")) {
+        this.scrollDescription(matchesKey(data, "up") || matchesKey(data, "pageUp") ? -1 : 1, matchesKey(data, "pageUp") || matchesKey(data, "pageDown"));
+      }
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "d") || this.focus === "description" && (matchesKey(data, "enter") || data === " ")) {
+      this.openDescription();
+      return;
+    }
+    if (matchesKey(data, "pageUp") || matchesKey(data, "pageDown")) {
+      const panes = this.panes();
+      const pane = this.focusedPane(panes);
+      const up = matchesKey(data, "pageUp");
+      const compact = this.lastWidth < 70 || this.options.height() < 16;
+      const step = pane ? this.renderedLayout.get(pane.id)?.height ?? 1 : Math.max(1, Math.min(30, this.options.height() - (compact ? 4 : 8)));
+      if (pane) this.offsets.set(pane.id, Math.max(0, (this.offsets.get(pane.id) ?? 0) + (up ? -step : step)));
+      this.notice = "";
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "up") || matchesKey(data, "down")) {
+      const delta = matchesKey(data, "up") ? -1 : 1;
+      if (this.focus === "detail") {
+        const pane = this.focusedPane(this.panes());
+        if (pane) this.offsets.set(pane.id, Math.max(0, (this.offsets.get(pane.id) ?? 0) + delta));
+      } else if (this.screen === "actions") {
+        this.actionIndex = Math.max(0, Math.min(this.choices().length - 1, this.actionIndex + delta));
+      } else if (this.focus === "neighborhood") {
+        this.neighborhoodIndex = Math.max(0, Math.min(this.neighborhoodRows().length - 1, this.neighborhoodIndex + delta));
+      } else if (this.screen === "home") {
+        this.homeIndex = Math.max(0, Math.min(this.homeRows().length - 1, this.homeIndex + delta));
+      } else if (this.screen === "queues") {
+        this.selectQueue(this.queueIndex + delta);
+      } else if (this.screen === "initiatives" || this.screen === "tickets") {
+        const ids = this.scopes.get(this.initiativeId ?? "") ?? [];
+        this.ticketId = ids[Math.max(0, Math.min(ids.length - 1, ids.indexOf(this.ticketId ?? "") + delta))];
+        if (this.ticketId && this.initiativeId && this.itemOrigin !== "queues") this.childSelections.set(this.initiativeId, this.ticketId);
+      } else {
+        const receipts = this.history();
+        const index = Math.max(0, receipts.findIndex(receipt => receipt.id === this.receiptId));
+        this.receiptId = receipts[Math.max(0, Math.min(receipts.length - 1, index + delta))]?.id;
+      }
+      this.notice = "";
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "enter") || matchesKey(data, "right")) {
+      if (this.screen === "actions") { this.chooseAction(this.choices()[this.actionIndex]); return; }
+      const compact = this.lastWidth < 70 || this.options.height() < 16;
+      if (this.screen === "receipts" && !this.eventDetail && this.selectedEvent()) {
+        this.receiptId = this.selectedEvent()!.id;
+        this.eventDetail = true;
+        this.focus = "detail";
+        this.options.requestRender();
+        return;
+      }
+      let focus: ExplorerNavigation["focus"] = this.focus;
+      if (this.focus === "neighborhood") {
+        const target = this.neighborhoodRows()[this.neighborhoodIndex]?.target;
+        if (target?.kind === "ticket") {
+          this.ticketId = target.ticket.id;
+          if (!this.scopes.get(this.initiativeId ?? "")?.includes(this.ticketId)) this.initiativeId = this.snapshot.initiatives.find(initiative => initiative.ticketIds.includes(this.ticketId!))?.id;
+          this.screen = "tickets";
+          focus = compact ? "detail" : "list";
+        }
+      } else if (this.screen === "home") {
+        const target = this.homeRows()[this.homeIndex]?.target;
+        if (target?.kind === "initiative") {
+          this.initiativeId = target.initiative.id;
+          const saved = this.childSelections.get(this.initiativeId);
+          this.itemOrigin = "initiatives";
+          this.ticketId = saved && target.initiative.ticketIds.includes(saved) ? saved : target.initiative.ticketIds[0];
+          this.screen = "initiatives";
+          focus = "list";
+        }
+      } else if (this.screen === "queues") {
+        const target = this.queueRows()[this.queueIndex]?.target;
+        if (target?.kind === "ticket") {
+          this.ticketId = target.ticket.id;
+          this.itemOrigin = "queues";
+          this.initiativeId = this.snapshot.initiatives.find(initiative => initiative.ticketIds.includes(target.ticket.id))?.id;
+          this.screen = "tickets";
+          focus = compact ? "detail" : "list";
+        }
+      } else if (this.screen === "initiatives" && this.ticket()) {
+        this.itemOrigin = "initiatives";
+        this.screen = "tickets";

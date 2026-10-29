@@ -1,0 +1,2 @@
+type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
+type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string; next?: string; activity?: string } };

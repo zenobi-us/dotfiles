@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "scope": "Actual both-axis writer and MQparse using explicitNOT-A-SOURCE-REVIEW syntheticidentity. No model, sourceassessment or workflowreviewreceipt. Not a codeverdict.",
+  "writer_exit": 0,
+  "parsed_role": "main",
+  "synthetic_identity": true,
+  "both_axis_bodies_preserved": true,
+  "temporary_fixture_removed": true
+}

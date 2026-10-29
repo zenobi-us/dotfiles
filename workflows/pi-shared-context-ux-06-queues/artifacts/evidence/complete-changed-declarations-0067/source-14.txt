@@ -1,0 +1,15 @@
+  }
+
+  private graphPane(): Pane {
+    const initiative = this.initiative();
+    const rows: Row[] = (this.scopes.get(this.initiativeId ?? "") ?? []).flatMap(id => {
+      const ticket = this.tickets.get(id);
+      return ticket ? [this.childRow(ticket, id === this.ticketId)] : [];
+    });
+    if (!rows.length) rows.push({ text: "This collection is empty. No child items.", tone: "muted" });
+    if (this.screen === "initiatives" && initiative && this.lastWidth >= 70 && this.options.height() >= 16) {
+      const summary = initiative.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
+      rows.unshift({ text: `${initiative.id} · Phase: ${initiative.phase ?? "unavailable"}`, tone: "accent" }, { text: `Summary: ${summary ?? "No recorded summary."}`, tone: "muted" });
+    }
+    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Ungrouped"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
+  }

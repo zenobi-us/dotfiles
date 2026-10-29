@@ -1,0 +1,3 @@
+  private childSelections = new Map<string, string>();
+  private queueSelections = new Map<Queue, { identity?: string; index: number }>();
+  private initiativeMemory?: ExplorerNavigation["initiativeMemory"];

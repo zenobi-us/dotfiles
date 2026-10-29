@@ -2,8 +2,8 @@
   "schema": "worktree-goal-status/v1",
   "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
   "initiative": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
-  "state": "running",
-  "latest_event": "dispatch-reserved-0250",
+  "state": "blocked",
+  "latest_event": "checkpoint-0253",
   "phase_dispatches_reserved": 64,
   "agent_sessions_reserved": 60,
   "cycles_consumed": {
@@ -31,22 +31,15 @@
   "completion_margin_tokens": 50000,
   "configured_outer_goal_token_budget": 12500000,
   "current_ticket": "pi-shared-context-ux-06-queues",
-  "current_phase": "review-spec-source-once",
-  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-start-0064.json",
+  "current_phase": "review-context-recovery",
+  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-context-recovery-prepared-0067.json",
   "latest_source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
   "latest_source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
   "latest_review_receipt": null,
   "latest_review_verdict": null,
   "active_child_agents": [],
   "outstanding_dispatches": [],
-  "active_agents": [
-    {
-      "name": "ux06-spec-c18-source-once",
-      "pane": "w8P:p5",
-      "cycle": 18,
-      "role": "spec"
-    }
-  ],
+  "active_agents": [],
   "coordinator_dispatch_cap": 65,
   "default_session_work_cap": 250000,
   "review_only_exception": {
@@ -58,5 +51,11 @@
     "ceiling": 300000
   },
   "active_guard_sha256": "fec08eb63867a87ca9727b179462e19b8a27854ab9d0e559319f8c25df794c0f",
-  "pending_gate": "last_authorized_full_spec_review"
+  "valid_independent_reviews": 0,
+  "pending_gate": "explicit21cycle68dispatch_same300k_review_exception_authority",
+  "prepared_scope_complete": true,
+  "prepared_live_fit_verified": false,
+  "no_larger_ceiling_proposed": true,
+  "source_workspace_preserved": true,
+  "source_worktree_preserved": true
 }

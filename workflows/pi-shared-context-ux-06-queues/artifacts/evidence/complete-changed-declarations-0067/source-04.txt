@@ -1,0 +1,19 @@
+type DescriptionReader = { kind: "initiative" | "ticket"; ref: string; focus: ExplorerNavigation["focus"] };
+
+export interface ExplorerNavigation {
+  screen: Screen;
+  initiativeId?: string;
+  ticketId?: string;
+  receiptId?: string;
+  eventDetail?: boolean;
+  queue: Queue;
+  focus: "list" | "detail" | "neighborhood" | "breadcrumb" | "description" | "return";
+  offsets: [string, number][];
+  homeIndex?: number;
+  itemOrigin?: "initiatives" | "queues";
+  queueIndex?: number;
+  queueSelections?: [Queue, { identity?: string; index: number }][];
+  initiativeMemory?: { initiativeId?: string; ticketId?: string; receiptId?: string };
+  childSelections?: [string, string][];
+  reader?: DescriptionReader;
+}

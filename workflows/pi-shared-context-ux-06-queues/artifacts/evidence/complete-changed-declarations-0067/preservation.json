@@ -1,0 +1,16 @@
+{
+  "observed_at": "2026-10-29T22:10:44.379Z",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "source_clean": true,
+  "canonical_ticket_bytes_unchanged": true,
+  "workspace_id": "w8P",
+  "panes": [
+    {
+      "pane": "w8P:p1",
+      "agent_status": "unknown"
+    }
+  ],
+  "active_owned_AI_agents": [],
+  "new_sessions_authorized": false
+}

@@ -1,0 +1,115 @@
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 707-730
+        focus = compact ? "detail" : "list";
+      } else if (this.screen === "tickets" && this.ticket() && recordKind(this.ticket()!) === "ticket") {
+        this.screen = "receipts";
+        this.eventDetail = false;
+        focus = "list";
+        if (!this.history().some(receipt => receipt.id === this.receiptId)) this.receiptId = this.history()[0]?.id;
+      }
+      this.focus = focus;
+      this.notice = "";
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "a") && this.screen !== "actions" && this.choices().length) {
+      this.returnScreen = this.screen;
+      this.returnFocus = this.focus;
+      this.screen = "actions";
+      this.actionIndex = 0;
+      this.focus = "list";
+      this.options.requestRender();
+      return;
+    }
+    const choice = this.choices().find(action => matchesKey(data, action.key));
+    if (choice) this.chooseAction(choice);
+  }
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 868-902
+  }
+
+  private panes(): Pane[] {
+    if (this.loading || this.error || !this.snapshot) return [{ id: "state", title: "Shared context", rows: [{ text: this.loading ? "Loading tracker records…" : this.error || "No snapshot loaded.", tone: this.error ? "error" : "muted" }, { text: "R reload · b browse files · q close", tone: "muted" }] }];
+    if (this.screen === "actions") {
+      const target = this.target();
+      const record = target?.kind === "ticket" ? target.ticket : target?.initiative;
+      return [{
+        id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: [
+          { text: record ? `Target: ${record.id} · ${record.ref}` : "No selection", tone: "accent" },
+          ...this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" as const : "text" as const, selected: index === this.actionIndex })),
+        ]
+      }];
+    }
+    if (this.screen === "home") return [{ id: "home", title: "Initiatives · title / phase / Items", rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
+    if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
+    if (this.screen === "initiatives") return [this.graphPane()];
+    if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: this.ticket() && recordKind(this.ticket()!) !== "ticket" ? `${this.ticketType(this.ticket()!)} / recorded details` : "Ticket / dependencies / receipts", rows: this.ticketRows() }];
+    if (this.eventDetail) return [{ id: `receipt:${this.ticketId}:${this.selectedEvent()?.id ?? "none"}`, title: "Event detail · outcome / body / exact evidence", rows: this.eventRows() }];
+    const workflow = this.workflow();
+    const events = this.history();
+    const selected = this.selectedEvent();
+    return [{
+      id: `receipts:${this.ticketId}`, title: "Events / newest first",
+      rows: [
+        ...(events.length ? events.map(event => ({
+          text: "", event, receiptId: event.id,
+          selected: event.id === selected?.id, tone: event.error ? "warning" as const : "text" as const,
+        })) : [{ text: workflow?.error ? `History unreadable: ${workflow.error}` : workflow ? "No events recorded." : "Loading history…", tone: workflow?.error ? "error" as const : "muted" as const }]),
+        ...(workflow?.error && events.length ? [{ text: `History warning: ${workflow.error}`, tone: "warning" as const }] : []),
+        { text: "Dependencies / unresolved blockers:", tone: "accent" },
+        ...this.neighborhoodRows(),
+      ],
+    }];
+  }
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 963-988
+  }
+
+  private queueRows(queue: Queue = this.queue): Row[] {
+    if (!this.snapshot) return [];
+    const rows: Row[] = [];
+    const ticketCount = this.snapshot.tickets.reduce((count, ticket) => count + Number(recordKind(ticket) === "ticket"), 0);
+    for (const ticket of this.snapshot.tickets) {
+      if (recordKind(ticket) !== "ticket") continue;
+      if (queue !== "all" && this.receiptChecks < ticketCount) continue;
+      const state = this.ticketState(ticket);
+      const inQueue = queue === "all" || queue === "ready" && state === "READY" || queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
+      if (inQueue) {
+        const row = this.childRow(ticket, false);
+        const workflow = this.workflows.get(ticket.id);
+        const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot, workflow, this.options.commands());
+        const reason = this.options.context.checkoutAvailable === false ? "No usable checkout." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state." : "");
+        const next = choices.find(choice => choice.action !== "ask-matt" && !choice.disabledReason);
+        row.fields!.next = reason ? `Unavailable: ${reason}` : next?.label ?? (workflow ? "No worktree transition available" : "Checking workflow receipts");
+        const latest = workflow?.recordedAttempts && !workflow.error && workflow.ticketId === ticket.id ? chronologicalReceipts(workflow.receipts).at(-1) : undefined;
+        row.fields!.activity = latest ? `${latest.phase} · ${latest.status} (${latest.id})` : workflow?.error ? "Unavailable; refresh workflow receipts" : workflow ? "No validated activity recorded" : "Checking workflow receipts";
+        rows.push(row);
+      }
+    }
+    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : queue === "all" ? "No tickets recorded. R refresh · h initiatives · b Files." : `No tickets in ${queue}. Choose 8 for all tickets · R refresh · h initiatives.`, tone: "muted" });
+    return rows;
+  }
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 999-1013
+  }
+
+  private graphPane(): Pane {
+    const initiative = this.initiative();
+    const rows: Row[] = (this.scopes.get(this.initiativeId ?? "") ?? []).flatMap(id => {
+      const ticket = this.tickets.get(id);
+      return ticket ? [this.childRow(ticket, id === this.ticketId)] : [];
+    });
+    if (!rows.length) rows.push({ text: "This collection is empty. No child items.", tone: "muted" });
+    if (this.screen === "initiatives" && initiative && this.lastWidth >= 70 && this.options.height() >= 16) {
+      const summary = initiative.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
+      rows.unshift({ text: `${initiative.id} · Phase: ${initiative.phase ?? "unavailable"}`, tone: "accent" }, { text: `Summary: ${summary ?? "No recorded summary."}`, tone: "muted" });
+    }
+    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Ungrouped"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
+  }
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 1121-1125
+  }
+
+  private navigation(): ExplorerNavigation {
+    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader, queueSelections: [...this.queueSelections], initiativeMemory: this.initiativeMemory, childSelections: [...this.childSelections] };
+  }
+

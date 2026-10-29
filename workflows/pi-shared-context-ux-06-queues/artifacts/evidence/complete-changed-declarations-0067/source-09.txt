@@ -1,0 +1,12 @@
+  }
+
+  private activateBreadcrumb(index: number): void {
+    const crumb = this.breadcrumbs()[index];
+    if (!crumb || index >= this.breadcrumbs().length - 1) return;
+    this.reader = undefined;
+    this.eventDetail = false;
+    if (crumb.screen === "home") this.returnHome();
+    else this.screen = crumb.screen;
+    this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
+    this.options.requestRender();
+  }

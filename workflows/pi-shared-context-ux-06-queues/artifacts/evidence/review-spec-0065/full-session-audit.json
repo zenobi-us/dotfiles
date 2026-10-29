@@ -1,0 +1,35 @@
+{
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T21-58-23-402Z_01a189ab-d9aa-7235-8ab1-77f253d9dcda.jsonl",
+  "session_id": "01a189ab-d9aa-7235-8ab1-77f253d9dcda",
+  "goal_id": "15b9b84d78259e26",
+  "native_status": "active",
+  "native_goal_used": 82215,
+  "native_goal_budget": 200000,
+  "raw_usage": {
+    "input": 80455,
+    "output": 1760,
+    "cacheWrite": 0,
+    "cacheRead": 1432448
+  },
+  "assistant_entries": 32,
+  "auxiliary_model_usage_entries": 0,
+  "provider_work_tokens": 82215,
+  "session_ceiling": 300000,
+  "under_cap": true,
+  "reported_provider_work_tokens": 82215,
+  "accounting_complete": true,
+  "unsettled_request": null,
+  "conservative_work_upper_bound": 82215,
+  "under_cap_basis": "All admitted requests settled with reported usage.",
+  "bound_violation": false,
+  "transport": {
+    "ceiling": 300000,
+    "guard_sha256": "fec08eb63867a87ca9727b179462e19b8a27854ab9d0e559319f8c25df794c0f",
+    "all_admissions_parallel_false": true,
+    "maximum_tool_calls_per_assistant": 1,
+    "stopped_next_reservation": 223666,
+    "stopped_next_total": 305881,
+    "valid_source_verdict": false,
+    "trigger": "After all complete source packets and the full change-index, the first unchangedaction authority output would exceed the remaining conservative input/full-output admission."
+  }
+}

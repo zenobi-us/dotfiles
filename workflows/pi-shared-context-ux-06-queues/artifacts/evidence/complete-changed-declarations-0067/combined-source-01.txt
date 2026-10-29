@@ -1,0 +1,88 @@
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts lines 191-211
+test("removing the active queue action target closes its menu and selects a surviving canonical ticket", async () => {
+  let data = structuredClone(snapshot);
+  const f = await fixture(data, 40, async () => data);
+  await f.modal.handleInput("8");
+  await f.modal.handleInput("\x1b[B");
+  await f.modal.handleInput("a");
+  expect(f.view()).toContain("Open a fresh chat");
+  data = {
+    ...data,
+    tickets: data.tickets.filter(ticket => ticket.id !== "T-2"),
+    initiatives: data.initiatives.map(item => ({ ...item, ticketIds: item.ticketIds.filter(id => id !== "T-2") })),
+  };
+  await f.component.load();
+  expect(f.view()).not.toContain("Open a fresh chat");
+  expect(f.view()).toContain("Ticket queues");
+  await f.modal.handleInput("m");
+  const result = f.result();
+  if (result?.kind !== "session" || result.request.target.kind !== "ticket") throw new Error("Expected surviving queue target");
+  expect(result.request.target.ticket.ref).toBe("tracker/tickets/T-3.md");
+  expect(result.navigation.screen).toBe("queues");
+});
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 1-10
+import { join } from "node:path";
+import { resolveContextRecord, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
+import type { Theme } from "@earendil-works/pi-coding-agent";
+import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
+import { actionChoices } from "./actions";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+import { chronologicalReceipts, isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+import { safeTerminalText } from "./terminal-text";
+import type { ExplorerEvent } from "./model";
+import { DirectoryMonitor, type WatchTarget } from "./watch";
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 14-15
+type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
+type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string; next?: string; activity?: string } };
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 20-38
+type DescriptionReader = { kind: "initiative" | "ticket"; ref: string; focus: ExplorerNavigation["focus"] };
+
+export interface ExplorerNavigation {
+  screen: Screen;
+  initiativeId?: string;
+  ticketId?: string;
+  receiptId?: string;
+  eventDetail?: boolean;
+  queue: Queue;
+  focus: "list" | "detail" | "neighborhood" | "breadcrumb" | "description" | "return";
+  offsets: [string, number][];
+  homeIndex?: number;
+  itemOrigin?: "initiatives" | "queues";
+  queueIndex?: number;
+  queueSelections?: [Queue, { identity?: string; index: number }][];
+  initiativeMemory?: { initiativeId?: string; ticketId?: string; receiptId?: string };
+  childSelections?: [string, string][];
+  reader?: DescriptionReader;
+}
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 80-82
+  private childSelections = new Map<string, string>();
+  private queueSelections = new Map<Queue, { identity?: string; index: number }>();
+  private initiativeMemory?: ExplorerNavigation["initiativeMemory"];
+
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 115-135
+  private pollingSource = false;
+
+  constructor(private options: ExplorerOptions) {
+    options.context.checkoutAvailable ??= options.checkoutAvailable ?? true;
+    const navigation = options.navigation;
+    this.screen = navigation?.screen ?? "home";
+    this.queue = navigation?.queue ?? "ready";
+    this.initiativeId = navigation?.initiativeId;
+    this.ticketId = navigation?.ticketId;
+    this.receiptId = navigation?.receiptId;
+    this.eventDetail = navigation?.eventDetail ?? false;
+    this.focus = navigation?.focus ?? "list";
+    this.offsets = new Map(navigation?.offsets ?? []);
+    this.homeIndex = navigation?.homeIndex ?? 0;
+    this.queueIndex = navigation?.queueIndex ?? 0;
+    this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
+    this.reader = navigation?.reader;
+    this.queueSelections = new Map(navigation?.queueSelections ?? []);
+    this.initiativeMemory = navigation?.initiativeMemory;
+    this.childSelections = new Map(navigation?.childSelections ?? []);
+  }
+

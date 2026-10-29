@@ -1,0 +1,21 @@
+  private pollingSource = false;
+
+  constructor(private options: ExplorerOptions) {
+    options.context.checkoutAvailable ??= options.checkoutAvailable ?? true;
+    const navigation = options.navigation;
+    this.screen = navigation?.screen ?? "home";
+    this.queue = navigation?.queue ?? "ready";
+    this.initiativeId = navigation?.initiativeId;
+    this.ticketId = navigation?.ticketId;
+    this.receiptId = navigation?.receiptId;
+    this.eventDetail = navigation?.eventDetail ?? false;
+    this.focus = navigation?.focus ?? "list";
+    this.offsets = new Map(navigation?.offsets ?? []);
+    this.homeIndex = navigation?.homeIndex ?? 0;
+    this.queueIndex = navigation?.queueIndex ?? 0;
+    this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
+    this.reader = navigation?.reader;
+    this.queueSelections = new Map(navigation?.queueSelections ?? []);
+    this.initiativeMemory = navigation?.initiativeMemory;
+    this.childSelections = new Map(navigation?.childSelections ?? []);
+  }

@@ -1,0 +1,24 @@
+        focus = compact ? "detail" : "list";
+      } else if (this.screen === "tickets" && this.ticket() && recordKind(this.ticket()!) === "ticket") {
+        this.screen = "receipts";
+        this.eventDetail = false;
+        focus = "list";
+        if (!this.history().some(receipt => receipt.id === this.receiptId)) this.receiptId = this.history()[0]?.id;
+      }
+      this.focus = focus;
+      this.notice = "";
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "a") && this.screen !== "actions" && this.choices().length) {
+      this.returnScreen = this.screen;
+      this.returnFocus = this.focus;
+      this.screen = "actions";
+      this.actionIndex = 0;
+      this.focus = "list";
+      this.options.requestRender();
+      return;
+    }
+    const choice = this.choices().find(action => matchesKey(data, action.key));
+    if (choice) this.chooseAction(choice);
+  }

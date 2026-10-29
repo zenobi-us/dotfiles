@@ -1,0 +1,242 @@
+[
+  {
+    "name": "read",
+    "args": {
+      "i": "Load mandatory review skill first",
+      "path": "skill://code-review"
+    },
+    "ctx": 20639
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load plain language rules",
+      "path": "skill://iso-24495-1"
+    },
+    "ctx": 22758
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load technical English skill",
+      "path": "skill://asd-ste100"
+    },
+    "ctx": 24652
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load code comment review rules",
+      "path": "skill://code-comments"
+    },
+    "ctx": 29366
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load TypeScript review guidance",
+      "path": "skill://typescript"
+    },
+    "ctx": 30973
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load mandatory Markdown query skill",
+      "path": "skill://mq-query"
+    },
+    "ctx": 33284
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load artifact creation reference",
+      "path": "skill://mq-query/references/tasks/creating.md"
+    },
+    "ctx": 34131
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load required CLI reference",
+      "path": "skill://mq-query/references/docs/cli.md"
+    },
+    "ctx": 34733
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load technical report guidance",
+      "path": "skill://iso-24495-3"
+    },
+    "ctx": 37637
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load report design rules",
+      "path": "skill://iso-24495-5"
+    },
+    "ctx": 39139
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load documentation assessment skill",
+      "path": "skill://review-documentation"
+    },
+    "ctx": 42449
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load required reading reference",
+      "path": "skill://mq-query/references/tasks/reading.md"
+    },
+    "ctx": 43101
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load shared-context artifact rules",
+      "path": "skill://shared-context"
+    },
+    "ctx": 43605
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load general clarity skill",
+      "path": "skill://iso-24495"
+    },
+    "ctx": 45326
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect complete changed existing test case",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-01.txt:1-22:raw"
+    },
+    "ctx": 50750
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer source lines 1–199",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-02.txt:1-200:raw"
+    },
+    "ctx": 51094
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer source lines 200–343",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-03.txt:1-145:raw"
+    },
+    "ctx": 53258
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer source lines 344–524",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-04.txt:1-182:raw"
+    },
+    "ctx": 55262
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer source lines 525–711",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-05.txt:1-188:raw"
+    },
+    "ctx": 57551
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer source lines 712–851",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-06.txt:1-141:raw"
+    },
+    "ctx": 59868
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer source lines 852–976",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-07.txt:1-126:raw"
+    },
+    "ctx": 62289
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer source lines 977–1098",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-08.txt:1-123:raw"
+    },
+    "ctx": 64668
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect explorer source lines 1099–1239",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-09.txt:1-142:raw"
+    },
+    "ctx": 66958
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect final explorer source lines",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-10.txt:1-5:raw"
+    },
+    "ctx": 69308
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect complete new modal queue tests",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/source-11.txt:1-167:raw"
+    },
+    "ctx": 69428
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect complete removal and change index",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/change-index.json"
+    },
+    "ctx": 71723
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete change index without structural elision",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/change-index.json:1-230:raw"
+    },
+    "ctx": 72011
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect next contiguous deletion-index window",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/change-index.json:231-490:raw"
+    },
+    "ctx": 73829
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect remaining complete change index",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-deduplicated-inputs-0063/change-index.json:491-744:raw"
+    },
+    "ctx": 75789
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect authoritative workflow action rules",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.actions&raw=true"
+    },
+    "ctx": 77324
+  }
+]

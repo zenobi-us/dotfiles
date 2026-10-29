@@ -1,0 +1,26 @@
+  }
+
+  private queueRows(queue: Queue = this.queue): Row[] {
+    if (!this.snapshot) return [];
+    const rows: Row[] = [];
+    const ticketCount = this.snapshot.tickets.reduce((count, ticket) => count + Number(recordKind(ticket) === "ticket"), 0);
+    for (const ticket of this.snapshot.tickets) {
+      if (recordKind(ticket) !== "ticket") continue;
+      if (queue !== "all" && this.receiptChecks < ticketCount) continue;
+      const state = this.ticketState(ticket);
+      const inQueue = queue === "all" || queue === "ready" && state === "READY" || queue === "review" && ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(state) || queue === "blocked" && ["BLOCKED", "ERROR", "UNKNOWN"].includes(state);
+      if (inQueue) {
+        const row = this.childRow(ticket, false);
+        const workflow = this.workflows.get(ticket.id);
+        const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot, workflow, this.options.commands());
+        const reason = this.options.context.checkoutAvailable === false ? "No usable checkout." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state." : "");
+        const next = choices.find(choice => choice.action !== "ask-matt" && !choice.disabledReason);
+        row.fields!.next = reason ? `Unavailable: ${reason}` : next?.label ?? (workflow ? "No worktree transition available" : "Checking workflow receipts");
+        const latest = workflow?.recordedAttempts && !workflow.error && workflow.ticketId === ticket.id ? chronologicalReceipts(workflow.receipts).at(-1) : undefined;
+        row.fields!.activity = latest ? `${latest.phase} · ${latest.status} (${latest.id})` : workflow?.error ? "Unavailable; refresh workflow receipts" : workflow ? "No validated activity recorded" : "Checking workflow receipts";
+        rows.push(row);
+      }
+    }
+    if (!rows.length) rows.push({ text: this.receiptChecks < ticketCount ? "Checking workflow receipts before offering work…" : queue === "all" ? "No tickets recorded. R refresh · h initiatives · b Files." : `No tickets in ${queue}. Choose 8 for all tickets · R refresh · h initiatives.`, tone: "muted" });
+    return rows;
+  }

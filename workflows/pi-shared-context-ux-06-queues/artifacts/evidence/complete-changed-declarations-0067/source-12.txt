@@ -1,0 +1,35 @@
+  }
+
+  private panes(): Pane[] {
+    if (this.loading || this.error || !this.snapshot) return [{ id: "state", title: "Shared context", rows: [{ text: this.loading ? "Loading tracker records…" : this.error || "No snapshot loaded.", tone: this.error ? "error" : "muted" }, { text: "R reload · b browse files · q close", tone: "muted" }] }];
+    if (this.screen === "actions") {
+      const target = this.target();
+      const record = target?.kind === "ticket" ? target.ticket : target?.initiative;
+      return [{
+        id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: [
+          { text: record ? `Target: ${record.id} · ${record.ref}` : "No selection", tone: "accent" },
+          ...this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" as const : "text" as const, selected: index === this.actionIndex })),
+        ]
+      }];
+    }
+    if (this.screen === "home") return [{ id: "home", title: "Initiatives · title / phase / Items", rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
+    if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
+    if (this.screen === "initiatives") return [this.graphPane()];
+    if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: this.ticket() && recordKind(this.ticket()!) !== "ticket" ? `${this.ticketType(this.ticket()!)} / recorded details` : "Ticket / dependencies / receipts", rows: this.ticketRows() }];
+    if (this.eventDetail) return [{ id: `receipt:${this.ticketId}:${this.selectedEvent()?.id ?? "none"}`, title: "Event detail · outcome / body / exact evidence", rows: this.eventRows() }];
+    const workflow = this.workflow();
+    const events = this.history();
+    const selected = this.selectedEvent();
+    return [{
+      id: `receipts:${this.ticketId}`, title: "Events / newest first",
+      rows: [
+        ...(events.length ? events.map(event => ({
+          text: "", event, receiptId: event.id,
+          selected: event.id === selected?.id, tone: event.error ? "warning" as const : "text" as const,
+        })) : [{ text: workflow?.error ? `History unreadable: ${workflow.error}` : workflow ? "No events recorded." : "Loading history…", tone: workflow?.error ? "error" as const : "muted" as const }]),
+        ...(workflow?.error && events.length ? [{ text: `History warning: ${workflow.error}`, tone: "warning" as const }] : []),
+        { text: "Dependencies / unresolved blockers:", tone: "accent" },
+        ...this.neighborhoodRows(),
+      ],
+    }];
+  }

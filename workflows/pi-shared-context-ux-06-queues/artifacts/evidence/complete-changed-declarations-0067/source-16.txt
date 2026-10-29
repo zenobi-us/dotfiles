@@ -1,0 +1,43 @@
+  }
+
+  private fieldLines(fields: NonNullable<Row["fields"]>, width: number): string[] {
+    const th = this.options.theme;
+    const title = this.clean(fields.title);
+    const state = this.clean(fields.state);
+    const isInitiative = fields.count !== undefined;
+    const stateTone: Tone = /^(done|completed|closed)$/i.test(state) ? "success" : /error|failed|blocked/i.test(state) ? "warning" : "accent";
+    const secondary = isInitiative ? `Phase: ${state}` : `State: ${state}`;
+    const count = isInitiative ? `Items: ${fields.count}` : "";
+    const identity = this.clean(fields.identity ?? "");
+    const lines: string[] = [];
+    if (width >= 65 && isInitiative) {
+      const phaseWidth = Math.min(24, Math.max(18, visibleWidth(secondary)));
+      const countWidth = 11;
+      const titleWidth = Math.max(1, width - phaseWidth - countWidth - 4);
+      for (const [index, line] of wrapTextWithAnsi(title, titleWidth).entries()) lines.push(th.fg("text", this.pad(line, titleWidth)) + "  " + th.fg(stateTone, this.pad(index === 0 ? secondary : "", phaseWidth)) + "  " + th.fg("muted", this.pad(index === 0 ? count : "", countWidth)));
+    } else if (width >= 85) {
+      const typeWidth = 14;
+      const idWidth = 16;
+      const stateWidth = 18;
+      const titleWidth = width - typeWidth - idWidth - stateWidth - 6;
+      for (const [index, line] of wrapTextWithAnsi(title, titleWidth).entries()) {
+        lines.push(th.fg("accent", this.pad(index === 0 ? this.clean(`[${fields.type}]`) : "", typeWidth)) + "  "
+          + th.fg("muted", this.pad(index === 0 ? identity : "", idWidth)) + "  "
+          + th.fg("text", this.pad(line, titleWidth)) + "  "
+          + th.fg(stateTone, this.pad(index === 0 ? secondary : "", stateWidth)));
+      }
+      if (visibleWidth(identity) > idWidth) lines.push(...wrapTextWithAnsi(`ID: ${identity}`, width).map(line => th.fg("muted", line)));
+      if (visibleWidth(this.clean(`[${fields.type}]`)) > typeWidth) lines.push(...wrapTextWithAnsi(this.clean(`Type: ${fields.type}`), width).map(line => th.fg("accent", line)));
+      if (visibleWidth(secondary) > stateWidth) lines.push(...wrapTextWithAnsi(secondary, width).map(line => th.fg(stateTone, line)));
+    } else {
+      if (!isInitiative) lines.push(...wrapTextWithAnsi(this.clean(`[${fields.type}]`) + `  ID: ${identity}`, width).map(line => th.fg("accent", line)));
+      lines.push(...wrapTextWithAnsi(title, width).map(line => th.fg("text", line)));
+      lines.push(...wrapTextWithAnsi(secondary, width).map(line => th.fg(stateTone, line)));
+      if (count) lines.push(...wrapTextWithAnsi(count, width).map(line => th.fg("muted", line)));
+    }
+    if (isInitiative) lines.push(...wrapTextWithAnsi(identity, width).map(line => th.fg("muted", line)));
+    if (fields.next) lines.push(...wrapTextWithAnsi(this.clean(`Next: ${fields.next}`), width).map(line => th.fg("accent", line)));
+    if (fields.activity) lines.push(...wrapTextWithAnsi(this.clean(`Recorded: ${fields.activity}`), width).map(line => th.fg("muted", line)));
+    if (fields.supporting) lines.push(...wrapTextWithAnsi(this.clean(fields.supporting), width).map(line => th.fg("muted", line)));
+    return lines;
+  }
