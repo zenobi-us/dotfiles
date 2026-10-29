@@ -1,0 +1,217 @@
+         this.loading = false;
+       }
+       if (!this.disposed) this.options.requestRender();
+     }
+   }
+ 
+   private restoreHomeSelection(target: ExplorerTarget | undefined): void {
+     const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+-    if (screen !== "home" && screen !== "queues") return;
+-    const rows = screen === "home" ? this.homeRows() : this.queueRows();
++    if (screen === "queues") { this.reconcileQueues(); return; }
++    if (screen !== "home") return;
++    const rows = this.homeRows();
+     const index = target ? rows.findIndex(row => row.target?.kind === target.kind && (row.target.kind === "ticket" ? row.target.ticket.ref === (target.kind === "ticket" && target.ticket.ref) : row.target.initiative.ref === (target.kind === "initiative" && target.initiative.ref))) : -1;
+-    const previous = screen === "home" ? this.homeIndex : this.queueIndex;
++    const previous = this.homeIndex;
+     const next = index >= 0 ? index : Math.max(0, Math.min(previous, rows.length - 1));
+     if (target && index < 0) this.notice = "Selected record was removed from this view. Selected a nearby record.";
+-    if (screen === "home") this.homeIndex = next;
+-    else this.queueIndex = next;
++    this.homeIndex = next;
++  }
++
++  private queueIdentity(target: ExplorerTarget | undefined): string | undefined {
++    return target?.kind === "ticket" ? JSON.stringify([target.ticket.backend, target.ticket.ref]) : undefined;
++  }
++
++  private selectQueue(index: number): void {
++    const rows = this.queueRows();
++    this.queueIndex = Math.max(0, Math.min(index, rows.length - 1));
++    this.queueSelections.set(this.queue, { index: this.queueIndex, identity: this.queueIdentity(rows[this.queueIndex]?.target) });
++  }
++
++  private reconcileQueues(): void {
++    for (const [queue, saved] of this.queueSelections) {
++      if (queue !== "all" && this.snapshot && this.receiptChecks < this.snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").length) continue;
++      const rows = this.queueRows(queue);
++      const index = saved.identity ? rows.findIndex(row => this.queueIdentity(row.target) === saved.identity) : -1;
++      const next = index >= 0 ? index : Math.max(0, Math.min(saved.index, rows.length - 1));
++      if (saved.identity && index < 0 && queue === this.queue) this.notice = "Selected ticket left this queue. Selected a nearby ticket or an empty queue.";
++      this.queueSelections.set(queue, { index: next, identity: this.queueIdentity(rows[next]?.target) });
++      if (queue === this.queue) this.queueIndex = next;
++    }
++  }
++
++  private openQueue(queue: Queue): void {
++    if (!this.initiativeMemory) this.initiativeMemory = { initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId };
++    this.queue = queue;
++    this.screen = "queues";
++    this.focus = "list";
++    this.reconcileQueues();
++    this.selectQueue(this.queueSelections.get(queue)?.index ?? 0);
++  }
++
++  private returnHome(): void {
++    if (this.initiativeMemory) {
++      this.initiativeId = this.initiativeMemory.initiativeId;
++      this.ticketId = this.initiativeMemory.ticketId;
++      this.receiptId = this.initiativeMemory.receiptId;
++      this.initiativeMemory = undefined;
++    }
++    this.screen = "home";
++    this.itemOrigin = "initiatives";
+   }
+ 
+   private refreshFailed(error: unknown): void {
+     if (this.disposed) return;
+     this.refreshError = `Live refresh failed: ${error instanceof Error ? error.message : String(error)}`;
+     this.options.requestRender();
+   }
+ 
+@@ -451,17 +505,18 @@ export class GraphExplorer {
+     return crumbs;
+   }
+ 
+   private activateBreadcrumb(index: number): void {
+     const crumb = this.breadcrumbs()[index];
+     if (!crumb || index >= this.breadcrumbs().length - 1) return;
+     this.reader = undefined;
+     this.eventDetail = false;
+-    this.screen = crumb.screen;
++    if (crumb.screen === "home") this.returnHome();
++    else this.screen = crumb.screen;
+     this.focus = crumb.screen === "tickets" && (this.lastWidth < 70 || this.options.height() < 16) ? "detail" : "list";
+     this.options.requestRender();
+   }
+ 
+   handleMouse(event: TuiMouseEvent): TuiMouseEventResult | undefined {
+     if (event.type !== "click" || event.button !== "left") return;
+     const control = this.controlHits.find(hit => hit.y === event.y && event.x >= hit.x && event.x < hit.x + hit.width);
+     if (control) {
+@@ -497,24 +552,24 @@ export class GraphExplorer {
+     if (matchesKey(data, "q") || matchesKey(data, "ctrl+c")) {
+       this.options.done(undefined);
+       return;
+     }
+     if (matchesKey(data, "b")) {
+       this.options.done({ kind: "files", navigation: this.navigation() });
+       return;
+     }
+-    if (matchesKey(data, "shift+r")) {
++    if (data === "R" || matchesKey(data, "shift+r")) {
+       void this.load();
+       return;
+     }
+     if (matchesKey(data, "home") || matchesKey(data, "h")) {
+       this.reader = undefined;
+       this.eventDetail = false;
+-      this.screen = "home";
++      this.returnHome();
+       this.focus = "list";
+       this.notice = "";
+       this.options.requestRender();
+       return;
+     }
+     if (matchesKey(data, "escape") || matchesKey(data, "left") && this.focus !== "breadcrumb" || matchesKey(data, "backspace")) {
+       if (this.reader) { this.closeDescription(); return; }
+       let focus: ExplorerNavigation["focus"] = "list";
+@@ -525,30 +580,28 @@ export class GraphExplorer {
+         this.options.requestRender();
+         return;
+       }
+       else if (this.screen === "receipts") {
+         this.screen = "tickets";
+         focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
+       }
+       else if (this.screen === "tickets") this.screen = this.itemOrigin;
+-      else if (this.screen === "initiatives" || this.screen === "queues") this.screen = "home";
++      else if (this.screen === "initiatives" || this.screen === "queues") this.returnHome();
+       else { if (matchesKey(data, "escape") && this.options.projects) this.options.projects(); else this.options.done(undefined); return; }
+       this.focus = focus;
+-      this.notice = "";
++      if (this.screen !== "queues") this.notice = "";
+       this.options.requestRender();
+       return;
+     }
+     if (this.loading || this.error || !this.snapshot) return;
+     if (this.screen === "home" || this.screen === "queues") {
+       const filter = ([["5", "ready"], ["6", "review"], ["7", "blocked"], ["8", "all"]] as const).find(([key]) => matchesKey(data, key))?.[1];
+       if (filter) {
+-        this.queue = filter;
+-        this.screen = "queues";
+-        this.queueIndex = 0;
++        this.openQueue(filter);
+         this.options.requestRender();
+         return;
+       }
+     }
+     if (this.focus === "breadcrumb" && !matchesKey(data, "tab") && !matchesKey(data, "shift+tab")) {
+       const lastAncestor = this.breadcrumbs().length - 2;
+       if (matchesKey(data, "right") || matchesKey(data, "down")) this.breadcrumbIndex = Math.min(lastAncestor, this.breadcrumbIndex + 1);
+       else if (matchesKey(data, "left") || matchesKey(data, "up")) this.breadcrumbIndex = Math.max(0, this.breadcrumbIndex - 1);
+@@ -591,21 +644,21 @@ export class GraphExplorer {
+         if (pane) this.offsets.set(pane.id, Math.max(0, (this.offsets.get(pane.id) ?? 0) + delta));
+       } else if (this.screen === "actions") {
+         this.actionIndex = Math.max(0, Math.min(this.choices().length - 1, this.actionIndex + delta));
+       } else if (this.focus === "neighborhood") {
+         this.neighborhoodIndex = Math.max(0, Math.min(this.neighborhoodRows().length - 1, this.neighborhoodIndex + delta));
+       } else if (this.screen === "home") {
+         this.homeIndex = Math.max(0, Math.min(this.homeRows().length - 1, this.homeIndex + delta));
+       } else if (this.screen === "queues") {
+-        this.queueIndex = Math.max(0, Math.min(this.queueRows().length - 1, this.queueIndex + delta));
++        this.selectQueue(this.queueIndex + delta);
+       } else if (this.screen === "initiatives" || this.screen === "tickets") {
+         const ids = this.scopes.get(this.initiativeId ?? "") ?? [];
+         this.ticketId = ids[Math.max(0, Math.min(ids.length - 1, ids.indexOf(this.ticketId ?? "") + delta))];
+-        if (this.ticketId && this.initiativeId) this.childSelections.set(this.initiativeId, this.ticketId);
++        if (this.ticketId && this.initiativeId && this.itemOrigin !== "queues") this.childSelections.set(this.initiativeId, this.ticketId);
+       } else {
+         const receipts = this.history();
+         const index = Math.max(0, receipts.findIndex(receipt => receipt.id === this.receiptId));
+         this.receiptId = receipts[Math.max(0, Math.min(receipts.length - 1, index + delta))]?.id;
+       }
+       this.notice = "";
+       this.options.requestRender();
+       return;
+@@ -629,16 +682,17 @@ export class GraphExplorer {
+           this.screen = "tickets";
+           focus = compact ? "detail" : "list";
+         }
+       } else if (this.screen === "home") {
+         const target = this.homeRows()[this.homeIndex]?.target;
+         if (target?.kind === "initiative") {
+           this.initiativeId = target.initiative.id;
+           const saved = this.childSelections.get(this.initiativeId);
++          this.itemOrigin = "initiatives";
+           this.ticketId = saved && target.initiative.ticketIds.includes(saved) ? saved : target.initiative.ticketIds[0];
+           this.screen = "initiatives";
+           focus = "list";
+         }
+       } else if (this.screen === "queues") {
+         const target = this.queueRows()[this.queueIndex]?.target;
+         if (target?.kind === "ticket") {
+           this.ticketId = target.ticket.id;
+@@ -810,17 +864,26 @@ export class GraphExplorer {
+       if (index < crumbs.length - 1) this.breadcrumbHits.push({ x, y: compact ? 0 : 1, width: visibleWidth(text), index });
+       x += visibleWidth(text) + 3;
+       return this.options.theme.fg(index < crumbs.length - 1 ? "accent" : "text", text);
+     }).join(this.options.theme.fg("muted", " > "));
+   }
+ 
+   private panes(): Pane[] {
+     if (this.loading || this.error || !this.snapshot) return [{ id: "state", title: "Shared context", rows: [{ text: this.loading ? "Loading tracker records…" : this.error || "No snapshot loaded.", tone: this.error ? "error" : "muted" }, { text: "R reload · b browse files · q close", tone: "muted" }] }];
+-    if (this.screen === "actions") return [{ id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" : "text", selected: index === this.actionIndex })) }];
++    if (this.screen === "actions") {
++      const target = this.target();
++      const record = target?.kind === "ticket" ? target.ticket : target?.initiative;
++      return [{
++        id: "actions", title: "Open a fresh chat · commands are staged, not auto-sent", rows: [
++          { text: record ? `Target: ${record.id} · ${record.ref}` : "No selection", tone: "accent" },
++          ...this.choices().map((choice, index) => ({ text: `[${choice.key}] ${choice.label}${choice.disabledReason ? ` — ${choice.disabledReason}` : ""}`, tone: choice.disabledReason ? "warning" as const : "text" as const, selected: index === this.actionIndex })),
++        ]
++      }];
++    }
+     if (this.screen === "home") return [{ id: "home", title: "Initiatives · title / phase / Items", rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
+     if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
+     if (this.screen === "initiatives") return [this.graphPane()];

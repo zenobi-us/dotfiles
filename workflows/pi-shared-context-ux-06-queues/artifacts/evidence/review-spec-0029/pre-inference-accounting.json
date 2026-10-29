@@ -1,0 +1,32 @@
+{
+  "status": "blocked_before_inference",
+  "role": "spec",
+  "packet_bytes": 131521,
+  "first_request_input_allowance": 117904,
+  "full_output_reserve": 128000,
+  "framing_reserve": 4096,
+  "ceiling": 250000,
+  "provider_calls": 0,
+  "provider_work_tokens": 0,
+  "auxiliary_model_usage_entries": 0,
+  "accounting_complete": true,
+  "under_cap": true,
+  "persisted_session_exists": false,
+  "session_id": null,
+  "reported_session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T10-30-51-144Z_01a18736-6408-7261-aac9-31f8abee9fc1.jsonl",
+  "guard_events": [
+    {
+      "at": "2026-10-29T10:30:51.338Z",
+      "event": "ready",
+      "spent": 0,
+      "ceiling": 250000,
+      "model": "gpt-6.1-sol",
+      "outputMaximum": 128000,
+      "transport": "stateless SSE"
+    }
+  ],
+  "reason": "Startup packet alone is131521bytes, exceeding117904available before any mandatory runtime context. Native startup caches the resolved append prompt; no supported safe in-place replacement was confirmed. No request was sent.",
+  "cycle_consumed": true,
+  "cycle_number": 9,
+  "limits_reset": false
+}

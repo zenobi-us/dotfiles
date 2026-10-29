@@ -1,0 +1,72 @@
+{
+  "state": "prepared_waiting_user_authority",
+  "source": {
+    "commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+    "tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+    "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+    "baseTree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b"
+  },
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md"
+  ],
+  "diff_command": "git diff 6f959f8c380efe378f4a0f2eeffcd3660c803859...20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "diff_chunks": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/source-diff-01.diff",
+      "start_line": 1,
+      "end_line": 187,
+      "bytes": 11978
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/source-diff-02.diff",
+      "start_line": 188,
+      "end_line": 404,
+      "bytes": 11989
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/source-diff-03.diff",
+      "start_line": 405,
+      "end_line": 543,
+      "bytes": 11826
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/source-diff-04.diff",
+      "start_line": 544,
+      "end_line": 708,
+      "bytes": 10231
+    }
+  ],
+  "authorities": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json",
+  "canonical_ticket": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "canonical_initiative": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "validation_refs": [
+    "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+    "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json",
+    "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/post-source-check/command.json"
+  ],
+  "report_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/report/index.html",
+  "instructions": [
+    "Keep initial startup handoff below24000bytes; include scope/paths/contracts and canonical ticket, not full diff/authorities/spec/observations/duplicate navigation text.",
+    "Read every complete diff chunk; no scope reduction. Each chunk is at most12000bytes. Read the canonical initiative with MQ and related source only in bounded responses; do not batch all those outputs into one request tail.",
+    "Matching skills and all12Fowler heuristics/all12acceptancecriteria remain mandatory in the appropriate independent axes. No skillcatalog filtering, guard/model/provider/ceiling change, resume/reset, helper models or transferred allowance.",
+    "Use genuinely fresh Standards, Spec and main sessions only after explicit renewed authority. Every previously opened source/review process remains conservatively consumed, including the two0-inference launches.",
+    "No source changes or ownership/status changes. Final frozen source remains20968ee4. Three independent valid source verdicts and finish remain required."
+  ],
+  "required_authority": {
+    "ticket_id": "pi-shared-context-ux-06-queues",
+    "current_ticket_cycle_limit": 10,
+    "requested_total_ticket_cycle_limit": 12,
+    "current_cycles_consumed": 9,
+    "requested_additional_ticket_cycles": 2,
+    "current_dispatch_cap": 55,
+    "current_dispatches_reserved": 55,
+    "requested_total_dispatch_cap": 59,
+    "requested_additional_dispatch_slots": 4,
+    "remaining_dispatches": "3freshAIreviews +1coordinator-onlyfinish",
+    "per_session_work_cap_unchanged": 250000,
+    "approved": false
+  }
+}

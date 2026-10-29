@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pi-shared-context-ux-06-queues — exact-source native queue evidence</title>
+
+<!--
+  This report is self-contained. The assets/ directory is a sibling of this
+  file, so the report keeps working when it is moved, zipped, or attached to a
+  ticket. Do not change these paths to ../ or ../../.
+  Load order is tokens, base, then report. Do not add a <style> block.
+  See the writing-reports skill.
+-->
+<link rel="stylesheet" href="assets/theme/v1/tokens.css">
+<link rel="stylesheet" href="assets/theme/v1/base.css">
+<link rel="stylesheet" href="assets/report/v1/report.css">
+<script src="assets/lightbox/v1/lightbox.js"
+        data-figures=".figure"
+        data-caption=".figure__caption"
+        data-hint="Click image to zoom &middot; Esc to close"
+        data-label="Screenshot viewer"
+        defer></script>
+</head>
+<body>
+
+<!--
+  Strict BEM: every styled node carries a class. A node with no class is a node
+  with no style. The vocabulary is fixed - see references/markup.md in the
+  writing-reports skill. Do not invent a class.
+-->
+<div class="report">
+
+<h1 class="report__title">pi-shared-context-ux-06-queues — exact-source native queue evidence</h1>
+<p class="report__subtitle">Actual offline Pi 1.1.0 with the production extension, canonical MQ records and a validated implementation receipt. Source <code class="code">20968ee4f907c6f74bc77702fcef09578b41c6b8</code>; tree <code class="code">5f64cf06e76dba7e015b9cd54088bc73ae88771f</code>. This report proves exercised UI paths, not independent review or ticket completion.</p>
+<div class="card">
+  <h3 class="card__title">Result summary</h3>
+  <div class="summary"><table class="summary__grid">
+    <tr class="summary__row"><th class="summary__head">#</th><th class="summary__head">Check</th><th class="summary__head">Result</th></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#queues">1</a></td><td class="summary__cell"><a class="summary__link" href="#queues">Four queues, three sizes, colour and monochrome</a></td><td class="summary__cell"><a class="summary__link" href="#queues"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#navigation">2</a></td><td class="summary__cell"><a class="summary__link" href="#navigation">Canonical targets and retained navigation</a></td><td class="summary__cell"><a class="summary__link" href="#navigation"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#live">3</a></td><td class="summary__cell"><a class="summary__link" href="#live">Live selection and unreadable-refresh safety</a></td><td class="summary__cell"><a class="summary__link" href="#live"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#empty">4</a></td><td class="summary__cell"><a class="summary__link" href="#empty">Empty Review recovery without target actions</a></td><td class="summary__cell"><a class="summary__link" href="#empty"><span class="badge badge--pass">Pass</span></a></td></tr>
+    <tr class="summary__row"><td class="summary__cell"><a class="summary__link" href="#notdone">5</a></td><td class="summary__cell"><a class="summary__link" href="#notdone">Independent reviews, integration and pixel fidelity</a></td><td class="summary__cell"><a class="summary__link" href="#notdone"><span class="badge badge--info">Not covered</span></a></td></tr>
+  </table></div>
+  <p class="card__meta">The exact-source run passed 35 observations, including 24 queue matrix cases. Both owned native processes exited 0. Their temporary fixture was removed.</p>
+</div>
+<h2 class="report__section" id="queues">Queue roles and reflow <span class="badge badge--pass">Pass</span></h2>
+<p class="report__text">Ready, Review, Blocked and All ran at 40×12, 80×24 and 120×40 in both themes. At narrow widths, PgDn exposed the remaining fields without changing selection. The complete observation ledger travels in <a class="link" href="files/native-matrix.json">native-matrix.json</a>.</p>
+<figure class="figure"><img class="figure__image" src="shots/10-wide-review.png" alt="Wide Review queue with ticket V and separate state, next-action and recorded-receipt lines" width="1100" height="820"><figcaption class="figure__caption"><strong class="figure__label">Separate facts.</strong> Claimed is the canonical state. Review is the eligible next action. The validated recorded activity is implementation completed, not a running review.</figcaption></figure>
+<div class="figures figures--pair">
+  <figure class="figure"><img class="figure__image" src="shots/20-narrow-state.png" alt="First monochrome 40-column Review page with ticket identity, title and state" width="380" height="260"><figcaption class="figure__caption"><strong class="figure__label">Narrow identity.</strong> Type, stable ID and canonical state remain readable without colour.</figcaption></figure>
+  <figure class="figure"><img class="figure__image" src="shots/21-narrow-fields.png" alt="Paged monochrome 40-column Review content showing the remaining ticket fields" width="380" height="260"><figcaption class="figure__caption"><strong class="figure__label">Remaining fields.</strong> Paging reads the action and recorded receipt roles while retaining the same selected target.</figcaption></figure>
+</div>
+<figure class="figure"><img class="figure__image" src="shots/30-blocked-queue.png" alt="Monochrome 80-column Blocked queue with ticket B and blocker A00" width="740" height="500"><figcaption class="figure__caption"><strong class="figure__label">Blocker context.</strong> The unresolved direct blocker supports the ticket row. It does not replace the canonical state.</figcaption></figure>
+<h2 class="report__section" id="navigation">Canonical targets and retained views <span class="badge badge--pass">Pass</span></h2>
+<p class="report__text">The native run opened canonical V with initiative I and canonical U with Ungrouped context. Esc restored the exact queue screen content. A separately scrolled queue also retained its viewport. Tracker→Files→Tracker retained the queue state. Action inspection identified V and its canonical ticket reference; no workflow command was dispatched.</p>
+<figure class="figure"><img class="figure__image" src="shots/40-review-return.png" alt="Review queue restored with canonical tracker/tickets/V.md selected" width="1100" height="820"><figcaption class="figure__caption"><strong class="figure__label">Return target.</strong> The screen-cell comparison matched the saved origin. Cursor metadata was not mistaken for changed selection or scroll.</figcaption></figure>
+<h2 class="report__section" id="live">Live membership and failed refresh <span class="badge badge--pass">Pass</span></h2>
+<p class="report__text">A real canonical record insertion retained U. Completing U removed it from Ready, explained the departure and selected a different valid action target. An unreadable record retained the last readable rows and disabled unsafe actions with a reason. Restoring the record and refreshing cleared the error.</p>
+<figure class="figure"><img class="figure__image" src="shots/50-live-departure.png" alt="Ready queue after a selected ticket leaves, with an explanatory notice" width="1100" height="820"><figcaption class="figure__caption"><strong class="figure__label">Explained replacement.</strong> The departure notice prevents the replacement selection from appearing to be the old ticket.</figcaption></figure>
+<figure class="figure"><img class="figure__image" src="shots/60-disabled-after-error.png" alt="Canonical target action menu with live-refresh failure reasons" width="1100" height="820"><figcaption class="figure__caption"><strong class="figure__label">No unsafe transition.</strong> Action availability reflects the failed refresh. The run inspected the menu and did not execute a workflow.</figcaption></figure>
+<h2 class="report__section" id="empty">Empty Review recovery <span class="badge badge--pass">Pass</span></h2>
+<p class="report__text">After the Review ticket completed, the real queue became empty. Pressing a and r did not open target actions or dispatch Review. The recovery hint named the real All input, 8.</p>
+<figure class="figure"><img class="figure__image" src="shots/70-empty-no-actions.png" alt="Empty Review queue after action and Review keys, with the All recovery hint" width="1100" height="820"><figcaption class="figure__caption"><strong class="figure__label">No invented target.</strong> The empty queue stays an empty queue. It is not loading and has no stale ticket action menu.</figcaption></figure>
+<h2 class="report__section" id="method">Method and source mapping</h2>
+<p class="report__text">A temporary Git repository held real schema-versioned tickets and an initiative, resolved routes, a real Git source tuple and a validated implementation receipt. The registered worktree skill made Review eligibility real. No provider prompt, model inference or workflow dispatch ran in the native harness. The source checkout stayed clean and retained the exact commit and tree before and after observation.</p>
+<p class="report__text">The recorded full suite passed 152 tests with 2145 assertions across 13 files; the scoped compiler exited 0. Only the existing README changed after those runtime checks. The final-source native matrix then ran on the documentation commit itself. The docs session consumed 43280 whole-session work tokens including its final reply, not only its native goal meter.</p>
+<h2 class="report__section" id="notdone">Not covered</h2>
+<ul class="report__list">
+  <li class="report__item">Independent Standards, Spec and main reviews have not completed. The two prepared review launches were blocked before inference by oversized coordinator packets. This report is not a review verdict or approval.</li>
+  <li class="report__item">Integration, primary-checkout validation, product-code publication, canonical ticket completion and final worktree cleanup have not occurred.</li>
+  <li class="report__item">These PNGs rasterize actual Termscope SVG frames. The SVG fallback cannot establish exact terminal glyph or colour pixel fidelity. Raw text, JSON, HTML and spans remain in the original native evidence.</li>
+  <li class="report__item">Native observation used keyboard input. Permanent complete-modal checks cover terminal-control sanitization and additional input boundaries. No new mouse-specific native claim is made.</li>
+</ul>
+<h2 class="report__section" id="cleanup">Test data left behind</h2>
+<p class="report__text">Both fixture Pi processes exited 0. Temporary repository, home and config roots were removed and checked absent. Durable evidence remains. The owned source worktree, review workspace, nine ignored worktree dependency links and one ignored primary TypeScript link remain available for the pending reviews and finish. They use the existing dependency cache. Canonical tracker claim and status remain unchanged.</p>
+<h2 class="report__section" id="files">Portable proof companions</h2>
+<ul class="report__list">
+  <li class="report__item"><a class="link" href="files/native-matrix.json">Complete native matrix, commands and cleanup</a></li>
+  <li class="report__item"><a class="link" href="files/native-validation-receipt.json">Exact-source native validation receipt</a></li>
+  <li class="report__item"><a class="link" href="files/checks.json">Recorded full-suite and compiler output</a></li>
+  <li class="report__item"><a class="link" href="files/implementation-result.json">Actual implementation/documentation result</a></li>
+  <li class="report__item"><a class="link" href="files/docs-session-audit.json">Whole documentation-session accounting</a></li>
+  <li class="report__item"><a class="link" href="files/screenshot-provenance.json">Screenshot conversion and official size measurements</a></li>
+</ul>
+
+</div>
+
+</body>
+</html>

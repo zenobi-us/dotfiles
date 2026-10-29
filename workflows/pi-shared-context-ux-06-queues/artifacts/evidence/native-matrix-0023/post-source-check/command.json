@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+  "stderr": "\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts:\n(pass) four queues separate status, next action, recorded activity, and canonical targets [35.65ms]\n(pass) queue drill and Return retain selection, viewport, initiative child, and Files state [11.18ms]\n(pass) live queue membership preserves identity and explains departure; refresh errors retain data and restrict actions [7.88ms]\n(pass) empty queues have recovery but no action menu and All uses 8 [3.75ms]\n(pass) queue fields reflow in monochrome with Unicode and terminal-control sanitization [10.02ms]\n\nmise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts:\n(pass) event inspection separates execution and verdict, leads with body, and exposes full durable evidence [10.96ms]\n(pass) stable events survive insertions, Files, failed refresh, and keyboard or mouse ancestor return [12.00ms]\n(pass) event evidence reflows without terminal controls, keeps invalid raw fields, and distinguishes source freshness [46.39ms]\n\n 8 pass\n 0 fail\n 171 expect() calls\nRan 8 tests across 2 files. [167.00ms]\n",
+  "code": 0,
+  "executor": "Parent coordinator; no new AI session, no independent review claim"
+}

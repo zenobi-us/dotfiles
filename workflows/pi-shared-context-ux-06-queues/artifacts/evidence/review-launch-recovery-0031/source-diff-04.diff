@@ -1,0 +1,165 @@
++  return { graph, modal, workflows, snapshot: () => snapshot, replace: (next: ExplorerSnapshot) => { snapshot = next; }, fail: (value: boolean) => { failure = value; }, loads: () => loads, result: () => result, height: (value: number) => { height = value; }, view: (width = 120) => modal.render(width).map(stripTerminalSequences).join("\n"), key: (key: string) => modal.handleInput(key) };
++}
++
++test("four queues separate status, next action, recorded activity, and canonical targets", async () => {
++  const f = await fixture();
++  try {
++    await f.key("5");
++    expect(f.view()).toContain("Ticket queues · ready");
++    expect(f.view()).toContain("Work A");
++    expect(f.view()).not.toContain("Initiative only");
++    expect(f.view()).not.toContain("Work T");
++    expect(f.view()).toContain("Next: Start worktree");
++    await f.key("6");
++    expect(f.view()).toContain("Ticket queues · review");
++    expect(f.view()).toContain("State: claimed");
++    expect(f.view()).toContain("Next: Review");
++    expect(f.view()).toContain("Recorded: implementation · completed");
++    expect(f.view()).not.toContain("review · running");
++    await f.key("a");
++    expect(f.view()).toContain("Target: T · tracker/tickets/T.md");
++    await f.key("r");
++    const result = f.result();
++    expect(result?.kind).toBe("session");
++    if (result?.kind !== "session") throw new Error("Missing Review request");
++    expect(result.request.action).toBe("review");
++    expect(result.request.target).toMatchObject({ kind: "ticket", ticket: { id: "T", ref: "tracker/tickets/T.md" } });
++    await f.key("\x1b");
++    await f.key("7");
++    expect(f.view()).toContain("Work B");
++    expect(f.view()).toContain("Waiting for missing");
++    await f.key("a");
++    expect(f.view()).toContain("Unresolved or missing direct blockers");
++    await f.key("\x1b");
++    await f.key("8");
++    for (const id of ["A", "T", "B", "U"]) expect(f.view()).toContain(`Work ${id}`);
++  } finally { f.graph.dispose(); }
++});
++
++test("queue drill and Return retain selection, viewport, initiative child, and Files state", async () => {
++  const f = await fixture();
++  try {
++    await f.key("\r");
++    await f.key("\x1b[B");
++    await f.key("h");
++    await f.key("8");
++    await f.key("\x1b[B");
++    const origin = f.view();
++    await f.key("\r");
++    expect(f.view()).toContain("Canonical body T");
++    expect(f.view()).toContain("I");
++    await f.key("\x1b");
++    expect(f.view()).toBe(origin);
++    await f.key("2");
++    expect(f.view()).toContain("Independent Files cursor");
++    await f.key("1");
++    expect(f.view()).toBe(origin);
++    await f.key("\x1b[B");
++    await f.key("\x1b[B");
++    await f.key("\r");
++    expect(f.view()).toContain("Ungrouped");
++    expect(f.view()).toContain("Canonical body U");
++    await f.key("h");
++    await f.key("\r");
++    await f.key("\r");
++    expect(f.view()).toContain("Canonical body T");
++  } finally { f.graph.dispose(); }
++});
++
++test("live queue membership preserves identity and explains departure; refresh errors retain data and restrict actions", async () => {
++  const f = await fixture();
++  try {
++    await f.key("5");
++    await f.key("\x1b[B");
++    f.snapshot().tickets.unshift(ticket("NEW"));
++    await f.graph.load();
++    await f.key("a");
++    expect(f.view()).toContain("Target: U · tracker/tickets/U.md");
++    await f.key("\x1b");
++    f.snapshot().tickets.find(t => t.id === "U")!.status = "completed";
++    await f.graph.load();
++    expect(f.view()).toContain("left this queue");
++    await f.key("a");
++    expect(f.view()).toContain("Target: A · tracker/tickets/A.md");
++    await f.key("\x1b");
++    f.fail(true);
++    await f.key("R");
++    await new Promise(resolve => setTimeout(resolve, 0));
++    expect(f.view()).toContain("Work A");
++    expect(f.view()).toContain("store unavailable");
++    await f.key("a");
++    expect(f.view()).toContain("Live refresh failed");
++    await f.key("s");
++    expect(f.result()).toBeUndefined();
++    expect(f.loads()).toBeGreaterThan(2);
++  } finally { f.graph.dispose(); }
++});
++
++test("empty queues have recovery but no action menu and All uses 8", async () => {
++  const f = await fixture();
++  try {
++    f.replace({ backend: "local-markdown", tickets: [], initiatives: [] });
++    await f.graph.load();
++    await f.key("6");
++    expect(f.view()).toContain("No tickets in review");
++    expect(f.view()).toContain("Choose 8");
++    await f.key("a");
++    expect(f.view()).not.toContain("Open a fresh chat");
++    await f.key("8");
++    expect(f.view()).toContain("No tickets recorded");
++    expect(f.view()).not.toContain("Loading");
++    await f.key("r");
++    expect(f.result()).toBeUndefined();
++  } finally { f.graph.dispose(); }
++});
++
++test("queue fields reflow in monochrome with Unicode and terminal-control sanitization", async () => {
++  const f = await fixture();
++  try {
++    f.snapshot().tickets[0]!.title += "\x1b[2J\x1b]0;hostile\x07 END";
++    await f.graph.load();
++    await f.key("5");
++    for (const [width, height] of [[40, 9], [80, 21], [120, 37]]) {
++      f.height(height!);
++      const pages: string[] = [];
++      for (let page = 0; page < 5; page++) {
++        const view = f.view(width);
++        expect(view.split("\n").every(line => visibleWidth(line) <= width!)).toBe(true);
++        expect(view).not.toContain("hostile");
++        pages.push(view);
++        await f.key("\x1b[6~");
++      }
++      const content = pages.join("\n");
++      expect(content).toContain("tracker/tickets/A.md");
++      expect(content).toContain("State: open");
++      expect(content).toContain("Next: Start worktree");
++      expect(content).toContain("Recorded:");
++    }
++  } finally { f.graph.dispose(); }
++});
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md b/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+index 590bfde8..c318f440 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md
+@@ -263,16 +263,20 @@ Child rows separate type, stable ID, title, and recorded state. Supporting refer
+ Initiative child lists include research, executable tickets, planning records, and other supported canonical records. Items counts include every member. Ungrouped includes every record without initiative membership; dependency edges do not create membership.
+ Research and planning details show the recorded state, metadata, and body without ticket events, review counts, or worktree state. Research and planning use the existing To tickets and Grill commands when registered. Other non-executable types offer Ask Matt only. Missing commands explain why an action is disabled. Fresh-chat confirmation and unsent commands remain unchanged.
+ Live type changes replace ticket-only details and actions. Live membership changes retain the selected canonical record when it remains in the collection. Tracker/Files switches and ancestor navigation preserve selection.
+ Titles wrap. Narrow terminals wrap phase and Items on separate lines below the title. Use PgUp/PgDn to read long rows without changing selection. Resizing or row reflow brings the selected record back into view; unchanged layouts retain deliberate paging.
+ The > marker identifies a focused selection. The ◇ marker identifies an inactive selection; both retain the selection background.
+ Use Tab and Shift+Tab to focus ancestors, panes, and workspace controls. Press Enter or Space on an ancestor, or click it, to return directly.
+ Esc returns one level and restores the parent selection and scroll position. In compact terminals, returning from Events with Esc or the ticket ancestor shows the overview at its saved reading position. Live updates retain canonical selection; removal explains the new selection. If a child leaves its initiative while a reader or action menu is open, return to a nearby child or the empty parent before another action. Removing an unrelated initiative does not change the active ticket queue. Removing an inactive remembered child also leaves unrelated queue and home initiative action menus open on their canonical targets.
+ Press 5 for Ready, 6 for Review, 7 for Blocked, or 8 for All to open the separate ticket queues. Press h to return to initiatives.
++Queue headings and active controls identify the selected queue. Queues contain tickets only; initiative navigation keeps its own selection and scroll position.
++Queue rows separate type, stable ID, title, and canonical ticket state. Next shows the eligible action; Recorded shows the phase and status from a validated workflow receipt. Review readiness does not mean a review is running.
++Press Enter on a queue ticket to open its canonical detail in its initiative or Ungrouped context. Return navigation restores the queue selection and scroll position.
++In an empty filtered queue, press 8 to open All or h to return to initiatives. Empty queues offer no ticket actions. Available actions identify their canonical target and explain disabled reasons.
+ Uppercase R refreshes. Lowercase r retains its existing Review action. The a action menu and direct action keys keep their existing safety checks.
+ Loading, empty collections, unreadable records, and refresh failures have distinct messages. A failed refresh retains readable content and blocks unsafe transitions.
+ `/shared-context files` opens the independent Files workspace. Files keeps its path-insertion behavior.
+ 
+ 
+ Use Tab and Shift+Tab to move between tracker panes, workspace tabs, and the Projects breadcrumb.
+ Press Enter on Projects, or click Projects, to open the project list.
+ Type to filter project names and identities. Matching ignores case and accepts substrings or characters in order. Projects shows the filtered/total count and active query. Use Backspace to edit or Ctrl+U to clear. A zero-result list cannot open a project. Use the arrow keys to select a result. Press Enter to open it. Printable keys, including q, 1 and 2, enter search text while the Projects list has focus.
+

@@ -1,0 +1,32 @@
+{
+  "status": "blocked_before_inference",
+  "role": "standards",
+  "packet_bytes": 114043,
+  "first_request_input_allowance": 117904,
+  "full_output_reserve": 128000,
+  "framing_reserve": 4096,
+  "ceiling": 250000,
+  "provider_calls": 0,
+  "provider_work_tokens": 0,
+  "auxiliary_model_usage_entries": 0,
+  "accounting_complete": true,
+  "under_cap": true,
+  "persisted_session_exists": false,
+  "session_id": null,
+  "reported_session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T10-30-51-148Z_01a18736-640c-7076-a66a-740b578853d6.jsonl",
+  "guard_events": [
+    {
+      "at": "2026-10-29T10:30:51.332Z",
+      "event": "ready",
+      "spent": 0,
+      "ceiling": 250000,
+      "model": "gpt-6.1-sol",
+      "outputMaximum": 128000,
+      "transport": "stateless SSE"
+    }
+  ],
+  "reason": "Startup packet is114043bytes, leaving3861bytes for mandatory runtime/tool/skill context. [INFERENCE] the complete request exceeds the unchanged conservative first-request bound; the observed prior same-runtime docs request had about50000additional bytes. The coordinator withheld inference rather than weaken the guard or reset/reuse the session.",
+  "cycle_consumed": true,
+  "cycle_number": 8,
+  "limits_reset": false
+}

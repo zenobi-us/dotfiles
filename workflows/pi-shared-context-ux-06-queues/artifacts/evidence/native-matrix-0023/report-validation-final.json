@@ -1,0 +1,7 @@
+{
+  "stdout": "report validation: ok\n",
+  "stderr": "",
+  "code": 0,
+  "html_sha256": "83ece6f71064a87873dbf6c293438a1dfdf892eb78c0645bf6fafb8627f61108",
+  "change_after_browser": "Only cleanup prose clarified the retained existing-cache dependency links; markup/assets/images/interaction unchanged."
+}

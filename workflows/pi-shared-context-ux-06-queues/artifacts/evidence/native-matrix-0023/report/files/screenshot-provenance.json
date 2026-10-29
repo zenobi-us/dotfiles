@@ -1,0 +1,65 @@
+{
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "native_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json",
+  "shots": [
+    {
+      "stem": "colour-120x40-review-0",
+      "file": "10-wide-review.png",
+      "width": 1100,
+      "height": 820,
+      "measurement": "10-wide-review.png 1100 820"
+    },
+    {
+      "stem": "mono-40x12-review-0",
+      "file": "20-narrow-state.png",
+      "width": 380,
+      "height": 260,
+      "measurement": "20-narrow-state.png 380 260"
+    },
+    {
+      "stem": "mono-40x12-review-1",
+      "file": "21-narrow-fields.png",
+      "width": 380,
+      "height": 260,
+      "measurement": "21-narrow-fields.png 380 260"
+    },
+    {
+      "stem": "mono-80x24-blocked-0",
+      "file": "30-blocked-queue.png",
+      "width": 740,
+      "height": 500,
+      "measurement": "30-blocked-queue.png 740 500"
+    },
+    {
+      "stem": "mono-review-return",
+      "file": "40-review-return.png",
+      "width": 1100,
+      "height": 820,
+      "measurement": "40-review-return.png 1100 820"
+    },
+    {
+      "stem": "mono-live-departure",
+      "file": "50-live-departure.png",
+      "width": 1100,
+      "height": 820,
+      "measurement": "50-live-departure.png 1100 820"
+    },
+    {
+      "stem": "mono-refresh-failure-disabled-actions",
+      "file": "60-disabled-after-error.png",
+      "width": 1100,
+      "height": 820,
+      "measurement": "60-disabled-after-error.png 1100 820"
+    },
+    {
+      "stem": "mono-empty-no-actions",
+      "file": "70-empty-no-actions.png",
+      "width": 1100,
+      "height": 820,
+      "measurement": "70-empty-no-actions.png 1100 820"
+    }
+  ],
+  "conversion": "Actual Termscope SVG frames rasterized with installed ImageMagick; no invented UI or guessed dimensions.",
+  "limits": "SVG fallback cannot prove exact terminal glyph/colour pixel fidelity. Raw text/JSON/HTML/spans remain in native evidence."
+}

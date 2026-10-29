@@ -1,0 +1,187 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+index 56ff3033..bfb9ff69 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+@@ -198,17 +198,16 @@ test("removing the active queue action target closes its menu and selects a surv
+   data = {
+     ...data,
+     tickets: data.tickets.filter(ticket => ticket.id !== "T-2"),
+     initiatives: data.initiatives.map(item => ({ ...item, ticketIds: item.ticketIds.filter(id => id !== "T-2") })),
+   };
+   await f.component.load();
+   expect(f.view()).not.toContain("Open a fresh chat");
+   expect(f.view()).toContain("Ticket queues");
+-  expect(f.view()).toContain("removed");
+   await f.modal.handleInput("m");
+   const result = f.result();
+   if (result?.kind !== "session" || result.request.target.kind !== "ticket") throw new Error("Expected surviving queue target");
+   expect(result.request.target.ticket.ref).toBe("tracker/tickets/T-3.md");
+   expect(result.navigation.screen).toBe("queues");
+ });
+ 
+ test("refresh preserves canonical selection and explains removal while stale content disables transitions", async () => {
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+index 8bf6e9b0..1db09b22 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+@@ -1,23 +1,23 @@
+ import { join } from "node:path";
+ import { resolveContextRecord, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
+ import type { Theme } from "@earendil-works/pi-coding-agent";
+ import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
+ import { actionChoices } from "./actions";
+ import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+-import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
++import { chronologicalReceipts, isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+ import { safeTerminalText } from "./terminal-text";
+ import type { ExplorerEvent } from "./model";
+ import { DirectoryMonitor, type WatchTarget } from "./watch";
+ 
+ type Screen = "home" | "queues" | "initiatives" | "tickets" | "receipts" | "actions";
+ type Queue = "ready" | "review" | "blocked" | "all";
+ type Tone = "text" | "muted" | "accent" | "warning" | "error" | "success";
+-type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string } };
++type Row = { text: string; tone?: Tone; selected?: boolean; target?: ExplorerTarget; receiptId?: string; event?: ExplorerEvent; fields?: { title: string; identity?: string; type?: string; state: string; count?: number; supporting?: string; next?: string; activity?: string } };
+ type Pane = { id: string; title: string; rows: Row[] };
+ 
+ // The reader replaces content, not navigation. Keep its origin intact so returning
+ // cannot move the selected child, event, or an underlying pane's scroll position.
+ type DescriptionReader = { kind: "initiative" | "ticket"; ref: string; focus: ExplorerNavigation["focus"] };
+ 
+ export interface ExplorerNavigation {
+   screen: Screen;
+@@ -26,16 +26,19 @@ export interface ExplorerNavigation {
+   receiptId?: string;
+   eventDetail?: boolean;
+   queue: Queue;
+   focus: "list" | "detail" | "neighborhood" | "breadcrumb" | "description" | "return";
+   offsets: [string, number][];
+   homeIndex?: number;
+   itemOrigin?: "initiatives" | "queues";
+   queueIndex?: number;
++  queueSelections?: [Queue, { identity?: string; index: number }][];
++  initiativeMemory?: { initiativeId?: string; ticketId?: string; receiptId?: string };
++  childSelections?: [string, string][];
+   reader?: DescriptionReader;
+ }
+ 
+ export type ExplorerResult =
+   | { kind: "files"; navigation: ExplorerNavigation }
+   | { kind: "session"; request: ExplorerSessionRequest; navigation: ExplorerNavigation }
+   | undefined;
+ 
+@@ -70,16 +73,18 @@ export class GraphExplorer {
+   private ticketId?: string;
+   private receiptId?: string;
+   private eventDetail = false;
+   private homeIndex = 0;
+   private actionIndex = 0;
+   private queueIndex = 0;
+   private itemOrigin: "initiatives" | "queues" = "initiatives";
+   private childSelections = new Map<string, string>();
++  private queueSelections = new Map<Queue, { identity?: string; index: number }>();
++  private initiativeMemory?: ExplorerNavigation["initiativeMemory"];
+   private breadcrumbIndex = 0;
+   private breadcrumbHits: { x: number; y: number; width: number; index: number }[] = [];
+   private active = true;
+   private reader?: DescriptionReader;
+   private controlHits: { x: number; y: number; width: number; action: "description" | "return" | "up" | "down" }[] = [];
+   private renderedSelection = new Map<string, string>();
+   private renderedLayout = new Map<string, { width: number; height: number; start: number; end: number }>();
+   private neighborhoodIndex = 0;
+@@ -119,16 +124,19 @@ export class GraphExplorer {
+     this.receiptId = navigation?.receiptId;
+     this.eventDetail = navigation?.eventDetail ?? false;
+     this.focus = navigation?.focus ?? "list";
+     this.offsets = new Map(navigation?.offsets ?? []);
+     this.homeIndex = navigation?.homeIndex ?? 0;
+     this.queueIndex = navigation?.queueIndex ?? 0;
+     this.itemOrigin = navigation?.itemOrigin ?? "initiatives";
+     this.reader = navigation?.reader;
++    this.queueSelections = new Map(navigation?.queueSelections ?? []);
++    this.initiativeMemory = navigation?.initiativeMemory;
++    this.childSelections = new Map(navigation?.childSelections ?? []);
+   }
+ 
+   async load(): Promise<void> {
+     if (this.disposed) return;
+     if (this.options.live && this.monitor) { await this.refresh(new Set(["routes"])); return; }
+     if (this.options.live && !this.monitor) {
+       try { await this.startWatching(); }
+       catch (error) { this.stopWatching(); this.refreshFailed(error); }
+@@ -205,17 +213,18 @@ export class GraphExplorer {
+           const initiativeView = logicalScreen === "initiatives" || (logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "initiatives";
+           const removedInitiative = this.initiativeId && !snapshot.initiatives.some(initiative => initiative.id === this.initiativeId);
+           const removedTicket = this.ticketId && !this.tickets.has(this.ticketId);
+           if (removedInitiative && initiativeView) {
+             this.notice = "Selected initiative was removed. Returned to initiatives.";
+             this.screen = "home";
+             this.focus = "list";
+           }
+-          if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
++          if ((logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "queues") this.initiativeId = snapshot.initiatives.find(initiative => initiative.ticketIds.includes(this.ticketId ?? ""))?.id;
++          else if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
+           // A remembered child is not the active target in home or queue action menus.
+           const removedTarget = selected?.kind === "ticket" && !snapshot.tickets.some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
+           if (removedTarget) {
+             this.notice = "Selected item was removed. Selected a nearby item or its parent.";
+             if (this.screen === "tickets" || this.screen === "receipts" || this.screen === "actions") {
+               this.screen = logicalScreen === "queues" ? "queues" : this.itemOrigin;
+               this.focus = "list";
+             }
+@@ -241,17 +250,19 @@ export class GraphExplorer {
+           }
+           if (this.screen === "actions") this.actionIndex = Math.min(this.actionIndex, Math.max(0, this.choices().length - 1));
+           if (this.reader && (!this.descriptionRecord() || this.screen === "home" || this.screen === "queues" || this.reader.kind === "ticket" && this.screen === "initiatives")) {
+             this.reader = undefined;
+             this.focus = "list";
+           }
+           this.scopeKey = "";
+           this.updateWatchScope();
++          this.receiptChecks = this.workflows.size;
+           this.ticketStates.clear();
++          this.reconcileQueues();
+           this.restoreHomeSelection(selected);
+         }
+         this.loading = false;
+         this.error = "";
+         const tickets = this.snapshot!.tickets.filter(ticket => recordKind(ticket) === "ticket" && (all || ids.has(ticket.id) || !this.workflows.has(ticket.id)));
+         let index = 0;
+         const worker = async () => {
+           while (index < tickets.length && !this.disposed) {
+@@ -260,31 +271,32 @@ export class GraphExplorer {
+             try {
+               workflow = await (this.options.loadWorkflow ?? loadTicketWorkflow)(this.options.context, ticket, this.options.exec);
+             } catch (error) {
+               workflow = { ticketId: ticket.id, receipts: [], error: error instanceof Error ? error.message : String(error) };
+             }
+             if (this.disposed) return;
+             const selected = initial ? undefined : this.target();
+             const previous = this.workflows.get(ticket.id);
+-            if (workflow.error && !workflow.events?.length && previous?.events?.length) {
+-              workflow = { ...previous, sourceCommit: undefined, sourceTree: undefined, error: `History refresh failed; showing last readable history. ${workflow.error}` };
++            if (workflow.error && !workflow.events?.length && !workflow.receipts.length && previous && (previous.events?.length || previous.receipts.length)) {
++              workflow = { ...previous, sourceCommit: workflow.sourceCommit, sourceTree: workflow.sourceTree, error: `History refresh failed; showing last readable history. ${workflow.error}` };
+             }
+             this.workflows.set(ticket.id, workflow);
+             if (ticket.id === this.ticketId && (!this.receiptId || !(workflow.events ?? workflow.receipts).some(event => event.id === this.receiptId))) {
+               const removed = Boolean(this.receiptId);
+               this.receiptId = (workflow.events ?? workflow.receipts)[0]?.id;
+               if (removed) {
+                 this.eventDetail = false;
+                 this.focus = "list";
+                 this.notice = "Selected event was removed. Showing the nearest available history.";
+               }
+             }
+             this.ticketStates.clear();
+             this.receiptChecks = this.workflows.size;
++            this.reconcileQueues();
+             this.restoreHomeSelection(selected);
+             this.options.requestRender();
+           }
+         };
+         await Promise.all(Array.from({ length: Math.min(3, tickets.length) }, worker));
+         if (this.disposed) return;
+         if (initial) this.restoreHomeSelection(undefined);
+         if (graph) this.graphError = "";
+@@ -299,24 +311,66 @@ export class GraphExplorer {

@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:43903/index.html",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "scope": "Actual portable native evidence report, not a source review or integration result",
+  "images": [
+    {
+      "src": "shots/10-wide-review.png",
+      "naturalWidth": 1100,
+      "naturalHeight": 820,
+      "declaredWidth": 1100,
+      "declaredHeight": 820
+    },
+    {
+      "src": "shots/20-narrow-state.png",
+      "naturalWidth": 380,
+      "naturalHeight": 260,
+      "declaredWidth": 380,
+      "declaredHeight": 260
+    },
+    {
+      "src": "shots/21-narrow-fields.png",
+      "naturalWidth": 380,
+      "naturalHeight": 260,
+      "declaredWidth": 380,
+      "declaredHeight": 260
+    },
+    {
+      "src": "shots/30-blocked-queue.png",
+      "naturalWidth": 740,
+      "naturalHeight": 500,
+      "declaredWidth": 740,
+      "declaredHeight": 500
+    },
+    {
+      "src": "shots/40-review-return.png",
+      "naturalWidth": 1100,
+      "naturalHeight": 820,
+      "declaredWidth": 1100,
+      "declaredHeight": 820
+    },
+    {
+      "src": "shots/50-live-departure.png",
+      "naturalWidth": 1100,
+      "naturalHeight": 820,
+      "declaredWidth": 1100,
+      "declaredHeight": 820
+    },
+    {
+      "src": "shots/60-disabled-after-error.png",
+      "naturalWidth": 1100,
+      "naturalHeight": 820,
+      "declaredWidth": 1100,
+      "declaredHeight": 820
+    },
+    {
+      "src": "shots/70-empty-no-actions.png",
+      "naturalWidth": 1100,
+      "naturalHeight": 820,
+      "declaredWidth": 1100,
+      "declaredHeight": 820
+    }
+  ],
+  "horizontal_overflow": false,
+  "source_visible": true,
+  "not_covered_section_present": true,
+  "lightbox": {
+    "tag": "DIV",
+    "open": null,
+    "text": "Click image to zoom · Esc to close×‹›Separate facts. Claimed is the canonical state. Review is the eligible next action. The validated recorded activity is implementation completed, not a running review.1 of 8"
+  },
+  "lightbox_controls_observed": [
+    "Close",
+    "Previous image",
+    "Next image"
+  ],
+  "escape_closed": true,
+  "browser_errors": {
+    "entries": [],
+    "nextSeq": 0,
+    "dropped": 0
+  },
+  "initial_lazy_image_wait": {
+    "status": "timed_out",
+    "error": "Browser code execution timed out after 30000ms",
+    "cause": "Offscreen images are lazy loaded; successful run scrolled each actual image into view before awaiting load."
+  },
+  "tab_closed": true,
+  "loopback_server_stopped": true
+}
