@@ -8,7 +8,7 @@ sequence: 5
 title: Inspect ticket events through readable history and evidence views
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 ## What to build
@@ -64,3 +64,6 @@ The user approved this slice and its direct blockers during ticket decomposition
 - 2026-10-28T22:02:23.042Z: Claimed by coordinator session01a17af1-75e3-7666-a181-6c52c2834cb2 for the approved event-history slice. Direct blocker pi-shared-context-ux-02-initiatives is completed. Existing per-session and per-ticket limits remain unchanged.
 
 - Review SUCCESS; source `eeb4e4f920bc5b556c515c63bb99af60e4a099d9`; 2026-10-29T06:04:22.820Z; [immutable review](../../workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0065.md).
+
+
+- Finished 2026-10-29T06:41:52.201Z: integrated reviewed source `eeb4e4f920bc5b556c515c63bb99af60e4a099d9` as `9511dc0c0319dca997575eedc0e4c6423c93a80d`; observed on `origin/master`. Primary checkout: 147 tests passed, 2061 assertions, scoped compiler passed, and 12 real offline Pi colour/mono observations passed. [Integration proof](../../workflows/pi-shared-context-ux-05-events/artifacts/evidence/finish-0068/integrated-checks.json); [review verdict](../../workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0065.md). The failed first primary automation run and its readiness-only recovery remain in append-only receipts.
