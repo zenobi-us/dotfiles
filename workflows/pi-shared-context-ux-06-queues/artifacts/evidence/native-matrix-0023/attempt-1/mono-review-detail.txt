@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=35:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Queues  >  V                                                                                   │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   w│> I · Items 22                       │  Ticket / dependencies / receipts                                        │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│ Ready target A16 界 👩‍💻              │ V Review target Ω                                                        │
+[012]   p│ State: unclaimed                    │ Summary: Canonical body V; actual native queue target.                   │
+[013]    │ tracker/tickets/A16.md              │ Type: enhancement                                                        │
+[014] [Ex│ [enhancement]  ID: A17              │ State: REVIEW                                                            │
+[015]   p│ Ready target A17 界 👩‍💻              │ Reference: tracker/tickets/V.md                                          │
+[016] /ru│ State: unclaimed                    │ Current source: aa1885b3f87e72117bbf16581f18d51a7fc6a4b2                 │dev
+[017] too│ tracker/tickets/A17.md              │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not  │
+[018]    │ [enhancement]  ID: A18              │ quality or completion)                                                   │
+[019] /ru│ Ready target A18 界 👩‍💻              │ Dependencies:                                                            │v
+[020] too│ State: unclaimed                    │ No dependency edges.                                                     │
+[021] /ru│ tracker/tickets/A18.md              │ Receipts:                                                                │dev
+[022] too│ [enhancement]  ID: A19              │ Event: implementation-1 · Execution: completed                           │
+[023]    │ Ready target A19 界 👩‍💻              │ → inspect receipts · a actions                                           │
+[024]    │ State: unclaimed                    │                                                                          │
+[025]  Wa│ tracker/tickets/A19.md              │                                                                          │
+[026]    │ [enhancement]  ID: B                │                                                                          │
+[027]    │ Blocked target 界                   │                                                                          │
+[028]    │ State: unclaimed                    │                                                                          │
+[029]    │ Waiting for A00                     │                                                                          │
+[030]    │>[enhancement]  ID: V                │                                                                          │
+[031]    │>Review target Ω                     │                                                                          │
+[032]    │>State: claimed                      │                                                                          │
+[033]    │>tracker/tickets/V.md                │                                                                          │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/V.md · REVIEW                                                                                  │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux06-native-matrix-z9jgUZ/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    19,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repository",
+  "lines": [
+    "    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for",
+    "tui.altScreen.searchPrevious and",
+    "/r╭──────────────────────────────────────────────────────────────────────────╮ha",
+    "re│ Projects · Repo > repository                                             │on",
+    "s/│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │",
+    "/r├──────────────────────────────────────────────────────────────────────────┤ha",
+    "re│ Initiatives  >  Queues                                                   │on",
+    "s/│> Ticket queues · all                                                     │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "  │>[enhancement]  ID: A00                                                   │",
+    " W│>Ready target A00 界 👩‍💻",
+    " A│>State: unclaimed                                                         │",
+    "  │>Next: Start worktree                                                     │",
+    " /│>Recorded: No validated activity recorded                                 │d",
+    " o│>tracker/tickets/A00.md                                                   │",
+    "  │ [enhancement]  ID: A01                                                   │",
+    " /│ Ready target A01 界 👩‍💻",
+    " o│ State: unclaimed                                                         │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ tracker/tickets/A00.md · READY                                           │──",
+    "  │ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R ref…│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/tmp/ux06-native-matrix-z9jgUZ/repository (master)",
+    "0.0%/0 (auto)                                                            unknown"
+  ]
+}

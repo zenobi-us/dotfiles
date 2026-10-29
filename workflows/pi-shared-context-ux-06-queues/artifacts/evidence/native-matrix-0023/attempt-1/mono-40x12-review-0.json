@@ -1,0 +1,26 @@
+{
+  "cols": 40,
+  "rows": 12,
+  "cursor": [
+    9,
+    39
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repository",
+  "lines": [
+    " nstalls/github-earendil-works-pi/1.1.0",
+    " ╭────────────────────────────────────╮",
+    " │ Projects · Repo > repository       │",
+    " │  [1 Tracker]     2 Files    Tab fo…│",
+    "  Initiatives  >  Queues",
+    " > Ticket queues · review",
+    " >[enhancement]  ID: V",
+    "─>Review target Ω                      ─",
+    " >State: claimed",
+    "─tracker/tickets/V.md · REVIEW         ─",
+    "/Esc back  Enter open  Tab focus  R ....",
+    "0.0%/0 (auto)                    unknown"
+  ]
+}

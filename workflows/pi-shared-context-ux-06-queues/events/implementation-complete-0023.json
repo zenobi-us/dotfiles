@@ -1,0 +1,131 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-06-queues",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues"
+  },
+  "receipt_id": "implementation-complete-0023",
+  "parent_receipt": "implementation-0022",
+  "phase": "implementation",
+  "attempt": 7,
+  "event": "phase-complete",
+  "created_at": "2026-10-29T10:18:13.588Z",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "source_dirty": false,
+  "status": "blocked",
+  "muxer": "herdr",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "pane_id": "w64:pT",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "evidence": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0022",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0022",
+    "publication": "repository"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0211.yaml",
+  "cycle_number": 7,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "phase_scope": "Existing README only after actual35-observation native proof. Runtime/tests frozen. Canonical-ref docs commit and actual assessed result; final-source matrix and independent reviews remain pending.",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/parent-native-validation-0020.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020/attempt-2/native-matrix.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0211.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-start-0021.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0022/assessment.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0022.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0022/full-session-audit.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-complete-0023.json"
+    }
+  ],
+  "pending_gate": "final_source_native_matrix_and_three_independent_reviews",
+  "source_committed": true,
+  "documentation_updated": true,
+  "only_documentation_changed_after_native_smoke": true,
+  "code_stage_completed": true,
+  "implementation_summary": "Extended the existing queue usage paragraph with ticket-only headings, canonical state, Next versus validated Recorded receipt phase/status, Review readiness, canonical drill and restored queue position, and empty recovery/actions. Parsed and inspected the changed navigation section through MQ with okf.mq and explicit formats; git diff --check passed. Committed README only as 20968ee4f907c6f74bc77702fcef09578b41c6b8 with the exact canonical ticket ref. Checkout clean; runtime unchanged from native proof commit 4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9. Final-source matrix and independent reviews pending.",
+  "validation_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json",
+  "native_matrix_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020/attempt-2/native-matrix.json",
+  "native_matrix_source_commit": "4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9",
+  "native_matrix_source_tree": "4f8a1fe707b5c8bfa520de1e42fdef416f2c6326",
+  "documentation_path": "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+  "documentation_commit_subject": "docs: document tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "open_questions": [
+    "Parent will rerun final-source native matrix, then fresh independent Standards, Spec and main reviews. No ticket acceptance/integration/push/completion is claimed."
+  ],
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0022.json",
+  "agent_closed": true,
+  "observed_implementation_session": {
+    "agent_name": "ux06-docs-c7",
+    "pane_id": "w8M:p2",
+    "workspace_id": "w8M",
+    "session_id": "01a18725-5f30-7129-b083-8cc658802a42",
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T10-12-15-792Z_01a18725-5f30-7129-b083-8cc658802a42.jsonl",
+    "native_goal_id": "15b916f93c6b135b",
+    "native_goal_status": "complete",
+    "pane_closed": true
+  },
+  "full_session_work": 43280,
+  "accounting_complete": true,
+  "under_cap": true,
+  "auxiliary_model_usage_entries": 0
+}

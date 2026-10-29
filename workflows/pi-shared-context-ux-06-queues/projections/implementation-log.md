@@ -1,26 +1,25 @@
 ---
-title: Ticket 06 current implementation evidence
+title: Ticket06 completed code stage evidence
 type: Report
 ---
 
 ## Current status
 
-BLOCKED pending documentation, complete final-source native proof and independent reviews. Code is committed and clean at `4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9`, tree `4f8a1fe707b5c8bfa520de1e42fdef416f2c6326`. Six of10source/review AI sessions consumed; no session is running. Cycle6 settled56637work tokens, all admitted requests accounted and under250000; no allowance or guard reset.
+The code/documentation stage is complete at `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`. The ticket remains claimed and unaccepted pending final-source native validation and fresh independent Standards, Spec and main reviews. Seven of10AI sessions are consumed; no source agent remains active.
 
 - [Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-06-queues.md)
-- [Cycle6 honest parent-issued result](../events/implementation-0017.json)
-- [Parent reconciliation](../events/implementation-complete-0018.json)
-- [Message-only canonical-reference correction](../events/source-message-correction-0019.json)
-- [Passing152-test suite and scoped compiler](../artifacts/evidence/implementation-0017/checks-2/checks.json)
-- [Preserved earlier151pass1fail check](../artifacts/evidence/implementation-0017/checks-1/checks.json)
-- [Actual wide-colour Pi queue/drill/return smoke](../artifacts/evidence/implementation-0017/native-basic-1/native-smoke.json)
-- [Whole-session audit](../artifacts/evidence/implementation-0017/full-session-audit.json)
+- [Actual documentation/code result](../events/implementation-0022.json)
+- [Parent reconciliation](../events/implementation-complete-0023.json)
+- [Whole docs-session audit:43280 settled work tokens](../artifacts/evidence/implementation-0022/full-session-audit.json)
+- [Passing152-test suite and compiler](../artifacts/evidence/implementation-0017/checks-2/checks.json)
+- [Actual35-observation pre-documentation native matrix](../artifacts/evidence/native-matrix-0020/attempt-2/native-matrix.json)
+- [Original source-message correction](../events/source-message-correction-0019.json)
 
-## Source provenance
+## Proof and limits
 
-Original source `dafc86c64a2004c98479c97c180d25f89b4564d0` was private and unreviewed. Its message used only the ID rather than the supplied canonical ticket ref. Correcting only that message produced current source `4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9`; exact tree equality was verified. Original receipts and native proof remain unchanged. No review verdict exists for either source.
+Only existingREADME changed after the passed native matrix; runtime/tests remain identical to code commit `4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9`. The final-source matrix is a separate actual run, not a copied verdict. Every historical stopped session, failed check and controller failure remains in append-only records. Doc-session goal completed; final reply is included in43280 whole-session work, not only the42933goal meter.
 
 ## Remaining gates
 
-Actual native24-frame matrix and transitions are running as deterministic parent QA, without a new AI session or workflow dispatch. Then a fresh bounded session must update existing README after proof and write its actual result. Fresh independent Standards, Spec and main reviews, exact-source integration, primary validation, non-force push, canonical completion and owned cleanup remain required. No source or ticket completion is claimed.
+Final-source native proof, the three independent review axes, exact-source integration, primary smoke/compiler/suite, non-force publication, canonical completion and owned cleanup. No integration, push of product code, ticket completion or final acceptance is claimed.
 

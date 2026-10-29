@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=7:79 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮ha
+[004] re│ Projects · Repo > repository                                             │on
+[005] s/│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤ha
+[007] re│ Initiatives  >  Queues                                                   │on
+[008] s/│> Ticket queues · ready                                                   │
+[009]   ├──────────────────────────────────────────────────────────────────────────┤
+[010]   │>[enhancement]  ID: A00                                                   │
+[011]  W│>Ready target A00 界 👩‍💻
+[012]  A│>State: unclaimed                                                         │
+[013]   │>Next: Start worktree                                                     │
+[014]  /│>Recorded: No validated activity recorded                                 │d
+[015]  o│>tracker/tickets/A00.md                                                   │
+[016]   │ [enhancement]  ID: A01                                                   │
+[017]  /│ Ready target A01 界 👩‍💻
+[018]  o│ State: unclaimed                                                         │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ tracker/tickets/A00.md · READY                                           │──
+[021]   │ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R ref…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/ux06-native-matrix-z9jgUZ/repository (master)
+[024] 0.0%/0 (auto)                                                            unknown

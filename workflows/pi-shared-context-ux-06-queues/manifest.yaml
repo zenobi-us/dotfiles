@@ -6,8 +6,8 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "source-message-correction-0019",
+  "latest_receipt": "implementation-complete-0023",
   "state": "BLOCKED",
-  "source_commit": "4b8442dd1f6cb2bbda35fb8c1a620c39352fe8a9",
-  "source_tree": "4f8a1fe707b5c8bfa520de1e42fdef416f2c6326"
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f"
 }

@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=30:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Queues                                                                                         │
+[008] [Sk│> Ticket queues · ready                                                                                         │
+[009]   w├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │ [enhancement]   A12               Ready target A12 界 👩‍💻                                     State: unclaimed  │
+[011] [Ex│ Next: Start worktree                                                                                           │
+[012]   p│ Recorded: No validated activity recorded                                                                       │
+[013]    │ tracker/tickets/A12.md                                                                                         │
+[014] [Ex│ [enhancement]   A13               Ready target A13 界 👩‍💻                                     State: unclaimed  │
+[015]   p│ Next: Start worktree                                                                                           │
+[016] /ru│ Recorded: No validated activity recorded                                                                       │dev
+[017] too│ tracker/tickets/A13.md                                                                                         │
+[018]    │ [enhancement]   A14               Ready target A14 界 👩‍💻                                     State: unclaimed  │
+[019] /ru│ Next: Start worktree                                                                                           │dev
+[020] too│ Recorded: No validated activity recorded                                                                       │
+[021] /ru│ tracker/tickets/A14.md                                                                                         │dev
+[022] too│>[enhancement]   A15               Ready target A15 界 👩‍💻                                     State: unclaimed  │
+[023]    │>Next: Start worktree                                                                                           │
+[024]    │>Recorded: No validated activity recorded                                                                       │
+[025]  Wa│>tracker/tickets/A15.md                                                                                         │
+[026]    │ [enhancement]   A16               Ready target A16 界 👩‍💻                                     State: unclaimed  │
+[027]    │ Next: Start worktree                                                                                           │
+[028]    │ Recorded: No validated activity recorded                                                                       │
+[029]    │ tracker/tickets/A16.md                                                                                         │
+[030]    │ [enhancement]   A17               Ready target A17 界 👩‍💻                                     State: unclaimed  │
+[031]    │ Next: Start worktree                                                                                           │
+[032]    │ Recorded: No validated activity recorded                                                                       │
+[033]    │ tracker/tickets/A17.md                                                                                         │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/A15.md · READY                                                                                 │
+[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux06-native-matrix-z9jgUZ/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

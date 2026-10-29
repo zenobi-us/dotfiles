@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="24" fill="rgb(255,255,255)">    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for</text>
+<text x="10" y="44" fill="rgb(255,255,255)">tui.altScreen.searchPrevious and</text>
+<text x="10" y="64" fill="rgb(255,255,255)">/r╭──────────────────────────────────────────────────────────────────────────╮ha</text>
+<text x="10" y="84" fill="rgb(255,255,255)">re│ Projects · Repo &gt; repository                                             │on</text>
+<text x="10" y="104" fill="rgb(255,255,255)">s/│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">/r├──────────────────────────────────────────────────────────────────────────┤ha</text>
+<text x="10" y="144" fill="rgb(255,255,255)">re│ Initiatives  &gt;  Queues                                                   │on</text>
+<text x="10" y="164" fill="rgb(255,255,255)">s/│&gt; Ticket queues · blocked                                                 │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  │&gt;[enhancement]  ID: B                                                     │</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> W│&gt;Blocked target 界                                                        │</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> A│&gt;State: unclaimed                                                         │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">  │&gt;Next: No worktree transition available                                   │</text>
+<text x="10" y="284" fill="rgb(255,255,255)"> /│&gt;Recorded: No validated activity recorded                                 │d</text>
+<text x="10" y="304" fill="rgb(255,255,255)"> o│&gt;Waiting for A00                                                          │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">  │                                                                          │</text>
+<text x="10" y="344" fill="rgb(255,255,255)"> /│                                                                          │d</text>
+<text x="10" y="364" fill="rgb(255,255,255)"> o│                                                                          │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">──│ tracker/tickets/B.md · BLOCKED                                           │──</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R ref…│</text>
+<text x="10" y="444" fill="rgb(255,255,255)">──╰──────────────────────────────────────────────────────────────────────────╯──</text>
+<text x="10" y="464" fill="rgb(255,255,255)">/tmp/ux06-native-matrix-z9jgUZ/repository (master)</text>
+<text x="10" y="484" fill="rgb(255,255,255)">0.0%/0 (auto)                                                            unknown</text>
+</svg>
