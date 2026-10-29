@@ -1,0 +1,8 @@
+{
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "evidenceDir": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/native-basic-1",
+  "mise": "/home/zenobius/.local/bin/mise",
+  "mq": "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+  "pi": "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+  "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+}

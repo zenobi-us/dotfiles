@@ -1,0 +1,14 @@
+{
+  "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workflow": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues",
+  "workflowRef": "workflows/pi-shared-context-ux-06-queues",
+  "evidenceRef": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017",
+  "base": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "documentationPath": "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md",
+  "result": "implementation-0017",
+  "snapshot": "pr-draft-implementation-0017.md",
+  "cycle": 6,
+  "checksDirectory": "checks-1",
+  "nativeDirectory": "native-basic-1"
+}

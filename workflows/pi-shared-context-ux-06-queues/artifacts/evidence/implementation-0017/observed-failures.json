@@ -1,0 +1,36 @@
+{
+  "executed_by": "parent coordinator after cycle5 closed",
+  "working_snapshot_sha256": "a54d307bcd0cff81655ea87f0319dfdb052f4dc45a8ab910179186fba179e952",
+  "source_head": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "suite": {
+    "passed": 145,
+    "failed": 7,
+    "assertions": 2034,
+    "files": 13,
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/parent-check-0015/suite-command.json"
+  },
+  "compiler": {
+    "code": 0,
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/parent-check-0015/compiler-command.json"
+  },
+  "failures": [
+    {
+      "count": 5,
+      "file": "queues-modal.test.ts",
+      "cause": "All five new tests currently throw before meaningful rendering: context.routes exists but alignment is missing, so SharedContextModal.render at modal.ts238 reads routes?.alignment.store and throws. Fix the incomplete fixture using a valid existing context pattern; do not special-case production for this invalid test object. Further behavior failures may surface after that fixture is valid."
+    },
+    {
+      "count": 1,
+      "file": "explorer.test.ts",
+      "line": 206,
+      "cause": "The existing active-queue removal behavior still closes the menu and selects a surviving ticket; its exact removed-word assertion fails because the new explanation says Selected ticket left this queue. Delete the incidental wording assertion, never repin it; preserve the canonical-target/menu/selection behavior coverage."
+    },
+    {
+      "count": 1,
+      "file": "events.test.ts",
+      "line": 138,
+      "cause": "The new workflow.error retention path replaces actual returned invalid event details with previous valid events/body. The existing narrow evidence test can no longer reach its actual INVALID raw payload. Fix production to preserve new inspectable invalid evidence. Retain old readable history only for genuinely unreadable/empty error responses, keep unsafe actions blocked, and never borrow prior current-source commit/tree when new facts are absent."
+    }
+  ],
+  "native_automation_note": "The already-rendered queue labels canonical status State:, so separately versioned native-v2 accepts State or Status with actual unclaimed value. It also checks the All queue heading rather than a footer hint. Do not rename product copy to satisfy automation; original harness remains preserved."
+}

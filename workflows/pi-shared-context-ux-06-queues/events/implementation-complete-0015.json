@@ -1,0 +1,137 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-complete-0015",
+  "workflow_id": "pi-shared-context-ux-06-queues",
+  "phase": "implementation",
+  "attempt": 5,
+  "parent_receipt": "implementation-0014",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "base_branch": "master",
+  "source_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "source_tree": "db2d87bf0ab2ecb5374cd45c1fefc65ae5e2f45b",
+  "created_at": "2026-10-29T09:24:01.658Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-06-queues",
+    "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0204.yaml",
+  "event": "phase-complete",
+  "status": "blocked",
+  "cycle_number": 5,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "guard_sha256": "16fa278cd110b863b2f6579e38e3f93b88ac8119c2b67dda49f089f3f73c7237",
+  "claim_publication_commit": "6f959f8c380efe378f4a0f2eeffcd3660c803859",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0014.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0204.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-complete-0015.json"
+    }
+  ],
+  "phase_scope": "Complete every ticket06 source criterion and public-modal tests; full affected suite/compiler; commit source; actual initial native queue smoke; update existing README after proof. Parent final-source full native matrix and independent reviews remain mandatory.",
+  "source_dirty": true,
+  "working_tree_patch_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/working-tree.patch",
+  "working_tree_patch_sha256": "22cbcbdfab7e1b0698eca9886c50da20413c6909fac806db63c606902eeb8f67",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014"
+  },
+  "pending_gate": "repair_actual_failures_then_ci_commit_native_smoke_docs_full_matrix_reviews",
+  "issued_by": "Parent coordinator after native stop, actual saved progress/source archive and separately attributed post-stop verification; no fabricated child result.",
+  "source_committed": false,
+  "code_stage_completed": false,
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/queues-modal.test.ts"
+  ],
+  "untracked_source_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/untracked-source.json",
+  "working_tree_snapshot_sha256": "a54d307bcd0cff81655ea87f0319dfdb052f4dc45a8ab910179186fba179e952",
+  "implementation_summary": "Source queue fields/activity/action target/error handling and a new166-line public-modal test file are preserved. Agent saved progress but stopped before its own checks/commit/native/docs. Parent then ran the actual suite/compiler at this preserved snapshot:145pass,7fail,2034assertions,13files; compiler exit0.",
+  "observed_progress_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/progress-0001.json",
+  "validation": [
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--install=fallback",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "exit_code": 1,
+      "executor": "parent coordinator after agent shutdown",
+      "evidence_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/parent-check-0015/suite-command.json",
+      "working_tree_snapshot_sha256": "a54d307bcd0cff81655ea87f0319dfdb052f4dc45a8ab910179186fba179e952"
+    },
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/ux02-deps/node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0014/scoped-tsconfig.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+      "exit_code": 0,
+      "executor": "parent coordinator after agent shutdown",
+      "evidence_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/parent-check-0015/compiler-command.json",
+      "working_tree_snapshot_sha256": "a54d307bcd0cff81655ea87f0319dfdb052f4dc45a8ab910179186fba179e952"
+    }
+  ],
+  "validation_executor": "parent coordinator, not the source agent",
+  "full_session_work": 54357,
+  "accounting_complete": true,
+  "under_cap": true,
+  "auxiliary_model_usage_entries": 0,
+  "observed_implementation_session": {
+    "agent_name": "ux06-complete-c5",
+    "pane_id": "w8J:p2",
+    "workspace_id": "w8J",
+    "session_id": "01a186ea-f64b-7198-9b1b-a0ba78c245bc",
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T09-08-27-851Z_01a186ea-f64b-7198-9b1b-a0ba78c245bc.jsonl",
+    "native_goal_id": "15b90814be76f8a1",
+    "native_goal_status": "active",
+    "pane_closed": true
+  },
+  "open_questions": [
+    "Five new tests currently stop at incomplete context.routes.alignment in the fixture; further behavior is not yet exercised.",
+    "The old active-target removal test pins the word removed; delete that incidental assertion, preserve its behavior coverage.",
+    "Invalid event raw payload is hidden by the new generic history-retention path. Preserve actual returned invalid event evidence while retaining last readable history on genuine unreadable refresh and blocking unsafe actions.",
+    "No code commit, native smoke, README update or independent review exists yet."
+  ],
+  "phase_result_receipt_ref": "workflows/pi-shared-context-ux-06-queues/events/implementation-0014.json"
+}

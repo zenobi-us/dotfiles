@@ -27,7 +27,13 @@ Next: fresh independent implementation cycle2 with a compact contract and preloa
 
 [Result](../events/implementation-0011.json), [parent](../events/implementation-complete-0012.json), [full audit](../artifacts/evidence/implementation-0011/full-session-audit.json).54671settled work tokens, under cap. Real uncommitted state/navigation edits are preserved in [exact patch](../artifacts/evidence/implementation-0011/working-tree.patch), SHA256 `29cb34e2547e45b65949dbcf08eb7c1c3845201dd935597555c5a0b9212dd36b`. No smoke, suite/compiler run, source commit or implementation acceptance passed.
 
-## Fresh complete-source cycle5
+## Cycle5 source and actual parent verification
 
-[Exclusive start](../events/implementation-start-0013.json). Preserve the owned dirty patch, complete all12source criteria and public-modal tests, run real captured checks and initial offline Pi queue smoke, then update the existing README. Parent final-source full terminal matrix and independent reviews remain mandatory. No allowance/guard reset or ownership change.
+[Result](../events/implementation-0014.json), [parent](../events/implementation-complete-0015.json), [full audit](../artifacts/evidence/implementation-0014/full-session-audit.json).54357settled source-agent work tokens, under cap. [Tracked patch](../artifacts/evidence/implementation-0014/working-tree.patch) and [new untracked test source](../artifacts/evidence/implementation-0014/untracked-source.json) preserve snapshot `a54d307bcd0cff81655ea87f0319dfdb052f4dc45a8ab910179186fba179e952`.
+
+After the source session closed, [actual parent checks](../artifacts/evidence/parent-check-0015/checks.json) ran:145pass,7fail,2034assertions,13files; compiler exit0. Five tests stop at incomplete fixture routes, one old assertion pins wording, and invalid raw event details are genuinely lost by the new retention branch. No commit/native/docs/acceptance has passed.
+
+## Fresh repair/verification cycle6
+
+[Exclusive start](../events/implementation-start-0016.json). Repair observed causes without rerunning to confirm. Preserve old behavioral safety tests and actual invalid payloads; delete incidental wording only. Then run real checks, commit source, actual native queue smoke, and existing docs after proof. Parent full final-source matrix and independent reviews remain required. Six of10cycles reserved; no allowance/guard reset.
 
