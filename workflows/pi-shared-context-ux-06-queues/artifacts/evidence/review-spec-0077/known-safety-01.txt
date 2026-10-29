@@ -1,0 +1,18 @@
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 490-506; complete unchangedmethods breadcrumbs
+  setActive(active: boolean): void { this.active = active; }
+
+  private breadcrumbs(): { label: string; screen: Screen }[] {
+    const screen = this.screen === "actions" ? this.returnScreen : this.screen;
+    const crumbs: { label: string; screen: Screen }[] = [{ label: "Initiatives", screen: "home" }];
+    if (screen === "home") return crumbs;
+    if (screen === "queues" || (screen === "tickets" || screen === "receipts") && this.itemOrigin === "queues") crumbs.push({ label: "Queues", screen: "queues" });
+    else crumbs.push({ label: this.initiative()?.title ?? "Initiative", screen: "initiatives" });
+    if (screen === "tickets" || screen === "receipts") crumbs.push({ label: this.ticketId ?? "Item", screen: "tickets" });
+    if (screen === "receipts") crumbs.push({ label: "Events", screen: "receipts" });
+    if (screen === "receipts" && this.eventDetail) {
+      const identity = this.selectedEvent()?.fields?.receipt_id;
+      crumbs.push({ label: typeof identity === "string" ? identity : "Event", screen: "receipts" });
+    }
+    if (this.reader) crumbs.push({ label: "Description", screen });
+    return crumbs;
+  }

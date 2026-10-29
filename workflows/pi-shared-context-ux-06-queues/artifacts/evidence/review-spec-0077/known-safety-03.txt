@@ -1,0 +1,63 @@
+SOURCE mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts lines 1060-1121; complete unchangedmethods choices, chooseAction, ticketType, ticketState, target, initiative, ticket, history, workflow
+  }
+
+  private choices(): ExplorerActionChoice[] {
+    const target = this.target();
+    if (target?.kind === "initiative" && target.initiative.group) return [];
+    const choices = target && this.snapshot ? actionChoices(target, this.snapshot, target.kind === "ticket" ? this.workflows.get(target.ticket.id) : undefined, this.options.commands()) : [];
+    const reason = this.options.context.checkoutAvailable === false ? "No usable checkout. Open this project from a checkout to run actions." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state; wait before a worktree transition." : "");
+    return reason ? choices.map(choice => this.options.context.checkoutAvailable !== false && choice.action === "ask-matt" ? choice : { ...choice, disabledReason: reason }) : choices;
+  }
+
+  private chooseAction(choice: ExplorerActionChoice | undefined): void {
+    const target = this.target();
+    if (!choice || !target || !this.snapshot) return;
+    if (choice.disabledReason) { this.notice = choice.disabledReason; this.options.requestRender(); return; }
+    this.options.done({ kind: "session", request: { action: choice.action, target, snapshot: this.snapshot, ...(target.kind === "ticket" ? { workflow: this.workflows.get(target.ticket.id) } : {}), prompt: "" }, navigation: this.navigation() });
+  }
+
+  private ticketType(ticket: ExplorerTicket): string {
+    const type = ticket.documentType;
+    return type || "Ticket · type unspecified";
+  }
+
+  private ticketState(ticket: ExplorerTicket): string {
+    if (recordKind(ticket) !== "ticket") return ticket.status || "unavailable";
+    if (isCompleted(ticket)) return "DONE";
+    if (ticket.blockedBy.some(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!))) return "BLOCKED";
+    const workflow = this.workflows.get(ticket.id);
+    if (!workflow) return "CHECKING";
+    if (workflow.error) return "ERROR";
+    const cached = this.ticketStates.get(ticket.id);
+    if (cached) return cached;
+    const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot!, workflow, [{ name: "skill:ask-matt" }, { name: "skill:worktree" }]);
+    const next = ["start", "fix", "finish", "submit", "review"].find(action => choices.some(choice => choice.action === action && !choice.disabledReason));
+    const state = next === "start" ? "READY" : next?.toUpperCase() ?? (workflow.receipts.length ? "ACTIVE" : "UNKNOWN");
+    this.ticketStates.set(ticket.id, state);
+    return state;
+  }
+
+  private target(): ExplorerTarget | undefined {
+    if (this.screen === "home" || this.screen === "actions" && this.returnScreen === "home") return this.homeRows()[this.homeIndex]?.target;
+    if (this.screen === "queues" || this.screen === "actions" && this.returnScreen === "queues") return this.queueRows()[this.queueIndex]?.target;
+    const ticket = this.ticket();
+    return ticket ? { kind: "ticket", ticket } : undefined;
+  }
+
+  private initiative(): ExplorerInitiative | undefined {
+    return this.snapshot?.initiatives.find(initiative => initiative.id === this.initiativeId);
+  }
+
+  private ticket(): ExplorerTicket | undefined {
+    return this.ticketId ? this.tickets.get(this.ticketId) : undefined;
+  }
+
+  private history(): ExplorerEvent[] {
+    const workflow = this.workflow();
+    return workflow?.events ?? workflow?.receipts ?? [];
+  }
+
+  private workflow(): TicketWorkflow | undefined {
+    const ticket = this.ticket();
+    return ticket && recordKind(ticket) === "ticket" ? this.workflows.get(ticket.id) : undefined;
+  }

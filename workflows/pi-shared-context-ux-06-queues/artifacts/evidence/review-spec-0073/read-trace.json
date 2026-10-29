@@ -1,0 +1,246 @@
+[
+  {
+    "name": "read",
+    "args": {
+      "i": "Load mandatory review skill",
+      "path": "skill://code-review"
+    },
+    "ctx": 19850
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load plain language requirements",
+      "path": "skill://iso-24495-1"
+    },
+    "ctx": 21968
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load technical English skill",
+      "path": "skill://asd-ste100"
+    },
+    "ctx": 23862
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load code comment review guidance",
+      "path": "skill://code-comments"
+    },
+    "ctx": 28576
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load TypeScript skill",
+      "path": "skill://typescript"
+    },
+    "ctx": 30183
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load mandated Markdown tool skill",
+      "path": "skill://mq-query"
+    },
+    "ctx": 32493
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load artifact creation guidance",
+      "path": "skill://mq-query/references/tasks/creating.md"
+    },
+    "ctx": 33340
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load required CLI reference",
+      "path": "skill://mq-query/references/docs/cli.md"
+    },
+    "ctx": 33942
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load technical analysis writing guidance",
+      "path": "skill://iso-24495-3"
+    },
+    "ctx": 36846
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load report structure guidance",
+      "path": "skill://iso-24495-5"
+    },
+    "ctx": 38349
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load documentation audit guidance",
+      "path": "skill://review-documentation"
+    },
+    "ctx": 41659
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load required reading reference",
+      "path": "skill://mq-query/references/tasks/reading.md"
+    },
+    "ctx": 42311
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Load shared-context authority guidance",
+      "path": "skill://shared-context"
+    },
+    "ctx": 42815
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect existing workflow action authority early",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.actions&raw=true"
+    },
+    "ctx": 44540
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect receipt validation authority",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.receipt_validation&raw=true"
+    },
+    "ctx": 47200
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect model queue authority",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/existing-authorities.json?q=.model&raw=true"
+    },
+    "ctx": 49307
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete declaration packet one",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-01.txt:1-89:raw"
+    },
+    "ctx": 50342
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete declaration packet two",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-02.txt:1-135:raw"
+    },
+    "ctx": 51581
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete declaration packet three",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-03.txt:1-88:raw"
+    },
+    "ctx": 53344
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete declaration packet four",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-04.txt:1-161:raw"
+    },
+    "ctx": 54470
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete declaration packet five",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-05.txt:1-116:raw"
+    },
+    "ctx": 56592
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete declaration packet six",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-06.txt:1-46:raw"
+    },
+    "ctx": 58684
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read complete declaration packet seven",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/combined-source-07.txt:1-169:raw"
+    },
+    "ctx": 59671
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Read exact deletion and changed range ledger",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/complete-changed-declarations-0067/complete-change-ledger.txt:1-230:raw"
+    },
+    "ctx": 61994
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect supplied navigation references for necessary unseen safety context",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-launch-recovery-0031/navigation-references.json:1-110:raw"
+    },
+    "ctx": 63706
+  },
+  {
+    "name": "grep",
+    "args": {
+      "i": "Locate unseen target, safety and queue display declarations",
+      "pattern": "private (target|choices|ticketState|breadcrumbs|chooseAction)|queue.*5|5.*ready|refreshFailed",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "case": true,
+      "gitignore": true,
+      "skip": 0
+    },
+    "ctx": 65709
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect unseen canonical target and workflow safety implementations",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:1062-1120:raw"
+    },
+    "ctx": 67138
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect recorded exact-source validation summary",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/implementation-0017/checks-2/checks.json:1-140:raw"
+    },
+    "ctx": 68035
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect queue ancestor identity and focus controls",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:492-505:raw"
+    },
+    "ctx": 68570
+  },
+  {
+    "name": "read",
+    "args": {
+      "i": "Inspect unseen queue rendering and active heading behavior",
+      "path": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts:732-782:raw"
+    },
+    "ctx": 68937
+  }
+]

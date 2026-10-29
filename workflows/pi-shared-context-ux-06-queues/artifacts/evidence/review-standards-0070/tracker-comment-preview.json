@@ -1,0 +1,13 @@
+{
+  "node_update_preview_supported": false,
+  "observed_error": "Error:   × The output format is not supported for the update option\n\n",
+  "raw_MQ_preview_passed": true,
+  "entire_existing_record_byte_preserved": true,
+  "only_append_fields": [
+    "verdict",
+    "source_commit",
+    "timestamp",
+    "artifact_link"
+  ],
+  "status_changed": false
+}
