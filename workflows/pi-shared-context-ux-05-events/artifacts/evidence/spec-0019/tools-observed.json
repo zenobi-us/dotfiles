@@ -1,0 +1,44 @@
+[
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read review skill",
+      "path": "skill://code-review"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read comment review skill",
+      "path": "skill://code-comments"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read clear communication skill",
+      "path": "skill://iso-24495-1"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read TypeScript skill",
+      "path": "skill://typescript"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read canonical review inputs",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0019/review-inputs.json:raw"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Select source and canonical contract metadata",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0019/review-inputs.json?q=del(.ticket,.initiative,.implementation,.rules,.assessment,.goal,.session) | .source.diff = \"omitted\""
+    }
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "role": "main",
+  "agent_name": "ux05-review-main-c5",
+  "pane_id": "w85:p2",
+  "workspace_id": "w85",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T01-47-28-687Z_01a18557-3a2f-74ac-9be5-d16ba4ccfa60.jsonl",
+  "session_id": "01a18557-3a2f-74ac-9be5-d16ba4ccfa60",
+  "goal_id": "15b8a348cdafbb3a",
+  "native_working_budget": 200000,
+  "whole_session_limit": 250000,
+  "guard_sha256": "eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65",
+  "guard_ready": {
+    "at": "2026-10-29T01:47:28.873Z",
+    "event": "ready",
+    "spent": 0,
+    "ceiling": 250000,
+    "model": "gpt-6.1-sol",
+    "outputMaximum": 128000,
+    "transport": "stateless SSE"
+  },
+  "guard_live_audit": "/tmp/ux05-review-main-c5-guard-35b5f119-48f2-497b-bbe1-5214a472c3b2.jsonl",
+  "system_prompt_sha256": "63c541aa3bade023cc624f0e0dd65f23c25cb06b5b324c93a18c6ba476a2d652",
+  "tools": [
+    "read",
+    "bash",
+    "write",
+    "grep",
+    "glob",
+    "lsp"
+  ],
+  "packet_sha256": "6152731fbd7f30017740a56ca7301c1f41f9513764612a4d4578f18c16a03a99",
+  "source_start_publication": "10ded1a18c13a5129417f00cefb54e9782cc315a"
+}

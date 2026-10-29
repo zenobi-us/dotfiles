@@ -1,0 +1,139 @@
+{
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "source_clean": true,
+  "source_worktree_preserved": true,
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "herdr_workspace_closed": true,
+  "resource_observation": {
+    "id": "cli:worktree:list",
+    "result": {
+      "source": {
+        "repo_key": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git",
+        "repo_name": "Dotfiles",
+        "repo_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source_checkout_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source_workspace_id": "w64"
+      },
+      "type": "worktree_list",
+      "worktrees": [
+        {
+          "branch": "master",
+          "is_bare": false,
+          "is_detached": false,
+          "is_linked_worktree": false,
+          "is_prunable": false,
+          "label": "Dotfiles",
+          "open_workspace_id": "w64",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+        },
+        {
+          "branch": "feature/pi-shared-context-ux-05-events",
+          "is_bare": false,
+          "is_detached": false,
+          "is_linked_worktree": true,
+          "is_prunable": false,
+          "label": "Dotfiles",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events"
+        }
+      ]
+    }
+  },
+  "canonical_ticket_state_unchanged": "claimed",
+  "valid_source_verdict": null,
+  "review_attempt": 1,
+  "sessions": [
+    {
+      "role": "main",
+      "cycle": 5,
+      "accounting": {
+        "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T01-47-28-687Z_01a18557-3a2f-74ac-9be5-d16ba4ccfa60.jsonl",
+        "session_id": "01a18557-3a2f-74ac-9be5-d16ba4ccfa60",
+        "goal_id": "15b8a348cdafbb3a",
+        "native_status": "active",
+        "native_goal_used": 23451,
+        "native_goal_budget": 200000,
+        "raw_usage": {
+          "input": 23119,
+          "output": 332,
+          "cacheWrite": 0,
+          "cacheRead": 4608
+        },
+        "assistant_entries": 4,
+        "auxiliary_model_usage_entries": 0,
+        "provider_work_tokens": 23451,
+        "session_ceiling": 250000,
+        "under_cap": true
+      },
+      "closed": true,
+      "result": "review-0022",
+      "parent": "review-complete-0023"
+    },
+    {
+      "role": "standards",
+      "cycle": 6,
+      "accounting": {
+        "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T01-47-28-685Z_01a18557-3a2d-723d-873d-1fd7f379ece2.jsonl",
+        "session_id": "01a18557-3a2d-723d-873d-1fd7f379ece2",
+        "goal_id": "15b8a348ce1bb5b2",
+        "native_status": "active",
+        "native_goal_used": 23315,
+        "native_goal_budget": 200000,
+        "raw_usage": {
+          "input": 22774,
+          "output": 541,
+          "cacheWrite": 0,
+          "cacheRead": 19328
+        },
+        "assistant_entries": 5,
+        "auxiliary_model_usage_entries": 0,
+        "provider_work_tokens": 23315,
+        "session_ceiling": 250000,
+        "under_cap": true
+      },
+      "closed": true,
+      "result": "standards-result-0018",
+      "parent": "standards-complete-0020"
+    },
+    {
+      "role": "spec",
+      "cycle": 7,
+      "accounting": {
+        "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T01-47-28-688Z_01a18557-3a30-760c-ade1-6438620acd01.jsonl",
+        "session_id": "01a18557-3a30-760c-ade1-6438620acd01",
+        "goal_id": "15b8a348cdec81c3",
+        "native_status": "active",
+        "native_goal_used": 22744,
+        "native_goal_budget": 200000,
+        "raw_usage": {
+          "input": 22473,
+          "output": 271,
+          "cacheWrite": 0,
+          "cacheRead": 3968
+        },
+        "assistant_entries": 4,
+        "auxiliary_model_usage_entries": 0,
+        "provider_work_tokens": 22744,
+        "session_ceiling": 250000,
+        "under_cap": true
+      },
+      "closed": true,
+      "result": "spec-result-0019",
+      "parent": "spec-complete-0021"
+    }
+  ],
+  "cycles_consumed": 7,
+  "approved_total_cycles": 10,
+  "remaining_cycles": 3,
+  "proposed_required_total": 11,
+  "proposed_next_sessions": [
+    "guard validation",
+    "fresh main review",
+    "fresh Standards review",
+    "fresh Spec review"
+  ],
+  "extra_cycles_authorized": false,
+  "guard_revision_implemented": false,
+  "source_code_findings": [],
+  "review_artifact": "workflows/pi-shared-context-ux-05-events/artifacts/reviews/review-review-0022.md"
+}

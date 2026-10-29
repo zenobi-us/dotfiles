@@ -1,5 +1,5 @@
 ---
-title: Ticket05 event-history acceptance
+title: Ticket05 blocked independent review
 type: Report
 ---
 
@@ -45,7 +45,7 @@ Two failed fixture attempts are preserved. The successful v3 uses the actual mq 
 
 ## Review history
 
-No independent code-review verdict exists yet. Standards, Spec and main review are next. Guard validation is not a code review.
+Independent review attempt1 did not complete. All three fresh sessions were stopped by conservative request admission without a new cap breach. No valid source verdict or code finding was issued. See the [immutable execution report](../artifacts/reviews/review-review-0022.md).
 
 ## Resolved findings
 
@@ -53,11 +53,11 @@ No formal code-review findings have been issued. The documented loading-history 
 
 ## Remaining findings
 
-Independent exact-source assessment is pending. No source integration or ticket completion is authorized by the validation result.
+Independent exact-source assessment remains unavailable. Seven cycles are consumed; a guard-validation session plus three fresh reviewers requires total11, beyond the approved10. Operator approval is required before further dispatch. No source integration or ticket completion is authorized.
 
 ## Latest reviewer verdict
 
-Not assessed.
+Not assessed. Review execution failed; this is not a source-code rejection.
 
 ## Merge status
 
@@ -81,6 +81,15 @@ Not merged. The canonical ticket remains claimed. Workflow evidence publication 
 | [validation-complete-0012](../events/validation-complete-0012.json) | validate | phase-complete | completed | 37498 |
 | [validation-result-correction-0013](../events/validation-result-correction-0013.json) | validate | phase-result | completed | 37498 |
 | [validation-complete-0014](../events/validation-complete-0014.json) | validate | phase-complete | completed | 37498 |
+| [review-start-0015](../events/review-start-0015.json) | review | phase-start | started | — |
+| [standards-start-0016](../events/standards-start-0016.json) | review-standards | phase-start | started | — |
+| [spec-start-0017](../events/spec-start-0017.json) | review-spec | phase-start | started | — |
+| [standards-result-0018](../events/standards-result-0018.json) | review-standards | phase-result | blocked | 23315 |
+| [spec-result-0019](../events/spec-result-0019.json) | review-spec | phase-result | blocked | 22744 |
+| [standards-complete-0020](../events/standards-complete-0020.json) | review-standards | phase-complete | failed | 23315 |
+| [spec-complete-0021](../events/spec-complete-0021.json) | review-spec | phase-complete | failed | 22744 |
+| [review-0022](../events/review-0022.json) | review | phase-result | blocked | 23451 |
+| [review-complete-0023](../events/review-complete-0023.json) | review | phase-complete | failed | 23451 |
 
 ## Supporting records
 
@@ -90,4 +99,14 @@ Not merged. The canonical ticket remains claimed. Workflow evidence publication 
 - [Narrow monochrome loading](../artifacts/evidence/native-loading-0010/mono-loading-40x12.txt)
 - [Released history](../artifacts/evidence/native-loading-0010/color-history-released.txt)
 - [Coordinator reservation](../../goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0110.yaml)
+
+## Approval boundary
+
+- Current source remains clean at `eeb4e4f920bc5b556c515c63bb99af60e4a099d9`.
+- All review sessions and their Herdr workspace are closed; the source worktree is preserved.
+- Ticket status and ownership remain unchanged. No tracker review comment was appended because no valid code assessment exists.
+- Proposed recovery needs one dedicated guard validation and three fresh independent reviews, for total11cycles. The250000 per-session ceiling and outer goal ceiling remain unchanged.
+- No extra cycle or revised guard is authorized yet.
+
+Session usage may appear on both result and parent receipts; do not sum the history column as distinct spending.
 

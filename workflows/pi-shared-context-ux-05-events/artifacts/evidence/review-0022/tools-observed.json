@@ -1,0 +1,50 @@
+[
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read review skill",
+      "path": "skill://code-review"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read comment review skill",
+      "path": "skill://code-comments"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read communication skill",
+      "path": "skill://iso-24495-1"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read TypeScript skill",
+      "path": "skill://typescript"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Load exact review contract",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/review-0022/review-inputs.json:raw"
+    }
+  },
+  {
+    "name": "bash",
+    "arguments": {
+      "i": "Verify frozen source identity and diff digest",
+      "command": "git rev-parse HEAD HEAD^{tree} b1e4b80769490af4896785bc2ea3699c22b346f6 && git status --porcelain && git diff --no-ext-diff --unified=0 b1e4b80769490af4896785bc2ea3699c22b346f6...eeb4e4f920bc5b556c515c63bb99af60e4a099d9 | sha256sum",
+      "timeout": 30,
+      "cwd": null,
+      "pty": false,
+      "async": false,
+      "name": null,
+      "ready": null
+    }
+  }
+]

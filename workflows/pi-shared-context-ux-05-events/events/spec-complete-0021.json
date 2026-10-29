@@ -1,0 +1,102 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "spec-complete-0021",
+  "workflow_id": "pi-shared-context-ux-05-events",
+  "phase": "review-spec",
+  "attempt": 1,
+  "parent_receipt": "spec-result-0019",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+  "source_branch": "feature/pi-shared-context-ux-05-events",
+  "base_branch": "master",
+  "source_commit": "eeb4e4f920bc5b556c515c63bb99af60e4a099d9",
+  "source_tree": "870eee2ea7f04671913f447ff64c3608ad6c1906",
+  "created_at": "2026-10-29T02:10:41.733Z",
+  "muxer": "herdr",
+  "pane_id": "w64:pT",
+  "agent": "omp",
+  "agent_name": "goal-coordinator",
+  "session_id": "01a17af1-75e3-7666-a181-6c52c2834cb2",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-05-events",
+    "ref": "tracker/tickets/pi-shared-context-ux-05-events.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-05-events.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events"
+  },
+  "goal_run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "goal_dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0117.yaml",
+  "event": "phase-complete",
+  "status": "failed",
+  "cycle_number": 7,
+  "token_limit": 250000,
+  "native_goal_budget": 200000,
+  "completion_margin_tokens": 50000,
+  "claim_publication_commit": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/spec-result-0019.json"
+    },
+    {
+      "kind": "coordinator",
+      "ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0117.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-05-events/events/spec-complete-0021.json"
+    }
+  ],
+  "guard_sha256": "eb08a7601f45d38eaef9b5e0ba8f172e0e3345050d06483255d7b62878734a65",
+  "fixed_point": "b1e4b80769490af4896785bc2ea3699c22b346f6",
+  "review_role": "spec",
+  "verdict": "FAILURE",
+  "native_session_id": "01a18557-3a30-760c-ade1-6438620acd01",
+  "native_goal_id": "15b8a348cdec81c3",
+  "result_author": "Parent recovery after verified hard-guard stop; no completed independent assessment is claimed.",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-05-events/artifacts/evidence/spec-0019"
+  },
+  "assessment_complete": false,
+  "valid_source_verdict": false,
+  "findings": [],
+  "axis_report": "Assessment unavailable. The conservative full-request UTF-8 plus maximum-output reservation stopped further inference before this independent review could complete. No source finding or passing assessment was issued.",
+  "accounting": {
+    "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-05-events--/2026-10-29T01-47-28-688Z_01a18557-3a30-760c-ade1-6438620acd01.jsonl",
+    "session_id": "01a18557-3a30-760c-ade1-6438620acd01",
+    "goal_id": "15b8a348cdec81c3",
+    "native_status": "active",
+    "native_goal_used": 22744,
+    "native_goal_budget": 200000,
+    "raw_usage": {
+      "input": 22473,
+      "output": 271,
+      "cacheWrite": 0,
+      "cacheRead": 3968
+    },
+    "assistant_entries": 4,
+    "auxiliary_model_usage_entries": 0,
+    "provider_work_tokens": 22744,
+    "session_ceiling": 250000,
+    "under_cap": true
+  },
+  "agent_closed": true,
+  "source_dirty": false,
+  "guard_limit_breached": false,
+  "limitations": [
+    "Native goal remains active; the session is closed and must not be reused for a new review.",
+    "No fresh review suite, compiler or native smoke ran.",
+    "The supplied large raw JSON packet was byte-elided by the native read tool.",
+    "Standards also encountered required skills hidden by the overly narrow per-run skill filter."
+  ],
+  "next_action": "Require a verified less wasteful hard reservation bound and a fresh independent review attempt. One guard validation plus three fresh reviewers requires total11 cycles, beyond the currently approved10."
+}

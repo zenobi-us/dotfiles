@@ -1,0 +1,71 @@
+[
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read exact review inputs",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/standards-0018/review-inputs.json:raw"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read review skill",
+      "path": "skill://code-review"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read TypeScript skill",
+      "path": "skill://typescript"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read comments skill",
+      "path": "skill://code-comments"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read plain language skill",
+      "path": "skill://iso-24495-1"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read MQ skill for local Markdown",
+      "path": "skill://mq-query"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read technical language extension",
+      "path": "skill://iso-24495-3"
+    }
+  },
+  {
+    "name": "read",
+    "arguments": {
+      "i": "Read report design extension",
+      "path": "skill://iso-24495-5"
+    }
+  },
+  {
+    "name": "bash",
+    "arguments": {
+      "i": "Verify source commit tree fixed point and clean tracked state",
+      "command": "git rev-parse HEAD HEAD^{tree} b1e4b80769490af4896785bc2ea3699c22b346f6 && git status --porcelain=v1 && git diff --no-ext-diff --unified=0 b1e4b80769490af4896785bc2ea3699c22b346f6...eeb4e4f920bc5b556c515c63bb99af60e4a099d9 | sha256sum",
+      "timeout": 30,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-05-events",
+      "pty": false,
+      "async": false,
+      "name": null,
+      "ready": null
+    }
+  }
+]
