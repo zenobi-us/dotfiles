@@ -10,6 +10,8 @@ Read [Tracker schemas](../schema.md). New tickets use `schema: tracker-ticket/v1
 
 The tracker config can declare `issue-root` and `initiative-root` as store-relative paths. If absent, they default to `tickets` and `initiatives` beneath the configured tracker base (`tracker` by default). For example, a `docs/tracker` base defaults to `docs/tracker/tickets` and `docs/tracker/initiatives`. Storage routes still select each collection's store independently. Tickets use stable `id`, `title`, `work_status`, `blocked_by`, and optional `parent` fields. Workflow tickets may also use `type` (`research`, `prototype`, `grilling`, or `task`) and `triage`. Preserve unknown fields. Valid `work_status` values are `unclaimed`, `claimed`, `implemented`, `merged`, and `completed`. Set `completed` only after validation, review, merge, and push succeed.
 
+Claiming an already-held ticket is idempotent once durable ownership and current liveness/reservations are checked. Unknown or different ownership requires explicit scoped takeover approval before any claim mutation; do not clear or toggle `work_status` to restart a phase. Recover phase state through the worktree inspector and receipts, preserving partial source and append-only provenance. Add no recovery/session/phase frontmatter fields. A tracker commit, evidence run, or `claimed` value is not implementation evidence. `implemented` and `merged` remain incomplete; a completed ticket may still require finish reconciliation and cleanup.
+
 When applicable, use `## What to build`, `## Question`, `## Acceptance criteria`, and `## Comments` in the body. Do not treat body text such as `Blocked by:` as canonical metadata.
 
 ## Initiatives and specifications

@@ -2,10 +2,11 @@ import { afterEach, expect, test } from "bun:test";
 import { mkdir, mkdtemp, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, relative } from "node:path";
-import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "../../../developer/skills/git/worktree/scripts/workflow";
 import { unresolvedBlockers } from "./model";
 import type { Exec, ExplorerTicket, SharedAgentContext } from "./model";
 import { actionChoices } from "./actions";
+import { recoveryDecision } from "../../../developer/skills/git/worktree/scripts/recovery";
 
 const temporaryDirectories: string[] = [];
 afterEach(async () => {
@@ -195,6 +196,24 @@ test("phase-start and phase-complete envelopes do not require invented evidence"
   expect((await loadTicketWorkflow(context, selected, execute)).error).toBeDefined();
 });
 
+test("interrupted parent-run finish remains recoverable without a child pane", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  await put(join(events, "finish.json"), JSON.stringify({
+    ...fields, receipt_id: "finish-failed", parent_receipt: fields.receipt_id,
+    phase: "finish", event: "phase-complete", status: "FINISH_FAILED", pane_id: null,
+    created_at: "2026-10-02T10:00:00Z",
+  }));
+  let workflow = await loadTicketWorkflow(context, selected, execute);
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(recoveryDecision(selected, { tickets: [selected] }, workflow)).toMatchObject({ action: "finish", mode: "reconcile" });
+  await put(join(events, "finish.json"), JSON.stringify({
+    ...fields, receipt_id: "invalid-review", parent_receipt: fields.receipt_id,
+    phase: "review", status: "completed", pane_id: null, created_at: "2026-10-02T10:00:00Z",
+  }));
+  workflow = await loadTicketWorkflow(context, selected, execute);
+  expect(workflow.inspection?.historyValid).toBe(false);
+});
+
 test("missing source worktrees and invalid source trees never borrow repository freshness", async () => {
   const { context, selected, fields, events } = await receiptFixture();
   const absent = join(context.repositoryRoot, "removed-worktree");
@@ -202,10 +221,60 @@ test("missing source worktrees and invalid source trees never borrow repository 
   let workflow = await loadTicketWorkflow(context, selected, execute);
   expect(workflow.error).toBeDefined();
   expect(workflow.sourceTree).toBeUndefined();
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(workflow.inspection?.source.state).toBe("missing");
   await put(join(events, "z-first.json"), JSON.stringify({ ...fields, source_tree: fields.source_commit }));
   workflow = await loadTicketWorkflow(context, selected, execute);
   expect(workflow.error).toBeDefined();
   expect(workflow.sourceCommit).toBeUndefined();
+  expect(workflow.inspection?.historyValid).toBe(false);
+});
+
+test("completed archives retain legacy worktree provenance without borrowing current source freshness", async () => {
+  const { context, selected, fields, commit } = await receiptFixture();
+  selected.status = "completed";
+  context.routes.workflows = { adapter: "files", store: "repository" };
+  const archiveEvents = join(context.repositoryRoot, "workflows/A/events");
+  const removed = join(context.repositoryRoot, "removed-worktree");
+  const { evidence, ...legacy } = fields;
+  const start = {
+    ...legacy, repository: removed, worktree: removed, workspace_path: removed,
+    workflow: { store: "repository", root: removed, ref: "workflows/A" },
+  };
+  const finish = {
+    ...start, receipt_id: "finish-2", parent_receipt: "start-1", phase: "finish",
+    repository: context.repositoryRoot, workflow: { ...start.workflow, root: context.repositoryRoot },
+    created_at: "2026-10-02T10:00:00Z", status: "FINISHED", pane_id: null,
+    merged_commit: commit, pushed: true, ticket_completed: true, worktree_removed: true, workspace_closed: true,
+  };
+  await put(join(archiveEvents, "start.json"), JSON.stringify(start));
+  await put(join(archiveEvents, "finish.json"), JSON.stringify(finish));
+  const workflow = await loadTicketWorkflow(context, selected, execute);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.receipts.map(receipt => receipt.id)).toEqual(["finish-2", "start-1"]);
+  expect(workflow.receipts[1]!.fields.workflow).toEqual(start.workflow);
+  expect(workflow.sourceCommit).toBeUndefined();
+  expect(workflow.sourceTree).toBeUndefined();
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(workflow.inspection?.finishVerified).not.toBe(true);
+  expect(recoveryDecision(selected, { tickets: [selected] }, workflow)).toMatchObject({ action: "finish", mode: "reconcile", requiredApproval: true });
+
+  for (const invalid of [
+    { ...finish, pushed: false },
+    { ...finish, merged_commit: "f".repeat(40) },
+    { ...finish, ticket_ref: "records/issues/OTHER.md" },
+    { ...finish, source_tree: commit },
+    { ...finish, parent_receipt: "missing" },
+  ]) {
+    await put(join(archiveEvents, "finish.json"), JSON.stringify(invalid));
+    expect((await loadTicketWorkflow(context, selected, execute)).error).toBeDefined();
+  }
+  await put(join(archiveEvents, "finish.json"), JSON.stringify(finish));
+  await put(join(archiveEvents, "start.json"), JSON.stringify({ ...start, workflow: { ...start.workflow, root: join(context.repositoryRoot, "unrelated") } }));
+  expect((await loadTicketWorkflow(context, selected, execute)).error).toBeDefined();
+  await put(join(archiveEvents, "start.json"), JSON.stringify(start));
+  selected.status = "claimed";
+  expect((await loadTicketWorkflow(context, selected, execute)).error).toBeDefined();
 });
 
 test("orphaned and cyclic receipt parents are invalid workflow history", async () => {
@@ -261,4 +330,101 @@ test("GitHub failures and unsupported backends are errors, not empty or guessed 
   await put(join(context.repositoryRoot, "docs/agents/issue-tracker.md"), "---\nbackend: jira\n---\n");
   context.routes.tickets.adapter = "jira";
   await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow();
+});
+
+test("inspection reads actual source and separates implementation from tracker/evidence-only commits without mutation", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  const git = async (...args: string[]) => {
+    const result = await execute("git", ["-C", context.repositoryRoot, ...args]);
+    if (result.code !== 0) throw new Error(result.stdout);
+    return result.stdout.trim();
+  };
+  await git("branch", "-m", "feature/a");
+  await put(join(context.repositoryRoot, "source.ts"), "export const implementation = true;\n");
+  await git("add", "source.ts");
+  await git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "commit", "-m", "A implementation");
+  const implementation = await git("rev-parse", "HEAD");
+  await ticket(context, "A");
+  await git("add", "records/issues/A.md");
+  await git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "commit", "-m", "A tracker evidence");
+  const tracker = await git("rev-parse", "HEAD");
+  await git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "commit", "--allow-empty", "-m", "A implemented");
+  const messageOnly = await git("rev-parse", "HEAD");
+  const statusBefore = await git("status", "--porcelain=v1", "--untracked-files=all");
+  const receiptBefore = await Bun.file(join(events, "z-first.json")).text();
+  const observed: string[][] = [];
+  const exec: Exec = async (command, args) => {
+    observed.push([command, ...args]);
+    if (command === "wt") return { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "feature/a", worktree: { path: context.repositoryRoot } }] }) };
+    return execute(command, args);
+  };
+  const workflow = await loadTicketWorkflow(context, selected, exec);
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(workflow.inspection?.source).toMatchObject({ state: "available", path: context.repositoryRoot, branch: "feature/a", commit: messageOnly, dirty: true });
+  expect(workflow.inspection?.ownership).toBe("unknown");
+  expect(workflow.inspection?.commits.find(item => item.commit === implementation)).toMatchObject({ kind: "source", paths: ["source.ts"] });
+  expect(workflow.inspection?.commits.find(item => item.commit === tracker)).toMatchObject({ kind: "tracker-evidence-only", paths: ["records/issues/A.md"] });
+  expect(workflow.inspection?.commits.find(item => item.commit === messageOnly)).toMatchObject({ kind: "tracker-evidence-only", paths: [] });
+  expect(await git("status", "--porcelain=v1", "--untracked-files=all")).toBe(statusBefore);
+  expect(await Bun.file(join(events, "z-first.json")).text()).toBe(receiptBefore);
+  expect(JSON.parse(receiptBefore)).toEqual(fields);
+  expect(observed.some(args => args[0] === "wt" && args.includes("--format=json"))).toBe(true);
+  expect(observed.some(args => args.some(arg => ["add", "commit", "push", "fetch", "switch", "remove"].includes(arg)))).toBe(false);
+});
+
+test("read-only artifact inspection controls review freshness and detects missing artifacts", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  for (const args of [["branch", "-m", "feature/a"], ["add", "docs/agents/issue-tracker.md"], ["-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "commit", "-m", "Record tracker definition"]]) {
+    const result = await execute("git", ["-C", context.repositoryRoot, ...args]);
+    if (result.code) throw new Error(result.stdout);
+  }
+  const commit = (await execute("git", ["-C", context.repositoryRoot, "rev-parse", "HEAD"])).stdout.trim();
+  const tree = (await execute("git", ["-C", context.repositoryRoot, "rev-parse", "HEAD^{tree}"])).stdout.trim();
+  const artifact = join(context.sharedRoot, "workflows/A/artifacts/reviews/review-2.md");
+  const review = { ...fields, receipt_id: "review-2", parent_receipt: fields.receipt_id, phase: "review", event: "phase-complete", verdict: "SUCCESS", source_commit: commit, source_tree: tree, created_at: "2026-10-02T10:00:00Z", outputs: [{ kind: "review-artifact", ref: "shared://workflows/A/artifacts/reviews/review-2.md" }] };
+  await put(join(events, "review.json"), JSON.stringify(review));
+  await put(artifact, `# Review\n\nSource: ${commit}\n\nSUCCESS. No blocking findings.\n`);
+  const exec: Exec = async (command, args) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify([{ branch: "feature/a", path: context.repositoryRoot }]) }
+    : execute(command, args);
+  let workflow = await loadTicketWorkflow(context, selected, exec);
+  expect(workflow.inspection?.source.dirty).toBe(false);
+  expect(workflow.inspection?.artifacts).toContainEqual(expect.objectContaining({ receiptId: "review-2", state: "readable", matchesSource: true }));
+  expect(recoveryDecision(selected, { tickets: [selected] }, workflow)).toMatchObject({ action: "finish", mode: "begin" });
+  await rm(artifact);
+  workflow = await loadTicketWorkflow(context, selected, exec);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.inspection?.artifacts[0]?.state).toBe("missing");
+  expect(recoveryDecision(selected, { tickets: [selected] }, workflow)).toMatchObject({ action: "review", mode: "retry" });
+});
+
+test("Worktrunk activity is observed while inventory failure remains uncertainty, not inactivity", async () => {
+  const { context, selected } = await receiptFixture();
+  const active: Exec = async (command, args) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "feature/a", marker: "🤖", worktree: { path: context.repositoryRoot } }] }) }
+    : execute(command, args);
+  const workflow = await loadTicketWorkflow(context, selected, active);
+  expect(workflow.inspection?.ownership).toBe("active");
+  expect(recoveryDecision(selected, { tickets: [selected] }, workflow)).toMatchObject({ mode: "observe" });
+  const unavailable: Exec = async (command, args) => command === "wt" ? { code: 1, stdout: "inventory unavailable" } : execute(command, args);
+  const uncertain = await loadTicketWorkflow(context, selected, unavailable);
+  expect(uncertain.inspection?.ownership).toBe("unknown");
+  expect(uncertain.inspection?.inventoryError).toContain("inventory unavailable");
+});
+
+test("legacy lifecycle names and missing-child failed completion remain immutable readable history", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  const renamed = await execute("git", ["-C", context.repositoryRoot, "branch", "-m", "feature/a"]);
+  if (renamed.code) throw new Error(renamed.stdout);
+  const { evidence, ...envelope } = fields;
+  const interrupted = { ...envelope, receipt_id: "review-start-2", parent_receipt: fields.receipt_id, phase: "review-start", event_type: "phase-start", status: "started", created_at: "2026-10-02T10:00:00Z" };
+  const failed = { ...envelope, receipt_id: "review-failed-3", parent_receipt: interrupted.receipt_id, phase: "review", stage: "phase-complete", status: "failed", result_missing: true, failure_reason: "Reviewer exited without writing a result", created_at: "2026-10-03T10:00:00Z" };
+  await put(join(events, "review-start.json"), JSON.stringify(interrupted));
+  await put(join(events, "review-failed.json"), JSON.stringify(failed));
+  const workflow = await loadTicketWorkflow(context, selected, execute);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(workflow.receipts.find(receipt => receipt.id === interrupted.receipt_id)?.fields).toEqual(interrupted);
+  expect(workflow.receipts[0]?.fields).toEqual(failed);
+  expect(recoveryDecision(selected, { tickets: [selected] }, workflow)).toMatchObject({ action: "review", mode: "retry" });
 });

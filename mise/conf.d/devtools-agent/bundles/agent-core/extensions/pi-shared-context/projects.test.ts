@@ -8,7 +8,7 @@ import { initializeRepositoryContext, initializeSharedContext, listSharedContext
 import { ContextBrowser, openGraphContext } from "./index";
 import { GraphExplorer, type ExplorerResult } from "./explorer";
 import { SharedContextModal, type ProjectEntry, type ProjectWorkspace } from "./modal";
-import { loadExplorerSnapshot } from "./data";
+import { loadExplorerSnapshot } from "../../../developer/skills/git/worktree/scripts/workflow";
 import type { Exec, SharedAgentContext } from "./model";
 
 const cleanups: (() => void | Promise<void>)[] = [];

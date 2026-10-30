@@ -1,6 +1,6 @@
 # Complete a ticket
 
-1. Verify that validation and review passed.
-2. Verify that merge and push succeeded.
-3. Apply the configured completion operation only after all four checks pass.
-4. Read the ticket back. Report the operation, ticket identity, changed fields, validation, and any required publication result.
+1. Verify that validation and review passed for the exact source and that integrated validation passed. For worktree finish recovery, consume the verified reviewed-source-to-integration mapping and finish checkpoints; a ticket label or matching commit title is not merge evidence.
+2. Verify that merge and push succeeded on the named base/remote ref. `implemented` and `merged` are not completed. A submitted PR is not merge/completion evidence; preserve any human merge gate.
+3. Inspect current tracker state and publication. Apply the configured completion operation only after all checks pass, and only if missing. If already completed, verify its evidence and recover only missing publication; do not complete it again or skip worktree finish reconciliation/cleanup.
+4. Read the ticket back. Report the operation, ticket identity, observed state, changed fields, validation, and required publication result. Do not claim completion/publication before the backend confirms it. The worktree playbook then appends its finish checkpoint and performs any remaining safe cleanup; this operation does not remove worktrees or invent terminal receipts.

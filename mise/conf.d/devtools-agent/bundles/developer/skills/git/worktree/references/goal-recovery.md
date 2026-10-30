@@ -6,28 +6,15 @@ Use this reference during read-only goal preparation and before each authorized 
 
 For every scoped ticket, record canonical ticket/workflow refs, tracker readiness and claim state, direct blockers, receipt chain, implementation/fix result, review target/verdict, current source commit/tree and dirty state, worktree identity, agent liveness, ownership evidence, integration evidence, and next safe action. Include completed tickets whose cleanup or finish receipt is incomplete.
 
-Resolve workflow paths through shared-context. Check receipt parents and artifacts rather than choosing the newest filename. If a phase-result exists without its parent completion, reconcile the parent from verified evidence before selecting the next phase. A marker in pane output is not a receipt.
+Resolve workflow paths through shared-context without creating or migrating stores. Run the absolute `"$WORKTREE_SKILL_ROOT/scripts/inspect.ts" <canonical-ticket-ref> --json` from the repository for each ticket. Use its shared recovery decision and the execution gates in `receipts.md`. Check receipt parents and artifacts rather than choosing the newest filename. A marker in pane output is not a receipt.
 
 Inspect sessions with the muxer contract's read-only state operations. Preparation may resolve and read contracts for inspection, but must not open, resume, stop, or close sessions. A timeout, idle pane, or unknown owner is not proof that work stopped.
 
 ## Choose the next action
 
-Apply these conditions in order. Ambiguous or inconsistent evidence always requires human input.
+Use the inspector's shared decision; do not maintain a separate goal scheduler heuristic. Reinspect before each authorized dispatch. `receipts.md` defines every mode and recovery gate. In particular, reconcile a valid child result without parent completion instead of rerunning; recover incomplete start with start takeover, abandoned review with fresh review retry, and traceable partial fix with fix takeover. Changed source invalidates both review verdicts. Unknown ownership requires scoped approval; active work remains observe-only.
 
-| Observed state | Next safe action |
-| --- | --- |
-| An associated agent or reserved dispatch might still be active | Observe it through the muxer; do not launch a duplicate |
-| Claim or coordinator ownership cannot be established | Ask for explicit, scoped takeover approval; do not clear the claim |
-| Finish began, integration may exist, or cleanup is incomplete | Reconcile through `finish`; never assume a retry needs a new merge |
-| Valid finish and current remote/tracker evidence prove completion | Skip implementation; keep it in final verification scope |
-| Missing worktree before any verified integration, broken receipt chain, unexplained dirty source, or missing required artifacts | Stop with the exact recovery requirement |
-| Implementation or fix succeeded; no review covers its current clean source | Dispatch a fresh `review` in the existing worktree |
-| Latest review is FAILURE and its source still matches | Dispatch fresh `fix`, then fresh `review` |
-| Latest review is SUCCESS and current source commit/tree match | Dispatch `finish` |
-| Source changed after review, with a traceable valid implementation/fix history and no unexplained dirty changes | Invalidate the verdict and dispatch fresh `review`; never run stale fix findings or finish |
-| Incomplete implementation/fix/review with a dead session and no valid result | Ask for targeted recovery; never invent a successful receipt or blindly restart |
-| Ready, unclaimed ticket with completed direct blockers and no existing implementation | Dispatch `start` |
-| No start, recovery, or observable active work can advance the remaining scope | Report the blocking frontier |
+<!-- Recovery actions are selected by scripts/recovery.ts, not this reference. -->
 
 A claimed ticket with a completed implementation is not a new `start`. Preserve its worktree and dispatch `review` after ownership is verified. A submitted PR is not completion: inspect source/review/remote state and use `finish` only when the configured publication policy permits local finish. A human-required PR merge gate remains a gate.
 

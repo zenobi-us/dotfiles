@@ -14,7 +14,7 @@ The authoritative validator is `scripts/record-schema.ts`, relative to the insta
 | Migration plan | `tracker-migration-plan/v1` | Repository/routes, explicit selector, before/after snapshots and hashes, source provenance, coverage, conflicts | No implied execution approval |
 | Migration event | `tracker-migration/v1` | Migration identity, immutable plan hash, sequence/parent hash, observed apply or recovery state | Never rewrite historical receipts |
 
-Ticket status values are `unclaimed`, `claimed`, `implemented`, `merged`, and `completed`. Status is not triage. A parent is an initiative identity, not a dependency. Sequence is display order, not an execution edge. Required product intent and acceptance evidence remain workflow requirements beyond structural validation.
+Ticket status values are `unclaimed`, `claimed`, `implemented`, `merged`, and `completed`. Claims are tracker ownership operations, not worktree phase status. `claimed` alone proves neither implementation nor current owner liveness. `implemented` and `merged` are not completed. Recovery state, session identity, review validity, and finish checkpoints belong to append-only worktree receipts, not new ticket frontmatter fields. Status is not triage. A parent is an initiative identity, not a dependency. Sequence is display order, not an execution edge. Required product intent and acceptance evidence remain workflow requirements beyond structural validation.
 
 `scripts/record-migration.ts` validates plan identity, snapshot hashes, fresh routes, staged records, and append-only migration event chains. Results declare `tracker-result/v1`; that envelope does not upgrade the records it reports.
 

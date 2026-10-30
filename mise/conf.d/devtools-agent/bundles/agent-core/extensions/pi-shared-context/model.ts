@@ -1,4 +1,5 @@
 import type { SharedAgentContext, Exec } from "../../skills/shared-context/scripts/shared-context/lib";
+import type { WorkflowInspection } from "../../../developer/skills/git/worktree/scripts/recovery";
 
 export type { SharedAgentContext, Exec };
 
@@ -65,6 +66,7 @@ export interface TicketWorkflow {
   sourceCommit?: string;
   sourceTree?: string;
   error?: string;
+  inspection?: WorkflowInspection;
   // Counts are available only after receipt identity and parent-graph validation.
   recordedAttempts?: { review: number; fix: number };
 }
@@ -90,24 +92,6 @@ export interface ExplorerSessionRequest {
   prompt: string;
 }
 
-export function chronologicalReceipts(receipts: ExplorerReceipt[]): ExplorerReceipt[] {
-  const byId = new Map(receipts.map(receipt => [receipt.id, receipt]));
-  const depths = new Map<string, number>();
-  for (const receipt of receipts) {
-    const ancestors = new Set<string>();
-    let parent = receipt.parentReceipt;
-    while (parent && byId.has(parent) && !ancestors.has(parent)) {
-      ancestors.add(parent);
-      parent = byId.get(parent)!.parentReceipt;
-    }
-    depths.set(receipt.id, ancestors.size);
-  }
-  return [...receipts].sort((left, right) =>
-    Date.parse(left.createdAt) - Date.parse(right.createdAt)
-    || depths.get(left.id)! - depths.get(right.id)!
-    || left.id.localeCompare(right.id, "en", { numeric: true }),
-  );
-}
 
 // Tracker adapters return canonical issue records, including research and planning.
 // Only executable record types may consume workflow evidence or offer transitions.
@@ -120,7 +104,7 @@ export function recordKind(ticket: ExplorerTicket): "ticket" | "research" | "pla
 }
 
 export function isCompleted(ticket: ExplorerTicket): boolean {
-  return ["done", "closed", "resolved", "complete", "completed", "merged", "implemented"].includes(ticket.status.trim().toLowerCase());
+  return ["done", "closed", "resolved", "complete", "completed"].includes(ticket.status.trim().toLowerCase());
 }
 
 export function unresolvedBlockers(ticket: ExplorerTicket, snapshot: ExplorerSnapshot): string[] {

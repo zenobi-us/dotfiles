@@ -10,6 +10,13 @@ Route `UserRequest` to the correct worktree workflow. This skill dispatches only
 
 - 0. Resolve this installed skill directory as `WORKTREE_SKILL_ROOT`. Script paths are relative to that directory, not the target repository. Invoke `"$WORKTREE_SKILL_ROOT/scripts/router.ts"` directly from the target repository; its shebang selects the runtime.
 - 1. Load the `worktree` skill’s `references/receipts.md` file before running a worktree playbook.
+- 2. Before every phase, `continue`, or goal next-action decision, resolve the canonical ticket reference and run the read-only inspector from the target repository (or its surviving base worktree):
+
+  ```sh
+  "$WORKTREE_SKILL_ROOT/scripts/inspect.ts" <canonical-ticket-ref> --json
+  ```
+
+  `WORKTREE_SKILL_ROOT` MUST be the absolute installed skill directory resolved above. The equivalent router entry is `"$WORKTREE_SKILL_ROOT/scripts/router.ts" inspect <canonical-ticket-ref> --json`. Both use the shared decision in `scripts/recovery.ts`; do not derive a competing next action from ticket status, filenames, or projections. Follow `references/receipts.md` for decision modes and execution gates. Inspection reads state only: it does not claim, reconcile, launch, kill, merge, publish, or clean up.
 
 Every mutating ticket phase MUST create a durable receipt under the workflow root resolved by
 the `shared-context` skill for `<ticket-id>`. `tasks` and goal preparation create no receipts. Receipts in `events/` are
@@ -25,7 +32,7 @@ Goal execution uses the separate coordinator journal contract in `references/rec
 
 `start`, `review`, and `fix` MUST use independent agent sessions. A review or fix MUST run in a fresh agent session in the existing worktree workspace. It MUST NOT send instructions to, resume, or reuse an earlier implementation, review, or fixer session. The `muxer-subagents` skill owns how that fresh session is opened.
 
-Review the exact source commit recorded in the review handoff. A verdict is valid only for that commit. A later source commit invalidates the verdict until a new review completes.
+Review the exact source commit recorded in the review handoff. A verdict is valid only for that commit. Any later source commit or tree change invalidates either SUCCESS or FAILURE until a new review completes. Dirty source may be preserved for authorized start/fix takeover, never accepted for review or a new merge.
 
 Use one immutable artifact under `artifacts/reviews/` for every review attempt.
 Never overwrite an earlier review or copy its body into the tracker. Store

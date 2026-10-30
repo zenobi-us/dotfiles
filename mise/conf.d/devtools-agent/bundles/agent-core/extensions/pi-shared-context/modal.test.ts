@@ -85,7 +85,9 @@ test("mixed items retain canonical details, planning commands, and independent F
   await modal.handleInput("\r");
   expect(modal.render(180).join("\n")).toContain("missing");
   await modal.handleInput("a");
-  expect(modal.render(180).join("\n")).toContain("Unresolved or missing direct blockers");
+  const previous = result;
+  await modal.handleInput("s");
+  expect(result).toBe(previous);
   graph.dispose();
 });
 

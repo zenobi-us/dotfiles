@@ -36,7 +36,6 @@ test("four queues separate status, next action, recorded activity, and canonical
     expect(f.view()).toContain("Work A");
     expect(f.view()).not.toContain("Initiative only");
     expect(f.view()).not.toContain("Work T");
-    expect(f.view()).toContain("Next: Start worktree");
     await f.key("6");
     expect(f.view()).toContain("Ticket queues · review");
     expect(f.view()).toContain("State: claimed");
@@ -56,10 +55,47 @@ test("four queues separate status, next action, recorded activity, and canonical
     expect(f.view()).toContain("Work B");
     expect(f.view()).toContain("Waiting for missing");
     await f.key("a");
-    expect(f.view()).toContain("Unresolved or missing direct blockers");
+    const previous = f.result();
+    await f.key("s");
+    expect(f.result()).toBe(previous);
     await f.key("\x1b");
     await f.key("8");
     for (const id of ["A", "T", "B", "U"]) expect(f.view()).toContain(`Work ${id}`);
+  } finally { f.graph.dispose(); }
+});
+
+test("interrupted phases remain actionable through their own queue and hotkey", async () => {
+  const f = await fixture();
+  try {
+    const pending = receipt("start-pending", "start", "started");
+    pending.fields.event = "phase-start";
+    f.snapshot().tickets.find(ticket => ticket.id === "A")!.status = "claimed";
+    f.workflows.set("A", { ticketId: "A", receipts: [{ ...pending, workflowId: "A", ref: "workflows/A/events/start-pending.yaml" }] });
+    await f.graph.load();
+    await f.key("5");
+    expect(f.view()).toContain("Work A");
+    await f.key("a");
+    await f.key("s");
+    expect(f.result()).toMatchObject({ kind: "session", request: { action: "start", target: { kind: "ticket", ticket: { id: "A", status: "claimed" } } } });
+  } finally { f.graph.dispose(); }
+});
+
+test("review queue recommends finish after current success, not another enabled action", async () => {
+  const f = await fixture();
+  try {
+    const success = { ...receipt("reviewed", "review"), verdict: "SUCCESS", createdAt: "2026-10-29T02:00:00Z" };
+    f.workflows.get("T")!.receipts.push(success);
+    f.workflows.get("T")!.inspection = {
+      historyValid: true, source: { state: "available", branch: "feature/T", dirty: false },
+      ownership: "unknown", worktrees: [], commits: [],
+      artifacts: [{ receiptId: success.id, ref: "reviews/reviewed.md", state: "readable", matchesSource: true }],
+    };
+    await f.graph.load();
+    await f.key("6");
+    expect(f.view()).toContain("Next: Finish");
+    await f.key("a");
+    await f.key("f");
+    expect(f.result()).toMatchObject({ kind: "session", request: { action: "finish", target: { kind: "ticket", ticket: { id: "T" } } } });
   } finally { f.graph.dispose(); }
 });
 
@@ -159,7 +195,6 @@ test("queue fields reflow in monochrome with Unicode and terminal-control saniti
       const content = pages.join("\n");
       expect(content).toContain("tracker/tickets/A.md");
       expect(content).toContain("State: open");
-      expect(content).toContain("Next: Start worktree");
       expect(content).toContain("Recorded:");
     }
   } finally { f.graph.dispose(); }

@@ -8,7 +8,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord, resolveSharedContext, type ResolvedRecord, type SharedAgentContext } from "../../../../agent-core/skills/shared-context/scripts/shared-context/lib.ts";
 import { validateStorePath } from "../../../../agent-core/skills/shared-context/scripts/shared-context/layout.ts";
-import { loadExplorerSnapshot } from "../../../../agent-core/extensions/pi-shared-context/data.ts";
+import { loadExplorerSnapshot } from "../../../../developer/skills/git/worktree/scripts/workflow.ts";
 import { markdownGraph } from "./dep-tree-markdown.ts";
 import { buildDependencyGraph, renderDependencyGraph } from "./dep-tree-shared.ts";
 import { assertRecord, INITIATIVE_SCHEMA, RESULT_SCHEMA, TICKET_SCHEMA, validateRecord } from "./record-schema.ts";
@@ -226,13 +226,14 @@ export async function checkRecord(options: Options, kind: "ticket" | "initiative
     if (result.error) throw result.error;
     return { stdout: result.stdout ?? "", code: result.status ?? 1 };
   });
-  const discovered = (kind === "ticket" ? snapshot.tickets : snapshot.initiatives).some((record) => record.id === id);
+  const discoveredInitiatives = snapshot.initiatives.filter((initiative) => !initiative.group);
+  const discovered = (kind === "ticket" ? snapshot.tickets : discoveredInitiatives).some((record) => record.id === id);
   if (!discovered) throw new Error("The normal tracker explorer did not discover the selected migrated record");
-  const selectedInitiative = snapshot.initiatives.find((record) => record.id === id);
+  const selectedInitiative = discoveredInitiatives.find((record) => record.id === id);
   const ticketIds = kind === "ticket" ? [id] : selectedInitiative?.ticketIds ?? [];
   const tickets = snapshot.tickets.filter((ticket) => ticketIds.includes(ticket.id)).map((ticket) => ({ id: ticket.id, title: ticket.title, ref: ticket.ref, state: ticket.status, blocked_by: ticket.blockedBy }));
   const initiatives = kind === "initiative" && selectedInitiative ? [{ id, title: selectedInitiative.title, ref: selectedInitiative.ref, children: tickets.map((ticket) => ({ id: ticket.id, ref: ticket.ref })) }] : [];
-  return { schema: RESULT_SCHEMA, operation: "check", backend: "local-markdown", ok: true, initiatives, tickets, changes: null, validation: { status: "passed", details: ["Validated the selected record through the normal graph and tracker explorer readers."] }, publication: null, rendered: graph, kind, id, ref: reference(target, recordPath), recordSchema: document.fields.schema ?? null, legacy: document.fields.schema === undefined, graph, graphScope, normalTrackerDiscovery: { tickets: snapshot.tickets.length, initiatives: snapshot.initiatives.length }, coverage: "Resolved tracker collections; normal Markdown graph and explorer discovery" };
+  return { schema: RESULT_SCHEMA, operation: "check", backend: "local-markdown", ok: true, initiatives, tickets, changes: null, validation: { status: "passed", details: ["Validated the selected record through the normal graph and tracker explorer readers."] }, publication: null, rendered: graph, kind, id, ref: reference(target, recordPath), recordSchema: document.fields.schema ?? null, legacy: document.fields.schema === undefined, graph, graphScope, normalTrackerDiscovery: { tickets: snapshot.tickets.length, initiatives: discoveredInitiatives.length }, coverage: "Resolved tracker collections; normal Markdown graph and explorer discovery" };
 }
 
 export async function writePlanOutput(options: Options, plan: MigrationPlan, filename: string): Promise<void> {
@@ -284,7 +285,7 @@ async function discover(env: Environment): Promise<Document[]> {
   for (const target of [env.tracker, env.tickets, env.initiatives]) {
     const root = requiredPath(target);
     if (!await exists(root)) continue;
-    const rows = mq< { path: string; text: string }[]>("map(walk_files(root, \"**/*.md\"), fn(file): {path: file, text: read_file(root + \"/\" + file)};)", "", { root }, root, false);
+    const rows = mq<{ path: string; text: string }[]>("map(walk_files(root, \"**/*.md\"), fn(file): {path: file, text: read_file(root + \"/\" + file)};)", "", { root }, root, false);
     for (const row of rows) {
       if (row.path.split(/[\\/]/).some((segment) => Object.hasOwn(excludedSegments, segment))) continue;
       const filename = path.resolve(root, row.path);

@@ -20,7 +20,7 @@ the alignment root or select a store from `mode`.
 | Library source | `resolve source --library --source <SOURCE>` | Configured source directory |
 | ADR | `resolve adr --id <ID>` | Unique matching file in the alignment store, or the proposed file path |
 
-The resolver prints a path and does not create it. Create the resolved directory,
+The resolver prints a location and does not create it or prove that the workflow exists. For recovery, inspect existing events at the resolved location; do not initialize or migrate storage. Workflow evidence and phase receipts are different records: resolve evidence separately, and let the worktree skill validate progress and recovery. Create the resolved directory,
 or its parent for a file path, only when the operation writes there. IDs cannot
 contain a slash or `..`. A source request must select exactly one of `--ticket`
 and `--library`.

@@ -2,11 +2,21 @@
 
 Submit the reviewed work for the resolved ticket as a pull request.
 
-Submit commits, pushes, and opens a pull request from the current worktree. This playbook does not open a new pane or launch a fresh agent, so the `muxer-subagents` skill does not apply to it.
+Submit publishes reviewed source and opens or reconciles its pull request. It does not launch a child agent. Use the muxer contract for read-only liveness/ownership inspection when needed; do not skip recovery checks merely because no new session is launched.
 
 ## Ticket resolution
 
 Load `references/issue-tracker.md` and the ticket skill before resolving the ticket. Use the ticket skill to return the canonical ticket `ref` and backend. If no identifier is present, use the most recent unambiguous ticket mention in the conversation. Cross-check it against workflow records. Ask when it is missing or ambiguous. Do not guess.
+
+## Inspect and recover first
+
+Resolve the canonical ticket and absolute installed `WORKTREE_SKILL_ROOT`. From the repository or surviving base worktree run:
+
+```sh
+"$WORKTREE_SKILL_ROOT/scripts/inspect.ts" <canonical-ticket-ref> --json
+```
+
+Follow the shared decision and execution gates in `references/receipts.md` before the normal process below. This command recovers its own interrupted attempt. Inspection is read-only; the playbook performs any authorized reconciliation or retry. If a different action is recommended, dispatch that playbook rather than bypassing its gates. Observe active owners, check reservations and ownership, obtain required scoped takeover approval, and never auto-kill a session. Append recovery provenance; preserve prior receipts and partial source.
 
 # Preconditions
 
@@ -44,12 +54,12 @@ Ask the user for the missing ticket before continuing. Exit if the review artifa
    and resolve the workflow root with `shared-context resolve workflow --id <ticket-id>`.
 2. Resolve the current worktree from `git` and `wt` state. Submit runs in the current worktree and does not ask a muxer where it is.
 3. Use Worktrunk to verify the source branch and worktree state.
-4. Make sure that the source worktree has no unintended changes. Commit intended changes with the `skill://commit` skill. Put the ticket reference in the commit title. Include the ticket link and a link, per the `agent-core:shared-context` skill's reference rule, to every ADR the review verdict relied on in the commit body.
+4. Require the source worktree to be clean and still match the reviewed commit and tree. Do not commit unreviewed source during submit. If intended source changes remain, preserve them and return to implementation/fix and fresh review; never push them under a stale verdict.
 5. Run the smallest validation command recorded by the successful review.
 6. Look for a manual test report for the resolved ticket. See "Manual test reports" below.
 7. Append a `submit` phase-start receipt before pushing the source branch.
-8. Push the source branch.
-9. Use the pull request creation skill if available. Otherwise use `gh pr create`.
+8. Observe the named remote branch before retrying a push. If the exact reviewed commit is already published, record the observation and skip push; otherwise use a safe non-force source-branch push and verify its outcome. Stop on uncertain identity or divergence.
+9. Query existing pull requests for the exact repository, source branch and base before creation, including after an interrupted attempt. Reuse the matching PR and reconcile its URL/head; ambiguous matches require human input. Create only when observed absence is established, using the pull request creation skill if available, otherwise `gh pr create`. A prior failed/missing receipt does not prove that push or PR creation failed.
 10. Add these items to the pull request body:
    - the ticket `ref` returned by the ticket skill;
    - a link, per the `agent-core:shared-context` skill's reference rule, to the successful review artifact,
@@ -69,11 +79,13 @@ directory.
 
 ## Find the report
 
+Resolve the absolute installed shared-context skill directory as `SHARED_CONTEXT_SKILL_ROOT` before these commands. Run from the source repository.
+
 1. Read workflow receipts and list the evidence run references they created.
 2. Resolve each run's evidence root:
 
    ```bash
-   shared-context resolve evidence --workflow "<ticket-id>" --run "manual-test-<run-id>"
+   "$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" resolve evidence --workflow "<ticket-id>" --run "manual-test-<run-id>"
    ```
 
 3. Inspect each resolved evidence root with the available filesystem tool. List

@@ -5,6 +5,7 @@ import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import { existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { runInspectCommand } from "./inspect";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const skillDir = resolve(scriptDir, "..");
@@ -79,4 +80,13 @@ const doctorCmd = app
     }, null, 2));
   });
 
-app.use(helpPlugin()).command(routeCmd).command(doctorCmd).execute();
+const inspectCmd = app
+  .sub("inspect")
+  .meta({ description: "Inspect a canonical ticket reference without changing source or workflow state." })
+  .args([{ name: "ticket-ref", type: "string", required: true, description: "Exact canonical ticket reference from the configured adapter." }])
+  .flags({ json: { type: "boolean", description: "Print inspection facts and the shared recovery decision as JSON." } })
+  .run(async ({ args, flags }) => {
+    await runInspectCommand(args["ticket-ref"], Boolean(flags.json));
+  });
+
+app.use(helpPlugin()).command(routeCmd).command(doctorCmd).command(inspectCmd).execute();

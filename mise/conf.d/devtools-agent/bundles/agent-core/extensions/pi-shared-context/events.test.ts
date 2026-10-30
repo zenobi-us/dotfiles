@@ -66,7 +66,8 @@ test("event inspection separates execution and verdict, leads with body, and exp
     expect(view).toContain("Changed files: 2 (recorded)");
     expect(view).toContain("recorded-session");
     await f.modal.handleInput("a");
-    expect(f.view()).toContain("Unresolved or missing direct blockers");
+    await f.modal.handleInput("s");
+    expect(f.result()).toBeUndefined();
     await f.modal.handleInput("m");
     const result = f.result();
     if (result?.kind !== "session") throw new Error("Expected canonical chat request");
@@ -112,7 +113,9 @@ test("stable events survive insertions, Files, failed refresh, and keyboard or m
     expect(f.view()).toContain("Source: unavailable");
     expect(f.view()).toContain("History refresh failed");
     await f.modal.handleInput("a");
-    expect(f.view()).toContain("Workflow receipts could not be read");
+    const previous = f.result();
+    await f.modal.handleInput("r");
+    expect(f.result()).toBe(previous);
     expect(origin).toContain("review-1");
   } finally { f.graph.dispose(); }
 });

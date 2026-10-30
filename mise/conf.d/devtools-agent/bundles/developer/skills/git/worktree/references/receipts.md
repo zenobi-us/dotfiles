@@ -4,16 +4,18 @@ Use receipts as the durable record for every worktree phase.
 
 ## Workflow layout
 
+Resolve the absolute installed shared-context skill directory as `SHARED_CONTEXT_SKILL_ROOT`. Run its CLI from the target repository or surviving base worktree.
+
 Resolve the workflow record with:
 
 ```sh
-shared-context resolve workflow --id <ticket-id> --json
+"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" resolve workflow --id <ticket-id> --json
 ```
 
 Resolve each evidence run separately with:
 
 ```sh
-shared-context resolve evidence --workflow <ticket-id> --run <run-id> --json
+"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" resolve evidence --workflow <ticket-id> --run <run-id> --json
 ```
 
 Use only:
@@ -48,12 +50,40 @@ write workflow state to `.scratch/`, `<ticket>/local/`, the ticket collection, o
 - Treat `manifest.yaml` and `projections/` as generated views.
 - Name each review artifact `artifacts/reviews/review-<receipt-id>.md`.
 
+## Shared recovery decision
+
+Every phase command recovers its own interrupted attempt; recovery is not limited to `continue` or `goal`. Resolve the absolute installed `WORKTREE_SKILL_ROOT` and, from the repository or surviving base worktree, run:
+
+```sh
+"$WORKTREE_SKILL_ROOT/scripts/inspect.ts" <canonical-ticket-ref> --json
+```
+
+`"$WORKTREE_SKILL_ROOT/scripts/router.ts" inspect <canonical-ticket-ref> --json` exposes the same read-only entry point. Both consume `scripts/recovery.ts`'s single decision. The decision carries `action`, `mode`, `label`, `reason`, `requiredApproval`, `parentReceipt`, `inputs`, and optional `alternatives`. An absent action is not permission to select an arbitrary phase. Inspection reports a decision; it never performs recovery mutations.
+
+| Mode | Execution rule |
+| --- | --- |
+| `begin` | Run the recommended phase after its normal preconditions. |
+| `reconcile` | Validate the existing child result, artifacts, exact source identities, validation, and shutdown; append the missing parent completion without repeating child work. For finish, reconcile actual integration/publication/cleanup boundaries below. |
+| `retry` | A missing or unusable child result is not success. After ownership/liveness checks, run a new attempt, with a fresh reviewer for abandoned or unusable review. |
+| `takeover` | Recover incomplete start implementation or traceable partial fix in a fresh session and existing worktree; preserve source, including dirty partial work. |
+| `observe` | Observe the active owner/reserved dispatch through the muxer contract; do not launch a duplicate. |
+| `blocked` | Report the exact missing, ambiguous, or inconsistent evidence. Broken parent graphs block; missing evidence is not proof that an operation did not occur. |
+| `complete` | Verified FINISHED plus current remote/tracker/cleanup evidence proves completion; no new mutation. |
+
+Before any recovery mutation, inspect afresh, verify agent liveness, active goal reservations, ticket/coordinator ownership, and direct blockers. A timeout, idle pane, missing marker, or unknown session is not proof of shutdown. A known live owner must be observed or explicitly handed off. Unknown or different ownership requires explicit, scoped takeover approval, recorded before execution; approval does not authorize a duplicate live session. Never automatically kill an agent. Use the ticket skill for idempotent held claims or consented ownership transfer; `claimed` alone proves neither ownership nor implementation.
+
+A valid result without parent completion is reconciled, not rerun. Missing/unusable result or review artifact requires a new attempt, never an invented successful receipt. Incomplete start selects start takeover; incomplete review selects fresh review retry; incomplete fix selects fix takeover only when findings and partial source are traceable, otherwise fresh review once a valid clean implementation target is established. Source changes after either review verdict select fresh review, not stale fix or finish. Valid implementation/fix selects review. A current clean SUCCESS selects finish, with submit as the publication-policy alternative. A submitted PR, tracker commit, evidence run, or artifact alone does not prove implementation or completion.
+
+For every recovery attempt append provenance to new receipts: consumed receipts and artifacts in `inputs`, prior attempt/parent reference, observed source and session identities, recovery mode/reason, ownership and approval evidence, validation and actual outcomes. Preserve older receipts and partial source. Do not rewrite an abandoned attempt, invent an evidence run, or add recovery frontmatter to tickets. Shared-context resolves locations; it does not prove workflow existence. Recovery never runs storage `init` or `migrate`.
+
 ## Receipt fields
 
 Copy `workflow.store`, `workflow.root`, and `workflow.ref` from the corresponding
-fields returned by `shared-context resolve workflow --id <ticket-id> --json`.
+fields returned by `"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" resolve workflow --id <ticket-id> --json`.
 `workflow.root` is the store root. It is not the returned `path`, which includes
 `workflows/<ticket-id>`. Never substitute the workflow directory for the store root.
+
+Finish runs in the parent session and MAY record `pane_id: null` before or after ticket completion. This does not waive session identity, receipt provenance, or finish recovery evidence. Implementation, review, and fix still require their child pane identity.
 
 Every ticket-phase receipt MUST include:
 
@@ -158,7 +188,7 @@ FINISHED
 FINISH_FAILED
 ```
 
-A phase-complete receipt MUST link to the phase-result receipt. A projection MUST
+A phase-complete receipt MUST link to the phase-result receipt when a usable child result exists. If no child result exists, the parent MAY append a failed or blocked phase-complete receipt with `result_missing: true`, `parent_receipt` naming the interrupted phase-start receipt, and `failure_reason` describing the observed failure. This parent-side record MUST NOT claim success or invent a child result. A later invocation inspects that failed/blocked attempt for retry or takeover. A projection MUST
 NOT replace a receipt.
 
 The append-only history under `events/` is the workflow record.
@@ -300,4 +330,4 @@ REVIEWING → REVIEW_FAILED → FIXING → FIXED → REVIEWING
 REVIEWING → REVIEW_PASSED → FINISHING → FINISHED
 ```
 
-Reject `review` without an implementation receipt, `fix` without the latest persisted `FAILURE`, and a new merge without a `SUCCESS` receipt that covers the current source commit and tree. After a verified merge, finish recovery uses the recorded reviewed-source-to-integration mapping; source-worktree removal does not invalidate that durable evidence.
+Require valid implementation/fix evidence for a new review target, current persisted `FAILURE` findings for a new fix, and a `SUCCESS` receipt covering the current clean source commit and tree for a new merge. These gates do not prohibit recovery of incomplete attempts selected by the shared decision: preserve partial start/fix source and reconcile valid results before choosing the next phase. Invalidate both review verdicts on subsequent source changes. After a verified merge, finish recovery uses the recorded reviewed-source-to-integration mapping; source-worktree removal does not invalidate that durable evidence.

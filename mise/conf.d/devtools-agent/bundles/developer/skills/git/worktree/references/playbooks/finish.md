@@ -4,6 +4,16 @@ Squash merge reviewed work and close its ticket, or recover an interrupted finis
 
 Finish does not launch an agent for source work. It releases every remaining agent pane before merge and removes the worktree only after the push and ticket update succeed.
 
+## Inspect and recover first
+
+Resolve the canonical ticket and absolute installed `WORKTREE_SKILL_ROOT`. From the repository or surviving base worktree run:
+
+```sh
+"$WORKTREE_SKILL_ROOT/scripts/inspect.ts" <canonical-ticket-ref> --json
+```
+
+Follow the shared decision and execution gates in `references/receipts.md` before the normal process below. This command recovers its own interrupted attempt. Inspection is read-only; the playbook performs any authorized reconciliation or retry. If a different action is recommended, dispatch that playbook rather than bypassing its gates. Observe active owners, check reservations and ownership, obtain required scoped takeover approval, and never auto-kill a session. Append recovery provenance; preserve prior receipts and partial source.
+
 ## Preconditions
 
 - Read `references/receipts.md`.
@@ -22,7 +32,7 @@ Finish does not launch an agent for source work. It releases every remaining age
 1. Resolve the ticket, workflow root, source identity, base, and remote. Read the immutable review, implementation/fix, and all finish receipts. Use projections only to locate authoritative records.
 2. Read actual local Git, remote ref, tracker, worktree, and muxer state. A failed receipt does not prove that its named operation had no effect. Reconcile the last verified boundary using the integration evidence contract in `references/receipts.md`.
 3. If a valid `FINISHED` receipt and current evidence cover the ticket, return that result without a new merge, push, or ticket completion.
-4. If an agent remains active, resolve and release it through `muxer-subagents` before integration or cleanup. An unknown session state is a blocker.
+4. If an agent remains active, observe it or arrange explicit handoff through `muxer-subagents`; do not automatically terminate it. Verify shutdown before integration or cleanup. Unknown session state requires targeted liveness resolution and scoped approval, not a guessed shutdown.
 5. Select the first unverified operation below. Recheck its preconditions immediately before acting. Append a new `FINISHING` attempt linked to the prior receipt and consumed review. Never overwrite an earlier attempt.
 
 ## Execute only the remaining operations

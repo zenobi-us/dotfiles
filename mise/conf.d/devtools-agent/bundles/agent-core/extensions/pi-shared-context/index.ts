@@ -8,7 +8,7 @@ import { listSharedContexts, renderSharedContext, resolveSharedContext, resolveS
 import { GraphExplorer } from "./explorer";
 import type { ExplorerNavigation, ExplorerResult } from "./explorer";
 import { buildSessionPrompt, launchExplorerSession } from "./actions";
-import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "../../../developer/skills/git/worktree/scripts/workflow";
 import type { Exec, ExplorerSessionRequest, SharedAgentContext } from "./model";
 import { safeTerminalText } from "./terminal-text";
 import { SharedContextModal, type ProjectEntry, type ProjectWorkspace } from "./modal";
@@ -524,7 +524,7 @@ export async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandCo
         render: (width: number) => modal.render(width),
         handleInput: (data: string) => { void modal.handleInput(data); },
         handleMouse: event => modal.handleMouse(event),
-        invalidate: () => {},
+        invalidate: () => { },
         dispose: () => modal.dispose(),
       };
     }, { overlay: true, overlayOptions: { anchor: "center", width: "95%", maxHeight: "95%" } });
@@ -543,29 +543,38 @@ export async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandCo
     }
     request = { ...request, prompt: prompt.trim() };
     try {
-      const snapshot = await loadExplorerSnapshot(context, exec);
-      if (request.target.kind === "ticket") {
-        const previous = request.target.ticket;
-        const ticket = snapshot.tickets.find(ticket => ticket.id === previous.id && ticket.ref === previous.ref);
-        if (!ticket) throw new Error("The selected ticket changed or disappeared. Reload the explorer.");
-        request = { ...request, snapshot, target: { kind: "ticket", ticket }, workflow: await loadTicketWorkflow(context, ticket, exec) };
-      } else {
-        const previous = request.target.initiative;
-        const initiative = snapshot.initiatives.find(initiative => initiative.id === previous.id && initiative.ref === previous.ref);
-        if (!initiative) throw new Error("The selected initiative changed or disappeared. Reload the explorer.");
-        request = { ...request, snapshot, target: { kind: "initiative", initiative } };
-      }
+      request = await refreshSessionRequest(context, exec, request);
       const confirmed = await ctx.ui.confirm(
-        "Open a fresh chat?",
-        safeTerminalText(`${buildSessionPrompt(request)}\n\nThe command will be placed in the NEW chat's editor. Press Enter there to run it. Saved sessions remain available in /resume.`, true),
+        "Send this prompt in a fresh chat?",
+        safeTerminalText(`${buildSessionPrompt(request)}\n\nConfirm to open a NEW chat and send this prompt immediately. Saved sessions remain available in /resume.`, true),
       );
       if (!confirmed) continue;
+      const refreshed = await refreshSessionRequest(context, exec, request);
+      if (buildSessionPrompt(refreshed) !== buildSessionPrompt(request)) {
+        ctx.ui.notify("Workflow state changed during confirmation. Inspect the new next step before opening a chat.", "warning");
+        continue;
+      }
+      request = refreshed;
       if (await launchExplorerSession(pi, ctx, request)) return;
       ctx.ui.notify("Chat creation was cancelled. The current session is unchanged.", "info");
     } catch (error) {
       ctx.ui.notify(safeTerminalText(`Could not prepare the next chat: ${error instanceof Error ? error.message : String(error)}`), "error");
     }
   }
+}
+
+async function refreshSessionRequest(context: SharedAgentContext, exec: Exec, request: ExplorerSessionRequest): Promise<ExplorerSessionRequest> {
+  const snapshot = await loadExplorerSnapshot(context, exec);
+  if (request.target.kind === "ticket") {
+    const previous = request.target.ticket;
+    const ticket = snapshot.tickets.find(ticket => ticket.id === previous.id && ticket.ref === previous.ref);
+    if (!ticket) throw new Error("The selected ticket changed or disappeared. Reload the explorer.");
+    return { ...request, snapshot, target: { kind: "ticket", ticket }, workflow: await loadTicketWorkflow(context, ticket, exec) };
+  }
+  const previous = request.target.initiative;
+  const initiative = snapshot.initiatives.find(initiative => initiative.id === previous.id && initiative.ref === previous.ref);
+  if (!initiative) throw new Error("The selected initiative changed or disappeared. Reload the explorer.");
+  return { ...request, snapshot, target: { kind: "initiative", initiative } };
 }
 
 
@@ -576,7 +585,7 @@ class ReportModal {
     private report: string,
     private theme: Theme,
     private done: (result: void) => void,
-  ) {}
+  ) { }
 
   handleInput(data: string): void {
     if (matchesKey(data, "escape") || matchesKey(data, "ctrl+c")) {
@@ -750,7 +759,7 @@ export default function sharedContextBrowser(pi: ExtensionAPI): void {
           }
           await ctx.ui.custom<void>((_tui, theme, _keybindings, done) => {
             const modal = new ReportModal(report, theme, done);
-            return { render: (width: number) => modal.render(width), handleInput: (data: string) => modal.handleInput(data), invalidate: () => {} };
+            return { render: (width: number) => modal.render(width), handleInput: (data: string) => modal.handleInput(data), invalidate: () => { } };
           }, { overlay: true, overlayOptions: { anchor: "center", width: "80%", maxHeight: "80%" } });
           return;
         }

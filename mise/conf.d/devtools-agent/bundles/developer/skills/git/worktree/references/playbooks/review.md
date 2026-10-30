@@ -4,6 +4,16 @@ Review a worktree in a fresh agent session.
 
 The reviewer MUST use a new pane or tab. It MUST NOT reuse the implementation or fixer session.
 
+## Inspect and recover first
+
+Resolve the canonical ticket and absolute installed `WORKTREE_SKILL_ROOT`. From the repository or surviving base worktree run:
+
+```sh
+"$WORKTREE_SKILL_ROOT/scripts/inspect.ts" <canonical-ticket-ref> --json
+```
+
+Follow the shared decision and execution gates in `references/receipts.md` before the normal process below. This command recovers its own interrupted attempt. Inspection is read-only; the playbook performs any authorized reconciliation or retry. If a different action is recommended, dispatch that playbook rather than bypassing its gates. Observe active owners, check reservations and ownership, obtain required scoped takeover approval, and never auto-kill a session. Append recovery provenance; preserve prior receipts and partial source.
+
 ## Preconditions
 
 - Read `references/receipts.md`.
@@ -24,13 +34,13 @@ The reviewer MUST use a new pane or tab. It MUST NOT reuse the implementation or
 Reject the request when any of these conditions is true:
 
 - The ticket, source branch, or worktree is unknown.
-- No implementation receipt exists.
+- No valid implementation/fix evidence establishes a clean review target. A valid child result missing parent completion must be reconciled first, not rejected solely for the missing completion.
 - An agent session for the worktree is still active.
 - The source branch changed after the review handoff was created and no new handoff was made.
 
 ## Process
 
-1. Resolve the ticket and workflow root.
+1. Resolve the ticket and workflow root. Reconcile a valid review result and artifact missing parent completion without rerunning the reviewer. For an abandoned review or missing/unusable result/artifact, start a fresh review attempt after liveness/ownership checks. Never reuse the earlier reviewer session or invent its verdict. Both prior SUCCESS and FAILURE become stale when source commit/tree changes; review the current clean target again.
 2. Read the latest implementation or fix receipt, the latest draft under
    `artifacts/snapshots/`, the ticket, context, ADRs, and agent instructions.
 3. Resolve the source branch, base branch, worktree path, and current source commit.
@@ -81,7 +91,7 @@ Use `NO ADR` when no ADR applies. State why the finding blocks completion.
 
 ```md
 ## Verdict
-SUCCESS or FAILURE
+{SUCCESS or FAILURE only for a usable validated review; otherwise failed/blocked/unavailable with reason}
 
 ## Scope
 {ticket, branch, base branch, and frozen source commit}
@@ -93,11 +103,11 @@ SUCCESS or FAILURE
 - {command}: {result}
 
 ## Review artifact
-{new immutable path}
+{new immutable path, or unavailable with reason}
 
 ## Review receipt
-{new immutable receipt path}
+{new immutable receipt path, or unavailable with reason}
 
 ## Next step
-{Run fix <ticket-id> after FAILURE, or finish/submit after SUCCESS.}
+{Next action and reason from fresh shared inspection after recording the outcome. Recommend fix only for current usable FAILURE findings, or finish/submit only for current clean SUCCESS. For failed, blocked, or unavailable results, report the inspected recovery/observation requirement instead.}
 ```

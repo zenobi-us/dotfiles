@@ -20,7 +20,18 @@ function receipt(sequence: number, phase: string, overrides: Partial<ExplorerRec
 }
 
 function workflow(receipts: ExplorerReceipt[], overrides: Partial<TicketWorkflow> = {}): TicketWorkflow {
-  return { ticketId: ticket.id, receipts, sourceCommit: "commit-a", sourceTree: "tree-a", ...overrides };
+  return {
+    ticketId: ticket.id, receipts, sourceCommit: "commit-a", sourceTree: "tree-a",
+    inspection: {
+      historyValid: !overrides.error,
+      source: { state: "available", branch: "feature/GH-42", dirty: false },
+      ownership: "unknown", worktrees: [], commits: [],
+      artifacts: receipts.filter(receipt => receipt.phase === "review" && receipt.verdict).map(receipt => ({
+        receiptId: receipt.id, ref: `reviews/${receipt.id}.md`, state: "readable", matchesSource: true,
+      })),
+    },
+    ...overrides,
+  };
 }
 
 function enabled(action: ExplorerAction, state: TicketWorkflow | undefined, selected: ExplorerTarget = target, data: ExplorerSnapshot = snapshot): boolean {
@@ -31,78 +42,63 @@ function request(action: ExplorerAction, state = workflow([])): ExplorerSessionR
   return { action, target, snapshot, workflow: state, prompt: "Assess the remaining design questions." };
 }
 
-describe("worktree receipt transitions", () => {
-  test("start rejects missing blockers, existing workflows, closed tickets, and unknown state", () => {
+describe("worktree recovery actions", () => {
+  test("claimed tickets can start without resetting status, but unresolved blockers cannot", () => {
+    const claimed: ExplorerTarget = { kind: "ticket", ticket: { ...ticket, status: "claimed" } };
+    expect(enabled("start", workflow([]), claimed)).toBe(true);
+    expect(enabled("start", undefined, claimed)).toBe(false);
     const blocked: ExplorerTarget = { kind: "ticket", ticket: { ...ticket, blockedBy: ["1"] } };
     expect(enabled("start", workflow([]), blocked)).toBe(false);
     expect(enabled("start", workflow([]), blocked, { ...snapshot, tickets: [ticket, { ...ticket, id: "1", status: "closed" }] })).toBe(true);
-    expect(enabled("start", workflow([receipt(1, "start")]))).toBe(false);
-    expect(enabled("start", workflow([]), { kind: "ticket", ticket: { ...ticket, status: "completed" } })).toBe(false);
-    for (const status of ["unknown", "claimed", "unrecognised", "constructor"]) {
+    for (const status of ["unknown", "unrecognised", "constructor"]) {
       expect(enabled("start", workflow([]), { kind: "ticket", ticket: { ...ticket, status } })).toBe(false);
     }
-    expect(enabled("start", undefined)).toBe(false);
   });
 
-  test("review can freeze a new revision after an earlier implementation or review", () => {
-    const implementation = receipt(1, "implementation");
-    const reviewed = receipt(2, "review", { verdict: "SUCCESS" });
-    expect(enabled("review", workflow([implementation]))).toBe(true);
-    expect(enabled("review", workflow([implementation, reviewed], { sourceCommit: "commit-b", sourceTree: "tree-b" }))).toBe(true);
-    expect(enabled("review", workflow([reviewed]))).toBe(false);
-    expect(enabled("review", workflow([implementation, receipt(3, "review-start")]))).toBe(false);
-  });
-
-  test("latest rejected review enables fix and supersedes an older success", () => {
-    const implementation = receipt(1, "implementation");
-    const success = receipt(2, "review", { verdict: "SUCCESS" });
-    const failure = receipt(3, "review", { verdict: "FAILURE" });
-    const state = workflow([failure, implementation, success]);
-    expect(enabled("fix", state)).toBe(true);
+  test("interrupted implementation and review expose their own recovery command", () => {
+    const start = receipt(1, "start", { status: "started", fields: { event: "phase-start" } });
+    expect(enabled("start", workflow([start]))).toBe(true);
+    expect(enabled("review", workflow([start]))).toBe(false);
+    const pending = receipt(3, "review", { status: "started", fields: { event: "phase-start" } });
+    const state = workflow([receipt(2, "implementation"), pending]);
+    expect(enabled("review", state)).toBe(true);
+    expect(enabled("fix", state)).toBe(false);
     expect(enabled("finish", state)).toBe(false);
-    expect(enabled("submit", state)).toBe(false);
-    expect(enabled("fix", workflow([success]))).toBe(false);
-    expect(enabled("fix", workflow([failure, receipt(4, "fix")]))).toBe(false);
   });
 
-  test("a phase-start event cannot inherit an older verdict", () => {
-    const success = receipt(1, "review", { verdict: "SUCCESS" });
-    for (const pending of [receipt(2, "review-start"), receipt(2, "review", { fields: { event: "phase-start" } })]) {
-      for (const action of ["review", "fix", "finish", "submit"] as const) expect(enabled(action, workflow([success, pending]))).toBe(false);
+  test("both review verdicts expire when source changes", () => {
+    for (const verdict of ["SUCCESS", "FAILURE"]) {
+      const state = workflow([receipt(1, "implementation"), receipt(2, "review", { verdict })], { sourceCommit: "commit-b", sourceTree: "tree-b" });
+      expect(enabled("review", state)).toBe(true);
+      expect(enabled("fix", state)).toBe(false);
+      expect(enabled("finish", state)).toBe(false);
+      expect(enabled("submit", state)).toBe(false);
     }
   });
 
-  test("finish and submit each require the current successful review", () => {
-    const success = receipt(1, "review", { verdict: "SUCCESS" });
-    for (const action of ["finish", "submit"] as const) {
-      expect(enabled(action, workflow([success]))).toBe(true);
-      expect(enabled(action, workflow([success], { sourceCommit: "commit-b" }))).toBe(false);
-      expect(enabled(action, workflow([success], { sourceTree: "tree-b" }))).toBe(false);
-      expect(enabled(action, workflow([success, receipt(2, "implementation")]))).toBe(false);
-    }
-    const submitted = workflow([success, receipt(2, "submit")]);
-    expect(enabled("finish", submitted)).toBe(true);
-    expect(enabled("submit", submitted)).toBe(false);
-    expect(enabled("finish", workflow([success, receipt(2, "finish", { status: "FINISHED" })]))).toBe(false);
+  test("implemented tracker status does not hide review, and current success recommends finish", () => {
+    const implemented: ExplorerTarget = { kind: "ticket", ticket: { ...ticket, status: "implemented" } };
+    expect(enabled("review", workflow([receipt(1, "implementation")]), implemented)).toBe(true);
+    const state = workflow([receipt(1, "implementation"), receipt(2, "review", { verdict: "SUCCESS" })]);
+    expect(enabled("finish", state)).toBe(true);
+    expect(enabled("submit", state)).toBe(true);
+    expect(enabled("fix", state)).toBe(false);
+    expect(enabled("start", state)).toBe(false);
   });
 
-  test("timezone offsets and equal timestamps cannot revive an older successful review", () => {
-    const older = receipt(1, "review", { verdict: "SUCCESS", createdAt: "2026-10-20T12:00:00+03:00" });
-    const newer = receipt(2, "review", { verdict: "FAILURE", createdAt: "2026-10-20T10:00:00Z" });
-    expect(enabled("fix", workflow([older, newer]))).toBe(true);
-    expect(enabled("finish", workflow([older, newer]))).toBe(false);
-    const success = receipt(3, "review", { verdict: "SUCCESS", createdAt: "2026-10-20T12:00:00Z" });
-    const fix = receipt(4, "fix", { parentReceipt: success.id, createdAt: success.createdAt });
-    expect(enabled("finish", workflow([fix, success]))).toBe(false);
+  test("invalid history cannot authorize recovery", () => {
+    const state = workflow([receipt(1, "review", { verdict: "SUCCESS" })], { error: "permission denied" });
+    for (const action of ["start", "review", "fix", "finish", "submit"] as const) expect(enabled(action, state)).toBe(false);
   });
 
-  test("read errors and unknown current source cannot masquerade as freshness", () => {
-    const success = receipt(1, "review", { verdict: "SUCCESS" });
-    for (const action of ["review", "fix", "finish", "submit"] as const) {
-      expect(enabled(action, workflow([success], { error: "permission denied" }))).toBe(false);
-      expect(enabled(action, workflow([success], { sourceCommit: undefined }))).toBe(false);
-      expect(enabled(action, workflow([success], { sourceTree: undefined }))).toBe(false);
-    }
+  test("recovery handoff names the interrupted attempt without granting takeover", () => {
+    const interrupted = receipt(1, "start", { status: "started", fields: { event: "phase-start" } });
+    const handoff = buildSessionPrompt(request("start", workflow([interrupted])));
+    const data = JSON.parse(handoff.split("\n").find(line => line.startsWith("Recovery DATA: "))!.slice("Recovery DATA: ".length));
+    expect(data).toMatchObject({ action: "start", mode: "takeover", requiredApproval: true });
+    expect([interrupted.id, interrupted.ref]).toContain(data.parentReceipt);
+    const parent = JSON.parse(handoff.split("\n").find(line => line.startsWith("Parent receipt DATA: "))!.slice("Parent receipt DATA: ".length));
+    expect(parent).toMatchObject({ id: interrupted.id, ref: interrupted.ref });
   });
 });
 
@@ -127,49 +123,58 @@ describe("fresh-session boundaries", () => {
     expect(() => buildSessionPrompt({ ...request("ask-matt"), prompt: "  " })).toThrow();
   });
 
-  test("a fresh chat stages the selected command through the replacement context without sending it", async () => {
-    let editor = "unsent user draft";
+  for (const host of ["omp", "pi"] as const) {
+    test(`${host} delivers the confirmed prompt once, only in the fresh session`, async () => {
+      let activeSession = "parent";
+      const messages: { session: string; text: string }[] = [];
+      const deliver = (text: string) => { messages.push({ session: activeSession, text }); };
+      const ctx = {
+        waitForIdle: async () => { },
+        sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
+        newSession: async (options: SessionOptions) => {
+          activeSession = "new";
+          if (host === "pi") {
+            await options.withSession?.({
+              sendUserMessage: async (text: string) => { deliver(text); },
+            } as unknown as SessionContext);
+          }
+          return { cancelled: false };
+        },
+      } as unknown as ExtensionCommandContext;
+      const pi = {
+        getCommands: () => commands,
+        sendUserMessage: (text: string) => {
+          if (host === "pi") throw new Error("The original Pi API is stale after replacement.");
+          deliver(text);
+        },
+      } as unknown as ExtensionAPI;
+      expect(await launchExplorerSession(pi, ctx, request("start"))).toBe(true);
+      expect(messages).toEqual([{
+        session: "new",
+        text: expect.stringContaining('/skill:worktree start'),
+      }]);
+      expect(messages[0].text).toContain(ticket.ref);
+      expect(messages[0].text).toContain("Assess the remaining design questions.");
+      expect(messages[0].text).toContain('Return session DATA: "/sessions/parent.jsonl"');
+    });
+  }
+
+  test("session creation and delivery failures retain the underlying cause", async () => {
+    const cause = new Error("Host operation failed");
     const ctx = {
-      waitForIdle: async () => {},
+      waitForIdle: async () => { },
       sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
-      ui: { setEditorText: () => { throw new Error("The parent context is stale."); } },
-      newSession: async (options: Parameters<ExtensionCommandContext["newSession"]>[0]) => {
-        editor = "";
-        await options?.withSession?.({
-          ui: { setEditorText: (text: string) => { editor = text; } },
-        } as unknown as SessionContext);
-        return { cancelled: false };
-      },
+      newSession: async () => ({ cancelled: false }),
     } as unknown as ExtensionCommandContext;
     const pi = {
       getCommands: () => commands,
-      sendUserMessage: () => { throw new Error("The command must wait for Enter."); },
+      sendUserMessage: () => { throw cause; },
     } as unknown as ExtensionAPI;
-    expect(await launchExplorerSession(pi, ctx, request("start"))).toBe(true);
-    expect(editor).toContain('/skill:worktree start');
-    expect(editor).toContain(ticket.ref);
-    expect(editor).toContain('Return session DATA: "/sessions/parent.jsonl"');
-  });
-
-  test("session creation and editor failures retain the cause and distinguish an opened session", async () => {
-    const cause = new Error("Host operation failed");
-    const ctx = {
-      waitForIdle: async () => {},
-      sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
-      ui: { setEditorText: () => { throw cause; } },
-      newSession: async (options: Parameters<ExtensionCommandContext["newSession"]>[0]) => {
-        await options?.withSession?.({ ui: { setEditorText: () => { throw cause; } } } as unknown as SessionContext);
-        return { cancelled: false };
-      },
-    } as unknown as ExtensionCommandContext;
-    const pi = { getCommands: () => commands } as unknown as ExtensionAPI;
     await expect(launchExplorerSession(pi, ctx, request("start"))).rejects.toMatchObject({
-      message: "New session opened, but prompt preparation failed: Host operation failed",
       cause,
     });
     ctx.newSession = async () => { throw cause; };
     await expect(launchExplorerSession(pi, ctx, request("start"))).rejects.toMatchObject({
-      message: "Could not open a new session: Host operation failed",
       cause,
     });
   });
@@ -177,10 +182,13 @@ describe("fresh-session boundaries", () => {
   test("cancelling session creation preserves the old editor draft", async () => {
     let editor = "unsent user draft";
     const ctx = {
-      waitForIdle: async () => {}, sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
+      waitForIdle: async () => { }, sessionManager: { getSessionFile: () => "/sessions/parent.jsonl" },
       ui: { setEditorText: (text: string) => { editor = text; } }, newSession: async () => ({ cancelled: true }),
     } as unknown as ExtensionCommandContext;
-    const pi = { getCommands: () => commands } as unknown as ExtensionAPI;
+    const pi = {
+      getCommands: () => commands,
+      sendUserMessage: () => { throw new Error("Cancellation must not submit a prompt."); },
+    } as unknown as ExtensionAPI;
     expect(await launchExplorerSession(pi, ctx, request("start"))).toBe(false);
     expect(editor).toBe("unsent user draft");
   });

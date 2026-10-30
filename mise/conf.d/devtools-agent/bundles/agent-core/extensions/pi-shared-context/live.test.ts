@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { basename, dirname, join } from "node:path";
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
-import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "../../../developer/skills/git/worktree/scripts/workflow";
 import { GraphExplorer } from "./explorer";
 import { ContextBrowser } from "./index";
 import { SharedContextModal } from "./modal";

@@ -3,11 +3,12 @@ import { resolveContextRecord, resolveSharedContext } from "../../skills/shared-
 import type { Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
 import { actionChoices } from "./actions";
-import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
-import { chronologicalReceipts, isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "../../../developer/skills/git/worktree/scripts/workflow";
+import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
 import { safeTerminalText } from "./terminal-text";
 import type { ExplorerEvent } from "./model";
 import { DirectoryMonitor, type WatchTarget } from "./watch";
+import { chronologicalReceipts, recoveryDecision } from "../../../developer/skills/git/worktree/scripts/recovery";
 
 type Screen = "home" | "queues" | "initiatives" | "tickets" | "receipts" | "actions";
 type Queue = "ready" | "review" | "blocked" | "all";
@@ -277,7 +278,7 @@ export class GraphExplorer {
             const selected = initial ? undefined : this.target();
             const previous = this.workflows.get(ticket.id);
             if (workflow.error && !workflow.events?.length && !workflow.receipts.length && previous && (previous.events?.length || previous.receipts.length)) {
-              workflow = { ...previous, sourceCommit: workflow.sourceCommit, sourceTree: workflow.sourceTree, error: `History refresh failed; showing last readable history. ${workflow.error}` };
+              workflow = { ...previous, sourceCommit: workflow.sourceCommit, sourceTree: workflow.sourceTree, inspection: workflow.inspection, error: `History refresh failed; showing last readable history. ${workflow.error}` };
             }
             this.workflows.set(ticket.id, workflow);
             if (ticket.id === this.ticketId && (!this.receiptId || !(workflow.events ?? workflow.receipts).some(event => event.id === this.receiptId))) {
@@ -400,11 +401,19 @@ export class GraphExplorer {
     try {
       for (const id of this.focusedIds) {
         const workflow = this.workflows.get(id);
-        const workspace = workflow?.receipts[0]?.workspacePath;
+        const source = workflow?.inspection?.source;
+        if (source && source.state !== "available") continue;
+        const workspace = source?.path ?? workflow?.receipts[0]?.workspacePath;
         if (!workspace) continue;
-        const current = await this.options.exec("git", ["-C", workspace, "rev-parse", "--verify", "HEAD"]);
+        const [current, branch, changes] = await Promise.all([
+          this.options.exec("git", ["-C", workspace, "rev-parse", "--verify", "HEAD"]),
+          this.options.exec("git", ["-C", workspace, "branch", "--show-current"]),
+          this.options.exec("git", ["--no-optional-locks", "-C", workspace, "status", "--porcelain"]),
+        ]);
         if (this.disposed) return;
-        if (current.code || current.stdout.trim() !== workflow?.sourceCommit) this.pendingIds.add(id);
+        if (current.code || branch.code || changes.code || current.stdout.trim() !== (source?.commit ?? workflow?.sourceCommit)
+          || source?.branch !== undefined && source.branch !== branch.stdout.trim()
+          || source?.dirty !== undefined && source.dirty !== Boolean(changes.stdout.trim())) this.pendingIds.add(id);
       }
       await this.drainRefresh();
     } catch (error) { this.refreshFailed(error); }
@@ -976,8 +985,9 @@ export class GraphExplorer {
         const workflow = this.workflows.get(ticket.id);
         const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot, workflow, this.options.commands());
         const reason = this.options.context.checkoutAvailable === false ? "No usable checkout." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state." : "");
-        const next = choices.find(choice => choice.action !== "ask-matt" && !choice.disabledReason);
-        row.fields!.next = reason ? `Unavailable: ${reason}` : next?.label ?? (workflow ? "No worktree transition available" : "Checking workflow receipts");
+        const decision = recoveryDecision(ticket, this.snapshot, workflow);
+        const next = choices.find(choice => choice.action === decision.action);
+        row.fields!.next = reason ? `Unavailable: ${reason}` : next?.disabledReason ? `Unavailable: ${next.disabledReason}` : decision.label;
         const latest = workflow?.recordedAttempts && !workflow.error && workflow.ticketId === ticket.id ? chronologicalReceipts(workflow.receipts).at(-1) : undefined;
         row.fields!.activity = latest ? `${latest.phase} · ${latest.status} (${latest.id})` : workflow?.error ? "Unavailable; refresh workflow receipts" : workflow ? "No validated activity recorded" : "Checking workflow receipts";
         rows.push(row);
@@ -1028,11 +1038,15 @@ export class GraphExplorer {
       ];
     }
     const workflow = this.workflow();
+    const decision = recoveryDecision(ticket, this.snapshot!, workflow);
     return [
       { text: `${ticket.id} ${ticket.title}`, tone: "accent" },
       { text: `Summary: ${this.descriptionSummary(ticket.body)}`, tone: "muted" },
       { text: `Type: ${this.ticketType(ticket)}` }, { text: `State: ${this.ticketState(ticket)}` },
       { text: `Reference: ${ticket.ref}` }, { text: `Current source: ${workflow?.sourceCommit ?? "not recorded"}` },
+      { text: `Next: ${decision.label}` },
+      { text: decision.reason, tone: "muted" },
+      ...(decision.requiredApproval ? [{ text: "Takeover requires scoped approval after ownership and agent checks.", tone: "warning" as const }] : []),
       { text: workflow?.recordedAttempts ? `Reviews: ${workflow.recordedAttempts.review} · Fixes: ${workflow.recordedAttempts.fix} (validated phase receipts; recorded attempts, not quality or completion)` : "Review/fix receipt counts unavailable until history validation completes.", tone: "muted" },
       { text: "Dependencies:", tone: "accent" }, ...this.neighborhoodRows(), { text: "Receipts:", tone: "accent" },
       ...this.history().map(event => ({ text: `Event: ${event.fields?.receipt_id ?? event.id} · Execution: ${event.fields?.status ?? "unavailable"}${event.fields?.verdict ? ` · Verdict: ${event.fields.verdict}` : ""}` })),
@@ -1081,16 +1095,14 @@ export class GraphExplorer {
 
   private ticketState(ticket: ExplorerTicket): string {
     if (recordKind(ticket) !== "ticket") return ticket.status || "unavailable";
-    if (isCompleted(ticket)) return "DONE";
-    if (ticket.blockedBy.some(id => !this.tickets.has(id) || !isCompleted(this.tickets.get(id)!))) return "BLOCKED";
     const workflow = this.workflows.get(ticket.id);
     if (!workflow) return "CHECKING";
-    if (workflow.error) return "ERROR";
     const cached = this.ticketStates.get(ticket.id);
     if (cached) return cached;
-    const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot!, workflow, [{ name: "skill:ask-matt" }, { name: "skill:worktree" }]);
-    const next = ["start", "fix", "finish", "submit", "review"].find(action => choices.some(choice => choice.action === action && !choice.disabledReason));
-    const state = next === "start" ? "READY" : next?.toUpperCase() ?? (workflow.receipts.length ? "ACTIVE" : "UNKNOWN");
+    const decision = recoveryDecision(ticket, this.snapshot!, workflow);
+    const state = decision.mode === "complete" ? "DONE"
+      : decision.action === "start" ? "READY"
+        : decision.action?.toUpperCase() ?? (decision.mode === "observe" ? "ACTIVE" : "BLOCKED");
     this.ticketStates.set(ticket.id, state);
     return state;
   }

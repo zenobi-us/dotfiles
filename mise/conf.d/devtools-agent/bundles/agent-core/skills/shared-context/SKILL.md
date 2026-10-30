@@ -56,6 +56,10 @@ origin: <git origin>
 slug: <origin-derived directory name>
 ```
 
+## Recovery boundary
+
+A typed `resolve workflow` result identifies a location, not an existing workflow, valid receipt chain, running phase, or completed implementation. Resolve and inspect existing records without creating directories during read-only recovery. Evidence has its own route and publication rules; evidence runs are not phase receipts and do not establish workflow progress. The worktree skill owns recovery decisions and append-only workflow provenance. Never run `init` or `migrate` as an implied recovery step; both require an explicit request naming that storage operation.
+
 ## Router
 
 | You want to                                 | Read                       |
