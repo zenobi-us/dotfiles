@@ -1,0 +1,11 @@
+import * as fs from 'node:fs/promises';
+const c = JSON.parse(await fs.readFile(Bun.argv[2], 'utf8'));
+const verdict = Bun.argv[3], report = Bun.argv[4];
+if (!['SUCCESS', 'FAILURE'].includes(verdict) || !report?.includes('## Standards') || !report.includes('## Spec')) throw Error('Supply actual verdict and both complete axis reports');
+const timestamp = new Date().toISOString();
+const body = '## Verdict\n\n' + verdict + '\n\n## Scope\n\nTicket ' + c.ticketRef + '; branch ' + c.branch + '; base master at ' + c.base + '; frozen source ' + c.commit + '; tree ' + c.tree + '. Timestamp ' + timestamp + '.\n\n' + c.files.map(p => '- `' + p + '`').join('\n') + '\n\n' + report + '\n\n## Independent reviews\n\n' + c.peers.map(p => '- ' + p.role + ': ' + p.ref).join('\n') + '\n\n## Validation\n\nRecorded exact-source suite/compiler evidence: ' + c.checksRef + '. Recorded production Pi terminal evidence: ' + c.nativeRef + '. Parent focused consumer evidence: ' + c.consumerRef + '. The final reviewer assesses these records; it does not claim to rerun them. Terminal SVG evidence does not establish exact pixel fidelity.\n\n## Next step\n\n' + (verdict === 'SUCCESS' ? 'Review passed for this exact source. Submit or finish remains a separate authorized phase.' : 'Run fix for the recorded blocking findings, then review the new source commit.') + '\n';
+const fields = { title: 'Ticket06 final combined review', reviewed_commit: c.commit, reviewed_tree: c.tree, review_role: 'main', verdict, timestamp };
+const p = Bun.spawn(['mise', 'exec', '--', 'mq', '--allow-http-import', '--no-lockfile', '-I', 'null', '-F', 'text', '--args', 'body', body, '--no-clobber', '--output', c.artifact, 'import "github.com/harehare/okf.mq" | okf::okf_new("Report",' + JSON.stringify(fields) + ',body) | okf::okf_stringify(.)'], { cwd: c.root, stdout: 'pipe', stderr: 'pipe' });
+const [stdout, stderr, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
+if (code) throw Error(stderr);
+console.log(JSON.stringify({ artifact: c.artifact, verdict, source_commit: c.commit }));
