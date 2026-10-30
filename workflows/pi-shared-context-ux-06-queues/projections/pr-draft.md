@@ -1,23 +1,19 @@
 ---
-title: Ticket06 final combined review passed
+title: Ticket06 finished and published
 type: Report
 ---
 
 ## Current status
 
-Final combined review88 is SUCCESS for `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`. Both independent peers were reconciled. No blocking findings remain. All twelve acceptance criteria passed, and all twelve smell heuristics were assessed. This is an exact-source review verdict, not a merge or ticket-completion claim.
+FINISHED. [Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-06-queues.md) is completed and published. Reviewed source `20968ee4f907c6f74bc77702fcef09578b41c6b8` was integrated as single-parent squash commit `9dde641d79e365e3c197b8e68767cdf32606b606` on master. The source worktree, source branch, temporary integration worktree, and temporary branch were removed through Worktrunk. The recorded source workspace was already absent at cleanup.
 
 ## Ticket summary
 
-[Canonical ticket](../../../tracker/tickets/pi-shared-context-ux-06-queues.md): Find actionable tickets through clear work queues. Status remains claimed.
+Find actionable tickets through clear Ready, Review, Blocked, and All queues without losing initiative navigation or weakening workflow safety.
 
-## Problem
+## Implementation summary
 
-Users need separate Ready, Review, Blocked, and All queues without losing initiative context or weakening workflow safety.
-
-## Implementation
-
-The recorded source adds structured queue presentation, preserved navigation and identity, recovery controls, and documented shortcuts. This review changes no source files.
+The reviewed four-file slice adds structured queue presentation, preserved navigation and identity, recovery controls, public-modal coverage, and documented shortcuts. Finish preserved the reviewed source and used the user-approved prepared integration branch because direct no-rebase fast-forward was unavailable.
 
 ## Changed source files
 
@@ -28,10 +24,11 @@ The recorded source adds structured queue presentation, preserved navigation and
 
 ## Validation
 
-- Parent exact-source consumer checks: 8 pass, 0 fail, 171 assertions. [Command and output](../artifacts/evidence/review-main-0088/parent-consumer-validation.json).
-- Parent verified unchanged source commit/tree, clean worktree, matching artifact and complete coverage, peer reconciliation, completed reviewer goal, guard accounting, and no auxiliary inference. [Validation](../artifacts/evidence/review-main-0088/parent-result-validation.json).
-- [Earlier recorded suite/compiler evidence](../artifacts/evidence/implementation-0017/checks-2/checks.json).
-- [Earlier production Pi native terminal evidence](../artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json). SVG evidence does not establish exact glyph/colour pixel fidelity.
+- Reviewed source: 152 tests, 2145 assertions, zero failures; scoped compiler exit0. [Source checks](../artifacts/evidence/finish-0090/source-validation.json).
+- Integrated surviving base: 154 tests, 2164 assertions, zero failures; scoped compiler exit0. Clean integrated checkout: 152 tests, 2145 assertions, zero failures; scoped compiler exit0. [Integrated checks](../artifacts/evidence/finish-0090/integrated-validation.json).
+- Production Pi: 35 passed observations; colour/monochrome at40x12,80x24,120x40. Native sessions closed and fixture removed. [Native result](../artifacts/evidence/finish-0090/integrated-native-2/native-matrix.json).
+- The first native preflight rejected an owned untracked dependency-directory symlink before launching Pi. [Setup correction](../artifacts/evidence/finish-0090/native-preflight-repair.json) changed no source. Failed evidence remains historical.
+- SVG fallback does not establish exact glyph/colour pixel fidelity. [Visual observations](../artifacts/evidence/finish-0090/native-visual-observation.json).
 
 ## Review history
 
@@ -55,17 +52,24 @@ The recorded source adds structured queue presentation, preserved navigation and
 
 ## Resolved and remaining findings
 
-The final combined review reports no blocking findings. No fix was needed or performed. Earlier interrupted attempts remain recorded without invented verdicts.
+No blocking findings remain. No source fix was required. Earlier interrupted review attempts remain without invented verdicts.
 
-## Merge status
+## Merge and publication
 
-Not merged. Submission, integration validation, publication, and ticket completion remain separate phases. No merge is authorized by this review.
+The squash has recorded base `15b3d332f706b898e0d1e0e37d2d1a8dfb4c5f6e` as its sole parent and expected tree `5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b`. [Integration mapping](../artifacts/evidence/finish-0090/worktrunk-integration.json). Integration and completed ticket were observed on origin/master at `c97ee7424ef5cbb6e5b5ab8818c6eeeaf9c3e39d`. [Integration publication](../artifacts/evidence/finish-0090/publication.json) and [ticket publication](../artifacts/evidence/finish-0090/ticket-publication.json) establish reachability and matching canonical ticket bytes.
 
-## Current durable records
+## Finish history
 
-- [Final review artifact](../artifacts/reviews/review-review-main-0088.md).
-- [Final result receipt](../events/review-main-0088.json).
-- [Validated parent completion](../events/review-main-complete-0089.json).
-- [Accepted Standards](../events/review-standards-0070.json).
-- [Accepted Spec](../events/review-spec-0085.json).
+- [finish-start-0090](../events/finish-start-0090.json)
+- [finish-prepared-0091](../events/finish-prepared-0091.json)
+- [finish-merged-0092](../events/finish-merged-0092.json)
+- [finish-validated-0093](../events/finish-validated-0093.json)
+- [finish-pushed-0094](../events/finish-pushed-0094.json)
+- [finish-ticket-completed-0095](../events/finish-ticket-completed-0095.json)
+- [finish-worktree-removed-0096](../events/finish-worktree-removed-0096.json)
+- [finish-finished-0097](../events/finish-finished-0097.json)
+
+## Cleanup
+
+[Cleanup evidence](../artifacts/evidence/finish-0090/cleanup.json) records removal, absent source workspace, and the unchanged fingerprint of unrelated tracked edits. No unrelated workspace was closed.
 

@@ -1,11 +1,11 @@
 ---
-title: Ticket06 implementation and final review history
+title: Ticket06 implementation, review, and finish history
 type: Report
 ---
 
 ## Current status
 
-Final combined review88 is SUCCESS for source `20968ee4f907c6f74bc77702fcef09578b41c6b8`. Review changed no source files and performed no fixes. Submission or finish remains separate.
+Final combined review88 is SUCCESS for source `20968ee4f907c6f74bc77702fcef09578b41c6b8`. Review changed no source files and performed no fixes. Finish is complete at squash commit `9dde641d79e365e3c197b8e68767cdf32606b606`; the canonical ticket is completed and published.
 
 ## Implementation and fix receipt history
 
@@ -98,4 +98,11 @@ Recorded open questions: ["Parent will rerun final-source native matrix, then fr
 [Parent consumer checks](../artifacts/evidence/review-spec-0085/parent-consumer-validation.json): 8 pass, 0 fail, 171 assertions. [Spec result](../events/review-spec-0085.json): no blocking findings. [Parent completion](../events/review-spec-complete-0086.json): unchanged exact source and closed reviewer pane.
 
 No source questions remain from the final combined review. [Final result](../events/review-main-0088.json) and [validated parent completion](../events/review-main-complete-0089.json) record both axes, twelve criteria, and twelve smell heuristics. [Current consumer checks](../artifacts/evidence/review-main-0088/parent-consumer-validation.json): 8 pass, 0 fail, 171 assertions. The source worktree and workspace remain available.
+
+
+## Finish verification
+
+[Terminal receipt](../events/finish-finished-0097.json) records the exact reviewed-source/base/tree integration mapping, remote publication, ticket completion, and resource removal. [Integrated checks](../artifacts/evidence/finish-0090/integrated-validation.json): clean integrated suite152pass2145assertions, surviving base154pass2164assertions, both compilers exit0. [Native result](../artifacts/evidence/finish-0090/integrated-native-2/native-matrix.json):35passedobservations, colour/mono, all required sizes; sessions and temporary fixture cleaned.
+
+The reviewed source remained unchanged until Worktrunk removed its completed worktree. [Cleanup evidence](../artifacts/evidence/finish-0090/cleanup.json) also records the temporary integration checkout removal, the already-absent source workspace, and preserved unrelated edits. No remaining source questions.
 

@@ -1,0 +1,40 @@
+{
+  "schema": "tracker-result/v1",
+  "operation": "complete",
+  "backend": "local-markdown",
+  "initiatives": [],
+  "tickets": [
+    {
+      "id": "pi-shared-context-ux-06-queues",
+      "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "state": "completed",
+      "blocked_by": [
+        "pi-shared-context-ux-02-initiatives"
+      ]
+    }
+  ],
+  "changes": {
+    "fields": {
+      "work_status": {
+        "before": "claimed",
+        "after": "completed"
+      },
+      "merged_commit": "9dde641d79e365e3c197b8e68767cdf32606b606"
+    },
+    "dependency_edges_added": [],
+    "dependency_edges_removed": []
+  },
+  "validation": {
+    "status": "passed",
+    "details": [
+      "Exact-source review and integrated validation passed.",
+      "Integration and canonical ticket bytes were observed on origin/master.",
+      "Ticket v1 schema and normal discovery validated after mutation."
+    ]
+  },
+  "publication": {
+    "status": "published",
+    "ref": "origin/master@c97ee7424ef5cbb6e5b5ab8818c6eeeaf9c3e39d"
+  },
+  "rendered": null
+}

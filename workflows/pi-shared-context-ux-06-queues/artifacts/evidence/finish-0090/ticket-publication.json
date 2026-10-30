@@ -1,0 +1,12 @@
+{
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "observed_state": "completed",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "c97ee7424ef5cbb6e5b5ab8818c6eeeaf9c3e39d",
+  "remote_ticket_blob": "415862418b0f0052a9245201d3c8bfe5b6ae62c9",
+  "local_ticket_blob": "415862418b0f0052a9245201d3c8bfe5b6ae62c9",
+  "blob_matches": true,
+  "merged_commit": "9dde641d79e365e3c197b8e68767cdf32606b606",
+  "merged_commit_reachable": true
+}

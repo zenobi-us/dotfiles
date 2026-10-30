@@ -1,0 +1,9 @@
+{
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "before_push_commit": "15b3d332f706b898e0d1e0e37d2d1a8dfb4c5f6e",
+  "remote_observed_commit": "4a7c4bfab2fba2f641b1cc00b5f9c59ba524c2f6",
+  "merged_commit": "9dde641d79e365e3c197b8e68767cdf32606b606",
+  "merged_commit_reachable": true,
+  "force": false
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "tracker-result/v1",
+  "operation": "check",
+  "backend": "local-markdown",
+  "initiatives": [],
+  "tickets": [
+    {
+      "id": "pi-shared-context-ux-06-queues",
+      "title": "Find actionable tickets through clear work queues",
+      "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "state": "completed",
+      "blocked_by": [
+        "pi-shared-context-ux-02-initiatives"
+      ]
+    }
+  ],
+  "changes": null,
+  "validation": {
+    "status": "passed",
+    "details": [
+      "Validated the selected record through the normal graph and tracker explorer readers."
+    ]
+  },
+  "publication": null,
+  "rendered": "- [enhancement] pi-shared-context-ux-01-projects - Select shared-context projects through interactive breadcrumbs  COMPLETED\n- [enhancement] pi-shared-context-ux-02-initiatives - Browse initiatives through structured tracker rows  WAITING · blocked by pi-shared-context-ux-01-projects\n  - [enhancement] pi-shared-context-ux-01-projects - Select shared-context projects through interactive breadcrumbs  COMPLETED\n- [enhancement] pi-shared-context-ux-03-mixed-items - Browse research and tickets in the same initiative  WAITING · blocked by pi-shared-context-ux-02-initiatives\n  - [enhancement] pi-shared-context-ux-02-initiatives - Browse initiatives through structured tracker rows  WAITING · blocked by pi-shared-context-ux-01-projects\n- [enhancement] pi-shared-context-ux-04-descriptions - Read complete initiative and item descriptions  WAITING · blocked by pi-shared-context-ux-03-mixed-items\n  - [enhancement] pi-shared-context-ux-03-mixed-items - Browse research and tickets in the same initiative  WAITING · blocked by pi-shared-context-ux-02-initiatives\n- [enhancement] pi-shared-context-ux-05-events - Inspect ticket events through readable history and evidence views  WAITING · blocked by pi-shared-context-ux-02-initiatives\n  - [enhancement] pi-shared-context-ux-02-initiatives - Browse initiatives through structured tracker rows  WAITING · blocked by pi-shared-context-ux-01-projects\n- [enhancement] pi-shared-context-ux-06-queues - Find actionable tickets through clear work queues  WAITING · blocked by pi-shared-context-ux-02-initiatives\n  - [enhancement] pi-shared-context-ux-02-initiatives - Browse initiatives through structured tracker rows  WAITING · blocked by pi-shared-context-ux-01-projects\n- [enhancement] pi-shared-context-ux-07-feedback - Track ongoing shared-context UX feedback  IN PROGRESS",
+  "ok": true,
+  "kind": "ticket",
+  "id": "pi-shared-context-ux-06-queues",
+  "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "recordSchema": "tracker-ticket/v1",
+  "legacy": false,
+  "graph": "- [enhancement] pi-shared-context-ux-01-projects - Select shared-context projects through interactive breadcrumbs  COMPLETED\n- [enhancement] pi-shared-context-ux-02-initiatives - Browse initiatives through structured tracker rows  WAITING · blocked by pi-shared-context-ux-01-projects\n  - [enhancement] pi-shared-context-ux-01-projects - Select shared-context projects through interactive breadcrumbs  COMPLETED\n- [enhancement] pi-shared-context-ux-03-mixed-items - Browse research and tickets in the same initiative  WAITING · blocked by pi-shared-context-ux-02-initiatives\n  - [enhancement] pi-shared-context-ux-02-initiatives - Browse initiatives through structured tracker rows  WAITING · blocked by pi-shared-context-ux-01-projects\n- [enhancement] pi-shared-context-ux-04-descriptions - Read complete initiative and item descriptions  WAITING · blocked by pi-shared-context-ux-03-mixed-items\n  - [enhancement] pi-shared-context-ux-03-mixed-items - Browse research and tickets in the same initiative  WAITING · blocked by pi-shared-context-ux-02-initiatives\n- [enhancement] pi-shared-context-ux-05-events - Inspect ticket events through readable history and evidence views  WAITING · blocked by pi-shared-context-ux-02-initiatives\n  - [enhancement] pi-shared-context-ux-02-initiatives - Browse initiatives through structured tracker rows  WAITING · blocked by pi-shared-context-ux-01-projects\n- [enhancement] pi-shared-context-ux-06-queues - Find actionable tickets through clear work queues  WAITING · blocked by pi-shared-context-ux-02-initiatives\n  - [enhancement] pi-shared-context-ux-02-initiatives - Browse initiatives through structured tracker rows  WAITING · blocked by pi-shared-context-ux-01-projects\n- [enhancement] pi-shared-context-ux-07-feedback - Track ongoing shared-context UX feedback  IN PROGRESS",
+  "graphScope": "initiative dependency graph",
+  "normalTrackerDiscovery": {
+    "tickets": 7,
+    "initiatives": 3
+  },
+  "coverage": "Resolved tracker collections; normal Markdown graph and explorer discovery"
+}

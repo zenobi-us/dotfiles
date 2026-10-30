@@ -1,0 +1,17 @@
+{
+  "observed_at": "2026-10-30T04:24:43.809Z",
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "source_worktree_exists": false,
+  "source_branch": "feature/pi-shared-context-ux-06-queues",
+  "source_branch_outcome": "deleted by Worktrunk; all changes in master",
+  "integration_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+  "integration_worktree_exists": false,
+  "integration_branch": "integrate/pi-shared-context-ux-06-queues-finish",
+  "integration_branch_outcome": "deleted by Worktrunk; ancestor of master",
+  "source_workspace_id": "w8P",
+  "source_workspace_closed": true,
+  "workspace_close_action": "Already absent before worktree removal; pane/workspace lookups returned not found and workspace list excluded w8P. No unrelated workspace was closed.",
+  "active_source_agents": [],
+  "unrelated_tracked_edits_sha256": "9f25ed9cef94733ca6ca51b638c1cf3c237675c2b8e8f91468b827bac72a9397",
+  "unrelated_tracked_edits_unchanged": true
+}
