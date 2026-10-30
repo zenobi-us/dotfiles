@@ -1,0 +1,47 @@
+{
+  "schema": "worktree-goal/v1",
+  "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "repository_origin": "git@github.com:zenobi-us/dotfiles.git",
+  "initiative_ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+    "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+    "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+    "tracker/tickets/pi-shared-context-ux-05-events.md",
+    "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-pi-shared-context-tui-ux-spec"
+  },
+  "coordinator": {
+    "session_id": "01a189e7-31ca-75f9-8c9e-8a9b61c1fe44",
+    "agent": "omp",
+    "muxer": "herdr",
+    "pane_id": "w64:pT"
+  },
+  "base_branch": "master",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "event_id": "dispatch-started-0275",
+  "parent_event": "dispatch-reserved-0274",
+  "created_at": "2026-10-30T03:30:22.684Z",
+  "kind": "dispatch_started",
+  "ticket_id": "pi-shared-context-ux-06-queues",
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "phase": "review",
+  "review_role": "main",
+  "dispatch_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reserved-0274.yaml",
+  "start_receipt_ref": "workflows/pi-shared-context-ux-06-queues/events/review-main-start-0087.json",
+  "agent_name": "ux06-main-c24-combined-400k",
+  "pane_id": "w8P:pB",
+  "workspace_id": "w8P",
+  "session_id": "01a18adb-73d0-7280-be5c-59bed4abf97c",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-30T03-30-00-272Z_01a18adb-73d0-7280-be5c-59bed4abf97c.jsonl",
+  "native_goal_id": "15ba0433fd702da0",
+  "native_goal_budget": 200000,
+  "token_limit": 400000,
+  "guard_sha256": "4bbc0b313ec8f81c3442b89496334b92bed200168c3ab875889dece0c63d97c7"
+}

@@ -3,15 +3,15 @@
   "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
   "initiative": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
   "state": "paused",
-  "latest_event": "checkpoint-0273",
-  "phase_dispatches_reserved": 69,
-  "agent_sessions_reserved": 65,
+  "latest_event": "checkpoint-0277",
+  "phase_dispatches_reserved": 70,
+  "agent_sessions_reserved": 66,
   "cycles_consumed": {
     "pi-shared-context-ux-02-initiatives": 13,
     "pi-shared-context-ux-03-mixed-items": 5,
     "pi-shared-context-ux-04-descriptions": 4,
     "pi-shared-context-ux-05-events": 20,
-    "pi-shared-context-ux-06-queues": 23
+    "pi-shared-context-ux-06-queues": 24
   },
   "approved_total_cycle_limits": {
     "pi-shared-context-ux-02-initiatives": 13,
@@ -31,11 +31,11 @@
   "completion_margin_tokens": 50000,
   "configured_outer_goal_token_budget": 12500000,
   "current_ticket": "pi-shared-context-ux-06-queues",
-  "current_phase": "spec-recovery-complete-final-review-pending",
-  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-complete-0086.json",
+  "current_phase": "final-review-complete",
+  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-main-complete-0089.json",
   "latest_source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
   "latest_source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
-  "latest_review_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-0085.json",
+  "latest_review_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-main-0088.json",
   "latest_review_verdict": "SUCCESS",
   "active_child_agents": [],
   "outstanding_dispatches": [],
@@ -52,9 +52,9 @@
     "ceiling": 400000
   },
   "active_guard_sha256": "4bbc0b313ec8f81c3442b89496334b92bed200168c3ab875889dece0c63d97c7",
-  "pending_gate": "fresh final combined review; no fix or merge authorized",
-  "latest_review_role": "spec",
-  "overall_review_verdict": null,
+  "pending_gate": "submit or finish when authorized",
+  "latest_review_role": "main",
+  "overall_review_verdict": "SUCCESS",
   "accepted_spec_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-0085.json",
   "accepted_spec_verdict": "SUCCESS",
   "review_exception_history": [

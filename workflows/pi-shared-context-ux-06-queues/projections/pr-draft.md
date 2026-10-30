@@ -1,11 +1,11 @@
 ---
-title: Ticket06 Spec review recovered; final review pending
+title: Ticket06 final combined review passed
 type: Report
 ---
 
 ## Current status
 
-The interrupted Spec attempt is reconciled without a verdict. Fresh full-scope Spec review85 is SUCCESS for `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`. Standards70 remains separately accepted. The combined final review remains pending; no full-workflow acceptance or merge is claimed.
+Final combined review88 is SUCCESS for `20968ee4f907c6f74bc77702fcef09578b41c6b8`, tree `5f64cf06e76dba7e015b9cd54088bc73ae88771f`. Both independent peers were reconciled. No blocking findings remain. All twelve acceptance criteria passed, and all twelve smell heuristics were assessed. This is an exact-source review verdict, not a merge or ticket-completion claim.
 
 ## Ticket summary
 
@@ -17,7 +17,7 @@ Users need separate Ready, Review, Blocked, and All queues without losing initia
 
 ## Implementation
 
-The recorded implementation adds structured queue presentation, preserved navigation and identity, recovery controls, and documented shortcuts. This recovery changes no source files.
+The recorded source adds structured queue presentation, preserved navigation and identity, recovery controls, and documented shortcuts. This review changes no source files.
 
 ## Changed source files
 
@@ -28,10 +28,10 @@ The recorded implementation adds structured queue presentation, preserved naviga
 
 ## Validation
 
-- Parent exact-source consumer checks: 8 pass, 0 fail, 171 assertions. [Command and output](../artifacts/evidence/review-spec-0085/parent-consumer-validation.json).
-- Parent verified unchanged commit/tree, clean source, completed native reviewer goal, matching full-session guard accounting, and no auxiliary model usage. [Validation](../artifacts/evidence/review-spec-0085/parent-result-validation.json).
+- Parent exact-source consumer checks: 8 pass, 0 fail, 171 assertions. [Command and output](../artifacts/evidence/review-main-0088/parent-consumer-validation.json).
+- Parent verified unchanged source commit/tree, clean worktree, matching artifact and complete coverage, peer reconciliation, completed reviewer goal, guard accounting, and no auxiliary inference. [Validation](../artifacts/evidence/review-main-0088/parent-result-validation.json).
 - [Earlier recorded suite/compiler evidence](../artifacts/evidence/implementation-0017/checks-2/checks.json).
-- [Earlier native terminal evidence](../artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json). No new pixel-fidelity claim.
+- [Earlier production Pi native terminal evidence](../artifacts/evidence/native-matrix-0023/attempt-1/native-matrix.json). SVG evidence does not establish exact glyph/colour pixel fidelity.
 
 ## Review history
 
@@ -51,19 +51,21 @@ The recorded implementation adds structured queue presentation, preserved naviga
 - [review-spec-0077](../events/review-spec-0077.json): spec; blocked; verdict none; [artifact](../artifacts/reviews/review-review-spec-0077.md).
 - [review-spec-0082](../events/review-spec-0082.json): spec; blocked; verdict none; [artifact](../artifacts/reviews/review-review-spec-0082.md).
 - [review-spec-0085](../events/review-spec-0085.json): spec; completed; verdict SUCCESS; [artifact](../artifacts/reviews/review-review-spec-0085.md).
+- [review-main-0088](../events/review-main-0088.json): main; completed; verdict SUCCESS; [artifact](../artifacts/reviews/review-review-main-0088.md).
 
-## Findings
+## Resolved and remaining findings
 
-Fresh Spec review reports no blocking findings. No source fix was performed. The final combined review is still required.
+The final combined review reports no blocking findings. No fix was needed or performed. Earlier interrupted attempts remain recorded without invented verdicts.
 
 ## Merge status
 
-Not merged. No merge or fix is authorized by this recovery.
+Not merged. Submission, integration validation, publication, and ticket completion remain separate phases. No merge is authorized by this review.
 
-## Durable recovery records
+## Current durable records
 
-- [Interrupted attempt completion](../events/review-spec-complete-0083.json).
-- [Fresh Spec result](../events/review-spec-0085.json).
-- [Validated parent completion](../events/review-spec-complete-0086.json).
-- [Approved policy](../../goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0268.yaml).
+- [Final review artifact](../artifacts/reviews/review-review-main-0088.md).
+- [Final result receipt](../events/review-main-0088.json).
+- [Validated parent completion](../events/review-main-complete-0089.json).
+- [Accepted Standards](../events/review-standards-0070.json).
+- [Accepted Spec](../events/review-spec-0085.json).
 
