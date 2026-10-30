@@ -8,7 +8,7 @@ import { accessSync, constants, statSync } from "node:fs";
 
 export interface CaptureResult {
   code: number | null;
-  signal: string | null;
+  signal: Bun.Subprocess["signalCode"];
   stdout: string;
   stderr: string;
 }

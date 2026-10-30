@@ -154,7 +154,7 @@ export async function waitForRunSignal(
     }
 
     const { promise, resolve } = Promise.withResolvers<void>();
-    const watcher = watch(directory, resolve);
+    const watcher = watch(directory, () => resolve());
     let timer: ReturnType<typeof setTimeout> | undefined;
     try {
       const changed = await readRun(runId);

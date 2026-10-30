@@ -13,6 +13,7 @@
     "target": "ESNext",
     "module": "Preserve",
     "moduleResolution": "bundler",
+    // The root package.json override keeps Bun and dependency type references on one Node version.
     "types": ["bun"],
 
     // Scripts import siblings by their real path: `import { x } from "./y.ts"`.
