@@ -1,0 +1,13 @@
+{
+  "agent": "ux06-spec-c22-complete-contract",
+  "pane_id": "w8P:p9",
+  "workspace_id": "w8P",
+  "session_id": "01a189e2-7230-745b-854e-b7f2204aec7f",
+  "session_path": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T22-58-01-392Z_01a189e2-7230-745b-854e-b7f2204aec7f.jsonl",
+  "native_goal_id": "15b9c5f39f63b4a3",
+  "native_goal_budget": 200000,
+  "session_work_ceiling": 300000,
+  "guard_audit": "/tmp/ux06-spec-c22-complete-contract-guard-b471af26-5c71-4c8f-8925-fdfae583b0d2.jsonl",
+  "guard_sha256": "fec08eb63867a87ca9727b179462e19b8a27854ab9d0e559319f8c25df794c0f",
+  "complete_writer_contract_preloaded": true
+}

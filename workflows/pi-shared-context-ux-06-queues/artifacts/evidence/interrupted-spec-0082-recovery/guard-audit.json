@@ -1,0 +1,930 @@
+[
+  {
+    "at": "2026-10-29T22:58:01.573Z",
+    "event": "ready",
+    "spent": 0,
+    "ceiling": 300000,
+    "model": "gpt-6.1-sol",
+    "outputMaximum": 128000,
+    "transport": "stateless SSE",
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:04.619Z",
+    "event": "admitted",
+    "spent": 0,
+    "inputBytes": 110693,
+    "inputBound": {
+      "tokens": 110693,
+      "mode": "wire"
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 242789,
+    "fullWireReservation": 242789,
+    "fullWireWouldReject": false,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:06.619Z",
+    "event": "settled",
+    "work": 24689,
+    "spent": 24689,
+    "reservation": 242789,
+    "observedInputTokens": 24661,
+    "observedOutputTokens": 28,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:06.652Z",
+    "event": "admitted",
+    "spent": 24689,
+    "inputBytes": 120438,
+    "inputBound": {
+      "tokens": 34436,
+      "mode": "observed-prefix",
+      "tailBytes": 9747,
+      "retainedItems": 2,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 166532,
+    "fullWireReservation": 252534,
+    "fullWireWouldReject": false,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:08.804Z",
+    "event": "settled",
+    "work": 2235,
+    "spent": 26924,
+    "reservation": 166532,
+    "observedInputTokens": 26780,
+    "observedOutputTokens": 31,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:08.836Z",
+    "event": "admitted",
+    "spent": 26924,
+    "inputBytes": 129222,
+    "inputBound": {
+      "tokens": 35597,
+      "mode": "observed-prefix",
+      "tailBytes": 8786,
+      "retainedItems": 4,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 167693,
+    "fullWireReservation": 261318,
+    "fullWireWouldReject": false,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:10.872Z",
+    "event": "settled",
+    "work": 2079,
+    "spent": 29003,
+    "reservation": 167693,
+    "observedInputTokens": 28674,
+    "observedOutputTokens": 29,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:10.903Z",
+    "event": "admitted",
+    "spent": 29003,
+    "inputBytes": 148754,
+    "inputBound": {
+      "tokens": 48237,
+      "mode": "observed-prefix",
+      "tailBytes": 19534,
+      "retainedItems": 6,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 180333,
+    "fullWireReservation": 280850,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:13.948Z",
+    "event": "settled",
+    "work": 4873,
+    "spent": 33876,
+    "reservation": 180333,
+    "observedInputTokens": 33389,
+    "observedOutputTokens": 28,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:14.005Z",
+    "event": "admitted",
+    "spent": 33876,
+    "inputBytes": 156506,
+    "inputBound": {
+      "tokens": 41171,
+      "mode": "observed-prefix",
+      "tailBytes": 7754,
+      "retainedItems": 8,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 173267,
+    "fullWireReservation": 288602,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:15.971Z",
+    "event": "settled",
+    "work": 1743,
+    "spent": 35619,
+    "reservation": 173267,
+    "observedInputTokens": 34996,
+    "observedOutputTokens": 27,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:16.001Z",
+    "event": "admitted",
+    "spent": 35619,
+    "inputBytes": 165946,
+    "inputBound": {
+      "tokens": 44465,
+      "mode": "observed-prefix",
+      "tailBytes": 9442,
+      "retainedItems": 10,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 176561,
+    "fullWireReservation": 298042,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:17.921Z",
+    "event": "settled",
+    "work": 2518,
+    "spent": 38137,
+    "reservation": 176561,
+    "observedInputTokens": 37307,
+    "observedOutputTokens": 27,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:17.950Z",
+    "event": "admitted",
+    "spent": 38137,
+    "inputBytes": 169980,
+    "inputBound": {
+      "tokens": 41370,
+      "mode": "observed-prefix",
+      "tailBytes": 4036,
+      "retainedItems": 12,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 173466,
+    "fullWireReservation": 302076,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:20.500Z",
+    "event": "settled",
+    "work": 1066,
+    "spent": 39203,
+    "reservation": 173466,
+    "observedInputTokens": 38153,
+    "observedOutputTokens": 33,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:20.509Z",
+    "event": "admitted",
+    "spent": 39203,
+    "inputBytes": 172704,
+    "inputBound": {
+      "tokens": 40912,
+      "mode": "observed-prefix",
+      "tailBytes": 2726,
+      "retainedItems": 14,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 173008,
+    "fullWireReservation": 304800,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:22.376Z",
+    "event": "settled",
+    "work": 772,
+    "spent": 39975,
+    "reservation": 173008,
+    "observedInputTokens": 38755,
+    "observedOutputTokens": 33,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:22.413Z",
+    "event": "admitted",
+    "spent": 39975,
+    "inputBytes": 185383,
+    "inputBound": {
+      "tokens": 51469,
+      "mode": "observed-prefix",
+      "tailBytes": 12681,
+      "retainedItems": 16,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 183565,
+    "fullWireReservation": 317479,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:25.256Z",
+    "event": "settled",
+    "work": 3034,
+    "spent": 43009,
+    "reservation": 183565,
+    "observedInputTokens": 41659,
+    "observedOutputTokens": 31,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:25.288Z",
+    "event": "admitted",
+    "spent": 43009,
+    "inputBytes": 192437,
+    "inputBound": {
+      "tokens": 48746,
+      "mode": "observed-prefix",
+      "tailBytes": 7056,
+      "retainedItems": 18,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 180842,
+    "fullWireReservation": 324533,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:27.289Z",
+    "event": "settled",
+    "work": 1720,
+    "spent": 44729,
+    "reservation": 180842,
+    "observedInputTokens": 43161,
+    "observedOutputTokens": 31,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:27.317Z",
+    "event": "admitted",
+    "spent": 44729,
+    "inputBytes": 207983,
+    "inputBound": {
+      "tokens": 58740,
+      "mode": "observed-prefix",
+      "tailBytes": 15548,
+      "retainedItems": 20,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 190836,
+    "fullWireReservation": 340079,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:29.411Z",
+    "event": "settled",
+    "work": 3491,
+    "spent": 48220,
+    "reservation": 190836,
+    "observedInputTokens": 46471,
+    "observedOutputTokens": 28,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:29.439Z",
+    "event": "admitted",
+    "spent": 48220,
+    "inputBytes": 211636,
+    "inputBound": {
+      "tokens": 50154,
+      "mode": "observed-prefix",
+      "tailBytes": 3655,
+      "retainedItems": 22,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 182250,
+    "fullWireReservation": 343732,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:32.355Z",
+    "event": "settled",
+    "work": 820,
+    "spent": 49040,
+    "reservation": 182250,
+    "observedInputTokens": 47123,
+    "observedOutputTokens": 33,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:32.384Z",
+    "event": "admitted",
+    "spent": 49040,
+    "inputBytes": 214069,
+    "inputBound": {
+      "tokens": 49591,
+      "mode": "observed-prefix",
+      "tailBytes": 2435,
+      "retainedItems": 24,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 181687,
+    "fullWireReservation": 346165,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:34.402Z",
+    "event": "settled",
+    "work": 678,
+    "spent": 49718,
+    "reservation": 181687,
+    "observedInputTokens": 47627,
+    "observedOutputTokens": 27,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:34.430Z",
+    "event": "admitted",
+    "spent": 49718,
+    "inputBytes": 221965,
+    "inputBound": {
+      "tokens": 55552,
+      "mode": "observed-prefix",
+      "tailBytes": 7898,
+      "retainedItems": 26,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 187648,
+    "fullWireReservation": 354061,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:39.163Z",
+    "event": "settled",
+    "work": 1936,
+    "spent": 51654,
+    "reservation": 187648,
+    "observedInputTokens": 49316,
+    "observedOutputTokens": 108,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:39.177Z",
+    "event": "admitted",
+    "spent": 51654,
+    "inputBytes": 236181,
+    "inputBound": {
+      "tokens": 63642,
+      "mode": "observed-prefix",
+      "tailBytes": 14218,
+      "retainedItems": 28,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 195738,
+    "fullWireReservation": 368277,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:42.032Z",
+    "event": "settled",
+    "work": 2803,
+    "spent": 54457,
+    "reservation": 195738,
+    "observedInputTokens": 52006,
+    "observedOutputTokens": 77,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:42.063Z",
+    "event": "admitted",
+    "spent": 54457,
+    "inputBytes": 246083,
+    "inputBound": {
+      "tokens": 61987,
+      "mode": "observed-prefix",
+      "tailBytes": 9904,
+      "retainedItems": 31,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 194083,
+    "fullWireReservation": 378179,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:45.453Z",
+    "event": "settled",
+    "work": 2221,
+    "spent": 56678,
+    "reservation": 194083,
+    "observedInputTokens": 54113,
+    "observedOutputTokens": 76,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:45.483Z",
+    "event": "admitted",
+    "spent": 56678,
+    "inputBytes": 250872,
+    "inputBound": {
+      "tokens": 58980,
+      "mode": "observed-prefix",
+      "tailBytes": 4791,
+      "retainedItems": 33,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 191076,
+    "fullWireReservation": 382968,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:48.135Z",
+    "event": "settled",
+    "work": 1211,
+    "spent": 57889,
+    "reservation": 191076,
+    "observedInputTokens": 55148,
+    "observedOutputTokens": 79,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:48.167Z",
+    "event": "admitted",
+    "spent": 57889,
+    "inputBytes": 252845,
+    "inputBound": {
+      "tokens": 57202,
+      "mode": "observed-prefix",
+      "tailBytes": 1975,
+      "retainedItems": 35,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 189298,
+    "fullWireReservation": 384941,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:50.664Z",
+    "event": "settled",
+    "work": 598,
+    "spent": 58487,
+    "reservation": 189298,
+    "observedInputTokens": 55559,
+    "observedOutputTokens": 79,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:50.694Z",
+    "event": "admitted",
+    "spent": 58487,
+    "inputBytes": 258975,
+    "inputBound": {
+      "tokens": 61770,
+      "mode": "observed-prefix",
+      "tailBytes": 6132,
+      "retainedItems": 37,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 193866,
+    "fullWireReservation": 391071,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:53.427Z",
+    "event": "settled",
+    "work": 1700,
+    "spent": 60187,
+    "reservation": 193866,
+    "observedInputTokens": 57045,
+    "observedOutputTokens": 79,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:53.457Z",
+    "event": "admitted",
+    "spent": 60187,
+    "inputBytes": 263549,
+    "inputBound": {
+      "tokens": 61700,
+      "mode": "observed-prefix",
+      "tailBytes": 4576,
+      "retainedItems": 39,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 193796,
+    "fullWireReservation": 395645,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:56.311Z",
+    "event": "settled",
+    "work": 1122,
+    "spent": 61309,
+    "reservation": 193796,
+    "observedInputTokens": 58002,
+    "observedOutputTokens": 80,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:56.341Z",
+    "event": "admitted",
+    "spent": 61309,
+    "inputBytes": 264993,
+    "inputBound": {
+      "tokens": 59528,
+      "mode": "observed-prefix",
+      "tailBytes": 1446,
+      "retainedItems": 41,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 191624,
+    "fullWireReservation": 397089,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:58:59.470Z",
+    "event": "settled",
+    "work": 508,
+    "spent": 61817,
+    "reservation": 191624,
+    "observedInputTokens": 58282,
+    "observedOutputTokens": 82,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:58:59.500Z",
+    "event": "admitted",
+    "spent": 61817,
+    "inputBytes": 268629,
+    "inputBound": {
+      "tokens": 62002,
+      "mode": "observed-prefix",
+      "tailBytes": 3638,
+      "retainedItems": 43,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 194098,
+    "fullWireReservation": 400725,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:05.670Z",
+    "event": "settled",
+    "work": 962,
+    "spent": 62779,
+    "reservation": 194098,
+    "observedInputTokens": 59101,
+    "observedOutputTokens": 101,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:05.702Z",
+    "event": "admitted",
+    "spent": 62779,
+    "inputBytes": 276147,
+    "inputBound": {
+      "tokens": 66722,
+      "mode": "observed-prefix",
+      "tailBytes": 7520,
+      "retainedItems": 45,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 198818,
+    "fullWireReservation": 408243,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:08.153Z",
+    "event": "settled",
+    "work": 1435,
+    "spent": 64214,
+    "reservation": 198818,
+    "observedInputTokens": 60362,
+    "observedOutputTokens": 81,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:08.184Z",
+    "event": "admitted",
+    "spent": 64214,
+    "inputBytes": 285071,
+    "inputBound": {
+      "tokens": 69369,
+      "mode": "observed-prefix",
+      "tailBytes": 8926,
+      "retainedItems": 48,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 201465,
+    "fullWireReservation": 417167,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:12.859Z",
+    "event": "settled",
+    "work": 1935,
+    "spent": 66149,
+    "reservation": 201465,
+    "observedInputTokens": 62127,
+    "observedOutputTokens": 96,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:12.888Z",
+    "event": "admitted",
+    "spent": 66149,
+    "inputBytes": 291970,
+    "inputBound": {
+      "tokens": 69124,
+      "mode": "observed-prefix",
+      "tailBytes": 6901,
+      "retainedItems": 50,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 201220,
+    "fullWireReservation": 424066,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:15.441Z",
+    "event": "settled",
+    "work": 1271,
+    "spent": 67420,
+    "reservation": 201220,
+    "observedInputTokens": 63270,
+    "observedOutputTokens": 81,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:15.471Z",
+    "event": "admitted",
+    "spent": 67420,
+    "inputBytes": 301095,
+    "inputBound": {
+      "tokens": 72478,
+      "mode": "observed-prefix",
+      "tailBytes": 9127,
+      "retainedItems": 53,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 204574,
+    "fullWireReservation": 433191,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:18.218Z",
+    "event": "settled",
+    "work": 2243,
+    "spent": 69663,
+    "reservation": 204574,
+    "observedInputTokens": 65394,
+    "observedOutputTokens": 81,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:18.247Z",
+    "event": "admitted",
+    "spent": 69663,
+    "inputBytes": 310183,
+    "inputBound": {
+      "tokens": 74565,
+      "mode": "observed-prefix",
+      "tailBytes": 9090,
+      "retainedItems": 55,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 206661,
+    "fullWireReservation": 442279,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:21.057Z",
+    "event": "settled",
+    "work": 2289,
+    "spent": 71952,
+    "reservation": 206661,
+    "observedInputTokens": 67488,
+    "observedOutputTokens": 81,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:21.086Z",
+    "event": "admitted",
+    "spent": 71952,
+    "inputBytes": 314236,
+    "inputBound": {
+      "tokens": 71624,
+      "mode": "observed-prefix",
+      "tailBytes": 4055,
+      "retainedItems": 57,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 203720,
+    "fullWireReservation": 446332,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:23.545Z",
+    "event": "settled",
+    "work": 1102,
+    "spent": 73054,
+    "reservation": 203720,
+    "observedInputTokens": 68477,
+    "observedOutputTokens": 81,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:23.577Z",
+    "event": "admitted",
+    "spent": 73054,
+    "inputBytes": 323820,
+    "inputBound": {
+      "tokens": 78144,
+      "mode": "observed-prefix",
+      "tailBytes": 9586,
+      "retainedItems": 59,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 210240,
+    "fullWireReservation": 455916,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:26.985Z",
+    "event": "settled",
+    "work": 2531,
+    "spent": 75585,
+    "reservation": 210240,
+    "observedInputTokens": 70802,
+    "observedOutputTokens": 81,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:27.017Z",
+    "event": "admitted",
+    "spent": 75585,
+    "inputBytes": 330231,
+    "inputBound": {
+      "tokens": 77296,
+      "mode": "observed-prefix",
+      "tailBytes": 6413,
+      "retainedItems": 61,
+      "changedControlBytes": 0
+    },
+    "framingReserve": 4096,
+    "outputMaximum": 128000,
+    "reservation": 209392,
+    "fullWireReservation": 462327,
+    "fullWireWouldReject": true,
+    "ceiling": 300000,
+    "parallelToolCalls": false
+  },
+  {
+    "at": "2026-10-29T22:59:36.606Z",
+    "event": "settled",
+    "work": 2120,
+    "spent": 77705,
+    "reservation": 209392,
+    "observedInputTokens": 72514,
+    "observedOutputTokens": 262,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:37.370Z",
+    "event": "denied",
+    "reason": "uncached context bound and maximum output exceed the remaining ceiling",
+    "spent": 77705,
+    "ceiling": 300000
+  },
+  {
+    "at": "2026-10-29T22:59:37.371Z",
+    "event": "uncertain-response",
+    "spent": 77705,
+    "reservation": 233541,
+    "observedWork": 0
+  },
+  {
+    "at": "2026-10-29T22:59:38.232Z",
+    "event": "denied",
+    "reason": "guard unavailable, stopped, or another inference is pending",
+    "spent": 77705,
+    "ceiling": 300000
+  }
+]

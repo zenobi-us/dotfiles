@@ -1,0 +1,56 @@
+{
+  "schema": "worktree-goal/v1",
+  "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "repository_origin": "git@github.com:zenobi-us/dotfiles.git",
+  "initiative_ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+    "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+    "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+    "tracker/tickets/pi-shared-context-ux-05-events.md",
+    "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-pi-shared-context-tui-ux-spec"
+  },
+  "coordinator": {
+    "session_id": "01a189e7-31ca-75f9-8c9e-8a9b61c1fe44",
+    "agent": "omp",
+    "muxer": "herdr",
+    "pane_id": "w64:pT"
+  },
+  "base_branch": "master",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "event_id": "dispatch-reserved-0270",
+  "parent_event": "dispatch-reconciled-0269",
+  "created_at": "2026-10-30T02:31:38.337Z",
+  "kind": "dispatch_reserved",
+  "ticket_id": "pi-shared-context-ux-06-queues",
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "phase": "review-spec",
+  "agent_name": "ux06-spec-c23-supported-400k",
+  "cycle_number": 23,
+  "token_limit": 400000,
+  "budget_scope": "agent-session",
+  "approved_ticket_cycle_limit": 24,
+  "remaining_ticket_cycles": 1,
+  "dispatches_consumed": 69,
+  "approved_dispatch_cap": 71,
+  "review_role": "spec",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+  "approval_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0268.yaml",
+  "guard_sha256": "4bbc0b313ec8f81c3442b89496334b92bed200168c3ab875889dece0c63d97c7",
+  "output_reservation": 128000,
+  "review_only_exception": true,
+  "consumed_receipt_refs": [
+    "workflows/pi-shared-context-ux-06-queues/events/review-spec-complete-0083.json",
+    "workflows/pi-shared-context-ux-06-queues/events/implementation-0022.json"
+  ]
+}

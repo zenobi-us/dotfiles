@@ -1,0 +1,81 @@
+{
+  "observed_at": "2026-10-30T02:29:34.593Z",
+  "reviewer": {
+    "agent": "omp",
+    "agent_session": {
+      "agent": "omp",
+      "kind": "path",
+      "source": "herdr:omp",
+      "value": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-shared-context-ux-06-queues--/2026-10-29T22-58-01-392Z_01a189e2-7230-745b-854e-b7f2204aec7f.jsonl"
+    },
+    "agent_status": "done",
+    "completion_seq": 1166,
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+    "focused": false,
+    "foreground_cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-shared-context-ux-06-queues",
+    "interactive_ready": true,
+    "name": "ux06-spec-c22-complete-contract",
+    "pane_id": "w8P:p9",
+    "revision": 1163,
+    "screen_detection_skipped": true,
+    "state_change_seq": 1166,
+    "tab_id": "w8P:t9",
+    "terminal_id": "term_65f0297ad8ef5e8",
+    "terminal_title": "π > feature-pi-shared-context-ux-06-queues",
+    "terminal_title_stripped": "π > feature-pi-shared-context-ux-06-queues",
+    "workspace_id": "w8P"
+  },
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "source_dirty": false,
+  "result_receipt_exists": false,
+  "assessment_exists": false,
+  "source_artifact_exists": false,
+  "guard_last_events": [
+    {
+      "at": "2026-10-29T22:59:36.606Z",
+      "event": "settled",
+      "work": 2120,
+      "spent": 77705,
+      "reservation": 209392,
+      "observedInputTokens": 72514,
+      "observedOutputTokens": 262,
+      "ceiling": 300000
+    },
+    {
+      "at": "2026-10-29T22:59:37.370Z",
+      "event": "denied",
+      "reason": "uncached context bound and maximum output exceed the remaining ceiling",
+      "spent": 77705,
+      "ceiling": 300000
+    },
+    {
+      "at": "2026-10-29T22:59:37.371Z",
+      "event": "uncertain-response",
+      "spent": 77705,
+      "reservation": 233541,
+      "observedWork": 0
+    },
+    {
+      "at": "2026-10-29T22:59:38.232Z",
+      "event": "denied",
+      "reason": "guard unavailable, stopped, or another inference is pending",
+      "spent": 77705,
+      "ceiling": 300000
+    }
+  ],
+  "provider_constraint": {
+    "url": "https://github.com/can1357/oh-my-pi/blob/main/packages/ai/src/providers/openai-codex-responses.ts",
+    "observed_comment": "Codex rejects caller-supplied output caps; maxTokens is not forwarded",
+    "smaller_reservation_not_applied": true
+  },
+  "approval": {
+    "scoped_takeover": true,
+    "replace_spec": true,
+    "extra_review_session": 1,
+    "session_ceiling": 400000,
+    "output_reservation": 128000,
+    "preserve_final_review": true,
+    "no_fixes_or_merge": true
+  }
+}
