@@ -2,23 +2,23 @@
   "schema": "worktree-goal-status/v1",
   "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
   "initiative": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
-  "state": "running",
-  "latest_event": "dispatch-reserved-0266",
-  "phase_dispatches_reserved": 68,
-  "agent_sessions_reserved": 64,
+  "state": "paused",
+  "latest_event": "checkpoint-0273",
+  "phase_dispatches_reserved": 69,
+  "agent_sessions_reserved": 65,
   "cycles_consumed": {
     "pi-shared-context-ux-02-initiatives": 13,
     "pi-shared-context-ux-03-mixed-items": 5,
     "pi-shared-context-ux-04-descriptions": 4,
     "pi-shared-context-ux-05-events": 20,
-    "pi-shared-context-ux-06-queues": 22
+    "pi-shared-context-ux-06-queues": 23
   },
   "approved_total_cycle_limits": {
     "pi-shared-context-ux-02-initiatives": 13,
     "pi-shared-context-ux-03-mixed-items": 10,
     "pi-shared-context-ux-04-descriptions": 10,
     "pi-shared-context-ux-05-events": 20,
-    "pi-shared-context-ux-06-queues": 23
+    "pi-shared-context-ux-06-queues": 24
   },
   "completed_tickets": [
     "pi-shared-context-ux-02-initiatives",
@@ -31,39 +31,53 @@
   "completion_margin_tokens": 50000,
   "configured_outer_goal_token_budget": 12500000,
   "current_ticket": "pi-shared-context-ux-06-queues",
-  "current_phase": "review-spec-complete-contract",
-  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-start-0081.json",
+  "current_phase": "spec-recovery-complete-final-review-pending",
+  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-complete-0086.json",
   "latest_source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
   "latest_source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
-  "latest_review_receipt": null,
-  "latest_review_verdict": null,
+  "latest_review_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-0085.json",
+  "latest_review_verdict": "SUCCESS",
   "active_child_agents": [],
   "outstanding_dispatches": [],
-  "active_agents": [
-    {
-      "name": "ux06-spec-c22-complete-contract",
-      "pane": "w8P:p9",
-      "cycle": 22,
-      "role": "spec"
-    }
-  ],
-  "coordinator_dispatch_cap": 70,
+  "active_agents": [],
+  "coordinator_dispatch_cap": 71,
   "accepted_standards_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-standards-0070.json",
   "accepted_standards_verdict": "SUCCESS",
   "default_session_work_cap": 250000,
   "review_only_exception": {
     "cycles": [
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23
+      23,
+      24
     ],
-    "ceiling": 300000
+    "ceiling": 400000
   },
-  "active_guard_sha256": "fec08eb63867a87ca9727b179462e19b8a27854ab9d0e559319f8c25df794c0f",
-  "pending_gate": "actualSpec22_then_freshmain23_then_finish"
+  "active_guard_sha256": "4bbc0b313ec8f81c3442b89496334b92bed200168c3ab875889dece0c63d97c7",
+  "pending_gate": "fresh final combined review; no fix or merge authorized",
+  "latest_review_role": "spec",
+  "overall_review_verdict": null,
+  "accepted_spec_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-0085.json",
+  "accepted_spec_verdict": "SUCCESS",
+  "review_exception_history": [
+    {
+      "cycles": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "ceiling": 300000
+    },
+    {
+      "cycles": [
+        23,
+        24
+      ],
+      "ceiling": 400000,
+      "output_reserve": 128000,
+      "approval_ref": "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0268.yaml"
+    }
+  ]
 }

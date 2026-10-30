@@ -1,0 +1,60 @@
+{
+  "schema": "worktree-goal/v1",
+  "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "repository_origin": "git@github.com:zenobi-us/dotfiles.git",
+  "initiative_ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+    "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+    "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+    "tracker/tickets/pi-shared-context-ux-05-events.md",
+    "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-pi-shared-context-tui-ux-spec"
+  },
+  "coordinator": {
+    "session_id": "01a189e7-31ca-75f9-8c9e-8a9b61c1fe44",
+    "agent": "omp",
+    "muxer": "herdr",
+    "pane_id": "w64:pT"
+  },
+  "base_branch": "master",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "event_id": "checkpoint-0273",
+  "parent_event": "dispatch-reconciled-0272",
+  "created_at": "2026-10-30T02:39:12.152Z",
+  "kind": "checkpoint",
+  "ticket_id": "pi-shared-context-ux-06-queues",
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "state": "paused",
+  "reason": "Requested interrupted Spec recovery is complete; final combined review remains reserved and was not started. No fix or merge authorization.",
+  "active_agents": [],
+  "outstanding_dispatches": [],
+  "latest_ticket_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-complete-0086.json",
+  "accepted_standards_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-standards-0070.json",
+  "accepted_spec_receipt": "workflows/pi-shared-context-ux-06-queues/events/review-spec-0085.json",
+  "latest_valid_combined_review": null,
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "source_worktree_preserved": true,
+  "workspace_preserved": true,
+  "ticket_cycles_consumed": 23,
+  "ticket_cycle_limit": 24,
+  "dispatches_consumed": 69,
+  "dispatch_cap": 71,
+  "recovery_actions": [
+    "reconciled interrupted attempt without verdict",
+    "fresh full-scope Spec success",
+    "validated unchanged source and consumer behavior",
+    "closed reviewer pane"
+  ],
+  "accounting_evidence_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-spec-0085/parent-result-validation.json",
+  "outer_goal_accounting_not_reset": true,
+  "no_replacement_outer_goal_created": true,
+  "next_step": "fresh final combined review in existing workspace when requested"
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "tracker-result/v1",
+  "operation": "review",
+  "backend": "local-markdown",
+  "initiatives": [],
+  "tickets": [
+    {
+      "id": "pi-shared-context-ux-06-queues",
+      "ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "state": "claimed",
+      "blocked_by": [
+        "pi-shared-context-ux-02-initiatives"
+      ]
+    }
+  ],
+  "changes": {
+    "fields": {
+      "verdict": "SUCCESS",
+      "reviewed_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+      "review_artifact": "workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0085.md",
+      "timestamp": "2026-10-30T02:36:01.831Z"
+    },
+    "dependency_edges_added": [],
+    "dependency_edges_removed": []
+  },
+  "validation": {
+    "status": "passed",
+    "details": [
+      "Ticket v1 validation passed before and after comment append. The comment contains only verdict, commit, timestamp, and artifact link."
+    ]
+  },
+  "publication": {
+    "status": "required"
+  },
+  "rendered": null
+}

@@ -6,8 +6,6 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "single-call-guard-proposed-0043",
-  "state": "BLOCKED",
-  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
-  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f"
+  "latest_receipt": "review-spec-complete-0086",
+  "state": "REVIEWING"
 }
