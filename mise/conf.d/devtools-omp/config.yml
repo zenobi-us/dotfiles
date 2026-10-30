@@ -69,3 +69,4 @@ skills:
     - ~/.omp/agent/bundles/writing/skills/fictional
 codexResets:
   autoRedeem: "no"
+hideThinkingBlock: true
