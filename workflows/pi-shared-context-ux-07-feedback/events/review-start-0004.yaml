@@ -1,0 +1,57 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-start-0004",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "start-complete-0003",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "782b15da5a72240dc4b1d52c79277e119422f559",
+  "source_tree": "d87ce8fca61332fe8aebdb0f356a9e11e359d94f",
+  "created_at": "2026-10-30T08:15:13.405Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "pane_id": "w8W:p1",
+  "agent": "omp",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/start-complete-0003.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-start-0004.yaml"
+    }
+  ],
+  "status": "started"
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-latest-status/v1",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "ticket": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "state": "REVIEW_PASSED",
+  "latest_receipt": "review-complete-0006",
+  "latest_source_commit": "782b15da5a72240dc4b1d52c79277e119422f559",
+  "latest_source_tree": "d87ce8fca61332fe8aebdb0f356a9e11e359d94f",
+  "latest_review_verdict": "SUCCESS",
+  "open_findings": [],
+  "receipt_ref": "workflows/pi-shared-context-ux-07-feedback/events/review-complete-0006.yaml",
+  "implementation_code_review": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-implementation-0002.md",
+  "review_receipt": "workflows/pi-shared-context-ux-07-feedback/events/review-0005.yaml",
+  "review_artifact": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-0005.md",
+  "evidence_ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/implementation-0002/report/index.html",
+  "ticket_status": "claimed",
+  "merged": false,
+  "pushed": false
+}
