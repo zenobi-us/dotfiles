@@ -118,10 +118,11 @@ starship = "latest"
 "yt-dlp" = { "version" = "latest", "rename_exe" = "yt-dlp" }
 "zig" = "latest"
 "zot" = "latest"
-fnox = { version = "1.39.0", workflow = "release.yml" }
+fnox = { version = "1.44.0", workflow = "release.yml" }
 "github:smol-machines/smolvm" = "latest"
 "github:ktreharrison/tkmd" = "latest"
 "npm:@termdraw/app" = "latest"
+"github:da-luce/astroterm" = "latest"
 
 [tool_alias]
 pi = "github:earendil-works/pi"
