@@ -1,10 +1,10 @@
 import { join } from "node:path";
 import { resolveContextRecord, resolveSharedContext } from "../../skills/shared-context/scripts/shared-context/lib";
-import type { Theme } from "@earendil-works/pi-coding-agent";
+import { copyToClipboard, type Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
 import { actionChoices } from "./actions";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "./data";
-import { chronologicalReceipts, isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
+import { chronologicalReceipts, isCompleted, isUnstarted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
 import { safeTerminalText } from "./terminal-text";
 import type { ExplorerEvent } from "./model";
 import { DirectoryMonitor, type WatchTarget } from "./watch";
@@ -593,6 +593,10 @@ export class GraphExplorer {
       return;
     }
     if (this.loading || this.error || !this.snapshot) return;
+    if (matchesKey(data, "c") && !this.reader && this.screen !== "actions") {
+      void this.copyPath();
+      return;
+    }
     if (this.screen === "home" || this.screen === "queues") {
       const filter = ([["5", "ready"], ["6", "review"], ["7", "blocked"], ["8", "all"]] as const).find(([key]) => matchesKey(data, key))?.[1];
       if (filter) {
@@ -766,8 +770,9 @@ export class GraphExplorer {
         : "No checkout: context is readable; actions are disabled."
       : "";
     const summary = this.screen === "initiatives" ? this.initiative()?.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line)) : undefined;
-    const status = this.error || this.refreshError || this.workflow()?.error || this.notice || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
-    const keys = compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh";
+    const status = this.error || this.refreshError || this.notice || this.workflow()?.error || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+    const copyHint = this.copyTarget() ? "c copy path · " : "";
+    const keys = copyHint + (compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh");
     if (compact) {
       if (control) this.controlHits.push({ x: 0, y: 1, width: visibleWidth(control), action: "description" });
       return [breadcrumb, ...(control ? [control] : []), ...eventSummary, join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
@@ -833,7 +838,15 @@ export class GraphExplorer {
       ...(body.trim() ? body.split(/\r?\n/).map(text => ({ text })) : [{ text: "No description recorded.", tone: "muted" as const }]),
     ];
     const pane = { id: `description:${this.reader!.kind}:${this.reader!.ref}`, title: "Description", rows };
-    const lines = this.renderPane(pane, inner, bodyHeight);
+    const padding = inner >= 5 ? 1 : 0;
+    const bodyWidth = Math.max(1, inner - padding * 2);
+    const blank = th.bg("customMessageBg", " ".repeat(inner));
+    const lines = [
+      ...(bodyHeight >= 3 ? [blank] : []),
+      ...this.renderPane(pane, bodyWidth, Math.max(1, bodyHeight - (bodyHeight >= 3 ? 2 : 0)))
+        .map(line => th.bg("customMessageBg", this.pad(" ".repeat(padding) + line, inner))),
+      ...(bodyHeight >= 3 ? [blank] : []),
+    ];
     const back = this.active && this.focus === "return" ? ">[Return]<" : " [Return] ";
     const controls = `${back} [PgUp] [PgDn]`;
     this.controlHits = [
@@ -958,8 +971,39 @@ export class GraphExplorer {
     if (!this.snapshot) return [];
     return this.snapshot.initiatives.map(initiative => ({
       text: "", target: { kind: "initiative", initiative },
-      fields: { title: initiative.title, identity: initiative.group ? "Collection" : initiative.id, state: initiative.phase ?? "unavailable", count: initiative.ticketIds.length },
+      fields: { title: initiative.title, identity: initiative.group ? "Collection" : initiative.id, state: initiative.phase ?? "unavailable", count: initiative.ticketIds.length, supporting: `Progress: ${this.initiativeProgress(initiative)}` },
     }));
+  }
+
+  private initiativeProgress(initiative: ExplorerInitiative): string {
+    const tickets = initiative.ticketIds.map(id => this.tickets.get(id)).filter((ticket): ticket is ExplorerTicket => !!ticket && recordKind(ticket) === "ticket");
+    const completed = tickets.filter(isCompleted).length;
+    if (tickets.length > 0 && completed === tickets.length) return "completed";
+    const started = tickets.some(ticket => !isUnstarted(ticket));
+    return started ? `${completed}/${tickets.length} completed` : "todo";
+  }
+
+  private copyTarget(): ExplorerTarget | undefined {
+    const target = this.target();
+    if (target?.kind === "initiative") return this.snapshot?.backend === "local-markdown" && !target.initiative.group ? target : undefined;
+    return target?.ticket.backend === "local-markdown" ? target : undefined;
+  }
+
+  private async copyPath(): Promise<void> {
+    const target = this.copyTarget();
+    if (!target) return;
+    try {
+      const record = await resolveContextRecord(this.options.context, target.kind === "initiative"
+        ? { kind: "initiative", id: target.initiative.id }
+        : { kind: "ticket", id: target.ticket.id });
+      if (!record.path || record.store === "repository" && this.options.context.checkoutAvailable === false) throw new Error("No usable checkout for this path.");
+      const path = target.kind === "initiative" ? join(record.path, "index.md") : record.path;
+      await copyToClipboard(path);
+      this.notice = `Copied path: ${path}`;
+    } catch (error) {
+      this.notice = `Copy failed: ${error instanceof Error ? error.message : String(error)}`;
+    }
+    if (!this.disposed) this.options.requestRender();
   }
 
   private queueRows(queue: Queue = this.queue): Row[] {
@@ -993,7 +1037,7 @@ export class GraphExplorer {
       text: "", selected, target: { kind: "ticket", ticket },
       fields: {
         title: ticket.title, identity: ticket.id, type: this.ticketType(ticket), state: ticket.status || "unavailable",
-        supporting: recordKind(ticket) === "ticket" && blockers.length ? `Waiting for ${blockers.join(", ")}` : this.workflows.get(ticket.id)?.error ? `Workflow unreadable: ${this.workflows.get(ticket.id)!.error}` : ticket.ref
+        supporting: recordKind(ticket) === "ticket" && blockers.length ? `Waiting for ${blockers.join(", ")}` : this.workflows.get(ticket.id)?.error ? "Workflow warning · Enter to inspect details" : ticket.ref
       },
     };
   }
@@ -1130,9 +1174,12 @@ export class GraphExplorer {
 
   private renderPane(pane: Pane, width: number, height: number): string[] {
     const expanded = pane.rows.flatMap(row => {
-      if (row.event) return this.eventLines(row.event, Math.max(1, width - 1)).map(text => ({ ...row, text, styled: true }));
-      if (row.fields) return this.fieldLines(row.fields, Math.max(1, width - 1)).map(text => ({ ...row, text, styled: true }));
-      return wrapTextWithAnsi(this.clean(row.text), Math.max(1, width - 1)).map(text => ({ ...row, text, styled: false }));
+      const lines = row.event ? this.eventLines(row.event, Math.max(1, width - 1))
+        : row.fields ? this.fieldLines(row.fields, Math.max(1, width - 1))
+        : wrapTextWithAnsi(this.clean(row.text), Math.max(1, width - 1));
+      const expanded = lines.map((text, index) => ({ ...row, text, styled: !!(row.event || row.fields), first: index === 0 }));
+      const spaced = row.fields || row.event || row.selected || pane.id.startsWith("ticket:") || pane.id.startsWith("receipt:");
+      return spaced ? [...expanded, { text: "", styled: false, first: false }] : expanded;
     });
     const selected = expanded.findIndex(row => row.selected);
     let offset = this.offsets.get(pane.id) ?? 0;
@@ -1156,7 +1203,7 @@ export class GraphExplorer {
       const row = expanded[index + offset];
       if (!row) return " ".repeat(width);
       const focused = this.active && ["list", "detail", "neighborhood"].includes(this.focus) && this.focusedPane(this.panes())?.id === pane.id;
-      const text = this.pad(`${row.selected ? focused ? ">" : "◇" : " "}${row.styled ? row.text : this.options.theme.fg(row.tone ?? "text", row.text)}`, width);
+      const text = this.pad(`${row.selected && row.first ? focused ? ">" : "◇" : " "}${row.styled ? row.text : this.options.theme.fg(row.tone ?? "text", row.text)}`, width);
       return row.selected ? this.options.theme.bg("selectedBg", text) : text;
     });
   }

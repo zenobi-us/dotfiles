@@ -1,10 +1,6 @@
 import type { ExtensionAPI, ExtensionCommandContext } from "@earendil-works/pi-coding-agent";
-import { chronologicalReceipts, isCompleted, recordKind, unresolvedBlockers } from "./model";
+import { chronologicalReceipts, isCompleted, isUnstarted, recordKind, unresolvedBlockers } from "./model";
 import type { ExplorerAction, ExplorerActionChoice, ExplorerReceipt, ExplorerSessionRequest, ExplorerSnapshot, ExplorerTarget, TicketWorkflow } from "./model";
-
-const startableStates: Record<string, true> = {
-  open: true, todo: true, "to do": true, new: true, backlog: true, unclaimed: true, ready: true,
-};
 
 const initiativeActions: readonly ExplorerActionChoice[] = [
   { action: "ask-matt", key: "m", label: "Ask Matt" },
@@ -125,7 +121,7 @@ function transitionReason(action: ExplorerAction, target: Extract<ExplorerTarget
   if (action === "start") {
     const blockers = unresolvedBlockers(target.ticket, snapshot);
     if (blockers.length) return `Unresolved or missing direct blockers: ${blockers.join(", ")}.`;
-    if (startableStates[target.ticket.status.trim().toLowerCase()] !== true) return "The tracker has no confirmed startable state. Resolve the canonical ticket status before starting.";
+    if (!isUnstarted(target.ticket)) return "The tracker has no confirmed startable state. Resolve the canonical ticket status before starting.";
     if (receipts.length) return "An existing workflow already owns this ticket; do not start another implementation.";
     if (!workflow) return "Workflow state is unknown; refresh receipts before starting.";
     return undefined;

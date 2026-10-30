@@ -123,6 +123,14 @@ export function isCompleted(ticket: ExplorerTicket): boolean {
   return ["done", "closed", "resolved", "complete", "completed", "merged", "implemented"].includes(ticket.status.trim().toLowerCase());
 }
 
+const unstartedStates: Record<string, true> = {
+  open: true, todo: true, "to do": true, new: true, backlog: true, unclaimed: true, ready: true,
+};
+
+export function isUnstarted(ticket: ExplorerTicket): boolean {
+  return unstartedStates[ticket.status.trim().toLowerCase()] === true;
+}
+
 export function unresolvedBlockers(ticket: ExplorerTicket, snapshot: ExplorerSnapshot): string[] {
   const tickets = new Map(snapshot.tickets.map(item => [item.id, item]));
   return ticket.blockedBy.filter(id => !tickets.has(id) || !isCompleted(tickets.get(id)!));
