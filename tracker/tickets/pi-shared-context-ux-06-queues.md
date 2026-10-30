@@ -1,14 +1,14 @@
 ---
-schema: tracker-ticket/v1
 blocked_by: 
   - pi-shared-context-ux-02-initiatives
 id: pi-shared-context-ux-06-queues
 parent: pi-shared-context-tui-ux-spec
+schema: tracker-ticket/v1
 sequence: 6
 title: Find actionable tickets through clear work queues
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 ## What to build
@@ -68,3 +68,4 @@ The user approved this slice and its direct blockers during ticket decomposition
 - Spec review: **SUCCESS**. Reviewed commit `20968ee4f907c6f74bc77702fcef09578b41c6b8`. Timestamp `2026-10-30T02:36:01.831Z`. [Review artifact](../../workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-spec-0085.md).
 
 - Final combined review: **SUCCESS**. Reviewed commit `20968ee4f907c6f74bc77702fcef09578b41c6b8`. Timestamp `2026-10-30T03:36:15.689Z`. [Review artifact](../../workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-main-0088.md).
+- Completed 2026-10-30T04:21:51.646Z after exact-source final review, verified squash integration `9dde641d79e365e3c197b8e68767cdf32606b606`, and publication on `origin/master`. Integrated validation passed: 152 tests in the clean checkout, 154 tests in the preserved base checkout, both scoped compilers, and 35 production Pi observations. [Published integration checkpoint](../../workflows/pi-shared-context-ux-06-queues/events/finish-pushed-0094.json). Worktree and workspace cleanup is recorded by later finish receipts.
