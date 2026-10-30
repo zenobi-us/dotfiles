@@ -1,9 +1,10 @@
 #!/usr/bin/env -S mise x -- bun --install=fallback
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { mkdir } from "node:fs/promises";
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
+import { instance } from "./vendor/viz-3.31.0.mjs";
+import type { Viz } from "./vendor/viz-3.31.0.mjs";
 
 type DotBlock = { name: string; content: string };
 
@@ -39,13 +40,13 @@ ${bodies.join("\n\n")}
 }`;
 }
 
-function renderToSvg(dotContent: string): string | null {
-  const result = Bun.spawnSync(["dot", "-Tsvg"], { stdin: dotContent, stdout: "pipe", stderr: "pipe" });
-  if (result.exitCode !== 0) {
-    console.error("Error running dot:", Buffer.from(result.stderr).toString().trim());
+function renderToSvg(dotContent: string, viz: Viz): string | null {
+  const result = viz.render(dotContent, { format: "svg", engine: "dot" });
+  if (result.status === "failure") {
+    console.error("Error rendering DOT:", result.errors.map((error) => error.message).join("\n"));
     return null;
   }
-  return Buffer.from(result.stdout).toString("utf8");
+  return result.output;
 }
 
 async function loadSkill(skillDirectory: string): Promise<{ directory: string; skillFile: string; skillName: string; markdown: string; blocks: DotBlock[] }> {
@@ -66,8 +67,9 @@ async function renderSkill(skillDirectory: string, combine: boolean): Promise<vo
   const outputDirectory = path.join(skill.directory, "diagrams");
   await mkdir(outputDirectory, { recursive: true });
   const blocks = combine ? [{ name: `${skill.skillName}_combined`, content: combineGraphs(skill.blocks, skill.skillName) }] : skill.blocks;
+  const viz = await instance();
   for (const block of blocks) {
-    const svg = renderToSvg(block.content);
+    const svg = renderToSvg(block.content, viz);
     if (!svg) {
       console.error(`  Failed: ${block.name}`);
       process.exitCode = 1;
@@ -93,17 +95,11 @@ async function runCombine(ctx: { args: { skill: string } }): Promise<void> {
   await renderSkill(ctx.args.skill, true);
 }
 
-function runDoctor(): void {
-  const result = Bun.spawnSync(["dot", "-V"], { stdout: "pipe", stderr: "pipe" });
-  if (result.exitCode !== 0) {
-    console.error("Error: graphviz (dot) not found. Install with:");
-    console.error("  brew install graphviz    # macOS");
-    console.error("  apt install graphviz     # Linux");
-    process.exitCode = 1;
-    return;
-  }
+async function runDoctor(): Promise<void> {
+  const viz = await instance();
+  viz.renderString("digraph doctor { ready -> rendered; }", { format: "svg" });
   console.log(`bun: ${Bun.version}`);
-  console.log(Buffer.from(result.stderr).toString("utf8").trim() || Buffer.from(result.stdout).toString("utf8").trim());
+  console.log(`graphviz: ${viz.graphvizVersion} (vendored Viz.js 3.31.0, WebAssembly)`);
 }
 
 const cli = new Crust("render-graphs")
@@ -118,7 +114,7 @@ const cli = new Crust("render-graphs")
     .args([{ name: "skill", type: "string", required: true }] as const)
     .run(runCombine))
   .command("doctor", (cmd) => cmd
-    .meta({ description: "Check the Graphviz prerequisite" })
+    .meta({ description: "Check the vendored Graphviz WebAssembly renderer" })
     .run(runDoctor));
 
 if (import.meta.main) {

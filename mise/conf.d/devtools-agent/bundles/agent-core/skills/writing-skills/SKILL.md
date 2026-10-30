@@ -60,6 +60,21 @@ Read `references/skill-anatomy.md` when you need frontmatter, directory, section
 | Finish the authoring process | `references/skill-checklist.md` |
 | Improve instruction compliance | `references/persuasion-principles.md` |
 
+## Render DOT diagrams
+
+Resolve the installed skill directory from this SKILL.md location. Scripts are relative to that directory, not the repository. Run from any working directory with Bun available through mise.
+
+```sh
+SKILL_DIR=/absolute/path/to/writing-skills
+mise exec -- bun run --install=fallback "$SKILL_DIR/scripts/render-graphs.ts" doctor
+mise exec -- bun run --install=fallback "$SKILL_DIR/scripts/render-graphs.ts" render /absolute/path/to/target-skill
+mise exec -- bun run --install=fallback "$SKILL_DIR/scripts/render-graphs.ts" combine /absolute/path/to/target-skill
+```
+
+The renderer reads DOT blocks from the target SKILL.md and writes SVG files under its diagrams/ directory. Combined output also includes reusable DOT source. It uses vendored Viz.js 3.31.0 and embedded Graphviz WebAssembly; native dot and network access for graph rendering are not required. The CLI dependencies can require a first-run Bun package download.
+
+Keep scripts/vendor/ with installed copies. The vendor provenance manifest records source URLs, checksums, component licences, and update instructions.
+
 ## Completion gate
 
 Do not deploy a skill until:
