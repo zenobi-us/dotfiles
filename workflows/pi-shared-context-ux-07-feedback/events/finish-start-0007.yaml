@@ -1,0 +1,53 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "phase": "finish",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "782b15da5a72240dc4b1d52c79277e119422f559",
+  "source_tree": "d87ce8fca61332fe8aebdb0f356a9e11e359d94f",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-10-30T05-04-38-560Z_01a18b32-18a0-75ba-a622-b3bb7390c3d3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "review_receipt": "workflows/pi-shared-context-ux-07-feedback/events/review-0005.yaml",
+  "reviewed_source_commit": "782b15da5a72240dc4b1d52c79277e119422f559",
+  "reviewed_source_tree": "d87ce8fca61332fe8aebdb0f356a9e11e359d94f",
+  "base_before": "69a604aa78a14f5b9908acaf027a277690ab76ff",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "1999f642d88f61cca1f5b0b185a2b640605d16d1",
+  "expected_merge_tree": "b6ffb7f97b9c993ec405081f8f302030baccf5c1",
+  "receipt_id": "finish-start-0007",
+  "parent_receipt": "review-complete-0006",
+  "event": "phase-start",
+  "status": "started",
+  "created_at": "2026-10-30T20:19:53.916Z",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-complete-0006.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/finish-start-0007.yaml"
+    }
+  ]
+}
