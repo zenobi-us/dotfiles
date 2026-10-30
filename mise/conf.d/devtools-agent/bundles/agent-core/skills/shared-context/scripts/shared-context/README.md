@@ -268,6 +268,10 @@ The > marker identifies a focused selection. The ◇ marker identifies an inacti
 Use Tab and Shift+Tab to focus ancestors, panes, and workspace controls. Press Enter or Space on an ancestor, or click it, to return directly.
 Esc returns one level and restores the parent selection and scroll position. In compact terminals, returning from Events with Esc or the ticket ancestor shows the overview at its saved reading position. Live updates retain canonical selection; removal explains the new selection. If a child leaves its initiative while a reader or action menu is open, return to a nearby child or the empty parent before another action. Removing an unrelated initiative does not change the active ticket queue. Removing an inactive remembered child also leaves unrelated queue and home initiative action menus open on their canonical targets.
 Press 5 for Ready, 6 for Review, 7 for Blocked, or 8 for All to open the separate ticket queues. Press h to return to initiatives.
+Queue headings and active controls identify the selected queue. Queues contain tickets only; initiative navigation keeps its own selection and scroll position.
+Queue rows separate type, stable ID, title, and canonical ticket state. Next shows the eligible action; Recorded shows the phase and status from a validated workflow receipt. Review readiness does not mean a review is running.
+Press Enter on a queue ticket to open its canonical detail in its initiative or Ungrouped context. Return navigation restores the queue selection and scroll position.
+In an empty filtered queue, press 8 to open All or h to return to initiatives. Empty queues offer no ticket actions. Available actions identify their canonical target and explain disabled reasons.
 Uppercase R refreshes. Lowercase r retains its existing Review action. The a action menu and direct action keys keep their existing safety checks.
 Loading, empty collections, unreadable records, and refresh failures have distinct messages. A failed refresh retains readable content and blocks unsafe transitions.
 `/shared-context files` opens the independent Files workspace. Files keeps its path-insertion behavior.

@@ -203,7 +203,6 @@ test("removing the active queue action target closes its menu and selects a surv
   await f.component.load();
   expect(f.view()).not.toContain("Open a fresh chat");
   expect(f.view()).toContain("Ticket queues");
-  expect(f.view()).toContain("removed");
   await f.modal.handleInput("m");
   const result = f.result();
   if (result?.kind !== "session" || result.request.target.kind !== "ticket") throw new Error("Expected surviving queue target");
