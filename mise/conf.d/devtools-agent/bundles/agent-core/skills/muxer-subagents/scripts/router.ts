@@ -133,6 +133,7 @@ const contractsCmd = app
             (muxer === "unknown-muxer" && !flags.muxer) ||
             (agent === "unknown-agent" && !flags.agent),
         },
+        null,
         2,
       ),
     );
