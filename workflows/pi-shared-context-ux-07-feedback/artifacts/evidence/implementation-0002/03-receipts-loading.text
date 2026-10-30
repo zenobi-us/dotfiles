@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=140 rows=50 cursor=0:0 screen=primary title="π > feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                          ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[006]    │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                                                           │
+[007]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[008]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[009]    │ Initiatives                                                                                                                       │
+[010] ───│> Initiatives · title / phase / Items                                                                                              │────
+[011]  Up├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[012]  Ne│ Pi Ink Bridge: paired Paper Pro image annotation                                                   Phase: unavailable  Items: 0   │
+[013] ───│ pi-ink-bridge                                                                                                                     │────
+[014]    │ Progress: todo                                                                                                                    │
+[015] ───│                                                                                                                                   │ ⟲ ─
+[016] ❯  │>Improve shared-context project navigation and tracker readability                                  Phase: unavailable  Items: 7   │
+[017] ───│ pi-shared-context-tui-ux-spec                                                                                                     │────
+[018]  ◑ │ Progress: 6/7 completed                                                                                                           │
+[019]    │                                                                                                                                   │
+[020]    │ Ungrouped                                                                                          Phase: unavailable  Items: 0   │
+[021]    │ Collection                                                                                                                        │
+[022]    │ Progress: todo                                                                                                                    │
+[023]    │                                                                                                                                   │
+[024]    │                                                                                                                                   │
+[025]    │                                                                                                                                   │
+[026]    │                                                                                                                                   │
+[027]    │                                                                                                                                   │
+[028]    │                                                                                                                                   │
+[029]    │                                                                                                                                   │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    │                                                                                                                                   │
+[037]    │                                                                                                                                   │
+[038]    │                                                                                                                                   │
+[039]    │                                                                                                                                   │
+[040]    │                                                                                                                                   │
+[041]    │                                                                                                                                   │
+[042]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[043]    │ Copied path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/tracker/initi│
+[044]    │ c copy path · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                             │
+[045]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

@@ -1,0 +1,50 @@
+=== TERMSCOPE ===
+cols=140 rows=50 cursor=0:0 screen=primary title="π > feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                          ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[006]    │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                                                           │
+[007]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[008]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[009]    │ Initiatives  >  Improve shared-context project navigation and tracker readabil                                                    │
+[010] ───│ [d] Full description                                                                                                              │────
+[011]  Up│> pi-shared-context-tui-ux-spec · Items 7                                                                                          │
+[012]  Ne├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[013] ───│ pi-shared-context-tui-ux-spec · Phase: unavailable                                                                                │────
+[014]    │ Summary: The shared-context terminal user interface makes records difficult to read. Titles, types, states, counts, and references│
+[015] ───│ appear as similar text. Users cannot quickly identify the meaning of each field.                                                  │ ⟲ ─
+[016] ❯  │>[enhancement]   pi-shared-contex  Select shared-context projects through interactive breadcrumbs                State: completed  │
+[017] ───│ ID: pi-shared-context-ux-01-projects                                                                                              │────
+[018]  ◑ │ Workflow warning · Enter to inspect details                                                                                       │
+[019]    │                                                                                                                                   │
+[020]    │ [enhancement]   pi-shared-contex  Browse initiatives through structured tracker rows                            State: completed  │
+[021]    │ ID: pi-shared-context-ux-02-initiatives                                                                                           │
+[022]    │ Workflow warning · Enter to inspect details                                                                                       │
+[023]    │                                                                                                                                   │
+[024]    │ [enhancement]   pi-shared-contex  Browse research and tickets in the same initiative                            State: completed  │
+[025]    │ ID: pi-shared-context-ux-03-mixed-items                                                                                           │
+[026]    │ Workflow warning · Enter to inspect details                                                                                       │
+[027]    │                                                                                                                                   │
+[028]    │ [enhancement]   pi-shared-contex  Read complete initiative and item descriptions                                State: completed  │
+[029]    │ ID: pi-shared-context-ux-04-descriptions                                                                                          │
+[030]    │ Workflow warning · Enter to inspect details                                                                                       │
+[031]    │                                                                                                                                   │
+[032]    │ [enhancement]   pi-shared-contex  Inspect ticket events through readable history and evidence views             State: completed  │
+[033]    │ ID: pi-shared-context-ux-05-events                                                                                                │
+[034]    │ Workflow warning · Enter to inspect details                                                                                       │
+[035]    │                                                                                                                                   │
+[036]    │ [enhancement]   pi-shared-contex  Find actionable tickets through clear work queues                             State: completed  │
+[037]    │ ID: pi-shared-context-ux-06-queues                                                                                                │
+[038]    │ Workflow warning · Enter to inspect details                                                                                       │
+[039]    │                                                                                                                                   │
+[040]    │ [enhancement]   pi-shared-contex  Track ongoing shared-context UX feedback                                      State: claimed    │
+[041]    │ ID: pi-shared-context-ux-07-feedback                                                                                              │
+[042]    │ tracker/tickets/pi-shared-context-ux-07-feedback.md                                                                               │
+[043]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[044]    │ workflows/pi-shared-context-ux-01-projects/events/finish-0034.json: Receipt workflow.root does not match the resolved workflow sto│
+[045]    │ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh     │
+[046]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

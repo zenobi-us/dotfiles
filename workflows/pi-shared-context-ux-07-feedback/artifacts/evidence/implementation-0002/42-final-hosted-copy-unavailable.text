@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=40:99 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  P╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]   │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[006]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[007]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]   │ Initiatives                                                                                 │
+[009] [C│> Initiatives · title / phase / Items                                                        │
+[010]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[011]   │>Fixture untouched                                            Phase: unavailable  Items: 2   │
+[012] [E│ fixture-0                                                                                   │
+[013]   │ Progress: todo                                                                              │
+[014]   │                                                                                             │
+[015] [E│ Fixture started                                              Phase: unavailable  Items: 2   │
+[016]   │ fixture-1                                                                                   │
+[017] /r│ Progress: 0/2 completed                                                                     │edb
+[018] ac│                                                                                             │
+[019]   │ Fixture mixed                                                Phase: unavailable  Items: 2   │
+[020] tu│ fixture-2                                                                                   │
+[021] /r│ Progress: 1/2 completed                                                                     │edb
+[022] ac│                                                                                             │
+[023] /r│ Fixture completed                                            Phase: unavailable  Items: 2   │edb
+[024] ac│ fixture-3                                                                                   │
+[025]   │ Progress: completed                                                                         │
+[026]   │                                                                                             │
+[027]  W│                                                                                             │
+[028]   │                                                                                             │
+[029]  /│                                                                                             │ee
+[030]  d│                                                                                             │en
+[031]  d│                                                                                             │
+[032]   │                                                                                             │
+[033]  /│                                                                                             │ee
+[034]  d│                                                                                             │en
+[035]  d│                                                                                             │
+[036]   │                                                                                             │
+[037]   │                                                                                             │
+[038]   │                                                                                             │
+[039]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]   │ Selected record was removed from this view. Selected a nearby record.                       │
+[041] ──│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back     │───
+[042]   ╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-fe...
+[045] 0.0%/0 (auto)                                                                                unknown

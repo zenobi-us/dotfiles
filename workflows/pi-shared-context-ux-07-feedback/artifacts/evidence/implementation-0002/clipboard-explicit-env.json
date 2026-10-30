@@ -1,0 +1,5 @@
+{
+  "command_environment": "env WAYLAND_DISPLAY=wayland-0",
+  "actual": "[unrelated clipboard content omitted]",
+  "matches": false
+}

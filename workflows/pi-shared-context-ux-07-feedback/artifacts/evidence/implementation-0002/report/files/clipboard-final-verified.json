@@ -1,0 +1,8 @@
+{
+  "expected": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "actual": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "returncode": 0,
+  "matches": true,
+  "hosted_copy_preserves_clipboard": true,
+  "hosted_bytes": "Unrelated clipboard content omitted. Compared immediately before and after pressing c."
+}

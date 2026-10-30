@@ -1,0 +1,46 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=0:0 screen=primary title="π > feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]                                   ████████████
+[003]                                      ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]   ╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]   │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[006]   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[007]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]   │ Initiatives                                                                                 │
+[009]   │> Initiatives · title / phase / Items                                                        │
+[010]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] ──│ Pi Ink Bridge: paired Paper Pro image annotation             Phase: unavailable  Items: 0   │───
+[012]  U│ pi-ink-bridge                                                                               │
+[013]  N│ Progress: todo                                                                              │
+[014] ──│                                                                                             │───
+[015]   │>Improve shared-context project navigation and tracker        Phase: unavailable  Items: 7   │
+[016] ──│ readability                                                                                 │⟲ ─
+[017] ❯ │ pi-shared-context-tui-ux-spec                                                               │
+[018] ──│ Progress: 6/7 completed                                                                     │───
+[019]  ◑│                                                                                             │
+[020]   │ Ungrouped                                                    Phase: unavailable  Items: 0   │
+[021]   │ Collection                                                                                  │
+[022]   │ Progress: todo                                                                              │
+[023]   │                                                                                             │
+[024]   │                                                                                             │
+[025]   │                                                                                             │
+[026]   │                                                                                             │
+[027]   │                                                                                             │
+[028]   │                                                                                             │
+[029]   │                                                                                             │
+[030]   │                                                                                             │
+[031]   │                                                                                             │
+[032]   │                                                                                             │
+[033]   │                                                                                             │
+[034]   │                                                                                             │
+[035]   │                                                                                             │
+[036]   │                                                                                             │
+[037]   │                                                                                             │
+[038]   │                                                                                             │
+[039]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]   │ Copied path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-share│
+[041]   │ c copy path · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh ·│
+[042]   ╰─────────────────────────────────────────────────────────────────────────────────────────────╯

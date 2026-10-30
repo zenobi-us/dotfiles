@@ -1,0 +1,89 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=0:0 screen=primary title="π > feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]                                   ████████████
+[003]   ╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]   │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[005]   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[006]   │ Initiatives  >  Improve shared-cont  >  pi-shared-context-u  >  Description                 │
+[007]   │> Select shared-context projects through interactive breadcrumbs · Description               │
+[008]   │                                                                                             │
+[009]   │  ## What to build                                                                           │
+[010]   │                                                                                             │
+[011] ──│  Add the Projects view to the shared-context modal. Users open this view through a          │───
+[012]  U│  focusable, clickable Projects breadcrumb. Users select a project and browse its existing   │
+[013]  N│  tracker and Files workspace.                                                               │
+[014] ──│                                                                                             │───
+[015]   │  Reuse shared-context enumeration and route resolution. Include the current project.        │
+[016] ──│  Deduplicate entries by canonical identity. Do not scan unrelated repositories or add       │⟲ ─
+[017] ❯ │  another project registry.                                                                  │
+[018] ──│                                                                                             │───
+[019]  ◑│  Establish the breadcrumb and focus contract for later tracker screens. The current command │
+[020]   │  still opens the current project. Selecting another project changes only the modal context. │
+[021]   │                                                                                             │
+[022]   │  ## Acceptance criteria                                                                     │
+[023]   │                                                                                             │
+[024]   │  1. The project list displays a name and origin or stable identity for each project. Equal  │
+[025]   │  repository names remain distinguishable.                                                   │
+[026]   │  2. Keyboard focus reaches the Projects breadcrumb. Enter activates it. A mouse click       │
+[027]   │  activates the same control.                                                                │
+[028]   │  3. Selecting a project resolves its routes before record access. The selected project owns │
+[029]   │  tracker reads, Files reads, and action targets.                                            │
+[030]   │  4. The header displays Shared or Repo from the selected alignment route. The indicator is  │
+[031]   │  read-only.                                                                                 │
+[032]   │  5. Project selection does not change the active Pi session directory or system             │
+[033]   │  instructions.                                                                              │
+[034]   │  6. Returning to a project restores its navigation, selection, and scroll position. Each    │
+[035]   │  workspace retains independent state.                                                       │
+[036]   │  7. Project changes dispose of old watchers and attach the correct new watchers. Old        │
+[037]   │  project updates do not change the selected project view.                                   │
+[038]   │  8. A project without a usable checkout retains readable context. Checkout-dependent        │
+[039]   │  actions display a clear disabled reason.                                                   │
+[040]   │                                                                                             │
+[041]   │ [Return]  [PgUp] [PgDn]                                                                     │
+[042]   │↑↓ scroll · PgUp/Dn page · Esc return                                                        │
+
+=== SPANS ===
+[002] 34:248,79,204 35:239,81,208 36:230,82,211 37:220,84,215 38:211,86,219 39:202,88,222 40:193,89,226 41:184,91,229 42:175,93,233 43:165,95,237 44:156,96,240 45:147,98,244
+[003] 2-96:49,116,143
+[004] 2:49,116,143 3-58:196,167,231 96:49,116,143
+[005] 2:49,116,143 4-16:196,167,231 19-29:110,106,134 32-63:110,106,134 96:49,116,143
+[006] 2:49,116,143 3-15:196,167,231 16-18:110,106,134 19-39:196,167,231 40-42:110,106,134 43-63:196,167,231 64-66:110,106,134 96:49,116,143
+[007] 2:49,116,143 3-80:196,167,231 96:49,116,143
+[008] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[009] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[010] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[011] 0-1:246,193,119 2:49,116,143 3-95:38,35,58 96:49,116,143 97-99:246,193,119
+[012] 1:246,193,119+bold 2:49,116,143 3-95:38,35,58 96:49,116,143
+[013] 1:110,106,134 2:49,116,143 3-95:38,35,58 96:49,116,143
+[014] 0-1:246,193,119 2:49,116,143 3-95:38,35,58 96:49,116,143 97-99:246,193,119
+[015] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[016] 0-1:156,207,216 2:49,116,143 3-95:38,35,58 96:49,116,143 97:144,140,170 99:156,207,216
+[017] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[018] 0-1:156,207,216 2:49,116,143 3-95:38,35,58 96:49,116,143 97-99:156,207,216
+[019] 1:196,167,231 2:49,116,143 3-95:38,35,58 96:49,116,143
+[020] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[021] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[022] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[023] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[024] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[025] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[026] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[027] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[028] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[029] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[030] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[031] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[032] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[033] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[034] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[035] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[036] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[037] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[038] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[039] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[040] 2:49,116,143 3-95:38,35,58 96:49,116,143
+[041] 2:49,116,143 3-26:196,167,231 96:49,116,143
+[042] 2:49,116,143 3-39:110,106,134 96:49,116,143

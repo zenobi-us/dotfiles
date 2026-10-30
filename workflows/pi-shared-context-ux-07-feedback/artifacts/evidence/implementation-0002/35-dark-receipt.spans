@@ -1,0 +1,95 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=37:99 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  P╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]   │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[006]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[007]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]   │ Initiatives  >  Improve share…  >  pi-shared-con…  >  Events  >  finish-0034                │
+[009] [C│ [d] Full description                                                                        │
+[010]   │> Event detail · outcome / body / exact evidence                                             │
+[011]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[012] [E│ Execution: FINISHED                                                                         │
+[013]   │                                                                                             │
+[014]   │ INVALID / unvalidated evidence: Receipt workflow.root does not match the resolved workflow  │
+[015] [E│ store root (not the workflow directory).                                                    │
+[016]   │                                                                                             │
+[017] /r│ Recorded body:                                                                              │edb
+[018] ac│                                                                                             │
+[019]   │ No readable body recorded.                                                                  │
+[020] tu│                                                                                             │
+[021] /r│ Evidence details:                                                                           │edb
+[022] ac│                                                                                             │
+[023] /r│ Source: unavailable                                                                         │edb
+[024] ac│                                                                                             │
+[025]   │ Workflow warning: workflows/pi-shared-context-ux-01-projects/events/finish-0034.json:       │
+[026]   │ Receipt workflow.root does not match the resolved workflow store root (not the workflow     │
+[027]  W│ directory).                                                                                 │
+[028]   │ workflows/pi-shared-context-ux-01-projects/events/finish-worktree-removed-0033.json: Receipt│
+[029]  /│ workflow.root does not match the resolved workflow store root (not the workflow directory). │ee
+[030]  d│ workflows/pi-shared-context-ux-01-projects/events/finish-ticket-completed-0032.json: Receipt│en
+[031]  d│ workflow.root does not match the resolved workflow store root (not the workflow directory). │
+[032]   │ workflows/pi-shared-context-ux-01-projects/events/finish-pushed-0031.json: Receipt          │
+[033]  /│ workflow.root does not match the resolved workflow store root (not the workflow directory). │ee
+[034]  d│ workflows/pi-shared-context-ux-01-projects/events/finish-validated-0030.json: Receipt       │en
+[035]  d│ workflow.root does not match the resolved workflow store root (not the workflow directory). │
+[036]   │ workflows/pi-shared-context-ux-01-projects/events/finish-merged-0029.json: Receipt          │
+[037]   │ workflow.root does not match the resolved workflow store root (not the workflow directory). │
+[038]   │ workflows/pi-shared-context-ux-01-projects/events/finish-prepared-0028.json: Receipt        │
+[039]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]   │ workflows/pi-shared-context-ux-01-projects/events/finish-0034.json: Receipt workflow.root d…│
+[041] ──│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a a…│───
+[042]   ╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-fe...
+[045] 0.0%/0 (auto)                                                                                unknown
+
+=== SPANS ===
+[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:126,136,142
+[003] 1-2:79,142,179 4:234,182,93 6-11:126,136,142 12-24:157,165,169 25-37:126,136,142 38-51:157,165,169 52:126,136,142 53-64:157,165,169 65:126,136,142 66-73:157,165,169 74-79:126,136,142 80-84:157,165,169
+[004] 1:126,136,142 2-96:95,168,204
+[005] 2:95,168,204 3-58:167,152,215 96:95,168,204
+[006] 1:126,136,142 2:95,168,204 4-16:167,152,215 19-29:157,165,169 32-63:157,165,169 96:95,168,204
+[007] 2-96:95,168,204
+[008] 2:95,168,204 3-15:167,152,215 16-18:157,165,169 19-32:167,152,215 35-37:157,165,169 38-51:167,152,215 54-56:157,165,169 57-64:167,152,215 65-67:157,165,169 68-80:222,224,225 96:95,168,204
+[009] 0-1:205,154,34 2:95,168,204 3-24:167,152,215 96:95,168,204
+[010] 0-1:126,136,142 2:95,168,204 96:95,168,204
+[011] 2-96:95,168,204
+[012] 0-1:205,154,34 2:95,168,204 4-22:167,152,215 96:95,168,204
+[013] 0-1:126,136,142 2:95,168,204 96:95,168,204
+[014] 2:95,168,204 4-93:205,154,34 96:95,168,204
+[015] 0-1:205,154,34 2:95,168,204 4-43:205,154,34 96:95,168,204
+[016] 0-1:205,154,34 2:95,168,204 96:95,168,204 97-99:205,154,34
+[017] 0-1:205,154,34 2:95,168,204 4-17:167,152,215 96:95,168,204 97-99:205,154,34
+[018] 0-1:205,154,34 2:95,168,204 96:95,168,204
+[019] 0-1:205,154,34 2:95,168,204 4-29:222,224,225 96:95,168,204 97-99:205,154,34
+[020] 0-1:205,154,34 2:95,168,204 96:95,168,204 97-99:205,154,34
+[021] 0-1:205,154,34 2:95,168,204 4-20:167,152,215 96:95,168,204 97-99:205,154,34
+[022] 0-1:205,154,34 2:95,168,204 96:95,168,204 97-99:205,154,34
+[023] 0-1:205,154,34 2:95,168,204 4-22:205,154,34 96:95,168,204 97-99:205,154,34
+[024] 0-1:205,154,34 2:95,168,204 96:95,168,204
+[025] 2:95,168,204 4-88:205,154,34 96:95,168,204
+[026] 2:95,168,204 4-90:205,154,34 96:95,168,204
+[027] 1:205,154,34 2:95,168,204 4-14:205,154,34 96:95,168,204 97-99:205,154,34
+[028] 1:205,154,34 2:95,168,204 4-95:205,154,34 96:95,168,204 97-99:205,154,34
+[029] 1:205,154,34 2:95,168,204 4-94:205,154,34 96:95,168,204 97-99:205,154,34
+[030] 1:205,154,34 2:95,168,204 4-95:205,154,34 96:95,168,204 97-99:205,154,34
+[031] 1:205,154,34 2:95,168,204 4-94:205,154,34 96:95,168,204 97-99:205,154,34
+[032] 1:205,154,34 2:95,168,204 4-85:205,154,34 96:95,168,204 97-99:205,154,34
+[033] 1:205,154,34 2:95,168,204 4-94:205,154,34 96:95,168,204 97-99:205,154,34
+[034] 1:205,154,34 2:95,168,204 4-88:205,154,34 96:95,168,204 97-99:205,154,34
+[035] 1:205,154,34 2:95,168,204 4-94:205,154,34 96:95,168,204
+[036] 2:95,168,204 4-85:205,154,34 96:95,168,204
+[037] 2:95,168,204 4-94:205,154,34 96:95,168,204
+[038] 2:95,168,204 4-87:205,154,34 96:95,168,204
+[039] 2-96:95,168,204
+[040] 2:95,168,204 3-94:157,165,169 96:95,168,204
+[041] 0-1:108,118,123 2:95,168,204 3-94:157,165,169 96:95,168,204 97-99:108,118,123
+[042] 0:inverse 2-96:95,168,204
+[043] 0-99:108,118,123
+[044] 0-99:126,136,142
+[045] 0-99:126,136,142

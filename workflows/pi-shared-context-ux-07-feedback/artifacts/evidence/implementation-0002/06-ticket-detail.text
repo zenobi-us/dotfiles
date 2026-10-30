@@ -1,0 +1,94 @@
+=== TERMSCOPE ===
+cols=80 rows=35 cursor=0:0 screen=primary title="π > feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄
+[004]  █▀▀▄
+[005]                                                          ██  ██       ▀▄▄▀ █ █ █
+[006]  █▄▄▀
+[007]    ╭────────────────────────────────────────────────────────────────────────────
+[008] ───────────────────────────────────────────────────────╮
+[009]    │ Projects · Repo > feat-pi-shared-context-ux-07-feedback
+[010]                                                        │
+[011]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate
+[012]                                                        │
+[013]    ├────────────────────────────────────────────────────────────────────────────
+[014] ───────────────────────────────────────────────────────┤
+[015]    │ Initiatives  >  Improve shared-context project navigation and tracker reada
+[016] bil                                                    │
+[017] ───│ [d] Full description
+[018]                                                        │────
+[019]  Up│> pi-shared-context-tui-ux-spec · Items 7
+[020]                                                        │
+[021]  Ne├────────────────────────────────────────────────────────────────────────────
+[022] ───────────────────────────────────────────────────────┤
+[023] ───│ pi-shared-context-tui-ux-spec · Phase: unavailable
+[024]                                                        │────
+[025]    │ Summary: The shared-context terminal user interface makes records difficult
+[026]  to read. Titles, types, states, counts, and references│
+[027] ───│ appear as similar text. Users cannot quickly identify the meaning of each f
+[028] ield.                                                  │ ⟲ ─
+[029] ❯  │>[enhancement]   pi-shared-contex  Select shared-context projects through in
+[030] teractive breadcrumbs                State: completed  │
+[031] ───│ ID: pi-shared-context-ux-01-projects
+[032]                                                        │────
+[033]  ◑ │ Workflow warning · Enter to inspect details
+[034]                                                        │
+[035]    │
+[036]                                                        │
+[037]    │ [enhancement]   pi-shared-contex  Browse initiatives through structured tra
+[038] cker rows                            State: completed  │
+[039]    │ ID: pi-shared-context-ux-02-initiatives
+[040]                                                        │
+[041]    │ Workflow warning · Enter to inspect details
+[042]                                                        │
+[043]    │
+[044]                                                        │
+[045]    │ [enhancement]   pi-shared-contex  Browse research and tickets in the same i
+[046] nitiative                            State: completed  │
+[047]    │ ID: pi-shared-context-ux-03-mixed-items
+[048]                                                        │
+[049]    │ Workflow warning · Enter to inspect details
+[050]                                                        │
+[051]    │
+[052]                                                        │
+[053]    │ [enhancement]   pi-shared-contex  Read complete initiative and item descrip
+[054] tions                                State: completed  │
+[055]    │ ID: pi-shared-context-ux-04-descriptions
+[056]                                                        │
+[057]    │ Workflow warning · Enter to inspect details
+[058]                                                        │
+[059]    │
+[060]                                                        │
+[061]    │ [enhancement]   pi-shared-contex  Inspect ticket events through readable hi
+[062] story and evidence views             State: completed  │
+[063]    │ ID: pi-shared-context-ux-05-events
+[064]                                                        │
+[065]    │ Workflow warning · Enter to inspect details
+[066]                                                        │
+[067]    │
+[068]                                                        │
+[069]    │ [enhancement]   pi-shared-contex  Find actionable tickets through clear wor
+[070] k queues                             State: completed  │
+[071]    │ ID: pi-shared-context-ux-06-queues
+[072]                                                        │
+[073]    │ Workflow warning · Enter to inspect details
+[074]                                                        │
+[075]    │
+[076]                                                        │
+[077]    │ [enhancement]   pi-shared-contex  Track ongoing shared-context UX feedback
+[078]                                      State: claimed    │
+[079]    │ ID: pi-shared-context-ux-07-feedback
+[080]                                                        │
+[081]    │ tracker/tickets/pi-shared-context-ux-07-feedback.md
+[082]                                                        │
+[083]    ├────────────────────────────────────────────────────────────────────────────
+[084] ───────────────────────────────────────────────────────┤
+[085]    │ workflows/pi-shared-context-ux-01-projects/events/finish-0034.json: Receipt
+[086]  workflow.root does not match the resolved workflow sto│
+[087]    │ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp
+[088] /Dn scroll · a actions · h initiatives · R refresh     │
+[089]    ╰────────────────────────────────────────────────────────────────────────────
+[090] ───────────────────────────────────────────────────────╯

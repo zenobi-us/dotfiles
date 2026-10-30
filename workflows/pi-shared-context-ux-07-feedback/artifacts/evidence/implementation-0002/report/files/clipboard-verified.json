@@ -1,0 +1,10 @@
+{
+  "runtime": "Pi 1.4.0",
+  "command": "wl-paste --no-newline",
+  "display": "wayland-0",
+  "runtime_dir": "/run/user/1000",
+  "returncode": 0,
+  "expected": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "actual": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "matches": true
+}

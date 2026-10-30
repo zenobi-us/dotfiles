@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=37:99 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  P╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]   │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[006]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[007]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]   │ Initiatives  >  Improve shared-context pro…  >  pi-shared-context-ux-01-pr…                 │
+[009] [C│ [d] Full description                                                                        │
+[010]   │> pi-shared-context-tui-ux-spe…│  Ticket / dependencies / receipts                           │
+[011]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[012] [E│>[enhancement]  ID:            │ pi-shared-context-ux-01-projects Select shared-context      │
+[013]   │ pi-shared-context-ux-01-projec│ projects through interactive breadcrumbs                    │
+[014]   │ ts                            │                                                             │
+[015] [E│ Select shared-context projects│ Summary: Add the Projects view to the shared-context modal. │
+[016]   │ through interactive           │ Users open this view through a focusable, clickable Projects│
+[017] /r│ breadcrumbs                   │ breadcrumb. Users select a project and browse i…            │edb
+[018] ac│ State: completed              │                                                             │
+[019]   │ Workflow warning · Enter to   │ Type: enhancement                                           │
+[020] tu│ inspect details               │                                                             │
+[021] /r│                               │ State: DONE                                                 │edb
+[022] ac│ [enhancement]  ID:            │                                                             │
+[023] /r│ pi-shared-context-ux-02-initia│ Reference:                                                  │edb
+[024] ac│ tives                         │ tracker/tickets/pi-shared-context-ux-01-projects.md         │
+[025]   │ Browse initiatives through    │                                                             │
+[026]   │ structured tracker rows       │ Current source: not recorded                                │
+[027]  W│ State: completed              │                                                             │
+[028]   │ Workflow warning · Enter to   │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded   │
+[029]  /│ inspect details               │ attempts, not quality or completion)                        │ee
+[030]  d│                               │                                                             │en
+[031]  d│ [enhancement]  ID:            │ Dependencies:                                               │
+[032]   │ pi-shared-context-ux-03-mixed-│                                                             │
+[033]  /│ items                         │ → pi-shared-context-ux-02-initiatives [DONE] Browse         │ee
+[034]  d│ Browse research and tickets in│ initiatives through structured tracker rows                 │en
+[035]  d│ the same initiative           │                                                             │
+[036]   │ State: completed              │ Receipts:                                                   │
+[037]   │ Workflow warning · Enter to   │                                                             │
+[038]   │ inspect details               │ Event: finish-0034 · Execution: FINISHED                    │
+[039]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]   │ workflows/pi-shared-context-ux-01-projects/events/finish-0034.json: Receipt workflow.root d…│
+[041] ──│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a a…│───
+[042]   ╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-fe...
+[045] 0.0%/0 (auto)                                                                                unknown

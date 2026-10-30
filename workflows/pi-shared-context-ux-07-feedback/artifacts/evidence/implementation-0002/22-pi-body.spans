@@ -1,0 +1,95 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=41:99 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  P│ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[005]   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[006]  P│ Initiatives  >  Improve shared-con…  >  pi-shared-context-…  >  Description                 │
+[007]   │> Select shared-context projects through interactive breadcrumbs · Description               │
+[008] [E│                                                                                             │
+[009]   │  ## What to build                                                                           │
+[010] /r│                                                                                             │edb
+[011] ac│  Add the Projects view to the shared-context modal. Users open this view through a          │
+[012]   │  focusable, clickable Projects breadcrumb. Users select a project and browse its existing   │
+[013] tu│  tracker and Files workspace.                                                               │
+[014] /r│                                                                                             │edb
+[015] ac│  Reuse shared-context enumeration and route resolution. Include the current project.        │
+[016] /r│  Deduplicate entries by canonical identity. Do not scan unrelated repositories or add       │edb
+[017] ac│  another project registry.                                                                  │
+[018]   │                                                                                             │
+[019]   │  Establish the breadcrumb and focus contract for later tracker screens. The current command │
+[020]   │  still opens the current project. Selecting another project changes only the modal context. │
+[021]   │                                                                                             │
+[022]   │  ## Acceptance criteria                                                                     │
+[023]   │                                                                                             │
+[024]   │  1. The project list displays a name and origin or stable identity for each project. Equal  │
+[025]   │  repository names remain distinguishable.                                                   │
+[026]   │  2. Keyboard focus reaches the Projects breadcrumb. Enter activates it. A mouse click       │
+[027]   │  activates the same control.                                                                │
+[028]   │  3. Selecting a project resolves its routes before record access. The selected project owns │
+[029]   │  tracker reads, Files reads, and action targets.                                            │
+[030]   │  4. The header displays Shared or Repo from the selected alignment route. The indicator is  │
+[031]   │  read-only.                                                                                 │
+[032]   │  5. Project selection does not change the active Pi session directory or system             │
+[033]   │  instructions.                                                                              │
+[034]   │  6. Returning to a project restores its navigation, selection, and scroll position. Each    │
+[035]   │  workspace retains independent state.                                                       │
+[036]   │  7. Project changes dispose of old watchers and attach the correct new watchers. Old        │
+[037]   │  project updates do not change the selected project view.                                   │
+[038]   │  8. A project without a usable checkout retains readable context. Checkout-dependent        │
+[039]   │  actions display a clear disabled reason.                                                   │
+[040]   │                                                                                             │
+[041] ──│ [Return]  [PgUp] [PgDn]                                                                     │───
+[042]   │↑↓ scroll · PgUp/Dn page · Esc return                                                        │
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-fe...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                       gpt-5.5 • medium
+
+=== SPANS ===
+[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:dim
+[003] 1:79,142,179 2-96:129,162,190
+[004] 1:dim 2:129,162,190 3-58:178,148,187 96:129,162,190
+[005] 2:129,162,190 4-16:178,148,187 19-29:dim 32-63:dim 96:129,162,190
+[006] 1:dim 2:129,162,190 3-15:178,148,187 16-18:dim 19-37:178,148,187 40-42:dim 43-61:178,148,187 64-66:dim 96:129,162,190
+[007] 2:129,162,190 3-80:178,148,187 96:129,162,190
+[008] 0-1:240,198,116 2:129,162,190 96:129,162,190
+[009] 0-1:240,198,116 2:129,162,190 96:129,162,190 97-99:240,198,116
+[010] 0-1:240,198,116 2:129,162,190 96:129,162,190 97-99:240,198,116
+[011] 0-1:240,198,116 2:129,162,190 96:129,162,190
+[012] 0-1:240,198,116 2:129,162,190 96:129,162,190 97-99:240,198,116
+[013] 0-1:240,198,116 2:129,162,190 96:129,162,190 97-99:240,198,116
+[014] 0-1:240,198,116 2:129,162,190 96:129,162,190 97-99:240,198,116
+[015] 0-1:240,198,116 2:129,162,190 96:129,162,190 97-99:240,198,116
+[016] 0-1:240,198,116 2:129,162,190 96:129,162,190 97-99:240,198,116
+[017] 0-1:240,198,116 2:129,162,190 96:129,162,190
+[018] 2:129,162,190 96:129,162,190
+[019] 2:129,162,190 96:129,162,190
+[020] 2:129,162,190 96:129,162,190
+[021] 2:129,162,190 96:129,162,190
+[022] 2:129,162,190 96:129,162,190
+[023] 2:129,162,190 96:129,162,190
+[024] 2:129,162,190 96:129,162,190
+[025] 2:129,162,190 96:129,162,190
+[026] 2:129,162,190 96:129,162,190
+[027] 2:129,162,190 96:129,162,190
+[028] 2:129,162,190 96:129,162,190
+[029] 2:129,162,190 96:129,162,190
+[030] 2:129,162,190 96:129,162,190
+[031] 2:129,162,190 96:129,162,190
+[032] 2:129,162,190 96:129,162,190
+[033] 2:129,162,190 96:129,162,190
+[034] 2:129,162,190 96:129,162,190
+[035] 2:129,162,190 96:129,162,190
+[036] 2:129,162,190 96:129,162,190
+[037] 2:129,162,190 96:129,162,190
+[038] 2:129,162,190 96:129,162,190
+[039] 2:129,162,190 96:129,162,190
+[040] 2:129,162,190 96:129,162,190
+[041] 0-1:138,190,183 2:129,162,190 3-26:178,148,187 96:129,162,190 97-99:138,190,183
+[042] 0:inverse 2:129,162,190 3-39:dim 96:129,162,190
+[043] 0-99:138,190,183
+[044] 0-99:dim
+[045] 0-99:dim

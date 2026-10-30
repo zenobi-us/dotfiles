@@ -1,0 +1,160 @@
+schema: worktree-receipt/v1
+receipt_id: implementation-0002
+workflow_id: pi-shared-context-ux-07-feedback
+phase: implementation
+event: phase-result
+attempt: 1
+parent_receipt: start-0001
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback
+source_branch: feat/pi-shared-context-ux-07-feedback
+base_branch: master
+source_commit: 782b15da5a72240dc4b1d52c79277e119422f559
+source_tree: d87ce8fca61332fe8aebdb0f356a9e11e359d94f
+created_at: "2026-10-30T06:04:18.285098Z"
+muxer: herdr
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback
+pane_id: "w8V:p1"
+agent: omp
+session_id: 01a18b4a-d0b3-778f-adad-15f976d82e18
+session_ref: /home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feat-pi-shared-context-ux-07-feedback--/2026-10-30T05-31-38-547Z_01a18b4a-d0b3-778f-adad-15f976d82e18.jsonl
+ticket:
+  backend: local-markdown
+  id: pi-shared-context-ux-07-feedback
+  ref: tracker/tickets/pi-shared-context-ux-07-feedback.md
+workflow:
+  store: repository
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  ref: workflows/pi-shared-context-ux-07-feedback
+ticket_ref: tracker/tickets/pi-shared-context-ux-07-feedback.md
+evidence:
+  store: repository
+  ref: workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/implementation-0002
+inputs:
+  - kind: ticket
+    ref: tracker/tickets/pi-shared-context-ux-07-feedback.md
+  - kind: receipt
+    ref: workflows/pi-shared-context-ux-07-feedback/events/start-0001.yaml
+  - kind: source
+    ref: 1999f642d88f61cca1f5b0b185a2b640605d16d1
+    tree: faec7ac9dbf2cc3bae0e56114c2e1f4367a79269
+  - kind: evidence
+    ref: workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/termscope-colour-20261030-02/files/capture-manifest.json
+  - kind: screenshot
+    ref: tracker/tickets/pi-shared-context-ux-07-feedback/01-ticket-list-loading.png
+  - kind: screenshot
+    ref: tracker/tickets/pi-shared-context-ux-07-feedback/02-ticket-list-loaded-diagnostics.png
+  - kind: screenshot
+    ref: tracker/tickets/pi-shared-context-ux-07-feedback/03-ticket-list-selection-spacing.png
+  - kind: screenshot
+    ref: tracker/tickets/pi-shared-context-ux-07-feedback/04-receipt-detail.png
+  - kind: screenshot
+    ref: tracker/tickets/pi-shared-context-ux-07-feedback/05-ticket-detail.png
+  - kind: screenshot
+    ref: tracker/tickets/pi-shared-context-ux-07-feedback/06-ticket-markdown-body.png
+outputs:
+  - kind: receipt
+    ref: workflows/pi-shared-context-ux-07-feedback/events/implementation-0002.yaml
+  - kind: source-commit
+    ref: 782b15da5a72240dc4b1d52c79277e119422f559
+  - kind: evidence
+    ref: workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/implementation-0002/report/index.html
+  - kind: implementation-code-review
+    ref: workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-implementation-0002.md
+  - kind: snapshot
+    ref: workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-implementation-0002.md
+  - kind: projection
+    ref: workflows/pi-shared-context-ux-07-feedback/projections/pr-draft.md
+  - kind: projection
+    ref: workflows/pi-shared-context-ux-07-feedback/projections/implementation-log.md
+  - kind: projection
+    ref: workflows/pi-shared-context-ux-07-feedback/projections/latest-status.yaml
+  - kind: manifest
+    ref: workflows/pi-shared-context-ux-07-feedback/manifest.yaml
+status: completed
+changed_files:
+  - mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts
+  - mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts
+  - mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts
+  - mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts
+  - mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts
+  - mise/conf.d/devtools-agent/bundles/agent-core/docs/USAGE.md
+validation_results:
+  - command: mise exec -- bun test ./extensions/pi-shared-context
+    cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core
+    result: passed
+    exit_code: 0
+    tests: 96
+    failures: 0
+    assertions: 1911
+    files: 10
+  - command: mise exec -- bun x tsc --noEmit -p tsconfig.feedback-smoke.json
+    cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core
+    result: passed
+    exit_code: 0
+    configuration_ref: workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/implementation-0002/typecheck-scope.json
+    note: "Temporary configuration extended bundle tsconfig and included extension source, tests and bundle ambient types. Removed after validation."
+  - command: mise exec -- bun run typecheck
+    cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core
+    result: failed-outside-scope
+    exit_code: 2
+    errors:
+      - "skills/muxer-subagents/scripts/router.ts:136 TS2769"
+      - "skills/muxer-subagents/scripts/signals.ts:157 TS2769"
+      - "skills/muxer-subagents/scripts/wait.ts:22-23 TS2339 and TS7006"
+      - "skills/writing-skills/scripts/render-graphs.ts:43 TS2322"
+    note: No diagnostics in the changed extension. Unrelated skill scripts remain unchanged.
+  - command: termscope session --cols 100 --rows 45 -- env XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 PI_CODING_AGENT_DIR=/tmp/pi-feedback-profile TERM=xterm-256color COLORTERM=truecolor FORCE_COLOR=3 bun <agent-core>/node_modules/@earendil-works/pi-coding-agent/dist/bundle/cli.js --no-session --no-tools --no-extensions -e <agent-core>/extensions/pi-shared-context/index.ts -e /tmp/pi-feedback-evidence.ts
+    result: passed
+    runtime: Pi 1.4.0
+    evidence_ref: workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/implementation-0002/report/index.html
+    scenarios:
+      - "real-record receipt loading held by operator gate, then released to actual loader"
+      - loaded diagnostic summaries and full errors in receipt details
+      - wrapped selection with one marker and tinted background
+      - list gaps and spaced ticket and receipt fields
+      - separate padded Markdown body theme background
+      - canonical initiative index.md copy and wl-paste exact bytes
+      - "todo, started 0/2, mixed 1/2 and completed progress fixtures"
+      - untouched new/to do aliases
+      - hosted initiative copy unavailable with clipboard unchanged
+    limits:
+      - Progress and hosted-backend boundaries use labeled in-memory fixtures.
+      - "Screenshots render actual termscope HTML in Chromium, not native desktop pixels."
+      - Colour separation captured with isolated dark theme; system theme awaits terminal palette reports.
+      - "Initial unsuccessful OMP/resize/clipboard attempts remain capture history, not acceptance evidence."
+  - command: wl-paste --no-newline
+    result: passed
+    exit_code: 0
+    evidence_ref: workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/implementation-0002/clipboard-final-verified.json
+    note: Exact canonical absolute index.md bytes matched. Hosted fixture c shortcut did not alter immediate before/after clipboard bytes.
+  - command: writing-reports/scripts/validate-report.ts <evidence>/report/index.html
+    result: passed
+    exit_code: 0
+    note: Portable report loaded in Chromium. Screenshot lightbox opened with its caption and closed on Escape.
+  - command: code-review standards and spec axes via fresh Herdr sessions
+    result: passed-after-fixes
+    evidence_ref: workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-implementation-0002.md
+    resolved_findings:
+      - S1 duplicated/mismatched untouched-state classification
+      - P1 GitHub initiative offered nonexistent local index.md path
+    note: Implementation self-review only. No formal worktree review receipt or merge authorization.
+  - command: "source commit hooks: agent-bundle-versions -- check --staged"
+    result: passed
+    exit_code: 0
+implementation_summary:
+  - Keep loaded workflow warnings compact while retaining full diagnostic inspection.
+  - Separate list items and detail fields; retain selected background with one marker per item.
+  - Render the Markdown body on a separate padded theme background.
+  - Expose canonical Local Markdown initiative and ticket path copy with a discoverable c shortcut; suppress hosted or generated initiative paths.
+  - "Show executable-ticket progress as todo, completed or X/Y completed, including started 0/Y."
+  - "Preserve the canonical ongoing feedback ticket, all earlier feedback and six original screenshot links."
+open_questions: []
+resolved_findings:
+  - S1
+  - P1
+formal_worktree_review_verdict: ~
+ticket_status: claimed
+merged: false
+pushed: false
+preservation: "Source edits and commits belong only to the authorized source worktree. No original workspace source or tracker edits were copied, staged, altered, or discarded. New workflow records use the original resolved workflow store."

@@ -1,0 +1,1 @@
+{"extends":"./tsconfig.json","include":["extensions/pi-shared-context/**/*.ts","types/**/*.d.ts"]}

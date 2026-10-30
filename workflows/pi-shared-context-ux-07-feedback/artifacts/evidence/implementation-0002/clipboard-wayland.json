@@ -1,0 +1,7 @@
+{
+  "wayland_display": "wayland-0",
+  "returncode": 0,
+  "actual": "[unrelated clipboard content omitted]",
+  "expected": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "matches": false
+}

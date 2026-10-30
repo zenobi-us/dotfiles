@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=39:99 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  P╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]   │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[006]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[007]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [E│ Initiatives                                                                                 │
+[009]   │> Initiatives · title / phase / Items                                                        │
+[010] /r├─────────────────────────────────────────────────────────────────────────────────────────────┤edb
+[011] ac│ Pi Ink Bridge: paired Paper Pro image annotation             Phase: unavailable  Items: 0   │
+[012]   │ pi-ink-bridge                                                                               │
+[013] tu│ Progress: todo                                                                              │
+[014] /r│                                                                                             │edb
+[015] ac│>Improve shared-context project navigation and tracker        Phase: unavailable  Items: 7   │
+[016] /r│ readability                                                                                 │edb
+[017] ac│ pi-shared-context-tui-ux-spec                                                               │
+[018]   │ Progress: 6/7 completed                                                                     │
+[019]   │                                                                                             │
+[020]   │ Ungrouped                                                    Phase: unavailable  Items: 0   │
+[021]   │ Collection                                                                                  │
+[022]   │ Progress: todo                                                                              │
+[023]   │                                                                                             │
+[024]   │                                                                                             │
+[025]   │                                                                                             │
+[026]   │                                                                                             │
+[027]   │                                                                                             │
+[028]   │                                                                                             │
+[029]   │                                                                                             │
+[030]   │                                                                                             │
+[031]   │                                                                                             │
+[032]   │                                                                                             │
+[033]   │                                                                                             │
+[034]   │                                                                                             │
+[035]   │                                                                                             │
+[036]   │                                                                                             │
+[037]   │                                                                                             │
+[038]   │                                                                                             │
+[039]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]   │ Copied path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shar…│
+[041] ──│ c copy path · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh …│───
+[042]   ╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-fe...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                       gpt-5.5 • medium

@@ -1,0 +1,95 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=40:99 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  P╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]   │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[006]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[007]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [E│ Initiatives  >  Improve shared-context project navigation …                                 │
+[009]   │ [d] Full description                                                                        │
+[010] /r│> pi-shared-context-tui-ux-spec · Items 7                                                    │edb
+[011] ac├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[012]   │ pi-shared-context-tui-ux-spec · Phase: unavailable                                          │
+[013] tu│ Summary: The shared-context terminal user interface makes records difficult to read. Titles,│
+[014] /r│ types, states, counts, and references appear as similar text. Users cannot quickly identify │edb
+[015] ac│ the meaning of each field.                                                                  │
+[016] /r│>[enhancement]   pi-shared-conte…  Select shared-context projects through  State: completed  │edb
+[017] ac│                                   interactive breadcrumbs                                   │
+[018]   │ ID: pi-shared-context-ux-01-projects                                                        │
+[019]   │ tracker/tickets/pi-shared-context-ux-01-projects.md                                         │
+[020]   │                                                                                             │
+[021]   │ [enhancement]   pi-shared-conte…  Browse initiatives through structured   State: completed  │
+[022]   │                                   tracker rows                                              │
+[023]   │ ID: pi-shared-context-ux-02-initiatives                                                     │
+[024]   │ tracker/tickets/pi-shared-context-ux-02-initiatives.md                                      │
+[025]   │                                                                                             │
+[026]   │ [enhancement]   pi-shared-conte…  Browse research and tickets in the      State: completed  │
+[027]   │                                   same initiative                                           │
+[028]   │ ID: pi-shared-context-ux-03-mixed-items                                                     │
+[029]   │ tracker/tickets/pi-shared-context-ux-03-mixed-items.md                                      │
+[030]   │                                                                                             │
+[031]   │ [enhancement]   pi-shared-conte…  Read complete initiative and item       State: completed  │
+[032]   │                                   descriptions                                              │
+[033]   │ ID: pi-shared-context-ux-04-descriptions                                                    │
+[034]   │ tracker/tickets/pi-shared-context-ux-04-descriptions.md                                     │
+[035]   │                                                                                             │
+[036]   │ [enhancement]   pi-shared-conte…  Inspect ticket events through readable  State: completed  │
+[037]   │                                   history and evidence views                                │
+[038]   │ ID: pi-shared-context-ux-05-events                                                          │
+[039]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]   │ Checking receipts 0/7                                                                       │
+[041] ──│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a a…│───
+[042]   ╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-fe...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                       gpt-5.5 • medium
+
+=== SPANS ===
+[002] 1:228,138,122/79,142,179 2-3:228,138,122 6-11:dim
+[003] 1-2:79,142,179 4:234,182,93 6-84:dim
+[004] 1:dim 2-96:129,162,190
+[005] 2:129,162,190 3-58:178,148,187 96:129,162,190
+[006] 1:dim 2:129,162,190 4-16:178,148,187 19-29:dim 32-63:dim 96:129,162,190
+[007] 2-96:129,162,190
+[008] 0-1:240,198,116 2:129,162,190 3-15:178,148,187 16-18:dim 96:129,162,190
+[009] 0-1:240,198,116 2:129,162,190 3-24:178,148,187 96:129,162,190 97-99:240,198,116
+[010] 0-1:240,198,116 2:129,162,190 96:129,162,190 97-99:240,198,116
+[011] 0-1:240,198,116 2-96:129,162,190
+[012] 0-1:240,198,116 2:129,162,190 4-53:178,148,187 96:129,162,190 97-99:240,198,116
+[013] 0-1:240,198,116 2:129,162,190 4-95:dim 96:129,162,190 97-99:240,198,116
+[014] 0-1:240,198,116 2:129,162,190 4-94:dim 96:129,162,190 97-99:240,198,116
+[015] 0-1:240,198,116 2:129,162,190 4-29:dim 96:129,162,190 97-99:240,198,116
+[016] 0-1:240,198,116 2:129,162,190 4-17:178,148,187 20-34:dim 78-95:181,189,104 96:129,162,190 97-99:240,198,116
+[017] 0-1:240,198,116 2:129,162,190 4-17:178,148,187 20-35:dim 78-95:181,189,104 96:129,162,190
+[018] 2:129,162,190 4-39:dim 96:129,162,190
+[019] 2:129,162,190 4-54:dim 96:129,162,190
+[020] 2:129,162,190 96:129,162,190
+[021] 2:129,162,190 4-17:178,148,187 20-34:dim 78-95:181,189,104 96:129,162,190
+[022] 2:129,162,190 4-17:178,148,187 20-35:dim 78-95:181,189,104 96:129,162,190
+[023] 2:129,162,190 4-42:dim 96:129,162,190
+[024] 2:129,162,190 4-57:dim 96:129,162,190
+[025] 2:129,162,190 96:129,162,190
+[026] 2:129,162,190 4-17:178,148,187 20-34:dim 78-95:181,189,104 96:129,162,190
+[027] 2:129,162,190 4-17:178,148,187 20-35:dim 78-95:181,189,104 96:129,162,190
+[028] 2:129,162,190 4-42:dim 96:129,162,190
+[029] 2:129,162,190 4-57:dim 96:129,162,190
+[030] 2:129,162,190 96:129,162,190
+[031] 2:129,162,190 4-17:178,148,187 20-34:dim 78-95:181,189,104 96:129,162,190
+[032] 2:129,162,190 4-17:178,148,187 20-35:dim 78-95:181,189,104 96:129,162,190
+[033] 2:129,162,190 4-43:dim 96:129,162,190
+[034] 2:129,162,190 4-58:dim 96:129,162,190
+[035] 2:129,162,190 96:129,162,190
+[036] 2:129,162,190 4-17:178,148,187 20-34:dim 78-95:181,189,104 96:129,162,190
+[037] 2:129,162,190 4-17:178,148,187 20-35:dim 78-95:181,189,104 96:129,162,190
+[038] 2:129,162,190 4-37:dim 96:129,162,190
+[039] 2-96:129,162,190
+[040] 2:129,162,190 3-24:dim 96:129,162,190
+[041] 0-1:138,190,183 2:129,162,190 3-94:dim 96:129,162,190 97-99:138,190,183
+[042] 0:inverse 2-96:129,162,190
+[043] 0-99:138,190,183
+[044] 0-99:dim
+[045] 0-99:dim

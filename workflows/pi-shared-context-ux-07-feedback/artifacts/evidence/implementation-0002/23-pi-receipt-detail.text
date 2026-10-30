@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=37:99 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  P╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]   │ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[006]  P│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[007]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [E│ Initiatives  >  Improve share…  >  pi-shared-con…  >  Events  >  finish-0034                │
+[009]   │ [d] Full description                                                                        │
+[010] /r│> Event detail · outcome / body / exact evidence                                             │edb
+[011] ac├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[012]   │ Execution: FINISHED                                                                         │
+[013] tu│                                                                                             │
+[014] /r│ INVALID / unvalidated evidence: Receipt workflow.root does not match the resolved workflow  │edb
+[015] ac│ store root (not the workflow directory).                                                    │
+[016] /r│                                                                                             │edb
+[017] ac│ Recorded body:                                                                              │
+[018]   │                                                                                             │
+[019]   │ No readable body recorded.                                                                  │
+[020]   │                                                                                             │
+[021]   │ Evidence details:                                                                           │
+[022]   │                                                                                             │
+[023]   │ Source: unavailable                                                                         │
+[024]   │                                                                                             │
+[025]   │ Workflow warning: workflows/pi-shared-context-ux-01-projects/events/finish-0034.json:       │
+[026]   │ Receipt workflow.root does not match the resolved workflow store root (not the workflow     │
+[027]   │ directory).                                                                                 │
+[028]   │ workflows/pi-shared-context-ux-01-projects/events/finish-worktree-removed-0033.json: Receipt│
+[029]   │ workflow.root does not match the resolved workflow store root (not the workflow directory). │
+[030]   │ workflows/pi-shared-context-ux-01-projects/events/finish-ticket-completed-0032.json: Receipt│
+[031]   │ workflow.root does not match the resolved workflow store root (not the workflow directory). │
+[032]   │ workflows/pi-shared-context-ux-01-projects/events/finish-pushed-0031.json: Receipt          │
+[033]   │ workflow.root does not match the resolved workflow store root (not the workflow directory). │
+[034]   │ workflows/pi-shared-context-ux-01-projects/events/finish-validated-0030.json: Receipt       │
+[035]   │ workflow.root does not match the resolved workflow store root (not the workflow directory). │
+[036]   │ workflows/pi-shared-context-ux-01-projects/events/finish-merged-0029.json: Receipt          │
+[037]   │ workflow.root does not match the resolved workflow store root (not the workflow directory). │
+[038]   │ workflows/pi-shared-context-ux-01-projects/events/finish-prepared-0028.json: Receipt        │
+[039]   ├─────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]   │ workflows/pi-shared-context-ux-01-projects/events/finish-0034.json: Receipt workflow.root d…│
+[041] ──│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a a…│───
+[042]   ╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-fe...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                       gpt-5.5 • medium

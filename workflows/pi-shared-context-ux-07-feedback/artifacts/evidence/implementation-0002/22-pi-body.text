@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=100 rows=45 cursor=41:99 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  P│ Projects · Repo > feat-pi-shared-context-ux-07-feedback                                     │
+[005]   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                │
+[006]  P│ Initiatives  >  Improve shared-con…  >  pi-shared-context-…  >  Description                 │
+[007]   │> Select shared-context projects through interactive breadcrumbs · Description               │
+[008] [E│                                                                                             │
+[009]   │  ## What to build                                                                           │
+[010] /r│                                                                                             │edb
+[011] ac│  Add the Projects view to the shared-context modal. Users open this view through a          │
+[012]   │  focusable, clickable Projects breadcrumb. Users select a project and browse its existing   │
+[013] tu│  tracker and Files workspace.                                                               │
+[014] /r│                                                                                             │edb
+[015] ac│  Reuse shared-context enumeration and route resolution. Include the current project.        │
+[016] /r│  Deduplicate entries by canonical identity. Do not scan unrelated repositories or add       │edb
+[017] ac│  another project registry.                                                                  │
+[018]   │                                                                                             │
+[019]   │  Establish the breadcrumb and focus contract for later tracker screens. The current command │
+[020]   │  still opens the current project. Selecting another project changes only the modal context. │
+[021]   │                                                                                             │
+[022]   │  ## Acceptance criteria                                                                     │
+[023]   │                                                                                             │
+[024]   │  1. The project list displays a name and origin or stable identity for each project. Equal  │
+[025]   │  repository names remain distinguishable.                                                   │
+[026]   │  2. Keyboard focus reaches the Projects breadcrumb. Enter activates it. A mouse click       │
+[027]   │  activates the same control.                                                                │
+[028]   │  3. Selecting a project resolves its routes before record access. The selected project owns │
+[029]   │  tracker reads, Files reads, and action targets.                                            │
+[030]   │  4. The header displays Shared or Repo from the selected alignment route. The indicator is  │
+[031]   │  read-only.                                                                                 │
+[032]   │  5. Project selection does not change the active Pi session directory or system             │
+[033]   │  instructions.                                                                              │
+[034]   │  6. Returning to a project restores its navigation, selection, and scroll position. Each    │
+[035]   │  workspace retains independent state.                                                       │
+[036]   │  7. Project changes dispose of old watchers and attach the correct new watchers. Old        │
+[037]   │  project updates do not change the selected project view.                                   │
+[038]   │  8. A project without a usable checkout retains readable context. Checkout-dependent        │
+[039]   │  actions display a clear disabled reason.                                                   │
+[040]   │                                                                                             │
+[041] ──│ [Return]  [PgUp] [PgDn]                                                                     │───
+[042]   │↑↓ scroll · PgUp/Dn page · Esc return                                                        │
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-fe...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                       gpt-5.5 • medium
