@@ -117,6 +117,27 @@ test("actual CLI plans and applies preserved spec, child records and live refere
   expect((await fs.readdir(events)).length).toBe(countBefore);
 }, timeout);
 
+test("committed migration paths remain committed through a symlinked shared store", async () => {
+  const f = await fixture(true);
+  const linkedShared = path.join(f.directory, "linked-shared");
+  await fs.symlink(f.sharedContextBase, linkedShared, "dir");
+  execFileSync("git", ["init", "--quiet", f.sharedContextBase]);
+  const options = { repository: f.repository, sharedContextBase: linkedShared };
+  const plan = await planned(options);
+  await applyMigration(options, plan, true);
+  for (const directory of [f.repository, linkedShared]) {
+    execFileSync("git", ["-C", directory, "add", "."]);
+    execFileSync("git", ["-C", directory, "-c", "user.name=Migration Test", "-c", "user.email=migration@example.invalid", "commit", "--quiet", "-m", "Record migration"]);
+  }
+  const checked = await checkMigration(options, plan.id);
+  expect(checked.contentVerified).toBe(true);
+  expect(checked.publication).toMatchObject({
+    status: "committed",
+    stores: [{ status: "committed" }, { status: "committed" }],
+    required: true,
+  });
+}, timeout);
+
 test("mixed stores keep exact configured roots and repair cross-store membership", async () => {
   const f = await fixture(true);
   const plan = await planned(f);

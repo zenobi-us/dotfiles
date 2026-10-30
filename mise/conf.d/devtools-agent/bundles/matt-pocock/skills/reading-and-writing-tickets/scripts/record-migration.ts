@@ -2,7 +2,7 @@
 // before taking a local lock; the caller must separately coordinate other writers.
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { promises as fs } from "node:fs";
+import { promises as fs, realpathSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -502,7 +502,10 @@ async function publicationStatus(plan: MigrationPlan, directory: string): Promis
     const status = git(root, ["status", "--porcelain", "--untracked-files=all", "--", ...paths]);
     if (status === null || status) return { root, status: "uncommitted", required: "Commit all migrated paths and migration workflow, then push; further work is blocked" };
     const requiredFiles = [...plan.changes.filter((entry) => entry.newRoot === root).map((entry) => path.relative(root, entry.newPath)), ...(within(root, directory) ? [path.relative(root, path.join(directory, "artifacts/snapshots/migration-plan.json"))] : [])];
-    if (requiredFiles.some((filename) => git(root, ["cat-file", "-e", `HEAD:${path.relative(gitRoot, path.resolve(root, filename)).split(path.sep).join("/")}`]) === null)) return { root, status: "uncommitted", required: "Migration files are not all committed (including ignored files); commit and publish before further work" };
+    // Git reports its physical root even when the shared store uses a symlink.
+    const physicalGitRoot = realpathSync(gitRoot);
+    const physicalRoot = realpathSync(root);
+    if (requiredFiles.some((filename) => git(root, ["cat-file", "-e", `HEAD:${path.relative(physicalGitRoot, path.resolve(physicalRoot, filename)).split(path.sep).join("/")}`]) === null)) return { root, status: "uncommitted", required: "Migration files are not all committed (including ignored files); commit and publish before further work" };
     const branch = git(root, ["symbolic-ref", "--quiet", "--short", "HEAD"]);
     const remote = branch ? git(root, ["config", "--get", `branch.${branch}.remote`]) : null;
     const mergeRef = branch ? git(root, ["config", "--get", `branch.${branch}.merge`]) : null;
