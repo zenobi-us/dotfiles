@@ -1,0 +1,40 @@
+{
+  "schema": "worktree-goal/v1",
+  "run_id": "ux-rest-7ec8ff00-4758-43aa-94fb-7baf30d40135",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "repository_origin": "git@github.com:zenobi-us/dotfiles.git",
+  "initiative_ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+    "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+    "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+    "tracker/tickets/pi-shared-context-ux-05-events.md",
+    "tracker/tickets/pi-shared-context-ux-06-queues.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-pi-shared-context-tui-ux-spec"
+  },
+  "coordinator": {
+    "session_id": "01a189e7-31ca-75f9-8c9e-8a9b61c1fe44",
+    "agent": "omp",
+    "muxer": "herdr",
+    "pane_id": "w64:pT"
+  },
+  "base_branch": "master",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "event_id": "operator-approval-0278",
+  "parent_event": "checkpoint-0277",
+  "created_at": "2026-10-30T04:13:47.528Z",
+  "kind": "operator_approval",
+  "ticket_id": "pi-shared-context-ux-06-queues",
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "operation": "finish",
+  "approval": "User selected Use a prepared integration branch after disclosure that the reviewed source is 40 commits behind master and direct Worktrunk no-rebase cannot fast-forward.",
+  "exception": "Create the clean computed squash tree as one commit on a temporary integration branch with current master as sole parent; Worktrunk owns the final fast-forward. Do not rebase or modify reviewed source. Verify parent/tree, integrated checks, publication, tracker completion, and cleanup. Preserve unrelated edits.",
+  "approved_dispatch_cap": 71,
+  "approved_ticket_cycle_limit": 24,
+  "no_new_ai_sessions": true
+}

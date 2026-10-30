@@ -1,0 +1,28 @@
+{
+  "sha256": "9f25ed9cef94733ca6ca51b638c1cf3c237675c2b8e8f91468b827bac72a9397",
+  "paths": [
+    "bun.lock",
+    "mise.toml",
+    "mise/conf.d/devtools-agent/bundles/agent-core/docs/USAGE.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/signals.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/scripts/render-graphs.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/scripts/render-graphs.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/pr/scripts/core.ts",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/package.json",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/record-migration.ts",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.test.ts",
+    "mise/conf.d/devtools-agent/bundles/tsconfig.base.json",
+    "mise/conf.d/devtools-omp/config.yml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-pi/agent/package.json",
+    "package.json"
+  ],
+  "status": "M bun.lock\n M mise.toml\n M mise/conf.d/devtools-agent/bundles/agent-core/docs/USAGE.md\n M mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.test.ts\n M mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts\n M mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts\n M mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.ts\n M mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/index.ts\n M mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts\n M mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/signals.ts\n M mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/SKILL.md\n M mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/scripts/render-graphs.test.ts\n M mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/scripts/render-graphs.ts\n M mise/conf.d/devtools-agent/bundles/developer/skills/git/pr/scripts/core.ts\n M mise/conf.d/devtools-agent/bundles/matt-pocock/package.json\n M mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/record-migration.ts\n M mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.test.ts\n M mise/conf.d/devtools-agent/bundles/tsconfig.base.json\n M mise/conf.d/devtools-omp/config.yml\n M mise/conf.d/devtools-omp/extensions/image-annotator/package.json\n M mise/conf.d/devtools-pi/agent/package.json\n M package.json\n?? mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/scripts/vendor/\n?? workflows/pi-shared-context-ux-06-queues/artifacts/evidence/review-contract-recovery-0079/prepared-main-finalizer-no-lock.mjs"
+}
