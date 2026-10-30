@@ -1,0 +1,23 @@
+{
+  "commit": "9dde641d79e365e3c197b8e68767cdf32606b606",
+  "tree": "5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b",
+  "parents": [
+    "15b3d332f706b898e0d1e0e37d2d1a8dfb4c5f6e"
+  ],
+  "expected_tree": "5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b",
+  "base_before": "15b3d332f706b898e0d1e0e37d2d1a8dfb4c5f6e",
+  "reviewed_source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "reviewed_source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "worktrunk_command": [
+    "wt",
+    "merge",
+    "master",
+    "--no-commit",
+    "--no-rebase",
+    "--no-remove",
+    "--stage",
+    "none",
+    "--format=json"
+  ],
+  "receipt": "workflows/pi-shared-context-ux-06-queues/events/finish-merged-0092.json"
+}

@@ -1,0 +1,38 @@
+{
+  "cols": 80,
+  "rows": 24,
+  "cursor": [
+    12,
+    79
+  ],
+  "cursor_visible": false,
+  "cursor_style": "block",
+  "screen": "alternate",
+  "title": "π - repository",
+  "lines": [
+    "    Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for",
+    "tui.altScreen.searchPrevious and",
+    "/r╭──────────────────────────────────────────────────────────────────────────╮-s",
+    "ha│ Projects · Repo > repository                                             │e/",
+    "ex│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │",
+    "/r├──────────────────────────────────────────────────────────────────────────┤-s",
+    "ha│ Initiatives  >  Queues                                                   │e/",
+    "ex│> Ticket queues · review                                                  │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "  │>[enhancement]  ID: V                                                     │",
+    " W│>Review target Ω                                                          │",
+    " A│>State: claimed                                                           │",
+    "  │>Next: Review                                                             │",
+    " /│>Recorded: implementation · completed (implementation-1)                  │d",
+    " o│>tracker/tickets/V.md                                                     │",
+    "  │                                                                          │",
+    " /│                                                                          │d",
+    " o│                                                                          │",
+    "  ├──────────────────────────────────────────────────────────────────────────┤",
+    "──│ tracker/tickets/V.md · REVIEW                                            │──",
+    "  │ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R ref…│",
+    "──╰──────────────────────────────────────────────────────────────────────────╯──",
+    "/tmp/ux06-native-matrix-HZAO4i/repository (master)",
+    "0.0%/0 (auto)                                                            unknown"
+  ]
+}

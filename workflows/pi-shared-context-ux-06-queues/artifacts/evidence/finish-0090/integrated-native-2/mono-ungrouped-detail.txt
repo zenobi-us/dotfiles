@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=35:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Queues  >  U                                                                                   │
+[008] [Sk│ [d] Full description                                                                                           │
+[009]   w│> unassigned · Items 1               │  Ticket / dependencies / receipts                                        │
+[010]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] [Ex│>[enhancement]  ID: U                │ U Ungrouped target 👩‍💻                                                    │
+[012]   p│>Ungrouped target 👩‍💻                 │ Summary: Canonical body U; actual native queue target.                   │
+[013]    │>State: unclaimed                    │ Type: enhancement                                                        │
+[014] [Ex│>tracker/tickets/U.md                │ State: READY                                                             │
+[015]   p│                                     │ Reference: tracker/tickets/U.md                                          │
+[016] /ru│                                     │ Current source: not recorded                                             │e/c
+[017] onf│                                     │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not  │
+[018]    │                                     │ quality or completion)                                                   │
+[019] /ru│                                     │ Dependencies:                                                            │e/c
+[020] onf│                                     │ No dependency edges.                                                     │
+[021] /ru│                                     │ Receipts:                                                                │e/c
+[022] onf│                                     │ → inspect receipts · a actions                                           │
+[023]    │                                     │                                                                          │
+[024]    │                                     │                                                                          │
+[025]  Wa│                                     │                                                                          │
+[026]    │                                     │                                                                          │
+[027]    │                                     │                                                                          │
+[028]    │                                     │                                                                          │
+[029]    │                                     │                                                                          │
+[030]    │                                     │                                                                          │
+[031]    │                                     │                                                                          │
+[032]    │                                     │                                                                          │
+[033]    │                                     │                                                                          │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ tracker/tickets/U.md · READY                                                                                   │
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux06-native-matrix-HZAO4i/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

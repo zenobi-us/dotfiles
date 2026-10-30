@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=34:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Queues                                                                                         │
+[008] [Sk│> Ticket queues · all                                                                                           │
+[009]   w├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │ [enhancement]   A17               Ready target A17 界 👩‍💻                                     State: unclaimed  │
+[011] [Ex│ Next: Start worktree                                                                                           │
+[012]   p│ Recorded: No validated activity recorded                                                                       │
+[013]    │ tracker/tickets/A17.md                                                                                         │
+[014] [Ex│ [enhancement]   A18               Ready target A18 界 👩‍💻                                     State: unclaimed  │
+[015]   p│ Next: Start worktree                                                                                           │
+[016] /ru│ Recorded: No validated activity recorded                                                                       │e/c
+[017] onf│ tracker/tickets/A18.md                                                                                         │
+[018]    │ [enhancement]   A19               Ready target A19 界 👩‍💻                                     State: unclaimed  │
+[019] /ru│ Next: Start worktree                                                                                           │e/c
+[020] onf│ Recorded: No validated activity recorded                                                                       │
+[021] /ru│ tracker/tickets/A19.md                                                                                         │e/c
+[022] onf│ [enhancement]   B                 Blocked target 界                                          State: unclaimed  │
+[023]    │ Next: No worktree transition available                                                                         │
+[024]    │ Recorded: No validated activity recorded                                                                       │
+[025]  Wa│ Waiting for A00                                                                                                │
+[026]    │>[enhancement]   U                 Ungrouped target 👩‍💻                                        State: completed  │
+[027]    │>Next: No worktree transition available                                                                         │
+[028]    │>Recorded: No validated activity recorded                                                                       │
+[029]    │>tracker/tickets/U.md                                                                                           │
+[030]    │ [enhancement]   V                 Review target Ω                                            State: completed  │
+[031]    │ Next: No worktree transition available                                                                         │
+[032]    │ Recorded: implementation · completed (implementation-1)                                                        │
+[033]    │ tracker/tickets/V.md                                                                                           │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Selected ticket left this queue. Selected a nearby ticket or an empty queue.                                   │
+[036] ───│ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                        │───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux06-native-matrix-HZAO4i/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

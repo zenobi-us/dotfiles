@@ -1,0 +1,15 @@
+{
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+  "expectedCommit": "9dde641d79e365e3c197b8e68767cdf32606b606",
+  "expectedTree": "5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b",
+  "evidenceDir": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/finish-0090/integrated-native",
+  "mq": "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+  "mise": "/home/zenobius/.local/bin/mise",
+  "pi": "/home/zenobius/.local/share/mise/installs/github-earendil-works-pi/latest/pi",
+  "monoTheme": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-05-events/artifacts/evidence/implementation-0002/monochrome-theme.json",
+  "seed": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-03-mixed-items/artifacts/evidence/finish-0016/native-fixture-seed.json",
+  "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+  "resultReceipt": null,
+  "worktreeSkill": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/SKILL.md",
+  "monoThemeName": "ux05-monochrome"
+}

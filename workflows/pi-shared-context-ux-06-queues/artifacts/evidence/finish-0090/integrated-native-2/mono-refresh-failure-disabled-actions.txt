@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=120 rows=40 cursor=35:119 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.1.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > repository                                                                                   │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]    │ Initiatives  >  Queues                                                                                         │
+[008] [Sk│> Open a fresh chat · commands are staged, not auto-sent                                                        │
+[009]   w├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010]    │ Target: U · tracker/tickets/U.md                                                                               │
+[011] [Ex│>[m] Ask Matt — Required skill:ask-matt command is unavailable.                                                 │
+[012]   p│ [s] Start worktree — Live refresh failed: Unreadable record                                                    │
+[013]    │ /tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md: Invalid ticket record: work_status must be  │
+[014] [Ex│ unclaimed, claimed, implemented, merged, or completed.                                                         │
+[015]   p│ [r] Review — Live refresh failed: Unreadable record                                                            │
+[016] /ru│ /tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md: Invalid ticket record: work_status must be  │e/c
+[017] onf│ unclaimed, claimed, implemented, merged, or completed.                                                         │
+[018]    │ [x] Fix — Live refresh failed: Unreadable record                                                               │
+[019] /ru│ /tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md: Invalid ticket record: work_status must be  │e/c
+[020] onf│ unclaimed, claimed, implemented, merged, or completed.                                                         │
+[021] /ru│ [f] Finish — Live refresh failed: Unreadable record                                                            │e/c
+[022] onf│ /tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md: Invalid ticket record: work_status must be  │
+[023]    │ unclaimed, claimed, implemented, merged, or completed.                                                         │
+[024]    │ [u] Submit — Live refresh failed: Unreadable record                                                            │
+[025]  Wa│ /tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md: Invalid ticket record: work_status must be  │
+[026]    │ unclaimed, claimed, implemented, merged, or completed.                                                         │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[035]    │ Live refresh failed: Unreadable record /tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md: Inva…│
+[036] ───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───
+[037]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[039] /tmp/ux06-native-matrix-HZAO4i/repository (master)
+[040] 0.0%/0 (auto)                                                                                                    unknown

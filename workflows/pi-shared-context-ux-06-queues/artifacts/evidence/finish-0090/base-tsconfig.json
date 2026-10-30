@@ -1,0 +1,12 @@
+{
+  "extends": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/tsconfig.base.json",
+  "compilerOptions": {
+    "typeRoots": [
+      "/tmp/ux02-deps/node_modules/@types"
+    ]
+  },
+  "include": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/**/*.ts",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/types/**/*.d.ts"
+  ]
+}

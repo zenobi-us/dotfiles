@@ -1,0 +1,1138 @@
+{
+  "status": "passed",
+  "error": null,
+  "source_commit": "9dde641d79e365e3c197b8e68767cdf32606b606",
+  "source_tree": "5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b",
+  "observations": [
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 120,
+      "rows": 40,
+      "queue": "ready",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 120,
+      "rows": 40,
+      "queue": "review",
+      "status": "claimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 120,
+      "rows": 40,
+      "queue": "blocked",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 120,
+      "rows": 40,
+      "queue": "all",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 80,
+      "rows": 24,
+      "queue": "ready",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 80,
+      "rows": 24,
+      "queue": "review",
+      "status": "claimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 80,
+      "rows": 24,
+      "queue": "blocked",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 80,
+      "rows": 24,
+      "queue": "all",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 40,
+      "rows": 12,
+      "queue": "ready",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 4
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 40,
+      "rows": 12,
+      "queue": "review",
+      "status": "claimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 4
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 40,
+      "rows": 12,
+      "queue": "blocked",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 4
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "colour",
+      "cols": 40,
+      "rows": 12,
+      "queue": "all",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 4
+    },
+    {
+      "state": "canonical_review_drill_return_files_actions",
+      "mode": "colour",
+      "ticket": "V",
+      "initiative": "I",
+      "return_exact": true
+    },
+    {
+      "state": "scrolled_queue_return",
+      "mode": "colour",
+      "identity_and_viewport_retained": true
+    },
+    {
+      "state": "blocked_action_reason",
+      "mode": "colour",
+      "unsafe_action_not_executed": true
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "queue": "ready",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "queue": "review",
+      "status": "claimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "queue": "blocked",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 120,
+      "rows": 40,
+      "queue": "all",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 80,
+      "rows": 24,
+      "queue": "ready",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 80,
+      "rows": 24,
+      "queue": "review",
+      "status": "claimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 80,
+      "rows": 24,
+      "queue": "blocked",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 80,
+      "rows": 24,
+      "queue": "all",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 1
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 40,
+      "rows": 12,
+      "queue": "ready",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 4
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 40,
+      "rows": 12,
+      "queue": "review",
+      "status": "claimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 4
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 40,
+      "rows": 12,
+      "queue": "blocked",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 4
+    },
+    {
+      "state": "queue_matrix",
+      "mode": "mono",
+      "cols": 40,
+      "rows": 12,
+      "queue": "all",
+      "status": "unclaimed",
+      "field_roles_visible": true,
+      "recorded_activity_not_inferred": true,
+      "captures": 4
+    },
+    {
+      "state": "canonical_review_drill_return_files_actions",
+      "mode": "mono",
+      "ticket": "V",
+      "initiative": "I",
+      "return_exact": true
+    },
+    {
+      "state": "scrolled_queue_return",
+      "mode": "mono",
+      "identity_and_viewport_retained": true
+    },
+    {
+      "state": "blocked_action_reason",
+      "mode": "mono",
+      "unsafe_action_not_executed": true
+    },
+    {
+      "state": "native_live_insert",
+      "mode": "mono",
+      "selected_ticket_retained": "U",
+      "fixture_insert": "0NEW",
+      "settled_refresh": true
+    },
+    {
+      "state": "native_live_departure",
+      "mode": "mono",
+      "departure_explained": true,
+      "replacement_target_not_departed": true
+    },
+    {
+      "state": "native_empty_review",
+      "mode": "mono",
+      "no_action_menu": true,
+      "no_review_dispatch": true,
+      "all_recovery_input": "8"
+    },
+    {
+      "state": "native_unreadable_refresh",
+      "mode": "mono",
+      "last_readable_data_retained": true,
+      "unsafe_actions_unavailable": true
+    },
+    {
+      "state": "native_refresh_recovery",
+      "mode": "mono",
+      "readable": true
+    }
+  ],
+  "cleanup": {
+    "sessions": [
+      {
+        "mode": "colour",
+        "close": {
+          "exit_code": 0
+        },
+        "native_exit": 0,
+        "stderr": ""
+      },
+      {
+        "mode": "mono",
+        "close": {
+          "exit_code": 0
+        },
+        "native_exit": 0,
+        "stderr": ""
+      }
+    ],
+    "temporary_root": "/tmp/ux06-native-matrix-HZAO4i",
+    "temporary_root_exists": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "9dde641d79e365e3c197b8e68767cdf32606b606\n5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b\n",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Owned actual queue acceptance fixture.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/docs/agents/issue-tracker.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"Config\",{\"backend\":\"local-markdown\",\"issue-root\":\"tracker/tickets\",\"initiative-root\":\"tracker/initiatives\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A00; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A00.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A00\",\"title\":\"Ready target A00 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A01; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A01.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A01\",\"title\":\"Ready target A01 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A02; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A02.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A02\",\"title\":\"Ready target A02 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A03; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A03.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A03\",\"title\":\"Ready target A03 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A04; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A04.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A04\",\"title\":\"Ready target A04 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A05; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A05.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A05\",\"title\":\"Ready target A05 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A06; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A06.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A06\",\"title\":\"Ready target A06 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A07; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A07.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A07\",\"title\":\"Ready target A07 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A08; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A08.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A08\",\"title\":\"Ready target A08 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A09; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A09.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A09\",\"title\":\"Ready target A09 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A10; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A10.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A10\",\"title\":\"Ready target A10 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A11; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A11.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A11\",\"title\":\"Ready target A11 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A12; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A12.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A12\",\"title\":\"Ready target A12 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A13; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A13.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A13\",\"title\":\"Ready target A13 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A14; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A14.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A14\",\"title\":\"Ready target A14 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A15; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A15.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A15\",\"title\":\"Ready target A15 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A16; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A16.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A16\",\"title\":\"Ready target A16 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A17; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A17.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A17\",\"title\":\"Ready target A17 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A18; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A18.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A18\",\"title\":\"Ready target A18 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body A19; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/A19.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"A19\",\"title\":\"Ready target A19 界 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body B; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/B.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"B\",\"title\":\"Blocked target 界\",\"work_status\":\"unclaimed\",\"blocked_by\":[\"A00\"],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body V; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/V.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"V\",\"title\":\"Review target Ω\",\"work_status\":\"claimed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body U; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/U.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"U\",\"title\":\"Ungrouped target 👩‍💻\",\"work_status\":\"unclaimed\",\"blocked_by\":[]},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "## Problem Statement\nObserve real queues.\n\n## Solution\nKeep identity and fields distinct.\n\n## Tickets\n- [A00](../../tickets/A00.md)\n- [A01](../../tickets/A01.md)\n- [A02](../../tickets/A02.md)\n- [A03](../../tickets/A03.md)\n- [A04](../../tickets/A04.md)\n- [A05](../../tickets/A05.md)\n- [A06](../../tickets/A06.md)\n- [A07](../../tickets/A07.md)\n- [A08](../../tickets/A08.md)\n- [A09](../../tickets/A09.md)\n- [A10](../../tickets/A10.md)\n- [A11](../../tickets/A11.md)\n- [A12](../../tickets/A12.md)\n- [A13](../../tickets/A13.md)\n- [A14](../../tickets/A14.md)\n- [A15](../../tickets/A15.md)\n- [A16](../../tickets/A16.md)\n- [A17](../../tickets/A17.md)\n- [A18](../../tickets/A18.md)\n- [A19](../../tickets/A19.md)\n- [B](../../tickets/B.md)\n- [V](../../tickets/V.md)\n\n## Comments\nOwned fixture.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/initiatives/I/index.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"Spec\",{\"schema\":\"tracker-initiative/v1\",\"id\":\"I\",\"title\":\"Native queue initiative\",\"phase\":\"research\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "-b",
+        "master",
+        "--quiet"
+      ],
+      "cwd": "/tmp/ux06-native-matrix-HZAO4i/repository",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/native-validation/ticket06-matrix.git"
+      ],
+      "cwd": "/tmp/ux06-native-matrix-HZAO4i/repository",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "add",
+        "--all"
+      ],
+      "cwd": "/tmp/ux06-native-matrix-HZAO4i/repository",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "user.name=Native fixture",
+        "-c",
+        "user.email=native@example.invalid",
+        "commit",
+        "--quiet",
+        "-m",
+        "test: tracker/tickets/pi-shared-context-ux-06-queues.md native matrix fixture"
+      ],
+      "cwd": "/tmp/ux06-native-matrix-HZAO4i/repository",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/tmp/ux06-native-matrix-HZAO4i/repository",
+      "stdout": "b0faedd3d98db46f143f238d85032900414978f7\n316dd69b734d2c5167a3482f86dc8f2c2fcc191b\n",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Inserted canonical body.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"0NEW\",\"title\":\"Live inserted ticket\",\"work_status\":\"unclaimed\",\"blocked_by\":[]},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body U; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/U.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"U\",\"title\":\"Ungrouped target 👩‍💻\",\"work_status\":\"completed\",\"blocked_by\":[]},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Canonical body V; actual native queue target.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/V.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"V\",\"title\":\"Review target Ω\",\"work_status\":\"completed\",\"blocked_by\":[],\"parent\":\"I\"},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Owned deliberately unreadable record.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"0NEW\",\"title\":\"Live inserted ticket\",\"work_status\":\"INVALID\",\"blocked_by\":[]},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--allow-http-import",
+        "--lockfile",
+        "/tmp/ux06-native-matrix-HZAO4i/mq.lock",
+        "-I",
+        "null",
+        "-F",
+        "text",
+        "--args",
+        "body",
+        "Inserted canonical body.",
+        "--output",
+        "/tmp/ux06-native-matrix-HZAO4i/repository/tracker/tickets/0NEW.md",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"enhancement\",{\"schema\":\"tracker-ticket/v1\",\"id\":\"0NEW\",\"title\":\"Live inserted ticket\",\"work_status\":\"unclaimed\",\"blocked_by\":[]},body) | okf::okf_stringify(.)"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "9dde641d79e365e3c197b8e68767cdf32606b606\n5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b\n",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "",
+      "stderr": "",
+      "code": 0
+    }
+  ],
+  "limits": [
+    "Actual offline Pi production extension and MQ records, real validated implementation receipt and registered worktree skill; no AI inference or workflow dispatch.",
+    "SVG fallback alone does not establish exact glyph/colour pixel fidelity.",
+    "Native transitions additionally exercised insertion identity, departure/replacement, Ungrouped context, empty Review without actions, unreadable refresh retention/restriction, and recovery."
+  ]
+}

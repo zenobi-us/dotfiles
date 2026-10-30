@@ -1,0 +1,12 @@
+{
+  "base_before": "15b3d332f706b898e0d1e0e37d2d1a8dfb4c5f6e",
+  "source_commit": "20968ee4f907c6f74bc77702fcef09578b41c6b8",
+  "source_tree": "5f64cf06e76dba7e015b9cd54088bc73ae88771f",
+  "expected_merge_tree": "5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b",
+  "planned_diff": ".../extensions/pi-shared-context/explorer.test.ts  |   1 -\n .../extensions/pi-shared-context/explorer.ts       | 131 ++++++++++++----\n .../pi-shared-context/queues-modal.test.ts         | 166 +++++++++++++++++++++\n .../scripts/shared-context/README.md               |   4 +\n 4 files changed, 273 insertions(+), 29 deletions(-)",
+  "proposed_merge_title": "feat: add queues (tracker/tickets/pi-shared-context-ux-06-queues.md)",
+  "proposed_merge_body": "Integrate the reviewed Ready, Review, Blocked, and All queue slice.\n\nTicket: tracker/tickets/pi-shared-context-ux-06-queues.md\nReview: workflows/pi-shared-context-ux-06-queues/artifacts/reviews/review-review-main-0088.md\nReview receipt: workflows/pi-shared-context-ux-06-queues/events/review-main-0088.json\nReviewed source: 20968ee4f907c6f74bc77702fcef09578b41c6b8\nReviewed tree: 5f64cf06e76dba7e015b9cd54088bc73ae88771f\nADRs: NO ADR applies.\n\nUser-approved prepared integration branch preserves the reviewed source.\nThe squash commit uses the recorded clean integration tree and the\nrecorded master tip as its sole parent. Worktrunk performs the final\nfast-forward without rebase or source-worktree removal.",
+  "integration_branch": "integrate/pi-shared-context-ux-06-queues-finish",
+  "integration_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+  "prepared_receipt": "workflows/pi-shared-context-ux-06-queues/events/finish-prepared-0091.json"
+}

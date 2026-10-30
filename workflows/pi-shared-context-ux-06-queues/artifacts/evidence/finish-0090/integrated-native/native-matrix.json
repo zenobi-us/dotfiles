@@ -1,0 +1,39 @@
+{
+  "status": "failed",
+  "error": "Error: Source checkout must remain clean\n    at identity (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-06-queues/artifacts/evidence/native-matrix-0020/native-matrix-v2.mjs:7:194)",
+  "observations": [],
+  "cleanup": {
+    "sessions": [],
+    "temporary_root_exists": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "9dde641d79e365e3c197b8e68767cdf32606b606\n5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b\n",
+      "stderr": "",
+      "code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integrate-pi-shared-context-ux-06-queues-finish",
+      "stdout": "?? node_modules\n",
+      "stderr": "",
+      "code": 0
+    }
+  ],
+  "limits": [
+    "Actual offline Pi production extension and MQ records, real validated implementation receipt and registered worktree skill; no AI inference or workflow dispatch.",
+    "SVG fallback alone does not establish exact glyph/colour pixel fidelity.",
+    "Native transitions additionally exercised insertion identity, departure/replacement, Ungrouped context, empty Review without actions, unreadable refresh retention/restriction, and recovery."
+  ]
+}

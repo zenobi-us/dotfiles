@@ -1,0 +1,19 @@
+{
+  "observed_at": "2026-10-30T04:20:15.284Z",
+  "frames": [
+    "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/finish-0090/integrated-native-2/mono-40x12-all-0.svg",
+    "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/finish-0090/integrated-native-2/colour-80x24-review-0.svg"
+  ],
+  "observations": [
+    "40x12 monochrome frame displays All queue, selected canonical ticket, ID, and state; remaining structured fields are paged by the matrix.",
+    "80x24 Review frame displays claimed state, Next: Review, and Recorded: implementation completed as separate fields."
+  ],
+  "limits": [
+    "Termsco​​pe SVG fallback; no exact glyph/colour pixel-fidelity claim.",
+    "Underlying offline Pi startup reports an extension shortcut conflict; the queue acceptance interactions still passed."
+  ],
+  "matrix_passed": true,
+  "observation_count": 35,
+  "source_commit": "9dde641d79e365e3c197b8e68767cdf32606b606",
+  "source_tree": "5bccfa2ae9c374bc4622e580f9c9152a3d8c8b5b"
+}

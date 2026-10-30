@@ -1,0 +1,8 @@
+{
+  "cause": "A directory symlink named node_modules is an untracked symlink; the repository ignores a real node_modules/ directory.",
+  "before": "?? node_modules",
+  "change": "Replaced only the owned temporary directory symlink with a real ignored directory containing links to the same existing cache entries.",
+  "source_files_modified": false,
+  "after_status": "",
+  "first_attempt_ref": "workflows/pi-shared-context-ux-06-queues/artifacts/evidence/finish-0090/integrated-native/native-matrix.json"
+}

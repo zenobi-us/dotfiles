@@ -1,0 +1,28 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=12:79 screen=alternate title="π - repository"
+
+=== TEXT ===
+[001]     Extension shortcut conflict: 'ctrl+shift+g' is built-in shortcut for
+[002] tui.altScreen.searchPrevious and
+[003] /r╭──────────────────────────────────────────────────────────────────────────╮-s
+[004] ha│ Projects · Repo > repository                                             │e/
+[005] ex│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[006] /r├──────────────────────────────────────────────────────────────────────────┤-s
+[007] ha│ Initiatives  >  Queues                                                   │e/
+[008] ex│> Ticket queues · review                                                  │
+[009]   ├──────────────────────────────────────────────────────────────────────────┤
+[010]   │>[enhancement]  ID: V                                                     │
+[011]  W│>Review target Ω                                                          │
+[012]  A│>State: claimed                                                           │
+[013]   │>Next: Review                                                             │
+[014]  /│>Recorded: implementation · completed (implementation-1)                  │d
+[015]  o│>tracker/tickets/V.md                                                     │
+[016]   │                                                                          │
+[017]  /│                                                                          │d
+[018]  o│                                                                          │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020] ──│ tracker/tickets/V.md · REVIEW                                            │──
+[021]   │ 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R ref…│
+[022] ──╰──────────────────────────────────────────────────────────────────────────╯──
+[023] /tmp/ux06-native-matrix-HZAO4i/repository (master)
+[024] 0.0%/0 (auto)                                                            unknown

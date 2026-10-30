@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820" width="1100" height="820">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)"> ▀▀█  v1.1.0</text>
+<text x="10" y="64" fill="rgb(255,255,255)"> █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="84" fill="rgb(255,255,255)"> Pr│ Projects · Repo &gt; repository                                                                                   │</text>
+<text x="10" y="104" fill="rgb(255,255,255)">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │</text>
+<text x="10" y="124" fill="rgb(255,255,255)"> Pi├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="144" fill="rgb(255,255,255)">   │ Initiatives  &gt;  Queues                                                                                         │</text>
+<text x="10" y="164" fill="rgb(255,255,255)">[Sk│&gt; Open a fresh chat · commands are staged, not auto-sent                                                        │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  w├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="204" fill="rgb(255,255,255)">   │ Target: V · tracker/tickets/V.md                                                                               │</text>
+<text x="10" y="224" fill="rgb(255,255,255)">[Ex│&gt;[m] Ask Matt — Required skill:ask-matt command is unavailable.                                                 │</text>
+<text x="10" y="244" fill="rgb(255,255,255)">  p│ [s] Start worktree — The tracker has no confirmed startable state. Resolve the canonical ticket status before  │</text>
+<text x="10" y="264" fill="rgb(255,255,255)">   │ starting.                                                                                                      │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">[Ex│ [r] Review                                                                                                     │</text>
+<text x="10" y="304" fill="rgb(255,255,255)">  p│ [x] Fix — Fix requires the latest persisted review result with verdict FAILURE.                                │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">/ru│ [f] Finish — Finish and submit require the latest terminal review result with verdict SUCCESS.                 │e/c</text>
+<text x="10" y="344" fill="rgb(255,255,255)">onf│ [u] Submit — Finish and submit require the latest terminal review result with verdict SUCCESS.                 │</text>
+<text x="10" y="364" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="384" fill="rgb(255,255,255)">/ru│                                                                                                                │e/c</text>
+<text x="10" y="404" fill="rgb(255,255,255)">onf│                                                                                                                │</text>
+<text x="10" y="424" fill="rgb(255,255,255)">/ru│                                                                                                                │e/c</text>
+<text x="10" y="444" fill="rgb(255,255,255)">onf│                                                                                                                │</text>
+<text x="10" y="464" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="484" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="504" fill="rgb(255,255,255)"> Wa│                                                                                                                │</text>
+<text x="10" y="524" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="544" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="564" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="584" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="604" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="624" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="644" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="664" fill="rgb(255,255,255)">   │                                                                                                                │</text>
+<text x="10" y="684" fill="rgb(255,255,255)">   ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="704" fill="rgb(255,255,255)">   │ tracker/tickets/V.md · REVIEW                                                                                  │</text>
+<text x="10" y="724" fill="rgb(255,255,255)">───│ Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh│───</text>
+<text x="10" y="744" fill="rgb(255,255,255)">   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯</text>
+<text x="10" y="764" fill="rgb(255,255,255)">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="784" fill="rgb(255,255,255)">/tmp/ux06-native-matrix-HZAO4i/repository (master)</text>
+<text x="10" y="804" fill="rgb(255,255,255)">0.0%/0 (auto)                                                                                                    unknown</text>
+</svg>

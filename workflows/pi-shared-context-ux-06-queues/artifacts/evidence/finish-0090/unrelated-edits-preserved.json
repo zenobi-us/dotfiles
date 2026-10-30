@@ -1,0 +1,8 @@
+{
+  "verified_at": "2026-10-30T04:18:47.373Z",
+  "before_sha256": "9f25ed9cef94733ca6ca51b638c1cf3c237675c2b8e8f91468b827bac72a9397",
+  "after_sha256": "9f25ed9cef94733ca6ca51b638c1cf3c237675c2b8e8f91468b827bac72a9397",
+  "unchanged": true,
+  "compared": "Complete tracked unstaged patch; own finish evidence is untracked and excluded",
+  "integration_commit": "9dde641d79e365e3c197b8e68767cdf32606b606"
+}
