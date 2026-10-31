@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=120 rows=45 cursor=37:119 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Pr╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                     │
+[006]  Pi│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[007]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [Ex│ Initiatives  >  Improve shared-context project n…  >  pi-shared-context-ux-07-feedback                         │
+[009]   p│> Open a fresh chat · commands are staged, not auto-sent                                                        │
+[010] /ru├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤evt
+[011] ool│ Target: pi-shared-context-ux-07-feedback · tracker/tickets/pi-shared-context-ux-07-feedback.md                 │
+[012]    │>[m] Ask Matt — Required skill:ask-matt command is unavailable.                                                 │
+[013] /ru│                                                                                                                │evt
+[014] ool│ [s] Recover implementation — Required skill:worktree command is unavailable.                                   │
+[015] /ru│ [r] Review — Required skill:worktree command is unavailable.                                                   │evt
+[016] ool│ [x] Fix — Required skill:worktree command is unavailable.                                                      │
+[017]    │ [f] Finish — Required skill:worktree command is unavailable.                                                   │
+[018]    │ [u] Submit — Required skill:worktree command is unavailable.                                                   │
+[019]    │                                                                                                                │
+[020]    │                                                                                                                │
+[021]    │                                                                                                                │
+[022]    │                                                                                                                │
+[023]    │                                                                                                                │
+[024]    │                                                                                                                │
+[025]    │                                                                                                                │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    │                                                                                                                │
+[035]    │                                                                                                                │
+[036]    │                                                                                                                │
+[037]    │                                                                                                                │
+[038]    │                                                                                                                │
+[039]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]    │ tracker/tickets/pi-shared-context-ux-07-feedback.md · READY                                                    │
+[041] ───│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiati…│───
+[042]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback (feat/pi-shar...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

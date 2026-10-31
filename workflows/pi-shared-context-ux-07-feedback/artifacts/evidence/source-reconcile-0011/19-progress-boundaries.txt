@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=120 rows=45 cursor=41:119 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Pr╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                     │
+[006]  Pi│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[007]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [Ex│ Initiatives                                                                                                    │
+[009]   p│> Initiatives · title / phase / Items                                                                           │
+[010] /ru├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤evt
+[011] ool│>Fixture untouched                                                               Phase: unavailable  Items: 2   │
+[012]    │ fixture-0                                                                                                      │
+[013] /ru│ Progress: todo                                                                                                 │evt
+[014] ool│                                                                                                                │
+[015] /ru│ Fixture implemented and merged                                                  Phase: unavailable  Items: 2   │evt
+[016] ool│ fixture-1                                                                                                      │
+[017]    │ Progress: 0/2 completed                                                                                        │
+[018]    │                                                                                                                │
+[019]    │ Fixture mixed                                                                   Phase: unavailable  Items: 2   │
+[020]    │ fixture-2                                                                                                      │
+[021]    │ Progress: 1/2 completed                                                                                        │
+[022]    │                                                                                                                │
+[023]    │ Fixture completed                                                               Phase: unavailable  Items: 2   │
+[024]    │ fixture-3                                                                                                      │
+[025]    │ Progress: completed                                                                                            │
+[026]    │                                                                                                                │
+[027]    │                                                                                                                │
+[028]    │                                                                                                                │
+[029]    │                                                                                                                │
+[030]    │                                                                                                                │
+[031]    │                                                                                                                │
+[032]    │                                                                                                                │
+[033]    │                                                                                                                │
+[034]    │                                                                                                                │
+[035]    │                                                                                                                │
+[036]    │                                                                                                                │
+[037]    │                                                                                                                │
+[038]    │                                                                                                                │
+[039]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]    │ Checking receipts 0/8                                                                                          │
+[041] ───│ c copy path · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back          │───
+[042]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback (feat/pi-shar...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

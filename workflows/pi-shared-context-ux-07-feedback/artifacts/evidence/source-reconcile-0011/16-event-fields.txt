@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=120 rows=45 cursor=36:119 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Pr╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                     │
+[006]  Pi│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[007]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [Ex│ Initiatives  >  Improve shared-co…  >  pi-shared-context…  >  Events  >  source-reconcile-…                    │
+[009]   p│ [d] Full description                                                                                           │
+[010] /ru│> Event detail · outcome / body / exact evidence                                                                │evt
+[011] ool├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[012]    │ Execution: started                                                                                             │
+[013] /ru│                                                                                                                │evt
+[014] ool│ Recorded body:                                                                                                 │
+[015] /ru│                                                                                                                │evt
+[016] ool│ No readable body recorded.                                                                                     │
+[017]    │                                                                                                                │
+[018]    │ Evidence details:                                                                                              │
+[019]    │                                                                                                                │
+[020]    │ Source: stale                                                                                                  │
+[021]    │                                                                                                                │
+[022]    │ Ticket action target: tracker/tickets/pi-shared-context-ux-07-feedback.md                                      │
+[023]    │                                                                                                                │
+[024]    │ Event reference: workflows/pi-shared-context-ux-07-feedback/events/source-reconcile-start-0011.json            │
+[025]    │                                                                                                                │
+[026]    │ Commit: 782b15da5a72240dc4b1d52c79277e119422f559                                                               │
+[027]    │                                                                                                                │
+[028]    │ Tree: d87ce8fca61332fe8aebdb0f356a9e11e359d94f                                                                 │
+[029]    │                                                                                                                │
+[030]    │ Current commit: d555eabf61682aafd337379b32804cf204dfb9d0                                                       │
+[031]    │                                                                                                                │
+[032]    │ Current tree: 1fda48d0dcc99e323ede250a1895934c539e1346                                                         │
+[033]    │                                                                                                                │
+[034]    │ Workspace:                                                                                                     │
+[035]    │ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback        │
+[036]    │                                                                                                                │
+[037]    │ Branch: feat/pi-shared-context-ux-07-feedback                                                                  │
+[038]    │                                                                                                                │
+[039]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]    │ tracker/tickets/pi-shared-context-ux-07-feedback.md · READY                                                    │
+[041] ───│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiati…│───
+[042]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback (feat/pi-shar...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

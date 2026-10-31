@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=120 rows=45 cursor=39:119 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Pr╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                     │
+[006]  Pi│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[007]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [Ex│ Initiatives  >  Improve shared-context project navigation and track…                                           │
+[009]   p│ [d] Full description                                                                                           │
+[010] /ru│> pi-shared-context-tui-ux-spec · Items 7                                                                       │evt
+[011] ool├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[012]    │ pi-shared-context-tui-ux-spec · Phase: unavailable                                                             │
+[013] /ru│ Summary: The shared-context terminal user interface makes records difficult to read. Titles, types, states,    │evt
+[014] ool│ counts, and references appear as similar text. Users cannot quickly identify the meaning of each field.        │
+[015] /ru│>[enhancement]   pi-shared-conte…  Select shared-context projects through interactive         State: completed  │evt
+[016] ool│                                   breadcrumbs                                                                  │
+[017]    │ ID: pi-shared-context-ux-01-projects                                                                           │
+[018]    │ tracker/tickets/pi-shared-context-ux-01-projects.md                                                            │
+[019]    │                                                                                                                │
+[020]    │ [enhancement]   pi-shared-conte…  Browse initiatives through structured tracker rows         State: completed  │
+[021]    │ ID: pi-shared-context-ux-02-initiatives                                                                        │
+[022]    │ tracker/tickets/pi-shared-context-ux-02-initiatives.md                                                         │
+[023]    │                                                                                                                │
+[024]    │ [enhancement]   pi-shared-conte…  Browse research and tickets in the same initiative         State: completed  │
+[025]    │ ID: pi-shared-context-ux-03-mixed-items                                                                        │
+[026]    │ tracker/tickets/pi-shared-context-ux-03-mixed-items.md                                                         │
+[027]    │                                                                                                                │
+[028]    │ [enhancement]   pi-shared-conte…  Read complete initiative and item descriptions             State: completed  │
+[029]    │ ID: pi-shared-context-ux-04-descriptions                                                                       │
+[030]    │ tracker/tickets/pi-shared-context-ux-04-descriptions.md                                                        │
+[031]    │                                                                                                                │
+[032]    │ [enhancement]   pi-shared-conte…  Inspect ticket events through readable history and         State: completed  │
+[033]    │                                   evidence views                                                               │
+[034]    │ ID: pi-shared-context-ux-05-events                                                                             │
+[035]    │ Workflow warning · Enter to inspect details                                                                    │
+[036]    │                                                                                                                │
+[037]    │ [enhancement]   pi-shared-conte…  Find actionable tickets through clear work queues          State: completed  │
+[038]    │ ID: pi-shared-context-ux-06-queues                                                                             │
+[039]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]    │ Summary: The shared-context terminal user interface makes records difficult to read. Titles, types, states, co…│
+[041] ───│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiati…│───
+[042]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback (feat/pi-shar...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

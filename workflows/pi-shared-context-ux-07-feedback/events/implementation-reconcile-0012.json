@@ -1,0 +1,228 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-reconcile-0012",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 2,
+  "parent_receipt": "source-reconcile-start-0011",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+  "source_tree": "24209cbea354e15efcd34805596b7428993a8e99",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "created_at": "2026-10-31T10:29:02.003709Z",
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w8Z:p2",
+  "session_id": "01a19177-b816-7243-8408-90e59ab6dd3d",
+  "session_ref": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feat-pi-shared-context-ux-07-feedback--/2026-10-31T10-18-24-662Z_01a19177-b816-7243-8408-90e59ab6dd3d.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/source-reconcile-start-0011.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-0005.yaml",
+      "note": "Historical only; invalidated for rewritten source"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/finish-reconcile-failed-0010.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/implementation-0002/final-harness-source.txt"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/implementation-reconcile-0012.json"
+    },
+    {
+      "kind": "source-commit",
+      "ref": "b0cfa8812032fd61dfe90971514fec6e925f645f"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-implementation-reconcile-0012.md"
+    },
+    {
+      "kind": "validation",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/validation-results.json"
+    },
+    {
+      "kind": "terminal-evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/termscope-protocol-complete.json"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/capture-manifest.json"
+    },
+    {
+      "kind": "harness",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/modal-harness-source.txt"
+    }
+  ],
+  "status": "completed",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/docs/USAGE.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts"
+  ],
+  "source_reconciliation_summary": [
+    "Worktrunk rebase onto inspected master completed; resolved actions.ts and explorer.ts semantically.",
+    "Kept master recovery/action handoff, session integration, queues, source inspection and confirmation-time refresh. Did not restore obsolete data.ts or old transitionReason helpers.",
+    "Preserved ticket UX behavior and documentation; canonical ticket, screenshots and historical receipts remain unchanged.",
+    "Moved untouched-state classification to shared recovery domain; both initiative progress and recovery use it, including aliases and queued. Implemented/merged/reviewed remain started, not completed.",
+    "Fresh checks exposed malformed-event parsing that hid valid receipts. Restored per-event error isolation and narrowed validated route root for type safety.",
+    "132 scoped behavior tests and affected-source typecheck pass; actual Pi modal exercised. Full bundle typecheck retains unrelated wait.ts errors."
+  ],
+  "prior_source": {
+    "commit": "782b15da5a72240dc4b1d52c79277e119422f559",
+    "tree": "d87ce8fca61332fe8aebdb0f356a9e11e359d94f",
+    "preserved_ref": "refs/archive/worktree/pi-shared-context-ux-07-feedback/review-0005"
+  },
+  "new_source": {
+    "commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+    "tree": "24209cbea354e15efcd34805596b7428993a8e99"
+  },
+  "validation_results": [
+    {
+      "command": "wt step rebase master; git add <resolved paths>; GIT_EDITOR=true git rebase --continue",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "result": "completed",
+      "note": "Worktrunk initiated the rebase; documented git continuation resolved actions.ts and explorer.ts. No hook approval bypass."
+    },
+    {
+      "command": "mise exec -- bun test ./extensions/pi-shared-context ../developer/skills/git/worktree/scripts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "result": "passed-after-fix",
+      "exit_code": 0,
+      "tests": 132,
+      "failures": 0,
+      "assertions": 2056,
+      "files": 12,
+      "initial_result": "131 pass / 1 fail: invalid events hid valid receipts; fixed per-event parse isolation and retained existing regression test"
+    },
+    {
+      "command": "mise exec -- bun run typecheck",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "result": "failed-outside-scope-and-fixed-affected-diagnostic",
+      "exit_code": 2,
+      "diagnostics": [
+        "skills/muxer-subagents/scripts/wait.ts:22-23 TS2339 ChildProcess.once and TS7006 callback parameters",
+        "../developer/skills/git/worktree/scripts/workflow.ts:80 TS2345 optional root"
+      ],
+      "note": "Fixed affected workflow.ts narrowing by passing validated root/ref. Unrelated wait.ts diagnostics remain. Full check not repeated."
+    },
+    {
+      "command": "mise exec -- bun x tsc --noEmit -p tsconfig.reconcile-smoke.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "result": "passed",
+      "exit_code": 0,
+      "configuration": {
+        "extends": "./tsconfig.json",
+        "include": [
+          "extensions/pi-shared-context/**/*.ts",
+          "../developer/skills/git/worktree/scripts/**/*.ts",
+          "types/**/*.d.ts"
+        ]
+      },
+      "note": "Temporary configuration removed after validation."
+    },
+    {
+      "command": "termscope session --cols 120 --rows 45 -- bun <agent-core>/node_modules/@earendil-works/pi-coding-agent/dist/bundle/cli.js --no-session --no-tools --no-extensions -e <source extension>/index.ts -e /tmp/pi-reconcile-modal.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "result": "passed-with-evidence-limits",
+      "runtime": "Pi 1.4.0, termscope 0.1.1",
+      "evidence_ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/termscope-protocol-complete.json",
+      "scenarios": [
+        "actual canonical workflow loading released by L gate",
+        "short loaded warnings and single selected item marker",
+        "ticket detail spacing and recovery recommendation Recover implementation",
+        "padded full Markdown body",
+        "source-reconcile-start-0011 event fields and stale source identity",
+        "initiative canonical index.md copy success status",
+        "todo, implemented/merged 0/2, mixed 1/2, completed progress fixtures",
+        "hosted fixture has no copy shortcut and c leaves view unchanged"
+      ]
+    },
+    {
+      "command": "wl-paste --no-newline",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "result": "timed-out",
+      "note": "Native clipboard readback unavailable; bounded retry with XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 also timed out after 5 seconds. UI reports canonical path copy; bytes are not fresh proof."
+    },
+    {
+      "command": "git commit -m \"fix: reconcile tracker/tickets/pi-shared-context-ux-07-feedback.md\"",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "result": "passed",
+      "exit_code": 0,
+      "hook": "checks:agent-bundle-versions -- check --staged passed"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} master refs/archive/worktree/pi-shared-context-ux-07-feedback/review-0005; git merge-base master HEAD; git status --porcelain=v1",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "result": "passed",
+      "note": "Exact recorded source/base identities; clean source worktree; archived reviewed tip unchanged."
+    },
+    {
+      "command": "mq okf_parse | okf_validate immutable snapshot",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "passed",
+      "validation_errors": []
+    }
+  ],
+  "evidence_limits": [
+    "Full bundle typecheck still reports unrelated muxer-subagents/scripts/wait.ts errors. Affected extension/worktree scoped typecheck passes.",
+    "Terminal text, HTML and JSON/style captures are fresh; no native desktop screenshots or browser-rendered PNGs were produced.",
+    "Progress and hosted-backend boundaries use labeled in-memory fixtures. Actual canonical records were used for ticket and receipt inspection.",
+    "Native clipboard byte readback timed out. Only canonical path copy UI success is newly observed.",
+    "The isolated Pi profile has no worktree skill command. Recovery recommendation is observed; launching a session is intentionally not exercised. Existing action/session/confirmation regression tests passed.",
+    "Captures 01-03 used source-worktree record copies; 04 onward use canonical original-workspace records. Several immediate captures show prior frames. Use 12, 13, 15, 16, 17, 18, 22, 23 and 24 as settled evidence; 09-11 show the body reader despite earlier provisional names. Captures 20-21 did not complete the hosted transition because the loading gate was closed; 23-24 supersede them.",
+    "All prior receipts, snapshots, canonical ticket and screenshot links remain unchanged. Old review SUCCESS is historical and cannot authorize this source."
+  ],
+  "open_questions": [],
+  "source_clean": true,
+  "formal_review_verdict": null,
+  "review_required": true,
+  "merged": false,
+  "pushed": false,
+  "ticket_completed": false,
+  "worktree_preserved": true,
+  "preservation": "Only source reconciliation changes committed in the source worktree. Canonical writes are new immutable evidence files, one draft snapshot and this child phase-result. Parent owns review, completion and projections."
+}

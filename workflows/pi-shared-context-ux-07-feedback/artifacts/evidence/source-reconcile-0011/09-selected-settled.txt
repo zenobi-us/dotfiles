@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=120 rows=45 cursor=38:119 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]  Pr│ Projects · Repo > Dotfiles                                                                                     │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[006]  Pi│ Initiatives  >  Improve shared-context…  >  pi-shared-context-ux-0…  >  Description                            │
+[007]    │> Track ongoing shared-context UX feedback · Description                                                        │
+[008] [Ex│                                                                                                                │
+[009]   p│                                                                                                                │
+[010] /ru│  ## Feedback — 2026-10-29                                                                                      │evt
+[011] ool│                                                                                                                │
+[012]    │  1. **Ticket list density:** The initial ticket list is relatively compact while receipts load, which is good  │
+[013] /ru│  (image 1). After loading, receipt diagnostics add excessive information and overwhelm the list (images 2 and  │evt
+[014] ool│  3). Keep the list compact after loading; detailed diagnostics should remain available through inspection      │
+[015] /ru│  rather than dominate each item.                                                                               │evt
+[016] ool│  2. **Selection indicator:** The selected item's background is fine. The arrow currently repeats on every      │
+[017]    │  rendered line (images 2 and 3). If retained, show it once per item, not once per line.                        │
+[018]    │  3. **Item spacing:** Add spacing around list items so adjacent items are easier to distinguish (images 1–3).  │
+[019]    │  4. **Detail spacing and body background:** Add spacing around fields in ticket details (image 5) and receipt  │
+[020]    │  details (image 4). Give the actual ticket Markdown body its own background and padding, separate from         │
+[021]    │  metadata and receipt diagnostics (image 6).                                                                   │
+[022]    │  5. **Initiative path copy:** Add a keymap in the initiative list to copy the selected initiative's file path, │
+[023]    │  matching the existing ticket path-copy behavior. Make the keymap discoverable.                                │
+[024]    │                                                                                                                │
+[025]    │  ## Feedback — 2026-10-30                                                                                      │
+[026]    │                                                                                                                │
+[027]    │  6. **Initiative progress:** The initiative list does not make overall ticket progress easy to identify. Show  │
+[028]    │  `completed` when all tickets are completed. Show `todo` when no tickets have started. Otherwise, show `X/Y    │
+[029]    │  completed`, where X is the number of completed tickets and Y is the total number of tickets in the            │
+[030]    │  initiative. This includes `0/Y completed` when work has started but no tickets are completed.                 │
+[031]    │                                                                                                                │
+[032]    │  ## Acceptance criteria                                                                                        │
+[033]    │                                                                                                                │
+[034]    │  1. Receipt loading still works. Loaded receipt warnings do not expand ticket rows into walls of diagnostics;  │
+[035]    │  full diagnostics remain inspectable.                                                                          │
+[036]    │  2. Selection retains its background. Any selection arrow appears at most once per selected item, including    │
+[037]    │  wrapped or multiline items.                                                                                   │
+[038]    │  3. List items have visible spacing around them.                                                               │
+[039]    │  4. Ticket and receipt detail fields have visible spacing. The ticket Markdown body has a separate background  │
+[040]    │                                                                                                                │
+[041] ───│ [Return]  [PgUp] [PgDn]                                                                                        │───
+[042]    │↑↓ scroll · PgUp/Dn page · Esc return                                                                           │
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback (feat/pi-shar...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

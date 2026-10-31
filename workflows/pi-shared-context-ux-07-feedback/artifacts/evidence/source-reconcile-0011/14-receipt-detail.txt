@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=120 rows=45 cursor=37:119 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Pr╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                     │
+[006]  Pi│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[007]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [Ex│ Initiatives  >  Improve shared-context…  >  pi-shared-context-ux-0…  >  Events                                 │
+[009]   p│ [d] Full description                                                                                           │
+[010] /ru│Ticket: pi-shared-context-ux-07-feedback · State: claimed                                                       │evt
+[011] ool│Reviews: 3 · Fixes: 0 (receipts)                                                                                │
+[012]    │> Events / newest first                                                                                         │
+[013] /ru├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤evt
+[014] ool│>Event: source-reconcile-start-0011 · Phase: start                                                              │
+[015] /ru│ Execution: started                                                                                             │evt
+[016] ool│ Source commit: 782b15da5a72                                                                                    │
+[017]    │                                                                                                                │
+[018]    │ Event: finish-reconcile-failed-0010 · Phase: finish                                                            │
+[019]    │ Execution: FINISH_FAILED                                                                                       │
+[020]    │ Source commit: 782b15da5a72                                                                                    │
+[021]    │                                                                                                                │
+[022]    │ Event: finish-reconcile-start-0009 · Phase: finish                                                             │
+[023]    │ Execution: started                                                                                             │
+[024]    │ Source commit: 782b15da5a72                                                                                    │
+[025]    │                                                                                                                │
+[026]    │ Event: finish-failed-0008 · Phase: finish                                                                      │
+[027]    │ Execution: FINISH_FAILED                                                                                       │
+[028]    │ Source commit: 782b15da5a72                                                                                    │
+[029]    │                                                                                                                │
+[030]    │ Event: finish-start-0007 · Phase: finish                                                                       │
+[031]    │ Execution: started                                                                                             │
+[032]    │ Source commit: 782b15da5a72                                                                                    │
+[033]    │                                                                                                                │
+[034]    │ Event: review-complete-0006 · Phase: review                                                                    │
+[035]    │ Execution: completed                                                                                           │
+[036]    │ Verdict: SUCCESS                                                                                               │
+[037]    │ Source commit: 782b15da5a72                                                                                    │
+[038]    │                                                                                                                │
+[039]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]    │ tracker/tickets/pi-shared-context-ux-07-feedback.md · READY                                                    │
+[041] ───│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiati…│───
+[042]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback (feat/pi-shar...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

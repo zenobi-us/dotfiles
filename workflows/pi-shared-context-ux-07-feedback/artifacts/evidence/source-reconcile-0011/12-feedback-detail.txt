@@ -1,0 +1,49 @@
+=== TERMSCOPE ===
+cols=120 rows=45 cursor=41:119 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Pr╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                     │
+[006]  Pi│  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                   │
+[007]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008] [Ex│ Initiatives  >  Improve shared-context project n…  >  pi-shared-context-ux-07-feedback                         │
+[009]   p│ [d] Full description                                                                                           │
+[010] /ru│> pi-shared-context-tui-ux-spec · It…│  Ticket / dependencies / receipts                                        │evt
+[011] ool├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[012]    │ tracker/tickets/pi-shared-context-ux│ pi-shared-context-ux-07-feedback Track ongoing shared-context UX feedback│
+[013] /ru│ -04-descriptions.md                 │                                                                          │evt
+[014] ool│                                     │ Summary: Keep this task as the ongoing feedback log for the              │
+[015] /ru│ [enhancement]  ID:                  │ shared-context UX initiative. The user will add feedback as work         │evt
+[016] ool│ pi-shared-context-ux-05-events      │ progresses. This task is in progress at the…                             │
+[017]    │ Inspect ticket events through       │                                                                          │
+[018]    │ readable history and evidence views │ Type: enhancement                                                        │
+[019]    │ State: completed                    │                                                                          │
+[020]    │ Workflow warning · Enter to inspect │ State: READY                                                             │
+[021]    │ details                             │                                                                          │
+[022]    │                                     │ Reference: tracker/tickets/pi-shared-context-ux-07-feedback.md           │
+[023]    │ [enhancement]  ID:                  │                                                                          │
+[024]    │ pi-shared-context-ux-06-queues      │ Current source: d555eabf61682aafd337379b32804cf204dfb9d0                 │
+[025]    │ Find actionable tickets through     │                                                                          │
+[026]    │ clear work queues                   │ Next: Recover implementation                                             │
+[027]    │ State: completed                    │                                                                          │
+[028]    │ Workflow warning · Enter to inspect │ Preserve existing work and inspect the interrupted start before a scoped │
+[029]    │ details                             │ takeover. Resolve liveness, reservations, and ownership first.           │
+[030]    │                                     │                                                                          │
+[031]    │>[enhancement]  ID:                  │ Takeover requires scoped approval after ownership and agent checks.      │
+[032]    │ pi-shared-context-ux-07-feedback    │                                                                          │
+[033]    │ Track ongoing shared-context UX     │ Reviews: 3 · Fixes: 0 (validated phase receipts; recorded attempts, not  │
+[034]    │ feedback                            │ quality or completion)                                                   │
+[035]    │ State: claimed                      │                                                                          │
+[036]    │ tracker/tickets/pi-shared-context-ux│ Dependencies:                                                            │
+[037]    │ -07-feedback.md                     │                                                                          │
+[038]    │                                     │ No dependency edges.                                                     │
+[039]    ├────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[040]    │ tracker/tickets/pi-shared-context-ux-07-feedback.md · READY                                                    │
+[041] ───│ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiati…│───
+[042]    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[043] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[044] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback (feat/pi-shar...
+[045] $0.000 (sub) 0.0%/272k (auto)                                                                           gpt-5.5 • medium

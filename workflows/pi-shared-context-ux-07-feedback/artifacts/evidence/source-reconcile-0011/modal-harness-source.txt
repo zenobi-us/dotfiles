@@ -1,0 +1,36 @@
+import type { ExtensionAPI } from "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core/node_modules/@earendil-works/pi-coding-agent/dist/index.js";
+import { GraphExplorer } from "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts";
+import { SharedContextModal } from "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts";
+import { loadTicketWorkflow } from "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts";
+import { resolveSharedContext } from "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts";
+
+export default function (pi: ExtensionAPI) {
+  for (const fixture of [false, true]) pi.registerCommand(fixture ? "progress-evidence" : "loading-evidence", {
+    description: fixture ? "Controlled progress fixtures" : "Real records with operator-gated receipt loading",
+    handler: async (_args, ctx) => {
+      const exec = async (command: string, args: string[], cwd = ctx.cwd) => {
+        const result = await pi.exec(command, args, { cwd });
+        return { stdout: result.stdout, code: result.code };
+      };
+      const context = await resolveSharedContext(exec, "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles");
+      await ctx.ui.custom((tui, theme, _keys, done) => {
+        let release!: () => void;
+        let hosted = false;
+        const gate = new Promise<void>(resolve => { release = resolve; });
+        const statuses = [["new", "to do"], ["implemented", "merged"], ["completed", "claimed"], ["completed", "completed"]];
+        const tickets = statuses.flatMap((states, group) => states.map((status, index) => ({ id: `fixture-${group}-${index}`, title: `Fixture ticket ${group}-${index}`, ref: `fixture-${group}-${index}.md`, backend: "local-markdown", status, blockedBy: [], body: "Controlled fixture. Not a repository ticket." })));
+        const tracker = new GraphExplorer({ context: context!, exec, theme, done, requestRender: () => tui.requestRender(), height: () => Math.floor(tui.terminal.rows * .9) - 3, commands: () => pi.getCommands(), live: false,
+          ...(fixture ? { loadSnapshot: async () => ({ backend: hosted ? "github" : "local-markdown", tickets, initiatives: statuses.map((_, group) => ({ id: `fixture-${group}`, title: ["Fixture untouched", "Fixture implemented and merged", "Fixture mixed", "Fixture completed"][group], ref: hosted ? `https://github.com/fixture/project/issues/${group + 1}` : `fixture-${group}/index.md`, ticketIds: tickets.filter(ticket => ticket.id.startsWith(`fixture-${group}-`)).map(ticket => ticket.id), body: "Controlled progress fixture." })) }) } : {}),
+          loadWorkflow: async (context, ticket, exec) => {
+            await gate;
+            return fixture ? { ticketId: ticket.id, receipts: [] } : loadTicketWorkflow(context, ticket, exec);
+          },
+        });
+        const modal = new SharedContextModal(context!, theme, tracker, { render: () => [], handleInput: () => {} }, () => tui.requestRender());
+        void tracker.load();
+        const timer = setInterval(() => tui.requestRender(), 100);
+        return { render: (width: number) => modal.render(width), handleInput: (data: string) => { if (data === "L") release(); else if (data === "G" && fixture) { hosted = true; void tracker.load(); } else void modal.handleInput(data); }, invalidate() {}, dispose() { clearInterval(timer); tracker.dispose(); } };
+      }, { overlay: true, overlayOptions: { anchor: "center", width: "95%", maxHeight: "95%" } });
+    },
+  });
+}
