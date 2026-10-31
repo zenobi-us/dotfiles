@@ -76,3 +76,12 @@ None within the ticket scope. Broader bundle type errors and terminal theme/clip
 
 Formal review completed with SUCCESS at 2026-10-30T08:20:55.925Z. No finish phase was launched. [Review artifact](../artifacts/reviews/review-review-0005.md), [review result](../events/review-0005.yaml), and [parent completion](../events/review-complete-0006.yaml) record this attempt. Parent validation passed all 96 extension tests. Existing modal evidence was reviewed; no fresh modal run occurred during review.
 
+
+
+## Finish reconciliation — 2026-10-31
+
+Latest state: FINISH_FAILED at prepare_merge. The user authorized finish takeover, conditional on all safety gates. Reviewed source remains `782b15da5a72240dc4b1d52c79277e119422f559`; it is clean and unchanged. Current master `9dc1810f9822a215e9a11fe0d96b4080033de556` conflicts with that source in actions.ts and explorer.ts. The read-only integration probe exited 1. No merge, source rewrite, push, ticket completion, or cleanup occurred.
+
+Source reconciliation and a fresh independent review require explicit authorization before integration can continue. Keep the branch, worktree, earlier successful review, and full event history.
+
+[Finish takeover](../events/finish-reconcile-start-0009.json), [blocked finish outcome](../events/finish-reconcile-failed-0010.json), and [actual integration observations](../artifacts/evidence/finish-reconcile-0009/reconciliation.json).

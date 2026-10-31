@@ -46,3 +46,12 @@ None in scope. Keep the ongoing ticket claimed. No merge, push or completion occ
 Formal verdict: SUCCESS for `782b15da5a72240dc4b1d52c79277e119422f559`. Standards and Spec have no blocking findings. The reviewer changed no source files. Reviewer and parent extension test runs each passed 96 tests with 1911 assertions. Existing Pi modal evidence was reviewed; no fresh modal run occurred. The reviewer pane closed. Ticket review metadata was appended; the ticket remains claimed. No merge or push occurred.
 
 [Review artifact](../artifacts/reviews/review-review-0005.md). [Review result](../events/review-0005.yaml). [Parent completion](../events/review-complete-0006.yaml).
+
+
+## finish-reconcile-start-0009 and finish-reconcile-failed-0010
+
+On 2026-10-31, the user authorized takeover of the interrupted finish, subject to all safety gates. No source-worktree agent was registered in Herdr. The source branch remained clean at `782b15da5a72240dc4b1d52c79277e119422f559`. The parent inspected current local master `9dc1810f9822a215e9a11fe0d96b4080033de556` and observed remote master `00e4c4f0eeb73bf68e31d99bc24e5f17ab3fd592`.
+
+`git merge-tree --write-tree master feat/pi-shared-context-ux-07-feedback` exited 1 with conflicts in actions.ts and explorer.ts. No working tree or index was changed by the probe. Worktrunk --no-rebase cannot fast-forward the divergent target to the frozen source. No source rewrite, merge, push, completion, or resource removal occurred.
+
+Next requirement: explicit authorization to reconcile source against current master, preserve the old reviewed tip, resolve conflicts, validate and obtain a fresh independent review. [Start receipt](../events/finish-reconcile-start-0009.json), [failed boundary](../events/finish-reconcile-failed-0010.json), [reconciliation evidence](../artifacts/evidence/finish-reconcile-0009/reconciliation.json).
