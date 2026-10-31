@@ -1,0 +1,55 @@
+{
+  "created_at": "2026-10-31T11:56:17.399Z",
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "source_before_removal": {
+    "commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+    "tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+    "dirty": false,
+    "active_agents": []
+  },
+  "worktree_removal": {
+    "command": "wt remove --foreground --format json feat/pi-shared-context-ux-07-feedback",
+    "exit_code": 0,
+    "branch_outcome": "deleted",
+    "worktree_removed": true,
+    "branch_removed": true,
+    "reported_files": 43116,
+    "reported_logical_size": "500.4 MiB"
+  },
+  "workspace_removal": {
+    "workspace_id": "w8Z",
+    "before": {
+      "checkout_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "active_tab_id": "w8Z:t1",
+      "tab_count": 1,
+      "pane_count": 1
+    },
+    "command": "herdr workspace close w8Z",
+    "result": "ok",
+    "verified_absent_in_workspace_list": true
+  },
+  "publication_before_cleanup": {
+    "integration": "1cc35485705f189e41339042b97b0bf311e694ca",
+    "ticket_commit": "06f51cd2047bd559647892591938d013d6949b75",
+    "remote": "origin",
+    "remote_ref": "refs/heads/master",
+    "verified": true
+  },
+  "source_archive_tags": [
+    {
+      "ref": "refs/tags/archive/pi-shared-context-ux-07-feedback/review-0005",
+      "commit": "782b15da5a72240dc4b1d52c79277e119422f559"
+    },
+    {
+      "ref": "refs/tags/archive/pi-shared-context-ux-07-feedback/review-reconcile-0015",
+      "commit": "b0cfa8812032fd61dfe90971514fec6e925f645f"
+    },
+    {
+      "ref": "refs/tags/archive/pi-shared-context-ux-07-feedback/review-reconcile-0022",
+      "commit": "75e4ba2e7ff18479992382e8df84f53380615f42"
+    }
+  ],
+  "other_workspaces_closed": false,
+  "force_flags_used": false
+}

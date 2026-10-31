@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-10-31T12:09:17.050Z",
+  "prior_snapshot": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-finish-0032.md",
+  "prior_missing_relative_targets": 19,
+  "corrected_snapshot": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-finish-0033.md",
+  "corrected_snapshot_links": 19,
+  "corrected_snapshot_missing_targets": 0,
+  "current_projection_links": 19,
+  "current_projection_missing_targets": 0,
+  "markdown_validation_errors": [],
+  "method": "mq okf_extract_links followed by filesystem existence checks relative to each actual document location",
+  "prior_snapshot_preserved": true,
+  "workflow_operations_repeated": false
+}

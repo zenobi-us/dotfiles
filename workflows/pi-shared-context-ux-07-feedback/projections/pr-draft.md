@@ -1,17 +1,18 @@
 ---
-title: Shared-context feedback integration draft
+description: Reviewed integration, published completion and verified cleanup
+title: Shared-context feedback finished record
 type: Report
-description: Reconciled source, review, validation and publication status
 ---
+
 # Shared-context feedback implementation
 
 ## Current status
 
-FINISHING. Integration `1cc35485705f189e41339042b97b0bf311e694ca` is published on `origin refs/heads/master`. The canonical [ticket](../../../tracker/tickets/pi-shared-context-ux-07-feedback.md) is locally `completed`; ticket metadata publication and source resource cleanup remain pending. All original feedback and six screenshot links are preserved.
+FINISHED. Integration `1cc35485705f189e41339042b97b0bf311e694ca` and canonical [ticket](../../../tracker/tickets/pi-shared-context-ux-07-feedback.md) completion at `06f51cd2047bd559647892591938d013d6949b75` are published on `origin refs/heads/master`. The source branch and worktree are removed; recorded source workspace `w8Z` is closed. All original feedback and six screenshot links are preserved.
 
 ## Source and integration
 
-- Source branch: `feat/pi-shared-context-ux-07-feedback`.
+- Source branch (removed): `feat/pi-shared-context-ux-07-feedback`.
 - Reviewed source: `75e4ba2e7ff18479992382e8df84f53380615f42`.
 - Reviewed and integrated tree: `0ed7813b64078f610c57f845520d1440f1ba2a7c`.
 - Recorded base and sole integration parent: `188d65733aca442f860b18d323cf6db03bad1744` on `master`.
@@ -36,7 +37,7 @@ Net source changes cover seven paths under `mise/conf.d/devtools-agent/bundles/`
 
 ## Validation
 
-Integrated extension/worktree suite: 133 tests passed, zero failures, 2,063 assertions across 12 files. Affected-source typecheck passed. Post-review focused checks passed: 41 tests, 1,354 assertions. The live read-only inspector verified integration and recommends finish reconciliation rather than another merge. [Integrated validation](../artifacts/evidence/finish-reconcile-0024/integration-validation.json).
+Integrated extension/worktree suite: 133 tests passed, zero failures, 2,063 assertions across 12 files. Affected-source typecheck passed. Post-review focused checks passed: 41 tests, 1,354 assertions. Before publication, the live read-only inspector verified integration and recommended reconciliation rather than another merge. [Integrated validation](../artifacts/evidence/finish-reconcile-0024/integration-validation.json).
 
 Actual native Pi 1.4.0 evidence covers action/list shortcut context and display aliases using labeled fixtures. [Corrected-source protocol](../artifacts/evidence/fix-reconcile-0017/termscope-protocol.json). Earlier full-modal [protocol](../artifacts/evidence/source-reconcile-0011/termscope-protocol-complete.json) is pre-fix evidence for unchanged UI areas, not fresh exact-source proof.
 
@@ -54,6 +55,6 @@ The original [implementation review](../artifacts/reviews/review-implementation-
 
 [Publication evidence](../artifacts/evidence/finish-reconcile-0024/publication.json) verifies the integration and three archive tags on the named remote. The archive namespace `archive/pi-shared-context-ux-07-feedback/` retains `review-0005`, `review-reconcile-0015`, and `review-reconcile-0022`.
 
-Latest checkpoint: [finish-pushed-0029](../events/finish-pushed-0029.json). Worktrunk inherited `merge.commit=false` and initially fast-forwarded four commits. An explicit squash of only those unpublished commits against the recorded base produced the required single-parent integration without changing the reviewed source branch, product tree, or user configuration. [Recorded reconciliation](../events/finish-shape-reconcile-0026.json).
+Terminal receipt: [finish-finished-0033](../events/finish-finished-0033.json). Worktrunk inherited `merge.commit=false` and initially fast-forwarded four commits. An explicit squash of only those unpublished commits against the recorded base produced the required single-parent integration without changing the reviewed source branch, product tree, or user configuration. [Recorded reconciliation](../events/finish-shape-reconcile-0026.json).
 
-Next: publish ticket completion, verify source shutdown and cleanliness, remove the recorded worktree/workspace, and append the terminal finish receipt.
+Durable completion records: [canonical tracker result](../artifacts/evidence/finish-reconcile-0024/tracker-result.json), [ticket publication](../artifacts/evidence/finish-reconcile-0024/ticket-publication.json), and [verified cleanup](../artifacts/evidence/finish-reconcile-0024/cleanup.json).

@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-10-31T11:47:47.833Z",
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "observed_state": "completed",
+  "record": {
+    "schema": "tracker-ticket/v1",
+    "id": "pi-shared-context-ux-07-feedback",
+    "title": "Track ongoing shared-context UX feedback",
+    "parent": "pi-shared-context-tui-ux-spec",
+    "sequence": 7,
+    "type": "enhancement",
+    "triage": "ready-for-agent",
+    "work_status": "completed",
+    "blocked_by": []
+  },
+  "publication_commit": "06f51cd2047bd559647892591938d013d6949b75",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "06f51cd2047bd559647892591938d013d6949b75",
+  "merged_commit": "1cc35485705f189e41339042b97b0bf311e694ca",
+  "merged_commit_reachable": true,
+  "publication_verified": true,
+  "verification": [
+    "git ls-remote --heads origin refs/heads/master",
+    "git merge-base --is-ancestor 1cc35485705f189e41339042b97b0bf311e694ca 06f51cd2047bd559647892591938d013d6949b75",
+    "git show 06f51cd2047bd559647892591938d013d6949b75:tracker/tickets/pi-shared-context-ux-07-feedback.md | mq okf_parse frontmatter"
+  ]
+}

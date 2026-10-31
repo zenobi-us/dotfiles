@@ -63,3 +63,13 @@ User authorized source reconciliation, fresh review and finish. The old reviewed
 Integration 1cc35485705f189e41339042b97b0bf311e694ca has the recorded base 188d65733aca442f860b18d323cf6db03bad1744 as its sole parent and tree 0ed7813b64078f610c57f845520d1440f1ba2a7c, exactly matching the reviewed product. Worktrunk's inherited merge.commit=false skipped the first squash; an explicit squash of only the four unpublished ticket commits corrected the integration shape while preserving source and archive refs. No second merge, code revert or source rebase occurred.
 
 Integrated suite: 133 pass, zero fail, 2,063 assertions, 12 files. Scoped typecheck passed. Code and all three reviewed-source archive tags are verified published. The canonical ticket is locally completed; publication of this metadata and cleanup remain pending. Current review: [review-reconcile-0022](../artifacts/reviews/review-review-reconcile-0022.md). Latest checkpoint: [finish-pushed-0029](../events/finish-pushed-0029.json).
+
+## 2026-10-31T12:02:15.168Z — Finished and cleaned up
+
+Canonical completion is published at 06f51cd2047bd559647892591938d013d6949b75. Worktrunk removed the clean source worktree and branch without force. Only recorded source workspace w8Z was closed; its absence was verified. All reviewed-source objects remain retained by the three published archive tags.
+
+[Terminal receipt finish-finished-0032](../events/finish-finished-0032.json) records FINISHED. The live inspector from the surviving base worktree reports valid history, verified integration and finish, missing removed source, and decision complete / Finished with no approval required. [Final inspection](../artifacts/evidence/finish-reconcile-0024/final-inspection.json), [cleanup](../artifacts/evidence/finish-reconcile-0024/cleanup.json), [canonical tracker result](../artifacts/evidence/finish-reconcile-0024/tracker-result.json), and [immutable final snapshot](../artifacts/snapshots/pr-draft-finish-0032.md).
+
+## 2026-10-31T12:09:15.769Z — Final snapshot link reconciliation
+
+Snapshot0032 and terminal receipt0032 remain immutable history. [Snapshot0033](../artifacts/snapshots/pr-draft-finish-0033.md) corrects destination-relative links for artifacts/snapshots; all 19 linked targets exist. [Terminal receipt0033](../events/finish-finished-0033.json) preserves the same verified FINISHED result. No source, review, integration, publication, completion or cleanup operation was repeated. The current draft uses links relative to projections.
