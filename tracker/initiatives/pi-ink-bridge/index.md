@@ -181,7 +181,16 @@ The user supplied this proposed tablet client UI. It shows the disconnected stat
 
 ## Tickets
 
-No child tickets have been created.
+- [Prove Paper Pro pen input](../../tickets/pi-ink-bridge-01-pen-prototype.md)
+- [Install and launch the tablet client](../../tickets/pi-ink-bridge-02-install-client.md)
+- [Pair and revoke a tablet](../../tickets/pi-ink-bridge-03-pair-device.md)
+- [Send one annotation to its originating request](../../tickets/pi-ink-bridge-04-annotation-round-trip.md)
+- [Select and manage multiple inbox jobs](../../tickets/pi-ink-bridge-05-inbox.md)
+- [Correct annotations and inspect image details](../../tickets/pi-ink-bridge-06-editing-tools.md)
+- [Save and recover editable drafts](../../tickets/pi-ink-bridge-07-drafts.md)
+- [Recover interrupted delivery without losing work](../../tickets/pi-ink-bridge-08-delivery-recovery.md)
+- [Discover servers and reconnect after network changes](../../tickets/pi-ink-bridge-09-discovery.md)
+- [Verify the complete Paper Pro workflow](../../tickets/pi-ink-bridge-10-hardware-acceptance.md)
 
 ## Comments
 
