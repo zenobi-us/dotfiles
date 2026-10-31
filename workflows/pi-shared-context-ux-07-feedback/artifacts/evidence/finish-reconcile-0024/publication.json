@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-10-31T11:29:34.994Z",
+  "command": "git push --atomic origin <verified integration>:refs/heads/master <three explicit archive tag refs>",
+  "exit_code": 0,
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "1cc35485705f189e41339042b97b0bf311e694ca",
+  "merged_commit": "1cc35485705f189e41339042b97b0bf311e694ca",
+  "merged_commit_reachable": true,
+  "reachability_proof": "Named remote ref equals the verified integration commit",
+  "archive_tags": [
+    {
+      "ref": "refs/tags/archive/pi-shared-context-ux-07-feedback/review-0005",
+      "commit": "782b15da5a72240dc4b1d52c79277e119422f559",
+      "remote_observed_commit": "782b15da5a72240dc4b1d52c79277e119422f559",
+      "published": true
+    },
+    {
+      "ref": "refs/tags/archive/pi-shared-context-ux-07-feedback/review-reconcile-0015",
+      "commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+      "remote_observed_commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+      "published": true
+    },
+    {
+      "ref": "refs/tags/archive/pi-shared-context-ux-07-feedback/review-reconcile-0022",
+      "commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+      "remote_observed_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+      "published": true
+    }
+  ],
+  "verification_command": "git ls-remote --heads --tags origin refs/heads/master <three explicit archive tag refs>"
+}

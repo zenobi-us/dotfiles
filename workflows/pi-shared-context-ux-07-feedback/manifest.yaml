@@ -6,6 +6,6 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "finish-reconcile-failed-0010",
-  "state": "FINISH_FAILED"
+  "latest_receipt": "finish-pushed-0029",
+  "state": "FINISHING"
 }

@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-10-31T11:39:56.308Z",
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "record": {
+    "schema": "tracker-ticket/v1",
+    "id": "pi-shared-context-ux-07-feedback",
+    "title": "Track ongoing shared-context UX feedback",
+    "parent": "pi-shared-context-tui-ux-spec",
+    "sequence": 7,
+    "type": "enhancement",
+    "triage": "ready-for-agent",
+    "work_status": "completed",
+    "blocked_by": []
+  },
+  "validation": {
+    "validator": "reading-and-writing-tickets/scripts/record-schema.ts assertRecord",
+    "kind": "ticket",
+    "expected_id": "pi-shared-context-ux-07-feedback",
+    "errors": []
+  },
+  "changed_fields": [
+    "work_status"
+  ],
+  "comments_appended": [
+    "FAILURE review for b0cfa881",
+    "SUCCESS review for 75e4ba2e",
+    "Verified integration and validation completion"
+  ],
+  "publication": "pending repository commit and push"
+}

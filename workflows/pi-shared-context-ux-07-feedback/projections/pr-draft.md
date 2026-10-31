@@ -1,87 +1,59 @@
 ---
-title: Shared-context feedback PR draft
+title: Shared-context feedback integration draft
 type: Report
+description: Reconciled source, review, validation and publication status
 ---
-
 # Shared-context feedback implementation
 
-## Ticket summary
+## Current status
 
-[tracker/tickets/pi-shared-context-ux-07-feedback.md](../../../tracker/tickets/pi-shared-context-ux-07-feedback.md) remains the ongoing feedback log. Its state remains `claimed`. All six screenshot links and all earlier feedback remain unchanged.
+FINISHING. Integration `1cc35485705f189e41339042b97b0bf311e694ca` is published on `origin refs/heads/master`. The canonical [ticket](../../../tracker/tickets/pi-shared-context-ux-07-feedback.md) is locally `completed`; ticket metadata publication and source resource cleanup remain pending. All original feedback and six screenshot links are preserved.
 
-## Problem
+## Source and integration
 
-Loaded workflow diagnostics overwhelmed ticket rows. Selection markers repeated across wrapped lines. Lists and fields lacked spacing. The Markdown reader lacked a separate background. Initiative path copy and progress were not discoverable.
+- Source branch: `feat/pi-shared-context-ux-07-feedback`.
+- Reviewed source: `75e4ba2e7ff18479992382e8df84f53380615f42`.
+- Reviewed and integrated tree: `0ed7813b64078f610c57f845520d1440f1ba2a7c`.
+- Recorded base and sole integration parent: `188d65733aca442f860b18d323cf6db03bad1744` on `master`.
+- Integration commit: `1cc35485705f189e41339042b97b0bf311e694ca`.
+- Current immutable [SUCCESS review](../artifacts/reviews/review-review-reconcile-0022.md).
 
-## Implementation
+## Changes
 
-Keep list warnings short and preserve full detail inspection. Add blank separators, retain selected backgrounds and mark only the first line of each selected item. Add a separate padded Markdown body background. Expose `c copy path` for canonical Local Markdown records. Count executable-ticket progress as `todo`, `completed`, or `X/Y completed`, including `0/Y completed` once work starts.
+Keep loaded diagnostics compact while retaining full inspection. Show one selection marker, add item and detail spacing, and use a padded Markdown body surface. Expose canonical Local Markdown path copying only on capable views. Display initiative progress independently of permission to start work. Malformed events remain inspectable and block recovery without hiding readable events.
 
-The path action uses typed shared-context resolution. Hosted initiatives and generated collections do not offer nonexistent local paths. Actions and progress share the untouched-state classification.
+The corrected source preserves master's initial recovery state boundary: `new` and `to do` classify as untouched for display but cannot authorize an initial workflow action. The actions footer no longer advertises a disabled copy shortcut.
 
-## Source identity
+Net source changes cover seven paths under `mise/conf.d/devtools-agent/bundles/`:
 
-- **Branch:** `feat/pi-shared-context-ux-07-feedback`.
-- **Base:** `master`, authorized starting commit `1999f642d88f61cca1f5b0b185a2b640605d16d1`.
-- **Implementation commit:** `7b7cfa90`.
-- **Documentation commit and resulting HEAD:** `782b15da5a72240dc4b1d52c79277e119422f559`.
-- **Resulting tree:** `d87ce8fca61332fe8aebdb0f356a9e11e359d94f`.
-
-## Changed files
-
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/docs/USAGE.md`
+- `agent-core/docs/USAGE.md`.
+- `agent-core/extensions/pi-shared-context/events.test.ts`.
+- `agent-core/extensions/pi-shared-context/explorer.test.ts`.
+- `agent-core/extensions/pi-shared-context/explorer.ts`.
+- `developer/skills/git/worktree/scripts/recovery.test.ts`.
+- `developer/skills/git/worktree/scripts/recovery.ts`.
+- `developer/skills/git/worktree/scripts/workflow.ts`.
 
 ## Validation
 
-- **Regression suite:** `mise exec -- bun test ./extensions/pi-shared-context`, from agent-core. Passed: 96 tests, 1911 assertions, 10 files.
-- **Scoped typecheck:** `mise exec -- bun x tsc --noEmit -p tsconfig.feedback-smoke.json`. Passed. The removed temporary configuration is preserved in [typecheck scope](../artifacts/evidence/implementation-0002/typecheck-scope.json).
-- **Actual modal:** Pi 1.4.0 under termscope. Exercised real-record loading and loaded diagnostics, wrapped selection, item spacing, ticket and receipt fields, Markdown body background, canonical path copy and exact Wayland clipboard bytes.
-- **Progress boundaries:** Labeled synthetic records exercised untouched, started zero-completed, mixed and fully completed states. Final smoke also checked `new`/`to do` aliases and hosted path-copy suppression.
-- **Report integrity:** Portable report validation passed. Chromium opened the report and its screenshot lightbox. Terminal processes and the preview server closed.
-- **Commit hooks:** Bundle-version checks passed.
+Integrated extension/worktree suite: 133 tests passed, zero failures, 2,063 assertions across 12 files. Affected-source typecheck passed. Post-review focused checks passed: 41 tests, 1,354 assertions. The live read-only inspector verified integration and recommends finish reconciliation rather than another merge. [Integrated validation](../artifacts/evidence/finish-reconcile-0024/integration-validation.json).
 
-The full `bun run typecheck` failed in unrelated muxer-subagents and writing-skills scripts. The implementation receipt records exact files and diagnostics. Those source files remain unchanged.
+Actual native Pi 1.4.0 evidence covers action/list shortcut context and display aliases using labeled fixtures. [Corrected-source protocol](../artifacts/evidence/fix-reconcile-0017/termscope-protocol.json). Earlier full-modal [protocol](../artifacts/evidence/source-reconcile-0011/termscope-protocol-complete.json) is pre-fix evidence for unchanged UI areas, not fresh exact-source proof.
+
+Limits: no new PNG or native clipboard byte readback; actual body colour distinction remains unverified in the latest captures. No workflow phase launch was exercised in the isolated profile. Known unrelated full-bundle `wait.ts` errors were not repeated; only the affected-source typecheck is claimed passing.
 
 ## Review history
 
-Two independent fresh Herdr sessions ran the implementation skill's Standards and Spec reviews. This was not a worktree review phase.
+- Historical [SUCCESS review](../artifacts/reviews/review-review-0005.md) for `782b15da5a72240dc4b1d52c79277e119422f559`.
+- [FAILURE review](../artifacts/reviews/review-review-reconcile-0015.md) for `b0cfa8812032fd61dfe90971514fec6e925f645f`; both identified findings were corrected by the fresh fixer.
+- Current [SUCCESS review](../artifacts/reviews/review-review-reconcile-0022.md) for `75e4ba2e7ff18479992382e8df84f53380615f42`; independent fresh Standards and Spec sessions reported no findings.
 
-Resolved S1: progress used a second untouched-state classification that omitted `new` and `to do`. Resolved P1: hosted initiatives offered nonexistent local paths. Both fixes have regression coverage and actual modal smoke evidence.
+The original [implementation review](../artifacts/reviews/review-implementation-0002.md), [acceptance report](../artifacts/evidence/implementation-0002/report/index.html), [original snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md), [reconciled snapshot](../artifacts/snapshots/pr-draft-implementation-reconcile-0012.md), and [fix snapshot](../artifacts/snapshots/pr-draft-fix-reconcile-0019.md) remain unchanged.
 
-Remaining findings: none. Latest formal worktree reviewer verdict: SUCCESS for `782b15da5a72240dc4b1d52c79277e119422f559`. [Implementation code review](../artifacts/reviews/review-implementation-0002.md) records both axes and their disposition.
+## Publication and recovery
 
-## Merge status
+[Publication evidence](../artifacts/evidence/finish-reconcile-0024/publication.json) verifies the integration and three archive tags on the named remote. The archive namespace `archive/pi-shared-context-ux-07-feedback/` retains `review-0005`, `review-reconcile-0015`, and `review-reconcile-0022`.
 
-Not merged. Not pushed. The ticket remains claimed and available for more feedback. Source changes and commits exist only in the authorized source worktree. Original workspace source and tracker edits were not copied, staged, altered or discarded.
+Latest checkpoint: [finish-pushed-0029](../events/finish-pushed-0029.json). Worktrunk inherited `merge.commit=false` and initially fast-forwarded four commits. An explicit squash of only those unpublished commits against the recorded base produced the required single-parent integration without changing the reviewed source branch, product tree, or user configuration. [Recorded reconciliation](../events/finish-shape-reconcile-0026.json).
 
-## Open questions
-
-None within the ticket scope. Broader bundle type errors and terminal theme/clipboard platform limits remain documented validation limits, not hidden acceptance claims.
-
-## Supporting records
-
-- [Parent start receipt](../events/start-0001.yaml).
-- [Immutable implementation result](../events/implementation-0002.yaml).
-- [Acceptance report and screenshots](../artifacts/evidence/implementation-0002/report/index.html).
-- [Final native clipboard verification](../artifacts/evidence/implementation-0002/clipboard-final-verified.json).
-- [Final terminal protocol](../artifacts/evidence/implementation-0002/protocol-final-smoke.json).
-- [Colour acceptance protocol](../artifacts/evidence/implementation-0002/protocol-dark-verified.json).
-- [Implementation code review](../artifacts/reviews/review-implementation-0002.md).
-- [Immutable PR draft snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md).
-
-Formal review completed with SUCCESS at 2026-10-30T08:20:55.925Z. No finish phase was launched. [Review artifact](../artifacts/reviews/review-review-0005.md), [review result](../events/review-0005.yaml), and [parent completion](../events/review-complete-0006.yaml) record this attempt. Parent validation passed all 96 extension tests. Existing modal evidence was reviewed; no fresh modal run occurred during review.
-
-
-
-## Finish reconciliation — 2026-10-31
-
-Latest state: FINISH_FAILED at prepare_merge. The user authorized finish takeover, conditional on all safety gates. Reviewed source remains `782b15da5a72240dc4b1d52c79277e119422f559`; it is clean and unchanged. Current master `9dc1810f9822a215e9a11fe0d96b4080033de556` conflicts with that source in actions.ts and explorer.ts. The read-only integration probe exited 1. No merge, source rewrite, push, ticket completion, or cleanup occurred.
-
-Source reconciliation and a fresh independent review require explicit authorization before integration can continue. Keep the branch, worktree, earlier successful review, and full event history.
-
-[Finish takeover](../events/finish-reconcile-start-0009.json), [blocked finish outcome](../events/finish-reconcile-failed-0010.json), and [actual integration observations](../artifacts/evidence/finish-reconcile-0009/reconciliation.json).
+Next: publish ticket completion, verify source shutdown and cleanliness, remove the recorded worktree/workspace, and append the terminal finish receipt.

@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-10-31T11:26:41.649Z",
+  "merged_commit": "1cc35485705f189e41339042b97b0bf311e694ca",
+  "merged_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "merged_parents": [
+    "188d65733aca442f860b18d323cf6db03bad1744"
+  ],
+  "reviewed_source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "reviewed_source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "validation": [
+    {
+      "command": "mise exec -- bun test ./extensions/pi-shared-context ../developer/skills/git/worktree/scripts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "tests": 133,
+      "failures": 0,
+      "assertions": 2063,
+      "files": 12
+    },
+    {
+      "command": "mise exec -- bun x tsc --noEmit -p tsconfig.finish-smoke.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "scope": [
+        "extensions/pi-shared-context/**/*.ts",
+        "../developer/skills/git/worktree/scripts/**/*.ts",
+        "types/**/*.d.ts"
+      ],
+      "temporary_configuration_removed": true
+    },
+    {
+      "command": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/inspect.ts tracker/tickets/pi-shared-context-ux-07-feedback.md --json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "history_valid": true,
+      "finish_integrated": true,
+      "action": "finish",
+      "mode": "reconcile",
+      "pending_publication_diagnostic": "git inspection failed (exit 1): \n"
+    }
+  ],
+  "validation_passed": true,
+  "publication_pending": true,
+  "limits": [
+    "Scoped typecheck passed; known unrelated full-bundle wait.ts diagnostics not rerun",
+    "Native Pi evidence is consumed from the exact reviewed product tree; no new PNG or clipboard byte proof"
+  ]
+}
