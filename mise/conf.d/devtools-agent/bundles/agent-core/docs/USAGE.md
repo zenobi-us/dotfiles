@@ -168,3 +168,17 @@ Run the extension regression tests from the repository root:
 bun test mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/
 ```
 
+
+## Feedback display and initiative progress
+
+Ticket rows keep workflow warnings short. Open ticket details with Enter to read full diagnostics. Open receipt events to inspect their recorded fields. Blank separators distinguish list items and detail fields. Selection keeps its background and marks only the first line of each item.
+
+Press `d` to read the complete Markdown body on a separate padded background. Press Escape to return without changing selection.
+
+Press `c` on a canonical initiative or Local Markdown ticket to copy its absolute file path. The footer shows this shortcut only on views that accept it, not in the action menu. Initiative paths end in `index.md`. Generated collections have no canonical initiative path and do not offer copy. Clipboard failures appear in the status line.
+
+Initiative progress counts executable tickets, not research or planning records. It shows `todo` before work starts, `completed` when every ticket is complete, and `X/Y completed` otherwise. Started work with no completed tickets shows `0/Y completed`. Empty initiatives show `todo`.
+
+
+
+Progress classifies `open`, `todo`, `to do`, `new`, `backlog`, `queued`, `unclaimed`, and `ready` as untouched. This display classification does not authorize a workflow action. With no receipts or existing source, recovery accepts only `open`, `ready`, `todo`, `backlog`, `queued`, and `unclaimed` for an initial start. It blocks `new` and `to do` until the ticket adapter resolves their meaning. Existing history, source, ownership, blockers, and approval gates still apply. The states `implemented`, `merged`, and `reviewed` mean work has started; they do not mean completed. A malformed event remains inspectable and does not hide valid events from the same workflow.

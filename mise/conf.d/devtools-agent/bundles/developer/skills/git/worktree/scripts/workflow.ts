@@ -74,15 +74,23 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   const events = join(record.path, "events");
   if (!await exists(events)) { result.inspection!.historyValid = true; return result; }
   const documents = new Map<string, Document>();
-  for (const file of await files(events, /\.(md|yaml|yml|json)$/)) {
-   documents.set(file, await document(file, record.root, exec));
+  const readErrors = new Map<string, unknown>();
+  const eventFiles = await files(events, /\.(md|yaml|yml|json)$/);
+  for (const file of eventFiles) {
+   try {
+    documents.set(file, await document(file, record.root, exec));
+   } catch (error) {
+    readErrors.set(file, error);
+   }
   }
-  const supplements = await historySupplements(documents, record, context, workflowId);
-  for (const [file, doc] of documents) {
+  const supplements = await historySupplements(documents, { root: record.root, ref: record.ref }, context, workflowId);
+  for (const file of eventFiles) {
    const ref = `${record.ref}/events/${relative(events, file).split("\\").join("/")}`;
    const event: ExplorerEvent = { id: ref, ref };
    result.events!.push(event);
    try {
+    if (readErrors.has(file)) throw readErrors.get(file);
+    const doc = documents.get(file)!;
     const fields = supplements.get(file) ?? doc.fields;
     event.fields = doc.fields;
     event.body = doc.body;

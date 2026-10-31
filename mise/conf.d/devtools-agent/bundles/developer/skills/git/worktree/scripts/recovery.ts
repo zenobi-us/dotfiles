@@ -111,6 +111,10 @@ export function recoveryDecision(ticket: Ticket, snapshot: { tickets: Ticket[] }
   return decision("start", "begin", "Start work", "No validated implementation history was found. Resolve ownership and active reservations before starting.", unknownOwner);
 }
 
+export function isUnstarted(ticket: { status: string }): boolean {
+  return ["open", "todo", "to do", "new", "backlog", "queued", "unclaimed", "ready"].includes(ticket.status.trim().toLowerCase());
+}
+
 function completed(ticket: Ticket): boolean {
   return ["done", "closed", "resolved", "complete", "completed"].includes(ticket.status.trim().toLowerCase());
 }

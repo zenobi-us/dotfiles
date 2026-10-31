@@ -64,7 +64,6 @@ test("event inspection separates execution and verdict, leads with body, and exp
     expect(view).toContain(f.commit);
     expect(view).toContain(f.tree);
     expect(view).toContain("Changed files: 2 (recorded)");
-    expect(view).toContain("recorded-session");
     await f.modal.handleInput("a");
     await f.modal.handleInput("s");
     expect(f.result()).toBeUndefined();

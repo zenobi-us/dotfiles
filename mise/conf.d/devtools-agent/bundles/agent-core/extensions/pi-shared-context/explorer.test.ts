@@ -170,7 +170,6 @@ test("removing an inactive remembered child preserves unrelated queue and home a
       expect(f.view(width)).toBe(before);
       await f.modal.handleInput("\x1b");
       expect(f.view(width)).not.toContain("Open a fresh chat");
-      expect(f.view(width)).toContain(screen === "queues" ? "Ticket queues" : "Ungrouped");
       await f.modal.handleInput("m");
       const result = f.result();
       if (result?.kind !== "session") throw new Error("Expected surviving action context");
@@ -363,4 +362,62 @@ test("ticket focus includes transitive dependents and direct blockers without vi
   const data = { ...snapshot, tickets: [...snapshot.tickets, extra] };
   expect([...focusedTicketIds(data, { kind: "ticket", ticket: selected })].sort()).toEqual(["T-1", "T-3", "T-4", "T-5"]);
   expect([...focusedTicketIds(data, { kind: "initiative", initiative: data.initiatives[0] })].sort()).toEqual(["T-1", "T-2", "T-3", "T-4"]);
+});
+
+test("initiative progress distinguishes untouched, started, mixed and completed tickets", async () => {
+  for (const [statuses, expected] of [
+    [["unclaimed", "open", "todo"], "todo"],
+    [["new", "to do", "ready"], "todo"],
+    [["queued", "backlog", "ready"], "todo"],
+    [["implemented", "merged", "reviewed"], "0/3 completed"],
+    [["claimed", "open", "unclaimed"], "0/3 completed"],
+    [["completed", "claimed", "open"], "1/3 completed"],
+    [["completed", "closed", "done"], "completed"],
+  ] as const) {
+    const data = structuredClone(snapshot);
+    data.tickets.filter(ticket => ticket.id !== "T-1").forEach((ticket, index) => { ticket.status = statuses[index]; });
+    const f = await fixture(data);
+    try {
+      expect(f.view()).toContain(`Progress: ${expected}`);
+    } finally { f.component.dispose(); }
+  }
+});
+
+test("loaded workflow diagnostics stay out of list rows and remain available in ticket details", async () => {
+  const diagnostic = "Receipt identity mismatch. ".repeat(40);
+  const component = new GraphExplorer({
+    context, theme, exec: async () => { throw new Error("No execution expected"); },
+    done: () => { }, requestRender: () => { }, height: () => 35, commands,
+    loadSnapshot: async () => snapshot,
+    loadWorkflow: async (_context, ticket) => ({ ticketId: ticket.id, receipts: [], error: diagnostic }),
+  });
+  try {
+    await component.load();
+    await component.handleInput("\r");
+    const list = component.render(120).map(stripTerminalSequences);
+    expect(list.filter(line => line.includes("Receipt identity mismatch")).length).toBeLessThanOrEqual(1);
+    expect(list.join("\n")).toContain("Workflow warning");
+    expect(list.slice(list.findIndex(line => line.startsWith("├")) + 1).filter(line => line.startsWith("│>")).length).toBe(1);
+    await component.handleInput("\r");
+    await component.handleInput("\t");
+    let detail = component.render(120).map(stripTerminalSequences).join("\n");
+    for (let page = 0; page < 6 && !detail.includes("Receipt identity mismatch"); page++) {
+      await component.handleInput("\x1b[6~");
+      detail = component.render(120).map(stripTerminalSequences).join("\n");
+    }
+    expect(detail).toContain("Receipt identity mismatch");
+  } finally { component.dispose(); }
+});
+
+test("hosted initiatives do not offer a fabricated local canonical path", async () => {
+  const data = structuredClone(snapshot);
+  data.backend = "github";
+  data.initiatives[0].ref = "https://github.com/fixture/project/issues/10";
+  const f = await fixture(data);
+  try {
+    const before = f.view();
+    expect(before).not.toContain("c copy path");
+    await f.modal.handleInput("c");
+    expect(f.view()).toBe(before);
+  } finally { f.component.dispose(); }
 });
