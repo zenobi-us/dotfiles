@@ -1,0 +1,42 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "source-reconcile-start-0011",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 2,
+  "parent_receipt": "finish-reconcile-failed-0010",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "782b15da5a72240dc4b1d52c79277e119422f559",
+  "source_tree": "d87ce8fca61332fe8aebdb0f356a9e11e359d94f",
+  "base_before": "63ae06cd8a01edc85899b850352b740cc952d477",
+  "created_at": "2026-10-31T10:15:29Z",
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w64:pT",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-10-30T04-57-01-538Z_01a18b2b-1f62-77e3-afd7-521445e9b3d9.jsonl",
+  "ticket": { "backend": "local-markdown", "id": "pi-shared-context-ux-07-feedback", "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md" },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": { "store": "repository", "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles", "ref": "workflows/pi-shared-context-ux-07-feedback" },
+  "evidence": { "store": "repository", "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011" },
+  "status": "started",
+  "recovery_mode": "takeover",
+  "takeover_authorization": {
+    "selection": "Resolve, review, then finish",
+    "scope": "Preserve the old reviewed tip, reconcile ticket branch with master, resolve conflicts, validate, run fresh independent review, and finish only after a new passing verdict"
+  },
+  "prior_reviewed_source_ref": "refs/archive/worktree/pi-shared-context-ux-07-feedback/review-0005",
+  "review_invalidated_on_source_change": true,
+  "inputs": [
+    { "kind": "ticket", "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md" },
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-07-feedback/events/finish-reconcile-failed-0010.json" },
+    { "kind": "review", "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-0005.md" }
+  ],
+  "outputs": [
+    { "kind": "receipt", "ref": "workflows/pi-shared-context-ux-07-feedback/events/source-reconcile-start-0011.json" }
+  ]
+}
