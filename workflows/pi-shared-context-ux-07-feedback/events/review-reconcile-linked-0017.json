@@ -1,0 +1,103 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+  "source_tree": "24209cbea354e15efcd34805596b7428993a8e99",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w64:pT",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-10-30T04-57-01-538Z_01a18b2b-1f62-77e3-afd7-521445e9b3d9.jsonl",
+  "receipt_id": "review-reconcile-linked-0017",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "review-reconcile-complete-0016",
+  "created_at": "2026-10-31T10:48:05.413Z",
+  "status": "completed",
+  "verdict": "FAILURE",
+  "review_artifact": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0014"
+  },
+  "findings": [
+    {
+      "id": "SPEC-01",
+      "severity": "P2",
+      "axis": "Spec",
+      "adr_reference": null,
+      "adr_reason": "No ADR entries; initiative Out of Scope excludes new workflow transition rules.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts",
+      "line": 108,
+      "description": "Shared progress classification broadens recovery accepted states new and to do from blocked to start/begin without approval when history is empty and source missing.",
+      "required_change": "Keep expanded progress classification but restore master recovery accepted-state boundary unless separately authorized.",
+      "validation_command": "mise exec -- bun -e 'import {recoveryDecision} from \"./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts\"; for(const status of [\"new\",\"to do\"]){const t={id:\"T\",ref:\"tracker/tickets/T.md\",status,blockedBy:[]}; console.log(status,recoveryDecision(t,{tickets:[t]},{ticketId:\"T\",receipts:[],inspection:{historyValid:true,source:{state:\"missing\"},ownership:\"inactive\",worktrees:[],commits:[],artifacts:[]}}));}'",
+      "blocking": true,
+      "blocking_reason": "Unapproved change to workflow transition boundary outside display ticket scope."
+    },
+    {
+      "id": "SPEC-02",
+      "severity": "P3",
+      "axis": "Spec",
+      "adr_reference": null,
+      "adr_reason": "No ADR entries; initiative requires accurate keyboard hints.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 783,
+      "description": "Action menu advertises c copy path but input guard excludes actions screen; smoke proved hint present and c leaves view unchanged.",
+      "required_change": "Suppress copy hint on action screen, matching input guard.",
+      "validation_command": "Read-only GraphExplorer smoke: load one Local Markdown initiative/ticket; send Enter then a; render; send c; render. Verify action footer omits c copy path after repair and normal list retains copy.",
+      "blocking": false,
+      "blocking_reason": "Not blocking alone; inaccurate shortcut fails discoverability requirement."
+    }
+  ],
+  "source_clean": true,
+  "source_identity_verified": true,
+  "recovery_mode": "reconcile",
+  "reconciliation_reason": "Carry the existing child-created immutable review artifact as a phase output on parent completion, following the existing review-complete-0006 convention. Earlier parent completion listed only its own receipt. No review or artifact is repeated, overwritten or reinterpreted.",
+  "child_result": "review-reconcile-0015",
+  "authorization": "User selected Resolve, review, then finish",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-complete-0016.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0015.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-linked-0017.json"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md",
+      "origin_receipt": "review-reconcile-0015"
+    }
+  ],
+  "next_phase": "fix"
+}

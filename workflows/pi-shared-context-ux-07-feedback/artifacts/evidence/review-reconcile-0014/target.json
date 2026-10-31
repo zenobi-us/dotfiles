@@ -1,0 +1,30 @@
+{
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow_ref": "workflows/pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "source_commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+  "source_tree": "24209cbea354e15efcd34805596b7428993a8e99",
+  "base_branch": "master",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "implementation_receipt": "workflows/pi-shared-context-ux-07-feedback/events/implementation-reconcile-0012.json",
+  "parent_completion": "workflows/pi-shared-context-ux-07-feedback/events/source-reconcile-complete-0013.json",
+  "draft_snapshot": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-implementation-reconcile-0012.md",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_clean_observed": true,
+  "history_valid_observed": true,
+  "source_agents_observed": [],
+  "implementation_pane_closed": "w8Z:p2",
+  "independent_review_axes": ["Standards", "Spec"],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/docs/USAGE.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts"
+  ],
+  "review_receipt": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0015.json",
+  "review_artifact": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md"
+}

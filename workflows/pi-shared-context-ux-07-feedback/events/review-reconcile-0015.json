@@ -1,0 +1,189 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-reconcile-0015",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "phase": "review",
+  "event": "phase-result",
+  "attempt": 2,
+  "parent_receipt": "review-reconcile-start-0014",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "source_commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+  "source_tree": "24209cbea354e15efcd34805596b7428993a8e99",
+  "created_at": "2026-10-31T10:42:50.743512Z",
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w8Z:p3",
+  "session_id": "01a19189-02d9-720a-bde1-8731d4905ea9",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0014"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0014/target.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/implementation-reconcile-0012.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/source-reconcile-complete-0013.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-start-0014.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-implementation-reconcile-0012.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/validation-results.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/capture-manifest.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/termscope-protocol-complete.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/modal-harness-source.txt"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0015.json"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md"
+    }
+  ],
+  "status": "completed",
+  "verdict": "FAILURE",
+  "review_artifact": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md",
+  "findings": [
+    {
+      "id": "SPEC-01",
+      "severity": "P2",
+      "axis": "Spec",
+      "adr_reference": null,
+      "adr_reason": "No ADR entries; initiative Out of Scope excludes new workflow transition rules.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts",
+      "line": 108,
+      "description": "Shared progress classification broadens recovery accepted states new and to do from blocked to start/begin without approval when history is empty and source missing.",
+      "required_change": "Keep expanded progress classification but restore master recovery accepted-state boundary unless separately authorized.",
+      "validation_command": "mise exec -- bun -e 'import {recoveryDecision} from \"./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts\"; for(const status of [\"new\",\"to do\"]){const t={id:\"T\",ref:\"tracker/tickets/T.md\",status,blockedBy:[]}; console.log(status,recoveryDecision(t,{tickets:[t]},{ticketId:\"T\",receipts:[],inspection:{historyValid:true,source:{state:\"missing\"},ownership:\"inactive\",worktrees:[],commits:[],artifacts:[]}}));}'",
+      "blocking": true,
+      "blocking_reason": "Unapproved change to workflow transition boundary outside display ticket scope."
+    },
+    {
+      "id": "SPEC-02",
+      "severity": "P3",
+      "axis": "Spec",
+      "adr_reference": null,
+      "adr_reason": "No ADR entries; initiative requires accurate keyboard hints.",
+      "file": "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+      "line": 783,
+      "description": "Action menu advertises c copy path but input guard excludes actions screen; smoke proved hint present and c leaves view unchanged.",
+      "required_change": "Suppress copy hint on action screen, matching input guard.",
+      "validation_command": "Read-only GraphExplorer smoke: load one Local Markdown initiative/ticket; send Enter then a; render; send c; render. Verify action footer omits c copy path after repair and normal list retains copy.",
+      "blocking": false,
+      "blocking_reason": "Not blocking alone; inaccurate shortcut fails discoverability requirement."
+    }
+  ],
+  "independent_reviewers": [
+    {
+      "axis": "Standards",
+      "pane_id": "w8Z:p4",
+      "session_id": "01a19189-f44b-753a-85b1-80a31c3b4239",
+      "run_id": "674e6c64-0ec0-444a-91c8-1390091f260c",
+      "completion_signal": {
+        "state": "completed",
+        "sequence": 2,
+        "source": "agent",
+        "timestamp": "2026-10-31T10:39:54.422Z"
+      },
+      "findings": 0,
+      "closed": true
+    },
+    {
+      "axis": "Spec",
+      "pane_id": "w8Z:p5",
+      "session_id": "01a1918a-328a-758a-aad7-c320114dc032",
+      "run_id": "b232849f-9b94-424a-a77c-9083c933519f",
+      "completion_signal": {
+        "agent_status": "done",
+        "completion_seq": 1378,
+        "source": "herdr agent wait w8Z:p5"
+      },
+      "transport_limit": "Router spawn timed out after live launch; waited existing pane, no duplicate owner.",
+      "findings": 2,
+      "closed": true
+    }
+  ],
+  "source_clean": true,
+  "source_verification": {
+    "command": "git rev-parse HEAD HEAD^{tree} && git status --porcelain",
+    "outcome": "Frozen commit/tree matched; status empty at entry; source unchanged by reviewers."
+  },
+  "validation": [
+    {
+      "kind": "recorded",
+      "result": "132 tests/2056 assertions/12 files passed; affected-source typecheck passed; full bundle has unrelated wait.ts errors"
+    },
+    {
+      "kind": "review-owner-runtime",
+      "result": "Base/current recovery comparison proved new and to do change blocked to start/begin without approval."
+    },
+    {
+      "kind": "review-owner-runtime",
+      "result": "GraphExplorer action-menu smoke: advertisesCopy true, unchanged true, execs 0."
+    },
+    {
+      "kind": "standards-runtime",
+      "result": "Invalid history blocked worktree actions despite retained successful review and finishVerified; untouched aliases retained dirty takeover checks."
+    }
+  ],
+  "limits": [
+    "No suites/build/lint/typecheck/formatters rerun.",
+    "Recorded Pi evidence; no fresh modal rerun during review.",
+    "Clipboard bytes not freshly verified; native readback timed out.",
+    "No native PNGs; fallback-theme HTML does not prove distinct backgrounds.",
+    "Progress/hosted cases are labeled fixtures; actual phase launch not exercised."
+  ],
+  "recovery_mode": "retry",
+  "authorization": "User selected Resolve, review, then finish; fresh review after source reconciliation."
+}
