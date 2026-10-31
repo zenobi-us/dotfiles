@@ -19,6 +19,13 @@ function reviewed(verdict: "SUCCESS" | "FAILURE"): TicketWorkflow {
   return workflow([review], { artifacts: [{ receiptId: review.id, ref: review.outputs[0]!, state: "readable", matchesSource: true }] });
 }
 
+test("untouched tracker aliases allow a new start without takeover", () => {
+  const state = workflow([], { source: { state: "missing" }, ownership: "inactive" });
+  for (const status of ["open", "todo", "to do", "new", "backlog", "queued", "unclaimed", "ready"]) {
+    expect(recoveryDecision({ ...ticket, status }, snapshot, state)).toMatchObject({ action: "start", mode: "begin", requiredApproval: false });
+  }
+});
+
 test("claimed, implemented, and merged tracker states never prove phase completion", () => {
   for (const status of ["claimed", "implemented", "merged"]) {
     const selected = { ...ticket, status };

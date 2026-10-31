@@ -180,3 +180,5 @@ Press `c` on a canonical initiative or Local Markdown ticket to copy its absolut
 Initiative progress counts executable tickets, not research or planning records. It shows `todo` before work starts, `completed` when every ticket is complete, and `X/Y completed` otherwise. Started work with no completed tickets shows `0/Y completed`. Empty initiatives show `todo`.
 
 
+
+Progress and recovery share the untouched-state classification: `open`, `todo`, `to do`, `new`, `backlog`, `queued`, `unclaimed`, and `ready`. The states `implemented`, `merged`, and `reviewed` mean work has started; they do not mean completed. A malformed event remains inspectable and does not hide valid events from the same workflow.

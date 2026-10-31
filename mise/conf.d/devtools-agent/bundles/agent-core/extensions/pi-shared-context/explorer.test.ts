@@ -368,6 +368,8 @@ test("initiative progress distinguishes untouched, started, mixed and completed 
   for (const [statuses, expected] of [
     [["unclaimed", "open", "todo"], "todo"],
     [["new", "to do", "ready"], "todo"],
+    [["queued", "backlog", "ready"], "todo"],
+    [["implemented", "merged", "reviewed"], "0/3 completed"],
     [["claimed", "open", "unclaimed"], "0/3 completed"],
     [["completed", "claimed", "open"], "1/3 completed"],
     [["completed", "closed", "done"], "completed"],

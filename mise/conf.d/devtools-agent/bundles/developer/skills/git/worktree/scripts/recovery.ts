@@ -105,10 +105,14 @@ export function recoveryDecision(ticket: Ticket, snapshot: { tickets: Ticket[] }
     if (!implementation) return decision("start", "reconcile", "Reconcile start outcome", "Start lifecycle completion alone does not prove implementation. Inspect the child outcome and actual source before recording a product result.", unknownOwner);
   }
   if (latest && ["implementation", "start", "fix"].includes(latest.phase)) return decision("review", "begin", "Review implementation", "Implementation history is available. Review the current clean source in a fresh session; implementation is not completion.", unknownOwner);
-  if (!latest && !["open", "ready", "todo", "backlog", "queued", "unclaimed", "claimed", "in_progress", "in-progress", "implemented", "merged", "reviewed"].includes(ticket.status.trim().toLowerCase())) return decision(undefined, "blocked", "Inspect tracker state", "The tracker state is unknown. Resolve its meaning through the ticket adapter before starting work.");
+  if (!latest && !isUnstarted(ticket) && !["claimed", "in_progress", "in-progress", "implemented", "merged", "reviewed"].includes(ticket.status.trim().toLowerCase())) return decision(undefined, "blocked", "Inspect tracker state", "The tracker state is unknown. Resolve its meaning through the ticket adapter before starting work.");
   if (inspection?.commits.length || inspection?.inventoryError || inspection?.commitsError || source?.state === "available" || source?.error || source?.candidates) return decision("start", "takeover", "Inspect existing work", "Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only commits do not prove implementation. Preserve changes and resolve ownership before takeover.", true);
   if (["claimed", "in_progress", "in-progress", "implemented", "merged", "reviewed"].includes(ticket.status.trim().toLowerCase())) return decision("start", "takeover", "Recover ticket context", "Tracker state alone does not prove a phase result. Inspect the existing branch, workflow, and owner before a scoped takeover.", true);
   return decision("start", "begin", "Start work", "No validated implementation history was found. Resolve ownership and active reservations before starting.", unknownOwner);
+}
+
+export function isUnstarted(ticket: { status: string }): boolean {
+  return ["open", "todo", "to do", "new", "backlog", "queued", "unclaimed", "ready"].includes(ticket.status.trim().toLowerCase());
 }
 
 function completed(ticket: Ticket): boolean {
