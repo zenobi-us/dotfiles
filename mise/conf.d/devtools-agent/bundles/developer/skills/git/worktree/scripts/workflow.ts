@@ -1,5 +1,6 @@
 // Owns the shared read-only tracker adapter and receipt validator for CLI and UI.
-import { lstat, readdir, realpath, stat } from "node:fs/promises";
+import { lstat, readFile, readdir, realpath, stat } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
@@ -72,14 +73,18 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   await contained(record.root, record.path);
   const events = join(record.path, "events");
   if (!await exists(events)) { result.inspection!.historyValid = true; return result; }
+  const documents = new Map<string, Document>();
   for (const file of await files(events, /\.(md|yaml|yml|json)$/)) {
+   documents.set(file, await document(file, record.root, exec));
+  }
+  const supplements = await historySupplements(documents, record, context, workflowId);
+  for (const [file, doc] of documents) {
    const ref = `${record.ref}/events/${relative(events, file).split("\\").join("/")}`;
    const event: ExplorerEvent = { id: ref, ref };
    result.events!.push(event);
    try {
-    const doc = await document(file, record.root, exec);
-    const fields = doc.fields;
-    event.fields = fields;
+    const fields = supplements.get(file) ?? doc.fields;
+    event.fields = doc.fields;
     event.body = doc.body;
     if (fields.schema !== "worktree-receipt/v1") throw new Error("Event must use schema worktree-receipt/v1.");
     if (fields.workflow_id !== workflowId) throw new Error("Receipt workflow_id does not match the selected ticket.");
@@ -188,6 +193,52 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   delete result.sourceTree;
  }
  return result;
+}
+
+async function historySupplements(
+ documents: Map<string, Document>,
+ record: { root: string; ref: string },
+ context: SharedAgentContext,
+ workflowId: string,
+): Promise<Map<string, Fields>> {
+ const effective = new Map<string, Fields>();
+ const evidenceRoot = await resolveContextRecord(context, { kind: "evidence", workflow: workflowId, run: "history-repair" });
+ for (const [holder, doc] of documents) {
+  if (doc.fields.history_supplements == null) continue;
+  text(doc.fields.history_repair_reason, "history repair reason");
+  text(doc.fields.history_repair_authorization, "history repair authorization");
+  const inputs = references(doc.fields.inputs, "history repair inputs");
+  for (const value of list(doc.fields.history_supplements, "history supplements")) {
+   const supplement = object(value, "history supplement");
+   if (Object.keys(supplement).some(key => !["ref", "sha256", "evidence", "normalize_workflow_root"].includes(key))) throw new Error("History supplements may only supply missing evidence or normalize a historical workflow root.");
+   const ref = text(supplement.ref, "history supplement ref");
+   const file = join(record.root, ref);
+   const original = documents.get(file);
+   if (!original || file === holder || !inputs.includes(ref)) throw new Error("History supplement must reference an earlier receipt in its inputs and current event collection.");
+   if (effective.has(file)) throw new Error("Duplicate history supplement target.");
+   if (!(Date.parse(String(original.fields.created_at)) < Date.parse(String(doc.fields.created_at)))) throw new Error("History supplement must follow its target.");
+   const digest = createHash("sha256").update(await readFile(file)).digest("hex");
+   if (supplement.sha256 !== digest) throw new Error(`History supplement checksum mismatch: ${ref}`);
+   const fields = { ...original.fields };
+   if (supplement.evidence != null) {
+    if (fields.evidence != null) throw new Error("History supplements cannot replace existing evidence.");
+    const evidence = object(supplement.evidence, "supplement evidence");
+    const evidenceRef = text(evidence.ref, "supplement evidence ref");
+    if (evidence.store !== evidenceRoot.store || !evidenceRoot.root || !evidenceRoot.path || isAbsolute(evidenceRef)) throw new Error("Supplement evidence must use the resolved evidence store and a relative ref.");
+    await contained(dirname(evidenceRoot.path), join(evidenceRoot.root, evidenceRef));
+    fields.evidence = evidence;
+   }
+   if (supplement.normalize_workflow_root != null) {
+    if (supplement.normalize_workflow_root !== true) throw new Error("normalize_workflow_root must be true.");
+    const workflow = object(fields.workflow, "historical workflow");
+    if (workflow.store !== "repository" || workflow.ref !== record.ref || workflow.root !== fields.worktree || workflow.root === record.root || fields.repository !== context.repositoryRoot) throw new Error("Only a historical repository-worktree workflow root can be normalized.");
+    fields.workflow = { ...workflow, root: record.root };
+   }
+   if (supplement.evidence == null && supplement.normalize_workflow_root == null) throw new Error("History supplement has no envelope repair.");
+   effective.set(file, fields);
+  }
+ }
+ return effective;
 }
 
 async function localSnapshot(context: SharedAgentContext, exec: Exec): Promise<ExplorerSnapshot> {

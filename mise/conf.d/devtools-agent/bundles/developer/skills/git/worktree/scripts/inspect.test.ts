@@ -1,6 +1,7 @@
 // Uses disposable Git repositories; inspection itself must not write workflow or source state.
 import { afterEach, expect, test } from "bun:test";
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -152,4 +153,58 @@ test("submission verification requires the exact PR head, base and non-closed pu
   expect((await inspectWorkflow(context, ticket, workflow, observed)).submission?.verified).toBe(false);
   pullRequest = { ...pullRequest, headRefName: "main" };
   expect((await inspectWorkflow(context, ticket, workflow, observed)).submission?.verified).toBe(true);
+});
+
+test("checksum-bound history supplements repair envelopes without rewriting receipts or losing parents", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  await put(join(root, ".git/info/exclude"), "/workflows/\n");
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const workflowRoot = "workflows/T-1";
+  const evidence = { store: "repository", ref: `${workflowRoot}/artifacts/evidence/recorded.json` };
+  await put(join(root, evidence.ref), '{"observed":true}\n');
+  const common = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", pane_id: "1", agent: "pi", session_id: null,
+    ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
+    workflow: { root, store: "repository", ref: workflowRoot }, inputs: [], outputs: [],
+  };
+  const historicalRoot = join(root, "old-worktree");
+  const original = JSON.stringify({ ...common, worktree: historicalRoot, workspace_path: historicalRoot, workflow: { ...common.workflow, root: historicalRoot }, receipt_id: "implementation-1", parent_receipt: null, phase: "implementation", event: "phase-result", status: "completed", created_at: "2026-10-01T00:00:00Z" });
+  const target = `${workflowRoot}/events/implementation-1.json`;
+  await put(join(root, target), original);
+  const readOnly: Exec = async (command, args, cwd) => command === "wt" ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) } : exec(command, args, cwd);
+  expect((await loadTicketWorkflow(context, ticket, readOnly)).inspection?.historyValid).toBe(false);
+  const supplement = { ref: target, sha256: createHash("sha256").update(original).digest("hex"), evidence, normalize_workflow_root: true };
+  const repair = {
+    ...common, receipt_id: "repair-2", parent_receipt: "implementation-1", phase: "fix", event: "history-reconciled", status: "completed",
+    created_at: "2026-10-02T00:00:00Z", evidence, inputs: [{ kind: "receipt", ref: target }],
+    history_supplements: [supplement],
+    history_repair_reason: "Recover missing historical evidence from its retained record.",
+    history_repair_authorization: "Explicit fixture repair request.",
+  };
+  const repairPath = join(root, workflowRoot, "events/repair-2.json");
+  await put(repairPath, JSON.stringify(repair));
+  let workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow)).toMatchObject({ mode: "begin", action: "review" });
+  expect(await readFile(join(root, target), "utf8")).toBe(original);
+  expect(workflow.events?.find(event => event.ref === target)?.fields?.evidence).toBeUndefined();
+  for (const invalid of [
+    { ...supplement, sha256: "0".repeat(64) },
+    { ...supplement, source_commit: "f".repeat(40) },
+    { ...supplement, parent_receipt: null },
+    { ...supplement, evidence: { store: "repository", ref: "../outside" } },
+    { ...supplement, evidence: { store: "repository", ref: `${workflowRoot}/artifacts/evidence/missing.json` } },
+  ]) {
+    await put(repairPath, JSON.stringify({ ...repair, history_supplements: [invalid] }));
+    workflow = await loadTicketWorkflow(context, ticket, readOnly);
+    expect(workflow.inspection?.historyValid).toBe(false);
+    expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow).mode).toBe("blocked");
+  }
+  await put(repairPath, JSON.stringify({ ...repair, parent_receipt: "missing-parent" }));
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.inspection?.historyValid).toBe(false);
+  expect(workflow.error).toContain("Missing receipt parent");
 });

@@ -76,6 +76,17 @@ A valid result without parent completion is reconciled, not rerun. Missing/unusa
 
 For every recovery attempt append provenance to new receipts: consumed receipts and artifacts in `inputs`, prior attempt/parent reference, observed source and session identities, recovery mode/reason, ownership and approval evidence, validation and actual outcomes. Preserve older receipts and partial source. Do not rewrite an abandoned attempt, invent an evidence run, or add recovery frontmatter to tickets. Shared-context resolves locations; it does not prove workflow existence. Recovery never runs storage `init` or `migrate`.
 
+## Append-only envelope repair
+
+An explicitly authorized history repair may restore missing receipts from retained source-worktree or Git records. Create byte-identical copies with exclusive writes; record their source and SHA-256. Preserve every original receipt and parent link.
+
+To supplement a malformed historical envelope, append a normal `worktree-receipt/v1` receipt with a valid parent and current source identity. Record `history_repair_reason`, `history_repair_authorization`, and `history_supplements`. List each target in `inputs`. Each supplement contains its root-relative event `ref`, exact original-byte `sha256`, and either or both of:
+
+- `evidence`: the missing `{store, ref}` envelope. It must identify an existing object in the independently resolved evidence store under this workflow. Preserve the recorded evidence; do not invent an execution.
+- `normalize_workflow_root: true`: normalize a historical repository-worktree store root to the current workflow store root. The original root must equal the recorded worktree; repository, store and workflow reference must already match.
+
+The inspector validates supplements before constructing the parent graph. Targets must be older event files in this collection. Duplicate targets, changed checksums, missing evidence objects, replacements of existing evidence and other field changes block inspection. Source commit/tree, verdict, status, ticket identity and parent links cannot be supplemented. Raw event fields remain available beside the validated effective receipt view. The supplement holder must itself pass normal receipt validation. A repair is not a new implementation, review verdict, or authorization to take over a live session.
+
 ## Receipt fields
 
 Copy `workflow.store`, `workflow.root`, and `workflow.ref` from the corresponding
