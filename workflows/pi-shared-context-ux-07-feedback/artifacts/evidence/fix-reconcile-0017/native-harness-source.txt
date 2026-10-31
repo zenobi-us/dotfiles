@@ -1,0 +1,14 @@
+import type { ExtensionAPI } from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core/node_modules/@earendil-works/pi-coding-agent/dist/index.js';
+import { GraphExplorer } from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts';
+import { SharedContextModal } from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/modal.ts';
+import { resolveSharedContext } from '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts';
+export default function(pi: ExtensionAPI) { pi.registerCommand('fix-smoke',{description:'Labeled shortcut fixture',handler:async(_args,ctx)=>{
+const exec=async(command:string,args:string[],cwd=ctx.cwd)=>{const r=await pi.exec(command,args,{cwd});return {stdout:r.stdout,code:r.code};};
+const context=await resolveSharedContext(exec,'/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles');
+await ctx.ui.custom((tui,theme,_keys,done)=>{
+const tickets=['new','to do'].map((status,i)=>({id:`fixture-${i}`,title:`Shortcut fixture ${status}`,ref:`tracker/tickets/fixture-${i}.md`,backend:'local-markdown',status,blockedBy:[],body:'Controlled fixture; not a repository record.'}));
+const tracker=new GraphExplorer({context:context!,exec,theme,done,requestRender:()=>tui.requestRender(),height:()=>35,commands:()=>pi.getCommands(),live:false,loadSnapshot:async()=>({backend:'local-markdown',tickets,initiatives:[{id:'fixture',title:'Shortcut smoke fixture',ref:'tracker/initiatives/fixture/index.md',ticketIds:tickets.map(t=>t.id),body:'Controlled shortcut fixture.'}]}),loadWorkflow:async(_c,ticket)=>({ticketId:ticket.id,receipts:[]})});
+const modal=new SharedContextModal(context!,theme,tracker,{render:()=>[],handleInput:()=>{}},()=>tui.requestRender());void tracker.load();
+return {render:(width:number)=>modal.render(width),handleInput:(data:string)=>{void modal.handleInput(data);},invalidate(){},dispose(){tracker.dispose();}};
+},{overlay:true,overlayOptions:{anchor:'center',width:'95%',maxHeight:'95%'}});
+}});}

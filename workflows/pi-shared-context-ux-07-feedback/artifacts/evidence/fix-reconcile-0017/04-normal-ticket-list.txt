@@ -1,0 +1,54 @@
+=== TERMSCOPE ===
+cols=160 rows=50 cursor=41:159 screen=alternate title="π - feat-pi-shared-context-ux-07-feedback"
+
+=== TEXT ===
+[001] 
+[002]  ▀▀█  v1.4.0
+[003]  █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more
+[004]  Press ctrl+o to show full startup help.
+[005] 
+[006]  Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.
+[007]     ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[008]     │ Projects · Repo > Dotfiles                                                                                                                           │
+[009]     │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                         │
+[010]     ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011]     │ Initiatives  >  Shortcut smoke fixture                                                                                                               │
+[012]     │ [d] Full description                                                                                                                                 │
+[013]     │> fixture · Items 2                                                                                                                                   │
+[014]     ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[015]     │ fixture · Phase: unavailable                                                                                                                         │
+[016]     │ Summary: Controlled shortcut fixture.                                                                                                                │
+[017]     │>[Ticket · typ…  fixture-0         Shortcut fixture new                                                                             State: new        │
+[018]     │ Type: Ticket · type unspecified                                                                                                                      │
+[019]     │ tracker/tickets/fixture-0.md                                                                                                                         │
+[020]     │                                                                                                                                                      │
+[021]     │ [Ticket · typ…  fixture-1         Shortcut fixture to do                                                                           State: to do      │
+[022]     │ Type: Ticket · type unspecified                                                                                                                      │
+[023]     │ tracker/tickets/fixture-1.md                                                                                                                         │
+[024]     │                                                                                                                                                      │
+[025]     │                                                                                                                                                      │
+[026]     │                                                                                                                                                      │
+[027]     │                                                                                                                                                      │
+[028]     │                                                                                                                                                      │
+[029]     │                                                                                                                                                      │
+[030]     │                                                                                                                                                      │
+[031]     │                                                                                                                                                      │
+[032]     │                                                                                                                                                      │
+[033]     │                                                                                                                                                      │
+[034]     │                                                                                                                                                      │
+[035]     │                                                                                                                                                      │
+[036]     │                                                                                                                                                      │
+[037]     │                                                                                                                                                      │
+[038]     │                                                                                                                                                      │
+[039]     │                                                                                                                                                      │
+[040]     ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[041]     │ Summary: Controlled shortcut fixture.                                                                                                                │
+[042]     │ c copy path · Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                        │
+[043]     ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[044] 
+[045] 
+[046] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[047] 
+[048] ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[049] /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback (feat/pi-shared-context-ux-07-feedback)
+[050] $0.000 (sub) 0.0%/272k (auto)                                                                                                                   gpt-5.5 • medium

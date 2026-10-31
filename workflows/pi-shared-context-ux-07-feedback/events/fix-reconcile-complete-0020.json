@@ -1,0 +1,155 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w64:pT",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-10-30T04-57-01-538Z_01a18b2b-1f62-77e3-afd7-521445e9b3d9.jsonl",
+  "receipt_id": "fix-reconcile-complete-0020",
+  "phase": "fix",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "fix-reconcile-0019",
+  "created_at": "2026-10-31T10:57:12.956Z",
+  "status": "completed",
+  "recovery_mode": "reconcile",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017"
+  },
+  "consumed_review_receipts": [
+    "review-reconcile-0015",
+    "review-reconcile-linked-0017"
+  ],
+  "resolved_finding_ids": [
+    "SPEC-01",
+    "SPEC-02"
+  ],
+  "unresolved_finding_ids": [],
+  "child_result": "fix-reconcile-0019",
+  "source_clean": true,
+  "source_identity_verified": true,
+  "child_shutdown": {
+    "pane_id": "w8Z:p6",
+    "session_ref": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feat-pi-shared-context-ux-07-feedback--/2026-10-31T10-51-04-467Z_01a19195-9f93-7108-9dad-00b1f4137e17.jsonl",
+    "observed_status": "done",
+    "release_result": "ok"
+  },
+  "completion_signal": {
+    "run_id": "ba9868b3-f6bd-41c3-bfc2-00b6ea8e0b4c",
+    "sequence": 2,
+    "state": "completed",
+    "source": "agent",
+    "timestamp": "2026-10-31T10:56:16.212Z"
+  },
+  "validation": [
+    {
+      "command": "mise exec -- bun test ./extensions/pi-shared-context ../developer/skills/git/worktree/scripts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "result": "133 pass, 0 fail, 2063 assertions, 12 files"
+    },
+    {
+      "command": "mise exec -- bun x tsc --noEmit -p tsconfig.fix-smoke.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "result": "passed; temporary config removed",
+      "configuration": {
+        "extends": "./tsconfig.json",
+        "include": [
+          "extensions/pi-shared-context/**/*.ts",
+          "../developer/skills/git/worktree/scripts/**/*.ts",
+          "types/**/*.d.ts"
+        ]
+      }
+    },
+    {
+      "command": "mise exec -- bun /tmp/fix-feedback-smoke.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "canonical initial states begin; new/to do blocked; local/hosted action copy no-op and list hint capability assertions passed; temporary script removed"
+    },
+    {
+      "command": "termscope session --cols 160 --rows 50 -- bun <agent-core>/node_modules/@earendil-works/pi-coding-agent/dist/bundle/cli.js --no-session --no-tools --no-extensions -e /tmp/fix-feedback-native.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "result": "Pi 1.4.0 actual action menu and normal list observed; no hint in actions, c unchanged, list hint restored, aliases display todo; session closed; harness removed"
+    },
+    {
+      "command": "git commit -m \"fix(pi): correct tracker/tickets/pi-shared-context-ux-07-feedback.md\"",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "bundle-version staged hook passed"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} master; git merge-base master HEAD; git status --porcelain=v1",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "exact source identities recorded; clean source"
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import -I raw -F json <okf_parse and okf_validate> workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "[]"
+    }
+  ],
+  "evidence_limits": [
+    "Native Pi smoke uses labeled in-memory fixtures; text captures only, no PNG.",
+    "No clipboard byte readback: prior timeout was not retried.",
+    "No workflow phase launch, merge, push, tracker mutation, resource removal or projection update.",
+    "Known unrelated full-bundle wait.ts type errors were not rerun; affected-scope tsc passed.",
+    "LSP initialization failed: no workspace TypeScript installation; no exported API changes."
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-0019.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/validation-results.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/termscope-protocol.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-complete-0020.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md",
+      "origin_receipt": "fix-reconcile-0019"
+    }
+  ],
+  "authorization": "User selected Resolve, review, then finish",
+  "next_phase": "review"
+}

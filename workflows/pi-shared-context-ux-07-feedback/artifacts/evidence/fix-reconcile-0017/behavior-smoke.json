@@ -1,0 +1,60 @@
+{
+  "results": [
+    {
+      "backend": "local-markdown",
+      "actionHint": false,
+      "actionCopyNoop": true,
+      "listHint": true,
+      "execs": 0
+    },
+    {
+      "backend": "github",
+      "actionHint": false,
+      "actionCopyNoop": true,
+      "listHint": false,
+      "execs": 0
+    }
+  ],
+  "recovery": [
+    {
+      "status": "open",
+      "action": "start",
+      "mode": "begin"
+    },
+    {
+      "status": "ready",
+      "action": "start",
+      "mode": "begin"
+    },
+    {
+      "status": "todo",
+      "action": "start",
+      "mode": "begin"
+    },
+    {
+      "status": "backlog",
+      "action": "start",
+      "mode": "begin"
+    },
+    {
+      "status": "queued",
+      "action": "start",
+      "mode": "begin"
+    },
+    {
+      "status": "unclaimed",
+      "action": "start",
+      "mode": "begin"
+    },
+    {
+      "status": "new",
+      "action": null,
+      "mode": "blocked"
+    },
+    {
+      "status": "to do",
+      "action": null,
+      "mode": "blocked"
+    }
+  ]
+}

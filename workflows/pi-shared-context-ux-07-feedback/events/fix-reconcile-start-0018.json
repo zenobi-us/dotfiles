@@ -1,0 +1,75 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+  "source_tree": "24209cbea354e15efcd34805596b7428993a8e99",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w64:pT",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-10-30T04-57-01-538Z_01a18b2b-1f62-77e3-afd7-521445e9b3d9.jsonl",
+  "receipt_id": "fix-reconcile-start-0018",
+  "phase": "fix",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "review-reconcile-linked-0017",
+  "created_at": "2026-10-31T10:49:39.373Z",
+  "status": "started",
+  "recovery_mode": "begin",
+  "consumed_review_receipts": [
+    "review-reconcile-0015",
+    "review-reconcile-linked-0017"
+  ],
+  "finding_ids": [
+    "SPEC-01"
+  ],
+  "related_acceptance_correction": "SPEC-02: align copy hint with existing action-screen guard",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017"
+  },
+  "authorization": "User selected Resolve, review, then finish; restore the original workflow boundary and satisfy existing keyboard-hint requirements before fresh review",
+  "source_clean": true,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-linked-0017.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0015.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/target.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-start-0018.json"
+    }
+  ],
+  "planned_result": "fix-reconcile-0019"
+}

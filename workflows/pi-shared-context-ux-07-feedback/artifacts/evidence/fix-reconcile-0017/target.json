@@ -1,0 +1,13 @@
+{
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "source_commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+  "source_tree": "24209cbea354e15efcd34805596b7428993a8e99",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "review_receipt": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0015.json",
+  "review_parent_completion": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-linked-0017.json",
+  "review_artifact": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md",
+  "selected_blocking_findings": ["SPEC-01"],
+  "related_acceptance_correction": "SPEC-02: match the copy hint to the existing action-screen input guard; required by the initiative keyboard-hint criterion",
+  "preserved_source_ref": "refs/archive/worktree/pi-shared-context-ux-07-feedback/review-reconcile-0015",
+  "scope": "Restore the previously approved recovery accepted-state boundary while preserving expanded display classification; correct the inactive copy hint. No new workflow rules or commands."
+}

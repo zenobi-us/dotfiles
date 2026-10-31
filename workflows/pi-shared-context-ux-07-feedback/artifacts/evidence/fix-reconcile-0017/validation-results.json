@@ -1,0 +1,64 @@
+{
+  "created_at": "2026-10-31T10:56:03.942345+00:00",
+  "source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "validation": [
+    {
+      "command": "mise exec -- bun test ./extensions/pi-shared-context ../developer/skills/git/worktree/scripts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "result": "133 pass, 0 fail, 2063 assertions, 12 files"
+    },
+    {
+      "command": "mise exec -- bun x tsc --noEmit -p tsconfig.fix-smoke.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "result": "passed; temporary config removed",
+      "configuration": {
+        "extends": "./tsconfig.json",
+        "include": [
+          "extensions/pi-shared-context/**/*.ts",
+          "../developer/skills/git/worktree/scripts/**/*.ts",
+          "types/**/*.d.ts"
+        ]
+      }
+    },
+    {
+      "command": "mise exec -- bun /tmp/fix-feedback-smoke.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "canonical initial states begin; new/to do blocked; local/hosted action copy no-op and list hint capability assertions passed; temporary script removed"
+    },
+    {
+      "command": "termscope session --cols 160 --rows 50 -- bun <agent-core>/node_modules/@earendil-works/pi-coding-agent/dist/bundle/cli.js --no-session --no-tools --no-extensions -e /tmp/fix-feedback-native.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "result": "Pi 1.4.0 actual action menu and normal list observed; no hint in actions, c unchanged, list hint restored, aliases display todo; session closed; harness removed"
+    },
+    {
+      "command": "git commit -m \"fix(pi): correct tracker/tickets/pi-shared-context-ux-07-feedback.md\"",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "bundle-version staged hook passed"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} master; git merge-base master HEAD; git status --porcelain=v1",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "exact source identities recorded; clean source"
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import -I raw -F json <okf_parse and okf_validate> workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "[]"
+    }
+  ],
+  "evidence_limits": [
+    "Native Pi smoke uses labeled in-memory fixtures; text captures only, no PNG.",
+    "No clipboard byte readback: prior timeout was not retried.",
+    "No workflow phase launch, merge, push, tracker mutation, resource removal or projection update.",
+    "Known unrelated full-bundle wait.ts type errors were not rerun; affected-scope tsc passed.",
+    "LSP initialization failed: no workspace TypeScript installation; no exported API changes."
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-reconcile-0019",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "phase": "fix",
+  "event": "phase-result",
+  "attempt": 1,
+  "parent_receipt": "fix-reconcile-start-0018",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "created_at": "2026-10-31T10:56:03.942512+00:00",
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w8Z:p6",
+  "session_id": null,
+  "run_id": "ba9868b3-f6bd-41c3-bfc2-00b6ea8e0b4c",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017"
+  },
+  "status": "completed",
+  "consumed_review_receipts": [
+    "review-reconcile-0015",
+    "review-reconcile-linked-0017"
+  ],
+  "resolved_finding_ids": [
+    "SPEC-01",
+    "SPEC-02"
+  ],
+  "unresolved_finding_ids": [],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/docs/USAGE.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts"
+  ],
+  "summary": "Restore exact master initial recovery boundary while retaining expanded progress classification; suppress inactive copy hint only in action menus. Semantic regressions, actual native Pi smoke and scoped checks pass. Fresh independent review remains required.",
+  "prior_target": {
+    "commit": "b0cfa8812032fd61dfe90971514fec6e925f645f",
+    "tree": "24209cbea354e15efcd34805596b7428993a8e99"
+  },
+  "new_target": {
+    "commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+    "tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c"
+  },
+  "source_clean": true,
+  "validation": [
+    {
+      "command": "mise exec -- bun test ./extensions/pi-shared-context ../developer/skills/git/worktree/scripts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "result": "133 pass, 0 fail, 2063 assertions, 12 files"
+    },
+    {
+      "command": "mise exec -- bun x tsc --noEmit -p tsconfig.fix-smoke.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "result": "passed; temporary config removed",
+      "configuration": {
+        "extends": "./tsconfig.json",
+        "include": [
+          "extensions/pi-shared-context/**/*.ts",
+          "../developer/skills/git/worktree/scripts/**/*.ts",
+          "types/**/*.d.ts"
+        ]
+      }
+    },
+    {
+      "command": "mise exec -- bun /tmp/fix-feedback-smoke.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "canonical initial states begin; new/to do blocked; local/hosted action copy no-op and list hint capability assertions passed; temporary script removed"
+    },
+    {
+      "command": "termscope session --cols 160 --rows 50 -- bun <agent-core>/node_modules/@earendil-works/pi-coding-agent/dist/bundle/cli.js --no-session --no-tools --no-extensions -e /tmp/fix-feedback-native.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "result": "Pi 1.4.0 actual action menu and normal list observed; no hint in actions, c unchanged, list hint restored, aliases display todo; session closed; harness removed"
+    },
+    {
+      "command": "git commit -m \"fix(pi): correct tracker/tickets/pi-shared-context-ux-07-feedback.md\"",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "bundle-version staged hook passed"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} master; git merge-base master HEAD; git status --porcelain=v1",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+      "exit_code": 0,
+      "result": "exact source identities recorded; clean source"
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import -I raw -F json <okf_parse and okf_validate> workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "[]"
+    }
+  ],
+  "snapshot_ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md",
+  "evidence_limits": [
+    "Native Pi smoke uses labeled in-memory fixtures; text captures only, no PNG.",
+    "No clipboard byte readback: prior timeout was not retried.",
+    "No workflow phase launch, merge, push, tracker mutation, resource removal or projection update.",
+    "Known unrelated full-bundle wait.ts type errors were not rerun; affected-scope tsc passed.",
+    "LSP initialization failed: no workspace TypeScript installation; no exported API changes."
+  ],
+  "marker_result": "WORKTREE_FIX_DONE",
+  "authorization": "Fresh authorized fixer handoff; parent phase-start fix-reconcile-start-0018 already exists. This is that dispatched child, not a takeover or new fixer.",
+  "inspection_observation": "Read-only inspection sees the already-dispatched phase-start as interrupted fix/takeover with approval required; no additional start, owner or session was created. Parent handoff and own w8Z:p6 identify the authorized in-flight child.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-start-0018.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0015.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-linked-0017.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/target.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/modal-harness-source.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/source-reconcile-0011/validation-results.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-0019.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md"
+    },
+    {
+      "kind": "source-commit",
+      "ref": "75e4ba2e7ff18479992382e8df84f53380615f42"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/validation-results.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/behavior-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/native-harness-source.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/termscope-protocol.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/01-initiative-list.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/02-action-menu.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/03-action-copy-noop.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/04-normal-ticket-list.txt"
+    }
+  ]
+}
