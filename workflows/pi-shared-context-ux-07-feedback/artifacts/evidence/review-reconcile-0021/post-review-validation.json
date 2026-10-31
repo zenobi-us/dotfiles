@@ -1,0 +1,22 @@
+{
+  "source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "created_at": "2026-10-31T11:06:58.529Z",
+  "command": "mise exec -- bun test ./extensions/pi-shared-context/explorer.test.ts ../developer/skills/git/worktree/scripts/recovery.test.ts",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback/mise/conf.d/devtools-agent/bundles/agent-core",
+  "exit_code": 0,
+  "tests": 41,
+  "failures": 0,
+  "assertions": 1354,
+  "files": 2,
+  "review": "review-reconcile-0022",
+  "child_pane_closed": "w8Z:p7",
+  "evidence_limits": [
+    "No fresh runtime during independent review; parent owns post-review checks",
+    "No fresh PNG for corrected source; actual body colour distinction unverified",
+    "No clipboard byte readback; prior timeout not retried",
+    "No actual workflow phase launch",
+    "Earlier source-reconcile-0011 captures remain pre-fix and are not fresh exact-source evidence",
+    "Known unrelated wait.ts full-bundle type errors not rerun"
+  ]
+}

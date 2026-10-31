@@ -1,0 +1,109 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w64:pT",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-10-30T04-57-01-538Z_01a18b2b-1f62-77e3-afd7-521445e9b3d9.jsonl",
+  "receipt_id": "review-reconcile-complete-0023",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "review-reconcile-0022",
+  "created_at": "2026-10-31T11:06:58.536Z",
+  "status": "completed",
+  "verdict": "SUCCESS",
+  "review_artifact": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0022.md",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0021"
+  },
+  "findings": [],
+  "resolved_prior_findings": [
+    "SPEC-01",
+    "SPEC-02"
+  ],
+  "source_clean": true,
+  "source_identity_verified": true,
+  "child_result": "review-reconcile-0022",
+  "child_shutdown": {
+    "pane_id": "w8Z:p7",
+    "session_ref": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feat-pi-shared-context-ux-07-feedback--/2026-10-31T10-59-34-282Z_01a1919d-670a-7053-bf85-f1c67a0d059c.jsonl",
+    "observed_status": "done",
+    "release_result": "ok"
+  },
+  "completion_signal": {
+    "run_id": "bd2e5e89-e958-4092-8445-7c678a0eed5d",
+    "sequence": 2,
+    "state": "completed",
+    "source": "agent",
+    "timestamp": "2026-10-31T11:03:34.117Z"
+  },
+  "validation": {
+    "command": "mise exec -- bun test ./extensions/pi-shared-context/explorer.test.ts ../developer/skills/git/worktree/scripts/recovery.test.ts",
+    "exit_code": 0,
+    "tests": 41,
+    "failures": 0,
+    "assertions": 1354,
+    "files": 2
+  },
+  "evidence_limits": [
+    "No fresh runtime during independent review; parent owns post-review checks",
+    "No fresh PNG for corrected source; actual body colour distinction unverified",
+    "No clipboard byte readback; prior timeout not retried",
+    "No actual workflow phase launch",
+    "Earlier source-reconcile-0011 captures remain pre-fix and are not fresh exact-source evidence",
+    "Known unrelated wait.ts full-bundle type errors not rerun"
+  ],
+  "authorization": "User selected Resolve, review, then finish",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0022.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0022.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0021/post-review-validation.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-complete-0023.json"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0022.md",
+      "origin_receipt": "review-reconcile-0022"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0021/post-review-validation.json"
+    }
+  ],
+  "next_phase": "finish"
+}

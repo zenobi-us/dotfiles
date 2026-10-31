@@ -1,0 +1,41 @@
+{
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow_ref": "workflows/pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "base_branch": "master",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "implementation_receipt": "workflows/pi-shared-context-ux-07-feedback/events/implementation-reconcile-0012.json",
+  "parent_completion": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-complete-0020.json",
+  "draft_snapshot": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_clean_observed": true,
+  "history_valid_observed": true,
+  "source_agents_observed": [],
+  "implementation_pane_closed": "w8Z:p6",
+  "independent_review_axes": [
+    "Standards",
+    "Spec"
+  ],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/docs/USAGE.md",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/events.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/explorer.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts"
+  ],
+  "review_receipt": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0022.json",
+  "review_artifact": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0022.md",
+  "fix_receipt": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-0019.json",
+  "consumed_failed_review": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0015.json",
+  "resolved_finding_ids": [
+    "SPEC-01",
+    "SPEC-02"
+  ],
+  "fix_evidence": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017",
+  "created_at": "2026-10-31T10:58:26.320Z"
+}

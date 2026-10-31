@@ -1,0 +1,190 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-reconcile-0022",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "phase": "review",
+  "event": "phase-result",
+  "attempt": 3,
+  "parent_receipt": "review-reconcile-start-0021",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "created_at": "2026-10-31T11:03:21.152Z",
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w8Z:p7",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feat-pi-shared-context-ux-07-feedback--/2026-10-31T10-59-34-282Z_01a1919d-670a-7053-bf85-f1c67a0d059c.jsonl",
+  "run_id": "bd2e5e89-e958-4092-8445-7c678a0eed5d",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0021"
+  },
+  "status": "completed",
+  "verdict": "SUCCESS",
+  "findings": [],
+  "finding_count": 0,
+  "resolved_prior_findings": [
+    "SPEC-01",
+    "SPEC-02"
+  ],
+  "blocking_reason": null,
+  "review_artifact": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0022.md",
+  "independent_sessions": [
+    {
+      "axis": "Standards",
+      "run_id": "f928055a-898c-413b-ad54-6b77c5d118c1",
+      "pane_id": "w8Z:p9",
+      "session_id": "01a1919e-65b0-70ba-81e5-9977f23305a8",
+      "completion": {
+        "sequence": 2,
+        "state": "completed",
+        "source": "agent",
+        "timestamp": "2026-10-31T11:01:32.609Z"
+      },
+      "shutdown": {
+        "observed_status": "completed",
+        "release_result": "ok",
+        "pane_closed": true
+      },
+      "finding_count": 0
+    },
+    {
+      "axis": "Spec",
+      "run_id": "95b316fe-6038-442c-b6ff-a0115ce543c6",
+      "pane_id": "w8Z:p8",
+      "session_id": "01a1919e-65d5-7459-8cd7-64a4ccd89b3e",
+      "completion": {
+        "sequence": 2,
+        "state": "completed",
+        "source": "agent",
+        "timestamp": "2026-10-31T11:02:01.935Z"
+      },
+      "shutdown": {
+        "observed_status": "completed",
+        "release_result": "ok",
+        "pane_closed": true
+      },
+      "finding_count": 0
+    }
+  ],
+  "source_clean": true,
+  "source_identity_verified": true,
+  "source_check": {
+    "command": "git status --porcelain=v1 && git rev-parse HEAD HEAD^{tree}",
+    "observed_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+    "observed_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+    "porcelain": "",
+    "timing": "After both independent sessions completed and their panes closed"
+  },
+  "inspection_observation": "Canonical inspector reports no workflow error and exact clean available source; its interrupted-review recommendation describes the parent-dispatched phase-start. This is that authorized dispatched owner, not a duplicate launch. Source-worktree copied routes were not accepted as authority.",
+  "validation": [
+    {
+      "command": "Canonical read-only inspect.ts tracker/tickets/pi-shared-context-ux-07-feedback.md --json",
+      "result": "No workflow error; exact clean source available; dispatched review-start observed"
+    },
+    {
+      "command": "mq okf_parse/okf_validate of immutable review artifact",
+      "result": [],
+      "exit_code": 0
+    },
+    {
+      "kind": "consumed-existing-evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/validation-results.json",
+      "result": "133 tests, 2063 assertions, 12 files passed; affected extension/worktree typecheck passed; not rerun during review"
+    }
+  ],
+  "evidence_limits": [
+    "No fresh runtime during independent review; parent owns post-review checks",
+    "No fresh PNG for corrected source; actual body colour distinction unverified",
+    "No clipboard byte readback; prior timeout not retried",
+    "No actual workflow phase launch",
+    "Earlier source-reconcile-0011 captures remain pre-fix and are not fresh exact-source evidence",
+    "Known unrelated wait.ts full-bundle type errors not rerun"
+  ],
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-shared-context-tui-ux-spec/index.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0021/target.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-start-0021.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-0019.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-complete-0020.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0015.json"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0015.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/validation-results.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/behavior-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/termscope-protocol.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/native-harness-source.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/01-initiative-list.txt"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/fix-reconcile-0017/02-action-menu.txt"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-0022.json"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0022.md"
+    }
+  ],
+  "marker_result": "WORKTREE_REVIEW_DONE"
+}

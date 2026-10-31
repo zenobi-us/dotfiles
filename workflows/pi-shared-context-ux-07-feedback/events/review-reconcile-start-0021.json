@@ -1,0 +1,69 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-shared-context-ux-07-feedback",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feat-pi-shared-context-ux-07-feedback",
+  "source_branch": "feat/pi-shared-context-ux-07-feedback",
+  "base_branch": "master",
+  "source_commit": "75e4ba2e7ff18479992382e8df84f53380615f42",
+  "source_tree": "0ed7813b64078f610c57f845520d1440f1ba2a7c",
+  "base_commit": "188d65733aca442f860b18d323cf6db03bad1744",
+  "merge_base": "188d65733aca442f860b18d323cf6db03bad1744",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-shared-context-ux-07-feedback",
+    "ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-shared-context-ux-07-feedback.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-shared-context-ux-07-feedback"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "pane_id": "w64:pT",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-10-30T04-57-01-538Z_01a18b2b-1f62-77e3-afd7-521445e9b3d9.jsonl",
+  "receipt_id": "review-reconcile-start-0021",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 3,
+  "parent_receipt": "fix-reconcile-complete-0020",
+  "created_at": "2026-10-31T10:58:26.327Z",
+  "status": "started",
+  "source_clean": true,
+  "recovery_mode": "retry",
+  "recovery_reason": "Fresh independent review after SPEC-01 and SPEC-02 correction; prior verdict invalidated by new exact source",
+  "authorization": "User selected Resolve, review, then finish",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0021"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-complete-0020.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/fix-reconcile-0019.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/snapshots/pr-draft-fix-reconcile-0019.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/artifacts/evidence/review-reconcile-0021/target.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-shared-context-ux-07-feedback/events/review-reconcile-start-0021.json"
+    }
+  ],
+  "planned_result": "review-reconcile-0022",
+  "planned_artifact": "workflows/pi-shared-context-ux-07-feedback/artifacts/reviews/review-review-reconcile-0022.md"
+}
