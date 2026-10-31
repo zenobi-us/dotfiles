@@ -19,10 +19,19 @@ function reviewed(verdict: "SUCCESS" | "FAILURE"): TicketWorkflow {
   return workflow([review], { artifacts: [{ receiptId: review.id, ref: review.outputs[0]!, state: "readable", matchesSource: true }] });
 }
 
-test("untouched tracker aliases allow a new start without takeover", () => {
+test("canonical untouched tracker states allow a new start without takeover", () => {
   const state = workflow([], { source: { state: "missing" }, ownership: "inactive" });
-  for (const status of ["open", "todo", "to do", "new", "backlog", "queued", "unclaimed", "ready"]) {
+  for (const status of ["open", "todo", "backlog", "queued", "unclaimed", "ready", " READY "]) {
     expect(recoveryDecision({ ...ticket, status }, snapshot, state)).toMatchObject({ action: "start", mode: "begin", requiredApproval: false });
+  }
+});
+
+test("progress-only aliases do not authorize an initial workflow action", () => {
+  const state = workflow([], { source: { state: "missing" }, ownership: "inactive" });
+  for (const status of ["new", "to do", " NEW ", " TO DO "]) {
+    const decision = recoveryDecision({ ...ticket, status }, snapshot, state);
+    expect(decision.mode).toBe("blocked");
+    expect(decision.action).toBeUndefined();
   }
 });
 

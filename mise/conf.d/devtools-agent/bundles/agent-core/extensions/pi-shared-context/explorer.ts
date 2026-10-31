@@ -780,7 +780,7 @@ export class GraphExplorer {
       : "";
     const summary = this.screen === "initiatives" ? this.initiative()?.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line)) : undefined;
     const status = this.error || this.refreshError || this.notice || this.workflow()?.error || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
-    const copyHint = this.copyTarget() ? "c copy path · " : "";
+    const copyHint = this.screen !== "actions" && this.copyTarget() ? "c copy path · " : "";
     const keys = copyHint + (compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh");
     if (compact) {
       if (control) this.controlHits.push({ x: 0, y: 1, width: visibleWidth(control), action: "description" });
