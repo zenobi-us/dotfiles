@@ -216,3 +216,5 @@ The user approved the test boundary: modal behavior tests and terminal checks.
 
 - [Track ongoing shared-context UX feedback](../../tickets/pi-shared-context-ux-07-feedback.md)
 
+
+- [Route prototype tickets to the prototype skill](../../tickets/pi-shared-context-ux-08-prototypes.md)
