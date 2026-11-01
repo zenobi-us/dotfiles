@@ -27,6 +27,72 @@ Follow the parent initiative specification. Keep its scope limits and approved i
 
 ## Comments
 
+### Independent cable-free diagnostic review — 2026-11-02
+
+**Ticket:** `tracker/tickets/pi-ink-bridge-01-pen-prototype.md`. **Branch:** `master`. **Reviewed HEAD and baseline:** `def4cedd8aac6590172b3ac1a82a47fe2be9760f`. **Timestamp:** `2026-11-01T23:20:13.173Z` (UTC).
+
+**Scope:** Committed changes since the baseline (empty), staged changes (empty), unstaged tracker updates, and the three JSON evidence files under `workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001/`. No permanent source changes.
+
+#### Review history
+
+The first independent Standards and Spec reviews requested two corrections. The update inserted the new experiment comment inside an earlier review paragraph as well as under the actual Comments heading. It also overstated all disconnected listing errors as `no route to host`, although the first selected listing timed out. Both defects were corrected. Two fresh independent sessions reviewed the corrected worktree. The earlier reviews and failed experiments remain intact.
+
+#### Standards
+
+**Verdict:** PASS. Findings: 0 documented-standard breaches; 0 actionable possible-smell findings.
+
+Both previous defects are corrected. The new experiment heading occurs once. The earlier review and all subsequent text match baseline `def4cedd8aac6590172b3ac1a82a47fe2be9760f` through mq. Both tails produce SHA-256 `851058a05383414b45bb0c0a4d491e25509d2ffb8bf6e3c33a4605663b255599`.
+
+The samples record a timeout for the first disconnected listing attempt. Later selected listing attempts report `no route to host`. The ticket, initiative, and findings now distinguish these outcomes.
+
+The scoped changes follow `docs/agents/issue-tracker.md`. Experiment updates sit under the Comments heading, and the ticket retains `work_status: claimed`. Production blockers and prior quality-gate failures remain intact.
+
+The three evidence files are internally consistent. Selected disconnected reports show both USB controllers not attached, no USB IPv4 address, and continued LAN reporting. Selected export and synthetic-import attempts report `no route to host`; loopback attempts report connection refusal. Restoration records successful remote Stop, an inactive unit, and removal of temporary files.
+
+No credentials, document titles, PDF payloads, or private document-store contents appear in the inspected evidence. LAN addresses and document identifiers remain visible. Diagnostic HTTPS polling is temporary, not a replacement production transport. Findings limit conclusions to the tested endpoints and firmware.
+
+Only selected reports remain. The 116-report aggregate, authentication checks, recorded build/test results, and device cleanup cannot be independently re-established from those samples alone. This review checked consistency, not device state.
+
+#### Spec
+
+**Evidence verdict:** PASS. The follow-on cable-free diagnostic request is satisfied. No new specification findings or scope creep were found.
+
+Both record corrections are verified. The ticket tail starting at the earlier stock-editor review matches the baseline byte-for-byte through mq and cmp. The new experiment heading occurs once. Findings, ticket, and initiative distinguish the initial listing timeout from later selected routing errors.
+
+Sequence 1 establishes connected HTTP 200 listing/export. Sequence 103 shows both USB controllers detached, no 10.11.99.1 address, a listing timeout, export routing failure, and continued Wi-Fi reporting. Sequence 108 records the LAN-commanded import failure. Sequence 116 confirms continued disconnected reporting.
+
+The retained totals report 116 samples, including 14 disconnected samples. Only selected reports remain. They support the failure modes but do not independently reproduce every aggregate count.
+
+The restoration record reports `REMOTE_STOP_ACCEPTED`, successful inactive service state, removed temporary files, active Xochitl/rm-sync, and an unchanged stock binary. This review did not independently inspect the tablet. The conclusion applies only to the tested endpoints on firmware 3.28.0.172. It does not establish that every Xochitl integration is impossible.
+
+**Implementation acceptance:** NOT PASSED. The completed diagnostic does not complete the ticket or approve production.
+
+The initiative requires: “Normal use must not require SSH, a USB connection, or manual file transfers.” Outbound LAN reporting passes this diagnostic. Safe cable-independent document import/export remains blocked.
+
+Ticket criteria still require sidebar integration, observation of pen latency and palm handling, and source-coordinate checks through display scaling and orientation changes. The research also requires explicit Send, draft-save separation, cancellation, and document ownership checks. This diagnostic does not satisfy those requirements or clear the earlier quality-gate failure. Keep the ticket claimed and all production blockers.
+
+#### Review validation
+
+All four review sessions were read-only. They ran no tests, builds, lint, formatters, edits, commits, or device commands. Execution validation appears in the findings: the ARM64 build and Go vet passed; the existing annotation suite passed 7 tests with 39 assertions and 0 failures.
+
+**Review counts:** Two initial record defects were corrected. Final Standards: 0 findings. Final Spec: 0 new diagnostic findings; implementation acceptance remains not passed.
+
+### Autonomous cable-free document test — 2026-11-02
+
+**Result:** Outbound authenticated LAN communication works without USB or SSH. The existing USB-bound Xochitl document interface fails without USB on firmware 3.28.0.172. This resolves the earlier inconclusive transport check for these endpoints, not for every possible stock-editor integration. Keep `work_status: claimed` and all production blockers.
+
+**Evidence:** [Findings](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001/findings.json) and [selected raw reports](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001/samples.json). The selected reports preserve the connected baseline, first disconnected sample, explicit import result, and final sample. Repeated reports are omitted.
+
+The user confirmed that SSH works only while USB is connected. The existing claim and approved scoped takeover remain unchanged. Cable-connected SSH installed a temporary ARM64 background process and private server trust. After installation, the tablet fetched commands and sent reports through certificate-verified, authenticated HTTPS over Wi-Fi. No SSH command ran during the cable-free test. No sidebar app was needed. This polling control belongs only to the diagnostic probe, not the production WebSocket protocol.
+
+The desktop received 116 reports: 102 with USB configured and 14 with both USB controllers not attached. All disconnected reports arrived from the tablet Wi-Fi address. The connected baseline returned HTTP 200 for the document list and known-document PDF export. After USB removal, the tablet lost 10.11.99.1. All 14 disconnected listing and export attempts failed. The first selected listing attempt timed out while awaiting headers; later selected listing attempts reported `no route to host`. The selected export attempts reported `no route to host`. The localhost document endpoint returned `connection refused`. A single synthetic PDF import, commanded over the LAN after disconnection, also failed with `no route to host`. Recorded status 0 means no HTTP response, not an HTTP code.
+
+The desktop then sent Stop over the LAN. The user reconnected USB only for cleanup verification, after all results were already on the desktop. The journal confirmed `REMOTE_STOP_ACCEPTED`; the unit was inactive with a successful result; its temporary directory was absent. Xochitl and rm-sync remained active. The stock binary hash was unchanged. No binary patch, network-setting change, private document-store access, account change, or new renderer was attempted. The original annotated document remains.
+
+The ARM64 build and Go vet passed. The full existing annotation suite passed: 7 tests, 0 failures, 39 assertions across 2 files. No permanent source or tests were added.
+
+**Decision:** Establish a safe cable-independent on-tablet import/export interface before the stock-editor adapter or sidebar job client proceeds. Preserve the existing no-SSH normal-use contract. Programmatic opening, tablet Send, production ownership, cancellation, recovery, and the pen-quality acceptance limits remain unresolved.
+
 ### Independent stock-editor review — 2026-11-02
 
 **Ticket:** `tracker/tickets/pi-ink-bridge-01-pen-prototype.md`. **Branch:** `master`. **Reviewed HEAD:** `3c901287fd8029bb2e469d5b050e82ffb4d374fe`. **Baseline:** `91f23fbc98e99d5bc2288ff5e7e98ce7147fcd30`. **Timestamp:** `2026-11-01T22:29:50.639Z` (UTC).

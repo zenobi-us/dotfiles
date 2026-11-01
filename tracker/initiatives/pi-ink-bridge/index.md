@@ -194,6 +194,15 @@ The user supplied this proposed tablet client UI. It shows the disconnected stat
 
 ## Comments
 
+### Cable-free document interface result — 2026-11-02
+
+The [autonomous LAN probe](../../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001/findings.json) received authenticated tablet reports with USB disconnected and without SSH. It confirms that the outbound LAN connection works. The existing USB-address document API does not work without USB on firmware 3.28.0.172: listing timed out or failed with `no route to host`; the selected export attempts and synthetic import failed with `no route to host`. The localhost endpoint refused connections. This result replaces the earlier inconclusive check for those endpoints only.
+
+SSH remains limited to cable-connected installation and repair. It is not a client/server runtime path. The probe used it only for installation and later cleanup verification, after the test results and Stop command had crossed the LAN. Temporary tablet files were removed automatically on exit, and cleanup was verified. Xochitl remained active and unchanged.
+
+A safe cable-independent local import/export interface remains a prerequisite for the stock-editor adapter. Do not expose the unprotected stock document API on the LAN, patch the stock binary, or create a custom drawing program as an implied next step. Production blockers remain unchanged.
+
+
 ### Stock editor feasibility result — 2026-11-02
 
 The [stock-editor experiment](../../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/findings.json) imported a synthetic image-backed PDF and returned an annotated PNG at the source dimensions through Xochitl. The user opened the document manually. The experiment used LAN HTTPS for source and result bytes, with SSH for temporary setup and command execution. It did not implement the adapter or prove normal operation without USB or SSH.

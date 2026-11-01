@@ -1,0 +1,147 @@
+{
+  "report_count": 116,
+  "connected_report_count": 102,
+  "disconnected_report_count": 14,
+  "selection": "First connected report, first fully disconnected report, explicit import report, and final report. Repeated reports are omitted.",
+  "connected_baseline": {
+    "at": "2026-11-01T23:02:54.370801563Z",
+    "sequence": 1,
+    "command": 1,
+    "usb": {
+      "ci_hdrc.0": "configured",
+      "ci_hdrc.1": "not attached"
+    },
+    "addresses": [
+      "lo 127.0.0.1/8",
+      "lo ::1/128",
+      "wlan0 192.168.86.128/24",
+      "wlan0 fe80::2fa7:f9f9:dd82:9e15/64",
+      "usb1 10.11.99.1/27",
+      "usb1 fe80::98bd:3aff:fe12:a00/64"
+    ],
+    "documents": {
+      "10.11.99.1": {
+        "status": 200,
+        "bytes": 3597
+      },
+      "127.0.0.1": {
+        "status": 0,
+        "bytes": 0,
+        "error": "Get \"http://127.0.0.1/documents/\": dial tcp 127.0.0.1:80: connect: connection refused"
+      }
+    },
+    "export": {
+      "status": 200,
+      "bytes": 59229,
+      "sha256": "70709cd64e9a6d6ea61b3ef1435fd0b93ce2e39ad1bf7d845936606357dfcbfa"
+    },
+    "peerIP": "192.168.86.128"
+  },
+  "first_disconnected": {
+    "at": "2026-11-01T23:08:41.539972338Z",
+    "sequence": 103,
+    "command": 1,
+    "usb": {
+      "ci_hdrc.0": "not attached",
+      "ci_hdrc.1": "not attached"
+    },
+    "addresses": [
+      "lo 127.0.0.1/8",
+      "lo ::1/128",
+      "wlan0 192.168.86.128/24",
+      "wlan0 fe80::2fa7:f9f9:dd82:9e15/64",
+      "usb1 fe80::98bd:3aff:fe12:a00/64"
+    ],
+    "documents": {
+      "10.11.99.1": {
+        "status": 0,
+        "bytes": 0,
+        "error": "Get \"http://10.11.99.1/documents/\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+      },
+      "127.0.0.1": {
+        "status": 0,
+        "bytes": 0,
+        "error": "Get \"http://127.0.0.1/documents/\": dial tcp 127.0.0.1:80: connect: connection refused"
+      }
+    },
+    "export": {
+      "status": 0,
+      "bytes": 0,
+      "error": "Get \"http://10.11.99.1/download/fc2a3c9b-feea-40d1-9ac1-a8327f10edba/pdf\": dial tcp 10.11.99.1:80: connect: no route to host"
+    },
+    "peerIP": "192.168.86.128"
+  },
+  "disconnected_import": {
+    "at": "2026-11-01T23:09:05.486352181Z",
+    "sequence": 108,
+    "command": 2,
+    "usb": {
+      "ci_hdrc.0": "not attached",
+      "ci_hdrc.1": "not attached"
+    },
+    "addresses": [
+      "lo 127.0.0.1/8",
+      "lo ::1/128",
+      "wlan0 192.168.86.128/24",
+      "wlan0 fe80::2fa7:f9f9:dd82:9e15/64",
+      "usb1 fe80::98bd:3aff:fe12:a00/64"
+    ],
+    "documents": {
+      "10.11.99.1": {
+        "status": 0,
+        "bytes": 0,
+        "error": "Get \"http://10.11.99.1/documents/\": dial tcp 10.11.99.1:80: connect: no route to host"
+      },
+      "127.0.0.1": {
+        "status": 0,
+        "bytes": 0,
+        "error": "Get \"http://127.0.0.1/documents/\": dial tcp 127.0.0.1:80: connect: connection refused"
+      }
+    },
+    "export": {
+      "status": 0,
+      "bytes": 0,
+      "error": "Get \"http://10.11.99.1/download/fc2a3c9b-feea-40d1-9ac1-a8327f10edba/pdf\": dial tcp 10.11.99.1:80: connect: no route to host"
+    },
+    "import": {
+      "status": 0,
+      "bytes": 0,
+      "error": "Post \"http://10.11.99.1/upload\": dial tcp 10.11.99.1:80: connect: no route to host"
+    },
+    "peerIP": "192.168.86.128"
+  },
+  "final_report": {
+    "at": "2026-11-01T23:09:39.689661387Z",
+    "sequence": 116,
+    "command": 2,
+    "usb": {
+      "ci_hdrc.0": "not attached",
+      "ci_hdrc.1": "not attached"
+    },
+    "addresses": [
+      "lo 127.0.0.1/8",
+      "lo ::1/128",
+      "wlan0 192.168.86.128/24",
+      "wlan0 fe80::2fa7:f9f9:dd82:9e15/64",
+      "usb1 fe80::98bd:3aff:fe12:a00/64"
+    ],
+    "documents": {
+      "10.11.99.1": {
+        "status": 0,
+        "bytes": 0,
+        "error": "Get \"http://10.11.99.1/documents/\": dial tcp 10.11.99.1:80: connect: no route to host"
+      },
+      "127.0.0.1": {
+        "status": 0,
+        "bytes": 0,
+        "error": "Get \"http://127.0.0.1/documents/\": dial tcp 127.0.0.1:80: connect: connection refused"
+      }
+    },
+    "export": {
+      "status": 0,
+      "bytes": 0,
+      "error": "Get \"http://10.11.99.1/download/fc2a3c9b-feea-40d1-9ac1-a8327f10edba/pdf\": dial tcp 10.11.99.1:80: connect: no route to host"
+    },
+    "peerIP": "192.168.86.128"
+  }
+}

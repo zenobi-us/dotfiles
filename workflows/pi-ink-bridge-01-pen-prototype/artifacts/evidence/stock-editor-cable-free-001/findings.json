@@ -1,0 +1,58 @@
+{
+  "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "experiment": "stock-editor-cable-free-001",
+  "recorded_date": "2026-11-02",
+  "device_clock_date": "2026-11-01",
+  "firmware_tested": "3.28.0.172",
+  "purpose": "Test the existing on-tablet Xochitl document interface without USB. Use authenticated outbound LAN HTTPS for control and reporting, not SSH.",
+  "ownership": "This session retained its previously approved scoped takeover and existing claimed ticket. The archived Canvas/AppLoad prototype and earlier evidence were preserved.",
+  "method": {
+    "installation": "Cable-connected SSH installed one temporary ARM64 Go process and its private server trust configuration. A transient systemd unit launched it independently of the SSH connection.",
+    "runtime": "The tablet initiated certificate-verified authenticated HTTPS requests to the desktop at 192.168.86.35:47832. It fetched control commands and posted reports. No inbound tablet port or Wi-Fi SSH connection was used.",
+    "sampling": "Every cycle recorded both USB controller states, interface addresses, document-list transport results, and a PDF export result. Reporting did not wait for a USB transition, unlike the earlier inconclusive probes.",
+    "local_endpoints": ["GET http://10.11.99.1/documents/", "GET http://127.0.0.1/documents/", "GET http://10.11.99.1/download/fc2a3c9b-feea-40d1-9ac1-a8327f10edba/pdf", "POST http://10.11.99.1/upload"],
+    "import": "After disconnected reports arrived, the desktop sent command sequence 2 over HTTPS. The tablet downloaded the existing synthetic PDF over authenticated HTTPS, verified its expected SHA-256, and attempted one multipart upload to the local Xochitl interface.",
+    "stop": "The desktop sent command sequence 3 over HTTPS. The tablet accepted the remote stop, exited successfully, and the transient unit removed the temporary tablet directory through ExecStopPost.",
+    "privacy": "Document-list response bodies were discarded. PDF export bytes were hashed on the tablet and discarded. Reports contained statuses, byte counts, hashes, USB state, and network addresses. No document titles, account credentials, raw notebook data, or exported PDF bytes were sent in reports. The import used only the previously approved synthetic PDF.",
+    "scope": "HTTPS control polling belongs only to this temporary diagnostic probe. It is not a production protocol implementation or an alternative to the initiative's required WebSocket and HTTPS contract."
+  },
+  "results": {
+    "reports_received": 116,
+    "connected_reports": 102,
+    "disconnected_reports": 14,
+    "report_peer": "192.168.86.128",
+    "connected_baseline": "With USB connected, the local document list and known-document PDF export returned HTTP 200. The export had 59229 bytes and SHA-256 70709cd64e9a6d6ea61b3ef1435fd0b93ce2e39ad1bf7d845936606357dfcbfa. This export was not transferred or rendered in this experiment.",
+    "usb_disconnected": "Both ci_hdrc.0 and ci_hdrc.1 reported not attached. The usb1 interface had no 10.11.99.1 IPv4 address. Authenticated reports continued to arrive from the tablet Wi-Fi address.",
+    "disconnected_listing": "The existing 10.11.99.1 document-list endpoint failed in all 14 disconnected samples. The first selected attempt timed out while awaiting headers; later selected attempts reported no route to host.",
+    "disconnected_export": "The existing 10.11.99.1 PDF export endpoint failed in all 14 disconnected samples. The selected disconnected export attempts reported no route to host.",
+    "loopback": "127.0.0.1:80 refused connections while USB was connected and disconnected.",
+    "disconnected_import": "The single LAN-commanded synthetic PDF import failed with no route to host. No successful import or new document was established.",
+    "transport_status_zero": "A recorded status of 0 means that no HTTP response was received. It is not an HTTP response code.",
+    "authentication": "An unauthenticated POST to the receiver's report endpoint returned HTTP 401. Authenticated control and report requests succeeded.",
+    "ssh_boundary": "No SSH command ran between probe installation and the completed cable-free test. After results reached the desktop and the LAN stop command was sent, the user reconnected USB only for cleanup verification.",
+    "cleanup": "Cable-connected SSH then confirmed REMOTE_STOP_ACCEPTED in the journal, a successful inactive unit, and absence of the temporary tablet directory. Xochitl and rm-sync remained active, and the stock Xochitl binary hash was unchanged."
+  },
+  "source_identity": {
+    "go_source_sha256": "f3f7c5f033bcbbf2bf8a69aaad2b660e03e3222103d66535f2331f0aa67fcbf8",
+    "arm64_executable_sha256": "0a49a7def01ba8719321d281023c6d6acc5e13aa4ae4c7417640146919ee9498",
+    "receiver_source_sha256": "0753ce20be5ed44b7224b919b0153bd93d1c28e5ceb19f3be3ae5e678df27bd9"
+  },
+  "verification": {
+    "arm64_build": "passed with CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build",
+    "go_vet": "passed",
+    "real_tablet_execution": "passed; received live HTTPS reports with USB disconnected",
+    "cable_free_existing_document_interface": "failed for the tested USB-address and loopback endpoints",
+    "annotation_extension_suite": {"passed": 7, "failed": 0, "assertions": 39, "files": 2},
+    "production_source_changes": false,
+    "permanent_tests_added": 0
+  },
+  "decision": "The existing USB-bound Xochitl web interface is not a cable-free adapter in its current configuration. The outbound LAN connection works. A safe cable-independent local import/export interface remains a prerequisite before the stock-editor adapter or sidebar job client can proceed.",
+  "limits": [
+    "This result applies to the tested existing interface on firmware 3.28.0.172. It does not prove that every possible stock-editor integration is impossible.",
+    "No binary patch, dummy interface, firewall change, private document-store access, cloud relay, account-setting change, or new renderer was attempted.",
+    "Programmatic document opening, sidebar controls, tablet Send, production pairing, cancellation, recovery, and request ownership were not implemented or validated.",
+    "No new pen-latency, palm-handling, edge-alignment, erasing, undo, zoom, or orientation test occurred. The earlier quality-gate failure remains recorded.",
+    "The original annotated stock document remains on the tablet. No document was deleted.",
+    "The ticket remains claimed and production work remains blocked."
+  ]
+}

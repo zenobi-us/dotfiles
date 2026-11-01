@@ -1,0 +1,20 @@
+{
+  "remote_stop": "The desktop sent stop command sequence 3 through the authenticated LAN control endpoint.",
+  "cleanup_verification_boundary": "After the test results reached the desktop, the user reconnected USB. SSH was used only to verify installation cleanup.",
+  "tablet_journal": ["REPORT_ACCEPTED sequence=111", "REPORT_ACCEPTED sequence=112", "REPORT_ACCEPTED sequence=113", "REPORT_ACCEPTED sequence=114", "REPORT_ACCEPTED sequence=115", "REPORT_ACCEPTED sequence=116", "REMOTE_STOP_ACCEPTED", "pi-ink-lan-probe.service: Deactivated successfully."],
+  "tablet_unit": {"Result": "success", "ActiveState": "inactive", "SubState": "dead"},
+  "tablet_temporary_directory": "absent; ExecStopPost removed it on process exit",
+  "desktop_receiver": "stopped through the managed process tool",
+  "desktop_temporary_sources_executable_certificates_and_credentials": "removed",
+  "xochitl": "active",
+  "rm_sync": "active",
+  "xochitl_sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+  "private_document_store_accessed": false,
+  "network_settings_changed": false,
+  "firewall_changed": false,
+  "account_settings_changed": false,
+  "stock_binary_changed": false,
+  "xovi_appload_enabled": false,
+  "synthetic_stock_document": "retained; no deletion attempted",
+  "ticket": "claimed; production blockers remain"
+}
