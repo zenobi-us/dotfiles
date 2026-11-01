@@ -1,0 +1,26 @@
+{
+  "tablet_original_service": {
+    "unit": "xochitl.service",
+    "state": "active",
+    "substate": "running",
+    "main_pid": 9650,
+    "restart_count": 0,
+    "environment": "MALLOC_ARENA_MAX=8",
+    "xovi_or_appload_in_process_maps": false
+  },
+  "temporary_tablet_app_removed": true,
+  "temporary_tablet_runtime_removed": true,
+  "temporary_systemd_ui_unit_removed": true,
+  "prototype_pen_backend_process_remaining": false,
+  "original_extension_sha256_values_unchanged": true,
+  "temporary_desktop_https_service": "stopped",
+  "teardown_failure": {
+    "probe_ui_result": "core-dump",
+    "signal": "11/SEGV",
+    "when": "The controlled stop unloaded the AppLoad frontend and its backend.",
+    "exact_cause": "Not established. No stack trace was available.",
+    "recovery": "The standalone probe unit's ExecStopPost action returned status 0 and started the original Xochitl service."
+  },
+  "quality_gate": "failed",
+  "remaining_decision": "Choose and verify a lower-latency drawing path and safe AppLoad teardown before production implementation."
+}

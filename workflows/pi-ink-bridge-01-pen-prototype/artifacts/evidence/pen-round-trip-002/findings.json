@@ -1,0 +1,71 @@
+{
+  "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "hardware": {
+    "model": "reMarkable Paper Pro",
+    "device_tree_model": "reMarkable Ferrari",
+    "architecture": "aarch64",
+    "firmware_tested": ["3.28.0.172"],
+    "qt": "6.10.3",
+    "xochitl_sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "pen_device": "Elan marker input",
+    "pen_input": "/dev/input/event2",
+    "pen_x_range": [0, 11180],
+    "pen_y_range": [0, 15340],
+    "pen_pressure_range": [0, 4096]
+  },
+  "extensions": {
+    "xovi": {
+      "version": "0.3.3",
+      "sha256": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446",
+      "version_evidence": "The installed SHA-256 matches the published aarch64 release asset digest.",
+      "release": "https://github.com/asivery/xovi/releases/tag/v0.3.3"
+    },
+    "appload": {
+      "version": "0.5.1",
+      "sha256": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+      "version_evidence": "Read the installed ELF EXTENSIONVERSION symbol using the XOVI version encoding."
+    },
+    "qt_resource_rebuilder_sha256": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f",
+    "qt_command_executor_sha256": "2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e"
+  },
+  "desktop": {
+    "go": "1.25.0",
+    "bun": "1.4.3",
+    "qt_resource_compiler": "6.11.2",
+    "resource_format": 1,
+    "tablet_curl": "8.11.0"
+  },
+  "observed_results": {
+    "native_pen_round_trip": "passed",
+    "source_and_result_dimensions": [800, 1000],
+    "first_round_trip": {"samples": 209, "changed_pixels": 1904, "matched_exported_samples": 209},
+    "second_round_trip": {"samples": 583, "changed_pixels": 2857, "matched_exported_samples": 583},
+    "source_pixels_preserved_except_red_ink": true,
+    "second_export_view": {"zoom": 0.7, "rotation_degrees": 90},
+    "scale_and_rotate_alignment": "The owner reported alignment at both settings and submitted the PNG.",
+    "palm_handling": "The owner reported no unwanted strokes or drawing interruption.",
+    "pen_latency": "The owner reported that pen latency is not usable.",
+    "pen_latency_milliseconds": null,
+    "quality_gate": "failed",
+    "supported_firmware_range_established": false,
+    "production_approved": false
+  },
+  "verification": {
+    "real_lan_verified_https_source_download": "passed",
+    "unauthenticated_image_http_status": 401,
+    "arm64_png_writer_source_sha256_round_trip": "passed",
+    "desktop_go_build_and_vet": "passed",
+    "arm64_pen_backend_build_and_vet": "passed",
+    "arm64_png_writer_build_and_vet": "passed",
+    "existing_annotation_extension_tests": {"passed": 7, "failed": 0, "assertions": 39, "files": 2},
+    "new_permanent_tests": 0
+  },
+  "limits": [
+    "This is a temporary prototype, not the production extension integration or shared service.",
+    "The quality gate failed. Do not start dependent production work.",
+    "The timing bottleneck was not profiled. The owner report is not a calibrated latency measurement.",
+    "Scale and Rotate refer to the client controls. System orientation lock remained unchanged.",
+    "Only firmware 3.28.0.172 was exercised. No firmware range passed the full quality gate.",
+    "The first isolated launcher omitted hashtab and crashed. A later launch also crashed before the standalone probe service was introduced."
+  ]
+}
