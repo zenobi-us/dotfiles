@@ -194,6 +194,11 @@ The user supplied this proposed tablet client UI. It shows the disconnected stat
 
 ## Comments
 
+### Latency research — 2026-11-02
+
+[Latency reduction research](latency-research.md) compares the built-in editor adapter, native rendering, and a diagnostic Canvas improvement. It recommends testing an image-backed PDF in Xochitl first. Local import, opening, and annotated export remain unverified. This is a research proposal, not an approved specification change. The pen-quality gate remains failed, and dependent production work remains blocked.
+
+
 The specification records the conversation workflow and the approved testing seam.
 
 
