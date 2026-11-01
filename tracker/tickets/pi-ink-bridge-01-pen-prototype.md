@@ -27,6 +27,66 @@ Follow the parent initiative specification. Keep its scope limits and approved i
 
 ## Comments
 
+### Independent stock-editor review — 2026-11-02
+
+**Ticket:** `tracker/tickets/pi-ink-bridge-01-pen-prototype.md`. **Branch:** `master`. **Reviewed HEAD:** `3c901287fd8029bb2e469d5b050e82ffb4d374fe`. **Baseline:** `91f23fbc98e99d5bc2288ff5e7e98ce7147fcd30`. **Timestamp:** `2026-11-01T22:29:50.639Z` (UTC).
+
+**Scope:** Committed approval changes since the baseline, staged changes (empty), unstaged tracker findings, and all ten files in `workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/`. No permanent source changes. Two independent review sessions inspected the worktree.
+
+#### Standards
+
+**Verdict:** PASS. Count: 0 documented-standard breaches; 0 actionable possible-smell findings.
+
+The ticket follows `docs/agents/issue-tracker.md`: it records updates under `## Comments` and retains `work_status: claimed`. The initiative records the experiment without declaring production completion.
+
+The changes preserve the earlier failed experiment and its blockers. They distinguish the successful manual annotation round trip from unverified normal-use API availability and programmatic opening. The cable logs support the stated inconclusive result: they show no disconnected HTTP outcome.
+
+The inspected PNGs contain a synthetic grid; the result adds visible handwriting. All three PDF hashes match `findings.json`. PDF inspection reports one 800 × 1000 page per file, without JavaScript or metadata streams. The annotated PDF has no embedded files or extractable text.
+
+No credentials appeared in the inspected evidence. `restoration.json` records removal of temporary code, credentials, and services. This review did not independently inspect the tablet or verify that cleanup.
+
+The reviewer applied the Fowler baseline as possible smells, not hard violations: Mysterious Name, Duplicated Code, Feature Envy, Data Clumps, Primitive Obsession, Repeated Switches, Shotgun Surgery, Divergent Change, Speculative Generality, Message Chains, Middle Man, and Refused Bequest. No actionable smell applies to this evidence-only change. No permanent source changes require refactoring. Truthful implementation limits are not standards failures.
+
+#### Spec
+
+**Evidence verdict:** SUCCESS for a truthful, partial feasibility result. **Implementation acceptance:** NOT PASSED.
+
+The evidence supports stock import, manual opening, real annotated export, and an 800 × 1000 PNG. The inspected PNG contains handwriting. The recorded comparison identifies 2,259 changed pixels against the unmarked export. It does not establish a completed adapter.
+
+Five acceptance limits remain:
+
+1. **Drawing quality:** Ticket criterion 3 requires: “Observe pen latency and palm handling during drawing.” Research also requires: “Check latency, palm handling, erasing, undo, zoom, and source alignment.” No explicit owner verdict or corresponding observations establish these checks. Selecting Send does not establish stock drawing performance.
+2. **Client integration:** Criterion 1 requires: “Open the temporary client through the proposed sidebar integration on a real Paper Pro.” The approval states: “the AppLoad client manages jobs and explicit Send.” AppLoad was not loaded; opening used the stock document list. Chat-authorized export proves explicit experimental consent, not a sidebar client or tablet Send implementation.
+3. **Cable-independent operation:** The initiative requires: “Normal use must not require SSH, a USB connection, or manual file transfers.” SSH invoked temporary commands. Cable-free probes produced no usable disconnected HTTP result. Safe programmatic opening also remains unverified. These are prerequisites, not proof that cable-free operation is impossible.
+4. **Geometry:** Criterion 4 requires: “Check source-image coordinates through display scaling and orientation changes.” Research requires: “Check margins, page rotation, and marks near the image edges.” Matching dimensions and page bounds establish only partial evidence. Edge, scaling, and orientation checks remain open.
+5. **Request semantics:** Research requires: “Verify that a draft save does not complete the request” and “Check cancellation, document ownership, and any cloud participation before expanding the experiment.” Manual orchestration does not prove adapter ownership, cancellation, or recovery. Actual cloud receipt remains unknown; permission covered only the synthetic PDF.
+
+No scope creep or incorrect implementation claim was found. Cleanup, retained prior failures, firmware limits, and production blockers are stated correctly. Keep the ticket claimed and production blocked.
+
+#### Review validation
+
+Both reviews were read-only. Neither reviewer ran tests, builds, lint, formatters, edits, commits, or device commands. The execution session ran the existing annotation suite: 7 tests passed, 0 failed, 39 assertions across 2 files. The reviewers did not rerun it.
+
+**Review counts:** Standards: 0 findings. Spec: 5 acceptance limits. The evidence record passes review; the adapter does not pass implementation acceptance.
+
+
+### Stock editor round trip — 2026-11-02
+
+**Result:** The stock-editor feasibility experiment imported the synthetic PDF and returned a real annotated PNG. This is not an implemented adapter or a quality-gate pass. Keep `work_status: claimed` and all production blockers.
+
+**Evidence:** [Findings](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/findings.json), [annotated PNG](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/result.png), [annotated PDF](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/result.pdf), and [cleanup](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/restoration.json).
+
+The tablet downloaded the generated image-backed PDF over authenticated, certificate-verified LAN HTTPS. Its existing Xochitl upload endpoint returned HTTP 201. The user opened the document manually in the normal document list. After drawing and closing it, the user explicitly selected Send in this conversation. Xochitl exported the annotation, and the tablet uploaded the PDF over authenticated LAN HTTPS. The rendered result has 800 × 1000 pixels. It differs from the unmarked exported baseline at 2,259 pixels. Source and export page bounds both remain [0, 0, 800, 1000]. The visible marks are not near the image edges.
+
+The first export had no pen marks. It remains as the unmarked comparison baseline, not annotated proof. No private document-store files were accessed. The user permitted only the synthetic test document to enter existing cloud synchronization. Actual cloud receipt was not checked.
+
+**Unresolved prerequisites:** Establish a cable-independent local document API and a safe document-opening interface. Implement the sidebar job manager and tablet Send action only after these prerequisites pass. The tested stock HTTP listener used the USB address. Cable-free checks were inconclusive because the probes did not obtain a disconnected HTTP sample. One probe observed removal of the USB address but could not find curl. The final probe used a verified absolute curl path but recorded no disconnected sample. Do not describe these limits as proof that cable-free export is impossible.
+
+SSH provisioned and invoked the temporary probe. Source and result bytes used LAN HTTPS. This does not prove normal operation without SSH or USB, production request isolation, cancellation, or saved-draft recovery. The user did not give an explicit latency or palm-handling verdict. Erasing, undo, zoom, edge alignment, and orientation remain unverified. Only firmware 3.28.0.172 was exercised.
+
+The existing annotation extension suite passed: 7 tests, 0 failures, 39 assertions across 2 files. No permanent source or tests were added. Temporary code, credentials, and services were removed. Xochitl and rm-sync remain active. The stock binary hash is unchanged. The annotated stock document remains on the tablet. AppLoad is not enabled; this experiment used the stock document list.
+
+
 ### Xochitl experiment takeover — 2026-11-02
 
 The user approved this session to take over this ticket for the first option in the latency research. Keep the existing failed experiment and all production blockers. Use the stock Xochitl editor, not a new drawing program. Prove safe local PDF import, document opening, and annotated export before production work.

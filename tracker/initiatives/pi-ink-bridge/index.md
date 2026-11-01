@@ -194,6 +194,13 @@ The user supplied this proposed tablet client UI. It shows the disconnected stat
 
 ## Comments
 
+### Stock editor feasibility result — 2026-11-02
+
+The [stock-editor experiment](../../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/findings.json) imported a synthetic image-backed PDF and returned an annotated PNG at the source dimensions through Xochitl. The user opened the document manually. The experiment used LAN HTTPS for source and result bytes, with SSH for temporary setup and command execution. It did not implement the adapter or prove normal operation without USB or SSH.
+
+Cable-independent local API availability and safe programmatic document opening remain prerequisites. The sidebar job manager and tablet Send action are not implemented. The quality gate and dependent production blockers remain unchanged. Temporary code and credentials were removed. Xochitl remains active without AppLoad.
+
+
 ### Stock editor experiment approved — 2026-11-02
 
 The user selected the first option in the latency research and approved takeover of the pen-prototype ticket. Test an image-backed PDF in the stock Xochitl editor. Do not build a custom drawing program. This approval permits the feasibility experiment, not production implementation.

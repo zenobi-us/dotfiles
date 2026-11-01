@@ -1,0 +1,56 @@
+{
+  "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "experiment": "stock-editor-round-trip-001",
+  "recorded_date": "2026-11-02",
+  "device_clock_date": "2026-11-01",
+  "hardware": {
+    "model": "reMarkable Paper Pro (reMarkable Ferrari)",
+    "firmware": "3.28.0.172",
+    "xochitl_sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "xochitl_environment": "MALLOC_ARENA_MAX=8",
+    "xovi_or_appload_loaded_for_experiment": false
+  },
+  "job": {
+    "id": "stock-editor-001",
+    "document_uuid": "fc2a3c9b-feea-40d1-9ac1-a8327f10edba",
+    "visible_name": "Pi Ink stock editor alignment 2026-11-02.pdf",
+    "source_dimensions": [800, 1000],
+    "source_page_bounds": [0, 0, 800, 1000],
+    "export_page_bounds": [0, 0, 800, 1000],
+    "export_rotation": 0,
+    "source_pdf_sha256": "ba5b3f78a6bc4900cae7f8e009d68f9628a3d25a0e234808bc8dfe71d9e7d1f5",
+    "unmarked_export_sha256": "bdfa88d430000ed30353c8bad3d7b41bc56d2e90b09d4107b8807401b0060591",
+    "annotated_export_sha256": "8c06230f1a7beca9860c72481ecf762a18a039f782dfd47b4d3b89033a087236"
+  },
+  "observed_results": {
+    "safe_import": "The tablet downloaded the synthetic PDF over authenticated, certificate-verified HTTPS on the LAN. On-tablet curl imported it through the existing Xochitl HTTP upload endpoint. HTTP 201 confirmed import. No private document-store files were accessed.",
+    "opening": "The user opened the imported document manually in the stock document list. No programmatic document-opening interface was established.",
+    "draft_and_send": "The probe has no callback on stock save or close. The user selected Send test annotation in this conversation before export. This is manual experiment orchestration, not a tablet Send action or production request-state proof.",
+    "first_export": "The first exported PDF contained only the grid. It was retained as the unmarked comparison baseline and was not accepted as annotated proof.",
+    "annotated_export": "The user then stated that drawing and closing were complete. A second on-tablet download through Xochitl's PDF export endpoint contained visible handwriting. The tablet uploaded this PDF over authenticated, certificate-verified HTTPS on the LAN. HTTP 204 confirmed receipt.",
+    "png": "Poppler pdftoppm rendered the exported page to 800 by 1000 pixels. Visual inspection shows handwriting over the source grid. Compared with the unmarked exported page rendered at 72 DPI, 2259 pixels differ, within inclusive bounds [170, 731, 426, 811].",
+    "authentication": "An unauthenticated HTTPS source request returned HTTP 401.",
+    "cloud": "rm-sync remained active. The user explicitly allowed the generated synthetic PDF to enter existing cloud synchronization. Actual cloud receipt was not verified. Account settings were unchanged.",
+    "cable_check": "The user reported completing each requested disconnect and reconnect. The first check used an unsuitable network carrier signal and did not detect disconnection. The second check observed USB disconnection through USB controller state. At that point the tablet had loopback and Wi-Fi addresses but no 10.11.99.1 address. Its curl checks did not execute because systemd's PATH omitted /home/root/.vellum/bin. The third check used the absolute curl path, which passed a separate systemd-run smoke check. It recorded only WAITING_FOR_USB_DISCONNECT before it was stopped; it captured no disconnected HTTP sample. No cable-free HTTP result was obtained.",
+    "wifi_web": "While USB was connected, HTTP requests to localhost:80 and the tablet Wi-Fi address:80 were refused. The stock HTTP listener was bound to 10.11.99.1:80.",
+    "stock_lifecycle": "Xochitl and rm-sync remained active. The Xochitl binary hash matches the prior experiment. No XOVI/AppLoad preload, binary patch, firewall change, account change, or private document-store edit was made."
+  },
+  "verification": {
+    "annotation_extension_suite": {"passed": 7, "failed": 0, "assertions": 39, "files": 2},
+    "pdf_page_and_crop_bounds": "passed for source and annotated export",
+    "real_pen_content_in_export": "passed",
+    "permanent_tests_added": 0,
+    "typecheck": "not run; no production source changes"
+  },
+  "limits": [
+    "This is a live feasibility experiment, not an implemented stock-editor adapter or production client.",
+    "Normal operation without USB or SSH remains unverified. SSH provisioned trust files and invoked the temporary on-tablet commands; source and result bytes used HTTPS over the LAN.",
+    "The cable-free checks were inconclusive. Do not report a missing sample or command-not-found output as HTTP failure. A cable-independent local API remains a prerequisite.",
+    "Programmatic opening, sidebar job management, a tablet Send action, pairing, cancellation, recovery, and production request isolation were not implemented or tested.",
+    "The visible handwriting is away from the image edges. Edge alignment, zoom, undo, erasing, and orientation behavior were not independently verified.",
+    "The user did not provide an explicit latency or palm-handling verdict for this stock-editor experiment. Selecting Send does not establish those observations.",
+    "The stock document is the editable draft. No independent editable-stroke export was tested.",
+    "Only firmware 3.28.0.172 was exercised. No supported firmware range or new quality-gate pass is established.",
+    "The previous Canvas/AppLoad failure and production blockers remain in effect. No fallback renderer was started."
+  ]
+}

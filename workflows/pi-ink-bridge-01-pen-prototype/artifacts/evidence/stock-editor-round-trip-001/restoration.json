@@ -1,0 +1,17 @@
+{
+  "desktop_transfer_server": "stopped through the managed process tool",
+  "desktop_temporary_code_credentials_and_runtime": "removed",
+  "tablet_temporary_code_credentials_and_runtime": "removed",
+  "temporary_probe_units": "all three inactive",
+  "xochitl": "active",
+  "rm_sync": "active",
+  "xochitl_sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+  "stock_binary_changed": false,
+  "account_settings_changed": false,
+  "firewall_changed": false,
+  "private_document_store_accessed": false,
+  "xovi_appload_enabled": false,
+  "synthetic_stock_document": "retained with the user's pen marks; no document deletion attempted",
+  "retained_evidence": "synthetic source PNG/PDF, unmarked export, annotated PDF/PNG, pixel comparison, cable-check logs, findings, and this restoration record",
+  "production_status": "not implemented; ticket remains claimed and dependent production work remains blocked"
+}
