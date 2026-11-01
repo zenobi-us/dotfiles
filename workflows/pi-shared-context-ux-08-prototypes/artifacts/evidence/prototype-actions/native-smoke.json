@@ -12,5 +12,5 @@
   "confirmationCancelled": true,
   "cancelledTo": "Initiative ticket list with the prototype selected",
   "prototypeExecuted": false,
-  "limitation": "No live model or hardware prototype was started. The canonical Paper Pro ticket remains outside this change."
+  "limitation": "The check did not start a model or a hardware prototype. The canonical Paper Pro ticket is outside this change. The local SVG preview collapses spaces; inspect the raw SVG for the terminal columns."
 }
