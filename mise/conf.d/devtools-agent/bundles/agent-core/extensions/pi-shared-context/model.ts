@@ -75,11 +75,11 @@ export type ExplorerTarget =
   | { kind: "initiative"; initiative: ExplorerInitiative }
   | { kind: "ticket"; ticket: ExplorerTicket };
 
-export type ExplorerAction = "ask-matt" | "to-tickets" | "grill" | "start" | "review" | "fix" | "finish" | "submit";
+export type ExplorerAction = "ask-matt" | "to-tickets" | "grill" | "prototype" | "start" | "review" | "fix" | "finish" | "submit";
 
 export interface ExplorerActionChoice {
   action: ExplorerAction;
-  key: "m" | "t" | "g" | "s" | "r" | "x" | "f" | "u";
+  key: "m" | "t" | "g" | "p" | "s" | "r" | "x" | "f" | "u";
   label: string;
   disabledReason?: string;
 }

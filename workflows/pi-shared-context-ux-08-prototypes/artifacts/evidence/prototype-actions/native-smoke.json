@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-11-01T04:49:30.987Z",
+  "runtime": "Pi 1.4.0 through termscope",
+  "fixture": "Isolated shallow repository copy; prototype type set only in the copy",
+  "fixtureRoot": "/tmp/pi-prototype-routing-n88YlF/repository",
+  "target": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "action": "prototype",
+  "visibleShortcut": "p",
+  "productionWorktreeActions": false,
+  "canonicalCommand": "/skill:prototype \"tracker/tickets/pi-ink-bridge-01-pen-prototype.md\"",
+  "confirmationDisplayed": true,
+  "confirmationCancelled": true,
+  "cancelledTo": "Initiative ticket list with the prototype selected",
+  "prototypeExecuted": false,
+  "limitation": "No live model or hardware prototype was started. The canonical Paper Pro ticket remains outside this change."
+}

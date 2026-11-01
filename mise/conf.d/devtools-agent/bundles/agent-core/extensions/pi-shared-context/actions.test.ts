@@ -102,6 +102,45 @@ describe("worktree recovery actions", () => {
   });
 });
 
+test("prototype tickets offer their skill without production transitions", () => {
+  const state = workflow([receipt(1, "review", { verdict: "SUCCESS" })]);
+  const registered = [...commands, { name: "skill:prototype" }];
+  for (const documentType of ["prototype", " PROTOTYPE "]) {
+    const selected: ExplorerTarget = { kind: "ticket", ticket: { ...ticket, documentType } };
+    const choices = actionChoices(selected, snapshot, state, registered);
+    expect(choices.find(choice => choice.action === "prototype")).toBeDefined();
+    expect(choices.find(choice => choice.action === "prototype")?.disabledReason).toBeUndefined();
+    expect(choices.find(choice => choice.action === "ask-matt")).toBeDefined();
+    expect(choices.some(choice => ["start", "review", "fix", "finish", "submit"].includes(choice.action))).toBe(false);
+    expect(actionChoices(selected, snapshot, state, commands).find(choice => choice.action === "prototype")?.disabledReason).toContain("skill:prototype");
+  }
+  for (const documentType of ["task", "research", "plan", "other"]) {
+    const selected: ExplorerTarget = { kind: "ticket", ticket: { ...ticket, documentType } };
+    expect(actionChoices(selected, snapshot, state, registered).some(choice => choice.action === "prototype")).toBe(false);
+  }
+  expect(enabled("finish", state)).toBe(true);
+});
+
+test("prototype launches reject removed commands and changed record types", async () => {
+  let opened = 0;
+  const ctx = {
+    waitForIdle: async () => { },
+    sessionManager: { getSessionFile: () => undefined },
+    newSession: async () => { opened++; return { cancelled: false }; },
+  } as unknown as ExtensionCommandContext;
+  for (const current of [
+    { documentType: "prototype", commands },
+    { documentType: "task", commands: [...commands, { name: "skill:prototype" }] },
+  ]) {
+    const selected: ExplorerTarget = { kind: "ticket", ticket: { ...ticket, documentType: current.documentType } };
+    const pi = { getCommands: () => current.commands, sendUserMessage: () => { } } as unknown as ExtensionAPI;
+    await expect(launchExplorerSession(pi, ctx, {
+      action: "prototype", target: selected, snapshot: { ...snapshot, tickets: [selected.ticket] }, prompt: "",
+    })).rejects.toThrow();
+  }
+  expect(opened).toBe(0);
+});
+
 describe("fresh-session boundaries", () => {
   test("missing skills disable their actions; synthetic groups cannot become planning initiatives", () => {
     const choices = actionChoices(target, snapshot, workflow([]), [{ name: "skill:ask-matt" }]);

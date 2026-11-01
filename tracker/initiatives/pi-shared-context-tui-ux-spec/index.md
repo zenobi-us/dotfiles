@@ -141,6 +141,9 @@ Provide focusable and clickable breadcrumbs. The Projects breadcrumb opens the s
 - An available Review action means ready for review. It does not mean that a review currently runs.
 - Display changed-file counts only when durable evidence supplies them. Do not infer counts from prose.
 - Retain the current action menu, prompt collection, fresh-chat confirmation, record revalidation, and unsent command behavior.
+- For canonical `type: prototype` records, display Ask Matt and `[p] Prototype`. Normalize type case and surrounding whitespace. Do not infer the type from an ID, title, or body.
+- The Prototype action prepares `/skill:prototype "<canonical-ticket-ref>"`. Retain optional prompt collection, fresh-chat confirmation, and canonical record revalidation. The prototype skill owns throwaway code and capture.
+- Prototype records do not receive production worktree actions, even when prior worktree evidence exists. If `skill:prototype` is unavailable, display the reason and do not open a chat.
 - Preserve existing copy and editor-insertion behavior. Do not create a tracker clipboard contract from the sketch alone.
 - Files remains independent. Do not add tracker-to-file links or file-to-tracker links.
 
