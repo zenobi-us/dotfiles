@@ -194,6 +194,15 @@ The user supplied this proposed tablet client UI. It shows the disconnected stat
 
 ## Comments
 
+### Stock editor experiment approved — 2026-11-02
+
+The user selected the first option in the latency research and approved takeover of the pen-prototype ticket. Test an image-backed PDF in the stock Xochitl editor. Do not build a custom drawing program. This approval permits the feasibility experiment, not production implementation.
+
+For this experiment, the AppLoad client manages jobs and explicit Send. Xochitl owns drawing and editable document saving. Prove local import, opening, annotated export, source bounds, and request ownership. Keep authenticated LAN transfer, explicit Send, cancellation, browser availability, and the PNG result contract. Do not edit private document files while Xochitl runs. Keep the failed pen-quality gate and dependent production blockers until hardware evidence supports a new decision.
+
+The user permits only the generated alignment PDF to enter existing cloud synchronization. Keep account settings unchanged. This permission does not authorize cloud transport or synchronization of project images.
+
+
 ### Latency research — 2026-11-02
 
 [Latency reduction research](latency-research.md) compares the built-in editor adapter, native rendering, and a diagnostic Canvas improvement. It recommends testing an image-backed PDF in Xochitl first. Local import, opening, and annotated export remain unverified. This is a research proposal, not an approved specification change. The pen-quality gate remains failed, and dependent production work remains blocked.

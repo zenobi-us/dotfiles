@@ -27,6 +27,15 @@ Follow the parent initiative specification. Keep its scope limits and approved i
 
 ## Comments
 
+### Xochitl experiment takeover — 2026-11-02
+
+The user approved this session to take over this ticket for the first option in the latency research. Keep the existing failed experiment and all production blockers. Use the stock Xochitl editor, not a new drawing program. Prove safe local PDF import, document opening, and annotated export before production work.
+
+The workflow inspector reported unknown ownership and an archived prototype branch without a checked-out worktree. Herdr lists this implementation session and an unrelated report session in this repository. No active pen-prototype session was identified. Preserve the archive branch and all previous evidence. Retain `work_status: claimed`.
+
+The user permits a generated alignment PDF to synchronize to the tablet account. Keep account and synchronization settings unchanged. Do not transfer project content during this experiment.
+
+
 ### Independent two-axis review — 2026-11-01
 
 **Verdict:** SUCCESS for the accuracy and scope of this failed experiment. This verdict does not pass the hardware quality gate or approve production. The ticket remains claimed.
