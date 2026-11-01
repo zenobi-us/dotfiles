@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/pi-ink-prototype">
+    <file alias="Root-native-pen.qml">Root.qml</file>
+  </qresource>
+</RCC>
