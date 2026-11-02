@@ -1,0 +1,133 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0006",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "implementation-0005",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T07:15:02.714767+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6E:p2",
+  "agent": "omp",
+  "session_id": "01a19b0b-40b2-7580-b000-3eea9529b879",
+  "parent_session_id": "01a19b0b-40b2-7580-b000-3eea9529b879",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "status": "blocked",
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0004.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0003.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0006.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "prior_attempt": "start-0001",
+    "reason": "Fresh inspector selects start takeover; prior blocked implementation cannot be reconciled as success.",
+    "approval": "User selected Approve scoped takeover in this session: preserve source/evidence, append immutable recovery receipts, launch fresh implementation after liveness recheck. No termination, session reuse, history repair, or expanded device/cloud permissions.",
+    "ownership": "Unknown durable ownership; scoped takeover approved. Existing claimed state retained idempotently.",
+    "liveness": "herdr agent list: prior parent/child/return sessions absent; current recovery owner w64:pY session 01a19b0b-40b2-7580-b000-3eea9529b879; no agent in source checkout. Prior parent receipt records child done.",
+    "reservations": "No pi-ink-bridge-01-pen-prototype match in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Existing clean checkout retained at inspected commit/tree; no reset, branch replacement or history repair.",
+    "outcome": "Reconciled valid blocked implementation-0005 without repeating child work. Exact source identity remains unchanged and clean. Approval recorded in start-0004 covers this attempt and append-only outcome."
+  },
+  "validation": [
+    {
+      "command": "herdr agent wait w6E:p2 --until done --until blocked --timeout 3600000",
+      "result": "done; completion_seq 68; fresh child session 01a19b12-31f7-719e-aa62-e10958cfc418"
+    },
+    {
+      "command": "Parent reads implementation-0005, findings.json, immutable draft and implementation log",
+      "result": "Valid blocked result; matching source identity and bounded validation; no new tablet or firmware acceptance claimed."
+    },
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json from canonical base",
+      "result": "historyValid=true; unique clean source matches exact frozen commit/tree; start/reconcile selects parent completion."
+    },
+    {
+      "command": "Child build, existing suite and real two-server HTTP smoke (recorded in implementation-0005)",
+      "result": "Build passed; 7 tests passed with 39 assertions; loopback HTTP confirms token isolation and exact PNG delivery only after explicit submission. Not tablet acceptance."
+    },
+    {
+      "command": "herdr pane close w6E:p2",
+      "result": "ok; child pane closed; worktree/workspace preserved"
+    }
+  ],
+  "child_session_id": "01a19b12-31f7-719e-aa62-e10958cfc418",
+  "result_missing": false,
+  "result_unusable": false,
+  "failure_reason": "Inspected resources do not establish safe stock-library registration, authoritative current-document identity and full annotated export. No revised client/toolbar or owner-operated hardware acceptance. Implementation is not complete.",
+  "child_result": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml",
+    "status": "blocked",
+    "session_id": "01a19b12-31f7-719e-aa62-e10958cfc418",
+    "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+    "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb"
+  },
+  "pane_closed": true,
+  "workspace_preserved": true,
+  "worktree_preserved": true
+}
