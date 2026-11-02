@@ -1,0 +1,109 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0003",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T01:42:13.007314+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w80:p1",
+  "agent": "omp",
+  "session_id": "01a1999c-ed48-707a-948f-506672fdedf0",
+  "parent_session_id": "01a1999c-ed48-707a-948f-506672fdedf0",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
+    },
+    {
+      "kind": "source",
+      "ref": "564c037546911f6e26936383b63eab9129819b97"
+    },
+    {
+      "kind": "child-result",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0002.yaml",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "commit": "985f518e6b45794ac3197a689e7918cdbea95b1b",
+      "sha256": "b15aaaaeafa7d2d27fe1db7a8fd011104cb713de77b8dc6e290df054672e0e43"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-hooks-001",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0003.yaml"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Existing archived source branch without checkout or phase receipts; revised canonical requirements on master.",
+    "prior_attempt": null,
+    "interrupted_return_session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-01T21-37-41-071Z_01a1990b-f8cf-705f-b841-8c3da0f1ea93.jsonl",
+    "approval": "User selected Approve scoped takeover in this session. Preserve archived source/evidence, reconcile existing branch with current requirements, append recovery receipts, launch fresh implementation. No live session termination or reuse.",
+    "ownership": "unknown before approval; approved scoped takeover; claimed state retained",
+    "liveness": "herdr agent list: interrupted return session absent; only current pen-task session and unrelated report session in repository. No matching coordinator event found across workflows/goal-*/events/*.yaml.",
+    "source_reconciliation": "Worktrunk recreated checkout of existing branch at exact archived commit; no reset/replacement branch. Current master d2e8162a72a4036a4ce537698bad0caa5a729e15 tree 0fb21608825bbf4490d0431cebbc75b882ae0219. Agent must reconcile revised stock-editor requirements before implementation. Preserve archived commits and earlier evidence.",
+    "outcome": "fresh attempt blocked; parent completed orchestration without asserting implementation completion; child receipts/evidence preserved in existing worktree",
+    "history_repair": "Not authorized or performed. Base and linked-checkout envelope mismatch requires explicit repair scope; no immutable receipt copied, normalized, overwritten or deleted."
+  },
+  "validation": [
+    {
+      "command": "herdr agent wait w80:p1 --until done --until blocked; herdr agent get w80:p1",
+      "result": "done; completion_seq 1567; fresh session 01a199e2-33c1-70d3-a2bc-b342f4e500ee"
+    },
+    {
+      "command": "git show -s --format=%H,%T,%P cd02b747 564c0375",
+      "result": "recorded source/tree and merge parents match; archived d17c0898 remains first parent of reconciliation merge"
+    },
+    {
+      "command": "parent read implementation-0002, findings, snapshot and projections",
+      "result": "blocked result and explicit acceptance gaps; no integration source added; immutable result retained in child checkout"
+    },
+    {
+      "command": "child validation recorded in implementation-0002",
+      "result": "7 tests pass with 39 assertions after asset build; real browser HTTP smoke returns matching PNG only after explicit Done; read-only installation preflight observes firmware 3.28.0.172. These do not prove tablet acceptance."
+    },
+    {
+      "command": "base worktree inspect.ts before parent completion",
+      "result": "historyValid true for base start receipt; source available/clean at 564c0375; child result absent from base workflow store. No duplicate launched."
+    }
+  ],
+  "child_result": {
+    "receipt_id": "implementation-0002",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0002.yaml",
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+    "commit": "985f518e6b45794ac3197a689e7918cdbea95b1b",
+    "sha256": "b15aaaaeafa7d2d27fe1db7a8fd011104cb713de77b8dc6e290df054672e0e43",
+    "status": "blocked",
+    "session_id": "01a199e2-33c1-70d3-a2bc-b342f4e500ee",
+    "automated_validation": "unusable: inspector rejects repository/workflow roots across base and linked checkout; no envelope repair authorized or performed"
+  },
+  "result_missing": false,
+  "result_unusable": true,
+  "failure_reason": "Revised stock-library/current-document/annotated-output integration is unverified; hardware gate unexecuted. Child result exists in retained source checkout, but cross-worktree receipt validation rejects its repository and parent workflow.root. No successful implementation or review is asserted."
+}
