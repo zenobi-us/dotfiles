@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-02T20:33:25.979536+00:00",
+  "device_status": "restored",
+  "restoration_evidence": [
+    "restoration-baseline.json",
+    "restoration-comparison.json",
+    "restoration-final.json"
+  ],
+  "source_experiment_directory_absent": true,
+  "private_host_runtime_directory_absent": true,
+  "temporary_xovi_dependency_clone_absent": true,
+  "desktop_receiver": "Stopped owned PiInk0014Receiver service after authenticated client stop",
+  "toolchain_image": "Removed newly pulled sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58; podman rmi exit 0",
+  "retained_audit": "temporary-source-audit.json plus exact build/payload hashes and command outputs",
+  "remaining_device_cleanup": [],
+  "remaining_host_experiment_code": [],
+  "original_proxy": "Restored byte-identically and re-enabled by explicit owner choice A; wildcard HTTP listener matches baseline",
+  "synthetic_documents": "Preserved; no deletion authorized or attempted",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "source_worktree_clean": true
+}

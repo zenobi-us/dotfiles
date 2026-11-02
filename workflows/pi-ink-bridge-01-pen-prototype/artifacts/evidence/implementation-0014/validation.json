@@ -1,0 +1,110 @@
+{
+  "created_at": "2026-11-02T20:33:54.435045+00:00",
+  "overall": "blocked: bounded experiment verified, full ticket not passed",
+  "checks": [
+    {
+      "command": "Podman RMPP SDK make XOVI_REPO=/xovi -j2",
+      "result": "passed",
+      "evidence": "adapter-build.json"
+    },
+    {
+      "command": "go build desktop; GOOS=linux GOARCH=arm64 CGO_ENABLED=0 go build tablet; go vet transport.go",
+      "result": "passed",
+      "evidence": "transport-build.json"
+    },
+    {
+      "command": "Actual desktop LAN TLS source/control/result boundary probes",
+      "result": "401 unauthenticated source/control; 200 pinned source; 409 wrong origin; untrusted cert rejected",
+      "evidence": [
+        "receiver-smoke.json",
+        "tls-boundary-smoke.json"
+      ]
+    },
+    {
+      "command": "Approved cable setup load and loopback endpoint/listener checks",
+      "result": "passed after unsupported journalctl --grep replaced with exact-marker output filter; one load restart",
+      "evidence": [
+        "activation.json",
+        "endpoint-verification.json",
+        "endpoint-verification-corrected.json"
+      ]
+    },
+    {
+      "command": "Owner explicit Send over WSS; actual local stock PDF export and authenticated HTTPS upload with USB disconnected",
+      "result": "passed bounded export feasibility; actual annotated PDF 137198 bytes; no Pi/OMP tool completion",
+      "evidence": [
+        "explicit-send.json",
+        "cable-free-outcome.json",
+        "result.pdf",
+        "native-page.png"
+      ]
+    },
+    {
+      "command": "pdfinfo -box actual export; native 72DPI render",
+      "result": "geometry failed source-size gate: 960.076x1121.92 points; native PNG961x1122; forced800x1000 disqualified",
+      "evidence": [
+        "pdf-render.json",
+        "geometry-limit.json",
+        "native-render.json",
+        "visible-marks.json"
+      ]
+    },
+    {
+      "command": "One authenticated synthetic transfer and tablet-local stock upload",
+      "result": "HTTP201 with USB disconnected; owner reports library visible/opens and original annotations remain editable; UUID/folder/isolation not proved",
+      "evidence": [
+        "cable-free-outcome.json",
+        "owner-observations.json"
+      ]
+    },
+    {
+      "command": "Exact branch A cleanup, final Xochitl restart and baseline comparison",
+      "result": "passed after owner cable reseat; original proxy hash/metadata restored; stock/loader/extensions/config/listener set equal; temporary paths absent",
+      "evidence": [
+        "device-cleanup.json",
+        "cleanup-cable-blocker.json",
+        "cable-reseat.json",
+        "device-cleanup-after-reseat.json",
+        "restoration-baseline.json",
+        "restoration-comparison.json",
+        "restoration-final.json"
+      ]
+    },
+    {
+      "command": "Remove owned disposable source, runtime credentials, dependency clone, newly pulled toolchain image; stop receiver",
+      "result": "passed",
+      "evidence": "cleanup.json"
+    },
+    {
+      "command": "git show -s --format='%H%n%T%n%D' HEAD && git status --porcelain && git ls-files -u",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "result": "clean unchanged source; no unmerged paths; 564c037546911f6e26936383b63eab9129819b97 / 57df0dbb0fb91fa3da0716f1c3a62460906c96eb"
+    }
+  ],
+  "permanent_tests_added": 0,
+  "unrelated_browser_tests_run": false,
+  "source_commit_required": false,
+  "source_commit_reason": "All temporary code removed after experiment. No permanent source diff; do not invent empty source change.",
+  "unpassed_acceptance": [
+    {
+      "id": "source-geometry",
+      "description": "Annotated export expands MediaBox/CropBox to [-31.51,-121.92,928.57,1000]. Original source 800x1000. No accepted source-window mapping; forced scale is disqualified. Source-dimension aligned PNG gate remains blocked."
+    },
+    {
+      "id": "document-folder-associations",
+      "description": "Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented."
+    },
+    {
+      "id": "current-document-toolbar",
+      "description": "No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof."
+    },
+    {
+      "id": "origin-cancellation-delivery",
+      "description": "Actual PDF accepted only for fixed diagnostic server/job; wrong-origin receiver request rejected. No originating Pi/OMP tool request integrated; production cancellation, document switching and wrong-server isolation untested."
+    },
+    {
+      "id": "owner-quality-lifecycle",
+      "description": "Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested."
+    }
+  ]
+}

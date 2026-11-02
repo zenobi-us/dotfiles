@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-02T20:19:42.900012+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "stdin": "set -eu\nadapter=/home/root/xovi/extensions.d/pi-ink-loopback-experiment.so\npayload=/home/root/pi-ink-loopback-0014\ntest ! -e /home/root/xovi/extensions.d/webserver-remote.so\ntest ! -L /home/root/xovi/extensions.d/webserver-remote.so\nprintf '%s  %s\\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f /home/root/pi-ink-webserver-remote-backup-0014/webserver-remote.so | sha256sum -c -\ntest ! -e \"$adapter\"; test ! -L \"$adapter\"\nprintf '%s  %s\\n' 9b0e7fd7b02e1e1420e19daf1c49a980d9322f1d1ea7e7ad1e01c63825c7bc99 \"$payload/adapter.so\" d2d94424034b5646febd66dd9dd16b2e1fb585b8ff40fef6b57f6b6dcc856e63 \"$payload/transport-tablet\" 219185f11e26b8c3eb97e62ec2410fca1685cbfd6acf5bf619380ddc5638192e \"$payload/tablet.json\" 8d0852696e86683fad1281c4ea1698ab32fc95d51ebe2061b5761b1b85b80066 \"$payload/cert.pem\" | sha256sum -c -\nchmod 700 \"$payload/transport-tablet\"\nchmod 600 \"$payload/tablet.json\" \"$payload/cert.pem\"\n(set -C; cat \"$payload/adapter.so\" > \"$adapter\")\nchmod 644 \"$adapter\"\nsystemctl restart xochitl\nsleep 8\nsystemctl is-active xochitl\nprintf 'LISTENERS_AFTER_LOAD\\n'\ncat /proc/net/tcp /proc/net/tcp6\nprintf 'XOCHITL_PID\\n'\nsystemctl show xochitl -p MainPID\n",
+  "host_deadline_seconds": 45,
+  "exit_code": 0,
+  "stdout": "/home/root/pi-ink-webserver-remote-backup-0014/webserver-remote.so: OK\n/home/root/pi-ink-loopback-0014/adapter.so: OK\n/home/root/pi-ink-loopback-0014/transport-tablet: OK\n/home/root/pi-ink-loopback-0014/tablet.json: OK\n/home/root/pi-ink-loopback-0014/cert.pem: OK\nactive\nLISTENERS_AFTER_LOAD\n  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode                                                     \n   0: 3600007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   996        0 3494 1 00000000eab32248 100 0 0 10 5                      \n   1: 0100007F:0051 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 268843 1 000000003438fb2a 100 0 0 10 0                    \n   2: 0100007F:2253 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 1901 1 00000000f073c3e3 100 0 0 10 0                      \n   3: 3500007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   996        0 3492 1 000000008182060a 100 0 0 10 5                      \n  sl  local_address                         remote_address                        st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode\n   0: 00000000000000000000000000000000:0016 00000000000000000000000000000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 2427 1 00000000716b2770 100 0 0 10 0\n   1: 00000000000000000000000000000000:0016 00000000000000000000000000000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 2426 1 00000000d2ff51b7 100 0 0 10 0\n   2: 0000000000000000FFFF000001630B0A:0016 0000000000000000FFFF00000A630B0A:D1A0 01 00000000:00000000 00:00000000 00000000     0        0 247560 1 0000000084457b21 21 4 16 10 -1\n   3: 0000000000000000FFFF000001630B0A:0016 0000000000000000FFFF00000A630B0A:DE80 01 00000000:00000000 00:00000000 00000000     0        0 270383 2 00000000a32c7ad5 20 4 13 10 -1\nXOCHITL_PID\nMainPID=87441\n",
+  "stderr": "",
+  "requested_load_restarts": 1
+}

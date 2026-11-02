@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-02T20:31:25.209422+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "stdin": "set -eu\nbackup=/home/root/pi-ink-webserver-remote-backup-0014\ntest -d \"$backup\"; test ! -L \"$backup\"\ntest \"$(cat \"$backup/owner.txt\")\" = 'pi-ink-bridge-01-pen-prototype implementation-0014 01a19ddf-460c-766e-aa9f-bf07b55eb945'\ntest ! -e \"$backup/webserver-remote.so\"; test ! -L \"$backup/webserver-remote.so\"\nprintf '%s  %s\\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f /home/root/xovi/extensions.d/webserver-remote.so | sha256sum -c -\ntest \"$(stat -c '%a %u %g %s %Y' /home/root/xovi/extensions.d/webserver-remote.so)\" = '644 0 0 8453696 1793049401'\nrm \"$backup/owner.txt\"\nrmdir \"$backup\"\nfor path in \"$backup\" /home/root/pi-ink-loopback-0014 /home/root/xovi/extensions.d/pi-ink-loopback-experiment.so; do test ! -e \"$path\"; test ! -L \"$path\"; done\nsystemctl is-active xochitl\nsystemctl show pi-ink-loopback-0014.service -p LoadState -p ActiveState -p Result\npid=$(systemctl show xochitl -p MainPID --value)\nif grep -q 'pi-ink-loopback-experiment.so' /proc/\"$pid\"/maps; then printf 'TEMPORARY_ADAPTER_STILL_MAPPED\\n'; exit 1; fi\ngrep '/home/root/xovi/extensions.d/webserver-remote.so' /proc/\"$pid\"/maps\nprintf 'RESTORATION_COMPLETE\\n'\n",
+  "host_deadline_seconds": 25,
+  "exit_code": 0,
+  "stdout": "/home/root/xovi/extensions.d/webserver-remote.so: OK\nactive\nResult=success\nLoadState=not-found\nActiveState=inactive\nffffab470000-ffffab6f9000 r-xp 00000000 fe:02 687                        /home/root/xovi/extensions.d/webserver-remote.so\nffffab6f9000-ffffab701000 ---p 00289000 fe:02 687                        /home/root/xovi/extensions.d/webserver-remote.so\nffffab701000-ffffab710000 r--p 00291000 fe:02 687                        /home/root/xovi/extensions.d/webserver-remote.so\nffffab710000-ffffab714000 rw-p 002a0000 fe:02 687                        /home/root/xovi/extensions.d/webserver-remote.so\nRESTORATION_COMPLETE\n",
+  "stderr": ""
+}

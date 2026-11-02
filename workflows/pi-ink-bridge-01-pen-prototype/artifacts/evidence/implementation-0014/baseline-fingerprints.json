@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-11-02T20:17:25.335900+00:00",
+  "stock_and_loader_hash_lines": [
+    "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021  /usr/bin/xochitl",
+    "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446  /home/root/xovi/xovi.so",
+    "bf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc  /home/root/xovi/start",
+    "e29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d  /home/root/xovi/stock"
+  ],
+  "extensions_hash_and_metadata_lines": [
+    "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad  /home/root/xovi/extensions.d/appload.so",
+    "24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f  /home/root/xovi/extensions.d/webserver-remote.so",
+    "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f  /home/root/xovi/extensions.d/qt-resource-rebuilder.so",
+    "2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e  /home/root/xovi/extensions.d/qt-command-executor.so",
+    "48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609  /home/root/xovi/extensions.d/literm.so",
+    "61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155  /home/root/xovi/extensions.d/xovi-message-broker.so",
+    "-rw-r--r--    1 root     root       4342120 Sep 19 23:44 appload.so",
+    "-rw-r--r--    1 root     root       3408280 Sep 20 13:34 literm.so",
+    "-rw-r--r--    1 root     root        682776 Sep  3 21:27 qt-command-executor.so",
+    "-rw-r--r--    1 root     root       9496456 Oct 26 21:16 qt-resource-rebuilder.so",
+    "-rw-r--r--    1 root     root       8453696 Oct 26 21:16 webserver-remote.so",
+    "-rw-r--r--    1 root     root        588184 Oct 26 21:16 xovi-message-broker.so"
+  ],
+  "service_configuration_and_state_sha256": "cc045f4805419754769b304ce45a50f0abb6cd872adc6a674cb231156226ec7c",
+  "service_configuration_and_state": "# /usr/lib/systemd/system/xochitl.service\n[Unit]\nDescription=reMarkable main application\nStartLimitIntervalSec=600\nStartLimitBurst=4\nOnFailure=remarkable-fail.service\nDefaultDependencies=no\nConflicts=shutdown.target\nBefore=shutdown.target\nWants=rm-sync.service\nAfter=data.mount dbus.socket\nRequires=dbus.socket\n\n[Service]\nExecStart=/usr/bin/xochitl --system\nRestart=on-failure\nWatchdogSec=60\nNotifyAccess=all\n\n[Install]\nWantedBy=multi-user.target\n\n# /etc/systemd/system/xochitl.service.d/00-xovi.conf\n[Service]\nEnvironment=\"LD_PRELOAD=/home/root/xovi/xovi.so\"\nEnvironment=\"XOVI_ROOT=/home/root/xovi/services/xochitl.service/\"\n\n# /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf\n[Unit]\nRequiresMountsFor=/home\n[Service]\nExecStartPre=/usr/local/libexec/computed-widgets-01-target preflight\n\n# /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf\n[Service]\nEnvironment=\"QML_DISABLE_DISK_CACHE=1\"\nEnvironment=\"QML_XHR_ALLOW_FILE_WRITE=1\"\nEnvironment=\"QML_XHR_ALLOW_FILE_READ=1\"\n\n# /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\n[Unit]\nRequires=dev-dri-card0.device\nAfter=dev-dri-card0.device tee-supplicant.service\nWants=tee-supplicant.service\nJobTimeoutSec=60s\nOnFailure=emergency.target\n\n[Service]\nEnvironment=\"MALLOC_ARENA_MAX=8\"\nRestartMode=direct\nEnvironment=LD_PRELOAD=/home/root/xovi/xovi.so XOVI_ROOT=/home/root/xovi/services/xochitl.service/ QML_DISABLE_DISK_CACHE=1 QML_XHR_ALLOW_FILE_WRITE=1 QML_XHR_ALLOW_FILE_READ=1 MALLOC_ARENA_MAX=8\nFragmentPath=/usr/lib/systemd/system/xochitl.service\nDropInPaths=/etc/systemd/system/xochitl.service.d/00-xovi.conf /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\nactive\n",
+  "comparison_rule": "Compare byte-identical service configuration and stock/loader/other-extension hashes. Compare normalized LISTEN addresses separately; dynamic inode/connection rows are not restoration identity.",
+  "known_prior_baseline_difference": "Current webserver-remote.so replaces historical fix-ebook-links.so in active extension inventory. Do not repair historical state or change unrelated extensions."
+}

@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-11-02T20:27:19.142797+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "stdin": "set -eu\noriginal=/home/root/xovi/extensions.d/webserver-remote.so\nbackup=/home/root/pi-ink-webserver-remote-backup-0014\npayload=/home/root/pi-ink-loopback-0014\nadapter=/home/root/xovi/extensions.d/pi-ink-loopback-experiment.so\nprintf 'USB_RECONNECTED\\n'\nfor state in /sys/class/udc/*/state; do printf '%s ' \"$state\"; cat \"$state\"; done\ntest \"$(cat /sys/class/udc/ci_hdrc.0/state)\" = configured\nprintf 'CLIENT_FINAL_STATE\\n'\nsystemctl show pi-ink-loopback-0014.service -p LoadState -p ActiveState -p SubState -p Result\nload=$(systemctl show pi-ink-loopback-0014.service -p LoadState --value)\nif test \"$load\" != not-found; then systemctl stop pi-ink-loopback-0014.service; fi\ntest -d \"$backup\"; test ! -L \"$backup\"\ntest \"$(cat \"$backup/owner.txt\")\" = 'pi-ink-bridge-01-pen-prototype implementation-0014 01a19ddf-460c-766e-aa9f-bf07b55eb945'\ntest -f \"$backup/webserver-remote.so\"; test ! -L \"$backup/webserver-remote.so\"\ntest \"$(stat -c '%a %u %g %s %Y' \"$backup/webserver-remote.so\")\" = '644 0 0 8453696 1793049401'\nprintf '%s  %s\\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f \"$backup/webserver-remote.so\" 9b0e7fd7b02e1e1420e19daf1c49a980d9322f1d1ea7e7ad1e01c63825c7bc99 \"$adapter\" 9b0e7fd7b02e1e1420e19daf1c49a980d9322f1d1ea7e7ad1e01c63825c7bc99 \"$payload/adapter.so\" d2d94424034b5646febd66dd9dd16b2e1fb585b8ff40fef6b57f6b6dcc856e63 \"$payload/transport-tablet\" 219185f11e26b8c3eb97e62ec2410fca1685cbfd6acf5bf619380ddc5638192e \"$payload/tablet.json\" 8d0852696e86683fad1281c4ea1698ab32fc95d51ebe2061b5761b1b85b80066 \"$payload/cert.pem\" | sha256sum -c -\nfor file in \"$adapter\" \"$payload/adapter.so\" \"$payload/transport-tablet\" \"$payload/tablet.json\" \"$payload/cert.pem\"; do test -f \"$file\"; test ! -L \"$file\"; done\nrm \"$adapter\"\nrm \"$payload/adapter.so\" \"$payload/transport-tablet\" \"$payload/tablet.json\" \"$payload/cert.pem\"\nrmdir \"$payload\"\ntest ! -e \"$original\"; test ! -L \"$original\"\nmv \"$backup/webserver-remote.so\" \"$original\"\nprintf '%s  %s\\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f \"$original\" | sha256sum -c -\nstat -c '%a %u %g %s %Y %n' \"$original\"\nsystemctl restart xochitl\nsleep 8\nsystemctl is-active xochitl\nprintf 'FINAL_LISTENERS\\n'\ncat /proc/net/tcp /proc/net/tcp6\n",
+  "host_deadline_seconds": 45,
+  "exit_code": 255,
+  "stdout": "",
+  "stderr": "ssh: connect to host 10.11.99.1 port 22: No route to host\n",
+  "planned_cleanup_restarts": 1,
+  "owner_branch": "A RESTORE ORIGINAL"
+}

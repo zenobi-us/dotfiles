@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-11-02T20:23:41.888693+00:00",
+  "source_bounds": [
+    0,
+    0,
+    800,
+    1000
+  ],
+  "export_bounds_from_pdfinfo": [
+    -31.51,
+    -121.92,
+    928.57,
+    1000.0
+  ],
+  "export_page_size_points": [
+    960.076,
+    1121.92
+  ],
+  "page_count": 1,
+  "rotation": 0,
+  "actual_export_preserved": "result.pdf",
+  "diagnostic_forced_scale_png": "result.png",
+  "diagnostic_forced_scale_command": "pdftoppm -singlefile -png -scale-to-x 800 -scale-to-y 1000 result.pdf result",
+  "diagnostic_accepted": false,
+  "reason": "Forced dimensions distort expanded export geometry. This file is a diagnostic only, not an aligned source-dimension result or Pi/OMP delivery.",
+  "source_window_mapping": "not established; do not crop or normalize into acceptance",
+  "quality_gate": "blocked",
+  "next_action": "Continue approved single synthetic import and owner observations; no production geometry solution required for truthful feasibility result."
+}

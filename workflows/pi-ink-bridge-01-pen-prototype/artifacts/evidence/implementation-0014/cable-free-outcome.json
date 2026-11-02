@@ -1,0 +1,98 @@
+{
+  "created_at": "2026-11-02T20:25:04.018230+00:00",
+  "reports": 80,
+  "disconnected_reports": 45,
+  "operations": [
+    {
+      "time": "2026-11-02T20:22:30.596408229Z",
+      "operation": "send",
+      "status": "uploaded",
+      "usb": {
+        "/sys/class/udc/ci_hdrc.0/state": "not attached",
+        "/sys/class/udc/ci_hdrc.1/state": "not attached"
+      },
+      "addresses": [
+        "lo 127.0.0.1/8",
+        "lo ::1/128",
+        "wlan0 192.168.86.128/24",
+        "wlan0 fe80::2fa7:f9f9:dd82:9e15/64",
+        "usb0 fe80::88bd:3aff:fe12:a00/64",
+        "usb1 fe80::98bd:3aff:fe12:a00/64"
+      ],
+      "listeners": [
+        "3600007F:0035",
+        "0100007F:0051",
+        "0100007F:2253",
+        "3500007F:0035",
+        "00000000000000000000000000000000:0016",
+        "00000000000000000000000000000000:0016"
+      ],
+      "disconnected": true,
+      "private_endpoint_only": true
+    },
+    {
+      "time": "2026-11-02T20:23:56.617702477Z",
+      "operation": "import",
+      "status": "HTTP 201; owner visibility check required",
+      "usb": {
+        "/sys/class/udc/ci_hdrc.0/state": "not attached",
+        "/sys/class/udc/ci_hdrc.1/state": "not attached"
+      },
+      "addresses": [
+        "lo 127.0.0.1/8",
+        "lo ::1/128",
+        "wlan0 192.168.86.128/24",
+        "wlan0 fe80::2fa7:f9f9:dd82:9e15/64",
+        "usb0 fe80::88bd:3aff:fe12:a00/64",
+        "usb1 fe80::98bd:3aff:fe12:a00/64"
+      ],
+      "listeners": [
+        "3600007F:0035",
+        "0100007F:0051",
+        "0100007F:2253",
+        "3500007F:0035",
+        "00000000000000000000000000000000:0016",
+        "00000000000000000000000000000000:0016"
+      ],
+      "disconnected": true,
+      "private_endpoint_only": true
+    },
+    {
+      "time": "2026-11-02T20:24:22.221295774Z",
+      "operation": "stop",
+      "status": "accepted",
+      "usb": {
+        "/sys/class/udc/ci_hdrc.0/state": "not attached",
+        "/sys/class/udc/ci_hdrc.1/state": "not attached"
+      },
+      "addresses": [
+        "lo 127.0.0.1/8",
+        "lo ::1/128",
+        "wlan0 192.168.86.128/24",
+        "wlan0 fe80::2fa7:f9f9:dd82:9e15/64",
+        "usb0 fe80::88bd:3aff:fe12:a00/64",
+        "usb1 fe80::98bd:3aff:fe12:a00/64"
+      ],
+      "listeners": [
+        "3600007F:0035",
+        "0100007F:0051",
+        "0100007F:2253",
+        "3500007F:0035",
+        "00000000000000000000000000000000:0016",
+        "00000000000000000000000000000000:0016"
+      ],
+      "disconnected": true,
+      "private_endpoint_only": true
+    }
+  ],
+  "pdf_sha256": "fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf",
+  "pdf_bytes": 137198,
+  "transport": "authenticated certificate-verified WSS control/status and HTTPS actual PDF/source bytes; tablet outbound to 192.168.86.35:47834",
+  "runtime_ssh": false,
+  "manual_transfer": false,
+  "explicit_send_record": "explicit-send.json",
+  "delivery_boundary": "Dedicated diagnostic desktop server/job accepted actual PDF once; no originating Pi/OMP tool request was integrated or completed.",
+  "png_geometry_gate": "blocked; expanded real page, no accepted source-window mapping",
+  "import_boundary": "One local upload returned HTTP201; imported UUID/folder destination not captured or established. Owner visibility/open observation pending.",
+  "stop": "authenticated WSS stop acknowledged; no SSH needed to stop"
+}

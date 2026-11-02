@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-11-02T20:15:20.312806+00:00",
+  "checks": [
+    {
+      "command": [
+        "gofmt",
+        "-w",
+        "transport.go"
+      ],
+      "environment": {},
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "go",
+        "build",
+        "-o",
+        "transport-desktop",
+        "transport.go"
+      ],
+      "environment": {},
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "go",
+        "build",
+        "-o",
+        "transport-tablet",
+        "transport.go"
+      ],
+      "environment": {
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "arm64"
+      },
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "go",
+        "vet",
+        "transport.go"
+      ],
+      "environment": {},
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "runtime_status": "not installed"
+}

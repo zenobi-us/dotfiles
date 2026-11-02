@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-11-02T20:16:23.836958+00:00",
+  "outcome": "aborted before installation",
+  "firmware_matches": true,
+  "stock_hash_matches": true,
+  "existing_conflicting_extension": "/home/root/xovi/extensions.d/webserver-remote.so",
+  "existing_extension_sha256": "24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f",
+  "port_81_occupied": true,
+  "wildcard_http_listener": "0.0.0.0:80",
+  "process_attribution": {
+    "xochitl_pid": 52970,
+    "wildcard_inode": 148863,
+    "wildcard_descriptor": 12,
+    "loopback_inode": 148963,
+    "loopback_descriptor": 76,
+    "extension_mapped": true,
+    "limit": "Socket ownership and mapped extension do not establish creating callsite or installed binary equivalence to upstream source."
+  },
+  "device_installs": 0,
+  "device_restarts": 0,
+  "settings_changes": 0,
+  "synthetic_operations": 0,
+  "restoration_required": false,
+  "next_action": "Owner must explicitly choose restore-original or keep-quarantined and approve revised exact scope with renewed saved/closed confirmation."
+}

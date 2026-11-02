@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-02T20:30:41.897054+00:00",
+  "owner_action": "Cable reseated; documents remain closed. Previously approved exact branch A cleanup/final restart only.",
+  "route_command": [
+    "ip",
+    "-j",
+    "route",
+    "get",
+    "10.11.99.1"
+  ],
+  "route_exit_code": 0,
+  "route_stdout": "[{\"dst\":\"10.11.99.1\",\"dev\":\"enp2s0f0u4c2\",\"prefsrc\":\"10.11.99.10\",\"flags\":[],\"uid\":1000,\"cache\":[]}]\n",
+  "route_stderr": "",
+  "enumeration_command": [
+    "nmcli",
+    "device",
+    "status"
+  ],
+  "enumeration_exit_code": 0,
+  "enumeration_stdout": "DEVICE             TYPE      STATE                   CONNECTION         \nenp7s0             ethernet  connected               Wired connection 1 \nenp2s0f0u4c2       ethernet  connected               Wired connection 3 \nlo                 loopback  connected (externally)  lo                 \nztmosmarlj         tun       connected (externally)  ztmosmarlj         \n00:FA:21:90:8F:9C  bt        disconnected            --                 \nwlp6s0             wifi      unavailable             --                 \n",
+  "enumeration_stderr": ""
+}

@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-11-02T20:31:15.427990+00:00",
+  "comparison": {
+    "STOCK_AND_LOADER": true,
+    "EXTENSIONS": true,
+    "SERVICE": true,
+    "listener_bindings_multiset": true
+  },
+  "extension_inventory_order": "Hash/metadata lines sorted only; filesystem directory enumeration order is not identity. Exact file hash/mode/owner/size/mtime retained.",
+  "listeners": [
+    "00000000000000000000000000000000:0016",
+    "00000000000000000000000000000000:0016",
+    "00000000:0050",
+    "0100007F:0051",
+    "0100007F:2253",
+    "3500007F:0035",
+    "3600007F:0035"
+  ],
+  "original_extension_sha256": "24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f",
+  "original_extension_metadata": "644 0 0 8453696 1793049401",
+  "baseline_wildcard_listener_restored": true,
+  "owner_choice": "A RESTORE ORIGINAL; explicit choice despite wildcard HTTP warning",
+  "requested_load_restarts": 1,
+  "requested_cleanup_restarts": 1,
+  "additional_restarts": 0,
+  "temporary_adapter_absent": true,
+  "temporary_payload_directory_absent": true,
+  "private_notebook_access": false,
+  "settings_or_service_configuration_changes": false
+}

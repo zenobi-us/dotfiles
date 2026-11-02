@@ -1,0 +1,53 @@
+{
+  "created_at": "2026-11-02T20:22:48.942160+00:00",
+  "pdf_bytes": 137198,
+  "pdf_sha256": "fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf",
+  "checks": [
+    {
+      "command": [
+        "pdfinfo",
+        "-box",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result.pdf"
+      ],
+      "exit_code": 0,
+      "stdout": "Custom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           1\nEncrypted:       no\nPage size:       960.076 x 1121.92 pts\nPage rot:        0\nMediaBox:          -31.51  -121.92   928.57  1000.00\nCropBox:           -31.51  -121.92   928.57  1000.00\nBleedBox:          -31.51  -121.92   928.57  1000.00\nTrimBox:           -31.51  -121.92   928.57  1000.00\nArtBox:            -31.51  -121.92   928.57  1000.00\nFile size:       137198 bytes\nOptimized:       no\nPDF version:     1.4\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "pdftoppm",
+        "-singlefile",
+        "-png",
+        "-scale-to-x",
+        "800",
+        "-scale-to-y",
+        "1000",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result.pdf",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "pdftoppm",
+        "-singlefile",
+        "-png",
+        "-scale-to-x",
+        "800",
+        "-scale-to-y",
+        "1000",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/unmarked-export.pdf",
+        "/tmp/pi-ink-0014-runtime/unmarked"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "source_dimensions": [
+    800,
+    1000
+  ]
+}

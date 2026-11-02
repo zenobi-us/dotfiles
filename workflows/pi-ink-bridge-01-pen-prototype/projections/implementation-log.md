@@ -1,7 +1,42 @@
 ---
-title: Implementation log
+title: Pi Ink prototype implementation log
 type: Report
 ---
+
+# Implementation log
+
+## Current attempt — implementation-0014
+
+**Status:** Blocked. [Result](../events/implementation-0014.yaml). [Immutable snapshot](../artifacts/snapshots/pr-draft-implementation-0014.md).
+
+**Changed files:** No permanent source changes. Temporary adapter/client removed. BASE evidence run, receipt, snapshot, manifest, and projections only.
+
+**Validation:** Cross-builds and go vet passed; actual private-loopback cable-free annotated PDF export and one import passed. Geometry/source-size gate failed. Owner reports library visibility/open and editable-work preservation. Device restoration passed; exact original proxy restored by owner choice. [Validation](../artifacts/evidence/implementation-0014/validation.json).
+
+**Unresolved questions:**
+- **source-geometry:** Annotated export expands MediaBox/CropBox to [-31.51,-121.92,928.57,1000]. Original source 800x1000. No accepted source-window mapping; forced scale is disqualified. Source-dimension aligned PNG gate remains blocked.
+- **document-folder-associations:** Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented.
+- **current-document-toolbar:** No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof.
+- **origin-cancellation-delivery:** Actual PDF accepted only for fixed diagnostic server/job; wrong-origin receiver request rejected. No originating Pi/OMP tool request integrated; production cancellation, document switching and wrong-server isolation untested.
+- **owner-quality-lifecycle:** Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested.
+
+## Complete receipt history
+
+- **start-0001:** started. [Receipt](../events/start-0001.yaml).
+- **start-complete-0003:** blocked. [Receipt](../events/start-complete-0003.yaml).
+- **start-0004:** started. [Receipt](../events/start-0004.yaml).
+- **implementation-0005:** blocked. [Receipt](../events/implementation-0005.yaml).
+- **start-complete-0006:** blocked. [Receipt](../events/start-complete-0006.yaml).
+- **start-0007:** started. [Receipt](../events/start-0007.yaml).
+- **implementation-0008:** blocked. [Receipt](../events/implementation-0008.yaml).
+- **start-complete-0009:** blocked. [Receipt](../events/start-complete-0009.yaml).
+- **start-0010:** started. [Receipt](../events/start-0010.yaml).
+- **implementation-0011:** failed. [Receipt](../events/implementation-0011.yaml).
+- **start-complete-0012:** failed. [Receipt](../events/start-complete-0012.yaml).
+- **start-0013:** started. [Receipt](../events/start-0013.yaml).
+- **implementation-0014:** blocked. [Receipt](../events/implementation-0014.yaml).
+
+## Preserved prior implementation log — historical
 
 # Implementation log
 
@@ -63,4 +98,3 @@ Failed metadata-probe attempt; implementation remains blocked. No source changes
 - **Parent records:** [start-complete-0009](../events/start-complete-0009.yaml); [start-0010](../events/start-0010.yaml).
 
 Changed files: attempt-4 evidence directory, receipt, immutable snapshot, manifest, and the three projections. All earlier implementation/fix/review history above is retained. No review or fix attempt was added. No finding was cleared. Another probe cycle requires renewed approval and saved/closed-document confirmation; safe local annotated-export initiation and all owner acceptance gates remain unresolved.
-

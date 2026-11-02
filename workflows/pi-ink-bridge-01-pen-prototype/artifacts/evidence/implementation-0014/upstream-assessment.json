@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-11-02T20:16:23.837068+00:00",
+  "upstream_revision": "6c709dd8416ddf89034831073d76fb4ee3372905",
+  "sources": [
+    "https://github.com/asivery/rm-xovi-extensions/blob/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/main.cpp",
+    "https://github.com/asivery/rm-xovi-extensions/blob/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/webserver-remote.xovi",
+    "https://github.com/asivery/rm-xovi-extensions/blob/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/notification.qmd",
+    "https://github.com/asivery/rm-xovi-extensions/blob/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/rust-proxy/src/proxy.rs"
+  ],
+  "hooks_scope": "Xochitl process-wide Qt interfaceFromName, isGlobal, QTcpServer.listen overrides; not per-callsite stock-service hooks",
+  "upstream_port_remap": "All Qt port 80 listens become port 81; address unchanged",
+  "upstream_qml": "Changes USB-attached settings gating and presents LAN addresses/IP-approval popup",
+  "excluded_proxy": "Rust listener 0.0.0.0:80; approved-IP sliding five-minute access; arbitrary path forwarding; neither HTTPS nor paired-server authentication",
+  "proposed_difference": "No Rust, broker, QML or settings patch; bool listen ABI; force intercepted port 80 listen to 127.0.0.1:81; other ports unchanged",
+  "activation_limit": "Existing settings must activate service; endpoint candidate until verified. Missing endpoint cannot justify unapproved settings changes.",
+  "native_export_start_prerequisite": false,
+  "status": "offline assessment only; proposed adapter not installed"
+}

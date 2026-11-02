@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-11-02T20:15:54.620753+00:00",
+  "runtime": "actual temporary Go TLS receiver on desktop LAN address; no tablet claim",
+  "unauthenticated_source_status": 401,
+  "authenticated_source_status": 200,
+  "source_sha256": "ba5b3f78a6bc4900cae7f8e009d68f9628a3d25a0e234808bc8dfe71d9e7d1f5",
+  "wrong_origin_result_status": 409,
+  "accepted_pdf": false,
+  "cable_free": false
+}

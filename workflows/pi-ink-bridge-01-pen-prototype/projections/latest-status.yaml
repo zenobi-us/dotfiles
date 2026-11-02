@@ -3,42 +3,64 @@
   "workflow_id": "pi-ink-bridge-01-pen-prototype",
   "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
   "state": "BLOCKED",
-  "latest_receipt": "implementation-0011",
+  "latest_receipt": "implementation-0014",
   "latest_source_commit": "564c037546911f6e26936383b63eab9129819b97",
   "latest_source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
   "latest_review_verdict": null,
   "open_findings": [
     {
-      "id": "probe-runtime-access",
-      "description": "Renewed scoped approval and saved/closed-document confirmation are needed for another install/load-restart/remove/rollback-restart cycle. Use host-side command deadlines; do not assume target timeout exists."
+      "id": "source-geometry",
+      "description": "Annotated export expands MediaBox/CropBox to [-31.51,-121.92,928.57,1000]. Original source 800x1000. No accepted source-window mapping; forced scale is disqualified. Source-dimension aligned PNG gate remains blocked."
     },
     {
-      "id": "current-document-output",
-      "description": "unknown; prior static signatures require registered navigation destinations, not local output paths. No import/export invocation authorized or performed."
+      "id": "document-folder-associations",
+      "description": "Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented."
     },
     {
-      "id": "owner-hardware-gate",
-      "description": "No pairing, authenticated LAN transfer, stock library receipt, marked PNG, dimensions, editable-work preservation, save/Send, cancellation, request isolation, pen quality, palm, edge or orientation acceptance passed."
+      "id": "current-document-toolbar",
+      "description": "No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof."
     },
     {
-      "id": "stock-library-access",
-      "description": "Native importFromUrls and createCollection signatures found in installed firmware. Runtime access, returned identities, successful synthetic receipt and normal library visibility remain unproven."
+      "id": "origin-cancellation-delivery",
+      "description": "Actual PDF accepted only for fixed diagnostic server/job; wrong-origin receiver request rejected. No originating Pi/OMP tool request integrated; production cancellation, document switching and wrong-server isolation untested."
+    },
+    {
+      "id": "owner-quality-lifecycle",
+      "description": "Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested."
     }
   ],
   "evidence": {
     "store": "repository",
-    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011"
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014"
   },
   "parent_completion_pending": true,
-  "last_phase_status": "failed",
+  "last_phase_status": "blocked",
+  "bounded_experiment": "private loopback and authenticated cable-free annotated PDF/import feasibility verified",
+  "geometry_gate": "failed; expanded page; forced source dimensions disqualified",
   "restoration": {
     "status": "restored",
-    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json",
+    "final_verification_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-final.json",
     "service_active": true,
-    "probe_absent": true,
-    "baseline_snapshot_byte_equal": true,
-    "actual_load_restarts": 0,
-    "actual_restoration_restarts": 1,
+    "temporary_adapter_absent": true,
+    "temporary_client_absent": true,
+    "owned_backup_absent": true,
+    "original_extension_hash_and_metadata_restored": true,
+    "stock_loader_extension_config_match": true,
+    "listener_bindings_match": true,
+    "baseline_wildcard_proxy_restored_by_owner_choice": true,
+    "actual_load_restart_commands": 1,
+    "actual_cleanup_restart_commands": 1,
+    "additional_restart_commands": 0,
     "remaining_device_cleanup": []
-  }
+  },
+  "historical_results_preserved": [
+    {
+      "receipt_id": "implementation-0002",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0002.yaml",
+      "status": "blocked",
+      "not_repaired": true
+    }
+  ]
 }

@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-11-02T20:18:57.407182+00:00",
+  "authorization": "User selected Approve; restore proxy afterward. ALL documents saved and closed NOW for LOAD restart. Exact revised plan approved, branch A RESTORE ORIGINAL, collision/hash/metadata guards and original scope retained. Explicit owner choice includes possible wildcard LAN HTTP re-enablement. Renew saved/closed confirmation BEFORE final rollback restart even if activation fails; extra restarts need fresh approval.",
+  "scope_sha256": "d07fe184bfe3907e4c3861ac3eb26adf26708e5d44b408b9aae0990b42058cc2",
+  "session_id": "01a19ddf-460c-766e-aa9f-bf07b55eb945",
+  "rollback_choice": "A RESTORE ORIGINAL",
+  "load_restart_documents_closed": true,
+  "rollback_restart_documents_closed": false
+}

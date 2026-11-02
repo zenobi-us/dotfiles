@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-02T20:19:18.676585+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "stdin": "set -eu\numask 077\noriginal=/home/root/xovi/extensions.d/webserver-remote.so\nbackup=/home/root/pi-ink-webserver-remote-backup-0014\npayload=/home/root/pi-ink-loopback-0014\nadapter=/home/root/xovi/extensions.d/pi-ink-loopback-experiment.so\ntest -f \"$original\"; test ! -L \"$original\"\nprintf '%s  %s\\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f \"$original\" | sha256sum -c -\nfor path in \"$backup\" \"$payload\" \"$adapter\"; do test ! -e \"$path\"; test ! -L \"$path\"; done\nmkdir \"$backup\"\nprintf '%s\\n' 'pi-ink-bridge-01-pen-prototype implementation-0014 01a19ddf-460c-766e-aa9f-bf07b55eb945' > \"$backup/owner.txt\"\nstat -c '%a %u %g %s %Y %n' \"$original\"\nmv \"$original\" \"$backup/webserver-remote.so\"\nprintf '%s  %s\\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f \"$backup/webserver-remote.so\" | sha256sum -c -\nstat -c '%a %u %g %s %Y %n' \"$backup/webserver-remote.so\"\nmkdir \"$payload\"\n",
+  "host_deadline_seconds": 45,
+  "exit_code": 0,
+  "stdout": "/home/root/xovi/extensions.d/webserver-remote.so: OK\n644 0 0 8453696 1793049401 /home/root/xovi/extensions.d/webserver-remote.so\n/home/root/pi-ink-webserver-remote-backup-0014/webserver-remote.so: OK\n644 0 0 8453696 1793049401 /home/root/pi-ink-webserver-remote-backup-0014/webserver-remote.so\n",
+  "stderr": "",
+  "restart_performed": false
+}

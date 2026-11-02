@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-11-02T20:15:38.574120+00:00",
+  "files": {
+    "pi-ink-loopback-experiment.so": "9b0e7fd7b02e1e1420e19daf1c49a980d9322f1d1ea7e7ad1e01c63825c7bc99",
+    "transport-tablet": "d2d94424034b5646febd66dd9dd16b2e1fb585b8ff40fef6b57f6b6dcc856e63",
+    "tablet.json": "219185f11e26b8c3eb97e62ec2410fca1685cbfd6acf5bf619380ddc5638192e",
+    "cert.pem": "8d0852696e86683fad1281c4ea1698ab32fc95d51ebe2061b5761b1b85b80066"
+  },
+  "private_config_contents_retained": false,
+  "server_id": "desktop-loopback-0014",
+  "job_id": "loopback-0014-annotated-export",
+  "transport": "certificate-verified TLS HTTPS and WSS, bearer credential; fixed synthetic allowlist; no LAN listener on tablet",
+  "pairing_limit": "temporary cable-provisioned experiment trust; not tablet pairing UI"
+}

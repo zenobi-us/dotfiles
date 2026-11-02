@@ -1,0 +1,360 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0014",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 5,
+  "parent_receipt": "start-0013",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T20:35:52.969021+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "workspace_id": "w6H",
+  "pane_id": "w6H:p1",
+  "agent": "omp",
+  "session_id": "01a19ddf-460c-766e-aa9f-bf07b55eb945",
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "tracker/initiatives/pi-ink-bridge/index.md"
+    },
+    {
+      "kind": "record",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0013.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0012.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/findings.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/source.pdf"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/unmarked-export.pdf"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001/findings.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/asivery/rm-xovi-extensions/blob/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/main.cpp"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/asivery/rm-xovi-extensions/blob/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/webserver-remote.xovi"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/asivery/rm-xovi-extensions/blob/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/notification.qmd"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/asivery/rm-xovi-extensions/blob/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/rust-proxy/src/proxy.rs"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0014.md"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    }
+  ],
+  "status": "blocked",
+  "source_changed": false,
+  "changed_source_files": [],
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/activation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/adapter-build.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/adapter-hashes.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/approval.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cable-free-outcome.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cable-reseat.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cleanup-cable-blocker.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cleanup.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/client-ready.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/client-start.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/device-cleanup-after-reseat.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/device-cleanup.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/endpoint-verification-corrected.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/endpoint-verification.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/explicit-send.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/geometry-limit.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/listener-attribution.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/native-page.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/native-render.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/owner-observations.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/payload-hashes.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/pdf-render.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/preflight-gates.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/preinstall-baseline.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/quarantine.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/receiver-smoke.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-baseline.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-final.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result.pdf",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/revised-approval-proposal.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/revised-approval.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/revised-precheck.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/staging.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/tablet-reports.jsonl",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/temporary-source-audit.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/tls-boundary-smoke.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/transport-build.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/upstream-assessment.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/visible-marks.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0014.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "implementation_summary": "Bounded real Paper Pro experiment proved private loopback stock service plus authenticated cable-free annotated PDF export and one synthetic import. Owner reports normal-library visibility/open and preserved editable marks. Expanded actual PDF geometry fails source-dimension PNG acceptance; no pairing/folder/current-document toolbar or originating Pi/OMP integration implemented. Temporary code removed; original pre-existing proxy restored exactly by explicit owner choice; complete baseline verified. Full ticket remains claimed and production blocked.",
+  "validation": [
+    {
+      "command": "Podman RMPP SDK make XOVI_REPO=/xovi -j2",
+      "result": "passed",
+      "evidence": "adapter-build.json"
+    },
+    {
+      "command": "go build desktop; GOOS=linux GOARCH=arm64 CGO_ENABLED=0 go build tablet; go vet transport.go",
+      "result": "passed",
+      "evidence": "transport-build.json"
+    },
+    {
+      "command": "Actual desktop LAN TLS source/control/result boundary probes",
+      "result": "401 unauthenticated source/control; 200 pinned source; 409 wrong origin; untrusted cert rejected",
+      "evidence": [
+        "receiver-smoke.json",
+        "tls-boundary-smoke.json"
+      ]
+    },
+    {
+      "command": "Approved cable setup load and loopback endpoint/listener checks",
+      "result": "passed after unsupported journalctl --grep replaced with exact-marker output filter; one load restart",
+      "evidence": [
+        "activation.json",
+        "endpoint-verification.json",
+        "endpoint-verification-corrected.json"
+      ]
+    },
+    {
+      "command": "Owner explicit Send over WSS; actual local stock PDF export and authenticated HTTPS upload with USB disconnected",
+      "result": "passed bounded export feasibility; actual annotated PDF 137198 bytes; no Pi/OMP tool completion",
+      "evidence": [
+        "explicit-send.json",
+        "cable-free-outcome.json",
+        "result.pdf",
+        "native-page.png"
+      ]
+    },
+    {
+      "command": "pdfinfo -box actual export; native 72DPI render",
+      "result": "geometry failed source-size gate: 960.076x1121.92 points; native PNG961x1122; forced800x1000 disqualified",
+      "evidence": [
+        "pdf-render.json",
+        "geometry-limit.json",
+        "native-render.json",
+        "visible-marks.json"
+      ]
+    },
+    {
+      "command": "One authenticated synthetic transfer and tablet-local stock upload",
+      "result": "HTTP201 with USB disconnected; owner reports library visible/opens and original annotations remain editable; UUID/folder/isolation not proved",
+      "evidence": [
+        "cable-free-outcome.json",
+        "owner-observations.json"
+      ]
+    },
+    {
+      "command": "Exact branch A cleanup, final Xochitl restart and baseline comparison",
+      "result": "passed after owner cable reseat; original proxy hash/metadata restored; stock/loader/extensions/config/listener set equal; temporary paths absent",
+      "evidence": [
+        "device-cleanup.json",
+        "cleanup-cable-blocker.json",
+        "cable-reseat.json",
+        "device-cleanup-after-reseat.json",
+        "restoration-baseline.json",
+        "restoration-comparison.json",
+        "restoration-final.json"
+      ]
+    },
+    {
+      "command": "Remove owned disposable source, runtime credentials, dependency clone, newly pulled toolchain image; stop receiver",
+      "result": "passed",
+      "evidence": "cleanup.json"
+    },
+    {
+      "command": "git show -s --format='%H%n%T%n%D' HEAD && git status --porcelain && git ls-files -u",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "result": "clean unchanged source; no unmerged paths; 564c037546911f6e26936383b63eab9129819b97 / 57df0dbb0fb91fa3da0716f1c3a62460906c96eb"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "source-geometry",
+      "description": "Annotated export expands MediaBox/CropBox to [-31.51,-121.92,928.57,1000]. Original source 800x1000. No accepted source-window mapping; forced scale is disqualified. Source-dimension aligned PNG gate remains blocked."
+    },
+    {
+      "id": "document-folder-associations",
+      "description": "Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented."
+    },
+    {
+      "id": "current-document-toolbar",
+      "description": "No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof."
+    },
+    {
+      "id": "origin-cancellation-delivery",
+      "description": "Actual PDF accepted only for fixed diagnostic server/job; wrong-origin receiver request rejected. No originating Pi/OMP tool request integrated; production cancellation, document switching and wrong-server isolation untested."
+    },
+    {
+      "id": "owner-quality-lifecycle",
+      "description": "Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested."
+    }
+  ],
+  "full_ticket_pass": false,
+  "experiment_feasibility": "passed within recorded bounds, not full acceptance",
+  "ticket_state": "claimed",
+  "production_blocked": true,
+  "restoration": {
+    "status": "restored",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json",
+    "final_verification_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-final.json",
+    "service_active": true,
+    "temporary_adapter_absent": true,
+    "temporary_client_absent": true,
+    "owned_backup_absent": true,
+    "original_extension_hash_and_metadata_restored": true,
+    "stock_loader_extension_config_match": true,
+    "listener_bindings_match": true,
+    "baseline_wildcard_proxy_restored_by_owner_choice": true,
+    "actual_load_restart_commands": 1,
+    "actual_cleanup_restart_commands": 1,
+    "additional_restart_commands": 0,
+    "remaining_device_cleanup": []
+  },
+  "temporary_payload_cleanup": {
+    "status": "completed",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cleanup.json"
+  },
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0010",
+    "approval_receipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0013.yaml",
+    "device_approval_records": [
+      "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/approval.json",
+      "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/revised-approval.json",
+      "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/explicit-send.json",
+      "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/owner-observations.json",
+      "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cable-reseat.json"
+    ],
+    "ownership": "Parent scoped repository takeover; existing held claim retained. Fresh implementation session; no earlier session reused.",
+    "source_preserved": true,
+    "history_repair": false,
+    "device_scope_change": "Original preflight aborted on conflicting pre-existing proxy; owner then explicitly approved exact reversible quarantine and branch A restoration.",
+    "cleanup_connection_failure": "First cleanup SSH failed before remote execution; owner cable reseat restored direct USB route; no Wi-Fi SSH or host network change."
+  },
+  "required_parent_action": "Validate blocked result, evidence, exact unchanged clean source and restoration; append parent completion 0015 separately and close child pane. No review/merge/push/ticket completion or WORKTREE_IMPLEMENTATION_DONE claim."
+}

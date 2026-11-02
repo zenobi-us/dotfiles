@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-02T20:18:57.847296+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "stdin": "set -eu\ncommand -v mv rmdir stat\noriginal=/home/root/xovi/extensions.d/webserver-remote.so\ntest -f \"$original\"; test ! -L \"$original\"\nprintf '%s  %s\\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f \"$original\" | sha256sum -c -\nstat -c '%a %u %g %s %Y %n' \"$original\"\nprintf 'ACTIVE_ROOTS\\n'\nls -ld /home/root/xovi/services/xochitl.service/extensions.d /home/root/xovi/services/xochitl.service/exthome\nreadlink /home/root/xovi/services/xochitl.service/extensions.d\nreadlink /home/root/xovi/services/xochitl.service/exthome\nprintf 'UNIT_COLLISION\\n'\nsystemctl show pi-ink-loopback-0014.service -p LoadState\n",
+  "host_deadline_seconds": 25,
+  "exit_code": 0,
+  "stdout": "/usr/bin/mv\n/usr/bin/rmdir\n/usr/bin/stat\n/home/root/xovi/extensions.d/webserver-remote.so: OK\n644 0 0 8453696 1793049401 /home/root/xovi/extensions.d/webserver-remote.so\nACTIVE_ROOTS\nlrwxrwxrwx    1 root     root            28 Nov  2 12:17 /home/root/xovi/services/xochitl.service/extensions.d -> /home/root/xovi/extensions.d\nlrwxrwxrwx    1 root     root            23 Nov  2 12:17 /home/root/xovi/services/xochitl.service/exthome -> /home/root/xovi/exthome\n/home/root/xovi/extensions.d\n/home/root/xovi/exthome\nUNIT_COLLISION\nLoadState=not-found\n",
+  "stderr": ""
+}

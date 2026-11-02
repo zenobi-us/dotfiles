@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-02T20:23:42.036679+00:00",
+  "command": [
+    "pdftoppm",
+    "-singlefile",
+    "-png",
+    "-r",
+    "72",
+    "result.pdf",
+    "native-page"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "dimensions": [
+    961,
+    1122
+  ],
+  "accepted_source_geometry": false
+}

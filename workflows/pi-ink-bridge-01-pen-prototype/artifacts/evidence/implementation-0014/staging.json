@@ -1,0 +1,81 @@
+{
+  "created_at": "2026-11-02T20:19:24.948471+00:00",
+  "transfers": [
+    {
+      "command": [
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/loopback-experiment/pi-ink-loopback-experiment.so",
+        "root@10.11.99.1:/home/root/pi-ink-loopback-0014/adapter.so"
+      ],
+      "host_deadline_seconds": 45,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "9b0e7fd7b02e1e1420e19daf1c49a980d9322f1d1ea7e7ad1e01c63825c7bc99"
+    },
+    {
+      "command": [
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/loopback-experiment/transport-tablet",
+        "root@10.11.99.1:/home/root/pi-ink-loopback-0014/transport-tablet"
+      ],
+      "host_deadline_seconds": 45,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "d2d94424034b5646febd66dd9dd16b2e1fb585b8ff40fef6b57f6b6dcc856e63"
+    },
+    {
+      "command": [
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/tmp/pi-ink-0014-runtime/tablet.json",
+        "root@10.11.99.1:/home/root/pi-ink-loopback-0014/tablet.json"
+      ],
+      "host_deadline_seconds": 45,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "219185f11e26b8c3eb97e62ec2410fca1685cbfd6acf5bf619380ddc5638192e"
+    },
+    {
+      "command": [
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/tmp/pi-ink-0014-runtime/cert.pem",
+        "root@10.11.99.1:/home/root/pi-ink-loopback-0014/cert.pem"
+      ],
+      "host_deadline_seconds": 45,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "8d0852696e86683fad1281c4ea1698ab32fc95d51ebe2061b5761b1b85b80066"
+    }
+  ]
+}

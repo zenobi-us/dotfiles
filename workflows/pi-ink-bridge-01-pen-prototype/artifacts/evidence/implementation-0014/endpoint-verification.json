@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-02T20:19:54.806542+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "stdin": "set -eu\npid=$(systemctl show xochitl -p MainPID --value)\nprintf 'ADAPTER_MAP\\n'\ngrep '/home/root/xovi/extensions.d/pi-ink-loopback-experiment.so' /proc/\"$pid\"/maps\nif grep -q '/home/root/.*/webserver-remote.so' /proc/\"$pid\"/maps; then printf 'CONFLICT_STILL_MAPPED\\n'; exit 1; fi\nprintf 'ALLOWLISTED_ACTIVATION_MARKER\\n'\njournalctl -u xochitl --since '-5 minutes' --no-pager --output=cat --grep '^PI_INK_LOOPBACK_0014 loaded;'\nprintf 'LOCAL_ENDPOINT\\n'\ntest -x /home/root/.vellum/bin/curl\n/home/root/.vellum/bin/curl --noproxy '*' --max-time 8 --silent --show-error --output /dev/null --write-out 'ROOT_HTTP_STATUS=%{http_code}\\n' http://127.0.0.1:81/\nprintf 'XOCHITL_SOCKET_DESCRIPTORS\\n'\nfor descriptor in /proc/\"$pid\"/fd/*; do target=$(readlink \"$descriptor\") || continue; case \"$target\" in socket:*) printf '%s %s\\n' \"$descriptor\" \"$target\";; esac; done\n",
+  "host_deadline_seconds": 25,
+  "exit_code": 1,
+  "stdout": "ADAPTER_MAP\nffff96ac0000-ffff96ac2000 r-xp 00000000 fe:02 827                        /home/root/xovi/extensions.d/pi-ink-loopback-experiment.so\nffff96ac2000-ffff96adf000 ---p 00002000 fe:02 827                        /home/root/xovi/extensions.d/pi-ink-loopback-experiment.so\nffff96adf000-ffff96ae0000 r--p 0000f000 fe:02 827                        /home/root/xovi/extensions.d/pi-ink-loopback-experiment.so\nffff96ae0000-ffff96ae1000 rw-p 00010000 fe:02 827                        /home/root/xovi/extensions.d/pi-ink-loopback-experiment.so\nALLOWLISTED_ACTIVATION_MARKER\n",
+  "stderr": "PCRE2 support is not compiled in.\n"
+}

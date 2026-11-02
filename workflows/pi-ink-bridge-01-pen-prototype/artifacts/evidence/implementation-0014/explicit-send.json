@@ -1,0 +1,36 @@
+{
+  "created_at": "2026-11-02T20:22:26.350746+00:00",
+  "authorization": "Owner selected USB disconnected; Send annotation. Explicit Send ONLY known synthetic UUID. Telemetry required before operation.",
+  "document_uuid": "fc2a3c9b-feea-40d1-9ac1-a8327f10edba",
+  "server_id": "desktop-loopback-0014",
+  "job_id": "loopback-0014-annotated-export",
+  "pre_send_telemetry": {
+    "time": "2026-11-02T20:22:24.418504117Z",
+    "operation": "sample",
+    "status": "observed",
+    "usb": {
+      "/sys/class/udc/ci_hdrc.0/state": "not attached",
+      "/sys/class/udc/ci_hdrc.1/state": "not attached"
+    },
+    "addresses": [
+      "lo 127.0.0.1/8",
+      "lo ::1/128",
+      "wlan0 192.168.86.128/24",
+      "wlan0 fe80::2fa7:f9f9:dd82:9e15/64",
+      "usb0 fe80::88bd:3aff:fe12:a00/64",
+      "usb1 fe80::98bd:3aff:fe12:a00/64"
+    ],
+    "listeners": [
+      "3600007F:0035",
+      "0100007F:0051",
+      "0100007F:2253",
+      "3500007F:0035",
+      "00000000000000000000000000000000:0016",
+      "00000000000000000000000000000000:0016"
+    ],
+    "disconnected": true,
+    "private_endpoint_only": true
+  },
+  "send_action": "desktop authenticated WSS command; NOT tablet toolbar and NOT acceptance/delivery claim",
+  "ssh_after_disconnect": false
+}

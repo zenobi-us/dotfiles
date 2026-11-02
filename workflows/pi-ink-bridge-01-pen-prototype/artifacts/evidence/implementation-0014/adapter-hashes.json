@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-11-02T20:12:40.831598+00:00",
+  "files": {
+    "pi-ink-loopback-experiment.so": "9b0e7fd7b02e1e1420e19daf1c49a980d9322f1d1ea7e7ad1e01c63825c7bc99",
+    "xovi.o": "d0243df477f3ce39365aeb6f538ee8fc62c9a8f7958737e83c7a327c7e311e7a",
+    "baseline.sh": "a3f8eb2b11c96a002cf7e88d9630e0a04f284bce16fd45b2a6a2ba8a213ed64d",
+    "main.o": "26e059f42cb6b0aa4e19144a3f176e16ec1b479df3917b27125ce4ab86c55364",
+    "pi-ink-loopback-experiment.xovi": "00f39581d1d41589fecd4ab651ea0c12ec7b02f957151d945218408f60018ba6",
+    "Makefile": "fb4b11849e08d3e239e8f3a67db44d100933a75bc67b86a181c70e92e4f0ebe1",
+    "main.cpp": "6ba4a54eae8be858d6f831decd1bbeefd7520c6084c63835eb1bb072660a1611",
+    "xovi.cpp": "49173fdb5fe5a7fb384ec375f70c5d276cdbf2eac44caff94512cacdac0be359",
+    "xovi.h": "64214e3a9beccd645ee5a40e34c105a0093013b727b67b9dea4613171d22f185"
+  },
+  "xovi_generator_commit": "2b99649f5e4fd6288be7792a8570bd16418adb70",
+  "runtime_status": "not installed; abort gate hit"
+}

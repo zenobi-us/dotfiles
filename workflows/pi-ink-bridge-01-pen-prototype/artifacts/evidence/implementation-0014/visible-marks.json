@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-11-02T20:24:01.762087+00:00",
+  "native_render_dimensions": [
+    961,
+    1122
+  ],
+  "red_dominant_pixel_count": 32947,
+  "red_dominant_pixel_bounds_xyxy_inclusive": [
+    25,
+    86,
+    937,
+    1096
+  ],
+  "visual_observation": "Red freehand strokes appear over synthetic grayscale alignment grid and extend outside its black rectangular boundary. Expanded PDF page bounds retain those marks.",
+  "source_window_mapping": "not established; no crop accepted",
+  "original_pdf_sha256": "fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf",
+  "pen_quality_verdict": "not obtained; no toolbar was present"
+}

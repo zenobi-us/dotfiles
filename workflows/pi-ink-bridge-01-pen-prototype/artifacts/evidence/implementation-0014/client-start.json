@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-02T20:20:21.393985+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "stdin": "set -eu\nsystemctl show pi-ink-loopback-0014.service -p LoadState\nsystemd-run --unit=pi-ink-loopback-0014 --property=Type=exec --property=Restart=no /home/root/pi-ink-loopback-0014/transport-tablet /home/root/pi-ink-loopback-0014/tablet.json\nsystemctl is-active pi-ink-loopback-0014.service\n",
+  "host_deadline_seconds": 25,
+  "exit_code": 0,
+  "stdout": "LoadState=not-found\nactive\n",
+  "stderr": "Running as unit: pi-ink-loopback-0014.service; invocation ID: c6dc129063f94b53bb23daf373e44a7f\n"
+}

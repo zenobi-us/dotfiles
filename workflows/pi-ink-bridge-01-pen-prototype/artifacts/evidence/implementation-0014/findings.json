@@ -1,0 +1,71 @@
+{
+  "created_at": "2026-11-02T20:33:25.979753+00:00",
+  "status": "blocked",
+  "bounded_feasibility": "passed: private loopback stock endpoint, authenticated cable-free annotated PDF export and single source import; owner-reported library open and editable-work preservation; full restoration",
+  "full_ticket_pass": false,
+  "production_blocked": true,
+  "ticket_status": "claimed",
+  "firmware": "3.28.0.172",
+  "device_model": "reMarkable Paper Pro (Ferrari), known prior recorded model; firmware/hash reverified",
+  "stock_sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+  "xovi_sha256": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446",
+  "appload_sha256": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+  "version_limit": "Exact loader/AppLoad hashes recorded; semantic versions not queried; AppLoad UI not used. SDK Qt6.10; only observed firmware boundary.",
+  "experiment": {
+    "endpoint": "127.0.0.1:81, root HTTP200 after approved load",
+    "listener_scope": "During experiment, no stock HTTP Wi-Fi/USB/wildcard 80/81 listener; stock Qt loopback listener only. Existing unrelated SSH listener unchanged.",
+    "usb": "Both controllers not attached, no USB IPv4 in actual tablet telemetry at Send/import",
+    "reports": 80,
+    "disconnected_reports": 45,
+    "transport": "Tablet-initiated authenticated certificate-verified WSS control/status and HTTPS actual PDF/source bytes; temporary cable-provisioned trust, not production pairing UI",
+    "pdf_bytes": 137198,
+    "pdf_sha256": "fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf",
+    "annotated_output": "Native render visibly contains red freehand marks; red-dominant pixel count 32947, bounds [25,86,937,1096]",
+    "geometry": "Expanded real page retained. Native render 961x1122. Forced 800x1000 result.png is diagnostic only, disqualified. No accepted normalized/cropped PNG.",
+    "import": "One approved known-source import HTTP201. Owner-reported normal library visible and opens. No automated imported UUID/folder proof.",
+    "editable": "Owner reports original editable annotations remain.",
+    "explicit_send": "Owner action, WSS command, diagnostic PDF acceptance and full acceptance are separate records; no tablet toolbar or Pi/OMP completion."
+  },
+  "restoration": {
+    "passed": true,
+    "original_proxy_hash_and_metadata": true,
+    "stock_loader_extensions_configuration_match": true,
+    "listener_bindings_match": true,
+    "temporary_paths_absent": true,
+    "owner_branch": "A RESTORE ORIGINAL; wildcard proxy restored deliberately",
+    "load_restarts": 1,
+    "cleanup_restarts": 1,
+    "extra_restarts": 0
+  },
+  "lifecycle": {
+    "xochitl_load_restart": "tested; minimal adapter loaded and stock endpoint HTTP200",
+    "xochitl_removal_restart": "tested; baseline restored",
+    "sleep": "untested",
+    "tablet_reboot": "untested",
+    "firmware_update": "untested",
+    "xovi_reactivation": "untested; existing preload only, no activation script executed"
+  },
+  "open_questions": [
+    {
+      "id": "source-geometry",
+      "description": "Annotated export expands MediaBox/CropBox to [-31.51,-121.92,928.57,1000]. Original source 800x1000. No accepted source-window mapping; forced scale is disqualified. Source-dimension aligned PNG gate remains blocked."
+    },
+    {
+      "id": "document-folder-associations",
+      "description": "Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented."
+    },
+    {
+      "id": "current-document-toolbar",
+      "description": "No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof."
+    },
+    {
+      "id": "origin-cancellation-delivery",
+      "description": "Actual PDF accepted only for fixed diagnostic server/job; wrong-origin receiver request rejected. No originating Pi/OMP tool request integrated; production cancellation, document switching and wrong-server isolation untested."
+    },
+    {
+      "id": "owner-quality-lifecycle",
+      "description": "Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested."
+    }
+  ],
+  "preservation": "All historical source/evidence/receipts preserved; no reset, history repair, cloud/account/settings change, private notebook access, new renderer, review, merge, push or ticket completion."
+}
