@@ -1,0 +1,94 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0013",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 5,
+  "parent_receipt": "start-complete-0012",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T20:06:12.235501+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6H:p1",
+  "agent": "omp",
+  "session_id": null,
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0012.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/findings.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001/findings.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0013.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0010",
+    "reason": "Canonical ticket commit 689c0107 approves loopback stock-service direction; previous metadata probe failed before execution and restoration is recorded.",
+    "approval": "User selected Approve repository takeover in current session. Repository work and fresh implementer only. No device mutation authorized.",
+    "ownership": "Unknown durable ownership; scoped transfer approved; claimed status retained idempotently.",
+    "liveness": "herdr agent list: no prior implementer in source worktree. Current parent w64:pY; unrelated repository rebase agent done. Prior completion records child shutdown and pane closure.",
+    "reservations": "No matching ticket in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Inspector historyValid=true; unique clean unchanged recorded source commit/tree. Base clean at 689c0107. Existing checkout preserved; no historical receipt repair."
+  },
+  "validation": [
+    {
+      "command": "records.ts check --repository BASE --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; tracker-ticket/v1; claimed; no direct blockers"
+    },
+    {
+      "command": "inspect.ts canonical-ticket --json",
+      "result": "start/takeover; requiredApproval=true; historyValid=true; unique clean source"
+    }
+  ]
+}
