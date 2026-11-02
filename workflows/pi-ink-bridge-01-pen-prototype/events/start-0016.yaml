@@ -1,0 +1,87 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0016",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 6,
+  "parent_receipt": "start-complete-0015",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T21:00:59.538419+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6J:p2",
+  "agent": "omp",
+  "session_id": null,
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0015.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/analysis.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/policy-decision.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/verification.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0016.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0013",
+    "reason": "Same approved parent continues repository-only implementation after offline geometry proof and explicit confirmation-before-clipping policy selection.",
+    "approval": "Same conversation user approved repository takeover earlier, selected Require confirmation before clipping, and now says continue after next implementation step was stated. Existing parent retains ownership; no new device approval inferred.",
+    "ownership": "Retained by parent session01a19dd8-e4d3-7162-913a-50d94f31d1c7; no ownership transfer from another session. Claimed state retained idempotently.",
+    "liveness": "Fresh herdr agent list shows only current parent working in Dotfiles; previous implementation session is done and pane closed. No implementer in source checkout.",
+    "reservations": "No matching ticket in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Inspector historyValid=true; unique clean source remains exact commit/tree. No reset, source replacement, old-session reuse, or historical receipt repair."
+  },
+  "scope": "Repository-only source-boundary detection and per-result clipping confirmation in actual submission path; no tablet connection/mutation, hardware acceptance claim, production ticket completion or merge/push.",
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json",
+      "result": "start/takeover; historyValid=true; clean unique unchanged source; parent start-complete-0015"
+    },
+    {
+      "command": "records.ts check --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; claimed; no direct blockers"
+    }
+  ]
+}
