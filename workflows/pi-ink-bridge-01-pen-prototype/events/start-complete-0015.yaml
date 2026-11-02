@@ -1,0 +1,203 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0015",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 5,
+  "parent_receipt": "implementation-0014",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T20:38:52.096924+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6H:p1",
+  "agent": "omp",
+  "session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0012.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/findings.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001/findings.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0014.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cable-free-outcome.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-final.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/native-page.png"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/geometry-limit.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0013.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0015.yaml"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "reconcile",
+    "prior_attempt": "start-0013",
+    "reason": "Inspector selects reconcile of durable blocked implementation-0014; no child work repeated.",
+    "approval": "User selected Approve repository takeover in current session. Repository work and fresh implementer only. No device mutation authorized.",
+    "ownership": "Unknown durable ownership; scoped transfer approved; claimed status retained idempotently.",
+    "liveness": "herdr agent list: no prior implementer in source worktree. Current parent w64:pY; unrelated repository rebase agent done. Prior completion records child shutdown and pane closure.",
+    "reservations": "No matching ticket in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Inspector historyValid=true; unique clean unchanged recorded source commit/tree. Base clean at 689c0107. Existing checkout preserved; no historical receipt repair.",
+    "outcome": "Cable-free loopback annotated PDF export and synthetic import proved; source-size PNG and full integration acceptance remain blocked. Exact device baseline restored, including owner-selected wildcard proxy."
+  },
+  "validation": [
+    {
+      "command": "herdr agent wait w6H:p1 --until done --until blocked --timeout 3600000",
+      "result": "done; completion_seq146; fresh session01a19ddf-460c-766e-aa9f-bf07b55eb945"
+    },
+    {
+      "command": "Read child phase-result, immutable snapshot, cable-free outcome and restoration records",
+      "result": "Valid blocked result; real disconnected export/import; all restoration comparisons true; final device command exit0, RESTORATION_COMPLETE; no cleanup remains"
+    },
+    {
+      "command": "Visual inspection native-page.png",
+      "result": "Red strokes on synthetic grid and beyond source boundary. Native961x1122; forced800x1000 diagnostic not accepted."
+    },
+    {
+      "command": "mq okf_extract_links for immutable snapshot and generated Markdown projections; resolve from each actual parent directory",
+      "result": [
+        {
+          "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0014.md",
+          "links": 64,
+          "missing": []
+        },
+        {
+          "path": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+          "links": 94,
+          "missing": []
+        },
+        {
+          "path": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+          "links": 37,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "command": "inspect.ts canonical ticket --json before reconciliation",
+      "result": "historyValid=true; start/reconcile; clean unchanged unique source commit564c0375/tree57df0dbb"
+    },
+    {
+      "command": "herdr pane close w6H:p1",
+      "result": "ok; source worktree and workspace preserved"
+    }
+  ],
+  "child_session_id": "01a19ddf-460c-766e-aa9f-bf07b55eb945",
+  "pane_closed": true,
+  "worktree_preserved": true,
+  "result_missing": false,
+  "result_unusable": false,
+  "child_result": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml",
+    "status": "blocked",
+    "session_id": "01a19ddf-460c-766e-aa9f-bf07b55eb945",
+    "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+    "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+    "workflow_commit": "eca7c8d595a2f714cffa0378d7c89552a4278c63"
+  },
+  "restoration": {
+    "status": "restored",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json",
+    "final_verification_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-final.json",
+    "service_active": true,
+    "temporary_adapter_absent": true,
+    "temporary_client_absent": true,
+    "original_extension_restored": true,
+    "baseline_wildcard_proxy_restored_by_owner_choice": true,
+    "remaining_device_cleanup": []
+  },
+  "failure_reason": "Full acceptance blocked: expanded exported page geometry; no accepted source-dimension PNG mapping, stable imported UUID/folder/destination isolation, pairing UI, current-document toolbar, originating Pi/OMP delivery or production cancellation proof; toolbar quality and lifecycle checks untested.",
+  "ticket_state": "claimed",
+  "production_blocked": true,
+  "unrelated_repository_warning": "Child commit hook reported pre-existing hk pending-stash conflict for pi-shared-context-ux-05-events audit (stash1e89555d). Not applied, dropped or repaired."
+}
