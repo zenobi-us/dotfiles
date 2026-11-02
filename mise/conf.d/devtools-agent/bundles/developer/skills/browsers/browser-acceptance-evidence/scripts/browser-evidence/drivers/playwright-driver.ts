@@ -8,7 +8,7 @@
  */
 import { join } from "node:path";
 import type { Evidence, Plan, Precondition, Step, Test } from "../plan.ts";
-import { driverStep, humanStep, shotPath, stepNumber } from "../plan.ts";
+import { driverStep, humanStep, shotPath, stepNumber, videoPath } from "../plan.ts";
 import { sh } from "../sh.ts";
 import type { DriverRun } from "../verdict.ts";
 import type { Driver, RunContext } from "./driver.ts";
@@ -220,7 +220,11 @@ export const playwrightDriver: Driver = {
 
   async runTest(ctx: RunContext): Promise<DriverRun> {
     const script = join(ctx.workflowDir, this.scriptName(ctx.plan, ctx.test.id));
+    if (ctx.plan.video) {
+      await sh(["playwright-cli", "video-start", join(ctx.reportDir, videoPath(ctx.test.id))], env(ctx.session));
+    }
     const r = await sh(["playwright-cli", "--raw", "run-code", `--filename=${script}`], env(ctx.session));
+    if (ctx.plan.video) await sh(["playwright-cli", "video-stop"], env(ctx.session));
     let records: Evidence[] = [];
     try {
       records = JSON.parse(r.out.trim());

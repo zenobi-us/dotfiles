@@ -41,6 +41,10 @@ export async function loadPlan(dir: string): Promise<Plan> {
       return found ? [`${at}: says carries ${found}`] : [];
     }),
   );
+  if (mod.plan.video && mod.plan.driver !== "playwright") {
+    die(`${file} asks for video with the ${mod.plan.driver} driver.\n` +
+        `Only the playwright driver records video. Set driver: "playwright", or drop video.`);
+  }
   if (bad.length) {
     die(`${file} has steps a person cannot follow:\n${bad.join("\n")}\n\n` +
         `A \`says\` is the manual test step. Name what is on the screen — the visible\n` +

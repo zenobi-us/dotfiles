@@ -12,18 +12,19 @@ export const REPORTS = resolve(import.meta.dir, "..", "..", "..", "..", "devtool
 
 export async function ensureReportDir(reportDir: string, title: string): Promise<void> {
   if (existsSync(join(reportDir, "index.html"))) return;
-  // new-report.ts refuses to overwrite, and `run` may already have made shots/.
-  const stash = `${reportDir}.shots-stash`;
-  const hadShots = existsSync(join(reportDir, "shots"));
-  if (hadShots) await rename(join(reportDir, "shots"), stash);
+  // new-report.ts refuses to overwrite, and `run` may already have made shots/ and videos/.
+  const kept = RUN_OUTPUT.filter((name) => existsSync(join(reportDir, name)));
+  for (const name of kept) await rename(join(reportDir, name), `${reportDir}.${name}-stash`);
   if (existsSync(reportDir)) await rm(reportDir, { recursive: true, force: true });
   const r = await sh([join(REPORTS, "new-report.ts"), reportDir, title]);
   if (r.code !== 0) die(`new-report.ts failed:\n${r.err}`);
-  if (hadShots) {
-    await rm(join(reportDir, "shots"), { recursive: true, force: true });
-    await rename(stash, join(reportDir, "shots"));
+  for (const name of kept) {
+    await rm(join(reportDir, name), { recursive: true, force: true });
+    await rename(`${reportDir}.${name}-stash`, join(reportDir, name));
   }
 }
+
+const RUN_OUTPUT = ["shots", "videos"];
 
 export async function validateReport(page: string): Promise<boolean> {
   const r = await sh([join(REPORTS, "validate-report.ts"), page]);

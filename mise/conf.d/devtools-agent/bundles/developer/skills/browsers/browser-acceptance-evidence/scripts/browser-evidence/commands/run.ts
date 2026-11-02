@@ -18,6 +18,7 @@ export async function runTests(dir: string, only?: string): Promise<number> {
   const workflowDir = resolve(dir, "workflows");
   const runsDir = join(dir, "runs");
   await mkdir(join(reportDir, "shots"), { recursive: true });
+  if (plan.video) await mkdir(join(reportDir, "videos"), { recursive: true });
   await mkdir(runsDir, { recursive: true });
   const evidence = join(dir, "evidence.jsonl");
 

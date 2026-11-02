@@ -131,6 +131,12 @@ export type Plan = {
   base: string;
   /** Printed in the report's environment line. */
   environment?: { account?: string; branch?: string; notes?: string };
+  /**
+   * Record one video per test. Only the playwright driver can record, so a
+   * surf plan that asks for video is refused at load. Confirm with the user
+   * before turning it on: a video is large and slows the run.
+   */
+  video?: boolean;
   preconditions?: Precondition[];
   tests: Test[];
 };
@@ -265,6 +271,11 @@ export function selectorish(says: string): string | null {
     if (m) return `${what} (\`${m[0]}\`)`;
   }
   return null;
+}
+
+/** `videos/test-2.webm`, relative to the report directory like a screenshot. */
+export function videoPath(testId: string): string {
+  return `videos/test-${testId}.webm`;
 }
 
 /** Every step that takes a screenshot, as `<step number>` -> `<path>`. */
