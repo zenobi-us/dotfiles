@@ -12,20 +12,58 @@ blocked_by: []
 
 ## What to build
 
-Prove one source-image-to-pen-to-PNG workflow on a real Paper Pro before production implementation. Use temporary code to answer the pen-quality and firmware-compatibility questions. This ticket records a decision, not a production client.
+Prove one client/server-to-stock-editor-to-PNG workflow on a real Paper Pro. Build only the temporary integration needed to test pairing, local document storage, server associations, and an editor toolbar. The user performs normal tablet drawing operations. Do not build or replace a drawing app.
 
-Follow the parent initiative specification. Keep its scope limits and approved integration seam. Hardware checks require a real Paper Pro and its owner for device-only actions.
+This ticket records a prototype and its findings, not a complete production client. Keep the parent initiative requirements for authenticated LAN transfer, request isolation, explicit Send, cancellation, browser availability, and the completed PNG result. Use its approved integration seam. Hardware checks require a real Paper Pro and its owner.
+
+### Revised responsibilities
+
+- **Client and server:** Pair tablets with servers, authenticate connections, and transport source images, PDFs, and completed annotations. Use the same client/server connection for content and status.
+- **Tablet client:** Save received files, create local folders, and persist document/folder associations with stable server and job identities. Keep associations independent of the active conversation or a mutable display name.
+- **Tablet app:** Facilitate pairing and visually associate local folders with paired servers. Show the server identity, connection state, and relevant document/job status.
+- **Normal tablet editor:** Let the user find, open, draw on, and save documents through normal tablet operations. Leave pen input, erasing, undo, zoom, and editable drawing data to that editor.
+- **Custom editor toolbar:** Identify the current image or PDF, show its bound server and submission status, and provide explicit Send through the tablet client. The toolbar is not a drawing surface.
+
+### Prototype sequence
+
+1. Pair the tablet with a desktop server and associate a local folder with that server through the tablet app.
+2. Receive a known source image or image-backed PDF through the authenticated client/server connection. Save it locally with its server and job association.
+3. Let the user locate and open the document through normal tablet operations, then draw and save with the stock editor. Do not require automatic document opening.
+4. Use the editor toolbar to resolve the current document and display its association and status. Saving remains separate from Send.
+5. Select Send to obtain output that includes the visible pen marks and upload it to the bound server. Return a flattened PNG to the originating Pi/OMP request at the source dimensions.
+
+### Scope limits and integration checks
+
+- **No custom drawing:** Do not implement stroke capture, rendering, erasing, undo, pan, or zoom. Verify that the toolbar does not disrupt normal drawing.
+- **No editor automation prerequisite:** Do not make a private Xochitl import/open/export automation service or the USB web interface a prerequisite for this model. Do not continue the USB-address or localhost probes as the implementation path.
+- **Normal-use transport:** Use the authenticated LAN client/server connection without SSH or USB. SSH remains limited to cable-connected installation and repair. Preserve the parent WebSocket and HTTPS transport contract.
+- **Document visibility:** Prove that received files are available through normal tablet operations. A filesystem folder is not automatically a folder in the stock document library. Record the actual integration instead of assuming equivalence.
+- **Annotated output:** Prove how the toolbar obtains the current visible annotation through the normal editor capabilities. Stock pen marks can be separate from the original PDF. Uploading an unchanged source file does not satisfy Send.
+- **Safe document access:** Do not modify private notebook files while Xochitl runs. Keep the original source and editable annotation data recoverable through the normal editor. Do not silently change cloud or account settings.
+- **Optional destination choice:** Evaluate sending to another paired server as an optional toolbar action, not a prerequisite. Require an explicit destination choice. Do not silently change the original server/job association or deliver to an unrelated active request.
 
 ## Acceptance criteria
 
-1. Open the temporary client through the proposed sidebar integration on a real Paper Pro. Record the device model, firmware, AppLoad version, XOVI version, and desktop dependencies.
-2. Transfer a known source image to the device, draw with the real pen, and return a flattened PNG to the originating Pi/OMP request. Compare marked pixels and source dimensions to detect alignment errors.
-3. Observe pen latency and palm handling during drawing. Record whether they are usable, the observed limits, and the evidence that supports the decision. AppLoad launch alone does not pass this gate.
-4. Check source-image coordinates through display scaling and orientation changes. Keep source pixels separate from editable strokes.
-5. Record a tested firmware range. Do not claim support for an untested firmware version.
-6. Keep the findings and required decisions. Remove temporary code. If the approach fails, record the blocker and obtain a specification decision before production implementation starts.
+1. On a real Paper Pro, demonstrate tablet-app access to pairing and visual folder-to-server associations. Record the device model, firmware, desktop dependencies, and AppLoad/XOVI versions if used. Record any restart and lifecycle limits.
+2. Receive and save a known source through authenticated LAN transfer with USB disconnected and without runtime SSH. Demonstrate that normal tablet operations can find and open it. Preserve its source dimensions and stable document/server/job association.
+3. Draw and save with the normal tablet editor. Observe pen latency and palm handling with the custom toolbar present. Record the owner verdict and any interference. Do not claim a quality-gate pass from launch or transport alone.
+4. Demonstrate the custom toolbar in the current editing document. Show the bound server, connection state, and submission status. Switch documents and verify that the displayed association follows the document. If no association exists, show that state instead of selecting an unrelated server or job.
+5. Save or close the document without completing the Pi/OMP request. Select Send explicitly and return a flattened PNG containing the actual annotation to the originating request through the same authenticated client/server transport. Distinguish local save, server acceptance, and agent delivery.
+6. Compare source dimensions and marked pixels. Check image edges, display scaling, and orientation using normal editor controls. Confirm that Send obtains the visible pen marks rather than the original source alone. Preserve editable work in the normal editor.
+7. Verify that current-document resolution and server/job associations prevent wrong-server or wrong-request submission. Preserve terminal cancellation. If alternate-server Send is prototyped, require an explicit choice and retain the original association.
+8. Record only the tested firmware boundary. Preserve the earlier failed experiments and all evidence. Record unresolved document-visibility, toolbar-context, annotated-output, and lifecycle questions. Remove temporary code after the experiment. Keep dependent production work blocked until the revised quality gate passes.
 
 ## Comments
+
+### Revised client, folders, and editor toolbar approach — 2026-11-02
+
+The user requested this revised model: use the client/server for pairing and transport; use the tablet client for local files, folders, and server associations; use the tablet app for pairing and visual folder associations; and add an editor toolbar for Send and status. The user performs normal tablet drawing operations. No replacement drawing program is required. Alternate-server Send is a possible optional extension.
+
+The current What to build and Acceptance criteria now describe this model. This direction supersedes the earlier custom drawing prototype and the assumption that automated Xochitl import/open/export through the USB web interface must be solved first. The failed USB-interface test remains valid evidence about that tested interface, not a blocker for every implementation of the revised model.
+
+Two integration facts still need proof: received files must be available through normal tablet operations, and toolbar Send must obtain the actual visible annotation. The toolbar must also resolve the current document and its server/job association. Do not treat these as already implemented.
+
+This update changes only this ticket. It does not change its ID, title, parent, claim, triage, dependencies, earlier comments, or evidence. It does not mark the prototype complete or clear production blockers.
 
 ### Independent cable-free diagnostic review — 2026-11-02
 
