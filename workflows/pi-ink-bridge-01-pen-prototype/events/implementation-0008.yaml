@@ -1,0 +1,221 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0008",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 3,
+  "parent_receipt": "start-0007",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T11:13:01.516707+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "workspace_id": "w6E",
+  "pane_id": "w6E:p3",
+  "agent": "omp",
+  "session_id": "01a19bf2-0098-73c8-a1de-9b39f904a27e",
+  "parent_session_id": "01a19b0b-40b2-7580-b000-3eea9529b879",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0007.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0006.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0003.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
+    },
+    {
+      "kind": "retained-source-local-result",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0002.yaml",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype"
+    },
+    {
+      "kind": "retained-source-local-evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-hooks-001",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/rmitchellscott/rm-librarian/blob/5b68a00616cc99089d27d3be3ede6ea9d0fa6243/src/main.cpp"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/rmitchellscott/xovi-qmd-extensions/blob/ba86ebd3878e8a98166c6952f5481a431afaca22/3.28/createDocumentFromPages.qmd"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/rmitchellscott/xovi-qmd-extensions/blob/ba86ebd3878e8a98166c6952f5481a431afaca22/3.28/share-button-to-menu.qmd"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://api.github.com/repos/asivery/rm-xovi-extensions/contents/qt-resource-rebuilder"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008.md"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    }
+  ],
+  "status": "blocked",
+  "source_changed": false,
+  "changed_source_files": [],
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "implementation_summary": "Read-only installed firmware inspection recovered native importFromUrls and createCollection signatures, stock current-document binding and integration-target export callsites. No safe local annotated-export initiation contract or runtime accessibility proof established. No source implementation, device mutation or acceptance pass claimed.",
+  "validation": [
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "historyValid=true; unique clean source at 564c0375 / 57df0dbb; current start-0007 dispatch uses recorded scoped approval."
+    },
+    {
+      "command": "timeout 15 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'printf \"READ_ONLY_FIRMWARE\\n\"; cat /etc/os-release; command -v xochitl'",
+      "exit_code": 0,
+      "output": "Codex Linux 5.8.203 (scarthgap); IMG_VERSION=\"3.28.0.172\"; /usr/bin/xochitl"
+    },
+    {
+      "command": "timeout 25 ssh ... root@10.11.99.1 'sha256sum /usr/bin/xochitl; stat -c \"%s %n\" /usr/bin/xochitl; find /usr/share/remarkable /usr/lib /opt /home/root/xovi -maxdepth 3 -type f (resource filters)'",
+      "exit_code": 1,
+      "output": "xochitl sha256 b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021; size 24705704; XOVI hashtab and bluetooth.rcc found. Missing search roots produced exit 1; SSH and binary reads succeeded.",
+      "note": "Ellipsis and resource filters summarize the command; transcript retains the exact invocation."
+    },
+    {
+      "command": "timeout 40 scp -O -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1:/usr/bin/xochitl /tmp/pi-ink-0008-xochitl && timeout 20 scp -O -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/hashtab /tmp/pi-ink-0008-hashtab && file /tmp/pi-ink-0008-xochitl /tmp/pi-ink-0008-hashtab",
+      "exit_code": 0,
+      "output": "ELF 64-bit ARM aarch64, stripped, BuildID aae326b4f843a6672b1aee940bfb2736dacdbb2a; hashtab data."
+    },
+    {
+      "command": "readelf -SW /tmp/pi-ink-0008-xochitl",
+      "exit_code": 0,
+      "output": ".rodata offset 0xca4700 size 0x85dfb8; .data.rel.ro offset 0x175d530; .data offset 0x1766260; 31 section headers."
+    },
+    {
+      "command": "Offline Python eval: decode hashtab >QI length records; decode Qt revision-13 metadata and zstd QML with ctypes libzstd",
+      "exit_code": 0,
+      "output": "20299 hash records; 867 zstd magic occurrences; 624 QML payload candidates including plain payloads; native-interfaces.json retains only needed method tables and QML excerpts."
+    },
+    {
+      "command": "timeout 20 ssh ... root@10.11.99.1 'find /home/root/xovi ... -printf ...; find /opt ... -printf ...; sha256sum ...'",
+      "exit_code": 0,
+      "output": "BusyBox find rejects -printf. Final sha256sum succeeded. Corrected read-only -print command follows.",
+      "note": "Shell aggregate status 0 does not mean both find calls succeeded."
+    },
+    {
+      "command": "timeout 20 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'find /home/root/xovi -maxdepth 2 -type f ! -name \"*.log\" ! -name \"hashtab\" -print; find /opt -maxdepth 3 -type f -name \"*appload*\" -print'",
+      "exit_code": 1,
+      "output": "XOVI xovi.so, start/stock, extensions.d/appload.so, qt-resource-rebuilder.so, qt-command-executor.so, xovi-message-broker.so, literm.so and fix-ebook-links.so present; /opt absent."
+    },
+    {
+      "command": "timeout 15 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'cat /home/root/xovi/start /home/root/xovi/stock; sha256sum /home/root/xovi/xovi.so /home/root/xovi/extensions.d/qt-resource-rebuilder.so /home/root/xovi/extensions.d/appload.so'",
+      "exit_code": 0,
+      "output": "Read scripts only; start adds LD_PRELOAD service overrides and restarts configured services; stock removes overrides and restarts. Neither executed. XOVI sha256 d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446; rebuilder 6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f; AppLoad 5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad."
+    },
+    {
+      "command": "herdr agent get w6E:p3",
+      "exit_code": 0,
+      "result": "Fresh omp session 01a19bf2-0098-73c8-a1de-9b39f904a27e in source worktree; no descendants launched."
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "stock-library-access",
+      "description": "Native importFromUrls and createCollection signatures found in installed firmware. Runtime access, returned identities, successful synthetic receipt and normal library visibility remain unproven."
+    },
+    {
+      "id": "current-document-output",
+      "description": "Stock root.document binding and current-document export callsite recovered. Safe local export initiation, annotation flush ordering, dimensions, live ownership and cancellation remain unproven."
+    },
+    {
+      "id": "owner-hardware-gate",
+      "description": "No revised client or toolbar installed. All owner-operated LAN, pen, palm, geometry, isolation, save/Send and editable-work gates remain unpassed."
+    }
+  ],
+  "approval_request": {
+    "scope": "Install one temporary host-built ARM64 XOVI extension at /home/root/xovi/extensions.d/pi-ink-interface-probe.so over cable SSH; restart xochitl once to load it and once after removal. Do not run /home/root/xovi/start because it may restart multiple services. No QML patch, firmware replacement, network/account/cloud changes, or document import/export in this approval.",
+    "precondition": "Owner saves and closes all documents before either restart. Parent obtains explicit separate approval before any installation or restart.",
+    "probe": "On the GUI thread, create a temporary QtObject in the existing engine importing xofm.libs.library and com.remarkable. Inspect only class names, method signatures, property type names, and singleton resolution for Library, DocumentImporter, DocumentController and NavigationManager.exportManager. Do not invoke library/import/export methods or read document values. Probe availability of the existing DocumentView object without reading its document or ID. DocumentViewListener has static metadata but its QML exposure is not established.",
+    "output": "Emit only allowlisted interface metadata to the process journal with a unique probe prefix; cable SSH reads only that prefix. No document names, IDs, paths, contents, passwords, library listings, current document values, or general journal collection.",
+    "rollback": "Remove only pi-ink-interface-probe.so and restart xochitl after the owner confirms documents are closed; confirm the file is absent and /usr/bin/xochitl retains its recorded hash. Preserve all pre-existing extensions and service configuration.",
+    "limit": "This probe can confirm runtime accessibility only. Importing a synthetic file or exporting annotations would require later, separately scoped approval and an established local export contract."
+  },
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0004",
+    "approval_receipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0007.yaml",
+    "source_preserved": true,
+    "history_repair": false,
+    "ownership": "Existing held claim retained idempotently; parent authorization and liveness/reservations recorded in start-0007. No tracker mutation.",
+    "earlier_sessions_reused": false
+  },
+  "required_parent_action": "Validate blocked result, append parent completion and close pane. Obtain the explicit metadata-only probe approval before any device installation/restart. Do not dispatch review or complete ticket."
+}

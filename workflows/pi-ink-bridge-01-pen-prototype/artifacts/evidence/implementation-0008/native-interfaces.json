@@ -1,0 +1,1533 @@
+{
+  "firmware": "3.28.0.172",
+  "binary": {
+    "path": "/usr/bin/xochitl",
+    "size": 24705704,
+    "sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "build_id": "aae326b4f843a6672b1aee940bfb2736dacdbb2a"
+  },
+  "hashtab": {
+    "path": "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+    "size": 672098,
+    "sha256": "44dc3672a4a8ecd5b74c970de39dee9d9212cc67e0ae11dc8dae3883741d02d5",
+    "entries": 20299,
+    "share_lead_resolves_to": "/src/xofm/bundles/papertablet.json"
+  },
+  "method": "Offline ELF inspection. Qt 6 revision-13 stringdata offset/length pairs and QMetaObject data pointers decoded from the copied binary; zstd frames decoded with host libzstd. No firmware code executed locally or remotely. File offsets, not live object addresses. Static method availability does not establish runtime ownership or safe semantics.",
+  "qt_metadata": [
+    {
+      "class": "xofm::libs::library::Library",
+      "stringdata_file_offset": "0xccf1f0",
+      "metadata_file_offset": "0xccea30",
+      "revision": 13,
+      "methods": [
+        {
+          "name": "cleanupStaleResourcesCompleted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "docUUID"
+            },
+            {
+              "type": "bool",
+              "name": "success"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "cleanupStaleResources",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "docUUID"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "requestEntryLocality",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            },
+            {
+              "type": "navigation::ISelectiveSync::Locality",
+              "name": "locality"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entryUploadRequested",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entryDownloadRequested",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entryHasPendingStoreLines",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            },
+            {
+              "type": "bool",
+              "name": "hasPending"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entryLockContested",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "entry"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entryConflictingFiles",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            },
+            {
+              "type": "QStringList",
+              "name": "entries"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entryTimestampModified",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "std::shared_ptr<Entry>",
+              "name": "entry"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "downgradeDetected",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entryAdded",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entryImported",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "visibleName"
+            },
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "collectionCreated",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "visibleName"
+            },
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "aboutToDeleteEntry",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "std::shared_ptr<Entry>",
+              "name": "entry"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entriesDeleted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QList<entry::Id>",
+              "name": "ids"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "loadProgress",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "index"
+            },
+            {
+              "type": "int",
+              "name": "total"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "loadFailed",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "readyChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "bool",
+              "name": "ready"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "errorMessage",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "errorMessage"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entriesTrashed",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QList<entry::Id>",
+              "name": "ids"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entriesRestored",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QList<entry::Id>",
+              "name": "ids"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "requestLoadEntry",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "changed",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "statusChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "syncProgressChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "downloadingChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "downloadCompleted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "exportProgressChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "entityChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "navigation::EntityId",
+              "name": "id"
+            },
+            {
+              "type": "navigation::Entity::ChangedType",
+              "name": "type"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "tagsChanged",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "threadedLoadResultsPending",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "threadedAppendResultsPending",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "onImported",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "std::shared_ptr<Entry>",
+              "name": "entry"
+            },
+            {
+              "type": "std::shared_ptr<Collection>",
+              "name": "parent"
+            }
+          ],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "onExcludedFromSyncEntriesChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Ids",
+              "name": "excludedEntries"
+            }
+          ],
+          "flags_hex": "0x10a"
+        },
+        {
+          "name": "onThreadedLoadResultsPending",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "onThreadedAppendResultsPending",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "onStaleResources",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "std::unordered_set<entry::Id>",
+              "name": "docUUIDs"
+            }
+          ],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "onCleanupStaleResourcesCompleted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "docUUID"
+            },
+            {
+              "type": "bool",
+              "name": "success"
+            }
+          ],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "meetingNotesId",
+          "return": "entry::Id",
+          "arguments": [],
+          "flags_hex": "0x2"
+        },
+        {
+          "name": "isEmpty",
+          "return": "bool",
+          "arguments": [],
+          "flags_hex": "0x102"
+        },
+        {
+          "name": "entryForId",
+          "return": "QmlEntryWrapper*",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x2"
+        },
+        {
+          "name": "parentIdForId",
+          "return": "entry::Id",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x102"
+        },
+        {
+          "name": "entityIdForEntry",
+          "return": "navigation::EntityId",
+          "arguments": [
+            {
+              "type": "QmlEntryWrapper*",
+              "name": "entryWrapper"
+            }
+          ],
+          "flags_hex": "0x102"
+        },
+        {
+          "name": "createCollection",
+          "return": "entry::Id",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "parentId"
+            },
+            {
+              "type": "QString",
+              "name": "visibleName"
+            }
+          ],
+          "flags_hex": "0x2"
+        },
+        {
+          "name": "purgeThumbnails",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x2"
+        },
+        {
+          "name": "uniqueVisibleName",
+          "return": "QString",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "visibleName"
+            }
+          ],
+          "flags_hex": "0x102"
+        },
+        {
+          "name": "dumpLibrary",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x102"
+        },
+        {
+          "name": "isValidName",
+          "return": "bool",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "entryName"
+            }
+          ],
+          "flags_hex": "0x2"
+        },
+        {
+          "name": "tagLabels",
+          "return": "QStringList",
+          "arguments": [
+            {
+              "type": "bool",
+              "name": "includeEntryTags"
+            }
+          ],
+          "flags_hex": "0x102"
+        },
+        {
+          "name": "tagLabels",
+          "return": "QStringList",
+          "arguments": [],
+          "flags_hex": "0x122"
+        },
+        {
+          "name": "taggedPages",
+          "return": "QJsonArray",
+          "arguments": [],
+          "flags_hex": "0x102"
+        },
+        {
+          "name": "countArchivedDocuments",
+          "return": "int",
+          "arguments": [],
+          "flags_hex": "0x102"
+        }
+      ],
+      "properties": [
+        {
+          "name": "isReady",
+          "type": "bool",
+          "flags_hex": "0x15001",
+          "notify_index": 17
+        },
+        {
+          "name": "trashId",
+          "type": "entry::Id",
+          "flags_hex": "0x15409",
+          "notify_index": 4294967295
+        }
+      ]
+    },
+    {
+      "class": "xofm::libs::library::DocumentImporter",
+      "stringdata_file_offset": "0xd140a8",
+      "metadata_file_offset": "0xd13f00",
+      "revision": 13,
+      "methods": [
+        {
+          "name": "imported",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "std::shared_ptr<Document>",
+              "name": "document"
+            },
+            {
+              "type": "std::shared_ptr<Collection>",
+              "name": "parent"
+            },
+            {
+              "type": "QUrl",
+              "name": "url"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "failed",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QUrl",
+              "name": "url"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "started",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "displayName"
+            },
+            {
+              "type": "QUrl",
+              "name": "url"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "finished",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QUrl",
+              "name": "url"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "containsValidDocument",
+          "return": "bool",
+          "arguments": [
+            {
+              "type": "const QObject*",
+              "name": "dragEvent"
+            }
+          ],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "importFromUrls",
+          "return": "bool",
+          "arguments": [
+            {
+              "type": "QList<QUrl>",
+              "name": "urls"
+            },
+            {
+              "type": "entry::Id",
+              "name": "parentId"
+            }
+          ],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "checkQueue",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x8"
+        },
+        {
+          "name": "doImport",
+          "return": "Locker<Document>",
+          "arguments": [
+            {
+              "type": "QUrl",
+              "name": "url"
+            },
+            {
+              "type": "QString",
+              "name": "visualName"
+            },
+            {
+              "type": "std::optional<xofm::libs::navigation::DocumentSource>",
+              "name": "source"
+            }
+          ],
+          "flags_hex": "0x8"
+        },
+        {
+          "name": "isSupportedFormat",
+          "return": "bool",
+          "arguments": [
+            {
+              "type": "QUrl",
+              "name": "url"
+            }
+          ],
+          "flags_hex": "0x102"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "class": "xofm::libs::documentviewlistener::DocumentViewListener",
+      "stringdata_file_offset": "0xe60084",
+      "metadata_file_offset": "0xe5ffd0",
+      "revision": 13,
+      "methods": [
+        {
+          "name": "openedDocumentIdChanged",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "opened",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "closed",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        }
+      ],
+      "properties": [
+        {
+          "name": "openedDocumentId",
+          "type": "entry::Id",
+          "flags_hex": "0x1510b",
+          "notify_index": 0
+        }
+      ]
+    },
+    {
+      "class": "xofm::libs::explorer::ExportManager",
+      "stringdata_file_offset": "0x1215fa4",
+      "metadata_file_offset": "0x1215d60",
+      "revision": 13,
+      "methods": [
+        {
+          "name": "statusMessage",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "navigation::NavigationId",
+              "name": "id"
+            },
+            {
+              "type": "QString",
+              "name": "message"
+            }
+          ],
+          "flags_hex": "0x106"
+        },
+        {
+          "name": "errorMessage",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "navigation::NavigationId",
+              "name": "id"
+            },
+            {
+              "type": "QString",
+              "name": "message"
+            }
+          ],
+          "flags_hex": "0x106"
+        },
+        {
+          "name": "exportProgress",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "ExportProgress",
+              "name": "progress"
+            }
+          ],
+          "flags_hex": "0x106"
+        },
+        {
+          "name": "exportCompleted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "ExportProgress",
+              "name": "progress"
+            }
+          ],
+          "flags_hex": "0x106"
+        },
+        {
+          "name": "exportFailed",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "ExportProgress",
+              "name": "progress"
+            },
+            {
+              "type": "BatchConfig",
+              "name": "retryConfig"
+            }
+          ],
+          "flags_hex": "0x106"
+        },
+        {
+          "name": "exportPagesFromDocument",
+          "return": "int",
+          "arguments": [
+            {
+              "type": "navigation::EntityId",
+              "name": "entityId"
+            },
+            {
+              "type": "QList<int>",
+              "name": "pagesToExport"
+            },
+            {
+              "type": "QString",
+              "name": "targetNavigationId"
+            },
+            {
+              "type": "bool",
+              "name": "allowConcurrentBatches"
+            }
+          ],
+          "flags_hex": "0x2"
+        },
+        {
+          "name": "exportPagesFromDocument",
+          "return": "int",
+          "arguments": [
+            {
+              "type": "navigation::EntityId",
+              "name": "entityId"
+            },
+            {
+              "type": "QList<int>",
+              "name": "pagesToExport"
+            },
+            {
+              "type": "QString",
+              "name": "targetNavigationId"
+            }
+          ],
+          "flags_hex": "0x22"
+        },
+        {
+          "name": "selectionExport",
+          "return": "int",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "sourceNavigationId"
+            },
+            {
+              "type": "SelectedEntities",
+              "name": "selection"
+            },
+            {
+              "type": "QString",
+              "name": "targetNavigationId"
+            },
+            {
+              "type": "navigation::EntityId",
+              "name": "targetFolderId"
+            },
+            {
+              "type": "QString",
+              "name": "fileType"
+            },
+            {
+              "type": "bool",
+              "name": "allowConcurrentBatches"
+            }
+          ],
+          "flags_hex": "0x2"
+        },
+        {
+          "name": "selectionExport",
+          "return": "int",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "sourceNavigationId"
+            },
+            {
+              "type": "SelectedEntities",
+              "name": "selection"
+            },
+            {
+              "type": "QString",
+              "name": "targetNavigationId"
+            },
+            {
+              "type": "navigation::EntityId",
+              "name": "targetFolderId"
+            },
+            {
+              "type": "QString",
+              "name": "fileType"
+            }
+          ],
+          "flags_hex": "0x22"
+        },
+        {
+          "name": "retry",
+          "return": "int",
+          "arguments": [
+            {
+              "type": "BatchConfig",
+              "name": "batchConfig"
+            }
+          ],
+          "flags_hex": "0x2"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "class": "ExportTask",
+      "stringdata_file_offset": "0xe20a1c",
+      "metadata_file_offset": "0xe20940",
+      "revision": 13,
+      "methods": [
+        {
+          "name": "filesReady",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            },
+            {
+              "type": "QStringList",
+              "name": "paths"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "abortedByUser",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "message",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "message"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "onExportCompleted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "id"
+            },
+            {
+              "type": "QStringList",
+              "name": "paths"
+            }
+          ],
+          "flags_hex": "0xa"
+        }
+      ],
+      "properties": []
+    },
+    {
+      "class": "DocumentWorker",
+      "stringdata_file_offset": "0xe0dfc4",
+      "metadata_file_offset": "0xe0d860",
+      "revision": 13,
+      "methods": [
+        {
+          "name": "pageLinesReady",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "pageNum"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "thumbnailUpdated",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "pageNum"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "contentsUpdated",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "errorOccurred",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "epubLayoutProgressChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "double",
+              "name": "progress"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "tableOfContentsUpdated",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QList<DocumentChapter>",
+              "name": "results"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "exportStarted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "documentId"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "exportProgress",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "double",
+              "name": "progress"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "exportFinished",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::Id",
+              "name": "documentId"
+            },
+            {
+              "type": "QStringList",
+              "name": "exportedPaths"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "setCurrentLayer",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "layer"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "linesStored",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "page"
+            },
+            {
+              "type": "QString",
+              "name": "pageId"
+            },
+            {
+              "type": "qlonglong",
+              "name": "size"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "invalidPassword",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "loadingSucceeded",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pageStatusChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "id"
+            },
+            {
+              "type": "Page::Status",
+              "name": "status"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "modified",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pageMapChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "PageMap",
+              "name": "pageMap"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pageMapMerged",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pageCountChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "pageCount"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "commitEpubLayout",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "entry::file::EpubLayout",
+              "name": "format"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pagesChanged",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "hasPendingChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "legacyEpubChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "bool",
+              "name": "enabled"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pageAdded",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "qulonglong",
+              "name": "jobId"
+            },
+            {
+              "type": "int",
+              "name": "page"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pagesRemoved",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "qulonglong",
+              "name": "jobId"
+            },
+            {
+              "type": "QList<int>",
+              "name": "pages"
+            },
+            {
+              "type": "QStringList",
+              "name": "pageIds"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pagesMoved",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "qulonglong",
+              "name": "jobId"
+            },
+            {
+              "type": "QList<int>",
+              "name": "from"
+            },
+            {
+              "type": "QList<int>",
+              "name": "to"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "pagesCopied",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "qulonglong",
+              "name": "jobId"
+            },
+            {
+              "type": "QList<int>",
+              "name": "newPages"
+            },
+            {
+              "type": "QStringList",
+              "name": "sourceIds"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "templateChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "page"
+            },
+            {
+              "type": "QString",
+              "name": "templateName"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "aboutToSleep",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "jobCompleted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "qulonglong",
+              "name": "id"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "tileReady",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "qulonglong",
+              "name": "jobId"
+            },
+            {
+              "type": "QString",
+              "name": "pageId"
+            },
+            {
+              "type": "QImage",
+              "name": "image"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "documentMetadataAvailable",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QMap<QString,QVariant>",
+              "name": "metadata"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "lockedByPassword",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "documentError",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "DocumentIO::LoadErrorType",
+              "name": "errorType"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "jobQueueSizeChanged",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "jobQueueSize"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "cleanupStaleResourcesCompleted",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "bool",
+              "name": "success"
+            }
+          ],
+          "flags_hex": "0x6"
+        },
+        {
+          "name": "onExportCanceled",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "onModifiedPageNumber",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "pageNumber"
+            }
+          ],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "onModifiedPageId",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "QString",
+              "name": "pageId"
+            }
+          ],
+          "flags_hex": "0xa"
+        },
+        {
+          "name": "doSetPageCount",
+          "return": "void",
+          "arguments": [
+            {
+              "type": "int",
+              "name": "pageCount"
+            }
+          ],
+          "flags_hex": "0x8"
+        },
+        {
+          "name": "startDeferredRequestTimers",
+          "return": "void",
+          "arguments": [],
+          "flags_hex": "0x8"
+        }
+      ],
+      "properties": [
+        {
+          "name": "jobQueueSize",
+          "type": "int",
+          "flags_hex": "0x15001",
+          "notify_index": 33
+        }
+      ]
+    }
+  ],
+  "qml_excerpts": [
+    {
+      "compressed_frame_file_offset": "0xdd10cd",
+      "decoded_payload_sha256": "867b30a725a4ae97e3459f07a60cd72bcafb21db9a0b374f02d75c5cd8d83269",
+      "excerpts": [
+        {
+          "start_line": 45,
+          "end_line": 64,
+          "text": "\nimport \"ShareUtils.js\" as ShareUtils\n\nFocusScope {\n    id: root\n\n    property int iconMargin: 8\n    readonly property alias currentPage: sceneView.page\n    readonly property alias currentPageId: sceneView.pageId\n    property bool inSuspend: BatteryManager.displaySleeping\n    property alias pageSelection: _pageSelection\n    property var pageTagMap: []\n    property var tagsForCurrentPage: pageTagMap[currentPage]\n    property Document document\n    readonly property bool drawingAreaFocused: sceneView.activeFocus\n    property string selectedButton\n    property bool portrait: document ? (document.orientation === Qt.Vertical) : true\n    property alias zoomMode: sceneView.zoomMode\n    property WindowNavigator windowNavigator\n    required property Orientation orientation"
+        },
+        {
+          "start_line": 88,
+          "end_line": 98,
+          "text": "    property int selectionToolMode: ToolbarModel.SelectionToolMode.Select\n\n    readonly property NavigationManager navigationManager: NavigationManager\n    readonly property ExportManager exportManager: navigationManager.exportManager\n\n    required property bool penClose\n    required property TextColumn textColumn\n    required property PenInput penInput\n    required property Config toolbarConfiguration\n    required property ToolbarProvider toolbarProvider\n    required property RetailSettings retailSettings"
+        },
+        {
+          "start_line": 253,
+          "end_line": 257,
+          "text": "    onDocumentChanged: {\n        if (!!document){\n            root.updatePageTags();\n        }\n    }"
+        },
+        {
+          "start_line": 385,
+          "end_line": 415,
+          "text": "    // Unloads document and closes document view\n    function close() {\n        screenCastRotationProtection = true;\n\n        _saveScrollPosition();\n        if (selectionHelper.refineMode) {\n            selectionHelper.exitRefineMode();\n        }\n        if (sceneView.textMode) {\n            exitTextMode();\n        }\n        toolbar.closeFoldout();\n        sceneView.close();\n        formatMenu.contract();\n        hwcDialog.close();\n        pages.visible = false;\n        _searchResultsHeader.visible = false;\n        root.movePageSelection.clear();\n        chapterPositionTracker.reset();\n        document = null;\n        aboutToEnterInitialPage = true;\n        formatSettings.resetConfirmedLayoutChange();\n\n        addedTextInTextModeUsingSeabird = false;\n        addedTextInTextMode = false;\n        documentExtended = false;\n        documentEdited = false;\n        Settings.lastOpen = \"\";\n\n        root.documentClosed();\n    }"
+        },
+        {
+          "start_line": 550,
+          "end_line": 574,
+          "text": "    function _open_helper(documentToOpen, pageToOpen, highlightDetails) {\n        // Reset state of document view and store changes of unclosed document\n        if (!!document && document.id !== documentToOpen.id) {\n            root.close();\n        }\n        const forceMoveTool = documentViewTools.forceMoveTool;\n        document = documentToOpen;\n\n        // Reset table-of-contents state for the newly opened (or cleared) document.\n        tocModel = [];\n        tocLoading = false;\n\n        if (!document) {\n            formatSettings.resetConfirmedLayoutChange();\n            pages.visible = false;\n            aboutToEnterInitialPage = true;\n            password = \"\";\n            chapterPositionTracker.reset();\n            Settings.lastOpen = \"\";\n            return;\n        }\n\n        // Used to restore open document after a restart\n        Settings.lastOpen = document.id;\n"
+        },
+        {
+          "start_line": 1851,
+          "end_line": 1865,
+          "text": "            shapeSnapEnabled: Settings.shapeSnapEnabled\n            onShapeSnapChanged: (enabled) => { Settings.shapeSnapEnabled = enabled; }\n\n            onShareToMessagingClicked: (integrationId) => {\n                if (!networkActionResponse() && !retailSettings.enabled) {\n                    return;\n                }\n                MessagingIntegrationManager.shareToIntegration({id: root.document.id, pages: [root.currentPage] }, integrationId);\n            }\n\n            onExportToIntegrationClicked: (integrationId) => {\n                root.exportManager.exportPagesFromDocument(Library.entityIdForEntry(document), [currentPage], integrationId);\n                root.reportFileSharedEvent(\"export to drive\", \"pdf\", document.pageCount == 1);\n                closeFoldout();\n            }"
+        }
+      ]
+    },
+    {
+      "compressed_frame_file_offset": "0xe5b558",
+      "decoded_payload_sha256": "c13a1c3df38d912457990b0dc146f62303e1f13e8c9956db5a6d86964db2b4dd",
+      "excerpts": [
+        {
+          "start_line": 34,
+          "end_line": 56,
+          "text": "\n    contentItem: CreateCollection {\n        id: createCollection\n        collectionName: root.library.uniqueVisibleName(qsTr(\"Folder\"))\n        // Todo: Inject treeExplorer here (Or some other tags model)\n        tagModel: NavigationManager.activeContext.explorer.tags\n        windowNavigator: root.windowNavigator\n\n        onAccept: () => {\n            const newFolderId = root.library.createCollection(\n                root.currentFolderId.toString(),\n                createCollection.collectionName);\n\n            if (createCollection.selectedTags.length > 0) {\n                LibraryController.setEntryTags(newFolderId, createCollection.selectedTags, []);\n            }\n            root.analytics.sendEvent(\"Folder Created\", {\n                trigger: root.trigger,\n                folder_id: newFolderId,\n                parent_id: root.currentFolderId,\n            });\n\n            root.onCreated?.(newFolderId);"
+        }
+      ]
+    },
+    {
+      "compressed_frame_file_offset": "0xe60ab4",
+      "decoded_payload_sha256": "f3e68a034f22cd664c423d6dbd2d4683d1106f58dd6c6eba7076637e88343107",
+      "excerpts": [
+        {
+          "start_line": 135,
+          "end_line": 172,
+          "text": "    function shareTo(email) {\n        let formatString\n        switch (format) {\n        case ShareEmailDialog.PDF:\n            formatString = \"pdf\";\n            break;\n        case ShareEmailDialog.PNG:\n            formatString = \"png\";\n            break;\n        case ShareEmailDialog.SVG:\n            formatString = \"svg\";\n            break;\n        case ShareEmailDialog.HTML:\n            formatString = \"html\";\n            break;\n        default:\n            console.warn(\"Unrecognised format\", format, \"using pdf instead\");\n            formatString = \"pdf\";\n            break;\n        }\n\n        var options = {\n            \"id\": document.id,\n            \"recipients\": email,\n            \"filename\": filename,\n            \"message\": message,\n            \"format\": formatString,\n            \"pages\": pageSelection.pages,\n            \"password\": password,\n            \"keepPassword\": keepPassword,\n            \"orientation\": root.preferredOrientation,\n        };\n\n        exportTelemetry.reportExportType(formatString);\n        SendMail.enqueue(options);\n    }\n\n    ExportTelemetry {"
+        }
+      ]
+    }
+  ]
+}

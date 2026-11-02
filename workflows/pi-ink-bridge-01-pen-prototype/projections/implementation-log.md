@@ -33,3 +33,12 @@ The canonical ticket retains all earlier independent review comments. The native
 
 Stock-library registration, authoritative current-document ownership, actual annotated output, and owner hardware acceptance remain unresolved. No new finding was cleared. Do not infer support outside prior tested firmware 3.28.0.172. See the [current draft](pr-draft.md) for exact owner operations and [fresh findings](../artifacts/evidence/stock-editor-attempt-002/findings.json) for validation.
 
+
+
+## Attempt 3 — implementation-0008
+
+No source files changed. Cable SSH inspected firmware 3.28.0.172 read-only. Offline Qt metadata and compressed QML establish native import, folder, and current-editor context candidates. Local annotated export-start, flush ordering, geometry, and runtime access remain unproven. No device mutation or notebook access occurred. No browser validation was repeated.
+
+Changed records: [receipt](../events/implementation-0008.yaml), [interface extracts](../artifacts/evidence/implementation-0008/native-interfaces.json), [findings and approval scope](../artifacts/evidence/implementation-0008/findings.json), [snapshot](../artifacts/snapshots/pr-draft-implementation-0008.md), manifest, and all three projections.
+
+Parent reconciliation: [start-complete-0006](../events/start-complete-0006.yaml). Current authorization: [start-0007](../events/start-0007.yaml). All previous implementation and review history above remains retained. No finding is cleared. Next human decision: approve or reject the metadata-only extension and two owner-safe Xochitl restarts. This does not approve synthetic import/export or satisfy hardware acceptance.

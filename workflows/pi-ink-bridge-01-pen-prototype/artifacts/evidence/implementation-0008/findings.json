@@ -1,0 +1,84 @@
+{
+  "schema": "pi-ink-bridge-research/v1",
+  "created_at": "2026-11-02T11:13:01.516707+00:00",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "status": "blocked",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "device_mutations": false,
+  "private_document_access": false,
+  "runtime_method_invocations": false,
+  "hardware_acceptance_executed": false,
+  "changed_source_files": [],
+  "findings": [
+    "Installed 3.28.0.172 exposes bool DocumentImporter::importFromUrls(QList<QUrl> urls, entry::Id parentId), imported(document,parent,url), failed(url), started(displayName,url), finished(url). Singleton registration strings are present. No method invoked or import success established.",
+    "Library::createCollection(entry::Id parentId, QString visibleName) returns entry::Id. Stock CreateCollectionWindow uses the return value. This establishes an installed stock call site, not a created folder.",
+    "Stock DocumentView root.document is set from documentToOpen and null on close; toolbar export uses that document through Library.entityIdForEntry(document). This is an authoritative-context candidate unlike Settings.lastOpen polling. Runtime attachment/switch ownership remains untested.",
+    "DocumentViewListener exposes openedDocumentId and opened/closed signals with entry::Id; QML exposure and live accessibility not established.",
+    "ExportManager.exportPagesFromDocument resolves a target navigation ID, not a local output filename. Stock QML uses integrationId. selectionExport accepts fileType but still requires registered navigation targets. Do not pass a path or LAN URL as if it were a navigation ID.",
+    "SendMail.enqueue(options) is native annotated-email export, not the required authenticated LAN transport. Do not invoke it or use cloud/account changes.",
+    "DocumentWorker has exportFinished(entry::Id, QStringList exportedPaths), and ExportTask has filesReady(entry::Id, QStringList paths), but the inspected Qt metadata exposes no public local export-start method or constructor. Export completion signals alone do not establish safe triggering, annotation flush ordering, output geometry, or cancellation.",
+    "Share lead hash 15180122603616572528 resolves to /src/xofm/bundles/papertablet.json, not a share-model QML file. Concrete editor export callsite was recovered independently from compressed firmware QML.",
+    "rm-librarian private import/ensureFolder and createDocumentFromPages private-copy code excluded. rm-pdfium is not a stock-mark renderer. No speculative integration code added."
+  ],
+  "blocker": "Need runtime accessibility proof and a concrete safe local annotated-export initiation/completion contract. Then separately approved synthetic import/export and owner acceptance must establish library visibility, geometry, editable work, request isolation, cancellation and LAN HTTPS/WebSocket behavior.",
+  "approval_request": {
+    "scope": "Install one temporary host-built ARM64 XOVI extension at /home/root/xovi/extensions.d/pi-ink-interface-probe.so over cable SSH; restart xochitl once to load it and once after removal. Do not run /home/root/xovi/start because it may restart multiple services. No QML patch, firmware replacement, network/account/cloud changes, or document import/export in this approval.",
+    "precondition": "Owner saves and closes all documents before either restart. Parent obtains explicit separate approval before any installation or restart.",
+    "probe": "On the GUI thread, create a temporary QtObject in the existing engine importing xofm.libs.library and com.remarkable. Inspect only class names, method signatures, property type names, and singleton resolution for Library, DocumentImporter, DocumentController and NavigationManager.exportManager. Do not invoke library/import/export methods or read document values. Probe availability of the existing DocumentView object without reading its document or ID. DocumentViewListener has static metadata but its QML exposure is not established.",
+    "output": "Emit only allowlisted interface metadata to the process journal with a unique probe prefix; cable SSH reads only that prefix. No document names, IDs, paths, contents, passwords, library listings, current document values, or general journal collection.",
+    "rollback": "Remove only pi-ink-interface-probe.so and restart xochitl after the owner confirms documents are closed; confirm the file is absent and /usr/bin/xochitl retains its recorded hash. Preserve all pre-existing extensions and service configuration.",
+    "limit": "This probe can confirm runtime accessibility only. Importing a synthetic file or exporting annotations would require later, separately scoped approval and an established local export contract."
+  },
+  "validation": [
+    {
+      "command": "timeout 15 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'printf \"READ_ONLY_FIRMWARE\\n\"; cat /etc/os-release; command -v xochitl'",
+      "exit_code": 0,
+      "output": "Codex Linux 5.8.203 (scarthgap); IMG_VERSION=\"3.28.0.172\"; /usr/bin/xochitl"
+    },
+    {
+      "command": "timeout 25 ssh ... root@10.11.99.1 'sha256sum /usr/bin/xochitl; stat -c \"%s %n\" /usr/bin/xochitl; find /usr/share/remarkable /usr/lib /opt /home/root/xovi -maxdepth 3 -type f (resource filters)'",
+      "exit_code": 1,
+      "output": "xochitl sha256 b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021; size 24705704; XOVI hashtab and bluetooth.rcc found. Missing search roots produced exit 1; SSH and binary reads succeeded.",
+      "note": "Ellipsis and resource filters summarize the command; transcript retains the exact invocation."
+    },
+    {
+      "command": "timeout 40 scp -O -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1:/usr/bin/xochitl /tmp/pi-ink-0008-xochitl && timeout 20 scp -O -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/hashtab /tmp/pi-ink-0008-hashtab && file /tmp/pi-ink-0008-xochitl /tmp/pi-ink-0008-hashtab",
+      "exit_code": 0,
+      "output": "ELF 64-bit ARM aarch64, stripped, BuildID aae326b4f843a6672b1aee940bfb2736dacdbb2a; hashtab data."
+    },
+    {
+      "command": "readelf -SW /tmp/pi-ink-0008-xochitl",
+      "exit_code": 0,
+      "output": ".rodata offset 0xca4700 size 0x85dfb8; .data.rel.ro offset 0x175d530; .data offset 0x1766260; 31 section headers."
+    },
+    {
+      "command": "Offline Python eval: decode hashtab >QI length records; decode Qt revision-13 metadata and zstd QML with ctypes libzstd",
+      "exit_code": 0,
+      "output": "20299 hash records; 867 zstd magic occurrences; 624 QML payload candidates including plain payloads; native-interfaces.json retains only needed method tables and QML excerpts."
+    },
+    {
+      "command": "timeout 20 ssh ... root@10.11.99.1 'find /home/root/xovi ... -printf ...; find /opt ... -printf ...; sha256sum ...'",
+      "exit_code": 0,
+      "output": "BusyBox find rejects -printf. Final sha256sum succeeded. Corrected read-only -print command follows.",
+      "note": "Shell aggregate status 0 does not mean both find calls succeeded."
+    },
+    {
+      "command": "timeout 20 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'find /home/root/xovi -maxdepth 2 -type f ! -name \"*.log\" ! -name \"hashtab\" -print; find /opt -maxdepth 3 -type f -name \"*appload*\" -print'",
+      "exit_code": 1,
+      "output": "XOVI xovi.so, start/stock, extensions.d/appload.so, qt-resource-rebuilder.so, qt-command-executor.so, xovi-message-broker.so, literm.so and fix-ebook-links.so present; /opt absent."
+    },
+    {
+      "command": "timeout 15 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'cat /home/root/xovi/start /home/root/xovi/stock; sha256sum /home/root/xovi/xovi.so /home/root/xovi/extensions.d/qt-resource-rebuilder.so /home/root/xovi/extensions.d/appload.so'",
+      "exit_code": 0,
+      "output": "Read scripts only; start adds LD_PRELOAD service overrides and restarts configured services; stock removes overrides and restarts. Neither executed. XOVI sha256 d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446; rebuilder 6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f; AppLoad 5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad."
+    }
+  ],
+  "primary_sources": [
+    "https://github.com/rmitchellscott/rm-librarian/blob/5b68a00616cc99089d27d3be3ede6ea9d0fa6243/src/main.cpp",
+    "https://github.com/rmitchellscott/xovi-qmd-extensions/blob/ba86ebd3878e8a98166c6952f5481a431afaca22/3.28/createDocumentFromPages.qmd",
+    "https://github.com/rmitchellscott/xovi-qmd-extensions/blob/ba86ebd3878e8a98166c6952f5481a431afaca22/3.28/share-button-to-menu.qmd",
+    "https://api.github.com/repos/asivery/rm-xovi-extensions/contents/qt-resource-rebuilder"
+  ],
+  "temporary_copies": "Host-only /tmp/pi-ink-0008-xochitl and /tmp/pi-ink-0008-hashtab; firmware code/resources only. Delete after preserving extracts. No firmware binary committed."
+}

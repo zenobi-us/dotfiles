@@ -6,7 +6,7 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "implementation-0005",
+  "latest_receipt": "implementation-0008",
   "state": "BLOCKED",
   "history": [
     {
@@ -28,6 +28,21 @@
       "receipt_id": "implementation-0005",
       "status": "blocked",
       "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml"
+    },
+    {
+      "receipt_id": "start-complete-0006",
+      "status": "blocked",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0006.yaml"
+    },
+    {
+      "receipt_id": "start-0007",
+      "status": "started",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0007.yaml"
+    },
+    {
+      "receipt_id": "implementation-0008",
+      "status": "blocked",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
     }
   ],
   "preserved_external_results": [
