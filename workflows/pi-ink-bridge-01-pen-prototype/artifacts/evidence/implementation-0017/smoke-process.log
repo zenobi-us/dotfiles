@@ -1,0 +1,7 @@
+pi-ink-0017-smoke [service] — exited — up 1m48s
+ready=true persist=false detached=false exit=0
+READY pdf http://127.0.0.1:34241/?token=289de2bf6fd7e6fa4230cd403fca5b252274e26ed879e6af8c01d64ab93e735b
+DELIVERED pdf {"action":"annotate","status":"completed"}
+READY png http://127.0.0.1:40355/?token=32811c9afd747564808d42fdfa599df7898615a6131ff1f81c4a346a0b593c1a
+DELIVERED png {"action":"annotate","status":"completed"}
+SMOKE COMPLETE

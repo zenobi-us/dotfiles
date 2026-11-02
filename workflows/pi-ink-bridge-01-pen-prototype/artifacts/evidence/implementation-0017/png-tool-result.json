@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "The user annotated this image."
+    },
+    {
+      "type": "image",
+      "data": "[20552 bytes retained in png-delivered.png]",
+      "mimeType": "image/png"
+    }
+  ],
+  "details": {
+    "action": "annotate",
+    "status": "completed"
+  }
+}

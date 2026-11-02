@@ -1,0 +1,18 @@
+  files - Fetching git status
+  files - Fetching staged files
+  files - Fetching staged files (13 files)
+✔ files - Fetching staged files (13 files)
+✔ files - No unstaged changes to stash (13 files)
+❯ bundle-versions
+  bundle-versions – 13 files –  – mise run checks:agent-bundle-versions -- check --staged
+  bundle-versions – [checks:agent-bundle-versions] $ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/tasks/checks/agent-bundle-versions.ts check --staged
+✔ bundle-versions
+│  No config files with names ["lefthook" ".lefthook" ".config/lefthook"] have been found in "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype"
+[prototype/pi-ink-bridge-01-pen-prototype ff9ec2a2] feat(omp): gate clipping for pi-ink-bridge-01-pen-prototype
+ 13 files changed, 665 insertions(+), 13 deletions(-)
+ create mode 100644 mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts
+ create mode 100644 mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py
+ create mode 100644 mise/conf.d/devtools-omp/extensions/image-annotator/src/PdfImport.tsx
+ create mode 100644 mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-fixtures.py
+ create mode 100644 mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-samples.py
+ create mode 100644 mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts

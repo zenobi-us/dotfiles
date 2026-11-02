@@ -1,0 +1,13 @@
+bun test v1.4.3 (c6da4a4d3)
+
+test/pdf-submission.test.ts:
+(pass) all outer ink colors and subpixel alpha require explicit result consent [1659.22ms]
+(pass) expanded whitespace sends without clipping consent and preserves source mapping [408.70ms]
+(pass) wrong source position fails closed instead of stretching or guessing [301.67ms]
+(pass) replacement, altered digest, and another request cannot reuse consent [474.47ms]
+(pass) cancel and terminal close reject stale and late submissions [315.33ms]
+
+ 5 pass
+ 0 fail
+ 58 expect() calls
+Ran 5 tests across 1 file. [3.27s]

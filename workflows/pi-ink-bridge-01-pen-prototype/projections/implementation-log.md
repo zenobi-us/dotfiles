@@ -5,6 +5,43 @@ type: Report
 
 # Implementation log
 
+## Current attempt — implementation-0017
+
+**Status:** Full ticket blocked; repository-only clipping gate implemented and exercised. [Result](../events/implementation-0017.yaml). [Immutable snapshot](../artifacts/snapshots/pr-draft-implementation-0017.md).
+
+**Source:** `ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456`, tree `93faf247089822a60c8cb534416997690fb989de`. The 13 source files are listed in the [source identity](../artifacts/evidence/implementation-0017/source-identity.json). The source commit includes request-bound PDF processing, explicit per-result clipping consent, durable original retention, mounted-browser state preservation, regressions, pinned dependencies, and README usage.
+
+**Validation:** Build and typecheck passed. Final suite: 13 tests, 100 assertions, zero failures. Actual image_editor/browser submission stayed pending before consent, then delivered a marked 800 × 1000 PNG. Four marker regions match source pixels. The full PDF remains retrievable after server close. Browser drawing state survived PDF mode and returned through the ordinary PNG tool path. Missing offline dependencies produced an explicit error without image delivery.
+
+**Self-check resolutions:** Fixed mode-switch drawing loss, known invisible/empty paint false prompts, post-decode size guards, and obsolete processing after cancellation. Original standards/spec reports remain preserved. No formal review verdict is claimed.
+
+**Remaining questions:** Tablet pairing/LAN transport, folder/document/server/job associations, live current-document toolbar Send, tablet cancellation/isolation, owner quality with toolbar, and lifecycle acceptance. Owner reports disabling auto-sleep after the device slept; the agent did not verify the setting or access the device.
+
+**Evidence:** [Summary](../artifacts/evidence/implementation-0017/summary.json), [final tests](../artifacts/evidence/implementation-0017/isolated-final-tests.log), [live geometry and drawing proof](../artifacts/evidence/implementation-0017/final-smoke/output-verification.json), [review resolutions](../artifacts/evidence/implementation-0017/review-resolutions.json), and [owner observation](../artifacts/evidence/implementation-0017/owner-device-observation.json).
+
+## Complete canonical receipt history
+
+- **start-0001:** started. [Receipt](../events/start-0001.yaml).
+- **start-complete-0003:** blocked. [Receipt](../events/start-complete-0003.yaml).
+- **start-0004:** started. [Receipt](../events/start-0004.yaml).
+- **implementation-0005:** blocked. [Receipt](../events/implementation-0005.yaml).
+- **start-complete-0006:** blocked. [Receipt](../events/start-complete-0006.yaml).
+- **start-0007:** started. [Receipt](../events/start-0007.yaml).
+- **implementation-0008:** blocked. [Receipt](../events/implementation-0008.yaml).
+- **start-complete-0009:** blocked. [Receipt](../events/start-complete-0009.yaml).
+- **start-0010:** started. [Receipt](../events/start-0010.yaml).
+- **implementation-0011:** failed. [Receipt](../events/implementation-0011.yaml).
+- **start-complete-0012:** failed. [Receipt](../events/start-complete-0012.yaml).
+- **start-0013:** started. [Receipt](../events/start-0013.yaml).
+- **implementation-0014:** blocked. [Receipt](../events/implementation-0014.yaml).
+- **start-complete-0015:** blocked. [Receipt](../events/start-complete-0015.yaml).
+- **start-0016:** started. [Receipt](../events/start-0016.yaml).
+- **implementation-0017:** blocked. [Receipt](../events/implementation-0017.yaml).
+
+## Preserved prior implementation log — historical
+
+# Implementation log
+
 ## Current attempt — implementation-0014
 
 **Status:** Blocked. [Result](../events/implementation-0014.yaml). [Immutable snapshot](../artifacts/snapshots/pr-draft-implementation-0014.md).

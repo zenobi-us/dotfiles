@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "The user annotated this image. Full annotated PDF retained at: /home/zenobius/.local/share/omp/image-annotator/62d960862404c0c6156b8650861fc3b3/4-fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf/annotated.pdf"
+    },
+    {
+      "type": "image",
+      "data": "[96461 bytes retained in pdf-delivered.png]",
+      "mimeType": "image/png"
+    }
+  ],
+  "details": {
+    "action": "annotate",
+    "status": "completed"
+  }
+}

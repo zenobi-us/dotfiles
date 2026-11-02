@@ -1,0 +1,52 @@
+{
+  "pdf_delivered_dimensions": [
+    800,
+    1000
+  ],
+  "annotation_differs_from_source": true,
+  "corner_regions": {
+    "top_left": {
+      "different_pixels": 0,
+      "region": [
+        40,
+        40,
+        40,
+        40
+      ]
+    },
+    "top_right": {
+      "different_pixels": 0,
+      "region": [
+        720,
+        40,
+        40,
+        40
+      ]
+    },
+    "bottom_left": {
+      "different_pixels": 0,
+      "region": [
+        40,
+        920,
+        40,
+        40
+      ]
+    },
+    "bottom_right": {
+      "different_pixels": 0,
+      "region": [
+        720,
+        920,
+        40,
+        40
+      ]
+    }
+  },
+  "full_pdf_sha256": "fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf",
+  "full_pdf_retrieved_after_server_close": true,
+  "ordinary_png_dimensions": [
+    800,
+    1000
+  ],
+  "ordinary_png_contains_drawing_after_pdf_mode_round_trip": true
+}

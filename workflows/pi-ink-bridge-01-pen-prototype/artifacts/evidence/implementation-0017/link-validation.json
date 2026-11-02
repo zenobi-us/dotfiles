@@ -1,0 +1,20 @@
+[
+  {
+    "document": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0017.md",
+    "local_links_checked": 37,
+    "missing": [],
+    "okf_validation": []
+  },
+  {
+    "document": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "local_links_checked": 133,
+    "missing": [],
+    "okf_validation": []
+  },
+  {
+    "document": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "local_links_checked": 61,
+    "missing": [],
+    "okf_validation": []
+  }
+]

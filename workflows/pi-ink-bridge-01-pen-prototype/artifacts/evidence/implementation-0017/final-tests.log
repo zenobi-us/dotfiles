@@ -1,0 +1,25 @@
+bun test v1.4.3 (c6da4a4d3)
+
+test/editing-session.test.ts:
+(pass) editing remains available after a day until done [11.75ms]
+(pass) editing remains available after a day until cancel [1.81ms]
+(pass) editing remains available after a day until abort [1.47ms]
+(pass) editing remains available after a day until session-switch [1.35ms]
+
+test/annotator-server.test.ts:
+(pass) annotation server protects source data and returns exported PNG bytes [1.72ms]
+(pass) cancel ends the session without returning an image [1.27ms]
+(pass) a new drawing has no source image and returns its exported PNG [1.54ms]
+(pass) annotation server serves the built Excalidraw app and bundle [2.36ms]
+
+test/pdf-submission.test.ts:
+(pass) all outer ink colors and subpixel alpha require explicit result consent [1419.52ms]
+(pass) expanded whitespace sends without clipping consent and preserves source mapping [410.00ms]
+(pass) wrong source position fails closed instead of stretching or guessing [289.28ms]
+(pass) replacement, altered digest, and another request cannot reuse consent [430.10ms]
+(pass) cancel and terminal close reject stale and late submissions [313.59ms]
+
+ 13 pass
+ 0 fail
+ 100 expect() calls
+Ran 13 tests across 3 files. [3.04s]

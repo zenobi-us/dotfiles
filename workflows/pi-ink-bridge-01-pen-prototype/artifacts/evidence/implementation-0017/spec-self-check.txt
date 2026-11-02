@@ -1,0 +1,15 @@
+SPEC: CHANGES REQUIRED — 2 findings.
+
+Scope: Implementation self-check against fixed point 564c037546911f6e26936383b63eab9129819b97, including new image-annotator files. Canonical ticket: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/pi-ink-bridge-01-pen-prototype.md, “Offline source geometry and clipping policy”.
+
+1. P2 — Invisible annotation bounds can force clipping consent.
+Contract: “Detect any visible ink” and “Empty expanded whitespace must not falsely require clipping.” In mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py:103-113, any outlying annotation rectangle sets uncertain=True. The code does not check visibility flags, opacity, or whether an appearance paints anything. Thus an invisible/hidden annotation outside the source window can require confirmation even when outsidePixels is zero and the expanded margin is empty. The page paint-bounds loop also treats bounds as proof without checking effective visibility. Separate unsupported visible geometry from known non-painting content. [INFERENCE: static consequence; no runtime verification permitted.]
+
+2. P2 — Entering PDF import destroys the existing browser drawing.
+Contract: “Preserve ordinary PNG workflow.” In mise/conf.d/devtools-omp/extensions/image-annotator/src/main.tsx:98, PDF mode replaces and unmounts Excalidraw. Back only clears pdfMode; lines 114-116 recreate Excalidraw from the original scene. No transition saves current elements, files, or appState. Drawing PNG annotations, selecting “Import stock PDF”, and returning through “Back to browser drawing” loses those annotations. Preserve the mounted drawing or capture and restore its current state. [INFERENCE: static React lifecycle consequence; no browser run permitted.]
+
+Other inspected requirements are represented: actual request-server routing; explicit manual-import limitation; digest/nonce-bound one-use confirmation; revision and cancellation gates; exact source-sized raster; retained disk PDF; pinned offline renderer with explicit failure; no action execution path. These are static observations, not runtime proof.
+
+The full ticket remains blocked for pairing, authenticated LAN transport, folder associations, current-document resolution, toolbar integration, and hardware quality gates. This repository-only slice does not satisfy those acceptance criteria.
+
+Validation: Read-only diff and source inspection; canonical ticket read through mq. No agents, builds, tests, lint, formatters, source edits, device access, commits, or tracker changes.

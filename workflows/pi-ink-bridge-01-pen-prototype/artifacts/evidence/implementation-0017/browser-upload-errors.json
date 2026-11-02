@@ -1,0 +1,5 @@
+{
+  "observed": "uploadFile selected result.pdf, but browser fetch(File) failed net::ERR_FILE_NOT_FOUND with zero body bytes.",
+  "workaround": "Assigned exact retained PDF bytes to File/DataTransfer on real file input and dispatched change; all submit/confirmation actions used real UI.",
+  "initial_pdf_failure": "Strict CropBox/MediaBox equality rejected fractional float rounding in retained PDF; changed equality to 0.001 point tolerance and added fractional whitespace coverage."
+}

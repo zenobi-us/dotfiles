@@ -1,0 +1,9 @@
+Standards self-check: 3 findings. Paths below are relative to mise/conf.d/devtools-omp/extensions/image-annotator/.
+
+1. P2 — src/main.tsx:98: Switching to PDF import unmounts Excalidraw. Returning mounts it with the original `scene`; edits exist only inside the previous Excalidraw instance. [INFERENCE] Drawing → Import stock PDF → Back loses the drawing without warning. Keep the editor mounted while hidden, or capture its current elements, files, and app state before switching modes.
+
+2. P2 — pdf-session.ts:34,38-42,88-99: Closing or invalidating a request changes flags but does not stop its worker. A submission already reading its body also proceeds through preparation, file writes, and rendering before checking those flags. [INFERENCE] Cancellation or replacement leaves obsolete PDF processing and disk writes running, potentially until the 60-second timeout. Give each processing revision an AbortController, pass its signal to execFile, and check the revision after awaited body reads and before starting work. Preserve any already-retained original PDF.
+
+3. P2 — pdf-worker.py:39-45,75-79: The 40-megapixel limit runs after decoding the source into a Pixmap. Embedded images also become Pixmaps before their dimensions are compared. [INFERENCE] A small compressed image with excessive decoded dimensions can consume substantial memory before either guard rejects it. Inspect dimensions before allocating decoded pixel buffers, and reject dimensions above the limit before Pixmap construction.
+
+Validation: Static inspection of the fixed-point diff, new files, package.json, bun.lock, domain guidance, and supplied standards. No builds, tests, formatters, device connections, source edits, or tracker/workflow changes. These findings are not runtime reproductions or a whole-ticket verdict.

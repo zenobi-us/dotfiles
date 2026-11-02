@@ -1,0 +1,131 @@
+{
+  "schema": "pi-ink-clipping-gate-evidence/v1",
+  "created_at": "2026-11-02T21:31:43.880790+00:00",
+  "scope": "Repository-only manual browser stock-PDF import in the existing image_editor request server. Not tablet current-document integration.",
+  "source_commit": "ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456",
+  "source_tree": "93faf247089822a60c8cb534416997690fb989de",
+  "ticket_status": "claimed",
+  "full_ticket_status": "blocked",
+  "slice_status": "implemented and exercised",
+  "device_access": false,
+  "source_mapping": {
+    "source_dimensions": [
+      800,
+      1000
+    ],
+    "coordinate_window": [
+      0,
+      0,
+      800,
+      1000
+    ],
+    "sample_identity": "Decoded source image samples must match this request. First paint must be the opaque direct image; only q/Q/cm may precede it.",
+    "unsupported": "Multiple pages, image masks/custom Decode, inline/extra images, rotation, UserUnit, differing boxes, moved/scaled/reflected source images and unknown paint state fail closed.",
+    "float_tolerance_points": 0.001
+  },
+  "detector": {
+    "method": "Transparent full-page RGBA render, alpha independent of color, plus conservative paint bounds for subpixel/unknown visibility. Known hidden/no-view/invisible/zero-opacity annotations, zero-opacity paths/text, and empty appearance streams do not count as outer ink.",
+    "final_analysis": {
+      "requestId": "f8a69864eb3dbd7e06103e525a321b32",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "width": 800,
+      "height": 1000,
+      "outsidePixels": 7179,
+      "requiresConfirmation": true,
+      "uncertainPaintBounds": true,
+      "exportDigest": "fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf"
+    },
+    "uncertainty": "Conservative paint bounds can require consent for unsupported or subpixel visibility. No silent clipping."
+  },
+  "consent": {
+    "bound_fields": [
+      "immutable requestId",
+      "sourceDigest",
+      "exportDigest",
+      "one-use random consent nonce"
+    ],
+    "invalidated_by": [
+      "new export/submission",
+      "file selection or Back invalidation",
+      "Cancel",
+      "request/server close",
+      "OMP session switch/branch/tree/start"
+    ],
+    "terminal_delivery": "single completion; stale and cancelled asynchronous results cannot deliver",
+    "processing": "revision AbortSignal passed to renderer; lifetime cancellation aborts source preparation"
+  },
+  "retention": {
+    "root": "~/.local/share/omp/image-annotator/<request-id>/<revision>-<export-sha256>/",
+    "full_pdf_sha256": "fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf",
+    "original_after_server_close": "final-smoke/retained-annotated.pdf",
+    "retrieval": "Real filesystem artifact. Server-local path reported by completion UI and tool result. No automatic deletion."
+  },
+  "dependencies": {
+    "runtime": "uv run --offline --no-project --script pdf-worker.py",
+    "pinned": [
+      "pymupdf==1.26.7",
+      "pypdf==6.21.4",
+      "Pillow==13.0.0"
+    ],
+    "missing_dependency_result": "offline-dependency-result.json",
+    "pdf_security": "Libraries render/parse supplied bytes; no PDF action/JavaScript engine, link navigation, or remote resource fetch is invoked. Offline uv dependency resolution fails explicitly. This is implementation inspection plus missing-cache smoke, not an exploit audit."
+  },
+  "validation": {
+    "build": {
+      "exit_code": 0,
+      "raw": "accepted-build.log",
+      "warnings": "Existing dependency use-client directives and large Vite chunks."
+    },
+    "typecheck": {
+      "exit_code": 0,
+      "raw": "accepted-typecheck.log"
+    },
+    "tests": {
+      "exit_code": 0,
+      "pass": 13,
+      "fail": 0,
+      "assertions": 100,
+      "raw": "isolated-final-tests.log"
+    },
+    "live_tool_and_browser": {
+      "result": "passed",
+      "driver": "final-smoke-driver.ts",
+      "raw": "final-smoke/process.log",
+      "pdf": "final-smoke/pdf-tool-result.json",
+      "png": "final-smoke/png-tool-result.json",
+      "geometry": "final-smoke/output-verification.json",
+      "screenshots": [
+        "final-smoke/confirmation.webp",
+        "final-smoke/delivered.webp",
+        "final-smoke/drawing-before.webp",
+        "final-smoke/drawing-after.webp"
+      ],
+      "before_consent": "No pdf-tool-result.json existed while consent UI was displayed.",
+      "ordinary_png": "Actual rectangle remains across Import stock PDF and Back; Undo remains enabled; returned image contains marks.",
+      "tabs_closed": true
+    },
+    "initial_failures_preserved": [
+      "browser-upload-errors.json",
+      "review-fixed-tests.log"
+    ],
+    "tool_limit": "LSP initialization failed because its workspace could not locate TypeScript even after local TypeScript install. Scoped bunx tsc passed; source consumers were inspected directly."
+  },
+  "review": {
+    "standards": "standards-self-check.txt",
+    "spec": "spec-self-check.txt",
+    "resolutions": "review-resolutions.json",
+    "formal_verdict": null,
+    "reviewer_panes_closed": [
+      "w6J:p3",
+      "w6J:p4"
+    ]
+  },
+  "remaining_blockers": [
+    "Real tablet pairing and authenticated LAN transport",
+    "Stable stock-library folder/document/server/job association",
+    "Live current-document resolution and editor toolbar Send",
+    "Tablet wrong-document/wrong-server cancellation and isolation",
+    "Owner pen/palm/zoom/undo/erasing/orientation verdict with toolbar and lifecycle tests"
+  ],
+  "history": "All historical receipts/source-local evidence and owner-selected restored webserver-remote.so/wildcard proxy remain untouched. No tablet connection or mutation occurred."
+}

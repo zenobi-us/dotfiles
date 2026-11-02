@@ -1,0 +1,660 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0017",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 6,
+  "parent_receipt": "start-0016",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456",
+  "source_tree": "93faf247089822a60c8cb534416997690fb989de",
+  "created_at": "2026-11-02T21:35:52.885827+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "workspace_id": "w6J",
+  "pane_id": "w6J:p2",
+  "agent": "omp",
+  "session_id": "01a19e11-a946-724a-9610-96571998a017",
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0016.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0015.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/analysis.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/policy-decision.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/verification.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result.pdf"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/source.pdf"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0017.md"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-resolutions.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/isolated-final-tests.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-validation.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-tests.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-typecheck.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-build.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke-driver.ts"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/visibility-fixed-tests.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-validation.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-tests.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-typecheck.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-build.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/geometry-verification.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/spec-self-check.txt"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/standards-self-check.txt"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/session-identity.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-result.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-smoke.ts"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/output-verification.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/verify-output.py"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/validation-commands.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-tests.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-typecheck.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-build.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/browser-upload-errors.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/canonical-clipping-policy.mq-output.txt"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/smoke-process.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/initial-validation.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-delivered.webp"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-browser.webp"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-tool-result.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-delivered.png"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/retained-annotated.pdf"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/delivered.webp"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-url.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-tool-result.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-delivered.png"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-analysis.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/confirmation.webp"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-url.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/smoke-driver.ts"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source.png"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/extract-source.py"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source-identity.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/summary.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/owner-device-observation.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source-commit.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/process.log"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/verify-output.py"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/retained-annotated.pdf"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/drawing-after.webp"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/drawing-before.webp"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/delivered.webp"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-tool-result.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-delivered.png"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-url.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-tool-result.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-delivered.png"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-analysis.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/confirmation.webp"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-url.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/source.png"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/link-validation.json"
+    },
+    {
+      "kind": "evidence-file",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/checksums.json"
+    }
+  ],
+  "status": "blocked",
+  "slice_status": "completed",
+  "source_changed": true,
+  "changed_source_files": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/PdfImport.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/main.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/style.css",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/editing-session.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-fixtures.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-samples.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts"
+  ],
+  "changed_workflow_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-resolutions.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/isolated-final-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke-driver.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/visibility-fixed-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/geometry-verification.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/spec-self-check.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/standards-self-check.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/session-identity.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-smoke.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/output-verification.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/verify-output.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/validation-commands.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/browser-upload-errors.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/canonical-clipping-policy.mq-output.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/smoke-process.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/initial-validation.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-browser.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/retained-annotated.pdf",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-analysis.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/confirmation.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/smoke-driver.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/extract-source.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source-identity.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/summary.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/owner-device-observation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source-commit.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/process.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/verify-output.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/retained-annotated.pdf",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/drawing-after.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/drawing-before.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-analysis.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/confirmation.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/source.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/link-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/checksums.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0017.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "changed_files": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/PdfImport.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/main.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/style.css",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/editing-session.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-fixtures.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-samples.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-resolutions.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/isolated-final-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke-driver.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/visibility-fixed-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/geometry-verification.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/spec-self-check.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/standards-self-check.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/session-identity.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-smoke.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/output-verification.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/verify-output.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/validation-commands.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/browser-upload-errors.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/canonical-clipping-policy.mq-output.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/smoke-process.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/initial-validation.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-browser.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/retained-annotated.pdf",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-analysis.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/confirmation.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/smoke-driver.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/extract-source.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source-identity.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/summary.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/owner-device-observation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source-commit.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/process.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/verify-output.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/retained-annotated.pdf",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/drawing-after.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/drawing-before.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-analysis.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/confirmation.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/source.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/link-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/checksums.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0017.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "summary": "Implemented the real image_editor request-server/browser stock-PDF submission seam with source-bound visible out-of-bounds detection, per-export explicit clipping confirmation, exact source-sized delivery, durable full-PDF retention, stale/cancellation isolation, and preserved browser drawing state. Full tablet prototype acceptance remains blocked.",
+  "validation": [
+    {
+      "command": "bun run build",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "passed",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-build.log",
+      "warnings": "Existing use-client directives and large chunks."
+    },
+    {
+      "command": "bunx tsc --noEmit",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "passed",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-typecheck.log"
+    },
+    {
+      "command": "bun test test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "13 passed, 0 failed, 100 assertions",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/isolated-final-tests.log"
+    },
+    {
+      "command": "bun final-smoke-driver.ts + managed Chromium UI interactions",
+      "result": "Actual image_editor remained pending at clipping confirmation; explicit consent returned marked 800x1000 PNG. Ordinary marked PNG delivery and drawing preservation across PDF mode passed. Both tabs closed. Launcher only was intercepted; production request/PDF/consent/delivery code ran.",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/process.log"
+    },
+    {
+      "command": "uv run --offline --script final-smoke/verify-output.py",
+      "result": "800x1000; actual annotations differ from source; four 40x40 corners exact; full original retrieved after shutdown and matches SHA-256 fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf; ordinary PNG contains drawing after PDF-mode round trip.",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.json"
+    },
+    {
+      "command": "bun offline-dependency-smoke.ts with empty UV_CACHE_DIR",
+      "result": "Explicit HTTP500 pinned-renderer dependency failure; no image delivered; uv network disabled.",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-result.json"
+    }
+  ],
+  "open_questions": [
+    "Real tablet pairing and authenticated LAN transport",
+    "Stable stock-library folder/document/server/job association",
+    "Live current-document resolution and editor toolbar Send",
+    "Tablet wrong-document/wrong-server cancellation and isolation",
+    "Owner pen/palm/zoom/undo/erasing/orientation verdict with toolbar and lifecycle tests",
+    "Unsupported mappings are rejected rather than generalized; conservative uncertainty requires confirmation.",
+    "Owner disabled auto-sleep after a sleep event. This is an unverified owner setting change, not lifecycle acceptance."
+  ],
+  "review": {
+    "type": "Two independent read-only implementation self-checks, not formal worktree phase review",
+    "standards_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/standards-self-check.txt",
+    "spec_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/spec-self-check.txt",
+    "resolved_findings_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-resolutions.json",
+    "formal_verdict": null,
+    "panes_closed": [
+      "w6J:p3",
+      "w6J:p4"
+    ]
+  },
+  "recovery": {
+    "mode": "takeover",
+    "approval": "Retained parent start-0016 records same-conversation repository-only continuation and confirmation-before-clipping policy.",
+    "fresh_session": true,
+    "source_baseline_preserved": "564c037546911f6e26936383b63eab9129819b97 / 57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+    "historical_receipts_modified": false,
+    "source_local_receipts_copied_or_normalized": false
+  },
+  "boundaries": {
+    "agent_device_access": false,
+    "tablet_integration_claimed": false,
+    "pairing_or_toolbar_built": false,
+    "ticket_completed": false,
+    "merged": false,
+    "rebased": false,
+    "pushed": false,
+    "full_original_pdf_persistent": true,
+    "browser_png_workflow_preserved": true,
+    "policy_is_not_result_consent": true,
+    "parent_completion_pending": true,
+    "owner_device_observation_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/owner-device-observation.json"
+  }
+}

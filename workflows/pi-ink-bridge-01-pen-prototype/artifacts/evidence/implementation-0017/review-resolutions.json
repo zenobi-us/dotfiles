@@ -1,0 +1,33 @@
+{
+  "standards": [
+    {
+      "finding": "P2 browser drawing loss",
+      "resolution": "Keep Excalidraw mounted and hide its container during PDF mode.",
+      "verification": "Final live UI rectangle drawing persists across Import stock PDF \u2192 Back; Undo remains enabled; resulting PNG contains drawing."
+    },
+    {
+      "finding": "P2 obsolete processing after cancellation",
+      "resolution": "Per-revision AbortController passed to execFile; lifetime controller aborts preparation on close; revision checks after body read and preparation.",
+      "verification": "Real HTTP cancellation/stale-result regression passes."
+    },
+    {
+      "finding": "P2 decoded-size guard too late",
+      "resolution": "Pinned Pillow header reader validates source dimensions before Pixmap; PDF resource dimensions/masks checked before get_image_info hashing or Pixmap; inline image rejection.",
+      "verification": "Typecheck and PDF regressions pass; header guard inspection, not a measured memory-limit stress test."
+    }
+  ],
+  "spec": [
+    {
+      "finding": "P2 invisible annotation bounds",
+      "resolution": "Ignore known hidden/no-view/invisible/zero-opacity annotations, empty appearance streams, and zero-opacity page paths/text in conservative paint bounds.",
+      "verification": "Fractional expanded empty-margin fixture contains zero-opacity path, hidden annotation, zero-opacity annotation, and empty appearance; auto-delivers exact source samples without consent."
+    },
+    {
+      "finding": "P2 browser drawing loss",
+      "resolution": "Same mounted-editor fix as standards finding.",
+      "verification": "Final live browser mode round trip and image_tool result."
+    }
+  ],
+  "formal_review_verdict": null,
+  "full_ticket_status": "blocked"
+}

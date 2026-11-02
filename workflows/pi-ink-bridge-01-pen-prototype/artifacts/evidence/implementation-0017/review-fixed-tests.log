@@ -1,0 +1,69 @@
+bun test v1.4.3 (c6da4a4d3)
+
+test/editing-session.test.ts:
+(pass) editing remains available after a day until done [11.76ms]
+(pass) editing remains available after a day until cancel [1.99ms]
+(pass) editing remains available after a day until abort [1.50ms]
+(pass) editing remains available after a day until session-switch [1.56ms]
+
+test/annotator-server.test.ts:
+(pass) annotation server protects source data and returns exported PNG bytes [1.82ms]
+(pass) cancel ends the session without returning an image [1.19ms]
+(pass) a new drawing has no source image and returns its exported PNG [1.55ms]
+(pass) annotation server serves the built Excalidraw app and bundle [2.35ms]
+
+test/pdf-submission.test.ts:
+32 | 
+33 | test("all outer ink colors and subpixel alpha require explicit result consent", async () => {
+34 |   for (const color of ["black", "blue", "white", "alpha", "subpixel"]) {
+35 |     const s = await session();
+36 |     const response = await s.submit(color);
+37 |     expect(response.status).toBe(202);
+                                 ^
+error: expect(received).toBe(expected)
+
+Expected: 202
+Received: 500
+
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts:37:29)
+(fail) all outer ink colors and subpixel alpha require explicit result consent [135.47ms]
+48 | }, 30_000);
+49 | 
+50 | test("expanded whitespace sends without clipping consent and preserves source mapping", async () => {
+51 |   const s = await session();
+52 |   const response = await s.submit("empty");
+53 |   expect(response.status).toBe(200);
+                               ^
+error: expect(received).toBe(expected)
+
+Expected: 200
+Received: 500
+
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts:53:27)
+(fail) expanded whitespace sends without clipping consent and preserves source mapping [135.55ms]
+(pass) wrong source position fails closed instead of stretching or guessing [138.59ms]
+68 | });
+69 | 
+70 | test("replacement, altered digest, and another request cannot reuse consent", async () => {
+71 |   const a = await session();
+72 |   const b = await session();
+73 |   const old = await (await a.submit("black")).json();
+                                                   ^
+SyntaxError: JSON Parse error: Unexpected identifier "PDF"
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts:73:47)
+(fail) replacement, altered digest, and another request cannot reuse consent [136.70ms]
+81 |   expect(b.results).toEqual([]);
+82 | });
+83 | 
+84 | test("cancel and terminal close reject stale and late submissions", async () => {
+85 |   const s = await session();
+86 |   const review = await (await s.submit("black")).json();
+                                                      ^
+SyntaxError: JSON Parse error: Unexpected identifier "PDF"
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts:86:50)
+(fail) cancel and terminal close reject stale and late submissions [134.41ms]
+
+ 9 pass
+ 4 fail
+ 46 expect() calls
+Ran 13 tests across 3 files. [820.00ms]

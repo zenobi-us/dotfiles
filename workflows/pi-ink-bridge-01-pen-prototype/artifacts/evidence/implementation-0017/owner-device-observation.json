@@ -1,0 +1,10 @@
+{
+  "schema": "pi-ink-owner-observation/v1",
+  "source": "Current conversation owner report",
+  "report": "Device went to sleep. Owner disabled the auto sleep function.",
+  "agent_verified": false,
+  "agent_device_access": false,
+  "effect_on_scope": "No new device-access approval inferred. Repository-only scope remains in force.",
+  "lifecycle_acceptance": "Sleep/wake, reboot, firmware-update and toolbar lifecycle gates remain untested by this implementation. Disabling auto-sleep is not a sleep/wake pass.",
+  "restoration_boundary": "The owner changed auto-sleep after the earlier device restoration evidence. Historical restoration receipts remain unchanged. Future device preflight must observe current settings rather than infer the earlier baseline."
+}

@@ -1,0 +1,22 @@
+{
+  "baseline_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "baseline_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "commit": "ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456",
+  "tree": "93faf247089822a60c8cb534416997690fb989de",
+  "branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "changed_files": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/PdfImport.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/main.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/style.css",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/editing-session.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-fixtures.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-samples.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts"
+  ]
+}
