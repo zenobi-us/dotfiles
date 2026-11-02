@@ -1,0 +1,187 @@
+{
+  "schema": "pi-ink-offline-geometry/v1",
+  "created_at": "2026-11-02T20:43:58.278490+00:00",
+  "scope": "Offline retained synthetic artifacts only. No device access, source implementation, phase ownership transfer or acceptance change.",
+  "inputs": [
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/source.pdf",
+      "sha256": "ba5b3f78a6bc4900cae7f8e009d68f9628a3d25a0e234808bc8dfe71d9e7d1f5"
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result.pdf",
+      "sha256": "fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf"
+    }
+  ],
+  "versions": {
+    "pypdf": "6.21.4",
+    "Pillow": "13.0.0",
+    "numpy": "2.5.4"
+  },
+  "page_count": 1,
+  "source_media_box": [
+    0,
+    0,
+    800,
+    1000
+  ],
+  "export_media_box": [
+    -31.50931,
+    -121.916031,
+    928.56653,
+    1000.0
+  ],
+  "rotation": 0,
+  "user_unit": 1,
+  "source_image": {
+    "width": 800,
+    "height": 1000,
+    "decoded_bytes": 2400000,
+    "pypdf_extracted_png_sha256": "1b09f887fac6c4ed416b2e6b8268108f1b2b4db8197f22b0705460b6400191e6",
+    "raw_samples_sha256": "d1d3f58a0550f78fef52e7b2d2a1d4741e288ef9fbff21eee558dc4a5cf3e2db",
+    "same_raw_samples": true,
+    "matrix_source": [
+      800,
+      0,
+      0,
+      1000,
+      0,
+      0
+    ],
+    "matrix_export": [
+      800,
+      0,
+      0,
+      1000,
+      0,
+      0
+    ],
+    "source_contents_are_export_prefix": true
+  },
+  "mapping": {
+    "source_pdf_to_export_pdf": [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "source_pixel_top_left_to_pdf": "x_pdf=x_pixel; y_pdf=1000-y_pixel",
+    "source_window_pdf": [
+      0,
+      0,
+      800,
+      1000
+    ],
+    "candidate_method": "Set all page boxes in a derived PDF copy to source window; render at72DPI with pdftoppm -cropbox. No scaling or annotation regeneration.",
+    "candidate_dimensions": [
+      800,
+      1000
+    ],
+    "candidate_status": "DIAGNOSTIC_POLICY_PENDING",
+    "original_export_untouched": true
+  },
+  "corner_checks_40px_squares": {
+    "top_left": {
+      "source_center": [
+        60,
+        60
+      ],
+      "identical": true,
+      "different_pixels": 0
+    },
+    "top_right": {
+      "source_center": [
+        740,
+        60
+      ],
+      "identical": true,
+      "different_pixels": 0
+    },
+    "bottom_left": {
+      "source_center": [
+        60,
+        940
+      ],
+      "identical": true,
+      "different_pixels": 0
+    },
+    "bottom_right": {
+      "source_center": [
+        740,
+        940
+      ],
+      "identical": true,
+      "different_pixels": 0
+    }
+  },
+  "full_reference": {
+    "page_box": [
+      -32,
+      -122,
+      929,
+      1000
+    ],
+    "dimensions": [
+      961,
+      1122
+    ],
+    "source_window_pixel_rect": [
+      32,
+      0,
+      832,
+      1000
+    ],
+    "purpose": "Integer pixel-grid full-page reference; contains all observed out-of-bounds marks without fractional-page raster offset.",
+    "candidate_reference_different_pixels": 1,
+    "candidate_reference_max_channel_delta": 16,
+    "candidate_reference_red_masks_equal": true,
+    "raster_difference_limit": "One pixel differs in antialias intensity; do not claim byte-identical whole rendering."
+  },
+  "ink_measurement": {
+    "method": "72DPI red-dominant raster pixels, not vector area or pen-sample counts. R>100, R-G>delta and R-B>delta.",
+    "thresholds": [
+      {
+        "delta": 10,
+        "total": 41312,
+        "inside": 34360,
+        "outside": 6952,
+        "outside_percent": 16.828040278853603,
+        "source_window_mask_matches_candidate": true
+      },
+      {
+        "delta": 20,
+        "total": 38240,
+        "inside": 31820,
+        "outside": 6420,
+        "outside_percent": 16.788702928870293,
+        "source_window_mask_matches_candidate": true
+      },
+      {
+        "delta": 40,
+        "total": 36375,
+        "inside": 30223,
+        "outside": 6152,
+        "outside_percent": 16.912714776632303,
+        "source_window_mask_matches_candidate": true
+      },
+      {
+        "delta": 60,
+        "total": 33594,
+        "inside": 27952,
+        "outside": 5642,
+        "outside_percent": 16.794665714115617,
+        "source_window_mask_matches_candidate": true
+      }
+    ]
+  },
+  "interpretation": "Source image and original source operators are unchanged at identity source coordinates. Export extends MediaBox/CropBox to include added ink; source-sized window is known without registration inference. Cropping loses real out-of-source annotations; policy decision required.",
+  "not_proved": [
+    "general PDF transform handling",
+    "multi-page/rotation/UserUnit behavior",
+    "production current-document association",
+    "production converter implementation",
+    "production cancellation or originating-request delivery",
+    "hardware quality gate"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "pi-ink-geometry-verification/v1",
+  "status": "offline_mapping_proved_policy_implementation_pending",
+  "poppler_commands": [
+    [
+      "pdftoppm",
+      "-singlefile",
+      "-png",
+      "-r",
+      "72",
+      "-cropbox",
+      "source-window-candidate.pdf",
+      "source-window-candidate"
+    ],
+    [
+      "pdftoppm",
+      "-singlefile",
+      "-png",
+      "-r",
+      "72",
+      "-cropbox",
+      "integer-expanded-analysis.pdf",
+      "integer-expanded-analysis"
+    ]
+  ],
+  "docling": {
+    "backend": "PyPdfiumDocumentBackend",
+    "full_ocr_or_layout_conversion": "Not requested or run; image-only PDF geometry inspected through local Docling backend, no model download or remote document service.",
+    "original": {
+      "valid": true,
+      "page_count": 1,
+      "page_size": {
+        "width": 960.0758666992188,
+        "height": 1121.916015625
+      },
+      "image_size_72dpi": [
+        960,
+        1122
+      ]
+    },
+    "candidate": {
+      "valid": true,
+      "page_count": 1,
+      "page_size": {
+        "width": 800.0,
+        "height": 1000.0
+      },
+      "image_size_72dpi": [
+        800,
+        1000
+      ]
+    },
+    "render_rounding_note": "Original fractional-width page rounds differently in PDFium and Poppler. Measurements use an integer-aligned expanded reference to avoid arbitrary fractional-page pixel shifts.",
+    "initial_dependency_failure": "docling-slim/pypdfium2 backend required rtree; corrected environment adds rtree.",
+    "probe_source": "import inspect\nfrom docling.backend.pypdfium2_backend import PyPdfiumDocumentBackend\nfrom docling.datamodel.document import InputDocument\nfrom docling.datamodel.base_models import InputFormat\nfrom pathlib import Path\nimport json\nimport sys\npath = Path(sys.argv[1])\ndoc = InputDocument(path_or_stream=path, format=InputFormat.PDF, backend=PyPdfiumDocumentBackend)\nbackend = doc._backend\npage = backend.load_page(0)\nprint(json.dumps({\"backend\": \"Docling PyPdfiumDocumentBackend\", \"valid\": backend.is_valid(), \"page_count\": backend.page_count(), \"page_size\": page.get_size().model_dump(), \"image_size_72dpi\": page.get_page_image(scale=1).size}))\nbackend.unload()\n"
+  },
+  "checks": {
+    "source_image_raw_samples_identical": true,
+    "source_content_prefix_unchanged": true,
+    "source_image_transform_identical": true,
+    "all_four_corner_regions_identical": true,
+    "candidate_800x1000": true,
+    "inside_red_masks_match_integer_expanded_reference_at_all_four_thresholds": true,
+    "outside_ink_present": true
+  },
+  "limits": [
+    "Raster threshold detects red synthetic ink only, not a production detector for arbitrary colors, transparency, erasers or mixed content.",
+    "The candidate does not validate general multipage/rotated PDFs or arbitrary source-image transforms.",
+    "No tablet or source-code changes; no full acceptance pass."
+  ]
+}

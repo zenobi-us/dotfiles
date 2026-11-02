@@ -1,0 +1,53 @@
+{
+  "schema": "pi-ink-offline-validation/v1",
+  "command": [
+    "python3",
+    "/tmp/pi-ink-geometry-check.py",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+  ],
+  "exit_code": 0,
+  "observed_result": {
+    "status": "PASS",
+    "source_mapping": "identity",
+    "candidate_dimensions": [
+      800,
+      1000
+    ],
+    "corner_regions_identical": 4,
+    "red_mask_counts": [
+      {
+        "delta": 10,
+        "inside": 34360,
+        "outside": 6952
+      },
+      {
+        "delta": 20,
+        "inside": 31820,
+        "outside": 6420
+      },
+      {
+        "delta": 40,
+        "inside": 30223,
+        "outside": 6152
+      },
+      {
+        "delta": 60,
+        "inside": 27952,
+        "outside": 5642
+      }
+    ],
+    "delivery_status": "not delivered; clipping confirmation policy unimplemented"
+  },
+  "disposable_verification_source": "from pathlib import Path\nfrom pypdf import PdfReader\nfrom pypdf.generic import ContentStream\nfrom PIL import Image\nimport hashlib\nimport json\nimport numpy as np\nimport sys\n\nbase = Path(sys.argv[1])\nevidence = base / 'workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence'\nout = evidence / 'geometry-001'\nanalysis = json.loads((out / 'analysis.json').read_text())\nfor item in analysis['inputs']:\n    assert hashlib.sha256((base / item['path']).read_bytes()).hexdigest() == item['sha256']\nsource = PdfReader(evidence / 'stock-editor-round-trip-001/source.pdf')\nexport = PdfReader(evidence / 'implementation-0014/result.pdf')\ncropped = PdfReader(out / 'source-window-candidate.pdf')\nassert len(source.pages) == len(export.pages) == len(cropped.pages) == 1\nfor doc in (source, export, cropped):\n    page = doc.pages[0]\n    assert page.get('/Rotate', 0) == 0 and page.get('/UserUnit', 1) == 1\nsamples = lambda doc: doc.pages[0]['/Resources']['/XObject']['/Source'].get_object().get_data()\nassert samples(source) == samples(export) == samples(cropped)\nfor doc in (source, export, cropped):\n    ops = ContentStream(doc.pages[0].get_contents(), doc).operations\n    assert ops[:4] == [([], b'q'), ([800, 0, 0, 1000, 0, 0], b'cm'), (['/Source'], b'Do'), ([], b'Q')]\nassert list(cropped.pages[0].mediabox) == list(cropped.pages[0].cropbox) == [0, 0, 800, 1000]\nsource_pixels = np.asarray(Image.open(out / 'source.png').convert('RGB'))\ncandidate = np.asarray(Image.open(out / 'source-window-candidate.png').convert('RGB'))\nexpanded = np.asarray(Image.open(out / 'integer-expanded-analysis.png').convert('RGB'))\nassert source_pixels.shape == candidate.shape == (1000, 800, 3)\nfor x, y in ((60, 60), (740, 60), (60, 940), (740, 940)):\n    region = (slice(y - 20, y + 20), slice(x - 20, x + 20))\n    assert np.array_equal(source_pixels[region], candidate[region])\ndef red_mask(pixels, delta):\n    p = pixels.astype(np.int16)\n    return (p[:, :, 0] > 100) & (p[:, :, 0] - p[:, :, 1] > delta) & (p[:, :, 0] - p[:, :, 2] > delta)\ncounts = []\nfor delta in (10, 20, 40, 60):\n    mask = red_mask(expanded, delta)\n    assert np.array_equal(mask[:1000, 32:832], red_mask(candidate, delta))\n    inside = int(mask[:1000, 32:832].sum())\n    counts.append({'delta': delta, 'inside': inside, 'outside': int(mask.sum()) - inside})\nprint(json.dumps({'status': 'PASS', 'source_mapping': 'identity', 'candidate_dimensions': [800, 1000], 'corner_regions_identical': 4, 'red_mask_counts': counts, 'delivery_status': 'not delivered; clipping confirmation policy unimplemented'}))\n",
+  "link_validation": {
+    "scope": "Five new canonical-ticket links into geometry-001, resolved from tracker/tickets. Historical links not changed.",
+    "checked": 5,
+    "missing": [],
+    "method": "mq native Markdown .link.url, with required okf module loaded. Structured native selector output decoded.",
+    "extractor_issue": "okf_extract_links altered the PNG link destination and falsely reported it missing. Native mq Markdown parsing preserves the real ../../ link; tool issue reported."
+  },
+  "tracker_validation": "records.ts check passed before and after update; tracker-ticket/v1; claimed; dependencies unchanged",
+  "permanent_tests_added": 0,
+  "device_access": false,
+  "source_changes": false
+}

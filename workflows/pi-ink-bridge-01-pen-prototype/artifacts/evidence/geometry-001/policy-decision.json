@@ -1,0 +1,15 @@
+{
+  "schema": "pi-ink-clipping-policy/v1",
+  "created_at": "2026-11-02T20:48:56.604259+00:00",
+  "owner_selection": "Require confirmation before clipping",
+  "policy": {
+    "out_of_bounds_ink": "Detect it and block source-sized delivery until the user explicitly confirms clipping.",
+    "confirmed_output": "Render the original source window at source dimensions without stretching; retain the full annotated PDF.",
+    "unconfirmed_output": "Do not deliver a clipped PNG as the completed request.",
+    "scope": "Policy decision only. Production detection, confirmation UI, cancellation and origin binding are not implemented by this offline investigation."
+  },
+  "current_candidate": "source-window-candidate.png",
+  "current_candidate_status": "Diagnostic only; selecting this policy is not per-result clipping consent. No originating Pi/OMP request delivered.",
+  "ticket_state": "claimed",
+  "production_blocked": true
+}
