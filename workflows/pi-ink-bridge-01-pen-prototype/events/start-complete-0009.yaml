@@ -1,0 +1,166 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0009",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "implementation-0008",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T11:30:21.182063+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6E:p3",
+  "agent": "omp",
+  "session_id": "01a19b0b-40b2-7580-b000-3eea9529b879",
+  "parent_session_id": "01a19b0b-40b2-7580-b000-3eea9529b879",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "status": "blocked",
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0007.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0006.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0004.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0003.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0009.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008-links-0009.md"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "prior_attempt": "start-0004",
+    "reason": "Target native stock-editor interface discovery rather than repeat existing backend checks.",
+    "approval": "User selected Approve targeted takeover in this continuation: fresh session, preserve source and evidence; permit cable-connected read-only inspection of installed binaries/QML resources; no private document access, installation, restart, account change, session reuse or termination; ask separately before device mutation.",
+    "ownership": "Unknown durable ownership; scoped takeover approved. Existing claimed state retained idempotently.",
+    "liveness": "herdr agent list after continuation: prior implementers absent; current owner w64:pY only working pen session; unrelated idle desktop session; no matching goal reservations.",
+    "reservations": "No pi-ink-bridge-01-pen-prototype match in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Fresh inspector: unchanged unique clean source at 564c0375 / 57df0dbb. Existing claim retained.",
+    "outcome": "Validated blocked native-discovery result without rerunning child work. Session log records normal dispose exit; pane close returned ok. Original snapshot preserved; appended corrected-link snapshot."
+  },
+  "validation": [
+    {
+      "command": "Read implementation-0008, findings.json, native-interfaces.json and immutable draft",
+      "result": "Matching exact unchanged source; native importFromUrls/createCollection metadata and stock DocumentView binding recovered from firmware 3.28.0.172; safe local export initiation remains unresolved. No source/device mutation or acceptance asserted."
+    },
+    {
+      "command": "inspect.ts canonical ticket --json from base",
+      "result": "historyValid=true; unique clean frozen source; start/reconcile selects parent completion."
+    },
+    {
+      "command": "herdr agent wait/get and pane list",
+      "result": "Wait returned agent_not_running; get agent_not_found; pane list retained stale idle agent identity. Reported inconsistency. No duplicate launched."
+    },
+    {
+      "command": "Read final child session JSONL entries 202-204",
+      "result": "Final blocked response and normal session_exit reason=dispose recorded at 2026-11-02T11:28:21.282Z; child commit tool output records 7c55e7c9."
+    },
+    {
+      "command": "herdr pane close w6E:p3",
+      "result": "ok; child pane closed; worktree/workspace preserved."
+    },
+    {
+      "command": "mq okf_extract_links corrected snapshot",
+      "result": "12 links; all relative targets exist. Appended corrected snapshot rather than changing immutable original with incorrect ../ links."
+    },
+    {
+      "command": "Host-only temporary firmware-copy cleanup",
+      "result": "/tmp/pi-ink-0008-xochitl and /tmp/pi-ink-0008-hashtab already absent. No device cleanup needed: no mutation performed."
+    }
+  ],
+  "discovery_lead": "rm-librarian createFolder uses Library.createCollection through QML; importDocument instead writes private .pdf/.metadata/.content and is excluded. Investigate native QML import/export/current-document APIs via installed resources, not private document store.",
+  "child_session_id": "01a19bf2-0098-73c8-a1de-9b39f904a27e",
+  "result_missing": false,
+  "result_unusable": false,
+  "failure_reason": "Native signatures/context recovered statically; runtime accessibility and safe local annotated-export start contract remain unproved. Device metadata probe requires separate installation/restart approval.",
+  "child_result": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml",
+    "status": "blocked",
+    "session_id": "01a19bf2-0098-73c8-a1de-9b39f904a27e",
+    "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+    "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb"
+  },
+  "pane_closed": true,
+  "workspace_preserved": true,
+  "worktree_preserved": true
+}
