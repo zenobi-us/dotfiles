@@ -123,6 +123,7 @@ fnox = { version = "1.44.0", workflow = "release.yml" }
 "github:ktreharrison/tkmd" = "latest"
 "npm:@termdraw/app" = "latest"
 "github:da-luce/astroterm" = "latest"
+"github:sigoden/dufs" = "latest"
 
 [tool_alias]
 pi = "github:earendil-works/pi"
