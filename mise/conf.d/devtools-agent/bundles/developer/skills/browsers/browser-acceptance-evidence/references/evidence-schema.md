@@ -1,8 +1,8 @@
 # evidence.jsonl contract
 
-One JSON object per line, at `<root>/<work-id>/manual-tests/evidence.jsonl`.
+One JSON object per line, at `$MT/evidence.jsonl`. `$MT` is the evidence directory that `shared-context` resolves (see the router).
 
-`acceptance.ts run` writes this file. You **MUST NOT** hand-write or edit a
+`browser-evidence.ts run` writes this file. You **MUST NOT** hand-write or edit a
 record, with the one exception in "Adding a WARN" below. The fields come from
 the live run — the URL the page was actually on, the markup the locator
 actually matched, the message the assertion actually threw — which is what
@@ -52,7 +52,7 @@ next reader.
 
 ## Verdicts
 
-The runner decides these. The table is in the skill's step 4.
+The runner decides these. The table is in `references/playbooks/4-collect-evidence.md`.
 
 | Verdict | Set when | Report badge |
 |---|---|---|
@@ -79,12 +79,12 @@ JSON
 ```
 
 It **MUST** carry a `screenshot` like any other claim, and its `note` **MUST**
-say why it is unrelated to the work under test. Re-run `acceptance.ts report`
+say why it is unrelated to the work under test. Re-run `browser-evidence.ts report`
 afterwards so the page picks it up.
 
 ## Screenshot naming
 
-`shots/NN-slug.png`. `acceptance.ts` derives `NN` from the step, so a shot
+`shots/NN-slug.png`. `browser-evidence.ts` derives `NN` from the step, so a shot
 cannot be filed under the wrong one: step `1.4` becomes `14-`, step `2.1`
 becomes `21-`. The slug is the `shot` field in the plan, and it says what is in
 the picture, not what it proves.

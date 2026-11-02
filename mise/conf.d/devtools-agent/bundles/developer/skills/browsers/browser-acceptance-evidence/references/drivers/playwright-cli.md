@@ -86,8 +86,8 @@ Each test in `test-plan.md` becomes one script file, written **straight to
 shared context**:
 
 ```
-<root>/<work-id>/manual-tests/workflows/<work-id>-test-1.js
-<root>/<work-id>/manual-tests/workflows/<work-id>-test-2.js
+$MT/workflows/<work-id>-test-1.js
+$MT/workflows/<work-id>-test-2.js
 ```
 
 You **MUST NOT** write these into the repository under test. A repository holds
@@ -340,8 +340,8 @@ The state file holds live cookies. You **MUST NOT** copy it into the report's
 The scripts already live in shared context, so there is one copy to make:
 
 ```sh
-cp "<root>/<work-id>/manual-tests/workflows/"<work-id>-test-*.js \
-   "<root>/<work-id>/manual-tests/report/files/"
+cp "$MT/workflows/"<work-id>-test-*.js \
+   "$MT/report/files/"
 ```
 
 They are a deliverable. The next person re-runs the test instead of re-reading
