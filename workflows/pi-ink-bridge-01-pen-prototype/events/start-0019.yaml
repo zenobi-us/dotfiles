@@ -1,0 +1,99 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0019",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 7,
+  "parent_receipt": "start-complete-0018",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456",
+  "source_tree": "93faf247089822a60c8cb534416997690fb989de",
+  "created_at": "2026-11-02T21:45:42.905186+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6J:p5",
+  "agent": "omp",
+  "session_id": null,
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0018.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/summary.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/policy-decision.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0019.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0016",
+    "reason": "Same approved parent continues next stated step: stable stock-document/server/job associations and tablet Send connected to existing clipping gate.",
+    "approval": "Same conversation repository takeover retained. After parent named stable stock-document/server/job association and tablet Send as next step, user said do it. This authorizes repository work and preparing a fresh hardware approval request, not device commands or mutation.",
+    "ownership": "Retained by parent session01a19dd8-e4d3-7162-913a-50d94f31d1c7; no ownership transfer from another session. Claimed state retained idempotently.",
+    "liveness": "herdr agent list: only current parent working in Dotfiles; previous child0017 done completion_seq167 and pane closed. No source implementer. Existing workspace w6J retained, fresh tab/pane w6J:p5.",
+    "reservations": "No matching ticket in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Inspector historyValid=true; source unique clean at ff9ec2a2/tree93faf247. BASE unrelated mise.toml modification preserved. No history repair/reset/old session reuse."
+  },
+  "scope": "Implement prototype stable stock-document/server/job associations and actual tablet Send using authenticated HTTPS/WebSocket into existing clipping gate. Prepare exact fresh owner-approved device experiment before ANY tablet command. No runtime SSH, private notebook-file access, renderer replacement or unsupported boot activation.",
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json",
+      "result": "historyValid=true; start/takeover; clean unique source ff9ec2a2/tree93faf247; parent start-complete-0018"
+    },
+    {
+      "command": "records.ts check --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; claimed; no direct blockers"
+    },
+    {
+      "command": "herdr agent list; coordinator reservation search",
+      "result": "current parent retains ownership; no source implementer or matching goal reservations"
+    }
+  ]
+}
