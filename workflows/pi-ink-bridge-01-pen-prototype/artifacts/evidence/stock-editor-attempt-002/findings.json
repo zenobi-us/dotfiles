@@ -1,0 +1,123 @@
+{
+  "schema": "pi-ink-bridge-research/v1",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "created_at": "2026-11-02T07:08:12.197702+00:00",
+  "run_kind": "fresh-attempt-source-interface-inspection-and-existing-http-smoke",
+  "status": "blocked",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "implementation_complete": false,
+  "source_changed": false,
+  "device_commands_executed": false,
+  "device_changes": false,
+  "hardware_acceptance_executed": false,
+  "firmware_observed_this_run": null,
+  "prior_tested_firmware": "3.28.0.172 (prior evidence only)",
+  "firmware_quality_gate_passed": [],
+  "production_approved": false,
+  "summary": "No supported end-to-end stock document interface was established in the inspected resources. No speculative adapter, alternate drawing app, or excluded device probe was added. This is a blocked implementation result, not proof that every integration is impossible.",
+  "references": [
+    {
+      "url": "https://developer.remarkable.com/documentation/xochitl",
+      "finding": "Proprietary Xochitl has no compatibility guarantee. Handwriting pages are separate binary files; original PDF is separate. The vendor says Xochitl should not run while stored documents are accessed or changed."
+    },
+    {
+      "url": "https://github.com/asivery/rm-appload",
+      "finding": "Documents QML frontends, optional backends, application launch and lifecycle. These application facilities do not document stock-library registration or annotated export."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ingatellent/xovi-qmd-extensions/main/3.28/imageStickers.qmd",
+      "finding": "Inserts an editing-tools control and calls insertImageFileAsSceneItem in an already-open document. This does not prove normal-library PDF/folder registration or full annotated export."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ingatellent/xovi-qmd-extensions/main/3.28/fourFingerSwipeLeftForFinishAndOpenNextDoc.qmd",
+      "finding": "Uses hashed model/context members, firstFolderId, firstDocumentId, and current item id for navigation. No device validation here; no export contract established."
+    },
+    {
+      "url": "https://api.github.com/repos/ingatellent/xovi-qmd-extensions/contents/3.28",
+      "finding": "Current inventory includes the inspected image and navigation patches. Source inspection is not firmware/device acceptance."
+    }
+  ],
+  "blockers": [
+    {
+      "id": "stock-library-access",
+      "description": "The inspected interfaces do not establish safe registration of a received image/PDF and a server folder in the normal stock library. A filesystem folder or image sticker is not that registration.",
+      "required_evidence": "A safe stock operation on the tested firmware that accepts the received synthetic source and yields a stable document/folder identity visible through normal tablet operations."
+    },
+    {
+      "id": "current-document-output",
+      "description": "The community QMD has hashed current-document navigation and toolbar insertion. It does not establish authoritative document identity through switches or a full annotated export with source geometry.",
+      "required_evidence": "A firmware-specific editor interface that binds Send to the current document, saves visible marks, and returns the full annotated document without private live notebook access, USB-web prerequisites, runtime SSH, or cloud transport."
+    },
+    {
+      "id": "owner-hardware-gate",
+      "description": "No revised toolbar/client is installed. This session has no owner-operated device observations or verdict.",
+      "required_evidence": "After the integration prerequisites are established, the owner must perform the acceptance sequence in the immutable draft. Builds, HTTP replay, and protocol peers cannot supply this verdict."
+    }
+  ],
+  "validation": [
+    {
+      "command": "mise exec -- bun install --no-save && mise exec -- bun run build",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "result": "449 installs checked; no dependency changes. Vite 7.3.6 built 2371 modules. Upstream use-client and chunk-size warnings remain."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-omp/extensions/image-annotator/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": "7 pass; 0 fail; 39 assertions across 2 files."
+    },
+    {
+      "command": "mise exec -- bun -e (inline createAnnotationServer smoke with two real HTTP servers and preserved synthetic PNG fixtures)",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": {
+        "page": 200,
+        "unauthorized": 404,
+        "cross_request_token": 404,
+        "source_matches": true,
+        "deliveries_before_send": [
+          0,
+          0
+        ],
+        "send": 200,
+        "deliveries_after_send": [
+          1,
+          0
+        ],
+        "returned_bytes_match": true,
+        "request_name": "request-0.png"
+      },
+      "scope": "Existing loopback HTTP backend only. Replayed preserved stock-editor-round-trip-001 source.png/result.png. No new tablet, LAN HTTPS/WebSocket, pairing, drawing, or export proof."
+    },
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": "tracker-ticket/v1 valid; claimed; no direct blockers; downstream production tickets remain waiting."
+    },
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json (from base, before result)",
+      "exit_code": 0,
+      "result": "historyValid=true; unique clean source matches parent commit/tree. The active child uses start-0004 approval; no duplicate implementer launched."
+    }
+  ],
+  "constraints_preserved": [
+    "No earlier session resumed or reused.",
+    "No USB/localhost probe, device SSH, private notebook access, account/cloud change, service restart, or installation.",
+    "No historical receipt copied, changed, normalized, or repaired.",
+    "Source checkout unchanged. No source commit or empty commit needed.",
+    "No permanent tests or temporary source added. Browser build outputs remain ignored."
+  ],
+  "acceptance": {
+    "1": "not demonstrated in attempt 2; see draft for required evidence",
+    "2": "not demonstrated in attempt 2; see draft for required evidence",
+    "3": "not demonstrated in attempt 2; see draft for required evidence",
+    "4": "not demonstrated in attempt 2; see draft for required evidence",
+    "5": "not demonstrated in attempt 2; see draft for required evidence",
+    "6": "not demonstrated in attempt 2; see draft for required evidence",
+    "7": "not demonstrated in attempt 2; see draft for required evidence",
+    "8": "not demonstrated in attempt 2; see draft for required evidence"
+  },
+  "review": "No new source diff exists relative to the parent source commit. No code-review sessions or review verdict were created. Prior review history remains in canonical ticket comments and source-local artifacts."
+}

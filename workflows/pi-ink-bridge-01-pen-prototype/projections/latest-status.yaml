@@ -1,0 +1,32 @@
+{
+  "schema": "worktree-latest-status/v1",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "state": "BLOCKED",
+  "latest_receipt": "implementation-0005",
+  "latest_source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "latest_source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "latest_review_verdict": null,
+  "open_findings": [
+    {
+      "id": "stock-library-access",
+      "description": "The inspected interfaces do not establish safe registration of a received image/PDF and a server folder in the normal stock library. A filesystem folder or image sticker is not that registration.",
+      "required_evidence": "A safe stock operation on the tested firmware that accepts the received synthetic source and yields a stable document/folder identity visible through normal tablet operations."
+    },
+    {
+      "id": "current-document-output",
+      "description": "The community QMD has hashed current-document navigation and toolbar insertion. It does not establish authoritative document identity through switches or a full annotated export with source geometry.",
+      "required_evidence": "A firmware-specific editor interface that binds Send to the current document, saves visible marks, and returns the full annotated document without private live notebook access, USB-web prerequisites, runtime SSH, or cloud transport."
+    },
+    {
+      "id": "owner-hardware-gate",
+      "description": "No revised toolbar/client is installed. This session has no owner-operated device observations or verdict.",
+      "required_evidence": "After the integration prerequisites are established, the owner must perform the acceptance sequence in the immutable draft. Builds, HTTP replay, and protocol peers cannot supply this verdict."
+    }
+  ],
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002"
+  },
+  "parent_completion_pending": true
+}

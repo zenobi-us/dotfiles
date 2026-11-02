@@ -1,0 +1,231 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0005",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 2,
+  "parent_receipt": "start-0004",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T07:08:12.197702+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "workspace_id": "w6E",
+  "pane_id": "w6E:p2",
+  "agent": "omp",
+  "session_id": "01a19b12-31f7-719e-aa62-e10958cfc418",
+  "parent_session_id": "01a19b0b-40b2-7580-b000-3eea9529b879",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-ink-bridge/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0003.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0004.yaml"
+    },
+    {
+      "kind": "child-result",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0002.yaml",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "status": "blocked"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-hooks-001",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/pen-round-trip-002"
+    },
+    {
+      "kind": "source",
+      "ref": "564c037546911f6e26936383b63eab9129819b97"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://developer.remarkable.com/documentation/xochitl"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/asivery/rm-appload"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://raw.githubusercontent.com/ingatellent/xovi-qmd-extensions/main/3.28/imageStickers.qmd"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://raw.githubusercontent.com/ingatellent/xovi-qmd-extensions/main/3.28/fourFingerSwipeLeftForFinishAndOpenNextDoc.qmd"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://api.github.com/repos/ingatellent/xovi-qmd-extensions/contents/3.28"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    }
+  ],
+  "status": "blocked",
+  "source_changed": false,
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0005.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "changed_source_files": [],
+  "implementation_summary": "No supported end-to-end stock document interface was established in the inspected resources. No speculative adapter, alternate drawing app, or excluded device probe was added. This is a blocked implementation result, not proof that every integration is impossible.",
+  "validation": [
+    {
+      "command": "mise exec -- bun install --no-save && mise exec -- bun run build",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "result": "449 installs checked; no dependency changes. Vite 7.3.6 built 2371 modules. Upstream use-client and chunk-size warnings remain."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-omp/extensions/image-annotator/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": "7 pass; 0 fail; 39 assertions across 2 files."
+    },
+    {
+      "command": "mise exec -- bun -e (inline createAnnotationServer smoke with two real HTTP servers and preserved synthetic PNG fixtures)",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": {
+        "page": 200,
+        "unauthorized": 404,
+        "cross_request_token": 404,
+        "source_matches": true,
+        "deliveries_before_send": [
+          0,
+          0
+        ],
+        "send": 200,
+        "deliveries_after_send": [
+          1,
+          0
+        ],
+        "returned_bytes_match": true,
+        "request_name": "request-0.png"
+      },
+      "scope": "Existing loopback HTTP backend only. Replayed preserved stock-editor-round-trip-001 source.png/result.png. No new tablet, LAN HTTPS/WebSocket, pairing, drawing, or export proof."
+    },
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": "tracker-ticket/v1 valid; claimed; no direct blockers; downstream production tickets remain waiting."
+    },
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json (from base, before result)",
+      "exit_code": 0,
+      "result": "historyValid=true; unique clean source matches parent commit/tree. The active child uses start-0004 approval; no duplicate implementer launched."
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "stock-library-access",
+      "description": "The inspected interfaces do not establish safe registration of a received image/PDF and a server folder in the normal stock library. A filesystem folder or image sticker is not that registration.",
+      "required_evidence": "A safe stock operation on the tested firmware that accepts the received synthetic source and yields a stable document/folder identity visible through normal tablet operations."
+    },
+    {
+      "id": "current-document-output",
+      "description": "The community QMD has hashed current-document navigation and toolbar insertion. It does not establish authoritative document identity through switches or a full annotated export with source geometry.",
+      "required_evidence": "A firmware-specific editor interface that binds Send to the current document, saves visible marks, and returns the full annotated document without private live notebook access, USB-web prerequisites, runtime SSH, or cloud transport."
+    },
+    {
+      "id": "owner-hardware-gate",
+      "description": "No revised toolbar/client is installed. This session has no owner-operated device observations or verdict.",
+      "required_evidence": "After the integration prerequisites are established, the owner must perform the acceptance sequence in the immutable draft. Builds, HTTP replay, and protocol peers cannot supply this verdict."
+    }
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0001",
+    "prior_result": "implementation-0002 (blocked, preserved in source checkout)",
+    "approval_receipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0004.yaml",
+    "approval": "Parent recorded Approve scoped takeover. No session reuse, termination, history repair, or expanded permissions.",
+    "ownership": "Existing claimed state retained idempotently; no tracker mutation.",
+    "liveness": "herdr agent get w6E:p2 identifies fresh session 01a19b12-31f7-719e-aa62-e10958cfc418 in the source checkout. Parent liveness and reservation checks remain in start-0004. No descendants launched.",
+    "source_preserved": "Unchanged exact source commit/tree from start-0004. No merge, reset, rebase, empty source commit, or history repair.",
+    "workflow_location": "All new records use the base-resolved workflow/evidence store; no historical root fields changed."
+  },
+  "required_parent_action": "Validate this blocked result and append phase-complete. Preserve the worktree and all evidence. Do not dispatch review or production as if implementation passed. Establish the three integration prerequisites before another hardware attempt."
+}
