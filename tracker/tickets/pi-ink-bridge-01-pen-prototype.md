@@ -24,18 +24,37 @@ This ticket records a prototype and its findings, not a complete production clie
 - **Normal tablet editor:** Let the user find, open, draw on, and save documents through normal tablet operations. Leave pen input, erasing, undo, zoom, and editable drawing data to that editor.
 - **Custom editor toolbar:** Identify the current image or PDF, show its bound server and submission status, and provide explicit Send through the tablet client. The toolbar is not a drawing surface.
 
+### Private loopback adapter direction
+
+Use a setup-installed XOVI adapter based on the loopback-binding technique in `webserver-remote`. Reuse Xochitl's existing document import/export service instead of implementing a drawing renderer or reverse-engineering a separate export-start API first. The adapter's cable-free behaviour on this firmware remains unverified.
+
+- **Setup boundary:** Use cable-connected SSH only for installation and repair. Save and close documents before an approved Xochitl restart. Check firmware compatibility and preserve existing extensions, service configuration, account settings, and editable work.
+- **Local service:** Make the stock HTTP service available only on tablet loopback. Upstream redirects USB interface lookups to `lo`, adjusts an address check, and moves port 80 to 81. Treat `127.0.0.1:81` as a candidate endpoint until verified. Resolve activation and settings checks explicitly; do not assume installation alone enables the service.
+- **Authenticated transport:** The tablet client calls the local service and uses the paired HTTPS/WebSocket connection for content and status. Do not install upstream's LAN-facing proxy unchanged. Plain HTTP, IP approval, or a connection popup does not replace paired-server authentication. Do not expose the stock library or a generic HTTP forwarding endpoint to the LAN.
+- **Explicit export:** On toolbar Send, verify the bound current-document UUID and request state. Request `/download/{document-uuid}/pdf` locally, upload the annotated PDF to the bound server, and convert it there to a flattened PNG at source dimensions. Do not upload the original PDF or substitute a viewport screenshot.
+- **Import and folders:** Evaluate the local stock upload service for received synthetic sources. Prove library visibility and stable document/folder identities. Do not assume its destination selection is isolated between jobs or that filesystem folders appear in the stock library. Automatic document opening is not required.
+
+### First cable-free adapter experiment
+
+1. Record the baseline firmware, stock binary hash, extension inventory, service configuration, and listener bindings. Obtain separate scoped approval for installation, restarts, synthetic document access, and rollback. This ticket update is not device-mutation approval.
+2. Install and activate the temporary loopback adapter. Verify the local endpoint and prove that the stock service is not listening on Wi-Fi or wildcard addresses. Keep the LAN-facing upstream proxy disabled.
+3. Use only the synthetic alignment document and retain its UUID and source dimensions. Disconnect USB and record the disconnected controller state. From this point until results arrive, use no SSH or manual file transfer.
+4. Have the tablet client request the known document's annotated PDF through loopback and upload it through authenticated LAN transport. Confirm actual pen marks, page bounds, PNG dimensions, and delivery to the originating request. A local response while USB remains attached is insufficient.
+5. Check local import and normal library visibility with a synthetic source. Then proceed to the full client, association, and toolbar sequence below. Export feasibility alone does not pass the ticket.
+6. Remove temporary experiment code and verify restoration of listener bindings, service state, stock binary, existing extensions, and configuration. Record sleep, Xochitl-restart, tablet-reboot, firmware-update, and XOVI-reactivation limits separately; do not add unsupported automatic boot activation.
+
 ### Prototype sequence
 
 1. Pair the tablet with a desktop server and associate a local folder with that server through the tablet app.
 2. Receive a known source image or image-backed PDF through the authenticated client/server connection. Save it locally with its server and job association.
 3. Let the user locate and open the document through normal tablet operations, then draw and save with the stock editor. Do not require automatic document opening.
 4. Use the editor toolbar to resolve the current document and display its association and status. Saving remains separate from Send.
-5. Select Send to obtain output that includes the visible pen marks and upload it to the bound server. Return a flattened PNG to the originating Pi/OMP request at the source dimensions.
+5. Select Send to export the bound document through the local stock service and upload its annotated PDF to the bound server. Convert it on the desktop and return a flattened PNG to the originating Pi/OMP request at the source dimensions.
 
 ### Scope limits and integration checks
 
 - **No custom drawing:** Do not implement stroke capture, rendering, erasing, undo, pan, or zoom. Verify that the toolbar does not disrupt normal drawing.
-- **No editor automation prerequisite:** Do not make a private Xochitl import/open/export automation service or the USB web interface a prerequisite for this model. Do not continue the USB-address or localhost probes as the implementation path.
+- **Approved stock-service adapter:** The setup-installed, loopback-only XOVI adapter is the next integration experiment. This supersedes the earlier exclusion of the USB web service as an implementation path, but does not permit runtime USB, runtime SSH, an exposed stock web interface, or blind repetition of the failed unmodified-endpoint probes. No private-file mutation or automatic document-opening prerequisite is introduced.
 - **Normal-use transport:** Use the authenticated LAN client/server connection without SSH or USB. SSH remains limited to cable-connected installation and repair. Preserve the parent WebSocket and HTTPS transport contract.
 - **Document visibility:** Prove that received files are available through normal tablet operations. A filesystem folder is not automatically a folder in the stock document library. Record the actual integration instead of assuming equivalence.
 - **Annotated output:** Prove how the toolbar obtains the current visible annotation through the normal editor capabilities. Stock pen marks can be separate from the original PDF. Uploading an unchanged source file does not satisfy Send.
@@ -48,12 +67,34 @@ This ticket records a prototype and its findings, not a complete production clie
 2. Receive and save a known source through authenticated LAN transfer with USB disconnected and without runtime SSH. Demonstrate that normal tablet operations can find and open it. Preserve its source dimensions and stable document/server/job association.
 3. Draw and save with the normal tablet editor. Observe pen latency and palm handling with the custom toolbar present. Record the owner verdict and any interference. Do not claim a quality-gate pass from launch or transport alone.
 4. Demonstrate the custom toolbar in the current editing document. Show the bound server, connection state, and submission status. Switch documents and verify that the displayed association follows the document. If no association exists, show that state instead of selecting an unrelated server or job.
-5. Save or close the document without completing the Pi/OMP request. Select Send explicitly and return a flattened PNG containing the actual annotation to the originating request through the same authenticated client/server transport. Distinguish local save, server acceptance, and agent delivery.
+5. Save or close the document without completing the Pi/OMP request. Select Send explicitly, obtain the annotated PDF through tablet loopback with USB disconnected and no runtime SSH, and upload it through the same authenticated client/server transport. Convert it on the desktop and return a flattened PNG containing the actual annotation to the originating request. Distinguish local save, server acceptance, and agent delivery.
 6. Compare source dimensions and marked pixels. Check image edges, display scaling, and orientation using normal editor controls. Confirm that Send obtains the visible pen marks rather than the original source alone. Preserve editable work in the normal editor.
 7. Verify that current-document resolution and server/job associations prevent wrong-server or wrong-request submission. Preserve terminal cancellation. If alternate-server Send is prototyped, require an explicit choice and retain the original association.
 8. Record only the tested firmware boundary. Preserve the earlier failed experiments and all evidence. Record unresolved document-visibility, toolbar-context, annotated-output, and lifecycle questions. Remove temporary code after the experiment. Keep dependent production work blocked until the revised quality gate passes.
 
+9. Demonstrate setup and activation of the loopback adapter on the tested firmware. Verify that the stock HTTP service has no Wi-Fi or wildcard listener and that the client does not expose arbitrary stock-library requests over the LAN. Paired-server authentication remains required.
+10. Complete the first cable-free adapter experiment above and preserve its evidence. Verify restoration after removing temporary code. Record actual activation requirements across sleep, Xochitl restart, tablet reboot, and firmware update; do not imply that installation guarantees persistent XOVI activation.
+
 ## Comments
+
+### New direction: setup-installed loopback stock-service adapter — 2026-11-03
+
+The user requested exploration of the `webserver-remote` technique because the client already needs a setup step, then requested this ticket update. The next experiment reuses the stock import/export HTTP service behind a loopback-only XOVI adapter. It does not expose the stock web interface to the LAN. The paired tablet client retains authenticated HTTPS/WebSocket transport, stable server/job associations, and explicit Send. The desktop converts the exported annotated PDF to the required PNG.
+
+This direction supersedes the earlier scope bullet excluding the USB web service as an implementation path. It also removes the need to prove a separate native export-start API before testing this adapter. It does not change the no-USB/no-SSH normal-use contract, require automatic opening, permit private live notebook-file mutation, or replace the stock drawing app.
+
+The earlier stock-editor round trip proved annotated PDF export on firmware `3.28.0.172` through the USB-bound service. The later cable-free diagnostic proved failure of those unmodified endpoints after USB disconnection. Neither tested the proposed loopback adapter. Static native-interface findings and the failed metadata probe remain preserved; no runtime adapter, cable-free export, or owner quality-gate pass is claimed.
+
+Upstream source shows USB-to-loopback interface hooks, a loopback address-check override, and port remapping. Its separate proxy listens on `0.0.0.0:80` and grants access by approved IP. Reuse the local-binding technique, not that proxy's access-control model. Source review is not firmware compatibility or device acceptance proof.
+
+- **Native hooks:** [webserver-remote main.cpp](https://github.com/asivery/rm-xovi-extensions/blob/master/webserver-remote/main.cpp).
+- **Proxy boundary:** [Rust proxy and IP approval](https://github.com/asivery/rm-xovi-extensions/blob/master/webserver-remote/rust-proxy/src/proxy.rs).
+- **Activation checks:** [Settings and connection UI patches](https://github.com/asivery/rm-xovi-extensions/blob/master/webserver-remote/notification.qmd).
+- **Prior export proof:** [Stock-editor round-trip findings](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/findings.json).
+- **Prior cable-free limit:** [Unmodified-endpoint findings](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-cable-free-001/findings.json).
+- **Preserved discovery:** [Native-interface evidence](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json) and [failed metadata-probe restoration](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json).
+
+Only this ticket's direction, experiment, and acceptance checks change. Keep its ID, title, type, parent, sequence, triage, claim, dependencies, earlier comments, and evidence unchanged. Production remains blocked. Obtain new scoped device approval before installation or restart; earlier probe approvals are not reused.
 
 ### Revised client, folders, and editor toolbar approach — 2026-11-02
 
