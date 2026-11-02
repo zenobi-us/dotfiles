@@ -1,0 +1,33 @@
+{
+  "schema": "pi-ink-probe-build/v1",
+  "created_at": "2026-11-02T11:47:21.977449+00:00",
+  "status": "built-not-executed",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "build_command": "podman run --rm --network none -v /tmp/pi-ink-0011:/build:Z -w /build docker.io/eeems/remarkable-toolchain:latest-rmpp bash -c 'source /opt/codex/*/*/environment-setup-* && qmake probe.pro && make -j2'",
+  "exit_code": 0,
+  "toolchain_image_id": "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+  "toolchain": "/opt/codex/ferrari/5.8.203; aarch64-remarkable-linux-g++; Qt 6.10",
+  "observed_device_qt": "/usr/lib/libQt6Core.so.6.10.3",
+  "compiler_output": "qmake created Makefile; aarch64-remarkable-linux-g++ compiled probe.cpp and linked pi-ink-interface-probe.so; exit 0. Qt emitted host C-locale warning. No compiler warning reported.",
+  "elf": "ELF 64-bit LSB shared object, ARM aarch64, dynamically linked; BuildID 759ffbdead1bc33d717f76db275bb27b05bc2e97",
+  "hashes": {
+    "probe.cpp": "863dfb9a17f12b233426dadec5acc996f315678ff0ad5a2d191b6bfa7deed04d",
+    "probe.pro": "cefc1961840fe30f9aace6b5dcd3e8b6ca11f73e38dfd7716bf437b4b11026ca",
+    "pi-ink-interface-probe.so": "5dbdbb85c1767a901d8f0924122f3030d1db316da59dbb727c9eed126fdbabca"
+  },
+  "review": {
+    "gui_thread": "15-second QTimer callback; verifies currentThread equals application thread before scanning windows and using qmlEngine(window).",
+    "qml": "Separate temporary QtObject for each of Library, DocumentImporter, DocumentController, NavigationManager.exportManager; imports QtQml, xofm.libs.library, com.remarkable; reads only helper resolved QObject pointer; deletes each helper.",
+    "metadata": "QObject metaObject class, method return/signature, property TYPE only; no native method invocation.",
+    "document_view": "Search window QObject child hierarchy by metaobject class identity; emit availability/class only; never read document or ID.",
+    "errors": "Only fixed resolution statuses; no QML error dumps.",
+    "excluded": "No document/library values, private files, import/export, QML patch, services/settings writes, account/cloud/network changes, or USB/localhost probes.",
+    "runtime_limit": "Not loaded: initial load-restart command failed before systemctl executed. Source review and successful cross-build do not prove runtime behavior."
+  },
+  "upstream_patterns": [
+    "https://raw.githubusercontent.com/asivery/rm-xovi-extensions/master/.github/workflows/build-release.yml",
+    "https://raw.githubusercontent.com/asivery/rm-xovi-extensions/master/qt-command-executor/main.cpp",
+    "https://github.com/rmitchellscott/rm-librarian/blob/5b68a00616cc99089d27d3be3ede6ea9d0fa6243/src/main.cpp"
+  ]
+}

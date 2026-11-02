@@ -1,0 +1,78 @@
+{
+  "schema": "pi-ink-probe-record-validation/v1",
+  "created_at": "2026-11-02T11:49:33.577890+00:00",
+  "markdown": [
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0011.md",
+      "relative_link_count": 18,
+      "missing": [],
+      "okf_validation": []
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+      "relative_link_count": 30,
+      "missing": [],
+      "okf_validation": []
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+      "relative_link_count": 21,
+      "missing": [],
+      "okf_validation": []
+    }
+  ],
+  "bundle_check": "Not applicable: standalone workflow reports, not an OKF indexed bundle. Each report validated with okf_validate; all relative links checked.",
+  "inspector": {
+    "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json",
+    "exit_code": 0,
+    "history_valid": true,
+    "source": {
+      "state": "available",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "branch": "prototype/pi-ink-bridge-01-pen-prototype",
+      "commit": "564c037546911f6e26936383b63eab9129819b97",
+      "tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+      "dirty": false,
+      "candidates": 1
+    },
+    "decision": {
+      "action": "start",
+      "mode": "reconcile",
+      "label": "Reconcile start",
+      "reason": "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.",
+      "requiredApproval": true,
+      "parentReceipt": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml",
+      "inputs": [
+        "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/build.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/execution.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/findings.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/cleanup.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/validation.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0011.md",
+        "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+        "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+        "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/start-0010.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0009.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008-links-0009.md",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008.md",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/start-0007.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0006.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0005.md",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/start-0004.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0003.yaml",
+        "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
+      ]
+    }
+  },
+  "receipt_readback": "Required envelope, failed status, attempt=4, parent=start-0010, restoration=restored verified.",
+  "permanent_source_changed": false
+}

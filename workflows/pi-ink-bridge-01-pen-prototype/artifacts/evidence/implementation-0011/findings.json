@@ -1,0 +1,21 @@
+{
+  "schema": "pi-ink-probe-findings/v1",
+  "created_at": "2026-11-02T11:47:21.977449+00:00",
+  "status": "failed",
+  "ticket_implementation_complete": false,
+  "summary": "ARM64 build and named extension install/hash check succeeded. Device lacks timeout. The first load-restart wrapper failed before systemctl ran. Trap removed probe but its restart wrapper also failed. A host-bounded recovery command then restarted only xochitl once and verified full restoration. No probe execution or runtime accessibility proof.",
+  "runtime_metadata": [],
+  "journal_read": false,
+  "probe_runtime_executed": false,
+  "device_mutations": [
+    "Created only /home/root/xovi/extensions.d/pi-ink-interface-probe.so; removed same file.",
+    "Restarted only xochitl once after probe removal to complete mandatory restoration."
+  ],
+  "restoration": "verified",
+  "blocker": "Renewed scoped approval and saved/closed-document confirmation are needed for another install/load-restart/remove/rollback-restart cycle. Use host-side command deadlines; do not assume target timeout exists.",
+  "safe_local_annotated_export_initiation": "unknown; prior static signatures require registered navigation destinations, not local output paths. No import/export invocation authorized or performed.",
+  "acceptance": "No pairing, authenticated LAN transfer, stock library receipt, marked PNG, dimensions, editable-work preservation, save/Send, cancellation, request isolation, pen quality, palm, edge or orientation acceptance passed.",
+  "source_changed": false,
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb"
+}

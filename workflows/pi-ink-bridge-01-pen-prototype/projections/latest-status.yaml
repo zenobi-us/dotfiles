@@ -3,27 +3,42 @@
   "workflow_id": "pi-ink-bridge-01-pen-prototype",
   "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
   "state": "BLOCKED",
-  "latest_receipt": "implementation-0008",
+  "latest_receipt": "implementation-0011",
   "latest_source_commit": "564c037546911f6e26936383b63eab9129819b97",
   "latest_source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
   "latest_review_verdict": null,
   "open_findings": [
     {
-      "id": "stock-library-access",
-      "description": "Native importFromUrls and createCollection signatures found in installed firmware. Runtime access, returned identities, successful synthetic receipt and normal library visibility remain unproven."
+      "id": "probe-runtime-access",
+      "description": "Renewed scoped approval and saved/closed-document confirmation are needed for another install/load-restart/remove/rollback-restart cycle. Use host-side command deadlines; do not assume target timeout exists."
     },
     {
       "id": "current-document-output",
-      "description": "Stock root.document binding and current-document export callsite recovered. Safe local export initiation, annotation flush ordering, dimensions, live ownership and cancellation remain unproven."
+      "description": "unknown; prior static signatures require registered navigation destinations, not local output paths. No import/export invocation authorized or performed."
     },
     {
       "id": "owner-hardware-gate",
-      "description": "No revised client or toolbar installed. All owner-operated LAN, pen, palm, geometry, isolation, save/Send and editable-work gates remain unpassed."
+      "description": "No pairing, authenticated LAN transfer, stock library receipt, marked PNG, dimensions, editable-work preservation, save/Send, cancellation, request isolation, pen quality, palm, edge or orientation acceptance passed."
+    },
+    {
+      "id": "stock-library-access",
+      "description": "Native importFromUrls and createCollection signatures found in installed firmware. Runtime access, returned identities, successful synthetic receipt and normal library visibility remain unproven."
     }
   ],
   "evidence": {
     "store": "repository",
-    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008"
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011"
   },
-  "parent_completion_pending": true
+  "parent_completion_pending": true,
+  "last_phase_status": "failed",
+  "restoration": {
+    "status": "restored",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json",
+    "service_active": true,
+    "probe_absent": true,
+    "baseline_snapshot_byte_equal": true,
+    "actual_load_restarts": 0,
+    "actual_restoration_restarts": 1,
+    "remaining_device_cleanup": []
+  }
 }

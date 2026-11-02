@@ -1,0 +1,42 @@
+{
+  "schema": "pi-ink-probe-restoration/v1",
+  "created_at": "2026-11-02T11:47:21.977449+00:00",
+  "status": "restored",
+  "initial_rollback": {
+    "removed_probe": true,
+    "restart_exit_code": 127,
+    "reason": "Device timeout executable absent; trap removed probe but its restart wrapper also failed."
+  },
+  "recovery": {
+    "command": "timeout 45 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'set -eu; test ! -e /home/root/xovi/extensions.d/pi-ink-interface-probe.so; test ! -L /home/root/xovi/extensions.d/pi-ink-interface-probe.so; systemctl restart xochitl; sleep 8; systemctl is-active xochitl; [same allowlisted baseline hash/listing commands]'",
+    "exit_code": 0,
+    "observed_result": "active; probe absent; stock binary, XOVI loader/scripts, six extension hashes/listing, three service file hashes and combined systemctl cat hash equal baseline. Bracketed suffix abbreviates the safe metadata checks; exact final verification below."
+  },
+  "verification": {
+    "command": [
+      "ssh",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ConnectTimeout=8",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "root@10.11.99.1",
+      "set -eu; test ! -e /home/root/xovi/extensions.d/pi-ink-interface-probe.so; test ! -L /home/root/xovi/extensions.d/pi-ink-interface-probe.so; systemctl is-active xochitl; printf \"FINAL_SNAPSHOT\\n\";\n    sha256sum /usr/bin/xochitl /home/root/xovi/xovi.so /home/root/xovi/start /home/root/xovi/stock\n    find /home/root/xovi/extensions.d -maxdepth 1 -type f ! -name pi-ink-interface-probe.so -exec sha256sum {} \\;\n    ls -l /home/root/xovi/extensions.d\n    sha256sum /usr/lib/systemd/system/xochitl.service /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\n    systemctl cat xochitl | sha256sum\n    systemctl show xochitl -p FragmentPath -p DropInPaths"
+    ],
+    "exit_code": 0,
+    "stdout": "active\nFINAL_SNAPSHOT\nb1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021  /usr/bin/xochitl\nd4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446  /home/root/xovi/xovi.so\nbf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc  /home/root/xovi/start\ne29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d  /home/root/xovi/stock\n5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad  /home/root/xovi/extensions.d/appload.so\n066590bdf27e92a9330a924b5a2d31123bc9f54ca87c496dbcaf69fdc91ce5a2  /home/root/xovi/extensions.d/fix-ebook-links.so\n6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f  /home/root/xovi/extensions.d/qt-resource-rebuilder.so\n2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e  /home/root/xovi/extensions.d/qt-command-executor.so\n48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609  /home/root/xovi/extensions.d/literm.so\n61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155  /home/root/xovi/extensions.d/xovi-message-broker.so\n-rw-r--r--    1 root     root       4342120 Sep 19 23:44 appload.so\n-rw-r--r--    1 root     root         79496 Sep 24 22:11 fix-ebook-links.so\n-rw-r--r--    1 root     root       3408280 Sep 20 13:34 literm.so\n-rw-r--r--    1 root     root        682776 Sep  3 21:27 qt-command-executor.so\n-rw-r--r--    1 root     root       9496456 Sep  3 21:27 qt-resource-rebuilder.so\n-rw-r--r--    1 root     root        588184 Sep  3 21:27 xovi-message-broker.so\n23f537cf59d527bfbf4823f372385d613e1ade0961c98831c935a372018f9566  /usr/lib/systemd/system/xochitl.service\n84a2d95c2284a2f2fdb5ae70b4f25eb4a5ef2fbf6f94391fc03e4c54643314ef  /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf\na9432caffacb29d6fcb35136dcc3cb43d8737eb6c2efcb35ea335725f42082d1  /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\nf4426822c34310ac45ce8828f4289f94156c80b6687424ca93023781955c3644  -\nFragmentPath=/usr/lib/systemd/system/xochitl.service\nDropInPaths=/etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\n",
+    "stderr": "",
+    "baseline_snapshot": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021  /usr/bin/xochitl\nd4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446  /home/root/xovi/xovi.so\nbf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc  /home/root/xovi/start\ne29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d  /home/root/xovi/stock\n5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad  /home/root/xovi/extensions.d/appload.so\n066590bdf27e92a9330a924b5a2d31123bc9f54ca87c496dbcaf69fdc91ce5a2  /home/root/xovi/extensions.d/fix-ebook-links.so\n6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f  /home/root/xovi/extensions.d/qt-resource-rebuilder.so\n2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e  /home/root/xovi/extensions.d/qt-command-executor.so\n48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609  /home/root/xovi/extensions.d/literm.so\n61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155  /home/root/xovi/extensions.d/xovi-message-broker.so\n-rw-r--r--    1 root     root       4342120 Sep 19 23:44 appload.so\n-rw-r--r--    1 root     root         79496 Sep 24 22:11 fix-ebook-links.so\n-rw-r--r--    1 root     root       3408280 Sep 20 13:34 literm.so\n-rw-r--r--    1 root     root        682776 Sep  3 21:27 qt-command-executor.so\n-rw-r--r--    1 root     root       9496456 Sep  3 21:27 qt-resource-rebuilder.so\n-rw-r--r--    1 root     root        588184 Sep  3 21:27 xovi-message-broker.so\n23f537cf59d527bfbf4823f372385d613e1ade0961c98831c935a372018f9566  /usr/lib/systemd/system/xochitl.service\n84a2d95c2284a2f2fdb5ae70b4f25eb4a5ef2fbf6f94391fc03e4c54643314ef  /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf\na9432caffacb29d6fcb35136dcc3cb43d8737eb6c2efcb35ea335725f42082d1  /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\nf4426822c34310ac45ce8828f4289f94156c80b6687424ca93023781955c3644  -\nFragmentPath=/usr/lib/systemd/system/xochitl.service\nDropInPaths=/etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\n",
+    "snapshot_byte_equal": true
+  },
+  "actual_load_restarts": 0,
+  "actual_restoration_restarts": 1,
+  "private_document_access": false,
+  "probe_left_installed": false,
+  "service_broken": false,
+  "pre_existing_extensions_unchanged": true,
+  "service_configuration_unchanged": true,
+  "settings_changed": false,
+  "remaining_device_cleanup": []
+}

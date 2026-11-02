@@ -1,3 +1,8 @@
+---
+title: Implementation log
+type: Report
+---
+
 # Implementation log
 
 ## Preserved events
@@ -42,3 +47,20 @@ No source files changed. Cable SSH inspected firmware 3.28.0.172 read-only. Offl
 Changed records: [receipt](../events/implementation-0008.yaml), [interface extracts](../artifacts/evidence/implementation-0008/native-interfaces.json), [findings and approval scope](../artifacts/evidence/implementation-0008/findings.json), [snapshot](../artifacts/snapshots/pr-draft-implementation-0008.md), manifest, and all three projections.
 
 Parent reconciliation: [start-complete-0006](../events/start-complete-0006.yaml). Current authorization: [start-0007](../events/start-0007.yaml). All previous implementation and review history above remains retained. No finding is cleared. Next human decision: approve or reject the metadata-only extension and two owner-safe Xochitl restarts. This does not approve synthetic import/export or satisfy hardware acceptance.
+
+
+## Attempt 4 — implementation-0011
+
+Failed metadata-probe attempt; implementation remains blocked. No source changes. ARM64 cross-build and named extension install/hash check passed. The device lacks `timeout`; load restart and initial rollback restart wrappers failed before invoking systemctl. The trap removed only the probe. A host-bounded recovery restarted only xochitl once; the final safe snapshot matches the baseline byte for byte. No runtime metadata, document access, import/export, or acceptance result exists. Temporary source/build/image payloads were removed.
+
+- **Evidence:** [build.json](../artifacts/evidence/implementation-0011/build.json).
+- **Evidence:** [execution.json](../artifacts/evidence/implementation-0011/execution.json).
+- **Evidence:** [restoration.json](../artifacts/evidence/implementation-0011/restoration.json).
+- **Evidence:** [findings.json](../artifacts/evidence/implementation-0011/findings.json).
+- **Evidence:** [cleanup.json](../artifacts/evidence/implementation-0011/cleanup.json).
+- **Receipt:** [implementation-0011](../events/implementation-0011.yaml).
+- **Snapshot:** [Attempt-4 immutable draft](../artifacts/snapshots/pr-draft-implementation-0011.md).
+- **Parent records:** [start-complete-0009](../events/start-complete-0009.yaml); [start-0010](../events/start-0010.yaml).
+
+Changed files: attempt-4 evidence directory, receipt, immutable snapshot, manifest, and the three projections. All earlier implementation/fix/review history above is retained. No review or fix attempt was added. No finding was cleared. Another probe cycle requires renewed approval and saved/closed-document confirmation; safe local annotated-export initiation and all owner acceptance gates remain unresolved.
+
