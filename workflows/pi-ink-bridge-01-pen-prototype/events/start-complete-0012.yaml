@@ -1,0 +1,212 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0012",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 4,
+  "parent_receipt": "implementation-0011",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+  "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb",
+  "created_at": "2026-11-02T11:51:42.860739+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6G:p2",
+  "agent": "omp",
+  "session_id": "01a19b0b-40b2-7580-b000-3eea9529b879",
+  "parent_session_id": "01a19b0b-40b2-7580-b000-3eea9529b879",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "status": "failed",
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/build.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/execution.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/findings.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/cleanup.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/validation.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0011.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0010.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0009.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008-links-0009.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0007.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0006.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0004.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0003.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0012.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "prior_attempt": "start-0007",
+    "reason": "Run separately approved metadata-only runtime probe for statically recovered native interfaces.",
+    "approval": "User selected Documents closed; approve probe. Owner confirms all documents saved/closed. Fresh agent may install only pi-ink-interface-probe.so, restart xochitl to load, collect allowlisted interface metadata, remove probe and restart xochitl. Preserve existing extensions/settings. No document reads, import/export, cloud changes or earlier-session reuse.",
+    "ownership": "Unknown durable ownership; scoped takeover approved. Existing claimed state retained idempotently.",
+    "liveness": "Fresh herdr agent list: no prior source-worktree implementer; only current pen parent working in repository; unrelated rebase session done. No matching goal reservations. Prior child normal session_exit verified and pane closed.",
+    "reservations": "No pi-ink-bridge-01-pen-prototype match in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Inspector confirms unchanged clean source commit/tree. Previous Herdr workspace w6E absent; opened source checkout in new workspace w6G, no source worktree recreation.",
+    "outcome": "Validated failed metadata-probe attempt and exact restoration without repeating child work. Child done observed and pane closed. No runtime interface evidence obtained."
+  },
+  "validation": [
+    {
+      "command": "herdr agent wait w6G:p2 --until done --until blocked --timeout 3600000",
+      "result": "done; completion_seq 95; child session 01a19c0f-dc6c-7633-a19b-b9544b2519fe"
+    },
+    {
+      "command": "Read implementation-0011, execution.json, restoration.json and child output",
+      "result": "Failed pre-load wrapper; no runtime probe. Build/install succeeded. Child workflow commit 050387d3; temporary build/source/image removed. Device restoration recorded."
+    },
+    {
+      "command": "Compare restoration verification stdout FINAL_SNAPSHOT with recorded preinstall baseline",
+      "result": "Exact byte equality; verification exit 0; xochitl active and probe absent; pre-existing extension/stock/config hashes/listing match; no cleanup remains."
+    },
+    {
+      "command": "mq okf_extract_links immutable implementation-0011 snapshot",
+      "result": "18 links; all relative targets exist."
+    },
+    {
+      "command": "inspect.ts canonical ticket --json from base before completion",
+      "result": "historyValid=true; unique unchanged clean source; start/reconcile selected."
+    },
+    {
+      "command": "herdr pane close w6G:p2",
+      "result": "ok; child pane closed; source worktree preserved."
+    }
+  ],
+  "discovery_lead": "Metadata-only probe scopes singleton runtime accessibility, not import/export operations. Consume implementation-0008 native interface extracts and approval_request. Exact device rollback is mandatory.",
+  "child_session_id": "01a19c0f-dc6c-7633-a19b-b9544b2519fe",
+  "result_missing": false,
+  "result_unusable": false,
+  "failure_reason": "Deployment script incorrectly assumed target timeout executable. Probe installed but load restart did not execute. Mandatory host-bounded recovery removed probe and restarted only xochitl once; full baseline restored. No runtime metadata collected.",
+  "child_result": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml",
+    "status": "failed",
+    "session_id": "01a19c0f-dc6c-7633-a19b-b9544b2519fe",
+    "source_commit": "564c037546911f6e26936383b63eab9129819b97",
+    "source_tree": "57df0dbb0fb91fa3da0716f1c3a62460906c96eb"
+  },
+  "restoration": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json",
+    "status": "restored",
+    "service_active": true,
+    "probe_absent": true,
+    "baseline_snapshot_byte_equal": true,
+    "actual_load_restarts": 0,
+    "actual_restoration_restarts": 1,
+    "remaining_device_cleanup": []
+  },
+  "pane_closed": true,
+  "worktree_preserved": true,
+  "next_prerequisite": "A new probe install/load/remove/restart cycle needs renewed scoped device approval and saved/closed-document confirmation. Fix deployment command deadlines on host before any new mutation. No target timeout dependency."
+}
