@@ -7,6 +7,7 @@ import { readEvidence } from "../evidence.ts";
 import { loadPlan, manualTestsDir } from "../load-plan.ts";
 import { buildReport } from "../report.ts";
 import { ensureReportDir, validateReport } from "../report-dir.ts";
+import { renderEvidenceMd, resultsJson } from "../results.ts";
 import { die, guard } from "../sh.ts";
 
 /** Copy every regular file directly in `from` into `to`, and return the names copied. */
@@ -35,7 +36,7 @@ export async function report(dir: string): Promise<number> {
   const filesDir = join(reportDir, "files");
   await mkdir(filesDir, { recursive: true });
   const copied: string[] = [];
-  for (const name of ["plan.ts", "test-plan.md", "evidence.jsonl"]) {
+  for (const name of ["plan.ts", "plan.json", "test-plan.md", "evidence.jsonl"]) {
     if (existsSync(join(dir, name))) {
       await cp(join(dir, name), join(filesDir, name));
       copied.push(name);
@@ -49,10 +50,19 @@ export async function report(dir: string): Promise<number> {
   const page = join(reportDir, "index.html");
   await writeFile(page, html);
   console.log(`wrote ${page}`);
+
+  const results = resultsJson(plan, records, reportDir);
+  const resultsFile = join(dir, "results.json");
+  await writeFile(resultsFile, JSON.stringify(results, null, 2) + "\n");
+  console.log(`wrote ${resultsFile}`);
+  const md = join(dir, "evidence.md");
+  await writeFile(md, renderEvidenceMd(results));
+  console.log(`wrote ${md}`);
+
   return (await validateReport(page)) ? 0 : 1;
 }
 
 export const reportCmd = new Crust("report")
-  .meta({ description: "Build the writing-reports page from plan.ts and evidence.jsonl, then validate it" })
+  .meta({ description: "Build the HTML report, results.json and evidence.md from plan.ts and evidence.jsonl, then validate the HTML" })
   .args([{ name: "dir", type: "string", required: true, description: "manual-tests directory" }])
   .run(({ args }) => guard(() => report(manualTestsDir(args.dir))));

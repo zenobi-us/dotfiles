@@ -45,7 +45,7 @@ export async function pngSize(file: string): Promise<{ width: number; height: nu
   }
 }
 
-function verdictOf(records: Evidence[], testId: string): Verdict {
+export function verdictOf(records: Evidence[], testId: string): Verdict {
   const mine = records.filter((r) => r.test === testId && r.verdict);
   if (mine.some((r) => r.verdict === "FAIL")) return "FAIL";
   if (mine.some((r) => r.verdict === "BLOCKED")) return "BLOCKED";

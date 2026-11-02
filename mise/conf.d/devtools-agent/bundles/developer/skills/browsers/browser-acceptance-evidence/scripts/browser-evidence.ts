@@ -3,11 +3,12 @@
  * browser-evidence: plan -> scripts -> evidence -> report.
  *
  *   init     <dir> [--driver surf]   scaffold a plan and the directories
- *   render   <dir>                   plan.ts -> test-plan.md
+ *   render   <dir>                   plan.ts -> test-plan.md and plan.json
  *   compile  <dir>                   plan.ts -> workflows/, one script per test
  *   run      <dir> [--test N]        execute with the plan's driver, write evidence.jsonl
  *   verdicts <dir>                   summarise evidence.jsonl
- *   report   <dir>                   build and validate the HTML report
+ *   report   <dir>                   HTML report, results.json and evidence.md
+ *   comment  <dir> --url <url>       comment.md: steps without evidence, footnoted with the URL
  *
  * <dir> is <shared-context-root>/<work-id>/manual-tests. Resolve that root with
  * the `shared-context` skill; never build the path by hand, and never write into
@@ -15,6 +16,7 @@
  */
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
+import { commentCmd } from "./browser-evidence/commands/comment.ts";
 import { compileCmd } from "./browser-evidence/commands/compile.ts";
 import { initCmd } from "./browser-evidence/commands/init.ts";
 import { renderCmd } from "./browser-evidence/commands/render.ts";
@@ -31,4 +33,5 @@ await new Crust("browser-evidence")
   .command(runCmd)
   .command(verdictsCmd)
   .command(reportCmd)
+  .command(commentCmd)
   .execute();
