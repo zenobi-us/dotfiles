@@ -1,0 +1,82 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "d17c0898f2219b3097f6a4e37bafd430f4c53b89",
+  "source_tree": "2efb55acf06f28c841e176399c74a7f8d4c2467f",
+  "created_at": "2026-11-02T01:30:46.817135+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w80:p1",
+  "agent": "omp",
+  "session_id": null,
+  "parent_session_id": "01a1999c-ed48-707a-948f-506672fdedf0",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "source",
+      "ref": "d17c0898f2219b3097f6a4e37bafd430f4c53b89"
+    },
+    {
+      "kind": "source",
+      "ref": "d2e8162a72a4036a4ce537698bad0caa5a729e15"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Existing archived source branch without checkout or phase receipts; revised canonical requirements on master.",
+    "prior_attempt": null,
+    "interrupted_return_session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-01T21-37-41-071Z_01a1990b-f8cf-705f-b841-8c3da0f1ea93.jsonl",
+    "approval": "User selected Approve scoped takeover in this session. Preserve archived source/evidence, reconcile existing branch with current requirements, append recovery receipts, launch fresh implementation. No live session termination or reuse.",
+    "ownership": "unknown before approval; approved scoped takeover; claimed state retained",
+    "liveness": "herdr agent list: interrupted return session absent; only current pen-task session and unrelated report session in repository. No matching coordinator event found across workflows/goal-*/events/*.yaml.",
+    "source_reconciliation": "Worktrunk recreated checkout of existing branch at exact archived commit; no reset/replacement branch. Current master d2e8162a72a4036a4ce537698bad0caa5a729e15 tree 0fb21608825bbf4490d0431cebbc75b882ae0219. Agent must reconcile revised stock-editor requirements before implementation. Preserve archived commits and earlier evidence."
+  },
+  "validation": [
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; tracker-ticket/v1; no direct blockers"
+    },
+    {
+      "command": "git status --short",
+      "result": "clean before worktree creation"
+    },
+    {
+      "command": "herdr worktree list --cwd /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --json",
+      "result": "only master checkout before recovery"
+    },
+    {
+      "command": "wt switch prototype/pi-ink-bridge-01-pen-prototype --no-cd --format json",
+      "result": "created existing-branch checkout without creating or resetting branch"
+    }
+  ]
+}
