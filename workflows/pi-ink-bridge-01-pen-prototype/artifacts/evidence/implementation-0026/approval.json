@@ -1,0 +1,18 @@
+{
+  "schema": "pi-ink-device-approval/v1",
+  "recorded_at": "2026-11-03T05:26:48.336337+00:00",
+  "owner_message_verbatim": "aproved and ready",
+  "in_reply_to": "Exact two-additional-restart UI plan approval plus connected USB and ALL-documents-saved/closed confirmation",
+  "plan_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/approval-plan.txt",
+  "plan_sha256": "ebcfc81d7357e88bc84ba8f71a96ae85b9c732b4eef32ee12d36690fca9f9fa8",
+  "approval_scope": "Exact frozen commands and UI-only owner checks; reload#4 and original-proxy restoration#5; five-total restart cap; no automatic retry",
+  "saved_closed_before_reload": "confirmed by owner response to explicit request; owner-reported, not device-derived",
+  "usb_connected": "confirmed by owner response; host direct-USB guard still required before each call",
+  "restore_saved_closed": "MUST obtain separately renewed owner confirmation before restoration; not supplied by this approval",
+  "no_screenshots": true,
+  "no_import_draw_send": true,
+  "no_cleanup_deletion": true,
+  "original_proxy_wildcard80": "Explicit approved plan restores pre-existing wildcard HTTP; not paired-authenticated product transport",
+  "status": "approved; target commands not yet executed",
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7"
+}

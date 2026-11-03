@@ -1,0 +1,91 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0025",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 9,
+  "parent_receipt": "start-complete-0024",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "created_at": "2026-11-03T05:26:48.336337+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6N:p5",
+  "agent": "omp",
+  "session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0024.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0023.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/approval-plan.txt"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/sha256-index.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/approval.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/prelaunch-inspection.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0025.yaml"
+    }
+  ],
+  "status": "started",
+  "scope": "Execute ONLY exact approved latest-UI validation plan; no repeated implementation, source edits, screenshots, import/draw/Send, new jobs/pairing or cleanup deletion. Owner library check before known-control document check. USB remains connected.",
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0022",
+    "reason": "Source-only result0023 already reconciled by0024. Continue hardware validation/restoration only in fresh child, not repeat implementation.",
+    "ownership": "Same retained parent, no transfer; current roster has no source agent; prior0023 child done and closed as0024 records.",
+    "approval": "Owner latest message approves exact pinned UI-only plan and readiness; original-proxy restoration requires separately renewed saved/closed confirmation.",
+    "reservations": "No matching goal coordinator event found.",
+    "preserve": "All historical receipts/evidence, sourcebb5df500, unrelated BASE mise.toml and hook pending-stash."
+  },
+  "reserved_result": "implementation-0026",
+  "reserved_parent_completion": "start-complete-0027",
+  "device_restart_count_at_start": 3,
+  "device_restart_total_cap": 5,
+  "device_restore_requires_new_saved_closed": true,
+  "ticket_state": "claimed",
+  "production_blocked": true
+}
