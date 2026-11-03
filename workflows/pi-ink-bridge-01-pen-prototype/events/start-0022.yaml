@@ -1,0 +1,95 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0022",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 8,
+  "parent_receipt": "start-complete-0021",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "4614293693e7973722a6a470a761e563221a7c28",
+  "source_tree": "514e1d89888ce9c9e88f9aeb80d2e04492958003",
+  "created_at": "2026-11-03T04:28:02.366357+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6N:p1",
+  "agent": "omp",
+  "session_id": null,
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0021.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/interrupted-evidence-index.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/owner-latest-ui-direction-no-screenshots.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/owner-repaired-sidebar-manager-feedback.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-c-component-repair-load.json"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/rmitchellscott/xovi-bettertoc/blob/main/assets/betterToc-pro.png"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0022.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0019",
+    "reason": "Previous child ended normally after user interruption with no result; parent preserved evidence and appended accurate blocked completion0021. Latest explicit UI instructions require fresh implementation session.",
+    "approval": "Same parent retains already approved repository takeover; user now expressly requests three UI changes and cancels screenshot requests. Device permissions are not extended.",
+    "ownership": "Retained by parent session01a19dd8-e4d3-7162-913a-50d94f31d1c7; no ownership transfer from another session. Claimed state retained idempotently.",
+    "liveness": "Old child01a19e3a ends with normal session_exit dispose at04:07:10.218Z; herdr source pane/workspace absent and no source agent listed. Fresh workspacew6N/panep1, no earlier session reuse.",
+    "reservations": "No matching ticket in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Inspector historyValid=true; clean unique source46142936/tree514e1d89. Preserve original receipts/evidence and unrelated BASE mise.toml change. No reset or history repair."
+  },
+  "scope": "Latest user UI request: global Pi Ink last top-section item, document Pi Ink immediately above TOC, compact BetterTOC-style document popover, fix manager dynamic-width gap and idempotent navigation. SCREENSHOT REQUEST WITHDRAWN. Repository/offline work only; no new device command/install/reload/restore/capture inferred.",
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json after completion0021",
+      "result": "historyValid=true; start/takeover; parent start-complete-0021; clean46142936/tree514e1d89"
+    },
+    {
+      "command": "records.ts check --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; claimed; no direct blockers"
+    },
+    {
+      "command": "herdr agent list and previous session ending; coordinator reservation search",
+      "result": "no source agent; old session normal exit; no matching goal reservations"
+    }
+  ]
+}
