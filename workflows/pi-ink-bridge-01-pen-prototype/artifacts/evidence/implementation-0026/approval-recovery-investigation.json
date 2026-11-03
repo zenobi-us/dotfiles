@@ -1,0 +1,16 @@
+{
+  "schema": "pi-ink-device-approval/v1",
+  "recorded_at": "2026-11-03T06:19:53.847315+00:00",
+  "owner_message_verbatim": "yes",
+  "in_reply_to": "One USB-only read-only service/operation-ownership investigation, exact scope hash0e5a6b259cc7b30c8daed9178f457bfef15f42336b2ac175e95c6837481caee4",
+  "scope_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/recovery-investigation-proposal/approval-scope.txt",
+  "scope_sha256": "0e5a6b259cc7b30c8daed9178f457bfef15f42336b2ac175e95c6837481caee4",
+  "authorized_command": "PI_INK_RECOVERY_INVESTIGATION_APPROVED=service-ownership-0026 sh /tmp/pi-ink-recovery-investigation-0026/host.sh",
+  "allowed_runs": 1,
+  "allowed_mutations": false,
+  "allowed_restarts": false,
+  "allowed_retry": false,
+  "allowed_scope": "Exact frozen effective-service comparisons, four fixed service-file metadata/hashes, four fixed extension positions, validated operation actor/PID-presence record; no private notebook access or config-content output",
+  "active_child": "w6N:p5/session01a19fe2-4d68-770a-a05b-0a20eca7c412",
+  "restoration_complete": false
+}

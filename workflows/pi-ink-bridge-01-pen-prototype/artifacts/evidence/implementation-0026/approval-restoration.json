@@ -1,0 +1,18 @@
+{
+  "schema": "pi-ink-device-approval/v1",
+  "recorded_at": "2026-11-03T05:56:04.773334+00:00",
+  "owner_message_verbatim": "yes approved. continue",
+  "in_reply_to": "Please confirm again: ALL documents saved and closed and USB remains connected; exact original-proxy restoration once, next actual restart#4, original wildcard HTTP restored.",
+  "plan_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/approval-plan.txt",
+  "plan_sha256": "ebcfc81d7357e88bc84ba8f71a96ae85b9c732b4eef32ee12d36690fca9f9fa8",
+  "scope": "Exact frozen host.sh restore once and verify-restored once only; no prepare/stage/reload retry, amended scripts, device settings or cleanup deletion.",
+  "all_documents_saved_closed": "newly confirmed by owner response; owner-reported",
+  "usb_connected": "newly confirmed by owner response; exact host USB guard still mandatory",
+  "restarts_previously_executed": 3,
+  "next_actual_restart": 4,
+  "original_proxy_wildcard_http": "explicitly reconfirmed in preceding owner request",
+  "initial_prepare_outcome": "exit1; exact abort point UNKNOWN; no stage/reload/restart issued",
+  "active_child": "w6N:p5/session01a19fe2-4d68-770a-a05b-0a20eca7c412",
+  "parent_session": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "cleanup_authorized": false
+}

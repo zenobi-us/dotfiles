@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-11-03T08:43:03.231679+00:00",
+  "source": "Owner questionnaire answers",
+  "answers": {
+    "tablet_operator": "Yes, another operator",
+    "activation_intent": "Preserve current configuration"
+  },
+  "policy": "Do not recreate unavailable XOVI activation drop-ins. Future recovery must preserve current configuration; choice alone authorizes no device change.",
+  "unresolved": [
+    "Identity of other person/session",
+    "Whether operator remains active or has handed off control",
+    "Exact separately approved recovery/cleanup scope after coordination"
+  ],
+  "no_new_device_command_authorized": true
+}

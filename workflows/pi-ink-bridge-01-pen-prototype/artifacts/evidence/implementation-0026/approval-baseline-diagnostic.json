@@ -1,0 +1,15 @@
+{
+  "schema": "pi-ink-device-approval/v1",
+  "recorded_at": "2026-11-03T06:08:33.347086+00:00",
+  "owner_message_verbatim": "yes approve",
+  "in_reply_to": "One exact USB-only read-only baseline-path diagnostic with45-second host deadline; no retry or mutation",
+  "scope_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/baseline-diagnostic-proposal/approval-scope.txt",
+  "scope_sha256": "d99cba2f3180a4edc40be44fd3de7b85baab24b816d924b2afe5451a57f30c6d",
+  "authorized_command": "PI_INK_DIAGNOSTIC_APPROVED=baseline-path-0026 sh /tmp/pi-ink-baseline-diagnostic-0026/host.sh",
+  "allowed_runs": 1,
+  "allowed_mutations": false,
+  "allowed_restart": false,
+  "allowed_retry": false,
+  "allowed_scope": "Fixed parent-chain metadata and00-xovi.conf metadata; SHA only for non-symlink regular leaf<=65536; no contents/listing/unknown-link traversal",
+  "active_child": "w6N:p5/session01a19fe2-4d68-770a-a05b-0a20eca7c412"
+}
