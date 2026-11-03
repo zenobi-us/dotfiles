@@ -1,0 +1,153 @@
+{
+  "scope": "Host-only prospective command checks; no device command, SSH, SCP, UI, import, Send or restart",
+  "syntax": [
+    {
+      "file": "prepare.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "reload.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "restore.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "verify-restored.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "host.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "partial_hash_profiles": [
+    {
+      "component": "installed",
+      "manifest": "installed",
+      "qmd": "installed",
+      "result": "accepted by actual restore hash helper"
+    },
+    {
+      "component": "installed",
+      "manifest": "installed",
+      "qmd": "new",
+      "result": "accepted by actual restore hash helper"
+    },
+    {
+      "component": "installed",
+      "manifest": "new",
+      "qmd": "installed",
+      "result": "accepted by actual restore hash helper"
+    },
+    {
+      "component": "installed",
+      "manifest": "new",
+      "qmd": "new",
+      "result": "accepted by actual restore hash helper"
+    },
+    {
+      "component": "new",
+      "manifest": "installed",
+      "qmd": "installed",
+      "result": "accepted by actual restore hash helper"
+    },
+    {
+      "component": "new",
+      "manifest": "installed",
+      "qmd": "new",
+      "result": "accepted by actual restore hash helper"
+    },
+    {
+      "component": "new",
+      "manifest": "new",
+      "qmd": "installed",
+      "result": "accepted by actual restore hash helper"
+    },
+    {
+      "component": "new",
+      "manifest": "new",
+      "qmd": "new",
+      "result": "accepted by actual restore hash helper"
+    }
+  ],
+  "negative_hash_cases": [
+    {
+      "field": "component",
+      "case": "unknown",
+      "exit_code": 1,
+      "result": "rejected"
+    },
+    {
+      "field": "component",
+      "case": "symlink",
+      "exit_code": 1,
+      "result": "rejected"
+    },
+    {
+      "field": "manifest",
+      "case": "unknown",
+      "exit_code": 1,
+      "result": "rejected"
+    },
+    {
+      "field": "manifest",
+      "case": "symlink",
+      "exit_code": 1,
+      "result": "rejected"
+    },
+    {
+      "field": "qmd",
+      "case": "unknown",
+      "exit_code": 1,
+      "result": "rejected"
+    },
+    {
+      "field": "qmd",
+      "case": "symlink",
+      "exit_code": 1,
+      "result": "rejected"
+    }
+  ],
+  "job_guard": [
+    {
+      "value": "",
+      "exit_code": 0
+    },
+    {
+      "value": "0",
+      "exit_code": 0
+    },
+    {
+      "value": "123",
+      "exit_code": 1
+    },
+    {
+      "value": "unexpected",
+      "exit_code": 1
+    }
+  ],
+  "unapproved_wrapper_execution": {
+    "exit_code": 1,
+    "stdout": "ABORT: record exact owner scope before execution\n",
+    "stderr": "",
+    "result": "aborted before transport guard or any device call"
+  },
+  "limits": [
+    "No actual QML instantiation or tablet layout proof",
+    "Hash helper coverage only, not a simulated restoration",
+    "No Go restart, new pairing, current-job freshness, cable-free test or cleanup verified",
+    "Target utilities and last-known PIDs must be checked again only after approval"
+  ]
+}

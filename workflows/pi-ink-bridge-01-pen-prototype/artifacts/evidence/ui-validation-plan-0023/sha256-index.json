@@ -1,0 +1,58 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "scope": "Prospective plan only, no device actions",
+  "files": [
+    {
+      "path": "approval-plan.txt",
+      "sha256": "ebcfc81d7357e88bc84ba8f71a96ae85b9c732b4eef32ee12d36690fca9f9fa8"
+    },
+    {
+      "path": "offline-validation.json",
+      "sha256": "ab7de3d823b5a8022bd4a688c2f278c8d9c6569f2f054c0b3dbc4350cacdcebf"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "34e63b63c0dd53e4538bd3c261597f59f0f32da1e6be722ff1594ac84e42e073"
+    },
+    {
+      "path": "verify-restored.sh",
+      "sha256": "a32e82de0a4b10631f7e6331c717640e33a437bd8ba9f7469b3b21acf814fccc"
+    },
+    {
+      "path": "restore.sh",
+      "sha256": "ea9f0b1301bcb5167f306e31854748a59607915282e211232234b570e89b73b1"
+    },
+    {
+      "path": "reload.sh",
+      "sha256": "34e26652fecb4ecf77519ec0d773fd017dd9097e5a022ab0f4aa1c4d2254ab33"
+    },
+    {
+      "path": "prepare.sh",
+      "sha256": "ab3ebf859cf33af4f17bb23993d6918fb6c9612c178ce7aa1ef24e889b19ec51"
+    },
+    {
+      "path": "payload/owner.txt",
+      "sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d"
+    },
+    {
+      "path": "payload/payload-sha256.txt",
+      "sha256": "9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c"
+    },
+    {
+      "path": "payload/pi-ink-bridge.qmd",
+      "sha256": "0dc1dad15002559d943f63fb73298aca68c570a9f46cefe38bb42c5798e8edc0"
+    },
+    {
+      "path": "payload/PiInkToolbar.qml",
+      "sha256": "c09f7f617760b4dc839787d228a2ab2bf12ba26f1f52a6ec910124072b8db869"
+    },
+    {
+      "path": "final-validation.json",
+      "sha256": "c135f5959b8c0b2b194880b7ebb3a6ddd09e48773b87452cba0dfabb4edcaefd"
+    },
+    {
+      "path": "planning-identity.json",
+      "sha256": "13fd01123db2fcb1eb5ca5a73869625056d75b7c5d93105f6561072dedfb2dce"
+    }
+  ]
+}

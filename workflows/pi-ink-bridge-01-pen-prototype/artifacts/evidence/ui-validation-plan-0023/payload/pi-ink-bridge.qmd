@@ -1,0 +1,187 @@
+VERSION 3.28.0.172
+
+; Stock xochitl SHA256 b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021.
+; DocumentView payload SHA256 867b30a725a4ae97e3459f07a60cd72bcafb21db9a0b374f02d75c5cd8d83269.
+AFFECT /qml/device/view/documentview/DocumentView.qml
+    TRAVERSE FocusScope#root
+        LOCATE AFTER ALL
+        INSERT {
+            property var piInkController: null
+            readonly property string piInkCurrentDocumentUUID:
+                root.document ? root.document.id.toString() : ""
+        }
+        TRAVERSE Item#_uiContainer > Toolbar#toolbar
+            LOCATE AFTER ALL
+            INSERT {
+                piInkController: root.piInkController
+            }
+        END TRAVERSE
+    END TRAVERSE
+END AFFECT
+
+; MainView payload SHA256 2bc2866c59245e74af769e277e3aae801ad76bc7f816f24ccf1fc7ac4f5e3cfc.
+; The persistent client has no visual or input footprint. Its panel is reparented
+; into the active native content pane, never the top-level MainView overlay.
+AFFECT /qml/device/view/main/MainView.qml
+    TRAVERSE Background#root
+        LOCATE AFTER ALL
+        INSERT {
+            Binding {
+                target: navigator
+                property: "piInkController"
+                value: piInkToolbarLoader.item
+            }
+            Binding {
+                target: documentView.item
+                property: "piInkController"
+                value: piInkToolbarLoader.item
+                when: !!documentView.item
+            }
+            Loader {
+                id: piInkToolbarLoader
+                width: 0
+                height: 0
+                readonly property bool editing: !!documentView.item?.documentLoaded
+                Component.onCompleted: setSource(
+                    "file:///home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml",
+                    {
+                        nativeDocumentUUID: Qt.binding(function() {
+                            return documentView.item ? documentView.item.piInkCurrentDocumentUUID : "";
+                        }),
+                        library: Library,
+                        panelParent: navigator,
+                        panelEnabled: Qt.binding(function() {
+                            return rootItem.visible && !root.passcodeHandler.userLocked &&
+                                !piInkToolbarLoader.editing && navigator.visible;
+                        }),
+                        panelLeftMargin: Qt.binding(function() {
+                            return navigator.sidebar.visible ? navigator.sidebar.width : 0;
+                        }),
+                        panelRightMargin: Qt.binding(function() {
+                            return 0;
+                        }),
+                        panelTopMargin: Qt.binding(function() {
+                            return navigator.piInkContentTop;
+                        }),
+                        panelBottomMargin: Qt.binding(function() {
+                            return Values.navigatorStatusbarHeight;
+                        })
+                    })
+            }
+        }
+    END TRAVERSE
+END AFFECT
+
+; Native toolbar payload SHA256 f0f552fa18a27733b59fafddc1a1cd10e35328136eb56cbb695c8799e91483f6.
+; Reserve one native tool slot. Preserve existing extensions' tool-count handler.
+AFFECT /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml
+    TRAVERSE FocusScope#root
+        LOCATE AFTER ALL
+        INSERT {
+            property var piInkController: null
+        }
+        REPLACE showableToolsCount WITH {
+            readonly property int showableToolsCount:
+                Math.floor(Math.max(innerWidth, innerHeight) / ArkTokens.Style.variable.controlsHeight.large) -
+                1 - (root.piInkController ? 1 : 0)
+        }
+        REPLACE shownToolsCount WITH {
+            readonly property int shownToolsCount:
+                editingTools.count + secondaryTools.count + (root.piInkController ? 1 : 0)
+        }
+        TRAVERSE Item#toolbar > GridLayout#toolLayout
+            LOCATE BEFORE ToolbarTool#tocButton
+            INSERT {
+                ToolbarTool {
+                    id: piInkSidebarTool
+                    objectName: "pi-ink-sidebar-button"
+                    toolbar: root
+                    type: ToolbarTool.Type.ToolbarButton
+                    label: "Pi Ink"
+                    iconSource: "qrc:/ark/icons/link"
+                    shouldShow: !!root.piInkController
+                    visible: shouldShow && root.expanded
+                    onPressed: root._select(piInkSidebarTool)
+                    foldoutContent: ColumnLayout {
+                        spacing: 0
+                        ArkControls.FoldoutItem {
+                            Layout.fillWidth: true
+                            label: root.piInkController?.statusText ?? "Bridge offline"
+                            description: root.piInkController?.errorText ?? ""
+                            iconSource: "qrc:/ark/icons/link"
+                            enabled: false
+                        }
+                        ArkControls.FoldoutItem {
+                            property string documentAtPress: ""
+                            property string confirmationAtPress: ""
+                            readonly property bool confirming:
+                                root.piInkController?.state.status === "confirmation-required"
+                            Layout.fillWidth: true
+                            label: confirming ? "Confirm clipping and send" : "Send"
+                            description: confirming ?
+                                "Ink outside the source will be clipped. The full PDF is retained; the stock document stays editable." : ""
+                            iconSource: "qrc:/ark/icons/share"
+                            enabled: !!root.piInkController?.currentMatches &&
+                                !root.piInkController.actionBusy &&
+                                (confirming ? !!root.piInkController.state.canConfirm &&
+                                    !!root.piInkController.state.confirmationId :
+                                    !!root.piInkController.state.canSend)
+                            onPressed: {
+                                documentAtPress = root.piInkController.documentUUID;
+                                confirmationAtPress = confirming ?
+                                    root.piInkController.state.confirmationId : "";
+                            }
+                            onClicked: root.piInkController.submit(
+                                confirmationAtPress ? "/confirm" : "/send",
+                                documentAtPress, confirmationAtPress)
+                        }
+                    }
+                }
+            }
+        END TRAVERSE
+    END TRAVERSE
+END AFFECT
+
+; Navigator payload SHA256 28c1f04f5c70bdd864019950367d08191d3e7eb8cd536e3b9e8a58e7bc9da164.
+AFFECT /qml/device/view/navigator/Navigator.qml
+    TRAVERSE FocusScope#root
+        LOCATE AFTER ALL
+        INSERT {
+            property var piInkController: null
+            readonly property real piInkContentTop: contentHeader.height
+        }
+        TRAVERSE Sidebar#_sidebar
+            LOCATE AFTER ALL
+            INSERT {
+                piInkController: root.piInkController
+            }
+        END TRAVERSE
+    END TRAVERSE
+END AFFECT
+
+; Sidebar payload SHA256 5cfd661e6c68c343513d9ca034042ee3f5cdc3ab0df77ea0396838c77135adc0.
+AFFECT /qml/device/view/navigator/Sidebar.qml
+    TRAVERSE FocusScope#root
+        LOCATE AFTER ALL
+        INSERT {
+            property var piInkController: null
+        }
+        TRAVERSE ColumnLayout#filterColumn
+            LOCATE BEFORE Common.Background#spacer
+            INSERT {
+                ArkControls.SidebarItem {
+                    objectName: "pi-ink-library-sidebar-button"
+                    text: "Pi Ink"
+                    iconSource: "qrc:/ark/icons/link"
+                    highlighted: !!root.piInkController?.expanded
+                    visible: !!root.piInkController
+                    Layout.preferredWidth: parent.width
+                    onClicked: {
+                        root.hide();
+                        root.piInkController.showManager();
+                    }
+                }
+            }
+        END TRAVERSE
+    END TRAVERSE
+END AFFECT

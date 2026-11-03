@@ -1,0 +1,166 @@
+PI INK LATEST UI VALIDATION — EXACT PROSPECTIVE APPROVAL SCOPE
+Ticket: tracker/tickets/pi-ink-bridge-01-pen-prototype.md
+Source: bb5df500f4a06c61ebde6073470ef5ed51f4b006
+Source tree: 9a9acbfbc65d17f87eb44f2e0a7898000b1d735b
+Parent completion: events/start-complete-0024.yaml
+Status: PLAN ONLY. No new device authority is implied by preparing this file.
+
+DECISION REQUESTED
+Approve the commands and owner UI checks below as one UI-only experiment.
+This would authorize TWO further Xochitl restart commands: latest UI reload #4,
+then restoration of the original proxy #5. Three commands were previously used.
+Five is the new total cap, not five new attempts. No automatic retries.
+Before each restart, obtain and record NEW confirmation that ALL documents are
+saved and closed and the data cable remains connected. Earlier confirmations,
+normal-library recovery and approval to prepare a plan do not satisfy this gate.
+
+WHAT CHANGES
+Only PiInkToolbar.qml, the stored owned QMD, the live owned QMD, and their
+8-file checksum manifest. QMD payload/live copies have identical bytes.
+The Go client, config, tokens, paired IDs, CAs, endpoints, statePath, loopback
+adapter, stock binary, loader, all12 pre-existing QMDs and other extensions
+remain unchanged. The running client PID must remain106748; it is not restarted.
+New UI: global Pi Ink last before the top-section spacer; repeat selection
+keeps its manager open; width follows actual sidebar visibility. Document Pi Ink
+sits directly above TOC and opens the native two-row foldout, not a floating bar.
+No screenshots are requested, captured, installed or transmitted.
+
+LAST-KNOWN DEVICE, NOT A FRESH OBSERVATION
+Firmware3.28.0.172; Xochitl PID111850; client PID106748/UI127.0.0.1:9821.
+Adapter active; stock127.0.0.1:81 only; original proxy quarantined unchanged.
+Installed component8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9
+Installed QMD09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9
+Installed manifest261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72
+Any conflicting current bytes, PID, ownership, path, route, unit or pending-job
+state aborts. Do not change the device or network to satisfy a guard.
+
+PINNED PAYLOADS
+a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d  payload/owner.txt
+9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c  payload/payload-sha256.txt
+0dc1dad15002559d943f63fb73298aca68c570a9f46cefe38bb42c5798e8edc0  payload/pi-ink-bridge.qmd
+c09f7f617760b4dc839787d228a2ab2bf12ba26f1f52a6ec910124072b8db869  payload/PiInkToolbar.qml
+The new manifest changes only its component and QMD rows. Its other six rows
+remain byte-identical to the currently installed manifest.
+
+PINNED COMMAND FILES
+ab3ebf859cf33af4f17bb23993d6918fb6c9612c178ce7aa1ef24e889b19ec51  prepare.sh
+34e26652fecb4ecf77519ec0d773fd017dd9097e5a022ab0f4aa1c4d2254ab33  reload.sh
+ea9f0b1301bcb5167f306e31854748a59607915282e211232234b570e89b73b1  restore.sh
+a32e82de0a4b10631f7e6331c717640e33a437bd8ba9f7469b3b21acf814fccc  verify-restored.sh
+34e63b63c0dd53e4538bd3c261597f59f0f32da1e6be722ff1594ac84e42e073  host.sh
+All files are frozen under /tmp/pi-ink-ui-validation-0023.
+Durable identical copies are in BASE/workflows/pi-ink-bridge-01-pen-prototype/
+artifacts/evidence/ui-validation-plan-0023. Do not edit these approved bytes.
+Hash changes require a new exact scope, not a silent substitution.
+
+TRANSPORT AND READ BOUNDARY
+Only10.11.99.1 via direct enp2s0f0u4c2, source10.11.99.10, no gateway.
+Exact physical device: /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0.
+Reject wireless/phy80211. Bind SSH/SCP to this interface and source address;
+strict existing host keys, BatchMode, no connection sharing, ProxyCommand or
+ProxyJump. Host timeout45seconds per SSH/SCP. No target timeout dependency.
+No Wi-Fi SSH, fallback transfer, host network changes, package install or reboot.
+Keep USB connected throughout this UI-only validation. Do not claim cable-free proof.
+Read only the pinned service/extension/resource files and their metadata,
+owned unit/process/socket metadata and the owned bounded startup markers.
+No private notebook reads, titles, library listing, settings or cloud/account data.
+
+EXACT OPERATOR SEQUENCE — ONLY AFTER EXPLICIT APPROVAL
+The environment guards prevent accidental invocation, not replace owner consent.
+Record the actual approval and saved/closed confirmation as immutable evidence.
+Run each command once; retain its actual stdout/stderr/exit code and timestamps.
+
+PI_INK_EXACT_PLAN_APPROVED=ui-0023-reload4-restore5 sh /tmp/pi-ink-ui-validation-0023/host.sh prepare
+PI_INK_EXACT_PLAN_APPROVED=ui-0023-reload4-restore5 sh /tmp/pi-ink-ui-validation-0023/host.sh stage
+
+Prepare checks utilities,28 baseline fingerprints, current8+liveQMD hashes,
+proxy bytes/metadata, dirs, unit command, PID, socket ownership and idle Job.
+It creates only collision-guarded /home/root/pi-ink-ui-stage-0023 (mode700).
+Stage copies exactly the four pinned payload files into that directory.
+Neither command restarts Xochitl or activates revised UI.
+
+Only after NEW ALL-documents-saved/closed plus connected-USB confirmation:
+PI_INK_EXACT_PLAN_APPROVED=ui-0023-reload4-restore5 PI_INK_SAVED_CLOSED=confirmed-for-this-restart sh /tmp/pi-ink-ui-validation-0023/host.sh reload
+
+Reload rechecks the baseline and staged bytes. It rejects a live or unknown
+operation actor, backs up exact current component/manifest/stored+liveQMD in
+/home/root/pi-ink-ui-backup-0023, then atomically replaces each file with known
+bytes and publishes the manifest last. No pre-existing backup is overwritten.
+It requests Xochitl restart#4 ONCE, waits for a changed active PID, adapter
+mapping, private stock listener and the SAME owned client/socket. Expect Xochitl
+and notebook interaction to stop briefly. Startup readiness is not a UI pass.
+The journal filter reads at most3000 source records for this PID/start interval
+in target memory; it returns at most80 owned PiInkToolbar/QMD-marker lines,
+max2048characters each, no surrounding or unmatched logs. Empty is inconclusive.
+
+OWNER UI CHECKS — USB STAYS CONNECTED
+1. Start in the normal library. Open the global sidebar. Pi Ink must be the
+   last item in its TOP section, immediately before the section spacer.
+2. Tap Pi Ink. Check native content placement. Open/close the native sidebar;
+   the manager must use the available width without the old gap.
+3. Select Pi Ink again. It must stay open. Back must dismiss the ENTIRE manager.
+   Normal sidebar and library navigation must remain reachable open and closed.
+4. Only if those checks pass, use normal library operations to open the already
+   approved synthetic control "Pi Ink stock editor alignment 2026-11-02.pdf"
+   (control UUIDfc2a3c9b-feea-40d1-9ac1-a8327f10edba). If identification is
+   uncertain or it is unavailable, skip this step and keep its UI gate blocked.
+   Do not open a private notebook or create/import another document.
+5. In that control only, check Pi Ink immediately ABOVE the existing TOC widget
+   button. Open its native two-row popover; assess the supplied BetterTOC-style
+   placement, rows, selection, stacking and dismissal. Stock TOC/native close
+   and navigation must remain reachable. Do NOT tap Send, Clip or Import.
+6. Close the control normally. Report generic pass/fail and UI errors only.
+   No titles beyond the named synthetic, private UUIDs or screenshots.
+If an entry is absent, errors or obstruction occur, STOP. Do not repeat old
+failed close instructions, reload, clear cache or substitute payloads. If a
+normal close cannot be reached, seek separate risk-aware recovery approval;
+never infer that a restart with an open document is safe.
+Desktop connection labels may be disconnected: actual A/B origin liveness is
+unknown. This UI scope does not revive stale jobs or test request associations.
+
+ORIGINAL RESTORATION — SEPARATE FRESH SAVED/CLOSED GATE
+After UI checks, request NEW ALL-documents-saved/closed plus cable confirmation.
+PI_INK_EXACT_PLAN_APPROVED=ui-0023-reload4-restore5 PI_INK_SAVED_CLOSED=confirmed-for-this-restart sh /tmp/pi-ink-ui-validation-0023/host.sh restore
+PI_INK_EXACT_PLAN_APPROVED=ui-0023-reload4-restore5 sh /tmp/pi-ink-ui-validation-0023/host.sh verify-restored
+
+Restore accepts only known old/current/latest payload hashes independently,
+including interrupted per-file updates; unknown bytes/symlinks abort. It handles
+owned units absent or inactive, rejects live actors and pending Job values
+except empty/0, stops ONLY the exact owned transient client units, retains their
+opaque state/config and owned code, moves the adapter/QMD out of active paths,
+and restores the original proxy byte-for-byte with its metadata. It requests
+Xochitl restart#5 ONCE. No retry or extra restart is authorized on failure.
+Original proxy SHA25624bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f
+Original stat: mode644 uid0 gid0 size8453696 mtime1793049401.
+Restoring it deliberately re-enables its pre-existing0.0.0.0:80 HTTP listener.
+This is the owner's original extension, NOT the paired-authenticated Pi client.
+The verification checks28 hashes, exact proxy metadata/mapping, inactive owned
+client/absent9821, adapter/QMD absent, Xochitl-owned original wildcard80 and
+loopback81. It is read-only and does not repair a mismatch.
+If reload never requested its restart, record the actual count: restoration may
+be#4 rather than#5. Do not spend an unused reload attempt on an extra restart.
+A host timeout is not proof a target operation stopped. Do not duplicate or
+restore concurrently; preserve outputs and inspect ownership under new scope.
+
+CLEANUP APPROVAL PLAN — RETENTION IS NOT COMPLETION
+Restoration above deliberately retains inactive code, config/token/CA copies,
+opaque state, staging, backups and operation history. NO deletion is authorized
+by this scope. No live synthetic or private document deletion is proposed.
+After verified restoration, prepare a separate bounded read-only inventory of
+owned experiment paths, hashes, owners and inactive references. Do not read
+config/key/state contents or traverse private notebook storage. Obtain approval
+for that exact inventory before device access; use it to pin a separate cleanup
+scope naming every owned path and collision/symlink/unknown-byte abort gate.
+Only that approved cleanup may remove experiment credentials/code and retained
+copies. Preserve SOURCE and BASE evidence/history. No extra restart is inferred.
+Report restoration and credentials/code cleanup separately. The ticket stays
+claimed and production blocked until all acceptance criteria pass.
+
+OFFLINE EVIDENCE AND LIMITS
+sh-n passes all5 scripts; actual restore hash helper accepts all8 current/new
+component/manifest/QMD combinations and rejects6 unknown-byte/symlink cases.
+Idle Job empty/0 pass;123/unexpected reject. Actual wrapper without approval
+aborts before transport. These are host guard checks, not a simulated tablet.
+Implementation0023 retains the source build/typecheck/15Bun/Go-race/QMLDiff/QtAST
+results. No new device command, install, screenshot, import, drawing, Send,
+restart, restore, pairing, cable-free, associated delivery or cleanup is proved.
