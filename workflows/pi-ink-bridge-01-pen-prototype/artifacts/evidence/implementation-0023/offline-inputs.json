@@ -1,0 +1,54 @@
+{
+  "preservedQMDs": [
+    {
+      "name": "randomSleepScreen.qmd",
+      "sha256": "36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158"
+    },
+    {
+      "name": "betterToc.qmd",
+      "sha256": "beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d"
+    },
+    {
+      "name": "retaskableSend.qmd",
+      "sha256": "767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e"
+    },
+    {
+      "name": "link-touch-targets.qmd",
+      "sha256": "3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471"
+    },
+    {
+      "name": "linkFromSelection.qmd",
+      "sha256": "28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43"
+    },
+    {
+      "name": "quickSettingsBluetooth.qmd",
+      "sha256": "2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982"
+    },
+    {
+      "name": "bluetoothSettings.qmd",
+      "sha256": "dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595"
+    },
+    {
+      "name": "dockButtons.qmd",
+      "sha256": "0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50"
+    },
+    {
+      "name": "retaskableJump.qmd",
+      "sha256": "4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe"
+    },
+    {
+      "name": "floating.qmd",
+      "sha256": "ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023"
+    },
+    {
+      "name": "computed-widgets-01-live-document-probe.qmd",
+      "sha256": "f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43"
+    },
+    {
+      "name": "betterTocCollapse.qmd",
+      "sha256": "5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2"
+    }
+  ],
+  "xochitl": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+  "hashtabSHA256": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615"
+}

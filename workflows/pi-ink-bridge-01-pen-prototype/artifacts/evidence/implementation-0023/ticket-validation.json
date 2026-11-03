@@ -1,0 +1,37 @@
+{
+  "schema": "tracker-result/v1",
+  "operation": "check",
+  "backend": "local-markdown",
+  "initiatives": [],
+  "tickets": [
+    {
+      "id": "pi-ink-bridge-01-pen-prototype",
+      "title": "Prove Paper Pro pen input",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+      "state": "claimed",
+      "blocked_by": []
+    }
+  ],
+  "changes": null,
+  "validation": {
+    "status": "passed",
+    "details": [
+      "Validated the selected record through the normal graph and tracker explorer readers."
+    ]
+  },
+  "publication": null,
+  "rendered": "- [task] pi-ink-bridge-01-pen-prototype - Prove Paper Pro pen input  IN PROGRESS\n- [task] pi-ink-bridge-02-install-client - Install and launch the tablet client  WAITING · blocked by pi-ink-bridge-01-pen-prototype\n  - [task] pi-ink-bridge-01-pen-prototype - Prove Paper Pro pen input  IN PROGRESS\n- [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client\n  - [task] pi-ink-bridge-02-install-client - Install and launch the tablet client  WAITING · blocked by pi-ink-bridge-01-pen-prototype\n- [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device\n  - [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client\n- [task] pi-ink-bridge-05-inbox - Select and manage multiple inbox jobs  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device\n- [task] pi-ink-bridge-06-editing-tools - Correct annotations and inspect image details  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device\n- [task] pi-ink-bridge-07-drafts - Save and recover editable drafts  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device\n- [task] pi-ink-bridge-08-delivery-recovery - Recover interrupted delivery without losing work  WAITING · blocked by pi-ink-bridge-07-drafts\n  - [task] pi-ink-bridge-07-drafts - Save and recover editable drafts  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n- [task] pi-ink-bridge-09-discovery - Discover servers and reconnect after network changes  WAITING · blocked by pi-ink-bridge-03-pair-device\n  - [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client\n- [task] pi-ink-bridge-10-hardware-acceptance - Verify the complete Paper Pro workflow  WAITING · blocked by pi-ink-bridge-05-inbox, pi-ink-bridge-06-editing-tools, pi-ink-bridge-08-delivery-recovery, pi-ink-bridge-09-discovery\n  - [task] pi-ink-bridge-05-inbox - Select and manage multiple inbox jobs  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-06-editing-tools - Correct annotations and inspect image details  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-08-delivery-recovery - Recover interrupted delivery without losing work  WAITING · blocked by pi-ink-bridge-07-drafts\n  - [task] pi-ink-bridge-09-discovery - Discover servers and reconnect after network changes  WAITING · blocked by pi-ink-bridge-03-pair-device",
+  "ok": true,
+  "kind": "ticket",
+  "id": "pi-ink-bridge-01-pen-prototype",
+  "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "recordSchema": "tracker-ticket/v1",
+  "legacy": false,
+  "graph": "- [task] pi-ink-bridge-01-pen-prototype - Prove Paper Pro pen input  IN PROGRESS\n- [task] pi-ink-bridge-02-install-client - Install and launch the tablet client  WAITING · blocked by pi-ink-bridge-01-pen-prototype\n  - [task] pi-ink-bridge-01-pen-prototype - Prove Paper Pro pen input  IN PROGRESS\n- [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client\n  - [task] pi-ink-bridge-02-install-client - Install and launch the tablet client  WAITING · blocked by pi-ink-bridge-01-pen-prototype\n- [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device\n  - [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client\n- [task] pi-ink-bridge-05-inbox - Select and manage multiple inbox jobs  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device\n- [task] pi-ink-bridge-06-editing-tools - Correct annotations and inspect image details  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device\n- [task] pi-ink-bridge-07-drafts - Save and recover editable drafts  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device\n- [task] pi-ink-bridge-08-delivery-recovery - Recover interrupted delivery without losing work  WAITING · blocked by pi-ink-bridge-07-drafts\n  - [task] pi-ink-bridge-07-drafts - Save and recover editable drafts  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n- [task] pi-ink-bridge-09-discovery - Discover servers and reconnect after network changes  WAITING · blocked by pi-ink-bridge-03-pair-device\n  - [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client\n- [task] pi-ink-bridge-10-hardware-acceptance - Verify the complete Paper Pro workflow  WAITING · blocked by pi-ink-bridge-05-inbox, pi-ink-bridge-06-editing-tools, pi-ink-bridge-08-delivery-recovery, pi-ink-bridge-09-discovery\n  - [task] pi-ink-bridge-05-inbox - Select and manage multiple inbox jobs  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-06-editing-tools - Correct annotations and inspect image details  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip\n  - [task] pi-ink-bridge-08-delivery-recovery - Recover interrupted delivery without losing work  WAITING · blocked by pi-ink-bridge-07-drafts\n  - [task] pi-ink-bridge-09-discovery - Discover servers and reconnect after network changes  WAITING · blocked by pi-ink-bridge-03-pair-device",
+  "graphScope": "initiative dependency graph",
+  "normalTrackerDiscovery": {
+    "tickets": 18,
+    "initiatives": 2
+  },
+  "coverage": "Resolved tracker collections; normal Markdown graph and explorer discovery"
+}

@@ -1,0 +1,21 @@
+{
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "baseline": "4614293693e7973722a6a470a761e563221a7c28",
+  "session_id": "01a19fab-5a6f-7628-a4f9-7d3cfc46a045",
+  "pane_id": "w6N:p1",
+  "files": [
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+      "sha256": "c09f7f617760b4dc839787d228a2ab2bf12ba26f1f52a6ec910124072b8db869"
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+      "sha256": "0dc1dad15002559d943f63fb73298aca68c570a9f46cefe38bb42c5798e8edc0"
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+      "sha256": "c0eb8a059db9011ceeb969c57cd8d56ff75d382fc7eb216e2c7b57dc720b8c0b"
+    }
+  ]
+}

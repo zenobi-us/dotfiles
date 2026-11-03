@@ -1,0 +1,13 @@
+{
+  "standards": {
+    "run": "8c67d5fb-3a87-41a1-b035-4cfc19be2d37",
+    "finding": "P2 stale activation proposal descriptions",
+    "resolution": "Updated lines30,37,43,49,54,78-81,101,108 before source commit."
+  },
+  "spec": {
+    "run": "6208d996-a732-4e16-929f-3d3768a3673c",
+    "finding": "P2 stale activation preconditions",
+    "resolution": "Same source documentation correction."
+  },
+  "limits": "Fresh read-only source reviews, not formal worktree review receipts or hardware proof. Review panes closed after completed signal."
+}

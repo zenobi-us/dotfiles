@@ -1,137 +1,1087 @@
----
-title: Pi Ink prototype implementation log
-type: Report
----
+# Implementation history
 
-# Implementation log
+- [implementation-0005](../events/implementation-0005.yaml) — phase-result, blocked, source `564c037546911f6e26936383b63eab9129819b97`.
+- [implementation-0008](../events/implementation-0008.yaml) — phase-result, blocked, source `564c037546911f6e26936383b63eab9129819b97`.
+- [implementation-0011](../events/implementation-0011.yaml) — phase-result, failed, source `564c037546911f6e26936383b63eab9129819b97`.
+- [implementation-0014](../events/implementation-0014.yaml) — phase-result, blocked, source `564c037546911f6e26936383b63eab9129819b97`.
+- [implementation-0017](../events/implementation-0017.yaml) — phase-result, blocked, source `ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456`.
+- [implementation-0023](../events/implementation-0023.yaml) — phase-result, completed, source `bb5df500f4a06c61ebde6073470ef5ed51f4b006`.
+- [start-0001](../events/start-0001.yaml) — phase-start, started, source `d17c0898f2219b3097f6a4e37bafd430f4c53b89`.
+- [start-0004](../events/start-0004.yaml) — phase-start, started, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-0007](../events/start-0007.yaml) — phase-start, started, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-0010](../events/start-0010.yaml) — phase-start, started, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-0013](../events/start-0013.yaml) — phase-start, started, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-0016](../events/start-0016.yaml) — phase-start, started, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-0019](../events/start-0019.yaml) — phase-start, started, source `ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456`.
+- [start-0022](../events/start-0022.yaml) — phase-start, started, source `4614293693e7973722a6a470a761e563221a7c28`.
+- [start-complete-0003](../events/start-complete-0003.yaml) — phase-complete, blocked, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-complete-0006](../events/start-complete-0006.yaml) — phase-complete, blocked, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-complete-0009](../events/start-complete-0009.yaml) — phase-complete, blocked, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-complete-0012](../events/start-complete-0012.yaml) — phase-complete, failed, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-complete-0015](../events/start-complete-0015.yaml) — phase-complete, blocked, source `564c037546911f6e26936383b63eab9129819b97`.
+- [start-complete-0018](../events/start-complete-0018.yaml) — phase-complete, blocked, source `ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456`.
+- [start-complete-0021](../events/start-complete-0021.yaml) — phase-complete, blocked, source `4614293693e7973722a6a470a761e563221a7c28`.
 
-## Current attempt — implementation-0017
+## Phase details
 
-**Status:** Full ticket blocked; repository-only clipping gate implemented and exercised. [Result](../events/implementation-0017.yaml). [Immutable snapshot](../artifacts/snapshots/pr-draft-implementation-0017.md).
+### implementation-0005
 
-**Source:** `ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456`, tree `93faf247089822a60c8cb534416997690fb989de`. The 13 source files are listed in the [source identity](../artifacts/evidence/implementation-0017/source-identity.json). The source commit includes request-bound PDF processing, explicit per-result clipping consent, durable original retention, mounted-browser state preservation, regressions, pinned dependencies, and README usage.
+```json
+{
+  "implementation_summary": "No supported end-to-end stock document interface was established in the inspected resources. No speculative adapter, alternate drawing app, or excluded device probe was added. This is a blocked implementation result, not proof that every integration is impossible.",
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0005.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "validation": [
+    {
+      "command": "mise exec -- bun install --no-save && mise exec -- bun run build",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "result": "449 installs checked; no dependency changes. Vite 7.3.6 built 2371 modules. Upstream use-client and chunk-size warnings remain."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-omp/extensions/image-annotator/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": "7 pass; 0 fail; 39 assertions across 2 files."
+    },
+    {
+      "command": "mise exec -- bun -e (inline createAnnotationServer smoke with two real HTTP servers and preserved synthetic PNG fixtures)",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": {
+        "page": 200,
+        "unauthorized": 404,
+        "cross_request_token": 404,
+        "source_matches": true,
+        "deliveries_before_send": [
+          0,
+          0
+        ],
+        "send": 200,
+        "deliveries_after_send": [
+          1,
+          0
+        ],
+        "returned_bytes_match": true,
+        "request_name": "request-0.png"
+      },
+      "scope": "Existing loopback HTTP backend only. Replayed preserved stock-editor-round-trip-001 source.png/result.png. No new tablet, LAN HTTPS/WebSocket, pairing, drawing, or export proof."
+    },
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-ink-bridge-01-pen-prototype",
+      "exit_code": 0,
+      "result": "tracker-ticket/v1 valid; claimed; no direct blockers; downstream production tickets remain waiting."
+    },
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json (from base, before result)",
+      "exit_code": 0,
+      "result": "historyValid=true; unique clean source matches parent commit/tree. The active child uses start-0004 approval; no duplicate implementer launched."
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "stock-library-access",
+      "description": "The inspected interfaces do not establish safe registration of a received image/PDF and a server folder in the normal stock library. A filesystem folder or image sticker is not that registration.",
+      "required_evidence": "A safe stock operation on the tested firmware that accepts the received synthetic source and yields a stable document/folder identity visible through normal tablet operations."
+    },
+    {
+      "id": "current-document-output",
+      "description": "The community QMD has hashed current-document navigation and toolbar insertion. It does not establish authoritative document identity through switches or a full annotated export with source geometry.",
+      "required_evidence": "A firmware-specific editor interface that binds Send to the current document, saves visible marks, and returns the full annotated document without private live notebook access, USB-web prerequisites, runtime SSH, or cloud transport."
+    },
+    {
+      "id": "owner-hardware-gate",
+      "description": "No revised toolbar/client is installed. This session has no owner-operated device observations or verdict.",
+      "required_evidence": "After the integration prerequisites are established, the owner must perform the acceptance sequence in the immutable draft. Builds, HTTP replay, and protocol peers cannot supply this verdict."
+    }
+  ]
+}
+```
 
-**Validation:** Build and typecheck passed. Final suite: 13 tests, 100 assertions, zero failures. Actual image_editor/browser submission stayed pending before consent, then delivered a marked 800 × 1000 PNG. Four marker regions match source pixels. The full PDF remains retrievable after server close. Browser drawing state survived PDF mode and returned through the ordinary PNG tool path. Missing offline dependencies produced an explicit error without image delivery.
+### implementation-0008
 
-**Self-check resolutions:** Fixed mode-switch drawing loss, known invisible/empty paint false prompts, post-decode size guards, and obsolete processing after cancellation. Original standards/spec reports remain preserved. No formal review verdict is claimed.
+```json
+{
+  "implementation_summary": "Read-only installed firmware inspection recovered native importFromUrls and createCollection signatures, stock current-document binding and integration-target export callsites. No safe local annotated-export initiation contract or runtime accessibility proof established. No source implementation, device mutation or acceptance pass claimed.",
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0008.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "validation": [
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "historyValid=true; unique clean source at 564c0375 / 57df0dbb; current start-0007 dispatch uses recorded scoped approval."
+    },
+    {
+      "command": "timeout 15 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'printf \"READ_ONLY_FIRMWARE\\n\"; cat /etc/os-release; command -v xochitl'",
+      "exit_code": 0,
+      "output": "Codex Linux 5.8.203 (scarthgap); IMG_VERSION=\"3.28.0.172\"; /usr/bin/xochitl"
+    },
+    {
+      "command": "timeout 25 ssh ... root@10.11.99.1 'sha256sum /usr/bin/xochitl; stat -c \"%s %n\" /usr/bin/xochitl; find /usr/share/remarkable /usr/lib /opt /home/root/xovi -maxdepth 3 -type f (resource filters)'",
+      "exit_code": 1,
+      "output": "xochitl sha256 b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021; size 24705704; XOVI hashtab and bluetooth.rcc found. Missing search roots produced exit 1; SSH and binary reads succeeded.",
+      "note": "Ellipsis and resource filters summarize the command; transcript retains the exact invocation."
+    },
+    {
+      "command": "timeout 40 scp -O -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1:/usr/bin/xochitl /tmp/pi-ink-0008-xochitl && timeout 20 scp -O -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/hashtab /tmp/pi-ink-0008-hashtab && file /tmp/pi-ink-0008-xochitl /tmp/pi-ink-0008-hashtab",
+      "exit_code": 0,
+      "output": "ELF 64-bit ARM aarch64, stripped, BuildID aae326b4f843a6672b1aee940bfb2736dacdbb2a; hashtab data."
+    },
+    {
+      "command": "readelf -SW /tmp/pi-ink-0008-xochitl",
+      "exit_code": 0,
+      "output": ".rodata offset 0xca4700 size 0x85dfb8; .data.rel.ro offset 0x175d530; .data offset 0x1766260; 31 section headers."
+    },
+    {
+      "command": "Offline Python eval: decode hashtab >QI length records; decode Qt revision-13 metadata and zstd QML with ctypes libzstd",
+      "exit_code": 0,
+      "output": "20299 hash records; 867 zstd magic occurrences; 624 QML payload candidates including plain payloads; native-interfaces.json retains only needed method tables and QML excerpts."
+    },
+    {
+      "command": "timeout 20 ssh ... root@10.11.99.1 'find /home/root/xovi ... -printf ...; find /opt ... -printf ...; sha256sum ...'",
+      "exit_code": 0,
+      "output": "BusyBox find rejects -printf. Final sha256sum succeeded. Corrected read-only -print command follows.",
+      "note": "Shell aggregate status 0 does not mean both find calls succeeded."
+    },
+    {
+      "command": "timeout 20 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'find /home/root/xovi -maxdepth 2 -type f ! -name \"*.log\" ! -name \"hashtab\" -print; find /opt -maxdepth 3 -type f -name \"*appload*\" -print'",
+      "exit_code": 1,
+      "output": "XOVI xovi.so, start/stock, extensions.d/appload.so, qt-resource-rebuilder.so, qt-command-executor.so, xovi-message-broker.so, literm.so and fix-ebook-links.so present; /opt absent."
+    },
+    {
+      "command": "timeout 15 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 'cat /home/root/xovi/start /home/root/xovi/stock; sha256sum /home/root/xovi/xovi.so /home/root/xovi/extensions.d/qt-resource-rebuilder.so /home/root/xovi/extensions.d/appload.so'",
+      "exit_code": 0,
+      "output": "Read scripts only; start adds LD_PRELOAD service overrides and restarts configured services; stock removes overrides and restarts. Neither executed. XOVI sha256 d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446; rebuilder 6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f; AppLoad 5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad."
+    },
+    {
+      "command": "herdr agent get w6E:p3",
+      "exit_code": 0,
+      "result": "Fresh omp session 01a19bf2-0098-73c8-a1de-9b39f904a27e in source worktree; no descendants launched."
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "stock-library-access",
+      "description": "Native importFromUrls and createCollection signatures found in installed firmware. Runtime access, returned identities, successful synthetic receipt and normal library visibility remain unproven."
+    },
+    {
+      "id": "current-document-output",
+      "description": "Stock root.document binding and current-document export callsite recovered. Safe local export initiation, annotation flush ordering, dimensions, live ownership and cancellation remain unproven."
+    },
+    {
+      "id": "owner-hardware-gate",
+      "description": "No revised client or toolbar installed. All owner-operated LAN, pen, palm, geometry, isolation, save/Send and editable-work gates remain unpassed."
+    }
+  ]
+}
+```
 
-**Remaining questions:** Tablet pairing/LAN transport, folder/document/server/job associations, live current-document toolbar Send, tablet cancellation/isolation, owner quality with toolbar, and lifecycle acceptance. Owner reports disabling auto-sleep after the device slept; the agent did not verify the setting or access the device.
+### implementation-0011
 
-**Evidence:** [Summary](../artifacts/evidence/implementation-0017/summary.json), [final tests](../artifacts/evidence/implementation-0017/isolated-final-tests.log), [live geometry and drawing proof](../artifacts/evidence/implementation-0017/final-smoke/output-verification.json), [review resolutions](../artifacts/evidence/implementation-0017/review-resolutions.json), and [owner observation](../artifacts/evidence/implementation-0017/owner-device-observation.json).
+```json
+{
+  "implementation_summary": "ARM64 build and named extension install/hash check succeeded. Device lacks timeout. The first load-restart wrapper failed before systemctl ran. Trap removed probe but its restart wrapper also failed. A host-bounded recovery command then restarted only xochitl once and verified full restoration. No probe execution or runtime accessibility proof.",
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/build.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/execution.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/restoration.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/cleanup.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0011/validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0011.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "validation": [
+    {
+      "command": "BASE shared-context resolve workflow/evidence/ticket and inspect canonical ticket --json",
+      "result": "Passed. Independently resolved repository stores; historyValid=true; clean unique frozen source. Parent dispatch owns orchestration."
+    },
+    {
+      "command": "podman run --rm --network none -v /tmp/pi-ink-0011:/build:Z -w /build docker.io/eeems/remarkable-toolchain:latest-rmpp bash -c 'source /opt/codex/*/*/environment-setup-* && qmake probe.pro && make -j2'",
+      "exit_code": 0,
+      "result": "ELF 64-bit LSB shared object, ARM aarch64, dynamically linked; BuildID 759ffbdead1bc33d717f76db275bb27b05bc2e97"
+    },
+    {
+      "command": "file, readelf -d and --dyn-syms, sha256sum temporary probe; installed Qt library-name inspection",
+      "exit_code": 0,
+      "result": "ARM64, XOVI exports, Qt_6.10; installed Qt 6.10.3. Source reviewed locally; no native operations/document values in probe."
+    },
+    {
+      "command": "python /tmp/pi-ink-0011/run-probe.py (SSH deployment script retained in execution.json)",
+      "exit_code": 91,
+      "result": "Installed only named probe; verified its hash. Missing target timeout blocked both restart wrappers. Trap removed probe. No runtime metadata collected."
+    },
+    {
+      "command": "Host timeout 45 SSH: confirm probe absent; systemctl restart xochitl; sleep 8; is-active and allowlisted baseline hash/listing checks",
+      "exit_code": 0,
+      "result": "Mandatory restoration completed: active; probe absent; stock/extensions/config hashes unchanged."
+    },
+    {
+      "command": "Read-only final cable SSH metadata snapshot, compared byte-for-byte with pre-install snapshot",
+      "exit_code": 0,
+      "result": "Equal. See restoration.json exact final command/output."
+    },
+    {
+      "command": "rm -rf /tmp/pi-ink-0011 && podman rmi docker.io/eeems/remarkable-toolchain:latest-rmpp",
+      "exit_code": 0,
+      "result": "Disposable host source, binaries, build payloads and newly pulled toolchain image removed."
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "probe-runtime-access",
+      "description": "Renewed scoped approval and saved/closed-document confirmation are needed for another install/load-restart/remove/rollback-restart cycle. Use host-side command deadlines; do not assume target timeout exists."
+    },
+    {
+      "id": "current-document-output",
+      "description": "unknown; prior static signatures require registered navigation destinations, not local output paths. No import/export invocation authorized or performed."
+    },
+    {
+      "id": "owner-hardware-gate",
+      "description": "No pairing, authenticated LAN transfer, stock library receipt, marked PNG, dimensions, editable-work preservation, save/Send, cancellation, request isolation, pen quality, palm, edge or orientation acceptance passed."
+    }
+  ]
+}
+```
 
-## Complete canonical receipt history
+### implementation-0014
 
-- **start-0001:** started. [Receipt](../events/start-0001.yaml).
-- **start-complete-0003:** blocked. [Receipt](../events/start-complete-0003.yaml).
-- **start-0004:** started. [Receipt](../events/start-0004.yaml).
-- **implementation-0005:** blocked. [Receipt](../events/implementation-0005.yaml).
-- **start-complete-0006:** blocked. [Receipt](../events/start-complete-0006.yaml).
-- **start-0007:** started. [Receipt](../events/start-0007.yaml).
-- **implementation-0008:** blocked. [Receipt](../events/implementation-0008.yaml).
-- **start-complete-0009:** blocked. [Receipt](../events/start-complete-0009.yaml).
-- **start-0010:** started. [Receipt](../events/start-0010.yaml).
-- **implementation-0011:** failed. [Receipt](../events/implementation-0011.yaml).
-- **start-complete-0012:** failed. [Receipt](../events/start-complete-0012.yaml).
-- **start-0013:** started. [Receipt](../events/start-0013.yaml).
-- **implementation-0014:** blocked. [Receipt](../events/implementation-0014.yaml).
-- **start-complete-0015:** blocked. [Receipt](../events/start-complete-0015.yaml).
-- **start-0016:** started. [Receipt](../events/start-0016.yaml).
-- **implementation-0017:** blocked. [Receipt](../events/implementation-0017.yaml).
+```json
+{
+  "implementation_summary": "Bounded real Paper Pro experiment proved private loopback stock service plus authenticated cable-free annotated PDF export and one synthetic import. Owner reports normal-library visibility/open and preserved editable marks. Expanded actual PDF geometry fails source-dimension PNG acceptance; no pairing/folder/current-document toolbar or originating Pi/OMP integration implemented. Temporary code removed; original pre-existing proxy restored exactly by explicit owner choice; complete baseline verified. Full ticket remains claimed and production blocked.",
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/activation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/adapter-build.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/adapter-hashes.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/approval.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cable-free-outcome.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cable-reseat.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cleanup-cable-blocker.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/cleanup.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/client-ready.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/client-start.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/device-cleanup-after-reseat.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/device-cleanup.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/endpoint-verification-corrected.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/endpoint-verification.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/explicit-send.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/geometry-limit.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/listener-attribution.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/native-page.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/native-render.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/owner-observations.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/payload-hashes.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/pdf-render.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/preflight-gates.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/preinstall-baseline.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/quarantine.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/receiver-smoke.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-baseline.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-final.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result.pdf",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/result.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/revised-approval-proposal.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/revised-approval.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/revised-precheck.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/staging.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/tablet-reports.jsonl",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/temporary-source-audit.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/tls-boundary-smoke.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/transport-build.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/upstream-assessment.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/visible-marks.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0014.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "validation": [
+    {
+      "command": "Podman RMPP SDK make XOVI_REPO=/xovi -j2",
+      "result": "passed",
+      "evidence": "adapter-build.json"
+    },
+    {
+      "command": "go build desktop; GOOS=linux GOARCH=arm64 CGO_ENABLED=0 go build tablet; go vet transport.go",
+      "result": "passed",
+      "evidence": "transport-build.json"
+    },
+    {
+      "command": "Actual desktop LAN TLS source/control/result boundary probes",
+      "result": "401 unauthenticated source/control; 200 pinned source; 409 wrong origin; untrusted cert rejected",
+      "evidence": [
+        "receiver-smoke.json",
+        "tls-boundary-smoke.json"
+      ]
+    },
+    {
+      "command": "Approved cable setup load and loopback endpoint/listener checks",
+      "result": "passed after unsupported journalctl --grep replaced with exact-marker output filter; one load restart",
+      "evidence": [
+        "activation.json",
+        "endpoint-verification.json",
+        "endpoint-verification-corrected.json"
+      ]
+    },
+    {
+      "command": "Owner explicit Send over WSS; actual local stock PDF export and authenticated HTTPS upload with USB disconnected",
+      "result": "passed bounded export feasibility; actual annotated PDF 137198 bytes; no Pi/OMP tool completion",
+      "evidence": [
+        "explicit-send.json",
+        "cable-free-outcome.json",
+        "result.pdf",
+        "native-page.png"
+      ]
+    },
+    {
+      "command": "pdfinfo -box actual export; native 72DPI render",
+      "result": "geometry failed source-size gate: 960.076x1121.92 points; native PNG961x1122; forced800x1000 disqualified",
+      "evidence": [
+        "pdf-render.json",
+        "geometry-limit.json",
+        "native-render.json",
+        "visible-marks.json"
+      ]
+    },
+    {
+      "command": "One authenticated synthetic transfer and tablet-local stock upload",
+      "result": "HTTP201 with USB disconnected; owner reports library visible/opens and original annotations remain editable; UUID/folder/isolation not proved",
+      "evidence": [
+        "cable-free-outcome.json",
+        "owner-observations.json"
+      ]
+    },
+    {
+      "command": "Exact branch A cleanup, final Xochitl restart and baseline comparison",
+      "result": "passed after owner cable reseat; original proxy hash/metadata restored; stock/loader/extensions/config/listener set equal; temporary paths absent",
+      "evidence": [
+        "device-cleanup.json",
+        "cleanup-cable-blocker.json",
+        "cable-reseat.json",
+        "device-cleanup-after-reseat.json",
+        "restoration-baseline.json",
+        "restoration-comparison.json",
+        "restoration-final.json"
+      ]
+    },
+    {
+      "command": "Remove owned disposable source, runtime credentials, dependency clone, newly pulled toolchain image; stop receiver",
+      "result": "passed",
+      "evidence": "cleanup.json"
+    },
+    {
+      "command": "git show -s --format='%H%n%T%n%D' HEAD && git status --porcelain && git ls-files -u",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+      "result": "clean unchanged source; no unmerged paths; 564c037546911f6e26936383b63eab9129819b97 / 57df0dbb0fb91fa3da0716f1c3a62460906c96eb"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "source-geometry",
+      "description": "Annotated export expands MediaBox/CropBox to [-31.51,-121.92,928.57,1000]. Original source 800x1000. No accepted source-window mapping; forced scale is disqualified. Source-dimension aligned PNG gate remains blocked."
+    },
+    {
+      "id": "document-folder-associations",
+      "description": "Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented."
+    },
+    {
+      "id": "current-document-toolbar",
+      "description": "No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof."
+    },
+    {
+      "id": "origin-cancellation-delivery",
+      "description": "Actual PDF accepted only for fixed diagnostic server/job; wrong-origin receiver request rejected. No originating Pi/OMP tool request integrated; production cancellation, document switching and wrong-server isolation untested."
+    },
+    {
+      "id": "owner-quality-lifecycle",
+      "description": "Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested."
+    }
+  ]
+}
+```
 
-## Preserved prior implementation log — historical
+### implementation-0017
 
-# Implementation log
+```json
+{
+  "summary": "Implemented the real image_editor request-server/browser stock-PDF submission seam with source-bound visible out-of-bounds detection, per-export explicit clipping confirmation, exact source-sized delivery, durable full-PDF retention, stale/cancellation isolation, and preserved browser drawing state. Full tablet prototype acceptance remains blocked.",
+  "changed_files": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/PdfImport.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/main.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/style.css",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/editing-session.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-fixtures.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-samples.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-resolutions.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/isolated-final-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke-driver.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/visibility-fixed-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/review-fixed-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/geometry-verification.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/spec-self-check.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/standards-self-check.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/session-identity.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-smoke.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/output-verification.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/verify-output.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/validation-commands.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-tests.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-typecheck.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-build.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/browser-upload-errors.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/canonical-clipping-policy.mq-output.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/smoke-process.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/initial-validation.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-browser.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/retained-annotated.pdf",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/png-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-analysis.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/confirmation.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/pdf-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/smoke-driver.ts",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/extract-source.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source-identity.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/summary.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/owner-device-observation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source-commit.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/process.log",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/verify-output.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/retained-annotated.pdf",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/drawing-after.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/drawing-before.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/delivered.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/png-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-tool-result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-delivered.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-analysis.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/confirmation.webp",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/pdf-url.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/source.png",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/link-validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/checksums.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0017.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+  ],
+  "validation": [
+    {
+      "command": "bun run build",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "passed",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-build.log",
+      "warnings": "Existing use-client directives and large chunks."
+    },
+    {
+      "command": "bunx tsc --noEmit",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "passed",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/accepted-typecheck.log"
+    },
+    {
+      "command": "bun test test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "13 passed, 0 failed, 100 assertions",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/isolated-final-tests.log"
+    },
+    {
+      "command": "bun final-smoke-driver.ts + managed Chromium UI interactions",
+      "result": "Actual image_editor remained pending at clipping confirmation; explicit consent returned marked 800x1000 PNG. Ordinary marked PNG delivery and drawing preservation across PDF mode passed. Both tabs closed. Launcher only was intercepted; production request/PDF/consent/delivery code ran.",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/process.log"
+    },
+    {
+      "command": "uv run --offline --script final-smoke/verify-output.py",
+      "result": "800x1000; actual annotations differ from source; four 40x40 corners exact; full original retrieved after shutdown and matches SHA-256 fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf; ordinary PNG contains drawing after PDF-mode round trip.",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.json"
+    },
+    {
+      "command": "bun offline-dependency-smoke.ts with empty UV_CACHE_DIR",
+      "result": "Explicit HTTP500 pinned-renderer dependency failure; no image delivered; uv network disabled.",
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/offline-dependency-result.json"
+    }
+  ],
+  "open_questions": [
+    "Real tablet pairing and authenticated LAN transport",
+    "Stable stock-library folder/document/server/job association",
+    "Live current-document resolution and editor toolbar Send",
+    "Tablet wrong-document/wrong-server cancellation and isolation",
+    "Owner pen/palm/zoom/undo/erasing/orientation verdict with toolbar and lifecycle tests",
+    "Unsupported mappings are rejected rather than generalized; conservative uncertainty requires confirmation.",
+    "Owner disabled auto-sleep after a sleep event. This is an unverified owner setting change, not lifecycle acceptance."
+  ]
+}
+```
 
-## Current attempt — implementation-0014
+### implementation-0023
 
-**Status:** Blocked. [Result](../events/implementation-0014.yaml). [Immutable snapshot](../artifacts/snapshots/pr-draft-implementation-0014.md).
+```json
+{
+  "implementation_summary": "Source-only latest native UI revision completed; hardware acceptance and restoration remain blocked. Global last-top-section/idempotent dynamic-width manager; document immediately above TOC with native compact foldout.",
+  "changed_files": [
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json"
+  ],
+  "validation": [
+    {
+      "name": "build",
+      "command": [
+        "bun",
+        "run",
+        "build"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "build.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "bunx",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "typecheck.log"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "bun",
+        "test",
+        "test"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "tests.log"
+    },
+    {
+      "name": "go-race",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "./..."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet",
+      "exit_code": 0,
+      "log": "go-race.log"
+    },
+    {
+      "name": "native-context QMLDiff",
+      "result": "13 QMDs, all five native contexts passed; original12 hashes verified"
+    },
+    {
+      "name": "Qt AST",
+      "result": "component and five generated contexts passed"
+    },
+    {
+      "name": "actual UI handler JavaScript",
+      "result": "passed; offline only"
+    }
+  ],
+  "open_questions": [
+    "Private stock QML types cannot be instantiated with available SDK. Owner must verify native geometry, warning text, input, close and orientations under fresh exact device approval.",
+    "Hardware association/Send acceptance remains blocked.",
+    "Original proxy remains quarantined at last observation; original restoration#4 needs renewed saved/closed and USB confirmation. Credentials/experiment cleanup not complete."
+  ]
+}
+```
 
-**Changed files:** No permanent source changes. Temporary adapter/client removed. BASE evidence run, receipt, snapshot, manifest, and projections only.
+### start-0001
 
-**Validation:** Cross-builds and go vet passed; actual private-loopback cable-free annotated PDF export and one import passed. Geometry/source-size gate failed. Owner reports library visibility/open and editable-work preservation. Device restoration passed; exact original proxy restored by owner choice. [Validation](../artifacts/evidence/implementation-0014/validation.json).
+```json
+{
+  "validation": [
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; tracker-ticket/v1; no direct blockers"
+    },
+    {
+      "command": "git status --short",
+      "result": "clean before worktree creation"
+    },
+    {
+      "command": "herdr worktree list --cwd /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --json",
+      "result": "only master checkout before recovery"
+    },
+    {
+      "command": "wt switch prototype/pi-ink-bridge-01-pen-prototype --no-cd --format json",
+      "result": "created existing-branch checkout without creating or resetting branch"
+    }
+  ]
+}
+```
 
-**Unresolved questions:**
-- **source-geometry:** Annotated export expands MediaBox/CropBox to [-31.51,-121.92,928.57,1000]. Original source 800x1000. No accepted source-window mapping; forced scale is disqualified. Source-dimension aligned PNG gate remains blocked.
-- **document-folder-associations:** Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented.
-- **current-document-toolbar:** No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof.
-- **origin-cancellation-delivery:** Actual PDF accepted only for fixed diagnostic server/job; wrong-origin receiver request rejected. No originating Pi/OMP tool request integrated; production cancellation, document switching and wrong-server isolation untested.
-- **owner-quality-lifecycle:** Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested.
+### start-0004
 
-## Complete receipt history
+```json
+{
+  "validation": [
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; tracker-ticket/v1; no direct blockers"
+    },
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json",
+      "result": "historyValid=true; clean unique source; start takeover; requiredApproval=true"
+    }
+  ]
+}
+```
 
-- **start-0001:** started. [Receipt](../events/start-0001.yaml).
-- **start-complete-0003:** blocked. [Receipt](../events/start-complete-0003.yaml).
-- **start-0004:** started. [Receipt](../events/start-0004.yaml).
-- **implementation-0005:** blocked. [Receipt](../events/implementation-0005.yaml).
-- **start-complete-0006:** blocked. [Receipt](../events/start-complete-0006.yaml).
-- **start-0007:** started. [Receipt](../events/start-0007.yaml).
-- **implementation-0008:** blocked. [Receipt](../events/implementation-0008.yaml).
-- **start-complete-0009:** blocked. [Receipt](../events/start-complete-0009.yaml).
-- **start-0010:** started. [Receipt](../events/start-0010.yaml).
-- **implementation-0011:** failed. [Receipt](../events/implementation-0011.yaml).
-- **start-complete-0012:** failed. [Receipt](../events/start-complete-0012.yaml).
-- **start-0013:** started. [Receipt](../events/start-0013.yaml).
-- **implementation-0014:** blocked. [Receipt](../events/implementation-0014.yaml).
+### start-0007
 
-## Preserved prior implementation log — historical
+```json
+{
+  "validation": [
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; tracker-ticket/v1; no direct blockers"
+    },
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json",
+      "result": "historyValid=true; clean unique source; start takeover; requiredApproval=true"
+    }
+  ]
+}
+```
 
-# Implementation log
+### start-0010
 
-## Preserved events
+```json
+{
+  "validation": [
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; tracker-ticket/v1; no direct blockers"
+    },
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json",
+      "result": "historyValid=true; clean unique source; start takeover; requiredApproval=true"
+    }
+  ]
+}
+```
 
-- **implementation-0005:** implementation / phase-result / blocked. Source `564c037546911f6e26936383b63eab9129819b97`, tree `57df0dbb0fb91fa3da0716f1c3a62460906c96eb`. [Receipt](../events/implementation-0005.yaml).
-- **start-0001:** start / phase-start / started. Source `d17c0898f2219b3097f6a4e37bafd430f4c53b89`, tree `2efb55acf06f28c841e176399c74a7f8d4c2467f`. [Receipt](../events/start-0001.yaml).
-- **start-0004:** start / phase-start / started. Source `564c037546911f6e26936383b63eab9129819b97`, tree `57df0dbb0fb91fa3da0716f1c3a62460906c96eb`. [Receipt](../events/start-0004.yaml).
-- **start-complete-0003:** start / phase-complete / blocked. Source `564c037546911f6e26936383b63eab9129819b97`, tree `57df0dbb0fb91fa3da0716f1c3a62460906c96eb`. [Receipt](../events/start-complete-0003.yaml).
+### start-0013
 
-## Attempt 1 — source-local result
+```json
+{
+  "validation": [
+    {
+      "command": "records.ts check --repository BASE --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; tracker-ticket/v1; claimed; no direct blockers"
+    },
+    {
+      "command": "inspect.ts canonical-ticket --json",
+      "result": "start/takeover; requiredApproval=true; historyValid=true; unique clean source"
+    }
+  ]
+}
+```
 
-The blocked implementation-0002 remains in the source checkout. Its merge reconciled the archived custom drawing source with the revised stock-editor requirements. It added no replacement stock-editor integration. It reported build success, 7 passing tests with 39 assertions, an existing browser HTTP smoke, and firmware 3.28.0.172 installation preflight. Those were not tablet acceptance. Its historical root mismatch remains preserved, not repaired. The base parent completion records its unusable result.
+### start-0016
 
-Result: `/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0002.yaml`. Findings: `/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-hooks-001/findings.json`. Snapshot: `/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0002.md`.
+```json
+{
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json",
+      "result": "start/takeover; historyValid=true; clean unique unchanged source; parent start-complete-0015"
+    },
+    {
+      "command": "records.ts check --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; claimed; no direct blockers"
+    }
+  ]
+}
+```
 
-## Attempt 2 — implementation-0005
+### start-0019
 
-No source files changed. Exact parent source commit/tree were retained. New evidence records bounded source-interface inspection, the existing browser build, 7 tests/39 assertions, and a two-server real HTTP smoke. It does not report new hardware, pairing, authenticated LAN WebSocket/HTTPS, or stock export acceptance. No excluded device probes ran.
+```json
+{
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json",
+      "result": "historyValid=true; start/takeover; clean unique source ff9ec2a2/tree93faf247; parent start-complete-0018"
+    },
+    {
+      "command": "records.ts check --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; claimed; no direct blockers"
+    },
+    {
+      "command": "herdr agent list; coordinator reservation search",
+      "result": "current parent retains ownership; no source implementer or matching goal reservations"
+    }
+  ]
+}
+```
 
-Changed records:
+### start-0022
 
-- **Record:** `workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/stock-editor-attempt-002/findings.json`.
-- **Record:** `workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml`.
-- **Record:** `workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0005.md`.
-- **Record:** `workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml`.
-- **Record:** `workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md`.
-- **Record:** `workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md`.
-- **Record:** `workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml`.
+```json
+{
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json after completion0021",
+      "result": "historyValid=true; start/takeover; parent start-complete-0021; clean46142936/tree514e1d89"
+    },
+    {
+      "command": "records.ts check --ticket pi-ink-bridge-01-pen-prototype",
+      "result": "passed; claimed; no direct blockers"
+    },
+    {
+      "command": "herdr agent list and previous session ending; coordinator reservation search",
+      "result": "no source agent; old session normal exit; no matching goal reservations"
+    }
+  ]
+}
+```
 
-## Review history and unresolved questions
+### start-complete-0003
 
-The canonical ticket retains all earlier independent review comments. The native pen gate failed. Stock-editor feasibility had five acceptance limits. Cable-free diagnostic evidence passed only its diagnostic scope. No current implementation SUCCESS or formal worktree review exists.
+```json
+{
+  "validation": [
+    {
+      "command": "herdr agent wait w80:p1 --until done --until blocked; herdr agent get w80:p1",
+      "result": "done; completion_seq 1567; fresh session 01a199e2-33c1-70d3-a2bc-b342f4e500ee"
+    },
+    {
+      "command": "git show -s --format=%H,%T,%P cd02b747 564c0375",
+      "result": "recorded source/tree and merge parents match; archived d17c0898 remains first parent of reconciliation merge"
+    },
+    {
+      "command": "parent read implementation-0002, findings, snapshot and projections",
+      "result": "blocked result and explicit acceptance gaps; no integration source added; immutable result retained in child checkout"
+    },
+    {
+      "command": "child validation recorded in implementation-0002",
+      "result": "7 tests pass with 39 assertions after asset build; real browser HTTP smoke returns matching PNG only after explicit Done; read-only installation preflight observes firmware 3.28.0.172. These do not prove tablet acceptance."
+    },
+    {
+      "command": "base worktree inspect.ts before parent completion",
+      "result": "historyValid true for base start receipt; source available/clean at 564c0375; child result absent from base workflow store. No duplicate launched."
+    }
+  ],
+  "failure_reason": "Revised stock-library/current-document/annotated-output integration is unverified; hardware gate unexecuted. Child result exists in retained source checkout, but cross-worktree receipt validation rejects its repository and parent workflow.root. No successful implementation or review is asserted.",
+  "result_missing": false
+}
+```
 
-Stock-library registration, authoritative current-document ownership, actual annotated output, and owner hardware acceptance remain unresolved. No new finding was cleared. Do not infer support outside prior tested firmware 3.28.0.172. See the [current draft](pr-draft.md) for exact owner operations and [fresh findings](../artifacts/evidence/stock-editor-attempt-002/findings.json) for validation.
+### start-complete-0006
 
+```json
+{
+  "validation": [
+    {
+      "command": "herdr agent wait w6E:p2 --until done --until blocked --timeout 3600000",
+      "result": "done; completion_seq 68; fresh child session 01a19b12-31f7-719e-aa62-e10958cfc418"
+    },
+    {
+      "command": "Parent reads implementation-0005, findings.json, immutable draft and implementation log",
+      "result": "Valid blocked result; matching source identity and bounded validation; no new tablet or firmware acceptance claimed."
+    },
+    {
+      "command": "inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json from canonical base",
+      "result": "historyValid=true; unique clean source matches exact frozen commit/tree; start/reconcile selects parent completion."
+    },
+    {
+      "command": "Child build, existing suite and real two-server HTTP smoke (recorded in implementation-0005)",
+      "result": "Build passed; 7 tests passed with 39 assertions; loopback HTTP confirms token isolation and exact PNG delivery only after explicit submission. Not tablet acceptance."
+    },
+    {
+      "command": "herdr pane close w6E:p2",
+      "result": "ok; child pane closed; worktree/workspace preserved"
+    }
+  ],
+  "failure_reason": "Inspected resources do not establish safe stock-library registration, authoritative current-document identity and full annotated export. No revised client/toolbar or owner-operated hardware acceptance. Implementation is not complete.",
+  "result_missing": false
+}
+```
 
+### start-complete-0009
 
-## Attempt 3 — implementation-0008
+```json
+{
+  "validation": [
+    {
+      "command": "Read implementation-0008, findings.json, native-interfaces.json and immutable draft",
+      "result": "Matching exact unchanged source; native importFromUrls/createCollection metadata and stock DocumentView binding recovered from firmware 3.28.0.172; safe local export initiation remains unresolved. No source/device mutation or acceptance asserted."
+    },
+    {
+      "command": "inspect.ts canonical ticket --json from base",
+      "result": "historyValid=true; unique clean frozen source; start/reconcile selects parent completion."
+    },
+    {
+      "command": "herdr agent wait/get and pane list",
+      "result": "Wait returned agent_not_running; get agent_not_found; pane list retained stale idle agent identity. Reported inconsistency. No duplicate launched."
+    },
+    {
+      "command": "Read final child session JSONL entries 202-204",
+      "result": "Final blocked response and normal session_exit reason=dispose recorded at 2026-11-02T11:28:21.282Z; child commit tool output records 7c55e7c9."
+    },
+    {
+      "command": "herdr pane close w6E:p3",
+      "result": "ok; child pane closed; worktree/workspace preserved."
+    },
+    {
+      "command": "mq okf_extract_links corrected snapshot",
+      "result": "12 links; all relative targets exist. Appended corrected snapshot rather than changing immutable original with incorrect ../ links."
+    },
+    {
+      "command": "Host-only temporary firmware-copy cleanup",
+      "result": "/tmp/pi-ink-0008-xochitl and /tmp/pi-ink-0008-hashtab already absent. No device cleanup needed: no mutation performed."
+    }
+  ],
+  "failure_reason": "Native signatures/context recovered statically; runtime accessibility and safe local annotated-export start contract remain unproved. Device metadata probe requires separate installation/restart approval.",
+  "result_missing": false
+}
+```
 
-No source files changed. Cable SSH inspected firmware 3.28.0.172 read-only. Offline Qt metadata and compressed QML establish native import, folder, and current-editor context candidates. Local annotated export-start, flush ordering, geometry, and runtime access remain unproven. No device mutation or notebook access occurred. No browser validation was repeated.
+### start-complete-0012
 
-Changed records: [receipt](../events/implementation-0008.yaml), [interface extracts](../artifacts/evidence/implementation-0008/native-interfaces.json), [findings and approval scope](../artifacts/evidence/implementation-0008/findings.json), [snapshot](../artifacts/snapshots/pr-draft-implementation-0008.md), manifest, and all three projections.
+```json
+{
+  "validation": [
+    {
+      "command": "herdr agent wait w6G:p2 --until done --until blocked --timeout 3600000",
+      "result": "done; completion_seq 95; child session 01a19c0f-dc6c-7633-a19b-b9544b2519fe"
+    },
+    {
+      "command": "Read implementation-0011, execution.json, restoration.json and child output",
+      "result": "Failed pre-load wrapper; no runtime probe. Build/install succeeded. Child workflow commit 050387d3; temporary build/source/image removed. Device restoration recorded."
+    },
+    {
+      "command": "Compare restoration verification stdout FINAL_SNAPSHOT with recorded preinstall baseline",
+      "result": "Exact byte equality; verification exit 0; xochitl active and probe absent; pre-existing extension/stock/config hashes/listing match; no cleanup remains."
+    },
+    {
+      "command": "mq okf_extract_links immutable implementation-0011 snapshot",
+      "result": "18 links; all relative targets exist."
+    },
+    {
+      "command": "inspect.ts canonical ticket --json from base before completion",
+      "result": "historyValid=true; unique unchanged clean source; start/reconcile selected."
+    },
+    {
+      "command": "herdr pane close w6G:p2",
+      "result": "ok; child pane closed; source worktree preserved."
+    }
+  ],
+  "failure_reason": "Deployment script incorrectly assumed target timeout executable. Probe installed but load restart did not execute. Mandatory host-bounded recovery removed probe and restarted only xochitl once; full baseline restored. No runtime metadata collected.",
+  "result_missing": false
+}
+```
 
-Parent reconciliation: [start-complete-0006](../events/start-complete-0006.yaml). Current authorization: [start-0007](../events/start-0007.yaml). All previous implementation and review history above remains retained. No finding is cleared. Next human decision: approve or reject the metadata-only extension and two owner-safe Xochitl restarts. This does not approve synthetic import/export or satisfy hardware acceptance.
+### start-complete-0015
 
+```json
+{
+  "validation": [
+    {
+      "command": "herdr agent wait w6H:p1 --until done --until blocked --timeout 3600000",
+      "result": "done; completion_seq146; fresh session01a19ddf-460c-766e-aa9f-bf07b55eb945"
+    },
+    {
+      "command": "Read child phase-result, immutable snapshot, cable-free outcome and restoration records",
+      "result": "Valid blocked result; real disconnected export/import; all restoration comparisons true; final device command exit0, RESTORATION_COMPLETE; no cleanup remains"
+    },
+    {
+      "command": "Visual inspection native-page.png",
+      "result": "Red strokes on synthetic grid and beyond source boundary. Native961x1122; forced800x1000 diagnostic not accepted."
+    },
+    {
+      "command": "mq okf_extract_links for immutable snapshot and generated Markdown projections; resolve from each actual parent directory",
+      "result": [
+        {
+          "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0014.md",
+          "links": 64,
+          "missing": []
+        },
+        {
+          "path": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+          "links": 94,
+          "missing": []
+        },
+        {
+          "path": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+          "links": 37,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "command": "inspect.ts canonical ticket --json before reconciliation",
+      "result": "historyValid=true; start/reconcile; clean unchanged unique source commit564c0375/tree57df0dbb"
+    },
+    {
+      "command": "herdr pane close w6H:p1",
+      "result": "ok; source worktree and workspace preserved"
+    }
+  ],
+  "failure_reason": "Full acceptance blocked: expanded exported page geometry; no accepted source-dimension PNG mapping, stable imported UUID/folder/destination isolation, pairing UI, current-document toolbar, originating Pi/OMP delivery or production cancellation proof; toolbar quality and lifecycle checks untested.",
+  "result_missing": false
+}
+```
 
-## Attempt 4 — implementation-0011
+### start-complete-0018
 
-Failed metadata-probe attempt; implementation remains blocked. No source changes. ARM64 cross-build and named extension install/hash check passed. The device lacks `timeout`; load restart and initial rollback restart wrappers failed before invoking systemctl. The trap removed only the probe. A host-bounded recovery restarted only xochitl once; the final safe snapshot matches the baseline byte for byte. No runtime metadata, document access, import/export, or acceptance result exists. Temporary source/build/image payloads were removed.
+```json
+{
+  "implementation_summary": "Actual image_editor request/browser stock-PDF import now detects all-color visible out-of-source paint, rejects unsupported source mapping, binds one-use clipping consent to request/source/export, preserves source-sized geometry/full PDF and cancellation/stale isolation. Manual browser import is not tablet toolbar integration.",
+  "validation": [
+    {
+      "command": "herdr agent wait w6J:p2 --until done --until blocked --timeout3600000",
+      "result": "done; completion_seq167; fresh session01a19e11-a946-724a-9610-96571998a017"
+    },
+    {
+      "command": "Read immutable child result, snapshot, raw final tests, review resolutions and live output verification",
+      "result": "Clipping slice complete. Build/typecheck passed;13 tests/100 assertions pass. Actual registered tool/browser workflow remained pending until consent, delivered800x1000 PNG, preserved exact corner regions and durable full PDF. Ordinary PNG/drawing-state preservation exercised."
+    },
+    {
+      "command": "Verify all checksums.json entries against retained bytes",
+      "result": {
+        "files": 65,
+        "mismatches": []
+      }
+    },
+    {
+      "command": "mq native Markdown link selectors with okf module; resolve from each artifact directory",
+      "result": [
+        {
+          "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0017.md",
+          "local_links": 37,
+          "missing": []
+        },
+        {
+          "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+          "local_links": 133,
+          "missing": []
+        },
+        {
+          "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+          "local_links": 61,
+          "missing": []
+        }
+      ]
+    },
+    {
+      "command": "Compare final-smoke retained PDF to device export implementation-0014/result.pdf",
+      "result": "byte-identical SHA256fc49be15009fdf904eb4cd5edc82833b22cfeec40c656d90d5041a98a4ab42cf"
+    },
+    {
+      "command": "inspect.ts canonical ticket --json before reconciliation",
+      "result": "historyValid=true; start/reconcile; unique clean source ff9ec2a2/tree93faf247"
+    },
+    {
+      "command": "herdr pane close w6J:p2",
+      "result": "ok; existing source worktree retained"
+    }
+  ],
+  "failure_reason": "Full ticket remains blocked on real tablet pairing/authenticated transport, stable stock-library folder/document/server/job association, current-document toolbar integration, tablet isolation and owner hardware/lifecycle acceptance.",
+  "result_missing": false
+}
+```
 
-- **Evidence:** [build.json](../artifacts/evidence/implementation-0011/build.json).
-- **Evidence:** [execution.json](../artifacts/evidence/implementation-0011/execution.json).
-- **Evidence:** [restoration.json](../artifacts/evidence/implementation-0011/restoration.json).
-- **Evidence:** [findings.json](../artifacts/evidence/implementation-0011/findings.json).
-- **Evidence:** [cleanup.json](../artifacts/evidence/implementation-0011/cleanup.json).
-- **Receipt:** [implementation-0011](../events/implementation-0011.yaml).
-- **Snapshot:** [Attempt-4 immutable draft](../artifacts/snapshots/pr-draft-implementation-0011.md).
-- **Parent records:** [start-complete-0009](../events/start-complete-0009.yaml); [start-0010](../events/start-0010.yaml).
+### start-complete-0021
 
-Changed files: attempt-4 evidence directory, receipt, immutable snapshot, manifest, and the three projections. All earlier implementation/fix/review history above is retained. No review or fix attempt was added. No finding was cleared. Another probe cycle requires renewed approval and saved/closed-document confirmation; safe local annotated-export initiation and all owner acceptance gates remain unresolved.
+```json
+{
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json",
+      "result": "historyValid=true; start/takeover from start-0019; unique clean source46142936/tree514e1d89"
+    },
+    {
+      "command": "herdr agent list and child session ending",
+      "result": "No source agent/workspace; normal dispose session_exit. No duplicate launched."
+    },
+    {
+      "command": "Read preserved device and owner feedback records",
+      "result": "3 restarts recorded; final repaired entry/Back pass, layout fail. Native screenshot script requested SIGUSR2 earlier, no capture file confirmed; helper work unapproved and now withdrawn."
+    },
+    {
+      "command": "Preserve interrupted evidence with per-file SHA256",
+      "result": {
+        "files": 118,
+        "sensitive_field_findings": []
+      }
+    }
+  ],
+  "failure_reason": "Child session ended before writing phase-result. User changed UI requirements and withdrew screenshots. Device last observed with experiment active; original proxy restoration and final cleanup remain pending. New source-only recovery needed before further exact hardware approval.",
+  "result_missing": true,
+  "device_state": {
+    "last_observed": "Experiment component/adapter/client installed; original webserver-remote.so quarantined",
+    "restart_commands_last_recorded": 3,
+    "remaining_previously_approved": "Original-proxy restoration#4 only after renewed saved/closed confirmation",
+    "restored": false,
+    "cleanup_complete": false,
+    "new_device_operations_authorized": false
+  }
+}
+```
+
+## Current unresolved questions
+
+- Private stock QML types cannot be instantiated with available SDK. Owner must verify native geometry, warning text, input, close and orientations under fresh exact device approval.
+- Hardware association/Send acceptance remains blocked.
+- Original proxy remains quarantined at last observation; original restoration#4 needs renewed saved/closed and USB confirmation. Credentials/experiment cleanup not complete.

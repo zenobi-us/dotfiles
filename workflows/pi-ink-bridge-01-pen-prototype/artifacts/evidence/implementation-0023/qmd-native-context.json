@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/tmp/pi-ink-0020-qmd-sidebar-smoke",
+    "/tmp/pi-ink-0023-qmd-stage",
+    "13",
+    "implementation-0023"
+  ],
+  "exit_code": -6,
+  "stdout": "",
+  "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-0023-qmd-stage\n[qmldiff]: Failed to load hashtab: No such file or directory (os error 2)\n[qmldiff]: Loading file betterToc.qmd\n\nthread '<unnamed>' (1095644) panicked at src/util/common_util.rs:121:60:\ncalled `Result::unwrap()` on an `Err` value: Couldn't resolve the hashed identifier 1658694193319203921 required by /tmp/pi-ink-0023-qmd-stage/betterToc.qmd\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\nfatal runtime error: failed to initiate panic, error 5, aborting\n"
+}

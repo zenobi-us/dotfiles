@@ -338,3 +338,15 @@ A derived PDF clipped to that source window renders at 800 × 1000 without stret
 The source-window mapping is proved for this retained one-page synthetic export. Production out-of-bounds detection, confirmation UI, general PDF transforms, current-document/server/job binding, cancellation, and originating-request delivery remain unimplemented or unverified. Keep this ticket claimed and production blocked. Historical receipts and the earlier geometry failure remain unchanged; this analysis is not a new implementation phase or quality-gate pass.
 
 **Evidence:** [Coordinate analysis](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/analysis.json), [800 × 1000 diagnostic candidate](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/source-window-candidate.png), [derived source-window PDF](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/source-window-candidate.pdf), [verification and limits](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/verification.json), and [owner policy decision](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/policy-decision.json).
+
+### Native sidebar and document foldout revision — 2026-11-03
+
+Source commit `bb5df500f4a06c61ebde6073470ef5ed51f4b006` implements the latest UI direction. Global Pi Ink is last in the top section, before the native spacer. Document Pi Ink is directly before the existing TOC button. The document menu uses the same native foldout and row controls as BetterTOC. It does not open the full-page global pairing manager.
+
+Global selection now shows the manager idempotently. Its width follows actual sidebar visibility and width. Its top follows the native content header. Back still closes the entire global manager. The single persistent client and request/UUID/confirmation checks remain unchanged.
+
+Offline QMLDiff applied all 12 preserved QMDs plus this revision to five native resources. Qt AST parsing and actual extracted JavaScript action smoke passed. Scoped build, typecheck, 15 Bun tests and Go race tests passed. Private native-type instantiation, physical geometry, input and toolbar orientations remain unverified.
+
+The screenshot request is withdrawn. This attempt ran no tablet command, screenshot, helper installation, restart or restoration. Hardware association/Send acceptance, original-proxy restoration and credential/experiment cleanup remain blocked. A new exact payload/restart/rollback approval is required before device work. Keep this ticket claimed and production blocked. No merge, rebase, push or ticket completion occurred.
+
+See [implementation-0023 result](../../workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0023.yaml) and [source identities](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/source-identity.json).

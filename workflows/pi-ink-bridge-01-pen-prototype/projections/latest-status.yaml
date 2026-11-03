@@ -2,92 +2,17 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "pi-ink-bridge-01-pen-prototype",
   "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
-  "state": "BLOCKED",
-  "latest_receipt": "implementation-0017",
-  "latest_source_commit": "ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456",
-  "latest_source_tree": "93faf247089822a60c8cb534416997690fb989de",
+  "state": "IMPLEMENTED",
+  "latest_receipt": "implementation-0023",
+  "latest_source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "latest_source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
   "latest_review_verdict": null,
   "open_findings": [
-    {
-      "id": "document-folder-associations",
-      "description": "Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented."
-    },
-    {
-      "id": "current-document-toolbar",
-      "description": "No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof."
-    },
-    {
-      "id": "origin-cancellation-delivery",
-      "description": "Actual local image_editor PDF and PNG tool delivery, explicit result consent, stale confirmation and cancellation are exercised. Real tablet current-document/server/job binding, switching and wrong-server isolation remain unproved."
-    },
-    {
-      "id": "owner-quality-lifecycle",
-      "description": "Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested."
-    }
+    "Private stock QML types cannot be instantiated with available SDK. Owner must verify native geometry, warning text, input, close and orientations under fresh exact device approval.",
+    "Hardware association/Send acceptance remains blocked.",
+    "Original proxy remains quarantined at last observation; original restoration#4 needs renewed saved/closed and USB confirmation. Credentials/experiment cleanup not complete."
   ],
-  "evidence": {
-    "store": "repository",
-    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017"
-  },
-  "parent_completion_pending": true,
-  "last_phase_status": "blocked",
-  "bounded_experiment": "Repository-only real request-server/browser PDF clipping gate; no tablet connection or mutation by agent",
-  "geometry_gate": "passed for supported source-bound single-page opaque-image PDFs; unsupported mappings rejected",
-  "restoration": {
-    "status": "restored",
-    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json",
-    "final_verification_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-final.json",
-    "service_active": true,
-    "temporary_adapter_absent": true,
-    "temporary_client_absent": true,
-    "owned_backup_absent": true,
-    "original_extension_hash_and_metadata_restored": true,
-    "stock_loader_extension_config_match": true,
-    "listener_bindings_match": true,
-    "baseline_wildcard_proxy_restored_by_owner_choice": true,
-    "actual_load_restart_commands": 1,
-    "actual_cleanup_restart_commands": 1,
-    "additional_restart_commands": 0,
-    "remaining_device_cleanup": []
-  },
-  "historical_results_preserved": [
-    {
-      "receipt_id": "implementation-0002",
-      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0002.yaml",
-      "status": "blocked",
-      "not_repaired": true
-    }
-  ],
-  "prior_open_findings": [
-    {
-      "id": "source-geometry",
-      "description": "Annotated export expands MediaBox/CropBox to [-31.51,-121.92,928.57,1000]. Original source 800x1000. No accepted source-window mapping; forced scale is disqualified. Source-dimension aligned PNG gate remains blocked."
-    },
-    {
-      "id": "document-folder-associations",
-      "description": "Owner sees and opens synthetic import, but returned UUID/folder identity and upload destination isolation were not established. No server-associated stock folders or pairing UI implemented."
-    },
-    {
-      "id": "current-document-toolbar",
-      "description": "No editor toolbar or live current-document binding implemented. Fixed synthetic UUID in diagnostic config is not toolbar/current-document proof."
-    },
-    {
-      "id": "origin-cancellation-delivery",
-      "description": "Actual PDF accepted only for fixed diagnostic server/job; wrong-origin receiver request rejected. No originating Pi/OMP tool request integrated; production cancellation, document switching and wrong-server isolation untested."
-    },
-    {
-      "id": "owner-quality-lifecycle",
-      "description": "Owner confirms editable marks remain; no latency/palm/zoom/undo/erasing/orientation verdict with custom toolbar. Sleep, tablet reboot, firmware update and XOVI reactivation untested."
-    }
-  ],
-  "slice_status": "completed",
-  "resolved_slice_findings": [
-    {
-      "id": "source-geometry",
-      "scope": "Supported retained synthetic PDF and manual browser submission; not arbitrary tablet documents",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.json"
-    }
-  ],
-  "owner_observation_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/owner-device-observation.json"
+  "hardware_acceptance": "BLOCKED",
+  "restored": false,
+  "cleanup_complete": false
 }

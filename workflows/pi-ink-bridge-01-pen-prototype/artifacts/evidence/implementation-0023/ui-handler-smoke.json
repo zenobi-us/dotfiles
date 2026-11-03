@@ -1,0 +1,6 @@
+{
+  "scope": "Offline actual extracted component JavaScript, not tablet or private-type instantiation",
+  "exit_code": 0,
+  "stdout": "PASS: repeated manager selection, canonical UUID, stale document press, explicit Send and immutable confirmation payload, current mismatch rejection\n",
+  "stderr": ""
+}

@@ -6,97 +6,11 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "implementation-0017",
-  "state": "BLOCKED",
-  "history": [
-    {
-      "receipt_id": "start-0001",
-      "status": "started",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0001.yaml"
-    },
-    {
-      "receipt_id": "start-complete-0003",
-      "status": "blocked",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0003.yaml"
-    },
-    {
-      "receipt_id": "start-0004",
-      "status": "started",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0004.yaml"
-    },
-    {
-      "receipt_id": "implementation-0005",
-      "status": "blocked",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml"
-    },
-    {
-      "receipt_id": "start-complete-0006",
-      "status": "blocked",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0006.yaml"
-    },
-    {
-      "receipt_id": "start-0007",
-      "status": "started",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0007.yaml"
-    },
-    {
-      "receipt_id": "implementation-0008",
-      "status": "blocked",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
-    },
-    {
-      "receipt_id": "start-complete-0009",
-      "status": "blocked",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0009.yaml"
-    },
-    {
-      "receipt_id": "start-0010",
-      "status": "started",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0010.yaml"
-    },
-    {
-      "receipt_id": "implementation-0011",
-      "status": "failed",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml"
-    },
-    {
-      "receipt_id": "start-complete-0012",
-      "status": "failed",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0012.yaml"
-    },
-    {
-      "receipt_id": "start-0013",
-      "status": "started",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0013.yaml"
-    },
-    {
-      "receipt_id": "implementation-0014",
-      "status": "blocked",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml"
-    },
-    {
-      "receipt_id": "start-complete-0015",
-      "status": "blocked",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0015.yaml"
-    },
-    {
-      "receipt_id": "start-0016",
-      "status": "started",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0016.yaml"
-    },
-    {
-      "receipt_id": "implementation-0017",
-      "status": "blocked",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml"
-    }
-  ],
-  "preserved_external_results": [
-    {
-      "receipt_id": "implementation-0002",
-      "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
-      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0002.yaml",
-      "status": "blocked",
-      "not_repaired": true
-    }
+  "latest_receipt": "implementation-0023",
+  "state": "IMPLEMENTED",
+  "hardware_acceptance": "BLOCKED",
+  "interrupted_attempts_preserved": [
+    "start-0019",
+    "start-complete-0021"
   ]
 }

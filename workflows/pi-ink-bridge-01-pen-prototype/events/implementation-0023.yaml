@@ -1,0 +1,206 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6N:p1",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "receipt_id": "implementation-0023",
+  "phase": "start",
+  "event": "phase-result",
+  "attempt": 8,
+  "parent_receipt": "start-0022",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "created_at": "2026-11-03T04:37:21.293830+00:00",
+  "session_id": "01a19fab-5a6f-7628-a4f9-7d3cfc46a045",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023"
+  },
+  "status": "completed",
+  "implementation_summary": "Source-only latest native UI revision completed; hardware acceptance and restoration remain blocked. Global last-top-section/idempotent dynamic-width manager; document immediately above TOC with native compact foldout.",
+  "changed_files": [
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json"
+  ],
+  "validation": [
+    {
+      "name": "build",
+      "command": [
+        "bun",
+        "run",
+        "build"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "build.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "bunx",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "typecheck.log"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "bun",
+        "test",
+        "test"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "tests.log"
+    },
+    {
+      "name": "go-race",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "./..."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet",
+      "exit_code": 0,
+      "log": "go-race.log"
+    },
+    {
+      "name": "native-context QMLDiff",
+      "result": "13 QMDs, all five native contexts passed; original12 hashes verified"
+    },
+    {
+      "name": "Qt AST",
+      "result": "component and five generated contexts passed"
+    },
+    {
+      "name": "actual UI handler JavaScript",
+      "result": "passed; offline only"
+    }
+  ],
+  "open_questions": [
+    "Private stock QML types cannot be instantiated with available SDK. Owner must verify native geometry, warning text, input, close and orientations under fresh exact device approval.",
+    "Hardware association/Send acceptance remains blocked.",
+    "Original proxy remains quarantined at last observation; original restoration#4 needs renewed saved/closed and USB confirmation. Credentials/experiment cleanup not complete."
+  ],
+  "device_commands_run": false,
+  "screenshots": "withdrawn; none captured",
+  "integration_complete": false,
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0021.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/interrupted-evidence-index.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/owner-latest-ui-direction-no-screenshots.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/owner-repaired-sidebar-manager-feedback.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-c-component-repair-load.json"
+    },
+    {
+      "kind": "primary-source",
+      "ref": "https://github.com/rmitchellscott/xovi-bettertoc/blob/main/assets/betterToc-pro.png"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0022.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0023.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0023.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/build.log"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/final-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/go-race.log"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/offline-inputs.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-final.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-with-hashtab.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qt-native-syntax.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/review-resolutions.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/source-identity.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/tests.log"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/typecheck.log"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/ui-handler-smoke.json"
+    }
+  ]
+}
